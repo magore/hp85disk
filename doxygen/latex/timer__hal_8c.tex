@@ -1,0 +1,291 @@
+\hypertarget{timer__hal_8c}{\section{lib/timer\-\_\-hal.c File Reference}
+\label{timer__hal_8c}\index{lib/timer\-\_\-hal.\-c@{lib/timer\-\_\-hal.\-c}}
+}
+
+
+High resolution timer library and user tasks hardware specific code for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$hardware/cpu.\-h$>$}\\*
+{\ttfamily \#include $<$lib/timer.\-h$>$}\\*
+{\ttfamily \#include $<$lib/time.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{timer__hal_8c_a464ece73918fef2a2dc341c78b735643}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}~1\-L
+\begin{DoxyCompactList}\small\item\em A\-V\-R prescale divider. \end{DoxyCompactList}\item 
+\#define \hyperlink{timer__hal_8c_a7a27591fbef33bcc7025333f1c50a055}{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C}~(F\-\_\-\-C\-P\-U/\hyperlink{timer__hal_8c_a464ece73918fef2a2dc341c78b735643}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}/\hyperlink{timer_8h_ab29f444706056b13bca09e97c909bbc5}{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z})
+\begin{DoxyCompactList}\small\item\em Computer A\-V\-R counts per interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{timer__hal_8c_aff3972b0a8c4700e94f756f96149dad6}{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S}~(\hyperlink{timer_8h_ac0ca52f7bb0e2b7993bbcb75495d7904}{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-T\-I\-C\-\_\-\-N\-S}/\hyperlink{timer__hal_8c_a7a27591fbef33bcc7025333f1c50a055}{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C})
+\begin{DoxyCompactList}\small\item\em Computer A\-V\-R count time in Nanoseconds per counter increment. \end{DoxyCompactList}\item 
+\#define \hyperlink{timer__hal_8c_ae942f70a88de5e01fc1b8e2002522dd2}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1}~(1 $<$$<$ C\-S10)						/$\ast$$<$ 1 Prescale $\ast$/
+\item 
+\#define \hyperlink{timer__hal_8c_ab3da0b61fb9b6859017b35cc70915d5a}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8}~(1 $<$$<$ C\-S11)						/$\ast$$<$ 8 Prescale $\ast$/
+\item 
+\#define \hyperlink{timer__hal_8c_aa8836e6d7c08ca748bc8a77d8d5578cd}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64}~((1 $<$$<$ C\-S11) $\vert$ ( 1 $<$$<$ C\-S10))		/$\ast$$<$ 64 Prescale $\ast$/
+\item 
+\#define \hyperlink{timer__hal_8c_a5dbf5162841c37db962a5606ec867337}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256}~(1 $<$$<$ C\-S12)						/$\ast$$<$ 256 Prescale $\ast$/
+\item 
+\#define \hyperlink{timer__hal_8c_a8eef517a9f106334a95ffe885e25796c}{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024}~((1 $<$$<$ C\-S12) $\vert$ ( 1 $<$$<$ C\-S10))	/$\ast$$<$ 1024 Prescape $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{I\-S\-R} (T\-I\-M\-E\-R1\-\_\-\-C\-O\-M\-P\-A\-\_\-vect)
+\begin{DoxyCompactList}\small\item\em A\-V\-R Timer Interrupt Vector. \end{DoxyCompactList}\item 
+void \hyperlink{timer__hal_8c_ad693e883a0f1d3ffee5ff28f8cddfe9d}{setup\-\_\-timers\-\_\-isr} ()
+\begin{DoxyCompactList}\small\item\em Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} task. \end{DoxyCompactList}\item 
+int \hyperlink{timer__hal_8c_aa84c3231a44cdeb975166c14e0f3cc46}{clock\-\_\-gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\begin{DoxyCompactList}\small\item\em Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+int \hyperlink{timer__hal_8c_a49d0147c5c0a6a7327541bfa7c694fe9}{clock\-\_\-getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
+\begin{DoxyCompactList}\small\item\em Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} \hyperlink{timer__hal_8c_a335451dd774ecb4b696d501b4c1b6f30}{\-\_\-\-\_\-clock}
+\begin{DoxyCompactList}\small\item\em System Clock Time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+High resolution timer library and user tasks hardware specific code for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{timer__hal_8c_source}{timer\-\_\-hal.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{timer__hal_8c_aff3972b0a8c4700e94f756f96149dad6}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S@{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S}}
+\index{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S@{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-R\-E\-S~({\bf S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-T\-I\-C\-\_\-\-N\-S}/{\bf T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C})}}\label{timer__hal_8c_aff3972b0a8c4700e94f756f96149dad6}
+
+
+Computer A\-V\-R count time in Nanoseconds per counter increment. 
+
+
+
+Definition at line 29 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by clock\-\_\-getres(), and clock\-\_\-gettime().
+
+\hypertarget{timer__hal_8c_a7a27591fbef33bcc7025333f1c50a055}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C}}
+\index{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C@{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-C\-O\-U\-N\-T\-S\-\_\-\-P\-E\-R\-\_\-\-T\-I\-C~(F\-\_\-\-C\-P\-U/{\bf T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}/{\bf S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z})}}\label{timer__hal_8c_a7a27591fbef33bcc7025333f1c50a055}
+
+
+Computer A\-V\-R counts per interrupt. 
+
+
+
+Definition at line 26 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by clock\-\_\-gettime(), and setup\-\_\-timers\-\_\-isr().
+
+\hypertarget{timer__hal_8c_ae942f70a88de5e01fc1b8e2002522dd2}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1~(1 $<$$<$ C\-S10)						/$\ast$$<$ 1 Prescale $\ast$/}}\label{timer__hal_8c_ae942f70a88de5e01fc1b8e2002522dd2}
+
+
+Definition at line 35 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by setup\-\_\-timers\-\_\-isr().
+
+\hypertarget{timer__hal_8c_a8eef517a9f106334a95ffe885e25796c}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-1024~((1 $<$$<$ C\-S12) $\vert$ ( 1 $<$$<$ C\-S10))	/$\ast$$<$ 1024 Prescape $\ast$/}}\label{timer__hal_8c_a8eef517a9f106334a95ffe885e25796c}
+
+
+Definition at line 39 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8c_a5dbf5162841c37db962a5606ec867337}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-256~(1 $<$$<$ C\-S12)						/$\ast$$<$ 256 Prescale $\ast$/}}\label{timer__hal_8c_a5dbf5162841c37db962a5606ec867337}
+
+
+Definition at line 38 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8c_aa8836e6d7c08ca748bc8a77d8d5578cd}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-64~((1 $<$$<$ C\-S11) $\vert$ ( 1 $<$$<$ C\-S10))		/$\ast$$<$ 64 Prescale $\ast$/}}\label{timer__hal_8c_aa8836e6d7c08ca748bc8a77d8d5578cd}
+
+
+Definition at line 37 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8c_ab3da0b61fb9b6859017b35cc70915d5a}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-\_\-8~(1 $<$$<$ C\-S11)						/$\ast$$<$ 8 Prescale $\ast$/}}\label{timer__hal_8c_ab3da0b61fb9b6859017b35cc70915d5a}
+
+
+Definition at line 36 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8c_a464ece73918fef2a2dc341c78b735643}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}}
+\index{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E@{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-R1\-\_\-\-P\-R\-E\-S\-C\-A\-L\-E~1\-L}}\label{timer__hal_8c_a464ece73918fef2a2dc341c78b735643}
+
+
+A\-V\-R prescale divider. 
+
+
+
+Definition at line 22 of file timer\-\_\-hal.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{timer__hal_8c_a49d0147c5c0a6a7327541bfa7c694fe9}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!clock\-\_\-getres@{clock\-\_\-getres}}
+\index{clock\-\_\-getres@{clock\-\_\-getres}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{clock\-\_\-getres}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-getres (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
+\item[{struct {\bf timespec} $\ast$}]{res}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8c_a49d0147c5c0a6a7327541bfa7c694fe9}
+
+
+Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyItemize}
+\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em res} & timespec resolution result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{timer__hal_8c_aa84c3231a44cdeb975166c14e0f3cc46}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!clock\-\_\-gettime@{clock\-\_\-gettime}}
+\index{clock\-\_\-gettime@{clock\-\_\-gettime}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{clock\-\_\-gettime}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-gettime (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
+\item[{struct {\bf timespec} $\ast$}]{ts}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8c_aa84c3231a44cdeb975166c14e0f3cc46}
+
+
+Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyItemize}
+\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em ts} & timespec result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+note\-: counter2 $<$ count1 implies I\-S\-R flag must be set 
+
+Definition at line 82 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by clock\-\_\-elapsed\-\_\-begin(), clock\-\_\-elapsed\-\_\-end(), display\-\_\-time(), gettimeofday(), printer\-\_\-open(), and time().
+
+\hypertarget{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!I\-S\-R@{I\-S\-R}}
+\index{I\-S\-R@{I\-S\-R}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}I\-S\-R (
+\begin{DoxyParamCaption}
+\item[{T\-I\-M\-E\-R1\-\_\-\-C\-O\-M\-P\-A\-\_\-vect}]{}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}
+
+
+A\-V\-R Timer Interrupt Vector. 
+
+
+\begin{DoxyItemize}
+\item calls \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} -\/ we call this the System task. 
+\end{DoxyItemize}
+
+Definition at line 45 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8c_ad693e883a0f1d3ffee5ff28f8cddfe9d}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}}
+\index{setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{setup\-\_\-timers\-\_\-isr}]{\setlength{\rightskip}{0pt plus 5cm}void setup\-\_\-timers\-\_\-isr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8c_ad693e883a0f1d3ffee5ff28f8cddfe9d}
+
+
+Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} task. 
+
+
+\begin{DoxyItemize}
+\item Notes\-:
+\begin{DoxyItemize}
+\item We attempt to use the largest reload count for a given S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z interrupt rate. This permits using hardware counter offset to increase resolution to the best possible amount.
+\end{DoxyItemize}
+\item Assumptions\-:
+\begin{DoxyItemize}
+\item We can divide the C\-P\-U frequency E\-X\-A\-C\-T\-L\-Y with timer/counter having no fractional remander.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{I\-S\-R()}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by init\-\_\-timers().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{timer__hal_8c_a335451dd774ecb4b696d501b4c1b6f30}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!\-\_\-\-\_\-clock@{\-\_\-\-\_\-clock}}
+\index{\-\_\-\-\_\-clock@{\-\_\-\-\_\-clock}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf ts\-\_\-t} \-\_\-\-\_\-clock}}\label{timer__hal_8c_a335451dd774ecb4b696d501b4c1b6f30}
+
+
+System Clock Time. 
+
+
+
+Definition at line 24 of file time.\-c.
+

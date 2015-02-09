@@ -1,0 +1,422 @@
+\hypertarget{fatfs__tests_8h}{\section{fatfs/fatfs\-\_\-tests.h File Reference}
+\label{fatfs__tests_8h}\index{fatfs/fatfs\-\_\-tests.\-h@{fatfs/fatfs\-\_\-tests.\-h}}
+}
+
+
+Fat\-Fs utilities and tests for H\-P85 disk emulator project.  
+
+
+{\ttfamily \#include \char`\"{}hardware/hardware.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ff.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fatfs__tests_8h_ae4d36ee22ea27a1cacd024c90bbec1da}{fatfs\-\_\-ls} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em List files under a specified directory. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a64ca1791111fc01ca02221e8c40000ec}{fatfs\-\_\-rename} (const char $\ast$oldpath, const char $\ast$newpath)
+\begin{DoxyCompactList}\small\item\em Rename a file. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a218391564137b7fbdcf6a1799fe36f33}{fatfs\-\_\-cat} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Display the contents of a file. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_aaae0eb731d2ff07e06d52d1fdb00a264}{fatfs\-\_\-copy} (char $\ast$from, char $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy a file. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_af3cdce828269076bfeba4f915a2116a0}{fatfs\-\_\-create} (char $\ast$name, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Create a new file from a user supplied string. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_adc171ed2ea1a96c56c4dabe661f5e84b}{fatfs\-\_\-rm} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Delete a file by name. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a0295eeef992e1fce6d2cb1064175d317}{fatfs\-\_\-mkdir} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Make a directory. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a56c0219446782ee16858760d14f59193}{fatfs\-\_\-rmdir} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Delete a directory. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_ab29db80c33a92fd27143e69786045b98}{fatfs\-\_\-stat} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} status of a file by name. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a536d115c6427678a34921500a2d8b1bc}{fatfs\-\_\-cd} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Change directory. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__tests_8h_a2ae25b49dbc1aab3b96e1b19eeefd15f}{fatfs\-\_\-pwd} (void)
+\begin{DoxyCompactList}\small\item\em Display current working directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fat\-Fs utilities and tests for H\-P85 disk emulator project. \begin{DoxyParagraph}{Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2013 Cha\-N.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{fatfs__tests_8h_source}{fatfs\-\_\-tests.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{fatfs__tests_8h_a218391564137b7fbdcf6a1799fe36f33}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-cat@{fatfs\-\_\-cat}}
+\index{fatfs\-\_\-cat@{fatfs\-\_\-cat}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-cat}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-cat (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a218391564137b7fbdcf6a1799fe36f33}
+
+
+Display the contents of a file. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
+
+
+Definition at line 101 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_a536d115c6427678a34921500a2d8b1bc}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-cd@{fatfs\-\_\-cd}}
+\index{fatfs\-\_\-cd@{fatfs\-\_\-cd}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-cd}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-cd (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a536d115c6427678a34921500a2d8b1bc}
+
+
+Change directory. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & Directory name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 328 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_aaae0eb731d2ff07e06d52d1fdb00a264}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-copy@{fatfs\-\_\-copy}}
+\index{fatfs\-\_\-copy@{fatfs\-\_\-copy}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-copy}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-copy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{from, }
+\item[{char $\ast$}]{to}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_aaae0eb731d2ff07e06d52d1fdb00a264}
+
+
+Copy a file. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em from} & source file. \\
+\hline
+\mbox{\tt in}  & {\em to} & destination file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_af3cdce828269076bfeba4f915a2116a0}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-create@{fatfs\-\_\-create}}
+\index{fatfs\-\_\-create@{fatfs\-\_\-create}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-create}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-create (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_af3cdce828269076bfeba4f915a2116a0}
+
+
+Create a new file from a user supplied string. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & name of file to create. \\
+\hline
+\mbox{\tt in}  & {\em str} & string containing file contents.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 224 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_ae4d36ee22ea27a1cacd024c90bbec1da}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-ls@{fatfs\-\_\-ls}}
+\index{fatfs\-\_\-ls@{fatfs\-\_\-ls}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-ls}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-ls (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_ae4d36ee22ea27a1cacd024c90bbec1da}
+
+
+List files under a specified directory. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & pathname of directory to list\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{disk_8c_adcd917b6190c42742129a67b304d9f1b}{fatfs\-\_\-filinfo\-\_\-list()}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_a0295eeef992e1fce6d2cb1064175d317}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-mkdir@{fatfs\-\_\-mkdir}}
+\index{fatfs\-\_\-mkdir@{fatfs\-\_\-mkdir}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-mkdir}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-mkdir (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a0295eeef992e1fce6d2cb1064175d317}
+
+
+Make a directory. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & Directory name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_a2ae25b49dbc1aab3b96e1b19eeefd15f}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-pwd@{fatfs\-\_\-pwd}}
+\index{fatfs\-\_\-pwd@{fatfs\-\_\-pwd}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-pwd}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-pwd (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a2ae25b49dbc1aab3b96e1b19eeefd15f}
+
+
+Display current working directory. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and mmc\-\_\-test().
+
+\hypertarget{fatfs__tests_8h_a64ca1791111fc01ca02221e8c40000ec}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-rename@{fatfs\-\_\-rename}}
+\index{fatfs\-\_\-rename@{fatfs\-\_\-rename}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-rename}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-rename (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{oldpath, }
+\item[{const char $\ast$}]{newpath}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a64ca1791111fc01ca02221e8c40000ec}
+
+
+Rename a file. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em oldpath} & old name. \\
+\hline
+\mbox{\tt in}  & {\em newpath} & new name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+
+\hypertarget{fatfs__tests_8h_adc171ed2ea1a96c56c4dabe661f5e84b}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-rm@{fatfs\-\_\-rm}}
+\index{fatfs\-\_\-rm@{fatfs\-\_\-rm}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-rm}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-rm (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_adc171ed2ea1a96c56c4dabe661f5e84b}
+
+
+Delete a file by name. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & File name to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 266 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+
+\hypertarget{fatfs__tests_8h_a56c0219446782ee16858760d14f59193}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-rmdir@{fatfs\-\_\-rmdir}}
+\index{fatfs\-\_\-rmdir@{fatfs\-\_\-rmdir}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-rmdir}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-rmdir (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_a56c0219446782ee16858760d14f59193}
+
+
+Delete a directory. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & Directory name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 297 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+
+\hypertarget{fatfs__tests_8h_ab29db80c33a92fd27143e69786045b98}{\index{fatfs\-\_\-tests.\-h@{fatfs\-\_\-tests.\-h}!fatfs\-\_\-stat@{fatfs\-\_\-stat}}
+\index{fatfs\-\_\-stat@{fatfs\-\_\-stat}!fatfs_tests.h@{fatfs\-\_\-tests.\-h}}
+\subsubsection[{fatfs\-\_\-stat}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-stat (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{fatfs__tests_8h_ab29db80c33a92fd27143e69786045b98}
+
+
+Display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} status of a file by name. 
+
+
+\begin{DoxyItemize}
+\item Credit\-: part of Fat\-Fs avr example project (C)Cha\-N, 2013.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & File name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file fatfs\-\_\-tests.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+

@@ -1,0 +1,162 @@
+\hypertarget{main_8h}{\section{main.\-h File Reference}
+\label{main_8h}\index{main.\-h@{main.\-h}}
+}
+
+
+Main for G\-P\-I\-B emulator for H\-P85 disk emulator project for A\-V\-R8.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8h_ac2ee59bdf981ff614d81f495dd028601}{uart\-\_\-put} (uint8\-\_\-t c)
+\begin{DoxyCompactList}\small\item\em line buffer for user input \end{DoxyCompactList}\item 
+char \hyperlink{main_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}{uart\-\_\-get} (void)
+\begin{DoxyCompactList}\small\item\em Receive a character from U\-A\-R\-T 0. \end{DoxyCompactList}\item 
+void \hyperlink{main_8h_a43847d18d1719eef6a58c8663abe32c7}{get\-\_\-line} (char $\ast$buff, int len)
+\begin{DoxyCompactList}\small\item\em Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. \end{DoxyCompactList}\item 
+void \hyperlink{main_8h_a0bed8474bd33a912769360766f6b10d4}{help} (void)
+\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
+void \hyperlink{main_8h_ace107c9b76ee90e28373c1a313bc11d9}{time\-\_\-test} (void)
+\item 
+void \hyperlink{main_8h_acbfb668d7b4cfa39aa1a5a5dac3c0e7e}{task} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main for G\-P\-I\-B emulator for H\-P85 disk emulator project for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}user name\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{main_8h_source}{main.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8h_a43847d18d1719eef6a58c8663abe32c7}{\index{main.\-h@{main.\-h}!get\-\_\-line@{get\-\_\-line}}
+\index{get\-\_\-line@{get\-\_\-line}!main.h@{main.\-h}}
+\subsubsection[{get\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}void get\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buff, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{main_8h_a43847d18d1719eef6a58c8663abe32c7}
+
+
+Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buff} & line input buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & line length maximum \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file main.\-c.
+
+
+
+Referenced by plot\-\_\-echo(), setdate(), and task().
+
+\hypertarget{main_8h_a0bed8474bd33a912769360766f6b10d4}{\index{main.\-h@{main.\-h}!help@{help}}
+\index{help@{help}!main.h@{main.\-h}}
+\subsubsection[{help}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8h_a0bed8474bd33a912769360766f6b10d4}
+
+
+Display the main help menu -\/ calls all other help menus. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib__tests_8c_a48d3cb0472f32b3aac3af47bad350db2}{gpib\-\_\-help()} 
+
+\hyperlink{fatfs__utils_8c_aa1c46acec1917beaacf8643292cd3977}{fatfs\-\_\-help()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 92 of file main.\-c.
+
+
+
+Referenced by task().
+
+\hypertarget{main_8h_acbfb668d7b4cfa39aa1a5a5dac3c0e7e}{\index{main.\-h@{main.\-h}!task@{task}}
+\index{task@{task}!main.h@{main.\-h}}
+\subsubsection[{task}]{\setlength{\rightskip}{0pt plus 5cm}void task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8h_acbfb668d7b4cfa39aa1a5a5dac3c0e7e}
+\hypertarget{main_8h_ace107c9b76ee90e28373c1a313bc11d9}{\index{main.\-h@{main.\-h}!time\-\_\-test@{time\-\_\-test}}
+\index{time\-\_\-test@{time\-\_\-test}!main.h@{main.\-h}}
+\subsubsection[{time\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}void time\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8h_ace107c9b76ee90e28373c1a313bc11d9}
+\hypertarget{main_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}{\index{main.\-h@{main.\-h}!uart\-\_\-get@{uart\-\_\-get}}
+\index{uart\-\_\-get@{uart\-\_\-get}!main.h@{main.\-h}}
+\subsubsection[{uart\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}char uart\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}
+
+
+Receive a character from U\-A\-R\-T 0. 
+
+\begin{DoxyReturn}{Returns}
+character 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file main.\-c.
+
+
+
+Referenced by get\-\_\-line().
+
+\hypertarget{main_8h_ac2ee59bdf981ff614d81f495dd028601}{\index{main.\-h@{main.\-h}!uart\-\_\-put@{uart\-\_\-put}}
+\index{uart\-\_\-put@{uart\-\_\-put}!main.h@{main.\-h}}
+\subsubsection[{uart\-\_\-put}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-\_\-put (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{c}
+\end{DoxyParamCaption}
+)}}\label{main_8h_ac2ee59bdf981ff614d81f495dd028601}
+
+
+line buffer for user input 
+
+Transmit a character on U\-A\-R\-T 0 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file main.\-c.
+
+
+
+Referenced by get\-\_\-line(), plot\-\_\-echo(), and task().
+

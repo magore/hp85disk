@@ -1,0 +1,159 @@
+\hypertarget{ram_8c}{\section{hardware/ram.c File Reference}
+\label{ram_8c}\index{hardware/ram.\-c@{hardware/ram.\-c}}
+}
+
+
+Memory Utilities and safe free for A\-V\-R8.  
+
+
+{\ttfamily \#include \char`\"{}hardware.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\-\_\-t \hyperlink{ram_8c_a92bc86687dff16369e1c89d557e794c7}{free\-Ram} ()
+\begin{DoxyCompactList}\small\item\em Return A\-V\-R Free memory for Malloc. \end{DoxyCompactList}\item 
+void \hyperlink{ram_8c_ad8337628eb01b7f72887a582e9417800}{Print\-Free} ()
+\begin{DoxyCompactList}\small\item\em Display A\-V\-R free memory of each type$>$ \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{ram_8c_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc} (int size, int elements)
+\begin{DoxyCompactList}\small\item\em Safe Alloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
+void \hyperlink{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}{safefree} (void $\ast$p)
+\begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Memory Utilities and safe free for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{ram_8c_source}{ram.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{ram_8c_a92bc86687dff16369e1c89d557e794c7}{\index{ram.\-c@{ram.\-c}!free\-Ram@{free\-Ram}}
+\index{free\-Ram@{free\-Ram}!ram.c@{ram.\-c}}
+\subsubsection[{free\-Ram}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t free\-Ram (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ram_8c_a92bc86687dff16369e1c89d557e794c7}
+
+
+Return A\-V\-R Free memory for Malloc. 
+
+
+\begin{DoxyItemize}
+\item avr-\/libc dependent code.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+free memory in bytes. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+malloc(). 
+\end{DoxySeeAlso}
+
+
+Definition at line 21 of file ram.\-c.
+
+
+
+Referenced by Print\-Free().
+
+\hypertarget{ram_8c_ad8337628eb01b7f72887a582e9417800}{\index{ram.\-c@{ram.\-c}!Print\-Free@{Print\-Free}}
+\index{Print\-Free@{Print\-Free}!ram.c@{ram.\-c}}
+\subsubsection[{Print\-Free}]{\setlength{\rightskip}{0pt plus 5cm}void Print\-Free (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{ram_8c_ad8337628eb01b7f72887a582e9417800}
+
+
+Display A\-V\-R free memory of each type$>$ 
+
+
+\begin{DoxyItemize}
+\item avr-\/libc dependent code.
+\item Stack, B\-S\-S, Data, Heap, Malloc.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file ram.\-c.
+
+
+
+Referenced by main(), safefree(), and task().
+
+\hypertarget{ram_8c_a23863723b09c3a4f836a5c10e1ecaa82}{\index{ram.\-c@{ram.\-c}!safecalloc@{safecalloc}}
+\index{safecalloc@{safecalloc}!ram.c@{ram.\-c}}
+\subsubsection[{safecalloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safecalloc (
+\begin{DoxyParamCaption}
+\item[{int}]{size, }
+\item[{int}]{elements}
+\end{DoxyParamCaption}
+)}}\label{ram_8c_a23863723b09c3a4f836a5c10e1ecaa82}
+
+
+Safe Alloc -\/ Display Error message if Calloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file ram.\-c.
+
+
+
+Referenced by fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), main(), new\-\_\-file\-\_\-descriptor(), stralloc(), and strnalloc().
+
+\hypertarget{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}{\index{ram.\-c@{ram.\-c}!safefree@{safefree}}
+\index{safefree@{safefree}!ram.c@{ram.\-c}}
+\subsubsection[{safefree}]{\setlength{\rightskip}{0pt plus 5cm}void safefree (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}
+
+
+Safe free -\/ Only free a pointer if it is in malloc memory range. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & pointer to free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file ram.\-c.
+
+
+
+Referenced by fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), free\-\_\-file\-\_\-descriptor(), gpib\-\_\-format\-\_\-disk(), new\-\_\-file\-\_\-descriptor(), and printer\-\_\-close().
+

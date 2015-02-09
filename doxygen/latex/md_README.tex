@@ -1,0 +1,184 @@
+\hypertarget{md_README_README}{}\section{R\-E\-A\-D\-M\-E}\label{md_README_README}
+\begin{DoxyParagraph}{H\-P85 Disk Emulator Copyright \copyright{} 2014 Mike Gore}
+See \hyperlink{md_COPYRIGHT}{C\-O\-P\-Y\-R\-I\-G\-H\-T.md} for a full copywrite notice for the project
+\end{DoxyParagraph}
+This project emulates three G\-P\-I\-B devices
+\begin{DoxyItemize}
+\item S\-S80 H\-P9134\-L disk at 700 for my H\-P85\-A (with 85\-A roms)
+\item Amigo 9121\-D disk at 710 for my H\-P85\-B (with 85\-B roms)
+\item Printer capture at 720 for my H\-P54645\-D scope
+\end{DoxyItemize}
+
+
+
+
+
+\section*{Credits}
+
+{\bfseries I really owe the very existence of this project to the original work done by Anders Gustafsson and his great \char`\"{}\-H\-P Disk Emulator\char`\"{} }
+\begin{DoxyItemize}
+\item You can visit his project at this site\-:
+\begin{DoxyItemize}
+\item \href{http://www.dalton.ax/hpdisk}{\tt http\-://www.\-dalton.\-ax/hpdisk}
+\item \href{http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html}{\tt http\-://www.\-elektor-\/labs.\-com/project/hpdisk-\/an-\/sd-\/based-\/disk-\/emulator-\/for-\/gpib-\/instruments-\/and-\/computers.\-13693.\-html}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\bfseries Anders Gustafsson was extremely helpful in providing me his current code and details of his project -\/ which I am very thankful for.}
+
+As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\-O\-T because of any problems with his original work.
+
+I have retained Anders H\-P H\-P9121\-D and H\-P9134\-L data structures found in gpib/defines without modification. Although mostly rewritten I have maintained the concept of state machines for G\-P\-I\-B read and write functions as well as for S\-S80 execute state tracking.
+
+
+
+ \section*{Abbreviations}
+
+Within this project I have attempted to provide detailed referces to to manuals, listed below. I have included short quotes and section and page\# reference to these works.
+\begin{DoxyItemize}
+\item {\bfseries S\-S80}
+\item {\bfseries C\-S80}
+\item {\bfseries A or Amigo}
+\item {\bfseries H\-P-\/\-I\-P}
+\item {\bfseries H\-P-\/\-I\-P Tutorial}
+\end{DoxyItemize}
+
+\subsection*{Documentation References and related sources of information}
+
+
+\begin{DoxyItemize}
+\item Web Resources
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net}{\tt http\-://www.\-hp9845.\-net}
+\item \href{http://www.hpmuseum.net}{\tt http\-://www.\-hpmuseum.\-net}
+\item \href{http://www.hpmusuem.org}{\tt http\-://www.\-hpmusuem.\-org}
+\item \href{http://bitsavers.trailing-edge.com}{\tt http\-://bitsavers.\-trailing-\/edge.\-com}
+\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\-://en.\-wikipedia.\-org/wiki/\-I\-E\-E\-E-\/488}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{S\-S80 References\-: (\char`\"{}\-S\-S80\char`\"{} is the short form used in the project)}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\-Subset 80 from Fixed and flexible disc drives\char`\"{}
+\item Printed November, 1985
+\item H\-P Part\# 5958-\/4129
+\end{DoxyItemize}
+
+\subsection*{C\-S80 References\-: (\char`\"{}\-C\-S80\char`\"{} is the short form used in the project)}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\-C\-S/80 Instruction Set Programming Manual\char`\"{}
+\item Printed\-: A\-P\-R 1983
+\item H\-P Part\# 5955-\/3442
+\end{DoxyItemize}
+
+\subsection*{Amigo References\-: (\char`\"{}\-A\char`\"{} or \char`\"{}\-Amigo\char`\"{} is the short form used in the project)}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\-Appendix A of 9895\-A Flexible Disc Memory Service Manual\char`\"{}
+\item H\-P Part\# 09895-\/90030
+\end{DoxyItemize}
+
+\subsection*{H\-P-\/\-I\-B}
+
+
+\begin{DoxyItemize}
+\item (\char`\"{}\-H\-P-\/\-I\-B\char`\"{} is the short form used in the project)
+\item \char`\"{}\-Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
+\item Printed March 1975
+\item H\-P Part\# 59401-\/90030
+\end{DoxyItemize}
+
+\subsection*{Tutorial Description of The Hewllet Packard Interface Bus}
+
+
+\begin{DoxyItemize}
+\item (\char`\"{}\-H\-P-\/\-I\-B Tutorial\char`\"{} is the short form used in the project)
+\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\-://www.\-hpmemory.\-org/an/pdf/hp-\/ib\-\_\-tutorial\-\_\-1980.\-pdf}
+\item Printed January 1983
+\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\-://www.\-ko4bb.\-com/\-Manuals/\-H\-P\-\_\-\-Agilent/\-H\-P\-I\-B\-\_\-tutorial\-\_\-\-H\-P.\-pdf}
+\item Printed 1987
+\end{DoxyItemize}
+
+\subsection*{G\-P\-I\-B / I\-E\-E\-E 488 Tutorial by Ian Poole}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\-://www.\-radio-\/electronics.\-com/info/t\-\_\-and\-\_\-m/gpib/ieee488-\/basics-\/tutorial.\-php}
+\end{DoxyItemize}
+
+\subsection*{H\-P 9133/9134 D/\-H/\-L References}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\-H\-P 9133/9134 D/\-H/\-L Service Manual\char`\"{}
+\item H\-P Part\# 5957-\/6560
+\item Printed\-: A\-P\-R\-I\-L 1985, Edition 2
+\end{DoxyItemize}
+
+\subsection*{L\-I\-F Filesystem Format}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\-://www.\-hp9845.\-net/9845/projects/hpdir/\#lif\-\_\-filesystem}
+\end{DoxyItemize}
+
+\subsection*{Useful Utilities}
+
+
+\begin{DoxyItemize}
+\item H\-P Drive (H\-P Drive Emulators for Windows Platform)
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive/}{\tt http\-://www.\-hp9845.\-net/9845/projects/hpdrive/}
+\end{DoxyItemize}
+\item H\-P Dir (H\-P Drive -\/ Disk Image Manipulation)
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/}{\tt http\-://www.\-hp9845.\-net/9845/projects/hpdir/}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{G\-P\-I\-B Connector pinout by Anders Gustafsson in his hpdisk project}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.dalton.ax/hpdisk/}{\tt http\-://www.\-dalton.\-ax/hpdisk/}
+\end{DoxyItemize}
+
+\begin{DoxyVerb}Pin Name    Signal Description       Pin    Name    Signal Description 
+1   DIO1    Data Input/Output Bit 1  13     DIO5    Data Input/Output Bit 5 
+2   DIO2    Data Input/Output Bit 2  14     DIO6    Data Input/Output Bit 6 
+3   DIO3    Data Input/Output Bit 3  15     DIO7    Data Input/Output Bit 7 
+4   DIO4    Data Input/Output Bit 4  16     DIO8    Data Input/Output Bit 8 
+5   EIO     End-Or-Identify          17     REN     Remote Enable 
+6   DAV     Data Valid               18     Shield  Ground (DAV) 
+7   NRFD    Not Ready For Data       19     Shield  Ground (NRFD) 
+8   NDAC    Not Data Accepted        20     Shield  Ground (NDAC) 
+9   IFC     Interface Clear          21     Shield  Ground (IFC) 
+10  SRQ     Service Request          22     Shield  Ground (SRQ) 
+11  ATN     Attention                23     Shield  Ground (ATN) 
+12  Shield  Chassis Ground           24     Single GND Single Ground
+\end{DoxyVerb}
+
+
+\subsection*{A\-V\-R A\-T\-M\-E\-G\-A1284\-P pin assignments for H\-P85 Disk}
+
+· G\-P\-I\-B\-: Each G\-P\-I\-B pin (8 data and 8 control lines ) attach to C\-P\-U with a 120 ohm current limit resistor . o Each G\-P\-I\-B pin (8 data and 8 control lines ) have a 10\-K pull-\/up resistor to V\-C\-C. · I\-S\-P header\-: M\-O\-S\-I,M\-I\-S\-O,S\-C\-K,/\-Reset connects directly to I\-S\-P header · Micro S\-D Interface\-: M\-O\-S\-I,M\-I\-S\-O,S\-C\-K attach to C\-P\-U function via a 1k series resistor. o Micro S\-D interface has level shifters and internal 5\-V to 3.\-3\-V regulator · R\-S232 T\-T\-L\-: connect to F\-T\-D\-I232 U\-S\-B board which also provides 5\-V V\-C\-C power to all circuits.. · I2\-C\-: S\-C\-L,S\-D\-A connect to optional D\-S1307 R\-T\-C board with each line having a 2k2 pull-\/up \begin{DoxyVerb}               ATMEGA1284P (and ATMEGA644P)
+               +---\/---+
+\end{DoxyVerb}
+ 5 E\-O\-I I\-N\-T0 P\-B0 1$\vert$ $\vert$40 P\-A0 D1 1 6 D\-A\-V I\-N\-T1 P\-B1 2$\vert$ $\vert$39 P\-A1 D2 2 P\-P I\-N\-T2 P\-B2 3$\vert$ $\vert$38 P\-A2 D3 3 S\-D /\-C\-S P\-W\-M P\-B3 4$\vert$ $\vert$37 P\-A3 D4 4 N\-C P\-W\-M P\-B4 5$\vert$ $\vert$36 P\-A4 D5 13 S\-D M\-O\-S\-I P\-B5 6$\vert$ $\vert$35 P\-A5 D6 14 S\-D M\-I\-S\-O P\-B6 7$\vert$ $\vert$34 P\-A6 D7 15 S\-D S\-C\-K P\-B7 8$\vert$ $\vert$33 P\-A7 D8 16 10\-K pullup /\-R\-S\-T 9$\vert$ $\vert$32 A\-R\-E\-F 0.\-1uf +5 V\-C\-C 10$\vert$ $\vert$31 G\-N\-D G\-N\-D G\-N\-D G\-N\-D 11$\vert$ $\vert$30 A\-V\-C\-C +5 20\-M\-H\-Z X\-T\-A\-L2 12$\vert$ $\vert$29 P\-C7 N\-C 20\-M\-H\-Z X\-T\-A\-L1 13$\vert$ $\vert$28 P\-C6 N\-C R\-X R\-X0 P\-D0 14$\vert$ $\vert$27 P\-C5 T\-D\-I J\-T\-A\-G T\-X T\-X0 P\-D1 15$\vert$ $\vert$26 P\-C4 T\-D\-O J\-T\-A\-G 7 N\-R\-F\-D R\-X1 P\-D2 16$\vert$ $\vert$25 P\-C3 T\-M\-S J\-T\-A\-G 8 N\-D\-A\-C T\-X1 P\-D3 17$\vert$ $\vert$24 P\-C2 T\-C\-K J\-T\-A\-G 9 I\-F\-C P\-W\-M P\-D4 18$\vert$ $\vert$23 P\-C1 S\-D\-A I2\-C 10 S\-R\-Q P\-W\-M P\-D5 19$\vert$ $\vert$22 P\-C0 S\-C\-L I2\-C 11 A\-T\-N P\-W\-M P\-D6 20$\vert$ $\vert$21 P\-D7 P\-W\-M R\-E\-N 17
+
+\subsection*{Parallel Poll Response circuit}
+
+· Uses\-: Three chips 74\-H\-C05, 74\-H\-C32, 74\-H\-C595 · Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
+
+A\-T\-M\-E\-G\-A H\-C595 H\-C05 +---\textbackslash{}/---+ +---+ 3 P\-B3 -\/-\/-\/-\/-\/--- 12 $\vert$\-R\-C\-L\-K Q0$\vert$ 15 -\/x-\/ 1 $\vert$ $\vert$ 2 --- G\-P\-I\-B D8 6 M\-O\-S\-I -\/-\/-\/-\/--- 14 $\vert$\-S\-E\-R Q1$\vert$ 1 -\/x-\/ 3 $\vert$ $\vert$ 4 --- G\-P\-I\-B D7 8 S\-C\-K -\/-\/-\/-\/-\/--- 11 $\vert$\-S\-R\-C\-L\-K Q2$\vert$ 2 -\/x-\/ 5 $\vert$ $\vert$ 6 --- G\-P\-I\-B D6 9 I\-F\-C -\/-\/-\/-\/-\/--- 10 $\vert$\-S\-R\-C\-L\-R Q3$\vert$ 3 -\/x-\/ 9 $\vert$ $\vert$ 8 --- G\-P\-I\-B D5 H\-C32 $\vert$ $\vert$ $\vert$ $\vert$ $\vert$ 7 G\-N\-D +-\/\textbackslash{}/-\/+ $\vert$ $\vert$ $\vert$ $\vert$ $\vert$14 V\-C\-C E\-O\-I 2$\vert$ $\vert$ $\vert$ $\vert$ $\vert$ +---+ A\-T\-N 1$\vert$ $\vert$ $\vert$ $\vert$ -\/-- each line has its own $\vert$ $\vert$ 1 13 $\vert$/\-O\-E $\vert$ 10\-K resistor to G\-N\-D V\-C\-C 14$\vert$ $\vert$ $\vert$ $\vert$ 16 V\-C\-C G\-N\-D 7$\vert$ $\vert$ $\vert$ $\vert$ 8 G\-N\-D +-\/---+ +-\/-\/-\/-\/-\/---+
+
+Notes\-: When both E\-O\-I and A\-T\-N are low the H\-C32 enables H\-C595 outputs · If any H\-C595 output is high the G\-P\-I\-B bus bit will be pulled low · I\-F\-C low resets the outputs low 

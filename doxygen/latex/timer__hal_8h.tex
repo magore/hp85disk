@@ -1,0 +1,140 @@
+\hypertarget{timer__hal_8h}{\section{lib/timer\-\_\-hal.h File Reference}
+\label{timer__hal_8h}\index{lib/timer\-\_\-hal.\-h@{lib/timer\-\_\-hal.\-h}}
+}
+
+
+High resolution timer library and user tasks hardware specific code for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{timer__hal_8h_a9e3fb5fed3c933bec0be6602be6b043d}{setup\-\_\-timers\-\_\-isr} (void)
+\begin{DoxyCompactList}\small\item\em Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} task. \end{DoxyCompactList}\item 
+int \hyperlink{timer__hal_8h_aa84c3231a44cdeb975166c14e0f3cc46}{clock\-\_\-gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\begin{DoxyCompactList}\small\item\em Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+int \hyperlink{timer__hal_8h_a49d0147c5c0a6a7327541bfa7c694fe9}{clock\-\_\-getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
+\begin{DoxyCompactList}\small\item\em Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+High resolution timer library and user tasks hardware specific code for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{timer__hal_8h_source}{timer\-\_\-hal.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{timer__hal_8h_a49d0147c5c0a6a7327541bfa7c694fe9}{\index{timer\-\_\-hal.\-h@{timer\-\_\-hal.\-h}!clock\-\_\-getres@{clock\-\_\-getres}}
+\index{clock\-\_\-getres@{clock\-\_\-getres}!timer_hal.h@{timer\-\_\-hal.\-h}}
+\subsubsection[{clock\-\_\-getres}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-getres (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
+\item[{struct {\bf timespec} $\ast$}]{res}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8h_a49d0147c5c0a6a7327541bfa7c694fe9}
+
+
+Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyItemize}
+\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em res} & timespec resolution result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8h_aa84c3231a44cdeb975166c14e0f3cc46}{\index{timer\-\_\-hal.\-h@{timer\-\_\-hal.\-h}!clock\-\_\-gettime@{clock\-\_\-gettime}}
+\index{clock\-\_\-gettime@{clock\-\_\-gettime}!timer_hal.h@{timer\-\_\-hal.\-h}}
+\subsubsection[{clock\-\_\-gettime}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-gettime (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
+\item[{struct {\bf timespec} $\ast$}]{ts}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8h_aa84c3231a44cdeb975166c14e0f3cc46}
+
+
+Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
+
+
+\begin{DoxyItemize}
+\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em ts} & timespec result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+note\-: counter2 $<$ count1 implies I\-S\-R flag must be set 
+
+Definition at line 82 of file timer\-\_\-hal.\-c.
+
+\hypertarget{timer__hal_8h_a9e3fb5fed3c933bec0be6602be6b043d}{\index{timer\-\_\-hal.\-h@{timer\-\_\-hal.\-h}!setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}}
+\index{setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}!timer_hal.h@{timer\-\_\-hal.\-h}}
+\subsubsection[{setup\-\_\-timers\-\_\-isr}]{\setlength{\rightskip}{0pt plus 5cm}void setup\-\_\-timers\-\_\-isr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{timer__hal_8h_a9e3fb5fed3c933bec0be6602be6b043d}
+
+
+Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} task. 
+
+
+\begin{DoxyItemize}
+\item Notes\-:
+\begin{DoxyItemize}
+\item We attempt to use the largest reload count for a given S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z interrupt rate. This permits using hardware counter offset to increase resolution to the best possible amount.
+\end{DoxyItemize}
+\item Assumptions\-:
+\begin{DoxyItemize}
+\item We can divide the C\-P\-U frequency E\-X\-A\-C\-T\-L\-Y with timer/counter having no fractional remander.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{I\-S\-R()}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file timer\-\_\-hal.\-c.
+
+
+
+Referenced by init\-\_\-timers().
+

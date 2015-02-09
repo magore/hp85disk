@@ -1,0 +1,442 @@
+\hypertarget{util_8c}{\section{lib/util.c File Reference}
+\label{util_8c}\index{lib/util.\-c@{lib/util.\-c}}
+}
+
+
+Misc. pattern matching and string utilities for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$avr/io.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}util.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{util_8c_a6cbd468e2a44ec84e67169c111f55476}{skipspaces} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{util_8c_a9d9ef387e228f835b055c64ef32286dd}{nextspace} (char $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Skip to first white space in a string -\/ tabs and spaces. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{util_8c_a093197ed241aba82a73cf904abbdf7e4}{skipchars} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Skip characters defined in user string. \end{DoxyCompactList}\item 
+void \hyperlink{util_8c_a4ad12cb70b50ebf45467f22d22707acc}{trim\-\_\-tail} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Trim White space and control characters from end of string. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{util_8c_a0e1e2bde3489df6f34dd1d7ce00cf6f2}{strnalloc} (char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Allocate space for string with maximum size. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{util_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}{stralloc} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Allocate space for string. \end{DoxyCompactList}\item 
+int \hyperlink{util_8c_aabae92d316862b46ca7a28276d2ed92e}{token} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
+int \hyperlink{util_8c_af32300adf59b7871ce7226ab2f87cf6f}{M\-A\-T\-C\-H} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+int \hyperlink{util_8c_a988909bdae57008ab49be8e95900ba79}{M\-A\-T\-C\-H\-I} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
+int \hyperlink{util_8c_abdfc11636d657dab0d3099d23b146ae1}{M\-A\-T\-C\-H\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings limted to length of pattern. \end{DoxyCompactList}\item 
+int \hyperlink{util_8c_ac67070b3cf1f8d9d31b7abef1a1b51f8}{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N} (char $\ast$str, char $\ast$pat)
+\begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{util_8c_ad996f8c1f1bb4dc0fea84a3752a68a30}{hexd} (char c)
+\begin{DoxyCompactList}\small\item\em Convert Character into H\-E\-X digit. \end{DoxyCompactList}\item 
+long \hyperlink{util_8c_a983e80eaa61f823f2ae826be0dda328b}{atoh} (const char $\ast$p)
+\begin{DoxyCompactList}\small\item\em Convert A\-S\-C\-I\-I hex string to long integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Misc. pattern matching and string utilities for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{util_8c_source}{util.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{util_8c_a983e80eaa61f823f2ae826be0dda328b}{\index{util.\-c@{util.\-c}!atoh@{atoh}}
+\index{atoh@{atoh}!util.c@{util.\-c}}
+\subsubsection[{atoh}]{\setlength{\rightskip}{0pt plus 5cm}long atoh (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a983e80eaa61f823f2ae826be0dda328b}
+
+
+Convert A\-S\-C\-I\-I hex string to long integer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p} & String to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+long integer result. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+strtol() for return overflow and underflow results. 
+\end{DoxySeeAlso}
+
+
+Definition at line 298 of file util.\-c.
+
+
+
+Referenced by gpib\-\_\-tests().
+
+\hypertarget{util_8c_ad996f8c1f1bb4dc0fea84a3752a68a30}{\index{util.\-c@{util.\-c}!hexd@{hexd}}
+\index{hexd@{hexd}!util.c@{util.\-c}}
+\subsubsection[{hexd}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t hexd (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}}\label{util_8c_ad996f8c1f1bb4dc0fea84a3752a68a30}
+
+
+Convert Character into H\-E\-X digit. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+H\-E\-X digit \mbox{[}0..F\mbox{]} on success. 
+
+0xff on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file util.\-c.
+
+\hypertarget{util_8c_af32300adf59b7871ce7226ab2f87cf6f}{\index{util.\-c@{util.\-c}!M\-A\-T\-C\-H@{M\-A\-T\-C\-H}}
+\index{M\-A\-T\-C\-H@{M\-A\-T\-C\-H}!util.c@{util.\-c}}
+\subsubsection[{M\-A\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}int M\-A\-T\-C\-H (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_af32300adf59b7871ce7226ab2f87cf6f}
+
+
+Compare two strings. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file util.\-c.
+
+\hypertarget{util_8c_abdfc11636d657dab0d3099d23b146ae1}{\index{util.\-c@{util.\-c}!M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}!util.c@{util.\-c}}
+\subsubsection[{M\-A\-T\-C\-H\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}int M\-A\-T\-C\-H\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_abdfc11636d657dab0d3099d23b146ae1}
+
+
+Compare two strings limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 232 of file util.\-c.
+
+\hypertarget{util_8c_a988909bdae57008ab49be8e95900ba79}{\index{util.\-c@{util.\-c}!M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}}
+\index{M\-A\-T\-C\-H\-I@{M\-A\-T\-C\-H\-I}!util.c@{util.\-c}}
+\subsubsection[{M\-A\-T\-C\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}int M\-A\-T\-C\-H\-I (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a988909bdae57008ab49be8e95900ba79}
+
+
+Compare two strings without case. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 214 of file util.\-c.
+
+\hypertarget{util_8c_ac67070b3cf1f8d9d31b7abef1a1b51f8}{\index{util.\-c@{util.\-c}!M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}}
+\index{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N@{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}!util.c@{util.\-c}}
+\subsubsection[{M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}int M\-A\-T\-C\-H\-I\-\_\-\-L\-E\-N (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_ac67070b3cf1f8d9d31b7abef1a1b51f8}
+
+
+Compare two strings without case limted to length of pattern. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to match. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Matches sub strings so be caeful. 
+\end{DoxyWarning}
+
+
+Definition at line 257 of file util.\-c.
+
+\hypertarget{util_8c_a9d9ef387e228f835b055c64ef32286dd}{\index{util.\-c@{util.\-c}!nextspace@{nextspace}}
+\index{nextspace@{nextspace}!util.c@{util.\-c}}
+\subsubsection[{nextspace}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ nextspace (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a9d9ef387e228f835b055c64ef32286dd}
+
+
+Skip to first white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first white space character 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file util.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+
+\hypertarget{util_8c_a093197ed241aba82a73cf904abbdf7e4}{\index{util.\-c@{util.\-c}!skipchars@{skipchars}}
+\index{skipchars@{skipchars}!util.c@{util.\-c}}
+\subsubsection[{skipchars}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skipchars (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a093197ed241aba82a73cf904abbdf7e4}
+
+
+Skip characters defined in user string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to string after skipped characters. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file util.\-c.
+
+\hypertarget{util_8c_a6cbd468e2a44ec84e67169c111f55476}{\index{util.\-c@{util.\-c}!skipspaces@{skipspaces}}
+\index{skipspaces@{skipspaces}!util.c@{util.\-c}}
+\subsubsection[{skipspaces}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ skipspaces (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ptr}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a6cbd468e2a44ec84e67169c111f55476}
+
+
+Skip white space in a string -\/ tabs and spaces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to first non white space character 
+\end{DoxyReturn}
+
+
+Definition at line 25 of file util.\-c.
+
+
+
+Referenced by Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-tests(), gpib\-\_\-tests(), gpib\-\_\-trace\-\_\-task(), plot\-\_\-echo(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), receive\-\_\-plot(), and task().
+
+\hypertarget{util_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}{\index{util.\-c@{util.\-c}!stralloc@{stralloc}}
+\index{stralloc@{stralloc}!util.c@{util.\-c}}
+\subsubsection[{stralloc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ stralloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a8a9b8fa6a56f0303cd8c23fdf290f401}
+
+
+Allocate space for string. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+
+N\-U\-L\-L on out of memory. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file util.\-c.
+
+\hypertarget{util_8c_a0e1e2bde3489df6f34dd1d7ce00cf6f2}{\index{util.\-c@{util.\-c}!strnalloc@{strnalloc}}
+\index{strnalloc@{strnalloc}!util.c@{util.\-c}}
+\subsubsection[{strnalloc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strnalloc (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a0e1e2bde3489df6f34dd1d7ce00cf6f2}
+
+
+Allocate space for string with maximum size. 
+
+
+\begin{DoxyItemize}
+\item Copies tring into allocated space limited to maximum size.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & user string. \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum string length.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to alocated string. 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file util.\-c.
+
+\hypertarget{util_8c_aabae92d316862b46ca7a28276d2ed92e}{\index{util.\-c@{util.\-c}!token@{token}}
+\index{token@{token}!util.c@{util.\-c}}
+\subsubsection[{token}]{\setlength{\rightskip}{0pt plus 5cm}int token (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat}
+\end{DoxyParamCaption}
+)}}\label{util_8c_aabae92d316862b46ca7a28276d2ed92e}
+
+
+Search for token in a string matching user pattern. 
+
+
+\begin{DoxyItemize}
+\item Skips all non printable A\-S\-C\-I\-I characters before trying match.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to search. \\
+\hline
+\mbox{\tt in}  & {\em pat} & pattern to search for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string lenth on match. 
+
+0 on no match. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file util.\-c.
+
+
+
+Referenced by Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-tests(), gpib\-\_\-tests(), plot\-\_\-echo(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), rcvr\-\_\-datablock(), and task().
+
+\hypertarget{util_8c_a4ad12cb70b50ebf45467f22d22707acc}{\index{util.\-c@{util.\-c}!trim\-\_\-tail@{trim\-\_\-tail}}
+\index{trim\-\_\-tail@{trim\-\_\-tail}!util.c@{util.\-c}}
+\subsubsection[{trim\-\_\-tail}]{\setlength{\rightskip}{0pt plus 5cm}void trim\-\_\-tail (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{util_8c_a4ad12cb70b50ebf45467f22d22707acc}
+
+
+Trim White space and control characters from end of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Overwrites White space and control characters with E\-O\-S. 
+\end{DoxyWarning}
+
+
+Definition at line 91 of file util.\-c.
+
+
+
+Referenced by Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), and P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config().
+

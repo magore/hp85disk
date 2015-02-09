@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['f_5feof',['f_eof',['../ff_8h.html#a970cdd8970a3a94967ad64cfc5d4c161',1,'ff.h']]],
+  ['f_5ferror',['f_error',['../ff_8h.html#a25cbdabeed318802cf0e9db6671a33b7',1,'ff.h']]],
+  ['f_5fsize',['f_size',['../ff_8h.html#a26f33722c5bf1aa3cd6f0290a83eb2bc',1,'ff.h']]],
+  ['f_5ftell',['f_tell',['../ff_8h.html#a5e1daca7ce13cdc277e42185f7f9124f',1,'ff.h']]],
+  ['fa_5f_5fdirty',['FA__DIRTY',['../ff_8h.html#a5b2962e3616a1e9eb709d95f4c75c67c',1,'ff.h']]],
+  ['fa_5f_5fwritten',['FA__WRITTEN',['../ff_8h.html#ac4b7d5223f84df91c306ffbff536fae4',1,'ff.h']]],
+  ['fa_5fcreate_5falways',['FA_CREATE_ALWAYS',['../ff_8h.html#afba4546b131dea4b24727fa20a80e29f',1,'ff.h']]],
+  ['fa_5fcreate_5fnew',['FA_CREATE_NEW',['../ff_8h.html#a417bb1babd1785fd181a806b5613eba3',1,'ff.h']]],
+  ['fa_5fopen_5falways',['FA_OPEN_ALWAYS',['../ff_8h.html#a17b01553029920ac0468912b4bcb16c7',1,'ff.h']]],
+  ['fa_5fopen_5fexisting',['FA_OPEN_EXISTING',['../ff_8h.html#a0c5dd686b10f84c2a2b3954957a5979a',1,'ff.h']]],
+  ['fa_5fread',['FA_READ',['../ff_8h.html#a1f4f3530ff03abbd979b072536e72290',1,'ff.h']]],
+  ['fa_5fwrite',['FA_WRITE',['../ff_8h.html#afa366963220c89b882c0361794020c14',1,'ff.h']]],
+  ['fatfs_5fr',['FATFS_R',['../posix_8h.html#ac5a6f01348af03d4c2cdd9d557880c4d',1,'posix.h']]],
+  ['fatfs_5fw',['FATFS_W',['../posix_8h.html#a58a8434d968e434626088e2dc6ae6124',1,'posix.h']]],
+  ['fatfs_5fx',['FATFS_X',['../posix_8h.html#a0a88f1032e29e7cc97a96b40cdc996a5',1,'posix.h']]],
+  ['fileno',['fileno',['../posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3',1,'posix.h']]],
+  ['free_5fbuf',['FREE_BUF',['../ff_8c.html#aba6d6942b59f11cf285bdbfb7e38f1fa',1,'ff.c']]],
+  ['fs_5ffat12',['FS_FAT12',['../ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0',1,'ff.h']]],
+  ['fs_5ffat16',['FS_FAT16',['../ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9',1,'ff.h']]],
+  ['fs_5ffat32',['FS_FAT32',['../ff_8h.html#ac63e0796095a789cefdbc3c3c676c9ce',1,'ff.h']]],
+  ['fsi_5ffree_5fcount',['FSI_Free_Count',['../ff_8c.html#ab711e50459aba01b11c6b46a7cc1410b',1,'ff.c']]],
+  ['fsi_5fleadsig',['FSI_LeadSig',['../ff_8c.html#a318e58c1966aba52b90ab98dcb649883',1,'ff.c']]],
+  ['fsi_5fnxt_5ffree',['FSI_Nxt_Free',['../ff_8c.html#a320700cedf300c9b418edf56e5e6b086',1,'ff.c']]],
+  ['fsi_5fstrucsig',['FSI_StrucSig',['../ff_8c.html#a3bac0e6ff5907873030db1d0a7c4ebef',1,'ff.c']]]
+];

@@ -1,0 +1,321 @@
+\hypertarget{main_8c}{\section{main.\-c File Reference}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+}
+
+
+Main for G\-P\-I\-B emulator for H\-P85 disk emulator project for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}gpib/defines.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/gpib\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/gpib.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/gpib\-\_\-task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/gpib\-\_\-tests.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/amigo.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib/ss80.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$math.\-h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}{D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E}~(1406357902\-L -\/ 3600\-L $\ast$ 4\-L)
+\begin{DoxyCompactList}\small\item\em Defines a default E\-P\-O\-C\-H time to set the R\-T\-C if not initialied. \end{DoxyCompactList}\item 
+\#define \hyperlink{main_8c_a77a4765d1e38b93e353315ca174c9959}{T\-I\-M\-E\-Z\-O\-N\-E}~300\-L                             /$\ast$ west $\ast$/
+\begin{DoxyCompactList}\small\item\em Timezone west in minutes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_ac2ee59bdf981ff614d81f495dd028601}{uart\-\_\-put} (uint8\-\_\-t c)
+\begin{DoxyCompactList}\small\item\em line buffer for user input \end{DoxyCompactList}\item 
+char \hyperlink{main_8c_aeb5d4f8824840e438ffbcf8d7e15ad77}{uart\-\_\-get} (void)
+\begin{DoxyCompactList}\small\item\em Receive a character from U\-A\-R\-T 0. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a43847d18d1719eef6a58c8663abe32c7}{get\-\_\-line} (char $\ast$buff, int len)
+\begin{DoxyCompactList}\small\item\em Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a9926884643efcc16ac36662b381b6bde}{delay\-\_\-tests} ()
+\begin{DoxyCompactList}\small\item\em perform tests on delay functions \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}{setup\-\_\-clock} ()
+\begin{DoxyCompactList}\small\item\em Read R\-T\-C D\-S1307. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}{display\-\_\-time} ()
+\begin{DoxyCompactList}\small\item\em Display current D\-S1307 R\-T\-C time. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}{task} (char $\ast$line, uint8\-\_\-t gpib)
+\begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main for G\-P\-I\-B emulator for H\-P85 disk emulator project for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{main_8c_source}{main.\-c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}{\index{main.\-c@{main.\-c}!D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E@{D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E}}
+\index{D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E@{D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E}!main.c@{main.\-c}}
+\subsubsection[{D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-F\-A\-U\-L\-T\-\_\-\-T\-I\-M\-E~(1406357902\-L -\/ 3600\-L $\ast$ 4\-L)}}\label{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}
+
+
+Defines a default E\-P\-O\-C\-H time to set the R\-T\-C if not initialied. 
+
+
+
+Definition at line 144 of file main.\-c.
+
+
+
+Referenced by setup\-\_\-clock().
+
+\hypertarget{main_8c_a77a4765d1e38b93e353315ca174c9959}{\index{main.\-c@{main.\-c}!T\-I\-M\-E\-Z\-O\-N\-E@{T\-I\-M\-E\-Z\-O\-N\-E}}
+\index{T\-I\-M\-E\-Z\-O\-N\-E@{T\-I\-M\-E\-Z\-O\-N\-E}!main.c@{main.\-c}}
+\subsubsection[{T\-I\-M\-E\-Z\-O\-N\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\-I\-M\-E\-Z\-O\-N\-E~300\-L                             /$\ast$ west $\ast$/}}\label{main_8c_a77a4765d1e38b93e353315ca174c9959}
+
+
+Timezone west in minutes. 
+
+
+
+Definition at line 146 of file main.\-c.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8c_a9926884643efcc16ac36662b381b6bde}{\index{main.\-c@{main.\-c}!delay\-\_\-tests@{delay\-\_\-tests}}
+\index{delay\-\_\-tests@{delay\-\_\-tests}!main.c@{main.\-c}}
+\subsubsection[{delay\-\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}void delay\-\_\-tests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a9926884643efcc16ac36662b381b6bde}
+
+
+perform tests on delay functions 
+
+This included measurement of avr-\/libc delays \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file main.\-c.
+
+
+
+Referenced by task().
+
+\hypertarget{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}{\index{main.\-c@{main.\-c}!display\-\_\-time@{display\-\_\-time}}
+\index{display\-\_\-time@{display\-\_\-time}!main.c@{main.\-c}}
+\subsubsection[{display\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}void display\-\_\-time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}
+
+
+Display current D\-S1307 R\-T\-C time. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\-: \hyperlink{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}{rtc\-\_\-read} 
+
+\-: \hyperlink{time_8c_a48f6c9170d63503123d5af4ae2639baf}{timegm()} 
+
+\-: ascitime() 
+\end{DoxySeeAlso}
+
+
+Definition at line 194 of file main.\-c.
+
+
+
+Referenced by main(), and task().
+
+\hypertarget{main_8c_a43847d18d1719eef6a58c8663abe32c7}{\index{main.\-c@{main.\-c}!get\-\_\-line@{get\-\_\-line}}
+\index{get\-\_\-line@{get\-\_\-line}!main.c@{main.\-c}}
+\subsubsection[{get\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}void get\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buff, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a43847d18d1719eef6a58c8663abe32c7}
+
+
+Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buff} & line input buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & line length maximum \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file main.\-c.
+
+
+
+Referenced by plot\-\_\-echo(), setdate(), and task().
+
+\hypertarget{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{\index{main.\-c@{main.\-c}!help@{help}}
+\index{help@{help}!main.c@{main.\-c}}
+\subsubsection[{help}]{\setlength{\rightskip}{0pt plus 5cm}void help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}
+
+
+Display the main help menu -\/ calls all other help menus. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib__tests_8c_a48d3cb0472f32b3aac3af47bad350db2}{gpib\-\_\-help()} 
+
+\hyperlink{fatfs__utils_8c_aa1c46acec1917beaacf8643292cd3977}{fatfs\-\_\-help()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 92 of file main.\-c.
+
+
+
+Referenced by task().
+
+\hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project 
+
+\begin{DoxyReturn}{Returns}
+should never return! 
+\end{DoxyReturn}
+
+
+Definition at line 300 of file main.\-c.
+
+\hypertarget{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}{\index{main.\-c@{main.\-c}!setup\-\_\-clock@{setup\-\_\-clock}}
+\index{setup\-\_\-clock@{setup\-\_\-clock}!main.c@{main.\-c}}
+\subsubsection[{setup\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}void setup\-\_\-clock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}
+
+
+Read R\-T\-C D\-S1307. 
+
+If not initialized set default time \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\-: \hyperlink{time_8c_a0e38ba6dd41a9999acda0d556620da44}{clock\-\_\-settime()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 153 of file main.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}{\index{main.\-c@{main.\-c}!task@{task}}
+\index{task@{task}!main.c@{main.\-c}}
+\subsubsection[{task}]{\setlength{\rightskip}{0pt plus 5cm}void task (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{line, }
+\item[{uint8\-\_\-t}]{gpib}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}
+
+
+User command handler -\/ called as main task. 
+
+If a keypress is detected read a line from the uart parse the result and call various user functions. ? will return a list of fuctions and paramters permitted 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em gpib} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file main.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8c_aeb5d4f8824840e438ffbcf8d7e15ad77}{\index{main.\-c@{main.\-c}!uart\-\_\-get@{uart\-\_\-get}}
+\index{uart\-\_\-get@{uart\-\_\-get}!main.c@{main.\-c}}
+\subsubsection[{uart\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}char uart\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_aeb5d4f8824840e438ffbcf8d7e15ad77}
+
+
+Receive a character from U\-A\-R\-T 0. 
+
+\begin{DoxyReturn}{Returns}
+character 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file main.\-c.
+
+
+
+Referenced by get\-\_\-line().
+
+\hypertarget{main_8c_ac2ee59bdf981ff614d81f495dd028601}{\index{main.\-c@{main.\-c}!uart\-\_\-put@{uart\-\_\-put}}
+\index{uart\-\_\-put@{uart\-\_\-put}!main.c@{main.\-c}}
+\subsubsection[{uart\-\_\-put}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-\_\-put (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{c}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ac2ee59bdf981ff614d81f495dd028601}
+
+
+line buffer for user input 
+
+Transmit a character on U\-A\-R\-T 0 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file main.\-c.
+
+
+
+Referenced by get\-\_\-line(), plot\-\_\-echo(), and task().
+

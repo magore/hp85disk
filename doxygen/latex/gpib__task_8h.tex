@@ -1,0 +1,626 @@
+\hypertarget{gpib__task_8h}{\section{gpib/gpib\-\_\-task.h File Reference}
+\label{gpib__task_8h}\index{gpib/gpib\-\_\-task.\-h@{gpib/gpib\-\_\-task.\-h}}
+}
+
+
+High level G\-P\-I\-B command handler for H\-P85 disk emulator project for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gpib__task_8h_a5859304d546fa05404d17db34c704906}{gpib\-\_\-file\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em Read G\-P\-I\-B emulator Configuration file. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}{gpib\-\_\-log} (char $\ast$str)
+\item 
+void \hyperlink{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}{gpib\-\_\-trace\-\_\-task} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Trace G\-P\-I\-B activity passively -\/ saving to a log file. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{gpib__task_8h_a903eb44d83bf8f2db71e6f32a35fec62}{gpib\-\_\-error\-\_\-test} (uint16\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Check for G\-P\-I\-B errors and timeouts. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a2a437a5de39ba349ce90eef38f075712}{gpib\-\_\-init\-\_\-devices} (void)
+\begin{DoxyCompactList}\small\item\em Initialize A\-L\-L emulated devices S\-S80, A\-M\-I\-G\-O and printer. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{gpib__task_8h_a986d23075dcf4a3e6fd14995d0e82704}{G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S} (uint16\-\_\-t val, uint8\-\_\-t unread)
+\begin{DoxyCompactList}\small\item\em Process all G\-P\-I\-B Secondary Commands. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_af6b5cba8eb1142502f2ce96fc86a933f}{gpib\-\_\-task} (void)
+\begin{DoxyCompactList}\small\item\em Top most G\-P\-I\-B device emulator task. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_ab62b0b328847bfeb43baded10b34d28b}{Dump\-Data} (unsigned char $\ast$ptr, int length)
+\begin{DoxyCompactList}\small\item\em H\-E\-X and A\-S\-C\-I\-I dump of string in human-\/readable format. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a3d0a2ee44523824d216d09bc1e3fe211}{Fat\-Fs\-\_\-\-Read\-\_\-\-Config} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Read and parse a config file using Fat\-Fs functions. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}{P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Read and parse a config file using P\-O\-S\-I\-X functions. \end{DoxyCompactList}\item 
+int \hyperlink{gpib__task_8h_a6124af586deb96d91b919667d616cd94}{Send\-\_\-\-Identify} (uint8\-\_\-t byte1, uint8\-\_\-t byte2)
+\begin{DoxyCompactList}\small\item\em Send drive identify-\/ 2 bytes. \end{DoxyCompactList}\item 
+int \hyperlink{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}{G\-P\-I\-B} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em Main G\-P\-I\-B command handler. \end{DoxyCompactList}\item 
+int \hyperlink{gpib__task_8h_ae2bd0f57f529ba47dbc113ac709a35f0}{G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em Process all G\-P\-I\-B Listen commands. \end{DoxyCompactList}\item 
+int \hyperlink{gpib__task_8h_a9e586941a3629bec1a2c7e7a9113cee3}{G\-P\-I\-B\-\_\-\-T\-A\-L\-K} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em Process all G\-P\-I\-B Talk commands. \end{DoxyCompactList}\item 
+int \hyperlink{gpib__task_8h_ad18e29cb0500dc2226b4bebbf0fcbf0c}{G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em Process all G\-P\-I\-B Secondary Addresses. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a61b7b85789f90b1cc0e6cb4f71f6797d}{listen\-\_\-cleanup} (void)
+\begin{DoxyCompactList}\small\item\em Called when the listen address changes. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_a509eb3426def2f282b1a31c411e9cbb7}{talk\-\_\-cleanup} (void)
+\begin{DoxyCompactList}\small\item\em Called when the G\-P\-I\-B talk address changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+High level G\-P\-I\-B command handler for H\-P85 disk emulator project for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{gpib__task_8h_source}{gpib\-\_\-task.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{gpib__task_8h_ab62b0b328847bfeb43baded10b34d28b}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!Dump\-Data@{Dump\-Data}}
+\index{Dump\-Data@{Dump\-Data}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{Dump\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void Dump\-Data (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ptr, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_ab62b0b328847bfeb43baded10b34d28b}
+
+
+H\-E\-X and A\-S\-C\-I\-I dump of string in human-\/readable format. 
+
+
+\begin{DoxyItemize}
+\item Used only for debugging 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & data \\
+\hline
+\mbox{\tt in}  & {\em length} & length of data string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 475 of file gpib\-\_\-task.\-c.
+
+\hypertarget{gpib__task_8h_a3d0a2ee44523824d216d09bc1e3fe211}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!Fat\-Fs\-\_\-\-Read\-\_\-\-Config@{Fat\-Fs\-\_\-\-Read\-\_\-\-Config}}
+\index{Fat\-Fs\-\_\-\-Read\-\_\-\-Config@{Fat\-Fs\-\_\-\-Read\-\_\-\-Config}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{Fat\-Fs\-\_\-\-Read\-\_\-\-Config}]{\setlength{\rightskip}{0pt plus 5cm}void Fat\-Fs\-\_\-\-Read\-\_\-\-Config (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a3d0a2ee44523824d216d09bc1e3fe211}
+
+
+Read and parse a config file using Fat\-Fs functions. 
+
+
+\begin{DoxyItemize}
+\item Set protocol and debuglevel
+\item protocol is not being used
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & config file name to process\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 508 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-file\-\_\-init().
+
+\hypertarget{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!G\-P\-I\-B@{G\-P\-I\-B}}
+\index{G\-P\-I\-B@{G\-P\-I\-B}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{G\-P\-I\-B}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-I\-B (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}
+
+
+Main G\-P\-I\-B command handler. 
+
+
+\begin{DoxyItemize}
+\item We only ever called with A\-T\-N=1 commands.
+\item ch = G\-P\-I\-B command and status (ie it has the A\-T\-N\-\_\-\-F\-L\-A\-G set).
+\item Notes\-: We track any device states and call handelers.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ch} & 8 bit command\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess 
+
+G\-P\-I\-B error flags on fail 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list. 
+\end{DoxySeeAlso}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000018}{Todo}]T\-O\-D\-O \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000019}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
+
+
+Note\-: Suposed to be unsupported in S\-S80 -\/ pg 4-\/2 C\-S80 3-\/4
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000020}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000021}{Todo}]Fixme \end{DoxyRefDesc}
+
+
+Definition at line 663 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_a986d23075dcf4a3e6fd14995d0e82704}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}}
+\index{G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{val, }
+\item[{uint8\-\_\-t}]{unread}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a986d23075dcf4a3e6fd14995d0e82704}
+
+
+Process all G\-P\-I\-B Secondary Commands. 
+
+
+\begin{DoxyItemize}
+\item Dispatch emulator handler based on address
+\item if unread is true we \char`\"{}unread\char`\"{} val so the corresponding device emulator can process it.
+\item Unread allow us to write each emulator as a pure function.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & G\-P\-I\-B secondary command and control flags. \\
+\hline
+\mbox{\tt in}  & {\em unread} & if 1 unread val prior to emulator call.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+G\-P\-I\-B status from emulator command. 
+
+0 if no emulator command processed. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_a903eb44d83bf8f2db71e6f32a35fec62}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-error\-\_\-test@{gpib\-\_\-error\-\_\-test}}
+\index{gpib\-\_\-error\-\_\-test@{gpib\-\_\-error\-\_\-test}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-error\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t gpib\-\_\-error\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{val}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a903eb44d83bf8f2db71e6f32a35fec62}
+
+
+Check for G\-P\-I\-B errors and timeouts. 
+
+
+\begin{DoxyItemize}
+\item Reset G\-P\-I\-B bus on I\-F\-C or user keypress
+\item Display debug messages if debuglevel permits.
+\item Check media insert state
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & command or data byte and control or error flags.
+\begin{DoxyItemize}
+\item Lower 8 bits\-: Data or Command.
+\begin{DoxyItemize}
+\item If A\-T\-N is L\-O\-W then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\-: Status and Errors.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib_8h}{gpib.\-h} \-\_\-\-F\-L\-A\-G\-S defines for a full list.
+\begin{DoxyItemize}
+\item An error implies the data byte can't be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\-O\-I\-\_\-\-F\-L\-A\-G}
+\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\-R\-Q\-\_\-\-F\-L\-A\-G}
+\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\-T\-N\-\_\-\-F\-L\-A\-G}
+\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\-E\-N\-\_\-\-F\-L\-A\-G}
+\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\-P\-\_\-\-F\-L\-A\-G}
+\end{DoxyItemize}
+\item Error Flags\-:
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\-F\-C\-\_\-\-F\-L\-A\-G}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxySeeAlso}
+
+\begin{DoxyItemize}
+\item E\-O\-I\-\_\-\-F\-L\-A\-G
+\item A\-T\-N\-\_\-\-F\-L\-A\-G \begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib_8h}{gpib.\-h} \-\_\-\-F\-L\-A\-G\-S defines for a full list.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+val 
+
+A\-B\-O\-R\-T flag on user keypress 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000017}{Todo}]do we want to always exit here ? low level G\-P\-I\-B functions are still useful even without a D\-I\-S\-K \end{DoxyRefDesc}
+
+
+Definition at line 185 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_a5859304d546fa05404d17db34c704906}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-file\-\_\-init@{gpib\-\_\-file\-\_\-init}}
+\index{gpib\-\_\-file\-\_\-init@{gpib\-\_\-file\-\_\-init}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-file\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\-\_\-file\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a5859304d546fa05404d17db34c704906}
+
+
+Read G\-P\-I\-B emulator Configuration file. 
+
+Sets protocol and debuglevel \begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 42 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{gpib__task_8h_a2a437a5de39ba349ce90eef38f075712}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-init\-\_\-devices@{gpib\-\_\-init\-\_\-devices}}
+\index{gpib\-\_\-init\-\_\-devices@{gpib\-\_\-init\-\_\-devices}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-init\-\_\-devices}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\-\_\-init\-\_\-devices (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a2a437a5de39ba349ce90eef38f075712}
+
+
+Initialize A\-L\-L emulated devices S\-S80, A\-M\-I\-G\-O and printer. 
+
+
+\begin{DoxyItemize}
+\item Used at power up, Bus I\-F\-C or user aborts \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 256 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-error\-\_\-test(), gpib\-\_\-task(), and gpib\-\_\-trace\-\_\-task().
+
+\hypertarget{gpib__task_8h_ae2bd0f57f529ba47dbc113ac709a35f0}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N@{G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N}}
+\index{G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N@{G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_ae2bd0f57f529ba47dbc113ac709a35f0}
+
+
+Process all G\-P\-I\-B Listen commands. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ch} & 8 bit listen command\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+N\-O\-T\-E\-: we must track the \char`\"{}addressed state\char`\"{} of each device so we can determine its state -\/ ie\-: command vs Secondary states 
+
+Definition at line 768 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-log@{gpib\-\_\-log}}
+\index{gpib\-\_\-log@{gpib\-\_\-log}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\-\_\-log (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}
+
+
+Definition at line 87 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-decode(), and gpib\-\_\-trace\-\_\-task().
+
+\hypertarget{gpib__task_8h_ad18e29cb0500dc2226b4bebbf0fcbf0c}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S@{G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S}}
+\index{G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S@{G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_ad18e29cb0500dc2226b4bebbf0fcbf0c}
+
+
+Process all G\-P\-I\-B Secondary Addresses. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ch} & 8 bit secondary address.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+N\-O\-T\-E\-: We now know that ch $>$= 0x60 \&\& ch $<$= 0x7f Previous tests ensure this fact is true and because C\-M\-D\-\_\-\-M\-A\-S\-K == 0x7f
+
+note\-: any errors will reset lastcmd Universal Talk mode Treat this as a Secondary Address ? S\-S80 Ident 4-\/31 If we have our secondary address then send I\-D\-E\-N\-T 
+
+Definition at line 911 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_a9e586941a3629bec1a2c7e7a9113cee3}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!G\-P\-I\-B\-\_\-\-T\-A\-L\-K@{G\-P\-I\-B\-\_\-\-T\-A\-L\-K}}
+\index{G\-P\-I\-B\-\_\-\-T\-A\-L\-K@{G\-P\-I\-B\-\_\-\-T\-A\-L\-K}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{G\-P\-I\-B\-\_\-\-T\-A\-L\-K}]{\setlength{\rightskip}{0pt plus 5cm}int G\-P\-I\-B\-\_\-\-T\-A\-L\-K (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a9e586941a3629bec1a2c7e7a9113cee3}
+
+
+Process all G\-P\-I\-B Talk commands. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ch} & 8 bit talk command\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+N\-O\-T\-E\-: we must track the \char`\"{}addressed state\char`\"{} of each device so we can determine its state -\/ ie\-: command vs Secondary states save talking state 
+
+Definition at line 838 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{gpib__task_8h_af6b5cba8eb1142502f2ce96fc86a933f}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-task@{gpib\-\_\-task}}
+\index{gpib\-\_\-task@{gpib\-\_\-task}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_af6b5cba8eb1142502f2ce96fc86a933f}
+
+
+Top most G\-P\-I\-B device emulator task. 
+
+
+\begin{DoxyItemize}
+\item Initializes B\-U\-S, Devices, State.
+\item Reads and processes G\-P\-I\-B control or data bytes and calls emulator task. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 359 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-tests(), and task().
+
+\hypertarget{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!gpib\-\_\-trace\-\_\-task@{gpib\-\_\-trace\-\_\-task}}
+\index{gpib\-\_\-trace\-\_\-task@{gpib\-\_\-trace\-\_\-task}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{gpib\-\_\-trace\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\-\_\-trace\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}
+
+
+Trace G\-P\-I\-B activity passively -\/ saving to a log file. 
+
+
+\begin{DoxyItemize}
+\item We use the natural G\-P\-I\-B handshaking to slow G\-P\-I\-B talker/listeners so we can keep up
+\item A keypress will exit the trace and close the file
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & File name to save log file to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Exit on Key Press 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-tests().
+
+\hypertarget{gpib__task_8h_a61b7b85789f90b1cc0e6cb4f71f6797d}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!listen\-\_\-cleanup@{listen\-\_\-cleanup}}
+\index{listen\-\_\-cleanup@{listen\-\_\-cleanup}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{listen\-\_\-cleanup}]{\setlength{\rightskip}{0pt plus 5cm}void listen\-\_\-cleanup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a61b7b85789f90b1cc0e6cb4f71f6797d}
+
+
+Called when the listen address changes. 
+
+
+\begin{DoxyItemize}
+\item Used to cleanup or close at the end of a listen transation.
+\item Also called when G\-P\-I\-B bus reset or unlisten. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 961 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), and gpib\-\_\-state\-\_\-init().
+
+\hypertarget{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config@{P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config}}
+\index{P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config@{P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config}]{\setlength{\rightskip}{0pt plus 5cm}void P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}
+
+
+Read and parse a config file using P\-O\-S\-I\-X functions. 
+
+
+\begin{DoxyItemize}
+\item Set protocol and debuglevel
+\item protocol is not being used
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & config file name to process\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+
+
+Definition at line 561 of file gpib\-\_\-task.\-c.
+
+\hypertarget{gpib__task_8h_a6124af586deb96d91b919667d616cd94}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!Send\-\_\-\-Identify@{Send\-\_\-\-Identify}}
+\index{Send\-\_\-\-Identify@{Send\-\_\-\-Identify}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{Send\-\_\-\-Identify}]{\setlength{\rightskip}{0pt plus 5cm}int Send\-\_\-\-Identify (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{byte1, }
+\item[{uint8\-\_\-t}]{byte2}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a6124af586deb96d91b919667d616cd94}
+
+
+Send drive identify-\/ 2 bytes. 
+
+
+\begin{DoxyItemize}
+\item References
+\begin{DoxyItemize}
+\item Transparent Command I\-D\-E\-N\-T
+\item S\-S80 4-\/31
+\item C\-S80 pg 4-\/27, 3-\/10
+\item A11
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em byte1} & first Send Identify byte \\
+\hline
+\mbox{\tt in}  & {\em byte2} & second Send Identify byte\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on G\-P\-I\-B error returns error flags 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} for a full list. 
+\end{DoxySeeAlso}
+
+
+Definition at line 626 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S().
+
+\hypertarget{gpib__task_8h_a509eb3426def2f282b1a31c411e9cbb7}{\index{gpib\-\_\-task.\-h@{gpib\-\_\-task.\-h}!talk\-\_\-cleanup@{talk\-\_\-cleanup}}
+\index{talk\-\_\-cleanup@{talk\-\_\-cleanup}!gpib_task.h@{gpib\-\_\-task.\-h}}
+\subsubsection[{talk\-\_\-cleanup}]{\setlength{\rightskip}{0pt plus 5cm}void talk\-\_\-cleanup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{gpib__task_8h_a509eb3426def2f282b1a31c411e9cbb7}
+
+
+Called when the G\-P\-I\-B talk address changes. 
+
+
+\begin{DoxyItemize}
+\item Used to cleanup or close at the end of a talk transation.
+\item Also called when G\-P\-I\-B bus reset or untalk.
+\item Not used in this emulator.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 978 of file gpib\-\_\-task.\-c.
+
+
+
+Referenced by gpib\-\_\-state\-\_\-init(), and G\-P\-I\-B\-\_\-\-T\-A\-L\-K().
+

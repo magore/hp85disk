@@ -1,0 +1,138 @@
+\hypertarget{fatfs__utils_8c}{\section{fatfs/fatfs\-\_\-utils.c File Reference}
+\label{fatfs__utils_8c}\index{fatfs/fatfs\-\_\-utils.\-c@{fatfs/fatfs\-\_\-utils.\-c}}
+}
+
+
+Fat\-Fs utilities and tests for H\-P85 disk emulator project.  
+
+
+{\ttfamily \#include \char`\"{}hardware/hardware.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs\-\_\-tests.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs\-\_\-utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}posix.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fatfs__utils_8c_a4249529a019194287c26a1cbb4c0e8fb}{mmc\-\_\-test} (void)
+\begin{DoxyCompactList}\small\item\em Perform key Fat\-Fs diagnostics tests. \end{DoxyCompactList}\item 
+void \hyperlink{fatfs__utils_8c_aa1c46acec1917beaacf8643292cd3977}{fatfs\-\_\-help} (void)
+\begin{DoxyCompactList}\small\item\em Display Fat\-Fs test diagnostics help menu. \end{DoxyCompactList}\item 
+int \hyperlink{fatfs__utils_8c_a20258b47bf327256e024b1c90eb2beb0}{fatfs\-\_\-tests} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Fat\-Fs test parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fat\-Fs utilities and tests for H\-P85 disk emulator project. 
+\begin{DoxyItemize}
+\item Based on Fat\-Fs A\-V\-R example library (C) Cha\-N 2013.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2013 Cha\-N.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{fatfs__utils_8c_source}{fatfs\-\_\-utils.\-c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{fatfs__utils_8c_aa1c46acec1917beaacf8643292cd3977}{\index{fatfs\-\_\-utils.\-c@{fatfs\-\_\-utils.\-c}!fatfs\-\_\-help@{fatfs\-\_\-help}}
+\index{fatfs\-\_\-help@{fatfs\-\_\-help}!fatfs_utils.c@{fatfs\-\_\-utils.\-c}}
+\subsubsection[{fatfs\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{fatfs__utils_8c_aa1c46acec1917beaacf8643292cd3977}
+
+
+Display Fat\-Fs test diagnostics help menu. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{fatfs__tests_8c}{fatfs\-\_\-tests.\-c}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file fatfs\-\_\-utils.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests(), and help().
+
+\hypertarget{fatfs__utils_8c_a20258b47bf327256e024b1c90eb2beb0}{\index{fatfs\-\_\-utils.\-c@{fatfs\-\_\-utils.\-c}!fatfs\-\_\-tests@{fatfs\-\_\-tests}}
+\index{fatfs\-\_\-tests@{fatfs\-\_\-tests}!fatfs_utils.c@{fatfs\-\_\-utils.\-c}}
+\subsubsection[{fatfs\-\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}int fatfs\-\_\-tests (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{fatfs__utils_8c_a20258b47bf327256e024b1c90eb2beb0}
+
+
+Fat\-Fs test parser. 
+
+
+\begin{DoxyItemize}
+\item Keywords and arguments are matched against fatfs test functions If ther are matched the function along with its argements are called.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & User supplied command line with Fat\-Fs test and arguments.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{fatfs__tests_8c}{fatfs\-\_\-tests.\-c} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+1 The ruturn code indicates a command matched. 
+
+0 if no rules matched 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file fatfs\-\_\-utils.\-c.
+
+
+
+Referenced by task().
+
+\hypertarget{fatfs__utils_8c_a4249529a019194287c26a1cbb4c0e8fb}{\index{fatfs\-\_\-utils.\-c@{fatfs\-\_\-utils.\-c}!mmc\-\_\-test@{mmc\-\_\-test}}
+\index{mmc\-\_\-test@{mmc\-\_\-test}!fatfs_utils.c@{fatfs\-\_\-utils.\-c}}
+\subsubsection[{mmc\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{fatfs__utils_8c_a4249529a019194287c26a1cbb4c0e8fb}
+
+
+Perform key Fat\-Fs diagnostics tests. 
+
+
+\begin{DoxyItemize}
+\item Perform all basic file tests
+\item Assumes the device is formatted
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file fatfs\-\_\-utils.\-c.
+
+
+
+Referenced by fatfs\-\_\-tests().
+

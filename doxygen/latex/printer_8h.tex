@@ -1,0 +1,285 @@
+\hypertarget{printer_8h}{\section{gpib/printer.h File Reference}
+\label{printer_8h}\index{gpib/printer.\-h@{gpib/printer.\-h}}
+}
+
+
+H\-P\-G\-L printer capture code for H\-P85 disk emulator project for A\-V\-R8.  
+
+
+{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{printer_8h_a040866641093811ade9ff0231e1ff7af}{printer\-\_\-open} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Open a file to receive plot data using P\-O\-S\-I\-X functions. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8h_a3ed05788bcf67880241842f4e41e5217}{printer\-\_\-init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize plotter structures and state. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8h_a3c909f346990aba58d80faa539f5effd}{printer\-\_\-close} (void)
+\begin{DoxyCompactList}\small\item\em Close current plot file and reset states. \end{DoxyCompactList}\item 
+int \hyperlink{printer_8h_a06cc5819c3a956913f41114deb55a113}{receive\-\_\-plot\-\_\-flush} (void)
+\begin{DoxyCompactList}\small\item\em Write Plotter data and flush. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8h_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\-\_\-buffer} (uint16\-\_\-t val)
+\begin{DoxyCompactList}\small\item\em Buffer Plotter data and flush when buffer is full. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8h_ac649161dc4d63963c35b30a12037e09c}{receive\-\_\-plot} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Manually receive plot data -\/ user called function. \end{DoxyCompactList}\item 
+int \hyperlink{printer_8h_a72686fe9d4969430b6ef1f1fe68a6efe}{P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S} (uint8\-\_\-t ch)
+\begin{DoxyCompactList}\small\item\em G\-P\-I\-B Secondary r\-Ccommand Printer commands. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8h_a3e02cbb071ea6b261c2271cc604be495}{plot\-\_\-echo} (int echo)
+\begin{DoxyCompactList}\small\item\em Instruct Intrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\-P\-G\-L printer capture code for H\-P85 disk emulator project for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{printer_8h_source}{printer.\-h}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{printer_8h_a3e02cbb071ea6b261c2271cc604be495}{\index{printer.\-h@{printer.\-h}!plot\-\_\-echo@{plot\-\_\-echo}}
+\index{plot\-\_\-echo@{plot\-\_\-echo}!printer.h@{printer.\-h}}
+\subsubsection[{plot\-\_\-echo}]{\setlength{\rightskip}{0pt plus 5cm}void plot\-\_\-echo (
+\begin{DoxyParamCaption}
+\item[{int}]{echo}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a3e02cbb071ea6b261c2271cc604be495}
+
+
+Instruct Intrument to send Plot data. 
+
+
+\begin{DoxyItemize}
+\item Not finished or working yet -\/ barely started work in progress, \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 321 of file printer.\-c.
+
+
+
+Referenced by gpib\-\_\-tests().
+
+\hypertarget{printer_8h_acc37d9e3a9cc3aec5e5986dbfff7da6b}{\index{printer.\-h@{printer.\-h}!printer\-\_\-buffer@{printer\-\_\-buffer}}
+\index{printer\-\_\-buffer@{printer\-\_\-buffer}!printer.h@{printer.\-h}}
+\subsubsection[{printer\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}void printer\-\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{val}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_acc37d9e3a9cc3aec5e5986dbfff7da6b}
+
+
+Buffer Plotter data and flush when buffer is full. 
+
+
+\begin{DoxyItemize}
+\item Uses P\-O\-S\-I\-X Fat\-Fs wrappers.
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{posix_8c}{posix.\-c} 
+
+\hyperlink{posix_8h}{posix.\-h} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file printer.\-c.
+
+
+
+Referenced by gpib\-\_\-task().
+
+\hypertarget{printer_8h_a3c909f346990aba58d80faa539f5effd}{\index{printer.\-h@{printer.\-h}!printer\-\_\-close@{printer\-\_\-close}}
+\index{printer\-\_\-close@{printer\-\_\-close}!printer.h@{printer.\-h}}
+\subsubsection[{printer\-\_\-close}]{\setlength{\rightskip}{0pt plus 5cm}void printer\-\_\-close (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a3c909f346990aba58d80faa539f5effd}
+
+
+Close current plot file and reset states. 
+
+
+\begin{DoxyItemize}
+\item Verify that polt file is open before attempting close.
+\item Uses P\-O\-S\-I\-X Fat\-Fs wrappers.
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{posix_8c}{posix.\-c} 
+
+\hyperlink{posix_8h}{posix.\-h} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file printer.\-c.
+
+
+
+Referenced by G\-P\-I\-B(), gpib\-\_\-init\-\_\-devices(), listen\-\_\-cleanup(), plot\-\_\-echo(), printer\-\_\-open(), and receive\-\_\-plot().
+
+\hypertarget{printer_8h_a72686fe9d4969430b6ef1f1fe68a6efe}{\index{printer.\-h@{printer.\-h}!P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}}
+\index{P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}!printer.h@{printer.\-h}}
+\subsubsection[{P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}int P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{ch}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a72686fe9d4969430b6ef1f1fe68a6efe}
+
+
+G\-P\-I\-B Secondary r\-Ccommand Printer commands. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000023}{Todo}]Fully emulated plotter response. \begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\end{DoxyRefDesc}
+
+
+Definition at line 292 of file printer.\-c.
+
+
+
+Referenced by G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+
+\hypertarget{printer_8h_a3ed05788bcf67880241842f4e41e5217}{\index{printer.\-h@{printer.\-h}!printer\-\_\-init@{printer\-\_\-init}}
+\index{printer\-\_\-init@{printer\-\_\-init}!printer.h@{printer.\-h}}
+\subsubsection[{printer\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void printer\-\_\-init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a3ed05788bcf67880241842f4e41e5217}
+
+
+Initialize plotter structures and state. 
+
+
+\begin{DoxyItemize}
+\item Only called once after power on by \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()}. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 96 of file printer.\-c.
+
+
+
+Referenced by main().
+
+\hypertarget{printer_8h_a040866641093811ade9ff0231e1ff7af}{\index{printer.\-h@{printer.\-h}!printer\-\_\-open@{printer\-\_\-open}}
+\index{printer\-\_\-open@{printer\-\_\-open}!printer.h@{printer.\-h}}
+\subsubsection[{printer\-\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}void printer\-\_\-open (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a040866641093811ade9ff0231e1ff7af}
+
+
+Open a file to receive plot data using P\-O\-S\-I\-X functions. 
+
+
+\begin{DoxyItemize}
+\item Uses P\-O\-S\-I\-X Fat\-Fs wrappers.
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{posix_8c}{posix.\-c} 
+
+\hyperlink{posix_8h}{posix.\-h} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file printer.\-c.
+
+
+
+Referenced by G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), and receive\-\_\-plot().
+
+\hypertarget{printer_8h_ac649161dc4d63963c35b30a12037e09c}{\index{printer.\-h@{printer.\-h}!receive\-\_\-plot@{receive\-\_\-plot}}
+\index{receive\-\_\-plot@{receive\-\_\-plot}!printer.h@{printer.\-h}}
+\subsubsection[{receive\-\_\-plot}]{\setlength{\rightskip}{0pt plus 5cm}void receive\-\_\-plot (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_ac649161dc4d63963c35b30a12037e09c}
+
+
+Manually receive plot data -\/ user called function. 
+
+
+\begin{DoxyItemize}
+\item This function would be manually invoked prior to invoking a Send Plot command on a G\-P\-I\-B device.
+\item Exit on user key press.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name to save plot data in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file printer.\-c.
+
+
+
+Referenced by gpib\-\_\-tests().
+
+\hypertarget{printer_8h_a06cc5819c3a956913f41114deb55a113}{\index{printer.\-h@{printer.\-h}!receive\-\_\-plot\-\_\-flush@{receive\-\_\-plot\-\_\-flush}}
+\index{receive\-\_\-plot\-\_\-flush@{receive\-\_\-plot\-\_\-flush}!printer.h@{printer.\-h}}
+\subsubsection[{receive\-\_\-plot\-\_\-flush}]{\setlength{\rightskip}{0pt plus 5cm}int receive\-\_\-plot\-\_\-flush (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{printer_8h_a06cc5819c3a956913f41114deb55a113}
+
+
+Write Plotter data and flush. 
+
+
+\begin{DoxyItemize}
+\item Uses P\-O\-S\-I\-X Fat\-Fs wrappers.
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{posix_8c}{posix.\-c} 
+
+\hyperlink{posix_8h}{posix.\-h} 
+
+\hyperlink{printer_8c_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\-\_\-buffer()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+file handle 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file printer.\-c.
+
+
+
+Referenced by printer\-\_\-buffer(), printer\-\_\-close(), and receive\-\_\-plot().
+
