@@ -1,6 +1,6 @@
 \section README
- @par HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
- See [COPYRIGHT.md](@ref COPYRIGHT.md) for a full copywrite notice for the project
+## HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
+ * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
  This project emulates three GPIB devices
   * SS80 HP9134L disk at 700 for my HP85A (with 85A roms)

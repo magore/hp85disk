@@ -196,7 +196,7 @@ all: doxy version $(LIBS) build size $(PROGS)
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 doxyfile.inc:	
 	echo "INPUT         =  $(SRCDIRS)" > doxyfile.inc
-	echo "FILE_PATTERNS =  *.h *.h" >> doxyfile.inc
+	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
 doxy:	doxyfile.inc $(SRCS) 
 	export PYTHONPATH="$PYTHONPATH:/share/embedded/testgen-0.11/extras"
