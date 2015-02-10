@@ -98,19 +98,19 @@ ___
   * http://www.dalton.ax/hpdisk/
 
 
-    Pin Name 	Signal Description       Pin    Name 	Signal Description 
-    1   DIO1 	Data Input/Output Bit 1  13 	DIO5 	Data Input/Output Bit 5 
-    2   DIO2 	Data Input/Output Bit 2  14 	DIO6 	Data Input/Output Bit 6 
-    3   DIO3 	Data Input/Output Bit 3  15 	DIO7 	Data Input/Output Bit 7 
-    4   DIO4 	Data Input/Output Bit 4  16 	DIO8 	Data Input/Output Bit 8 
-    5   EIO 	End-Or-Identify          17 	REN 	Remote Enable 
-    6   DAV 	Data Valid               18 	Shield 	Ground (DAV) 
-    7   NRFD 	Not Ready For Data       19 	Shield 	Ground (NRFD) 
-    8   NDAC 	Not Data Accepted        20 	Shield 	Ground (NDAC) 
-    9   IFC 	Interface Clear          21 	Shield 	Ground (IFC) 
-    10  SRQ 	Service Request          22 	Shield 	Ground (SRQ) 
-    11  ATN 	Attention                23 	Shield 	Ground (ATN) 
-    12  Shield  Chassis Ground           24     Single GND Single Ground
+    Pin Name   Signal Description       Pin Name   Signal Description 
+    1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
+    2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
+    3   DIO3   Data Input/Output Bit 3  15  DIO7   Data Input/Output Bit 7 
+    4   DIO4   Data Input/Output Bit 4  16  DIO8   Data Input/Output Bit 8 
+    5   EIO    End-Or-Identify          17  REN    Remote Enable 
+    6   DAV    Data Valid               18  Shield Ground (DAV) 
+    7   NRFD   Not Ready For Data       19  Shield Ground (NRFD) 
+    8   NDAC   Not Data Accepted        20  Shield Ground (NDAC) 
+    9   IFC    Interface Clear          21  Shield Ground (IFC) 
+    10  SRQ    Service Request          22  Shield Ground (SRQ) 
+    11  ATN    Attention                23  Shield Ground (ATN) 
+    12  Shield Chassis Ground           24  Single GND Single Ground
 
 
 ___
@@ -161,13 +161,13 @@ ___
   * Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
 
 
-    ATMEGA	           HC595            HC05 
+    ATMEGA               HC595             HC05 
                       +---\/---+          +-\/-+  
     3 PB3 -------- 12 |RCLK  Q0| 15 -x- 1 |    | 2 --- GPIB D8 
     6 MOSI ------- 14 |SER   Q1| 1  -x- 3 |    | 4 --- GPIB D7 
     8 SCK -------- 11 |SRCLK Q2| 2  -x- 5 |    | 6 --- GPIB D6 
     9 IFC -------- 10 |SRCLR Q3| 3  -x- 9 |    | 8 --- GPIB D5 
-          HC32        |        |     |    |    | 7 GND 
+           HC32       |        |     |    |    | 7 GND 
           +-\/-+      |        |     |    |    |14 VCC 
      EOI 2|    |      |        |     |    +----+ 
      ATN 1|    |      |        |     \--- each line has its own 
