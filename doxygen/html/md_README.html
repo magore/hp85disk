@@ -202,9 +202,15 @@ README</h1>
 </pre> <hr/>
 <h2>AVR ATMEGA1284P pin assignments for HP85 Disk</h2>
 <ul>
-<li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU with a 120 ohm current limit resistor . o Each GPIB pin (8 data and 8 control lines ) have a 10K pull-up resistor to VCC.</li>
+<li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU with a 120 ohm current limit resistor .<ul>
+<li>Each GPIB pin (8 data and 8 control lines ) have a 10K pull-up resistor to VCC.</li>
+</ul>
+</li>
 <li>ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header</li>
-<li>Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor. o Micro SD interface has level shifters and internal 5V to 3.3V regulator</li>
+<li>Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor.<ul>
+<li>Micro SD interface has level shifters and internal 5V to 3.3V regulator</li>
+</ul>
+</li>
 <li>RS232 TTL: connect to FTDI232 USB board which also provides 5V VCC power to all circuits..</li>
 <li>I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up</li>
 </ul>
@@ -231,7 +237,7 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
 10 SRQ  PWM  PD5 19|        |22  PC0  SCL I2C  
 11 ATN  PWM  PD6 20|        |21  PD7  PWM REN 17 
                    +--------+ 
-</pre> <hr/>
+</pre><hr/>
 <h2>Parallel Poll Response circuit</h2>
 <ul>
 <li>Uses: Three chips 74HC05, 74HC32, 74HC595</li>
@@ -247,7 +253,7 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
        +-\/-+      |        |     |    |    |14 VCC 
   EOI 2|    |      |        |     |    +----+ 
   ATN 1|    |      |        |     \--- each line has its own 
-       |    | 1 13 |/OE     |          10K resistor to GND 
+       |    | 1-13 |/OE     |          10K resistor to GND 
  VCC 14|    |      |        | 16 VCC 
  GND  7|    |      |        |  8 GND 
        +----+      +--------+ 
@@ -259,7 +265,7 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 9 2015 18:56:55 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 9 2015 19:24:56 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

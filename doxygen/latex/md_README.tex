@@ -174,9 +174,15 @@ Within this project I have attempted to provide detailed referces to to manuals,
 
 
 \begin{DoxyItemize}
-\item G\-P\-I\-B\-: Each G\-P\-I\-B pin (8 data and 8 control lines ) attach to C\-P\-U with a 120 ohm current limit resistor . o Each G\-P\-I\-B pin (8 data and 8 control lines ) have a 10\-K pull-\/up resistor to V\-C\-C.
+\item G\-P\-I\-B\-: Each G\-P\-I\-B pin (8 data and 8 control lines ) attach to C\-P\-U with a 120 ohm current limit resistor .
+\begin{DoxyItemize}
+\item Each G\-P\-I\-B pin (8 data and 8 control lines ) have a 10\-K pull-\/up resistor to V\-C\-C.
+\end{DoxyItemize}
 \item I\-S\-P header\-: M\-O\-S\-I,M\-I\-S\-O,S\-C\-K,/\-Reset connects directly to I\-S\-P header
-\item Micro S\-D Interface\-: M\-O\-S\-I,M\-I\-S\-O,S\-C\-K attach to C\-P\-U function via a 1k series resistor. o Micro S\-D interface has level shifters and internal 5\-V to 3.\-3\-V regulator
+\item Micro S\-D Interface\-: M\-O\-S\-I,M\-I\-S\-O,S\-C\-K attach to C\-P\-U function via a 1k series resistor.
+\begin{DoxyItemize}
+\item Micro S\-D interface has level shifters and internal 5\-V to 3.\-3\-V regulator
+\end{DoxyItemize}
 \item R\-S232 T\-T\-L\-: connect to F\-T\-D\-I232 U\-S\-B board which also provides 5\-V V\-C\-C power to all circuits..
 \item I2\-C\-: S\-C\-L,S\-D\-A connect to optional D\-S1307 R\-T\-C board with each line having a 2k2 pull-\/up
 \end{DoxyItemize}
@@ -205,7 +211,9 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
 11 ATN  PWM  PD6 20|        |21  PD7  PWM REN 17 
                    +--------+ 
 \end{DoxyVerb}
- 
+
+
+
 
 
 
@@ -227,7 +235,7 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
        +-\/-+      |        |     |    |    |14 VCC 
   EOI 2|    |      |        |     |    +----+ 
   ATN 1|    |      |        |     \--- each line has its own 
-       |    | 1 13 |/OE     |          10K resistor to GND 
+       |    | 1-13 |/OE     |          10K resistor to GND 
  VCC 14|    |      |        | 16 VCC 
  GND  7|    |      |        |  8 GND 
        +----+      +--------+ 

@@ -316,7 +316,7 @@ $(AOBJ) : %.o : %.S
 # Target: clean project.
 clean:
 	@echo
-	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* | exit 0
+	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
 	
 
 # Include the dependency files.
