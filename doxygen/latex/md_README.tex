@@ -166,7 +166,9 @@ Within this project I have attempted to provide detailed referces to to manuals,
 11  ATN     Attention                23     Shield  Ground (ATN) 
 12  Shield  Chassis Ground           24     Single GND Single Ground
 \end{DoxyVerb}
- 
+
+
+
 
 
 
@@ -225,20 +227,20 @@ SD      SCK  PB7  8|        |33  PA7      D8 16
 \item Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
 \end{DoxyItemize}
 
-\begin{DoxyVerb} ATMEGA            HC595            HC05 
-                   +---\/---+          +-\/-+  
- 3 PB3 -------- 12 |RCLK  Q0| 15 -x- 1 |    | 2 --- GPIB D8 
- 6 MOSI ------- 14 |SER   Q1| 1  -x- 3 |    | 4 --- GPIB D7 
- 8 SCK -------- 11 |SRCLK Q2| 2  -x- 5 |    | 6 --- GPIB D6 
- 9 IFC -------- 10 |SRCLR Q3| 3  -x- 9 |    | 8 --- GPIB D5 
-       HC32        |        |     |    |    | 7 GND 
-       +-\/-+      |        |     |    |    |14 VCC 
-  EOI 2|    |      |        |     |    +----+ 
-  ATN 1|    |      |        |     \--- each line has its own 
-       |    | 1-13 |/OE     |          10K resistor to GND 
- VCC 14|    |      |        | 16 VCC 
- GND  7|    |      |        |  8 GND 
-       +----+      +--------+ 
+\begin{DoxyVerb}ATMEGA             HC595            HC05 
+                  +---\/---+          +-\/-+  
+3 PB3 -------- 12 |RCLK  Q0| 15 -x- 1 |    | 2 --- GPIB D8 
+6 MOSI ------- 14 |SER   Q1| 1  -x- 3 |    | 4 --- GPIB D7 
+8 SCK -------- 11 |SRCLK Q2| 2  -x- 5 |    | 6 --- GPIB D6 
+9 IFC -------- 10 |SRCLR Q3| 3  -x- 9 |    | 8 --- GPIB D5 
+      HC32        |        |     |    |    | 7 GND 
+      +-\/-+      |        |     |    |    |14 VCC 
+ EOI 2|    |      |        |     |    +----+ 
+ ATN 1|    |      |        |     \--- each line has its own 
+      |    | 1-13 |/OE     |          10K resistor to GND 
+VCC 14|    |      |        | 16 VCC 
+GND  7|    |      |        |  8 GND 
+      +----+      +--------+ 
 \end{DoxyVerb}
 
 
