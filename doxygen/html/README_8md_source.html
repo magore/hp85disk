@@ -273,7 +273,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;Notes: When both EOI and ATN are low the HC32 enables HC595 outputs</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  * If any HC595 output is high the <a class="code" href="gpib__task_8c.html#ac63d4e431ab55dddfbf436d87135128e">GPIB</a> bus bit will be pulled low</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  * IFC low resets the outputs low</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  * IFC low resets the outputs lowA</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;___ </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">## OS Requirements for software building</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor"></span>  * I use *Ubuntu 14.04* so these instruction will cover that version</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    * It should be easy to setup the same build with Windows gcc tools.</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;## Ubuntu 14.04LTS install and setup notes</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  * *apt-<span class="keyword">get</span> install aptitude*</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">## Building Doxygen documenation for the project - optional</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor"></span>  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  * *If you omit <span class="keyword">this</span> you will have to update the Makefile to omit the setps*</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">## Compiling the firmware</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor"></span>  * *make clean*</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  * *make*</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor">## Flashing the firmware to the AVR with avrdude and programmer</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor"></span>  * *make flash*</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    * This will use *avrdude* with the <span class="keyword">new</span> low cost Atmel ICE programmer.</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      * If you wish to another programmer then update the <span class="stringliteral">&quot;flash&quot;</span> avrdude command line in the Makefile.</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      * There is an example with the AVR mkii programer as well.</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;___ </div>
 <div class="ttc" id="amigo_8c_html_af3a689eeb0e8702b2a6367c66165b1f1"><div class="ttname"><a href="amigo_8c.html#af3a689eeb0e8702b2a6367c66165b1f1">Disk</a></div><div class="ttdeci">DiskType Disk</div><div class="ttdoc">AMIGO DISK. </div><div class="ttdef"><b>Definition:</b> <a href="amigo_8c_source.html#l00110">amigo.c:110</a></div></div>
 <div class="ttc" id="posix_8c_html_ac1260021a9016338237c590bb175dec2"><div class="ttname"><a href="posix_8c.html#ac1260021a9016338237c590bb175dec2">write</a></div><div class="ttdeci">size_t write(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX Write count bytes from *buf to fileno fd. </div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00836">posix.c:836</a></div></div>
 <div class="ttc" id="defines_8h_html_acbb3c06e9315e4230f5097bd9e89faf0"><div class="ttname"><a href="defines_8h.html#acbb3c06e9315e4230f5097bd9e89faf0">HP9134L</a></div><div class="ttdeci">#define HP9134L</div><div class="ttdef"><b>Definition:</b> <a href="defines_8h_source.html#l00029">defines.h:29</a></div></div>
@@ -286,7 +309,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 9 2015 21:56:16 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 17 2015 19:46:46 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -166,6 +166,10 @@ SRCDIRS= . fatfs fatfs/option gpib hardware lib
 
 
 
+
+# Default target.
+all: doxy version $(LIBS) build size $(PROGS)
+
 flash:  all
 #
 	# Program with avrdude using atmelice_isp
@@ -189,10 +193,6 @@ flash:  all
 # MKII
 	# ===================================================
 	
-
-# Default target.
-all: doxy version $(LIBS) build size $(PROGS)
-
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 doxyfile.inc:	
 	echo "INPUT         =  $(SRCDIRS)" > doxyfile.inc

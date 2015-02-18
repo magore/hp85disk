@@ -260,5 +260,51 @@ Within this project I have attempted to provide detailed referces to to manuals,
 Notes\-: When both E\-O\-I and A\-T\-N are low the H\-C32 enables H\-C595 outputs
 \begin{DoxyItemize}
 \item If any H\-C595 output is high the G\-P\-I\-B bus bit will be pulled low
-\item I\-F\-C low resets the outputs low 
+\item I\-F\-C low resets the outputs low\-A 
+
+
 \end{DoxyItemize}
+
+\subsection*{O\-S Requirements for software building}
+
+
+\begin{DoxyItemize}
+\item I use {\itshape Ubuntu 14.\-04} so these instruction will cover that version
+\begin{DoxyItemize}
+\item It should be easy to setup the same build with Windows gcc tools. \subsection*{Ubuntu 14.\-04\-L\-T\-S install and setup notes}
+\end{DoxyItemize}
+\item {\itshape apt-\/get install aptitude}
+\item {\itshape aptitude install --with-\/recommends avr-\/gcc avr-\/libc binutils-\/avr gdb-\/avr avrdude} \subsection*{Building Doxygen documenation for the project -\/ optional}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
+\item {\itshape If you omit this you will have to update the Makefile to omit the setps}
+\end{DoxyItemize}
+
+\subsection*{Compiling the firmware}
+
+
+\begin{DoxyItemize}
+\item {\itshape make clean}
+\item {\itshape make}
+\end{DoxyItemize}
+
+\subsection*{Flashing the firmware to the A\-V\-R with avrdude and programmer}
+
+
+\begin{DoxyItemize}
+\item {\itshape make flash}
+\begin{DoxyItemize}
+\item This will use {\itshape avrdude} with the new low cost Atmel I\-C\-E programmer.
+\begin{DoxyItemize}
+\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
+\item There is an example with the A\-V\-R mkii programer as well.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+ 

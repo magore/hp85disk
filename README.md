@@ -184,4 +184,27 @@ ___
 
 Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
   * If any HC595 output is high the GPIB bus bit will be pulled low
-  * IFC low resets the outputs low
+  * IFC low resets the outputs lowA
+___ 
+
+## OS Requirements for software building
+  * I use *Ubuntu 14.04* so these instruction will cover that version
+    * It should be easy to setup the same build with Windows gcc tools.
+## Ubuntu 14.04LTS install and setup notes
+  * *apt-get install aptitude*
+  * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
+## Building Doxygen documenation for the project - optional
+  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
+  * *If you omit this you will have to update the Makefile to omit the setps*
+
+## Compiling the firmware
+  * *make clean*
+  * *make*
+
+## Flashing the firmware to the AVR with avrdude and programmer
+  * *make flash*
+    * This will use *avrdude* with the new low cost Atmel ICE programmer.
+      * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
+      * There is an example with the AVR mkii programer as well.
+
+___ 
