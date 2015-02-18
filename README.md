@@ -193,6 +193,7 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
 
 
 ## Ubuntu 14.04LTS install and setup notes
+  * *apt-get update*
   * *apt-get install aptitude*
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
 
