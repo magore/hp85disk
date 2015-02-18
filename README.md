@@ -185,7 +185,7 @@ ___
 Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
   * If any HC595 output is high the GPIB bus bit will be pulled low
   * IFC low resets the HC595 outputs low - so the HC05 outputs will float.
-___ 
+
 
 ## OS Requirements for software building
   * I use *Ubuntu 14.04* so these instruction will cover that version
