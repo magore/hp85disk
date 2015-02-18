@@ -196,11 +196,12 @@ ___
 ## Building Doxygen documenation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
   * *If you omit this you will have to update the Makefile to omit the setps*
+___ 
 
 ## Compiling the firmware
   * *make clean*
   * *make*
-
+___ 
 ## Flashing the firmware to the AVR with avrdude and programmer
   * *make flash*
     * This will use *avrdude* with the new low cost Atmel ICE programmer.
