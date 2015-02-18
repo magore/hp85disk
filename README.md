@@ -193,21 +193,22 @@ ___
 ## Ubuntu 14.04LTS install and setup notes
   * *apt-get install aptitude*
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
-___ 
+
 
 ## Building Doxygen documenation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
   * *If you omit this you will have to update the Makefile to omit the steps*
-___ 
+
 
 ## Compiling the firmware
   * *make clean*
   * *make*
-___ 
+
 
 ## Flashing the firmware to the AVR with avrdude and programmer
   * *make flash*
     * This will use *avrdude* with the new low cost Atmel ICE programmer.
       * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
       * There is an example with the AVR mkii programer as well.
-___ 
+
+
