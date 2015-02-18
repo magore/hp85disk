@@ -193,6 +193,8 @@ ___
 ## Ubuntu 14.04LTS install and setup notes
   * *apt-get install aptitude*
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
+___ 
+
 ## Building Doxygen documenation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
   * *If you omit this you will have to update the Makefile to omit the setps*
