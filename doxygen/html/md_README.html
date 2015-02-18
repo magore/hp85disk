@@ -265,23 +265,25 @@ README</h1>
 </pre><p>Notes: When both EOI and ATN are low the HC32 enables HC595 outputs</p>
 <ul>
 <li>If any HC595 output is high the GPIB bus bit will be pulled low</li>
-<li>IFC low resets the outputs lowA <hr/>
-</li>
+<li>IFC low resets the HC595 outputs low - so the HC05 outputs will float.</li>
 </ul>
 <h2>OS Requirements for software building</h2>
 <ul>
 <li>I use <em>Ubuntu 14.04</em> so these instruction will cover that version<ul>
-<li>It should be easy to setup the same build with Windows gcc tools. <h2>Ubuntu 14.04LTS install and setup notes</h2>
-</li>
+<li>It should be easy to setup the same build with Windows gcc tools.</li>
 </ul>
 </li>
+</ul>
+<h2>Ubuntu 14.04LTS install and setup notes</h2>
+<ul>
+<li><em>apt-get update</em></li>
 <li><em>apt-get install aptitude</em></li>
-<li><em>aptitude install &ndash;with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude</em> <h2>Building Doxygen documenation for the project - optional</h2>
-</li>
+<li><em>aptitude install &ndash;with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude</em></li>
 </ul>
+<h2>Building Doxygen documenation for the project - optional</h2>
 <ul>
 <li><em>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</em></li>
-<li><em>If you omit this you will have to update the Makefile to omit the setps</em></li>
+<li><em>If you omit this you will have to update the Makefile to omit the steps</em></li>
 </ul>
 <h2>Compiling the firmware</h2>
 <ul>
@@ -293,17 +295,16 @@ README</h1>
 <li><em>make flash</em><ul>
 <li>This will use <em>avrdude</em> with the new low cost Atmel ICE programmer.<ul>
 <li>If you wish to another programmer then update the "flash" avrdude command line in the Makefile.</li>
-<li>There is an example with the AVR mkii programer as well.</li>
+<li>There is an example with the AVR mkii programer as well. </li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<hr/>
- </div></div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 17 2015 19:46:46 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 17 2015 20:05:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
