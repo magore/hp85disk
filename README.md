@@ -184,7 +184,7 @@ ___
 
 Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
   * If any HC595 output is high the GPIB bus bit will be pulled low
-  * IFC low resets the outputs lowA
+  * IFC low resets the HC595 outputs low - so the HC05 outputs will float.
 ___ 
 
 ## OS Requirements for software building
@@ -197,17 +197,17 @@ ___
 
 ## Building Doxygen documenation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
-  * *If you omit this you will have to update the Makefile to omit the setps*
+  * *If you omit this you will have to update the Makefile to omit the steps*
 ___ 
 
 ## Compiling the firmware
   * *make clean*
   * *make*
 ___ 
+
 ## Flashing the firmware to the AVR with avrdude and programmer
   * *make flash*
     * This will use *avrdude* with the new low cost Atmel ICE programmer.
       * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
       * There is an example with the AVR mkii programer as well.
-
 ___ 
