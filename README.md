@@ -190,6 +190,8 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
 ## OS Requirements for software building
   * I use *Ubuntu 14.04* so these instruction will cover that version
     * It should be easy to setup the same build with Windows gcc tools.
+
+
 ## Ubuntu 14.04LTS install and setup notes
   * *apt-get install aptitude*
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
