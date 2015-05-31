@@ -1,4 +1,11 @@
 \section README
+
+
+# Documentation
+
+ * Pleasse use this link for Documentation and this README
+   * https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html
+
 ## HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
  * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
