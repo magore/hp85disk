@@ -1,20 +1,30 @@
 /**
- @file fatfs/mmc_hal.c
+ @file fatfs/posix.c
 
- @brief MMC Hardware Layer for FatFs.
+ @brief PRovides hardware abstraction layer to MMC.C
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <hardware/hardware.h>
-#include "mmc_hal.h"
+#include "diskio.h"
+#include "disk.h"
 #include "ff.h"
-
-
+#include "mmc_hal.h"
 
 
 ///@brief MMC timer tic in Microseconds
@@ -22,19 +32,115 @@
 #error Please define MMC_TIMER_TIC_US in Microseconds per mmc_task call
 #endif
 
+extern DSTATUS Stat;
 
 ///@brief MMC timeout timer used to detect timeout error conditions
 volatile int32_t mmc_us_timeout;
 
-/// @brief  Install MMC timer task: mmc_task() 
+/// @brief MMC timeout counter
+uint16_t _mmc_timeout = 0;
+
+/// @brief MMC SPI CLOCK cache
+uint32_t _mmc_clock = 0;
+
+
+uint16_t _mmc_pre = 0;
+
+/**
+ @brief 1000HZ timer task
+ @param[in] *arg: ignored
+ @return void
+*/
+LOCAL void mmc_task(void)
+{
+    if(mmc_us_timeout >= MMC_TIMER_TIC_US)
+	{
+        mmc_us_timeout -= MMC_TIMER_TIC_US;
+		if(_mmc_timeout)
+			_mmc_timeout--;
+	}
+	else
+	{
+		return;
+	}
+
+
+    if(_mmc_pre++  >= 10)
+    {
+        _mmc_pre = 0;
+// FIXME our Micro SD card holder does not do WP or CD
+// We assign STA_NODISK if we get a timeout
+#if 0
+        if (mmc_wp_status())                      /* Write protected */
+            Stat |= STA_PROTECT;
+        else                                      /* Write enabled */
+            Stat &= ~STA_PROTECT;
+        if (mmc_ins_status())                     /* Card inserted */
+            Stat &= ~STA_NODISK;
+        else                                      /* Socket empty */
+            Stat |= (STA_NODISK | STA_NOINIT);
+#endif
+    }
+}
+
+/// @brief  Install MMC timer task: mmc_task()
 ///
 /// @see  mmc_task()
 /// @return  void
-
+MEMSPACE
 void mmc_install_timer( void )
 {
+    _mmc_timeout = 0;
+    if(set_timers(mmc_task,1) == -1)
+        DEBUG_PRINTF("MMC Clock task init failed\n");
+}
 
-    set_timers(mmc_task,1);
+/// @brief SPI write buffer
+/// @param[in] *data: transmit buffer
+/// @param[in] count: number of bytes to write
+/// @return  void
+MEMSPACE
+void mmc_spi_TX_buffer(const uint8_t *data, int count)
+{
+    SPI0_TX((uint8_t *) data,count);
+}
+/// @brief SPI read buffer
+/// @param[in] *data: transmit buffer
+/// @param[in] count: number of bytes to write
+/// @return  void
+MEMSPACE
+void mmc_spi_RX_buffer(const uint8_t *data, int count)
+{
+    SPI0_RX((uint8_t *)data,count);
+}
+
+/// @brief SPI read 1 byte
+/// @return  uint8_t value
+MEMSPACE
+uint8_t mmc_spi_RX()
+{
+    uint8_t data;
+    SPI0_RX(&data,1);
+}
+
+/// @brief SPI write 1 byte
+/// @param[in] data: value to transmit
+/// @return  void
+MEMSPACE
+void mmc_spi_TX(uint8_t data)
+{
+    SPI0_TX(&data,1);
+}
+
+
+/// @brief SPI read and write 1 byte
+/// @param[in] data: value to transmit
+/// @return  uint8_t value read
+MEMSPACE
+uint8_t mmc_spi_TXRX(uint8_t data)
+{
+    SPI0_TXRX(&data,1);
+    return(data);
 }
 
 
@@ -44,268 +150,69 @@ void mmc_install_timer( void )
 ///
 /// @see mmc_test_timeout ( )
 /// @return  void
-
-void mmc_set_ms_timeout( int16_t ms)
+MEMSPACE
+void mmc_set_ms_timeout(uint16_t ms)
 {
-    int32_t us = ms;
-    us *= 1000L;
-    us += MMC_TIMER_TIC_US;
-    mmc_cli();
-    mmc_us_timeout = us;
-    mmc_sei();
+	mmc_cli();
+    _mmc_timeout = ms;
+	mmc_sei();
 }
 
-
-/// @brief See MMC timeout timer in Microseconds
-///
-/// @param[in] us: timeout in Microseconds
-///
-/// @see mmc_test_timeout ( )
-/// @return  void
-
-void mmc_set_us_timeout( int32_t us)
+///@brief Wait for timeout
+///@return 1 ready
+///@return 0 timeout
+MEMSPACE
+int  mmc_test_timeout()
 {
-    us += MMC_TIMER_TIC_US;
-    mmc_cli();
-    mmc_us_timeout = us;
-    mmc_sei();
-}
 
+    if( Stat & STA_NODISK )
+        return(1);
 
-/// @brief  Test MMC timeout status
-///
-/// @see mmc_set_us_timeout() 
-/// @see mmc_set_ms_timeout()
-/// @return 0 still counting 
-/// @return 1 timeout reached
-
-int mmc_test_timeout ( void )
-{
-    int n;
-    mmc_cli();
-    n = mmc_us_timeout ? 0 : 1;
-    mmc_sei();
-    return (n);
-}
-
-
-/// @brief  Clear/Initialize MMC timeout value 
-///
-/// @see mmc_set_us_timeout() 
-/// @see mmc_set_ms_timeout()
-/// @return  void
-
-void mmc_clear_timeout ( void )
-{
-    mmc_cli();
-    mmc_us_timeout = 0;
-    mmc_sei();
-}
-
-
-/// @brief  MMC Microsecond accumulator for mmc_task()
-static int32_t __mmc_task_timer;
-
-/// @brief  MMC FatFs insert,write protect status
-extern DSTATUS Stat;
-
-/// @brief  This function is called every MMC_TIMER_TIC_US
-///
-/// - Monitor timeouts, write protect and card detect status
-/// @return  void
-
-void mmc_task (void)
-{
-    BYTE s;
-
-    if(mmc_us_timeout >= MMC_TIMER_TIC_US)
-        mmc_us_timeout -= MMC_TIMER_TIC_US;
-    else
-        mmc_us_timeout = 0;
-
-    __mmc_task_timer -= MMC_TIMER_TIC_US;
-    if (__mmc_task_timer < 0)
+    if(!_mmc_timeout)
     {
-        __mmc_task_timer = 10000L;                // 10,000us
-
-        s = Stat;
-
-        if (mmc_wp_status())                      /* Write protected */
-            s |= STA_PROTECT;
-        else                                      /* Write enabled */
-            s &= ~STA_PROTECT;
-
-        if (mmc_ins_status())                     /* Card inserted */
-            s &= ~STA_NODISK;
-        else                                      /* Socket empty */
-            s |= (STA_NODISK | STA_NOINIT);
-        Stat = s;                                 /* Update MMC status */
+        DEBUG_PRINTF("MMC TIMEOUT\n");
+        Stat |= (STA_NODISK | STA_NOINIT);
+        return(1);
     }
+    return(0);
 }
-
-
-
-/// @brief  MMC SPI send and receive character.
-///
-/// @param[in] a: Character to send
-///
-/// @return  uint8_t Received character
-
-uint8_t mmc_xchg_spi(uint8_t a)
-{
-///  Note: when reading only call with 0xff
-    return( SPI0_WriteReadByte(a) );
-}
-
-
-/// @brief  MMC SPI bus init
-/// @return  void
-
-void mmc_spi_init()
-{
-    SPI0_Init();                         //< Initialize the SPI bus
-    SPI0_Mode(0);                        //< Set the clocking mode, etc
-    mmc_slow();                          //< Set the speed to "slow" the slowest speed an MMC device might need.
-}
-
-
-/// @brief  MMC set slow SPI bus speed 
-///
-/// - Used during card detect phase
-/// @return  void
-
-void mmc_slow()
-{
-    SPI0_Speed(250000U);  //< In HZ 100khz..400khz
-}
-
-
-/// @brief  MMC fast SPI bus speed 
-///
-/// - Used during normal file IO phases
-/// @return  void
-
-void mmc_fast()
-{
-    SPI0_Speed(2500000U);                         // IN HZ 2.5mhz
-}
-
-
-/// @brief  MMC power ON initialize
-///
-/// - We do not control power to the MMC device in this project.
-/// @return  void
-
-void mmc_power_on()
-{
-    mmc_spi_init();
-    mmc_slow();
-    (void)mmc_xchg_spi(0xff);
-    delayms(20);
-}
-
-
-/// @brief  MMC power off 
-///
-/// - We do not control power to the MMC device in this project.
-/// @return  void
-
-void mmc_power_off()
-{
-}
-
-
-/// @brief  MMC power status
-///
-/// - We do not control power to the MMC device in this project.
-/// @return  1 power is alwasy on
-
-int mmc_power_status()
-{
-    return (1);
-}
-
-
-
-/// @brief  MMC CS enable
-///
-/// - MMC SPI chip sellect 
-/// @return  void
-
-void mmc_cs_enable()
-{
-    IO_LOW(MMC_CS);
-}
-
-
-/// @brief MMC CS disable
-///
-/// - MMC SPI chip sellect 
-/// @return  void
-
-void mmc_cs_disable()
-{
-    IO_HI(MMC_CS);
-}
-
-
-/// @brief  MMC Card Inserted status
-///
-/// - We do not detect card insert status in this project.
-/// @return 1 card inserted
-
-int mmc_ins_status()
-{
-    return (1);
-}
-
-
-/// @brief  MMC Card Write Protect status
-///
-/// - We do not detect card write protect status in this project.
-/// @return 0 == not write protected
-
-int mmc_wp_status()
-{
-    return (0);
-}
-
 
 static int mmc_init_flag = 0;
-
 /// @brief Initialize MMC and FatFs interface, display diagnostics.
 ///
 /// @param[in] cold: 1 also initailize MMC timer.
 /// @return
-
-int mmc_init(int cold)
+MEMSPACE
+int mmc_init(int verbose)
 {
     int rc;
 
-    if( !mmc_init_flag)
+    Stat = 0;
+
+    if( verbose)
     {
-		myprintf("==============================\n");
-        myprintf("START MMC INIT\n");
+        DEBUG_PRINTF("==============================\n");
+        DEBUG_PRINTF("START MMC INIT\n");
     }
 
-    mmc_spi_init();
+    mmc_slow();
 
-    if( cold )
+    // we only install timers once!
+    if(!mmc_init_flag)
         mmc_install_timer();
 
-    mmc_power_on();
-
-    if( !mmc_init_flag)
+    if( verbose)
     {
 #if defined (_USE_LFN)
-        myprintf("LFN Enabled");
+        DEBUG_PRINTF("LFN Enabled");
 #else
-        myprintf("LFN Disabled");
+        DEBUG_PRINTF("LFN Disabled");
 #endif
-        myprintf(", Code page: %u\n", _CODE_PAGE);
+        DEBUG_PRINTF(", Code page: %u\n", _CODE_PAGE);
     }
 
     rc = disk_initialize(0);                      // aliased to mmc_disk_initialize()
+
     if( rc != RES_OK )
     {
         put_rc(rc);
@@ -321,28 +228,161 @@ int mmc_init(int cold)
         put_rc( rc );
     }
 
-    if( !mmc_init_flag)
+    if (verbose )
     {
         DWORD blksize = 0;
-        fatfs_status("/");
-
-        rc = mmc_disk_ioctl ( Fatfs[0].drv, GET_BLOCK_SIZE, (void *) &blksize);
-        if( rc != RES_OK)
+        if(rc == RES_OK)
         {
-            put_rc( rc );
-            myprintf("MMC Block Size - read failed\n");
+            rc = mmc_disk_ioctl ( Fatfs[0].drv, GET_BLOCK_SIZE, (void *) &blksize);
+            if( rc != RES_OK)
+            {
+                put_rc( rc );
+                DEBUG_PRINTF("MMC Block Size - read failed\n");
+            }
+            else
+            {
+                DEBUG_PRINTF("MMC Block Size: %ld\n", blksize);
+            }
+            if( rc == RES_OK)
+            {
+                fatfs_status("/");
+            }
         }
-        else
-        {
-            myprintf("MMC Block Size: %ld\n", blksize);
-        }
-
-        myprintf("END MMC INIT\n");
-		myprintf("==============================\n");
-    }
-
-    if( rc == RES_OK )
-        mmc_init_flag = 1;
+        DEBUG_PRINTF("END MMC INIT\n");
+	}
+    mmc_init_flag = 1;
 
     return( rc ) ;
+}
+
+
+
+/// @brief hs the mmc SPI bus been initialized yet ?
+uint8_t _mmc_spi_init_flag = 0;
+/// @brief  MMC SPI bus init
+/// @return  void
+MEMSPACE
+void mmc_spi_init(int32_t clock)
+{
+	IO_HI(MMC_CS);
+    SPI0_Init(clock);  		//< Initialize the SPI bus
+    SPI0_Mode(0);                   //< Set the clocking mode, etc
+    _mmc_spi_init_flag=1;
+}
+
+
+/// @brief  MMC set slow SPI bus speed
+///
+/// - Used during card detect phase
+/// @return  void
+MEMSPACE
+void mmc_slow()
+{
+	SPI0_Init(_mmc_clock = MMC_SLOW);  //< In HZ 100khz..400khz
+    (void)mmc_spi_TX(0xff);
+}
+
+
+
+/// @brief  MMC fast SPI bus speed
+///
+/// - Used during normal file IO phases
+/// @return  void
+MEMSPACE
+void mmc_fast()
+{
+//FIXME
+	SPI0_Init(_mmc_clock = MMC_FAST);  //< In HZ 100khz..400khz
+    (void)mmc_spi_TX(0xff);
+}
+
+
+/// @brief  MMC power ON initialize
+///
+/// - We do not control power to the MMC device in this project.
+/// @return  void
+MEMSPACE
+void mmc_power_on()
+{
+    int i;
+    // SD CS should be off
+    mmc_slow();
+    for(i=0;i<20;++i)
+    {
+		_delay_us(1000); 
+    }
+}
+
+/// @brief  MMC power off
+///
+/// - We do not control power to the MMC device in this project.
+/// @return  void
+
+MEMSPACE
+void mmc_power_off()
+{
+    (void)mmc_spi_TX(0xff);
+}
+
+
+/// @brief  MMC power status
+///
+/// - We do not control power to the MMC device in this project.
+/// @return  1 power is alwasy on
+
+MEMSPACE
+int mmc_power_status()
+{
+    return (1);
+}
+
+
+
+/// @brief  MMC CS enable
+///
+/// - MMC SPI chip select
+/// @return  void
+MEMSPACE
+void mmc_cs_enable()
+{
+	// restore clock speed in case another device changed it
+    mmc_spi_init(_mmc_clock);
+	IO_LOW(MMC_CS);
+}
+
+
+/// @brief MMC CS disable
+///
+/// - MMC SPI chip select
+/// @return  void
+
+MEMSPACE
+void mmc_cs_disable()
+{
+	IO_HI(MMC_CS);
+}
+
+
+/// @brief  MMC Card Inserted status
+///
+/// - We do not detect card insert status in this project.
+/// @return 1 card inserted
+
+MEMSPACE
+int mmc_ins_status()
+{
+    return (1);
+}
+
+
+
+/// @brief  MMC Card Write Protect status
+///
+/// - We do not detect card write protect status in this project.
+/// @return 0 == not write protected
+
+MEMSPACE
+int mmc_wp_status()
+{
+    return (0);
 }

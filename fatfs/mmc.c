@@ -1,18 +1,33 @@
 /**
  @file fatfs/mmc.c
 
- @brief part of FatFs avr example project (C)ChaN, 2013.
+ @brief MMC upper level interface to FatFS
+   - Originally part of FatFs avr example project (C)ChaN, 2013.
    - Specifically: avr_complex/main.c from ffsample.zip.
-   - Minor Modifications by Mike Gore.
+   - Modifications by Mike Gore.
    - I added hardware abstraction layer or mmc.c to make porting easier.
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2013 ChaN.
+ @par Credit: part of FatFs avr example project (C)ChaN, 2013.
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @par Copyright &copy; CHaN 2013.
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
- @see mmc.c
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 
 /*-----------------------------------------------------------------------*/
 /* MMCv3/SDv1/SDv2 (in SPI mode) control module  (C)ChaN, 2010           */
@@ -20,17 +35,11 @@
 /* mmc.c */
 
 #include <hardware/hardware.h>
+#include "mmc_hal.h"
 #include "diskio.h"
 #include "disk.h"
-#include "mmc_hal.h"
 #include "mmc.h"
 
-/* mmc.c */
-DSTATUS mmc_disk_initialize ( BYTE pdrv );
-DSTATUS mmc_disk_status ( BYTE pdrv );
-DRESULT mmc_disk_read ( BYTE pdrv , BYTE *buff , DWORD sector , UINT count );
-DRESULT mmc_disk_write ( BYTE pdrv , const BYTE *buff , DWORD sector , UINT count );
-DRESULT mmc_disk_ioctl ( BYTE pdrv , BYTE cmd , void *buff );
 
 /*--------------------------------------------------------------------------
 
@@ -66,77 +75,52 @@ DSTATUS Stat = STA_NOINIT;   /* <Disk status */
 static
 BYTE CardType;               /*< Card type flags */
 
-///@brief Send SPI data block fast 
-static
-void xmit_spi_multi (
-const BYTE *p,  /*< Data block to be sent */
-UINT cnt        /*< Size of data block (must be multiple of 2) */
-)
-{
-    do
-    {
-        mmc_xchg_spi(*p++);
-        mmc_xchg_spi(*p++);
-    } while (cnt -= 2);
-}
 
+// ===========================================
 
-///@brief Receive SPI data block fast
-static
-void rcvr_spi_multi (
-BYTE *p,        /*< Data buffer */
-UINT cnt        /*< Size of data block (must be multiple of 2) */
-)
-{
-    do
-    {
-        *p++ = mmc_xchg_spi(0xff);
-        *p++ = mmc_xchg_spi(0xff);
-    } while (cnt -= 2);
-}
-
-
-///@brief Wait for card ready
-///@return 1 ready
-///@return 0 timeout
-
-static
+MEMSPACE
 int wait_ready (
 UINT wt         /*< Timeout [ms] */
 )
 {
-    BYTE d;
+    mmc_set_ms_timeout(wt);  /* Wait for ready in timeout of 500ms */
 
-    mmc_set_ms_timeout(wt);                       /* Wait for ready in timeout of 500ms */
-
-    do
-    d = mmc_xchg_spi(0xFF);
-    while (d != 0xFF && !mmc_test_timeout());
-
-    return (d == 0xFF) ? 1 : 0;
+    while(!mmc_test_timeout())
+	{
+		if( mmc_spi_TXRX(0xff) == 0xff)
+			return 1;
+	}
+	return (0);
 }
 
 
 ///@brief Deselect the card and release SPI bus
 
+MEMSPACE
 static
 void mmc_deselect (void)
 {
     mmc_cs_disable();
-    mmc_xchg_spi(0xFF);   /*< Dummy clock (force DO hi-z for multiple slave SPI) */
+    mmc_spi_TX(0xFF);   /*< Dummy clock (force DO hi-z for multiple slave SPI) */
+    mmc_spi_TX(0xFF);   /*< Dummy clock (force DO hi-z for multiple slave SPI) */
 }
 
 
 ///@brief Select the card and wait for ready
 ///@return 1 Successful
 ///@return 0 Timeout
+MEMSPACE
 static
 int mmc_select (void)
 {
     mmc_cs_enable();
-    mmc_xchg_spi(0xFF);                           /* Dummy clock (force DO enabled) */
+    mmc_spi_TX(0xFF);      /* Dummy clock (force DO enabled) */
 
-    if (wait_ready(500)) return 1;                /* OK */
+    if (wait_ready(500)) 
+		return 1;          /* OK */
+
+DEBUG_PRINTF("mmc_select failed!\n");
+
     mmc_deselect();
     return 0;                                     /* Timeout */
 }
@@ -146,6 +130,7 @@ int mmc_select (void)
 ///@return 1 Successful
 ///@return 0 Error
 
+MEMSPACE
 static
 int rcvr_datablock (
 BYTE *buff,     /*< Data buffer to store received data */
@@ -154,16 +139,16 @@ UINT btr        /*< Byte count (must be multiple of 4) */
 {
     BYTE token;
 
-    mmc_set_ms_timeout(200);
+    mmc_set_ms_timeout(400);
     do                                            /* Wait for data packet in timeout of 200ms */
     {
-        token = mmc_xchg_spi(0xFF);
+        token = mmc_spi_TXRX(0xFF);
     } while ((token == 0xFF) && !mmc_test_timeout());
     if (token != 0xFE) return 0;                  /* If not valid data token, retutn with error */
 
-    rcvr_spi_multi(buff, btr);                    /* Receive the data block into buffer */
-    mmc_xchg_spi(0xFF);                           /* Discard CRC */
-    mmc_xchg_spi(0xFF);
+    mmc_spi_RX_buffer(buff, btr); /* Receive the data block into buffer */
+    mmc_spi_TX(0xFF);                           /* Discard CRC */
+    mmc_spi_TX(0xFF);
 
     return 1;                                     /* Return with success */
 }
@@ -173,6 +158,7 @@ UINT btr        /*< Byte count (must be multiple of 4) */
 ///@return 1 Successful
 ///@return 0 Error
 #if _USE_WRITE
+MEMSPACE
 static
 int xmit_datablock (
 const BYTE *buff, /*< 512 byte data block to be transmitted */
@@ -183,14 +169,14 @@ BYTE token        /*< Data/Stop token */
 
     if (!wait_ready(500)) return 0;
 
-    mmc_xchg_spi(token);                          /* Xmit data token */
+    mmc_spi_TX(token);                            /* Xmit data token */
     if (token != 0xFD)                            /* Is data token */
     {
-        xmit_spi_multi(buff, 512);                /* Xmit the data block to the MMC */
+        mmc_spi_TX_buffer(buff, 512);                /* Xmit the data block to the MMC */
 
-        mmc_xchg_spi(0xFF);                       /* CRC (Dummy) */
-        mmc_xchg_spi(0xFF);
-        resp = mmc_xchg_spi(0xFF);                /* Reveive data response */
+        mmc_spi_TX(0xFF);                       /* CRC (Dummy) */
+        mmc_spi_TX(0xFF);
+        resp = mmc_spi_TXRX(0xFF);                /* Reveive data response */
         if ((resp & 0x1F) != 0x05)                /* If not accepted, return with error */
             return 0;
     }
@@ -203,6 +189,7 @@ BYTE token        /*< Data/Stop token */
 ///@return R1 resp 
 ///@return bit7==1Send failed
 
+MEMSPACE
 static
 BYTE send_cmd (
 BYTE cmd,     /*< Command index */
@@ -226,22 +213,24 @@ DWORD arg     /*< Argument */
     }
 
 /* Send command packet */
-    mmc_xchg_spi(0x40 | cmd);                     /* Start + Command index */
-    mmc_xchg_spi((BYTE)(arg >> 24));              /* Argument[31..24] */
-    mmc_xchg_spi((BYTE)(arg >> 16));              /* Argument[23..16] */
-    mmc_xchg_spi((BYTE)(arg >> 8));               /* Argument[15..8] */
-    mmc_xchg_spi((BYTE)arg);                      /* Argument[7..0] */
+    mmc_spi_TX(0x40 | cmd);                     /* Start + Command index */
+    mmc_spi_TX((BYTE)(arg >> 24));              /* Argument[31..24] */
+    mmc_spi_TX((BYTE)(arg >> 16));              /* Argument[23..16] */
+    mmc_spi_TX((BYTE)(arg >> 8));               /* Argument[15..8] */
+    mmc_spi_TX((BYTE)arg);                      /* Argument[7..0] */
     n = 0x01;                                     /* Dummy CRC + Stop */
     if (cmd == CMD0) n = 0x95;                    /* Valid CRC for CMD0(0) + Stop */
     if (cmd == CMD8) n = 0x87;                    /* Valid CRC for CMD8(0x1AA) Stop */
 
-    mmc_xchg_spi(n);
+    mmc_spi_TX(n);
 
 /* Receive command response */
-    if (cmd == CMD12) mmc_xchg_spi(0xFF);         /* Skip a stuff byte when stop reading */
+    if (cmd == CMD12) mmc_spi_TX(0xFF);         /* Skip a stuff byte when stop reading */
     n = 10;                                       /* Wait for a valid response in timeout of 10 attempts */
     do
-    res = mmc_xchg_spi(0xFF);
+	{
+		res = mmc_spi_TXRX(0xFF);
+	}
     while ((res & 0x80) && --n);
 
     return res;                                   /* Return with the response value */
@@ -253,6 +242,7 @@ DWORD arg     /*< Argument */
 
 ///@brief Initialize Disk Drive
 ///@return Stat
+MEMSPACE
 DSTATUS mmc_disk_initialize (
 BYTE pdrv   /*< Physical drive nmuber (0) */
 )
@@ -264,25 +254,28 @@ BYTE pdrv   /*< Physical drive nmuber (0) */
     if (Stat & STA_NODISK) return Stat;           /* No card in the socket */
     mmc_power_on();                               /* Turn on the socket power */
     mmc_slow();
-    for (n = 10; n; n--) mmc_xchg_spi(0xFF);      /* 80 dummy clocks */
+    for (n = 10; n; n--) mmc_spi_TX(0xFF);      /* 80 dummy clocks */
 
     ty = 0;
     if (send_cmd(CMD0, 0) == 1)                   /* Enter Idle state */
     {
-        mmc_set_ms_timeout(1000);                 /* Initialization timeout of 1000 msec */
+        mmc_set_ms_timeout(250);                 /* Initialization timeout of 1000 msec */
         if (send_cmd(CMD8, 0x1AA) == 1)           /* SDv2? */
         {
             for (n = 0; n < 4; n++)
-                ocr[n] = mmc_xchg_spi(0xFF);      /* Get trailing return value of R7 resp */
+			{
+                ocr[n] = mmc_spi_TXRX(0xFF);      /* Get trailing return value of R7 resp */
+			}
             if (ocr[2] == 0x01 && ocr[3] == 0xAA) /* The card can work at vdd range of 2.7-3.6V */
             {
 /* Wait for leaving idle state (ACMD41 with HCS bit) */
                 while (!mmc_test_timeout() && send_cmd(ACMD41, 1UL << 30))
-                    ;
+				{
+				}
 /* Check CCS bit in the OCR */
                 if (!mmc_test_timeout() && send_cmd(CMD58, 0) == 0)
                 {
-                    for (n = 0; n < 4; n++) ocr[n] = mmc_xchg_spi(0xFF);
+                    for (n = 0; n < 4; n++) ocr[n] = mmc_spi_TXRX(0xFF);
 /* SDv2 */
                     ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;
                 }
@@ -307,6 +300,7 @@ MCv3 */
                 ty = 0;
         }
     }
+
     CardType = ty;
     mmc_deselect();
 
@@ -320,6 +314,8 @@ MCv3 */
         mmc_power_off();
     }
 
+    if (Stat & STA_NODISK) return Stat;           /* No card in the socket */
+
     return Stat;
 }
 
@@ -328,6 +324,7 @@ MCv3 */
 /// @return Stat
 /// @return STA_NOINIT if no drive
 
+MEMSPACE
 DSTATUS mmc_disk_status (
 BYTE pdrv  /*< Physical drive nmuber (0) */
 )
@@ -341,6 +338,7 @@ BYTE pdrv  /*< Physical drive nmuber (0) */
 /// @return 0 ok
 /// @return non zero error
 
+MEMSPACE
 DRESULT mmc_disk_read (
 BYTE pdrv,     /*< Physical drive nmuber (0) */
 BYTE *buff,    /*< Pointer to the data buffer to store read data */
@@ -364,7 +362,8 @@ AD_SINGLE_BLOCK */
     {
         do
         {
-            if (!rcvr_datablock(buff, 512)) break;
+            if (!rcvr_datablock(buff, 512)) 
+				break;
             buff += 512;
         } while (--count);
         if (cmd == CMD18) send_cmd(CMD12, 0);     /* STOP_TRANSMISSION */
@@ -380,6 +379,7 @@ AD_SINGLE_BLOCK */
 /// @return non zero error
 
 #if _USE_WRITE
+MEMSPACE
 DRESULT mmc_disk_write (
 BYTE pdrv,        /*< Physical drive nmuber (0) */
 const BYTE *buff, /*< Pointer to the data to be written */
@@ -430,6 +430,7 @@ UINT count                                        /* Sector count (1..128) */
 /// @return 0 ok
 /// @return non zero error
 
+MEMSPACE
 DRESULT mmc_disk_ioctl (
 BYTE pdrv,                                        /* Physical drive nmuber (0) */
 BYTE cmd,                                         /* Control code */
@@ -448,7 +449,7 @@ void *buff                                        /* Buffer to send/receive cont
 
     switch (cmd)
     {
-        case CTRL_SYNC :                          /* Make sure that no pending write process. Do not remove this or written sector might not left updated. */
+        case CTRL_SYNC :     /* Make sure that no pending write process. Do not remove this or written sector might not left updated. */
             if (mmc_select()) res = RES_OK;
             break;
 
@@ -475,11 +476,11 @@ void *buff                                        /* Buffer to send/receive cont
             {
                 if (send_cmd(ACMD13, 0) == 0)     /* Read SD status */
                 {
-                    mmc_xchg_spi(0xFF);
+                    mmc_spi_TX(0xFF);
                     if (rcvr_datablock(csd, 16))  /* Read partial block */
                     {
 /* Purge trailing data */
-                        for (n = 64 - 16; n; n--) mmc_xchg_spi(0xFF);
+                        for (n = 64 - 16; n; n--) mmc_spi_TX(0xFF);
                         *(DWORD*)buff = 16UL << (csd[10] >> 4);
                         res = RES_OK;
                     }
@@ -525,7 +526,7 @@ void *buff                                        /* Buffer to send/receive cont
         case MMC_GET_OCR :                        /* Receive OCR as an R3 resp (4 bytes) */
             if (send_cmd(CMD58, 0) == 0)          /* READ_OCR */
             {
-                for (n = 4; n; n--) *ptr++ = mmc_xchg_spi(0xFF);
+                for (n = 4; n; n--) *ptr++ = mmc_spi_TXRX(0xFF);
                 res = RES_OK;
             }
             break;
@@ -533,7 +534,7 @@ void *buff                                        /* Buffer to send/receive cont
         case MMC_GET_SDSTAT :                     /* Receive SD statsu as a data block (64 bytes) */
             if (send_cmd(ACMD13, 0) == 0)         /* SD_STATUS */
             {
-                mmc_xchg_spi(0xFF);
+                mmc_spi_TX(0xFF);
                 if (rcvr_datablock(ptr, 64))
                     res = RES_OK;
             }

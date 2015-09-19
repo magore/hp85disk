@@ -3,12 +3,10 @@
 }
 
 
-P\-O\-S\-I\-X time libraries for A\-V\-R8.  
+Common Linux/\-P\-O\-S\-I\-X time functions.  
 
 
-{\ttfamily \#include $<$hardware/cpu.\-h$>$}\\*
-{\ttfamily \#include $<$stdio.\-h$>$}\\*
-{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
 {\ttfamily \#include $<$string.\-h$>$}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
@@ -50,14 +48,6 @@ typedef struct \hyperlink{structtimespec}{timespec} \hyperlink{time_8h_a062a82a8
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{time_8h_a182d70e09e9436c9c8a2e81b7597f206}{clock\-\_\-task} (void)
-\begin{DoxyCompactList}\small\item\em Clock task with nanonsecond resolution. \end{DoxyCompactList}\item 
-int \hyperlink{time_8h_aa84c3231a44cdeb975166c14e0f3cc46}{clock\-\_\-gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
-\begin{DoxyCompactList}\small\item\em Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
-int \hyperlink{time_8h_a49d0147c5c0a6a7327541bfa7c694fe9}{clock\-\_\-getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
-\begin{DoxyCompactList}\small\item\em Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
-void \hyperlink{time_8h_a06e6a3be61597caf44d16026be04dfdd}{clock\-\_\-clear} (void)
-\begin{DoxyCompactList}\small\item\em clear time and timezone to 0. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_a69c4036704b8ae43c5f9ac9c8658a763}{tm\-\_\-wday\-\_\-to\-\_\-ascii} (int i)
 \begin{DoxyCompactList}\small\item\em Get string Short name of day from day number. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_ad6a39b3f68479cc964ec18cd3b8c7ea0}{tm\-\_\-mon\-\_\-to\-\_\-ascii} (int i)
@@ -67,15 +57,15 @@ int \hyperlink{time_8h_a794b7f5714600b1accff4001948db72f}{time\-\_\-to\-\_\-tm} 
 \hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} \hyperlink{time_8h_a48f6c9170d63503123d5af4ae2639baf}{timegm} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
 \begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t structure as G\-M\-T time into seconds since 1900. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_a01e2d64564b07a830b0fea0a9e829bed}{asctime\-\_\-r} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t, char $\ast$buf)
-\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
-\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_a7075522b8be33803a89f6db2d757b21e}{ctime\-\_\-r} (\hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$t, char $\ast$buf)
-\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_aa160c926bb33f6d7ba494634b26a6b8b}{ctime} (\hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
-\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{time_8h_aa6cfe97d57402658beaca8f14e4d546f}{ctime\-\_\-gm} (\hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
-\begin{DoxyCompactList}\small\item\em G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_aa160c926bb33f6d7ba494634b26a6b8b}{ctime()}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. \end{DoxyCompactList}\item 
 \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8h_abfd43bc1e743aa21fe7f023a519b224c}{gmtime\-\_\-r} (\hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp, \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$result)
 \begin{DoxyCompactList}\small\item\em Convert epoch G\-M\-T time\-\_\-t $\ast$tp into P\-O\-S\-I\-X tm\-\_\-t $\ast$result. \end{DoxyCompactList}\item 
 \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ \hyperlink{time_8h_afcddcc0554649844e8042298842f3324}{gmtime} (\hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\-\_\-t} $\ast$tp)
@@ -114,16 +104,17 @@ volatile \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} \hyper
 
 
 \subsection{Detailed Description}
-P\-O\-S\-I\-X time libraries for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+Common Linux/\-P\-O\-S\-I\-X time functions. \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
 
 \end{DoxyParagraph}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
+This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+
+You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
 
 Definition in file \hyperlink{time_8h_source}{time.\-h}.
 
@@ -135,21 +126,21 @@ Definition in file \hyperlink{time_8h_source}{time.\-h}.
 \subsubsection[{E\-P\-O\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-O\-C\-H~0    /$\ast$$<$ Zero seconds $\ast$/}}\label{time_8h_a0ac447c7f69530e0caadc891c59d7244}
 
 
-Definition at line 23 of file time.\-h.
+Definition at line 34 of file time.\-h.
 
 \hypertarget{time_8h_a68d645790f023c139b736dd48f0c90bf}{\index{time.\-h@{time.\-h}!E\-P\-O\-C\-H\-\_\-2000@{E\-P\-O\-C\-H\-\_\-2000}}
 \index{E\-P\-O\-C\-H\-\_\-2000@{E\-P\-O\-C\-H\-\_\-2000}!time.h@{time.\-h}}
 \subsubsection[{E\-P\-O\-C\-H\-\_\-2000}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-O\-C\-H\-\_\-2000~946684800  /$\ast$$<$ Sat, 01 Jan 2000 00\-:00\-:00 G\-M\-T $\ast$/}}\label{time_8h_a68d645790f023c139b736dd48f0c90bf}
 
 
-Definition at line 24 of file time.\-h.
+Definition at line 35 of file time.\-h.
 
 \hypertarget{time_8h_af52939ab160d0d62c41282669c0214ed}{\index{time.\-h@{time.\-h}!E\-P\-O\-C\-H\-\_\-\-D\-A\-Y@{E\-P\-O\-C\-H\-\_\-\-D\-A\-Y}}
 \index{E\-P\-O\-C\-H\-\_\-\-D\-A\-Y@{E\-P\-O\-C\-H\-\_\-\-D\-A\-Y}!time.h@{time.\-h}}
 \subsubsection[{E\-P\-O\-C\-H\-\_\-\-D\-A\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-O\-C\-H\-\_\-\-D\-A\-Y~4    /$\ast$$<$ Sunday = 0 ... Saturday = 6 $\ast$/}}\label{time_8h_af52939ab160d0d62c41282669c0214ed}
 
 
-Definition at line 22 of file time.\-h.
+Definition at line 33 of file time.\-h.
 
 
 
@@ -160,7 +151,7 @@ Referenced by time\-\_\-to\-\_\-tm().
 \subsubsection[{E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R~1970    /$\ast$$<$ Thursday Jan 1 1970 $\ast$/}}\label{time_8h_aa0e47af385cda59b56c1ba71dee795d8}
 
 
-Definition at line 21 of file time.\-h.
+Definition at line 32 of file time.\-h.
 
 
 
@@ -178,7 +169,7 @@ type of clockid\-\_\-t.
 
 
 
-Definition at line 30 of file time.\-h.
+Definition at line 41 of file time.\-h.
 
 \hypertarget{time_8h_a3346b04b0420b32ccf6b706551b70762}{\index{time.\-h@{time.\-h}!time\-\_\-t@{time\-\_\-t}}
 \index{time\-\_\-t@{time\-\_\-t}!time.h@{time.\-h}}
@@ -189,7 +180,7 @@ type of E\-P\-O\-C\-H result.
 
 
 
-Definition at line 27 of file time.\-h.
+Definition at line 38 of file time.\-h.
 
 \hypertarget{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{\index{time.\-h@{time.\-h}!tm\-\_\-t@{tm\-\_\-t}}
 \index{tm\-\_\-t@{tm\-\_\-t}!time.h@{time.\-h}}
@@ -200,7 +191,7 @@ P\-O\-S\-I\-X struct tm typedef.
 
 
 
-Definition at line 48 of file time.\-h.
+Definition at line 59 of file time.\-h.
 
 \hypertarget{time_8h_a062a82a85c72b4a3020130efc37a00cf}{\index{time.\-h@{time.\-h}!ts\-\_\-t@{ts\-\_\-t}}
 \index{ts\-\_\-t@{ts\-\_\-t}!time.h@{time.\-h}}
@@ -211,7 +202,7 @@ P\-O\-S\-I\-X timespec typedef.
 
 
 
-Definition at line 75 of file time.\-h.
+Definition at line 87 of file time.\-h.
 
 \hypertarget{time_8h_a23f99094ae0798225e20ad40e48658bb}{\index{time.\-h@{time.\-h}!tv\-\_\-t@{tv\-\_\-t}}
 \index{tv\-\_\-t@{tv\-\_\-t}!time.h@{time.\-h}}
@@ -222,7 +213,7 @@ P\-O\-S\-I\-X timeval typedef.
 
 
 
-Definition at line 57 of file time.\-h.
+Definition at line 69 of file time.\-h.
 
 \hypertarget{time_8h_a63629b2492d6773f4d4948d6e60022a8}{\index{time.\-h@{time.\-h}!tz\-\_\-t@{tz\-\_\-t}}
 \index{tz\-\_\-t@{tz\-\_\-t}!time.h@{time.\-h}}
@@ -233,7 +224,7 @@ P\-O\-S\-I\-X timezone typedef.
 
 
 
-Definition at line 66 of file time.\-h.
+Definition at line 78 of file time.\-h.
 
 
 
@@ -247,7 +238,7 @@ Definition at line 66 of file time.\-h.
 )}}\label{time_8h_a68d13eb8dbfe6723ed9a8d6ee624f673}
 
 
-Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string. 
+Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -255,7 +246,7 @@ Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]} string pointer in P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} format.
+\-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]} string pointer in P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} format.
 \begin{DoxyItemize}
 \item Example output\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}. 
 \end{DoxyItemize}
@@ -265,7 +256,7 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 431 of file time.\-c.
+Definition at line 376 of file time.\-c.
 
 
 
@@ -281,7 +272,7 @@ Referenced by display\-\_\-time().
 )}}\label{time_8h_a01e2d64564b07a830b0fea0a9e829bed}
 
 
-Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
+Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000068}{Todo}]implement strftime() and strptime() \end{DoxyRefDesc}
@@ -289,7 +280,7 @@ Convert tm\-\_\-t $\ast$t structure into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em t} & tm\-\_\-t structure pointer. \\
 \hline
-\mbox{\tt out}  & {\em buf} & user buffer for P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} string result.
+\mbox{\tt out}  & {\em buf} & user buffer for P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string result.
 \begin{DoxyItemize}
 \item Example output\-: \char`\"{}\-Thu Dec  8 21\-:45\-:05 E\-S\-T 2011\char`\"{}.
 \end{DoxyItemize}\\
@@ -300,112 +291,11 @@ buf string pointer.
 \end{DoxyReturn}
 
 
-Definition at line 406 of file time.\-c.
+Definition at line 350 of file time.\-c.
 
 
 
 Referenced by asctime(), ctime(), ctime\-\_\-gm(), and ctime\-\_\-r().
-
-\hypertarget{time_8h_a06e6a3be61597caf44d16026be04dfdd}{\index{time.\-h@{time.\-h}!clock\-\_\-clear@{clock\-\_\-clear}}
-\index{clock\-\_\-clear@{clock\-\_\-clear}!time.h@{time.\-h}}
-\subsubsection[{clock\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}void clock\-\_\-clear (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{time_8h_a06e6a3be61597caf44d16026be04dfdd}
-
-
-clear time and timezone to 0. 
-
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_a0e38ba6dd41a9999acda0d556620da44}{clock\-\_\-settime()}. 
-
-\hyperlink{time_8c_a745066817406bf751ffc1ce5e20742aa}{settimezone()}.
-\end{DoxySeeAlso}
-\begin{DoxyReturn}{Returns}
-void. 
-\end{DoxyReturn}
-
-
-Definition at line 93 of file time.\-c.
-
-
-
-Referenced by init\-\_\-timers(), and main().
-
-\hypertarget{time_8h_a49d0147c5c0a6a7327541bfa7c694fe9}{\index{time.\-h@{time.\-h}!clock\-\_\-getres@{clock\-\_\-getres}}
-\index{clock\-\_\-getres@{clock\-\_\-getres}!time.h@{time.\-h}}
-\subsubsection[{clock\-\_\-getres}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-getres (
-\begin{DoxyParamCaption}
-\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
-\item[{struct {\bf timespec} $\ast$}]{res}
-\end{DoxyParamCaption}
-)}}\label{time_8h_a49d0147c5c0a6a7327541bfa7c694fe9}
-
-
-Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
-
-
-\begin{DoxyItemize}
-\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
-\hline
-\mbox{\tt out}  & {\em res} & timespec resolution result.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 on success. 
-
--\/1 on error. 
-\end{DoxyReturn}
-
-
-Definition at line 141 of file timer\-\_\-hal.\-c.
-
-
-
-Referenced by main().
-
-\hypertarget{time_8h_aa84c3231a44cdeb975166c14e0f3cc46}{\index{time.\-h@{time.\-h}!clock\-\_\-gettime@{clock\-\_\-gettime}}
-\index{clock\-\_\-gettime@{clock\-\_\-gettime}!time.h@{time.\-h}}
-\subsubsection[{clock\-\_\-gettime}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-gettime (
-\begin{DoxyParamCaption}
-\item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
-\item[{struct {\bf timespec} $\ast$}]{ts}
-\end{DoxyParamCaption}
-)}}\label{time_8h_aa84c3231a44cdeb975166c14e0f3cc46}
-
-
-Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. 
-
-
-\begin{DoxyItemize}
-\item Note\-: We ignore clk\-\_\-id, and include low level counter offsets when available.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em clk\-\_\-id} & unused hardware clock index. \\
-\hline
-\mbox{\tt out}  & {\em ts} & timespec result.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 on success. 
-
--\/1 on error. 
-\end{DoxyReturn}
-note\-: counter2 $<$ count1 implies I\-S\-R flag must be set 
-
-Definition at line 82 of file timer\-\_\-hal.\-c.
-
-
-
-Referenced by clock\-\_\-elapsed\-\_\-begin(), clock\-\_\-elapsed\-\_\-end(), display\-\_\-time(), gettimeofday(), printer\-\_\-open(), and time().
 
 \hypertarget{time_8h_a5af212a62558a4ecddd3c5a885b6cdb0}{\index{time.\-h@{time.\-h}!clock\-\_\-set@{clock\-\_\-set}}
 \index{clock\-\_\-set@{clock\-\_\-set}!time.h@{time.\-h}}
@@ -425,19 +315,19 @@ Set system clock with seconds and microseconds.
 void. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_a0e38ba6dd41a9999acda0d556620da44}{clock\-\_\-settime()}. 
+\hyperlink{time_8h_a0e38ba6dd41a9999acda0d556620da44}{clock\-\_\-settime()}. 
 \end{DoxySeeAlso}
 
 \end{DoxyItemize}
 
-Definition at line 672 of file time.\-c.
+Definition at line 611 of file time.\-c.
 
 \hypertarget{time_8h_a0e38ba6dd41a9999acda0d556620da44}{\index{time.\-h@{time.\-h}!clock\-\_\-settime@{clock\-\_\-settime}}
 \index{clock\-\_\-settime@{clock\-\_\-settime}!time.h@{time.\-h}}
 \subsubsection[{clock\-\_\-settime}]{\setlength{\rightskip}{0pt plus 5cm}int clock\-\_\-settime (
 \begin{DoxyParamCaption}
 \item[{{\bf clockid\-\_\-t}}]{clk\-\_\-id, }
-\item[{const struct {\bf timespec} $\ast$}]{tp}
+\item[{const struct {\bf timespec} $\ast$}]{ts}
 \end{DoxyParamCaption}
 )}}\label{time_8h_a0e38ba6dd41a9999acda0d556620da44}
 
@@ -459,39 +349,11 @@ Set system clock using seconds and nonoseconds -\/ P\-O\-S\-I\-X function.
 \end{DoxyReturn}
 
 
-Definition at line 571 of file time.\-c.
+Definition at line 188 of file timer\-\_\-hal.\-c.
 
 
 
 Referenced by clock\-\_\-set(), setdate\-\_\-r(), settimeofday(), and setup\-\_\-clock().
-
-\hypertarget{time_8h_a182d70e09e9436c9c8a2e81b7597f206}{\index{time.\-h@{time.\-h}!clock\-\_\-task@{clock\-\_\-task}}
-\index{clock\-\_\-task@{clock\-\_\-task}!time.h@{time.\-h}}
-\subsubsection[{clock\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void clock\-\_\-task (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{time_8h_a182d70e09e9436c9c8a2e81b7597f206}
-
-
-Clock task with nanonsecond resolution. 
-
-
-\begin{DoxyItemize}
-\item Notes\-: C\-L\-O\-C\-K\-\_\-\-T\-I\-C\-\_\-\-N\-S computed from S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z. \begin{DoxyReturn}{Returns}
-void. 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()}. 
-\end{DoxySeeAlso}
-
-\end{DoxyItemize}
-
-Definition at line 34 of file time.\-c.
-
-
-
-Referenced by init\-\_\-timers().
 
 \hypertarget{time_8h_aa160c926bb33f6d7ba494634b26a6b8b}{\index{time.\-h@{time.\-h}!ctime@{ctime}}
 \index{ctime@{ctime}!time.h@{time.\-h}}
@@ -502,7 +364,7 @@ Referenced by init\-\_\-timers().
 )}}\label{time_8h_aa160c926bb33f6d7ba494634b26a6b8b}
 
 
-Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. 
+Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} string \-\_\-\-\_\-ctime\-\_\-buf\mbox{[}\mbox{]}. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -517,7 +379,7 @@ Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_
 \end{DoxyReturn}
 
 
-Definition at line 456 of file time.\-c.
+Definition at line 403 of file time.\-c.
 
 \hypertarget{time_8h_aa6cfe97d57402658beaca8f14e4d546f}{\index{time.\-h@{time.\-h}!ctime\-\_\-gm@{ctime\-\_\-gm}}
 \index{ctime\-\_\-gm@{ctime\-\_\-gm}!time.h@{time.\-h}}
@@ -528,7 +390,7 @@ Definition at line 456 of file time.\-c.
 )}}\label{time_8h_aa6cfe97d57402658beaca8f14e4d546f}
 
 
-G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_aa160c926bb33f6d7ba494634b26a6b8b}{ctime()}. 
+G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -542,14 +404,14 @@ G\-M\-T version of P\-O\-S\-I\-X \hyperlink{time_8c_aa160c926bb33f6d7ba494634b26
 \end{DoxyItemize}
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_aa160c926bb33f6d7ba494634b26a6b8b}{ctime()} 
+\hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
 \end{DoxySeeAlso}
 \begin{DoxyWarning}{Warning}
 result is overwritten on each call. 
 \end{DoxyWarning}
 
 
-Definition at line 470 of file time.\-c.
+Definition at line 418 of file time.\-c.
 
 
 
@@ -565,7 +427,7 @@ Referenced by mctime().
 )}}\label{time_8h_a7075522b8be33803a89f6db2d757b21e}
 
 
-Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a68d13eb8dbfe6723ed9a8d6ee624f673}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
+Convert local time\-\_\-t $\ast$t epoch time into P\-O\-S\-I\-X \hyperlink{time_8c_a95735d85f13249a5b329308d27d1f3ee}{asctime()} A\-S\-C\-I\-I string $\ast$buf. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -582,7 +444,7 @@ buf string pointer.
 \end{DoxyReturn}
 
 
-Definition at line 444 of file time.\-c.
+Definition at line 390 of file time.\-c.
 
 \hypertarget{time_8h_a34d589c3f4ef38afc1016a7da9199fff}{\index{time.\-h@{time.\-h}!gettimeofday@{gettimeofday}}
 \index{gettimeofday@{gettimeofday}!time.h@{time.\-h}}
@@ -608,7 +470,7 @@ Get current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-
 \end{DoxyReturn}
 
 
-Definition at line 615 of file time.\-c.
+Definition at line 551 of file time.\-c.
 
 \hypertarget{time_8h_a6c98572d985abdde725dc265c6c0659e}{\index{time.\-h@{time.\-h}!gettimezone@{gettimezone}}
 \index{gettimezone@{gettimezone}!time.h@{time.\-h}}
@@ -631,7 +493,7 @@ Get current timezone in struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function.
 \end{DoxyReturn}
 
 
-Definition at line 588 of file time.\-c.
+Definition at line 522 of file time.\-c.
 
 
 
@@ -661,7 +523,7 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 500 of file time.\-c.
+Definition at line 449 of file time.\-c.
 
 
 
@@ -691,7 +553,7 @@ tm\-\_\-t $\ast$result.
 \end{DoxyReturn}
 
 
-Definition at line 485 of file time.\-c.
+Definition at line 434 of file time.\-c.
 
 
 
@@ -721,11 +583,11 @@ result is overwritten on each call.
 \end{DoxyWarning}
 
 
-Definition at line 535 of file time.\-c.
+Definition at line 486 of file time.\-c.
 
 
 
-Referenced by ctime(), and ctime\-\_\-r().
+Referenced by ctime(), ctime\-\_\-r(), and get\-\_\-fattime().
 
 \hypertarget{time_8h_a8cb04aa91fa555b9665c0fc0b54b7cb0}{\index{time.\-h@{time.\-h}!localtime\-\_\-r@{localtime\-\_\-r}}
 \index{localtime\-\_\-r@{localtime\-\_\-r}!time.h@{time.\-h}}
@@ -751,7 +613,7 @@ result.
 \end{DoxyReturn}
 
 
-Definition at line 514 of file time.\-c.
+Definition at line 464 of file time.\-c.
 
 
 
@@ -775,7 +637,7 @@ Convert P\-O\-S\-I\-X tm\-\_\-t $\ast$t struct into P\-O\-S\-I\-X epoch time in 
 \end{DoxyParams}
 
 
-Definition at line 547 of file time.\-c.
+Definition at line 499 of file time.\-c.
 
 \hypertarget{time_8h_a44f33ee4b47720e960bae803c3297bf0}{\index{time.\-h@{time.\-h}!setdate@{setdate}}
 \index{setdate@{setdate}!time.h@{time.\-h}}
@@ -801,7 +663,7 @@ Set date and time by prompting user.
 \end{DoxyReturn}
 
 
-Definition at line 690 of file time.\-c.
+Definition at line 629 of file time.\-c.
 
 
 
@@ -830,7 +692,7 @@ Set date and time from string in this format \char`\"{}\-Y\-Y\-Y\-Y M\-M D\-D H\
 \end{DoxyReturn}
 
 
-Definition at line 708 of file time.\-c.
+Definition at line 647 of file time.\-c.
 
 
 
@@ -860,7 +722,7 @@ Set current time struct timeval $\ast$tv and struct timezone $\ast$tz -\/ P\-O\-
 \end{DoxyReturn}
 
 
-Definition at line 652 of file time.\-c.
+Definition at line 590 of file time.\-c.
 
 \hypertarget{time_8h_a745066817406bf751ffc1ce5e20742aa}{\index{time.\-h@{time.\-h}!settimezone@{settimezone}}
 \index{settimezone@{settimezone}!time.h@{time.\-h}}
@@ -883,7 +745,7 @@ Set current timezone with struct timezone $\ast$tz -\/ P\-O\-S\-I\-X function.
 \end{DoxyReturn}
 
 
-Definition at line 601 of file time.\-c.
+Definition at line 536 of file time.\-c.
 
 
 
@@ -912,15 +774,15 @@ Return second from epoch -\/ P\-O\-S\-I\-X function.
 time\-\_\-t seconds from epoch. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8h_aa84c3231a44cdeb975166c14e0f3cc46}{clock\-\_\-gettime()}. 
+\hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime()}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 636 of file time.\-c.
+Definition at line 573 of file time.\-c.
 
 
 
-Referenced by gpib\-\_\-timeout\-\_\-set().
+Referenced by get\-\_\-fattime(), and gpib\-\_\-timeout\-\_\-set().
 
 \hypertarget{time_8h_a794b7f5714600b1accff4001948db72f}{\index{time.\-h@{time.\-h}!time\-\_\-to\-\_\-tm@{time\-\_\-to\-\_\-tm}}
 \index{time\-\_\-to\-\_\-tm@{time\-\_\-to\-\_\-tm}!time.h@{time.\-h}}
@@ -959,15 +821,15 @@ Converts epoch ( seconds from 1 Jan E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R U\-T\-C), of
 -\/1\-: error.
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_aa6cfe97d57402658beaca8f14e4d546f}{ctime\-\_\-gm()} 
+\hyperlink{time_8c_acf34275ac6fb2f724205873402dc9f70}{ctime\-\_\-gm()} 
 
-\hyperlink{time_8c_abfd43bc1e743aa21fe7f023a519b224c}{gmtime\-\_\-r()} 
+\hyperlink{time_8c_a546aeae1b99d8ab1e2d26a0a2ebd9d31}{gmtime\-\_\-r()} 
 
-\hyperlink{time_8c_a8cb04aa91fa555b9665c0fc0b54b7cb0}{localtime\-\_\-r()} 
+\hyperlink{time_8c_af05576742e2f8ad3924c02a6af70a86d}{localtime\-\_\-r()} 
 \end{DoxySeeAlso}
 
 
-Definition at line 262 of file time.\-c.
+Definition at line 204 of file time.\-c.
 
 
 
@@ -992,9 +854,9 @@ Convert tm\-\_\-t structure as G\-M\-T time into seconds since 1900.
 \end{DoxyItemize}
 
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_a0bca45bac0f3b4bc8242c23ffcb169d0}{mktime()} P\-O\-S\-I\-X function. 
+\hyperlink{time_8c_aeafbe7f942ef85f85edbbe31e439372b}{mktime()} P\-O\-S\-I\-X function. 
 
-\hyperlink{time_8c_a48f6c9170d63503123d5af4ae2639baf}{timegm()} P\-O\-S\-I\-X function. 
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()} P\-O\-S\-I\-X function. 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 Seconds since E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R Jan 1st. 
@@ -1003,7 +865,7 @@ Seconds since E\-P\-O\-C\-H\-\_\-\-Y\-E\-A\-R Jan 1st.
 \end{DoxyReturn}
 Note\-: To simplify we caculate Leap Day contributions in stages 
 
-Definition at line 344 of file time.\-c.
+Definition at line 287 of file time.\-c.
 
 
 
@@ -1031,11 +893,11 @@ string pointer to month.
 \char`\"{}\-B\-A\-D\char`\"{} on error. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{time_8c_a01e2d64564b07a830b0fea0a9e829bed}{asctime\-\_\-r()} 
+\hyperlink{time_8c_a7ffc52def0c7fbf70c50248e3f7d6a8a}{asctime\-\_\-r()} 
 \end{DoxySeeAlso}
 
 
-Definition at line 162 of file time.\-c.
+Definition at line 100 of file time.\-c.
 
 
 
@@ -1064,7 +926,7 @@ string pointer to day.
 \end{DoxyReturn}
 
 
-Definition at line 136 of file time.\-c.
+Definition at line 73 of file time.\-c.
 
 
 
@@ -1078,7 +940,7 @@ System Clock Time.
 
 
 
-Definition at line 24 of file time.\-c.
+Definition at line 32 of file timer\-\_\-hal.\-c.
 
 \hypertarget{time_8h_a9ac29ed71adf6807175d24ab1fa622a7}{\index{time.\-h@{time.\-h}!\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}}
 \index{\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}!time.h@{time.\-h}}
@@ -1089,5 +951,9 @@ System Time Zone.
 
 
 
-Definition at line 27 of file time.\-c.
+Definition at line 38 of file time.\-c.
+
+
+
+Referenced by clock\-\_\-clear().
 

@@ -30,22 +30,24 @@
 #define mmc_disk_ioctl disk_ioctl           /*< disk_ioctl */
 
 /* mmc_hal.c */
-void mmc_install_timer ( void );
-void mmc_set_ms_timeout ( int16_t ms );
-void mmc_set_us_timeout ( int32_t us );
-int mmc_test_timeout ( void );
-void mmc_clear_timeout ( void );
-void mmc_task ( void );
-uint8_t mmc_xchg_spi ( uint8_t a );
-void mmc_spi_init ( void );
-void mmc_slow ( void );
-void mmc_fast ( void );
-void mmc_power_on ( void );
-void mmc_power_off ( void );
-int mmc_power_status ( void );
-void mmc_cs_enable ( void );
-void mmc_cs_disable ( void );
-int mmc_ins_status ( void );
-int mmc_wp_status ( void );
-int mmc_init ( int cold );
+MEMSPACE void mmc_install_timer ( void );
+MEMSPACE void mmc_spi_TX_buffer ( const uint8_t *data , int count );
+MEMSPACE void mmc_spi_RX_buffer ( const uint8_t *data , int count );
+MEMSPACE uint8_t mmc_spi_RX ( void );
+MEMSPACE void mmc_spi_TX ( uint8_t data );
+MEMSPACE uint8_t mmc_spi_TXRX ( uint8_t data );
+MEMSPACE void mmc_set_ms_timeout ( uint16_t ms );
+MEMSPACE int mmc_test_timeout ( void );
+MEMSPACE int mmc_init ( int verbose );
+MEMSPACE void mmc_spi_init ( int32_t clock );
+MEMSPACE void mmc_slow ( void );
+MEMSPACE void mmc_fast ( void );
+MEMSPACE void mmc_power_on ( void );
+MEMSPACE void mmc_power_off ( void );
+MEMSPACE int mmc_power_status ( void );
+MEMSPACE void mmc_cs_enable ( void );
+MEMSPACE void mmc_cs_disable ( void );
+MEMSPACE int mmc_ins_status ( void );
+MEMSPACE int mmc_wp_status ( void );
+
 #endif                                            // _MMC_HAL_

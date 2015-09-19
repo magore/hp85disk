@@ -99,15 +99,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>FatFs to POSIX wrapper.  
+<p>POSIX wrapper for FatFS.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;avr/pgmspace.h&gt;</code><br/>
-<code>#include &lt;avr/io.h&gt;</code><br/>
-<code>#include &lt;avr/eeprom.h&gt;</code><br/>
-<code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;stdint.h&gt;</code><br/>
-<code>#include &lt;string.h&gt;</code><br/>
-<code>#include &lt;stdlib.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="hardware_8h_source.html">hardware/hardware.h</a>&gt;</code><br/>
 </div>
 <p><a href="posix_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -119,16 +113,31 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a59adc4c82490d23754cd39c2fb99b0da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a59adc4c82490d23754cd39c2fb99b0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d112bae8fd35be772185b6ec6bcbe64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a0d112bae8fd35be772185b6ec6bcbe64">SEEK_SET</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a0d112bae8fd35be772185b6ec6bcbe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8d0b76b470ba65a43ca46a88320f39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39">SEEK_CUR</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a4c8d0b76b470ba65a43ca46a88320f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a2e6c114780c3071efd24f16c7f7d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad2a2e6c114780c3071efd24f16c7f7d8">SEEK_END</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ad2a2e6c114780c3071efd24f16c7f7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c5eecb22513a88c24ae5831a3265e54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>&#160;&#160;&#160;16</td></tr>
 <tr class="memdesc:a2c5eecb22513a88c24ae5831a3265e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of POSIX file handles.  <a href="#a2c5eecb22513a88c24ae5831a3265e54">More...</a><br/></td></tr>
 <tr class="separator:a2c5eecb22513a88c24ae5831a3265e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5d5a9b86ff1646be08a932cb25e9eb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>(a)&#160;&#160;&#160;<a class="el" href="posix_8h.html#a03b05afa1689535ef0e18601a2d061ea">stream_to_fileno</a>(a)</td></tr>
-<tr class="memdesc:ac5d5a9b86ff1646be08a932cb25e9eb3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3" title="fileno() ">fileno()</a>  <a href="#ac5d5a9b86ff1646be08a932cb25e9eb3">More...</a><br/></td></tr>
-<tr class="separator:ac5d5a9b86ff1646be08a932cb25e9eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a280c47b9edff2751b8dbb9a715dc44c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a280c47b9edff2751b8dbb9a715dc44c5">_FDEV_EOF</a>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a280c47b9edff2751b8dbb9a715dc44c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132917c782a0ba854c3ae9abe57c3b12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a132917c782a0ba854c3ae9abe57c3b12">_FDEV_ERR</a>&#160;&#160;&#160;(-2)</td></tr>
+<tr class="separator:a132917c782a0ba854c3ae9abe57c3b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79826a1c733e4f67843256d34ad64352"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a79826a1c733e4f67843256d34ad64352">_FDEV_SETUP_READ</a>&#160;&#160;&#160;__SRD</td></tr>
+<tr class="separator:a79826a1c733e4f67843256d34ad64352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822a791a1c06a12b95c14ace75b48ad2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a822a791a1c06a12b95c14ace75b48ad2">_FDEV_SETUP_WRITE</a>&#160;&#160;&#160;__SWR</td></tr>
+<tr class="separator:a822a791a1c06a12b95c14ace75b48ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93db55caeeaf13488a635f8896a6bdf3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a93db55caeeaf13488a635f8896a6bdf3">_FDEV_SETUP_RW</a>&#160;&#160;&#160;(__SRD|__SWR)</td></tr>
+<tr class="separator:a93db55caeeaf13488a635f8896a6bdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28002092a0615e21c9943a426e81015f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(str, pat)&#160;&#160;&#160;(strcmp(str, pat) == 0 ? 1: 0)</td></tr>
 <tr class="memdesc:a28002092a0615e21c9943a426e81015f"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare two strings, 1 = match, 0 mismatch.  <a href="#a28002092a0615e21c9943a426e81015f">More...</a><br/></td></tr>
 <tr class="separator:a28002092a0615e21c9943a426e81015f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dc4d45e07d2abc899bcaf04b2846a87"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4dc4d45e07d2abc899bcaf04b2846a87">O_ACCMODE</a>&#160;&#160;&#160;00000003 /*&lt; <a class="el" href="posix_8h.html#adb6affa25d7186bc74d8fbc7f15ae832">read</a>, <a class="el" href="posix_8h.html#ac1260021a9016338237c590bb175dec2">write</a>, <a class="el" href="posix_8h.html#adb6affa25d7186bc74d8fbc7f15ae832">read</a>-<a class="el" href="posix_8h.html#ac1260021a9016338237c590bb175dec2">write</a> modes */</td></tr>
+<tr class="memitem:a4dc4d45e07d2abc899bcaf04b2846a87"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4dc4d45e07d2abc899bcaf04b2846a87">O_ACCMODE</a>&#160;&#160;&#160;00000003 /*&lt; <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>, <a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a>, <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>-<a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> modes */</td></tr>
 <tr class="memdesc:a4dc4d45e07d2abc899bcaf04b2846a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX open modes - no other combination are allowed.  <a href="#a4dc4d45e07d2abc899bcaf04b2846a87">More...</a><br/></td></tr>
 <tr class="separator:a4dc4d45e07d2abc899bcaf04b2846a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a68c9ffaac7dbcd652225dd7c06a54b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a7a68c9ffaac7dbcd652225dd7c06a54b">O_RDONLY</a>&#160;&#160;&#160;00000000 /*&lt; Read only */</td></tr>
@@ -145,7 +154,7 @@ Macros</h2></td></tr>
 <tr class="separator:a2e375ab32c7ef4581b026be28e4cc116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1d67e453fb3031f40f8cd3403773813"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>&#160;&#160;&#160;00001000 /*&lt; Truncate if exists */</td></tr>
 <tr class="separator:ad1d67e453fb3031f40f8cd3403773813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae036f789407d21f07b211552d67b3214"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>&#160;&#160;&#160;00002000 /*&lt; All writes are to <a class="el" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a> */</td></tr>
+<tr class="memitem:ae036f789407d21f07b211552d67b3214"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>&#160;&#160;&#160;00002000 /*&lt; All writes are to <a class="el" href="posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a> */</td></tr>
 <tr class="separator:ae036f789407d21f07b211552d67b3214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39d33ce33804efd4d52606d59071c6d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a39d33ce33804efd4d52606d59071c6d8">O_NONBLOCK</a>&#160;&#160;&#160;00004000 /*&lt; @todo */</td></tr>
 <tr class="separator:a39d33ce33804efd4d52606d59071c6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,11 +253,13 @@ Typedefs</h2></td></tr>
 <tr class="separator:a390f3028d0805a15c3d28ee27439c389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3346b04b0420b32ccf6b706551b70762"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a></td></tr>
 <tr class="separator:a3346b04b0420b32ccf6b706551b70762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170745d0d946e79c4c2a056d1d158996"><td class="memItemLeft" align="right" valign="top">typedef int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a></td></tr>
+<tr class="separator:a170745d0d946e79c4c2a056d1d158996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ac29db18b9f0e7e7d5c43d558ccffea6a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6a">POSIX_errno</a> { <br/>
-&#160;&#160;<a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa2bc49ec37d6a5715dd23e85f1ff5bb59">OK</a>, 
+&#160;&#160;<a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669">EOK</a>, 
 <a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267">EPERM</a>, 
 <a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a">ENOENT</a>, 
 <a class="el" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa4e376a13d0c1557d399f473218915625">ESRCH</a>, 
@@ -298,154 +309,277 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae0821388c321f66b16fbca4a625022de"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae0821388c321f66b16fbca4a625022de">fileno_to_stream</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>)</td></tr>
-<tr class="memdesc:ae0821388c321f66b16fbca4a625022de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to POSIX FILE stream pointer.  <a href="#ae0821388c321f66b16fbca4a625022de">More...</a><br/></td></tr>
-<tr class="separator:ae0821388c321f66b16fbca4a625022de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03b05afa1689535ef0e18601a2d061ea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a03b05afa1689535ef0e18601a2d061ea">stream_to_fileno</a> (FILE *stream)</td></tr>
-<tr class="memdesc:a03b05afa1689535ef0e18601a2d061ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX stream pointer to POSIX fileno (index of __iob[])  <a href="#a03b05afa1689535ef0e18601a2d061ea">More...</a><br/></td></tr>
-<tr class="separator:a03b05afa1689535ef0e18601a2d061ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1eeda4d85cf3cae5cf1ee8c1e196a686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFIL.html">FIL</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a1eeda4d85cf3cae5cf1ee8c1e196a686">fileno_to_fatfs</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>)</td></tr>
-<tr class="memdesc:a1eeda4d85cf3cae5cf1ee8c1e196a686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to FatFS handle.  <a href="#a1eeda4d85cf3cae5cf1ee8c1e196a686">More...</a><br/></td></tr>
-<tr class="separator:a1eeda4d85cf3cae5cf1ee8c1e196a686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a092c5532c416a4285fa3049c7962a0a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a092c5532c416a4285fa3049c7962a0a5">fatfs_to_fileno</a> (<a class="el" href="structFIL.html">FIL</a> *fh)</td></tr>
-<tr class="memdesc:a092c5532c416a4285fa3049c7962a0a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFS file handle to POSIX fileno.  <a href="#a092c5532c416a4285fa3049c7962a0a5">More...</a><br/></td></tr>
-<tr class="separator:a092c5532c416a4285fa3049c7962a0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96d98c05b05d85e1ae97953f04f5b386"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a96d98c05b05d85e1ae97953f04f5b386">new_file_descriptor</a> (void)</td></tr>
-<tr class="memdesc:a96d98c05b05d85e1ae97953f04f5b386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a POSIX FILE descriptor.  <a href="#a96d98c05b05d85e1ae97953f04f5b386">More...</a><br/></td></tr>
-<tr class="separator:a96d98c05b05d85e1ae97953f04f5b386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d5502ebc4eba38ea5ef6ca4ba71bc02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a9d5502ebc4eba38ea5ef6ca4ba71bc02">free_file_descriptor</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>)</td></tr>
-<tr class="memdesc:a9d5502ebc4eba38ea5ef6ca4ba71bc02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free POSIX fileno FILE descriptor.  <a href="#a9d5502ebc4eba38ea5ef6ca4ba71bc02">More...</a><br/></td></tr>
-<tr class="separator:a9d5502ebc4eba38ea5ef6ca4ba71bc02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeac589354c9d47c7d9c7c49ba4b0d266"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aeac589354c9d47c7d9c7c49ba4b0d266">isatty</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>)</td></tr>
-<tr class="memdesc:aeac589354c9d47c7d9c7c49ba4b0d266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test POSIX fileno if it is a Serial Console/TTY.  <a href="#aeac589354c9d47c7d9c7c49ba4b0d266">More...</a><br/></td></tr>
-<tr class="separator:aeac589354c9d47c7d9c7c49ba4b0d266"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab39f9634fa53ffd52b87431f3afab11b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ab39f9634fa53ffd52b87431f3afab11b">perror</a> (const char *s)</td></tr>
-<tr class="memdesc:ab39f9634fa53ffd52b87431f3afab11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#ab39f9634fa53ffd52b87431f3afab11b" title="POSIX perror() - convert POSIX errno to text with user message. ">perror()</a> - convert POSIX errno to text with user message.  <a href="#ab39f9634fa53ffd52b87431f3afab11b">More...</a><br/></td></tr>
-<tr class="separator:ab39f9634fa53ffd52b87431f3afab11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add46ab98f32b76457852dbb872842bf2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#add46ab98f32b76457852dbb872842bf2">strerror</a> (int errnum)</td></tr>
-<tr class="memdesc:add46ab98f32b76457852dbb872842bf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#add46ab98f32b76457852dbb872842bf2" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message.  <a href="#add46ab98f32b76457852dbb872842bf2">More...</a><br/></td></tr>
-<tr class="separator:add46ab98f32b76457852dbb872842bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7253ba059153058c57952194237c6b55"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a7253ba059153058c57952194237c6b55">strerror_r</a> (int errnum, char *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> buflen)</td></tr>
-<tr class="memdesc:a7253ba059153058c57952194237c6b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#a7253ba059153058c57952194237c6b55" title="POSIX strerror_r() - convert POSIX errno to text with user message. ">strerror_r()</a> - convert POSIX errno to text with user message.  <a href="#a7253ba059153058c57952194237c6b55">More...</a><br/></td></tr>
-<tr class="separator:a7253ba059153058c57952194237c6b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb68afd2fdf966f8d89cc7aaa9aa7c23"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aeb68afd2fdf966f8d89cc7aaa9aa7c23">fatfs_to_errno</a> (<a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result)</td></tr>
-<tr class="memdesc:aeb68afd2fdf966f8d89cc7aaa9aa7c23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FafFs error result to POSIX errno.  <a href="#aeb68afd2fdf966f8d89cc7aaa9aa7c23">More...</a><br/></td></tr>
-<tr class="separator:aeb68afd2fdf966f8d89cc7aaa9aa7c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ac1aa0d648f044fa27768f4037c0777"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a7ac1aa0d648f044fa27768f4037c0777">posix_fopen_modes_to_open</a> (const char *mode)</td></tr>
-<tr class="memdesc:a7ac1aa0d648f044fa27768f4037c0777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fopen mode to POSIX open mode flags.  <a href="#a7ac1aa0d648f044fa27768f4037c0777">More...</a><br/></td></tr>
-<tr class="separator:a7ac1aa0d648f044fa27768f4037c0777"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a479c82c9a415915568fb1e799bc545c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a479c82c9a415915568fb1e799bc545c9">fatfs_getc</a> (FILE *stream)</td></tr>
-<tr class="memdesc:a479c82c9a415915568fb1e799bc545c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low level avr-libc fgetc( FILE * stream ) for FatFs.  <a href="#a479c82c9a415915568fb1e799bc545c9">More...</a><br/></td></tr>
-<tr class="separator:a479c82c9a415915568fb1e799bc545c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d998e82aa4f903a1570c0c48aeae59"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a90d998e82aa4f903a1570c0c48aeae59">fatfs_putc</a> (char c, FILE *stream)</td></tr>
-<tr class="memdesc:a90d998e82aa4f903a1570c0c48aeae59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low level avr-libc fputc(char c, FILE * stream) for FatFs.  <a href="#a90d998e82aa4f903a1570c0c48aeae59">More...</a><br/></td></tr>
-<tr class="separator:a90d998e82aa4f903a1570c0c48aeae59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcb60598073f6f9cbb0091ef6768fa5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#adcb60598073f6f9cbb0091ef6768fa5c">open</a> (const char *pathname, int flags)</td></tr>
-<tr class="memdesc:adcb60598073f6f9cbb0091ef6768fa5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Open a file with integer mode flags.  <a href="#adcb60598073f6f9cbb0091ef6768fa5c">More...</a><br/></td></tr>
-<tr class="separator:adcb60598073f6f9cbb0091ef6768fa5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61171f829f6067fa0c9936fc4e0cbb82"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a61171f829f6067fa0c9936fc4e0cbb82">fopen</a> (const char *path, const char *mode)</td></tr>
-<tr class="memdesc:a61171f829f6067fa0c9936fc4e0cbb82"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Open a file with path name and ascii file mode string.  <a href="#a61171f829f6067fa0c9936fc4e0cbb82">More...</a><br/></td></tr>
-<tr class="separator:a61171f829f6067fa0c9936fc4e0cbb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8877deace0c63591fee0cc9c94d249d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8877deace0c63591fee0cc9c94d249d3">close</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>)</td></tr>
-<tr class="memdesc:a8877deace0c63591fee0cc9c94d249d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Close a file with fileno handel.  <a href="#a8877deace0c63591fee0cc9c94d249d3">More...</a><br/></td></tr>
-<tr class="separator:a8877deace0c63591fee0cc9c94d249d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf97db8918cda0297ea424858a3e72bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#acf97db8918cda0297ea424858a3e72bf">syncfs</a> (int fd)</td></tr>
-<tr class="memdesc:acf97db8918cda0297ea424858a3e72bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync pending file changes and metadata for specified fileno.  <a href="#acf97db8918cda0297ea424858a3e72bf">More...</a><br/></td></tr>
-<tr class="separator:acf97db8918cda0297ea424858a3e72bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4fa2e6d36e97983d62b9377cc4f6c73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac4fa2e6d36e97983d62b9377cc4f6c73">sync</a> (void)</td></tr>
-<tr class="memdesc:ac4fa2e6d36e97983d62b9377cc4f6c73"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync all pending file changes and metadata on ALL files.  <a href="#ac4fa2e6d36e97983d62b9377cc4f6c73">More...</a><br/></td></tr>
-<tr class="separator:ac4fa2e6d36e97983d62b9377cc4f6c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76370407f9ab0402564c2bb9bc9664e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a76370407f9ab0402564c2bb9bc9664e0">fclose</a> (FILE *stream)</td></tr>
-<tr class="memdesc:a76370407f9ab0402564c2bb9bc9664e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX close a file stream.  <a href="#a76370407f9ab0402564c2bb9bc9664e0">More...</a><br/></td></tr>
-<tr class="separator:a76370407f9ab0402564c2bb9bc9664e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1260021a9016338237c590bb175dec2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac1260021a9016338237c590bb175dec2">write</a> (int fd, const void *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> count)</td></tr>
-<tr class="memdesc:ac1260021a9016338237c590bb175dec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Write count bytes from *buf to fileno fd.  <a href="#ac1260021a9016338237c590bb175dec2">More...</a><br/></td></tr>
-<tr class="separator:ac1260021a9016338237c590bb175dec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20d465b196f378c16fc31d4117170623"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a20d465b196f378c16fc31d4117170623">fwrite</a> (const void *ptr, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> size, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> nmemb, FILE *stream)</td></tr>
-<tr class="memdesc:a20d465b196f378c16fc31d4117170623"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX write nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a20d465b196f378c16fc31d4117170623">More...</a><br/></td></tr>
-<tr class="separator:a20d465b196f378c16fc31d4117170623"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb6affa25d7186bc74d8fbc7f15ae832"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#adb6affa25d7186bc74d8fbc7f15ae832">read</a> (int fd, const void *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> count)</td></tr>
-<tr class="memdesc:adb6affa25d7186bc74d8fbc7f15ae832"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read count bytes from *buf to fileno fd.  <a href="#adb6affa25d7186bc74d8fbc7f15ae832">More...</a><br/></td></tr>
-<tr class="separator:adb6affa25d7186bc74d8fbc7f15ae832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a084251eb18ccd5c936faa2c39c86ec63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a084251eb18ccd5c936faa2c39c86ec63">fread</a> (void *ptr, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> size, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> nmemb, FILE *stream)</td></tr>
-<tr class="memdesc:a084251eb18ccd5c936faa2c39c86ec63"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a084251eb18ccd5c936faa2c39c86ec63">More...</a><br/></td></tr>
-<tr class="separator:a084251eb18ccd5c936faa2c39c86ec63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac58743ffacbdf60271356ec420c1d3a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac58743ffacbdf60271356ec420c1d3a0">lseek</a> (int <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3">fileno</a>, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> position, int whence)</td></tr>
-<tr class="memdesc:ac58743ffacbdf60271356ec420c1d3a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file position.  <a href="#ac58743ffacbdf60271356ec420c1d3a0">More...</a><br/></td></tr>
-<tr class="separator:ac58743ffacbdf60271356ec420c1d3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e25775bd8597f839a28125b616bd241"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a5e25775bd8597f839a28125b616bd241">fseek</a> (FILE *stream, long offset, int whence)</td></tr>
-<tr class="memdesc:a5e25775bd8597f839a28125b616bd241"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file possition.  <a href="#a5e25775bd8597f839a28125b616bd241">More...</a><br/></td></tr>
-<tr class="separator:a5e25775bd8597f839a28125b616bd241"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6443596ac41a2c3e3087ca422441472a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6443596ac41a2c3e3087ca422441472a">ftell</a> (FILE *stream)</td></tr>
-<tr class="memdesc:a6443596ac41a2c3e3087ca422441472a"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX file position of open stream.  <a href="#a6443596ac41a2c3e3087ca422441472a">More...</a><br/></td></tr>
-<tr class="separator:a6443596ac41a2c3e3087ca422441472a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0cd401f198d33d9d01a9e8aa4026819"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aa0cd401f198d33d9d01a9e8aa4026819">rewind</a> (FILE *stream)</td></tr>
-<tr class="memdesc:aa0cd401f198d33d9d01a9e8aa4026819"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rewind file to the beginning.  <a href="#aa0cd401f198d33d9d01a9e8aa4026819">More...</a><br/></td></tr>
-<tr class="separator:aa0cd401f198d33d9d01a9e8aa4026819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35bff0231675a34268da5f90606ada6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a35bff0231675a34268da5f90606ada6f">fgetpos</a> (FILE *stream, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> *pos)</td></tr>
-<tr class="memdesc:a35bff0231675a34268da5f90606ada6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX get position of file stream.  <a href="#a35bff0231675a34268da5f90606ada6f">More...</a><br/></td></tr>
-<tr class="separator:a35bff0231675a34268da5f90606ada6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac81a57126a4b0d3008da9a12c5c443ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac81a57126a4b0d3008da9a12c5c443ab">fsetpos</a> (FILE *stream, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> *pos)</td></tr>
-<tr class="memdesc:ac81a57126a4b0d3008da9a12c5c443ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX set position of file stream.  <a href="#ac81a57126a4b0d3008da9a12c5c443ab">More...</a><br/></td></tr>
-<tr class="separator:ac81a57126a4b0d3008da9a12c5c443ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cee068f32a919cdd638e0578c1e5f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af3cee068f32a919cdd638e0578c1e5f8">unlink</a> (const char *pathname)</td></tr>
-<tr class="memdesc:af3cee068f32a919cdd638e0578c1e5f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a file.  <a href="#af3cee068f32a919cdd638e0578c1e5f8">More...</a><br/></td></tr>
-<tr class="separator:af3cee068f32a919cdd638e0578c1e5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570282ae7ba596263ec812b368d99b34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a570282ae7ba596263ec812b368d99b34">rmdir</a> (const char *pathname)</td></tr>
-<tr class="memdesc:a570282ae7ba596263ec812b368d99b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a directory.  <a href="#a570282ae7ba596263ec812b368d99b34">More...</a><br/></td></tr>
-<tr class="separator:a570282ae7ba596263ec812b368d99b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a429fb62120654af9991d381961ab0c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a429fb62120654af9991d381961ab0c0d">fat_time_to_unix</a> (uint16_t date, uint16_t <a class="el" href="time_8h.html#ae7841e681c8c9d59818568d39553642c">time</a>)</td></tr>
-<tr class="memdesc:a429fb62120654af9991d381961ab0c0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFs file date and time to POSIX epoch seconds.  <a href="#a429fb62120654af9991d381961ab0c0d">More...</a><br/></td></tr>
-<tr class="separator:a429fb62120654af9991d381961ab0c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fb7c60877eacbfbd66eff04533ab0fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a0fb7c60877eacbfbd66eff04533ab0fe">ftruncate</a> (int fd, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
-<tr class="memdesc:a0fb7c60877eacbfbd66eff04533ab0fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate open file to length.  <a href="#a0fb7c60877eacbfbd66eff04533ab0fe">More...</a><br/></td></tr>
-<tr class="separator:a0fb7c60877eacbfbd66eff04533ab0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87674838dd2bcf61e1a1fb5c9892ab6c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a87674838dd2bcf61e1a1fb5c9892ab6c">truncate</a> (const char *path, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
-<tr class="memdesc:a87674838dd2bcf61e1a1fb5c9892ab6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate named file to length.  <a href="#a87674838dd2bcf61e1a1fb5c9892ab6c">More...</a><br/></td></tr>
-<tr class="separator:a87674838dd2bcf61e1a1fb5c9892ab6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a198a57e185e8a036ad06345623b84521"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a198a57e185e8a036ad06345623b84521">fstat</a> (int fd, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
-<tr class="separator:a198a57e185e8a036ad06345623b84521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cef290219b5c345e378932a8caa6217"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6cef290219b5c345e378932a8caa6217">stat</a> (char *name, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
-<tr class="memdesc:a6cef290219b5c345e378932a8caa6217"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX stat - get file status of named file.  <a href="#a6cef290219b5c345e378932a8caa6217">More...</a><br/></td></tr>
-<tr class="separator:a6cef290219b5c345e378932a8caa6217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa4efad3377a254a142dd9f372193076"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aaa4efad3377a254a142dd9f372193076">mctime</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> timev)</td></tr>
-<tr class="memdesc:aaa4efad3377a254a142dd9f372193076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Ascii formatted time from timev seconds.  <a href="#aaa4efad3377a254a142dd9f372193076">More...</a><br/></td></tr>
-<tr class="separator:aaa4efad3377a254a142dd9f372193076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b2c896445fc6154540a87697c7ecc38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8b2c896445fc6154540a87697c7ecc38">dump_stat</a> (struct <a class="el" href="structstat.html">stat</a> *sp)</td></tr>
-<tr class="memdesc:a8b2c896445fc6154540a87697c7ecc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display struct stat, from POSIX stat(0 or <a class="el" href="posix_8h.html#a198a57e185e8a036ad06345623b84521">fstat()</a>, in ASCII.  <a href="#a8b2c896445fc6154540a87697c7ecc38">More...</a><br/></td></tr>
-<tr class="separator:a8b2c896445fc6154540a87697c7ecc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d4709508ed7604103d77c3fdc5ea4a2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4d4709508ed7604103d77c3fdc5ea4a2">rename</a> (const char *oldpath, const char *newpath)</td></tr>
-<tr class="memdesc:a4d4709508ed7604103d77c3fdc5ea4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rename a file by name.  <a href="#a4d4709508ed7604103d77c3fdc5ea4a2">More...</a><br/></td></tr>
-<tr class="separator:a4d4709508ed7604103d77c3fdc5ea4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f5cc527876ac20e953cf70f8d793895"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4f5cc527876ac20e953cf70f8d793895">dirname</a> (char *str)</td></tr>
-<tr class="memdesc:a4f5cc527876ac20e953cf70f8d793895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the last '/' character.  <a href="#a4f5cc527876ac20e953cf70f8d793895">More...</a><br/></td></tr>
-<tr class="separator:a4f5cc527876ac20e953cf70f8d793895"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a817969c4fe20a121e99fda658e88fbc7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a817969c4fe20a121e99fda658e88fbc7">basename</a> (char *str)</td></tr>
-<tr class="memdesc:a817969c4fe20a121e99fda658e88fbc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Basename of filename.  <a href="#a817969c4fe20a121e99fda658e88fbc7">More...</a><br/></td></tr>
-<tr class="separator:a817969c4fe20a121e99fda658e88fbc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac945d4ed76d1c28c924af377f2e4b44"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aac945d4ed76d1c28c924af377f2e4b44">baseext</a> (char *str)</td></tr>
-<tr class="memdesc:aac945d4ed76d1c28c924af377f2e4b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">File extention of a file name.  <a href="#aac945d4ed76d1c28c924af377f2e4b44">More...</a><br/></td></tr>
-<tr class="separator:aac945d4ed76d1c28c924af377f2e4b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memdesc:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to POSIX FILE stream pointer.  <a href="#a2c01fe0e0aa550b2a8b4dcc326983b57">More...</a><br/></td></tr>
+<tr class="separator:a2c01fe0e0aa550b2a8b4dcc326983b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceb657a1b3c10d576aed287714bfd5d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> (FILE *stream)</td></tr>
+<tr class="memdesc:aceb657a1b3c10d576aed287714bfd5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX stream pointer to POSIX fileno (index of __iob[])  <a href="#aceb657a1b3c10d576aed287714bfd5d1">More...</a><br/></td></tr>
+<tr class="separator:aceb657a1b3c10d576aed287714bfd5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b859123258b36eb57f4f71d2606d8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memdesc:a9b859123258b36eb57f4f71d2606d8a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fileno to FatFS handle.  <a href="#a9b859123258b36eb57f4f71d2606d8a5">More...</a><br/></td></tr>
+<tr class="separator:a9b859123258b36eb57f4f71d2606d8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f14429660ca6a685676d6ceaf5350c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a> (<a class="el" href="structFIL.html">FIL</a> *fh)</td></tr>
+<tr class="memdesc:a81f14429660ca6a685676d6ceaf5350c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFS file handle to POSIX fileno.  <a href="#a81f14429660ca6a685676d6ceaf5350c">More...</a><br/></td></tr>
+<tr class="separator:a81f14429660ca6a685676d6ceaf5350c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab788c42cce343cde2f5b8f90015229"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a> (void)</td></tr>
+<tr class="memdesc:abab788c42cce343cde2f5b8f90015229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a POSIX FILE descriptor.  <a href="#abab788c42cce343cde2f5b8f90015229">More...</a><br/></td></tr>
+<tr class="separator:abab788c42cce343cde2f5b8f90015229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38496612f759733234128893e4c60a89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memdesc:a38496612f759733234128893e4c60a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free POSIX fileno FILE descriptor.  <a href="#a38496612f759733234128893e4c60a89">More...</a><br/></td></tr>
+<tr class="separator:a38496612f759733234128893e4c60a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31986cce890109c211ccb14151aafd0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a31986cce890109c211ccb14151aafd0e">isatty</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memdesc:a31986cce890109c211ccb14151aafd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test POSIX fileno if it is a Serial Console/TTY.  <a href="#a31986cce890109c211ccb14151aafd0e">More...</a><br/></td></tr>
+<tr class="separator:a31986cce890109c211ccb14151aafd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ce26afbb10890d31c53a8ff76d992e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4ce26afbb10890d31c53a8ff76d992e3">perror</a> (const char *s)</td></tr>
+<tr class="memdesc:a4ce26afbb10890d31c53a8ff76d992e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3" title="POSIX perror() - convert POSIX errno to text with user message. ">perror()</a> - convert POSIX errno to text with user message.  <a href="#a4ce26afbb10890d31c53a8ff76d992e3">More...</a><br/></td></tr>
+<tr class="separator:a4ce26afbb10890d31c53a8ff76d992e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf72a013f9f9c7d75ea029f1ed377361"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abf72a013f9f9c7d75ea029f1ed377361">strerror</a> (int errnum)</td></tr>
+<tr class="memdesc:abf72a013f9f9c7d75ea029f1ed377361"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#abf72a013f9f9c7d75ea029f1ed377361" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message.  <a href="#abf72a013f9f9c7d75ea029f1ed377361">More...</a><br/></td></tr>
+<tr class="separator:abf72a013f9f9c7d75ea029f1ed377361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6311c6b29216455ec9b716b9eb31c799"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6311c6b29216455ec9b716b9eb31c799">strerror_r</a> (int errnum, char *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> buflen)</td></tr>
+<tr class="memdesc:a6311c6b29216455ec9b716b9eb31c799"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX <a class="el" href="posix_8c.html#a6311c6b29216455ec9b716b9eb31c799" title="POSIX strerror_r() - convert POSIX errno to text with user message. ">strerror_r()</a> - convert POSIX errno to text with user message.  <a href="#a6311c6b29216455ec9b716b9eb31c799">More...</a><br/></td></tr>
+<tr class="separator:a6311c6b29216455ec9b716b9eb31c799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20f0fc565c27bbbb900bde3337b09b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a> (<a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result)</td></tr>
+<tr class="memdesc:ac20f0fc565c27bbbb900bde3337b09b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FafFs error result to POSIX errno.  <a href="#ac20f0fc565c27bbbb900bde3337b09b9">More...</a><br/></td></tr>
+<tr class="separator:ac20f0fc565c27bbbb900bde3337b09b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a607feb06d296e0ff60d5a19538bd17fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a> (const char *mode)</td></tr>
+<tr class="memdesc:a607feb06d296e0ff60d5a19538bd17fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert POSIX fopen mode to POSIX open mode flags.  <a href="#a607feb06d296e0ff60d5a19538bd17fc">More...</a><br/></td></tr>
+<tr class="separator:a607feb06d296e0ff60d5a19538bd17fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2">open</a> (const char *pathname, int flags)</td></tr>
+<tr class="memdesc:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">==================================================================  <a href="#a3e5e6f96d36b5cdacfaf6b3976cd5af2">More...</a><br/></td></tr>
+<tr class="separator:a3e5e6f96d36b5cdacfaf6b3976cd5af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e661c338f41695d1a1e70aed6255e2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a> (const char *path, const char *mode)</td></tr>
+<tr class="memdesc:a8e661c338f41695d1a1e70aed6255e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Open a file with path name and ascii file mode string.  <a href="#a8e661c338f41695d1a1e70aed6255e2d">More...</a><br/></td></tr>
+<tr class="separator:a8e661c338f41695d1a1e70aed6255e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48dc1df1627501d3faed4bf1f9801759"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a48dc1df1627501d3faed4bf1f9801759">close</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</td></tr>
+<tr class="memdesc:a48dc1df1627501d3faed4bf1f9801759"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Close a file with fileno handel.  <a href="#a48dc1df1627501d3faed4bf1f9801759">More...</a><br/></td></tr>
+<tr class="separator:a48dc1df1627501d3faed4bf1f9801759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a521c33bdb3606c9f3546b9cbcd37b9ac">syncfs</a> (int fd)</td></tr>
+<tr class="memdesc:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync pending file changes and metadata for specified fileno.  <a href="#a521c33bdb3606c9f3546b9cbcd37b9ac">More...</a><br/></td></tr>
+<tr class="separator:a521c33bdb3606c9f3546b9cbcd37b9ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f7f00d4ec0d99440762b0a664aebf70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8f7f00d4ec0d99440762b0a664aebf70">sync</a> (void)</td></tr>
+<tr class="memdesc:a8f7f00d4ec0d99440762b0a664aebf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Sync all pending file changes and metadata on ALL files.  <a href="#a8f7f00d4ec0d99440762b0a664aebf70">More...</a><br/></td></tr>
+<tr class="separator:a8f7f00d4ec0d99440762b0a664aebf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6fd240fec1d65213f34b6e6465a8033"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a> (FILE *stream)</td></tr>
+<tr class="memdesc:ad6fd240fec1d65213f34b6e6465a8033"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX close a file stream.  <a href="#ad6fd240fec1d65213f34b6e6465a8033">More...</a><br/></td></tr>
+<tr class="separator:ad6fd240fec1d65213f34b6e6465a8033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072435300ac99e8d7c3749f45166e797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> (int fd, const void *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> count)</td></tr>
+<tr class="memdesc:a072435300ac99e8d7c3749f45166e797"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Write count bytes from *buf to fileno fd.  <a href="#a072435300ac99e8d7c3749f45166e797">More...</a><br/></td></tr>
+<tr class="separator:a072435300ac99e8d7c3749f45166e797"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a148630cbecc0822d9395f002691ffe75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a148630cbecc0822d9395f002691ffe75">fwrite</a> (const void *ptr, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> size, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> nmemb, FILE *stream)</td></tr>
+<tr class="memdesc:a148630cbecc0822d9395f002691ffe75"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX write nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a148630cbecc0822d9395f002691ffe75">More...</a><br/></td></tr>
+<tr class="separator:a148630cbecc0822d9395f002691ffe75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af104a2c05bef787e54c6925616e867df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a> (int fd, const void *buf, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> count)</td></tr>
+<tr class="memdesc:af104a2c05bef787e54c6925616e867df"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read count bytes from *buf to fileno fd.  <a href="#af104a2c05bef787e54c6925616e867df">More...</a><br/></td></tr>
+<tr class="separator:af104a2c05bef787e54c6925616e867df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01233ac8fd574e20b0b38472adbee551"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a01233ac8fd574e20b0b38472adbee551">fread</a> (void *ptr, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> size, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> nmemb, FILE *stream)</td></tr>
+<tr class="memdesc:a01233ac8fd574e20b0b38472adbee551"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX read nmemb elements from buf, size bytes each, to the stream fd.  <a href="#a01233ac8fd574e20b0b38472adbee551">More...</a><br/></td></tr>
+<tr class="separator:a01233ac8fd574e20b0b38472adbee551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd">lseek</a> (int <a class="el" href="posix_8h.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> position, int whence)</td></tr>
+<tr class="memdesc:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file position.  <a href="#ae4ea1b12797e3ba021a1af3cb4ba17bd">More...</a><br/></td></tr>
+<tr class="separator:ae4ea1b12797e3ba021a1af3cb4ba17bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad31144743f0014784193221563ca8dd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad31144743f0014784193221563ca8dd2">fseek</a> (FILE *stream, long offset, int whence)</td></tr>
+<tr class="memdesc:ad31144743f0014784193221563ca8dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX seek to file possition.  <a href="#ad31144743f0014784193221563ca8dd2">More...</a><br/></td></tr>
+<tr class="separator:ad31144743f0014784193221563ca8dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53dca187c78408fe2f1958c4eb88603"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#af53dca187c78408fe2f1958c4eb88603">ftell</a> (FILE *stream)</td></tr>
+<tr class="memdesc:af53dca187c78408fe2f1958c4eb88603"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX file position of open stream.  <a href="#af53dca187c78408fe2f1958c4eb88603">More...</a><br/></td></tr>
+<tr class="separator:af53dca187c78408fe2f1958c4eb88603"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35e6a58f44d4651951ecfeb97f369884"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a35e6a58f44d4651951ecfeb97f369884">rewind</a> (FILE *stream)</td></tr>
+<tr class="memdesc:a35e6a58f44d4651951ecfeb97f369884"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rewind file to the beginning.  <a href="#a35e6a58f44d4651951ecfeb97f369884">More...</a><br/></td></tr>
+<tr class="separator:a35e6a58f44d4651951ecfeb97f369884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9e5741c01183dfe3179d646b264e5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#acb9e5741c01183dfe3179d646b264e5b">fgetpos</a> (FILE *stream, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> *pos)</td></tr>
+<tr class="memdesc:acb9e5741c01183dfe3179d646b264e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX get position of file stream.  <a href="#acb9e5741c01183dfe3179d646b264e5b">More...</a><br/></td></tr>
+<tr class="separator:acb9e5741c01183dfe3179d646b264e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8705d74fe77c1b23824074ecd14be1c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a8705d74fe77c1b23824074ecd14be1c7">fsetpos</a> (FILE *stream, <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> *pos)</td></tr>
+<tr class="memdesc:a8705d74fe77c1b23824074ecd14be1c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX set position of file stream.  <a href="#a8705d74fe77c1b23824074ecd14be1c7">More...</a><br/></td></tr>
+<tr class="separator:a8705d74fe77c1b23824074ecd14be1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa964d662c19b2021d9cfd0c71bc686bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd">unlink</a> (const char *pathname)</td></tr>
+<tr class="memdesc:aa964d662c19b2021d9cfd0c71bc686bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a file.  <a href="#aa964d662c19b2021d9cfd0c71bc686bd">More...</a><br/></td></tr>
+<tr class="separator:aa964d662c19b2021d9cfd0c71bc686bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6080dee579486f132062435577b77d10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a6080dee579486f132062435577b77d10">rmdir</a> (const char *pathname)</td></tr>
+<tr class="memdesc:a6080dee579486f132062435577b77d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX delete a directory.  <a href="#a6080dee579486f132062435577b77d10">More...</a><br/></td></tr>
+<tr class="separator:a6080dee579486f132062435577b77d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a> (uint16_t date, uint16_t <a class="el" href="time_8h.html#ae7841e681c8c9d59818568d39553642c">time</a>)</td></tr>
+<tr class="memdesc:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert FatFs file date and time to POSIX epoch seconds.  <a href="#a178d5d21b21c0f60d6ff8dfbbc0d86f5">More...</a><br/></td></tr>
+<tr class="separator:a178d5d21b21c0f60d6ff8dfbbc0d86f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a474e4e6cac62ef12c66b8a597c14e5f6">ftruncate</a> (int fd, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
+<tr class="memdesc:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate open file to length.  <a href="#a474e4e6cac62ef12c66b8a597c14e5f6">More...</a><br/></td></tr>
+<tr class="separator:a474e4e6cac62ef12c66b8a597c14e5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73a95c4a93875be906e573c00b30c5ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a73a95c4a93875be906e573c00b30c5ea">truncate</a> (const char *path, <a class="el" href="posix_8h.html#aac46e03c2018bada012333c31f41df12">off_t</a> length)</td></tr>
+<tr class="memdesc:a73a95c4a93875be906e573c00b30c5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX truncate named file to length.  <a href="#a73a95c4a93875be906e573c00b30c5ea">More...</a><br/></td></tr>
+<tr class="separator:a73a95c4a93875be906e573c00b30c5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e86e70773c0a204346f965272bd364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat</a> (int fd, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
+<tr class="separator:a85e86e70773c0a204346f965272bd364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abef70bf7a4af8a1f4998db0035c51781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#abef70bf7a4af8a1f4998db0035c51781">stat</a> (char *name, struct <a class="el" href="structstat.html">stat</a> *buf)</td></tr>
+<tr class="memdesc:abef70bf7a4af8a1f4998db0035c51781"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX stat - get file status of named file.  <a href="#abef70bf7a4af8a1f4998db0035c51781">More...</a><br/></td></tr>
+<tr class="separator:abef70bf7a4af8a1f4998db0035c51781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39eea0b104438afa9ca0500c2e8d6887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a39eea0b104438afa9ca0500c2e8d6887">mctime</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> timev)</td></tr>
+<tr class="memdesc:a39eea0b104438afa9ca0500c2e8d6887"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Ascii formatted time from timev seconds.  <a href="#a39eea0b104438afa9ca0500c2e8d6887">More...</a><br/></td></tr>
+<tr class="separator:a39eea0b104438afa9ca0500c2e8d6887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a111f2e6e6bc9f0a46210a323cab093c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a111f2e6e6bc9f0a46210a323cab093c7">dump_stat</a> (struct <a class="el" href="structstat.html">stat</a> *sp)</td></tr>
+<tr class="memdesc:a111f2e6e6bc9f0a46210a323cab093c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display struct stat, from POSIX stat(0 or <a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat()</a>, in ASCII.  <a href="#a111f2e6e6bc9f0a46210a323cab093c7">More...</a><br/></td></tr>
+<tr class="separator:a111f2e6e6bc9f0a46210a323cab093c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce">rename</a> (const char *oldpath, const char *newpath)</td></tr>
+<tr class="memdesc:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX rename a file by name.  <a href="#ada8cc8f9394cf54db8f338838a9fa7ce">More...</a><br/></td></tr>
+<tr class="separator:ada8cc8f9394cf54db8f338838a9fa7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26a07a3db060ffc5659fe03495a29a1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a26a07a3db060ffc5659fe03495a29a1c">dirname</a> (char *str)</td></tr>
+<tr class="memdesc:a26a07a3db060ffc5659fe03495a29a1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the last '/' character.  <a href="#a26a07a3db060ffc5659fe03495a29a1c">More...</a><br/></td></tr>
+<tr class="separator:a26a07a3db060ffc5659fe03495a29a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">basename</a> (char *str)</td></tr>
+<tr class="memdesc:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX Basename of filename.  <a href="#a4d3dfaf2f5a63e2e4eaa128477a9b5e7">More...</a><br/></td></tr>
+<tr class="separator:a4d3dfaf2f5a63e2e4eaa128477a9b5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b33c90b99d00a8bd2595f254d1409e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1">baseext</a> (char *str)</td></tr>
+<tr class="memdesc:a0b33c90b99d00a8bd2595f254d1409e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">File extention of a file name.  <a href="#a0b33c90b99d00a8bd2595f254d1409e1">More...</a><br/></td></tr>
+<tr class="separator:a0b33c90b99d00a8bd2595f254d1409e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ad65a8842cc674e3ddf69355898c0ecbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a></td></tr>
-<tr class="memdesc:ad65a8842cc674e3ddf69355898c0ecbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Note: AVR fdevopen assigns a stdin,stdout,stderr.  <a href="#ad65a8842cc674e3ddf69355898c0ecbf">More...</a><br/></td></tr>
-<tr class="separator:ad65a8842cc674e3ddf69355898c0ecbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae2f027325f7e73c3aa5e7dc990bd90d"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a> [<a class="el" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>]</td></tr>
 <tr class="memdesc:aae2f027325f7e73c3aa5e7dc990bd90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">POSIX fileno to POSIX FILE stream table.  <a href="#aae2f027325f7e73c3aa5e7dc990bd90d">More...</a><br/></td></tr>
 <tr class="separator:aae2f027325f7e73c3aa5e7dc990bd90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65a8842cc674e3ddf69355898c0ecbf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="posix_8h.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a></td></tr>
+<tr class="memdesc:ad65a8842cc674e3ddf69355898c0ecbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Note: fdevopen assigns stdin,stdout,stderr.  <a href="#ad65a8842cc674e3ddf69355898c0ecbf">More...</a><br/></td></tr>
+<tr class="separator:ad65a8842cc674e3ddf69355898c0ecbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>FatFs to POSIX wrapper. </p>
-<dl class="section user"><dt>Edit History</dt><dd><ul>
-<li>[1.0] [Mike Gore] Initial revision of file.</li>
+<div class="textblock"><p>POSIX wrapper for FatFS. </p>
+<ul>
+<li>Provides many of the common Posix/linux functions<ul>
+<li>close</li>
+<li>clrerror</li>
+<li>fclose</li>
+<li>fdevopen</li>
+<li>feof</li>
+<li>ferror</li>
+<li>fgetc</li>
+<li>fgetpos</li>
+<li>fileno</li>
+<li>fopen</li>
+<li>fputc</li>
+<li>fread</li>
+<li>fseek</li>
+<li>fstat</li>
+<li>ftell</li>
+<li>ftruncate</li>
+<li>fwrite</li>
+<li>isatty</li>
+<li>lseek</li>
+<li>open</li>
+<li>perror</li>
+<li>read</li>
+<li>rename</li>
+<li>rewind</li>
+<li>rmdir</li>
+<li>stat</li>
+<li>strerror</li>
+<li>sync</li>
+<li>syncfs</li>
+<li>truncate</li>
+<li>unlink</li>
+<li>write <dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</li>
 </ul>
-</dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
+</li>
+</ul>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a280c47b9edff2751b8dbb9a715dc44c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _FDEV_EOF&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00149">149</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a132917c782a0ba854c3ae9abe57c3b12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _FDEV_ERR&#160;&#160;&#160;(-2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00150">150</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79826a1c733e4f67843256d34ad64352"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _FDEV_SETUP_READ&#160;&#160;&#160;__SRD</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fdev_setup_stream() with read intent </p>
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00152">152</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93db55caeeaf13488a635f8896a6bdf3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _FDEV_SETUP_RW&#160;&#160;&#160;(__SRD|__SWR)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fdev_setup_stream() with read/write intent </p>
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00154">154</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a822a791a1c06a12b95c14ace75b48ad2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _FDEV_SETUP_WRITE&#160;&#160;&#160;__SWR</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>fdev_setup_stream() with write intent </p>
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00153">153</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59adc4c82490d23754cd39c2fb99b0da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EOF&#160;&#160;&#160;(-1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00132">132</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac5a6f01348af03d4c2cdd9d557880c4d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -456,9 +590,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00133">133</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00253">253</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -472,9 +606,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00134">134</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00254">254</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -488,31 +622,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00135">135</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00255">255</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac5d5a9b86ff1646be08a932cb25e9eb3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define fileno</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="posix_8h.html#a03b05afa1689535ef0e18601a2d061ea">stream_to_fileno</a>(a)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p><a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3" title="fileno() ">fileno()</a> </p>
-
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00036">36</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
-
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00820">fclose()</a>, <a class="el" href="posix_8c_source.html#l00094">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00701">fopen()</a>, <a class="el" href="posix_8c_source.html#l00921">fread()</a>, <a class="el" href="posix_8c_source.html#l00251">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00983">fseek()</a>, <a class="el" href="posix_8c_source.html#l01006">ftell()</a>, <a class="el" href="posix_8c_source.html#l00870">fwrite()</a>, <a class="el" href="posix_8c_source.html#l00594">open()</a>, <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, and <a class="el" href="posix_8c_source.html#l00120">stream_to_fileno()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -527,9 +639,9 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>POSIX <a class="el" href="posix_8h.html#ae730c85752284268b39560df693cb207" title="POSIX lstat() ">lstat()</a> </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8h.html#a6cef290219b5c345e378932a8caa6217" title="POSIX stat - get file status of named file. ">stat()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8h.html#abef70bf7a4af8a1f4998db0035c51781" title="POSIX stat - get file status of named file. ">stat()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00173">173</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00294">294</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -545,7 +657,7 @@ Variables</h2></td></tr>
 
 <p>Maximum number of POSIX file handles. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00029">29</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00143">143</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -575,9 +687,9 @@ Variables</h2></td></tr>
 
 <p>compare two strings, 1 = match, 0 mismatch. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00038">38</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00157">157</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -586,7 +698,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define O_ACCMODE&#160;&#160;&#160;00000003 /*&lt; <a class="el" href="posix_8h.html#adb6affa25d7186bc74d8fbc7f15ae832">read</a>, <a class="el" href="posix_8h.html#ac1260021a9016338237c590bb175dec2">write</a>, <a class="el" href="posix_8h.html#adb6affa25d7186bc74d8fbc7f15ae832">read</a>-<a class="el" href="posix_8h.html#ac1260021a9016338237c590bb175dec2">write</a> modes */</td>
+          <td class="memname">#define O_ACCMODE&#160;&#160;&#160;00000003 /*&lt; <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>, <a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a>, <a class="el" href="posix_8h.html#af104a2c05bef787e54c6925616e867df">read</a>-<a class="el" href="posix_8h.html#a072435300ac99e8d7c3749f45166e797">write</a> modes */</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -597,9 +709,9 @@ Variables</h2></td></tr>
 <li>Note: The POSIX correct test of O_RDONLY is: (mode &amp; O_ACCMODE) == O_RDONLY. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00082">82</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00202">202</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
 
 </div>
 </div>
@@ -608,14 +720,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define O_APPEND&#160;&#160;&#160;00002000 /*&lt; All writes are to <a class="el" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a> */</td>
+          <td class="memname">#define O_APPEND&#160;&#160;&#160;00002000 /*&lt; All writes are to <a class="el" href="posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a> */</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00091">91</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00211">211</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>, and <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -629,7 +741,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00093">93</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00213">213</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -643,9 +755,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00086">86</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00206">206</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>, and <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -661,7 +773,7 @@ Variables</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">00000200 <span class="comment">/*&lt; O_CREAT option, Create fails if file exists </span></div>
 <div class="line"><span class="comment">*/</span></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00087">87</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00207">207</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -675,7 +787,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00089">89</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00209">209</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -689,7 +801,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00092">92</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00212">212</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -703,9 +815,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00083">83</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00203">203</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>, and <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -719,9 +831,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00085">85</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00205">205</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>, and <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -735,7 +847,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00094">94</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00214">214</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -749,9 +861,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00090">90</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00210">210</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>, and <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -765,9 +877,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00084">84</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00204">204</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00459">posix_fopen_modes_to_open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00608">posix_fopen_modes_to_open()</a>.</p>
 
 </div>
 </div>
@@ -781,7 +893,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00108">108</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00228">228</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -795,7 +907,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00101">101</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00221">221</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -809,7 +921,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00100">100</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00220">220</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -823,9 +935,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00099">99</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00219">219</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -839,7 +951,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00103">103</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00223">223</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -853,7 +965,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00104">104</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00224">224</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -869,7 +981,7 @@ Variables</h2></td></tr>
 
 <p>POSIX File types, see fstat and stat. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00098">98</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00218">218</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -883,9 +995,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00102">102</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00222">222</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -899,7 +1011,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00105">105</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00225">225</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -913,7 +1025,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00106">106</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00226">226</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -927,7 +1039,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00123">123</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00243">243</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -941,7 +1053,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00128">128</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00248">248</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -955,7 +1067,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00118">118</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00238">238</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -969,7 +1081,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00126">126</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00246">246</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -983,7 +1095,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00131">131</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00251">251</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -997,7 +1109,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00121">121</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00241">241</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1127,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00114">114</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00234">234</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1145,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00113">113</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00233">233</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1051,9 +1163,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00112">112</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00232">232</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01327">dump_stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01665">dump_stat()</a>.</p>
 
 </div>
 </div>
@@ -1071,9 +1183,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00115">115</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00235">235</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01327">dump_stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01665">dump_stat()</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1215,7 @@ Variables</h2></td></tr>
 
 <p>POSIX Fiel type test macros. </p>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00111">111</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00231">231</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1117,7 +1229,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00124">124</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00244">244</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1131,7 +1243,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00129">129</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00249">249</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1257,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00107">107</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00227">227</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1271,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00119">119</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00239">239</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1173,7 +1285,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00125">125</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00245">245</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1187,7 +1299,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00130">130</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00250">250</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1201,7 +1313,55 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00120">120</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00240">240</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4c8d0b76b470ba65a43ca46a88320f39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SEEK_CUR&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00136">136</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01259">lseek()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2a2e6c114780c3071efd24f16c7f7d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SEEK_END&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00137">137</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01259">lseek()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d112bae8fd35be772185b6ec6bcbe64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SEEK_SET&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00135">135</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01389">fsetpos()</a>, and <a class="el" href="posix_8c_source.html#l01353">rewind()</a>.</p>
 
 </div>
 </div>
@@ -1216,7 +1376,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00147">147</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00267">267</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1230,7 +1390,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00148">148</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00268">268</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1409,7 @@ Variables</h2></td></tr>
 <li>Using these makes code portable accross many acrchitectures </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00140">140</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00260">260</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1263,7 +1423,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00145">145</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00265">265</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1437,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00141">141</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00261">261</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1291,7 +1451,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00142">142</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00262">262</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1305,7 +1465,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00143">143</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00263">263</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +1479,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00146">146</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00266">266</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a170745d0d946e79c4c2a056d1d158996"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int32_t <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00270">270</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1333,7 +1507,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00149">149</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00269">269</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1347,7 +1521,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00144">144</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00264">264</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
@@ -1362,7 +1536,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac29db18b9f0e7e7d5c43d558ccffea6aa2bc49ec37d6a5715dd23e85f1ff5bb59"></a>OK</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669"></a>EOK</em>&#160;</td><td class="fielddoc">
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267"></a>EPERM</em>&#160;</td><td class="fielddoc">
 </td></tr>
@@ -1436,17 +1610,17 @@ Variables</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="posix_8h_source.html#l00040">40</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
+<p>Definition at line <a class="el" href="posix_8h_source.html#l00160">160</a> of file <a class="el" href="posix_8h_source.html">posix.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aac945d4ed76d1c28c924af377f2e4b44"></a>
+<a class="anchor" id="a0b33c90b99d00a8bd2595f254d1409e1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* baseext </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* baseext </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1464,16 +1638,16 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to basename extension. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01435">1435</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01777">1777</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a817969c4fe20a121e99fda658e88fbc7"></a>
+<a class="anchor" id="a4d3dfaf2f5a63e2e4eaa128477a9b5e7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* basename </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* basename </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1494,16 +1668,16 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to basename of string. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01416">1416</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01757">1757</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8877deace0c63591fee0cc9c94d249d3"></a>
+<a class="anchor" id="a48dc1df1627501d3faed4bf1f9801759"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int close </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int close </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -1526,18 +1700,18 @@ Variables</h2></td></tr>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00721">721</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00982">982</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00820">fclose()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01089">fclose()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4f5cc527876ac20e953cf70f8d793895"></a>
+<a class="anchor" id="a26a07a3db060ffc5659fe03495a29a1c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int dirname </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int dirname </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1549,7 +1723,7 @@ Variables</h2></td></tr>
 <p>Return the index of the last '/' character. </p>
 <ul>
 <li>Example: <div class="fragment"><div class="line">dir[0] = 0;</div>
-<div class="line">ret = <a class="code" href="posix_8c.html#a4f5cc527876ac20e953cf70f8d793895">dirname</a>(path)</div>
+<div class="line">ret = <a class="code" href="posix_8c.html#a26a07a3db060ffc5659fe03495a29a1c">dirname</a>(path)</div>
 <div class="line">if(ret)</div>
 <div class="line"> strncpy(dir,path,ret);</div>
 </div><!-- fragment --></li>
@@ -1564,16 +1738,16 @@ Variables</h2></td></tr>
 <dd>
 index of last '/' character. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01390">1390</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01730">1730</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8b2c896445fc6154540a87697c7ecc38"></a>
+<a class="anchor" id="a111f2e6e6bc9f0a46210a323cab093c7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void dump_stat </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void dump_stat </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structstat.html">stat</a> *&#160;</td>
           <td class="paramname"><em>sp</em></td><td>)</td>
@@ -1582,7 +1756,7 @@ index of last '/' character. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Display struct stat, from POSIX stat(0 or <a class="el" href="posix_8h.html#a198a57e185e8a036ad06345623b84521">fstat()</a>, in ASCII. </p>
+<p>Display struct stat, from POSIX stat(0 or <a class="el" href="posix_8h.html#a85e86e70773c0a204346f965272bd364">fstat()</a>, in ASCII. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">sp</td><td>struct stat pointer.</td></tr>
@@ -1591,18 +1765,18 @@ index of last '/' character. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01327">1327</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01665">1665</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00028">mmc_test()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00043">mmc_test()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a429fb62120654af9991d381961ab0c0d"></a>
+<a class="anchor" id="a178d5d21b21c0f60d6ff8dfbbc0d86f5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> fat_time_to_unix </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> fat_time_to_unix </td>
           <td>(</td>
           <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>date</em>, </td>
@@ -1632,101 +1806,21 @@ index of last '/' character. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a48f6c9170d63503123d5af4ae2639baf" title="Convert tm_t structure as GMT time into seconds since 1900. ">timegm()</a></dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5" title="Convert tm_t structure as GMT time into seconds since 1900. ">timegm()</a></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>epoch seconds </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01122">1122</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01451">1451</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a479c82c9a415915568fb1e799bc545c9"></a>
+<a class="anchor" id="ac20f0fc565c27bbbb900bde3337b09b9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fatfs_getc </td>
-          <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>stream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Low level avr-libc fgetc( FILE * stream ) for FatFs. </p>
-<ul>
-<li>man page fgetc (3).</li>
-<li>Notes: fgetc does all tests prior to caling us, including ungetc.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>POSIX stream pointer.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>character. </dd>
-<dd>
-EOF on error with errno set. </dd></dl>
-
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00506">506</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
-
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a90d998e82aa4f903a1570c0c48aeae59"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int fatfs_putc </td>
-          <td>(</td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>stream</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Low level avr-libc fputc(char c, FILE * stream) for FatFs. </p>
-<ul>
-<li>man page fputc (3).</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>character. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>POSIX stream pointer.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>character </dd>
-<dd>
-EOF on error with errno set. </dd></dl>
-
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00550">550</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
-
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aeb68afd2fdf966f8d89cc7aaa9aa7c23"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int fatfs_to_errno </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_errno </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a>&#160;</td>
           <td class="paramname"><em>Result</em></td><td>)</td>
@@ -1749,18 +1843,18 @@ EOF on error with errno set. </dd></dl>
 <dd>
 EBADMSG if no conversion possible. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00365">365</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00513">513</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00721">close()</a>, <a class="el" href="posix_8c_source.html#l00506">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00550">fatfs_putc()</a>, <a class="el" href="posix_8c_source.html#l01149">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l00942">lseek()</a>, <a class="el" href="posix_8c_source.html#l00594">open()</a>, <a class="el" href="posix_8c_source.html#l00888">read()</a>, <a class="el" href="posix_8c_source.html#l01360">rename()</a>, <a class="el" href="posix_8c_source.html#l01098">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01250">stat()</a>, <a class="el" href="posix_8c_source.html#l00757">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01184">truncate()</a>, <a class="el" href="posix_8c_source.html#l01077">unlink()</a>, and <a class="el" href="posix_8c_source.html#l00836">write()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00982">close()</a>, <a class="el" href="posix_8c_source.html#l00660">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00705">fatfs_putc()</a>, <a class="el" href="posix_8c_source.html#l01479">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01259">lseek()</a>, <a class="el" href="posix_8c_source.html#l00855">open()</a>, <a class="el" href="posix_8c_source.html#l01182">read()</a>, <a class="el" href="posix_8c_source.html#l01699">rename()</a>, <a class="el" href="posix_8c_source.html#l01426">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01586">stat()</a>, <a class="el" href="posix_8c_source.html#l01022">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01517">truncate()</a>, <a class="el" href="posix_8c_source.html#l01404">unlink()</a>, and <a class="el" href="posix_8c_source.html#l01109">write()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a092c5532c416a4285fa3049c7962a0a5"></a>
+<a class="anchor" id="a81f14429660ca6a685676d6ceaf5350c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fatfs_to_fileno </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fatfs_to_fileno </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structFIL.html">FIL</a> *&#160;</td>
           <td class="paramname"><em>fh</em></td><td>)</td>
@@ -1780,16 +1874,16 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 -1 on error with errno set to EBADF. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00178">178</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00230">230</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a76370407f9ab0402564c2bb9bc9664e0"></a>
+<a class="anchor" id="ad6fd240fec1d65213f34b6e6465a8033"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fclose </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fclose </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -1812,18 +1906,18 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 -1 on error witrh errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00820">820</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01089">1089</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, and <a class="el" href="printer_8c_source.html#l00115">printer_close()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a35bff0231675a34268da5f90606ada6f"></a>
+<a class="anchor" id="acb9e5741c01183dfe3179d646b264e5b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fgetpos </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fgetpos </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -1857,16 +1951,50 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01044">1044</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01369">1369</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1eeda4d85cf3cae5cf1ee8c1e196a686"></a>
+<a class="anchor" id="aceb657a1b3c10d576aed287714bfd5d1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structFIL.html">FIL</a>* fileno_to_fatfs </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fileno </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert POSIX stream pointer to POSIX fileno (index of __iob[]) </p>
+<ul>
+<li>man page fileno (3) <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>stream pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int fileno on success </dd>
+<dd>
+-1 with errno = EBAFD if stream is NULL or not found </dd></dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00169">169</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01089">fclose()</a>, <a class="el" href="posix_8c_source.html#l00169">fileno()</a>, <a class="el" href="posix_8c_source.html#l00142">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00963">fopen()</a>, <a class="el" href="posix_8c_source.html#l01230">fread()</a>, <a class="el" href="posix_8c_source.html#l00392">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01302">fseek()</a>, <a class="el" href="posix_8c_source.html#l01328">ftell()</a>, <a class="el" href="posix_8c_source.html#l01155">fwrite()</a>, <a class="el" href="posix_8c_source.html#l00855">open()</a>, and <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b859123258b36eb57f4f71d2606d8a5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="structFIL.html">FIL</a>* fileno_to_fatfs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -1889,18 +2017,18 @@ EBADMSG if no conversion possible. </dd></dl>
 <dd>
 NULL if POSIX fileno is invalid NULL </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00147">147</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00197">197</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00721">close()</a>, <a class="el" href="posix_8c_source.html#l01006">ftell()</a>, <a class="el" href="posix_8c_source.html#l01149">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l00942">lseek()</a>, <a class="el" href="posix_8c_source.html#l00594">open()</a>, <a class="el" href="posix_8c_source.html#l00888">read()</a>, <a class="el" href="posix_8c_source.html#l00792">sync()</a>, <a class="el" href="posix_8c_source.html#l00757">syncfs()</a>, and <a class="el" href="posix_8c_source.html#l00836">write()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00982">close()</a>, <a class="el" href="posix_8c_source.html#l01328">ftell()</a>, <a class="el" href="posix_8c_source.html#l01479">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01259">lseek()</a>, <a class="el" href="posix_8c_source.html#l00855">open()</a>, <a class="el" href="posix_8c_source.html#l01182">read()</a>, <a class="el" href="posix_8c_source.html#l01059">sync()</a>, <a class="el" href="posix_8c_source.html#l01022">syncfs()</a>, and <a class="el" href="posix_8c_source.html#l01109">write()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae0821388c321f66b16fbca4a625022de"></a>
+<a class="anchor" id="a2c01fe0e0aa550b2a8b4dcc326983b57"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">FILE* fileno_to_stream </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fileno_to_stream </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -1911,7 +2039,7 @@ NULL if POSIX fileno is invalid NULL </dd></dl>
 
 <p>Convert POSIX fileno to POSIX FILE stream pointer. </p>
 <ul>
-<li>inverse of POSIX <a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3" title="fileno() ">fileno()</a></li>
+<li>inverse of POSIX <a class="el" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1" title="Convert POSIX stream pointer to POSIX fileno (index of __iob[]) ">fileno()</a></li>
 <li>man page fileno (3)</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1920,23 +2048,23 @@ NULL if POSIX fileno is invalid NULL </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3" title="fileno() ">fileno()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1" title="Convert POSIX stream pointer to POSIX fileno (index of __iob[]) ">fileno()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>FILE * on success </dd>
 <dd>
-NULL on error with errno set </dd></dl>
+NULL on error with errno set, NULL if fileno out of bounds </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00094">94</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00142">142</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00721">close()</a>, <a class="el" href="posix_8c_source.html#l00147">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00701">fopen()</a>, <a class="el" href="posix_8c_source.html#l00251">free_file_descriptor()</a>, and <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00982">close()</a>, <a class="el" href="posix_8c_source.html#l00197">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00963">fopen()</a>, <a class="el" href="posix_8c_source.html#l00392">free_file_descriptor()</a>, and <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a61171f829f6067fa0c9936fc4e0cbb82"></a>
+<a class="anchor" id="a8e661c338f41695d1a1e70aed6255e2d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">FILE* fopen </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> FILE* fopen </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -1970,18 +2098,18 @@ NULL on error with errno set </dd></dl>
 <dd>
 NULL on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00701">701</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00963">963</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, and <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a084251eb18ccd5c936faa2c39c86ec63"></a>
+<a class="anchor" id="a01233ac8fd574e20b0b38472adbee551"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> fread </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> fread </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2027,18 +2155,18 @@ NULL on error with errno set. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>count on sucess. </dd>
 <dd>
--1 on error with errno set. </dd></dl>
+0 or &lt; size on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00921">921</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01230">1230</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9d5502ebc4eba38ea5ef6ca4ba71bc02"></a>
+<a class="anchor" id="a38496612f759733234128893e4c60a89"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int free_file_descriptor </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int free_file_descriptor </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2058,18 +2186,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on failure. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00251">251</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00392">392</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00721">close()</a>, and <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00982">close()</a>, and <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5e25775bd8597f839a28125b616bd241"></a>
+<a class="anchor" id="ad31144743f0014784193221563ca8dd2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fseek </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fseek </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -2115,18 +2243,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00983">983</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01302">1302</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01063">fsetpos()</a>, and <a class="el" href="posix_8c_source.html#l01029">rewind()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01389">fsetpos()</a>, and <a class="el" href="posix_8c_source.html#l01353">rewind()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac81a57126a4b0d3008da9a12c5c443ab"></a>
+<a class="anchor" id="a8705d74fe77c1b23824074ecd14be1c7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fsetpos </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fsetpos </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -2160,16 +2288,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01063">1063</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01389">1389</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a198a57e185e8a036ad06345623b84521"></a>
+<a class="anchor" id="a85e86e70773c0a204346f965272bd364"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int fstat </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int fstat </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2190,12 +2318,12 @@ NULL on error with errno set. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a6443596ac41a2c3e3087ca422441472a"></a>
+<a class="anchor" id="af53dca187c78408fe2f1958c4eb88603"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> ftell </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> long ftell </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -2218,18 +2346,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01006">1006</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01328">1328</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01044">fgetpos()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01369">fgetpos()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0fb7c60877eacbfbd66eff04533ab0fe"></a>
+<a class="anchor" id="a474e4e6cac62ef12c66b8a597c14e5f6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int ftruncate </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int ftruncate </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2263,16 +2391,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on fail. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01149">1149</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01479">1479</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a20d465b196f378c16fc31d4117170623"></a>
+<a class="anchor" id="a148630cbecc0822d9395f002691ffe75"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> fwrite </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> fwrite </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2318,20 +2446,20 @@ NULL on error with errno set. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>count written on sucess. </dd>
 <dd>
--1 on error with errno set. </dd></dl>
+0 or &lt; size on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00870">870</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01155">1155</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 <p>Referenced by <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aeac589354c9d47c7d9c7c49ba4b0d266"></a>
+<a class="anchor" id="a31986cce890109c211ccb14151aafd0e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int isatty </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int isatty </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em></td><td>)</td>
@@ -2355,18 +2483,18 @@ NULL on error with errno set. </dd></dl>
 0 if POSIX fileno is NOT a Serial TTY. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Perhaps we should verify console functions have been added ? </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00294">294</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00437">437</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00147">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00251">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00209">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00792">sync()</a>, and <a class="el" href="posix_8c_source.html#l00757">syncfs()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00197">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00392">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00305">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01059">sync()</a>, and <a class="el" href="posix_8c_source.html#l01022">syncfs()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac58743ffacbdf60271356ec420c1d3a0"></a>
+<a class="anchor" id="ae4ea1b12797e3ba021a1af3cb4ba17bd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> lseek </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> lseek </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fileno</em>, </td>
@@ -2412,18 +2540,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00942">942</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01259">1259</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00983">fseek()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01302">fseek()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaa4efad3377a254a142dd9f372193076"></a>
+<a class="anchor" id="a39eea0b104438afa9ca0500c2e8d6887"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* mctime </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* mctime </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td>
           <td class="paramname"><em>timev</em></td><td>)</td>
@@ -2443,21 +2571,21 @@ NULL on error with errno set. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>ascii string pointer of POSIX <a class="el" href="time_8c.html#aa160c926bb33f6d7ba494634b26a6b8b" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#aa160c926bb33f6d7ba494634b26a6b8b" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ascii string pointer of POSIX <a class="el" href="time_8c.html#a77d6bba12950028852621634ffaf4835" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a77d6bba12950028852621634ffaf4835" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01310">1310</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01647">1647</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01327">dump_stat()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01665">dump_stat()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a96d98c05b05d85e1ae97953f04f5b386"></a>
+<a class="anchor" id="abab788c42cce343cde2f5b8f90015229"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int new_file_descriptor </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int new_file_descriptor </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -2471,18 +2599,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on failure with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00209">209</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00305">305</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00594">open()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00855">open()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adcb60598073f6f9cbb0091ef6768fa5c"></a>
+<a class="anchor" id="a3e5e6f96d36b5cdacfaf6b3976cd5af2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int open </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int open </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em>, </td>
@@ -2501,7 +2629,8 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>POSIX Open a file with integer mode flags. </p>
+<p>================================================================== </p>
+<p>================================================================== POSIX Open a file with integer mode flags.</p>
 <ul>
 <li>man page open (2).</li>
 </ul>
@@ -2517,18 +2646,18 @@ NULL on error with errno set. </dd></dl>
 -1 on error with errno set. </dd></dl>
 <p>Seek to end of the file </p>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00594">594</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00855">855</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00701">fopen()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00963">fopen()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab39f9634fa53ffd52b87431f3afab11b"></a>
+<a class="anchor" id="a4ce26afbb10890d31c53a8ff76d992e3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void perror </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void perror </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
@@ -2537,7 +2666,7 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>POSIX <a class="el" href="posix_8c.html#ab39f9634fa53ffd52b87431f3afab11b" title="POSIX perror() - convert POSIX errno to text with user message. ">perror()</a> - convert POSIX errno to text with user message. </p>
+<p>POSIX <a class="el" href="posix_8c.html#a4ce26afbb10890d31c53a8ff76d992e3" title="POSIX perror() - convert POSIX errno to text with user message. ">perror()</a> - convert POSIX errno to text with user message. </p>
 <ul>
 <li>man page errno (3).</li>
 </ul>
@@ -2550,18 +2679,18 @@ NULL on error with errno set. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0" title="POSIX error messages for each errno value. ">sys_errlist</a>[]. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00312">312</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00456">456</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00506">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00550">fatfs_putc()</a>, <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, and <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, and <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7ac1aa0d648f044fa27768f4037c0777"></a>
+<a class="anchor" id="a607feb06d296e0ff60d5a19538bd17fc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int posix_fopen_modes_to_open </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int posix_fopen_modes_to_open </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>mode</em></td><td>)</td>
@@ -2614,18 +2743,18 @@ NULL on error with errno set. </dd></dl>
 -1 on error. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>read and write BOTH share the same stream buffer and buffer index pointers. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00459">459</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00608">608</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00701">fopen()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00963">fopen()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adb6affa25d7186bc74d8fbc7f15ae832"></a>
+<a class="anchor" id="af104a2c05bef787e54c6925616e867df"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> read </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> read </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -2666,18 +2795,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00888">888</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01182">1182</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00921">fread()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01230">fread()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4d4709508ed7604103d77c3fdc5ea4a2"></a>
+<a class="anchor" id="ada8cc8f9394cf54db8f338838a9fa7ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int rename </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rename </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>oldpath</em>, </td>
@@ -2711,16 +2840,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01360">1360</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01699">1699</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa0cd401f198d33d9d01a9e8aa4026819"></a>
+<a class="anchor" id="a35e6a58f44d4651951ecfeb97f369884"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void rewind </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void rewind </td>
           <td>(</td>
           <td class="paramtype">FILE *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
@@ -2741,16 +2870,16 @@ NULL on error with errno set. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01029">1029</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01353">1353</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a570282ae7ba596263ec812b368d99b34"></a>
+<a class="anchor" id="a6080dee579486f132062435577b77d10"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int rmdir </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rmdir </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em></td><td>)</td>
@@ -2773,16 +2902,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01098">1098</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01426">1426</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6cef290219b5c345e378932a8caa6217"></a>
+<a class="anchor" id="abef70bf7a4af8a1f4998db0035c51781"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="structstat.html">stat</a> </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int <a class="el" href="structstat.html">stat</a> </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -2816,52 +2945,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01250">1250</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01586">1586</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ff_8c_source.html#l03578">f_getfree()</a>, <a class="el" href="ff_8c_source.html#l02308">find_volume()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00028">mmc_test()</a>.</p>
+<p>Referenced by <a class="el" href="ff_8c_source.html#l03634">f_getfree()</a>, <a class="el" href="ff_8c_source.html#l02348">find_volume()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00043">mmc_test()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a03b05afa1689535ef0e18601a2d061ea"></a>
+<a class="anchor" id="abf72a013f9f9c7d75ea029f1ed377361"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int stream_to_fileno </td>
-          <td>(</td>
-          <td class="paramtype">FILE *&#160;</td>
-          <td class="paramname"><em>stream</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert POSIX stream pointer to POSIX fileno (index of __iob[]) </p>
-<ul>
-<li>man page fileno (3) <dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>stream pointer</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>int fileno on success </dd>
-<dd>
--1 with errno = EBAFD if stream is NULL or not found </dd></dl>
-</li>
-</ul>
-
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00120">120</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
-
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00820">fclose()</a>, <a class="el" href="posix_8c_source.html#l00921">fread()</a>, <a class="el" href="posix_8c_source.html#l00983">fseek()</a>, <a class="el" href="posix_8c_source.html#l01006">ftell()</a>, <a class="el" href="posix_8c_source.html#l00870">fwrite()</a>, and <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="add46ab98f32b76457852dbb872842bf2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">char* strerror </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>errnum</em></td><td>)</td>
@@ -2870,7 +2965,7 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>POSIX <a class="el" href="posix_8c.html#add46ab98f32b76457852dbb872842bf2" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message. </p>
+<p>POSIX <a class="el" href="posix_8c.html#abf72a013f9f9c7d75ea029f1ed377361" title="POSIX strerror() - convert POSIX errno to text with user message. ">strerror()</a> - convert POSIX errno to text with user message. </p>
 <ul>
 <li>man page strerror (3).</li>
 </ul>
@@ -2883,16 +2978,16 @@ NULL on error with errno set. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0" title="POSIX error messages for each errno value. ">sys_errlist</a>[]. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>char * </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00337">337</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00482">482</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7253ba059153058c57952194237c6b55"></a>
+<a class="anchor" id="a6311c6b29216455ec9b716b9eb31c799"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char* strerror_r </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> char* strerror_r </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>errnum</em>, </td>
@@ -2917,7 +3012,7 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>POSIX <a class="el" href="posix_8c.html#a7253ba059153058c57952194237c6b55" title="POSIX strerror_r() - convert POSIX errno to text with user message. ">strerror_r()</a> - convert POSIX errno to text with user message. </p>
+<p>POSIX <a class="el" href="posix_8c.html#a6311c6b29216455ec9b716b9eb31c799" title="POSIX strerror_r() - convert POSIX errno to text with user message. ">strerror_r()</a> - convert POSIX errno to text with user message. </p>
 <ul>
 <li>man page strerror (3).</li>
 </ul>
@@ -2932,16 +3027,16 @@ NULL on error with errno set. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0" title="POSIX error messages for each errno value. ">sys_errlist</a>[]. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>char * </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00352">352</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00498">498</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac4fa2e6d36e97983d62b9377cc4f6c73"></a>
+<a class="anchor" id="a8f7f00d4ec0d99440762b0a664aebf70"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void sync </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void sync </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -2956,16 +3051,16 @@ NULL on error with errno set. </dd></dl>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00792">792</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01059">1059</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acf97db8918cda0297ea424858a3e72bf"></a>
+<a class="anchor" id="a521c33bdb3606c9f3546b9cbcd37b9ac"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int syncfs </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int syncfs </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em></td><td>)</td>
@@ -2988,18 +3083,18 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error witrh errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00757">757</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01022">1022</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, and <a class="el" href="posix_8c_source.html#l00792">sync()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, and <a class="el" href="posix_8c_source.html#l01059">sync()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a87674838dd2bcf61e1a1fb5c9892ab6c"></a>
+<a class="anchor" id="a73a95c4a93875be906e573c00b30c5ea"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int truncate </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int truncate </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -3033,16 +3128,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 n fail. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01184">1184</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01517">1517</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af3cee068f32a919cdd638e0578c1e5f8"></a>
+<a class="anchor" id="aa964d662c19b2021d9cfd0c71bc686bd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int unlink </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int unlink </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pathname</em></td><td>)</td>
@@ -3065,16 +3160,16 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l01077">1077</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01404">1404</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac1260021a9016338237c590bb175dec2"></a>
+<a class="anchor" id="a072435300ac99e8d7c3749f45166e797"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="hardware_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a> write </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="posix_8h.html#a170745d0d946e79c4c2a056d1d158996">ssize_t</a> write </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>fd</em>, </td>
@@ -3115,9 +3210,9 @@ NULL on error with errno set. </dd></dl>
 <dd>
 -1 on error with errno set. </dd></dl>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00836">836</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l01109">1109</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00870">fwrite()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01155">fwrite()</a>.</p>
 
 </div>
 </div>
@@ -3141,9 +3236,9 @@ NULL on error with errno set. </dd></dl>
 <li>__iob[2] = stderr. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00038">38</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00085">85</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00178">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00094">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00251">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00209">new_file_descriptor()</a>, and <a class="el" href="posix_8c_source.html#l00120">stream_to_fileno()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00230">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00169">fileno()</a>, <a class="el" href="posix_8c_source.html#l00142">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00392">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00305">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01182">read()</a>, and <a class="el" href="posix_8c_source.html#l01109">write()</a>.</p>
 
 </div>
 </div>
@@ -3157,19 +3252,19 @@ NULL on error with errno set. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Note: AVR fdevopen assigns a stdin,stdout,stderr. </p>
+<p>Note: fdevopen assigns stdin,stdout,stderr. </p>
 <p>POSIX errno. </p>
 
-<p>Definition at line <a class="el" href="posix_8c_source.html#l00026">26</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p>Definition at line <a class="el" href="posix_8c_source.html#l00073">73</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l00721">close()</a>, <a class="el" href="posix_8c_source.html#l00506">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00550">fatfs_putc()</a>, <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00178">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00147">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00094">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00251">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01006">ftell()</a>, <a class="el" href="posix_8c_source.html#l01149">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l00942">lseek()</a>, <a class="el" href="posix_8c_source.html#l01310">mctime()</a>, <a class="el" href="posix_8c_source.html#l00209">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00594">open()</a>, <a class="el" href="posix_8c_source.html#l00312">perror()</a>, <a class="el" href="posix_8c_source.html#l00888">read()</a>, <a class="el" href="posix_8c_source.html#l01360">rename()</a>, <a class="el" href="posix_8c_source.html#l01098">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01250">stat()</a>, <a class="el" href="posix_8c_source.html#l00120">stream_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00757">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01184">truncate()</a>, <a class="el" href="posix_8c_source.html#l01077">unlink()</a>, and <a class="el" href="posix_8c_source.html#l00836">write()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l00982">close()</a>, <a class="el" href="posix_8c_source.html#l00660">fatfs_getc()</a>, <a class="el" href="posix_8c_source.html#l00705">fatfs_putc()</a>, <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00230">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00169">fileno()</a>, <a class="el" href="posix_8c_source.html#l00197">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00142">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00392">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01328">ftell()</a>, <a class="el" href="posix_8c_source.html#l01479">ftruncate()</a>, <a class="el" href="posix_8c_source.html#l01259">lseek()</a>, <a class="el" href="posix_8c_source.html#l01647">mctime()</a>, <a class="el" href="posix_8c_source.html#l00305">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00855">open()</a>, <a class="el" href="posix_8c_source.html#l00456">perror()</a>, <a class="el" href="posix_8c_source.html#l01182">read()</a>, <a class="el" href="posix_8c_source.html#l01699">rename()</a>, <a class="el" href="posix_8c_source.html#l01426">rmdir()</a>, <a class="el" href="posix_8c_source.html#l01586">stat()</a>, <a class="el" href="posix_8c_source.html#l01022">syncfs()</a>, <a class="el" href="posix_8c_source.html#l01517">truncate()</a>, <a class="el" href="posix_8c_source.html#l01404">unlink()</a>, and <a class="el" href="posix_8c_source.html#l01109">write()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:47:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

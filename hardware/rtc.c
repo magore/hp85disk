@@ -291,6 +291,7 @@ uint8_t rtc_read(tm_t *t)
 /// @endverbatim
 
 
+#if 0
 /// @brief Convert Linux POSIX tm_t * to FAT32 time.
 ///
 /// @param[in] t: POSIX struct tm * to convert.
@@ -308,8 +309,10 @@ uint32_t tm_to_fat(tm_t *t)
         | ((uint32_t)t->tm_sec >> 1);
     return(fat);
 }
+#endif
 
 
+#if 0
 /// @brief Read DS1307 RTC and convert to FAT32 time.
 ///
 /// @return FAT32 time.
@@ -323,3 +326,4 @@ uint32_t get_fattime (void)
         return(0);
     return( tm_to_fat(&t) );
 }
+#endif

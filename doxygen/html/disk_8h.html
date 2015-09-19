@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>FatFs utilities utilities and tests for HP85 disk emulator project.  
+<p>Allocate, Free and display <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structurs, getfattime(), display error messages.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="hardware_8h_source.html">hardware/hardware.h</a>&gt;</code><br/>
 <code>#include &quot;<a class="el" href="ff_8h_source.html">ff.h</a>&quot;</code><br/>
@@ -112,7 +112,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:afb13747c885845dd2b4011109364f83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structure and optional long file name buffer.  <a href="#afb13747c885845dd2b4011109364f83a">More...</a><br/></td></tr>
 <tr class="separator:afb13747c885845dd2b4011109364f83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f2dd92d9b43ef0094f0eb6a07956a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="disk_8h.html#a55f2dd92d9b43ef0094f0eb6a07956a8">fatfs_free_filinfo</a> (<a class="el" href="structFILINFO.html">FILINFO</a> *finfo)</td></tr>
-<tr class="memdesc:a55f2dd92d9b43ef0094f0eb6a07956a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structure and optional long file name buffer allocated by <a class="el" href="disk_8c.html#afb13747c885845dd2b4011109364f83a" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a>  <a href="#a55f2dd92d9b43ef0094f0eb6a07956a8">More...</a><br/></td></tr>
+<tr class="memdesc:a55f2dd92d9b43ef0094f0eb6a07956a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structure and optional long file name buffer allocated by <a class="el" href="disk_8c.html#a2aa2a2ec84f17f64a69196c9717fc3f4" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a>  <a href="#a55f2dd92d9b43ef0094f0eb6a07956a8">More...</a><br/></td></tr>
 <tr class="separator:a55f2dd92d9b43ef0094f0eb6a07956a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeaba07e5b5b3540ba023b7181b73467"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="disk_8h.html#aeeaba07e5b5b3540ba023b7181b73467">fatfs_scan_files</a> (char *path)</td></tr>
 <tr class="memdesc:aeeaba07e5b5b3540ba023b7181b73467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute space used, number of directories and files contained under a specified directory.  <a href="#aeeaba07e5b5b3540ba023b7181b73467">More...</a><br/></td></tr>
@@ -139,14 +139,14 @@ Variables</h2></td></tr>
 <tr class="separator:aae427cc909a4b5993032934d85fd8c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>FatFs utilities utilities and tests for HP85 disk emulator project. </p>
-<dl class="section user"><dt>Edit History</dt><dd><ul>
-<li>[1.0] [Mike Gore] Initial revision of file.</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 CHaN.</dt><dd></dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
-<dl class="section user"><dt>Credit: used parts of FatFs avr example project (C)ChaN, 2013.</dt><dd></dd></dl>
+<div class="textblock"><p>Allocate, Free and display <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structurs, getfattime(), display error messages. </p>
+<dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2013 ChaN.</dt><dd></dd></dl>
+<dl class="section user"><dt>Credit: part of FatFs avr example project (C)ChaN, 2013.</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="disk_8h_source.html">disk.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -173,16 +173,16 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See Also</dt><dd>fatfs_free_finfo() </dd>
 <dd>
-<a class="el" href="disk_8c.html#aeeaba07e5b5b3540ba023b7181b73467" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
+<a class="el" href="disk_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
 <dd>
-<a class="el" href="fatfs__tests_8c.html#ae4d36ee22ea27a1cacd024c90bbec1da" title="List files under a specified directory. ">fatfs_ls()</a> </dd></dl>
+<a class="el" href="fatfs__utils_8c.html#a257bdc077fb2c1a5aeeb5c1f3c1c2157" title="List files under a specified directory. ">fatfs_ls()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> * on success </dd>
 <dd>
 NULL on error </dd></dl>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00108">108</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00169">169</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__tests_8c_source.html#l00031">fatfs_ls()</a>, <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, and <a class="el" href="posix_8c_source.html#l01250">stat()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00396">fatfs_stat()</a>, and <a class="el" href="posix_8c_source.html#l01586">stat()</a>.</p>
 
 </div>
 </div>
@@ -209,9 +209,9 @@ NULL on error </dd></dl>
 @return  void  </pre> </li>
 </ul>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00297">297</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00358">358</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__tests_8c_source.html#l00031">fatfs_ls()</a>, and <a class="el" href="fatfs__tests_8c_source.html#l00311">fatfs_stat()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00396">fatfs_stat()</a>.</p>
 
 </div>
 </div>
@@ -229,21 +229,21 @@ NULL on error </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Free a <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structure and optional long file name buffer allocated by <a class="el" href="disk_8c.html#afb13747c885845dd2b4011109364f83a" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a> </p>
+<p>Free a <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> structure and optional long file name buffer allocated by <a class="el" href="disk_8c.html#a2aa2a2ec84f17f64a69196c9717fc3f4" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">finfo</td><td>FatFs <a class="el" href="structFILINFO.html" title="File status structure (FILINFO) ">FILINFO</a> pointer to free </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="disk_8c.html#afb13747c885845dd2b4011109364f83a" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a> </dd>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="disk_8c.html#a2aa2a2ec84f17f64a69196c9717fc3f4" title="Allocate FILINFO structure and optional long file name buffer. ">fatfs_alloc_finfo()</a> </dd>
 <dd>
-<a class="el" href="disk_8c.html#aeeaba07e5b5b3540ba023b7181b73467" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
+<a class="el" href="disk_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
 <dd>
-<a class="el" href="fatfs__tests_8c.html#ae4d36ee22ea27a1cacd024c90bbec1da" title="List files under a specified directory. ">fatfs_ls()</a> </dd></dl>
+<a class="el" href="fatfs__utils_8c.html#a257bdc077fb2c1a5aeeb5c1f3c1c2157" title="List files under a specified directory. ">fatfs_ls()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00157">157</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00218">218</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
 </div>
 </div>
@@ -271,9 +271,9 @@ NULL on error </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="ff_8c.html#ab63b213c75f7335fbb63a1f3f70e5fc7">f_opendir()</a> </dd>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="ff_8c.html#aeb607fa4b05d127d971ff40f143bac66">f_opendir()</a> </dd>
 <dd>
-<a class="el" href="ff_8c.html#ab39e82a110695de45f416f3149358012">f_readdir()</a> </dd>
+<a class="el" href="ff_8c.html#ae9647e339708c3d803db8de141986d96">f_readdir()</a> </dd>
 <dd>
 <a class="el" href="disk_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>: Total number of directories </dd>
 <dd>
@@ -284,9 +284,9 @@ NULL on error </dd></dl>
 <dd>
 FafFs error code </dd></dl>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00185">185</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00246">246</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00246">fatfs_status()</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00307">fatfs_status()</a>.</p>
 
 </div>
 </div>
@@ -314,9 +314,9 @@ FafFs error code </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="ff_8c.html#a0ff39f75a87cbda9cd6ea65d83f16cec">f_getfree()</a> drive free space </dd>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="ff_8c.html#a72098afbbef7ff8b850bacfc721d6bd0">f_getfree()</a> drive free space </dd>
 <dd>
-<a class="el" href="disk_8c.html#aeeaba07e5b5b3540ba023b7181b73467" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
+<a class="el" href="disk_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd" title="Compute space used, number of directories and files contained under a specified directory. ">fatfs_scan_files()</a> </dd>
 <dd>
 <a class="el" href="disk_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>: Total number of directories </dd>
 <dd>
@@ -325,9 +325,9 @@ FafFs error code </dd></dl>
 <a class="el" href="disk_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876" title="Total file space used. ">AccSize</a>: Total size of all files </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00246">246</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00307">307</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00096">fatfs_tests()</a>, <a class="el" href="mmc__hal_8c_source.html#l00281">mmc_init()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00028">mmc_test()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00463">fatfs_tests()</a>, <a class="el" href="mmc__hal_8c_source.html#l00186">mmc_init()</a>, and <a class="el" href="fatfs__utils_8c_source.html#l00043">mmc_test()</a>.</p>
 
 </div>
 </div>
@@ -355,9 +355,9 @@ FafFs error code </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00073">73</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00134">134</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__hal_8c_source.html#l00296">dbf_close()</a>, <a class="el" href="gpib__hal_8c_source.html#l00275">dbf_lseek()</a>, <a class="el" href="gpib__hal_8c_source.html#l00204">dbf_open()</a>, <a class="el" href="gpib__hal_8c_source.html#l00229">dbf_read()</a>, <a class="el" href="gpib__hal_8c_source.html#l00253">dbf_write()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00101">fatfs_cat()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00328">fatfs_cd()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00163">fatfs_copy()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00224">fatfs_create()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00031">fatfs_ls()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00281">fatfs_mkdir()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00341">fatfs_pwd()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00082">fatfs_rename()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00266">fatfs_rm()</a>, <a class="el" href="fatfs__tests_8c_source.html#l00297">fatfs_rmdir()</a>, <a class="el" href="disk_8c_source.html#l00246">fatfs_status()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00096">fatfs_tests()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00281">mmc_init()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__hal_8c_source.html#l00296">dbf_close()</a>, <a class="el" href="gpib__hal_8c_source.html#l00275">dbf_lseek()</a>, <a class="el" href="gpib__hal_8c_source.html#l00204">dbf_open()</a>, <a class="el" href="gpib__hal_8c_source.html#l00229">dbf_read()</a>, <a class="el" href="gpib__hal_8c_source.html#l00253">dbf_write()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00182">fatfs_cat()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00423">fatfs_cd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00244">fatfs_copy()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00305">fatfs_create()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00364">fatfs_mkdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00437">fatfs_pwd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00162">fatfs_rename()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00348">fatfs_rm()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00381">fatfs_rmdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00396">fatfs_stat()</a>, <a class="el" href="disk_8c_source.html#l00307">fatfs_status()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00463">fatfs_tests()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00186">mmc_init()</a>.</p>
 
 </div>
 </div>
@@ -372,9 +372,9 @@ FafFs error code </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00089">89</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00150">150</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00246">fatfs_status()</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00307">fatfs_status()</a>.</p>
 
 </div>
 </div>
@@ -390,9 +390,9 @@ FafFs error code </dd></dl>
 
 <p>Total number or Files and Directories. </p>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00089">89</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00150">150</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00246">fatfs_status()</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00307">fatfs_status()</a>.</p>
 
 </div>
 </div>
@@ -408,9 +408,9 @@ FafFs error code </dd></dl>
 
 <p>Total file space used. </p>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00086">86</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00147">147</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="disk_8c_source.html#l00185">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00246">fatfs_status()</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00246">fatfs_scan_files()</a>, and <a class="el" href="disk_8c_source.html#l00307">fatfs_status()</a>.</p>
 
 </div>
 </div>
@@ -426,16 +426,16 @@ FafFs error code </dd></dl>
 
 <p>FatFs Drive Volumes. </p>
 
-<p>Definition at line <a class="el" href="disk_8c_source.html#l00023">23</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
+<p>Definition at line <a class="el" href="disk_8c_source.html#l00034">34</a> of file <a class="el" href="disk_8c_source.html">disk.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00281">mmc_init()</a>.</p>
+<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00186">mmc_init()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:47:17 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

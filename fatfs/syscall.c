@@ -1,5 +1,5 @@
 /**
- @file fatfs/option/syscall.c
+ @file fatfs/syscall.c
 
  @brief FatFS  OS dependent controls R0.10b (C) ChaN, 2014.
  @par Copyright &copy; 2014 ChaN.
@@ -11,10 +11,11 @@
 /* (C)ChaN, 2012                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>		/* ANSI memory controls */
+#include <hardware/hardware.h>
+//#include <stdlib.h>		/* ANSI memory controls */
 //#include <malloc.h>		/* ANSI memory controls */
 
-#include "../ff.h"
+#include "ff.h"
 
 
 #if _FS_REENTRANT
@@ -26,6 +27,7 @@
 /  returned, the f_mount() function fails with FR_INT_ERR.
 */
 
+MEMSPACE
 int ff_cre_syncobj (	/* 1:Function succeeded, 0:Could not create due to any error */
 	BYTE vol,			/* Corresponding logical drive being processed */
 	_SYNC_t* sobj		/* Pointer to return the created sync object */
@@ -59,6 +61,7 @@ int ff_cre_syncobj (	/* 1:Function succeeded, 0:Could not create due to any erro
 /  returned, the f_mount() function fails with FR_INT_ERR.
 */
 
+MEMSPACE
 int ff_del_syncobj (	/* 1:Function succeeded, 0:Could not delete due to any error */
 	_SYNC_t sobj		/* Sync object tied to the logical drive to be deleted */
 )
@@ -88,6 +91,7 @@ int ff_del_syncobj (	/* 1:Function succeeded, 0:Could not delete due to any erro
 /  When a FALSE is returned, the file function fails with FR_TIMEOUT.
 */
 
+MEMSPACE
 int ff_req_grant (	/* TRUE:Got a grant to access the volume, FALSE:Could not get a grant */
 	_SYNC_t sobj	/* Sync object to wait */
 )
@@ -114,6 +118,7 @@ int ff_req_grant (	/* TRUE:Got a grant to access the volume, FALSE:Could not get
 /* This function is called on leaving file functions to unlock the volume.
 */
 
+MEMSPACE
 void ff_rel_grant (
 	_SYNC_t sobj	/* Sync object to be signaled */
 )
@@ -139,11 +144,12 @@ void ff_rel_grant (
 /* If a NULL is returned, the file function fails with FR_NOT_ENOUGH_CORE.
 */
 
+MEMSPACE
 void* ff_memalloc (	/* Returns pointer to the allocated memory block */
 	UINT msize		/* Number of bytes to allocate */
 )
 {
-	return malloc(msize);
+	return safecalloc(msize,1);
 }
 
 
@@ -151,11 +157,12 @@ void* ff_memalloc (	/* Returns pointer to the allocated memory block */
 /* Free a memory block                                                    */
 /*------------------------------------------------------------------------*/
 
+MEMSPACE
 void ff_memfree (
 	void* mblock	/* Pointer to the memory block to free */
 )
 {
-	free(mblock);
+	safefree(mblock);
 }
 
 #endif

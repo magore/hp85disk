@@ -1,21 +1,32 @@
 /**
  @file lib/time.h
 
- @brief POSIX time libraries for AVR8.
+ @brief Common Linux/POSIX time functions
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 
 #ifndef TIME_H
 #define TIME_H
 
-#include <hardware/cpu.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <hardware/hardware.h>
 #include <string.h>
 
 #define EPOCH_YEAR    1970    /*< Thursday Jan 1 1970 */
@@ -30,10 +41,10 @@ typedef uint32_t time_t;
 typedef uint16_t clockid_t;
 
 ///@brief POSIX struct tm.
-struct tm
+struct tm 
 {
     int tm_sec;    /*<  Seconds.     [0-60] (1 leap second) */
-    int tm_min;    /*<  Minutes.     [0-59] */
+    int tm_min;    /*<  Minutes.     [0-59] */ 
     int tm_hour;   /*<  Hours.       [0-23] */
     int tm_mday;   /*<  Day.         [1-31] */
     int tm_mon;    /*<  Month.       [0-11] */
@@ -42,10 +53,11 @@ struct tm
     int tm_yday;   /*<  Days in year.[0-365] */
     int tm_isdst;  /*<  DST.         [-1/0/1] */
     int32_t tm_gmtoff; /*<  GMT offset in seconds */
-};
+};  
 
 ///@brief POSIX struct tm typedef.
 typedef struct tm tm_t;
+
 
 ///@brief POSIX timeval.
 struct timeval
@@ -81,10 +93,6 @@ extern volatile ts_t __clock;
 extern tz_t __tzone;
 
 /* time.c */
-void clock_task ( void );
-int clock_gettime ( clockid_t clk_id , struct timespec *ts );
-int clock_getres ( clockid_t clk_id , struct timespec *res );
-void clock_clear ( void );
 char *tm_wday_to_ascii ( int i );
 char *tm_mon_to_ascii ( int i );
 int time_to_tm ( time_t epoch , int32_t offset , tm_t *t );

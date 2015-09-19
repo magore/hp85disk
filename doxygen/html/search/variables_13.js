@@ -20,8 +20,6 @@ var searchData=
   ['u8',['U8',['../structUnitDescriptionType.html#adea079c655e18cac88ad05a8243f22f8',1,'UnitDescriptionType']]],
   ['u9',['U9',['../structUnitDescriptionType.html#a23817cabba1909bcf5a0732ed5da1351',1,'UnitDescriptionType']]],
   ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'rs232.c']]],
-  ['uni2oem',['uni2oem',['../cc936_8c.html#a7015e1f22b00c8e19b59b29b90839c79',1,'uni2oem():&#160;cc936.c'],['../cc949_8c.html#a7015e1f22b00c8e19b59b29b90839c79',1,'uni2oem():&#160;cc949.c'],['../cc950_8c.html#a7015e1f22b00c8e19b59b29b90839c79',1,'uni2oem():&#160;cc950.c']]],
-  ['uni2sjis',['uni2sjis',['../cc932_8c.html#a52d2962d96a20450629d67c8a229f93e',1,'cc932.c']]],
   ['unit',['Unit',['../ss80_8c.html#a9b9d3dd10366f58893315f84a9f61a3e',1,'ss80.c']]],
   ['unitdescription',['UnitDescription',['../ss80_8c.html#aa83c4e3b5be6ace0779c50b0391d754c',1,'ss80.c']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a66bb89d328cf2c3f1b9362d7ea207c29',1,'TIMERS']]]

@@ -303,16 +303,7 @@ int main(void)
 	int cold = 1;
 	char *line;
 
-    init_timers();
-
-    SPI0_Init();
-    SPI0_Mode(0);
-    SPI0_Speed(F_CPU);
-
-    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
-
     uart_init(0, 115200U); // Serial Port Initialize
-
 	myprintf("==============================\n");
     myprintf("INIT\n");
     myprintf("F_CPU: %lu\n", F_CPU);
@@ -320,6 +311,15 @@ int main(void)
     myprintf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
     myprintf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
     myprintf("log(10.0) = %f\n", log(10.0));
+
+    init_timers();
+
+    SPI0_Init(MMC_SLOW);
+    SPI0_Mode(0);
+
+    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
+
+
     PrintFree();
 	line = safecalloc(80,1);
 	if(!line)

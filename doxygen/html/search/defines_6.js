@@ -15,7 +15,6 @@ var searchData=
   ['fatfs_5fr',['FATFS_R',['../posix_8h.html#ac5a6f01348af03d4c2cdd9d557880c4d',1,'posix.h']]],
   ['fatfs_5fw',['FATFS_W',['../posix_8h.html#a58a8434d968e434626088e2dc6ae6124',1,'posix.h']]],
   ['fatfs_5fx',['FATFS_X',['../posix_8h.html#a0a88f1032e29e7cc97a96b40cdc996a5',1,'posix.h']]],
-  ['fileno',['fileno',['../posix_8h.html#ac5d5a9b86ff1646be08a932cb25e9eb3',1,'posix.h']]],
   ['free_5fbuf',['FREE_BUF',['../ff_8c.html#aba6d6942b59f11cf285bdbfb7e38f1fa',1,'ff.c']]],
   ['fs_5ffat12',['FS_FAT12',['../ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0',1,'ff.h']]],
   ['fs_5ffat16',['FS_FAT16',['../ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9',1,'ff.h']]],

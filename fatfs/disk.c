@@ -1,15 +1,26 @@
 /**
  @file fatfs/disk.c
 
- @brief FatFs utilities utilities and tests for HP85 disk emulator project.
+@brief Allocate, Free and display FILINFO structurs, getfattime(), display error messages
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2013 ChaN.
+ @par Credit: part of FatFs avr example project (C)ChaN, 2013.
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
- @par Copyright &copy; 2014 CHaN.
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
- @par Credit: used parts of FatFs avr example project (C)ChaN, 2013.
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
 
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "hardware/hardware.h"
@@ -64,12 +75,62 @@ static char *err_msg[] =
     NULL
 };
 
+/// @brief FAT time structer reference.
+/// @see rtc.h
+/// @see http://lxr.free-electrons.com/source/fs/fat/misc.c
+/// @verbatim
+/// typedef struct
+/// {
+///     WORD   year;                                  /* 2000..2099 */
+///     BYTE   month;                                 /* 1..12 */
+///     BYTE   mday;                                  /* 1.. 31 */
+///     BYTE   wday;                                  /* 1..7 */
+///     BYTE   hour;                                  /* 0..23 */
+///     BYTE   min;                                   /* 0..59 */
+///     BYTE   sec;                                   /* 0..59 */
+/// } RTC;
+/// @endverbatim
+
+
+/// @brief Convert Linux POSIX tm_t * to FAT32 time.
+///
+/// @param[in] t: POSIX struct tm * to convert.
+///
+/// @return  FAT32 time.
+MEMSPACE
+uint32_t tm_to_fat(tm_t *t)
+{
+    uint32_t fat;
+/* Pack date and time into a uint32_t variable */
+    fat = ((uint32_t)(t->tm_year - 80) << 25)
+        | (((uint32_t)t->tm_mon+1) << 21)
+        | (((uint32_t)t->tm_mday) << 16)
+        | ((uint32_t)t->tm_hour << 11)
+        | ((uint32_t)t->tm_min << 5)
+        | ((uint32_t)t->tm_sec >> 1);
+    return(fat);
+}
+/// @brief Read DS1307 RTC and convert to FAT32 time.
+///
+/// @return FAT32 time.
+/// @see tm_to_fat().
+MEMSPACE
+DWORD get_fattime (void)
+{
+    time_t t;
+/* Get time */
+    time(&t);
+    return( tm_to_fat(localtime(&t)));
+}
+
+
+
 /// @brief  display FatFs return code as ascii string
 ///
 /// Credit: Part of FatFs avr example project (C)ChaN, 2013
 /// @param[in] rc: FatFs status return code
 /// @return  void
-
+MEMSPACE
 void put_rc (int rc)
 {
     char *ptr;
@@ -78,7 +139,7 @@ void put_rc (int rc)
     else
         ptr = err_msg[(int)rc];
 
-    myprintf("rc=%u FR_%s\n", rc, ptr);
+    DEBUG_PRINTF("rc=%u FR_%s\n", rc, ptr);
 }
 
 
@@ -104,7 +165,7 @@ static FILINFO __finfo;
 /// @see fatfs_ls()
 /// @return  FILINFO * on success
 /// @return  NULL on error
-
+MEMSPACE
 FILINFO *fatfs_alloc_finfo( int allocate )
 {
     FILINFO *finfo;
@@ -122,7 +183,7 @@ FILINFO *fatfs_alloc_finfo( int allocate )
 
         if(finfo->lfname == NULL)
         {
-            free(finfo);
+            safefree(finfo);
             return(NULL);
         }
 #else
@@ -153,7 +214,7 @@ FILINFO *fatfs_alloc_finfo( int allocate )
 /// @see fatfs_scan_files() 
 /// @see fatfs_ls()
 /// @return  void
-
+MEMSPACE
 void fatfs_free_filinfo( FILINFO *finfo )
 {
 #if _USE_LFN
@@ -181,7 +242,7 @@ void fatfs_free_filinfo( FILINFO *finfo )
 /// @see AccSize:  Total size of all files
 /// @return 0 if no error
 /// @return FafFs error code
-
+MEMSPACE
 int fatfs_scan_files (
 char* path                                        /* Pointer to the working buffer with start path */
 )
@@ -242,7 +303,7 @@ char* path                                        /* Pointer to the working buff
 /// @see AccFiles: Total number of Files
 /// @see AccSize:  Total size of all files
 /// @return  void
-
+MEMSPACE
 void fatfs_status(char *ptr)
 {
     long p2;
@@ -253,14 +314,14 @@ void fatfs_status(char *ptr)
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
-    myprintf("fatfs status:%s\n",ptr);
+    DEBUG_PRINTF("fatfs status:%s\n",ptr);
     res = f_getfree(ptr, (DWORD*)&p2, &fs);
     if (res)
     {
         put_rc(res);
         return;
     }
-    myprintf("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
+    DEBUG_PRINTF("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
         "Root DIR entries = %u\nSectors/FAT = %lu\nNumber of clusters = %lu\n"
         "FAT start (lba) = %lu\nDIR start (lba,clustor) = %lu\nData start (lba) = %lu\n\n...",
         ft[fs->fs_type & 3], (DWORD)fs->csize * 512, fs->n_fats,
@@ -274,7 +335,7 @@ void fatfs_status(char *ptr)
         put_rc(res);
         return;
     }
-    myprintf("\r%u files, %lu bytes.\n%u folders.\n"
+    DEBUG_PRINTF("\r%u files, %lu bytes.\n%u folders.\n"
         "%lu KB total disk space.\n%lu KB available.\n",
         AccFiles, AccSize, AccDirs,
         (fs->n_fatent - 2) * (fs->csize / 2), p2 * (fs->csize / 2)
@@ -293,27 +354,33 @@ void fatfs_status(char *ptr)
 ///
 /// @param[in] : FILINFO pointer
 /// @return  void
-
+MEMSPACE
 void fatfs_filinfo_list(FILINFO *info)
 {
+    char attrs[6];
+    int i;
     if(info->fname[0] == 0)
     {
-        myprintf("fatfs_filinfo_list: empty\n");
+        DEBUG_PRINTF("fatfs_filinfo_list: empty\n");
         return;
     }
-    myprintf("%c%c%c%c%c %u/%02u/%02u %02u:%02u %9lu %12s",
-        (info->fattrib & AM_DIR) ? 'D' : '-',
-        (info->fattrib & AM_RDO) ? 'R' : '-',
-        (info->fattrib & AM_HID) ? 'H' : '-',
-        (info->fattrib & AM_SYS) ? 'S' : '-',
-        (info->fattrib & AM_ARC) ? 'A' : '-',
+    attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
+    attrs[1] = (info->fattrib & AM_RDO) ? 'R' : '-';
+    attrs[2] = (info->fattrib & AM_HID) ? 'H' : '-';
+    attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
+    attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
+    attrs[5] = 0;
+    DEBUG_PRINTF("%s %u/%02u/%02u %02u:%02u %9lu %12s",
+        attrs,
         (info->fdate >> 9) + 1980, (info->fdate >> 5) & 15, info->fdate & 31,
         (info->ftime >> 11), (info->ftime >> 5) & 63,
         info->fsize, &(info->fname[0]));
 
 #if _USE_LFN
-    myprintf("  %s", info->lfname);
+    if(info->lfname)
+        DEBUG_PRINTF("  %s", info->lfname);
 #endif
 
-    myprintf("\n");
+    DEBUG_PRINTF("\n");
 }
+

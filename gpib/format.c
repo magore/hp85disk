@@ -26,7 +26,7 @@ FRESULT gpib_format_disk(char *name)
     char *buffer;
     extern VolumeDescriptionType VolumeDescription;
 
-    buffer = calloc(512+1,1);
+    buffer = safecalloc(512+1,1);
     if(!buffer)
     {
         return(FR_NOT_ENOUGH_CORE);

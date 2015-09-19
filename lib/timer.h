@@ -1,24 +1,32 @@
 /**
  @file lib/timer.h
 
- @brief High resolution timer library and user tasks for AVR8. 
+ @brief timer functions
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#include <hardware/cpu.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <hardware/hardware.h>
 #include <lib/time.h>
-#include <lib/timer_hal.h>
 
 ///@brief Number of user timer tasks
 #define MAX_TIMER_CNT 8
@@ -45,14 +53,13 @@ typedef struct
 #define CLOCK_TIC_US SYSTEM_TASK_TIC_US
 
 /* timer.c */
-void init_timers ( void );
-void execute_timers ( void );
-int set_timers ( void (*handler )(void ), int timer );
-int kill_timers ( int timer );
-void delete_all_timers ( void );
-void subtract_timespec ( ts_t *a , ts_t *b );
-char *ts_to_str ( ts_t *val );
-void display_ts ( ts_t *val );
-void clock_elapsed_begin ( void );
-void clock_elapsed_end ( char *msg );
+MEMSPACE int set_timers ( void (*handler )(void ), int timer );
+MEMSPACE int kill_timer ( int timer );
+MEMSPACE void delete_all_timers ( void );
+MEMSPACE void subtract_timespec ( ts_t *a , ts_t *b );
+MEMSPACE char *ts_to_str ( ts_t *val );
+MEMSPACE void display_ts ( ts_t *val );
+MEMSPACE void clock_elapsed_begin ( void );
+MEMSPACE void clock_elapsed_end ( char *msg );
+
 #endif                                            // _TIMER_H_

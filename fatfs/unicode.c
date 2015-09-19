@@ -1,16 +1,17 @@
 /**
- @file fatfs/option/unicode.c
+ @file fatfs/unicode.c
 
  @brief FatFS Unicode include file  R0.10b (C) ChaN, 2014.
  @par Copyright &copy; 2014 ChaN.
 
 */
 
-#include "../ff.h"
-
+#include "hardware/hardware.h"
+#include "ff.h"
 
 #if _USE_LFN != 0
 #if _CODE_PAGE == 437
+MEMSPACE
 WCHAR ff_convert (WCHAR wch, UINT dir)
 {
 	if (wch < 0x80) {
@@ -22,6 +23,7 @@ WCHAR ff_convert (WCHAR wch, UINT dir)
 	return 0;
 }
 
+MEMSPACE
 WCHAR ff_wtoupper (WCHAR wch)
 {
 	if (wch < 0x80) {

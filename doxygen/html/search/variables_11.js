@@ -6,7 +6,7 @@ var searchData=
   ['sect',['sect',['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR']]],
   ['sector',['sector',['../structDiskType.html#a6f0a12d4184ccb30a7a5e6e6e713ca85',1,'DiskType']]],
   ['sectors_5fper_5ftrack',['sectors_per_track',['../struct__disp__parm.html#a870887d0582245d0c35f34724180463c',1,'_disp_parm']]],
-  ['sjis2uni',['sjis2uni',['../cc932_8c.html#ae398d83d47562c988b302e92e23aa183',1,'cc932.c']]],
+  ['size',['size',['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t']]],
   ['spi0_5finit_5fstate',['SPI0_Init_state',['../spi_8c.html#a4d167d8fd3bcfa0504b201183b94449b',1,'spi.c']]],
   ['spi0_5fmode_5fvalue',['SPI0_Mode_value',['../spi_8c.html#ae41154cf3f834c2d151bfa9e67cfc402',1,'spi.c']]],
   ['spi0_5fspeed_5fvalue',['SPI0_Speed_value',['../spi_8c.html#a27ad9c881de03a6b8defda1bde93566f',1,'spi.c']]],

@@ -98,11 +98,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>POSIX time libraries for AVR8.  
+<p>Common Linux/POSIX time functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="cpu_8h_source.html">hardware/cpu.h</a>&gt;</code><br/>
-<code>#include &lt;stdio.h&gt;</code><br/>
-<code>#include &lt;stdlib.h&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="hardware_8h_source.html">hardware/hardware.h</a>&gt;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 </div>
 <p><a href="time_8h_source.html">Go to the source code of this file.</a></p>
@@ -156,18 +154,6 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a182d70e09e9436c9c8a2e81b7597f206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a182d70e09e9436c9c8a2e81b7597f206">clock_task</a> (void)</td></tr>
-<tr class="memdesc:a182d70e09e9436c9c8a2e81b7597f206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock task with nanonsecond resolution.  <a href="#a182d70e09e9436c9c8a2e81b7597f206">More...</a><br/></td></tr>
-<tr class="separator:a182d70e09e9436c9c8a2e81b7597f206"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa84c3231a44cdeb975166c14e0f3cc46"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#aa84c3231a44cdeb975166c14e0f3cc46">clock_gettime</a> (<a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a> clk_id, struct <a class="el" href="structtimespec.html">timespec</a> *ts)</td></tr>
-<tr class="memdesc:aa84c3231a44cdeb975166c14e0f3cc46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read clock time into struct timepec *ts - POSIX function.  <a href="#aa84c3231a44cdeb975166c14e0f3cc46">More...</a><br/></td></tr>
-<tr class="separator:aa84c3231a44cdeb975166c14e0f3cc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49d0147c5c0a6a7327541bfa7c694fe9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a49d0147c5c0a6a7327541bfa7c694fe9">clock_getres</a> (<a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a> clk_id, struct <a class="el" href="structtimespec.html">timespec</a> *res)</td></tr>
-<tr class="memdesc:a49d0147c5c0a6a7327541bfa7c694fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read clock time resolution into struct timepec *ts - POSIX function.  <a href="#a49d0147c5c0a6a7327541bfa7c694fe9">More...</a><br/></td></tr>
-<tr class="separator:a49d0147c5c0a6a7327541bfa7c694fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06e6a3be61597caf44d16026be04dfdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a06e6a3be61597caf44d16026be04dfdd">clock_clear</a> (void)</td></tr>
-<tr class="memdesc:a06e6a3be61597caf44d16026be04dfdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear time and timezone to 0.  <a href="#a06e6a3be61597caf44d16026be04dfdd">More...</a><br/></td></tr>
-<tr class="separator:a06e6a3be61597caf44d16026be04dfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69c4036704b8ae43c5f9ac9c8658a763"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a69c4036704b8ae43c5f9ac9c8658a763">tm_wday_to_ascii</a> (int i)</td></tr>
 <tr class="memdesc:a69c4036704b8ae43c5f9ac9c8658a763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get string Short name of day from day number.  <a href="#a69c4036704b8ae43c5f9ac9c8658a763">More...</a><br/></td></tr>
 <tr class="separator:a69c4036704b8ae43c5f9ac9c8658a763"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,19 +167,19 @@ Functions</h2></td></tr>
 <tr class="memdesc:a48f6c9170d63503123d5af4ae2639baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert tm_t structure as GMT time into seconds since 1900.  <a href="#a48f6c9170d63503123d5af4ae2639baf">More...</a><br/></td></tr>
 <tr class="separator:a48f6c9170d63503123d5af4ae2639baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01e2d64564b07a830b0fea0a9e829bed"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a01e2d64564b07a830b0fea0a9e829bed">asctime_r</a> (<a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *t, char *buf)</td></tr>
-<tr class="memdesc:a01e2d64564b07a830b0fea0a9e829bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf.  <a href="#a01e2d64564b07a830b0fea0a9e829bed">More...</a><br/></td></tr>
+<tr class="memdesc:a01e2d64564b07a830b0fea0a9e829bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf.  <a href="#a01e2d64564b07a830b0fea0a9e829bed">More...</a><br/></td></tr>
 <tr class="separator:a01e2d64564b07a830b0fea0a9e829bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68d13eb8dbfe6723ed9a8d6ee624f673"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a68d13eb8dbfe6723ed9a8d6ee624f673">asctime</a> (<a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *t)</td></tr>
-<tr class="memdesc:a68d13eb8dbfe6723ed9a8d6ee624f673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string.  <a href="#a68d13eb8dbfe6723ed9a8d6ee624f673">More...</a><br/></td></tr>
+<tr class="memdesc:a68d13eb8dbfe6723ed9a8d6ee624f673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string.  <a href="#a68d13eb8dbfe6723ed9a8d6ee624f673">More...</a><br/></td></tr>
 <tr class="separator:a68d13eb8dbfe6723ed9a8d6ee624f673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7075522b8be33803a89f6db2d757b21e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#a7075522b8be33803a89f6db2d757b21e">ctime_r</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *t, char *buf)</td></tr>
-<tr class="memdesc:a7075522b8be33803a89f6db2d757b21e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf.  <a href="#a7075522b8be33803a89f6db2d757b21e">More...</a><br/></td></tr>
+<tr class="memdesc:a7075522b8be33803a89f6db2d757b21e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf.  <a href="#a7075522b8be33803a89f6db2d757b21e">More...</a><br/></td></tr>
 <tr class="separator:a7075522b8be33803a89f6db2d757b21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa160c926bb33f6d7ba494634b26a6b8b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#aa160c926bb33f6d7ba494634b26a6b8b">ctime</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *tp)</td></tr>
-<tr class="memdesc:aa160c926bb33f6d7ba494634b26a6b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string __ctime_buf[].  <a href="#aa160c926bb33f6d7ba494634b26a6b8b">More...</a><br/></td></tr>
+<tr class="memdesc:aa160c926bb33f6d7ba494634b26a6b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string __ctime_buf[].  <a href="#aa160c926bb33f6d7ba494634b26a6b8b">More...</a><br/></td></tr>
 <tr class="separator:aa160c926bb33f6d7ba494634b26a6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6cfe97d57402658beaca8f14e4d546f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#aa6cfe97d57402658beaca8f14e4d546f">ctime_gm</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *tp)</td></tr>
-<tr class="memdesc:aa6cfe97d57402658beaca8f14e4d546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">GMT version of POSIX <a class="el" href="time_8c.html#aa160c926bb33f6d7ba494634b26a6b8b" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a>.  <a href="#aa6cfe97d57402658beaca8f14e4d546f">More...</a><br/></td></tr>
+<tr class="memdesc:aa6cfe97d57402658beaca8f14e4d546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">GMT version of POSIX <a class="el" href="time_8c.html#a77d6bba12950028852621634ffaf4835" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a>.  <a href="#aa6cfe97d57402658beaca8f14e4d546f">More...</a><br/></td></tr>
 <tr class="separator:aa6cfe97d57402658beaca8f14e4d546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfd43bc1e743aa21fe7f023a519b224c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8h.html#abfd43bc1e743aa21fe7f023a519b224c">gmtime_r</a> (<a class="el" href="posix_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *tp, <a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *result)</td></tr>
 <tr class="memdesc:abfd43bc1e743aa21fe7f023a519b224c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert epoch GMT time_t *tp into POSIX tm_t *result.  <a href="#abfd43bc1e743aa21fe7f023a519b224c">More...</a><br/></td></tr>
@@ -248,12 +234,12 @@ Variables</h2></td></tr>
 <tr class="separator:a9ac29ed71adf6807175d24ab1fa622a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>POSIX time libraries for AVR8. </p>
-<dl class="section user"><dt>Edit History</dt><dd><ul>
-<li>[1.0] [Mike Gore] Initial revision of file.</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
+<div class="textblock"><p>Common Linux/POSIX time functions. </p>
+<dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -267,7 +253,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00023">23</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00034">34</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -281,7 +267,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00024">24</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00035">35</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -295,9 +281,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00022">22</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00033">33</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00262">time_to_tm()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00204">time_to_tm()</a>.</p>
 
 </div>
 </div>
@@ -311,9 +297,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00021">21</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00032">32</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00262">time_to_tm()</a>, and <a class="el" href="time_8c_source.html#l00344">timegm()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00204">time_to_tm()</a>, and <a class="el" href="time_8c_source.html#l00287">timegm()</a>.</p>
 
 </div>
 </div>
@@ -330,7 +316,7 @@ Variables</h2></td></tr>
 
 <p>type of clockid_t. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00030">30</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00041">41</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +332,7 @@ Variables</h2></td></tr>
 
 <p>type of EPOCH result. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00027">27</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00038">38</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -362,7 +348,7 @@ Variables</h2></td></tr>
 
 <p>POSIX struct tm typedef. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00048">48</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00059">59</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -378,7 +364,7 @@ Variables</h2></td></tr>
 
 <p>POSIX timespec typedef. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00075">75</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00087">87</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +380,7 @@ Variables</h2></td></tr>
 
 <p>POSIX timeval typedef. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00057">57</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00069">69</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -410,7 +396,7 @@ Variables</h2></td></tr>
 
 <p>POSIX timezone typedef. </p>
 
-<p>Definition at line <a class="el" href="time_8h_source.html#l00066">66</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
+<p>Definition at line <a class="el" href="time_8h_source.html#l00078">78</a> of file <a class="el" href="time_8h_source.html">time.h</a>.</p>
 
 </div>
 </div>
@@ -429,20 +415,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string. </p>
+<p>Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>struct tm * time input.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>__ctime_buf[] string pointer in POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> format.<ul>
+<dl class="section return"><dt>Returns</dt><dd>__ctime_buf[] string pointer in POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> format.<ul>
 <li>Example output: "Thu Dec  8 21:45:05 EST 2011". </li>
 </ul>
 </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>result is overwritten on each call. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00431">431</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00376">376</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>.</p>
 
@@ -472,12 +458,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf. </p>
+<p>Convert tm_t *t structure into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000068">Todo:</a></b></dt><dd>implement strftime() and strptime() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>tm_t structure pointer. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>user buffer for POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string result.<ul>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buf</td><td>user buffer for POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string result.<ul>
 <li>Example output: "Thu Dec  8 21:45:05 EST 2011".</li>
 </ul>
 </td></tr>
@@ -486,126 +472,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>buf string pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00406">406</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00350">350</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00431">asctime()</a>, <a class="el" href="time_8c_source.html#l00456">ctime()</a>, <a class="el" href="time_8c_source.html#l00470">ctime_gm()</a>, and <a class="el" href="time_8c_source.html#l00444">ctime_r()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a06e6a3be61597caf44d16026be04dfdd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void clock_clear </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>clear time and timezone to 0. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a0e38ba6dd41a9999acda0d556620da44" title="Set system clock using seconds and nonoseconds - POSIX function. ">clock_settime()</a>. </dd>
-<dd>
-<a class="el" href="time_8c.html#a745066817406bf751ffc1ce5e20742aa" title="Set current timezone with struct timezone *tz - POSIX function. ">settimezone()</a>.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
-
-<p>Definition at line <a class="el" href="time_8c_source.html#l00093">93</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
-
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00029">init_timers()</a>, and <a class="el" href="main_8c_source.html#l00300">main()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a49d0147c5c0a6a7327541bfa7c694fe9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int clock_getres </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a>&#160;</td>
-          <td class="paramname"><em>clk_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
-          <td class="paramname"><em>res</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read clock time resolution into struct timepec *ts - POSIX function. </p>
-<ul>
-<li>Note: We ignore clk_id, and include low level counter offsets when available.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">clk_id</td><td>unused hardware clock index. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">res</td><td>timespec resolution result.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
-<dd>
--1 on error. </dd></dl>
-
-<p>Definition at line <a class="el" href="timer__hal_8c_source.html#l00141">141</a> of file <a class="el" href="timer__hal_8c_source.html">timer_hal.c</a>.</p>
-
-<p>Referenced by <a class="el" href="main_8c_source.html#l00300">main()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa84c3231a44cdeb975166c14e0f3cc46"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int clock_gettime </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="time_8h.html#afeece078c6706f33383bf11bbf584518">clockid_t</a>&#160;</td>
-          <td class="paramname"><em>clk_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
-          <td class="paramname"><em>ts</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read clock time into struct timepec *ts - POSIX function. </p>
-<ul>
-<li>Note: We ignore clk_id, and include low level counter offsets when available.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">clk_id</td><td>unused hardware clock index. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ts</td><td>timespec result.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
-<dd>
--1 on error. </dd></dl>
-<p>note: counter2 &lt; count1 implies ISR flag must be set </p>
-
-<p>Definition at line <a class="el" href="timer__hal_8c_source.html#l00082">82</a> of file <a class="el" href="timer__hal_8c_source.html">timer_hal.c</a>.</p>
-
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00196">clock_elapsed_begin()</a>, <a class="el" href="timer_8c_source.html#l00211">clock_elapsed_end()</a>, <a class="el" href="main_8c_source.html#l00194">display_time()</a>, <a class="el" href="time_8c_source.html#l00615">gettimeofday()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, and <a class="el" href="time_8c_source.html#l00636">time()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00376">asctime()</a>, <a class="el" href="time_8c_source.html#l00403">ctime()</a>, <a class="el" href="time_8c_source.html#l00418">ctime_gm()</a>, and <a class="el" href="time_8c_source.html#l00390">ctime_r()</a>.</p>
 
 </div>
 </div>
@@ -636,11 +505,11 @@ Variables</h2></td></tr>
 <p>Set system clock with seconds and microseconds. </p>
 <ul>
 <li>Note: Alternate clock functions. <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a0e38ba6dd41a9999acda0d556620da44" title="Set system clock using seconds and nonoseconds - POSIX function. ">clock_settime()</a>. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8h.html#a0e38ba6dd41a9999acda0d556620da44" title="Set system clock using seconds and nonoseconds - POSIX function. ">clock_settime()</a>. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00672">672</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00611">611</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -658,7 +527,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const struct <a class="el" href="structtimespec.html">timespec</a> *&#160;</td>
-          <td class="paramname"><em>tp</em>&#160;</td>
+          <td class="paramname"><em>ts</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -681,36 +550,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00571">571</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="timer__hal_8c_source.html#l00188">188</a> of file <a class="el" href="timer__hal_8c_source.html">timer_hal.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00672">clock_set()</a>, <a class="el" href="time_8c_source.html#l00708">setdate_r()</a>, <a class="el" href="time_8c_source.html#l00652">settimeofday()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a182d70e09e9436c9c8a2e81b7597f206"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void clock_task </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Clock task with nanonsecond resolution. </p>
-<ul>
-<li>Notes: CLOCK_TIC_NS computed from SYSTEM_HZ. <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="timer_8c.html#a67a27354654cf2a2169137adc7274def" title="Execute all user timers at SYSTEM_HZ rate. ">execute_timers()</a>. </dd></dl>
-</li>
-</ul>
-
-<p>Definition at line <a class="el" href="time_8c_source.html#l00034">34</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
-
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00029">init_timers()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00611">clock_set()</a>, <a class="el" href="time_8c_source.html#l00647">setdate_r()</a>, <a class="el" href="time_8c_source.html#l00590">settimeofday()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
 
 </div>
 </div>
@@ -728,7 +570,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string __ctime_buf[]. </p>
+<p>Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> string __ctime_buf[]. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">tp</td><td>time_t * time input.</td></tr>
@@ -740,7 +582,7 @@ Variables</h2></td></tr>
 </ul>
 </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00456">456</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00403">403</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -758,7 +600,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>GMT version of POSIX <a class="el" href="time_8c.html#aa160c926bb33f6d7ba494634b26a6b8b" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a>. </p>
+<p>GMT version of POSIX <a class="el" href="time_8c.html#a77d6bba12950028852621634ffaf4835" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">tp</td><td>time_t * time input.</td></tr>
@@ -769,12 +611,12 @@ Variables</h2></td></tr>
 <li>Example: "Thu Dec  8 21:45:05 EST 2011". </li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#aa160c926bb33f6d7ba494634b26a6b8b" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a77d6bba12950028852621634ffaf4835" title="Convert local time_t *t epoch time into POSIX asctime() string __ctime_buf[]. ">ctime()</a> </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>result is overwritten on each call. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00470">470</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00418">418</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="posix_8c_source.html#l01310">mctime()</a>.</p>
+<p>Referenced by <a class="el" href="posix_8c_source.html#l01647">mctime()</a>.</p>
 
 </div>
 </div>
@@ -802,7 +644,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a68d13eb8dbfe6723ed9a8d6ee624f673" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf. </p>
+<p>Convert local time_t *t epoch time into POSIX <a class="el" href="time_8c.html#a95735d85f13249a5b329308d27d1f3ee" title="Convert tm_t *t structure into POSIX asctime() ASCII string. ">asctime()</a> ASCII string *buf. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>time_t * time input. </td></tr>
@@ -815,7 +657,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>buf string pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00444">444</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00390">390</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -853,7 +695,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00615">615</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00551">551</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -880,9 +722,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00588">588</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00522">522</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00615">gettimeofday()</a>, <a class="el" href="time_8c_source.html#l00514">localtime_r()</a>, and <a class="el" href="time_8c_source.html#l00547">mktime()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00551">gettimeofday()</a>, <a class="el" href="time_8c_source.html#l00464">localtime_r()</a>, and <a class="el" href="time_8c_source.html#l00499">mktime()</a>.</p>
 
 </div>
 </div>
@@ -910,7 +752,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>tm_t t. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>result is overwritten on each call. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00500">500</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00449">449</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, and <a class="el" href="rtc_8c_source.html#l00111">rtc_init()</a>.</p>
 
@@ -950,9 +792,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>tm_t *result. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00485">485</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00434">434</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00500">gmtime()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00449">gmtime()</a>.</p>
 
 </div>
 </div>
@@ -980,9 +822,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>struct tm result. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>result is overwritten on each call. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00535">535</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00486">486</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00456">ctime()</a>, and <a class="el" href="time_8c_source.html#l00444">ctime_r()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00403">ctime()</a>, <a class="el" href="time_8c_source.html#l00390">ctime_r()</a>, and <a class="el" href="disk_8c_source.html#l00118">get_fattime()</a>.</p>
 
 </div>
 </div>
@@ -1020,9 +862,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00514">514</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00464">464</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00535">localtime()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00486">localtime()</a>.</p>
 
 </div>
 </div>
@@ -1048,7 +890,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00547">547</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00499">499</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -1075,7 +917,7 @@ Variables</h2></td></tr>
 <dd>
 -1 on error&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00690">690</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00629">629</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00236">task()</a>.</p>
 
@@ -1106,9 +948,9 @@ Variables</h2></td></tr>
 <dd>
 (-1) on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00708">708</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00647">647</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00690">setdate()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00629">setdate()</a>.</p>
 
 </div>
 </div>
@@ -1146,7 +988,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00652">652</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00590">590</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -1173,9 +1015,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00601">601</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00536">536</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00652">settimeofday()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00590">settimeofday()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
 
 </div>
 </div>
@@ -1204,11 +1046,11 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>time_t seconds from epoch. </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8h.html#aa84c3231a44cdeb975166c14e0f3cc46" title="Read clock time into struct timepec *ts - POSIX function. ">clock_gettime()</a>. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="timer__hal_8c.html#aa6e5b6a9c1fb8bc6e2093fca40600bf5" title="Generic clock_gettime() function WITHOUT high resolution. ">clock_gettime()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00636">636</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00573">573</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00183">gpib_timeout_set()</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00118">get_fattime()</a>, and <a class="el" href="gpib_8c_source.html#l00183">gpib_timeout_set()</a>.</p>
 
 </div>
 </div>
@@ -1263,15 +1105,15 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0: *t has result. </dd>
 <dd>
 -1: error.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#aa6cfe97d57402658beaca8f14e4d546f" title="GMT version of POSIX ctime(). ">ctime_gm()</a> </dd>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#acf34275ac6fb2f724205873402dc9f70" title="GMT version of POSIX ctime(). ">ctime_gm()</a> </dd>
 <dd>
-<a class="el" href="time_8c.html#abfd43bc1e743aa21fe7f023a519b224c" title="Convert epoch GMT time_t *tp into POSIX tm_t *result. ">gmtime_r()</a> </dd>
+<a class="el" href="time_8c.html#a546aeae1b99d8ab1e2d26a0a2ebd9d31" title="Convert epoch GMT time_t *tp into POSIX tm_t *result. ">gmtime_r()</a> </dd>
 <dd>
-<a class="el" href="time_8c.html#a8cb04aa91fa555b9665c0fc0b54b7cb0" title="Convert POSIX epoch time_t *tp into POSIX tm_t *result. ">localtime_r()</a> </dd></dl>
+<a class="el" href="time_8c.html#af05576742e2f8ad3924c02a6af70a86d" title="Convert POSIX epoch time_t *tp into POSIX tm_t *result. ">localtime_r()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00262">262</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00204">204</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00470">ctime_gm()</a>, <a class="el" href="time_8c_source.html#l00485">gmtime_r()</a>, and <a class="el" href="time_8c_source.html#l00514">localtime_r()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00418">ctime_gm()</a>, <a class="el" href="time_8c_source.html#l00434">gmtime_r()</a>, and <a class="el" href="time_8c_source.html#l00464">localtime_r()</a>.</p>
 
 </div>
 </div>
@@ -1295,17 +1137,17 @@ Variables</h2></td></tr>
 <li>Limits: year(1900..2199).</li>
 <li>Assume: epoch size is uint32_t time_t;</li>
 </ul>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a0bca45bac0f3b4bc8242c23ffcb169d0" title="Convert POSIX tm_t *t struct into POSIX epoch time in seconds with UTC offset adjustment. ">mktime()</a> POSIX function. </dd>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#aeafbe7f942ef85f85edbbe31e439372b" title="Convert POSIX tm_t *t struct into POSIX epoch time in seconds with UTC offset adjustment. ">mktime()</a> POSIX function. </dd>
 <dd>
-<a class="el" href="time_8c.html#a48f6c9170d63503123d5af4ae2639baf" title="Convert tm_t structure as GMT time into seconds since 1900. ">timegm()</a> POSIX function. </dd></dl>
+<a class="el" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5" title="Convert tm_t structure as GMT time into seconds since 1900. ">timegm()</a> POSIX function. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Seconds since EPOCH_YEAR Jan 1st. </dd>
 <dd>
 -1 on error. </dd></dl>
 <p>Note: To simplify we caculate Leap Day contributions in stages </p>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00344">344</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00287">287</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
-<p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>, <a class="el" href="posix_8c_source.html#l01122">fat_time_to_unix()</a>, <a class="el" href="time_8c_source.html#l00547">mktime()</a>, <a class="el" href="time_8c_source.html#l00708">setdate_r()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
+<p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>, <a class="el" href="posix_8c_source.html#l01451">fat_time_to_unix()</a>, <a class="el" href="time_8c_source.html#l00499">mktime()</a>, <a class="el" href="time_8c_source.html#l00647">setdate_r()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
 
 </div>
 </div>
@@ -1333,9 +1175,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>string pointer to month. </dd>
 <dd>
 "BAD" on error. </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a01e2d64564b07a830b0fea0a9e829bed" title="Convert tm_t *t structure into POSIX asctime() ASCII string *buf. ">asctime_r()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a" title="Convert tm_t *t structure into POSIX asctime() ASCII string *buf. ">asctime_r()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00162">162</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00100">100</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 <p>Referenced by <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>.</p>
 
@@ -1366,7 +1208,7 @@ Variables</h2></td></tr>
 <dd>
 "BAD" on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00136">136</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00073">73</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
 
 </div>
 </div>
@@ -1383,7 +1225,7 @@ Variables</h2></td></tr>
 
 <p>System Clock Time. </p>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00024">24</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="timer__hal_8c_source.html#l00032">32</a> of file <a class="el" href="timer__hal_8c_source.html">timer_hal.c</a>.</p>
 
 </div>
 </div>
@@ -1399,14 +1241,16 @@ Variables</h2></td></tr>
 
 <p>System Time Zone. </p>
 
-<p>Definition at line <a class="el" href="time_8c_source.html#l00027">27</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+<p>Definition at line <a class="el" href="time_8c_source.html#l00038">38</a> of file <a class="el" href="time_8c_source.html">time.c</a>.</p>
+
+<p>Referenced by <a class="el" href="timer__hal_8c_source.html#l00050">clock_clear()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:47:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

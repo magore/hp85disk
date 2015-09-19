@@ -90,7 +90,7 @@ void ppr_set(uint8_t mask)
 
     _soft_ppr_reg = reverse_8bits(mask);
 #else                                         // SOFTWARE_PP
-    SPI0_WriteReadByte(_ppr_reg);
+    SPI0_TXRX_Byte(_ppr_reg);
     GPIB_IO_HI(PPE);
     GPIB_IO_LOW(PPE);
 #endif                                        // ifndef SOFTWARE_PP

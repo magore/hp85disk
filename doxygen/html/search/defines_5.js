@@ -1,7 +1,7 @@
 var searchData=
 [
   ['enter_5fff',['ENTER_FF',['../ff_8c.html#a458e336ac53f8249ed02d844469b7076',1,'ff.c']]],
-  ['eof',['EOF',['../ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'ff.h']]],
+  ['eof',['EOF',['../ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;ff.h'],['../posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;posix.h']]],
   ['eoi_5fflag',['EOI_FLAG',['../gpib_8h.html#ab6e601afadf8d274d9d341323a5c6a3e',1,'gpib.h']]],
   ['epoch',['EPOCH',['../time_8h.html#a0ac447c7f69530e0caadc891c59d7244',1,'time.h']]],
   ['epoch_5f2000',['EPOCH_2000',['../time_8h.html#a68d645790f023c139b736dd48f0c90bf',1,'time.h']]],

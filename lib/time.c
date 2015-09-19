@@ -1,104 +1,41 @@
 /**
  @file lib/time.c
 
- @brief POSIX time libraries for AVR8.
+ @brief Common Linux/POSIX time functions
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par You are free to use this code under the terms of GPL
+   please retain a copy of this notice in any code you use it in.
 
+This is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 #include <hardware/cpu.h>
-#include <stdio.h>
+//#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define HAVE_HIRES_TIMER /*< We can read a high resolution hardware timer */
 
 #include <lib/timer_hal.h>
 #include <lib/time.h>
 
 /// @brief  System Clock Time
-volatile ts_t __clock;
+extern volatile ts_t __clock;
 
 /// @brief  System Time Zone
 tz_t __tzone;
-
-/// @brief  Clock task with nanonsecond resolution.
-///
-/// - Notes: CLOCK_TIC_NS computed from SYSTEM_HZ.
-/// @return  void.
-/// @see execute_timers().
-void clock_task()
-{
-    cli();
-
-    __clock.tv_nsec += CLOCK_TIC_NS;
-
-    if(__clock.tv_nsec >= 1000000000L)
-    {
-        __clock.tv_nsec -= 1000000000L;
-        ++__clock.tv_sec;
-    }
-    sei();
-}
-
-
-#ifndef HAVE_HIRES_TIMER
-/// @brief  Read clock time into struct timepec *ts.
-///
-/// - Note: We ignore clk_id, and include low level counter offsets when available.
-///
-/// @param[in] clk_id: Hardware timer index used when there are more then one.
-/// @param[out] ts:	timesepc result.
-///
-/// @return 0
-int clock_gettime(clockid_t clk_id, struct timespec *ts)
-{
-    cli();
-
-    ts->tv_sec = __clock.tv_sec;
-    ts->tv_nsec = __clock.tv_nsec;
-
-    sei();
-
-    return(0);
-}
-
-
-/// @brief  Read system clock resolution in seconds and nanoseconds.
-///
-/// - Note: We ignore clk_id for now.
-///
-/// @param[in] clk_id: Hardware timer index used when there are more then one.
-/// @param[out] ts:	timesepc result.
-///
-/// @return  0.
-int clock_getres(clockid_t clk_id, struct timespec *res)
-{
-    res->tv_sec = 0;
-    res->tv_nsec = SYSTEM_TASK_TIC_NS;
-    return(0);
-}
-#endif                                            // TIME_HIRES
-
-/// @brief  clear time and timezone to 0.
-///
-/// @see clock_settime().
-/// @see settimezone().
-///
-/// @return  void.
-void clock_clear()
-{
-    cli();
-    __clock.tv_sec = 0;
-    __clock.tv_nsec = 0;
-    __tzone.tz_minuteswest = 0;
-    __tzone.tz_dsttime = 0;
-    sei();
-}
 
 
 ///@brief accumulated days to the start of a month in a year.
@@ -159,6 +96,7 @@ const char *__Month[]= \
 /// @return string pointer to month.
 /// @return "BAD" on error.
 /// @see asctime_r()
+MEMSPACE
 char *tm_mon_to_ascii(int i)
 {
     if(i >= 0 && i <= 11)
@@ -179,6 +117,7 @@ char *tm_mon_to_ascii(int i)
 /// @see ctime_gm() 
 /// @see gmtime_r() 
 /// @see localtime_r()
+MEMSPACE
 static int IS_Leap(int year)
 {
 /// @return return
@@ -205,6 +144,7 @@ static int IS_Leap(int year)
 /// @see ctime_gm() 
 /// @see gmtime_r() 
 /// @see localtime_r()
+MEMSPACE
 static int Leap_Days_Since_1900(int year)
 {
     int sum;
@@ -236,6 +176,7 @@ static int Leap_Days_Since_1900(int year)
 /// @see ctime_gm() 
 /// @see gmtime_r() 
 /// @see localtime_r()
+MEMSPACE
 static int Days_Per_Year(int year)
 {
     return(IS_Leap(year) ? 366 : 365);
@@ -259,6 +200,7 @@ static int Days_Per_Year(int year)
 /// @see gmtime_r() 
 /// @see localtime_r()
 
+MEMSPACE
 int time_to_tm(time_t epoch, int32_t offset, tm_t *t)
 {
     int year,month,tmp;
@@ -341,6 +283,7 @@ int time_to_tm(time_t epoch, int32_t offset, tm_t *t)
 /// @see timegm() POSIX function.
 /// @return Seconds since EPOCH_YEAR Jan 1st.
 /// @return -1 on error.
+MEMSPACE
 time_t timegm( tm_t *t )
 {
     time_t days,seconds;
@@ -403,6 +346,7 @@ time_t timegm( tm_t *t )
 /// - Example output: "Thu Dec  8 21:45:05 EST 2011".
 ///
 /// @return buf string pointer.
+MEMSPACE
 char *asctime_r(tm_t *t, char *buf)
 {
     mysprintf(buf,"%s %s %2d %02d:%02d:%02d %4d",
@@ -428,6 +372,7 @@ static char __ctime_buf[32];
 /// @return __ctime_buf[] string pointer in POSIX asctime() format.
 /// - Example output: "Thu Dec  8 21:45:05 EST 2011".
 /// @warning result is overwritten on each call.
+MEMSPACE
 char *asctime(tm_t *t)
 {
     return( asctime_r(t,__ctime_buf) );
@@ -441,6 +386,7 @@ char *asctime(tm_t *t)
 ///  - Example output: "Thu Dec  8 21:45:05 EST 2011"
 ///
 /// @return  buf string pointer.
+MEMSPACE
 char *ctime_r(time_t *t, char *buf)
 {
     return( asctime_r(localtime(t),buf) );
@@ -453,6 +399,7 @@ char *ctime_r(time_t *t, char *buf)
 ///
 /// @return  __ctime_buf[].
 ///  - Example: "Thu Dec  8 21:45:05 EST 2011".
+MEMSPACE
 char *ctime(time_t *tp)
 {
     return( asctime_r( localtime(tp),__ctime_buf ) );
@@ -467,6 +414,7 @@ char *ctime(time_t *tp)
 ///  - Example: "Thu Dec  8 21:45:05 EST 2011".
 /// @see ctime()
 /// @warning result is overwritten on each call.
+MEMSPACE
 char *ctime_gm(time_t *tp)
 {
     time_t epoch = *tp;
@@ -482,6 +430,7 @@ char *ctime_gm(time_t *tp)
 /// @param[out] result: tm_t *result.
 ///
 /// @return tm_t *result.
+MEMSPACE
 tm_t *gmtime_r(time_t *tp, tm_t *result)
 {
     time_t epoch = *tp;
@@ -496,7 +445,7 @@ tm_t *gmtime_r(time_t *tp, tm_t *result)
 ///
 /// @return tm_t t.
 /// @warning result is overwritten on each call.
-
+MEMSPACE
 tm_t *gmtime(time_t *tp)
 {
     static tm_t t;
@@ -511,6 +460,7 @@ tm_t *gmtime(time_t *tp)
 /// @param[out] result: tm_t *result.
 ///
 /// @return result.
+MEMSPACE
 tm_t *localtime_r(time_t *t, tm_t *result)
 {
     tz_t tz;
@@ -532,6 +482,7 @@ tm_t *localtime_r(time_t *t, tm_t *result)
 ///
 /// @return struct tm result.
 /// @warning result is overwritten on each call.
+MEMSPACE
 tm_t *localtime(time_t *tp)
 {
     static struct tm t;
@@ -544,6 +495,7 @@ tm_t *localtime(time_t *tp)
 /// @param[in] t: time_t * epoch time input.
 ///
 // @return time_t epoch time.
+MEMSPACE
 time_t mktime(tm_t *t)
 {
 
@@ -561,30 +513,12 @@ time_t mktime(tm_t *t)
 }
 
 
-/// @brief Set system clock using seconds and nonoseconds - POSIX function.
-///
-/// @param[in] clk_id: Hardware timer index used when there are more then one.
-///  - Note: We ignore clk_id for now.
-/// @param[in] tp: struct timespec input.
-///
-/// @return 0.
-int clock_settime(clockid_t clk_id, const struct timespec *tp)
-{
-    cli();
-
-    __clock.tv_sec = tp->tv_sec;
-    __clock.tv_nsec = tp->tv_nsec;
-
-    sei();
-    return(0);
-}
-
-
 /// @brief Get current timezone in struct timezone *tz - POSIX function.
 ///
 /// @param[out] tz: timezone result.
 ///
 /// @return  0
+MEMSPACE
 int gettimezone(tz_t *tz)
 {
     tz->tz_minuteswest = __tzone.tz_minuteswest;
@@ -598,6 +532,7 @@ int gettimezone(tz_t *tz)
 /// @param[in] tz: timezone result.
 ///
 /// @return 0.
+MEMSPACE
 int settimezone(tz_t *tz)
 {
     __tzone.tz_minuteswest = tz->tz_minuteswest;
@@ -612,6 +547,7 @@ int settimezone(tz_t *tz)
 /// @param[in] tz: timezone.
 ///
 /// @return  0
+MEMSPACE
 int gettimeofday(tv_t *tv, tz_t *tz)
 {
 
@@ -633,6 +569,7 @@ int gettimeofday(tv_t *tv, tz_t *tz)
 ///   - Notes:  If t is non-NULL, store the return value there also.
 /// @return time_t seconds from epoch.
 /// @see clock_gettime().
+MEMSPACE
 time_t time(time_t *t)
 {
     ts_t ts;
@@ -649,6 +586,7 @@ time_t time(time_t *t)
 /// @param[in] tz: timezone.
 ///
 /// @return  0
+MEMSPACE
 int settimeofday(tv_t *tv, tz_t *tz)
 {
     ts_t ts;
@@ -669,6 +607,7 @@ int settimeofday(tv_t *tv, tz_t *tz)
 /// - Note: Alternate clock functions.
 /// @return void.
 /// @see clock_settime().
+MEMSPACE
 void clock_set(uint32_t seconds, uint32_t us)
 {
     ts_t ts;
@@ -686,13 +625,13 @@ void clock_set(uint32_t seconds, uint32_t us)
 ///
 ///@return 0 on success.
 ///@return -1 on error>
-
+MEMSPACE
 int setdate (void)
 {
     char buf[40];
 	extern void get_line (char *buff, int len);
 
-    myprintf("Enter date YYYY MM DD HH:MM:SS >");
+    DEBUG_PRINTF("Enter date YYYY MM DD HH:MM:SS >");
     get_line(buf,40);
 
 	return(setdate_r(buf));
@@ -704,7 +643,7 @@ int setdate (void)
 ///
 ///@return 0 on success.
 ///@return(-1) on error.
-
+MEMSPACE
 int setdate_r (char *buf)
 {
     tm_t tm;
@@ -714,6 +653,28 @@ int setdate_r (char *buf)
     tm.tm_year=tm.tm_mon=tm.tm_mday=tm.tm_hour=tm.tm_min=tm.tm_sec=0;
 
 
+#ifndef SCANF
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_year = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_mon = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_mday = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_hour = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_min = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+    tm.tm_sec = strtol(buf,&buf,10);
+    while(*buf && *buf < '0' && *buf > '9')
+        ++buf;
+#else
     sscanf(buf,"%d %d %d %d:%d:%d",
         &tm.tm_year,
         &tm.tm_mon,
@@ -721,9 +682,11 @@ int setdate_r (char *buf)
         &tm.tm_hour,
         &tm.tm_min,
         &tm.tm_sec);
+#endif
+
 
 #if 0
-    myprintf("%4d %2d %2d %02d:%02d:%02d\n",
+    DEBUG_PRINTF("%4d %2d %2d %02d:%02d:%02d\n",
         tm.tm_year,
         tm.tm_mon,
         tm.tm_mday,
@@ -736,29 +699,29 @@ int setdate_r (char *buf)
 
     if(tm.tm_year < 1970 || tm.tm_year > 2038)
     {
-        myprintf("invalid year: %d\n",tm.tm_year);
+        DEBUG_PRINTF("invalid year: %d\n",tm.tm_year);
         return(-1);
     }
     if(tm.tm_year >= 1900)
         tm.tm_year -= 1900;
     if(tm.tm_mon < 0 || tm.tm_mon > 11)
     {
-        myprintf("invalid mon: %d\n",tm.tm_year);
+        DEBUG_PRINTF("invalid mon: %d\n",tm.tm_year);
         return(-1);
     }
     if(tm.tm_mday < 1 || tm.tm_mday > 31)
     {
-        myprintf("invalid day: %d\n",tm.tm_mday);
+        DEBUG_PRINTF("invalid day: %d\n",tm.tm_mday);
         return(-1);
     }
     if(tm.tm_hour < 0 || tm.tm_hour > 23)
     {
-        myprintf("invalid hour: %d\n",tm.tm_hour);
+        DEBUG_PRINTF("invalid hour: %d\n",tm.tm_hour);
         return(-1);
     }
     if(tm.tm_min < 0 || tm.tm_min > 59)
     {
-        myprintf("invalid min: %d\n",tm.tm_min);
+        DEBUG_PRINTF("invalid min: %d\n",tm.tm_min);
         return(-1);
     }
 
@@ -768,10 +731,12 @@ int setdate_r (char *buf)
     ts.tv_nsec = 0L;
     clock_settime(0, (ts_t *) &ts);
 
+#ifdef RTC
     if( !rtc_init(1, (time_t) seconds ) )
     {
-        myprintf("rtc force init failed\n");
+        DEBUG_PRINTF("rtc force init failed\n");
         return(-1);
     }
+#endif
     return(0);
 }

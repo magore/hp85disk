@@ -14,6 +14,13 @@
 #define _HARDWARE_H_
 
 
+#define MEMSPACE /**/
+#define LOCAL static
+#define SYSTEM_TASK_HZ 1000L
+
+#define MMC_SLOW 250000L
+#define MMC_FAST 2500000L
+
 #if !defined(F_CPU)
 #error F_CPU undefined
 #endif
@@ -31,8 +38,10 @@
 
 #include "lib/util.h"
 #include "lib/time.h"
-#include "hardware/rtc.h"
 #include "lib/timer.h"
+#include "lib/timer_hal.h"
+#include "lib/queue.h"
+#include "hardware/rtc.h"
 
 #include "fatfs/integer.h"
 #include "fatfs/ffconf.h"
@@ -42,15 +51,15 @@
 #include "fatfs/mmc_hal.h"
 #include "fatfs/mmc.h"
 #include "fatfs/posix.h"
-#include "fatfs/fatfs_tests.h"
 #include "fatfs/fatfs_utils.h"
 
 #ifndef myprintf
+#define DEBUG_PRINTF(format, args...) printf_P(PSTR(format), ##args)
 #define myprintf(format, args...) printf_P(PSTR(format), ##args)
 #endif
 
-#ifndef myfprintf
-#define myfprintf(f, format, args...) fprintf_P(f, PSTR(format), ##args)
+#ifndef mysnprintf
+#define mysnprintf(s, size, format, args...) snprintf_P(s, size, PSTR(format), ##args)
 #endif
 
 #ifndef mysprintf

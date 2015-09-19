@@ -18,6 +18,51 @@
 #include <stdlib.h>
 #include "spi.h"
 
+#if 0
+// Work in progress for device sharing
+void GPIO_OUTPUT_SET(int pin, int level);
+{
+	if(pin == MMC_CS)
+	{
+		if(!level)
+			IO_LOW(MMC_CS);
+		else
+			IO_HI(MMC_CS);
+	}
+}
+
+/// @brief hspi CS cached value
+uint8_t _cs_pin = 0xff;
+/// @brief HSPI CS enable function
+/// @param[in] cs: GPIO CS pin
+void SPI0_cs_enable(uint8_t cs)
+{
+    if(_cs_pin != 0xff)
+    { 
+        // This implies a bug!
+        DEBUG_PRINTF("CS enable was:%d\n", 0xff & _cs_pin);
+    }
+    GPIO_OUTPUT_SET(cs, 0);
+    _cs_pin = cs;
+} 
+  
+/// @brief HSPI CS disable function
+/// @param[in] cs: GPIO CS pin
+void SPI0_cs_disable(uint8_t cs)
+{ 
+    if(_cs_pin != cs && _cs_pin != 0xff )
+    {
+        // This implies a bug!
+        DEBUG_PRINTF("CS disable was:%d\n", 0xff & _cs_pin);
+    }
+    GPIO_OUTPUT_SET(cs, 1);
+    _cs_pin = 0xff;
+}
+#endif
+
+static int _SPI0_init_done = 0;
+
+
 ///@brief Saved SPI bus speed
 static uint32_t SPI0_Speed_value = 0;
 
@@ -48,6 +93,12 @@ void SPI0_Speed(uint32_t speed)
     uint32_t rate;
 
 // Computer Prescale rate - truncate.
+
+#if 1
+    // We only make changes if the speed actually changes
+    if(speed == SPI0_Speed_value)
+        return;
+#endif
 
     rate = ((uint32_t) F_CPU) / speed;
 
@@ -178,7 +229,7 @@ static int SPI0_Init_state = 0;
 ///@brief Initialize SPI0 device.
 ///
 /// - Set default speed, IO pins and mode.
-void SPI0_Init(void)
+void SPI0_Init(uint32_t speed)
 {
 
     IO_HI(SS);                                    // SS Output HI
@@ -192,8 +243,8 @@ void SPI0_Init(void)
     BIT_SET(SPCR, MSTR);                          // Master Mode
 
     SPI0_Mode(0);
-    SPI0_Speed(F_CPU);
-    SPI0_WriteReadByte(0xff);
+    SPI0_Speed(speed);
+    SPI0_TXRX_Byte(0xff);
 	SPI0_Init_state = 1;
 }
 
@@ -206,7 +257,7 @@ void SPI0_Init(void)
 /// @param[in] Data: Data to send.
 ///
 /// @return  Data received.
-uint8_t SPI0_WriteReadByte(uint8_t Data)
+uint8_t SPI0_TXRX_Byte(uint8_t Data)
 {
     SPDR = Data;                                  // Transmit
 
@@ -215,3 +266,56 @@ uint8_t SPI0_WriteReadByte(uint8_t Data)
 
     return (SPDR);                                // Received Data
 }
+
+
+/// =================================================================
+/// @brief
+/// SPI buffered write functions
+
+/// @brief HSPI write using FIFO
+/// @param[in] *data: transmit buffer
+/// @param[in] count: number of bytes to write
+/// @return  void
+void SPI0_TX(uint8_t *data, int count)
+{
+
+    while(count > 0)
+    {
+		SPI0_TXRX_Byte(*data);
+		++data;
+		--count;
+	}
+}
+
+/// @brief HSPI write and read using FIFO
+/// @param[in] *data: transmit / receive buffer
+/// @param[in] count: number of bytes to write / read
+/// @return  void
+
+void SPI0_TXRX(uint8_t *data, int count)
+{
+
+    while(count > 0)
+    {
+		*data = SPI0_TXRX_Byte(*data);
+		++data;
+		--count;
+	}
+}
+
+/// @brief HSPI read using FIFO
+/// @param[in] *data: receive buffer
+/// @param[in] count: number of bytes to read
+/// @return  void
+void SPI0_RX(uint8_t *data, int count)
+{
+
+    while(count > 0)
+    {
+		*data = SPI0_TXRX_Byte(0xff);
+		++data;
+		--count;
+	}
+}
+
+

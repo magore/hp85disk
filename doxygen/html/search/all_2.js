@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['baseext',['baseext',['../posix_8c.html#aac945d4ed76d1c28c924af377f2e4b44',1,'baseext(char *str):&#160;posix.c'],['../posix_8h.html#aac945d4ed76d1c28c924af377f2e4b44',1,'baseext(char *str):&#160;posix.c']]],
-  ['basename',['basename',['../posix_8c.html#a817969c4fe20a121e99fda658e88fbc7',1,'basename(char *str):&#160;posix.c'],['../posix_8h.html#a817969c4fe20a121e99fda658e88fbc7',1,'basename(char *str):&#160;posix.c']]],
+  ['baseext',['baseext',['../posix_8c.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c'],['../posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c']]],
+  ['basename',['basename',['../posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c'],['../posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c']]],
   ['bcdtobin',['BCDtoBIN',['../rtc_8c.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c']]],
   ['bintobcd',['BINtoBCD',['../rtc_8c.html#a221016815913bd1b20c9b619900b40b8',1,'BINtoBCD(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a221016815913bd1b20c9b619900b40b8',1,'BINtoBCD(uint8_t data):&#160;rtc.c']]],
   ['bit0',['BIT0',['../bits_8h.html#ad4d43f8748b542bce39e18790f845ecc',1,'bits.h']]],
@@ -58,8 +58,9 @@ var searchData=
   ['bs_5fvolid32',['BS_VolID32',['../ff_8c.html#abaa3aafdcf5e83f8cb7e2bb373b13525',1,'ff.c']]],
   ['bs_5fvollab',['BS_VolLab',['../ff_8c.html#a28498ba4b07ff90aaa9628e81fb89d32',1,'ff.c']]],
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
-  ['buf',['buf',['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct__plot.html#ad7907cd2e279a361e68160bae8106ae4',1,'_plot::buf()']]],
+  ['buf',['buf',['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct__plot.html#ad7907cd2e279a361e68160bae8106ae4',1,'_plot::buf()'],['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()']]],
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
+  ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
   ['bytes_5fper_5fsector',['bytes_per_sector',['../struct__disp__parm.html#ad575790e79a6bdf19bffcb8dda1df180',1,'_disp_parm']]]
 ];

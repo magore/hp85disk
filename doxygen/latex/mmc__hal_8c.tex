@@ -1,163 +1,131 @@
 \hypertarget{mmc__hal_8c}{\section{fatfs/mmc\-\_\-hal.c File Reference}
 \label{mmc__hal_8c}\index{fatfs/mmc\-\_\-hal.\-c@{fatfs/mmc\-\_\-hal.\-c}}
 }
-
-
-M\-M\-C Hardware Layer for Fat\-Fs.  
-
-
 {\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}mmc\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}disk.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ff.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mmc\-\_\-hal.\-h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{mmc__hal_8c_a39e43f6e6b8c7bc166e27b7471369df9}{mmc\-\_\-install\-\_\-timer} (void)
-\begin{DoxyCompactList}\small\item\em Install M\-M\-C timer task\-: \hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task()} \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_adb1cbf0a5ae766b038740c9538497724}{mmc\-\_\-set\-\_\-ms\-\_\-timeout} (int16\-\_\-t ms)
+\hyperlink{hardware_8h_a3758dd5d300a594312c95bc393378df0}{L\-O\-C\-A\-L} void \hyperlink{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}{mmc\-\_\-task} (void)
+\begin{DoxyCompactList}\small\item\em 1000\-H\-Z timer task \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a35434a6e722b07d8fee213c2256391be}{mmc\-\_\-install\-\_\-timer} (void)
+\begin{DoxyCompactList}\small\item\em Install M\-M\-C timer task\-: \hyperlink{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}{mmc\-\_\-task()} \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_ae417c25675099d771b870e525cd7b124}{mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer} (const uint8\-\_\-t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em S\-P\-I write buffer. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a4ffe99e5651f10c46f3babc9325ef82f}{mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer} (const uint8\-\_\-t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em S\-P\-I read buffer. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t \hyperlink{mmc__hal_8c_a956fa7728bcad091ae868b8c0a4a7a8a}{mmc\-\_\-spi\-\_\-\-R\-X} ()
+\begin{DoxyCompactList}\small\item\em S\-P\-I read 1 byte. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_acb7cc45118bb7683c9950e0f35f252ce}{mmc\-\_\-spi\-\_\-\-T\-X} (uint8\-\_\-t data)
+\begin{DoxyCompactList}\small\item\em S\-P\-I write 1 byte. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t \hyperlink{mmc__hal_8c_aef3ff7459eeb9454068bd884c5dcb951}{mmc\-\_\-spi\-\_\-\-T\-X\-R\-X} (uint8\-\_\-t data)
+\begin{DoxyCompactList}\small\item\em S\-P\-I read and write 1 byte. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a95af3dbb0e5e0a16710138786c29fb4f}{mmc\-\_\-set\-\_\-ms\-\_\-timeout} (uint16\-\_\-t ms)
 \begin{DoxyCompactList}\small\item\em Set M\-M\-C timeout timer in Milliseconds. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_ac2daa4c68686d419b1fb7a93df3847a9}{mmc\-\_\-set\-\_\-us\-\_\-timeout} (int32\-\_\-t us)
-\begin{DoxyCompactList}\small\item\em See M\-M\-C timeout timer in Microseconds. \end{DoxyCompactList}\item 
-int \hyperlink{mmc__hal_8c_a21da90d8f30005eb90574a029a6fc81d}{mmc\-\_\-test\-\_\-timeout} (void)
-\begin{DoxyCompactList}\small\item\em Test M\-M\-C timeout status. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a84ab2ed27e7b0751183feb6c89a4f931}{mmc\-\_\-clear\-\_\-timeout} (void)
-\begin{DoxyCompactList}\small\item\em Clear/\-Initialize M\-M\-C timeout value. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task} (void)
-\begin{DoxyCompactList}\small\item\em This function is called every M\-M\-C\-\_\-\-T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-U\-S. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{mmc__hal_8c_a7c4051db12b5a8afc9bb71b62e50af32}{mmc\-\_\-xchg\-\_\-spi} (uint8\-\_\-t a)
-\begin{DoxyCompactList}\small\item\em M\-M\-C S\-P\-I send and receive character. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_ae9d8b33ee8fd54f03d5d6946d6022df9}{mmc\-\_\-spi\-\_\-init} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc__hal_8c_a7383533f1b6630ff4f0337f400b4b62e}{mmc\-\_\-test\-\_\-timeout} ()
+\begin{DoxyCompactList}\small\item\em Wait for timeout. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc__hal_8c_ad417477e66c88b40dcce683fd6a5c47a}{mmc\-\_\-init} (int verbose)
+\begin{DoxyCompactList}\small\item\em Initialize M\-M\-C and Fat\-Fs interface, display diagnostics. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a7c8d13c34124d4ef83ecabc43fbdb8ad}{mmc\-\_\-spi\-\_\-init} (int32\-\_\-t clock)
 \begin{DoxyCompactList}\small\item\em M\-M\-C S\-P\-I bus init. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a120c1501f6694e4947cb37f09679dda9}{mmc\-\_\-slow} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a4917b89a10f620f9180300d66da47eaf}{mmc\-\_\-slow} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C set slow S\-P\-I bus speed. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a7d41efb1efa51ca4c815ee275553ecae}{mmc\-\_\-fast} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_ac88d1a5c7d4f0af4ba7098a1bd2b16cc}{mmc\-\_\-fast} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C fast S\-P\-I bus speed. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_ac211d02032f178f2391e233397bde391}{mmc\-\_\-power\-\_\-on} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a5ebdcf7dd5b0f47163d20481a5d09e00}{mmc\-\_\-power\-\_\-on} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C power O\-N initialize. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a4fadc872519a4c0ffa09247a0f65523b}{mmc\-\_\-power\-\_\-off} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_af1357b405b44e70bd22a537e67fc56db}{mmc\-\_\-power\-\_\-off} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C power off. \end{DoxyCompactList}\item 
-int \hyperlink{mmc__hal_8c_a7883cbf41fbdaad282d75a3de93d0224}{mmc\-\_\-power\-\_\-status} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc__hal_8c_acaafea0f53c39fef76a64ad38fc4ab32}{mmc\-\_\-power\-\_\-status} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C power status. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a75bf39ed652aa5f34bc0a4b6a10b9f21}{mmc\-\_\-cs\-\_\-enable} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_aa0121936f2f6768804e7bec7e56a7443}{mmc\-\_\-cs\-\_\-enable} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C C\-S enable. \end{DoxyCompactList}\item 
-void \hyperlink{mmc__hal_8c_a7d29ab480325257aad2004f7fa341baf}{mmc\-\_\-cs\-\_\-disable} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc__hal_8c_a76d0a8b74006ab56206e361ee9f0a5a2}{mmc\-\_\-cs\-\_\-disable} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C C\-S disable. \end{DoxyCompactList}\item 
-int \hyperlink{mmc__hal_8c_ab7da280dcb0a47bcbb21bc8a79c607f8}{mmc\-\_\-ins\-\_\-status} ()
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc__hal_8c_a76337667431fa723bc6d50503a52f8e0}{mmc\-\_\-ins\-\_\-status} ()
 \begin{DoxyCompactList}\small\item\em M\-M\-C Card Inserted status. \end{DoxyCompactList}\item 
-int \hyperlink{mmc__hal_8c_a4ffa13ede463950ddb818c9ef623538f}{mmc\-\_\-wp\-\_\-status} ()
-\begin{DoxyCompactList}\small\item\em M\-M\-C Card Write Protect status. \end{DoxyCompactList}\item 
-int \hyperlink{mmc__hal_8c_a2495ace2b776ad3746061014ed748bc4}{mmc\-\_\-init} (int cold)
-\begin{DoxyCompactList}\small\item\em Initialize M\-M\-C and Fat\-Fs interface, display diagnostics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc__hal_8c_acbc9faece423623a86f62b50ac59b312}{mmc\-\_\-wp\-\_\-status} ()
+\begin{DoxyCompactList}\small\item\em M\-M\-C Card Write Protect status. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-volatile int32\-\_\-t \hyperlink{mmc__hal_8c_ab6838b44b2b3eba0ded1e5196026fd59}{mmc\-\_\-us\-\_\-timeout}
-\begin{DoxyCompactList}\small\item\em M\-M\-C timer tic in Microseconds. \end{DoxyCompactList}\item 
-static int32\-\_\-t \hyperlink{mmc__hal_8c_a071dea3cf3cdd93a412bc3a58998799d}{\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer}
-\begin{DoxyCompactList}\small\item\em M\-M\-C Microsecond accumulator for \hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task()} \end{DoxyCompactList}\item 
 \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc__hal_8c_a5e05b0c3f7ba56fa9c23be08c497eb9f}{Stat}
-\begin{DoxyCompactList}\small\item\em M\-M\-C Fat\-Fs insert,write protect status. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em M\-M\-C timer tic in Microseconds. \end{DoxyCompactList}\item 
+volatile int32\-\_\-t \hyperlink{mmc__hal_8c_ab6838b44b2b3eba0ded1e5196026fd59}{mmc\-\_\-us\-\_\-timeout}
+\begin{DoxyCompactList}\small\item\em M\-M\-C timeout timer used to detect timeout error conditions. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{mmc__hal_8c_abf71973875545f3b42702ac99d5d87ef}{\-\_\-mmc\-\_\-timeout} = 0
+\begin{DoxyCompactList}\small\item\em M\-M\-C timeout counter. \end{DoxyCompactList}\item 
+uint32\-\_\-t \hyperlink{mmc__hal_8c_a72ddc159b1a36ffda342f0f2d5c144f4}{\-\_\-mmc\-\_\-clock} = 0
+\begin{DoxyCompactList}\small\item\em M\-M\-C S\-P\-I C\-L\-O\-C\-K cache. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{mmc__hal_8c_adc0a07c5ad80e8ecbabee0cf04a1564e}{\-\_\-mmc\-\_\-pre} = 0
+\item 
 static int \hyperlink{mmc__hal_8c_a530d484dee6be1fc954f32f677add7c4}{mmc\-\_\-init\-\_\-flag} = 0
-\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-M\-M\-C Hardware Layer for Fat\-Fs. \begin{DoxyParagraph}{Edit History}
-
-\begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
-
-\end{DoxyParagraph}
-
-
-Definition in file \hyperlink{mmc__hal_8c_source}{mmc\-\_\-hal.\-c}.
-
+\item 
+uint8\-\_\-t \hyperlink{mmc__hal_8c_a5cacb918bc8a99b692f534f662a44eb1}{\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag} = 0
+\begin{DoxyCompactList}\small\item\em hs the mmc S\-P\-I bus been initialized yet ? \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{mmc__hal_8c_a84ab2ed27e7b0751183feb6c89a4f931}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-clear\-\_\-timeout@{mmc\-\_\-clear\-\_\-timeout}}
-\index{mmc\-\_\-clear\-\_\-timeout@{mmc\-\_\-clear\-\_\-timeout}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-clear\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-clear\-\_\-timeout (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a84ab2ed27e7b0751183feb6c89a4f931}
-
-
-Clear/\-Initialize M\-M\-C timeout value. 
-
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{mmc__hal_8c_ac2daa4c68686d419b1fb7a93df3847a9}{mmc\-\_\-set\-\_\-us\-\_\-timeout()} 
-
-\hyperlink{mmc__hal_8c_adb1cbf0a5ae766b038740c9538497724}{mmc\-\_\-set\-\_\-ms\-\_\-timeout()} 
-\end{DoxySeeAlso}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 98 of file mmc\-\_\-hal.\-c.
-
-\hypertarget{mmc__hal_8c_a7d29ab480325257aad2004f7fa341baf}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-cs\-\_\-disable@{mmc\-\_\-cs\-\_\-disable}}
+\hypertarget{mmc__hal_8c_a76d0a8b74006ab56206e361ee9f0a5a2}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-cs\-\_\-disable@{mmc\-\_\-cs\-\_\-disable}}
 \index{mmc\-\_\-cs\-\_\-disable@{mmc\-\_\-cs\-\_\-disable}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-cs\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-cs\-\_\-disable (
+\subsubsection[{mmc\-\_\-cs\-\_\-disable}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-cs\-\_\-disable (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a7d29ab480325257aad2004f7fa341baf}
+)}}\label{mmc__hal_8c_a76d0a8b74006ab56206e361ee9f0a5a2}
 
 
 M\-M\-C C\-S disable. 
 
 
 \begin{DoxyItemize}
-\item M\-M\-C S\-P\-I chip sellect \begin{DoxyReturn}{Returns}
+\item M\-M\-C S\-P\-I chip select \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 \end{DoxyItemize}
 
-Definition at line 246 of file mmc\-\_\-hal.\-c.
+Definition at line 360 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-deselect().
 
-\hypertarget{mmc__hal_8c_a75bf39ed652aa5f34bc0a4b6a10b9f21}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-cs\-\_\-enable@{mmc\-\_\-cs\-\_\-enable}}
+\hypertarget{mmc__hal_8c_aa0121936f2f6768804e7bec7e56a7443}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-cs\-\_\-enable@{mmc\-\_\-cs\-\_\-enable}}
 \index{mmc\-\_\-cs\-\_\-enable@{mmc\-\_\-cs\-\_\-enable}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-cs\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-cs\-\_\-enable (
+\subsubsection[{mmc\-\_\-cs\-\_\-enable}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-cs\-\_\-enable (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a75bf39ed652aa5f34bc0a4b6a10b9f21}
+)}}\label{mmc__hal_8c_aa0121936f2f6768804e7bec7e56a7443}
 
 
 M\-M\-C C\-S enable. 
 
 
 \begin{DoxyItemize}
-\item M\-M\-C S\-P\-I chip sellect \begin{DoxyReturn}{Returns}
+\item M\-M\-C S\-P\-I chip select \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 \end{DoxyItemize}
 
-Definition at line 235 of file mmc\-\_\-hal.\-c.
+Definition at line 346 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-select().
 
-\hypertarget{mmc__hal_8c_a7d41efb1efa51ca4c815ee275553ecae}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-fast@{mmc\-\_\-fast}}
+\hypertarget{mmc__hal_8c_ac88d1a5c7d4f0af4ba7098a1bd2b16cc}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-fast@{mmc\-\_\-fast}}
 \index{mmc\-\_\-fast@{mmc\-\_\-fast}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-fast}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-fast (
+\subsubsection[{mmc\-\_\-fast}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-fast (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a7d41efb1efa51ca4c815ee275553ecae}
+)}}\label{mmc__hal_8c_ac88d1a5c7d4f0af4ba7098a1bd2b16cc}
 
 
 M\-M\-C fast S\-P\-I bus speed. 
@@ -170,19 +138,19 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 188 of file mmc\-\_\-hal.\-c.
+Definition at line 292 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-disk\-\_\-initialize().
 
-\hypertarget{mmc__hal_8c_a2495ace2b776ad3746061014ed748bc4}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-init@{mmc\-\_\-init}}
+\hypertarget{mmc__hal_8c_ad417477e66c88b40dcce683fd6a5c47a}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-init@{mmc\-\_\-init}}
 \index{mmc\-\_\-init@{mmc\-\_\-init}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-init (
+\subsubsection[{mmc\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int mmc\-\_\-init (
 \begin{DoxyParamCaption}
-\item[{int}]{cold}
+\item[{int}]{verbose}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a2495ace2b776ad3746061014ed748bc4}
+)}}\label{mmc__hal_8c_ad417477e66c88b40dcce683fd6a5c47a}
 
 
 Initialize M\-M\-C and Fat\-Fs interface, display diagnostics. 
@@ -197,19 +165,19 @@ Initialize M\-M\-C and Fat\-Fs interface, display diagnostics.
 \end{DoxyReturn}
 
 
-Definition at line 281 of file mmc\-\_\-hal.\-c.
+Definition at line 186 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by fatfs\-\_\-tests(), main(), and open().
 
-\hypertarget{mmc__hal_8c_ab7da280dcb0a47bcbb21bc8a79c607f8}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-ins\-\_\-status@{mmc\-\_\-ins\-\_\-status}}
+\hypertarget{mmc__hal_8c_a76337667431fa723bc6d50503a52f8e0}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-ins\-\_\-status@{mmc\-\_\-ins\-\_\-status}}
 \index{mmc\-\_\-ins\-\_\-status@{mmc\-\_\-ins\-\_\-status}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-ins\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-ins\-\_\-status (
+\subsubsection[{mmc\-\_\-ins\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int mmc\-\_\-ins\-\_\-status (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_ab7da280dcb0a47bcbb21bc8a79c607f8}
+)}}\label{mmc__hal_8c_a76337667431fa723bc6d50503a52f8e0}
 
 
 M\-M\-C Card Inserted status. 
@@ -222,44 +190,44 @@ M\-M\-C Card Inserted status.
 
 \end{DoxyItemize}
 
-Definition at line 257 of file mmc\-\_\-hal.\-c.
+Definition at line 372 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by gpib\-\_\-error\-\_\-test(), and mmc\-\_\-task().
 
-\hypertarget{mmc__hal_8c_a39e43f6e6b8c7bc166e27b7471369df9}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-install\-\_\-timer@{mmc\-\_\-install\-\_\-timer}}
+\hypertarget{mmc__hal_8c_a35434a6e722b07d8fee213c2256391be}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-install\-\_\-timer@{mmc\-\_\-install\-\_\-timer}}
 \index{mmc\-\_\-install\-\_\-timer@{mmc\-\_\-install\-\_\-timer}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-install\-\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-install\-\_\-timer (
+\subsubsection[{mmc\-\_\-install\-\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-install\-\_\-timer (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a39e43f6e6b8c7bc166e27b7471369df9}
+)}}\label{mmc__hal_8c_a35434a6e722b07d8fee213c2256391be}
 
 
-Install M\-M\-C timer task\-: \hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task()} 
+Install M\-M\-C timer task\-: \hyperlink{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}{mmc\-\_\-task()} 
 
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task()} 
+\hyperlink{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}{mmc\-\_\-task()} 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 34 of file mmc\-\_\-hal.\-c.
+Definition at line 91 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-init().
 
-\hypertarget{mmc__hal_8c_a4fadc872519a4c0ffa09247a0f65523b}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-off@{mmc\-\_\-power\-\_\-off}}
+\hypertarget{mmc__hal_8c_af1357b405b44e70bd22a537e67fc56db}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-off@{mmc\-\_\-power\-\_\-off}}
 \index{mmc\-\_\-power\-\_\-off@{mmc\-\_\-power\-\_\-off}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-power\-\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-power\-\_\-off (
+\subsubsection[{mmc\-\_\-power\-\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-power\-\_\-off (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a4fadc872519a4c0ffa09247a0f65523b}
+)}}\label{mmc__hal_8c_af1357b405b44e70bd22a537e67fc56db}
 
 
 M\-M\-C power off. 
@@ -272,19 +240,19 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 213 of file mmc\-\_\-hal.\-c.
+Definition at line 322 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-disk\-\_\-initialize(), and mmc\-\_\-disk\-\_\-ioctl().
 
-\hypertarget{mmc__hal_8c_ac211d02032f178f2391e233397bde391}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-on@{mmc\-\_\-power\-\_\-on}}
+\hypertarget{mmc__hal_8c_a5ebdcf7dd5b0f47163d20481a5d09e00}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-on@{mmc\-\_\-power\-\_\-on}}
 \index{mmc\-\_\-power\-\_\-on@{mmc\-\_\-power\-\_\-on}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-power\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-power\-\_\-on (
+\subsubsection[{mmc\-\_\-power\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-power\-\_\-on (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_ac211d02032f178f2391e233397bde391}
+)}}\label{mmc__hal_8c_a5ebdcf7dd5b0f47163d20481a5d09e00}
 
 
 M\-M\-C power O\-N initialize. 
@@ -297,19 +265,19 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 199 of file mmc\-\_\-hal.\-c.
+Definition at line 305 of file mmc\-\_\-hal.\-c.
 
 
 
-Referenced by mmc\-\_\-disk\-\_\-initialize(), and mmc\-\_\-init().
+Referenced by mmc\-\_\-disk\-\_\-initialize().
 
-\hypertarget{mmc__hal_8c_a7883cbf41fbdaad282d75a3de93d0224}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-status@{mmc\-\_\-power\-\_\-status}}
+\hypertarget{mmc__hal_8c_acaafea0f53c39fef76a64ad38fc4ab32}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-power\-\_\-status@{mmc\-\_\-power\-\_\-status}}
 \index{mmc\-\_\-power\-\_\-status@{mmc\-\_\-power\-\_\-status}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-power\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-power\-\_\-status (
+\subsubsection[{mmc\-\_\-power\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int mmc\-\_\-power\-\_\-status (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a7883cbf41fbdaad282d75a3de93d0224}
+)}}\label{mmc__hal_8c_acaafea0f53c39fef76a64ad38fc4ab32}
 
 
 M\-M\-C power status. 
@@ -322,15 +290,15 @@ M\-M\-C power status.
 
 \end{DoxyItemize}
 
-Definition at line 223 of file mmc\-\_\-hal.\-c.
+Definition at line 334 of file mmc\-\_\-hal.\-c.
 
-\hypertarget{mmc__hal_8c_adb1cbf0a5ae766b038740c9538497724}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-set\-\_\-ms\-\_\-timeout@{mmc\-\_\-set\-\_\-ms\-\_\-timeout}}
+\hypertarget{mmc__hal_8c_a95af3dbb0e5e0a16710138786c29fb4f}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-set\-\_\-ms\-\_\-timeout@{mmc\-\_\-set\-\_\-ms\-\_\-timeout}}
 \index{mmc\-\_\-set\-\_\-ms\-\_\-timeout@{mmc\-\_\-set\-\_\-ms\-\_\-timeout}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-set\-\_\-ms\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-set\-\_\-ms\-\_\-timeout (
+\subsubsection[{mmc\-\_\-set\-\_\-ms\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-set\-\_\-ms\-\_\-timeout (
 \begin{DoxyParamCaption}
-\item[{int16\-\_\-t}]{ms}
+\item[{uint16\-\_\-t}]{ms}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_adb1cbf0a5ae766b038740c9538497724}
+)}}\label{mmc__hal_8c_a95af3dbb0e5e0a16710138786c29fb4f}
 
 
 Set M\-M\-C timeout timer in Milliseconds. 
@@ -341,52 +309,26 @@ Set M\-M\-C timeout timer in Milliseconds.
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{mmc__hal_8c_a21da90d8f30005eb90574a029a6fc81d}{mmc\-\_\-test\-\_\-timeout} ( ) 
+\hyperlink{mmc__hal_8c_a7383533f1b6630ff4f0337f400b4b62e}{mmc\-\_\-test\-\_\-timeout} ( ) 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 48 of file mmc\-\_\-hal.\-c.
+Definition at line 154 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-disk\-\_\-initialize(), rcvr\-\_\-datablock(), and wait\-\_\-ready().
 
-\hypertarget{mmc__hal_8c_ac2daa4c68686d419b1fb7a93df3847a9}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-set\-\_\-us\-\_\-timeout@{mmc\-\_\-set\-\_\-us\-\_\-timeout}}
-\index{mmc\-\_\-set\-\_\-us\-\_\-timeout@{mmc\-\_\-set\-\_\-us\-\_\-timeout}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-set\-\_\-us\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-set\-\_\-us\-\_\-timeout (
-\begin{DoxyParamCaption}
-\item[{int32\-\_\-t}]{us}
-\end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_ac2daa4c68686d419b1fb7a93df3847a9}
-
-
-See M\-M\-C timeout timer in Microseconds. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em us} & timeout in Microseconds\\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{mmc__hal_8c_a21da90d8f30005eb90574a029a6fc81d}{mmc\-\_\-test\-\_\-timeout} ( ) 
-\end{DoxySeeAlso}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 66 of file mmc\-\_\-hal.\-c.
-
-\hypertarget{mmc__hal_8c_a120c1501f6694e4947cb37f09679dda9}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-slow@{mmc\-\_\-slow}}
+\hypertarget{mmc__hal_8c_a4917b89a10f620f9180300d66da47eaf}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-slow@{mmc\-\_\-slow}}
 \index{mmc\-\_\-slow@{mmc\-\_\-slow}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-slow}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-slow (
+\subsubsection[{mmc\-\_\-slow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-slow (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a120c1501f6694e4947cb37f09679dda9}
+)}}\label{mmc__hal_8c_a4917b89a10f620f9180300d66da47eaf}
 
 
 M\-M\-C set slow S\-P\-I bus speed. 
@@ -399,19 +341,19 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 177 of file mmc\-\_\-hal.\-c.
+Definition at line 279 of file mmc\-\_\-hal.\-c.
 
 
 
-Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-power\-\_\-on(), and mmc\-\_\-spi\-\_\-init().
+Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-init(), and mmc\-\_\-power\-\_\-on().
 
-\hypertarget{mmc__hal_8c_ae9d8b33ee8fd54f03d5d6946d6022df9}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-init@{mmc\-\_\-spi\-\_\-init}}
+\hypertarget{mmc__hal_8c_a7c8d13c34124d4ef83ecabc43fbdb8ad}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-init@{mmc\-\_\-spi\-\_\-init}}
 \index{mmc\-\_\-spi\-\_\-init@{mmc\-\_\-spi\-\_\-init}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-spi\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-spi\-\_\-init (
+\subsubsection[{mmc\-\_\-spi\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-spi\-\_\-init (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{int32\-\_\-t}]{clock}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_ae9d8b33ee8fd54f03d5d6946d6022df9}
+)}}\label{mmc__hal_8c_a7c8d13c34124d4ef83ecabc43fbdb8ad}
 
 
 M\-M\-C S\-P\-I bus init. 
@@ -421,73 +363,202 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 164 of file mmc\-\_\-hal.\-c.
+Definition at line 265 of file mmc\-\_\-hal.\-c.
 
 
 
-Referenced by mmc\-\_\-init(), and mmc\-\_\-power\-\_\-on().
+Referenced by mmc\-\_\-cs\-\_\-enable().
 
-\hypertarget{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-task@{mmc\-\_\-task}}
-\index{mmc\-\_\-task@{mmc\-\_\-task}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}void mmc\-\_\-task (
+\hypertarget{mmc__hal_8c_a956fa7728bcad091ae868b8c0a4a7a8a}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-\-R\-X@{mmc\-\_\-spi\-\_\-\-R\-X}}
+\index{mmc\-\_\-spi\-\_\-\-R\-X@{mmc\-\_\-spi\-\_\-\-R\-X}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-spi\-\_\-\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t mmc\-\_\-spi\-\_\-\-R\-X (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}
+)}}\label{mmc__hal_8c_a956fa7728bcad091ae868b8c0a4a7a8a}
 
 
-This function is called every M\-M\-C\-\_\-\-T\-I\-M\-E\-R\-\_\-\-T\-I\-C\-\_\-\-U\-S. 
+S\-P\-I read 1 byte. 
+
+\begin{DoxyReturn}{Returns}
+uint8\-\_\-t value 
+\end{DoxyReturn}
 
 
-\begin{DoxyItemize}
-\item Monitor timeouts, write protect and card detect status \begin{DoxyReturn}{Returns}
+Definition at line 120 of file mmc\-\_\-hal.\-c.
+
+\hypertarget{mmc__hal_8c_a4ffe99e5651f10c46f3babc9325ef82f}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer@{mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer}}
+\index{mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer@{mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{const uint8\-\_\-t $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{mmc__hal_8c_a4ffe99e5651f10c46f3babc9325ef82f}
+
+
+S\-P\-I read buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
-\end{DoxyItemize}
 
-Definition at line 117 of file mmc\-\_\-hal.\-c.
+Definition at line 112 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by rcvr\-\_\-datablock().
+
+\hypertarget{mmc__hal_8c_acb7cc45118bb7683c9950e0f35f252ce}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-\-T\-X@{mmc\-\_\-spi\-\_\-\-T\-X}}
+\index{mmc\-\_\-spi\-\_\-\-T\-X@{mmc\-\_\-spi\-\_\-\-T\-X}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-spi\-\_\-\-T\-X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-spi\-\_\-\-T\-X (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{data}
+\end{DoxyParamCaption}
+)}}\label{mmc__hal_8c_acb7cc45118bb7683c9950e0f35f252ce}
+
+
+S\-P\-I write 1 byte. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & value to transmit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 130 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-deselect(), mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), mmc\-\_\-fast(), mmc\-\_\-power\-\_\-off(), mmc\-\_\-select(), mmc\-\_\-slow(), rcvr\-\_\-datablock(), send\-\_\-cmd(), and xmit\-\_\-datablock().
+
+\hypertarget{mmc__hal_8c_ae417c25675099d771b870e525cd7b124}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer@{mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer}}
+\index{mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer@{mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer (
+\begin{DoxyParamCaption}
+\item[{const uint8\-\_\-t $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{mmc__hal_8c_ae417c25675099d771b870e525cd7b124}
+
+
+S\-P\-I write buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 103 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by xmit\-\_\-datablock().
+
+\hypertarget{mmc__hal_8c_aef3ff7459eeb9454068bd884c5dcb951}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-spi\-\_\-\-T\-X\-R\-X@{mmc\-\_\-spi\-\_\-\-T\-X\-R\-X}}
+\index{mmc\-\_\-spi\-\_\-\-T\-X\-R\-X@{mmc\-\_\-spi\-\_\-\-T\-X\-R\-X}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-spi\-\_\-\-T\-X\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint8\-\_\-t mmc\-\_\-spi\-\_\-\-T\-X\-R\-X (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{data}
+\end{DoxyParamCaption}
+)}}\label{mmc__hal_8c_aef3ff7459eeb9454068bd884c5dcb951}
+
+
+S\-P\-I read and write 1 byte. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & value to transmit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\-\_\-t value read 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), rcvr\-\_\-datablock(), send\-\_\-cmd(), wait\-\_\-ready(), and xmit\-\_\-datablock().
+
+\hypertarget{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-task@{mmc\-\_\-task}}
+\index{mmc\-\_\-task@{mmc\-\_\-task}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{mmc\-\_\-task}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L\-O\-C\-A\-L} void mmc\-\_\-task (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{mmc__hal_8c_af6d1d458355149a10f40e5d45215d6d1}
+
+
+1000\-H\-Z timer task 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$arg} & ignored \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-install\-\_\-timer().
 
-\hypertarget{mmc__hal_8c_a21da90d8f30005eb90574a029a6fc81d}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-test\-\_\-timeout@{mmc\-\_\-test\-\_\-timeout}}
+\hypertarget{mmc__hal_8c_a7383533f1b6630ff4f0337f400b4b62e}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-test\-\_\-timeout@{mmc\-\_\-test\-\_\-timeout}}
 \index{mmc\-\_\-test\-\_\-timeout@{mmc\-\_\-test\-\_\-timeout}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-test\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-test\-\_\-timeout (
+\subsubsection[{mmc\-\_\-test\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int mmc\-\_\-test\-\_\-timeout (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a21da90d8f30005eb90574a029a6fc81d}
+)}}\label{mmc__hal_8c_a7383533f1b6630ff4f0337f400b4b62e}
 
 
-Test M\-M\-C timeout status. 
+Wait for timeout. 
 
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{mmc__hal_8c_ac2daa4c68686d419b1fb7a93df3847a9}{mmc\-\_\-set\-\_\-us\-\_\-timeout()} 
-
-\hyperlink{mmc__hal_8c_adb1cbf0a5ae766b038740c9538497724}{mmc\-\_\-set\-\_\-ms\-\_\-timeout()} 
-\end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
-0 still counting 
+1 ready 
 
-1 timeout reached 
+0 timeout 
 \end{DoxyReturn}
 
 
-Definition at line 82 of file mmc\-\_\-hal.\-c.
+Definition at line 165 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-disk\-\_\-initialize(), rcvr\-\_\-datablock(), and wait\-\_\-ready().
 
-\hypertarget{mmc__hal_8c_a4ffa13ede463950ddb818c9ef623538f}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-wp\-\_\-status@{mmc\-\_\-wp\-\_\-status}}
+\hypertarget{mmc__hal_8c_acbc9faece423623a86f62b50ac59b312}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-wp\-\_\-status@{mmc\-\_\-wp\-\_\-status}}
 \index{mmc\-\_\-wp\-\_\-status@{mmc\-\_\-wp\-\_\-status}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-wp\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-wp\-\_\-status (
+\subsubsection[{mmc\-\_\-wp\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int mmc\-\_\-wp\-\_\-status (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a4ffa13ede463950ddb818c9ef623538f}
+)}}\label{mmc__hal_8c_acbc9faece423623a86f62b50ac59b312}
 
 
 M\-M\-C Card Write Protect status. 
@@ -500,63 +571,77 @@ M\-M\-C Card Write Protect status.
 
 \end{DoxyItemize}
 
-Definition at line 268 of file mmc\-\_\-hal.\-c.
+Definition at line 385 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by amigo\-\_\-request\-\_\-status(), gpib\-\_\-file\-\_\-init(), mmc\-\_\-task(), and S\-S80\-\_\-locate\-\_\-and\-\_\-write().
 
-\hypertarget{mmc__hal_8c_a7c4051db12b5a8afc9bb71b62e50af32}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-xchg\-\_\-spi@{mmc\-\_\-xchg\-\_\-spi}}
-\index{mmc\-\_\-xchg\-\_\-spi@{mmc\-\_\-xchg\-\_\-spi}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{mmc\-\_\-xchg\-\_\-spi}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t mmc\-\_\-xchg\-\_\-spi (
-\begin{DoxyParamCaption}
-\item[{uint8\-\_\-t}]{a}
-\end{DoxyParamCaption}
-)}}\label{mmc__hal_8c_a7c4051db12b5a8afc9bb71b62e50af32}
-
-
-M\-M\-C S\-P\-I send and receive character. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em a} & Character to send\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uint8\-\_\-t Received character 
-\end{DoxyReturn}
-Note\-: when reading only call with 0xff 
-
-Definition at line 154 of file mmc\-\_\-hal.\-c.
-
-
-
-Referenced by mmc\-\_\-deselect(), mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), mmc\-\_\-power\-\_\-on(), mmc\-\_\-select(), rcvr\-\_\-datablock(), rcvr\-\_\-spi\-\_\-multi(), send\-\_\-cmd(), wait\-\_\-ready(), xmit\-\_\-datablock(), and xmit\-\_\-spi\-\_\-multi().
-
 
 
 \subsection{Variable Documentation}
-\hypertarget{mmc__hal_8c_a071dea3cf3cdd93a412bc3a58998799d}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer@{\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer}}
-\index{\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer@{\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
-\subsubsection[{\-\_\-\-\_\-mmc\-\_\-task\-\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}int32\-\_\-t \-\_\-\-\_\-mmc\-\_\-task\-\_\-timer\hspace{0.3cm}{\ttfamily [static]}}}\label{mmc__hal_8c_a071dea3cf3cdd93a412bc3a58998799d}
+\hypertarget{mmc__hal_8c_a72ddc159b1a36ffda342f0f2d5c144f4}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!\-\_\-mmc\-\_\-clock@{\-\_\-mmc\-\_\-clock}}
+\index{\-\_\-mmc\-\_\-clock@{\-\_\-mmc\-\_\-clock}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-mmc\-\_\-clock}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t \-\_\-mmc\-\_\-clock = 0}}\label{mmc__hal_8c_a72ddc159b1a36ffda342f0f2d5c144f4}
 
 
-M\-M\-C Microsecond accumulator for \hyperlink{mmc__hal_8c_a00ac994ca5d977f47d3a80432e644499}{mmc\-\_\-task()} 
+M\-M\-C S\-P\-I C\-L\-O\-C\-K cache. 
 
 
 
-Definition at line 107 of file mmc\-\_\-hal.\-c.
+Definition at line 44 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-cs\-\_\-enable(), mmc\-\_\-fast(), and mmc\-\_\-slow().
+
+\hypertarget{mmc__hal_8c_adc0a07c5ad80e8ecbabee0cf04a1564e}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!\-\_\-mmc\-\_\-pre@{\-\_\-mmc\-\_\-pre}}
+\index{\-\_\-mmc\-\_\-pre@{\-\_\-mmc\-\_\-pre}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-mmc\-\_\-pre}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t \-\_\-mmc\-\_\-pre = 0}}\label{mmc__hal_8c_adc0a07c5ad80e8ecbabee0cf04a1564e}
+
+
+Definition at line 47 of file mmc\-\_\-hal.\-c.
 
 
 
 Referenced by mmc\-\_\-task().
+
+\hypertarget{mmc__hal_8c_a5cacb918bc8a99b692f534f662a44eb1}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag@{\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag}}
+\index{\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag@{\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t \-\_\-mmc\-\_\-spi\-\_\-init\-\_\-flag = 0}}\label{mmc__hal_8c_a5cacb918bc8a99b692f534f662a44eb1}
+
+
+hs the mmc S\-P\-I bus been initialized yet ? 
+
+
+
+Definition at line 261 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-spi\-\_\-init().
+
+\hypertarget{mmc__hal_8c_abf71973875545f3b42702ac99d5d87ef}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!\-\_\-mmc\-\_\-timeout@{\-\_\-mmc\-\_\-timeout}}
+\index{\-\_\-mmc\-\_\-timeout@{\-\_\-mmc\-\_\-timeout}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-mmc\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t \-\_\-mmc\-\_\-timeout = 0}}\label{mmc__hal_8c_abf71973875545f3b42702ac99d5d87ef}
+
+
+M\-M\-C timeout counter. 
+
+
+
+Definition at line 41 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-install\-\_\-timer(), mmc\-\_\-set\-\_\-ms\-\_\-timeout(), mmc\-\_\-task(), and mmc\-\_\-test\-\_\-timeout().
 
 \hypertarget{mmc__hal_8c_a530d484dee6be1fc954f32f677add7c4}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!mmc\-\_\-init\-\_\-flag@{mmc\-\_\-init\-\_\-flag}}
 \index{mmc\-\_\-init\-\_\-flag@{mmc\-\_\-init\-\_\-flag}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
 \subsubsection[{mmc\-\_\-init\-\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}int mmc\-\_\-init\-\_\-flag = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{mmc__hal_8c_a530d484dee6be1fc954f32f677add7c4}
 
 
-Definition at line 274 of file mmc\-\_\-hal.\-c.
+Definition at line 180 of file mmc\-\_\-hal.\-c.
 
 
 
@@ -567,28 +652,28 @@ Referenced by mmc\-\_\-init().
 \subsubsection[{mmc\-\_\-us\-\_\-timeout}]{\setlength{\rightskip}{0pt plus 5cm}volatile int32\-\_\-t mmc\-\_\-us\-\_\-timeout}}\label{mmc__hal_8c_ab6838b44b2b3eba0ded1e5196026fd59}
 
 
-M\-M\-C timer tic in Microseconds. 
-
-M\-M\-C timeout timer used to detect timeout error conditions 
-
-Definition at line 27 of file mmc\-\_\-hal.\-c.
+M\-M\-C timeout timer used to detect timeout error conditions. 
 
 
 
-Referenced by mmc\-\_\-clear\-\_\-timeout(), mmc\-\_\-set\-\_\-ms\-\_\-timeout(), mmc\-\_\-set\-\_\-us\-\_\-timeout(), mmc\-\_\-task(), and mmc\-\_\-test\-\_\-timeout().
+Definition at line 38 of file mmc\-\_\-hal.\-c.
+
+
+
+Referenced by mmc\-\_\-task().
 
 \hypertarget{mmc__hal_8c_a5e05b0c3f7ba56fa9c23be08c497eb9f}{\index{mmc\-\_\-hal.\-c@{mmc\-\_\-hal.\-c}!Stat@{Stat}}
 \index{Stat@{Stat}!mmc_hal.c@{mmc\-\_\-hal.\-c}}
 \subsubsection[{Stat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-S\-T\-A\-T\-U\-S} Stat}}\label{mmc__hal_8c_a5e05b0c3f7ba56fa9c23be08c497eb9f}
 
 
-M\-M\-C Fat\-Fs insert,write protect status. 
+M\-M\-C timer tic in Microseconds. 
 
 
 
-Definition at line 64 of file mmc.\-c.
+Definition at line 73 of file mmc.\-c.
 
 
 
-Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), mmc\-\_\-disk\-\_\-read(), mmc\-\_\-disk\-\_\-status(), mmc\-\_\-disk\-\_\-write(), and mmc\-\_\-task().
+Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), mmc\-\_\-disk\-\_\-read(), mmc\-\_\-disk\-\_\-status(), mmc\-\_\-disk\-\_\-write(), mmc\-\_\-init(), mmc\-\_\-task(), and mmc\-\_\-test\-\_\-timeout().
 

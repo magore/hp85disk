@@ -96,12 +96,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>part of FatFs avr example project (C)ChaN, 2013.  
+<p>MMC upper level interface to FatFS.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="hardware_8h_source.html">hardware/hardware.h</a>&gt;</code><br/>
+<code>#include &quot;<a class="el" href="mmc__hal_8h_source.html">mmc_hal.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="diskio_8h_source.html">diskio.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="disk_8h_source.html">disk.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mmc__hal_8h_source.html">mmc_hal.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="mmc_8h_source.html">mmc.h</a>&quot;</code><br/>
 </div>
 <p><a href="mmc_8c_source.html">Go to the source code of this file.</a></p>
@@ -151,68 +151,62 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a98acb802d82638c9f67b9b4381fb6808"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a98acb802d82638c9f67b9b4381fb6808">mmc_disk_initialize</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv)</td></tr>
-<tr class="memdesc:a98acb802d82638c9f67b9b4381fb6808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public Functions.  <a href="#a98acb802d82638c9f67b9b4381fb6808">More...</a><br/></td></tr>
-<tr class="separator:a98acb802d82638c9f67b9b4381fb6808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afebcf37e8fa059526e23ad8004d4eb04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#afebcf37e8fa059526e23ad8004d4eb04">mmc_disk_status</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv)</td></tr>
-<tr class="memdesc:afebcf37e8fa059526e23ad8004d4eb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Disk Status.  <a href="#afebcf37e8fa059526e23ad8004d4eb04">More...</a><br/></td></tr>
-<tr class="separator:afebcf37e8fa059526e23ad8004d4eb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30439ea24ff2d0ff54e69299e020f56d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a30439ea24ff2d0ff54e69299e020f56d">mmc_disk_read</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv,<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff,<a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector,<a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count)</td></tr>
-<tr class="memdesc:a30439ea24ff2d0ff54e69299e020f56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Sector(s)  <a href="#a30439ea24ff2d0ff54e69299e020f56d">More...</a><br/></td></tr>
-<tr class="separator:a30439ea24ff2d0ff54e69299e020f56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae428f60713ab7fbfd1c03e7c295a55f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#ae428f60713ab7fbfd1c03e7c295a55f1">mmc_disk_write</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv,const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff,<a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector,<a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count)</td></tr>
-<tr class="memdesc:ae428f60713ab7fbfd1c03e7c295a55f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Sector(s)  <a href="#ae428f60713ab7fbfd1c03e7c295a55f1">More...</a><br/></td></tr>
-<tr class="separator:ae428f60713ab7fbfd1c03e7c295a55f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156a64f0fee793adea92f4c460a18eb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a156a64f0fee793adea92f4c460a18eb6">mmc_disk_ioctl</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv,<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> cmd,void *buff)</td></tr>
-<tr class="memdesc:a156a64f0fee793adea92f4c460a18eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Miscellaneous Functions.  <a href="#a156a64f0fee793adea92f4c460a18eb6">More...</a><br/></td></tr>
-<tr class="separator:a156a64f0fee793adea92f4c460a18eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c2f6f09ffb61f5c8d4b7474fc9ac744"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a8c2f6f09ffb61f5c8d4b7474fc9ac744">xmit_spi_multi</a> (const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *p, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> cnt)</td></tr>
-<tr class="memdesc:a8c2f6f09ffb61f5c8d4b7474fc9ac744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send SPI data block fast.  <a href="#a8c2f6f09ffb61f5c8d4b7474fc9ac744">More...</a><br/></td></tr>
-<tr class="separator:a8c2f6f09ffb61f5c8d4b7474fc9ac744"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50ff2f4928f652f9968097d326623808"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a50ff2f4928f652f9968097d326623808">rcvr_spi_multi</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *p, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> cnt)</td></tr>
-<tr class="memdesc:a50ff2f4928f652f9968097d326623808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive SPI data block fast.  <a href="#a50ff2f4928f652f9968097d326623808">More...</a><br/></td></tr>
-<tr class="separator:a50ff2f4928f652f9968097d326623808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07989444410422cdb72780de8e8b2122"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a07989444410422cdb72780de8e8b2122">wait_ready</a> (<a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> wt)</td></tr>
-<tr class="memdesc:a07989444410422cdb72780de8e8b2122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for card ready.  <a href="#a07989444410422cdb72780de8e8b2122">More...</a><br/></td></tr>
-<tr class="separator:a07989444410422cdb72780de8e8b2122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb9ba5d0131550340f08c72ded43bd24"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#aeb9ba5d0131550340f08c72ded43bd24">mmc_deselect</a> (void)</td></tr>
-<tr class="memdesc:aeb9ba5d0131550340f08c72ded43bd24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deselect the card and release SPI bus.  <a href="#aeb9ba5d0131550340f08c72ded43bd24">More...</a><br/></td></tr>
-<tr class="separator:aeb9ba5d0131550340f08c72ded43bd24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6671895542db88fd7d27976cc3e069c2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a6671895542db88fd7d27976cc3e069c2">mmc_select</a> (void)</td></tr>
-<tr class="memdesc:a6671895542db88fd7d27976cc3e069c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the card and wait for ready.  <a href="#a6671895542db88fd7d27976cc3e069c2">More...</a><br/></td></tr>
-<tr class="separator:a6671895542db88fd7d27976cc3e069c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c99afbc312912297b19752cf7e0960b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a8c99afbc312912297b19752cf7e0960b">rcvr_datablock</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> btr)</td></tr>
-<tr class="memdesc:a8c99afbc312912297b19752cf7e0960b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a data packet from MMC.  <a href="#a8c99afbc312912297b19752cf7e0960b">More...</a><br/></td></tr>
-<tr class="separator:a8c99afbc312912297b19752cf7e0960b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefbd30f6bdff37184f58faf98ad1c6e0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#aefbd30f6bdff37184f58faf98ad1c6e0">xmit_datablock</a> (const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="el" href="util_8h.html#aabae92d316862b46ca7a28276d2ed92e">token</a>)</td></tr>
-<tr class="memdesc:aefbd30f6bdff37184f58faf98ad1c6e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a data packet to MMC.  <a href="#aefbd30f6bdff37184f58faf98ad1c6e0">More...</a><br/></td></tr>
-<tr class="separator:aefbd30f6bdff37184f58faf98ad1c6e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99684b493c8bfdb0288a2e24e52f6871"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a99684b493c8bfdb0288a2e24e52f6871">send_cmd</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> cmd, <a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> arg)</td></tr>
-<tr class="memdesc:a99684b493c8bfdb0288a2e24e52f6871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a command packet to MMC.  <a href="#a99684b493c8bfdb0288a2e24e52f6871">More...</a><br/></td></tr>
-<tr class="separator:a99684b493c8bfdb0288a2e24e52f6871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7771efbbd1a015b449d838d7f09959a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a">wait_ready</a> (<a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> wt)</td></tr>
+<tr class="separator:ab7771efbbd1a015b449d838d7f09959a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f06b74e5ee0cfbbc5779ed2c8a0369a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a7f06b74e5ee0cfbbc5779ed2c8a0369a">mmc_deselect</a> (void)</td></tr>
+<tr class="memdesc:a7f06b74e5ee0cfbbc5779ed2c8a0369a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deselect the card and release SPI bus.  <a href="#a7f06b74e5ee0cfbbc5779ed2c8a0369a">More...</a><br/></td></tr>
+<tr class="separator:a7f06b74e5ee0cfbbc5779ed2c8a0369a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2661ae4f7be7777f1015c91d8444fac0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a2661ae4f7be7777f1015c91d8444fac0">mmc_select</a> (void)</td></tr>
+<tr class="memdesc:a2661ae4f7be7777f1015c91d8444fac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select the card and wait for ready.  <a href="#a2661ae4f7be7777f1015c91d8444fac0">More...</a><br/></td></tr>
+<tr class="separator:a2661ae4f7be7777f1015c91d8444fac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59275a8f1cc0f0d24c6f9f1ae578775a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a59275a8f1cc0f0d24c6f9f1ae578775a">rcvr_datablock</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> btr)</td></tr>
+<tr class="memdesc:a59275a8f1cc0f0d24c6f9f1ae578775a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a data packet from MMC.  <a href="#a59275a8f1cc0f0d24c6f9f1ae578775a">More...</a><br/></td></tr>
+<tr class="separator:a59275a8f1cc0f0d24c6f9f1ae578775a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2174d7259d1d933e0ea0dc45eee4af62"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a2174d7259d1d933e0ea0dc45eee4af62">xmit_datablock</a> (const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> <a class="el" href="util_8h.html#ae9142769a957bcb8c0fad1934576f576">token</a>)</td></tr>
+<tr class="memdesc:a2174d7259d1d933e0ea0dc45eee4af62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a data packet to MMC.  <a href="#a2174d7259d1d933e0ea0dc45eee4af62">More...</a><br/></td></tr>
+<tr class="separator:a2174d7259d1d933e0ea0dc45eee4af62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd47154c84441f723909d5875aa64efd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#afd47154c84441f723909d5875aa64efd">send_cmd</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> cmd, <a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> arg)</td></tr>
+<tr class="memdesc:afd47154c84441f723909d5875aa64efd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a command packet to MMC.  <a href="#afd47154c84441f723909d5875aa64efd">More...</a><br/></td></tr>
+<tr class="separator:afd47154c84441f723909d5875aa64efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2137eb050ce72b79a588d58530065d08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a2137eb050ce72b79a588d58530065d08">mmc_disk_initialize</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv)</td></tr>
+<tr class="memdesc:a2137eb050ce72b79a588d58530065d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public Functions.  <a href="#a2137eb050ce72b79a588d58530065d08">More...</a><br/></td></tr>
+<tr class="separator:a2137eb050ce72b79a588d58530065d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a80808dbeee4b940bbba6128564dcba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a3a80808dbeee4b940bbba6128564dcba">mmc_disk_status</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv)</td></tr>
+<tr class="memdesc:a3a80808dbeee4b940bbba6128564dcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Disk Status.  <a href="#a3a80808dbeee4b940bbba6128564dcba">More...</a><br/></td></tr>
+<tr class="separator:a3a80808dbeee4b940bbba6128564dcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95ef69f6e5608dd73fd22f29bf619808"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a95ef69f6e5608dd73fd22f29bf619808">mmc_disk_read</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv, <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count)</td></tr>
+<tr class="memdesc:a95ef69f6e5608dd73fd22f29bf619808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Sector(s)  <a href="#a95ef69f6e5608dd73fd22f29bf619808">More...</a><br/></td></tr>
+<tr class="separator:a95ef69f6e5608dd73fd22f29bf619808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d707caafd1e9d2bf6bc7c933b13537"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#ac5d707caafd1e9d2bf6bc7c933b13537">mmc_disk_write</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv, const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *buff, <a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> sector, <a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> count)</td></tr>
+<tr class="memdesc:ac5d707caafd1e9d2bf6bc7c933b13537"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write Sector(s)  <a href="#ac5d707caafd1e9d2bf6bc7c933b13537">More...</a><br/></td></tr>
+<tr class="separator:ac5d707caafd1e9d2bf6bc7c933b13537"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a87f14a79ee4e7e9b7323d58d7dbba3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a2a87f14a79ee4e7e9b7323d58d7dbba3">mmc_disk_ioctl</a> (<a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> pdrv, <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> cmd, void *buff)</td></tr>
+<tr class="memdesc:a2a87f14a79ee4e7e9b7323d58d7dbba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Miscellaneous Functions.  <a href="#a2a87f14a79ee4e7e9b7323d58d7dbba3">More...</a><br/></td></tr>
+<tr class="separator:a2a87f14a79ee4e7e9b7323d58d7dbba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a014a1e17b21e3c0b80fe0afc0106976f"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f">Stat</a> = <a class="el" href="diskio_8h.html#abd6503c70d862b979a3f7080a59e9acd">STA_NOINIT</a></td></tr>
-<tr class="memdesc:a014a1e17b21e3c0b80fe0afc0106976f"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMC FatFs insert,write protect status.  <a href="#a014a1e17b21e3c0b80fe0afc0106976f">More...</a><br/></td></tr>
+<tr class="memdesc:a014a1e17b21e3c0b80fe0afc0106976f"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMC timer tic in Microseconds.  <a href="#a014a1e17b21e3c0b80fe0afc0106976f">More...</a><br/></td></tr>
 <tr class="separator:a014a1e17b21e3c0b80fe0afc0106976f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9edfbb60df250acb70f5f287eb1497a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a">CardType</a></td></tr>
 <tr class="separator:ae9edfbb60df250acb70f5f287eb1497a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>part of FatFs avr example project (C)ChaN, 2013. </p>
+<div class="textblock"><p>MMC upper level interface to FatFS. </p>
 <ul>
+<li>Originally part of FatFs avr example project (C)ChaN, 2013.</li>
 <li>Specifically: avr_complex/main.c from ffsample.zip.</li>
-<li>Minor Modifications by Mike Gore.</li>
-<li>I added hardware abstraction layer or <a class="el" href="mmc_8c.html" title="part of FatFs avr example project (C)ChaN, 2013. ">mmc.c</a> to make porting easier.</li>
+<li>Modifications by Mike Gore.</li>
+<li>I added hardware abstraction layer or <a class="el" href="mmc_8c.html" title="MMC upper level interface to FatFS. ">mmc.c</a> to make porting easier.</li>
 </ul>
-<dl class="section user"><dt>Edit History</dt><dd><ul>
-<li>[1.0] [Mike Gore] Initial revision of file.</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Copyright &copy; CHaN 2013.</dt><dd></dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="mmc_8c.html" title="part of FatFs avr example project (C)ChaN, 2013. ">mmc.c</a> </dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2015 Mike Gore, GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2013 ChaN.</dt><dd></dd></dl>
+<dl class="section user"><dt>Credit: part of FatFs avr example project (C)ChaN, 2013.</dt><dd></dd></dl>
+<dl class="section user"><dt>You are free to use this code under the terms of GPL</dt><dd>please retain a copy of this notice in any code you use it in.</dd></dl>
+<p>This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<p>This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
 
 <p>Definition in file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -226,9 +220,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00049">49</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00058">58</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>.</p>
 
 </div>
 </div>
@@ -242,7 +236,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00054">54</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00063">63</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 <p>Referenced by <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
 
@@ -258,9 +252,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00044">44</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00053">53</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>.</p>
 
 </div>
 </div>
@@ -274,9 +268,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00042">42</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00051">51</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
@@ -290,9 +284,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00043">43</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00052">52</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>.</p>
 
 </div>
 </div>
@@ -306,9 +300,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00047">47</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00056">56</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>.</p>
 
 </div>
 </div>
@@ -322,9 +316,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00048">48</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00057">57</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
@@ -338,9 +332,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00050">50</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00059">59</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>.</p>
 
 </div>
 </div>
@@ -354,9 +348,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00051">51</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00060">60</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>.</p>
 
 </div>
 </div>
@@ -370,9 +364,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00052">52</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00061">61</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>.</p>
 
 </div>
 </div>
@@ -386,7 +380,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00053">53</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00062">62</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
@@ -400,7 +394,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00055">55</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00064">64</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 <p>Referenced by <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
 
@@ -416,7 +410,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00056">56</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00065">65</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 <p>Referenced by <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
 
@@ -432,7 +426,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00057">57</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00066">66</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
@@ -446,7 +440,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00058">58</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00067">67</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
@@ -460,7 +454,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00059">59</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00068">68</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
@@ -474,9 +468,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00060">60</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00069">69</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
@@ -490,9 +484,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00061">61</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00070">70</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>.</p>
 
 </div>
 </div>
@@ -506,9 +500,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00045">45</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00054">54</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, and <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
@@ -522,14 +516,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00046">46</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00055">55</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aeb9ba5d0131550340f08c72ded43bd24"></a>
+<a class="anchor" id="a7f06b74e5ee0cfbbc5779ed2c8a0369a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -537,7 +531,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void mmc_deselect </td>
+          <td class="memname">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> void mmc_deselect </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -553,18 +547,18 @@ Variables</h2></td></tr>
 
 <p>Deselect the card and release SPI bus. </p>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00123">123</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00101">101</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>, <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>, <a class="el" href="mmc_8c_source.html#l00134">mmc_select()</a>, and <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>, <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>, <a class="el" href="mmc_8c_source.html#l00114">mmc_select()</a>, and <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a98acb802d82638c9f67b9b4381fb6808"></a>
+<a class="anchor" id="a2137eb050ce72b79a588d58530065d08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a> mmc_disk_initialize </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a> mmc_disk_initialize </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>pdrv</em></td><td>)</td>
@@ -577,16 +571,16 @@ Variables</h2></td></tr>
 <p>Initialize Disk Drive </p>
 <dl class="section return"><dt>Returns</dt><dd>Stat </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00256">256</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00246">246</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a156a64f0fee793adea92f4c460a18eb6"></a>
+<a class="anchor" id="a2a87f14a79ee4e7e9b7323d58d7dbba3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_ioctl </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_ioctl </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -620,16 +614,16 @@ non zero error </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00433">433</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00434">434</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a30439ea24ff2d0ff54e69299e020f56d"></a>
+<a class="anchor" id="a95ef69f6e5608dd73fd22f29bf619808"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_read </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_read </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -665,16 +659,16 @@ non zero error </dd></dl>
 <dd>
 non zero error </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00344">344</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00342">342</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afebcf37e8fa059526e23ad8004d4eb04"></a>
+<a class="anchor" id="a3a80808dbeee4b940bbba6128564dcba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a> mmc_disk_status </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a> mmc_disk_status </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>pdrv</em></td><td>)</td>
@@ -688,16 +682,16 @@ non zero error </dd></dl>
 <dd>
 STA_NOINIT if no drive </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00331">331</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00328">328</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae428f60713ab7fbfd1c03e7c295a55f1"></a>
+<a class="anchor" id="ac5d707caafd1e9d2bf6bc7c933b13537"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_write </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="diskio_8h.html#a54ffb9f13138d2b17dd599ba880696ad">DRESULT</a> mmc_disk_write </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>pdrv</em>, </td>
@@ -737,7 +731,7 @@ non zero error </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a6671895542db88fd7d27976cc3e069c2"></a>
+<a class="anchor" id="a2661ae4f7be7777f1015c91d8444fac0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -745,7 +739,7 @@ non zero error </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int mmc_select </td>
+          <td class="memname">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int mmc_select </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -764,13 +758,13 @@ non zero error </dd></dl>
 <dd>
 0 Timeout </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00134">134</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00114">114</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, and <a class="el" href="mmc_8c_source.html#l00207">send_cmd()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, and <a class="el" href="mmc_8c_source.html#l00194">send_cmd()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8c99afbc312912297b19752cf7e0960b"></a>
+<a class="anchor" id="a59275a8f1cc0f0d24c6f9f1ae578775a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -778,7 +772,7 @@ non zero error </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int rcvr_datablock </td>
+          <td class="memname">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int rcvr_datablock </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td>
           <td class="paramname"><em>buff</em>, </td>
@@ -807,13 +801,13 @@ non zero error </dd></dl>
 <dd>
 0 Error </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00150">150</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00135">135</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, and <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, and <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a50ff2f4928f652f9968097d326623808"></a>
+<a class="anchor" id="afd47154c84441f723909d5875aa64efd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -821,47 +815,7 @@ non zero error </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void rcvr_spi_multi </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>&#160;</td>
-          <td class="paramname"><em>cnt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Receive SPI data block fast. </p>
-
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00086">86</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00150">rcvr_datablock()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a99684b493c8bfdb0288a2e24e52f6871"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> send_cmd </td>
+          <td class="memname">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> send_cmd </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td>
           <td class="paramname"><em>cmd</em>, </td>
@@ -890,46 +844,33 @@ non zero error </dd></dl>
 <dd>
 bit7==1Send failed </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00207">207</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00194">194</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a07989444410422cdb72780de8e8b2122"></a>
+<a class="anchor" id="ab7771efbbd1a015b449d838d7f09959a"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int wait_ready </td>
+          <td class="memname"><a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int wait_ready </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>&#160;</td>
           <td class="paramname"><em>wt</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Wait for card ready. </p>
-<dl class="section return"><dt>Returns</dt><dd>1 ready </dd>
-<dd>
-0 timeout </dd></dl>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00082">82</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00104">104</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00134">mmc_select()</a>, and <a class="el" href="mmc_8c_source.html#l00177">xmit_datablock()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00114">mmc_select()</a>, and <a class="el" href="mmc_8c_source.html#l00163">xmit_datablock()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aefbd30f6bdff37184f58faf98ad1c6e0"></a>
+<a class="anchor" id="a2174d7259d1d933e0ea0dc45eee4af62"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -937,7 +878,7 @@ bit7==1Send failed </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static int xmit_datablock </td>
+          <td class="memname">static <a class="el" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int xmit_datablock </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td>
           <td class="paramname"><em>buff</em>, </td>
@@ -966,49 +907,9 @@ bit7==1Send failed </dd></dl>
 <dd>
 0 Error </dd></dl>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00177">177</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00163">163</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
 <p>Referenced by <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8c2f6f09ffb61f5c8d4b7474fc9ac744"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void xmit_spi_multi </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> *&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>&#160;</td>
-          <td class="paramname"><em>cnt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Send SPI data block fast. </p>
-
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00071">71</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00177">xmit_datablock()</a>.</p>
 
 </div>
 </div>
@@ -1031,9 +932,9 @@ bit7==1Send failed </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00067">67</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00076">76</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>, and <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>.</p>
 
 </div>
 </div>
@@ -1047,18 +948,18 @@ bit7==1Send failed </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>MMC FatFs insert,write protect status. </p>
+<p>MMC timer tic in Microseconds. </p>
 
-<p>Definition at line <a class="el" href="mmc_8c_source.html#l00064">64</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
+<p>Definition at line <a class="el" href="mmc_8c_source.html#l00073">73</a> of file <a class="el" href="mmc_8c_source.html">mmc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc_8c_source.html#l00256">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00433">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00344">mmc_disk_read()</a>, <a class="el" href="mmc_8c_source.html#l00331">mmc_disk_status()</a>, <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00117">mmc_task()</a>.</p>
+<p>Referenced by <a class="el" href="mmc_8c_source.html#l00246">mmc_disk_initialize()</a>, <a class="el" href="mmc_8c_source.html#l00434">mmc_disk_ioctl()</a>, <a class="el" href="mmc_8c_source.html#l00342">mmc_disk_read()</a>, <a class="el" href="mmc_8c_source.html#l00328">mmc_disk_status()</a>, <a class="el" href="mmc_8c_source.html#l00383">mmc_disk_write()</a>, <a class="el" href="mmc__hal_8c_source.html#l00186">mmc_init()</a>, <a class="el" href="mmc__hal_8c_source.html#l00054">mmc_task()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00165">mmc_test_timeout()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:47:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

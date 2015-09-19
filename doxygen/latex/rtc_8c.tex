@@ -24,11 +24,7 @@ uint8\-\_\-t \hyperlink{rtc_8c_aca651806fd67e4d5345fc45f70b35814}{rtc\-\_\-init}
 uint8\-\_\-t \hyperlink{rtc_8c_a9ba6382e802fb431c0460599c191763f}{rtc\-\_\-write} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
 \begin{DoxyCompactList}\small\item\em Set D\-S1307 R\-T\-C from P\-O\-S\-I\-X struct tm $\ast$ structure. \end{DoxyCompactList}\item 
 uint8\-\_\-t \hyperlink{rtc_8c_a3794738edaf3a42409aa1d9e12be60c3}{rtc\-\_\-read} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
-\begin{DoxyCompactList}\small\item\em Read D\-S1307 R\-T\-C into P\-O\-S\-I\-X struct tm $\ast$ structure. \end{DoxyCompactList}\item 
-uint32\-\_\-t \hyperlink{rtc_8c_a90541cfcffb7abfa64438b182a8d80cf}{tm\-\_\-to\-\_\-fat} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
-\begin{DoxyCompactList}\small\item\em F\-A\-T time structer reference. \end{DoxyCompactList}\item 
-uint32\-\_\-t \hyperlink{rtc_8c_a90d310b1f92cf36ef427b8d639e55405}{get\-\_\-fattime} (void)
-\begin{DoxyCompactList}\small\item\em Read D\-S1307 R\-T\-C and convert to F\-A\-T32 time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Read D\-S1307 R\-T\-C into P\-O\-S\-I\-X struct tm $\ast$ structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -113,31 +109,6 @@ Definition at line 23 of file rtc.\-c.
 
 Referenced by rtc\-\_\-write().
 
-\hypertarget{rtc_8c_a90d310b1f92cf36ef427b8d639e55405}{\index{rtc.\-c@{rtc.\-c}!get\-\_\-fattime@{get\-\_\-fattime}}
-\index{get\-\_\-fattime@{get\-\_\-fattime}!rtc.c@{rtc.\-c}}
-\subsubsection[{get\-\_\-fattime}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t get\-\_\-fattime (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{rtc_8c_a90d310b1f92cf36ef427b8d639e55405}
-
-
-Read D\-S1307 R\-T\-C and convert to F\-A\-T32 time. 
-
-\begin{DoxyReturn}{Returns}
-F\-A\-T32 time. 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{rtc_8c_a90541cfcffb7abfa64438b182a8d80cf}{tm\-\_\-to\-\_\-fat()}. 
-\end{DoxySeeAlso}
-
-
-Definition at line 317 of file rtc.\-c.
-
-
-
-Referenced by f\-\_\-mkdir(), f\-\_\-open(), and f\-\_\-sync().
-
 \hypertarget{rtc_8c_aca651806fd67e4d5345fc45f70b35814}{\index{rtc.\-c@{rtc.\-c}!rtc\-\_\-init@{rtc\-\_\-init}}
 \index{rtc\-\_\-init@{rtc\-\_\-init}!rtc.c@{rtc.\-c}}
 \subsubsection[{rtc\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t rtc\-\_\-init (
@@ -200,7 +171,7 @@ Definition at line 231 of file rtc.\-c.
 
 
 
-Referenced by display\-\_\-time(), get\-\_\-fattime(), and setup\-\_\-clock().
+Referenced by display\-\_\-time(), and setup\-\_\-clock().
 
 \hypertarget{rtc_8c_a18a3db53342227574822a9b6b9c0386b}{\index{rtc.\-c@{rtc.\-c}!rtc\-\_\-run@{rtc\-\_\-run}}
 \index{rtc\-\_\-run@{rtc\-\_\-run}!rtc.c@{rtc.\-c}}
@@ -289,47 +260,4 @@ Definition at line 179 of file rtc.\-c.
 
 
 Referenced by rtc\-\_\-init().
-
-\hypertarget{rtc_8c_a90541cfcffb7abfa64438b182a8d80cf}{\index{rtc.\-c@{rtc.\-c}!tm\-\_\-to\-\_\-fat@{tm\-\_\-to\-\_\-fat}}
-\index{tm\-\_\-to\-\_\-fat@{tm\-\_\-to\-\_\-fat}!rtc.c@{rtc.\-c}}
-\subsubsection[{tm\-\_\-to\-\_\-fat}]{\setlength{\rightskip}{0pt plus 5cm}uint32\-\_\-t tm\-\_\-to\-\_\-fat (
-\begin{DoxyParamCaption}
-\item[{{\bf tm\-\_\-t} $\ast$}]{t}
-\end{DoxyParamCaption}
-)}}\label{rtc_8c_a90541cfcffb7abfa64438b182a8d80cf}
-
-
-F\-A\-T time structer reference. 
-
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{rtc_8h}{rtc.\-h} 
-
-\href{http://lxr.free-electrons.com/source/fs/fat/misc.c}{\tt http\-://lxr.\-free-\/electrons.\-com/source/fs/fat/misc.\-c} \begin{DoxyVerb}/// typedef struct
-/// {
-///     WORD   year;                                  /* 2000..2099 */
-///     BYTE   month;                                 /* 1..12 */
-///     BYTE   mday;                                  /* 1.. 31 */
-///     BYTE   wday;                                  /* 1..7 */
-///     BYTE   hour;                                  /* 0..23 */
-///     BYTE   min;                                   /* 0..59 */
-///     BYTE   sec;                                   /* 0..59 */
-/// } RTC;
-/// \end{DoxyVerb}
- Convert Linux P\-O\-S\-I\-X \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ to F\-A\-T32 \hyperlink{time_8h_ae7841e681c8c9d59818568d39553642c}{time}.
-\end{DoxySeeAlso}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em t} & P\-O\-S\-I\-X struct tm $\ast$ to convert.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-F\-A\-T32 time. 
-\end{DoxyReturn}
-
-
-Definition at line 299 of file rtc.\-c.
-
-
-
-Referenced by get\-\_\-fattime().
 

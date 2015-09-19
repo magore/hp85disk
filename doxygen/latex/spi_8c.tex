@@ -20,12 +20,20 @@ void \hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\-P\-I0\-\_\-\-Mode} 
 \begin{DoxyCompactList}\small\item\em Set S\-P\-I clock mode. \end{DoxyCompactList}\item 
 int \hyperlink{spi_8c_ab93aed2163d123a27c97758c8cde0587}{S\-P\-I0\-\_\-\-Get\-\_\-\-Mode} (void)
 \begin{DoxyCompactList}\small\item\em Return saved S\-P\-I mode as set by \hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\-P\-I0\-\_\-\-Mode()}. \end{DoxyCompactList}\item 
-void \hyperlink{spi_8c_ac385baed8fedb7abe92c2219174cc2a2}{S\-P\-I0\-\_\-\-Init} (void)
+void \hyperlink{spi_8c_a09a39e7befac69f184fd466e10730595}{S\-P\-I0\-\_\-\-Init} (uint32\-\_\-t speed)
 \begin{DoxyCompactList}\small\item\em Initialize S\-P\-I0 device. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{spi_8c_af5b6abbef4a0bd9836527999dce8b857}{S\-P\-I0\-\_\-\-Write\-Read\-Byte} (uint8\-\_\-t Data)
-\begin{DoxyCompactList}\small\item\em S\-P\-I read/\-Write byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+uint8\-\_\-t \hyperlink{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}{S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte} (uint8\-\_\-t Data)
+\begin{DoxyCompactList}\small\item\em S\-P\-I read/\-Write byte. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}{S\-P\-I0\-\_\-\-T\-X} (uint8\-\_\-t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em S\-P\-I buffered write functions. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}{S\-P\-I0\-\_\-\-T\-X\-R\-X} (uint8\-\_\-t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I write and read using F\-I\-F\-O. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}{S\-P\-I0\-\_\-\-R\-X} (uint8\-\_\-t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em H\-S\-P\-I read using F\-I\-F\-O. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{spi_8c_a7c077b6fe081793cd1e55509f7284334}{\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done} = 0
 \item 
 static uint32\-\_\-t \hyperlink{spi_8c_a27ad9c881de03a6b8defda1bde93566f}{S\-P\-I0\-\_\-\-Speed\-\_\-value} = 0
 \begin{DoxyCompactList}\small\item\em Saved S\-P\-I bus speed. \end{DoxyCompactList}\item 
@@ -73,7 +81,7 @@ saved mode.
 \end{DoxyReturn}
 
 
-Definition at line 169 of file spi.\-c.
+Definition at line 220 of file spi.\-c.
 
 \hypertarget{spi_8c_a6b19a886a9e63fbc9ed02a6a6361e68b}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Get\-\_\-\-Speed@{S\-P\-I0\-\_\-\-Get\-\_\-\-Speed}}
 \index{S\-P\-I0\-\_\-\-Get\-\_\-\-Speed@{S\-P\-I0\-\_\-\-Get\-\_\-\-Speed}!spi.c@{spi.\-c}}
@@ -91,15 +99,15 @@ S\-P\-I clock rate in H\-Z.
 \end{DoxyReturn}
 
 
-Definition at line 117 of file spi.\-c.
+Definition at line 168 of file spi.\-c.
 
-\hypertarget{spi_8c_ac385baed8fedb7abe92c2219174cc2a2}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Init@{S\-P\-I0\-\_\-\-Init}}
+\hypertarget{spi_8c_a09a39e7befac69f184fd466e10730595}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Init@{S\-P\-I0\-\_\-\-Init}}
 \index{S\-P\-I0\-\_\-\-Init@{S\-P\-I0\-\_\-\-Init}!spi.c@{spi.\-c}}
 \subsubsection[{S\-P\-I0\-\_\-\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void S\-P\-I0\-\_\-\-Init (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{uint32\-\_\-t}]{speed}
 \end{DoxyParamCaption}
-)}}\label{spi_8c_ac385baed8fedb7abe92c2219174cc2a2}
+)}}\label{spi_8c_a09a39e7befac69f184fd466e10730595}
 
 
 Initialize S\-P\-I0 device. 
@@ -109,11 +117,11 @@ Initialize S\-P\-I0 device.
 \item Set default speed, I\-O pins and mode. 
 \end{DoxyItemize}
 
-Definition at line 181 of file spi.\-c.
+Definition at line 232 of file spi.\-c.
 
 
 
-Referenced by main(), and mmc\-\_\-spi\-\_\-init().
+Referenced by main(), mmc\-\_\-fast(), mmc\-\_\-slow(), and mmc\-\_\-spi\-\_\-init().
 
 \hypertarget{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Mode@{S\-P\-I0\-\_\-\-Mode}}
 \index{S\-P\-I0\-\_\-\-Mode@{S\-P\-I0\-\_\-\-Mode}!spi.c@{spi.\-c}}
@@ -142,11 +150,41 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 139 of file spi.\-c.
+Definition at line 190 of file spi.\-c.
 
 
 
 Referenced by main(), mmc\-\_\-spi\-\_\-init(), and S\-P\-I0\-\_\-\-Init().
+
+\hypertarget{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-R\-X@{S\-P\-I0\-\_\-\-R\-X}}
+\index{S\-P\-I0\-\_\-\-R\-X@{S\-P\-I0\-\_\-\-R\-X}!spi.c@{spi.\-c}}
+\subsubsection[{S\-P\-I0\-\_\-\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}void S\-P\-I0\-\_\-\-R\-X (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}
+
+
+H\-S\-P\-I read using F\-I\-F\-O. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & receive buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 310 of file spi.\-c.
+
+
+
+Referenced by mmc\-\_\-spi\-\_\-\-R\-X(), and mmc\-\_\-spi\-\_\-\-R\-X\-\_\-buffer().
 
 \hypertarget{spi_8c_a4b8379d9d83e3283bb53cfeca92f2e02}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Speed@{S\-P\-I0\-\_\-\-Speed}}
 \index{S\-P\-I0\-\_\-\-Speed@{S\-P\-I0\-\_\-\-Speed}!spi.c@{spi.\-c}}
@@ -183,19 +221,79 @@ Set A\-V\-R S\-P\-I bus rate in H\-Z.
  
 \end{DoxyItemize}Save speed value 
 
-Definition at line 46 of file spi.\-c.
+Definition at line 91 of file spi.\-c.
 
 
 
-Referenced by main(), mmc\-\_\-fast(), mmc\-\_\-slow(), and S\-P\-I0\-\_\-\-Init().
+Referenced by S\-P\-I0\-\_\-\-Init().
 
-\hypertarget{spi_8c_af5b6abbef4a0bd9836527999dce8b857}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Write\-Read\-Byte@{S\-P\-I0\-\_\-\-Write\-Read\-Byte}}
-\index{S\-P\-I0\-\_\-\-Write\-Read\-Byte@{S\-P\-I0\-\_\-\-Write\-Read\-Byte}!spi.c@{spi.\-c}}
-\subsubsection[{S\-P\-I0\-\_\-\-Write\-Read\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t S\-P\-I0\-\_\-\-Write\-Read\-Byte (
+\hypertarget{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-T\-X@{S\-P\-I0\-\_\-\-T\-X}}
+\index{S\-P\-I0\-\_\-\-T\-X@{S\-P\-I0\-\_\-\-T\-X}!spi.c@{spi.\-c}}
+\subsubsection[{S\-P\-I0\-\_\-\-T\-X}]{\setlength{\rightskip}{0pt plus 5cm}void S\-P\-I0\-\_\-\-T\-X (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}
+
+
+S\-P\-I buffered write functions. 
+
+=================================================================H\-S\-P\-I write using F\-I\-F\-O 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file spi.\-c.
+
+
+
+Referenced by mmc\-\_\-spi\-\_\-\-T\-X(), and mmc\-\_\-spi\-\_\-\-T\-X\-\_\-buffer().
+
+\hypertarget{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-T\-X\-R\-X@{S\-P\-I0\-\_\-\-T\-X\-R\-X}}
+\index{S\-P\-I0\-\_\-\-T\-X\-R\-X@{S\-P\-I0\-\_\-\-T\-X\-R\-X}!spi.c@{spi.\-c}}
+\subsubsection[{S\-P\-I0\-\_\-\-T\-X\-R\-X}]{\setlength{\rightskip}{0pt plus 5cm}void S\-P\-I0\-\_\-\-T\-X\-R\-X (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t $\ast$}]{data, }
+\item[{int}]{count}
+\end{DoxyParamCaption}
+)}}\label{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}
+
+
+H\-S\-P\-I write and read using F\-I\-F\-O. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit / receive buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write / read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 295 of file spi.\-c.
+
+
+
+Referenced by mmc\-\_\-spi\-\_\-\-T\-X\-R\-X().
+
+\hypertarget{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte@{S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte}}
+\index{S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte@{S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte}!spi.c@{spi.\-c}}
+\subsubsection[{S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t S\-P\-I0\-\_\-\-T\-X\-R\-X\-\_\-\-Byte (
 \begin{DoxyParamCaption}
 \item[{uint8\-\_\-t}]{Data}
 \end{DoxyParamCaption}
-)}}\label{spi_8c_af5b6abbef4a0bd9836527999dce8b857}
+)}}\label{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}
 
 
 S\-P\-I read/\-Write byte. 
@@ -216,15 +314,22 @@ Data received.
 \end{DoxyReturn}
 
 
-Definition at line 209 of file spi.\-c.
+Definition at line 260 of file spi.\-c.
 
 
 
-Referenced by mmc\-\_\-xchg\-\_\-spi(), ppr\-\_\-set(), and S\-P\-I0\-\_\-\-Init().
+Referenced by ppr\-\_\-set(), S\-P\-I0\-\_\-\-Init(), S\-P\-I0\-\_\-\-R\-X(), S\-P\-I0\-\_\-\-T\-X(), and S\-P\-I0\-\_\-\-T\-X\-R\-X().
 
 
 
 \subsection{Variable Documentation}
+\hypertarget{spi_8c_a7c077b6fe081793cd1e55509f7284334}{\index{spi.\-c@{spi.\-c}!\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done@{\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done}}
+\index{\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done@{\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done}!spi.c@{spi.\-c}}
+\subsubsection[{\-\_\-\-S\-P\-I0\-\_\-init\-\_\-done}]{\setlength{\rightskip}{0pt plus 5cm}int \-\_\-\-S\-P\-I0\-\_\-init\-\_\-done = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{spi_8c_a7c077b6fe081793cd1e55509f7284334}
+
+
+Definition at line 63 of file spi.\-c.
+
 \hypertarget{spi_8c_a4d167d8fd3bcfa0504b201183b94449b}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Init\-\_\-state@{S\-P\-I0\-\_\-\-Init\-\_\-state}}
 \index{S\-P\-I0\-\_\-\-Init\-\_\-state@{S\-P\-I0\-\_\-\-Init\-\_\-state}!spi.c@{spi.\-c}}
 \subsubsection[{S\-P\-I0\-\_\-\-Init\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}int S\-P\-I0\-\_\-\-Init\-\_\-state = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{spi_8c_a4d167d8fd3bcfa0504b201183b94449b}
@@ -234,11 +339,7 @@ S\-P\-I0 initialization flag.
 
 
 
-Definition at line 176 of file spi.\-c.
-
-
-
-Referenced by S\-P\-I0\-\_\-\-Init().
+Definition at line 227 of file spi.\-c.
 
 \hypertarget{spi_8c_ae41154cf3f834c2d151bfa9e67cfc402}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Mode\-\_\-value@{S\-P\-I0\-\_\-\-Mode\-\_\-value}}
 \index{S\-P\-I0\-\_\-\-Mode\-\_\-value@{S\-P\-I0\-\_\-\-Mode\-\_\-value}!spi.c@{spi.\-c}}
@@ -252,11 +353,7 @@ Saved S\-P\-I Mode.
 \end{DoxySeeAlso}
 
 
-Definition at line 125 of file spi.\-c.
-
-
-
-Referenced by S\-P\-I0\-\_\-\-Get\-\_\-\-Mode(), and S\-P\-I0\-\_\-\-Mode().
+Definition at line 176 of file spi.\-c.
 
 \hypertarget{spi_8c_a27ad9c881de03a6b8defda1bde93566f}{\index{spi.\-c@{spi.\-c}!S\-P\-I0\-\_\-\-Speed\-\_\-value@{S\-P\-I0\-\_\-\-Speed\-\_\-value}}
 \index{S\-P\-I0\-\_\-\-Speed\-\_\-value@{S\-P\-I0\-\_\-\-Speed\-\_\-value}!spi.c@{spi.\-c}}
@@ -267,9 +364,5 @@ Saved S\-P\-I bus speed.
 
 
 
-Definition at line 22 of file spi.\-c.
-
-
-
-Referenced by S\-P\-I0\-\_\-\-Get\-\_\-\-Speed(), and S\-P\-I0\-\_\-\-Speed().
+Definition at line 67 of file spi.\-c.
 

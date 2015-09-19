@@ -124,12 +124,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a3794738edaf3a42409aa1d9e12be60c3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8c.html#a3794738edaf3a42409aa1d9e12be60c3">rtc_read</a> (<a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *t)</td></tr>
 <tr class="memdesc:a3794738edaf3a42409aa1d9e12be60c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read DS1307 RTC into POSIX struct tm * structure.  <a href="#a3794738edaf3a42409aa1d9e12be60c3">More...</a><br/></td></tr>
 <tr class="separator:a3794738edaf3a42409aa1d9e12be60c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90541cfcffb7abfa64438b182a8d80cf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8c.html#a90541cfcffb7abfa64438b182a8d80cf">tm_to_fat</a> (<a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *t)</td></tr>
-<tr class="memdesc:a90541cfcffb7abfa64438b182a8d80cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">FAT time structer reference.  <a href="#a90541cfcffb7abfa64438b182a8d80cf">More...</a><br/></td></tr>
-<tr class="separator:a90541cfcffb7abfa64438b182a8d80cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d310b1f92cf36ef427b8d639e55405"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtc_8c.html#a90d310b1f92cf36ef427b8d639e55405">get_fattime</a> (void)</td></tr>
-<tr class="memdesc:a90d310b1f92cf36ef427b8d639e55405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read DS1307 RTC and convert to FAT32 time.  <a href="#a90d310b1f92cf36ef427b8d639e55405">More...</a><br/></td></tr>
-<tr class="separator:a90d310b1f92cf36ef427b8d639e55405"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>DS1307 RTC Driver AVR8. </p>
@@ -206,30 +200,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a90d310b1f92cf36ef427b8d639e55405"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t get_fattime </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read DS1307 RTC and convert to FAT32 time. </p>
-<dl class="section return"><dt>Returns</dt><dd>FAT32 time. </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="rtc_8c.html#a90541cfcffb7abfa64438b182a8d80cf" title="FAT time structer reference. ">tm_to_fat()</a>. </dd></dl>
-
-<p>Definition at line <a class="el" href="rtc_8c_source.html#l00317">317</a> of file <a class="el" href="rtc_8c_source.html">rtc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="ff_8c_source.html#l03802">f_mkdir()</a>, <a class="el" href="ff_8c_source.html#l02567">f_open()</a>, and <a class="el" href="ff_8c_source.html#l02982">f_sync()</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="aca651806fd67e4d5345fc45f70b35814"></a>
 <div class="memitem">
 <div class="memproto">
@@ -271,7 +241,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rtc_8c_source.html#l00111">111</a> of file <a class="el" href="rtc_8c_source.html">rtc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="time_8c_source.html#l00708">setdate_r()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
+<p>Referenced by <a class="el" href="time_8c_source.html#l00647">setdate_r()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
 
 </div>
 </div>
@@ -302,7 +272,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rtc_8c_source.html#l00231">231</a> of file <a class="el" href="rtc_8c_source.html">rtc.c</a>.</p>
 
-<p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>, <a class="el" href="rtc_8c_source.html#l00317">get_fattime()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
+<p>Referenced by <a class="el" href="main_8c_source.html#l00194">display_time()</a>, and <a class="el" href="main_8c_source.html#l00153">setup_clock()</a>.</p>
 
 </div>
 </div>
@@ -398,52 +368,10 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a90541cfcffb7abfa64438b182a8d80cf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t tm_to_fat </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5">tm_t</a> *&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>FAT time structer reference. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="rtc_8h.html" title="DS1307 RTC Driver AVR8. ">rtc.h</a> </dd>
-<dd>
-<a href="http://lxr.free-electrons.com/source/fs/fat/misc.c">http://lxr.free-electrons.com/source/fs/fat/misc.c</a> <pre class="fragment">/// typedef struct
-/// {
-///     WORD   year;                                  /* 2000..2099 */
-///     BYTE   month;                                 /* 1..12 */
-///     BYTE   mday;                                  /* 1.. 31 */
-///     BYTE   wday;                                  /* 1..7 */
-///     BYTE   hour;                                  /* 0..23 */
-///     BYTE   min;                                   /* 0..59 */
-///     BYTE   sec;                                   /* 0..59 */
-/// } RTC;
-/// </pre> Convert Linux POSIX <a class="el" href="time_8h.html#a2fea857c30e2c901566fcf45fac68ac5" title="POSIX struct tm typedef. ">tm_t</a> * to FAT32 <a class="el" href="time_8h.html#ae7841e681c8c9d59818568d39553642c" title="Return second from epoch - POSIX function. ">time</a>.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>POSIX struct tm * to convert.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>FAT32 time. </dd></dl>
-
-<p>Definition at line <a class="el" href="rtc_8c_source.html#l00299">299</a> of file <a class="el" href="rtc_8c_source.html">rtc.c</a>.</p>
-
-<p>Referenced by <a class="el" href="rtc_8c_source.html#l00317">get_fattime()</a>.</p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 30 2015 22:47:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

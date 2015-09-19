@@ -149,7 +149,7 @@ void printer_close()
 int receive_plot_flush()
 {
     int ret;
-    int fileno;
+    int fno;
 
     if(plot.fp == NULL || plot.ind == 0)
         return(0);
@@ -162,10 +162,10 @@ int receive_plot_flush()
         return(-1);
     }
 
-    fileno = stream_to_fileno( plot.fp );
+    fno = fileno( plot.fp );
     if(ret < 0)
         return(ret);
-    ret = syncfs( fileno );
+    ret = syncfs( fno );
     return ( ret );
 }
 

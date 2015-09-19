@@ -123,6 +123,7 @@
 /                   Fixed LFN entry is not deleted on delete/rename an object with lossy converted SFN.
 /---------------------------------------------------------------------------*/
 
+#include "hardware/hardware.h" 
 #include "ff.h"                                   /* Declarations of FatFs API */
 #include "diskio.h"                               /* Declarations of disk I/O functions */
 
@@ -565,6 +566,7 @@ if (!lfn) LEAVE_FF((dobj).fs, FR_NOT_ENOUGH_CORE); \
 /*-----------------------------------------------------------------------*/
 
 /* Copy memory to memory */
+MEMSPACE
 static
 void mem_cpy (void* dst, const void* src, UINT cnt)
 {
@@ -585,6 +587,7 @@ void mem_cpy (void* dst, const void* src, UINT cnt)
 
 
 /* Fill memory */
+MEMSPACE
 static
 void mem_set (void* dst, int val, UINT cnt)
 {
@@ -596,6 +599,7 @@ void mem_set (void* dst, int val, UINT cnt)
 
 
 /* Compare memory to memory */
+MEMSPACE
 static
 int mem_cmp (const void* dst, const void* src, UINT cnt)
 {
@@ -620,6 +624,7 @@ int chk_chr (const char* str, int chr)
 /* Request/Release grant to access the volume                            */
 /*-----------------------------------------------------------------------*/
 #if _FS_REENTRANT
+MEMSPACE
 static
 int lock_fs (
 FATFS* fs                                         /* File system object */
@@ -629,6 +634,7 @@ FATFS* fs                                         /* File system object */
 }
 
 
+MEMSPACE
 static
 void unlock_fs (
 FATFS* fs,                                        /* File system object */
@@ -651,6 +657,7 @@ FRESULT res                                       /* Result code to be returned 
 /*-----------------------------------------------------------------------*/
 #if _FS_LOCK
 
+MEMSPACE
 static
 FRESULT chk_lock (                                /* Check if the file can be accessed */
 DIR* dp,                                          /* Directory object pointing the file to be checked */
@@ -682,6 +689,7 @@ int acc                                           /* Desired access type (0:Read
 }
 
 
+MEMSPACE
 static
 int enq_lock (void)                               /* Check if an entry is available for a new object */
 {
@@ -692,6 +700,7 @@ int enq_lock (void)                               /* Check if an entry is availa
 }
 
 
+MEMSPACE
 static
 UINT inc_lock (                                   /* Increment object open counter and returns its index (0:Internal error) */
 DIR* dp,                                          /* Directory object pointing the file to register or increment */
@@ -725,6 +734,7 @@ int acc                                           /* Desired access (0:Read, 1:W
 }
 
 
+MEMSPACE
 static
 FRESULT dec_lock (                                /* Decrement object open counter */
 UINT i                                            /* Semaphore index (1..) */
@@ -750,6 +760,7 @@ UINT i                                            /* Semaphore index (1..) */
 }
 
 
+MEMSPACE
 static
 void clear_lock (                                 /* Clear lock entries of the volume */
 FATFS *fs
@@ -768,6 +779,7 @@ FATFS *fs
 /* Move/Flush disk access window in the file system object               */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
+MEMSPACE
 static
 FRESULT sync_window (
 FATFS* fs                                         /* File system object */
@@ -795,6 +807,7 @@ FATFS* fs                                         /* File system object */
 }
 #endif
 
+MEMSPACE
 static
 FRESULT move_window (
 FATFS* fs,                                        /* File system object */
@@ -820,6 +833,7 @@ DWORD sector                                      /* Sector number to make appea
 /* Synchronize file system and strage device                             */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
+MEMSPACE
 static
 FRESULT sync_fs (                                 /* FR_OK: successful, FR_DISK_ERR: failed */
 FATFS* fs                                         /* File system object */
@@ -858,6 +872,7 @@ FATFS* fs                                         /* File system object */
 /* Get sector# from cluster#                                             */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 DWORD clust2sect (                                /* !=0: Sector number, 0: Failed - invalid cluster# */
 FATFS* fs,                                        /* File system object */
 DWORD clst                                        /* Cluster# to be converted */
@@ -873,6 +888,7 @@ DWORD clst                                        /* Cluster# to be converted */
 /* FAT access - Read value of a FAT entry                                */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 DWORD get_fat (                                   /* 0xFFFFFFFF:Disk error, 1:Internal error, Else:Cluster status */
 FATFS* fs,                                        /* File system object */
 DWORD clst                                        /* Cluster# to get the link information */
@@ -917,6 +933,7 @@ DWORD clst                                        /* Cluster# to get the link in
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
 
+MEMSPACE
 FRESULT put_fat (
 FATFS* fs,                                        /* File system object */
 DWORD clst,                                       /* Cluster# to be changed in range of 2 to fs->n_fatent - 1 */
@@ -979,6 +996,7 @@ DWORD val                                         /* New value to mark the clust
 /* FAT handling - Remove a cluster chain                                 */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
+MEMSPACE
 static
 FRESULT remove_chain (
 FATFS* fs,                                        /* File system object */
@@ -1045,6 +1063,7 @@ DWORD clst                                        /* Cluster# to remove a chain 
 /* FAT handling - Stretch or Create a cluster chain                      */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
+MEMSPACE
 static
 DWORD create_chain (                              /* 0:No free cluster, 1:Internal error, 0xFFFFFFFF:Disk error, >=2:New cluster# */
 FATFS* fs,                                        /* File system object */
@@ -1112,6 +1131,7 @@ DWORD clst                                        /* Cluster# to stretch. 0 mean
 /*-----------------------------------------------------------------------*/
 
 #if _USE_FASTSEEK
+MEMSPACE
 static
 DWORD clmt_clust (                                /* <2:Error, >=2:Cluster number */
 FIL* fp,                                          /* Pointer to the file object */
@@ -1137,6 +1157,7 @@ DWORD ofs                                         /* File offset to be converted
 /* Directory handling - Set directory index                              */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT dir_sdi (
 DIR* dp,                                          /* Pointer to directory object */
@@ -1188,6 +1209,7 @@ UINT idx                                          /* Index of directory table */
 /* Directory handling - Move directory table index next                  */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT dir_next (                                /* FR_OK:Succeeded, FR_NO_FILE:End of table, FR_DENIED:Could not stretch */
 DIR* dp,                                          /* Pointer to the directory object */
@@ -1270,6 +1292,7 @@ int stretch                                       /* 0: Do not stretch table, 1:
 /*-----------------------------------------------------------------------*/
 
 #if !_FS_READONLY
+MEMSPACE
 static
 FRESULT dir_alloc (
 DIR* dp,                                          /* Pointer to the directory object */
@@ -1308,6 +1331,7 @@ UINT nent                                         /* Number of contiguous entrie
 /* Directory handling - Load/Store start cluster number                  */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 DWORD ld_clust (
 FATFS* fs,                                        /* Pointer to the fs object */
@@ -1325,6 +1349,7 @@ BYTE* dir                                         /* Pointer to the directory en
 
 
 #if !_FS_READONLY
+MEMSPACE
 static
 void st_clust (
 BYTE* dir,                                        /* Pointer to the directory entry */
@@ -1346,6 +1371,7 @@ const BYTE LfnOfs[] =                             /* Offset of LFN characters in
     1,3,5,7,9,14,16,18,20,22,24,28,30
 };
 
+MEMSPACE
 static
 int cmp_lfn (                                     /* 1:Matched, 0:Not matched */
 WCHAR* lfnbuf,                                    /* Pointer to the LFN to be compared */
@@ -1380,6 +1406,7 @@ BYTE* dir                                         /* Pointer to the directory en
 }
 
 
+MEMSPACE
 static
 int pick_lfn (                                    /* 1:Succeeded, 0:Buffer overflow */
 WCHAR* lfnbuf,                                    /* Pointer to the Unicode-LFN buffer */
@@ -1417,6 +1444,7 @@ BYTE* dir                                         /* Pointer to the directory en
 
 
 #if !_FS_READONLY
+MEMSPACE
 static
 void fit_lfn (
 const WCHAR* lfnbuf,                              /* Pointer to the LFN buffer */
@@ -1451,6 +1479,7 @@ BYTE sum                                          /* SFN sum */
 /* Create numbered name                                                  */
 /*-----------------------------------------------------------------------*/
 #if _USE_LFN
+MEMSPACE
 static
 void gen_numname (
 BYTE* dst,                                        /* Pointer to the buffer to store numbered SFN */
@@ -1513,6 +1542,7 @@ UINT seq                                          /* Sequence number */
 /* Calculate sum of an SFN                                               */
 /*-----------------------------------------------------------------------*/
 #if _USE_LFN
+MEMSPACE
 static
 BYTE sum_sfn (
 const BYTE* dir                                   /* Pointer to the SFN entry */
@@ -1530,6 +1560,7 @@ const BYTE* dir                                   /* Pointer to the SFN entry */
 /* Directory handling - Find an object in the directory                  */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT dir_find (
 DIR* dp                                           /* Pointer to the directory object linked to the file name */
@@ -1605,6 +1636,7 @@ DIR* dp                                           /* Pointer to the directory ob
 /* Read an object from the directory                                     */
 /*-----------------------------------------------------------------------*/
 #if _FS_MINIMIZE <= 1 || _USE_LABEL || _FS_RPATH >= 2
+MEMSPACE
 static
 FRESULT dir_read (
 DIR* dp,                                          /* Pointer to the directory object */
@@ -1674,6 +1706,7 @@ int vol                                           /* Filtered by 0:file/director
 /* Register an object to the directory                                   */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY
+MEMSPACE
 static
 FRESULT dir_register (                            /* FR_OK:Successful, FR_DENIED:No free entry or too many SFN collision, FR_DISK_ERR:Disk error */
 DIR* dp                                           /* Target directory with object name to be created */
@@ -1759,6 +1792,7 @@ DIR* dp                                           /* Target directory with objec
 /* Remove an object from the directory                                   */
 /*-----------------------------------------------------------------------*/
 #if !_FS_READONLY && !_FS_MINIMIZE
+MEMSPACE
 static
 FRESULT dir_remove (                              /* FR_OK: Successful, FR_DISK_ERR: A disk error */
 DIR* dp                                           /* Directory object pointing the entry to be removed */
@@ -1808,6 +1842,7 @@ DIR* dp                                           /* Directory object pointing t
 /* Get file information from directory entry                             */
 /*-----------------------------------------------------------------------*/
 #if _FS_MINIMIZE <= 1 || _FS_RPATH >= 2
+MEMSPACE
 static
 void get_fileinfo (                               /* No return code */
 DIR* dp,                                          /* Pointer to the directory object */
@@ -1886,6 +1921,7 @@ FILINFO* fno                                      /* Pointer to the file informa
 /* Pick a segment and create the object name in directory form           */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT create_name (
 DIR* dp,                                          /* Pointer to the directory object */
@@ -2133,6 +2169,7 @@ const TCHAR** path                                /* Pointer to pointer to the s
 /* Follow a file path                                                    */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT follow_path (                             /* FR_OK(0): successful, !=0: error code */
 DIR* dp,                                          /* Directory object to return last directory and found object */
@@ -2209,6 +2246,7 @@ const TCHAR* path                                 /* Full-path string to find a 
 /* Get logical drive number from path name                               */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 int get_ldnumber (                                /* Returns logical drive number (-1:invalid drive) */
 const TCHAR** path                                /* Pointer to pointer to the path name */
@@ -2276,6 +2314,7 @@ const TCHAR** path                                /* Pointer to pointer to the p
 /* Load a sector and check if it is an FAT boot sector                   */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 BYTE check_fs (                                   /* 0:FAT boor sector, 1:Valid boor sector but not FAT, 2:Not a boot sector, 3:Disk error */
 FATFS* fs,                                        /* File system object */
@@ -2304,6 +2343,7 @@ DWORD sect                                        /* Sector# (lba) to check if i
 /* Find logical drive and check if the volume is mounted                 */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT find_volume (                             /* FR_OK(0): successful, !=0: any error occurred */
 FATFS** rfs,                                      /* Pointer to pointer to the found file system object */
@@ -2489,6 +2529,7 @@ BYTE wmode                                        /* !=0: Check write protection
 /* Check if the file/directory object is valid or not                    */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 static
 FRESULT validate (                                /* FR_OK(0): The object is valid, !=0: Invalid */
 void* obj                                         /* Pointer to the object FIL/DIR to check validity */
@@ -2518,6 +2559,7 @@ void* obj                                         /* Pointer to the object FIL/D
 /* Mount/Unmount a Logical Drive                                         */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_mount (
 FATFS* fs,                                        /* Pointer to the file system object (NULL:unmount)*/
 const TCHAR* path,                                /* Logical drive number to be mounted/unmounted */
@@ -2564,6 +2606,7 @@ BYTE opt                                          /* 0:Do not mount (delayed mou
 /* Open or Create a File                                                 */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_open (
 FIL* fp,                                          /* Pointer to the blank file object */
 const TCHAR* path,                                /* Pointer to the file name */
@@ -2723,6 +2766,7 @@ BYTE mode                                         /* Access mode and file open m
 /* Read File                                                             */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_read (
 FIL* fp,                                          /* Pointer to the file object */
 void* buff,                                       /* Pointer to data buffer */
@@ -2838,6 +2882,7 @@ UINT* br                                          /* Pointer to number of bytes 
 /* Write File                                                            */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_write (
 FIL* fp,                                          /* Pointer to the file object */
 const void *buff,                                 /* Pointer to the data to be written */
@@ -2979,6 +3024,7 @@ UINT* bw                                          /* Pointer to number of bytes 
 /* Synchronize the File                                                  */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_sync (
 FIL* fp                                           /* Pointer to the file object */
 )
@@ -3028,6 +3074,7 @@ FIL* fp                                           /* Pointer to the file object 
 /* Close File                                                            */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_close (
 FIL *fp                                           /* Pointer to the file object to be closed */
 )
@@ -3065,6 +3112,7 @@ FIL *fp                                           /* Pointer to the file object 
 
 #if _FS_RPATH >= 1
 #if _VOLUMES >= 2
+MEMSPACE
 FRESULT f_chdrive (
 const TCHAR* path                                 /* Drive number */
 )
@@ -3080,6 +3128,7 @@ const TCHAR* path                                 /* Drive number */
 }
 #endif
 
+MEMSPACE
 FRESULT f_chdir (
 const TCHAR* path                                 /* Pointer to the directory path */
 )
@@ -3117,6 +3166,7 @@ const TCHAR* path                                 /* Pointer to the directory pa
 
 
 #if _FS_RPATH >= 2
+MEMSPACE
 FRESULT f_getcwd (
 TCHAR* buff,                                      /* Pointer to the directory path */
 UINT len                                          /* Size of path */
@@ -3208,6 +3258,7 @@ UINT len                                          /* Size of path */
 /* Seek File R/W Pointer                                                 */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_lseek (
 FIL* fp,                                          /* Pointer to the file object */
 DWORD ofs                                         /* File pointer from top of file */
@@ -3398,6 +3449,7 @@ DWORD ofs                                         /* File pointer from top of fi
 /* Create a Directory Object                                             */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_opendir (
 DIR* dp,                                          /* Pointer to directory object to create */
 const TCHAR* path                                 /* Pointer to the directory path */
@@ -3460,6 +3512,7 @@ const TCHAR* path                                 /* Pointer to the directory pa
 /* Close Directory                                                       */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_closedir (
 DIR *dp                                           /* Pointer to the directory object to be closed */
 )
@@ -3490,6 +3543,7 @@ DIR *dp                                           /* Pointer to the directory ob
 /* Read Directory Entries in Sequence                                    */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_readdir (
 DIR* dp,                                          /* Pointer to the open directory object */
 FILINFO* fno                                      /* Pointer to file information to return */
@@ -3537,6 +3591,7 @@ FILINFO* fno                                      /* Pointer to file information
 /* Get File Status                                                       */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_stat (
 const TCHAR* path,                                /* Pointer to the file path */
 FILINFO* fno                                      /* Pointer to file information to return */
@@ -3575,6 +3630,7 @@ FILINFO* fno                                      /* Pointer to file information
 /* Get Number of Free Clusters                                           */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_getfree (
 const TCHAR* path,                                /* Path name of the logical drive number */
 DWORD* nclst,                                     /* Pointer to a variable to return number of free clusters */
@@ -3652,6 +3708,7 @@ FATFS** fatfs                                     /* Pointer to return pointer t
 /* Truncate File                                                         */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_truncate (
 FIL* fp                                           /* Pointer to the file object */
 )
@@ -3716,6 +3773,7 @@ FIL* fp                                           /* Pointer to the file object 
 /* Delete a File or Directory                                            */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_unlink (
 const TCHAR* path                                 /* Pointer to the file or directory path */
 )
@@ -3799,6 +3857,7 @@ const TCHAR* path                                 /* Pointer to the file or dire
 /* Create a Directory                                                    */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_mkdir (
 const TCHAR* path                                 /* Pointer to the directory path */
 )
@@ -3878,6 +3937,7 @@ const TCHAR* path                                 /* Pointer to the directory pa
 /* Change Attribute                                                      */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_chmod (
 const TCHAR* path,                                /* Pointer to the file path */
 BYTE value,                                       /* Attribute bits */
@@ -3925,6 +3985,7 @@ BYTE mask                                         /* Attribute mask to change */
 /* Change Timestamp                                                      */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_utime (
 const TCHAR* path,                                /* Pointer to the file/directory name */
 const FILINFO* fno                                /* Pointer to the time stamp to be set */
@@ -3969,6 +4030,7 @@ const FILINFO* fno                                /* Pointer to the time stamp t
 /* Rename File/Directory                                                 */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_rename (
 const TCHAR* path_old,                            /* Pointer to the object to be renamed */
 const TCHAR* path_new                             /* Pointer to the new name */
@@ -4067,6 +4129,7 @@ const TCHAR* path_new                             /* Pointer to the new name */
 /* Get volume label                                                      */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_getlabel (
 const TCHAR* path,                                /* Path name of the logical drive number */
 TCHAR* label,                                     /* Pointer to a buffer to return the volume label */
@@ -4138,6 +4201,7 @@ DWORD* vsn                                        /* Pointer to a variable to re
 /* Set volume label                                                      */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_setlabel (
 const TCHAR* label                                /* Pointer to the volume label to set */
 )
@@ -4243,6 +4307,7 @@ const TCHAR* label                                /* Pointer to the volume label
 /*-----------------------------------------------------------------------*/
 #if _USE_FORWARD && _FS_TINY
 
+MEMSPACE
 FRESULT f_forward (
 FIL* fp,                                          /* Pointer to the file object */
 UINT (*func)(const BYTE*,UINT),                   /* Pointer to the streaming function */
@@ -4307,6 +4372,7 @@ UINT* bf                                          /* Pointer to number of bytes 
 #define N_ROOTDIR   512                           /* Number of root directory entries for FAT12/16 */
 #define N_FATS      1                             /* Number of FAT copies (1 or 2) */
 
+MEMSPACE
 FRESULT f_mkfs (
 const TCHAR* path,                                /* Logical drive number */
 BYTE sfd,                                         /* Partitioning rule 0:FDISK, 1:SFD */
@@ -4588,6 +4654,7 @@ UINT au                                           /* Allocation unit [bytes] */
 /* Divide Physical Drive                                                 */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 FRESULT f_fdisk (
 BYTE pdrv,                                        /* Physical drive number */
 const DWORD szt[],                                /* Pointer to the size table for each partitions */
@@ -4659,6 +4726,7 @@ void* work                                        /* Pointer to the working buff
 /* Get a string from the file                                            */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 TCHAR* f_gets (
 TCHAR* buff,                                      /* Pointer to the string buffer to read */
 int len,                                          /* Size of string buffer (characters) */
@@ -4752,6 +4820,7 @@ typedef struct
     BYTE buf[64];
 } putbuff;
 
+MEMSPACE
 static
 void putc_bfd (
 putbuff* pb,
@@ -4813,6 +4882,7 @@ TCHAR c
 }
 
 
+MEMSPACE
 int f_putc (
 TCHAR c,                                          /* A character to be output */
 FIL* fp                                           /* Pointer to the file object */
@@ -4837,6 +4907,7 @@ FIL* fp                                           /* Pointer to the file object 
 /* Put a string to the file                                              */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 int f_puts (
 const TCHAR* str,                                 /* Pointer to the string to be output */
 FIL* fp                                           /* Pointer to the file object */
@@ -4862,6 +4933,7 @@ FIL* fp                                           /* Pointer to the file object 
 /* Put a formatted string to the file                                    */
 /*-----------------------------------------------------------------------*/
 
+MEMSPACE
 int f_printf (
 FIL* fp,                                          /* Pointer to the file object */
 const TCHAR* fmt,                                 /* Pointer to the format string */

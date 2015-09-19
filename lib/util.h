@@ -1,30 +1,60 @@
 /**
- @file lib/util.h
+ @file util.h
 
- @brief Misc. pattern matching and string utilities for AVR8.
+ @brief Flash read and bit utilities
 
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par You are free to use this code under the terms of GPL
+  Please retain a copy of this notice in any code you use it in.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
-
+  This is free software: you can redistribute it and/or modify it under the
+  terms of the GNU General Public License as published by the Free Software
+  Foundation, either version 3 of the License, or (at your option)
+  any later version.
+  
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-/* util.c */
-char *skipspaces ( char *ptr );
-char *nextspace ( char *ptr );
-char *skipchars ( char *str , char *pat );
-void trim_tail ( char *str );
-char *strnalloc ( char *str , int len );
-char *stralloc ( char *str );
-int token ( char *str , char *pat );
-int MATCH ( char *str , char *pat );
-int MATCHI ( char *str , char *pat );
-int MATCH_LEN ( char *str , char *pat );
-int MATCHI_LEN ( char *str , char *pat );
-uint8_t hexd ( char c );
-long atoh ( const char *p );
-#endif                                            /* _UTIL_H */
+// The odd notation for SWAP is standard way to avoid certian compiler optimizations
+#define SWAP(a, b) do { a ^= b; b ^= a; a ^= b; } while(0)
+#define ABS(x) ((x)<0 ? -(x) : (x))
+#define SIGN(x) (((x) == 0) ? 0 : ((x) > 0) ? 1 : -1)
+#define MAX(x,y) (((x) > (y)) ? x : y)
+
+#define SPACES " \t\r"
+#define SPACESNL " \t\n\r"
+
+#include <hardware/hardware.h>
+/* lib/util.c */
+MEMSPACE char *skipspaces ( char *ptr );
+MEMSPACE char *nextspace ( char *ptr );
+MEMSPACE char *skipchars ( char *str , char *pat );
+MEMSPACE void trim_tail ( char *str );
+MEMSPACE char *strnalloc ( char *str , int len );
+MEMSPACE char *stralloc ( char *str );
+MEMSPACE char *get_token ( char *str , char *token , int max );
+MEMSPACE int token ( char *str , char *pat );
+MEMSPACE uint8_t hexd ( char c );
+MEMSPACE long atoh ( const char *p );
+MEMSPACE int isupper ( int c );
+MEMSPACE int islower ( int c );
+MEMSPACE int tolower ( int c );
+MEMSPACE int toupper ( int c );
+MEMSPACE int strcasecmp ( const char *str , const char *pat );
+MEMSPACE int strncasecmp ( const char *str , const char *pat , size_t len );
+MEMSPACE int MATCH ( char *str , char *pat );
+MEMSPACE int MATCHI ( char *str , char *pat );
+MEMSPACE int MATCH_LEN ( char *str , char *pat );
+MEMSPACE int MATCHI_LEN ( char *str , char *pat );
+
+
+#endif

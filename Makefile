@@ -29,10 +29,9 @@ fatfs/disk.c \
 fatfs/posix.c \
 fatfs/mmc.c \
 fatfs/ff.c \
-fatfs/option/syscall.c \
-fatfs/option/unicode.c 
+fatfs/syscall.c \
+fatfs/unicode.c 
 ifeq ($(FATFS_TESTS),1)
-	FATFS += fatfs/fatfs_tests.c 
 	FATFS += fatfs/fatfs_utils.c 
 endif
 
@@ -53,10 +52,11 @@ hardware/rs232.c \
 hardware/spi.c \
 hardware/rtc.c \
 hardware/TWI_AVR8.c \
+lib/util.c \
 lib/timer_hal.c \
 lib/timer.c \
 lib/time.c \
-lib/util.c \
+lib/queue.c \
 main.c \
  $(FATFS) \
  $(GPIB)
@@ -85,7 +85,7 @@ INCDIRS =.
 
 #DEFS    = F_CPU=20000000 SDEBUG=9 SOFTWARE_PP=1 SPOLL=1 HP9134L=1
 DEFS    = F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
-	AMIGO AMIGO_HACK
+	AMIGO AMIGO_HACK 
 ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
@@ -162,13 +162,14 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
 
 SRCS = $(CSRC)
-SRCDIRS= . fatfs fatfs/option gpib hardware lib 
+SRCDIRS= . fatfs fatfs gpib hardware lib 
 
 
 
 
 # Default target.
 all: doxy version $(LIBS) build size $(PROGS)
+#all: version $(LIBS) build size $(PROGS)
 
 flash:  all
 #
@@ -188,18 +189,18 @@ flash:  all
 	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
-#ICE
 	avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
-# MKII
+	#./term
 	# ===================================================
-	
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
-doxyfile.inc:	
-	echo "INPUT         =  $(SRCDIRS)" > doxyfile.inc
-	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
+.PHONY: doxyfile.inc
+doxyfile.inc:
+    echo "INPUT         =  $(DOCDIRS)" > doxyfile.inc
+    echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
+.PHONY: doxy
 doxy:	doxyfile.inc $(SRCS) 
-	export PYTHONPATH="$PYTHONPATH:/share/embedded/testgen-0.11/extras"
+	#export PYTHONPATH="$PYTHONPATH:/share/embedded/testgen-0.11/extras"
 	doxygen Doxyfile
 
 ifeq ($(OUTPUT),ihex)

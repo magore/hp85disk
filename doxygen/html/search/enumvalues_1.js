@@ -27,6 +27,7 @@ var searchData=
   ['enotdir',['ENOTDIR',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa8cd7a7b948ee085bbaeb2a210b412d6e',1,'posix.h']]],
   ['enotty',['ENOTTY',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaf3dc036138d242739c3dbe36c5dfa095',1,'posix.h']]],
   ['enxio',['ENXIO',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb',1,'posix.h']]],
+  ['eok',['EOK',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669',1,'posix.h']]],
   ['eperm',['EPERM',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267',1,'posix.h']]],
   ['epipe',['EPIPE',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aae573afaecfe768915268b5c70823ee70',1,'posix.h']]],
   ['erange',['ERANGE',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa3ffb99860526d55ef132365553694c3d',1,'posix.h']]],
