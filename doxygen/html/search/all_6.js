@@ -124,7 +124,7 @@ var searchData=
   ['fr_5ftoo_5fmany_5fopen_5ffiles',['FR_TOO_MANY_OPEN_FILES',['../ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca50dd3c3c274ccebb2cfbddde9d065bb9',1,'ff.h']]],
   ['fr_5fwrite_5fprotected',['FR_WRITE_PROTECTED',['../ff_8h.html#a49d0171ecbd362cda5680a0d360db44cac3afbb423b1d4497229416812aff383b',1,'ff.h']]],
   ['fread',['fread',['../posix_8c.html#a01233ac8fd574e20b0b38472adbee551',1,'fread(void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c'],['../posix_8h.html#a01233ac8fd574e20b0b38472adbee551',1,'fread(void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c']]],
-  ['free',['free',['../user__config_8h.html#a2c6efa7679f8cd9f61af96e105017560',1,'free():&#160;user_config.h'],['../str_8h.html#a0f8c52d1c359b700088f8417b48e467b',1,'free(void *p):&#160;str.h']]],
+  ['free',['free',['../user__config_8h.html#a9d4b5df3530d1bc733070a4669ba6ebc',1,'user_config.h']]],
   ['free_5fbuf',['FREE_BUF',['../ff_8c.html#aba6d6942b59f11cf285bdbfb7e38f1fa',1,'ff.c']]],
   ['free_5fclust',['free_clust',['../structFATFS.html#a5fb49e6ac511bd97eaffdd636d0e4165',1,'FATFS']]],
   ['free_5ffile_5fdescriptor',['free_file_descriptor',['../posix_8c.html#a38496612f759733234128893e4c60a89',1,'free_file_descriptor(int fileno):&#160;posix.c'],['../posix_8h.html#a38496612f759733234128893e4c60a89',1,'free_file_descriptor(int fileno):&#160;posix.c']]],

@@ -24,8 +24,6 @@ var searchData=
   ['bit_5fset',['BIT_SET',['../bits_8h.html#a75a94310a1111452b9aae180c264dc5e',1,'bits.h']]],
   ['bit_5ftst',['BIT_TST',['../bits_8h.html#a49c0cc46bd6dee049981fca0036e7f86',1,'bits.h']]],
   ['bits_2eh',['bits.h',['../bits_8h.html',1,'']]],
-  ['bittestv',['bittestv',['../str_8h.html#a96d99653ceafa913b2f1331ef7219be8',1,'str.h']]],
-  ['bittestxy',['bittestxy',['../str_8h.html#aa5ed287545d9d0d4361d2bd1c6ecc69d',1,'str.h']]],
   ['blkcnt_5ft',['blkcnt_t',['../posix_8h.html#a2706f994576080967d7633282dfcabbf',1,'posix.h']]],
   ['blksize_5ft',['blksize_t',['../posix_8h.html#a390f3028d0805a15c3d28ee27439c389',1,'posix.h']]],
   ['bool',['bool',['../user__config_8h.html#af6a258d8f3ee5206d682d799316314b1',1,'user_config.h']]],

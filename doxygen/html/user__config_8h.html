@@ -195,10 +195,12 @@ Macros</h2></td></tr>
 <tr class="separator:accba58d1237bfcb21e9f4bb040aebc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5073c91ce37d806cbbfbd8131bc9c31c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#a5073c91ce37d806cbbfbd8131bc9c31c">UART_DEVICE_CNT</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a5073c91ce37d806cbbfbd8131bc9c31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c6efa7679f8cd9f61af96e105017560"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#a2c6efa7679f8cd9f61af96e105017560">free</a>&#160;&#160;&#160;<a class="el" href="ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a></td></tr>
-<tr class="separator:a2c6efa7679f8cd9f61af96e105017560"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84beef8cc122add35118ec7cd35286c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#a84beef8cc122add35118ec7cd35286c4">calloc</a>&#160;&#160;&#160;<a class="el" href="ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a></td></tr>
-<tr class="separator:a84beef8cc122add35118ec7cd35286c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d4b5df3530d1bc733070a4669ba6ebc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#a9d4b5df3530d1bc733070a4669ba6ebc">free</a>(p)&#160;&#160;&#160;<a class="el" href="ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(p)</td></tr>
+<tr class="separator:a9d4b5df3530d1bc733070a4669ba6ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3a606b2415cc9127bbb52d8ed5d3191"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191">calloc</a>(n, s)&#160;&#160;&#160;<a class="el" href="ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(n,s)</td></tr>
+<tr class="separator:ad3a606b2415cc9127bbb52d8ed5d3191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bb12c9cae32ecd32a4584a86c4c6c99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99">malloc</a>(s)&#160;&#160;&#160;<a class="el" href="ram_8h.html#adefba2d5cc5425b0deeaaaee6d9a384e">safemalloc</a>(s)</td></tr>
+<tr class="separator:a6bb12c9cae32ecd32a4584a86c4c6c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -401,31 +403,53 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a84beef8cc122add35118ec7cd35286c4"></a>
+<a class="anchor" id="ad3a606b2415cc9127bbb52d8ed5d3191"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define calloc&#160;&#160;&#160;<a class="el" href="ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a></td>
+          <td class="memname">#define calloc</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">n, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">s&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(n,s)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="user__config_8h_source.html#l00206">206</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
+
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00170">fatfs_alloc_finfo()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00182">fatfs_cat()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00244">fatfs_copy()</a>, <a class="el" href="main_8c_source.html#l00238">main()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, <a class="el" href="queue_8c_source.html#l00030">queue_new()</a>, <a class="el" href="ram_8c_source.html#l00091">safecalloc()</a>, <a class="el" href="ram_8c_source.html#l00107">safemalloc()</a>, <a class="el" href="str_8c_source.html#l00149">stralloc()</a>, and <a class="el" href="str_8c_source.html#l00125">strnalloc()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9d4b5df3530d1bc733070a4669ba6ebc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define free</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">p</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(p)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00203">203</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a2c6efa7679f8cd9f61af96e105017560"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define free&#160;&#160;&#160;<a class="el" href="ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="user__config_8h_source.html#l00202">202</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
+<p>Referenced by <a class="el" href="disk_8c_source.html#l00170">fatfs_alloc_finfo()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00182">fatfs_cat()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00244">fatfs_copy()</a>, <a class="el" href="disk_8c_source.html#l00220">fatfs_free_filinfo()</a>, <a class="el" href="syscall_8c_source.html#l00161">ff_memfree()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="queue_8c_source.html#l00053">queue_del()</a>, <a class="el" href="queue_8c_source.html#l00030">queue_new()</a>, <a class="el" href="queue_8c_source.html#l00144">queue_push_buffer()</a>, and <a class="el" href="ram_8c_source.html#l00125">safefree()</a>.</p>
 
 </div>
 </div>
@@ -479,7 +503,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00119">119</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00390">mmc_cs_disable()</a>, <a class="el" href="mmc__hal_8c_source.html#l00275">mmc_spi_init()</a>, and <a class="el" href="spi_8c_source.html#l00232">SPI0_Init()</a>.</p>
+<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00391">mmc_cs_disable()</a>, <a class="el" href="mmc__hal_8c_source.html#l00276">mmc_spi_init()</a>, and <a class="el" href="spi_8c_source.html#l00232">SPI0_Init()</a>.</p>
 
 </div>
 </div>
@@ -571,7 +595,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00120">120</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00372">mmc_cs_enable()</a>.</p>
+<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00373">mmc_cs_enable()</a>.</p>
 
 </div>
 </div>
@@ -590,6 +614,26 @@ Enumerations</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00122">122</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6bb12c9cae32ecd32a4584a86c4c6c99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define malloc</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">s</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="ram_8h.html#adefba2d5cc5425b0deeaaaee6d9a384e">safemalloc</a>(s)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="user__config_8h_source.html#l00209">209</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
+
+<p>Referenced by <a class="el" href="syscall_8c_source.html#l00148">ff_memalloc()</a>.</p>
 
 </div>
 </div>
@@ -668,7 +712,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00024">24</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00309">mmc_fast()</a>.</p>
+<p>Referenced by <a class="el" href="mmc__hal_8c_source.html#l00310">mmc_fast()</a>.</p>
 
 </div>
 </div>
@@ -684,7 +728,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00023">23</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="main_8c_source.html#l00236">main()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00297">mmc_slow()</a>.</p>
+<p>Referenced by <a class="el" href="main_8c_source.html#l00238">main()</a>, and <a class="el" href="mmc__hal_8c_source.html#l00298">mmc_slow()</a>.</p>
 
 </div>
 </div>
@@ -714,7 +758,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00072">72</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="str_8c_source.html#l00273">atoh()</a>, <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="timer__hal_8c_source.html#l00104">execute_timers()</a>, <a class="el" href="disk_8c_source.html#l00170">fatfs_alloc_finfo()</a>, <a class="el" href="posix_8c_source.html#l00658">fatfs_getc()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="posix_8c_source.html#l00703">fatfs_putc()</a>, <a class="el" href="gpib__task_8c_source.html#l00508">FatFs_Read_Config()</a>, <a class="el" href="disk_8c_source.html#l00249">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00228">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00167">fileno()</a>, <a class="el" href="posix_8c_source.html#l00195">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00140">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01326">ftell()</a>, <a class="el" href="posix_8c_source.html#l01477">ftruncate()</a>, <a class="el" href="str_8c_source.html#l00176">get_token()</a>, <a class="el" href="gpib__task_8c_source.html#l00768">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00087">gpib_log()</a>, <a class="el" href="gpib__task_8c_source.html#l00838">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00359">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="posix_8c_source.html#l01257">lseek()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, <a class="el" href="posix_8c_source.html#l00454">perror()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00115">printer_close()</a>, <a class="el" href="printer_8c_source.html#l00096">printer_init()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, <a class="el" href="queue_8c_source.html#l00053">queue_del()</a>, <a class="el" href="queue_8c_source.html#l00030">queue_new()</a>, <a class="el" href="posix_8c_source.html#l01180">read()</a>, <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, <a class="el" href="ram_8c_source.html#l00108">safefree()</a>, <a class="el" href="timer__hal_8c_source.html#l00207">setup_timers_isr()</a>, <a class="el" href="posix_8c_source.html#l01584">stat()</a>, <a class="el" href="str_8c_source.html#l00125">strnalloc()</a>, <a class="el" href="posix_8c_source.html#l01057">sync()</a>, <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>, <a class="el" href="time_8c_source.html#l00571">time()</a>, and <a class="el" href="posix_8c_source.html#l01107">write()</a>.</p>
+<p>Referenced by <a class="el" href="str_8c_source.html#l00271">atoh()</a>, <a class="el" href="posix_8c_source.html#l00980">close()</a>, <a class="el" href="timer__hal_8c_source.html#l00104">execute_timers()</a>, <a class="el" href="disk_8c_source.html#l00170">fatfs_alloc_finfo()</a>, <a class="el" href="posix_8c_source.html#l00658">fatfs_getc()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="posix_8c_source.html#l00703">fatfs_putc()</a>, <a class="el" href="gpib__task_8c_source.html#l00508">FatFs_Read_Config()</a>, <a class="el" href="disk_8c_source.html#l00249">fatfs_scan_files()</a>, <a class="el" href="posix_8c_source.html#l00228">fatfs_to_fileno()</a>, <a class="el" href="posix_8c_source.html#l00167">fileno()</a>, <a class="el" href="posix_8c_source.html#l00195">fileno_to_fatfs()</a>, <a class="el" href="posix_8c_source.html#l00140">fileno_to_stream()</a>, <a class="el" href="posix_8c_source.html#l00390">free_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l01325">ftell()</a>, <a class="el" href="posix_8c_source.html#l01476">ftruncate()</a>, <a class="el" href="str_8c_source.html#l00176">get_token()</a>, <a class="el" href="gpib__task_8c_source.html#l00768">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00087">gpib_log()</a>, <a class="el" href="gpib__task_8c_source.html#l00838">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00359">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="posix_8c_source.html#l01256">lseek()</a>, <a class="el" href="posix_8c_source.html#l00303">new_file_descriptor()</a>, <a class="el" href="posix_8c_source.html#l00853">open()</a>, <a class="el" href="posix_8c_source.html#l00454">perror()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00115">printer_close()</a>, <a class="el" href="printer_8c_source.html#l00096">printer_init()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, <a class="el" href="queue_8c_source.html#l00053">queue_del()</a>, <a class="el" href="queue_8c_source.html#l00030">queue_new()</a>, <a class="el" href="posix_8c_source.html#l01179">read()</a>, <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, <a class="el" href="ram_8c_source.html#l00125">safefree()</a>, <a class="el" href="timer__hal_8c_source.html#l00207">setup_timers_isr()</a>, <a class="el" href="posix_8c_source.html#l01583">stat()</a>, <a class="el" href="str_8c_source.html#l00125">strnalloc()</a>, <a class="el" href="posix_8c_source.html#l01057">sync()</a>, <a class="el" href="posix_8c_source.html#l01020">syncfs()</a>, <a class="el" href="time_8c_source.html#l00571">time()</a>, and <a class="el" href="posix_8c_source.html#l01106">write()</a>.</p>
 
 </div>
 </div>
@@ -746,7 +790,7 @@ Enumerations</h2></td></tr>
 
 <p>Definition at line <a class="el" href="user__config_8h_source.html#l00065">65</a> of file <a class="el" href="user__config_8h_source.html">user_config.h</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00550">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00616">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00328">amigo_chs_to_logical()</a>, <a class="el" href="amigo_8c_source.html#l00763">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00683">amigo_cmd_dsj()</a>, <a class="el" href="amigo_8c_source.html#l00725">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00856">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01278">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01166">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00351">amigo_overflow_check()</a>, <a class="el" href="amigo_8c_source.html#l00202">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00253">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00290">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00816">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00791">amigo_todo_op()</a>, <a class="el" href="amigo_8c_source.html#l00437">amigo_verify()</a>, <a class="el" href="timer_8c_source.html#l00185">clock_elapsed_end()</a>, <a class="el" href="timer__hal_8c_source.html#l00119">clock_init()</a>, <a class="el" href="gpib__hal_8c_source.html#l00296">dbf_close()</a>, <a class="el" href="gpib__hal_8c_source.html#l00275">dbf_lseek()</a>, <a class="el" href="gpib__hal_8c_source.html#l00204">dbf_open()</a>, <a class="el" href="gpib__hal_8c_source.html#l00229">dbf_read()</a>, <a class="el" href="gpib__hal_8c_source.html#l00253">dbf_write()</a>, <a class="el" href="main_8c_source.html#l00044">delay_tests()</a>, <a class="el" href="gpib_8c_source.html#l00290">DisablePPR()</a>, <a class="el" href="main_8c_source.html#l00130">display_time()</a>, <a class="el" href="timer_8c_source.html#l00152">display_ts()</a>, <a class="el" href="posix_8c_source.html#l01663">dump_stat()</a>, <a class="el" href="gpib__task_8c_source.html#l00475">DumpData()</a>, <a class="el" href="gpib_8c_source.html#l00275">EnablePPR()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00182">fatfs_cat()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00423">fatfs_cd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00244">fatfs_copy()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00305">fatfs_create()</a>, <a class="el" href="disk_8c_source.html#l00366">fatfs_filinfo_list()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00076">fatfs_help()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00364">fatfs_mkdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00437">fatfs_pwd()</a>, <a class="el" href="gpib__task_8c_source.html#l00508">FatFs_Read_Config()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00348">fatfs_rm()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00381">fatfs_rmdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00396">fatfs_stat()</a>, <a class="el" href="disk_8c_source.html#l00314">fatfs_status()</a>, <a class="el" href="gpib__task_8c_source.html#l00663">GPIB()</a>, <a class="el" href="gpib_8c_source.html#l00368">gpib_assert_ifc()</a>, <a class="el" href="gpib_8c_source.html#l00388">gpib_assert_ren()</a>, <a class="el" href="gpib_8c_source.html#l00858">gpib_decode_header()</a>, <a class="el" href="gpib__task_8c_source.html#l00185">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00042">gpib_file_init()</a>, <a class="el" href="format_8c_source.html#l00020">gpib_format_disk()</a>, <a class="el" href="gpib__tests_8c_source.html#l00030">gpib_help()</a>, <a class="el" href="gpib__task_8c_source.html#l00768">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l01006">gpib_read_str()</a>, <a class="el" href="gpib__task_8c_source.html#l00911">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00246">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00838">GPIB_TALK()</a>, <a class="el" href="gpib__tests_8c_source.html#l00052">gpib_tests()</a>, <a class="el" href="gpib_8c_source.html#l00140">gpib_timer_elapsed_end()</a>, <a class="el" href="gpib__hal_8c_source.html#l00026">gpib_timer_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib_8c_source.html#l00661">gpib_unread()</a>, <a class="el" href="gpib_8c_source.html#l00445">gpib_write_byte()</a>, <a class="el" href="gpib_8c_source.html#l01103">gpib_write_str()</a>, <a class="el" href="main_8c_source.html#l00028">help()</a>, <a class="el" href="timer__hal_8c_source.html#l00149">init_timers()</a>, <a class="el" href="main_8c_source.html#l00236">main()</a>, <a class="el" href="mmc__hal_8c_source.html#l00195">mmc_init()</a>, <a class="el" href="mmc__hal_8c_source.html#l00075">mmc_install_timer()</a>, <a class="el" href="mmc_8c_source.html#l00114">mmc_select()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00043">mmc_test()</a>, <a class="el" href="mmc__hal_8c_source.html#l00170">mmc_test_timeout()</a>, <a class="el" href="gpib_8c_source.html#l00325">Parallel_Poll()</a>, <a class="el" href="posix_8c_source.html#l00454">perror()</a>, <a class="el" href="printer_8c_source.html#l00321">plot_echo()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00180">printer_buffer()</a>, <a class="el" href="printer_8c_source.html#l00115">printer_close()</a>, <a class="el" href="printer_8c_source.html#l00292">PRINTER_COMMANDS()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, <a class="el" href="ram_8c_source.html#l00049">PrintFree()</a>, <a class="el" href="disk_8c_source.html#l00134">put_rc()</a>, <a class="el" href="printer_8c_source.html#l00225">receive_plot()</a>, <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, <a class="el" href="rtc_8c_source.html#l00111">rtc_init()</a>, <a class="el" href="rtc_8c_source.html#l00231">rtc_read()</a>, <a class="el" href="rtc_8c_source.html#l00073">rtc_run()</a>, <a class="el" href="rtc_8c_source.html#l00047">rtc_run_test()</a>, <a class="el" href="rtc_8c_source.html#l00179">rtc_write()</a>, <a class="el" href="ram_8c_source.html#l00089">safecalloc()</a>, <a class="el" href="ram_8c_source.html#l00108">safefree()</a>, <a class="el" href="gpib__task_8c_source.html#l00626">Send_Identify()</a>, <a class="el" href="timer_8c_source.html#l00045">set_timers()</a>, <a class="el" href="time_8c_source.html#l00627">setdate()</a>, <a class="el" href="time_8c_source.html#l00645">setdate_r()</a>, <a class="el" href="main_8c_source.html#l00089">setup_clock()</a>, <a class="el" href="spi_8c_source.html#l00190">SPI0_Mode()</a>, <a class="el" href="ss80_8c_source.html#l01688">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01449">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00906">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01789">SS80_COMMANDS()</a>, <a class="el" href="ss80_8c_source.html#l00822">SS80_describe()</a>, <a class="el" href="ss80_8c_source.html#l01756">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00326">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01739">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00293">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l00379">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00511">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l01498">SS80_Report()</a>, <a class="el" href="ss80_8c_source.html#l01668">SS80_Selected_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00751">SS80_send_status()</a>, <a class="el" href="ss80_8c_source.html#l00252">SS80_Test()</a>, <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>, and <a class="el" href="main_8c_source.html#l00172">task()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00550">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00616">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00328">amigo_chs_to_logical()</a>, <a class="el" href="amigo_8c_source.html#l00763">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00683">amigo_cmd_dsj()</a>, <a class="el" href="amigo_8c_source.html#l00725">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00856">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01278">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01166">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00351">amigo_overflow_check()</a>, <a class="el" href="amigo_8c_source.html#l00202">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00253">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00290">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00816">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00791">amigo_todo_op()</a>, <a class="el" href="amigo_8c_source.html#l00437">amigo_verify()</a>, <a class="el" href="timer_8c_source.html#l00185">clock_elapsed_end()</a>, <a class="el" href="timer__hal_8c_source.html#l00119">clock_init()</a>, <a class="el" href="gpib__hal_8c_source.html#l00296">dbf_close()</a>, <a class="el" href="gpib__hal_8c_source.html#l00275">dbf_lseek()</a>, <a class="el" href="gpib__hal_8c_source.html#l00204">dbf_open()</a>, <a class="el" href="gpib__hal_8c_source.html#l00229">dbf_read()</a>, <a class="el" href="gpib__hal_8c_source.html#l00253">dbf_write()</a>, <a class="el" href="main_8c_source.html#l00046">delay_tests()</a>, <a class="el" href="gpib_8c_source.html#l00290">DisablePPR()</a>, <a class="el" href="main_8c_source.html#l00132">display_time()</a>, <a class="el" href="timer_8c_source.html#l00152">display_ts()</a>, <a class="el" href="posix_8c_source.html#l01662">dump_stat()</a>, <a class="el" href="gpib__task_8c_source.html#l00475">DumpData()</a>, <a class="el" href="gpib_8c_source.html#l00275">EnablePPR()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00182">fatfs_cat()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00423">fatfs_cd()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00244">fatfs_copy()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00305">fatfs_create()</a>, <a class="el" href="disk_8c_source.html#l00366">fatfs_filinfo_list()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00076">fatfs_help()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00110">fatfs_ls()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00364">fatfs_mkdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00437">fatfs_pwd()</a>, <a class="el" href="gpib__task_8c_source.html#l00508">FatFs_Read_Config()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00348">fatfs_rm()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00381">fatfs_rmdir()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00396">fatfs_stat()</a>, <a class="el" href="disk_8c_source.html#l00314">fatfs_status()</a>, <a class="el" href="gpib__task_8c_source.html#l00663">GPIB()</a>, <a class="el" href="gpib_8c_source.html#l00368">gpib_assert_ifc()</a>, <a class="el" href="gpib_8c_source.html#l00388">gpib_assert_ren()</a>, <a class="el" href="gpib_8c_source.html#l00858">gpib_decode_header()</a>, <a class="el" href="gpib__task_8c_source.html#l00185">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00042">gpib_file_init()</a>, <a class="el" href="format_8c_source.html#l00020">gpib_format_disk()</a>, <a class="el" href="gpib__tests_8c_source.html#l00032">gpib_help()</a>, <a class="el" href="gpib__task_8c_source.html#l00768">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l01006">gpib_read_str()</a>, <a class="el" href="gpib__task_8c_source.html#l00911">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00246">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00838">GPIB_TALK()</a>, <a class="el" href="gpib__tests_8c_source.html#l00054">gpib_tests()</a>, <a class="el" href="gpib_8c_source.html#l00140">gpib_timer_elapsed_end()</a>, <a class="el" href="gpib__hal_8c_source.html#l00026">gpib_timer_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00104">gpib_trace_task()</a>, <a class="el" href="gpib_8c_source.html#l00661">gpib_unread()</a>, <a class="el" href="gpib_8c_source.html#l00445">gpib_write_byte()</a>, <a class="el" href="gpib_8c_source.html#l01103">gpib_write_str()</a>, <a class="el" href="main_8c_source.html#l00030">help()</a>, <a class="el" href="timer__hal_8c_source.html#l00149">init_timers()</a>, <a class="el" href="main_8c_source.html#l00238">main()</a>, <a class="el" href="mmc__hal_8c_source.html#l00196">mmc_init()</a>, <a class="el" href="mmc__hal_8c_source.html#l00075">mmc_install_timer()</a>, <a class="el" href="mmc_8c_source.html#l00114">mmc_select()</a>, <a class="el" href="fatfs__utils_8c_source.html#l00043">mmc_test()</a>, <a class="el" href="mmc__hal_8c_source.html#l00171">mmc_test_timeout()</a>, <a class="el" href="gpib_8c_source.html#l00325">Parallel_Poll()</a>, <a class="el" href="posix_8c_source.html#l00454">perror()</a>, <a class="el" href="printer_8c_source.html#l00321">plot_echo()</a>, <a class="el" href="gpib__task_8c_source.html#l00561">POSIX_Read_Config()</a>, <a class="el" href="printer_8c_source.html#l00180">printer_buffer()</a>, <a class="el" href="printer_8c_source.html#l00115">printer_close()</a>, <a class="el" href="printer_8c_source.html#l00292">PRINTER_COMMANDS()</a>, <a class="el" href="printer_8c_source.html#l00044">printer_open()</a>, <a class="el" href="ram_8c_source.html#l00051">PrintFree()</a>, <a class="el" href="disk_8c_source.html#l00134">put_rc()</a>, <a class="el" href="printer_8c_source.html#l00225">receive_plot()</a>, <a class="el" href="printer_8c_source.html#l00149">receive_plot_flush()</a>, <a class="el" href="rtc_8c_source.html#l00111">rtc_init()</a>, <a class="el" href="rtc_8c_source.html#l00231">rtc_read()</a>, <a class="el" href="rtc_8c_source.html#l00073">rtc_run()</a>, <a class="el" href="rtc_8c_source.html#l00047">rtc_run_test()</a>, <a class="el" href="rtc_8c_source.html#l00179">rtc_write()</a>, <a class="el" href="ram_8c_source.html#l00091">safecalloc()</a>, <a class="el" href="ram_8c_source.html#l00125">safefree()</a>, <a class="el" href="ram_8c_source.html#l00107">safemalloc()</a>, <a class="el" href="gpib__task_8c_source.html#l00626">Send_Identify()</a>, <a class="el" href="timer_8c_source.html#l00045">set_timers()</a>, <a class="el" href="time_8c_source.html#l00627">setdate()</a>, <a class="el" href="time_8c_source.html#l00645">setdate_r()</a>, <a class="el" href="main_8c_source.html#l00091">setup_clock()</a>, <a class="el" href="spi_8c_source.html#l00190">SPI0_Mode()</a>, <a class="el" href="ss80_8c_source.html#l01688">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01449">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00906">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01789">SS80_COMMANDS()</a>, <a class="el" href="ss80_8c_source.html#l00822">SS80_describe()</a>, <a class="el" href="ss80_8c_source.html#l01756">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00326">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01739">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00293">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l00379">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00511">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l01498">SS80_Report()</a>, <a class="el" href="ss80_8c_source.html#l01668">SS80_Selected_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00751">SS80_send_status()</a>, <a class="el" href="ss80_8c_source.html#l00252">SS80_Test()</a>, <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>, and <a class="el" href="main_8c_source.html#l00174">task()</a>.</p>
 
 </div>
 </div>
@@ -926,7 +970,7 @@ Enumerations</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:59:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

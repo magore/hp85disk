@@ -68,7 +68,6 @@ var searchData=
   ['follow_5fpath',['follow_path',['../ff_8c.html#a908a7f4673078575c176cefd15ceecf4',1,'ff.c']]],
   ['fopen',['fopen',['../posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c'],['../posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c']]],
   ['fread',['fread',['../posix_8c.html#a01233ac8fd574e20b0b38472adbee551',1,'fread(void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c'],['../posix_8h.html#a01233ac8fd574e20b0b38472adbee551',1,'fread(void *ptr, size_t size, size_t nmemb, FILE *stream):&#160;posix.c']]],
-  ['free',['free',['../str_8h.html#a0f8c52d1c359b700088f8417b48e467b',1,'str.h']]],
   ['free_5ffile_5fdescriptor',['free_file_descriptor',['../posix_8c.html#a38496612f759733234128893e4c60a89',1,'free_file_descriptor(int fileno):&#160;posix.c'],['../posix_8h.html#a38496612f759733234128893e4c60a89',1,'free_file_descriptor(int fileno):&#160;posix.c']]],
   ['freeram',['freeRam',['../ram_8c.html#a92bc86687dff16369e1c89d557e794c7',1,'freeRam():&#160;ram.c'],['../ram_8h.html#af87fa722b545868277fe412e4786fa96',1,'freeRam(void):&#160;ram.c']]],
   ['fseek',['fseek',['../posix_8c.html#ad31144743f0014784193221563ca8dd2',1,'fseek(FILE *stream, long offset, int whence):&#160;posix.c'],['../posix_8h.html#ad31144743f0014784193221563ca8dd2',1,'fseek(FILE *stream, long offset, int whence):&#160;posix.c']]],

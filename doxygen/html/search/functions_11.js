@@ -2,6 +2,7 @@ var searchData=
 [
   ['safecalloc',['safecalloc',['../ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c'],['../ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c']]],
   ['safefree',['safefree',['../ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c'],['../ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c']]],
+  ['safemalloc',['safemalloc',['../ram_8c.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c'],['../ram_8h.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c']]],
   ['send_5fcmd',['send_cmd',['../mmc_8c.html#afd47154c84441f723909d5875aa64efd',1,'mmc.c']]],
   ['send_5fidentify',['Send_Identify',['../gpib__task_8c.html#a6124af586deb96d91b919667d616cd94',1,'Send_Identify(uint8_t byte1, uint8_t byte2):&#160;gpib_task.c'],['../gpib__task_8h.html#a6124af586deb96d91b919667d616cd94',1,'Send_Identify(uint8_t byte1, uint8_t byte2):&#160;gpib_task.c']]],
   ['set_5ftimers',['set_timers',['../timer_8c.html#a35f94fb84f1b626d8d1ace062b26c932',1,'set_timers(void(*handler)(void), int timer):&#160;timer.c'],['../timer_8h.html#a35f94fb84f1b626d8d1ace062b26c932',1,'set_timers(void(*handler)(void), int timer):&#160;timer.c']]],

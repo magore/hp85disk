@@ -20,6 +20,8 @@
 #include "amigo.h"
 #include "ss80.h"
 #include "gpib_tests.h"
+#include "str.h"
+#include "printer.h"
 
 
 /// @brief 

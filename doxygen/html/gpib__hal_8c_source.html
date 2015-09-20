@@ -259,7 +259,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;{</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordtype">int</span> rc;</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    rc = <a class="code" href="ff_8c.html#adab02d5c0e368f7d131ef7d7d2676c7a">f_close</a>(fp);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">if</span>(rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">if</span>(rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    {</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;Close error: &quot;</span>);</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <a class="code" href="disk_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>(rc);</div>
@@ -278,7 +278,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> bytes = 0;</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a7d75cde9e0af3c75dce17919bdf7fe3e">dbf_open</a>(&amp;fp, name, <a class="code" href="ff_8h.html#a0c5dd686b10f84c2a2b3954957a5979a">FA_OPEN_EXISTING</a> | <a class="code" href="ff_8h.html#a1f4f3530ff03abbd979b072536e72290">FA_READ</a> | <a class="code" href="ff_8h.html#afa366963220c89b882c0361794020c14">FA_WRITE</a>);</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    {</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        flags |= <a class="code" href="defines_8h.html#a865d33ae8b1e4b84c233893b9f07acc5">ERR_DISK</a>;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
@@ -287,7 +287,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    }</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#afd7a928788776071dc461e7d99d9f506">dbf_lseek</a>(&amp;fp, pos);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    {</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        flags |= <a class="code" href="defines_8h.html#a3b4ab922133fc255b6823a9f8434f5c1">ERR_SEEK</a>;</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
@@ -297,7 +297,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    }</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a2303ee350c0d266ac87a2135936cb727">dbf_read</a>(&amp;fp, buff,size,&amp;bytes);</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a> || (<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>) size != bytes)</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || (<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>) size != bytes)</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    {</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        *errors = flags;</div>
@@ -305,7 +305,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keywordflow">return</span>( -1 );</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    }</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a827fbebac6fd202d102386e15b92b28b">dbf_close</a>(&amp;fp);</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    {</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        flags |= <a class="code" href="defines_8h.html#a865d33ae8b1e4b84c233893b9f07acc5">ERR_DISK</a>;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        *errors = flags;</div>
@@ -323,7 +323,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> bytes = 0;</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a7d75cde9e0af3c75dce17919bdf7fe3e">dbf_open</a>(&amp;fp, name, <a class="code" href="ff_8h.html#a0c5dd686b10f84c2a2b3954957a5979a">FA_OPEN_EXISTING</a> | <a class="code" href="ff_8h.html#a1f4f3530ff03abbd979b072536e72290">FA_READ</a> | <a class="code" href="ff_8h.html#afa366963220c89b882c0361794020c14">FA_WRITE</a>);</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    {</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        flags |= <a class="code" href="defines_8h.html#a865d33ae8b1e4b84c233893b9f07acc5">ERR_DISK</a>;</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
@@ -332,7 +332,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    }</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#afd7a928788776071dc461e7d99d9f506">dbf_lseek</a>(&amp;fp, pos);</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    {</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        flags |= <a class="code" href="defines_8h.html#a3b4ab922133fc255b6823a9f8434f5c1">ERR_SEEK</a>;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
@@ -342,7 +342,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    }</div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a14af877aeb5d346730aaabba033695bf">dbf_write</a>(&amp;fp, buff,size,&amp;bytes);</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a> || (<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>) size != bytes)</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || (<a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a>) size != bytes)</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    {</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        flags |= <a class="code" href="defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff">ERR_READ</a>;</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        *errors = flags;</div>
@@ -350,7 +350,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        <span class="keywordflow">return</span>( -1 );</div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    rc = <a class="code" href="gpib__hal_8c.html#a827fbebac6fd202d102386e15b92b28b">dbf_close</a>(&amp;fp);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    {</div>
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        flags |= <a class="code" href="defines_8h.html#a865d33ae8b1e4b84c233893b9f07acc5">ERR_DISK</a>;</div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        *errors = flags;</div>
@@ -404,7 +404,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="struct__gpib__t_html"><div class="ttname"><a href="struct__gpib__t.html">_gpib_t</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib__hal_8h_source.html#l00026">gpib_hal.h:26</a></div></div>
 <div class="ttc" id="gpib__hal_8c_html_a2303ee350c0d266ac87a2135936cb727"><div class="ttname"><a href="gpib__hal_8c.html#a2303ee350c0d266ac87a2135936cb727">dbf_read</a></div><div class="ttdeci">FRESULT dbf_read(FIL *fp, void *buff, UINT btr, UINT *br)</div><div class="ttdoc">Wrapper for FatFs f_read() that can display errors. </div><div class="ttdef"><b>Definition:</b> <a href="gpib__hal_8c_source.html#l00229">gpib_hal.c:229</a></div></div>
 <div class="ttc" id="structFIL_html"><div class="ttname"><a href="structFIL.html">FIL</a></div><div class="ttdoc">File object structure (FIL) </div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00115">ff.h:115</a></div></div>
-<div class="ttc" id="diskio_8h_html_a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737"><div class="ttname"><a href="diskio_8h.html#a8a4ccdeaced8c6be7571f8f1d08771a9a2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a></div><div class="ttdef"><b>Definition:</b> <a href="diskio_8h_source.html#l00036">diskio.h:36</a></div></div>
+<div class="ttc" id="ff_8h_html_a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a></div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00181">ff.h:181</a></div></div>
 <div class="ttc" id="posix_8h_html"><div class="ttname"><a href="posix_8h.html">posix.h</a></div><div class="ttdoc">POSIX wrapper for FatFS. </div></div>
 <div class="ttc" id="disk_8c_html_ab3509aecf1844c84f1797e5b567d531c"><div class="ttname"><a href="disk_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a></div><div class="ttdeci">MEMSPACE void put_rc(int rc)</div><div class="ttdoc">display FatFs return code as ascii string </div><div class="ttdef"><b>Definition:</b> <a href="disk_8c_source.html#l00134">disk.c:134</a></div></div>
 <div class="ttc" id="gpib__hal_8c_html_a62ab33e5f2d926916ee673ddcb8e9410"><div class="ttname"><a href="gpib__hal_8c.html#a62ab33e5f2d926916ee673ddcb8e9410">ppr_set</a></div><div class="ttdeci">void ppr_set(uint8_t mask)</div><div class="ttdoc">Enable or Disable Parallel Poll Response bits - PPR. </div><div class="ttdef"><b>Definition:</b> <a href="gpib__hal_8c_source.html#l00086">gpib_hal.c:86</a></div></div>
@@ -412,7 +412,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:59:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

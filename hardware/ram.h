@@ -12,10 +12,11 @@
 
 #ifndef _RAM_H_
 #define _RAM_H_
-
-/* ram.c */
+/* hardware/ram.c */
 uint16_t freeRam ( void );
 void PrintFree ( void );
-void *safecalloc(int size, int elements);
+void *safecalloc ( int size , int elements );
+void *safemalloc ( size_t size );
 void safefree ( void *p );
+
 #endif                                            //_RAM_H_

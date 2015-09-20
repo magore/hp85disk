@@ -15,6 +15,8 @@
 #undef calloc
 /// @brief free may be aliased to safefree
 #undef free
+/// @brief malloc may be aliased to safecalloc
+#undef malloc
 
 /// @brief Return AVR Free memory for Malloc.
 ///
@@ -96,6 +98,21 @@ void *safecalloc(int size, int elements)
 	return(p);
 }
 
+/// @brief Safe Malloc -  Display Error message if Malloc fails
+///
+///  - We check if the pointer was in the heap.
+///  - Otherwise it may have been statically defined - display error.
+/// @param[in] size:  size
+/// @return  void.
+void *safemalloc(size_t size)
+{
+    void *p = calloc(size, 1);
+    if(!p)
+    {
+        printf("safemalloc(%d) failed!\n", size);
+    }
+    return(p);
+}
 
 /// @brief Safe free -  Only free a pointer if it is in malloc memory range.
 ///

@@ -99,9 +99,11 @@ Master Include for Fat\-Fs, R\-T\-C, Timers A\-V\-R8 -\/ Part of H\-P85 disk emu
 \item 
 \#define \hyperlink{user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T}~1
 \item 
-\#define \hyperlink{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}{free}~\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}
+\#define \hyperlink{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{free}(p)~\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}(p)
 \item 
-\#define \hyperlink{user__config_8h_a84beef8cc122add35118ec7cd35286c4}{calloc}~\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}
+\#define \hyperlink{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{calloc}(n, s)~\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}(n,s)
+\item 
+\#define \hyperlink{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc}(s)~\hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc}(s)
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -248,19 +250,36 @@ Definition at line 114 of file user\-\_\-config.\-h.
 
 Definition at line 116 of file user\-\_\-config.\-h.
 
-\hypertarget{user__config_8h_a84beef8cc122add35118ec7cd35286c4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!calloc@{calloc}}
+\hypertarget{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!calloc@{calloc}}
 \index{calloc@{calloc}!user_config.h@{user\-\_\-config.\-h}}
-\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define calloc~{\bf safecalloc}}}\label{user__config_8h_a84beef8cc122add35118ec7cd35286c4}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define calloc(
+\begin{DoxyParamCaption}
+\item[{}]{n, }
+\item[{}]{s}
+\end{DoxyParamCaption}
+)~{\bf safecalloc}(n,s)}}\label{user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}
+
+
+Definition at line 206 of file user\-\_\-config.\-h.
+
+
+
+Referenced by fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), main(), new\-\_\-file\-\_\-descriptor(), printer\-\_\-open(), queue\-\_\-new(), safecalloc(), safemalloc(), stralloc(), and strnalloc().
+
+\hypertarget{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!free@{free}}
+\index{free@{free}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}\#define free(
+\begin{DoxyParamCaption}
+\item[{}]{p}
+\end{DoxyParamCaption}
+)~{\bf safefree}(p)}}\label{user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}
 
 
 Definition at line 203 of file user\-\_\-config.\-h.
 
-\hypertarget{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!free@{free}}
-\index{free@{free}!user_config.h@{user\-\_\-config.\-h}}
-\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}\#define free~{\bf safefree}}}\label{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}
 
 
-Definition at line 202 of file user\-\_\-config.\-h.
+Referenced by fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-cat(), fatfs\-\_\-copy(), fatfs\-\_\-free\-\_\-filinfo(), ff\-\_\-memfree(), free\-\_\-file\-\_\-descriptor(), new\-\_\-file\-\_\-descriptor(), queue\-\_\-del(), queue\-\_\-new(), queue\-\_\-push\-\_\-buffer(), and safefree().
 
 \hypertarget{user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R@{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}}
 \index{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R@{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}!user_config.h@{user\-\_\-config.\-h}}
@@ -369,6 +388,21 @@ Referenced by mmc\-\_\-cs\-\_\-enable().
 
 Definition at line 122 of file user\-\_\-config.\-h.
 
+\hypertarget{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!malloc@{malloc}}
+\index{malloc@{malloc}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{malloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define malloc(
+\begin{DoxyParamCaption}
+\item[{}]{s}
+\end{DoxyParamCaption}
+)~{\bf safemalloc}(s)}}\label{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}
+
+
+Definition at line 209 of file user\-\_\-config.\-h.
+
+
+
+Referenced by ff\-\_\-memalloc().
+
 \hypertarget{user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!Mem\-\_\-\-Clear@{Mem\-\_\-\-Clear}}
 \index{Mem\-\_\-\-Clear@{Mem\-\_\-\-Clear}!user_config.h@{user\-\_\-config.\-h}}
 \subsubsection[{Mem\-\_\-\-Clear}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\-\_\-\-Clear(
@@ -463,7 +497,7 @@ Definition at line 65 of file user\-\_\-config.\-h.
 
 
 
-Referenced by amigo\-\_\-buffered\-\_\-read(), amigo\-\_\-buffered\-\_\-write(), amigo\-\_\-chs\-\_\-to\-\_\-logical(), amigo\-\_\-cmd\-\_\-clear(), amigo\-\_\-cmd\-\_\-dsj(), amigo\-\_\-cmd\-\_\-wakeup(), Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), Amigo\-\_\-\-Execute(), amigo\-\_\-overflow\-\_\-check(), amigo\-\_\-request\-\_\-status(), amigo\-\_\-send\-\_\-logical\-\_\-address(), amigo\-\_\-send\-\_\-status(), amigo\-\_\-todo(), amigo\-\_\-todo\-\_\-op(), amigo\-\_\-verify(), clock\-\_\-elapsed\-\_\-end(), clock\-\_\-init(), dbf\-\_\-close(), dbf\-\_\-lseek(), dbf\-\_\-open(), dbf\-\_\-read(), dbf\-\_\-write(), delay\-\_\-tests(), Disable\-P\-P\-R(), display\-\_\-time(), display\-\_\-ts(), dump\-\_\-stat(), Dump\-Data(), Enable\-P\-P\-R(), fatfs\-\_\-cat(), fatfs\-\_\-cd(), fatfs\-\_\-copy(), fatfs\-\_\-create(), fatfs\-\_\-filinfo\-\_\-list(), fatfs\-\_\-help(), fatfs\-\_\-ls(), fatfs\-\_\-mkdir(), fatfs\-\_\-pwd(), Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-rm(), fatfs\-\_\-rmdir(), fatfs\-\_\-stat(), fatfs\-\_\-status(), G\-P\-I\-B(), gpib\-\_\-assert\-\_\-ifc(), gpib\-\_\-assert\-\_\-ren(), gpib\-\_\-decode\-\_\-header(), gpib\-\_\-error\-\_\-test(), gpib\-\_\-file\-\_\-init(), gpib\-\_\-format\-\_\-disk(), gpib\-\_\-help(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), gpib\-\_\-read\-\_\-str(), G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S(), gpib\-\_\-state\-\_\-init(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), gpib\-\_\-tests(), gpib\-\_\-timer\-\_\-elapsed\-\_\-end(), gpib\-\_\-timer\-\_\-init(), gpib\-\_\-trace\-\_\-task(), gpib\-\_\-unread(), gpib\-\_\-write\-\_\-byte(), gpib\-\_\-write\-\_\-str(), help(), init\-\_\-timers(), main(), mmc\-\_\-init(), mmc\-\_\-install\-\_\-timer(), mmc\-\_\-select(), mmc\-\_\-test(), mmc\-\_\-test\-\_\-timeout(), Parallel\-\_\-\-Poll(), perror(), plot\-\_\-echo(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), printer\-\_\-buffer(), printer\-\_\-close(), P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), printer\-\_\-open(), Print\-Free(), put\-\_\-rc(), receive\-\_\-plot(), receive\-\_\-plot\-\_\-flush(), rtc\-\_\-init(), rtc\-\_\-read(), rtc\-\_\-run(), rtc\-\_\-run\-\_\-test(), rtc\-\_\-write(), safecalloc(), safefree(), Send\-\_\-\-Identify(), set\-\_\-timers(), setdate(), setdate\-\_\-r(), setup\-\_\-clock(), S\-P\-I0\-\_\-\-Mode(), S\-S80\-\_\-\-Amigo\-\_\-\-Clear(), S\-S80\-\_\-cmd\-\_\-seek(), S\-S80\-\_\-\-Command\-\_\-\-State(), S\-S80\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), S\-S80\-\_\-describe(), S\-S80\-\_\-error\-\_\-return(), S\-S80\-\_\-\-Execute\-\_\-\-State(), S\-S80\-\_\-increment(), S\-S80\-\_\-init(), S\-S80\-\_\-locate\-\_\-and\-\_\-read(), S\-S80\-\_\-locate\-\_\-and\-\_\-write(), S\-S80\-\_\-\-Report(), S\-S80\-\_\-\-Selected\-\_\-\-Device\-\_\-\-Clear(), S\-S80\-\_\-send\-\_\-status(), S\-S80\-\_\-\-Test(), S\-S80\-\_\-\-Transparent\-\_\-\-State(), and task().
+Referenced by amigo\-\_\-buffered\-\_\-read(), amigo\-\_\-buffered\-\_\-write(), amigo\-\_\-chs\-\_\-to\-\_\-logical(), amigo\-\_\-cmd\-\_\-clear(), amigo\-\_\-cmd\-\_\-dsj(), amigo\-\_\-cmd\-\_\-wakeup(), Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), Amigo\-\_\-\-Execute(), amigo\-\_\-overflow\-\_\-check(), amigo\-\_\-request\-\_\-status(), amigo\-\_\-send\-\_\-logical\-\_\-address(), amigo\-\_\-send\-\_\-status(), amigo\-\_\-todo(), amigo\-\_\-todo\-\_\-op(), amigo\-\_\-verify(), clock\-\_\-elapsed\-\_\-end(), clock\-\_\-init(), dbf\-\_\-close(), dbf\-\_\-lseek(), dbf\-\_\-open(), dbf\-\_\-read(), dbf\-\_\-write(), delay\-\_\-tests(), Disable\-P\-P\-R(), display\-\_\-time(), display\-\_\-ts(), dump\-\_\-stat(), Dump\-Data(), Enable\-P\-P\-R(), fatfs\-\_\-cat(), fatfs\-\_\-cd(), fatfs\-\_\-copy(), fatfs\-\_\-create(), fatfs\-\_\-filinfo\-\_\-list(), fatfs\-\_\-help(), fatfs\-\_\-ls(), fatfs\-\_\-mkdir(), fatfs\-\_\-pwd(), Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-rm(), fatfs\-\_\-rmdir(), fatfs\-\_\-stat(), fatfs\-\_\-status(), G\-P\-I\-B(), gpib\-\_\-assert\-\_\-ifc(), gpib\-\_\-assert\-\_\-ren(), gpib\-\_\-decode\-\_\-header(), gpib\-\_\-error\-\_\-test(), gpib\-\_\-file\-\_\-init(), gpib\-\_\-format\-\_\-disk(), gpib\-\_\-help(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), gpib\-\_\-read\-\_\-str(), G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S(), gpib\-\_\-state\-\_\-init(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), gpib\-\_\-tests(), gpib\-\_\-timer\-\_\-elapsed\-\_\-end(), gpib\-\_\-timer\-\_\-init(), gpib\-\_\-trace\-\_\-task(), gpib\-\_\-unread(), gpib\-\_\-write\-\_\-byte(), gpib\-\_\-write\-\_\-str(), help(), init\-\_\-timers(), main(), mmc\-\_\-init(), mmc\-\_\-install\-\_\-timer(), mmc\-\_\-select(), mmc\-\_\-test(), mmc\-\_\-test\-\_\-timeout(), Parallel\-\_\-\-Poll(), perror(), plot\-\_\-echo(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), printer\-\_\-buffer(), printer\-\_\-close(), P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), printer\-\_\-open(), Print\-Free(), put\-\_\-rc(), receive\-\_\-plot(), receive\-\_\-plot\-\_\-flush(), rtc\-\_\-init(), rtc\-\_\-read(), rtc\-\_\-run(), rtc\-\_\-run\-\_\-test(), rtc\-\_\-write(), safecalloc(), safefree(), safemalloc(), Send\-\_\-\-Identify(), set\-\_\-timers(), setdate(), setdate\-\_\-r(), setup\-\_\-clock(), S\-P\-I0\-\_\-\-Mode(), S\-S80\-\_\-\-Amigo\-\_\-\-Clear(), S\-S80\-\_\-cmd\-\_\-seek(), S\-S80\-\_\-\-Command\-\_\-\-State(), S\-S80\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), S\-S80\-\_\-describe(), S\-S80\-\_\-error\-\_\-return(), S\-S80\-\_\-\-Execute\-\_\-\-State(), S\-S80\-\_\-increment(), S\-S80\-\_\-init(), S\-S80\-\_\-locate\-\_\-and\-\_\-read(), S\-S80\-\_\-locate\-\_\-and\-\_\-write(), S\-S80\-\_\-\-Report(), S\-S80\-\_\-\-Selected\-\_\-\-Device\-\_\-\-Clear(), S\-S80\-\_\-send\-\_\-status(), S\-S80\-\_\-\-Test(), S\-S80\-\_\-\-Transparent\-\_\-\-State(), and task().
 
 \hypertarget{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!printf@{printf}}
 \index{printf@{printf}!user_config.h@{user\-\_\-config.\-h}}

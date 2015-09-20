@@ -31,6 +31,7 @@ var searchData=
   ['s_5fixusr',['S_IXUSR',['../posix_8h.html#af10a35e3950795d6ee4e07157d000131',1,'posix.h']]],
   ['safecalloc',['safecalloc',['../ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c'],['../ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c']]],
   ['safefree',['safefree',['../ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c'],['../ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c']]],
+  ['safemalloc',['safemalloc',['../ram_8c.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c'],['../ram_8h.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c']]],
   ['sclust',['sclust',['../structFIL.html#ad308b74c8d6975c6a9c30d90b4124c40',1,'FIL::sclust()'],['../structDIR.html#a9212af5877b94d790dd3bab3aa320994',1,'DIR::sclust()']]],
   ['sdc',['SDC',['../amigo_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;amigo.h'],['../defines_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;defines.h']]],
   ['secondary',['secondary',['../gpib_8c.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c'],['../gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c']]],

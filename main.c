@@ -17,8 +17,10 @@
 #include "gpib/gpib.h"
 #include "gpib/gpib_task.h"
 #include "gpib/gpib_tests.h"
+#include "gpib/printer.h"
 #include "gpib/amigo.h"
 #include "gpib/ss80.h"
+
 #include <math.h>
 
 /// @brief  Display the main help menu - calls all other help menus

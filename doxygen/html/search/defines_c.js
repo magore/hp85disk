@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['malloc',['malloc',['../user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99',1,'user_config.h']]],
   ['max',['MAX',['../str_8h.html#aacc3ee1a7f283f8ef65cea31f4436a95',1,'str.h']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8c.html#a2c5eecb22513a88c24ae5831a3265e54',1,'MAX_FILES():&#160;posix.c'],['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'MAX_FILES():&#160;posix.h']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],

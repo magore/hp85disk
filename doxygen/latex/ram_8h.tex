@@ -15,6 +15,8 @@ void \hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\-Free} (void)
 \begin{DoxyCompactList}\small\item\em Display A\-V\-R free memory of each type$>$ \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc} (int size, int elements)
 \begin{DoxyCompactList}\small\item\em Safe Alloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
+\begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
 void \hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -47,7 +49,7 @@ Definition in file \hyperlink{ram_8h_source}{ram.\-h}.
 
 calloc may be aliased to safecalloc 
 
-free may be aliased to safefree Return A\-V\-R Free memory for Malloc.
+free may be aliased to safefree malloc may be aliased to safecalloc Return A\-V\-R Free memory for Malloc.
 
 
 \begin{DoxyItemize}
@@ -58,11 +60,11 @@ free may be aliased to safefree Return A\-V\-R Free memory for Malloc.
 free memory in bytes. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{str_8h_a22b308551dea873face80619301d5618}{malloc()}. 
+\hyperlink{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 25 of file ram.\-c.
+Definition at line 27 of file ram.\-c.
 
 
 
@@ -90,7 +92,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 49 of file ram.\-c.
+Definition at line 51 of file ram.\-c.
 
 
 
@@ -119,7 +121,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 89 of file ram.\-c.
+Definition at line 91 of file ram.\-c.
 
 
 
@@ -152,9 +154,36 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 108 of file ram.\-c.
+Definition at line 125 of file ram.\-c.
 
 
 
 Referenced by gpib\-\_\-format\-\_\-disk(), and printer\-\_\-close().
+
+\hypertarget{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{\index{ram.\-h@{ram.\-h}!safemalloc@{safemalloc}}
+\index{safemalloc@{safemalloc}!ram.h@{ram.\-h}}
+\subsubsection[{safemalloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safemalloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\-\_\-t}}]{size}
+\end{DoxyParamCaption}
+)}}\label{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}
+
+
+Safe Malloc -\/ Display Error message if Malloc fails. 
+
+
+\begin{DoxyItemize}
+\item We check if the pointer was in the heap.
+\item Otherwise it may have been statically defined -\/ display error. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em size} & size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 107 of file ram.\-c.
 

@@ -297,7 +297,7 @@ FRESULT dbf_close (FIL* fp)
 {
     int rc;
     rc = f_close(fp);
-    if(rc != RES_OK)
+    if(rc != FR_OK)
     {
         printf("Close error: ");
         put_rc(rc);
@@ -328,7 +328,7 @@ int dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)
     UINT bytes = 0;
 
     rc = dbf_open(&fp, name, FA_OPEN_EXISTING | FA_READ | FA_WRITE);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_DISK;
         flags |= ERR_READ;
@@ -338,7 +338,7 @@ int dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)
 
 ///  SEEK
     rc = dbf_lseek(&fp, pos);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_SEEK;
         flags |= ERR_READ;
@@ -348,7 +348,7 @@ int dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)
     }
 
     rc = dbf_read(&fp, buff,size,&bytes);
-    if( rc != RES_OK || (UINT) size != bytes)
+    if( rc != FR_OK || (UINT) size != bytes)
     {
         flags |= ERR_READ;
         *errors = flags;
@@ -356,7 +356,7 @@ int dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)
         return( -1 );
     }
     rc = dbf_close(&fp);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_DISK;
         *errors = flags;
@@ -386,7 +386,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
     UINT bytes = 0;
 
     rc = dbf_open(&fp, name, FA_OPEN_EXISTING | FA_READ | FA_WRITE);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_DISK;
         flags |= ERR_READ;
@@ -396,7 +396,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
 
 ///  SEEK
     rc = dbf_lseek(&fp, pos);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_SEEK;
         flags |= ERR_READ;
@@ -406,7 +406,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
     }
 
     rc = dbf_write(&fp, buff,size,&bytes);
-    if( rc != RES_OK || (UINT) size != bytes)
+    if( rc != FR_OK || (UINT) size != bytes)
     {
         flags |= ERR_READ;
         *errors = flags;
@@ -414,7 +414,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
         return( -1 );
     }
     rc = dbf_close(&fp);
-    if( rc != RES_OK)
+    if( rc != FR_OK)
     {
         flags |= ERR_DISK;
         *errors = flags;

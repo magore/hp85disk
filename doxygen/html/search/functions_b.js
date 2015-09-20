@@ -1,7 +1,6 @@
 var searchData=
 [
   ['main',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['malloc',['malloc',['../str_8h.html#a22b308551dea873face80619301d5618',1,'str.h']]],
   ['match',['MATCH',['../str_8c.html#a9fb9c5c9b25cdf504152f7610f0d118c',1,'MATCH(char *str, char *pat):&#160;str.c'],['../str_8h.html#a9fb9c5c9b25cdf504152f7610f0d118c',1,'MATCH(char *str, char *pat):&#160;str.c']]],
   ['match_5flen',['MATCH_LEN',['../str_8c.html#ac85ba7d5161939102f1daf99dcae85f0',1,'MATCH_LEN(char *str, char *pat):&#160;str.c'],['../str_8h.html#ac85ba7d5161939102f1daf99dcae85f0',1,'MATCH_LEN(char *str, char *pat):&#160;str.c']]],
   ['matchi',['MATCHI',['../str_8c.html#a158b18efacfbaf45bf46e03f355cf101',1,'MATCHI(char *str, char *pat):&#160;str.c'],['../str_8h.html#a158b18efacfbaf45bf46e03f355cf101',1,'MATCHI(char *str, char *pat):&#160;str.c']]],

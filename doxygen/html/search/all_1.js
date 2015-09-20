@@ -69,7 +69,7 @@ var searchData=
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],
   ['atmega1284p',['atmega1284p',['../cpu_8h.html#a1dde60a96d9d6917b0abc4d26ea0aa73',1,'cpu.h']]],
   ['atn_5fflag',['ATN_FLAG',['../gpib_8h.html#abbe287946c2beaa1f76fe5be364c07ad',1,'gpib.h']]],
-  ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'str.c']]],
+  ['atoh',['atoh',['../str_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c'],['../str_8h.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;str.c']]],
   ['avr',['AVR',['../user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]],
   ['avr_5fdir_5fin',['AVR_DIR_IN',['../user__config_8h.html#a8bc40893206d810d820e142da5ffdfd7',1,'user_config.h']]],
   ['avr_5fdir_5fout',['AVR_DIR_OUT',['../user__config_8h.html#afc6ba80aa296fe8010443f6d1bd37baa',1,'user_config.h']]],

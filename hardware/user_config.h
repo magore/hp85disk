@@ -198,7 +198,15 @@ typedef unsigned long int size_t;
 #include "rtc.h"
 #include "TWI_AVR8.h"
 
-// ram.c defines alternative safe functions
-#define free safefree
-#define calloc safecalloc
+// sys.c defines alternative safe functions
+#ifndef free
+	#define free(p) safefree(p)
+#endif
+#ifndef calloc
+	#define calloc(n,s) safecalloc(n,s)
+#endif
+#ifndef malloc
+	#define malloc(s) safemalloc(s)
+#endif
+
 #endif

@@ -118,6 +118,7 @@ uint8_t mmc_spi_RX()
 #else
     SPI0_RX(&data,1);
 #endif
+	return(data);
 }
 
 /// @brief SPI write 1 byte

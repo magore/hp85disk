@@ -678,7 +678,7 @@ static int  fatfs_getc(FILE *stream)
     }
 
     res = f_read(fh, &c, 1, (UINT *) &size);
-    if( res != RES_OK || size != 1)
+    if( res != FR_OK || size != 1)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
@@ -721,7 +721,7 @@ int fatfs_putc(char c, FILE *stream)
     }
 
     res = f_write(fh, &c, 1, (UINT *)  &size);
-    if( res != RES_OK || size != 1)
+    if( res != FR_OK || size != 1)
     {
         errno = fatfs_to_errno(res);
         stream->flags |= __SEOF;
@@ -906,7 +906,7 @@ int open(const char *pathname, int flags)
         return(-1);
     }
     res = f_open(fh, pathname, (BYTE) (fatfs_modes & 0xff));
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         free_file_descriptor(fileno);
@@ -1020,7 +1020,7 @@ MEMSPACE
 int syncfs(int fd)
 {
     FIL *fh;
-    int res;
+    FRESULT res;
 
     errno = 0;
 
@@ -1057,7 +1057,6 @@ MEMSPACE
 void sync(void)
 {
     FIL *fh;
-    int res;
     int i;
 
     for(i=0;i<MAX_FILES;++i)
@@ -1129,7 +1128,7 @@ ssize_t write(int fd, const void *buf, size_t count)
     }
 
     res = f_write(fh, buf, bytes, &size);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1204,7 +1203,7 @@ ssize_t read(int fd, const void *buf, size_t count)
     }
 
     res = f_read(fh, (void *) buf, bytes, &size);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1403,7 +1402,7 @@ int unlink(const char *pathname)
 {
     errno = 0;
     int res = f_unlink(pathname);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1425,7 +1424,7 @@ int rmdir(const char *pathname)
 {
     errno = 0;
     int res = f_unlink(pathname);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);
@@ -1596,7 +1595,7 @@ int stat(char *name, struct stat *buf)
     }
 
     res = f_stat(name, info);
-    if(res != RES_OK)
+    if(res != FR_OK)
     {
         errno = fatfs_to_errno(res);
         return(-1);

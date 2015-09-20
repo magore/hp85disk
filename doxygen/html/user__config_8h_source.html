@@ -254,10 +254,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rtc_8h.html">rtc.h</a>&quot;</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TWI__AVR8_8h.html">TWI_AVR8.h</a>&quot;</span></div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">// ram.c defines alternative safe functions</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="user__config_8h.html#a2c6efa7679f8cd9f61af96e105017560">  202</a></span>&#160;<span class="preprocessor">#define free safefree</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="user__config_8h.html#a84beef8cc122add35118ec7cd35286c4">  203</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define calloc safecalloc</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">// sys.c defines alternative safe functions</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#ifndef free</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="user__config_8h.html#a9d4b5df3530d1bc733070a4669ba6ebc">  203</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define free(p) safefree(p)</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifndef calloc</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191">  206</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define calloc(n,s) safecalloc(n,s)</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifndef malloc</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99">  209</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">    #define malloc(s) safemalloc(s)</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="rs232_8h_html"><div class="ttname"><a href="rs232_8h.html">rs232.h</a></div><div class="ttdoc">RS232 Driver AVR8. </div></div>
 <div class="ttc" id="rtc_8h_html"><div class="ttname"><a href="rtc_8h.html">rtc.h</a></div><div class="ttdoc">DS1307 RTC Driver AVR8. </div></div>
 <div class="ttc" id="time_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">Common Linux/POSIX time functions. </div></div>
@@ -285,7 +293,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:59:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
