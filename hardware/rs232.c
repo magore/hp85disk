@@ -10,7 +10,7 @@
 
 */
 
-#include "hardware.h"
+#include "user_config.h"
 #include "rs232.h"
 
 ///@brief Uart ring buffers
@@ -350,3 +350,68 @@ uint8_t uart_keyhit(uint8_t uart)
 {
     return ( uart_rx_count( uart ) );
 }
+
+
+/// @brief  Transmit a character on UART 0
+/// @param[in] c: character to write
+/// @return  void
+void uart_put(uint8_t c)
+{
+    uart0_putchar(c,0);
+}
+
+/// @brief  Receive a character from UART 0
+/// @return  character
+char uart_get(void)
+{
+    return(uart0_getchar(0));
+}
+
+
+/// @brief  Get a line from UART 0 up to a maximum of len bytes
+/// @param[in] buff: line input buffer
+/// @param[in] len: line length maximum
+/// @return void
+int get_line (char *buff, int len)
+{
+    int c;
+    int i = 0;
+
+	memset(buff,0,len);
+    while(1)
+    {
+        c = uart_get() & 0x7f;
+		uart_put(c);
+        if (c == '\n' || c == '\r')
+		{
+            break;
+		}
+
+        if (c == '\b')
+        {
+			if(i > 0) {
+				i--;
+			}
+            continue;
+        }
+
+        if (i < (len - 1) )                       /* Visible chars */
+        {
+            buff[i++] = c;
+        }
+		else
+		{
+			break;
+		}
+    }
+
+	// Discard remaining characters
+    while(uart_keyhit(0))
+    {
+        c = uart_get() & 0x7f;
+    }
+    buff[i] = 0;
+    uart_put('\n');
+	return(i);
+}
+

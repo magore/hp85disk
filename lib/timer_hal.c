@@ -23,13 +23,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <hardware/cpu.h>
+#include <user_config.h>
 
-#include <lib/timer.h>
-#include <lib/time.h>
+#include "timer.h"
+#include "time.h"
 
 /// @brief  System Clock Time
 volatile ts_t __clock;
+
+/// @brief  System Time Zone
+tz_t __tzone;
 
 
 static int timers_enabled = 0;
@@ -38,6 +41,9 @@ static int timers_configured = 0;
 /// @brief  array or user timers
 TIMERS timer_irq[MAX_TIMER_CNT];
 
+#ifdef ESP8266
+    static ETSTimer task_1ms;
+#endif
 
 
 /// @brief  clear time and timezone to 0.
@@ -65,7 +71,12 @@ void disable_timers()
 {
     if(timers_configured && timers_enabled)
     {
+#ifdef ESP8266
+        os_timer_disarm(&task_1ms);
+#endif
+#ifdef AVR
         cli();
+#endif
         timers_enabled = 0;
     }
 }
@@ -78,7 +89,12 @@ void enable_timers()
 {
     if(timers_configured && !timers_enabled)
     {
+#ifdef ESP8266
+        os_timer_arm(&task_1ms, 2, 1);
+#endif
+#ifdef AVR
 		sei();
+#endif
         timers_enabled = 1;
     }
 }
@@ -105,7 +121,7 @@ void clock_init()
     clock_clear();
 ///  See time.c
     if(set_timers(clock_task,1) == -1)
-        DEBUG_PRINTF("Clock task init failed\n");
+        printf("Clock task init failed\n");
 }
 
 /**
@@ -132,30 +148,30 @@ void clock_task(void)
 MEMSPACE
 void init_timers()
 {
-    DEBUG_PRINTF("Timers init called\n");
+    printf("Timers init called\n");
 
     if(!timers_configured)
     {
 		setup_timers_isr();
         timers_configured = 1;
         timers_enabled = 0;
-        DEBUG_PRINTF("Timers configured\n");
+        printf("Timers configured\n");
     }
 
     delete_all_timers();
 ///  See time.c
     clock_init();
 
-    DEBUG_PRINTF("Clock Init\n");
+    printf("Clock Init\n");
 
 ///  See time.c
     if(set_timers(clock_task,1) == -1)
-        DEBUG_PRINTF("Clock task init failed\n");
-    DEBUG_PRINTF("Clock Installed\n");
+        printf("Clock task init failed\n");
+    printf("Clock Installed\n");
 
     enable_timers();
 
-    DEBUG_PRINTF("Timers enabled\n");
+    printf("Timers enabled\n");
 }
 
 
@@ -176,6 +192,48 @@ int clock_getres(clockid_t clk_id, struct timespec *res)
     return(0);
 }
 
+
+
+
+/// @brief Setup main timers ISR - this ISR calls execute_timers() task.
+///
+/// - Notes:
+///  - We attempt to use the largest reload count for a given SYSTEM_HZ interrupt rate. This permits using hardware counter offset to increase resolution to the best possible amount.
+/// - Assumptions:
+///  - We can divide the CPU frequency EXACTLY with timer/counter having no fractional remander.
+///
+/// @see ISR().
+/// @return void.
+MEMSPACE void setup_timers_isr()
+{
+#ifdef ESP8266
+	os_timer_disarm(&task_1ms);
+	os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
+#endif
+#ifdef AVR
+    cli();
+
+    TCCR1B=(1<<WGM12) | TIMER1_PRE_1;             // No Prescale
+    TCCR1A=0;
+    OCR1A=(TIMER1_COUNTS_PER_TIC-1);              // 0 .. count
+    TIMSK1 |= (1<<OCIE1A);                        //Enable the Output Compare A interrupt
+
+    sei();
+#endif
+}
+
+#ifdef AVR
+/// AVR specific code
+
+/// @brief AVR Timer Interrupt Vector
+///
+/// - calls execute_timers() - we call this the System task.
+///
+ISR(TIMER1_COMPA_vect)
+{
+    execute_timers();
+}
+#endif
 
 /// @brief Set system clock using seconds and nonoseconds - POSIX function.
 ///
@@ -204,40 +262,7 @@ int clock_settime(clockid_t clk_id, const struct timespec *ts)
 }
 
 
-/// AVR specific code
-
-/// @brief AVR Timer Interrupt Vector
-///
-/// - calls execute_timers() - we call this the System task.
-///
-ISR(TIMER1_COMPA_vect)
-{
-    execute_timers();
-}
-
-
-/// @brief Setup main timers ISR - this ISR calls execute_timers() task.
-///
-/// - Notes:
-///  - We attempt to use the largest reload count for a given SYSTEM_HZ interrupt rate. This permits using hardware counter offset to increase resolution to the best possible amount.
-/// - Assumptions:
-///  - We can divide the CPU frequency EXACTLY with timer/counter having no fractional remander.
-///
-/// @see ISR().
-/// @return void.
-MEMSPACE void setup_timers_isr()
-{
-    cli();
-
-    TCCR1B=(1<<WGM12) | TIMER1_PRE_1;             // No Prescale
-    TCCR1A=0;
-    OCR1A=(TIMER1_COUNTS_PER_TIC-1);              // 0 .. count
-    TIMSK1 |= (1<<OCIE1A);                        //Enable the Output Compare A interrupt
-
-    sei();
-}
-
-#ifdef HAVE_HIRES_TIMER
+#if defined(HAVE_HIRES_TIMER) | defined(AVR)
 /// @brief Read clock time into struct timepec *ts - POSIX function.
 ///
 ///  - Note: We ignore clk_id, and include low level counter offsets when available.
@@ -247,6 +272,7 @@ MEMSPACE void setup_timers_isr()
 ///
 /// @return 0 on success.
 /// @return -1 on error.
+MEMSPACE
 int clock_gettime(clockid_t clk_id, struct timespec *ts)
 {
     uint16_t count1,count2;                       // must be same size as timer register

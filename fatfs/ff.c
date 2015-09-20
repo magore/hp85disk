@@ -123,7 +123,7 @@
 /                   Fixed LFN entry is not deleted on delete/rename an object with lossy converted SFN.
 /---------------------------------------------------------------------------*/
 
-#include "hardware/hardware.h" 
+#include "user_config.h" 
 #include "ff.h"                                   /* Declarations of FatFs API */
 #include "diskio.h"                               /* Declarations of disk I/O functions */
 
@@ -3667,6 +3667,9 @@ FATFS** fatfs                                     /* Pointer to return pointer t
                     if (stat == 0xFFFFFFFF) { res = FR_DISK_ERR; break; }
                     if (stat == 1) { res = FR_INT_ERR; break; }
                     if (stat == 0) n++;
+#ifdef ESP8266
+					wdt_reset();
+#endif
                 } while (++clst < fs->n_fatent);
             }
             else
@@ -3693,6 +3696,9 @@ FATFS** fatfs                                     /* Pointer to return pointer t
                         if ((LD_DWORD(p) & 0x0FFFFFFF) == 0) n++;
                         p += 4; i -= 4;
                     }
+#ifdef ESP8266
+					wdt_reset();
+#endif
                 } while (--clst);
             }
             fs->free_clust = n;
@@ -4622,6 +4628,9 @@ UINT au                                           /* Allocation unit [bytes] */
     {
         if (disk_write(pdrv, tbl, wsect++, 1))
             return FR_DISK_ERR;
+#ifdef ESP8266
+			wdt_reset();
+#endif
     } while (--i);
 
 #if _USE_ERASE                                /* Erase data area if needed */

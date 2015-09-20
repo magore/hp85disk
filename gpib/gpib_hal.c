@@ -26,7 +26,7 @@ gpib_t gpib_timer;
 void gpib_timer_init()
 {
     if(set_timers(gpib_timer_task,1) == -1)       // Install Clock Task
-        myprintf("GPIB Clock task init failed\n");
+        printf("GPIB Clock task init failed\n");
 
     gpib_timer_reset();
 }
@@ -207,7 +207,7 @@ FRESULT dbf_open (FIL* fp, const TCHAR* path, BYTE mode)
     rc = f_open(fp,path, mode);
     if(rc)
     {
-        myprintf("Open error:[%s] ", path);
+        printf("Open error:[%s] ", path);
         put_rc(rc);
         return (rc);
     }
@@ -232,7 +232,7 @@ FRESULT dbf_read (FIL* fp, void* buff, UINT btr, UINT* br)
     rc = f_read(fp, buff, btr, br);
     if(rc)
     {
-        myprintf("Read error: ");
+        printf("Read error: ");
         put_rc(rc);
         return (rc);
     }
@@ -256,7 +256,7 @@ FRESULT dbf_write (FIL* fp, const void* buff, UINT btw, UINT* bw)
     rc = f_write(fp, buff, btw, bw);
     if(rc)
     {
-        myprintf("Write error: ");
+        printf("Write error: ");
         put_rc(rc);
         return (rc);
     }
@@ -278,7 +278,7 @@ FRESULT dbf_lseek (FIL* fp, DWORD ofs)
     rc = f_lseek(fp, ofs);
     if(rc)
     {
-        myprintf("Seek error: ");
+        printf("Seek error: ");
         put_rc(rc);
         return (rc);
     }
@@ -299,7 +299,7 @@ FRESULT dbf_close (FIL* fp)
     rc = f_close(fp);
     if(rc != RES_OK)
     {
-        myprintf("Close error: ");
+        printf("Close error: ");
         put_rc(rc);
         return (rc);
     }

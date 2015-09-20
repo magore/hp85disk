@@ -22,8 +22,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <hardware/hardware.h>
-#include <lib/time.h>
+#include <user_config.h>
+#include <time.h>
 
 ///@brief system interrupt rate in HZ
 #define SYSTEM_HZ 1000L
@@ -67,7 +67,7 @@ int set_timers(void (*handler)(void), int timer)
         }
     }
     if(ret == -1)
-        DEBUG_PRINTF("set_timers: No more timers!\n");
+        printf("set_timers: No more timers!\n");
 
     return(ret);
 }
@@ -151,7 +151,7 @@ char * ts_to_str(ts_t *val)
 MEMSPACE
 void display_ts(ts_t *val)
 {
-    DEBUG_PRINTF("[Seconds: %s]\n", ts_to_str(val) );
+    printf("[Seconds: %s]\n", ts_to_str(val) );
 }
 
 
@@ -191,7 +191,7 @@ void clock_elapsed_end(char *msg)
     subtract_timespec((ts_t *) &current, (ts_t *) &__clock_elapsed);
 
     if(msg && *msg)
-        DEBUG_PRINTF("[%s Time:%s]\n", msg, ts_to_str((ts_t *) &current) );
+        printf("[%s Time:%s]\n", msg, ts_to_str((ts_t *) &current) );
     else
-        DEBUG_PRINTF("[Time:%s]\n", ts_to_str((ts_t *) &current) );
+        printf("[Time:%s]\n", ts_to_str((ts_t *) &current) );
 }

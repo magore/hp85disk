@@ -13,7 +13,7 @@
 #ifndef _RS232_H_
 #define _RS232_H_
 
-#include "hardware.h"
+#include "user_config.h"
 
 #define RX_BUF_SIZE 80
 #define RX_FLOW_WINDOW 20
@@ -40,6 +40,7 @@ struct _uart
 
 #define UARTS 1
 #define kbhit( uart) uart_rx_count( uart )
+
 /* rs232.c */
 void uart_rx_flush ( uint8_t uart );
 uint8_t uart0_getchar ( FILE *f );
@@ -56,5 +57,8 @@ char uart_getchar ( uint8_t uart );
 void uart_tx_byte ( char c , uint8_t uart );
 void uart_putchar ( char c , int uart );
 uint8_t uart_keyhit ( uint8_t uart );
+void uart_put ( uint8_t c );
+char uart_get ( void );
+int get_line ( char *buff , int len );
 
 #endif                                            // _RS232_H_

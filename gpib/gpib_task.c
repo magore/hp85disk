@@ -11,7 +11,7 @@
 */
 
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 #include "defines.h"
 #include "gpib_hal.h"
@@ -45,13 +45,13 @@ void gpib_file_init()
     protocol = 1;                                 // Default protocol: SS/80
     debuglevel = 0;                               // Default loglevel
 
-    myprintf("HP Disk and Device Emulator\n");
-    myprintf("Created on:%s %s\n", __DATE__,__TIME__);
+    printf("HP Disk and Device Emulator\n");
+    printf("Created on:%s %s\n", __DATE__,__TIME__);
 
 #ifdef SOFTWARE_PP
-    myprintf("\nSoftware PP\n");
+    printf("\nSoftware PP\n");
 #else
-    myprintf("\nHardware PP\n");
+    printf("\nHardware PP\n");
 #endif                                        // SOFTWARE_PP
 
     delayms(500);
@@ -60,20 +60,20 @@ void gpib_file_init()
 
 
 #if defined(HP9122D)
-    myprintf("SS/80 9122D\n");
+    printf("SS/80 9122D\n");
 #endif
 
 #if defined(HP9134L)
-    myprintf("SS/80 9134L\n");
+    printf("SS/80 9134L\n");
 #endif
 
 #if defined(HP9121D)
-    myprintf("Amigo 9121D\n");
+    printf("Amigo 9121D\n");
 #endif
 
     if(mmc_wp_status())
     {
-        myprintf("Card is write protected\n");
+        printf("Card is write protected\n");
     }
 }
 
@@ -112,13 +112,13 @@ void gpib_trace_task( char *name )
     if(name && *name)
     {
         name = skipspaces(name);
-        myprintf("Capturing GPIB BUS to:%s\n", name);
+        printf("Capturing GPIB BUS to:%s\n", name);
 
         gpib_log_fp = fopen(name,"w");
         if(gpib_log_fp == NULL)
         {
             perror("open failed");
-            myprintf("exiting...\n");
+            printf("exiting...\n");
             return;
         }
     }
@@ -141,15 +141,15 @@ void gpib_trace_task( char *name )
         puts(str);
 
         if(( count & 255L ) == 0)
-            myprintf("%08ld\r",count);
+            printf("%08ld\r",count);
         ++count;
     }
 
-    myprintf("\nLogged %ld\n",count);
+    printf("\nLogged %ld\n",count);
     if(gpib_log_fp)
     {
         fclose(gpib_log_fp);
-        myprintf("Capturing Closed\n");
+        printf("Capturing Closed\n");
         gpib_log_fp = NULL;
     }
 }
@@ -201,18 +201,18 @@ uint16_t gpib_error_test(uint16_t val)
         if(debuglevel >= 1)
         {
             if(val & IFC_FLAG)
-                myprintf("<IFC>\n");
+                printf("<IFC>\n");
             if(val & TIMEOUT_FLAG)
-                myprintf("<TIMEOUT>\n");
+                printf("<TIMEOUT>\n");
             if(val & BUS_ERROR_FLAG)
-                myprintf("<BUS>\n");
+                printf("<BUS>\n");
         }
 #endif
         if(uart_keyhit(0))
-            myprintf("<INTERRUPT>\n");
+            printf("<INTERRUPT>\n");
 
         if( mmc_ins_status() != 1 )
-            myprintf("<MEDIA MISSING>\n");
+            printf("<MEDIA MISSING>\n");
 
         if(val & IFC_FLAG)
         {
@@ -221,7 +221,7 @@ uint16_t gpib_error_test(uint16_t val)
 
 #if SDEBUG >= 1
         if(debuglevel >= 1)
-            myprintf("\n");
+            printf("\n");
 #endif
 
         if(uart_keyhit(0))
@@ -476,23 +476,23 @@ void DumpData(unsigned char *ptr,int length)
 {
     int i,j;
     char ch;
-    myprintf("[Dump: %d]\n",length);
+    printf("[Dump: %d]\n",length);
     for(j=0;j<80&&(j*16<length);j++)
     {
-        myprintf("\n");
+        printf("\n");
         for(i=0;i<16 && (i+j*16<length);i++)
         {
             ch = *(ptr+i+j*16);
-            myprintf(" %02X",ch&0xFF);
+            printf(" %02X",ch&0xFF);
         }
-        myprintf(" | ");
+        printf(" | ");
         for(i=0;i<16 && (i+j*16<length);i++)
         {
-            if(*(ptr+i+j*16)>' ') myprintf("%c",(*(ptr+i+j*16))&0xFF);
-            else myprintf(".");
+            if(*(ptr+i+j*16)>' ') printf("%c",(*(ptr+i+j*16))&0xFF);
+            else printf(".");
         }
     }
-    myprintf("\n");
+    printf("\n");
 }
 
 
@@ -532,18 +532,18 @@ void FatFs_Read_Config(char *name)
             ptr += ret;
             ptr = skipspaces(ptr);
             protocol = atoi(ptr) & 0xff;
-            myprintf("protocol=%d\n", protocol);
+            printf("protocol=%d\n", protocol);
         }
         if( (ret = token(str, "DEBUG")) )
         {
             ptr += ret;
             ptr = skipspaces(ptr);
             debuglevel= atoi(ptr) & 0xff;
-            myprintf("debuglevel=%d\n", debuglevel);
+            printf("debuglevel=%d\n", debuglevel);
         }
     }
 
-    myprintf("Read_Config: read(%d) lines\n", lines);
+    printf("Read_Config: read(%d) lines\n", lines);
 
     dbf_close(&cfg);
 }
@@ -588,18 +588,18 @@ void POSIX_Read_Config(char *name)
             ptr += ret;
             ptr = skipspaces(ptr);
             protocol = atoi(ptr) & 0xff;
-            myprintf("protocol=%d\n", protocol);
+            printf("protocol=%d\n", protocol);
         }
         if( (ret = token(str, "DEBUG")) )
         {
             ptr += ret;
             ptr = skipspaces(ptr);
             debuglevel= atoi(ptr) & 0xff;
-            myprintf("debuglevel=%d\n", debuglevel);
+            printf("debuglevel=%d\n", debuglevel);
         }
     }
 
-    myprintf("Read_Config: read(%d) lines\n", lines);
+    printf("Read_Config: read(%d) lines\n", lines);
 
     ret = fclose(cfg);
     if(ret == EOF)
@@ -636,13 +636,13 @@ int Send_Identify( uint8_t byte1, uint8_t byte2)
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
-            myprintf("[IDENT failed]\n");
+            printf("[IDENT failed]\n");
 #endif
         return(status & ERROR_MASK);
     }
 #if SDEBUG > 1
     if(debuglevel > 1)
-        myprintf("[IDENT %02x %02x]\n", 0xff & byte1, 0xff & byte2);
+        printf("[IDENT %02x %02x]\n", 0xff & byte1, 0xff & byte2);
 #endif
     return (status & ERROR_MASK);
 }
@@ -667,7 +667,7 @@ int GPIB(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[PPU unsupported]\n");
+            printf("[PPU unsupported]\n");
 #endif
         spoll = 0;
         return 0;
@@ -679,7 +679,7 @@ int GPIB(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SPE]\n");
+            printf("[SPE]\n");
 #endif
         spoll = 1;
         if(talking == SS80_MTA)
@@ -693,7 +693,7 @@ int GPIB(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SPD]\n");
+            printf("[SPD]\n");
 #endif
         spoll = 0;
         return 0;
@@ -704,7 +704,7 @@ int GPIB(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SDC]\n");
+            printf("[SDC]\n");
 #endif
         if(listening == SS80_MLA)
         {
@@ -713,7 +713,7 @@ int GPIB(uint8_t ch)
 ///  CS80 3-4
 #if SDEBUG > 1
             if(debuglevel > 1)
-                myprintf("[SDC SS80]\n");
+                printf("[SDC SS80]\n");
 #endif
             return( SS80_Selected_Device_Clear( Unit) );
         }
@@ -724,7 +724,7 @@ int GPIB(uint8_t ch)
 ///  Note: Suposed to be unsupported in SS80 - pg 4-2
 #if SDEBUG > 1
             if(debuglevel > 1)
-                myprintf("[SDC AMIGO]\n");
+                printf("[SDC AMIGO]\n");
 #endif
             return( amigo_cmd_clear() );
         }
@@ -738,7 +738,7 @@ int GPIB(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[DCL]\n");
+            printf("[DCL]\n");
 #endif
         SS80_Universal_Device_Clear();
 
@@ -753,7 +753,7 @@ int GPIB(uint8_t ch)
 
 #if SDEBUG >= 1
     if(debuglevel > 1)
-        myprintf("[HPIB (%02x) not defined]\n", 0xff & ch);
+        printf("[HPIB (%02x) not defined]\n", 0xff & ch);
 #endif
     return(0);
 }
@@ -781,9 +781,9 @@ int GPIB_LISTEN(uint8_t ch)
 #if SDEBUG > 1
         if(debuglevel > 1)
 		{
-            myprintf("[UNL]\n");
+            printf("[UNL]\n");
 			if(lastcmd == UNT)
-				myprintf("\n");
+				printf("\n");
 		}
 #endif
         return(0);
@@ -794,7 +794,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[LA %02x AMIGO]\n", 0xff & ch);
+            printf("[LA %02x AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -804,7 +804,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[LA %02x SS80]\n", 0xff & ch);
+            printf("[LA %02x SS80]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -813,7 +813,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[LA %02x PRINTER]\n", 0xff & ch);
+            printf("[LA %02x PRINTER]\n", 0xff & ch);
 #endif
         if(talking != UNT)
         {
@@ -823,7 +823,7 @@ int GPIB_LISTEN(uint8_t ch)
     }
 #if SDEBUG > 1
     if(debuglevel > 1)
-        myprintf("[LA %02x]\n", 0xff & ch);
+        printf("[LA %02x]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Listen Primary Address group
@@ -849,7 +849,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[UNT]\n");
+            printf("[UNT]\n");
 #endif
         return(0);
     }
@@ -858,7 +858,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[TA %02x SS80]\n", 0xff & ch);
+            printf("[TA %02x SS80]\n", 0xff & ch);
 #endif
 
         if (spoll)
@@ -873,7 +873,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[TA %02x AMIGO]\n", 0xff & ch);
+            printf("[TA %02x AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -883,7 +883,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[TA %02x PRINTER]\n", 0xff & ch);
+            printf("[TA %02x PRINTER]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -896,7 +896,7 @@ int GPIB_TALK(uint8_t ch)
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        myprintf("[TA %02x]\n", 0xff & ch);
+        printf("[TA %02x]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Talk Address primary address group
@@ -923,7 +923,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SA %02x SS80]\n", 0xff & ch);
+            printf("[SA %02x SS80]\n", 0xff & ch);
 #endif
         DisablePPR(SS80_PPR);
         return( Send_Identify( SS80ID1, SS80ID2) );
@@ -936,7 +936,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 /// 	Two identify bytes should be repeated until untalked
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SA %02x AMIGO]\n", 0xff & ch);
+            printf("[SA %02x AMIGO]\n", 0xff & ch);
 #endif
         DisablePPR(AMIGO_PPR);
         return( Send_Identify( AMIGOID1, AMIGOID2) );
@@ -945,7 +945,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        myprintf("[SA %02x, listen:%02x, talk:%02x]\n",
+        printf("[SA %02x, listen:%02x, talk:%02x]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
 #endif
     return(0);

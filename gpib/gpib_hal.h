@@ -14,7 +14,7 @@
 #ifndef _GPIB_HAL_H_
 #define _GPIB_HAL_H_
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 /* 2 Microseconds */
 #define GPIB_BUS_SETTLE() _delay_us(GPIB_BUS_SETTLE_DELAY)

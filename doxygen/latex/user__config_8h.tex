@@ -1,0 +1,561 @@
+\hypertarget{user__config_8h}{\section{hardware/user\-\_\-config.h File Reference}
+\label{user__config_8h}\index{hardware/user\-\_\-config.\-h@{hardware/user\-\_\-config.\-h}}
+}
+
+
+Master Include for Fat\-Fs, R\-T\-C, Timers A\-V\-R8 -\/ Part of H\-P85 disk emulator.  
+
+
+{\ttfamily \#include $<$hardware/cpu.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$ctype.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}hardware/bits.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hardware/delay.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/str.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/time.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/timer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/timer\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/queue.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hardware/rtc.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/integer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/ffconf.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/diskio.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/ff.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/disk.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/mmc\-\_\-hal.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/mmc.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/posix.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs/fatfs\-\_\-utils.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ram.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rs232.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}spi.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}T\-W\-I\-\_\-\-A\-V\-R8.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{user__config_8h_a1519396040c1c9c28f597ccfbae61843}{A\-V\-R}~1
+\item 
+\#define \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E}
+\item 
+\#define \hyperlink{user__config_8h_ab29f444706056b13bca09e97c909bbc5}{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z}~1000\-L
+\item 
+\#define \hyperlink{user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}~1
+\item 
+\#define \hyperlink{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}{M\-M\-C\-\_\-\-S\-L\-O\-W}~250000\-L
+\item 
+\#define \hyperlink{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}{M\-M\-C\-\_\-\-F\-A\-S\-T}~2500000\-L
+\item 
+\#define \hyperlink{user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}{N\-O\-\_\-\-S\-C\-A\-N\-F}
+\item 
+\#define \hyperlink{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{printf}(format, args...)~printf\-\_\-\-P(P\-S\-T\-R(format), \#\#args)
+\begin{DoxyCompactList}\small\item\em standard includes \end{DoxyCompactList}\item 
+\#define \hyperlink{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{printf}(format, args...)~printf\-\_\-\-P(P\-S\-T\-R(format), \#\#args)
+\begin{DoxyCompactList}\small\item\em standard includes \end{DoxyCompactList}\item 
+\#define \hyperlink{user__config_8h_ab99ed44389e722578695fa0065118fac}{sprintf}(s, format, args...)~sprintf\-\_\-\-P(s, P\-S\-T\-R(format), \#\#args)
+\item 
+\#define \hyperlink{user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}{snprintf}(s, size, format, args...)~snprintf\-\_\-\-P(s, size, P\-S\-T\-R(format), \#\#args)
+\item 
+\#define \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\-U\-L\-L}~((void $\ast$) 0)
+\item 
+\#define \hyperlink{user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}{\-\_\-\-S\-I\-Z\-E\-\_\-\-T}
+\item 
+\#define \hyperlink{user__config_8h_a8bc40893206d810d820e142da5ffdfd7}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}(a)~\hyperlink{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{B\-I\-T\-\_\-\-C\-L\-R}( a \#\# \-\_\-\-D\-D\-R,  a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_afc6ba80aa296fe8010443f6d1bd37baa}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}(a)~\hyperlink{bits_8h_a75a94310a1111452b9aae180c264dc5e}{B\-I\-T\-\_\-\-S\-E\-T}( a \#\# \-\_\-\-D\-D\-R,  a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a)~\hyperlink{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{B\-I\-T\-\_\-\-C\-L\-R}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_a168e6579ed1ecf490d65d347056c1976}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a)~\hyperlink{bits_8h_a75a94310a1111452b9aae180c264dc5e}{B\-I\-T\-\_\-\-S\-E\-T}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_a4d3f72269c364c484126eb8a11c010b5}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}(a)~\hyperlink{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{B\-I\-T\-\_\-\-T\-S\-T}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_a72500a308e8f5812c2445cffb98ca68d}{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}(a)~\hyperlink{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{B\-I\-T\-\_\-\-T\-S\-T}( a \#\# \-\_\-\-P\-I\-N,  a \#\# \-\_\-\-B\-I\-T)
+\item 
+\#define \hyperlink{user__config_8h_adaab22c8208e67fc54189037faaa9acd}{A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P}(a)~\hyperlink{user__config_8h_a168e6579ed1ecf490d65d347056c1976}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a)
+\item 
+\#define \hyperlink{user__config_8h_a0c91760dd02182e965db0a4736e7bb43}{A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P}(a)~\hyperlink{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a)
+\item 
+\#define \hyperlink{user__config_8h_a4bb3fe04cec812254f0459409c7ea9e7}{I\-O\-\_\-\-H\-I}(a)~\hyperlink{user__config_8h_a168e6579ed1ecf490d65d347056c1976}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a), \hyperlink{user__config_8h_afc6ba80aa296fe8010443f6d1bd37baa}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}(a)
+\item 
+\#define \hyperlink{user__config_8h_a953bae0026ca759147412b364bbe8a72}{I\-O\-\_\-\-L\-O\-W}(a)~\hyperlink{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a), \hyperlink{user__config_8h_afc6ba80aa296fe8010443f6d1bd37baa}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}(a)
+\item 
+\#define \hyperlink{user__config_8h_a78278df303d5b288b08a39cda06eba5c}{I\-O\-\_\-\-R\-D}(a)~( \hyperlink{user__config_8h_a8bc40893206d810d820e142da5ffdfd7}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}(a), \hyperlink{user__config_8h_a72500a308e8f5812c2445cffb98ca68d}{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}(a))
+\item 
+\#define \hyperlink{user__config_8h_a1425f90cef85f3643a6c70a124c69e58}{I\-O\-\_\-\-F\-L\-O\-A\-T}(a)~\hyperlink{user__config_8h_a8bc40893206d810d820e142da5ffdfd7}{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}(a)
+\item 
+\#define \hyperlink{user__config_8h_ab2270f09fea81742a2fe016e7d3e76d0}{I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}(a)~( \hyperlink{user__config_8h_a4d3f72269c364c484126eb8a11c010b5}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}(a) )
+\item 
+\#define \hyperlink{user__config_8h_a938ae2e7a99afdd1a2f415bb2acd42d3}{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D}(a)~( P\-I\-N\-\_\-\-R\-D(a))
+\item 
+\#define \hyperlink{user__config_8h_a6bd84a0adeea536e33e64040f3da43e1}{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W}(a)~( \hyperlink{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a) )
+\item 
+\#define \hyperlink{user__config_8h_a4711a0245d2dc9017b61d78f317fcbfb}{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I}(a)~( \hyperlink{user__config_8h_a168e6579ed1ecf490d65d347056c1976}{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a) )
+\item 
+\#define \hyperlink{user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}{Mem\-\_\-\-Clear}(a)~memset(a, 0, sizeof(a))
+\item 
+\#define \hyperlink{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}{Mem\-\_\-\-Set}(a, b)~memset(a, (int) b, sizeof(a))
+\item 
+\#define \hyperlink{user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T}~1
+\item 
+\#define \hyperlink{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}{free}~\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}
+\item 
+\#define \hyperlink{user__config_8h_a84beef8cc122add35118ec7cd35286c4}{calloc}~\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long int \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \{ \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}{false}, 
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}{true}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Master Include for Fat\-Fs, R\-T\-C, Timers A\-V\-R8 -\/ Part of H\-P85 disk emulator. \begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+Definition in file \hyperlink{user__config_8h_source}{user\-\_\-config.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!\-\_\-\-S\-I\-Z\-E\-\_\-\-T@{\-\_\-\-S\-I\-Z\-E\-\_\-\-T}}
+\index{\-\_\-\-S\-I\-Z\-E\-\_\-\-T@{\-\_\-\-S\-I\-Z\-E\-\_\-\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{\-\_\-\-S\-I\-Z\-E\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define \-\_\-\-S\-I\-Z\-E\-\_\-\-T}}\label{user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}
+
+
+Definition at line 79 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a1519396040c1c9c28f597ccfbae61843}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R@{A\-V\-R}}
+\index{A\-V\-R@{A\-V\-R}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R~1}}\label{user__config_8h_a1519396040c1c9c28f597ccfbae61843}
+
+
+Definition at line 17 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a8bc40893206d810d820e142da5ffdfd7}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N@{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}}
+\index{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N@{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-C\-L\-R}( a \#\# \-\_\-\-D\-D\-R,  a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_a8bc40893206d810d820e142da5ffdfd7}
+Notes about A\-V\-R and P\-I\-C port B\-I\-T differences. A\-V\-R P\-I\-C D\-D\-R 1=out, 0 =in T\-R\-I\-S 0=out,1=in P\-O\-R\-T=val same as L\-A\-T\-C\-H=val P\-O\-R\-T=val same as L\-A\-T\-C\-H=val val=P\-O\-R\-T, reads L\-A\-T\-C\-H val=P\-O\-R\-T reads P\-I\-N state val=P\-I\-N, reads P\-I\-N state val=L\-A\-T\-C\-H reads latch Notes\-: \char`\"{}\-S\-E\-N\-S\-O\-R\char`\"{} gets convereted into the required D\-D\-R and B\-I\-T definitions. We use the comma operator to return the P\-I\-N test. We do not use \{\} around the statements so they behave like functions. Consider what would happen if you used breaces (should be obviious) if ( G\-P\-I\-B\-\_\-\-I\-O\-\_\-\-R\-D(\-S\-E\-N\-S\-O\-R) ) \{ printf\char`\"{}\-S\-E\-N\-S\-O\-R\char`\"{}); \} else \{ do stuff \} 
+
+Definition at line 106 of file user\-\_\-config.\-h.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{user__config_8h_afc6ba80aa296fe8010443f6d1bd37baa}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T@{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}}
+\index{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T@{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-S\-E\-T}( a \#\# \-\_\-\-D\-D\-R,  a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_afc6ba80aa296fe8010443f6d1bd37baa}
+
+
+Definition at line 107 of file user\-\_\-config.\-h.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{user__config_8h_a168e6579ed1ecf490d65d347056c1976}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}}
+\index{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-S\-E\-T}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_a168e6579ed1ecf490d65d347056c1976}
+
+
+Definition at line 110 of file user\-\_\-config.\-h.
+
+
+
+Referenced by uart\-\_\-init().
+
+\hypertarget{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}}
+\index{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-C\-L\-R}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_ae7f004f2c44e17d77e1bb566479a23ee}
+
+
+Definition at line 109 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a4d3f72269c364c484126eb8a11c010b5}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}}
+\index{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D@{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-T\-S\-T}( a \#\# \-\_\-\-P\-O\-R\-T, a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_a4d3f72269c364c484126eb8a11c010b5}
+
+
+Definition at line 112 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a0c91760dd02182e965db0a4736e7bb43}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P@{A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P}}
+\index{A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P@{A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-N\-O\-\_\-\-P\-U\-L\-L\-U\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a)}}\label{user__config_8h_a0c91760dd02182e965db0a4736e7bb43}
+
+
+Definition at line 117 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a72500a308e8f5812c2445cffb98ca68d}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D@{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}}
+\index{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D@{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf B\-I\-T\-\_\-\-T\-S\-T}( a \#\# \-\_\-\-P\-I\-N,  a \#\# \-\_\-\-B\-I\-T)}}\label{user__config_8h_a72500a308e8f5812c2445cffb98ca68d}
+
+
+Definition at line 114 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_adaab22c8208e67fc54189037faaa9acd}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P@{A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P}}
+\index{A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P@{A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-V\-R\-\_\-\-P\-U\-L\-L\-U\-P(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a)}}\label{user__config_8h_adaab22c8208e67fc54189037faaa9acd}
+
+
+Definition at line 116 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a84beef8cc122add35118ec7cd35286c4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!calloc@{calloc}}
+\index{calloc@{calloc}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{calloc}]{\setlength{\rightskip}{0pt plus 5cm}\#define calloc~{\bf safecalloc}}}\label{user__config_8h_a84beef8cc122add35118ec7cd35286c4}
+
+
+Definition at line 203 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!free@{free}}
+\index{free@{free}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}\#define free~{\bf safefree}}}\label{user__config_8h_a2c6efa7679f8cd9f61af96e105017560}
+
+
+Definition at line 202 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R@{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}}
+\index{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R@{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-A\-V\-E\-\_\-\-H\-I\-R\-E\-S\-\_\-\-T\-I\-M\-E\-R~1}}\label{user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}
+
+
+Definition at line 21 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a1425f90cef85f3643a6c70a124c69e58}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-F\-L\-O\-A\-T@{I\-O\-\_\-\-F\-L\-O\-A\-T}}
+\index{I\-O\-\_\-\-F\-L\-O\-A\-T@{I\-O\-\_\-\-F\-L\-O\-A\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-F\-L\-O\-A\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-F\-L\-O\-A\-T(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}(a)}}\label{user__config_8h_a1425f90cef85f3643a6c70a124c69e58}
+
+
+Definition at line 124 of file user\-\_\-config.\-h.
+
+
+
+Referenced by S\-P\-I0\-\_\-\-Init().
+
+\hypertarget{user__config_8h_a4bb3fe04cec812254f0459409c7ea9e7}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-H\-I@{I\-O\-\_\-\-H\-I}}
+\index{I\-O\-\_\-\-H\-I@{I\-O\-\_\-\-H\-I}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-H\-I(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a), {\bf A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}(a)}}\label{user__config_8h_a4bb3fe04cec812254f0459409c7ea9e7}
+
+
+Definition at line 119 of file user\-\_\-config.\-h.
+
+
+
+Referenced by mmc\-\_\-cs\-\_\-disable(), mmc\-\_\-spi\-\_\-init(), and S\-P\-I0\-\_\-\-Init().
+
+\hypertarget{user__config_8h_a4711a0245d2dc9017b61d78f317fcbfb}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I}}
+\index{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-H\-I(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( {\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-H\-I}(a) )}}\label{user__config_8h_a4711a0245d2dc9017b61d78f317fcbfb}
+
+
+Definition at line 131 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a6bd84a0adeea536e33e64040f3da43e1}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W}}
+\index{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-L\-O\-W(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( {\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a) )}}\label{user__config_8h_a6bd84a0adeea536e33e64040f3da43e1}
+
+
+Definition at line 130 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a938ae2e7a99afdd1a2f415bb2acd42d3}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D}}
+\index{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D@{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-J\-U\-S\-T\-\_\-\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( P\-I\-N\-\_\-\-R\-D(a))}}\label{user__config_8h_a938ae2e7a99afdd1a2f415bb2acd42d3}
+
+
+Definition at line 129 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_ab2270f09fea81742a2fe016e7d3e76d0}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D@{I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}}
+\index{I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D@{I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( {\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-R\-D}(a) )}}\label{user__config_8h_ab2270f09fea81742a2fe016e7d3e76d0}
+
+
+Definition at line 126 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a953bae0026ca759147412b364bbe8a72}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-L\-O\-W@{I\-O\-\_\-\-L\-O\-W}}
+\index{I\-O\-\_\-\-L\-O\-W@{I\-O\-\_\-\-L\-O\-W}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-L\-O\-W(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~{\bf A\-V\-R\-\_\-\-L\-A\-T\-C\-H\-\_\-\-L\-O\-W}(a), {\bf A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-O\-U\-T}(a)}}\label{user__config_8h_a953bae0026ca759147412b364bbe8a72}
+
+
+Definition at line 120 of file user\-\_\-config.\-h.
+
+
+
+Referenced by mmc\-\_\-cs\-\_\-enable().
+
+\hypertarget{user__config_8h_a78278df303d5b288b08a39cda06eba5c}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!I\-O\-\_\-\-R\-D@{I\-O\-\_\-\-R\-D}}
+\index{I\-O\-\_\-\-R\-D@{I\-O\-\_\-\-R\-D}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{I\-O\-\_\-\-R\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-O\-\_\-\-R\-D(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~( {\bf A\-V\-R\-\_\-\-D\-I\-R\-\_\-\-I\-N}(a), {\bf A\-V\-R\-\_\-\-P\-I\-N\-\_\-\-R\-D}(a))}}\label{user__config_8h_a78278df303d5b288b08a39cda06eba5c}
+
+
+Definition at line 122 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!Mem\-\_\-\-Clear@{Mem\-\_\-\-Clear}}
+\index{Mem\-\_\-\-Clear@{Mem\-\_\-\-Clear}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{Mem\-\_\-\-Clear}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\-\_\-\-Clear(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~memset(a, 0, sizeof(a))}}\label{user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000067}{Todo}]Add pullup options W\-A\-R\-N\-I\-N\-G not all C\-P\-Us have pullups so avoide these If you have a pull up always on or off just alter the base macros. If you M\-U\-S\-T switch it that other will have to add hardware if thier C\-P\-U does not support it. \end{DoxyRefDesc}
+
+
+Definition at line 139 of file user\-\_\-config.\-h.
+
+
+
+Referenced by S\-S80\-\_\-locate\-\_\-and\-\_\-write(), and S\-S80\-\_\-send\-\_\-status().
+
+\hypertarget{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!Mem\-\_\-\-Set@{Mem\-\_\-\-Set}}
+\index{Mem\-\_\-\-Set@{Mem\-\_\-\-Set}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{Mem\-\_\-\-Set}]{\setlength{\rightskip}{0pt plus 5cm}\#define Mem\-\_\-\-Set(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~memset(a, (int) b, sizeof(a))}}\label{user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}
+
+
+Definition at line 140 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}}
+\index{M\-E\-M\-S\-P\-A\-C\-E@{M\-E\-M\-S\-P\-A\-C\-E}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{M\-E\-M\-S\-P\-A\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-E\-M\-S\-P\-A\-C\-E}}\label{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+
+
+Definition at line 18 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-M\-C\-\_\-\-F\-A\-S\-T@{M\-M\-C\-\_\-\-F\-A\-S\-T}}
+\index{M\-M\-C\-\_\-\-F\-A\-S\-T@{M\-M\-C\-\_\-\-F\-A\-S\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{M\-M\-C\-\_\-\-F\-A\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-M\-C\-\_\-\-F\-A\-S\-T~2500000\-L}}\label{user__config_8h_a1cf90afdd82046f772117bb46a9849e6}
+
+
+Definition at line 24 of file user\-\_\-config.\-h.
+
+
+
+Referenced by mmc\-\_\-fast().
+
+\hypertarget{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!M\-M\-C\-\_\-\-S\-L\-O\-W@{M\-M\-C\-\_\-\-S\-L\-O\-W}}
+\index{M\-M\-C\-\_\-\-S\-L\-O\-W@{M\-M\-C\-\_\-\-S\-L\-O\-W}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{M\-M\-C\-\_\-\-S\-L\-O\-W}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-M\-C\-\_\-\-S\-L\-O\-W~250000\-L}}\label{user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}
+
+
+Definition at line 23 of file user\-\_\-config.\-h.
+
+
+
+Referenced by main(), and mmc\-\_\-slow().
+
+\hypertarget{user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!N\-O\-\_\-\-S\-C\-A\-N\-F@{N\-O\-\_\-\-S\-C\-A\-N\-F}}
+\index{N\-O\-\_\-\-S\-C\-A\-N\-F@{N\-O\-\_\-\-S\-C\-A\-N\-F}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{N\-O\-\_\-\-S\-C\-A\-N\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-O\-\_\-\-S\-C\-A\-N\-F}}\label{user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}
+
+
+Definition at line 26 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!N\-U\-L\-L@{N\-U\-L\-L}}
+\index{N\-U\-L\-L@{N\-U\-L\-L}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{N\-U\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-L\-L~((void $\ast$) 0)}}\label{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}
+
+
+Definition at line 72 of file user\-\_\-config.\-h.
+
+
+
+Referenced by atoh(), close(), execute\-\_\-timers(), fatfs\-\_\-alloc\-\_\-finfo(), fatfs\-\_\-getc(), fatfs\-\_\-ls(), fatfs\-\_\-putc(), Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-scan\-\_\-files(), fatfs\-\_\-to\-\_\-fileno(), fileno(), fileno\-\_\-to\-\_\-fatfs(), fileno\-\_\-to\-\_\-stream(), free\-\_\-file\-\_\-descriptor(), ftell(), ftruncate(), get\-\_\-token(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), gpib\-\_\-log(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), gpib\-\_\-task(), gpib\-\_\-trace\-\_\-task(), lseek(), new\-\_\-file\-\_\-descriptor(), open(), perror(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), printer\-\_\-close(), printer\-\_\-init(), printer\-\_\-open(), queue\-\_\-del(), queue\-\_\-new(), read(), receive\-\_\-plot\-\_\-flush(), safefree(), setup\-\_\-timers\-\_\-isr(), stat(), strnalloc(), sync(), syncfs(), time(), and write().
+
+\hypertarget{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!printf@{printf}}
+\index{printf@{printf}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{printf}]{\setlength{\rightskip}{0pt plus 5cm}\#define printf(
+\begin{DoxyParamCaption}
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~printf\-\_\-\-P(P\-S\-T\-R(format), \#\#args)}}\label{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}
+
+
+standard includes 
+
+
+
+Definition at line 65 of file user\-\_\-config.\-h.
+
+
+
+Referenced by amigo\-\_\-buffered\-\_\-read(), amigo\-\_\-buffered\-\_\-write(), amigo\-\_\-chs\-\_\-to\-\_\-logical(), amigo\-\_\-cmd\-\_\-clear(), amigo\-\_\-cmd\-\_\-dsj(), amigo\-\_\-cmd\-\_\-wakeup(), Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), Amigo\-\_\-\-Execute(), amigo\-\_\-overflow\-\_\-check(), amigo\-\_\-request\-\_\-status(), amigo\-\_\-send\-\_\-logical\-\_\-address(), amigo\-\_\-send\-\_\-status(), amigo\-\_\-todo(), amigo\-\_\-todo\-\_\-op(), amigo\-\_\-verify(), clock\-\_\-elapsed\-\_\-end(), clock\-\_\-init(), dbf\-\_\-close(), dbf\-\_\-lseek(), dbf\-\_\-open(), dbf\-\_\-read(), dbf\-\_\-write(), delay\-\_\-tests(), Disable\-P\-P\-R(), display\-\_\-time(), display\-\_\-ts(), dump\-\_\-stat(), Dump\-Data(), Enable\-P\-P\-R(), fatfs\-\_\-cat(), fatfs\-\_\-cd(), fatfs\-\_\-copy(), fatfs\-\_\-create(), fatfs\-\_\-filinfo\-\_\-list(), fatfs\-\_\-help(), fatfs\-\_\-ls(), fatfs\-\_\-mkdir(), fatfs\-\_\-pwd(), Fat\-Fs\-\_\-\-Read\-\_\-\-Config(), fatfs\-\_\-rm(), fatfs\-\_\-rmdir(), fatfs\-\_\-stat(), fatfs\-\_\-status(), G\-P\-I\-B(), gpib\-\_\-assert\-\_\-ifc(), gpib\-\_\-assert\-\_\-ren(), gpib\-\_\-decode\-\_\-header(), gpib\-\_\-error\-\_\-test(), gpib\-\_\-file\-\_\-init(), gpib\-\_\-format\-\_\-disk(), gpib\-\_\-help(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), gpib\-\_\-read\-\_\-str(), G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S(), gpib\-\_\-state\-\_\-init(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), gpib\-\_\-tests(), gpib\-\_\-timer\-\_\-elapsed\-\_\-end(), gpib\-\_\-timer\-\_\-init(), gpib\-\_\-trace\-\_\-task(), gpib\-\_\-unread(), gpib\-\_\-write\-\_\-byte(), gpib\-\_\-write\-\_\-str(), help(), init\-\_\-timers(), main(), mmc\-\_\-init(), mmc\-\_\-install\-\_\-timer(), mmc\-\_\-select(), mmc\-\_\-test(), mmc\-\_\-test\-\_\-timeout(), Parallel\-\_\-\-Poll(), perror(), plot\-\_\-echo(), P\-O\-S\-I\-X\-\_\-\-Read\-\_\-\-Config(), printer\-\_\-buffer(), printer\-\_\-close(), P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), printer\-\_\-open(), Print\-Free(), put\-\_\-rc(), receive\-\_\-plot(), receive\-\_\-plot\-\_\-flush(), rtc\-\_\-init(), rtc\-\_\-read(), rtc\-\_\-run(), rtc\-\_\-run\-\_\-test(), rtc\-\_\-write(), safecalloc(), safefree(), Send\-\_\-\-Identify(), set\-\_\-timers(), setdate(), setdate\-\_\-r(), setup\-\_\-clock(), S\-P\-I0\-\_\-\-Mode(), S\-S80\-\_\-\-Amigo\-\_\-\-Clear(), S\-S80\-\_\-cmd\-\_\-seek(), S\-S80\-\_\-\-Command\-\_\-\-State(), S\-S80\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), S\-S80\-\_\-describe(), S\-S80\-\_\-error\-\_\-return(), S\-S80\-\_\-\-Execute\-\_\-\-State(), S\-S80\-\_\-increment(), S\-S80\-\_\-init(), S\-S80\-\_\-locate\-\_\-and\-\_\-read(), S\-S80\-\_\-locate\-\_\-and\-\_\-write(), S\-S80\-\_\-\-Report(), S\-S80\-\_\-\-Selected\-\_\-\-Device\-\_\-\-Clear(), S\-S80\-\_\-send\-\_\-status(), S\-S80\-\_\-\-Test(), S\-S80\-\_\-\-Transparent\-\_\-\-State(), and task().
+
+\hypertarget{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!printf@{printf}}
+\index{printf@{printf}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{printf}]{\setlength{\rightskip}{0pt plus 5cm}\#define printf(
+\begin{DoxyParamCaption}
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~printf\-\_\-\-P(P\-S\-T\-R(format), \#\#args)}}\label{user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}
+
+
+standard includes 
+
+
+
+Definition at line 65 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{snprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define snprintf(
+\begin{DoxyParamCaption}
+\item[{}]{s, }
+\item[{}]{size, }
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~snprintf\-\_\-\-P(s, size, P\-S\-T\-R(format), \#\#args)}}\label{user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}
+
+
+Definition at line 68 of file user\-\_\-config.\-h.
+
+
+
+Referenced by asctime\-\_\-r(), and ts\-\_\-to\-\_\-str().
+
+\hypertarget{user__config_8h_ab99ed44389e722578695fa0065118fac}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{sprintf}]{\setlength{\rightskip}{0pt plus 5cm}\#define sprintf(
+\begin{DoxyParamCaption}
+\item[{}]{s, }
+\item[{}]{format, }
+\item[{}]{args...}
+\end{DoxyParamCaption}
+)~sprintf\-\_\-\-P(s, P\-S\-T\-R(format), \#\#args)}}\label{user__config_8h_ab99ed44389e722578695fa0065118fac}
+
+
+Definition at line 67 of file user\-\_\-config.\-h.
+
+
+
+Referenced by gpib\-\_\-decode\-\_\-str(), and printer\-\_\-open().
+
+\hypertarget{user__config_8h_ab29f444706056b13bca09e97c909bbc5}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z@{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z}}
+\index{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z@{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-Y\-S\-T\-E\-M\-\_\-\-T\-A\-S\-K\-\_\-\-H\-Z~1000\-L}}\label{user__config_8h_ab29f444706056b13bca09e97c909bbc5}
+
+
+Definition at line 20 of file user\-\_\-config.\-h.
+
+\hypertarget{user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T@{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T}}
+\index{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T@{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-C\-N\-T~1}}\label{user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}
+U\-A\-R\-T device number 
+
+Definition at line 142 of file user\-\_\-config.\-h.
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!size\-\_\-t@{size\-\_\-t}}
+\index{size\-\_\-t@{size\-\_\-t}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{size\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned long int {\bf size\-\_\-t}}}\label{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}
+
+
+Definition at line 80 of file user\-\_\-config.\-h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!bool@{bool}}
+\index{bool@{bool}!user_config.h@{user\-\_\-config.\-h}}
+\subsubsection[{bool}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf bool}}}\label{user__config_8h_af6a258d8f3ee5206d682d799316314b1}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{false@{false}!user\-\_\-config.\-h@{user\-\_\-config.\-h}}\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!false@{false}}\item[{\em 
+\hypertarget{user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}{false}\label{user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}
+}]\index{true@{true}!user\-\_\-config.\-h@{user\-\_\-config.\-h}}\index{user\-\_\-config.\-h@{user\-\_\-config.\-h}!true@{true}}\item[{\em 
+\hypertarget{user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}{true}\label{user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 75 of file user\-\_\-config.\-h.
+

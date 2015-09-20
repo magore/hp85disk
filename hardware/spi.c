@@ -14,7 +14,7 @@
 
 */
 
-#include "hardware.h"
+#include "user_config.h"
 #include <stdlib.h>
 #include "spi.h"
 
@@ -40,7 +40,7 @@ void SPI0_cs_enable(uint8_t cs)
     if(_cs_pin != 0xff)
     { 
         // This implies a bug!
-        DEBUG_PRINTF("CS enable was:%d\n", 0xff & _cs_pin);
+        printf("CS enable was:%d\n", 0xff & _cs_pin);
     }
     GPIO_OUTPUT_SET(cs, 0);
     _cs_pin = cs;
@@ -53,7 +53,7 @@ void SPI0_cs_disable(uint8_t cs)
     if(_cs_pin != cs && _cs_pin != 0xff )
     {
         // This implies a bug!
-        DEBUG_PRINTF("CS disable was:%d\n", 0xff & _cs_pin);
+        printf("CS disable was:%d\n", 0xff & _cs_pin);
     }
     GPIO_OUTPUT_SET(cs, 1);
     _cs_pin = 0xff;
@@ -208,7 +208,7 @@ void SPI0_Mode(int mode)
             BIT_SET(SPCR,CPHA);
             break;
         default:
-            myprintf("SPI0_Mode: Invalid mode(%d)\n",mode);
+            printf("SPI0_Mode: Invalid mode(%d)\n",mode);
             break;
     }
     SPI0_Mode_value = mode;

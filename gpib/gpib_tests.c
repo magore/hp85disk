@@ -11,7 +11,7 @@
 */
 
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 #include "defines.h"
 #include "gpib_hal.h"
@@ -29,7 +29,7 @@
 
 void gpib_help()
 {
-    myprintf("debug N\n"
+    printf("debug N\n"
         "ss80_test\n"
         "gpib_task\n"
         "gpib_trace filename.txt\n"
@@ -65,14 +65,14 @@ int gpib_tests(char *str)
         ptr=skipspaces(ptr);
         sscanf(ptr,"%d", &level);
         debuglevel = level;
-        myprintf("debug=%d\n", debuglevel);
+        printf("debug=%d\n", debuglevel);
         return(1);
     }
     else if ((len = token(ptr,"ss80_test")) )
     {
         ptr += len;
 /// @todo FIXME
-        myprintf("SS80_TEST\n");
+        printf("SS80_TEST\n");
         SS80_init();
         SS80_Test();
         return(1);

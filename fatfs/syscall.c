@@ -11,7 +11,7 @@
 /* (C)ChaN, 2012                                                          */
 /*------------------------------------------------------------------------*/
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 //#include <stdlib.h>		/* ANSI memory controls */
 //#include <malloc.h>		/* ANSI memory controls */
 
@@ -149,7 +149,7 @@ void* ff_memalloc (	/* Returns pointer to the allocated memory block */
 	UINT msize		/* Number of bytes to allocate */
 )
 {
-	return safecalloc(msize,1);
+	return malloc(msize);
 }
 
 
@@ -162,7 +162,7 @@ void ff_memfree (
 	void* mblock	/* Pointer to the memory block to free */
 )
 {
-	safefree(mblock);
+	free(mblock);
 }
 
 #endif

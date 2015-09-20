@@ -52,20 +52,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <hardware/hardware.h>
-#if 0
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-#include <stdlib.h>
+#include <user_config.h>
 
 #include "ff.h"
 #include "disk.h"
 #include "diskio.h"
-#endif
 
 #include "posix.h"
 
+#ifdef ESP8266
+// FIXME ESP8266 library conflict
+#undef strerror_r
+#endif
 
 ///  Note: fdevopen assigns stdin,stdout,stderr
 
@@ -314,16 +312,16 @@ int new_file_descriptor( void )
             continue;
         if( __iob[i] == NULL)
         {
-            stream = (FILE *) safecalloc(sizeof(FILE),1);
+            stream = (FILE *) calloc(sizeof(FILE),1);
             if(stream == NULL)
             {
                 errno = ENOMEM;
                 return(-1);
             }
-            fh = (FIL *) safecalloc(sizeof(FIL),1);
+            fh = (FIL *) calloc(sizeof(FIL),1);
             if(fh == NULL)
             {
-                safefree(stream);
+                free(stream);
                 errno = ENOMEM;
                 return(-1);
             }
@@ -352,7 +350,7 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
     if (put == 0 && get == 0)
         return 0;
 
-    if ((s = safecalloc(1, sizeof(FILE))) == 0)
+    if ((s = calloc(1, sizeof(FILE))) == 0)
         return 0;
 
     s->flags = __SMALLOC;
@@ -411,16 +409,16 @@ int free_file_descriptor(int fileno)
 
     if(fh != NULL)
     {
-        safefree(fh);
+        free(fh);
     }
 
     if(stream->buf != NULL && stream->flags & __SMALLOC)
     {
-        safefree(stream->buf);
+        free(stream->buf);
     }
 
     __iob[fileno]  = NULL;
-    safefree(stream);
+    free(stream);
     return(fileno);
 }
 
@@ -464,9 +462,9 @@ void perror(const char *s)
         ptr = sys_errlist[EBADMSG];
 
     if(s && *s)
-        DEBUG_PRINTF("%s: %s\n", s, ptr);
+        printf("%s: %s\n", s, ptr);
     else
-        DEBUG_PRINTF("%s\n", ptr);
+        printf("%s\n", ptr);
 }
 
 
@@ -770,7 +768,7 @@ fgetc(FILE *stream)
     } else {
 		if(!stream->get)
 		{
-			DEBUG_PRINTF("fgetc stream->get NULL\n");
+			printf("fgetc stream->get NULL\n");
 			return(EOF);
 		}
         c = stream->get(stream);
@@ -826,7 +824,7 @@ fputc(int c, FILE *stream)
     } else {
 		if(!stream->put)
 		{
-			DEBUG_PRINTF("fputc stream->put NULL\n");
+			printf("fputc stream->put NULL\n");
 			return(EOF);
 		}
         if (stream->put(c, stream) == 0) {
@@ -862,7 +860,7 @@ int open(const char *pathname, int flags)
 
     errno = 0;
 
-// We Assume that mmc_init was already called - saves time
+// FIXME Assume that mmc_init was already called 
 #if 0
 // Checks Disk status
     res = mmc_init(0);
@@ -1666,23 +1664,23 @@ void dump_stat(struct stat *sp)
 {
     mode_t mode = sp->st_mode;
 
-    DEBUG_PRINTF("\tSize:  %lu\n", (uint32_t)sp->st_size);
+    printf("\tSize:  %lu\n", (uint32_t)sp->st_size);
 
-    DEBUG_PRINTF("\tType:  ");
+    printf("\tType:  ");
     if(S_ISDIR(mode))
-        DEBUG_PRINTF("DIR\n");
+        printf("DIR\n");
     else if(S_ISREG(mode))
-        DEBUG_PRINTF("File\n");
+        printf("File\n");
     else
-        DEBUG_PRINTF("Unknown\n");
+        printf("Unknown\n");
 
 
-    DEBUG_PRINTF("\tMode:  %lo\n", (uint32_t)sp->st_mode);
-    DEBUG_PRINTF("\tUID:   %lu\n", (uint32_t)sp->st_uid);
-    DEBUG_PRINTF("\tGID:   %lu\n", (uint32_t)sp->st_gid);
-    DEBUG_PRINTF("\tatime: %s\n",mctime((time_t)sp->st_atime));
-    DEBUG_PRINTF("\tmtime: %s\n",mctime((time_t)sp->st_mtime));
-    DEBUG_PRINTF("\tctime: %s\n",mctime((time_t)sp->st_ctime));
+    printf("\tMode:  %lo\n", (uint32_t)sp->st_mode);
+    printf("\tUID:   %lu\n", (uint32_t)sp->st_uid);
+    printf("\tGID:   %lu\n", (uint32_t)sp->st_gid);
+    printf("\tatime: %s\n",mctime((time_t)sp->st_atime));
+    printf("\tmtime: %s\n",mctime((time_t)sp->st_mtime));
+    printf("\tctime: %s\n",mctime((time_t)sp->st_ctime));
 }
 
 

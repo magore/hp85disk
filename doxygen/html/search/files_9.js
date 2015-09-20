@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['posix_2ec',['posix.c',['../posix_8c.html',1,'']]],
-  ['posix_2eh',['posix.h',['../posix_8h.html',1,'']]],
-  ['printer_2ec',['printer.c',['../printer_8c.html',1,'']]],
-  ['printer_2eh',['printer.h',['../printer_8h.html',1,'']]]
+  ['queue_2ec',['queue.c',['../queue_8c.html',1,'']]],
+  ['queue_2eh',['queue.h',['../queue_8h.html',1,'']]]
 ];

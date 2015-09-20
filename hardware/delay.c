@@ -10,7 +10,7 @@
 
 */
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 // CPU Frequency
 #ifndef F_CPU

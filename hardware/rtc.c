@@ -10,7 +10,7 @@
 
 */
 
-#include "hardware.h"
+#include "user_config.h"
 #include "lib/time.h"
 
 /// @brief Convert number >= 0 and <= 99 to BCD.
@@ -53,7 +53,7 @@ int8_t rtc_run_test()
     if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        myprintf("rtc_state read error\n");
+        printf("rtc_state read error\n");
         return -1;
     }
     if(b & 8)
@@ -80,7 +80,7 @@ int rtc_run(int run)
     if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        myprintf("rtc_run read error\n");
+        printf("rtc_run read error\n");
         return -1;
     }
 
@@ -93,7 +93,7 @@ int rtc_run(int run)
     if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        myprintf("rtc_run - write error\n");
+        printf("rtc_run - write error\n");
         return(-1);
     }
     return(run);
@@ -141,7 +141,7 @@ uint8_t rtc_init (int force, time_t seconds)
         tmp = gmtime(&seconds);
         if(!rtc_write(tmp))
         {
-            myprintf("rtc _write epoch failed\n");
+            printf("rtc _write epoch failed\n");
             rtc_ok = 0;
             return 0;
         }
@@ -153,7 +153,7 @@ uint8_t rtc_init (int force, time_t seconds)
             if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
                 (uint8_t*)buf, 8) != TWI_ERROR_NoError)
             {
-                myprintf("rtc_init ram - write error\n");
+                printf("rtc_init ram - write error\n");
                 return(0);
             }
         }
@@ -191,7 +191,7 @@ uint8_t rtc_write(tm_t *t)
     buf[7] = 0x93;                                // 32khz, out square wave
 
 #ifdef RTC_DEBUG
-    myprintf("rtc_write():%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
+    printf("rtc_write():%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
         t->tm_year + 1900,
         t->tm_mon,
         t->tm_mday,
@@ -202,19 +202,19 @@ uint8_t rtc_write(tm_t *t)
 #endif
 
 #ifdef RTC_DEBUG
-    myprintf("%4x\n", t);
+    printf("%4x\n", t);
     int i;
-    myprintf("rtc_write buf: ");
+    printf("rtc_write buf: ");
 	for(i=0;i<7;++i)
-		myprintf("%02x ", 0xff & buf[i]);
-    myprintf("\n");
+		printf("%02x ", 0xff & buf[i]);
+    printf("\n");
 #endif
 
     WriteAddress = 0;
     if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
         (uint8_t*)buf, 8) != TWI_ERROR_NoError)
     {
-        myprintf("rtc_write error\n");
+        printf("rtc_write error\n");
         return(0);
     }
 
@@ -238,17 +238,17 @@ uint8_t rtc_read(tm_t *t)
     if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)buf, 8) != TWI_ERROR_NoError)
     {
-        myprintf("rtc_read error\n");
+        printf("rtc_read error\n");
         return 0;
     }
 
 #ifdef RTC_DEBUG
-    myprintf("%4x\n", t);
+    printf("%4x\n", t);
     int i;
-    myprintf("rtc_read buf: ");
+    printf("rtc_read buf: ");
     for(i=0;i<7;++i)
-        myprintf("%02x ", 0xff & buf[i]);
-    myprintf("\n");
+        printf("%02x ", 0xff & buf[i]);
+    printf("\n");
 #endif
 
     t->tm_sec =   BCDtoBIN( buf[0] & 0x7f);
@@ -260,7 +260,7 @@ uint8_t rtc_read(tm_t *t)
     t->tm_year =  BCDtoBIN( buf[6] & 0xff) + 100;
 
 #ifdef RTC_DEBUG
-    myprintf("rtc_read():%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
+    printf("rtc_read():%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
         t->tm_year + 1900,
         t->tm_mon,
         t->tm_mday,

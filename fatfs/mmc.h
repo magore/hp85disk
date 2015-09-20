@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _MMC_H_
 
 // Project includes
-#include <hardware/hardware.h>
+#include <user_config.h>
 
 // Fatfs and MMC includes
 #include "diskio.h"

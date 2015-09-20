@@ -32,7 +32,7 @@ FRESULT gpib_format_disk(char *name)
         return(FR_NOT_ENOUGH_CORE);
     }
 
-    myprintf("Format:[%s]\n", name);
+    printf("Format:[%s]\n", name);
 
     rc = dbf_open(&fp, name, FA_CREATE_ALWAYS | FA_WRITE | FA_READ);
     if(rc)
@@ -42,7 +42,7 @@ FRESULT gpib_format_disk(char *name)
     rc=dbf_read(&fp, buffer,10,&nbytes);
 
 /// @return return(rc);
-    myprintf("Read (%d) bytes:[%s]\n", nbytes, buffer);
+    printf("Read (%d) bytes:[%s]\n", nbytes, buffer);
 
     memset(buffer,' ',512);
     memcpy(buffer,&vl,sizeof(vl));                // Volume
@@ -101,7 +101,7 @@ FRESULT gpib_format_disk(char *name)
         }
     }
     rc= dbf_close(&fp);
-    myprintf("Done\n");
+    printf("Done\n");
     safefree(buffer);
     return(rc);
 }

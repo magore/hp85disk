@@ -26,11 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _TIMER_HAL_H_
 #define _TIMER_HAL_H_
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 #include "timer.h"
 #include "time.h"
 
-#define HAVE_HIRES_TIMER /*< We can read a high resolution hardware timer */
+#ifdef AVR
+/*< We can read a high resolution hardware timer */
+#define HAVE_HIRES_TIMER 
 
 /// @brief AVR prescale divider.
 #define TIMER1_PRESCALE     1L
@@ -51,7 +53,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TIMER1_PRE_64 ((1 << CS11) | ( 1 << CS10))      /*< 64 Prescale */
 #define TIMER1_PRE_256 (1 << CS12)                      /*< 256 Prescale */
 #define TIMER1_PRE_1024 ((1 << CS12) | ( 1 << CS10))    /*< 1024 Prescape */
-
+#endif
 
 /* timer_hal.c */
 MEMSPACE void clock_clear ( void );
@@ -59,13 +61,12 @@ MEMSPACE void disable_timers ( void );
 MEMSPACE void enable_timers ( void );
 void execute_timers ( void );
 MEMSPACE void clock_init ( void );
-void clock_task(void);
+void clock_task ( void );
 MEMSPACE void init_timers ( void );
 MEMSPACE int clock_getres ( clockid_t clk_id , struct timespec *res );
-MEMSPACE int clock_settime ( clockid_t clk_id , const struct timespec *ts );
 MEMSPACE void setup_timers_isr ( void );
+MEMSPACE int clock_settime ( clockid_t clk_id , const struct timespec *ts );
 MEMSPACE int clock_gettime ( clockid_t clk_id , struct timespec *ts );
-
 
 
 #endif                                            // _TIMER_HAL_H_

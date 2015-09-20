@@ -1,5 +1,5 @@
 /**
- @file hardware/hardware.h
+ @file user_config.h
 
  @brief Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator.
 
@@ -10,22 +10,27 @@
 
 */
 
-#ifndef _HARDWARE_H_
-#define _HARDWARE_H_
+#ifndef _USER_CONFIG_H_
+#define _USER_CONFIG_H_
 
 
+#define AVR 1
 #define MEMSPACE /**/
-#define LOCAL static
+
 #define SYSTEM_TASK_HZ 1000L
+#define HAVE_HIRES_TIMER 1
 
 #define MMC_SLOW 250000L
 #define MMC_FAST 2500000L
+
+#define NO_SCANF
 
 #if !defined(F_CPU)
 #error F_CPU undefined
 #endif
 
 #include <hardware/cpu.h>
+
 
 ///  standard includes
 #include <stdio.h>
@@ -36,7 +41,7 @@
 #include "hardware/bits.h"
 #include "hardware/delay.h"
 
-#include "lib/util.h"
+#include "lib/str.h"
 #include "lib/time.h"
 #include "lib/timer.h"
 #include "lib/timer_hal.h"
@@ -53,18 +58,14 @@
 #include "fatfs/posix.h"
 #include "fatfs/fatfs_utils.h"
 
-#ifndef myprintf
-#define DEBUG_PRINTF(format, args...) printf_P(PSTR(format), ##args)
-#define myprintf(format, args...) printf_P(PSTR(format), ##args)
+#ifndef printf 
+	#define printf(format, args...) printf_P(PSTR(format), ##args)
 #endif
 
-#ifndef mysnprintf
-#define mysnprintf(s, size, format, args...) snprintf_P(s, size, PSTR(format), ##args)
-#endif
+#define printf(format, args...) printf_P(PSTR(format), ##args)
 
-#ifndef mysprintf
-#define mysprintf(s, format, args...) sprintf_P(s, PSTR(format), ##args)
-#endif
+#define sprintf(s, format, args...) sprintf_P(s, PSTR(format), ##args)
+#define snprintf(s, size, format, args...) snprintf_P(s, size, PSTR(format), ##args)
 
 
 #ifndef NULL
@@ -196,4 +197,8 @@ typedef unsigned long int size_t;
 #include "spi.h"
 #include "rtc.h"
 #include "TWI_AVR8.h"
+
+// ram.c defines alternative safe functions
+#define free safefree
+#define calloc safecalloc
 #endif

@@ -124,7 +124,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hardware_8h.html">hardware.h</a>&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user__config_8h.html">user_config.h</a>&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="TWI__AVR8_8h.html#a08e1eb463ce4ec168f2c1cb9b4039cae">   53</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="TWI__AVR8_8c.html#a08e1eb463ce4ec168f2c1cb9b4039cae">TWI_Init</a>(<span class="keyword">const</span> uint8_t Prescale, <span class="keyword">const</span> uint8_t BitLength)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
@@ -326,6 +326,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">return</span> ErrorCode;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;}</div>
 <div class="ttc" id="ss80_8c_html_a03f3f3cb1560e9bc3f899ede44d48724"><div class="ttname"><a href="ss80_8c.html#a03f3f3cb1560e9bc3f899ede44d48724">Length</a></div><div class="ttdeci">LengthType Length</div><div class="ttdef"><b>Definition:</b> <a href="ss80_8c_source.html#l00116">ss80.c:116</a></div></div>
+<div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_a7a9c708e4d9fbe6ed807f582bcbded0e"><div class="ttname"><a href="TWI__AVR8_8c.html#a7a9c708e4d9fbe6ed807f582bcbded0e">TWI_WritePacket</a></div><div class="ttdeci">uint8_t TWI_WritePacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, const uint8_t *Buffer, uint8_t Length)</div><div class="ttdoc">TWI write packet. </div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00252">TWI_AVR8.c:252</a></div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_a57d8ffa11749c0ba97d52c2a6e246d65"><div class="ttname"><a href="TWI__AVR8_8c.html#a57d8ffa11749c0ba97d52c2a6e246d65">TWI_SendByte</a></div><div class="ttdeci">bool TWI_SendByte(const uint8_t Byte)</div><div class="ttdoc">TWI send byte. </div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00158">TWI_AVR8.c:158</a></div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_af2949f6e420bec4caf6b005a4e7bdf0a"><div class="ttname"><a href="TWI__AVR8_8c.html#af2949f6e420bec4caf6b005a4e7bdf0a">TWI_StopTransmission</a></div><div class="ttdeci">static void TWI_StopTransmission(void)</div><div class="ttdoc">Sends a TWI STOP onto the TWI bus, terminating communication with the currently addressed device...</div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00075">TWI_AVR8.c:75</a></div></div>
@@ -334,14 +335,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="bits_8h_html_a4021778be6452ef56bfb20488d19bcdc"><div class="ttname"><a href="bits_8h.html#a4021778be6452ef56bfb20488d19bcdc">BIT_CLR</a></div><div class="ttdeci">#define BIT_CLR(x, y)</div><div class="ttdef"><b>Definition:</b> <a href="bits_8h_source.html#l00034">bits.h:34</a></div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_a551074dff05c93c7317440b55278aa1b"><div class="ttname"><a href="TWI__AVR8_8c.html#a551074dff05c93c7317440b55278aa1b">TWI_ReceiveByte</a></div><div class="ttdeci">bool TWI_ReceiveByte(uint8_t *const Byte, const bool LastByte)</div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00168">TWI_AVR8.c:168</a></div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_aea02d723a16ed7f11d485c24175d8117"><div class="ttname"><a href="TWI__AVR8_8c.html#aea02d723a16ed7f11d485c24175d8117">TWI_ReadPacket</a></div><div class="ttdeci">uint8_t TWI_ReadPacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, uint8_t *Buffer, uint8_t Length)</div><div class="ttdoc">TWI read packet. </div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00200">TWI_AVR8.c:200</a></div></div>
-<div class="ttc" id="hardware_8h_html"><div class="ttname"><a href="hardware_8h.html">hardware.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
 <div class="ttc" id="bits_8h_html_a75a94310a1111452b9aae180c264dc5e"><div class="ttname"><a href="bits_8h.html#a75a94310a1111452b9aae180c264dc5e">BIT_SET</a></div><div class="ttdeci">#define BIT_SET(x, y)</div><div class="ttdef"><b>Definition:</b> <a href="bits_8h_source.html#l00033">bits.h:33</a></div></div>
 <div class="ttc" id="TWI__AVR8_8c_html_a318b14612e67336a8fd6b71263d6e07a"><div class="ttname"><a href="TWI__AVR8_8c.html#a318b14612e67336a8fd6b71263d6e07a">TWI_Disable</a></div><div class="ttdeci">static void TWI_Disable(void)</div><div class="ttdoc">Disable I2C. </div><div class="ttdef"><b>Definition:</b> <a href="TWI__AVR8_8c_source.html#l00068">TWI_AVR8.c:68</a></div></div>
 <div class="ttc" id="bits_8h_html_a49c0cc46bd6dee049981fca0036e7f86"><div class="ttname"><a href="bits_8h.html#a49c0cc46bd6dee049981fca0036e7f86">BIT_TST</a></div><div class="ttdeci">#define BIT_TST(x, y)</div><div class="ttdef"><b>Definition:</b> <a href="bits_8h_source.html#l00035">bits.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

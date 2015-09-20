@@ -6,7 +6,7 @@
 R\-S232 Driver A\-V\-R8.  
 
 
-{\ttfamily \#include \char`\"{}hardware.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -67,7 +67,13 @@ void \hyperlink{rs232_8h_a23169748018111e05b90e5779cb63c70}{uart\-\_\-tx\-\_\-by
 void \hyperlink{rs232_8h_aa121f493123a7a21b0a1086cfebadf63}{uart\-\_\-putchar} (char c, int uart)
 \begin{DoxyCompactList}\small\item\em Transmit 1 byte on uart. \end{DoxyCompactList}\item 
 uint8\-\_\-t \hyperlink{rs232_8h_a62e784f8c17878ebc2f7ad942086d2e9}{uart\-\_\-keyhit} (uint8\-\_\-t uart)
-\begin{DoxyCompactList}\small\item\em Do we have receive characters waiting ?. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Do we have receive characters waiting ?. \end{DoxyCompactList}\item 
+void \hyperlink{rs232_8h_ac2ee59bdf981ff614d81f495dd028601}{uart\-\_\-put} (uint8\-\_\-t c)
+\begin{DoxyCompactList}\small\item\em Transmit a character on U\-A\-R\-T 0. \end{DoxyCompactList}\item 
+char \hyperlink{rs232_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}{uart\-\_\-get} (void)
+\begin{DoxyCompactList}\small\item\em Receive a character from U\-A\-R\-T 0. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8h_a293b550a7aa47a2f4bbadcf1103b78e6}{get\-\_\-line} (char $\ast$buff, int len)
+\begin{DoxyCompactList}\small\item\em Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -176,6 +182,32 @@ Definition at line 23 of file rs232.\-h.
 
 
 \subsection{Function Documentation}
+\hypertarget{rs232_8h_a293b550a7aa47a2f4bbadcf1103b78e6}{\index{rs232.\-h@{rs232.\-h}!get\-\_\-line@{get\-\_\-line}}
+\index{get\-\_\-line@{get\-\_\-line}!rs232.h@{rs232.\-h}}
+\subsubsection[{get\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}int get\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buff, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}}\label{rs232_8h_a293b550a7aa47a2f4bbadcf1103b78e6}
+
+
+Get a line from U\-A\-R\-T 0 up to a maximum of len bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buff} & line input buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & line length maximum \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 375 of file rs232.\-c.
+
 \hypertarget{rs232_8h_a4942fe8b3196939f4809e424adabcb8b}{\index{rs232.\-h@{rs232.\-h}!uart0\-\_\-getchar@{uart0\-\_\-getchar}}
 \index{uart0\-\_\-getchar@{uart0\-\_\-getchar}!rs232.h@{rs232.\-h}}
 \subsubsection[{uart0\-\_\-getchar}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t uart0\-\_\-getchar (
@@ -261,6 +293,28 @@ Referenced by uart\-\_\-init().
 
 
 Referenced by uart\-\_\-init().
+
+\hypertarget{rs232_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}{\index{rs232.\-h@{rs232.\-h}!uart\-\_\-get@{uart\-\_\-get}}
+\index{uart\-\_\-get@{uart\-\_\-get}!rs232.h@{rs232.\-h}}
+\subsubsection[{uart\-\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}char uart\-\_\-get (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{rs232_8h_aeb5d4f8824840e438ffbcf8d7e15ad77}
+
+
+Receive a character from U\-A\-R\-T 0. 
+
+\begin{DoxyReturn}{Returns}
+character 
+\end{DoxyReturn}
+
+
+Definition at line 365 of file rs232.\-c.
+
+
+
+Referenced by get\-\_\-line().
 
 \hypertarget{rs232_8h_aac582ab6810e9aa116f07274db968a8e}{\index{rs232.\-h@{rs232.\-h}!uart\-\_\-get\-\_\-tail@{uart\-\_\-get\-\_\-tail}}
 \index{uart\-\_\-get\-\_\-tail@{uart\-\_\-get\-\_\-tail}!rs232.h@{rs232.\-h}}
@@ -418,6 +472,33 @@ character.
 
 
 Definition at line 197 of file rs232.\-c.
+
+\hypertarget{rs232_8h_ac2ee59bdf981ff614d81f495dd028601}{\index{rs232.\-h@{rs232.\-h}!uart\-\_\-put@{uart\-\_\-put}}
+\index{uart\-\_\-put@{uart\-\_\-put}!rs232.h@{rs232.\-h}}
+\subsubsection[{uart\-\_\-put}]{\setlength{\rightskip}{0pt plus 5cm}void uart\-\_\-put (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{c}
+\end{DoxyParamCaption}
+)}}\label{rs232_8h_ac2ee59bdf981ff614d81f495dd028601}
+
+
+Transmit a character on U\-A\-R\-T 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file rs232.\-c.
+
+
+
+Referenced by get\-\_\-line().
 
 \hypertarget{rs232_8h_aa121f493123a7a21b0a1086cfebadf63}{\index{rs232.\-h@{rs232.\-h}!uart\-\_\-putchar@{uart\-\_\-putchar}}
 \index{uart\-\_\-putchar@{uart\-\_\-putchar}!rs232.h@{rs232.\-h}}

@@ -2,7 +2,7 @@ var searchData=
 [
   ['abort',['ABORT',['../ff_8c.html#a41e4c46636679236568cf50b5535847f',1,'ff.c']]],
   ['abort_5fflag',['ABORT_FLAG',['../defines_8h.html#aebc229167a29b3603190fbcf9ac0c7bb',1,'defines.h']]],
-  ['abs',['ABS',['../util_8h.html#a996f7be338ccb40d1a2a5abc1ad61759',1,'util.h']]],
+  ['abs',['ABS',['../str_8h.html#a996f7be338ccb40d1a2a5abc1ad61759',1,'str.h']]],
   ['acmd13',['ACMD13',['../mmc_8c.html#a4be8f501d86d24b02923846db618fc71',1,'mmc.c']]],
   ['acmd23',['ACMD23',['../mmc_8c.html#aa38144d651e2880f92c65bb683621f78',1,'mmc.c']]],
   ['acmd41',['ACMD41',['../mmc_8c.html#a9b6fdfed1b57ac31269b6b9987e0761b',1,'mmc.c']]],
@@ -25,12 +25,13 @@ var searchData=
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],
   ['atmega1284p',['atmega1284p',['../cpu_8h.html#a1dde60a96d9d6917b0abc4d26ea0aa73',1,'cpu.h']]],
   ['atn_5fflag',['ATN_FLAG',['../gpib_8h.html#abbe287946c2beaa1f76fe5be364c07ad',1,'gpib.h']]],
-  ['avr_5fdir_5fin',['AVR_DIR_IN',['../hardware_8h.html#a8bc40893206d810d820e142da5ffdfd7',1,'hardware.h']]],
-  ['avr_5fdir_5fout',['AVR_DIR_OUT',['../hardware_8h.html#afc6ba80aa296fe8010443f6d1bd37baa',1,'hardware.h']]],
-  ['avr_5flatch_5fhi',['AVR_LATCH_HI',['../hardware_8h.html#a168e6579ed1ecf490d65d347056c1976',1,'hardware.h']]],
-  ['avr_5flatch_5flow',['AVR_LATCH_LOW',['../hardware_8h.html#ae7f004f2c44e17d77e1bb566479a23ee',1,'hardware.h']]],
-  ['avr_5flatch_5frd',['AVR_LATCH_RD',['../hardware_8h.html#a4d3f72269c364c484126eb8a11c010b5',1,'hardware.h']]],
-  ['avr_5fno_5fpullup',['AVR_NO_PULLUP',['../hardware_8h.html#a0c91760dd02182e965db0a4736e7bb43',1,'hardware.h']]],
-  ['avr_5fpin_5frd',['AVR_PIN_RD',['../hardware_8h.html#a72500a308e8f5812c2445cffb98ca68d',1,'hardware.h']]],
-  ['avr_5fpullup',['AVR_PULLUP',['../hardware_8h.html#adaab22c8208e67fc54189037faaa9acd',1,'hardware.h']]]
+  ['avr',['AVR',['../user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]],
+  ['avr_5fdir_5fin',['AVR_DIR_IN',['../user__config_8h.html#a8bc40893206d810d820e142da5ffdfd7',1,'user_config.h']]],
+  ['avr_5fdir_5fout',['AVR_DIR_OUT',['../user__config_8h.html#afc6ba80aa296fe8010443f6d1bd37baa',1,'user_config.h']]],
+  ['avr_5flatch_5fhi',['AVR_LATCH_HI',['../user__config_8h.html#a168e6579ed1ecf490d65d347056c1976',1,'user_config.h']]],
+  ['avr_5flatch_5flow',['AVR_LATCH_LOW',['../user__config_8h.html#ae7f004f2c44e17d77e1bb566479a23ee',1,'user_config.h']]],
+  ['avr_5flatch_5frd',['AVR_LATCH_RD',['../user__config_8h.html#a4d3f72269c364c484126eb8a11c010b5',1,'user_config.h']]],
+  ['avr_5fno_5fpullup',['AVR_NO_PULLUP',['../user__config_8h.html#a0c91760dd02182e965db0a4736e7bb43',1,'user_config.h']]],
+  ['avr_5fpin_5frd',['AVR_PIN_RD',['../user__config_8h.html#a72500a308e8f5812c2445cffb98ca68d',1,'user_config.h']]],
+  ['avr_5fpullup',['AVR_PULLUP',['../user__config_8h.html#adaab22c8208e67fc54189037faaa9acd',1,'user_config.h']]]
 ];

@@ -10,7 +10,7 @@
 
 */
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 
 #include "gpib/defines.h"
 #include "gpib/gpib_hal.h"
@@ -21,81 +21,17 @@
 #include "gpib/ss80.h"
 #include <math.h>
 
-///@brief line buffer for user input
-
-/// @brief  Transmit a character on UART 0
-/// @param[in] c: character to write
-/// @return  void
-void uart_put(uint8_t c)
-{
-    uart0_putchar(c,0);
-}
-
-/// @brief  Receive a character from UART 0
-/// @return  character
-char uart_get(void)
-{
-    return(uart0_getchar(0));
-}
-
-/// @brief  Get a line from UART 0 up to a maximum of len bytes
-/// @param[in] buff: line input buffer
-/// @param[in] len: line length maximum
-/// @return void
-void get_line (char *buff, int len)
-{
-    int c;
-    int i = 0;
-
-	memset(buff,0,len);
-    while(1)
-    {
-        c = uart_get() & 0x7f;
-		uart_put(c);
-        if (c == '\n' || c == '\r')
-		{
-            break;
-		}
-
-        if (c == '\b')
-        {
-			if(i > 0) {
-				i--;
-			}
-            continue;
-        }
-
-        if (i < (len - 1) )                       /* Visible chars */
-        {
-            buff[i++] = c;
-        }
-		else
-		{
-			break;
-		}
-    }
-
-	// Discard remaining characters
-    while(uart_keyhit(0))
-    {
-        c = uart_get() & 0x7f;
-    }
-    buff[i] = 0;
-    uart_put('\n');
-}
-
-
 /// @brief  Display the main help menu - calls all other help menus
 /// @return  void
 /// @see gpib_help()
 /// @see fatfs_help()
 void help()
 {
-    myprintf("delay_tests\n");
-    myprintf("time\n");
-    myprintf("setdate\n");
-    myprintf("mem\n");
-    myprintf("ifc\n");
+    printf("delay_tests\n");
+    printf("time\n");
+    printf("setdate\n");
+    printf("mem\n");
+    printf("ifc\n");
     gpib_help();
     fatfs_help();
 }
@@ -107,7 +43,7 @@ void help()
 /// @return  void
 void delay_tests()
 {
-    myprintf("System delays\n");
+    printf("System delays\n");
 
     clock_elapsed_begin();
     clock_elapsed_end("elapsed timer overhead");
@@ -120,7 +56,7 @@ void delay_tests()
     _delay_us(500);
     clock_elapsed_end("_delay_us(500)");
 
-    myprintf("My delays\n");
+    printf("My delays\n");
 
     clock_elapsed_begin();
     delayus(100U);
@@ -159,11 +95,11 @@ void setup_clock()
 
     if(!rtc_init(0,0L))
     {
-        myprintf("rtc uninitilized\n");
-        myprintf("attempting rtc init\n");
+        printf("rtc uninitilized\n");
+        printf("attempting rtc init\n");
         if( !rtc_init(1, (time_t) DEFAULT_TIME ) )
         {
-            myprintf("rtc force init failed\n");
+            printf("rtc force init failed\n");
         }
     }
 
@@ -174,7 +110,7 @@ void setup_clock()
     else
     {
         seconds = DEFAULT_TIME;
-        myprintf("rtc read errorafter init\n");
+        printf("rtc read errorafter init\n");
     }
     tz.tz_minuteswest = 300;
     tz.tz_dsttime = 0;
@@ -200,7 +136,7 @@ void display_time()
     if(rtc_read(&tc))
     {
 #if 0
-        myprintf("rtc_read:%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
+        printf("rtc_read:%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
             (int) tc.tm_year + 1900,
             (int) tc.tm_mday,
             (int) tc.tm_mon,
@@ -209,20 +145,20 @@ void display_time()
             (int) tc.tm_sec,
             (int) tc.tm_wday);
 #endif
-        myprintf("rtc asctime: %s\n",asctime(&tc));
+        printf("rtc asctime: %s\n",asctime(&tc));
         seconds = timegm(&tc);
-        myprintf("seconds:     %lu\n",seconds);
-        myprintf("asctime:     %s\n", asctime(gmtime(&seconds)));
+        printf("seconds:     %lu\n",seconds);
+        printf("asctime:     %s\n", asctime(gmtime(&seconds)));
     }
     else
     {
-        myprintf("RTC read failed\n");
+        printf("RTC read failed\n");
     }
 
     clock_gettime(0, (ts_t *) &ts);
     seconds = ts.tv_sec;
-    myprintf("clk seconds: %lu\n",seconds);
-    myprintf("clk asctime: %s\n", asctime(gmtime(&seconds)));
+    printf("clk seconds: %lu\n",seconds);
+    printf("clk asctime: %s\n", asctime(gmtime(&seconds)));
 }
 
 
@@ -291,7 +227,7 @@ void task(char *line, uint8_t gpib)
         help();
         return;
     }
-    myprintf("Error:[%s]\n",line);
+    printf("Error:[%s]\n",line);
 }
 
 
@@ -304,13 +240,13 @@ int main(void)
 	char *line;
 
     uart_init(0, 115200U); // Serial Port Initialize
-	myprintf("==============================\n");
-    myprintf("INIT\n");
-    myprintf("F_CPU: %lu\n", F_CPU);
-    myprintf("sin(45) = %f\n", sin(45.0 * 0.0174532925));
-    myprintf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
-    myprintf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
-    myprintf("log(10.0) = %f\n", log(10.0));
+	printf("==============================\n");
+    printf("INIT\n");
+    printf("F_CPU: %lu\n", F_CPU);
+    printf("sin(45) = %f\n", sin(45.0 * 0.0174532925));
+    printf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
+    printf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
+    printf("log(10.0) = %f\n", log(10.0));
 
     init_timers();
 
@@ -321,12 +257,11 @@ int main(void)
 
 
     PrintFree();
-	line = safecalloc(80,1);
+	line = calloc(80,1);
 	if(!line)
 	{
-		myprintf("Calloc: line failed ***************************\n");
+		printf("Calloc: line failed ***************************\n");
 	}
-	printf("line:%d\n", (uint16_t) line);
     PrintFree();
 
     gpib_bus_init(0);
@@ -334,23 +269,27 @@ int main(void)
     delayms(200);
 
     gpib_bus_init(0);
+    printf("GPIB BUS init done\n");
 
     gpib_state_init();
 
     gpib_timer_init();
+    printf("GPIB Timer init done\n");
 
     printer_init();
+    printf("Printer Init done\n");
 
     clock_clear();
+    printf("Clock cleared\n");
 
     clock_getres(0, (ts_t *) &ts);
-    myprintf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
+    printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
 
     setup_clock();
 
     display_time();
 
-	myprintf("==============================\n");
+	printf("==============================\n");
 
     mmc_init(1);
 

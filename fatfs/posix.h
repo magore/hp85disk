@@ -56,26 +56,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _POSIX_H_
 #define _POSIX_H_
 
-#include <hardware/hardware.h>
+#define POSIX
 
-#if 0
-#include <avr/pgmspace.h>
-#include <avr/io.h>
-#include <avr/eeprom.h>
-
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-#include <stdlib.h>
-
+#include <user_config.h>
 #include "ff.h"
 #include "disk.h"
 #include "fatfs_utils.h"
+
+#ifdef ESP8266
+#undef strerror_r
 #endif
-
 // ====================================================================
-#ifdef NO_STDIO
 
+#ifdef NO_STDIO
 struct __file {
     char    *buf;       /* buffer pointer */
     unsigned char unget;    /* ungetc() buffer */
@@ -110,6 +103,7 @@ typedef struct __file FILE;
 #define stdout (__iob[1])
 #define stderr (__iob[2])
 
+
 // Define putc and getc in terms of the posix fgetc() and fputc() interface
 // MAKE SURE that fdevopen() has been called BEFORE any input/output is processed
 // @see uart.c for the fdevopen() call
@@ -123,11 +117,12 @@ typedef struct __file FILE;
 // Device IO udata
 #define fdev_set_udata(stream, u) do { (stream)->udata = u; } while(0)
 #define fdev_get_udata(stream) ((stream)->udata)
-
 #endif
 // =============================================================
 
+#ifdef ESP8266
 #undef strerror_r
+#endif
 
 #define EOF (-1)
 
@@ -141,7 +136,6 @@ typedef struct __file FILE;
 
 ///@brief Maximum number of POSIX file handles.
 #define MAX_FILES 16
-
 extern FILE *__iob[MAX_FILES];
 extern int errno;
 
@@ -294,7 +288,7 @@ struct stat
 #define lstat stat
 
 // ============================================================================
-/* fatfs/posix.c */
+/* posix.c */
 MEMSPACE FILE *fileno_to_stream ( int fileno );
 MEMSPACE int fileno ( FILE *stream );
 MEMSPACE FIL *fileno_to_fatfs ( int fileno );
@@ -310,7 +304,7 @@ MEMSPACE int fatfs_to_fileno ( FIL *fh );
 #endif
 MEMSPACE int new_file_descriptor ( void );
 #ifdef NO_STDIO
-	MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
+MEMSPACE FILE *fdevopen ( int (*put )(char ,FILE *), int (*get )(FILE *));
 #endif
 MEMSPACE int free_file_descriptor ( int fileno );
 MEMSPACE int isatty ( int fileno );
@@ -354,5 +348,7 @@ MEMSPACE int rename ( const char *oldpath , const char *newpath );
 MEMSPACE int dirname ( char *str );
 MEMSPACE char *basename ( char *str );
 MEMSPACE char *baseext ( char *str );
+
+
 // ============================================================================
 #endif                                            //_POSIX_H_

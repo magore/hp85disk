@@ -10,18 +10,32 @@
 
 */
 
-#ifndef _MMC_HAL_H
-#define _MMC_HAL_
+#ifndef _MMC_HAL_H_
+#define _MMC_HAL_H_
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
-///@see timer.c 
-///@see time.c
+#ifdef ESP8266
+    #ifndef SWAP45
+        #define SD_CS_PIN       5
+        #define SD_CS_ACTIVE   GPIO_OUTPUT_SET(4, 0)
+        #define SD_CS_DEACTIVE GPIO_OUTPUT_SET(4, 1)
+        #define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO4_U, FUNC_GPIO4); SD_CS_DEACTIVE
+    #else
+        #define SD_CS_PIN       4
+        #define SD_CS_ACTIVE   GPIO_OUTPUT_SET(5, 0)
+        #define SD_CS_DEACTIVE GPIO_OUTPUT_SET(5, 1)
+        #define SD_CS_INIT     PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO5_U, FUNC_GPIO5); SD_CS_DEACTIVE
+    #endif
+    // FIXME
+    #define mmc_cli() /*< interrupt disable */
+    // FIXME
+    #define mmc_sei() /*< interrupt enable */
+#else
+    #define mmc_cli() cli() /*< interrupt disable */
+    #define mmc_sei() sei() /*< interrupt enable */
+#endif
 
-#define MMC_TIMER_TIC_US CLOCK_TIC_US /*< Define MMC time task in Microseconds - using AVR clock routines. */
-
-#define mmc_cli cli /*< interrupt disable */
-#define mmc_sei sei /*< interrupt enable */
 
 #define mmc_disk_initialize disk_initialize	/*< disk_initialize() */
 #define mmc_disk_status disk_status			/*< disk_status() */
@@ -50,4 +64,4 @@ MEMSPACE void mmc_cs_disable ( void );
 MEMSPACE int mmc_ins_status ( void );
 MEMSPACE int mmc_wp_status ( void );
 
-#endif                                            // _MMC_HAL_
+#endif                                            // _MMC_HAL_H_

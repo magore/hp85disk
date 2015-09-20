@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;avr/portpins.h&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;avr/io.h&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hardware_8h.html">hardware/hardware.h</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user__config_8h.html">user_config.h</a>&quot;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gpib__hal_8h.html">gpib_hal.h</a>&quot;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="defines_8h.html">defines.h</a>&quot;</span></div>
@@ -167,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    seconds = val * <a class="code" href="gpib__hal_8h.html#a4e9b50fcf601cb4f967d11668cd9e640">GPIB_TASK_TIC_US</a> / 1000000L;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    useconds = (val * <a class="code" href="gpib__hal_8h.html#a4e9b50fcf601cb4f967d11668cd9e640">GPIB_TASK_TIC_US</a> ) % 1000000L;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[%s: %ld.%06ld]\n&quot;</span>, msg, seconds,useconds);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[%s: %ld.%06ld]\n&quot;</span>, msg, seconds,useconds);</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
@@ -236,7 +236,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt; 1)</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[PPR DISABLE ALL]\n&quot;</span>);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[PPR DISABLE ALL]\n&quot;</span>);</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <a class="code" href="gpib__task_8c.html#ab19aca8b48e6c56616ee29eac42130cc">listen_cleanup</a>();</div>
@@ -260,7 +260,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <a class="code" href="gpib__hal_8c.html#a4ab95314499ea3d42ead5229bfbc2b27">ppr_bit_set</a>(val);</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt; 1)</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[EPPR %d, mask:%02x]\n&quot;</span>,0xff &amp; val, 0xff &amp; <a class="code" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975">ppr_reg</a>());</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[EPPR %d, mask:%02x]\n&quot;</span>,0xff &amp; val, 0xff &amp; <a class="code" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975">ppr_reg</a>());</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
@@ -271,7 +271,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="gpib__hal_8c.html#af29c709ec1aeedc42ff180662636d8c6">ppr_bit_clr</a>(val);</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt; 1)</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[DPPR %d, mask:%02x]\n&quot;</span>,0xff &amp; val, 0xff &amp; <a class="code" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975">ppr_reg</a>());</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[DPPR %d, mask:%02x]\n&quot;</span>,0xff &amp; val, 0xff &amp; <a class="code" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975">ppr_reg</a>());</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
@@ -304,7 +304,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 9)</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        {</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;&lt;PPR:%02x, PIN:%02x, DDR:%02x\n&quot;</span>,</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;&lt;PPR:%02x, PIN:%02x, DDR:%02x\n&quot;</span>,</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                <a class="code" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975">ppr_reg</a>(), 0xff &amp; pins, 0xff &amp; ddr );</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        }</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -324,7 +324,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <a class="code" href="delay_8c.html#a502e5da3ce5d02fb6f58b39f7f9da696">delayus</a>(250);</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;<span class="preprocessor"></span>    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[IFC SENT]\n&quot;</span>);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[IFC SENT]\n&quot;</span>);</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
@@ -336,7 +336,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    {</div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[REN LOW]\n&quot;</span>);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[REN LOW]\n&quot;</span>);</div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor"></span>        GPIB_IO_LOW(REN);</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    }</div>
@@ -344,7 +344,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    {</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[REN HI]\n&quot;</span>);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[REN HI]\n&quot;</span>);</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="preprocessor"></span>        GPIB_IO_FLOAT(REN);</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    }</div>
@@ -402,7 +402,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;                    tx_state = <a class="code" href="gpib_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a42ffa1774dbaeec6c06c30a85c860203">GPIB_TX_ERROR</a>;</div>
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor"></span>                    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;                        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;&lt;BUS DAV&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;                        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;&lt;BUS DAV&gt;\n&quot;</span>);</div>
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="preprocessor"></span>                }</div>
@@ -422,7 +422,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="preprocessor"></span>                        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;                            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;&lt;BUS NRFD=1,NDAV=1&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;                            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;&lt;BUS NRFD=1,NDAV=1&gt;\n&quot;</span>);</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="preprocessor"></span>                        ch |= <a class="code" href="gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118">BUS_ERROR_FLAG</a>;</div>
 <div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;                        tx_state = <a class="code" href="gpib_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a42ffa1774dbaeec6c06c30a85c860203">GPIB_TX_ERROR</a>;</div>
@@ -434,7 +434,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;                {</div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="preprocessor"></span>                    <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;                        <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;&lt;BUS waiting for NRFD==1,NDAV==0&gt;\n&quot;</span>);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;                        <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;&lt;BUS waiting for NRFD==1,NDAV==0&gt;\n&quot;</span>);</div>
 <div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;                    ch |= <a class="code" href="gpib_8h.html#abc15e280bc4f374b8813d358059a121e">TIMEOUT_FLAG</a>;</div>
@@ -561,7 +561,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt; 1)</div>
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        {</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;UNREAD: &quot;</span>);</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;UNREAD: &quot;</span>);</div>
 <div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;            <a class="code" href="gpib_8c.html#a37b2271a4a82b5c953bf08cf0c571577">gpib_decode</a>(ch);</div>
 <div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        }</div>
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -570,7 +570,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    {</div>
 <div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;gpib_unread: error, can only be called once!\n&quot;</span>);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;gpib_unread: error, can only be called once!\n&quot;</span>);</div>
 <div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;    <span class="keywordflow">return</span>(ch);</div>
@@ -712,19 +712,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;</div>
 <div class="line"><a name="l00858"></a><span class="lineno"><a class="line" href="gpib_8h.html#a65786186b6eceb91bf717888b03ca9f1">  858</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="gpib_8c.html#a65786186b6eceb91bf717888b03ca9f1">gpib_decode_header</a>( <span class="keywordtype">void</span> )</div>
 <div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;{</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;==============================\n&quot;</span>);</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#GPIB flags\n&quot;</span>);</div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;XX p AESRPITB\n&quot;</span>);</div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   XX = Hex value of Command or Data\n&quot;</span>);</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   . = ASCII of XX only for 0x20 .. 0x7e\n&quot;</span>);</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   A = ATN\n&quot;</span>);</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   E = EOI\n&quot;</span>);</div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   S = SRQ\n&quot;</span>);</div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   R = REN\n&quot;</span>);</div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   P = Parallel Poll seen\n&quot;</span>);</div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   I = IFC\n&quot;</span>);</div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   T = TIMEOUT\n&quot;</span>);</div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;#   B = BUS_ERROR\n&quot;</span>);</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;==============================\n&quot;</span>);</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#GPIB flags\n&quot;</span>);</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;XX p AESRPITB\n&quot;</span>);</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   XX = Hex value of Command or Data\n&quot;</span>);</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   . = ASCII of XX only for 0x20 .. 0x7e\n&quot;</span>);</div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   A = ATN\n&quot;</span>);</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   E = EOI\n&quot;</span>);</div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   S = SRQ\n&quot;</span>);</div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   R = REN\n&quot;</span>);</div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   P = Parallel Poll seen\n&quot;</span>);</div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   I = IFC\n&quot;</span>);</div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   T = TIMEOUT\n&quot;</span>);</div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;    <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;#   B = BUS_ERROR\n&quot;</span>);</div>
 <div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;}</div>
 <div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;</div>
 <div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;</div>
@@ -743,7 +743,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;        printable = val;</div>
 <div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;    <span class="keywordflow">else</span> printable = <span class="charliteral">&#39; &#39;</span>;</div>
 <div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    <a class="code" href="hardware_8h.html#adf8c2c92fc4d6728b1ac71121c46f8f3">mysprintf</a>(str, <span class="stringliteral">&quot;%02x %c &quot;</span>, val &amp; 0xff, printable &amp; 0xff);</div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;    <a class="code" href="user__config_8h.html#ab99ed44389e722578695fa0065118fac">sprintf</a>(str, <span class="stringliteral">&quot;%02x %c &quot;</span>, val &amp; 0xff, printable &amp; 0xff);</div>
 <div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;    tmp = str + 5;</div>
 <div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;</div>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;    <span class="keywordflow">if</span>(status &amp; ATN_FLAG)</div>
@@ -805,7 +805,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;    {</div>
 <div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l01016"></a><span class="lineno"> 1016</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;gpib_read_str: size = 0\n&quot;</span>);</div>
+<div class="line"><a name="l01017"></a><span class="lineno"> 1017</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;gpib_read_str: size = 0\n&quot;</span>);</div>
 <div class="line"><a name="l01018"></a><span class="lineno"> 1018</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l01019"></a><span class="lineno"> 1019</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l01020"></a><span class="lineno"> 1020</span>&#160;</div>
@@ -826,7 +826,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01035"></a><span class="lineno"> 1035</span>&#160;        {</div>
 <div class="line"><a name="l01036"></a><span class="lineno"> 1036</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l01037"></a><span class="lineno"> 1037</span>&#160;<span class="preprocessor"></span>            <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;                <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;gpib_read_str(ind:%d): ATN %02x unexpected\n&quot;</span>,ind, 0xff &amp; val);</div>
+<div class="line"><a name="l01038"></a><span class="lineno"> 1038</span>&#160;                <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;gpib_read_str(ind:%d): ATN %02x unexpected\n&quot;</span>,ind, 0xff &amp; val);</div>
 <div class="line"><a name="l01039"></a><span class="lineno"> 1039</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l01040"></a><span class="lineno"> 1040</span>&#160;<span class="preprocessor"></span>            <a class="code" href="gpib_8c.html#a2fdb3d4996ff399dc2fbfcada417bb1a">gpib_unread</a>(val);</div>
 <div class="line"><a name="l01041"></a><span class="lineno"> 1041</span>&#160;            <span class="keywordflow">break</span>;</div>
@@ -852,7 +852,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;    {</div>
 <div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[gpib_read_str read(%d) expected(%d)]\n&quot;</span>,</div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[gpib_read_str read(%d) expected(%d)]\n&quot;</span>,</div>
 <div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;        #endif</div>
 <div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;                ind , size);</div>
 <div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;    }</div>
@@ -871,7 +871,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;    {</div>
 <div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;<span class="preprocessor">#if SDEBUG &gt;= 1</span></div>
 <div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;gpib_write_str: size = 0\n&quot;</span>);</div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;gpib_write_str: size = 0\n&quot;</span>);</div>
 <div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="preprocessor"></span>    }</div>
 <div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;</div>
@@ -907,7 +907,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;    {</div>
 <div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="preprocessor">#if SDEBUG &gt; 1</span></div>
 <div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span>(<a class="code" href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a> &gt;= 1)</div>
-<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;            <a class="code" href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a>(<span class="stringliteral">&quot;[gpib_write_str sent(%d) expected(%d)]\n&quot;</span>,</div>
+<div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;            <a class="code" href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a>(<span class="stringliteral">&quot;[gpib_write_str sent(%d) expected(%d)]\n&quot;</span>,</div>
 <div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;        #endif</div>
 <div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;                ind , size);</div>
 <div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;    }</div>
@@ -920,6 +920,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="gpib_8h_html_a78f2361b60656c29cf6da26f240aaae2"><div class="ttname"><a href="gpib_8h.html#a78f2361b60656c29cf6da26f240aaae2">GPIB_IOBUFF_LEN</a></div><div class="ttdeci">#define GPIB_IOBUFF_LEN</div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00083">gpib.h:83</a></div></div>
 <div class="ttc" id="gpib_8c_html_a87ae4b4852f4a1987fc61fec20f53d42"><div class="ttname"><a href="gpib_8c.html#a87ae4b4852f4a1987fc61fec20f53d42">gpib_timer_elapsed_end</a></div><div class="ttdeci">void gpib_timer_elapsed_end(char *msg)</div><div class="ttdoc">Display user message and time delta since gpib_timer_elapsed_begin() call. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00140">gpib.c:140</a></div></div>
 <div class="ttc" id="gpib_8h_html_a10916ab21f8ba06e447e898790ef6a4b"><div class="ttname"><a href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a></div><div class="ttdeci">#define ERROR_MASK</div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00041">gpib.h:41</a></div></div>
+<div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
 <div class="ttc" id="gpib_8c_html_aa51aff9c441c1129ec3a9c85cec17bcc"><div class="ttname"><a href="gpib_8c.html#aa51aff9c441c1129ec3a9c85cec17bcc">gpib_decode_str</a></div><div class="ttdeci">void gpib_decode_str(uint16_t ch, char *str)</div><div class="ttdoc">decode/display all control flags and data on the GPIB BUS </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00899">gpib.c:899</a></div></div>
 <div class="ttc" id="gpib_8h_html_a06fc87d81c62e9abb8790b6e5713c55bacc231e73315d8ef3d7fd3d65370d0a70"><div class="ttname"><a href="gpib_8h.html#a06fc87d81c62e9abb8790b6e5713c55bacc231e73315d8ef3d7fd3d65370d0a70">GPIB_RX_WAIT_FOR_DAV_HI</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00053">gpib.h:53</a></div></div>
 <div class="ttc" id="struct__gpib__t_html_af2622dd8668ecb24c42a2da2d8956538"><div class="ttname"><a href="struct__gpib__t.html#af2622dd8668ecb24c42a2da2d8956538">_gpib_t::down_counter_done</a></div><div class="ttdeci">volatile uint8_t down_counter_done</div><div class="ttdef"><b>Definition:</b> <a href="gpib__hal_8h_source.html#l00030">gpib_hal.h:30</a></div></div>
@@ -940,10 +941,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="gpib_8c_html_ae9291b22beebb9d24354af643505f9cd"><div class="ttname"><a href="gpib_8c.html#ae9291b22beebb9d24354af643505f9cd">gpib_timer_task</a></div><div class="ttdeci">void gpib_timer_task()</div><div class="ttdoc">Main GPIB timer task called by low level interrup hander. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00166">gpib.c:166</a></div></div>
 <div class="ttc" id="timer_8c_html_adf029ed50e104cc3c16bcb7cf7d58f8c"><div class="ttname"><a href="timer_8c.html#adf029ed50e104cc3c16bcb7cf7d58f8c">clock_elapsed_begin</a></div><div class="ttdeci">MEMSPACE void clock_elapsed_begin()</div><div class="ttdoc">Store current struct timespec in __clock_elapsed. </div><div class="ttdef"><b>Definition:</b> <a href="timer_8c_source.html#l00169">timer.c:169</a></div></div>
 <div class="ttc" id="gpib_8c_html_a049cdc383eed2f97e4384a5728c00123"><div class="ttname"><a href="gpib_8c.html#a049cdc383eed2f97e4384a5728c00123">listening_last</a></div><div class="ttdeci">uint8_t listening_last</div><div class="ttdoc">gpib last listen address </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00091">gpib.c:91</a></div></div>
+<div class="ttc" id="user__config_8h_html_a09cf97040f1ff2e7a6dd51e19339cf91"><div class="ttname"><a href="user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91">printf</a></div><div class="ttdeci">#define printf(format, args...)</div><div class="ttdoc">standard includes </div><div class="ttdef"><b>Definition:</b> <a href="user__config_8h_source.html#l00065">user_config.h:65</a></div></div>
 <div class="ttc" id="gpib_8c_html_a8dd0928ed1cdc2319fd14c122b333cba"><div class="ttname"><a href="gpib_8c.html#a8dd0928ed1cdc2319fd14c122b333cba">gpib_read_byte</a></div><div class="ttdeci">uint16_t gpib_read_byte(void)</div><div class="ttdoc">read 1 byte and control line status from GPIB BUS </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00713">gpib.c:713</a></div></div>
 <div class="ttc" id="gpib__task_8c_html_af4bf5ed0317de478278afbb1d1bf8614"><div class="ttname"><a href="gpib__task_8c.html#af4bf5ed0317de478278afbb1d1bf8614">talk_cleanup</a></div><div class="ttdeci">void talk_cleanup()</div><div class="ttdoc">Called when the GPIB talk address changes. </div><div class="ttdef"><b>Definition:</b> <a href="gpib__task_8c_source.html#l00978">gpib_task.c:978</a></div></div>
 <div class="ttc" id="gpib_8c_html_a37b2271a4a82b5c953bf08cf0c571577"><div class="ttname"><a href="gpib_8c.html#a37b2271a4a82b5c953bf08cf0c571577">gpib_decode</a></div><div class="ttdeci">void gpib_decode(uint16_t ch)</div><div class="ttdoc">Calls gpib_decode_str() and dosplays the result. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00960">gpib.c:960</a></div></div>
-<div class="ttc" id="time_8c_html_a32b1cbd925752f0cd61d202bbe204a69"><div class="ttname"><a href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a></div><div class="ttdeci">MEMSPACE time_t time(time_t *t)</div><div class="ttdoc">Return second from epoch - POSIX function. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00573">time.c:573</a></div></div>
+<div class="ttc" id="time_8c_html_a32b1cbd925752f0cd61d202bbe204a69"><div class="ttname"><a href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a></div><div class="ttdeci">MEMSPACE time_t time(time_t *t)</div><div class="ttdoc">Return second from epoch - POSIX function. </div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00571">time.c:571</a></div></div>
 <div class="ttc" id="gpib_8h_html_adf764cbdea00d65edcd07bb9953ad2b7abbb8a4da3ebe1792a9dc39e615d0226f"><div class="ttname"><a href="gpib_8h.html#adf764cbdea00d65edcd07bb9953ad2b7abbb8a4da3ebe1792a9dc39e615d0226f">GPIB_TX_DONE</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00074">gpib.h:74</a></div></div>
 <div class="ttc" id="amigo_8h_html"><div class="ttname"><a href="amigo_8h.html">amigo.h</a></div><div class="ttdoc">AMIGO disk emulator for HP85 disk emulator project for AVR8. </div></div>
 <div class="ttc" id="gpib_8c_html_a2296b83cccf9d7a3b954d18ece282bd1"><div class="ttname"><a href="gpib_8c.html#a2296b83cccf9d7a3b954d18ece282bd1">gpib_unread_f</a></div><div class="ttdeci">uint8_t gpib_unread_f</div><div class="ttdoc">gpib_unread() flag </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00078">gpib.c:78</a></div></div>
@@ -955,10 +957,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="gpib_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba3695df589ea237c8fb2cde44c6772176"><div class="ttname"><a href="gpib_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba3695df589ea237c8fb2cde44c6772176">GPIB_RX_DAV_IS_LOW</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00052">gpib.h:52</a></div></div>
 <div class="ttc" id="gpib_8h_html_a888e5117d479036c3f27eacda6da569a"><div class="ttname"><a href="gpib_8h.html#a888e5117d479036c3f27eacda6da569a">debuglevel</a></div><div class="ttdeci">uint8_t debuglevel</div><div class="ttdoc">Debug flag - used to log GPIB and emulator messages. </div><div class="ttdef"><b>Definition:</b> <a href="gpib__task_8c_source.html#l00031">gpib_task.c:31</a></div></div>
 <div class="ttc" id="gpib__hal_8c_html_af29c709ec1aeedc42ff180662636d8c6"><div class="ttname"><a href="gpib__hal_8c.html#af29c709ec1aeedc42ff180662636d8c6">ppr_bit_clr</a></div><div class="ttdeci">void ppr_bit_clr(uint8_t bit)</div><div class="ttdoc">Disbale hardware PPR response for a given device. </div><div class="ttdef"><b>Definition:</b> <a href="gpib__hal_8c_source.html#l00187">gpib_hal.c:187</a></div></div>
+<div class="ttc" id="user__config_8h_html_ab99ed44389e722578695fa0065118fac"><div class="ttname"><a href="user__config_8h.html#ab99ed44389e722578695fa0065118fac">sprintf</a></div><div class="ttdeci">#define sprintf(s, format, args...)</div><div class="ttdef"><b>Definition:</b> <a href="user__config_8h_source.html#l00067">user_config.h:67</a></div></div>
 <div class="ttc" id="gpib_8h_html_aadec0e361e7d2ed6a82ef28bee7231f6"><div class="ttname"><a href="gpib_8h.html#aadec0e361e7d2ed6a82ef28bee7231f6">SRQ_FLAG</a></div><div class="ttdeci">#define SRQ_FLAG</div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00032">gpib.h:32</a></div></div>
 <div class="ttc" id="gpib_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba56f8ad0d5c6639cbc40999880affca9b"><div class="ttname"><a href="gpib_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba56f8ad0d5c6639cbc40999880affca9b">GPIB_RX_WAIT_FOR_DAV_LOW</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00051">gpib.h:51</a></div></div>
 <div class="ttc" id="defines_8h_html"><div class="ttname"><a href="defines_8h.html">defines.h</a></div><div class="ttdoc">GPIB, AMIGO, SS80 and device defines. </div></div>
-<div class="ttc" id="hardware_8h_html"><div class="ttname"><a href="hardware_8h.html">hardware.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
 <div class="ttc" id="gpib_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a689ac8ea1c2348752de0be4efc53c85d"><div class="ttname"><a href="gpib_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a689ac8ea1c2348752de0be4efc53c85d">GPIB_TX_PUT_DATA</a></div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00066">gpib.h:66</a></div></div>
 <div class="ttc" id="gpib_8c_html_a42d306c338c639682d0d6f0434a5c88b"><div class="ttname"><a href="gpib_8c.html#a42d306c338c639682d0d6f0434a5c88b">Parallel_Poll</a></div><div class="ttdeci">uint8_t Parallel_Poll()</div><div class="ttdoc">Detect Parallel Poll state. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00325">gpib.c:325</a></div></div>
 <div class="ttc" id="gpib_8c_html_a1e5848758c79d519d6f9e7d9edbb0af6"><div class="ttname"><a href="gpib_8c.html#a1e5848758c79d519d6f9e7d9edbb0af6">EnablePPR</a></div><div class="ttdeci">void EnablePPR(uint8_t val)</div><div class="ttdoc">Enable PPR (Parallel Poll Response) for a device. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00275">gpib.c:275</a></div></div>
@@ -1006,14 +1008,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="gpib_8h_html_ab6e601afadf8d274d9d341323a5c6a3e"><div class="ttname"><a href="gpib_8h.html#ab6e601afadf8d274d9d341323a5c6a3e">EOI_FLAG</a></div><div class="ttdeci">#define EOI_FLAG</div><div class="ttdef"><b>Definition:</b> <a href="gpib_8h_source.html#l00031">gpib.h:31</a></div></div>
 <div class="ttc" id="gpib_8c_html_ac3d50cc1d56705d107e2f8fb00692e68"><div class="ttname"><a href="gpib_8c.html#ac3d50cc1d56705d107e2f8fb00692e68">gpib_write_byte</a></div><div class="ttdeci">uint16_t gpib_write_byte(uint16_t ch)</div><div class="ttdoc">Send 1 byte and control line states to GPIB BUS. </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00445">gpib.c:445</a></div></div>
 <div class="ttc" id="gpib_8c_html_a0205f89c3878a7a6cb4ee1f75de35fb3"><div class="ttname"><a href="gpib_8c.html#a0205f89c3878a7a6cb4ee1f75de35fb3">spoll</a></div><div class="ttdeci">uint8_t spoll</div><div class="ttdoc">gpib serial poll status </div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00094">gpib.c:94</a></div></div>
-<div class="ttc" id="hardware_8h_html_a4480a45b65ec9ef1205088656073c047"><div class="ttname"><a href="hardware_8h.html#a4480a45b65ec9ef1205088656073c047">myprintf</a></div><div class="ttdeci">#define myprintf(format, args...)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00058">hardware.h:58</a></div></div>
 <div class="ttc" id="gpib__task_8h_html"><div class="ttname"><a href="gpib__task_8h.html">gpib_task.h</a></div><div class="ttdoc">High level GPIB command handler for HP85 disk emulator project for AVR8. </div></div>
 <div class="ttc" id="gpib_8c_html_aaad5615d233044464c3661481a6760cd"><div class="ttname"><a href="gpib_8c.html#aaad5615d233044464c3661481a6760cd">current</a></div><div class="ttdeci">uint16_t current</div><div class="ttdef"><b>Definition:</b> <a href="gpib_8c_source.html#l00096">gpib.c:96</a></div></div>
-<div class="ttc" id="hardware_8h_html_adf8c2c92fc4d6728b1ac71121c46f8f3"><div class="ttname"><a href="hardware_8h.html#adf8c2c92fc4d6728b1ac71121c46f8f3">mysprintf</a></div><div class="ttdeci">#define mysprintf(s, format, args...)</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00066">hardware.h:66</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

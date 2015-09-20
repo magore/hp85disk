@@ -10,7 +10,11 @@
 
 */
 
-#include "hardware.h"
+#include "user_config.h"
+/// @brief calloc may be aliased to safecalloc
+#undef calloc
+/// @brief free may be aliased to safefree
+#undef free
 
 /// @brief Return AVR Free memory for Malloc.
 ///
@@ -56,23 +60,23 @@ void PrintFree()
 
     ram = freeRam();
 
-    myprintf("Free Ram:%u\n", ram);
-    myprintf("  Stack Top:   %u\n", &__stack);
-    myprintf("  Stack Free:  %u\n", &ram - 0);
+    printf("Free Ram:%u\n", ram);
+    printf("  Stack Top:   %u\n", &__stack);
+    printf("  Stack Free:  %u\n", &ram - 0);
 
-    myprintf("  BSS   start: %5u, end: %5u\n",
+    printf("  BSS   start: %5u, end: %5u\n",
         &__bss_start, &__bss_end);
 
-    myprintf("  Data  start: %5u, end: %5u\n",
+    printf("  Data  start: %5u, end: %5u\n",
         &__data_start, &__data_end);
 
-    myprintf("  Heap: start: %5u, end: %5u\n",
+    printf("  Heap: start: %5u, end: %5u\n",
         &__heap_start, &__heap_end);
 
-    myprintf("  Malloc start %5u  end: %5u\n",
+    printf("  Malloc start %5u  end: %5u\n",
         __malloc_heap_start, __malloc_heap_end );
 
-    myprintf("  __brkval:    %5u\n", __brkval);
+    printf("  __brkval:    %5u\n", __brkval);
 
 }
 
@@ -87,7 +91,7 @@ void *safecalloc(int size, int elements)
 	void *p = calloc(size, elements);
 	if(!p)
 	{
-		myprintf("safecalloc(%d,%d) failed!\n", size, elements);
+		printf("safecalloc(%d,%d) failed!\n", size, elements);
 	}
 	return(p);
 }
@@ -122,6 +126,6 @@ void safefree(void *p)
         free(p);
         return;
     }
-    myprintf("safefree: FREE ERROR (%u), top:(%u)\n", (uint16_t) p, (uint16_t) top);
+    printf("safefree: FREE ERROR (%u), top:(%u)\n", (uint16_t) p, (uint16_t) top);
     PrintFree();
 }

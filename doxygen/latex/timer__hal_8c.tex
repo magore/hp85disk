@@ -6,41 +6,41 @@
 timer hardware abstartion layer functions  
 
 
-{\ttfamily \#include $<$hardware/cpu.\-h$>$}\\*
-{\ttfamily \#include $<$lib/timer.\-h$>$}\\*
-{\ttfamily \#include $<$lib/time.\-h$>$}\\*
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}timer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}time.\-h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a7faad7f12590c5756441f44a069f60d5}{clock\-\_\-clear} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a7faad7f12590c5756441f44a069f60d5}{clock\-\_\-clear} ()
 \begin{DoxyCompactList}\small\item\em clear time and timezone to 0. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a296c5d3efac4bc56fc12fe3626f7d4b6}{disable\-\_\-timers} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a296c5d3efac4bc56fc12fe3626f7d4b6}{disable\-\_\-timers} ()
 \begin{DoxyCompactList}\small\item\em Disable all timer tasks. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_ac97e80c15c73721fbc9f5071f6681fac}{enable\-\_\-timers} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_ac97e80c15c73721fbc9f5071f6681fac}{enable\-\_\-timers} ()
 \begin{DoxyCompactList}\small\item\em Enable timer tasks. \end{DoxyCompactList}\item 
 void \hyperlink{timer__hal_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers} ()
 \begin{DoxyCompactList}\small\item\em Execute all user timers at S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z rate. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a685ea3f3f3404d55415c50685de94c37}{clock\-\_\-init} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_a685ea3f3f3404d55415c50685de94c37}{clock\-\_\-init} ()
 \begin{DoxyCompactList}\small\item\em Initialize clock task. \end{DoxyCompactList}\item 
 void \hyperlink{timer__hal_8c_a182d70e09e9436c9c8a2e81b7597f206}{clock\-\_\-task} (void)
 \begin{DoxyCompactList}\small\item\em 1000\-H\-Z timer task \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_acb0c9c995c634465d7d1f534bd862f8e}{init\-\_\-timers} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_acb0c9c995c634465d7d1f534bd862f8e}{init\-\_\-timers} ()
 \begin{DoxyCompactList}\small\item\em Setup all timers tasksi and enable interrupts. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_ab507661341c93c415b27ed9d40839539}{clock\-\_\-getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_ab507661341c93c415b27ed9d40839539}{clock\-\_\-getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
 \begin{DoxyCompactList}\small\item\em Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\-\_\-settime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, const struct \hyperlink{structtimespec}{timespec} $\ast$ts)
-\begin{DoxyCompactList}\small\item\em Set system clock using seconds and nonoseconds -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
-\hyperlink{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{I\-S\-R} (T\-I\-M\-E\-R1\-\_\-\-C\-O\-M\-P\-A\-\_\-vect)
-\begin{DoxyCompactList}\small\item\em A\-V\-R specific code. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_afd1a77fea4f07c44aab70e5f3267b689}{setup\-\_\-timers\-\_\-isr} ()
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer__hal_8c_afd1a77fea4f07c44aab70e5f3267b689}{setup\-\_\-timers\-\_\-isr} ()
 \begin{DoxyCompactList}\small\item\em Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer__hal_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} task. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\-\_\-settime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, const struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\begin{DoxyCompactList}\small\item\em Set system clock using seconds and nonoseconds -\/ P\-O\-S\-I\-X function. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\-\_\-t} clk\-\_\-id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
 \begin{DoxyCompactList}\small\item\em Generic \hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime()} function W\-I\-T\-H\-O\-U\-T high resolution. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 volatile \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} \hyperlink{timer__hal_8c_a335451dd774ecb4b696d501b4c1b6f30}{\-\_\-\-\_\-clock}
 \begin{DoxyCompactList}\small\item\em System Clock Time. \end{DoxyCompactList}\item 
+\hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\-\_\-t} \hyperlink{timer__hal_8c_a9ac29ed71adf6807175d24ab1fa622a7}{\-\_\-\-\_\-tzone}
+\begin{DoxyCompactList}\small\item\em System Time Zone. \end{DoxyCompactList}\item 
 static int \hyperlink{timer__hal_8c_ae997c45cc4d164ce0b47a44b370651ec}{timers\-\_\-enabled} = 0
 \item 
 static int \hyperlink{timer__hal_8c_a0ea4c1291946db41f55937b7cc3dc40c}{timers\-\_\-configured} = 0
@@ -88,7 +88,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 50 of file timer\-\_\-hal.\-c.
+Definition at line 56 of file timer\-\_\-hal.\-c.
 
 
 
@@ -123,7 +123,7 @@ Read clock time resolution into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X functi
 
 \end{DoxyItemize}
 
-Definition at line 172 of file timer\-\_\-hal.\-c.
+Definition at line 188 of file timer\-\_\-hal.\-c.
 
 
 
@@ -162,7 +162,7 @@ Read clock time into struct timepec $\ast$ts -\/ P\-O\-S\-I\-X function.
 \end{DoxyReturn}
 
 
-Definition at line 313 of file timer\-\_\-hal.\-c.
+Definition at line 339 of file timer\-\_\-hal.\-c.
 
 
 
@@ -184,7 +184,7 @@ void.
 \end{DoxyReturn}
 See \hyperlink{time_8c}{time.\-c} 
 
-Definition at line 103 of file timer\-\_\-hal.\-c.
+Definition at line 119 of file timer\-\_\-hal.\-c.
 
 
 
@@ -217,7 +217,7 @@ Set system clock using seconds and nonoseconds -\/ P\-O\-S\-I\-X function.
 \end{DoxyReturn}
 
 
-Definition at line 188 of file timer\-\_\-hal.\-c.
+Definition at line 246 of file timer\-\_\-hal.\-c.
 
 
 
@@ -244,7 +244,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 116 of file timer\-\_\-hal.\-c.
+Definition at line 132 of file timer\-\_\-hal.\-c.
 
 
 
@@ -266,7 +266,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 64 of file timer\-\_\-hal.\-c.
+Definition at line 70 of file timer\-\_\-hal.\-c.
 
 \hypertarget{timer__hal_8c_ac97e80c15c73721fbc9f5071f6681fac}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!enable\-\_\-timers@{enable\-\_\-timers}}
 \index{enable\-\_\-timers@{enable\-\_\-timers}!timer_hal.c@{timer\-\_\-hal.\-c}}
@@ -284,7 +284,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 77 of file timer\-\_\-hal.\-c.
+Definition at line 88 of file timer\-\_\-hal.\-c.
 
 
 
@@ -306,11 +306,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 88 of file timer\-\_\-hal.\-c.
+Definition at line 104 of file timer\-\_\-hal.\-c.
 
 
 
-Referenced by I\-S\-R().
+Referenced by setup\-\_\-timers\-\_\-isr().
 
 \hypertarget{timer__hal_8c_acb0c9c995c634465d7d1f534bd862f8e}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!init\-\_\-timers@{init\-\_\-timers}}
 \index{init\-\_\-timers@{init\-\_\-timers}!timer_hal.c@{timer\-\_\-hal.\-c}}
@@ -335,31 +335,11 @@ See \hyperlink{time_8c}{time.\-c}
 
 See \hyperlink{time_8c}{time.\-c} 
 
-Definition at line 133 of file timer\-\_\-hal.\-c.
+Definition at line 149 of file timer\-\_\-hal.\-c.
 
 
 
 Referenced by main().
-
-\hypertarget{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!I\-S\-R@{I\-S\-R}}
-\index{I\-S\-R@{I\-S\-R}!timer_hal.c@{timer\-\_\-hal.\-c}}
-\subsubsection[{I\-S\-R}]{\setlength{\rightskip}{0pt plus 5cm}I\-S\-R (
-\begin{DoxyParamCaption}
-\item[{T\-I\-M\-E\-R1\-\_\-\-C\-O\-M\-P\-A\-\_\-vect}]{}
-\end{DoxyParamCaption}
-)}}\label{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}
-
-
-A\-V\-R specific code. 
-
-A\-V\-R Timer Interrupt Vector
-
-
-\begin{DoxyItemize}
-\item calls \hyperlink{timer__hal_8c_a67a27354654cf2a2169137adc7274def}{execute\-\_\-timers()} -\/ we call this the System task. 
-\end{DoxyItemize}
-
-Definition at line 213 of file timer\-\_\-hal.\-c.
 
 \hypertarget{timer__hal_8c_afd1a77fea4f07c44aab70e5f3267b689}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}}
 \index{setup\-\_\-timers\-\_\-isr@{setup\-\_\-timers\-\_\-isr}!timer_hal.c@{timer\-\_\-hal.\-c}}
@@ -385,14 +365,14 @@ Setup main timers I\-S\-R -\/ this I\-S\-R calls \hyperlink{timer__hal_8c_a67a27
 \end{DoxyItemize}
 
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{timer__hal_8c_ad39420cdd896dd12c68e36313139d0a5}{I\-S\-R()}. 
+\hyperlink{rs232_8c_a084f0a9cf05b1877bd8a71a90dae7ff8}{I\-S\-R()}. 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 void. 
 \end{DoxyReturn}
 
 
-Definition at line 228 of file timer\-\_\-hal.\-c.
+Definition at line 207 of file timer\-\_\-hal.\-c.
 
 
 
@@ -412,6 +392,17 @@ System Clock Time.
 
 Definition at line 32 of file timer\-\_\-hal.\-c.
 
+\hypertarget{timer__hal_8c_a9ac29ed71adf6807175d24ab1fa622a7}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}}
+\index{\-\_\-\-\_\-tzone@{\-\_\-\-\_\-tzone}!timer_hal.c@{timer\-\_\-hal.\-c}}
+\subsubsection[{\-\_\-\-\_\-tzone}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tz\-\_\-t} \-\_\-\-\_\-tzone}}\label{timer__hal_8c_a9ac29ed71adf6807175d24ab1fa622a7}
+
+
+System Time Zone. 
+
+
+
+Definition at line 35 of file timer\-\_\-hal.\-c.
+
 \hypertarget{timer__hal_8c_ad680b46025f0dae867f27a80344736a1}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!timer\-\_\-irq@{timer\-\_\-irq}}
 \index{timer\-\_\-irq@{timer\-\_\-irq}!timer_hal.c@{timer\-\_\-hal.\-c}}
 \subsubsection[{timer\-\_\-irq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\-I\-M\-E\-R\-S} timer\-\_\-irq\mbox{[}{\bf M\-A\-X\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-N\-T}\mbox{]}}}\label{timer__hal_8c_ad680b46025f0dae867f27a80344736a1}
@@ -421,14 +412,14 @@ array or user timers
 
 
 
-Definition at line 39 of file timer\-\_\-hal.\-c.
+Definition at line 42 of file timer\-\_\-hal.\-c.
 
 \hypertarget{timer__hal_8c_a0ea4c1291946db41f55937b7cc3dc40c}{\index{timer\-\_\-hal.\-c@{timer\-\_\-hal.\-c}!timers\-\_\-configured@{timers\-\_\-configured}}
 \index{timers\-\_\-configured@{timers\-\_\-configured}!timer_hal.c@{timer\-\_\-hal.\-c}}
 \subsubsection[{timers\-\_\-configured}]{\setlength{\rightskip}{0pt plus 5cm}int timers\-\_\-configured = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{timer__hal_8c_a0ea4c1291946db41f55937b7cc3dc40c}
 
 
-Definition at line 36 of file timer\-\_\-hal.\-c.
+Definition at line 39 of file timer\-\_\-hal.\-c.
 
 
 
@@ -439,7 +430,7 @@ Referenced by disable\-\_\-timers(), enable\-\_\-timers(), and init\-\_\-timers(
 \subsubsection[{timers\-\_\-enabled}]{\setlength{\rightskip}{0pt plus 5cm}int timers\-\_\-enabled = 0\hspace{0.3cm}{\ttfamily [static]}}}\label{timer__hal_8c_ae997c45cc4d164ce0b47a44b370651ec}
 
 
-Definition at line 35 of file timer\-\_\-hal.\-c.
+Definition at line 38 of file timer\-\_\-hal.\-c.
 
 
 

@@ -58,6 +58,7 @@ var searchData=
   ['esrch',['ESRCH',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa4e376a13d0c1557d399f473218915625',1,'posix.h']]],
   ['estate',['estate',['../ss80_8c.html#a2d3cdf91897803b62002c00398d26115',1,'ss80.c']]],
   ['etxtbsy',['ETXTBSY',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa83ea4e18eaac3a62036e1b5723d6e353',1,'posix.h']]],
+  ['excvt',['ExCvt',['../ff_8c.html#aded249c8b2fc2c9ca7997e028d07771b',1,'ff.c']]],
   ['exdev',['EXDEV',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa953d85d9cf4a55d49811d920c169eded',1,'posix.h']]],
   ['exec_5fdescribe',['EXEC_DESCRIBE',['../ss80_8c.html#afb6bc082487a21bfdcd35e9ec81a93b7af60d04dbd07ecd30e264f451dec0f0c3',1,'ss80.c']]],
   ['exec_5fidle',['EXEC_IDLE',['../ss80_8c.html#afb6bc082487a21bfdcd35e9ec81a93b7a53dbf20a8bfdf9c4f03c5bcc4becfc10',1,'ss80.c']]],

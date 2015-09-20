@@ -42,7 +42,7 @@ d as needed by the TWI driver
  */
 
 
-#include "hardware.h"
+#include "user_config.h"
 
 ///@brief Initialize I2C device.
 ///

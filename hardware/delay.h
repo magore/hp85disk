@@ -13,7 +13,7 @@
 #ifndef _DELAY_H
 #define _DELAY_H
 
-#include "hardware.h"
+#include "user_config.h"
 
 /* delay.c */
 void delayus ( uint32_t us );

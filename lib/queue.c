@@ -21,7 +21,7 @@
 */
 
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 /**
   @brief Create a ring buffer of a given size
   @param[in] size: size of rin buffer
@@ -29,13 +29,13 @@
 */
 queue_t *queue_new(size_t size)
 {
-	queue_t *q = safecalloc( sizeof(queue_t),1);
+	queue_t *q = calloc( sizeof(queue_t),1);
 	if(!q)
 		return(NULL);
-	q->buf = safecalloc(size+1,1);
+	q->buf = calloc(size+1,1);
 	if(!q->buf)
 	{
-		safefree(q);
+		free(q);
 		return(NULL);
 	}
 	q->in = 0;
@@ -56,7 +56,7 @@ void queue_del(queue_t *q)
 		return;
 	if(q->buf)
 	{
-		safefree(q->buf);
+		free(q->buf);
 		// This clear help prevents a freed pointer from being used by mistake
 		// can be removed in production
 		q->buf = NULL;
@@ -65,7 +65,7 @@ void queue_del(queue_t *q)
 		q->bytes = 0;
 		q->size = 0;
 	}
-	safefree(q);
+	free(q);
 }
 
 

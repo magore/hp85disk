@@ -2,7 +2,7 @@
 /**
  @file fatfs/fatfs_utils.h
 
- @brief FatFs utilities and tests for HP85 disk emulator project.
+ @brief fatfs test utilities with user interface
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par Copyright &copy; 2013 ChaN.
@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _FATFS_UTILS_H
 #define _FATFS_UTILS_H
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 #include "ff.h"
 #include "diskio.h"
 

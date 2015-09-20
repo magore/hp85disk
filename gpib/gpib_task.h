@@ -14,7 +14,7 @@
 #ifndef _GPIB_TASK_H
 #define _GPIB_TASK_H
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 
 /* gpib_task.c */
 void gpib_file_init ( void );

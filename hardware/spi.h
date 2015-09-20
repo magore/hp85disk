@@ -13,7 +13,7 @@
 #ifndef _SPI_H
 #define _SPI_H
 
-#include "hardware.h"
+#include "user_config.h"
 
 #define SPI0_MODE0  0
 #define SPI0_MODE1  1

@@ -17,7 +17,7 @@
 #ifndef _GPIB_H_
 #define _GPIB_H_
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 #include <avr/pgmspace.h>
 #include <avr/portpins.h>
 #include <avr/io.h>

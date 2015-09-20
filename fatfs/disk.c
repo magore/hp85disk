@@ -23,8 +23,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "hardware/hardware.h"
 
+#include <user_config.h>
 #include "ff.h"
 #include "diskio.h"
 #include "posix.h"
@@ -75,6 +75,7 @@ static char *err_msg[] =
     NULL
 };
 
+
 /// @brief FAT time structer reference.
 /// @see rtc.h
 /// @see http://lxr.free-electrons.com/source/fs/fat/misc.c
@@ -117,19 +118,18 @@ uint32_t tm_to_fat(tm_t *t)
 MEMSPACE
 DWORD get_fattime (void)
 {
-    time_t t;
+	time_t t;
 /* Get time */
     time(&t);
-    return( tm_to_fat(localtime(&t)));
+	return( tm_to_fat(localtime(&t)));
 }
-
-
 
 /// @brief  display FatFs return code as ascii string
 ///
 /// Credit: Part of FatFs avr example project (C)ChaN, 2013
 /// @param[in] rc: FatFs status return code
 /// @return  void
+
 MEMSPACE
 void put_rc (int rc)
 {
@@ -139,7 +139,7 @@ void put_rc (int rc)
     else
         ptr = err_msg[(int)rc];
 
-    DEBUG_PRINTF("rc=%u FR_%s\n", rc, ptr);
+    printf("rc=%u FR_%s\n", rc, ptr);
 }
 
 
@@ -159,12 +159,13 @@ static FILINFO __finfo;
 
 /// @brief  Allocate FILINFO structure and optional long file name buffer
 ///
-/// @param[in] allocate: If allocate is true use safecalloc otherwise return static __finfo
+/// @param[in] allocate: If allocate is true use calloc otherwise return static __finfo
 /// @see fatfs_free_finfo() 
 /// @see fatfs_scan_files()
 /// @see fatfs_ls()
 /// @return  FILINFO * on success
 /// @return  NULL on error
+
 MEMSPACE
 FILINFO *fatfs_alloc_finfo( int allocate )
 {
@@ -172,18 +173,18 @@ FILINFO *fatfs_alloc_finfo( int allocate )
 
     if( allocate )
     {
-        finfo = safecalloc(sizeof(FILINFO),1);
+        finfo = calloc(sizeof(FILINFO),1);
         if(finfo == NULL)
         {
             return(NULL);
         }
 #if _USE_LFN
-        finfo->lfname = safecalloc(_MAX_LFN + 1,1);
+        finfo->lfname = calloc(_MAX_LFN + 1,1);
         finfo->lfsize = _MAX_LFN + 1;
 
         if(finfo->lfname == NULL)
         {
-            safefree(finfo);
+            free(finfo);
             return(NULL);
         }
 #else
@@ -214,18 +215,19 @@ FILINFO *fatfs_alloc_finfo( int allocate )
 /// @see fatfs_scan_files() 
 /// @see fatfs_ls()
 /// @return  void
+
 MEMSPACE
 void fatfs_free_filinfo( FILINFO *finfo )
 {
 #if _USE_LFN
     if(finfo->lfname && finfo->lfname != __lfname )
     {
-        safefree(finfo->lfname);
+        free(finfo->lfname);
     }
 #endif
     if(finfo && finfo != (FILINFO *) &__finfo)
     {
-        safefree(finfo);
+        free(finfo);
     }
 }
 
@@ -242,6 +244,7 @@ void fatfs_free_filinfo( FILINFO *finfo )
 /// @see AccSize:  Total size of all files
 /// @return 0 if no error
 /// @return FafFs error code
+
 MEMSPACE
 int fatfs_scan_files (
 char* path                                        /* Pointer to the working buffer with start path */
@@ -285,6 +288,9 @@ char* path                                        /* Pointer to the working buff
                 AccFiles++;
                 AccSize += fno->fsize;
             }
+#ifdef ESP8266
+			wdt_reset();
+#endif
         }
     }
 
@@ -303,6 +309,7 @@ char* path                                        /* Pointer to the working buff
 /// @see AccFiles: Total number of Files
 /// @see AccSize:  Total size of all files
 /// @return  void
+
 MEMSPACE
 void fatfs_status(char *ptr)
 {
@@ -314,14 +321,14 @@ void fatfs_status(char *ptr)
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
-    DEBUG_PRINTF("fatfs status:%s\n",ptr);
+    printf("fatfs status:%s\n",ptr);
     res = f_getfree(ptr, (DWORD*)&p2, &fs);
     if (res)
     {
         put_rc(res);
         return;
     }
-    DEBUG_PRINTF("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
+    printf("FAT type = FAT%u\nBytes/Cluster = %lu\nNumber of FATs = %u\n"
         "Root DIR entries = %u\nSectors/FAT = %lu\nNumber of clusters = %lu\n"
         "FAT start (lba) = %lu\nDIR start (lba,clustor) = %lu\nData start (lba) = %lu\n\n...",
         ft[fs->fs_type & 3], (DWORD)fs->csize * 512, fs->n_fats,
@@ -335,7 +342,7 @@ void fatfs_status(char *ptr)
         put_rc(res);
         return;
     }
-    DEBUG_PRINTF("\r%u files, %lu bytes.\n%u folders.\n"
+    printf("\r%u files, %lu bytes.\n%u folders.\n"
         "%lu KB total disk space.\n%lu KB available.\n",
         AccFiles, AccSize, AccDirs,
         (fs->n_fatent - 2) * (fs->csize / 2), p2 * (fs->csize / 2)
@@ -354,33 +361,33 @@ void fatfs_status(char *ptr)
 ///
 /// @param[in] : FILINFO pointer
 /// @return  void
+
 MEMSPACE
 void fatfs_filinfo_list(FILINFO *info)
 {
-    char attrs[6];
-    int i;
+	char attrs[6];
+	int i;
     if(info->fname[0] == 0)
     {
-        DEBUG_PRINTF("fatfs_filinfo_list: empty\n");
+        printf("fatfs_filinfo_list: empty\n");
         return;
     }
-    attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
-    attrs[1] = (info->fattrib & AM_RDO) ? 'R' : '-';
-    attrs[2] = (info->fattrib & AM_HID) ? 'H' : '-';
-    attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
-    attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
-    attrs[5] = 0;
-    DEBUG_PRINTF("%s %u/%02u/%02u %02u:%02u %9lu %12s",
+	attrs[0] = (info->fattrib & AM_DIR) ? 'D' : '-';
+	attrs[1] = (info->fattrib & AM_RDO) ? 'R' : '-';
+	attrs[2] = (info->fattrib & AM_HID) ? 'H' : '-';
+	attrs[3] = (info->fattrib & AM_SYS) ? 'S' : '-';
+	attrs[4] = (info->fattrib & AM_ARC) ? 'A' : '-';
+	attrs[5] = 0;
+	printf("%s %u/%02u/%02u %02u:%02u %9lu %12s",
         attrs,
         (info->fdate >> 9) + 1980, (info->fdate >> 5) & 15, info->fdate & 31,
         (info->ftime >> 11), (info->ftime >> 5) & 63,
         info->fsize, &(info->fname[0]));
 
 #if _USE_LFN
-    if(info->lfname)
-        DEBUG_PRINTF("  %s", info->lfname);
+	if(info->lfname)
+		printf("  %s", info->lfname);
 #endif
 
-    DEBUG_PRINTF("\n");
+    printf("\n");
 }
-

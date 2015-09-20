@@ -13,7 +13,7 @@
 #ifndef _PRINTER_H
 #define _PRINTER_H
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 
 /* printer.c */
 void printer_open ( char *name );

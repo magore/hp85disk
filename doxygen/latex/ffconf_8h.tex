@@ -59,7 +59,7 @@ Fat\-F\-S file system module configuration file R0.\-10b (C) Cha\-N, 2014.
 \item 
 \#define \hyperlink{ffconf_8h_a4e07d7fcae4241b73eb5b70fab5f676d}{\-\_\-\-F\-S\-\_\-\-R\-E\-E\-N\-T\-R\-A\-N\-T}~0                         /$\ast$ 0\-:Disable or 1\-:Enable $\ast$/
 \item 
-\#define \hyperlink{ffconf_8h_a526e3cac667f53cc9a48507873348e60}{\-\_\-\-F\-S\-\_\-\-T\-I\-M\-E\-O\-U\-T}~1000                      /$\ast$ Timeout period in unit of \hyperlink{time_8h_ae7841e681c8c9d59818568d39553642c}{time} tick $\ast$/
+\#define \hyperlink{ffconf_8h_a526e3cac667f53cc9a48507873348e60}{\-\_\-\-F\-S\-\_\-\-T\-I\-M\-E\-O\-U\-T}~1000                      /$\ast$ Timeout period in unit of \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time} tick $\ast$/
 \item 
 \#define \hyperlink{ffconf_8h_a9a3f0670343e51652dd12b18fa90a9eb}{\-\_\-\-S\-Y\-N\-C\-\_\-t}~H\-A\-N\-D\-L\-E                    /$\ast$ O/S dependent \hyperlink{posix_8h_a8f7f00d4ec0d99440762b0a664aebf70}{sync} object type. e.\-g. H\-A\-N\-D\-L\-E, O\-S\-\_\-\-E\-V\-E\-N\-T$\ast$, I\-D, Semaphore\-Handle\-\_\-t and etc.. $\ast$/
 \item 
@@ -176,7 +176,7 @@ Definition at line 91 of file ffconf.\-h.
 
 
 
-Referenced by create\-\_\-name(), and fatfs\-\_\-alloc\-\_\-finfo().
+Referenced by cmp\-\_\-lfn(), create\-\_\-name(), fatfs\-\_\-alloc\-\_\-finfo(), and pick\-\_\-lfn().
 
 \hypertarget{ffconf_8h_ac271b697378912f17132cb9c7d0de024}{\index{ffconf.\-h@{ffconf.\-h}!\-\_\-\-M\-A\-X\-\_\-\-S\-S@{\-\_\-\-M\-A\-X\-\_\-\-S\-S}}
 \index{\-\_\-\-M\-A\-X\-\_\-\-S\-S@{\-\_\-\-M\-A\-X\-\_\-\-S\-S}!ffconf.h@{ffconf.\-h}}
@@ -187,7 +187,7 @@ Definition at line 148 of file ffconf.\-h.
 
 
 
-Referenced by find\-\_\-volume().
+Referenced by f\-\_\-mkfs(), and find\-\_\-volume().
 
 \hypertarget{ffconf_8h_ad03aa6d0e294709ae15898ee2c14dc3a}{\index{ffconf.\-h@{ffconf.\-h}!\-\_\-\-M\-I\-N\-\_\-\-S\-S@{\-\_\-\-M\-I\-N\-\_\-\-S\-S}}
 \index{\-\_\-\-M\-I\-N\-\_\-\-S\-S@{\-\_\-\-M\-I\-N\-\_\-\-S\-S}!ffconf.h@{ffconf.\-h}}
@@ -198,7 +198,7 @@ Definition at line 147 of file ffconf.\-h.
 
 
 
-Referenced by find\-\_\-volume().
+Referenced by f\-\_\-mkfs(), and find\-\_\-volume().
 
 \hypertarget{ffconf_8h_adc02609ba893fe8706a2f8af0e3a3bb5}{\index{ffconf.\-h@{ffconf.\-h}!\-\_\-\-M\-U\-L\-T\-I\-\_\-\-P\-A\-R\-T\-I\-T\-I\-O\-N@{\-\_\-\-M\-U\-L\-T\-I\-\_\-\-P\-A\-R\-T\-I\-T\-I\-O\-N}}
 \index{\-\_\-\-M\-U\-L\-T\-I\-\_\-\-P\-A\-R\-T\-I\-T\-I\-O\-N@{\-\_\-\-M\-U\-L\-T\-I\-\_\-\-P\-A\-R\-T\-I\-T\-I\-O\-N}!ffconf.h@{ffconf.\-h}}
@@ -206,6 +206,10 @@ Referenced by find\-\_\-volume().
 
 
 Definition at line 141 of file ffconf.\-h.
+
+
+
+Referenced by f\-\_\-mkfs().
 
 \hypertarget{ffconf_8h_ae89b13dba7638cb22b5587fcb335ffe3}{\index{ffconf.\-h@{ffconf.\-h}!\-\_\-\-S\-T\-R\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-I\-D@{\-\_\-\-S\-T\-R\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-I\-D}}
 \index{\-\_\-\-S\-T\-R\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-I\-D@{\-\_\-\-S\-T\-R\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-I\-D}!ffconf.h@{ffconf.\-h}}
@@ -280,6 +284,10 @@ Definition at line 43 of file ffconf.\-h.
 
 
 Definition at line 40 of file ffconf.\-h.
+
+
+
+Referenced by f\-\_\-gets(), and putc\-\_\-bfd().
 
 \hypertarget{ffconf_8h_a75c97afb8b06935364e42e3ec3fdc6c4}{\index{ffconf.\-h@{ffconf.\-h}!\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-S\-T\-R\-S@{\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-S\-T\-R\-S}}
 \index{\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-S\-T\-R\-S@{\-\_\-\-V\-O\-L\-U\-M\-E\-\_\-\-S\-T\-R\-S}!ffconf.h@{ffconf.\-h}}

@@ -20,30 +20,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 #include "diskio.h"
 #include "disk.h"
 #include "ff.h"
 #include "mmc_hal.h"
 
 
-///@brief MMC timer tic in Microseconds
-#ifndef MMC_TIMER_TIC_US
-#error Please define MMC_TIMER_TIC_US in Microseconds per mmc_task call
-#endif
-
 extern DSTATUS Stat;
 
-///@brief MMC timeout timer used to detect timeout error conditions
-volatile int32_t mmc_us_timeout;
-
-/// @brief MMC timeout counter
+/// @brief MMC timeout counter in ms
 uint16_t _mmc_timeout = 0;
 
 /// @brief MMC SPI CLOCK cache
 uint32_t _mmc_clock = 0;
 
-
+// @brief MMC media status prescaler
 uint16_t _mmc_pre = 0;
 
 /**
@@ -51,36 +43,28 @@ uint16_t _mmc_pre = 0;
  @param[in] *arg: ignored
  @return void
 */
-LOCAL void mmc_task(void)
+static void mmc_task(void)
 {
-    if(mmc_us_timeout >= MMC_TIMER_TIC_US)
-	{
-        mmc_us_timeout -= MMC_TIMER_TIC_US;
-		if(_mmc_timeout)
-			_mmc_timeout--;
-	}
-	else
-	{
+	if(_mmc_timeout)
+		_mmc_timeout--;
+
+	// 100HZ
+    if(_mmc_pre++  < 10)
 		return;
-	}
 
-
-    if(_mmc_pre++  >= 10)
-    {
-        _mmc_pre = 0;
+	_mmc_pre = 0;
 // FIXME our Micro SD card holder does not do WP or CD
 // We assign STA_NODISK if we get a timeout
 #if 0
-        if (mmc_wp_status())                      /* Write protected */
-            Stat |= STA_PROTECT;
-        else                                      /* Write enabled */
-            Stat &= ~STA_PROTECT;
-        if (mmc_ins_status())                     /* Card inserted */
-            Stat &= ~STA_NODISK;
-        else                                      /* Socket empty */
-            Stat |= (STA_NODISK | STA_NOINIT);
+	if (mmc_wp_status())                      /* Write protected */
+		Stat |= STA_PROTECT;
+	else                                      /* Write enabled */
+		Stat &= ~STA_PROTECT;
+	if (mmc_ins_status())                     /* Card inserted */
+		Stat &= ~STA_NODISK;
+	else                                      /* Socket empty */
+		Stat |= (STA_NODISK | STA_NOINIT);
 #endif
-    }
 }
 
 /// @brief  Install MMC timer task: mmc_task()
@@ -92,7 +76,7 @@ void mmc_install_timer( void )
 {
     _mmc_timeout = 0;
     if(set_timers(mmc_task,1) == -1)
-        DEBUG_PRINTF("MMC Clock task init failed\n");
+        printf("MMC Clock task init failed\n");
 }
 
 /// @brief SPI write buffer
@@ -102,8 +86,13 @@ void mmc_install_timer( void )
 MEMSPACE
 void mmc_spi_TX_buffer(const uint8_t *data, int count)
 {
+#ifdef ESP8266
+    hspi_TX((uint8_t *) data,count);
+#else
     SPI0_TX((uint8_t *) data,count);
+#endif
 }
+
 /// @brief SPI read buffer
 /// @param[in] *data: transmit buffer
 /// @param[in] count: number of bytes to write
@@ -111,7 +100,11 @@ void mmc_spi_TX_buffer(const uint8_t *data, int count)
 MEMSPACE
 void mmc_spi_RX_buffer(const uint8_t *data, int count)
 {
+#ifdef ESP8266
+    hspi_RX((uint8_t *) data,count);
+#else
     SPI0_RX((uint8_t *)data,count);
+#endif
 }
 
 /// @brief SPI read 1 byte
@@ -120,7 +113,11 @@ MEMSPACE
 uint8_t mmc_spi_RX()
 {
     uint8_t data;
+#ifdef ESP8266
+    hspi_RX(&data,1);
+#else
     SPI0_RX(&data,1);
+#endif
 }
 
 /// @brief SPI write 1 byte
@@ -129,7 +126,11 @@ uint8_t mmc_spi_RX()
 MEMSPACE
 void mmc_spi_TX(uint8_t data)
 {
+#ifdef ESP8266
+    hspi_TX(&data,1);
+#else
     SPI0_TX(&data,1);
+#endif
 }
 
 
@@ -139,7 +140,11 @@ void mmc_spi_TX(uint8_t data)
 MEMSPACE
 uint8_t mmc_spi_TXRX(uint8_t data)
 {
+#ifdef ESP8266
+    hspi_TXRX(&data,1);
+#else
     SPI0_TXRX(&data,1);
+#endif
     return(data);
 }
 
@@ -170,13 +175,17 @@ int  mmc_test_timeout()
 
     if(!_mmc_timeout)
     {
-        DEBUG_PRINTF("MMC TIMEOUT\n");
+        printf("MMC TIMEOUT\n");
         Stat |= (STA_NODISK | STA_NOINIT);
         return(1);
     }
+#ifdef ESP8266
+    optimistic_yield(1000);
+#endif
     return(0);
 }
 
+/// @brief has the MMC interface been initialized yet ?
 static int mmc_init_flag = 0;
 /// @brief Initialize MMC and FatFs interface, display diagnostics.
 ///
@@ -191,8 +200,8 @@ int mmc_init(int verbose)
 
     if( verbose)
     {
-        DEBUG_PRINTF("==============================\n");
-        DEBUG_PRINTF("START MMC INIT\n");
+        printf("==============================\n");
+        printf("START MMC INIT\n");
     }
 
     mmc_slow();
@@ -204,14 +213,14 @@ int mmc_init(int verbose)
     if( verbose)
     {
 #if defined (_USE_LFN)
-        DEBUG_PRINTF("LFN Enabled");
+        printf("LFN Enabled");
 #else
-        DEBUG_PRINTF("LFN Disabled");
+        printf("LFN Disabled");
 #endif
-        DEBUG_PRINTF(", Code page: %u\n", _CODE_PAGE);
+        printf(", Code page: %u\n", _CODE_PAGE);
     }
 
-    rc = disk_initialize(0);                      // aliased to mmc_disk_initialize()
+    rc = disk_initialize(0);	// aliased to mmc_disk_initialize()
 
     if( rc != RES_OK )
     {
@@ -237,18 +246,19 @@ int mmc_init(int verbose)
             if( rc != RES_OK)
             {
                 put_rc( rc );
-                DEBUG_PRINTF("MMC Block Size - read failed\n");
+                printf("MMC Block Size - read failed\n");
             }
             else
             {
-                DEBUG_PRINTF("MMC Block Size: %ld\n", blksize);
+                printf("MMC Block Size: %ld\n", blksize);
             }
             if( rc == RES_OK)
             {
                 fatfs_status("/");
             }
         }
-        DEBUG_PRINTF("END MMC INIT\n");
+        printf("END MMC INIT\n");
+        printf("==============================\n");
 	}
     mmc_init_flag = 1;
 
@@ -264,9 +274,17 @@ uint8_t _mmc_spi_init_flag = 0;
 MEMSPACE
 void mmc_spi_init(int32_t clock)
 {
+#ifdef ESP8266
+    SD_CS_INIT;
+    hspi_init(clock,0);
+    (void)mmc_spi_TX(0xff);
+    hspi_waitReady();
+#else
 	IO_HI(MMC_CS);
-    SPI0_Init(clock);  		//< Initialize the SPI bus
-    SPI0_Mode(0);                   //< Set the clocking mode, etc
+    SPI0_Init(clock);	//< Initialize the SPI bus
+    SPI0_Mode(0);		//< Set the clocking mode, etc
+    mmc_spi_TX(0xff);
+#endif
     _mmc_spi_init_flag=1;
 }
 
@@ -278,8 +296,7 @@ void mmc_spi_init(int32_t clock)
 MEMSPACE
 void mmc_slow()
 {
-	SPI0_Init(_mmc_clock = MMC_SLOW);  //< In HZ 100khz..400khz
-    (void)mmc_spi_TX(0xff);
+	mmc_spi_init(_mmc_clock = MMC_SLOW);  //< In HZ 100khz..400khz
 }
 
 
@@ -291,9 +308,7 @@ void mmc_slow()
 MEMSPACE
 void mmc_fast()
 {
-//FIXME
-	SPI0_Init(_mmc_clock = MMC_FAST);  //< In HZ 100khz..400khz
-    (void)mmc_spi_TX(0xff);
+	mmc_spi_init(_mmc_clock = MMC_FAST);  
 }
 
 
@@ -309,7 +324,13 @@ void mmc_power_on()
     mmc_slow();
     for(i=0;i<20;++i)
     {
-		_delay_us(1000); 
+#ifdef ESP8266
+        os_delay_us(1000);
+        optimistic_yield(1000);
+        wdt_reset();
+#else
+        _delay_us(1000);
+#endif
     }
 }
 
@@ -321,7 +342,13 @@ void mmc_power_on()
 MEMSPACE
 void mmc_power_off()
 {
+#ifdef ESP8266
+    hspi_waitReady();
     (void)mmc_spi_TX(0xff);
+    hspi_waitReady();
+#else
+    (void)mmc_spi_TX(0xff);
+#endif
 }
 
 
@@ -329,7 +356,6 @@ void mmc_power_off()
 ///
 /// - We do not control power to the MMC device in this project.
 /// @return  1 power is alwasy on
-
 MEMSPACE
 int mmc_power_status()
 {
@@ -347,7 +373,11 @@ void mmc_cs_enable()
 {
 	// restore clock speed in case another device changed it
     mmc_spi_init(_mmc_clock);
+#ifdef ESP8266
+    hspi_cs_enable(SD_CS_PIN);
+#else
 	IO_LOW(MMC_CS);
+#endif
 }
 
 
@@ -359,7 +389,11 @@ void mmc_cs_enable()
 MEMSPACE
 void mmc_cs_disable()
 {
+#ifdef ESP8266
+    hspi_cs_disable(SD_CS_PIN);
+#else
 	IO_HI(MMC_CS);
+#endif
 }
 
 

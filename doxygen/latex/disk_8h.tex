@@ -6,23 +6,27 @@
 Allocate, Free and display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structurs, getfattime(), display error messages.  
 
 
-{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}ff.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{disk_8h_a9e41ec7ad56bfc095ddb5e718280c4eb}{put\-\_\-rc} (int rc)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t \hyperlink{disk_8h_ae7b9417320aaaa1c1dfb229cad6669d8}{tm\-\_\-to\-\_\-fat} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em F\-A\-T time structer reference. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} \hyperlink{disk_8h_ae0f1746ad69d0d4b90cba250c6774ca8}{get\-\_\-fattime} (void)
+\begin{DoxyCompactList}\small\item\em Read D\-S1307 R\-T\-C and convert to F\-A\-T32 time. \end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{disk_8h_ab3509aecf1844c84f1797e5b567d531c}{put\-\_\-rc} (int rc)
 \begin{DoxyCompactList}\small\item\em display Fat\-Fs return code as ascii string \end{DoxyCompactList}\item 
-\hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$ \hyperlink{disk_8h_afb13747c885845dd2b4011109364f83a}{fatfs\-\_\-alloc\-\_\-finfo} (int allocate)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$ \hyperlink{disk_8h_a2aa2a2ec84f17f64a69196c9717fc3f4}{fatfs\-\_\-alloc\-\_\-finfo} (int allocate)
 \begin{DoxyCompactList}\small\item\em Allocate \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure and optional long file name buffer. \end{DoxyCompactList}\item 
-void \hyperlink{disk_8h_a55f2dd92d9b43ef0094f0eb6a07956a8}{fatfs\-\_\-free\-\_\-filinfo} (\hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$finfo)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{disk_8h_a953a1accb59a09bcedf7bda2758ba433}{fatfs\-\_\-free\-\_\-filinfo} (\hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$finfo)
 \begin{DoxyCompactList}\small\item\em Free a \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure and optional long file name buffer allocated by \hyperlink{disk_8c_a2aa2a2ec84f17f64a69196c9717fc3f4}{fatfs\-\_\-alloc\-\_\-finfo()} \end{DoxyCompactList}\item 
-int \hyperlink{disk_8h_aeeaba07e5b5b3540ba023b7181b73467}{fatfs\-\_\-scan\-\_\-files} (char $\ast$path)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{disk_8h_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\-\_\-scan\-\_\-files} (char $\ast$path)
 \begin{DoxyCompactList}\small\item\em Compute space used, number of directories and files contained under a specified directory. \end{DoxyCompactList}\item 
-void \hyperlink{disk_8h_acc4f31b5dcf3d631bb9711c39c8a916f}{fatfs\-\_\-status} (char $\ast$ptr)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{disk_8h_ad7d2063fab39190a7288bfa7cb647b46}{fatfs\-\_\-status} (char $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Compute space used, number of directories and files contained used by a drive. \end{DoxyCompactList}\item 
-void \hyperlink{disk_8h_adcd917b6190c42742129a67b304d9f1b}{fatfs\-\_\-filinfo\-\_\-list} (\hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$info)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{disk_8h_a11c6644c2b989d1ac2492b30b80e4ead}{fatfs\-\_\-filinfo\-\_\-list} (\hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} $\ast$info)
 \begin{DoxyCompactList}\small\item\em Display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure in a readable format. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -61,20 +65,20 @@ Definition in file \hyperlink{disk_8h_source}{disk.\-h}.
 
 
 \subsection{Function Documentation}
-\hypertarget{disk_8h_afb13747c885845dd2b4011109364f83a}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-alloc\-\_\-finfo@{fatfs\-\_\-alloc\-\_\-finfo}}
+\hypertarget{disk_8h_a2aa2a2ec84f17f64a69196c9717fc3f4}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-alloc\-\_\-finfo@{fatfs\-\_\-alloc\-\_\-finfo}}
 \index{fatfs\-\_\-alloc\-\_\-finfo@{fatfs\-\_\-alloc\-\_\-finfo}!disk.h@{disk.\-h}}
-\subsubsection[{fatfs\-\_\-alloc\-\_\-finfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\-I\-L\-I\-N\-F\-O}$\ast$ fatfs\-\_\-alloc\-\_\-finfo (
+\subsubsection[{fatfs\-\_\-alloc\-\_\-finfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf F\-I\-L\-I\-N\-F\-O}$\ast$ fatfs\-\_\-alloc\-\_\-finfo (
 \begin{DoxyParamCaption}
 \item[{int}]{allocate}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_afb13747c885845dd2b4011109364f83a}
+)}}\label{disk_8h_a2aa2a2ec84f17f64a69196c9717fc3f4}
 
 
 Allocate \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure and optional long file name buffer. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em allocate} & If allocate is true use safecalloc otherwise return static \-\_\-\-\_\-finfo \\
+\mbox{\tt in}  & {\em allocate} & If allocate is true use calloc otherwise return static \-\_\-\-\_\-finfo \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See Also}
@@ -91,19 +95,19 @@ N\-U\-L\-L on error
 \end{DoxyReturn}
 
 
-Definition at line 169 of file disk.\-c.
+Definition at line 170 of file disk.\-c.
 
 
 
 Referenced by fatfs\-\_\-ls(), fatfs\-\_\-scan\-\_\-files(), fatfs\-\_\-stat(), and stat().
 
-\hypertarget{disk_8h_adcd917b6190c42742129a67b304d9f1b}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-filinfo\-\_\-list@{fatfs\-\_\-filinfo\-\_\-list}}
+\hypertarget{disk_8h_a11c6644c2b989d1ac2492b30b80e4ead}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-filinfo\-\_\-list@{fatfs\-\_\-filinfo\-\_\-list}}
 \index{fatfs\-\_\-filinfo\-\_\-list@{fatfs\-\_\-filinfo\-\_\-list}!disk.h@{disk.\-h}}
-\subsubsection[{fatfs\-\_\-filinfo\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-filinfo\-\_\-list (
+\subsubsection[{fatfs\-\_\-filinfo\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void fatfs\-\_\-filinfo\-\_\-list (
 \begin{DoxyParamCaption}
 \item[{{\bf F\-I\-L\-I\-N\-F\-O} $\ast$}]{info}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_adcd917b6190c42742129a67b304d9f1b}
+)}}\label{disk_8h_a11c6644c2b989d1ac2492b30b80e4ead}
 
 
 Display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure in a readable format. 
@@ -119,19 +123,19 @@ Display \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure in a readable f
  
 \end{DoxyItemize}
 
-Definition at line 358 of file disk.\-c.
+Definition at line 366 of file disk.\-c.
 
 
 
 Referenced by fatfs\-\_\-ls(), and fatfs\-\_\-stat().
 
-\hypertarget{disk_8h_a55f2dd92d9b43ef0094f0eb6a07956a8}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-free\-\_\-filinfo@{fatfs\-\_\-free\-\_\-filinfo}}
+\hypertarget{disk_8h_a953a1accb59a09bcedf7bda2758ba433}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-free\-\_\-filinfo@{fatfs\-\_\-free\-\_\-filinfo}}
 \index{fatfs\-\_\-free\-\_\-filinfo@{fatfs\-\_\-free\-\_\-filinfo}!disk.h@{disk.\-h}}
-\subsubsection[{fatfs\-\_\-free\-\_\-filinfo}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-free\-\_\-filinfo (
+\subsubsection[{fatfs\-\_\-free\-\_\-filinfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void fatfs\-\_\-free\-\_\-filinfo (
 \begin{DoxyParamCaption}
 \item[{{\bf F\-I\-L\-I\-N\-F\-O} $\ast$}]{finfo}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_a55f2dd92d9b43ef0094f0eb6a07956a8}
+)}}\label{disk_8h_a953a1accb59a09bcedf7bda2758ba433}
 
 
 Free a \hyperlink{structFILINFO}{F\-I\-L\-I\-N\-F\-O} structure and optional long file name buffer allocated by \hyperlink{disk_8c_a2aa2a2ec84f17f64a69196c9717fc3f4}{fatfs\-\_\-alloc\-\_\-finfo()} 
@@ -153,15 +157,15 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 218 of file disk.\-c.
+Definition at line 220 of file disk.\-c.
 
-\hypertarget{disk_8h_aeeaba07e5b5b3540ba023b7181b73467}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-scan\-\_\-files@{fatfs\-\_\-scan\-\_\-files}}
+\hypertarget{disk_8h_a2bfd82a70117cdb8941b6b0a2c069dbd}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-scan\-\_\-files@{fatfs\-\_\-scan\-\_\-files}}
 \index{fatfs\-\_\-scan\-\_\-files@{fatfs\-\_\-scan\-\_\-files}!disk.h@{disk.\-h}}
-\subsubsection[{fatfs\-\_\-scan\-\_\-files}]{\setlength{\rightskip}{0pt plus 5cm}int fatfs\-\_\-scan\-\_\-files (
+\subsubsection[{fatfs\-\_\-scan\-\_\-files}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int fatfs\-\_\-scan\-\_\-files (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{path}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_aeeaba07e5b5b3540ba023b7181b73467}
+)}}\label{disk_8h_a2bfd82a70117cdb8941b6b0a2c069dbd}
 
 
 Compute space used, number of directories and files contained under a specified directory. 
@@ -194,19 +198,19 @@ Faf\-Fs error code
 \end{DoxyReturn}
 
 
-Definition at line 246 of file disk.\-c.
+Definition at line 249 of file disk.\-c.
 
 
 
 Referenced by fatfs\-\_\-scan\-\_\-files(), and fatfs\-\_\-status().
 
-\hypertarget{disk_8h_acc4f31b5dcf3d631bb9711c39c8a916f}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-status@{fatfs\-\_\-status}}
+\hypertarget{disk_8h_ad7d2063fab39190a7288bfa7cb647b46}{\index{disk.\-h@{disk.\-h}!fatfs\-\_\-status@{fatfs\-\_\-status}}
 \index{fatfs\-\_\-status@{fatfs\-\_\-status}!disk.h@{disk.\-h}}
-\subsubsection[{fatfs\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}void fatfs\-\_\-status (
+\subsubsection[{fatfs\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void fatfs\-\_\-status (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{ptr}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_acc4f31b5dcf3d631bb9711c39c8a916f}
+)}}\label{disk_8h_ad7d2063fab39190a7288bfa7cb647b46}
 
 
 Compute space used, number of directories and files contained used by a drive. 
@@ -222,7 +226,7 @@ Compute space used, number of directories and files contained used by a drive.
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See Also}
-\hyperlink{ff_8c_a72098afbbef7ff8b850bacfc721d6bd0}{f\-\_\-getfree()} drive free space 
+\hyperlink{ff_8c_a72098afbbef7ff8b850bacfc721d6bd0}{f\-\_\-getfree()} drive \hyperlink{str_8h_a0f8c52d1c359b700088f8417b48e467b}{free} space 
 
 \hyperlink{disk_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\-\_\-scan\-\_\-files()} 
 
@@ -237,19 +241,40 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 307 of file disk.\-c.
+Definition at line 314 of file disk.\-c.
 
 
 
 Referenced by fatfs\-\_\-tests(), mmc\-\_\-init(), and mmc\-\_\-test().
 
-\hypertarget{disk_8h_a9e41ec7ad56bfc095ddb5e718280c4eb}{\index{disk.\-h@{disk.\-h}!put\-\_\-rc@{put\-\_\-rc}}
+\hypertarget{disk_8h_ae0f1746ad69d0d4b90cba250c6774ca8}{\index{disk.\-h@{disk.\-h}!get\-\_\-fattime@{get\-\_\-fattime}}
+\index{get\-\_\-fattime@{get\-\_\-fattime}!disk.h@{disk.\-h}}
+\subsubsection[{get\-\_\-fattime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} {\bf D\-W\-O\-R\-D} get\-\_\-fattime (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{disk_8h_ae0f1746ad69d0d4b90cba250c6774ca8}
+
+
+Read D\-S1307 R\-T\-C and convert to F\-A\-T32 time. 
+
+\begin{DoxyReturn}{Returns}
+F\-A\-T32 time. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{disk_8c_ae7b9417320aaaa1c1dfb229cad6669d8}{tm\-\_\-to\-\_\-fat()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 119 of file disk.\-c.
+
+\hypertarget{disk_8h_ab3509aecf1844c84f1797e5b567d531c}{\index{disk.\-h@{disk.\-h}!put\-\_\-rc@{put\-\_\-rc}}
 \index{put\-\_\-rc@{put\-\_\-rc}!disk.h@{disk.\-h}}
-\subsubsection[{put\-\_\-rc}]{\setlength{\rightskip}{0pt plus 5cm}void put\-\_\-rc (
+\subsubsection[{put\-\_\-rc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void put\-\_\-rc (
 \begin{DoxyParamCaption}
 \item[{int}]{rc}
 \end{DoxyParamCaption}
-)}}\label{disk_8h_a9e41ec7ad56bfc095ddb5e718280c4eb}
+)}}\label{disk_8h_ab3509aecf1844c84f1797e5b567d531c}
 
 
 display Fat\-Fs return code as ascii string 
@@ -269,6 +294,49 @@ Definition at line 134 of file disk.\-c.
 
 
 Referenced by dbf\-\_\-close(), dbf\-\_\-lseek(), dbf\-\_\-open(), dbf\-\_\-read(), dbf\-\_\-write(), fatfs\-\_\-cat(), fatfs\-\_\-cd(), fatfs\-\_\-copy(), fatfs\-\_\-create(), fatfs\-\_\-ls(), fatfs\-\_\-mkdir(), fatfs\-\_\-pwd(), fatfs\-\_\-rename(), fatfs\-\_\-rm(), fatfs\-\_\-rmdir(), fatfs\-\_\-stat(), fatfs\-\_\-status(), fatfs\-\_\-tests(), and mmc\-\_\-init().
+
+\hypertarget{disk_8h_ae7b9417320aaaa1c1dfb229cad6669d8}{\index{disk.\-h@{disk.\-h}!tm\-\_\-to\-\_\-fat@{tm\-\_\-to\-\_\-fat}}
+\index{tm\-\_\-to\-\_\-fat@{tm\-\_\-to\-\_\-fat}!disk.h@{disk.\-h}}
+\subsubsection[{tm\-\_\-to\-\_\-fat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} uint32\-\_\-t tm\-\_\-to\-\_\-fat (
+\begin{DoxyParamCaption}
+\item[{{\bf tm\-\_\-t} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{disk_8h_ae7b9417320aaaa1c1dfb229cad6669d8}
+
+
+F\-A\-T time structer reference. 
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{rtc_8h}{rtc.\-h} 
+
+\href{http://lxr.free-electrons.com/source/fs/fat/misc.c}{\tt http\-://lxr.\-free-\/electrons.\-com/source/fs/fat/misc.\-c} \begin{DoxyVerb}/// typedef struct
+/// {
+///     WORD   year;                                  /* 2000..2099 */
+///     BYTE   month;                                 /* 1..12 */
+///     BYTE   mday;                                  /* 1.. 31 */
+///     BYTE   wday;                                  /* 1..7 */
+///     BYTE   hour;                                  /* 0..23 */
+///     BYTE   min;                                   /* 0..59 */
+///     BYTE   sec;                                   /* 0..59 */
+/// } RTC;
+/// \end{DoxyVerb}
+ Convert Linux \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\-O\-S\-I\-X} \hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\-\_\-t} $\ast$ to F\-A\-T32 \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time}.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em t} & P\-O\-S\-I\-X struct tm $\ast$ to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+F\-A\-T32 time. 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file disk.\-c.
+
+
+
+Referenced by get\-\_\-fattime().
 
 
 

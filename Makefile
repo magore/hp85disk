@@ -52,7 +52,7 @@ hardware/rs232.c \
 hardware/spi.c \
 hardware/rtc.c \
 hardware/TWI_AVR8.c \
-lib/util.c \
+lib/str.c \
 lib/timer_hal.c \
 lib/timer.c \
 lib/time.c \
@@ -81,7 +81,7 @@ CSTD = gnu99
 LIBS    =
 LIBDIRS =
 #INCDIRS =/share/embedded/GPIB/mike/mine
-INCDIRS =.
+INCDIRS =. hardware lib gpib fatfs
 
 #DEFS    = F_CPU=20000000 SDEBUG=9 SOFTWARE_PP=1 SPOLL=1 HP9134L=1
 DEFS    = F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
@@ -168,8 +168,8 @@ SRCDIRS= . fatfs fatfs gpib hardware lib
 
 
 # Default target.
-all: doxy version $(LIBS) build size $(PROGS)
-#all: version $(LIBS) build size $(PROGS)
+#all: doxy version $(LIBS) build size $(PROGS)
+all: version $(LIBS) build size $(PROGS)
 
 flash:  all
 #
@@ -190,7 +190,7 @@ flash:  all
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
 	avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
-	#./term
+	./term
 	# ===================================================
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc

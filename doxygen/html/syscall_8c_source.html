@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* (C)ChaN, 2012                                                          */</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="hardware_8h.html">hardware/hardware.h</a>&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="user__config_8h.html">user_config.h</a>&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//#include &lt;stdlib.h&gt;       /* ANSI memory controls */</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//#include &lt;malloc.h&gt;       /* ANSI memory controls */</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
@@ -113,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">/  returned, the f_mount() function fails with FR_INT_ERR.</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> ff_cre_syncobj (    <span class="comment">/* 1:Function succeeded, 0:Could not create due to any error */</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> vol,           <span class="comment">/* Corresponding logical drive being processed */</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb">_SYNC_t</a>* sobj       <span class="comment">/* Pointer to return the created sync object */</span></div>
@@ -122,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> ret;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    *sobj = CreateMutex(<a class="code" href="hardware_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, FALSE, <a class="code" href="hardware_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);     <span class="comment">/* Win32 */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    *sobj = CreateMutex(<a class="code" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, FALSE, <a class="code" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);     <span class="comment">/* Win32 */</span></div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    ret = (int)(*sobj != INVALID_HANDLE_VALUE);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//  *sobj = SyncObjects[vol];       /* uITRON (give a static created semaphore) */</span></div>
@@ -147,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">/  returned, the f_mount() function fails with FR_INT_ERR.</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span> ff_del_syncobj (    <span class="comment">/* 1:Function succeeded, 0:Could not delete due to any error */</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb">_SYNC_t</a> sobj        <span class="comment">/* Sync object tied to the logical drive to be deleted */</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;)</div>
@@ -177,7 +177,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">/  When a FALSE is returned, the file function fails with FR_TIMEOUT.</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">int</span> ff_req_grant (  <span class="comment">/* TRUE:Got a grant to access the volume, FALSE:Could not get a grant */</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb">_SYNC_t</a> sobj    <span class="comment">/* Sync object to wait */</span></div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;)</div>
@@ -204,7 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">/* This function is called on leaving file functions to unlock the volume.</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keywordtype">void</span> ff_rel_grant (</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb">_SYNC_t</a> sobj    <span class="comment">/* Sync object to be signaled */</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;)</div>
@@ -230,12 +230,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">/* If a NULL is returned, the file function fails with FR_NOT_ENOUGH_CORE.</span></div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="comment">*/</span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="syscall_8c.html#aae72367cbfe6c94d252ff443ddf9e4f5">  148</a></span>&#160;<span class="keywordtype">void</span>* <a class="code" href="syscall_8c.html#aae72367cbfe6c94d252ff443ddf9e4f5">ff_memalloc</a> ( <span class="comment">/* Returns pointer to the allocated memory block */</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> msize      <span class="comment">/* Number of bytes to allocate */</span></div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;)</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;{</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(msize,1);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="str_8h.html#a22b308551dea873face80619301d5618">malloc</a>(msize);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
@@ -243,31 +243,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">/* Free a memory block                                                    */</span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">/*------------------------------------------------------------------------*/</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<a class="code" href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<a class="code" href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
 <div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="syscall_8c.html#aedef91705a17c6e4d4ab58c2dd405362">  161</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="syscall_8c.html#aedef91705a17c6e4d4ab58c2dd405362">ff_memfree</a> (</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">void</span>* mblock    <span class="comment">/* Pointer to the memory block to free */</span></div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;)</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;{</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(mblock);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="str_8h.html#a0f8c52d1c359b700088f8417b48e467b">free</a>(mblock);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="ram_8c_html_a9dc7d99df87239df4577b5b45ec6300c"><div class="ttname"><a href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a></div><div class="ttdeci">void safefree(void *p)</div><div class="ttdoc">Safe free - Only free a pointer if it is in malloc memory range. </div><div class="ttdef"><b>Definition:</b> <a href="ram_8c_source.html#l00104">ram.c:104</a></div></div>
-<div class="ttc" id="ram_8c_html_a23863723b09c3a4f836a5c10e1ecaa82"><div class="ttname"><a href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a></div><div class="ttdeci">void * safecalloc(int size, int elements)</div><div class="ttdoc">Safe Alloc - Display Error message if Calloc fails. </div><div class="ttdef"><b>Definition:</b> <a href="ram_8c_source.html#l00085">ram.c:85</a></div></div>
+<div class="ttc" id="user__config_8h_html"><div class="ttname"><a href="user__config_8h.html">user_config.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
 <div class="ttc" id="ffconf_8h_html_a526e3cac667f53cc9a48507873348e60"><div class="ttname"><a href="ffconf_8h.html#a526e3cac667f53cc9a48507873348e60">_FS_TIMEOUT</a></div><div class="ttdeci">#define _FS_TIMEOUT</div><div class="ttdef"><b>Definition:</b> <a href="ffconf_8h_source.html#l00180">ffconf.h:180</a></div></div>
-<div class="ttc" id="hardware_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="hardware_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00071">hardware.h:71</a></div></div>
+<div class="ttc" id="str_8h_html_a22b308551dea873face80619301d5618"><div class="ttname"><a href="str_8h.html#a22b308551dea873face80619301d5618">malloc</a></div><div class="ttdeci">MEMSPACE void * malloc(size_t size)</div></div>
 <div class="ttc" id="integer_8h_html_a4ae1dab0fb4b072a66584546209e7d58"><div class="ttname"><a href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a></div><div class="ttdeci">unsigned char BYTE</div><div class="ttdef"><b>Definition:</b> <a href="integer_8h_source.html#l00026">integer.h:26</a></div></div>
 <div class="ttc" id="syscall_8c_html_aedef91705a17c6e4d4ab58c2dd405362"><div class="ttname"><a href="syscall_8c.html#aedef91705a17c6e4d4ab58c2dd405362">ff_memfree</a></div><div class="ttdeci">MEMSPACE void ff_memfree(void *mblock)</div><div class="ttdef"><b>Definition:</b> <a href="syscall_8c_source.html#l00161">syscall.c:161</a></div></div>
-<div class="ttc" id="hardware_8h_html"><div class="ttname"><a href="hardware_8h.html">hardware.h</a></div><div class="ttdoc">Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. </div></div>
+<div class="ttc" id="user__config_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="user__config_8h_source.html#l00072">user_config.h:72</a></div></div>
+<div class="ttc" id="str_8h_html_a0f8c52d1c359b700088f8417b48e467b"><div class="ttname"><a href="str_8h.html#a0f8c52d1c359b700088f8417b48e467b">free</a></div><div class="ttdeci">MEMSPACE void free(void *p)</div></div>
 <div class="ttc" id="syscall_8c_html_aae72367cbfe6c94d252ff443ddf9e4f5"><div class="ttname"><a href="syscall_8c.html#aae72367cbfe6c94d252ff443ddf9e4f5">ff_memalloc</a></div><div class="ttdeci">MEMSPACE void * ff_memalloc(UINT msize)</div><div class="ttdef"><b>Definition:</b> <a href="syscall_8c_source.html#l00148">syscall.c:148</a></div></div>
 <div class="ttc" id="integer_8h_html_a36cb3b01d81ffd844bbbfb54003e06ec"><div class="ttname"><a href="integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a></div><div class="ttdeci">unsigned int UINT</div><div class="ttdef"><b>Definition:</b> <a href="integer_8h_source.html#l00035">integer.h:35</a></div></div>
 <div class="ttc" id="ff_8h_html"><div class="ttname"><a href="ff_8h.html">ff.h</a></div><div class="ttdoc">FatFS file system module include file R0.10b (C) ChaN, 2014. </div></div>
 <div class="ttc" id="ffconf_8h_html_a9a3f0670343e51652dd12b18fa90a9eb"><div class="ttname"><a href="ffconf_8h.html#a9a3f0670343e51652dd12b18fa90a9eb">_SYNC_t</a></div><div class="ttdeci">#define _SYNC_t</div><div class="ttdef"><b>Definition:</b> <a href="ffconf_8h_source.html#l00181">ffconf.h:181</a></div></div>
-<div class="ttc" id="hardware_8h_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="hardware_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="hardware_8h_source.html#l00017">hardware.h:17</a></div></div>
+<div class="ttc" id="user__config_8h_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="user__config_8h_source.html#l00018">user_config.h:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 21:20:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 19 2015 20:52:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

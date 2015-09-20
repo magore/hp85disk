@@ -10,7 +10,7 @@
 
 */
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 #include "defines.h"
 #include "gpib_hal.h"
@@ -56,7 +56,7 @@ void printer_open(char *name)
         clock_gettime(0, (ts_t *) &ts);
         seconds = ts.tv_sec;
         tc = gmtime(&seconds);
-        mysprintf(fname,"/plot-%02d%s%04d-%02d%02d%02d.plt",
+        sprintf(fname,"/plot-%02d%s%04d-%02d%02d%02d.plt",
             tc->tm_mday,
             tm_mon_to_ascii(tc->tm_mon),
             tc->tm_year + 1900,
@@ -70,13 +70,13 @@ void printer_open(char *name)
         ptr = name;
     }
 
-    myprintf("Capturing plot to:%s\n", ptr);
+    printf("Capturing plot to:%s\n", ptr);
 
     plot.fp = fopen(ptr,"w");
     if(plot.fp == NULL)
     {
         perror("open failed");
-        myprintf("exiting...\n");
+        printf("exiting...\n");
         return;
     }
 
@@ -118,12 +118,12 @@ void printer_close()
         plot.error = 1;
 
     if(plot.error)
-        myprintf("ERROR durring write\n");
+        printf("ERROR durring write\n");
 
     if(plot.fp)
     {
         fclose(plot.fp);
-        myprintf("\nDONE: %08ld\n",plot.count);
+        printf("\nDONE: %08ld\n",plot.count);
     }
 
     plot.error = 0;
@@ -158,7 +158,7 @@ int receive_plot_flush()
     if(ret != plot.ind)
     {
         perror("receive_plot_flush");
-        myprintf("write failed: wanted %d, got:%d\n", plot.ind, ret);
+        printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
         return(-1);
     }
 
@@ -183,7 +183,7 @@ void printer_buffer( uint16_t val )
     uint16_t ch;
 
     if( ( plot.count & 255L ) == 0)
-        myprintf("%08ld\r",plot.count);
+        printf("%08ld\r",plot.count);
 
     ch = val & 0xff;
     if(val & (0xff00 & ~REN_FLAG))
@@ -234,7 +234,7 @@ void receive_plot( char *name )
     name = skipspaces(name);
     if(!*name)
     {
-        myprintf("receive_plot: expected file name\m");
+        printf("receive_plot: expected file name\m");
         return;
     }
 
@@ -248,7 +248,7 @@ void receive_plot( char *name )
         ch = gpib_read_byte();
 
         if(( plot.count & 255L ) == 0)
-            myprintf("%08ld\r",plot.count);
+            printf("%08ld\r",plot.count);
 
         if(ch & (0xff00 & ~REN_FLAG))
         {
@@ -265,9 +265,9 @@ void receive_plot( char *name )
             plot.buf[plot.ind++] = ch;
 
             if(ch == '\n')
-                myprintf("\n%ld EOL\n", plot.count);
+                printf("\n%ld EOL\n", plot.count);
             if(ch == '\r')
-                myprintf("\n%ld CR\n", plot.count);
+                printf("\n%ld CR\n", plot.count);
 
             if(plot.ind >= 256)
             {
@@ -296,7 +296,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SC PRINTER Listen: %02x]\n",  0xff & ch );
+            printf("[SC PRINTER Listen: %02x]\n",  0xff & ch );
 #endif
         return(0);
     }
@@ -305,7 +305,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            myprintf("[SC PRINTER Talk: %02x]\n",  0xff & ch );
+            printf("[SC PRINTER Talk: %02x]\n",  0xff & ch );
 #endif
         return(0);
     }
@@ -335,9 +335,9 @@ void plot_echo( int echo )
     gpib_decode_header();
 
     if(echo)
-        myprintf("echo: on\n");
+        printf("echo: on\n");
     else
-        myprintf("echo: off\n");
+        printf("echo: off\n");
 
     count = 0;
     while(1)                                      // Main loop, forever
@@ -346,7 +346,7 @@ void plot_echo( int echo )
         {
 #if 1
             extern void uart_put(uint8_t c);
-            extern void get_line (char *buff, int len);
+            extern int get_line (char *buff, int len);
 
             uart_put('>');
             get_line(Line,40);
@@ -357,7 +357,7 @@ void plot_echo( int echo )
             }
             status = ATN_FLAG;
             if(gpib_write_str(plot_str, sizeof(plot_str), &status) != sizeof(plot_str))
-                myprintf("[write failed]\n");
+                printf("[write failed]\n");
 
             len = strlen(ptr);
             ptr[len++] = '\r';
@@ -365,7 +365,7 @@ void plot_echo( int echo )
 
             status = 0;
             if(gpib_write_str((uint8_t *) ptr, len, &status) != len)
-                myprintf("[write failed]\n");
+                printf("[write failed]\n");
 #else
             return;
 #endif
@@ -373,7 +373,7 @@ void plot_echo( int echo )
         ch = gpib_read_byte();
 
         if(( count & 255L ) == 0)
-            myprintf("%08ld\r",count);
+            printf("%08ld\r",count);
         if(echo)
         {
             if(ch & (0xff00 & ~REN_FLAG))
@@ -389,5 +389,5 @@ void plot_echo( int echo )
         }
         ++count;
     }
-    myprintf("\nLogged %ld\n",count);
+    printf("\nLogged %ld\n",count);
 }

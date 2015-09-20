@@ -19,7 +19,7 @@
              (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
 
 -------------------------------------------------------------------------*/
-#include "hardware/hardware.h"
+#include "user_config.h"
 
 
 #define ABORT_FLAG 1  /*< user abort */

@@ -3,7 +3,6 @@ var searchData=
   ['data_5fmask',['DATA_MASK',['../gpib_8h.html#a9e6a597bbfd901b2259ad39de928d0c0',1,'gpib.h']]],
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['dde',['DDE',['../ff_8c.html#af39f317ac33b961daaff4b8d8a7ec792',1,'ff.c']]],
-  ['debug_5fprintf',['DEBUG_PRINTF',['../hardware_8h.html#aa5c75e1527354bbd18cfc2033de80c5a',1,'hardware.h']]],
   ['def_5fnamebuf',['DEF_NAMEBUF',['../ff_8c.html#a40aba328871d2be78bfdd74b390275db',1,'ff.c']]],
   ['default_5ftime',['DEFAULT_TIME',['../main_8c.html#a7b7a6b774a78bf2034b3b9ba5702da15',1,'main.c']]],
   ['dir_5fattr',['DIR_Attr',['../ff_8c.html#ad3233e40118ed66095f3c9545b788f8a',1,'ff.c']]],

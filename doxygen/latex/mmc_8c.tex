@@ -6,7 +6,7 @@
 M\-M\-C upper level interface to Fat\-F\-S.  
 
 
-{\ttfamily \#include $<$hardware/hardware.\-h$>$}\\*
+{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
 {\ttfamily \#include \char`\"{}mmc\-\_\-hal.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}diskio.\-h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}disk.\-h\char`\"{}}\\*
@@ -57,33 +57,33 @@ M\-M\-C upper level interface to Fat\-F\-S.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\-\_\-ready} (\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} wt)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\-\_\-ready} (\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} wt)
 \item 
-static \hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc_8c_a7f06b74e5ee0cfbbc5779ed2c8a0369a}{mmc\-\_\-deselect} (void)
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{mmc_8c_a7f06b74e5ee0cfbbc5779ed2c8a0369a}{mmc\-\_\-deselect} (void)
 \begin{DoxyCompactList}\small\item\em Deselect the card and release S\-P\-I bus. \end{DoxyCompactList}\item 
-static \hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a2661ae4f7be7777f1015c91d8444fac0}{mmc\-\_\-select} (void)
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a2661ae4f7be7777f1015c91d8444fac0}{mmc\-\_\-select} (void)
 \begin{DoxyCompactList}\small\item\em Select the card and wait for ready. \end{DoxyCompactList}\item 
-static \hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\-\_\-datablock} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} btr)
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\-\_\-datablock} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} btr)
 \begin{DoxyCompactList}\small\item\em Receive a data packet from M\-M\-C. \end{DoxyCompactList}\item 
-static \hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a2174d7259d1d933e0ea0dc45eee4af62}{xmit\-\_\-datablock} (const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} \hyperlink{util_8h_ae9142769a957bcb8c0fad1934576f576}{token})
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{mmc_8c_a2174d7259d1d933e0ea0dc45eee4af62}{xmit\-\_\-datablock} (const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} \hyperlink{str_8h_ae9142769a957bcb8c0fad1934576f576}{token})
 \begin{DoxyCompactList}\small\item\em Send a data packet to M\-M\-C. \end{DoxyCompactList}\item 
-static \hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} \hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\-\_\-cmd} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} cmd, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} arg)
+static \hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} \hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\-\_\-cmd} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} cmd, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} arg)
 \begin{DoxyCompactList}\small\item\em Send a command packet to M\-M\-C. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc_8c_a2137eb050ce72b79a588d58530065d08}{mmc\-\_\-disk\-\_\-initialize} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc_8c_a2137eb050ce72b79a588d58530065d08}{mmc\-\_\-disk\-\_\-initialize} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv)
 \begin{DoxyCompactList}\small\item\em Public Functions. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc_8c_a3a80808dbeee4b940bbba6128564dcba}{mmc\-\_\-disk\-\_\-status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc_8c_a3a80808dbeee4b940bbba6128564dcba}{mmc\-\_\-disk\-\_\-status} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv)
 \begin{DoxyCompactList}\small\item\em Get Disk Status. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_a95ef69f6e5608dd73fd22f29bf619808}{mmc\-\_\-disk\-\_\-read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} count)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_a95ef69f6e5608dd73fd22f29bf619808}{mmc\-\_\-disk\-\_\-read} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} count)
 \begin{DoxyCompactList}\small\item\em Read Sector(s) \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_ac5d707caafd1e9d2bf6bc7c933b13537}{mmc\-\_\-disk\-\_\-write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} count)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_ac5d707caafd1e9d2bf6bc7c933b13537}{mmc\-\_\-disk\-\_\-write} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} $\ast$buff, \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} sector, \hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\-I\-N\-T} count)
 \begin{DoxyCompactList}\small\item\em Write Sector(s) \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_a2a87f14a79ee4e7e9b7323d58d7dbba3}{mmc\-\_\-disk\-\_\-ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} cmd, void $\ast$buff)
+\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} \hyperlink{diskio_8h_a54ffb9f13138d2b17dd599ba880696ad}{D\-R\-E\-S\-U\-L\-T} \hyperlink{mmc_8c_a2a87f14a79ee4e7e9b7323d58d7dbba3}{mmc\-\_\-disk\-\_\-ioctl} (\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} pdrv, \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} cmd, void $\ast$buff)
 \begin{DoxyCompactList}\small\item\em Miscellaneous Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 volatile \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\-S\-T\-A\-T\-U\-S} \hyperlink{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}{Stat} = \hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\-T\-A\-\_\-\-N\-O\-I\-N\-I\-T}
-\begin{DoxyCompactList}\small\item\em M\-M\-C timer tic in Microseconds. \end{DoxyCompactList}\item 
+\item 
 static \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\-Y\-T\-E} \hyperlink{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}{Card\-Type}
 \end{DoxyCompactItemize}
 
@@ -588,10 +588,6 @@ Referenced by mmc\-\_\-disk\-\_\-initialize(), mmc\-\_\-disk\-\_\-ioctl(), mmc\-
 \hypertarget{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}{\index{mmc.\-c@{mmc.\-c}!Stat@{Stat}}
 \index{Stat@{Stat}!mmc.c@{mmc.\-c}}
 \subsubsection[{Stat}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf D\-S\-T\-A\-T\-U\-S} Stat = {\bf S\-T\-A\-\_\-\-N\-O\-I\-N\-I\-T}}}\label{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}
-
-
-M\-M\-C timer tic in Microseconds. 
-
 
 
 Definition at line 73 of file mmc.\-c.

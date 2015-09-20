@@ -12,6 +12,5 @@ var searchData=
   ['leave_5fff',['LEAVE_FF',['../ff_8c.html#a7e653d8ca0ae09faa49cd5b7335fea84',1,'ff.c']]],
   ['lle',['LLE',['../ff_8c.html#aff828b43518c49e1d637a822879b135d',1,'ff.c']]],
   ['llo',['LLO',['../amigo_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;amigo.h'],['../defines_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;defines.h']]],
-  ['local',['LOCAL',['../hardware_8h.html#a3758dd5d300a594312c95bc393378df0',1,'hardware.h']]],
   ['lstat',['lstat',['../posix_8h.html#ae730c85752284268b39560df693cb207',1,'posix.h']]]
 ];

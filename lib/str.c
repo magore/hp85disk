@@ -1,7 +1,7 @@
 /**
- @file util.c
+ @file str.c
 
- @brief Flash read and bit utilities
+ @brief String matching functions
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par You are free to use this code under the terms of GPL
@@ -21,9 +21,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#include <hardware/hardware.h>
-#include "util.h"
+#include <user_config.h>
+#include "str.h"
 
 ///@brief Skip white space in a string - tabs and spaces.
 ///
@@ -129,7 +128,7 @@ char *strnalloc(char *str, int len)
 
     if(!str)
         return(NULL);
-    ptr = safecalloc(len+1,1);
+    ptr = calloc(len+1,1);
     if(!ptr)
         return(ptr);
     strncpy(ptr,str,len);
@@ -155,7 +154,7 @@ char *stralloc(char *str)
     if(!str)
         return(str);;
     len  = strlen(str);
-    ptr = safecalloc(len+1,1);
+    ptr = calloc(len+1,1);
     if(!ptr)
         return(ptr);
     strcpy(ptr,str);
@@ -264,7 +263,6 @@ uint8_t hexd( char c )
     return(0xff);                                 // error
 }
 
-
 ///@brief Convert ASCII hex string to long integer.
 ///
 ///@param[in] p: String to convert.
@@ -276,6 +274,8 @@ long atoh(const char *p)
 {
     return strtol(p, (char **) NULL, 16);
 }
+
+
 
 ///@brief Is a character upper case
 ///

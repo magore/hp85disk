@@ -6,7 +6,7 @@
 
 */
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 #include "ff.h"
 
 #if _USE_LFN != 0

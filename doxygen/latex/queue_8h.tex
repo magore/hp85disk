@@ -14,23 +14,23 @@ struct \hyperlink{structqueue__t}{queue\-\_\-t}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$ \hyperlink{queue_8h_a9bdc538e328e481eb5f5b52ba10d36b9}{queue\-\_\-new} (\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
+\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$ \hyperlink{queue_8h_a9bdc538e328e481eb5f5b52ba10d36b9}{queue\-\_\-new} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
 \begin{DoxyCompactList}\small\item\em Create a ring buffer of a given size. \end{DoxyCompactList}\item 
 void \hyperlink{queue_8h_a6bac5e705b44fd0b677b9ff9b3a19a23}{queue\-\_\-del} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Delete a ring buffer and free memory. \end{DoxyCompactList}\item 
 void \hyperlink{queue_8h_af654fe25b559b820fabf86f0a685e57a}{queue\-\_\-flush} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Flush ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a3d73971b8454e29803ddc0763a2413c6}{queue\-\_\-used} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a3d73971b8454e29803ddc0763a2413c6}{queue\-\_\-used} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Find the number of bytes used by the ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a5c47c1a42dc50ea36aab9629c4378b37}{queue\-\_\-empty} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a5c47c1a42dc50ea36aab9629c4378b37}{queue\-\_\-empty} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Is the ring buffer empty ? \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a6309ae001025faf270eb01c0f78c2cba}{queue\-\_\-space} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a6309ae001025faf270eb01c0f78c2cba}{queue\-\_\-space} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Find the amount of free space remaining in the ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\-\_\-full} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\-\_\-full} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Is the ring buffer full ? \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a69e47095291acc128fa52906bfe5cebf}{queue\-\_\-push\-\_\-buffer} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q, uint8\-\_\-t $\ast$src, \hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_a69e47095291acc128fa52906bfe5cebf}{queue\-\_\-push\-\_\-buffer} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q, uint8\-\_\-t $\ast$src, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
 \begin{DoxyCompactList}\small\item\em Add a data buffer to the ring buffer Note\-: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-\hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_aff31d44fd9a36c7e59740485c6142f4f}{queue\-\_\-pop\-\_\-buffer} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q, uint8\-\_\-t $\ast$dst, \hyperlink{hardware_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
+\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} \hyperlink{queue_8h_aff31d44fd9a36c7e59740485c6142f4f}{queue\-\_\-pop\-\_\-buffer} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q, uint8\-\_\-t $\ast$dst, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
 \begin{DoxyCompactList}\small\item\em Get a data buffer from the ring buffer. Note\-: This function does not wait/block until there is enough data to fill the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
 int \hyperlink{queue_8h_a918e9bab1d67104964e167722a4d3793}{queue\-\_\-pushc} (\hyperlink{structqueue__t}{queue\-\_\-t} $\ast$q, uint8\-\_\-t c)
 \begin{DoxyCompactList}\small\item\em Add a byte to the ring buffer Note\-: This function does not wait/block util there is enough free space to meet the request. We assume you check \hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\-\_\-full()} before calling this function! Otherwise you must check that the return value matches 1. \end{DoxyCompactList}\item 

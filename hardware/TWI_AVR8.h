@@ -1,7 +1,7 @@
 #ifndef _TWI_AVR8_H
 #define _TWI_AVR8_H
 
-#include "hardware.h"
+#include "user_config.h"
 
 /*
              LUFA Library

@@ -9,7 +9,7 @@ var searchData=
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
   ['fn',['fn',['../structDIR.html#a32da2f31d6c3b6c42eef981cb0cfd2ee',1,'DIR']]],
   ['fname',['fname',['../structFILINFO.html#abd852510f2f79b4ec773156d8942dc7c',1,'FILINFO']]],
-  ['fp',['fp',['../struct__plot.html#aec1bc5aae9d9c56584ee0cbb31515ac6',1,'_plot']]],
+  ['fp',['fp',['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()'],['../struct__plot.html#aec1bc5aae9d9c56584ee0cbb31515ac6',1,'_plot::fp()']]],
   ['fp_5ffile',['fp_file',['../gpib__task_8c.html#aa82c05f8b2bc31c887ebb86caddec02a',1,'gpib_task.c']]],
   ['fptr',['fptr',['../structFIL.html#a75d29cf9257c827d117887b9f924c4a9',1,'FIL']]],
   ['free_5fclust',['free_clust',['../structFATFS.html#a5fb49e6ac511bd97eaffdd636d0e4165',1,'FATFS']]],

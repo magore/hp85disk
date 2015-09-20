@@ -17,7 +17,7 @@
 #ifndef AMIGO_H_
 #define AMIGO_H_
 
-#include "hardware/hardware.h"
+#include "user_config.h"
 #include "defines.h"
 
 #define UNL     0x3F                              // Unlisten

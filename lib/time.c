@@ -23,13 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-#include <hardware/cpu.h>
-//#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <user_config.h>
 
-#include <lib/timer_hal.h>
-#include <lib/time.h>
+#include "timer_hal.h"
+#include "time.h"
 
 /// @brief  System Clock Time
 extern volatile ts_t __clock;
@@ -70,6 +67,7 @@ const char *__WDay[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat","BAD"};
 ///
 /// @return string pointer to day.
 /// @return "BAD" on error.
+MEMSPACE
 char *tm_wday_to_ascii(int i)
 {
     if(i >= 0 && i <= 6)
@@ -349,7 +347,7 @@ time_t timegm( tm_t *t )
 MEMSPACE
 char *asctime_r(tm_t *t, char *buf)
 {
-    mysprintf(buf,"%s %s %2d %02d:%02d:%02d %4d",
+    snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
         __WDay[t->tm_wday],
         __Month[t->tm_mon],
         t->tm_mday,
@@ -629,9 +627,9 @@ MEMSPACE
 int setdate (void)
 {
     char buf[40];
-	extern void get_line (char *buff, int len);
+	extern int get_line (char *buff, int len);
 
-    DEBUG_PRINTF("Enter date YYYY MM DD HH:MM:SS >");
+    printf("Enter date YYYY MM DD HH:MM:SS >");
     get_line(buf,40);
 
 	return(setdate_r(buf));
@@ -653,7 +651,7 @@ int setdate_r (char *buf)
     tm.tm_year=tm.tm_mon=tm.tm_mday=tm.tm_hour=tm.tm_min=tm.tm_sec=0;
 
 
-#ifndef SCANF
+#ifdef NO_SCANF
     while(*buf && *buf < '0' && *buf > '9')
         ++buf;
     tm.tm_year = strtol(buf,&buf,10);
@@ -684,44 +682,33 @@ int setdate_r (char *buf)
         &tm.tm_sec);
 #endif
 
-
-#if 0
-    DEBUG_PRINTF("%4d %2d %2d %02d:%02d:%02d\n",
-        tm.tm_year,
-        tm.tm_mon,
-        tm.tm_mday,
-        tm.tm_hour,
-        tm.tm_min,
-        tm.tm_sec);
-#endif
-
     tm.tm_mon--;
 
     if(tm.tm_year < 1970 || tm.tm_year > 2038)
     {
-        DEBUG_PRINTF("invalid year: %d\n",tm.tm_year);
+        printf("invalid year: %d\n",tm.tm_year);
         return(-1);
     }
     if(tm.tm_year >= 1900)
         tm.tm_year -= 1900;
     if(tm.tm_mon < 0 || tm.tm_mon > 11)
     {
-        DEBUG_PRINTF("invalid mon: %d\n",tm.tm_year);
+        printf("invalid mon: %d\n",tm.tm_year);
         return(-1);
     }
     if(tm.tm_mday < 1 || tm.tm_mday > 31)
     {
-        DEBUG_PRINTF("invalid day: %d\n",tm.tm_mday);
+        printf("invalid day: %d\n",tm.tm_mday);
         return(-1);
     }
     if(tm.tm_hour < 0 || tm.tm_hour > 23)
     {
-        DEBUG_PRINTF("invalid hour: %d\n",tm.tm_hour);
+        printf("invalid hour: %d\n",tm.tm_hour);
         return(-1);
     }
     if(tm.tm_min < 0 || tm.tm_min > 59)
     {
-        DEBUG_PRINTF("invalid min: %d\n",tm.tm_min);
+        printf("invalid min: %d\n",tm.tm_min);
         return(-1);
     }
 
@@ -734,7 +721,7 @@ int setdate_r (char *buf)
 #ifdef RTC
     if( !rtc_init(1, (time_t) seconds ) )
     {
-        DEBUG_PRINTF("rtc force init failed\n");
+        printf("rtc force init failed\n");
         return(-1);
     }
 #endif

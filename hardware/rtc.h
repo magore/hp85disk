@@ -13,7 +13,7 @@
 #ifndef _RTC_H_
 #define _RTC_H_
 
-#include "hardware.h"
+#include "user_config.h"
 
 
 int rtc_ok;

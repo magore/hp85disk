@@ -26,8 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef TIME_H
 #define TIME_H
 
-#include <hardware/hardware.h>
-#include <string.h>
+#include <user_config.h>
 
 #define EPOCH_YEAR    1970    /*< Thursday Jan 1 1970 */
 #define EPOCH_DAY        4    /*< Sunday = 0 ... Saturday = 6 */
@@ -92,29 +91,28 @@ extern volatile ts_t __clock;
 /// @brief  System Time Zone
 extern tz_t __tzone;
 
-/* time.c */
-char *tm_wday_to_ascii ( int i );
-char *tm_mon_to_ascii ( int i );
-int time_to_tm ( time_t epoch , int32_t offset , tm_t *t );
-time_t timegm ( tm_t *t );
-char *asctime_r ( tm_t *t , char *buf );
-char *asctime ( tm_t *t );
-char *ctime_r ( time_t *t , char *buf );
-char *ctime ( time_t *tp );
-char *ctime_gm ( time_t *tp );
-tm_t *gmtime_r ( time_t *tp , tm_t *result );
-tm_t *gmtime ( time_t *tp );
-tm_t *localtime_r ( time_t *t , tm_t *result );
-tm_t *localtime ( time_t *tp );
-time_t mktime ( tm_t *t );
-int clock_settime ( clockid_t clk_id , const struct timespec *tp );
-int gettimezone ( tz_t *tz );
-int settimezone ( tz_t *tz );
-int gettimeofday ( tv_t *tv , tz_t *tz );
-time_t time ( time_t *t );
-int settimeofday ( tv_t *tv , tz_t *tz );
-void clock_set ( uint32_t seconds , uint32_t us );
-int setdate ( void );
-int setdate_r ( char *buf );
+/* lib/time.c */
+MEMSPACE char *tm_wday_to_ascii ( int i );
+MEMSPACE char *tm_mon_to_ascii ( int i );
+MEMSPACE int time_to_tm ( time_t epoch , int32_t offset , tm_t *t );
+MEMSPACE time_t timegm ( tm_t *t );
+MEMSPACE char *asctime_r ( tm_t *t , char *buf );
+MEMSPACE char *asctime ( tm_t *t );
+MEMSPACE char *ctime_r ( time_t *t , char *buf );
+MEMSPACE char *ctime ( time_t *tp );
+MEMSPACE char *ctime_gm ( time_t *tp );
+MEMSPACE tm_t *gmtime_r ( time_t *tp , tm_t *result );
+MEMSPACE tm_t *gmtime ( time_t *tp );
+MEMSPACE tm_t *localtime_r ( time_t *t , tm_t *result );
+MEMSPACE tm_t *localtime ( time_t *tp );
+MEMSPACE time_t mktime ( tm_t *t );
+MEMSPACE int gettimezone ( tz_t *tz );
+MEMSPACE int settimezone ( tz_t *tz );
+MEMSPACE int gettimeofday ( tv_t *tv , tz_t *tz );
+MEMSPACE time_t time ( time_t *t );
+MEMSPACE int settimeofday ( tv_t *tv , tz_t *tz );
+MEMSPACE void clock_set ( uint32_t seconds , uint32_t us );
+MEMSPACE int setdate ( void );
+MEMSPACE int setdate_r ( char *buf );
 
 #endif

@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _DISK_H_
 #define _DISK_H_
 
-#include <hardware/hardware.h>
+#include <user_config.h>
 
 #include "ff.h"
 #include "diskio.h"
@@ -50,10 +50,12 @@ extern WORD    AccFiles, AccDirs;                 // Total files and directories
 extern FATFS   Fatfs[_VOLUMES];                   // File system object for each logical drive
 
 /* disk.c */
-void put_rc ( int rc );
-FILINFO *fatfs_alloc_finfo ( int allocate );
-void fatfs_free_filinfo ( FILINFO *finfo );
-int fatfs_scan_files ( char *path );
-void fatfs_status ( char *ptr );
-void fatfs_filinfo_list ( FILINFO *info );
+MEMSPACE uint32_t tm_to_fat ( tm_t *t );
+MEMSPACE DWORD get_fattime ( void );
+MEMSPACE void put_rc ( int rc );
+MEMSPACE FILINFO *fatfs_alloc_finfo ( int allocate );
+MEMSPACE void fatfs_free_filinfo ( FILINFO *finfo );
+MEMSPACE int fatfs_scan_files ( char *path );
+MEMSPACE void fatfs_status ( char *ptr );
+MEMSPACE void fatfs_filinfo_list ( FILINFO *info );
 #endif

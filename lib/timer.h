@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#include <hardware/hardware.h>
-#include <lib/time.h>
+#include <user_config.h>
+#include <time.h>
 
 ///@brief Number of user timer tasks
 #define MAX_TIMER_CNT 8
