@@ -44,4 +44,5 @@ DSTATUS mmc_disk_status ( BYTE pdrv );
 DRESULT mmc_disk_read ( BYTE pdrv , BYTE *buff , DWORD sector , UINT count );
 DRESULT mmc_disk_write ( BYTE pdrv , const BYTE *buff , DWORD sector , UINT count );
 DRESULT mmc_disk_ioctl ( BYTE pdrv , BYTE cmd , void *buff );
+
 #endif                                            // _MMC_H_

@@ -1,7 +1,6 @@
-
 /**
  @file fatfs/fatfs_utils.h
-
+ 
  @brief fatfs test utilities with user interface
 
  @par Copyright &copy; 2015 Mike Gore, GPL License

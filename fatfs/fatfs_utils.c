@@ -1,7 +1,7 @@
 /**
  @file fatfs/fatfs_utils.c
 
- @brief fatfs test utilities with user interface.
+ @brief fatfs test utilities with user interface
 
  @par Copyright &copy; 2015 Mike Gore, GPL License
  @par Copyright &copy; 2013 ChaN.
@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "user_config.h"
 #include "posix.h"
 #include "disk.h"
@@ -31,7 +30,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /// @brief FatFS size lookup table
 static  const BYTE ft[] = {0,12,16,32};
-
 
 /// @brief Perform key FatFs diagnostics tests.
 ///
@@ -44,9 +42,9 @@ void mmc_test(void)
 {
     struct stat p;
 
-    printf("==============================\n");
+	printf("==============================\n");
     printf("START MMC TEST\n");
-    fatfs_status("/");
+	fatfs_status("/");
     printf("MMC Directory List\n");
     fatfs_ls("/");
     fatfs_cd("/");
@@ -65,7 +63,7 @@ void mmc_test(void)
     dump_stat(&p);
 
     printf("END MMC TEST\n");
-    printf("==============================\n");
+	printf("==============================\n");
 }
 
 
@@ -85,7 +83,7 @@ void fatfs_help( void )
         "create file str\n"
         "ls dir\n"
         "mmc_init\n"
-        "mmc_test\n"
+ 		"mmc_test\n"
         "mkdir str\n"
         "mkfs\n"
         "pwd\n"
@@ -96,6 +94,7 @@ void fatfs_help( void )
         "rename file1 file2\n"
         "fatfs_help\n");
 }
+
 
 
 /// @brief  List files under a specified directory
@@ -185,9 +184,9 @@ void fatfs_cat(char *name)
     int res;
     FIL fp;
     int i;
-    long size =0;
-    char *ptr;
-    int ret;
+	long size =0;
+	char *ptr;
+	int ret;
 
     printf("Reading[%s]\n", name);
     res = f_open(&fp, name, FA_OPEN_EXISTING | FA_READ);
@@ -199,13 +198,13 @@ void fatfs_cat(char *name)
         return;
     }
 
-    ptr = calloc(512,1);
-    if(!ptr)
-    {
-        printf("Calloc failed!\n");
-        f_close(&fp);
-        return;
-    }
+	ptr = calloc(512,1);
+	if(!ptr)
+	{
+		printf("Calloc failed!\n");
+		f_close(&fp);
+		return;
+	}
     while(1)
     {
 /// @todo FIXME
@@ -216,20 +215,21 @@ void fatfs_cat(char *name)
             put_rc(res);
             break;
         }
-        ret = s1;
+		ret = s1;
         if (!s1)
-        {
+		{
             break;
-        }
-        size += ret;
+		}
+		size += ret;
         for(i=0;i<ret;++i)
             putchar(ptr[i]);
     }
     printf("\n");
     f_close(&fp);
-    free(ptr);
+	free(ptr);
     printf("%lu bytes\n", size);
 }
+
 
 /// @brief  Copy a file.
 ///
@@ -247,8 +247,8 @@ void fatfs_copy(char *from,char *to)
     FIL file1,file2;
     int res;
     long p1;
-    char *ptr;
-
+	char *ptr;
+	
 
     printf("Opening %s\n", from);
     res = f_open(&file1, from, FA_OPEN_EXISTING | FA_READ);
@@ -265,14 +265,14 @@ void fatfs_copy(char *from,char *to)
         f_close(&file1);
         return;
     }
-    ptr = calloc(512,1);
-    if(!ptr)
-    {
-        printf("Calloc failed!\n");
+	ptr = calloc(512,1);
+	if(!ptr)
+	{
+		printf("Calloc failed!\n");
         f_close(&file1);
         f_close(&file2);
-        return;
-    }
+		return;
+	}
     printf("\nCopying...\n");
     p1 = 0;
     for (;;)
@@ -287,10 +287,11 @@ void fatfs_copy(char *from,char *to)
     if (res)
         put_rc(res);
     printf("%lu bytes copied.\n", p1);
-    free(ptr);
+	free(ptr);
     f_close(&file1);
     f_close(&file2);
 }
+
 
 /// @brief  Create a new file from a user supplied string.
 ///
@@ -331,7 +332,7 @@ void fatfs_create(char *name,char *str)
         printf("Write error - wanted(%d) got(%d)\n",s1,len);
         put_rc(res);
         return;
-                                                 }
+    }
     f_close(&fp);
 }
 
@@ -351,7 +352,7 @@ void fatfs_rm(char *name)
     put_rc(f_unlink(name));
 }
 
- 
+
 /// @brief  Make a directory.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -397,18 +398,18 @@ void fatfs_stat(char *name)
 {
     FILINFO *info = fatfs_alloc_finfo( 0 );
 ;
-    int res;
+	int res;
 
     printf("stat [%s]\n", name);
     res = f_stat(name, info);
-    if(res == FR_OK)
-    {
-        fatfs_filinfo_list(info);
-    }
-    else
-    {
-        put_rc(res);
-    }
+	if(res == FR_OK)
+	{
+		fatfs_filinfo_list(info);
+	}
+	else
+	{
+		put_rc(res);
+	}
 }
 
 /// @brief  Change directory.
@@ -446,8 +447,6 @@ void fatfs_pwd(void)
         printf("pwd [%s]\n", str);
 #endif
 }
- 
-
 /// @brief FatFs test parser
 ///
 ///
@@ -463,7 +462,7 @@ MEMSPACE
 int fatfs_tests(char *str)
 {
 
-    int res;
+	int res;
     int len;
     char *ptr;
     long p1, p2;
@@ -487,13 +486,13 @@ int fatfs_tests(char *str)
         FATFS fs;
         ptr += len;
 		/* Register work area to the logical drive 0 */
-        res = f_mount(&fs, "0:", 0);  
-        put_rc(res);
-        if (res)
-            return(1);
-		/* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
+        res = f_mount(&fs, "0:", 0);                    
+		put_rc(res);
+		if (res)
+			return(1);
+	   /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
         res = f_mkfs("0:", 0, 0);
-        put_rc(res);
+		put_rc(res);
         return(1);
     }
     else if ((len = token(ptr,"ls")) )

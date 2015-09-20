@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef _DISK_H_
 #define _DISK_H_
 
@@ -58,4 +57,5 @@ MEMSPACE void fatfs_free_filinfo ( FILINFO *finfo );
 MEMSPACE int fatfs_scan_files ( char *path );
 MEMSPACE void fatfs_status ( char *ptr );
 MEMSPACE void fatfs_filinfo_list ( FILINFO *info );
+
 #endif

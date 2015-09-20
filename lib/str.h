@@ -36,7 +36,7 @@
 #define SPACES " \t\r"
 #define SPACESNL " \t\n\r"
 
-/* lib/str.c */
+/* str.c */
 MEMSPACE char *skipspaces ( char *ptr );
 MEMSPACE char *nextspace ( char *ptr );
 MEMSPACE char *skipchars ( char *str , char *pat );
