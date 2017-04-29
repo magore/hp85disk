@@ -1,12 +1,14 @@
 var searchData=
 [
   ['s3000',['s3000',['../structVolumeLabelType.html#ac7659e37fbb2bcb0b66c0a0172f9b16c',1,'VolumeLabelType']]],
-  ['sclust',['sclust',['../structFIL.html#ad308b74c8d6975c6a9c30d90b4124c40',1,'FIL::sclust()'],['../structDIR.html#a9212af5877b94d790dd3bab3aa320994',1,'DIR::sclust()']]],
+  ['sclust',['sclust',['../struct__FDID.html#ae2fbaaa31b5d12b333cb6d1ded099412',1,'_FDID']]],
   ['secondary',['secondary',['../gpib_8c.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c'],['../gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c']]],
-  ['sect',['sect',['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR']]],
+  ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['sector',['sector',['../structDiskType.html#a6f0a12d4184ccb30a7a5e6e6e713ca85',1,'DiskType']]],
   ['sectors_5fper_5ftrack',['sectors_per_track',['../struct__disp__parm.html#a870887d0582245d0c35f34724180463c',1,'_disp_parm']]],
-  ['size',['size',['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t']]],
+  ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
+  ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
+  ['space',['space',['../unionf__t.html#aba20a97e95d14a076e9c175989022717',1,'f_t']]],
   ['spi0_5finit_5fstate',['SPI0_Init_state',['../spi_8c.html#a4d167d8fd3bcfa0504b201183b94449b',1,'spi.c']]],
   ['spi0_5fmode_5fvalue',['SPI0_Mode_value',['../spi_8c.html#ae41154cf3f834c2d151bfa9e67cfc402',1,'spi.c']]],
   ['spi0_5fspeed_5fvalue',['SPI0_Speed_value',['../spi_8c.html#a27ad9c881de03a6b8defda1bde93566f',1,'spi.c']]],
@@ -24,8 +26,10 @@ var searchData=
   ['st_5frdev',['st_rdev',['../structstat.html#aa61e6c1a8a91c69f1d26f6700a0546cb',1,'stat']]],
   ['st_5fsize',['st_size',['../structstat.html#a040e19c8b9766f841fde8786ce9297bf',1,'stat']]],
   ['st_5fuid',['st_uid',['../structstat.html#a4a8708a3d18be60ee7b2f06c4cab0c70',1,'stat']]],
+  ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t']]],
   ['startaddhi',['startaddhi',['../structDirEntryType.html#a0cab2915e9f864e25b24d298c36c11db',1,'DirEntryType']]],
   ['startaddlo',['startaddlo',['../structDirEntryType.html#aea0e798bb172b4bddf174ce339a4a54a',1,'DirEntryType']]],
-  ['stat',['Stat',['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
+  ['stat',['stat',['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
+  ['str',['str',['../structp__ch__t.html#aa3c8616342a2717bc714bf1b6d00516f',1,'p_ch_t']]],
   ['sys_5ferrlist',['sys_errlist',['../posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0',1,'posix.c']]]
 ];

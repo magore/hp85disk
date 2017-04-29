@@ -20,7 +20,9 @@ var searchData=
   ['u8',['U8',['../structUnitDescriptionType.html#adea079c655e18cac88ad05a8243f22f8',1,'UnitDescriptionType']]],
   ['u9',['U9',['../structUnitDescriptionType.html#a23817cabba1909bcf5a0732ed5da1351',1,'UnitDescriptionType']]],
   ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'rs232.c']]],
+  ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
+  ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
   ['unit',['Unit',['../ss80_8c.html#a9b9d3dd10366f58893315f84a9f61a3e',1,'ss80.c']]],
   ['unitdescription',['UnitDescription',['../ss80_8c.html#aa83c4e3b5be6ace0779c50b0391d754c',1,'ss80.c']]],
-  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a66bb89d328cf2c3f1b9362d7ea207c29',1,'TIMERS']]]
+  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

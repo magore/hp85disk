@@ -18,14 +18,10 @@
 #define _GPIB_H_
 
 #include "user_config.h"
-#include <avr/pgmspace.h>
-#include <avr/portpins.h>
-#include <avr/io.h>
-
-#define GPIB_BUS_SETTLE_DELAY 2
-
+#include "hal.h"
 #include "gpib_hal.h"
 
+#define GPIB_BUS_SETTLE_DELAY 2
 
 
 #define EOI_FLAG 0x100

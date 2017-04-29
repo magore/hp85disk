@@ -63,22 +63,22 @@ void PrintFree()
     ram = freeRam();
 
     printf("Free Ram:%u\n", ram);
-    printf("  Stack Top:   %u\n", &__stack);
-    printf("  Stack Free:  %u\n", &ram - 0);
+    printf("  Stack Top:   %u\n", (unsigned int) &__stack);
+    printf("  Stack Free:  %u\n", (unsigned int) &ram - 0);
 
     printf("  BSS   start: %5u, end: %5u\n",
-        &__bss_start, &__bss_end);
+        (unsigned int)&__bss_start, (unsigned int)&__bss_end);
 
     printf("  Data  start: %5u, end: %5u\n",
-        &__data_start, &__data_end);
+        (unsigned int)&__data_start, (unsigned int)&__data_end);
 
     printf("  Heap: start: %5u, end: %5u\n",
-        &__heap_start, &__heap_end);
+        (unsigned int)&__heap_start, (unsigned int)&__heap_end);
 
     printf("  Malloc start %5u  end: %5u\n",
-        __malloc_heap_start, __malloc_heap_end );
+        (unsigned int)__malloc_heap_start, (unsigned int) __malloc_heap_end );
 
-    printf("  __brkval:    %5u\n", __brkval);
+    printf("  __brkval:    %5u\n", (unsigned int) __brkval);
 
 }
 

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['uart_5fdevice_5fcnt',['UART_DEVICE_CNT',['../user__config_8h.html#a5073c91ce37d806cbbfbd8131bc9c31c',1,'user_config.h']]],
-  ['uarts',['UARTS',['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'rs232.h']]],
-  ['unl',['UNL',['../amigo_8h.html#a2853286c50783f39131810ec2b0e9610',1,'UNL():&#160;amigo.h'],['../defines_8h.html#a2853286c50783f39131810ec2b0e9610',1,'UNL():&#160;defines.h']]],
-  ['unt',['UNT',['../amigo_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;amigo.h'],['../defines_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;defines.h']]]
+  ['tct',['TCT',['../amigo_8h.html#a62d9d5d853e9cf2072dd811ce956ec56',1,'TCT():&#160;amigo.h'],['../defines_8h.html#a62d9d5d853e9cf2072dd811ce956ec56',1,'TCT():&#160;defines.h']]],
+  ['timeout_5fflag',['TIMEOUT_FLAG',['../gpib_8h.html#abc15e280bc4f374b8813d358059a121e',1,'gpib.h']]],
+  ['timezone',['TIMEZONE',['../main_8c.html#a77a4765d1e38b93e353315ca174c9959',1,'main.c']]]
 ];

@@ -18,50 +18,6 @@
 #include <stdlib.h>
 #include "spi.h"
 
-#if 0
-// Work in progress for device sharing
-void GPIO_OUTPUT_SET(int pin, int level);
-{
-	if(pin == MMC_CS)
-	{
-		if(!level)
-			IO_LOW(MMC_CS);
-		else
-			IO_HI(MMC_CS);
-	}
-}
-
-/// @brief hspi CS cached value
-uint8_t _cs_pin = 0xff;
-/// @brief HSPI CS enable function
-/// @param[in] cs: GPIO CS pin
-void SPI0_cs_enable(uint8_t cs)
-{
-    if(_cs_pin != 0xff)
-    { 
-        // This implies a bug!
-        printf("CS enable was:%d\n", 0xff & _cs_pin);
-    }
-    GPIO_OUTPUT_SET(cs, 0);
-    _cs_pin = cs;
-} 
-  
-/// @brief HSPI CS disable function
-/// @param[in] cs: GPIO CS pin
-void SPI0_cs_disable(uint8_t cs)
-{ 
-    if(_cs_pin != cs && _cs_pin != 0xff )
-    {
-        // This implies a bug!
-        printf("CS disable was:%d\n", 0xff & _cs_pin);
-    }
-    GPIO_OUTPUT_SET(cs, 1);
-    _cs_pin = 0xff;
-}
-#endif
-
-static int _SPI0_init_done = 0;
-
 
 ///@brief Saved SPI bus speed
 static uint32_t SPI0_Speed_value = 0;
@@ -232,12 +188,12 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-    IO_HI(SS);                                    // SS Output HI
+    GPIO_PIN_HI(SS);                                    // SS Output HI
     delayus(10);
 
-    IO_HI(SCK);                                   // SCK Output
-    IO_HI(MOSI);                                  // MOSI Output
-    IO_FLOAT(MISO);                               // MISO Input, no pull-up
+    GPIO_PIN_HI(SCK);                                   // SCK Output
+    GPIO_PIN_HI(MOSI);                                  // MOSI Output
+    GPIO_PIN_FLOAT(MISO);                               // MISO Input, no pull-up
 
     BIT_SET(SPCR, SPE);                           // Enable SPI
     BIT_SET(SPCR, MSTR);                          // Master Mode

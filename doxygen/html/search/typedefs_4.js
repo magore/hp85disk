@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ino_5ft',['ino_t',['../posix_8h.html#aed4e918b44240739869c4bdb1c4787a9',1,'posix.h']]],
-  ['int',['INT',['../integer_8h.html#a392e62da233ed3e2f7c3fd4f487a3896',1,'integer.h']]]
+  ['gid_5ft',['gid_t',['../posix_8h.html#a5569b17fdf47f9bb7e3b4b94aa083c39',1,'posix.h']]],
+  ['gpib_5ft',['gpib_t',['../gpib__hal_8h.html#a4791e72a1dc0caa0e23b3f4fb6aefc94',1,'gpib_hal.h']]]
 ];

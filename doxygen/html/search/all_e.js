@@ -12,7 +12,10 @@ var searchData=
   ['o_5ftext',['O_TEXT',['../posix_8h.html#a9abb6d01b83e0bc5a6e2adeceb7dffd7',1,'posix.h']]],
   ['o_5ftrunc',['O_TRUNC',['../posix_8h.html#ad1d67e453fb3031f40f8cd3403773813',1,'posix.h']]],
   ['o_5fwronly',['O_WRONLY',['../posix_8h.html#a11b644a8526139c4cc1850dac1271ced',1,'posix.h']]],
+  ['obj',['obj',['../structFIL.html#ae7242545ea88ea2602484122ebe65fa3',1,'FIL::obj()'],['../structDIR.html#a5a4848c51616bf4ad90518c211ca3bb3',1,'DIR::obj()']]],
+  ['objsize',['objsize',['../struct__FDID.html#a27039b8d89a4a62efabab36e6b303819',1,'_FDID']]],
   ['off_5ft',['off_t',['../posix_8h.html#aac46e03c2018bada012333c31f41df12',1,'posix.h']]],
   ['open',['open',['../posix_8c.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c'],['../posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c']]],
+  ['opendir',['opendir',['../posix_8c.html#a19051b9081dfef221d9bf4583e935031',1,'opendir(const char *pathdir):&#160;posix.c'],['../posix_8h.html#a19051b9081dfef221d9bf4583e935031',1,'opendir(const char *pathdir):&#160;posix.c']]],
   ['out',['out',['../structqueue__t.html#a8f6e1c623d2ceed398a71a0aab93b0fa',1,'queue_t']]]
 ];

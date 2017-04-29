@@ -59,9 +59,36 @@ void gpib_clock_task( void );
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
 
 
-#ifdef atmega1284p
+///FIXME be AVR specific!!!
+#define EOI		GPIO_B0
+#define DAV 	GPIO_B1
+#define NRFD 	GPIO_D2
+#define NDAC 	GPIO_D3
+#define IFC  	GPIO_D4
+#define SRQ 	GPIO_D5
+#define ATN 	GPIO_D6
+#define REN 	GPIO_D7
 
+#ifndef SOFTWARE_PP
+#warning Hardware PP
+#define PPE 	GPIO_B2
+#endif
 
+#define GPIB_IO_RD(a) 		GPIO_PIN_RD(a)
+#define GPIB_PIN_FLOAT(a) 	GPIO_PIN_FLOAT(a)
+#define GPIB_IO_LOW(a) 		GPIO_PIN_LOW(a)
+#define GPIB_IO_HI(a)  		GPIO_PIN_HI(a)
+
+#define GPIB_BUS_OUT()      GPIO_PORT_DIR_OUT(GPIO_A)
+#define GPIB_BUS_IN()       GPIO_PORT_DIR_IN(GPIO_A)
+#define GPIB_BUS_RD()		GPIO_PORT_RD(GPIO_A)
+#define GPIB_BUS_WR(val)	GPIO_PORT_WR(GPIO_A,val)
+
+#define GPIB_PPR_RD()     	GPIO_PORT_PINS_RD(GPIO_A)
+#define GPIB_PPR_DDR_RD()	GPIO_PORT_DDR_RD(GPIO_A)
+
+// OLD system
+#if 0
 #define EOI_PORT    PORTB
 #define EOI_DDR     DDRB
 #define EOI_PIN     PINB
@@ -110,32 +137,7 @@ void gpib_clock_task( void );
 #define PPE_BIT   2
 #endif
 
-
-#define GPIB_IO_RD(a) IO_RD(a)
-
-#define GPIB_IO_FLOAT(a) IO_FLOAT(a)
-
-#define GPIB_IO_LOW(a) IO_LOW(a)
-
-#define GPIB_IO_HI(a)  IO_HI(a)
-
-
-#define GPIB_BUS_OUT()      DDRA=0xff
-
-#define GPIB_BUS_IN()       DDRA=0x00
-
-#define GPIB_BUS_RD()       (DDRA=0x00, (PINA & 0xff))
-
-#define GPIB_BUS_WR(val)    (DDRA=0xff, PORTA = (val))
-
-#define GPIB_PPR_RD()     PINA
-
-#define GPIB_PPR_DDR_RD()  DDRA
-
-
-#else
-#error You MUST provide GPIB BUS functions for your CPU
-#endif                                            // CPU type
+#endif  // #if 0
 
 
 #ifndef GPIB_BUS_RD
@@ -160,8 +162,8 @@ void gpib_clock_task( void );
 #ifndef GPIB_IO_HI
 #error GPIB_IO_HI is not defined
 #endif
-#ifndef GPIB_IO_FLOAT
-#error GPIB_IO_FLOAT is not defined
+#ifndef GPIB_PIN_FLOAT
+#error GPIB_PIN_FLOAT is not defined
 #endif
 #ifndef GPIB_IO_RD
 #error GPIB_IO_RD is not defined

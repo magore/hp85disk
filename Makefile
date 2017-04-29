@@ -23,16 +23,19 @@ PROJECT = gpib
 
 FATFS_TESTS=1
 
-FATFS= \
-fatfs/mmc_hal.c \
-fatfs/disk.c \
-fatfs/posix.c \
-fatfs/mmc.c \
-fatfs/ff.c \
-fatfs/syscall.c \
-fatfs/unicode.c 
+FATFS = \
+fatfs/ff.c  \
+fatfs/option/syscall.c  \
+fatfs/option/unicode.c \
+fatfs.hal/diskio.c  \
+fatfs.hal/mmc.c  \
+fatfs.hal/mmc_hal.c  \
+fatfs.sup/fatfs_sup.c  \
+fatfs.sup/posix.c
+
+
 ifeq ($(FATFS_TESTS),1)
-	FATFS += fatfs/fatfs_utils.c 
+	FATFS += fatfs.sup/fatfs_utils.c  
 endif
 
 
@@ -46,13 +49,16 @@ gpib/amigo.c \
 gpib/printer.c
 
 CSRC    = \
+printf/printf.c \
+printf/mathio.c \
+hardware/hal.c \
 hardware/ram.c \
 hardware/delay.c \
 hardware/rs232.c \
 hardware/spi.c \
 hardware/rtc.c \
 hardware/TWI_AVR8.c \
-lib/str.c \
+lib/stringsup.c \
 lib/timer_hal.c \
 lib/timer.c \
 lib/time.c \
@@ -60,6 +66,7 @@ lib/queue.c \
 main.c \
  $(FATFS) \
  $(GPIB)
+
 
 CC = avr-gcc
 
@@ -81,11 +88,15 @@ CSTD = gnu99
 LIBS    =
 LIBDIRS =
 #INCDIRS =/share/embedded/GPIB/mike/mine
-INCDIRS =. hardware lib gpib fatfs
+INCDIRS =. hardware lib printf gpib fatfs fatfs.hal fatfs.sup
 
 #DEFS    = F_CPU=20000000 SDEBUG=9 SOFTWARE_PP=1 SPOLL=1 HP9134L=1
-DEFS    = F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
-	AMIGO AMIGO_HACK 
+DEFS    = AVR F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
+	AMIGO AMIGO_HACK \
+	DEFINE_PRINTF \
+	FLOATIO \
+	FATFS_UTILS_FULL \
+	POSIX_WRAPPERS
 ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
@@ -162,10 +173,6 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
 
 SRCS = $(CSRC)
-SRCDIRS= . fatfs fatfs gpib hardware lib 
-
-
-
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
@@ -191,16 +198,16 @@ flash:  all
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
 	avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
 	./term
+	#./miniterm
 	# ===================================================
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc
 doxyfile.inc:
-    echo "INPUT         =  $(DOCDIRS)" > doxyfile.inc
-    echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
+	echo "INPUT         =  $(INCDIRS)" > doxyfile.inc
+	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
 .PHONY: doxy
 doxy:	doxyfile.inc $(SRCS) 
-	#export PYTHONPATH="$PYTHONPATH:/share/embedded/testgen-0.11/extras"
 	doxygen Doxyfile
 
 ifeq ($(OUTPUT),ihex)
@@ -267,13 +274,14 @@ version :
 	$(NM) -n $< > $@
 
 # Display size of file.
+.PHONY:	size
 size: 
 	@echo
-	$(SIZE) -C --mcu=$(DEVICE) $(PROJECT).elf
-	$(SIZE) -x -A --mcu=${DEVICE} $(PROJECT).elf
-	$(SIZE) -x --common -C --mcu=${DEVICE} $(PROJECT).elf
+	-$(SIZE) -C --mcu=$(DEVICE) $(PROJECT).elf
+	-$(SIZE) -x -A --mcu=${DEVICE} $(PROJECT).elf
+	-$(SIZE) -x --common -C --mcu=${DEVICE} $(PROJECT).elf
 	-avr-nm -n -S $(PROJECT).elf | grep "__eeprom"
-	-avr-nm -n -S $(PROJECT).elf | grep "__noinit"
+	#-avr-nm -n -S $(PROJECT).elf | grep "__noinit"
 	-avr-nm -n -S $(PROJECT).elf | grep "__bss"
 	-avr-nm -n -S $(PROJECT).elf | grep "__data"
 	-avr-nm -n -S $(PROJECT).elf | grep "__heap"

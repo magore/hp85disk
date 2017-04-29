@@ -1,31 +1,38 @@
-\hypertarget{ram_8h}{\section{hardware/ram.h File Reference}
-\label{ram_8h}\index{hardware/ram.\-h@{hardware/ram.\-h}}
-}
+\hypertarget{ram_8h}{}\section{hardware/ram.h File Reference}
+\label{ram_8h}\index{hardware/ram.\+h@{hardware/ram.\+h}}
 
 
-Memory Utilities and safe free for A\-V\-R8.  
+Memory Utilities and safe free for A\+V\+R8.  
 
 
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-uint16\-\_\-t \hyperlink{ram_8h_af87fa722b545868277fe412e4786fa96}{free\-Ram} (void)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{ram_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\item 
+uint16\+\_\+t \hyperlink{ram_8h_af87fa722b545868277fe412e4786fa96}{free\+Ram} (void)
 \begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
-void \hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\-Free} (void)
-\begin{DoxyCompactList}\small\item\em Display A\-V\-R free memory of each type$>$ \end{DoxyCompactList}\item 
+void \hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\+Free} (void)
+\begin{DoxyCompactList}\small\item\em Display A\+VR free memory of each type$>$ \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc} (int size, int elements)
 \begin{DoxyCompactList}\small\item\em Safe Alloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\-\_\-t} size)
+void $\ast$ \hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
 \begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
 void \hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Memory Utilities and safe free for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
+Memory Utilities and safe free for A\+V\+R8. 
+
+\begin{DoxyParagraph}{Edit History}
 
 \begin{DoxyItemize}
-\item \mbox{[}1.\-0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
 \end{DoxyItemize}
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
@@ -33,23 +40,42 @@ Memory Utilities and safe free for A\-V\-R8. \begin{DoxyParagraph}{Edit History}
 \end{DoxyParagraph}
 
 
-Definition in file \hyperlink{ram_8h_source}{ram.\-h}.
-
-
-
 \subsection{Function Documentation}
-\hypertarget{ram_8h_af87fa722b545868277fe412e4786fa96}{\index{ram.\-h@{ram.\-h}!free\-Ram@{free\-Ram}}
-\index{free\-Ram@{free\-Ram}!ram.h@{ram.\-h}}
-\subsubsection[{free\-Ram}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t free\-Ram (
+\index{ram.\+h@{ram.\+h}!calloc@{calloc}}
+\index{calloc@{calloc}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{calloc(size\+\_\+t nmemb, size\+\_\+t size)}{calloc(size_t nmemb, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ calloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{nmemb, }
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{ram_8h_ae148919146e88c7c40c7e2f781649b31}{}\label{ram_8h_ae148919146e88c7c40c7e2f781649b31}
+
+
+Referenced by main(), Mat\+Alloc(), printer\+\_\+open(), safecalloc(), and safemalloc().
+
+\index{ram.\+h@{ram.\+h}!free@{free}}
+\index{free@{free}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{free(void $\ast$p)}{free(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void free (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{p}
+\end{DoxyParamCaption}
+)}\hypertarget{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{}\label{ram_8h_a0f8c52d1c359b700088f8417b48e467b}
+
+
+Referenced by Mat\+Free(), queue\+\_\+del(), queue\+\_\+new(), and safefree().
+
+\index{ram.\+h@{ram.\+h}!free\+Ram@{free\+Ram}}
+\index{free\+Ram@{free\+Ram}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{free\+Ram(void)}{freeRam(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t free\+Ram (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{ram_8h_af87fa722b545868277fe412e4786fa96}
+)}\hypertarget{ram_8h_af87fa722b545868277fe412e4786fa96}{}\label{ram_8h_af87fa722b545868277fe412e4786fa96}
 
 
 calloc may be aliased to safecalloc 
 
-free may be aliased to safefree malloc may be aliased to safecalloc Return A\-V\-R Free memory for Malloc.
+free may be aliased to safefree malloc may be aliased to safecalloc Return A\+VR Free memory for Malloc.
 
 
 \begin{DoxyItemize}
@@ -59,32 +85,39 @@ free may be aliased to safefree malloc may be aliased to safecalloc Return A\-V\
 \begin{DoxyReturn}{Returns}
 free memory in bytes. 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc()}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 27 of file ram.\-c.
+Definition at line 27 of file ram.\+c.
 
 
 
-Referenced by Print\-Free().
+Referenced by Print\+Free().
 
-\hypertarget{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{\index{ram.\-h@{ram.\-h}!Print\-Free@{Print\-Free}}
-\index{Print\-Free@{Print\-Free}!ram.h@{ram.\-h}}
-\subsubsection[{Print\-Free}]{\setlength{\rightskip}{0pt plus 5cm}void Print\-Free (
+\index{ram.\+h@{ram.\+h}!malloc@{malloc}}
+\index{malloc@{malloc}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{malloc(size\+\_\+t size)}{malloc(size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ malloc (
+\begin{DoxyParamCaption}
+\item[{{\bf size\+\_\+t}}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{ram_8h_a22b308551dea873face80619301d5618}{}\label{ram_8h_a22b308551dea873face80619301d5618}
+\index{ram.\+h@{ram.\+h}!Print\+Free@{Print\+Free}}
+\index{Print\+Free@{Print\+Free}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{Print\+Free(void)}{PrintFree(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void Print\+Free (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}
+)}\hypertarget{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{}\label{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}
 
 
-Display A\-V\-R free memory of each type$>$ 
+Display A\+VR free memory of each type$>$ 
 
 
 \begin{DoxyItemize}
 \item avr-\/libc dependent code.
-\item Stack, B\-S\-S, Data, Heap, Malloc.
+\item Stack, B\+SS, Data, Heap, Malloc.
 \end{DoxyItemize}
 
 \begin{DoxyReturn}{Returns}
@@ -92,20 +125,20 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 51 of file ram.\-c.
+Definition at line 51 of file ram.\+c.
 
 
 
 Referenced by main(), safefree(), and task().
 
-\hypertarget{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{\index{ram.\-h@{ram.\-h}!safecalloc@{safecalloc}}
-\index{safecalloc@{safecalloc}!ram.h@{ram.\-h}}
-\subsubsection[{safecalloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safecalloc (
+\index{ram.\+h@{ram.\+h}!safecalloc@{safecalloc}}
+\index{safecalloc@{safecalloc}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{safecalloc(int size, int elements)}{safecalloc(int size, int elements)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safecalloc (
 \begin{DoxyParamCaption}
 \item[{int}]{size, }
 \item[{int}]{elements}
 \end{DoxyParamCaption}
-)}}\label{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}
+)}\hypertarget{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{}\label{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}
 
 
 Safe Alloc -\/ Display Error message if Calloc fails. 
@@ -121,19 +154,19 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 91 of file ram.\-c.
+Definition at line 91 of file ram.\+c.
 
 
 
-Referenced by gpib\-\_\-format\-\_\-disk().
+Referenced by fatfs\+\_\+cat(), fdevopen(), gpib\+\_\+format\+\_\+disk(), new\+\_\+file\+\_\+descriptor(), queue\+\_\+new(), stralloc(), and strnalloc().
 
-\hypertarget{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{\index{ram.\-h@{ram.\-h}!safefree@{safefree}}
-\index{safefree@{safefree}!ram.h@{ram.\-h}}
-\subsubsection[{safefree}]{\setlength{\rightskip}{0pt plus 5cm}void safefree (
+\index{ram.\+h@{ram.\+h}!safefree@{safefree}}
+\index{safefree@{safefree}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{safefree(void $\ast$p)}{safefree(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}void safefree (
 \begin{DoxyParamCaption}
 \item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}
+)}\hypertarget{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{}\label{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}
 
 
 Safe free -\/ Only free a pointer if it is in malloc memory range. 
@@ -154,19 +187,19 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 125 of file ram.\-c.
+Definition at line 125 of file ram.\+c.
 
 
 
-Referenced by gpib\-\_\-format\-\_\-disk(), and printer\-\_\-close().
+Referenced by fatfs\+\_\+cat(), fatfs\+\_\+tests(), free\+\_\+file\+\_\+descriptor(), gpib\+\_\+format\+\_\+disk(), new\+\_\+file\+\_\+descriptor(), and printer\+\_\+close().
 
-\hypertarget{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{\index{ram.\-h@{ram.\-h}!safemalloc@{safemalloc}}
-\index{safemalloc@{safemalloc}!ram.h@{ram.\-h}}
-\subsubsection[{safemalloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safemalloc (
+\index{ram.\+h@{ram.\+h}!safemalloc@{safemalloc}}
+\index{safemalloc@{safemalloc}!ram.\+h@{ram.\+h}}
+\subsubsection[{\texorpdfstring{safemalloc(size\+\_\+t size)}{safemalloc(size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ safemalloc (
 \begin{DoxyParamCaption}
-\item[{{\bf size\-\_\-t}}]{size}
+\item[{{\bf size\+\_\+t}}]{size}
 \end{DoxyParamCaption}
-)}}\label{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}
+)}\hypertarget{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{}\label{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}
 
 
 Safe Malloc -\/ Display Error message if Malloc fails. 
@@ -185,5 +218,9 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 107 of file ram.\-c.
+Definition at line 107 of file ram.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests().
 

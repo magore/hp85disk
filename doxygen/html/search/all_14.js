@@ -31,6 +31,7 @@ var searchData=
   ['uart_5fkeyhit',['uart_keyhit',['../rs232_8c.html#a62e784f8c17878ebc2f7ad942086d2e9',1,'uart_keyhit(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a62e784f8c17878ebc2f7ad942086d2e9',1,'uart_keyhit(uint8_t uart):&#160;rs232.c']]],
   ['uart_5fpeek_5ftail',['uart_peek_tail',['../rs232_8c.html#a1cd0dacc866c8f430d9a09159d10148c',1,'uart_peek_tail(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a1cd0dacc866c8f430d9a09159d10148c',1,'uart_peek_tail(uint8_t uart):&#160;rs232.c']]],
   ['uart_5fput',['uart_put',['../main_8h.html#ac2ee59bdf981ff614d81f495dd028601',1,'uart_put(uint8_t c):&#160;rs232.c'],['../rs232_8c.html#ac2ee59bdf981ff614d81f495dd028601',1,'uart_put(uint8_t c):&#160;rs232.c'],['../rs232_8h.html#ac2ee59bdf981ff614d81f495dd028601',1,'uart_put(uint8_t c):&#160;rs232.c']]],
+  ['uart_5fputc',['uart_putc',['../rs232_8h.html#a2be774878148befdb085b93380cba587',1,'rs232.h']]],
   ['uart_5fputchar',['uart_putchar',['../rs232_8c.html#aa121f493123a7a21b0a1086cfebadf63',1,'uart_putchar(char c, int uart):&#160;rs232.c'],['../rs232_8h.html#aa121f493123a7a21b0a1086cfebadf63',1,'uart_putchar(char c, int uart):&#160;rs232.c']]],
   ['uart_5frx_5fbyte',['uart_rx_byte',['../rs232_8c.html#ac2daabfbed3e1679f834b158dfbbbe80',1,'uart_rx_byte(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#ac2daabfbed3e1679f834b158dfbbbe80',1,'uart_rx_byte(uint8_t uart):&#160;rs232.c']]],
   ['uart_5frx_5fcount',['uart_rx_count',['../rs232_8c.html#aa8413cd0d098fabe8a888be1addc3924',1,'uart_rx_count(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#aa8413cd0d098fabe8a888be1addc3924',1,'uart_rx_count(uint8_t uart):&#160;rs232.c']]],
@@ -38,9 +39,11 @@ var searchData=
   ['uart_5frx_5finterrupt',['uart_rx_interrupt',['../rs232_8c.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c'],['../rs232_8h.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c']]],
   ['uart_5ftx_5fbyte',['uart_tx_byte',['../rs232_8c.html#a23169748018111e05b90e5779cb63c70',1,'uart_tx_byte(char c, uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a23169748018111e05b90e5779cb63c70',1,'uart_tx_byte(char c, uint8_t uart):&#160;rs232.c']]],
   ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c'],['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h']]],
+  ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['uid_5ft',['uid_t',['../posix_8h.html#a0f43c63879b4ab6960f41e756392c77d',1,'posix.h']]],
   ['uint',['UINT',['../integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec',1,'integer.h']]],
-  ['unicode_2ec',['unicode.c',['../unicode_8c.html',1,'']]],
+  ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
+  ['ungetc',['ungetc',['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c']]],
   ['unit',['Unit',['../ss80_8c.html#a9b9d3dd10366f58893315f84a9f61a3e',1,'ss80.c']]],
   ['unitdescription',['UnitDescription',['../ss80_8c.html#aa83c4e3b5be6ace0779c50b0391d754c',1,'ss80.c']]],
   ['unitdescriptiontype',['UnitDescriptionType',['../structUnitDescriptionType.html',1,'']]],
@@ -48,5 +51,5 @@ var searchData=
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['unt',['UNT',['../amigo_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;amigo.h'],['../defines_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;defines.h']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
-  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a66bb89d328cf2c3f1b9362d7ea207c29',1,'TIMERS']]]
+  ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

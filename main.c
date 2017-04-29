@@ -12,6 +12,12 @@
 
 #include <user_config.h>
 
+#include "hardware/iom1284p.h"
+
+#ifndef _IOM1284P_H_
+#error _IOM1284P_H_
+#endif
+
 #include "gpib/defines.h"
 #include "gpib/gpib_hal.h"
 #include "gpib/gpib.h"
@@ -241,7 +247,11 @@ int main(void)
 	int cold = 1;
 	char *line;
 
+    init_timers();
+
     uart_init(0, 115200U); // Serial Port Initialize
+    delayms(200);
+
 	printf("==============================\n");
     printf("INIT\n");
     printf("F_CPU: %lu\n", F_CPU);
@@ -250,10 +260,10 @@ int main(void)
     printf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
     printf("log(10.0) = %f\n", log(10.0));
 
-    init_timers();
 
-    SPI0_Init(MMC_SLOW);
-    SPI0_Mode(0);
+	printf("initializing SPI bus\n");
+
+	spi_init(MMC_SLOW,GPIO_B3);
 
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
 

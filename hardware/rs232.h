@@ -41,6 +41,8 @@ struct _uart
 #define UARTS 1
 #define kbhit( uart) uart_rx_count( uart )
 
+#define uart_putc(a,c) uart0_putchar(c,NULL)
+
 /* rs232.c */
 void uart_rx_flush ( uint8_t uart );
 uint8_t uart0_getchar ( FILE *f );

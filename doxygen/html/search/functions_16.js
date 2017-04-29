@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xmit_5fdatablock',['xmit_datablock',['../mmc_8c.html#a2174d7259d1d933e0ea0dc45eee4af62',1,'mmc.c']]]
+  ['wait_5fready',['wait_ready',['../mmc_8c.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c'],['../mmc_8h.html#ab7771efbbd1a015b449d838d7f09959a',1,'wait_ready(UINT wt):&#160;mmc.c']]],
+  ['write',['write',['../posix_8c.html#a072435300ac99e8d7c3749f45166e797',1,'write(int fd, const void *buf, size_t count):&#160;posix.c'],['../posix_8h.html#a072435300ac99e8d7c3749f45166e797',1,'write(int fd, const void *buf, size_t count):&#160;posix.c']]]
 ];

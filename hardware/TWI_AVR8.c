@@ -53,8 +53,8 @@ d as needed by the TWI driver
 void TWI_Init(const uint8_t Prescale, const uint8_t BitLength)
 {
 
-    BIT_SET(SCL_PORT, SCL_BIT);                   // Pull Up on
-    BIT_SET(SDA_PORT, SDA_BIT);                   // Pull Up on
+    GPIO_PIN_LATCH_HI(SCL);                   // Pull Up on
+    GPIO_PIN_LATCH_HI(SDA);                   // Pull Up on
 
     BIT_SET(TWCR,TWEN);
 

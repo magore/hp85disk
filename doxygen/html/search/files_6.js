@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['integer_2eh',['integer.h',['../integer_8h.html',1,'']]]
+  ['hal_2ec',['hal.c',['../hal_8c.html',1,'']]],
+  ['hal_2eh',['hal.h',['../hal_8h.html',1,'']]]
 ];

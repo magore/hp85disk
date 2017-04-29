@@ -1,120 +1,152 @@
-\hypertarget{timer_8c}{\section{lib/timer.c File Reference}
-\label{timer_8c}\index{lib/timer.\-c@{lib/timer.\-c}}
-}
+\hypertarget{timer_8c}{}\section{lib/timer.c File Reference}
+\label{timer_8c}\index{lib/timer.\+c@{lib/timer.\+c}}
 
 
 timer functions  
 
 
-{\ttfamily \#include $<$user\-\_\-config.\-h$>$}\\*
-{\ttfamily \#include $<$time.\-h$>$}\\*
-{\ttfamily \#include \char`\"{}timer.\-h\char`\"{}}\\*
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{timer_8c_a6c3db6d8efa19f8d102f9a828c8ad6f1}{S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z}~1000\-L
-\begin{DoxyCompactList}\small\item\em system interrupt rate in H\-Z \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/time.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lib/timer.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}{set\-\_\-timers} (void($\ast$handler)(void), int timer)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}{set\+\_\+timers} (void($\ast$handler)(void), int timer)
 \begin{DoxyCompactList}\small\item\em Install a user timer task. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} int \hyperlink{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}{kill\-\_\-timer} (int timer)
-\begin{DoxyCompactList}\small\item\em Delete \char`\"{}\-Kill\char`\"{} one user timer task. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}{delete\-\_\-all\-\_\-timers} ()
-\begin{DoxyCompactList}\small\item\em Clear A\-L\-L user timer tasks. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}{subtract\-\_\-timespec} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} $\ast$a, \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} $\ast$b)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}{kill\+\_\+timer} (int timer)
+\begin{DoxyCompactList}\small\item\em Delete \char`\"{}\+Kill\char`\"{} one user timer task. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}{delete\+\_\+all\+\_\+timers} ()
+\begin{DoxyCompactList}\small\item\em Clear A\+LL user timer tasks. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}{subtract\+\_\+timespec} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} $\ast$a, \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} $\ast$b)
 \begin{DoxyCompactList}\small\item\em subtract a-\/= b timespec $\ast$ structures. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} char $\ast$ \hyperlink{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}{ts\-\_\-to\-\_\-str} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} $\ast$val)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}{ts\+\_\+to\+\_\+str} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} $\ast$val)
 \item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer_8c_a6802af23bc1fe764b975683a0b37fc91}{display\-\_\-ts} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} $\ast$val)
-\begin{DoxyCompactList}\small\item\em timespec structure in seconds.\-nanoseconds. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{clock\-\_\-elapsed\-\_\-begin} ()
-\begin{DoxyCompactList}\small\item\em Store current struct timespec in \-\_\-\-\_\-clock\-\_\-elapsed. \end{DoxyCompactList}\item 
-\hyperlink{user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\-E\-M\-S\-P\-A\-C\-E} void \hyperlink{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{clock\-\_\-elapsed\-\_\-end} (char $\ast$msg)
-\begin{DoxyCompactList}\small\item\em Subtract and display time difference from clock\-\_\-elapesed\-\_\-begin(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_a6802af23bc1fe764b975683a0b37fc91}{display\+\_\+ts} (\hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} $\ast$val)
+\begin{DoxyCompactList}\small\item\em timespec structure in seconds.\+nanoseconds. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{clock\+\_\+elapsed\+\_\+begin} ()
+\begin{DoxyCompactList}\small\item\em Store current struct timespec in \+\_\+\+\_\+clock\+\_\+elapsed. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{clock\+\_\+elapsed\+\_\+end} (char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Subtract and display time difference from clock\+\_\+elapesed\+\_\+begin(). \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_a7faad7f12590c5756441f44a069f60d5}{clock\+\_\+clear} ()
+\begin{DoxyCompactList}\small\item\em clear time and timezone to 0. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_a296c5d3efac4bc56fc12fe3626f7d4b6}{disable\+\_\+timers} ()
+\begin{DoxyCompactList}\small\item\em Disable all timer tasks. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_ac97e80c15c73721fbc9f5071f6681fac}{enable\+\_\+timers} ()
+\begin{DoxyCompactList}\small\item\em Enable timer tasks. \end{DoxyCompactList}\item 
+void \hyperlink{timer_8c_a67a27354654cf2a2169137adc7274def}{execute\+\_\+timers} ()
+\begin{DoxyCompactList}\small\item\em Execute all user timers at S\+Y\+S\+T\+E\+M\+\_\+\+HZ rate. Called by system task. \end{DoxyCompactList}\item 
+void \hyperlink{timer_8c_a182d70e09e9436c9c8a2e81b7597f206}{clock\+\_\+task} (void)
+\begin{DoxyCompactList}\small\item\em 1000\+HZ timer task \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{timer_8c_acb0c9c995c634465d7d1f534bd862f8e}{init\+\_\+timers} ()
+\begin{DoxyCompactList}\small\item\em Setup all timers tasksi and enable interrupts. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{timer_8c_ab507661341c93c415b27ed9d40839539}{clock\+\_\+getres} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\+\_\+t} clk\+\_\+id, struct \hyperlink{structtimespec}{timespec} $\ast$res)
+\begin{DoxyCompactList}\small\item\em Read clock time resolution into struct timepec $\ast$ts -\/ P\+O\+S\+IX function. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\+\_\+settime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\+\_\+t} clk\+\_\+id, const struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\begin{DoxyCompactList}\small\item\em Set system clock using seconds and nonoseconds -\/ P\+O\+S\+IX function. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\+\_\+gettime} (\hyperlink{time_8h_afeece078c6706f33383bf11bbf584518}{clockid\+\_\+t} clk\+\_\+id, struct \hyperlink{structtimespec}{timespec} $\ast$ts)
+\begin{DoxyCompactList}\small\item\em Generic \hyperlink{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\+\_\+gettime()} function W\+I\+T\+H\+O\+UT high resolution. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structTIMERS}{T\-I\-M\-E\-R\-S} \hyperlink{timer_8c_aa17a38bfa7403efeae5bf6b723ef2888}{timer\-\_\-irq} \mbox{[}$\,$\mbox{]}
+volatile \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} \hyperlink{timer_8c_a335451dd774ecb4b696d501b4c1b6f30}{\+\_\+\+\_\+clock}
+\begin{DoxyCompactList}\small\item\em System Clock Time. \end{DoxyCompactList}\item 
+\hyperlink{time_8h_a63629b2492d6773f4d4948d6e60022a8}{tz\+\_\+t} \hyperlink{timer_8c_a9ac29ed71adf6807175d24ab1fa622a7}{\+\_\+\+\_\+tzone}
+\begin{DoxyCompactList}\small\item\em System Time Zone. \end{DoxyCompactList}\item 
+static int \hyperlink{timer_8c_ae997c45cc4d164ce0b47a44b370651ec}{timers\+\_\+enabled} = 0
+\item 
+static int \hyperlink{timer_8c_a0ea4c1291946db41f55937b7cc3dc40c}{timers\+\_\+configured} = 0
+\item 
+\hyperlink{structTIMERS}{T\+I\+M\+E\+RS} \hyperlink{timer_8c_ad680b46025f0dae867f27a80344736a1}{timer\+\_\+irq} \mbox{[}\hyperlink{timer_8h_a492a379b00d0ec04be9cd0994e0b42ae}{M\+A\+X\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+NT}\mbox{]}
 \begin{DoxyCompactList}\small\item\em array or user timers \end{DoxyCompactList}\item 
-static char \hyperlink{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}{\-\_\-ts\-\_\-to\-\_\-str} \mbox{[}32\mbox{]}
-\begin{DoxyCompactList}\small\item\em timespec structure in seconds.\-nanoseconds in string. \end{DoxyCompactList}\item 
-static \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\-\_\-t} \hyperlink{timer_8c_a11d81711e20909cf489fb56cbbb81558}{\-\_\-\-\_\-clock\-\_\-elapsed}
+static char \hyperlink{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}{\+\_\+ts\+\_\+to\+\_\+str} \mbox{[}32\mbox{]}
+\begin{DoxyCompactList}\small\item\em timespec structure in seconds.\+nanoseconds in string. \end{DoxyCompactList}\item 
+static \hyperlink{time_8h_a062a82a85c72b4a3020130efc37a00cf}{ts\+\_\+t} \hyperlink{timer_8c_a11d81711e20909cf489fb56cbbb81558}{\+\_\+\+\_\+clock\+\_\+elapsed}
 \begin{DoxyCompactList}\small\item\em Used for elapsed time calculations. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-timer functions \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\-P\-L License}
+timer functions 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\+PL License}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{You are free to use this code under the terms of G\-P\-L}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
 please retain a copy of this notice in any code you use it in.
 \end{DoxyParagraph}
-This is free software\-: you can redistribute it and/or modify it under the terms of the G\-N\-U General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This software is distributed in the hope that it will be useful, but W\-I\-T\-H\-O\-U\-T A\-N\-Y W\-A\-R\-R\-A\-N\-T\-Y; without even the implied warranty of M\-E\-R\-C\-H\-A\-N\-T\-A\-B\-I\-L\-I\-T\-Y or F\-I\-T\-N\-E\-S\-S F\-O\-R A P\-A\-R\-T\-I\-C\-U\-L\-A\-R P\-U\-R\-P\-O\-S\-E. See the G\-N\-U General Public License for more details.
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
 
-You should have received a copy of the G\-N\-U General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\-://www.\-gnu.\-org/licenses/}. 
-
-Definition in file \hyperlink{timer_8c_source}{timer.\-c}.
-
-
-
-\subsection{Macro Definition Documentation}
-\hypertarget{timer_8c_a6c3db6d8efa19f8d102f9a828c8ad6f1}{\index{timer.\-c@{timer.\-c}!S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z@{S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z}}
-\index{S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z@{S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z}!timer.c@{timer.\-c}}
-\subsubsection[{S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-Y\-S\-T\-E\-M\-\_\-\-H\-Z~1000\-L}}\label{timer_8c_a6c3db6d8efa19f8d102f9a828c8ad6f1}
-
-
-system interrupt rate in H\-Z 
-
-
-
-Definition at line 29 of file timer.\-c.
-
-
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
 
 \subsection{Function Documentation}
-\hypertarget{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{\index{timer.\-c@{timer.\-c}!clock\-\_\-elapsed\-\_\-begin@{clock\-\_\-elapsed\-\_\-begin}}
-\index{clock\-\_\-elapsed\-\_\-begin@{clock\-\_\-elapsed\-\_\-begin}!timer.c@{timer.\-c}}
-\subsubsection[{clock\-\_\-elapsed\-\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void clock\-\_\-elapsed\-\_\-begin (
+\index{timer.\+c@{timer.\+c}!clock\+\_\+clear@{clock\+\_\+clear}}
+\index{clock\+\_\+clear@{clock\+\_\+clear}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+clear()}{clock_clear()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void clock\+\_\+clear (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}
+)}\hypertarget{timer_8c_a7faad7f12590c5756441f44a069f60d5}{}\label{timer_8c_a7faad7f12590c5756441f44a069f60d5}
 
 
-Store current struct timespec in \-\_\-\-\_\-clock\-\_\-elapsed. 
+clear time and timezone to 0. 
 
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime()} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\-O\-S\-I\-X} function.
+\begin{DoxySeeAlso}{See also}
+\hyperlink{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\+\_\+settime()}. 
+
+\hyperlink{time_8c_aba9a1e17f18817099c795d0559d747a8}{settimezone()}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 221 of file timer.\+c.
+
+
+
+Referenced by init\+\_\+timers(), and main().
+
+\index{timer.\+c@{timer.\+c}!clock\+\_\+elapsed\+\_\+begin@{clock\+\_\+elapsed\+\_\+begin}}
+\index{clock\+\_\+elapsed\+\_\+begin@{clock\+\_\+elapsed\+\_\+begin}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+elapsed\+\_\+begin()}{clock_elapsed_begin()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void clock\+\_\+elapsed\+\_\+begin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{}\label{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}
+
+
+Store current struct timespec in \+\_\+\+\_\+clock\+\_\+elapsed. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\+\_\+gettime()} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX} function.
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 169 of file timer.\-c.
+Definition at line 184 of file timer.\+c.
 
 
 
-Referenced by delay\-\_\-tests(), and gpib\-\_\-timer\-\_\-elapsed\-\_\-begin().
+Referenced by delay\+\_\+tests(), and gpib\+\_\+timer\+\_\+elapsed\+\_\+begin().
 
-\hypertarget{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{\index{timer.\-c@{timer.\-c}!clock\-\_\-elapsed\-\_\-end@{clock\-\_\-elapsed\-\_\-end}}
-\index{clock\-\_\-elapsed\-\_\-end@{clock\-\_\-elapsed\-\_\-end}!timer.c@{timer.\-c}}
-\subsubsection[{clock\-\_\-elapsed\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void clock\-\_\-elapsed\-\_\-end (
+\index{timer.\+c@{timer.\+c}!clock\+\_\+elapsed\+\_\+end@{clock\+\_\+elapsed\+\_\+end}}
+\index{clock\+\_\+elapsed\+\_\+end@{clock\+\_\+elapsed\+\_\+end}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+elapsed\+\_\+end(char $\ast$msg)}{clock_elapsed_end(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void clock\+\_\+elapsed\+\_\+end (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}
+)}\hypertarget{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{}\label{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}
 
 
-Subtract and display time difference from clock\-\_\-elapesed\-\_\-begin(). 
+Subtract and display time difference from clock\+\_\+elapesed\+\_\+begin(). 
 
 
 \begin{DoxyItemize}
-\item Notes\-: Accuracy is a function of timer resolution, C\-P\-U overhead and background tasks.
+\item Notes\+: Accuracy is a function of timer resolution, C\+PU overhead and background tasks.
 \end{DoxyItemize}
 
 
@@ -125,51 +157,198 @@ Subtract and display time difference from clock\-\_\-elapesed\-\_\-begin().
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{timer__hal_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\-\_\-gettime()}. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\+\_\+gettime()}. 
 
-clock\-\_\-elapesed\-\_\-begin(). 
+clock\+\_\+elapesed\+\_\+begin(). 
 \end{DoxySeeAlso}
 
 
-Definition at line 185 of file timer.\-c.
+Definition at line 200 of file timer.\+c.
 
 
 
-Referenced by delay\-\_\-tests(), and gpib\-\_\-timer\-\_\-elapsed\-\_\-end().
+Referenced by delay\+\_\+tests(), and gpib\+\_\+timer\+\_\+elapsed\+\_\+end().
 
-\hypertarget{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}{\index{timer.\-c@{timer.\-c}!delete\-\_\-all\-\_\-timers@{delete\-\_\-all\-\_\-timers}}
-\index{delete\-\_\-all\-\_\-timers@{delete\-\_\-all\-\_\-timers}!timer.c@{timer.\-c}}
-\subsubsection[{delete\-\_\-all\-\_\-timers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void delete\-\_\-all\-\_\-timers (
+\index{timer.\+c@{timer.\+c}!clock\+\_\+getres@{clock\+\_\+getres}}
+\index{clock\+\_\+getres@{clock\+\_\+getres}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+getres(clockid\+\_\+t clk\+\_\+id, struct timespec $\ast$res)}{clock_getres(clockid_t clk_id, struct timespec *res)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int clock\+\_\+getres (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\+\_\+t}}]{clk\+\_\+id, }
+\item[{struct {\bf timespec} $\ast$}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_ab507661341c93c415b27ed9d40839539}{}\label{timer_8c_ab507661341c93c415b27ed9d40839539}
+
+
+Read clock time resolution into struct timepec $\ast$ts -\/ P\+O\+S\+IX function. 
+
+
+\begin{DoxyItemize}
+\item Note\+: We ignore clk\+\_\+id 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\+\_\+id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em res} & timespec resolution result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 329 of file timer.\+c.
+
+
+
+Referenced by main().
+
+\index{timer.\+c@{timer.\+c}!clock\+\_\+gettime@{clock\+\_\+gettime}}
+\index{clock\+\_\+gettime@{clock\+\_\+gettime}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+gettime(clockid\+\_\+t clk\+\_\+id, struct timespec $\ast$ts)}{clock_gettime(clockid_t clk_id, struct timespec *ts)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int clock\+\_\+gettime (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\+\_\+t}}]{clk\+\_\+id, }
+\item[{struct {\bf timespec} $\ast$}]{ts}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{}\label{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}
+
+
+Generic \hyperlink{timer_8c_aa6e5b6a9c1fb8bc6e2093fca40600bf5}{clock\+\_\+gettime()} function W\+I\+T\+H\+O\+UT high resolution. 
+
+Read clock time into struct timepec $\ast$ts -\/ P\+O\+S\+IX function.
+
+
+\begin{DoxyItemize}
+\item Note\+: We ignore clk\+\_\+id, and include low level counter offsets when available.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\+\_\+id} & unused hardware clock index. \\
+\hline
+\mbox{\tt out}  & {\em ts} & timespec result.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 377 of file timer.\+c.
+
+
+
+Referenced by clock\+\_\+elapsed\+\_\+begin(), clock\+\_\+elapsed\+\_\+end(), display\+\_\+time(), gettimeofday(), printer\+\_\+open(), and time().
+
+\index{timer.\+c@{timer.\+c}!clock\+\_\+settime@{clock\+\_\+settime}}
+\index{clock\+\_\+settime@{clock\+\_\+settime}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+settime(clockid\+\_\+t clk\+\_\+id, const struct timespec $\ast$ts)}{clock_settime(clockid_t clk_id, const struct timespec *ts)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int clock\+\_\+settime (
+\begin{DoxyParamCaption}
+\item[{{\bf clockid\+\_\+t}}]{clk\+\_\+id, }
+\item[{const struct {\bf timespec} $\ast$}]{ts}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{}\label{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}
+
+
+Set system clock using seconds and nonoseconds -\/ P\+O\+S\+IX function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em clk\+\_\+id} & Hardware timer index used when there are more then one.
+\begin{DoxyItemize}
+\item Note\+: We ignore clk\+\_\+id for now. 
+\end{DoxyItemize}\\
+\hline
+\mbox{\tt in}  & {\em ts} & struct timespec input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0. 
+\end{DoxyReturn}
+
+
+Definition at line 345 of file timer.\+c.
+
+
+
+Referenced by clock\+\_\+clear(), clock\+\_\+set(), setdate\+\_\+r(), settimeofday(), and setup\+\_\+clock().
+
+\index{timer.\+c@{timer.\+c}!clock\+\_\+task@{clock\+\_\+task}}
+\index{clock\+\_\+task@{clock\+\_\+task}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{clock\+\_\+task(void)}{clock_task(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void clock\+\_\+task (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}
+)}\hypertarget{timer_8c_a182d70e09e9436c9c8a2e81b7597f206}{}\label{timer_8c_a182d70e09e9436c9c8a2e81b7597f206}
 
 
-Clear A\-L\-L user timer tasks. 
+1000\+HZ timer task 
 
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 102 of file timer.\-c.
+Definition at line 276 of file timer.\+c.
 
 
 
-Referenced by init\-\_\-timers().
+Referenced by init\+\_\+timers().
 
-\hypertarget{timer_8c_a6802af23bc1fe764b975683a0b37fc91}{\index{timer.\-c@{timer.\-c}!display\-\_\-ts@{display\-\_\-ts}}
-\index{display\-\_\-ts@{display\-\_\-ts}!timer.c@{timer.\-c}}
-\subsubsection[{display\-\_\-ts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void display\-\_\-ts (
+\index{timer.\+c@{timer.\+c}!delete\+\_\+all\+\_\+timers@{delete\+\_\+all\+\_\+timers}}
+\index{delete\+\_\+all\+\_\+timers@{delete\+\_\+all\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{delete\+\_\+all\+\_\+timers()}{delete_all_timers()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void delete\+\_\+all\+\_\+timers (
 \begin{DoxyParamCaption}
-\item[{{\bf ts\-\_\-t} $\ast$}]{val}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a6802af23bc1fe764b975683a0b37fc91}
+)}\hypertarget{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}{}\label{timer_8c_a62b37d3b3acfee789af6a9dbd47f7267}
 
 
-timespec structure in seconds.\-nanoseconds. 
+Clear A\+LL user timer tasks. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 117 of file timer.\+c.
+
+
+
+Referenced by init\+\_\+timers().
+
+\index{timer.\+c@{timer.\+c}!disable\+\_\+timers@{disable\+\_\+timers}}
+\index{disable\+\_\+timers@{disable\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{disable\+\_\+timers()}{disable_timers()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void disable\+\_\+timers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a296c5d3efac4bc56fc12fe3626f7d4b6}{}\label{timer_8c_a296c5d3efac4bc56fc12fe3626f7d4b6}
+
+
+Disable all timer tasks. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file timer.\+c.
+
+\index{timer.\+c@{timer.\+c}!display\+\_\+ts@{display\+\_\+ts}}
+\index{display\+\_\+ts@{display\+\_\+ts}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{display\+\_\+ts(ts\+\_\+t $\ast$val)}{display_ts(ts_t *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void display\+\_\+ts (
+\begin{DoxyParamCaption}
+\item[{{\bf ts\+\_\+t} $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a6802af23bc1fe764b975683a0b37fc91}{}\label{timer_8c_a6802af23bc1fe764b975683a0b37fc91}
+
+
+timespec structure in seconds.\+nanoseconds. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -181,18 +360,85 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 152 of file timer.\-c.
+Definition at line 167 of file timer.\+c.
 
-\hypertarget{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}{\index{timer.\-c@{timer.\-c}!kill\-\_\-timer@{kill\-\_\-timer}}
-\index{kill\-\_\-timer@{kill\-\_\-timer}!timer.c@{timer.\-c}}
-\subsubsection[{kill\-\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int kill\-\_\-timer (
+\index{timer.\+c@{timer.\+c}!enable\+\_\+timers@{enable\+\_\+timers}}
+\index{enable\+\_\+timers@{enable\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{enable\+\_\+timers()}{enable_timers()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void enable\+\_\+timers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_ac97e80c15c73721fbc9f5071f6681fac}{}\label{timer_8c_ac97e80c15c73721fbc9f5071f6681fac}
+
+
+Enable timer tasks. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 248 of file timer.\+c.
+
+
+
+Referenced by init\+\_\+timers().
+
+\index{timer.\+c@{timer.\+c}!execute\+\_\+timers@{execute\+\_\+timers}}
+\index{execute\+\_\+timers@{execute\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{execute\+\_\+timers()}{execute_timers()}}]{\setlength{\rightskip}{0pt plus 5cm}void execute\+\_\+timers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_a67a27354654cf2a2169137adc7274def}{}\label{timer_8c_a67a27354654cf2a2169137adc7274def}
+
+
+Execute all user timers at S\+Y\+S\+T\+E\+M\+\_\+\+HZ rate. Called by system task. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file timer.\+c.
+
+\index{timer.\+c@{timer.\+c}!init\+\_\+timers@{init\+\_\+timers}}
+\index{init\+\_\+timers@{init\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{init\+\_\+timers()}{init_timers()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void init\+\_\+timers (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_acb0c9c995c634465d7d1f534bd862f8e}{}\label{timer_8c_acb0c9c995c634465d7d1f534bd862f8e}
+
+
+Setup all timers tasksi and enable interrupts. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{timer_8c_a182d70e09e9436c9c8a2e81b7597f206}{clock\+\_\+task()} 
+
+\+: \hyperlink{timer__hal_8c}{timer\+\_\+hal.\+c} for hardware dependent interface 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+See \hyperlink{time_8c}{time.\+c} 
+
+Definition at line 293 of file timer.\+c.
+
+
+
+Referenced by main().
+
+\index{timer.\+c@{timer.\+c}!kill\+\_\+timer@{kill\+\_\+timer}}
+\index{kill\+\_\+timer@{kill\+\_\+timer}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{kill\+\_\+timer(int timer)}{kill_timer(int timer)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int kill\+\_\+timer (
 \begin{DoxyParamCaption}
 \item[{int}]{timer}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}
+)}\hypertarget{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}{}\label{timer_8c_a71c3fe0e245c7b08e03a2fe0fbd88844}
 
 
-Delete \char`\"{}\-Kill\char`\"{} one user timer task. 
+Delete \char`\"{}\+Kill\char`\"{} one user timer task. 
 
 
 \begin{DoxyItemize}
@@ -211,16 +457,16 @@ timer on success.
 \end{DoxyReturn}
 
 
-Definition at line 85 of file timer.\-c.
+Definition at line 100 of file timer.\+c.
 
-\hypertarget{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}{\index{timer.\-c@{timer.\-c}!set\-\_\-timers@{set\-\_\-timers}}
-\index{set\-\_\-timers@{set\-\_\-timers}!timer.c@{timer.\-c}}
-\subsubsection[{set\-\_\-timers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} int set\-\_\-timers (
+\index{timer.\+c@{timer.\+c}!set\+\_\+timers@{set\+\_\+timers}}
+\index{set\+\_\+timers@{set\+\_\+timers}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+timers(void($\ast$handler)(void), int timer)}{set_timers(void(*handler)(void), int timer)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int set\+\_\+timers (
 \begin{DoxyParamCaption}
 \item[{void($\ast$)(void)}]{handler, }
 \item[{int}]{timer}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}
+)}\hypertarget{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}{}\label{timer_8c_a35f94fb84f1b626d8d1ace062b26c932}
 
 
 Install a user timer task. 
@@ -244,20 +490,20 @@ timer on success.
 \end{DoxyReturn}
 
 
-Definition at line 45 of file timer.\-c.
+Definition at line 60 of file timer.\+c.
 
 
 
-Referenced by clock\-\_\-init(), gpib\-\_\-timer\-\_\-init(), init\-\_\-timers(), and mmc\-\_\-install\-\_\-timer().
+Referenced by gpib\+\_\+timer\+\_\+init(), init\+\_\+timers(), and mmc\+\_\+install\+\_\+timer().
 
-\hypertarget{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}{\index{timer.\-c@{timer.\-c}!subtract\-\_\-timespec@{subtract\-\_\-timespec}}
-\index{subtract\-\_\-timespec@{subtract\-\_\-timespec}!timer.c@{timer.\-c}}
-\subsubsection[{subtract\-\_\-timespec}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} void subtract\-\_\-timespec (
+\index{timer.\+c@{timer.\+c}!subtract\+\_\+timespec@{subtract\+\_\+timespec}}
+\index{subtract\+\_\+timespec@{subtract\+\_\+timespec}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{subtract\+\_\+timespec(ts\+\_\+t $\ast$a, ts\+\_\+t $\ast$b)}{subtract_timespec(ts_t *a, ts_t *b)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void subtract\+\_\+timespec (
 \begin{DoxyParamCaption}
-\item[{{\bf ts\-\_\-t} $\ast$}]{a, }
-\item[{{\bf ts\-\_\-t} $\ast$}]{b}
+\item[{{\bf ts\+\_\+t} $\ast$}]{a, }
+\item[{{\bf ts\+\_\+t} $\ast$}]{b}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}
+)}\hypertarget{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}{}\label{timer_8c_ab92d687bae984bd62c3d741f2ba614ed}
 
 
 subtract a-\/= b timespec $\ast$ structures. 
@@ -274,52 +520,74 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 120 of file timer.\-c.
+Definition at line 135 of file timer.\+c.
 
 
 
-Referenced by clock\-\_\-elapsed\-\_\-end().
+Referenced by clock\+\_\+elapsed\+\_\+end().
 
-\hypertarget{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}{\index{timer.\-c@{timer.\-c}!ts\-\_\-to\-\_\-str@{ts\-\_\-to\-\_\-str}}
-\index{ts\-\_\-to\-\_\-str@{ts\-\_\-to\-\_\-str}!timer.c@{timer.\-c}}
-\subsubsection[{ts\-\_\-to\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\-E\-M\-S\-P\-A\-C\-E} char$\ast$ ts\-\_\-to\-\_\-str (
+\index{timer.\+c@{timer.\+c}!ts\+\_\+to\+\_\+str@{ts\+\_\+to\+\_\+str}}
+\index{ts\+\_\+to\+\_\+str@{ts\+\_\+to\+\_\+str}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{ts\+\_\+to\+\_\+str(ts\+\_\+t $\ast$val)}{ts_to_str(ts_t *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ ts\+\_\+to\+\_\+str (
 \begin{DoxyParamCaption}
-\item[{{\bf ts\-\_\-t} $\ast$}]{val}
+\item[{{\bf ts\+\_\+t} $\ast$}]{val}
 \end{DoxyParamCaption}
-)}}\label{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}
+)}\hypertarget{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}{}\label{timer_8c_a41fb2edea84c2f17c7c6ad6ff87baeff}
 
 
-Definition at line 140 of file timer.\-c.
+Definition at line 155 of file timer.\+c.
 
 
 
-Referenced by clock\-\_\-elapsed\-\_\-end(), and display\-\_\-ts().
+Referenced by clock\+\_\+elapsed\+\_\+end(), and display\+\_\+ts().
 
 
 
 \subsection{Variable Documentation}
-\hypertarget{timer_8c_a11d81711e20909cf489fb56cbbb81558}{\index{timer.\-c@{timer.\-c}!\-\_\-\-\_\-clock\-\_\-elapsed@{\-\_\-\-\_\-clock\-\_\-elapsed}}
-\index{\-\_\-\-\_\-clock\-\_\-elapsed@{\-\_\-\-\_\-clock\-\_\-elapsed}!timer.c@{timer.\-c}}
-\subsubsection[{\-\_\-\-\_\-clock\-\_\-elapsed}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ts\-\_\-t} \-\_\-\-\_\-clock\-\_\-elapsed\hspace{0.3cm}{\ttfamily [static]}}}\label{timer_8c_a11d81711e20909cf489fb56cbbb81558}
+\index{timer.\+c@{timer.\+c}!\+\_\+\+\_\+clock@{\+\_\+\+\_\+clock}}
+\index{\+\_\+\+\_\+clock@{\+\_\+\+\_\+clock}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+clock}{__clock}}]{\setlength{\rightskip}{0pt plus 5cm}volatile {\bf ts\+\_\+t} \+\_\+\+\_\+clock}\hypertarget{timer_8c_a335451dd774ecb4b696d501b4c1b6f30}{}\label{timer_8c_a335451dd774ecb4b696d501b4c1b6f30}
+
+
+System Clock Time. 
+
+
+
+Definition at line 38 of file timer.\+c.
+
+\index{timer.\+c@{timer.\+c}!\+\_\+\+\_\+clock\+\_\+elapsed@{\+\_\+\+\_\+clock\+\_\+elapsed}}
+\index{\+\_\+\+\_\+clock\+\_\+elapsed@{\+\_\+\+\_\+clock\+\_\+elapsed}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+clock\+\_\+elapsed}{__clock_elapsed}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ts\+\_\+t} \+\_\+\+\_\+clock\+\_\+elapsed\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{timer_8c_a11d81711e20909cf489fb56cbbb81558}{}\label{timer_8c_a11d81711e20909cf489fb56cbbb81558}
 
 
 Used for elapsed time calculations. 
 
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{clock\-\_\-elapsed\-\_\-begin()}. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{timer_8c_adf029ed50e104cc3c16bcb7cf7d58f8c}{clock\+\_\+elapsed\+\_\+begin()}. 
 
-\hyperlink{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{clock\-\_\-elapsed\-\_\-end()}. 
+\hyperlink{timer_8c_a9f3dff4c1cc1701dc99d7e1d30ffcc06}{clock\+\_\+elapsed\+\_\+end()}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 161 of file timer.\-c.
+Definition at line 176 of file timer.\+c.
 
-\hypertarget{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}{\index{timer.\-c@{timer.\-c}!\-\_\-ts\-\_\-to\-\_\-str@{\-\_\-ts\-\_\-to\-\_\-str}}
-\index{\-\_\-ts\-\_\-to\-\_\-str@{\-\_\-ts\-\_\-to\-\_\-str}!timer.c@{timer.\-c}}
-\subsubsection[{\-\_\-ts\-\_\-to\-\_\-str}]{\setlength{\rightskip}{0pt plus 5cm}char \-\_\-ts\-\_\-to\-\_\-str\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}}\label{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}
+\index{timer.\+c@{timer.\+c}!\+\_\+\+\_\+tzone@{\+\_\+\+\_\+tzone}}
+\index{\+\_\+\+\_\+tzone@{\+\_\+\+\_\+tzone}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+tzone}{__tzone}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tz\+\_\+t} \+\_\+\+\_\+tzone}\hypertarget{timer_8c_a9ac29ed71adf6807175d24ab1fa622a7}{}\label{timer_8c_a9ac29ed71adf6807175d24ab1fa622a7}
 
 
-timespec structure in seconds.\-nanoseconds in string. 
+System Time Zone. 
+
+
+
+Definition at line 41 of file timer.\+c.
+
+\index{timer.\+c@{timer.\+c}!\+\_\+ts\+\_\+to\+\_\+str@{\+\_\+ts\+\_\+to\+\_\+str}}
+\index{\+\_\+ts\+\_\+to\+\_\+str@{\+\_\+ts\+\_\+to\+\_\+str}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{\+\_\+ts\+\_\+to\+\_\+str}{_ts_to_str}}]{\setlength{\rightskip}{0pt plus 5cm}char \+\_\+ts\+\_\+to\+\_\+str\mbox{[}32\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}{}\label{timer_8c_a3b37602023ba3cdbbe1394f43abbef2c}
+
+
+timespec structure in seconds.\+nanoseconds in string. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -333,16 +601,38 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 138 of file timer.\-c.
+Definition at line 153 of file timer.\+c.
 
-\hypertarget{timer_8c_aa17a38bfa7403efeae5bf6b723ef2888}{\index{timer.\-c@{timer.\-c}!timer\-\_\-irq@{timer\-\_\-irq}}
-\index{timer\-\_\-irq@{timer\-\_\-irq}!timer.c@{timer.\-c}}
-\subsubsection[{timer\-\_\-irq}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\-I\-M\-E\-R\-S} timer\-\_\-irq\mbox{[}$\,$\mbox{]}}}\label{timer_8c_aa17a38bfa7403efeae5bf6b723ef2888}
+\index{timer.\+c@{timer.\+c}!timer\+\_\+irq@{timer\+\_\+irq}}
+\index{timer\+\_\+irq@{timer\+\_\+irq}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timer\+\_\+irq}{timer_irq}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+I\+M\+E\+RS} timer\+\_\+irq\mbox{[}{\bf M\+A\+X\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+NT}\mbox{]}}\hypertarget{timer_8c_ad680b46025f0dae867f27a80344736a1}{}\label{timer_8c_ad680b46025f0dae867f27a80344736a1}
 
 
 array or user timers 
 
 
 
-Definition at line 42 of file timer\-\_\-hal.\-c.
+Definition at line 47 of file timer.\+c.
+
+\index{timer.\+c@{timer.\+c}!timers\+\_\+configured@{timers\+\_\+configured}}
+\index{timers\+\_\+configured@{timers\+\_\+configured}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timers\+\_\+configured}{timers_configured}}]{\setlength{\rightskip}{0pt plus 5cm}int timers\+\_\+configured = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{timer_8c_a0ea4c1291946db41f55937b7cc3dc40c}{}\label{timer_8c_a0ea4c1291946db41f55937b7cc3dc40c}
+
+
+Definition at line 44 of file timer.\+c.
+
+
+
+Referenced by disable\+\_\+timers(), enable\+\_\+timers(), and init\+\_\+timers().
+
+\index{timer.\+c@{timer.\+c}!timers\+\_\+enabled@{timers\+\_\+enabled}}
+\index{timers\+\_\+enabled@{timers\+\_\+enabled}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timers\+\_\+enabled}{timers_enabled}}]{\setlength{\rightskip}{0pt plus 5cm}int timers\+\_\+enabled = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{timer_8c_ae997c45cc4d164ce0b47a44b370651ec}{}\label{timer_8c_ae997c45cc4d164ce0b47a44b370651ec}
+
+
+Definition at line 43 of file timer.\+c.
+
+
+
+Referenced by disable\+\_\+timers(), enable\+\_\+timers(), and init\+\_\+timers().
 

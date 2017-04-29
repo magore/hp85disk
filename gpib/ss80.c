@@ -117,7 +117,8 @@ LengthType Length;   //< Length, in blocks
 
 int Errors;          //< Error byte
 
-/// @todo  Whould we move this into the actual Disk image or config file ??
+/// @todo  Should we move this into the actual Disk image or config file ??
+/// Size = 5 Bytes
 ///
 /// - Notes: HP/LIF data is BIG endian
 /// 
@@ -133,6 +134,7 @@ ControllerDescriptionType ControllerDescription =
 };
 
 /// @brief HP9122D Uint Description
+/// Size = 19 Bytes
 UnitDescriptionType UnitDescription =
 {
     0x01,                                         // Unit type = floppy
@@ -157,6 +159,7 @@ UnitDescriptionType UnitDescription =
 };
 
 /// @brief HP9122D Volume Description
+/// Size = 13 bytes
 VolumeDescriptionType VolumeDescription =
 {
     0x00,                                         // Max cylinder
@@ -810,7 +813,7 @@ int SS80_send_status( void )
 }
 
 
-/// @brief  Send Controler,UNit and Volume description.
+/// @brief  Send Controler,Unit and Volume description.
 ///
 /// - Reference: SS80 4-15.
 /// - State: EXEC STATE COMMAND>

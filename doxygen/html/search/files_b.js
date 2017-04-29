@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['spi_2ec',['spi.c',['../spi_8c.html',1,'']]],
-  ['spi_2eh',['spi.h',['../spi_8h.html',1,'']]],
-  ['ss80_2ec',['ss80.c',['../ss80_8c.html',1,'']]],
-  ['ss80_2eh',['ss80.h',['../ss80_8h.html',1,'']]],
-  ['str_2ec',['str.c',['../str_8c.html',1,'']]],
-  ['str_2eh',['str.h',['../str_8h.html',1,'']]],
-  ['syscall_2ec',['syscall.c',['../syscall_8c.html',1,'']]]
+  ['queue_2ec',['queue.c',['../queue_8c.html',1,'']]],
+  ['queue_2eh',['queue.h',['../queue_8h.html',1,'']]]
 ];

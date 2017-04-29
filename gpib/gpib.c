@@ -19,6 +19,7 @@
 #include <avr/io.h>
 
 #include "user_config.h"
+#include "hardware/hal.h"
 #include "gpib_hal.h"
 
 #include "defines.h"
@@ -212,18 +213,18 @@ void gpib_bus_init( int cold )
 
     GPIB_BUS_IN();
 
-    GPIB_IO_FLOAT(EOI);
-    GPIB_IO_FLOAT(DAV);
-    GPIB_IO_FLOAT(ATN);
-    GPIB_IO_FLOAT(IFC);
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(DAV);
+    GPIB_PIN_FLOAT(ATN);
+    GPIB_PIN_FLOAT(IFC);
 
-    GPIB_IO_FLOAT(REN);
-    GPIB_IO_FLOAT(SRQ);
+    GPIB_PIN_FLOAT(REN);
+    GPIB_PIN_FLOAT(SRQ);
 
     if(cold == 0)
     {
-        GPIB_IO_FLOAT(NRFD);
-        GPIB_IO_FLOAT(NDAC);
+        GPIB_PIN_FLOAT(NRFD);
+        GPIB_PIN_FLOAT(NDAC);
     }
     else
     {
@@ -370,7 +371,7 @@ void gpib_assert_ifc(void)
     GPIB_IO_LOW(IFC);
     delayus(250);
 
-    GPIB_IO_FLOAT(IFC);
+    GPIB_PIN_FLOAT(IFC);
     delayus(250);
 #if SDEBUG >= 1
     if(debuglevel >= 1)
@@ -401,7 +402,7 @@ void gpib_assert_ren(unsigned char state)
         if(debuglevel >= 1)
             printf("[REN HI]\n");
 #endif
-        GPIB_IO_FLOAT(REN);
+        GPIB_PIN_FLOAT(REN);
     }
 }
 
@@ -446,19 +447,19 @@ uint16_t gpib_write_byte(uint16_t ch)
 {
     uint8_t tx_state;
 
-    GPIB_IO_FLOAT(DAV);
-    GPIB_IO_FLOAT(EOI);
-    GPIB_IO_FLOAT(ATN);                           // FYI: SS80 never sends ATN from a device
+    GPIB_PIN_FLOAT(DAV);
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(ATN);                           // FYI: SS80 never sends ATN from a device
 
-    GPIB_IO_FLOAT(IFC);
+    GPIB_PIN_FLOAT(IFC);
 
 
     GPIB_BUS_IN();
 
 ///  See HP-IB Tutorial pg 13 for the receive and send control line states
 
-    GPIB_IO_FLOAT(NRFD);
-    GPIB_IO_FLOAT(NDAC);
+    GPIB_PIN_FLOAT(NRFD);
+    GPIB_PIN_FLOAT(NDAC);
 
     GPIB_BUS_SETTLE();                            // Let Data BUS settle
 
@@ -595,10 +596,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_SET_DAV_HI:
-                GPIB_IO_FLOAT(DAV);               // Float DAV
+                GPIB_PIN_FLOAT(DAV);               // Float DAV
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
-                GPIB_IO_FLOAT(ATN );              // ATN FLOAT
-                GPIB_IO_FLOAT(EOI);               // EOI FLOAT
+                GPIB_PIN_FLOAT(ATN );              // ATN FLOAT
+                GPIB_PIN_FLOAT(EOI);               // EOI FLOAT
                 GPIB_BUS_IN();                    // Data FLOAT
                 gpib_timeout_set(HTIMEOUT);
                 tx_state = GPIB_TX_WAIT_FOR_NDAC_LOW;
@@ -632,10 +633,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_ERROR:
-                GPIB_IO_FLOAT(DAV);               // DAV FLOAT on error
+                GPIB_PIN_FLOAT(DAV);               // DAV FLOAT on error
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
-                GPIB_IO_FLOAT(ATN );              // ATN FLOAT
-                GPIB_IO_FLOAT(EOI);               // EOI FLOAT
+                GPIB_PIN_FLOAT(ATN );              // ATN FLOAT
+                GPIB_PIN_FLOAT(EOI);               // EOI FLOAT
                 GPIB_BUS_IN();                    // Data FLOAT
                 GPIB_IO_LOW(NRFD);                // BUSY
                 tx_state = GPIB_TX_DONE;
@@ -718,10 +719,10 @@ uint16_t gpib_read_byte( void )
     ch = 0;
     status = 0;
 
-    GPIB_IO_FLOAT(IFC);
-    GPIB_IO_FLOAT(ATN);
-    GPIB_IO_FLOAT(EOI);
-    GPIB_IO_FLOAT(DAV);                           // DAV should be HI already
+    GPIB_PIN_FLOAT(IFC);
+    GPIB_PIN_FLOAT(ATN);
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(DAV);                           // DAV should be HI already
 
 
     GPIB_BUS_IN();
@@ -732,7 +733,7 @@ uint16_t gpib_read_byte( void )
         return(gpib_unread_data);
     }
 
-    GPIB_IO_FLOAT(NRFD);
+    GPIB_PIN_FLOAT(NRFD);
     GPIB_BUS_SETTLE();                            // Let Data BUS settle
     GPIB_IO_LOW(NDAC);
 
@@ -754,7 +755,7 @@ uint16_t gpib_read_byte( void )
         switch(rx_state)
         {
             case GPIB_RX_START:
-                GPIB_IO_FLOAT(NRFD);
+                GPIB_PIN_FLOAT(NRFD);
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 rx_state = GPIB_RX_WAIT_FOR_DAV_LOW;
                 break;
@@ -792,7 +793,7 @@ uint16_t gpib_read_byte( void )
                     DisablePPR();
                 }
 #endif
-                GPIB_IO_FLOAT(NDAC);              // Acknowledge Read
+                GPIB_PIN_FLOAT(NDAC);              // Acknowledge Read
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 gpib_timeout_set(HTIMEOUT);
                 rx_state = GPIB_RX_WAIT_FOR_DAV_HI;

@@ -1,112 +1,113 @@
-\hypertarget{amigo_8c}{\section{gpib/amigo.c File Reference}
-\label{amigo_8c}\index{gpib/amigo.\-c@{gpib/amigo.\-c}}
-}
+\hypertarget{amigo_8c}{}\section{gpib/amigo.c File Reference}
+\label{amigo_8c}\index{gpib/amigo.\+c@{gpib/amigo.\+c}}
 
 
-A\-M\-I\-G\-O disk emulator for H\-P85 disk emulator project for A\-V\-R8.  
+A\+M\+I\+GO disk emulator for H\+P85 disk emulator project for A\+V\+R8.  
 
 
-{\ttfamily \#include \char`\"{}user\-\_\-config.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}defines.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}gpib.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}gpib\-\_\-hal.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}gpib\-\_\-task.\-h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}amigo.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}amigo.\+h\char`\"{}}\\*
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335}{A\-M\-I\-G\-O\-\_\-states} \{ \\*
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}{A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E} = 0, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}, 
+enum \hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335}{A\+M\+I\+G\+O\+\_\+states} \{ \\*
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}{A\+M\+I\+G\+O\+\_\+\+I\+D\+LE} = 0, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED}, 
 \\*
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}{A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}{A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED}, 
 \\*
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}, 
-\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}{A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E}
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED}, 
+\hyperlink{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}{A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}{amigo\-\_\-init} ()
+void \hyperlink{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}{amigo\+\_\+init} ()
 \begin{DoxyCompactList}\small\item\em Initialize Amigo state machine, Disk Position, Error status. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}{amigo\-\_\-request\-\_\-logical\-\_\-address} ()
-\begin{DoxyCompactList}\small\item\em Set current address in amigo\-\_\-logical\-\_\-address\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}{amigo\-\_\-request\-\_\-status} ()
-\begin{DoxyCompactList}\small\item\em Set drive status in amigo\-\_\-status\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}{amigo\-\_\-send\-\_\-logical\-\_\-address} ()
-\begin{DoxyCompactList}\small\item\em Send current address in amigo\-\_\-logical\-\_\-address\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a5469dfd99a532f1324999a77256d91a8}{amigo\-\_\-send\-\_\-status} ()
-\begin{DoxyCompactList}\small\item\em Send drive status in amigo\-\_\-status\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
-static \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\-W\-O\-R\-D} \hyperlink{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}{amigo\-\_\-chs\-\_\-to\-\_\-logical} (\hyperlink{structDiskType}{Disk\-Type} $\ast$p, char $\ast$msg)
-\begin{DoxyCompactList}\small\item\em Convert Drive C\-H\-S position to offset. \end{DoxyCompactList}\item 
-static int \hyperlink{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}{amigo\-\_\-overflow\-\_\-check} (\hyperlink{structDiskType}{Disk\-Type} $\ast$p, char $\ast$msg)
-\begin{DoxyCompactList}\small\item\em Check for C\-H\-S position overflow. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}{amigo\-\_\-increment} (char $\ast$msg)
+int \hyperlink{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}{amigo\+\_\+request\+\_\+logical\+\_\+address} ()
+\begin{DoxyCompactList}\small\item\em Set current address in amigo\+\_\+logical\+\_\+address\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}{amigo\+\_\+request\+\_\+status} ()
+\begin{DoxyCompactList}\small\item\em Set drive status in amigo\+\_\+status\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}{amigo\+\_\+send\+\_\+logical\+\_\+address} ()
+\begin{DoxyCompactList}\small\item\em Send current address in amigo\+\_\+logical\+\_\+address\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_a5469dfd99a532f1324999a77256d91a8}{amigo\+\_\+send\+\_\+status} ()
+\begin{DoxyCompactList}\small\item\em Send drive status in amigo\+\_\+status\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+static \hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} \hyperlink{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}{amigo\+\_\+chs\+\_\+to\+\_\+logical} (\hyperlink{structDiskType}{Disk\+Type} $\ast$p, char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Convert Drive C\+HS position to offset. \end{DoxyCompactList}\item 
+static int \hyperlink{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}{amigo\+\_\+overflow\+\_\+check} (\hyperlink{structDiskType}{Disk\+Type} $\ast$p, char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Check for C\+HS position overflow. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}{amigo\+\_\+increment} (char $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Increment sector if it will not overflow. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}{amigo\-\_\-seek} (\hyperlink{structDiskType}{Disk\-Type} $\ast$p)
+int \hyperlink{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}{amigo\+\_\+seek} (\hyperlink{structDiskType}{Disk\+Type} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Seek to the position held in the disk structure. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}{amigo\-\_\-verify} (uint16\-\_\-t sectors)
+int \hyperlink{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}{amigo\+\_\+verify} (uint16\+\_\+t sectors)
 \begin{DoxyCompactList}\small\item\em Verify Disk Sectors at current position. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}{amigo\-\_\-format} (uint8\-\_\-t override, uint8\-\_\-t interleave, uint8\-\_\-t db)
+int \hyperlink{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}{amigo\+\_\+format} (uint8\+\_\+t override, uint8\+\_\+t interleave, uint8\+\_\+t db)
 \begin{DoxyCompactList}\small\item\em Format Disk. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a825aa1ed704bfabe55d37787234a273d}{amigo\-\_\-buffered\-\_\-read} ()
+int \hyperlink{amigo_8c_a825aa1ed704bfabe55d37787234a273d}{amigo\+\_\+buffered\+\_\+read} ()
 \begin{DoxyCompactList}\small\item\em Do a buffered read of the current sector. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ac92648301b959f38296610669487727a}{amigo\-\_\-buffered\-\_\-write} ()
+int \hyperlink{amigo_8c_ac92648301b959f38296610669487727a}{amigo\+\_\+buffered\+\_\+write} ()
 \begin{DoxyCompactList}\small\item\em Do a buffered write of the current sector. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{amigo\-\_\-cmd\-\_\-dsj} ()
-\begin{DoxyCompactList}\small\item\em Send D\-S\-J. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ac919a69a536ece0514b8c60df5208868}{amigo\-\_\-cmd\-\_\-wakeup} ()
-\begin{DoxyCompactList}\small\item\em Wakeup (undocumented), just enable P\-P\-R response. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a50637caffe2f5419fd06b70a66d26176}{amigo\-\_\-cmd\-\_\-clear} ()
+int \hyperlink{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{amigo\+\_\+cmd\+\_\+dsj} ()
+\begin{DoxyCompactList}\small\item\em Send D\+SJ. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_ac919a69a536ece0514b8c60df5208868}{amigo\+\_\+cmd\+\_\+wakeup} ()
+\begin{DoxyCompactList}\small\item\em Wakeup (undocumented), just enable P\+PR response. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_a50637caffe2f5419fd06b70a66d26176}{amigo\+\_\+cmd\+\_\+clear} ()
 \begin{DoxyCompactList}\small\item\em Response to selected device clear or all clear. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}{amigo\-\_\-todo\-\_\-op} (uint8\-\_\-t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary}, uint8\-\_\-t opcode, int len)
+int \hyperlink{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}{amigo\+\_\+todo\+\_\+op} (uint8\+\_\+t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary}, uint8\+\_\+t opcode, int len)
 \begin{DoxyCompactList}\small\item\em Report any Unimplimented commands with Op Codes. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a437bef06e567b3f6728f2519b9065354}{amigo\-\_\-todo} (uint8\-\_\-t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
+int \hyperlink{amigo_8c_a437bef06e567b3f6728f2519b9065354}{amigo\+\_\+todo} (uint8\+\_\+t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
 \begin{DoxyCompactList}\small\item\em Report any Unimplimented commands. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{Amigo\-\_\-\-Command} (int \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
-\begin{DoxyCompactList}\small\item\em Amigo Command and O\-P Code Processing functions. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{Amigo\-\_\-\-Execute} (int \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
+int \hyperlink{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{Amigo\+\_\+\+Command} (int \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
+\begin{DoxyCompactList}\small\item\em Amigo Command and OP Code Processing functions. \end{DoxyCompactList}\item 
+int \hyperlink{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{Amigo\+\_\+\+Execute} (int \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
 \begin{DoxyCompactList}\small\item\em Amigo Execute command processing. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}{A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S} (uint8\-\_\-t ch)
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O Command state processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \hyperlink{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Command state processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structVolumeLabelType}{Volume\-Label\-Type} \hyperlink{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}{vl}
-\begin{DoxyCompactList}\small\item\em L\-I\-F data structures used by stand alone formatting utility. \end{DoxyCompactList}\item 
-\hyperlink{structDirEntryType}{Dir\-Entry\-Type} \hyperlink{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}{de}
-\begin{DoxyCompactList}\small\item\em L\-I\-F D\-Irectory Entry. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}{talking}
+\hyperlink{structVolumeLabelType}{Volume\+Label\+Type} \hyperlink{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}{vl}
+\begin{DoxyCompactList}\small\item\em L\+IF data structures used by stand alone formatting utility. \end{DoxyCompactList}\item 
+\hyperlink{structDirEntryType}{Dir\+Entry\+Type} \hyperlink{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}{de}
+\begin{DoxyCompactList}\small\item\em L\+IF D\+Irectory Entry. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}{talking}
 \begin{DoxyCompactList}\small\item\em gpib talk address \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{listening}
+uint8\+\_\+t \hyperlink{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{listening}
 \begin{DoxyCompactList}\small\item\em gpib listen address \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}{amigo\-\_\-state}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O emulator state machine index. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_a53591672cac336bb185dd00fa0babdf7}{amigo\-\_\-unit} = 0
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O disk unit number. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}{amigo\-\_\-status} \mbox{[}4\mbox{]}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O disk status. \end{DoxyCompactList}\item 
-uint8\-\_\-t \hyperlink{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}{amigo\-\_\-logical\-\_\-address} \mbox{[}4\mbox{]}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O disk address. \end{DoxyCompactList}\item 
-\hyperlink{structDiskType}{Disk\-Type} \hyperlink{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}{Disk}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O D\-I\-S\-K. \end{DoxyCompactList}\item 
-\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\-\_\-parm} \hyperlink{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}{D9121\-D}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O D9121\-D ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\item 
-\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\-\_\-parm} \hyperlink{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}{D9895\-A}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O D9885\-A ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\item 
-\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\-\_\-parm} \hyperlink{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}{D9134\-A}
-\begin{DoxyCompactList}\small\item\em A\-M\-I\-G\-O D9134\-A ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+uint8\+\_\+t \hyperlink{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}{amigo\+\_\+state}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO emulator state machine index. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{amigo_8c_a53591672cac336bb185dd00fa0babdf7}{amigo\+\_\+unit} = 0
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO disk unit number. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}{amigo\+\_\+status} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO disk status. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}{amigo\+\_\+logical\+\_\+address} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO disk address. \end{DoxyCompactList}\item 
+\hyperlink{structDiskType}{Disk\+Type} \hyperlink{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}{Disk}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D\+I\+SK. \end{DoxyCompactList}\item 
+\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\+\_\+parm} \hyperlink{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}{D9121D}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\item 
+\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\+\_\+parm} \hyperlink{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}{D9895A}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D9885A ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\item 
+\hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\+\_\+parm} \hyperlink{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}{D9134A}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D9134A ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A\-M\-I\-G\-O disk emulator for H\-P85 disk emulator project for A\-V\-R8. \begin{DoxyParagraph}{Edit History -\/ \mbox{[}1.0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.}
+A\+M\+I\+GO disk emulator for H\+P85 disk emulator project for A\+V\+R8. 
+
+\begin{DoxyParagraph}{Edit History -\/ \mbox{[}1.0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.}
 
 \end{DoxyParagraph}
 \begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
@@ -120,119 +121,115 @@ A\-M\-I\-G\-O disk emulator for H\-P85 disk emulator project for A\-V\-R8. \begi
 \end{DoxyParagraph}
 
 
-Definition in file \hyperlink{amigo_8c_source}{amigo.\-c}.
-
-
-
 \subsection{Enumeration Type Documentation}
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335}{\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-states@{A\-M\-I\-G\-O\-\_\-states}}
-\index{A\-M\-I\-G\-O\-\_\-states@{A\-M\-I\-G\-O\-\_\-states}!amigo.c@{amigo.\-c}}
-\subsubsection[{A\-M\-I\-G\-O\-\_\-states}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf A\-M\-I\-G\-O\-\_\-states}}}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335}
+\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+states@{A\+M\+I\+G\+O\+\_\+states}}
+\index{A\+M\+I\+G\+O\+\_\+states@{A\+M\+I\+G\+O\+\_\+states}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+states}{AMIGO_states}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf A\+M\+I\+G\+O\+\_\+states}}\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335}
 \begin{Desc}
 \item[Enumerator]\par
 \begin{description}
-\index{A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E@{A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E@{A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}{A\-M\-I\-G\-O\-\_\-\-I\-D\-L\-E}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-S\-T\-A\-T\-U\-S\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S@{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}{A\-M\-I\-G\-O\-\_\-\-R\-E\-Q\-U\-E\-S\-T\-\_\-\-L\-O\-G\-I\-C\-A\-L\-\_\-\-A\-D\-D\-R\-E\-S\-S}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}
-}]\index{A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D@{A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D@{A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}{A\-M\-I\-G\-O\-\_\-\-C\-O\-L\-D\-\_\-\-L\-O\-A\-D\-\_\-\-R\-E\-A\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}
-}]\index{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}{A\-M\-I\-G\-O\-\_\-\-R\-E\-A\-D\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}
-}]\index{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-U\-N\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}
-}]\index{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D@{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}{A\-M\-I\-G\-O\-\_\-\-W\-R\-I\-T\-E\-\_\-\-B\-U\-F\-F\-E\-R\-E\-D}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}
-}]\index{A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E@{A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E}!amigo.\-c@{amigo.\-c}}\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E@{A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E}}\item[{\em 
-\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}{A\-M\-I\-G\-O\-\_\-\-I\-N\-I\-T\-I\-A\-L\-I\-Z\-E}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}
+\index{A\+M\+I\+G\+O\+\_\+\+I\+D\+LE@{A\+M\+I\+G\+O\+\_\+\+I\+D\+LE}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+I\+D\+LE@{A\+M\+I\+G\+O\+\_\+\+I\+D\+LE}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+I\+D\+LE\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a16e8a4c64c13580e21ae210693639080}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+US\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a726e15230f0e429fbd406be79ee5ccfe}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS@{A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+Q\+U\+E\+S\+T\+\_\+\+L\+O\+G\+I\+C\+A\+L\+\_\+\+A\+D\+D\+R\+E\+SS\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335ada8c32a13401a829a93c24d3d8ca7399}
+}]\index{A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD@{A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD@{A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+C\+O\+L\+D\+\_\+\+L\+O\+A\+D\+\_\+\+R\+E\+AD\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a41d06e42ceb462144f99ad01121404f8}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335abbf5f7db2c80c4455ae50c55fae5f8fa}
+}]\index{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+R\+E\+A\+D\+\_\+\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a00c4be94621bda3820804fc719791923}
+}]\index{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+U\+N\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6}
+}]\index{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED@{A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+ED\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29}
+}]\index{A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE@{A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}!amigo.\+c@{amigo.\+c}}\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE@{A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}}\item[{\em 
+A\+M\+I\+G\+O\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE\hypertarget{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}{}\label{amigo_8c_a7d3869d64c8e26be25a286779419d335a13ebb564a90a98115d1ad7ac75209f40}
 }]\end{description}
 \end{Desc}
 
 
-Definition at line 139 of file amigo.\-c.
+Definition at line 139 of file amigo.\+c.
 
 
 
 \subsection{Function Documentation}
-\hypertarget{amigo_8c_a825aa1ed704bfabe55d37787234a273d}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-buffered\-\_\-read@{amigo\-\_\-buffered\-\_\-read}}
-\index{amigo\-\_\-buffered\-\_\-read@{amigo\-\_\-buffered\-\_\-read}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-buffered\-\_\-read}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-buffered\-\_\-read (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+buffered\+\_\+read@{amigo\+\_\+buffered\+\_\+read}}
+\index{amigo\+\_\+buffered\+\_\+read@{amigo\+\_\+buffered\+\_\+read}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+buffered\+\_\+read()}{amigo_buffered_read()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+buffered\+\_\+read (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a825aa1ed704bfabe55d37787234a273d}
+)}\hypertarget{amigo_8c_a825aa1ed704bfabe55d37787234a273d}{}\label{amigo_8c_a825aa1ed704bfabe55d37787234a273d}
 
 
 Do a buffered read of the current sector. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A33. \begin{DoxyReturn}{Returns}
+\item Reference\+: A33. \begin{DoxyReturn}{Returns}
 0 ok 
 
-G\-P\-I\-B Errors status,Sets dsj and Amigo\-\_\-errors 
+G\+P\+IB Errors status,Sets dsj and Amigo\+\_\+errors 
 \end{DoxyReturn}
 
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000005}{Todo}]Do we fail on overflow ? currently djs is set -\/ do we want to report that now ? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000004}{Todo}]Do we fail on overflow ? currently djs is set -\/ do we want to report that now ? \end{DoxyRefDesc}
 
 
-Definition at line 550 of file amigo.\-c.
+Definition at line 550 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Execute().
+Referenced by Amigo\+\_\+\+Execute().
 
-\hypertarget{amigo_8c_ac92648301b959f38296610669487727a}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-buffered\-\_\-write@{amigo\-\_\-buffered\-\_\-write}}
-\index{amigo\-\_\-buffered\-\_\-write@{amigo\-\_\-buffered\-\_\-write}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-buffered\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-buffered\-\_\-write (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+buffered\+\_\+write@{amigo\+\_\+buffered\+\_\+write}}
+\index{amigo\+\_\+buffered\+\_\+write@{amigo\+\_\+buffered\+\_\+write}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+buffered\+\_\+write()}{amigo_buffered_write()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+buffered\+\_\+write (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ac92648301b959f38296610669487727a}
+)}\hypertarget{amigo_8c_ac92648301b959f38296610669487727a}{}\label{amigo_8c_ac92648301b959f38296610669487727a}
 
 
 Do a buffered write of the current sector. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A43. \begin{DoxyReturn}{Returns}
+\item Reference\+: A43. \begin{DoxyReturn}{Returns}
 0 ok 
 
-G\-P\-I\-B Errors status,Sets dsj and Amigo\-\_\-errors 
+G\+P\+IB Errors status,Sets dsj and Amigo\+\_\+errors 
 \end{DoxyReturn}
 
 \end{DoxyItemize}
 
-Definition at line 616 of file amigo.\-c.
+Definition at line 616 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Execute().
+Referenced by Amigo\+\_\+\+Execute().
 
-\hypertarget{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-chs\-\_\-to\-\_\-logical@{amigo\-\_\-chs\-\_\-to\-\_\-logical}}
-\index{amigo\-\_\-chs\-\_\-to\-\_\-logical@{amigo\-\_\-chs\-\_\-to\-\_\-logical}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-chs\-\_\-to\-\_\-logical}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf D\-W\-O\-R\-D} amigo\-\_\-chs\-\_\-to\-\_\-logical (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+chs\+\_\+to\+\_\+logical@{amigo\+\_\+chs\+\_\+to\+\_\+logical}}
+\index{amigo\+\_\+chs\+\_\+to\+\_\+logical@{amigo\+\_\+chs\+\_\+to\+\_\+logical}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+chs\+\_\+to\+\_\+logical(\+Disk\+Type $\ast$p, char $\ast$msg)}{amigo_chs_to_logical(DiskType *p, char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf D\+W\+O\+RD} amigo\+\_\+chs\+\_\+to\+\_\+logical (
 \begin{DoxyParamCaption}
-\item[{{\bf Disk\-Type} $\ast$}]{p, }
+\item[{{\bf Disk\+Type} $\ast$}]{p, }
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}{}\label{amigo_8c_a239c2ab58413343ad8e0e7d9603ed225}
 
 
-Convert Drive C\-H\-S position to offset. 
+Convert Drive C\+HS position to offset. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19. 
+\item Reference\+: A15-\/\+A19. 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em p} & Disk Layout \\
 \hline
@@ -245,126 +242,126 @@ Convert Drive C\-H\-S position to offset.
 
 \end{DoxyItemize}
 
-Definition at line 328 of file amigo.\-c.
+Definition at line 328 of file amigo.\+c.
 
 
 
-Referenced by amigo\-\_\-buffered\-\_\-read(), amigo\-\_\-buffered\-\_\-write(), amigo\-\_\-format(), and amigo\-\_\-verify().
+Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+format(), and amigo\+\_\+verify().
 
-\hypertarget{amigo_8c_a50637caffe2f5419fd06b70a66d26176}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-cmd\-\_\-clear@{amigo\-\_\-cmd\-\_\-clear}}
-\index{amigo\-\_\-cmd\-\_\-clear@{amigo\-\_\-cmd\-\_\-clear}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-cmd\-\_\-clear}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-cmd\-\_\-clear (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+cmd\+\_\+clear@{amigo\+\_\+cmd\+\_\+clear}}
+\index{amigo\+\_\+cmd\+\_\+clear@{amigo\+\_\+cmd\+\_\+clear}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+cmd\+\_\+clear()}{amigo_cmd_clear()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+cmd\+\_\+clear (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a50637caffe2f5419fd06b70a66d26176}
+)}\hypertarget{amigo_8c_a50637caffe2f5419fd06b70a66d26176}{}\label{amigo_8c_a50637caffe2f5419fd06b70a66d26176}
 
 
 Response to selected device clear or all clear. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A23.
+\item Reference\+: A23.
 \item Select sector 0. \begin{DoxyReturn}{Returns}
 0 
 \end{DoxyReturn}
 
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000008}{Todo}]F\-I\-X\-M\-E\end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000007}{Todo}]F\+I\+X\+ME\end{DoxyRefDesc}
 
 
-Clear the D\-S\-J byte that might be 2 after powerup
+Clear the D\+SJ byte that might be 2 after powerup
 
-Definition at line 763 of file amigo.\-c.
+Definition at line 763 of file amigo.\+c.
 
 
 
-Referenced by G\-P\-I\-B().
+Referenced by G\+P\+I\+B().
 
-\hypertarget{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-cmd\-\_\-dsj@{amigo\-\_\-cmd\-\_\-dsj}}
-\index{amigo\-\_\-cmd\-\_\-dsj@{amigo\-\_\-cmd\-\_\-dsj}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-cmd\-\_\-dsj}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-cmd\-\_\-dsj (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+cmd\+\_\+dsj@{amigo\+\_\+cmd\+\_\+dsj}}
+\index{amigo\+\_\+cmd\+\_\+dsj@{amigo\+\_\+cmd\+\_\+dsj}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+cmd\+\_\+dsj()}{amigo_cmd_dsj()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+cmd\+\_\+dsj (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}
+)}\hypertarget{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{}\label{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}
 
 
-Send D\-S\-J. 
+Send D\+SJ. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A11. \begin{DoxyReturn}{Returns}
+\item Reference\+: A11. \begin{DoxyReturn}{Returns}
 0 ok 
 
-G\-P\-I\-B send Errors status
+G\+P\+IB send Errors status
 \end{DoxyReturn}
 
-\item Sets dsj and Amigo\-\_\-errors 
+\item Sets dsj and Amigo\+\_\+errors 
 \end{DoxyItemize}
 
-Definition at line 683 of file amigo.\-c.
+Definition at line 683 of file amigo.\+c.
 
 
 
-Referenced by A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+Referenced by A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 
-\hypertarget{amigo_8c_ac919a69a536ece0514b8c60df5208868}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-cmd\-\_\-wakeup@{amigo\-\_\-cmd\-\_\-wakeup}}
-\index{amigo\-\_\-cmd\-\_\-wakeup@{amigo\-\_\-cmd\-\_\-wakeup}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-cmd\-\_\-wakeup}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-cmd\-\_\-wakeup (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+cmd\+\_\+wakeup@{amigo\+\_\+cmd\+\_\+wakeup}}
+\index{amigo\+\_\+cmd\+\_\+wakeup@{amigo\+\_\+cmd\+\_\+wakeup}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+cmd\+\_\+wakeup()}{amigo_cmd_wakeup()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+cmd\+\_\+wakeup (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ac919a69a536ece0514b8c60df5208868}
+)}\hypertarget{amigo_8c_ac919a69a536ece0514b8c60df5208868}{}\label{amigo_8c_ac919a69a536ece0514b8c60df5208868}
 
 
-Wakeup (undocumented), just enable P\-P\-R response. 
+Wakeup (undocumented), just enable P\+PR response. 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000006}{Todo}]
+\item[\hyperlink{todo__todo000005}{Todo}]
 \begin{DoxyItemize}
 \item not finished
-\item Sets dsj and Amigo\-\_\-errors
+\item Sets dsj and Amigo\+\_\+errors
 \end{DoxyItemize}\end{DoxyRefDesc}
 
 
 \begin{DoxyReturn}{Returns}
-G\-P\-I\-B Errors status -\/ or 0 O\-K 
+G\+P\+IB Errors status -\/ or 0 OK 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000007}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000006}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 725 of file amigo.\-c.
+Definition at line 725 of file amigo.\+c.
 
-\hypertarget{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{\index{amigo.\-c@{amigo.\-c}!Amigo\-\_\-\-Command@{Amigo\-\_\-\-Command}}
-\index{Amigo\-\_\-\-Command@{Amigo\-\_\-\-Command}!amigo.c@{amigo.\-c}}
-\subsubsection[{Amigo\-\_\-\-Command}]{\setlength{\rightskip}{0pt plus 5cm}int Amigo\-\_\-\-Command (
+\index{amigo.\+c@{amigo.\+c}!Amigo\+\_\+\+Command@{Amigo\+\_\+\+Command}}
+\index{Amigo\+\_\+\+Command@{Amigo\+\_\+\+Command}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{Amigo\+\_\+\+Command(int secondary)}{Amigo_Command(int secondary)}}]{\setlength{\rightskip}{0pt plus 5cm}int Amigo\+\_\+\+Command (
 \begin{DoxyParamCaption}
 \item[{int}]{secondary}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}
+)}\hypertarget{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{}\label{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}
 
 
-Amigo Command and O\-P Code Processing functions. 
+Amigo Command and OP Code Processing functions. 
 
 
 \begin{DoxyItemize}
-\item We disbale P\-P\-R as soon as a valide command is decoded.
-\item O\-N\-L\-Y process Secondary Commands in listen mode with op codes and optional data
+\item We disbale P\+PR as soon as a valide command is decoded.
+\item O\+N\+LY process Secondary Commands in listen mode with op codes and optional data
 \begin{DoxyItemize}
 \item Ignore Talking.
 \item Ignore Seconday Addresses.
 \item Ignore Execute state \char`\"{}0x60\char`\"{} here.
-\item Must have O\-P Codes, or Data, and E\-O\-I.
+\item Must have OP Codes, or Data, and E\+OI.
 \end{DoxyItemize}
-\item Read all of the Data/\-Opcodes/\-Parameters at once -\/ while A\-T\-N is false.
-\item Last byte read should be E\-O\-I or an error.
-\item Unknown O\-P Code processing rules.
+\item Read all of the Data/\+Opcodes/\+Parameters at once -\/ while A\+TN is false.
+\item Last byte read should be E\+OI or an error.
+\item Unknown OP Code processing rules.
 \begin{DoxyItemize}
 \item Skip the remaining codes, Wait for Report Phase.
 \end{DoxyItemize}
-\item We enable P\-P\-R on exit.
+\item We enable P\+PR on exit.
 \end{DoxyItemize}
 
 
@@ -375,75 +372,75 @@ Amigo Command and O\-P Code Processing functions.
 \begin{DoxyReturn}{Returns}
 0 on sucess 
 
-or G\-P\-I\-B error flags on fail 
+or G\+P\+IB error flags on fail 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list) 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list) 
 \end{DoxySeeAlso}
-Reference\-: A14
+Reference\+: A14
 
-Reference\-: A25
+Reference\+: A25
 
-Note\-: the function will \char`\"{}unread\char`\"{} any commands and return All Data M\-U\-S\-T have E\-O\-I
+Note\+: the function will \char`\"{}unread\char`\"{} any commands and return All Data M\+U\+ST have E\+OI
 
-Reference\-: A40
-
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000009}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
-
+Reference\+: A40
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000010}{Todo}]F\-I\-X\-M\-E \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000008}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Reference\-: A27
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000009}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+
+
+Reference\+: A27
 
 Seek 1 byte cylinder
 
-Reference\-: A27
+Reference\+: A27
 
 Seek 2 byte cylinder
 
-Reference\-: A15
+Reference\+: A15
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000011}{Todo}]is this the unit \$ ? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000010}{Todo}]is this the unit \$ ? \end{DoxyRefDesc}
 
 
-Reference\-: A35
+Reference\+: A35
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000012}{Todo}]unit ??? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000011}{Todo}]unit ??? \end{DoxyRefDesc}
 
 
-Reference\-: A48 .. A50
+Reference\+: A48 .. A50
 
-Reference\-: A23 
+Reference\+: A23 
 
-Definition at line 856 of file amigo.\-c.
+Definition at line 856 of file amigo.\+c.
 
 
 
-Referenced by A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+Referenced by A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 
-\hypertarget{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}{\index{amigo.\-c@{amigo.\-c}!A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}}
-\index{A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S@{A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}!amigo.c@{amigo.\-c}}
-\subsubsection[{A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S}]{\setlength{\rightskip}{0pt plus 5cm}int A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S (
+\index{amigo.\+c@{amigo.\+c}!A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS@{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS}}
+\index{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS@{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(uint8\+\_\+t ch)}{AMIGO_COMMANDS(uint8_t ch)}}]{\setlength{\rightskip}{0pt plus 5cm}int A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS (
 \begin{DoxyParamCaption}
-\item[{uint8\-\_\-t}]{ch}
+\item[{uint8\+\_\+t}]{ch}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}
+)}\hypertarget{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}{}\label{amigo_8c_a77b7d46bd469c79c73696a9ae2a3543d}
 
 
-A\-M\-I\-G\-O Command state processing. 
+A\+M\+I\+GO Command state processing. 
 
 
 \begin{DoxyItemize}
 \item Perform Command, Execute or Reporting Phase functions.
 \begin{DoxyItemize}
-\item \hyperlink{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{Amigo\-\_\-\-Command()}.
-\item \hyperlink{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{Amigo\-\_\-\-Execute()}.
-\item \hyperlink{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{amigo\-\_\-cmd\-\_\-dsj()}.
+\item \hyperlink{amigo_8c_a2fc6f1413199d33d2b32e675dd45e181}{Amigo\+\_\+\+Command()}.
+\item \hyperlink{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{Amigo\+\_\+\+Execute()}.
+\item \hyperlink{amigo_8c_a3ab896c5b3810e84072107a6bcf896c9}{amigo\+\_\+cmd\+\_\+dsj()}.
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -455,26 +452,26 @@ A\-M\-I\-G\-O Command state processing.
 \begin{DoxyReturn}{Returns}
 0 on sucess 
 
-or G\-P\-I\-B error flags on fail 
+or G\+P\+IB error flags on fail 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list. 
 \end{DoxySeeAlso}
 
 
-Definition at line 1278 of file amigo.\-c.
+Definition at line 1278 of file amigo.\+c.
 
 
 
-Referenced by G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 
-\hypertarget{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{\index{amigo.\-c@{amigo.\-c}!Amigo\-\_\-\-Execute@{Amigo\-\_\-\-Execute}}
-\index{Amigo\-\_\-\-Execute@{Amigo\-\_\-\-Execute}!amigo.c@{amigo.\-c}}
-\subsubsection[{Amigo\-\_\-\-Execute}]{\setlength{\rightskip}{0pt plus 5cm}int Amigo\-\_\-\-Execute (
+\index{amigo.\+c@{amigo.\+c}!Amigo\+\_\+\+Execute@{Amigo\+\_\+\+Execute}}
+\index{Amigo\+\_\+\+Execute@{Amigo\+\_\+\+Execute}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{Amigo\+\_\+\+Execute(int secondary)}{Amigo_Execute(int secondary)}}]{\setlength{\rightskip}{0pt plus 5cm}int Amigo\+\_\+\+Execute (
 \begin{DoxyParamCaption}
 \item[{int}]{secondary}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}
+)}\hypertarget{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}{}\label{amigo_8c_ad7271e45e6b3bb6edef42da4ad5bb25a}
 
 
 Amigo Execute command processing. 
@@ -487,35 +484,35 @@ Amigo Execute command processing.
 \begin{DoxyReturn}{Returns}
 0 on sucess 
 
-or G\-P\-I\-B error flags on fail 
+or G\+P\+IB error flags on fail 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list) 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list) 
 \end{DoxySeeAlso}
 
 
-Definition at line 1166 of file amigo.\-c.
+Definition at line 1166 of file amigo.\+c.
 
 
 
-Referenced by A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+Referenced by A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 
-\hypertarget{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-format@{amigo\-\_\-format}}
-\index{amigo\-\_\-format@{amigo\-\_\-format}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-format}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-format (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+format@{amigo\+\_\+format}}
+\index{amigo\+\_\+format@{amigo\+\_\+format}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+format(uint8\+\_\+t override, uint8\+\_\+t interleave, uint8\+\_\+t db)}{amigo_format(uint8_t override, uint8_t interleave, uint8_t db)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+format (
 \begin{DoxyParamCaption}
-\item[{uint8\-\_\-t}]{override, }
-\item[{uint8\-\_\-t}]{interleave, }
-\item[{uint8\-\_\-t}]{db}
+\item[{uint8\+\_\+t}]{override, }
+\item[{uint8\+\_\+t}]{interleave, }
+\item[{uint8\+\_\+t}]{db}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}
+)}\hypertarget{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}{}\label{amigo_8c_a85a3d11b8dd534100df603e4c3514c92}
 
 
 Format Disk. 
 
 
 \begin{DoxyItemize}
-\item Refernce\-: A50.
+\item Refernce\+: A50.
 \end{DoxyItemize}
 
 
@@ -530,23 +527,23 @@ Format Disk.
 \begin{DoxyReturn}{Returns}
 0 ok 
 
-1 on Error,Sets dsj and Amigo\-\_\-errors 
+1 on Error,Sets dsj and Amigo\+\_\+errors 
 \end{DoxyReturn}
 
 
-Definition at line 494 of file amigo.\-c.
+Definition at line 494 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
-\hypertarget{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-increment@{amigo\-\_\-increment}}
-\index{amigo\-\_\-increment@{amigo\-\_\-increment}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-increment}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-increment (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+increment@{amigo\+\_\+increment}}
+\index{amigo\+\_\+increment@{amigo\+\_\+increment}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+increment(char $\ast$msg)}{amigo_increment(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+increment (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}
+)}\hypertarget{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}{}\label{amigo_8c_ae6c9b56f7f0179eecd6d57c2844bc56c}
 
 
 Increment sector if it will not overflow. 
@@ -563,19 +560,19 @@ Increment sector if it will not overflow.
 \end{DoxyReturn}
 
 
-Definition at line 383 of file amigo.\-c.
+Definition at line 383 of file amigo.\+c.
 
 
 
-Referenced by amigo\-\_\-buffered\-\_\-read(), amigo\-\_\-buffered\-\_\-write(), amigo\-\_\-format(), and amigo\-\_\-verify().
+Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+format(), and amigo\+\_\+verify().
 
-\hypertarget{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-init@{amigo\-\_\-init}}
-\index{amigo\-\_\-init@{amigo\-\_\-init}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void amigo\-\_\-init (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+init@{amigo\+\_\+init}}
+\index{amigo\+\_\+init@{amigo\+\_\+init}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+init()}{amigo_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void amigo\+\_\+init (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}
+)}\hypertarget{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}{}\label{amigo_8c_a0eec1cf4ce108a8bc0c5831b0bb149b7}
 
 
 Initialize Amigo state machine, Disk Position, Error status. 
@@ -584,30 +581,30 @@ Initialize Amigo state machine, Disk Position, Error status.
 void 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000003}{Todo}]verify that we always want P\-P\-R disabled Enable\-P\-P\-R(\-A\-M\-I\-G\-O\-\_\-\-P\-P\-R); \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000002}{Todo}]verify that we always want P\+PR disabled Enable\+P\+P\+R(\+A\+M\+I\+G\+O\+\_\+\+P\+P\+R); \end{DoxyRefDesc}
 
 
-Definition at line 157 of file amigo.\-c.
+Definition at line 157 of file amigo.\+c.
 
 
 
-Referenced by gpib\-\_\-init\-\_\-devices().
+Referenced by gpib\+\_\+init\+\_\+devices().
 
-\hypertarget{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-overflow\-\_\-check@{amigo\-\_\-overflow\-\_\-check}}
-\index{amigo\-\_\-overflow\-\_\-check@{amigo\-\_\-overflow\-\_\-check}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-overflow\-\_\-check}]{\setlength{\rightskip}{0pt plus 5cm}static int amigo\-\_\-overflow\-\_\-check (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+overflow\+\_\+check@{amigo\+\_\+overflow\+\_\+check}}
+\index{amigo\+\_\+overflow\+\_\+check@{amigo\+\_\+overflow\+\_\+check}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+overflow\+\_\+check(\+Disk\+Type $\ast$p, char $\ast$msg)}{amigo_overflow_check(DiskType *p, char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}static int amigo\+\_\+overflow\+\_\+check (
 \begin{DoxyParamCaption}
-\item[{{\bf Disk\-Type} $\ast$}]{p, }
+\item[{{\bf Disk\+Type} $\ast$}]{p, }
 \item[{char $\ast$}]{msg}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}{}\label{amigo_8c_a16e0d5b851704ca6bd79ff3baf2facc6}
 
 
-Check for C\-H\-S position overflow. 
+Check for C\+HS position overflow. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19 \begin{DoxyReturn}{Returns}
+\item Reference\+: A15-\/\+A19 \begin{DoxyReturn}{Returns}
 0 
 
 1 overflow 
@@ -615,86 +612,86 @@ Check for C\-H\-S position overflow.
 
 \end{DoxyItemize}
 
-Definition at line 351 of file amigo.\-c.
+Definition at line 351 of file amigo.\+c.
 
 
 
-Referenced by amigo\-\_\-increment(), and amigo\-\_\-seek().
+Referenced by amigo\+\_\+increment(), and amigo\+\_\+seek().
 
-\hypertarget{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-request\-\_\-logical\-\_\-address@{amigo\-\_\-request\-\_\-logical\-\_\-address}}
-\index{amigo\-\_\-request\-\_\-logical\-\_\-address@{amigo\-\_\-request\-\_\-logical\-\_\-address}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-request\-\_\-logical\-\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-request\-\_\-logical\-\_\-address (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+request\+\_\+logical\+\_\+address@{amigo\+\_\+request\+\_\+logical\+\_\+address}}
+\index{amigo\+\_\+request\+\_\+logical\+\_\+address@{amigo\+\_\+request\+\_\+logical\+\_\+address}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+request\+\_\+logical\+\_\+address()}{amigo_request_logical_address()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+request\+\_\+logical\+\_\+address (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}
+)}\hypertarget{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}{}\label{amigo_8c_a4c8b9f945c52bab66fa4c7aaac5df625}
 
 
-Set current address in amigo\-\_\-logical\-\_\-address\mbox{[}\mbox{]}. 
+Set current address in amigo\+\_\+logical\+\_\+address\mbox{[}\mbox{]}. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19
-\item State\-: Command \begin{DoxyReturn}{Returns}
+\item Reference\+: A15-\/\+A19
+\item State\+: Command \begin{DoxyReturn}{Returns}
 0 
 \end{DoxyReturn}
 
 \end{DoxyItemize}
 
-Definition at line 185 of file amigo.\-c.
+Definition at line 185 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
-\hypertarget{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-request\-\_\-status@{amigo\-\_\-request\-\_\-status}}
-\index{amigo\-\_\-request\-\_\-status@{amigo\-\_\-request\-\_\-status}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-request\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-request\-\_\-status (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+request\+\_\+status@{amigo\+\_\+request\+\_\+status}}
+\index{amigo\+\_\+request\+\_\+status@{amigo\+\_\+request\+\_\+status}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+request\+\_\+status()}{amigo_request_status()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+request\+\_\+status (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}
+)}\hypertarget{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}{}\label{amigo_8c_ac3755431f029d6bf480c5d2eceaca7e6}
 
 
-Set drive status in amigo\-\_\-status\mbox{[}\mbox{]}. 
+Set drive status in amigo\+\_\+status\mbox{[}\mbox{]}. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19.
-\item State\-: Command. \begin{DoxyReturn}{Returns}
+\item Reference\+: A15-\/\+A19.
+\item State\+: Command. \begin{DoxyReturn}{Returns}
 0 
 \end{DoxyReturn}
 
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000004}{Todo}]dsj \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000003}{Todo}]dsj \end{DoxyRefDesc}
 
 
-Definition at line 202 of file amigo.\-c.
+Definition at line 202 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
-\hypertarget{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-seek@{amigo\-\_\-seek}}
-\index{amigo\-\_\-seek@{amigo\-\_\-seek}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-seek}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-seek (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+seek@{amigo\+\_\+seek}}
+\index{amigo\+\_\+seek@{amigo\+\_\+seek}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+seek(\+Disk\+Type $\ast$p)}{amigo_seek(DiskType *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+seek (
 \begin{DoxyParamCaption}
-\item[{{\bf Disk\-Type} $\ast$}]{p}
+\item[{{\bf Disk\+Type} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}
+)}\hypertarget{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}{}\label{amigo_8c_a737360bbcfd3fa3cf9d504757f202e48}
 
 
 Seek to the position held in the disk structure. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A27.
+\item Reference\+: A27.
 \item We should not commit bad head/sector/cylinder values until tested!..
 \end{DoxyItemize}
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em p} & \hyperlink{structDiskType}{Disk\-Type} (Current Disk Position) pointer.\\
+\mbox{\tt in}  & {\em p} & \hyperlink{structDiskType}{Disk\+Type} (Current Disk Position) pointer.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -704,88 +701,88 @@ Seek to the position held in the disk structure.
 \end{DoxyReturn}
 
 
-Definition at line 409 of file amigo.\-c.
+Definition at line 409 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
-\hypertarget{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-send\-\_\-logical\-\_\-address@{amigo\-\_\-send\-\_\-logical\-\_\-address}}
-\index{amigo\-\_\-send\-\_\-logical\-\_\-address@{amigo\-\_\-send\-\_\-logical\-\_\-address}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-send\-\_\-logical\-\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-send\-\_\-logical\-\_\-address (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+send\+\_\+logical\+\_\+address@{amigo\+\_\+send\+\_\+logical\+\_\+address}}
+\index{amigo\+\_\+send\+\_\+logical\+\_\+address@{amigo\+\_\+send\+\_\+logical\+\_\+address}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+send\+\_\+logical\+\_\+address()}{amigo_send_logical_address()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+send\+\_\+logical\+\_\+address (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}
+)}\hypertarget{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}{}\label{amigo_8c_a288fab8221af2cef3cd52be5db8bc834}
 
 
-Send current address in amigo\-\_\-logical\-\_\-address\mbox{[}\mbox{]}. 
+Send current address in amigo\+\_\+logical\+\_\+address\mbox{[}\mbox{]}. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19.
-\item State\-: Execute \begin{DoxyReturn}{Returns}
+\item Reference\+: A15-\/\+A19.
+\item State\+: Execute \begin{DoxyReturn}{Returns}
 0 on sucess 
 
-status G\-P\-I\-B error flags on fail 
+status G\+P\+IB error flags on fail 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list. 
 \end{DoxySeeAlso}
 
 \end{DoxyItemize}
 
-Definition at line 253 of file amigo.\-c.
+Definition at line 253 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Execute().
+Referenced by Amigo\+\_\+\+Execute().
 
-\hypertarget{amigo_8c_a5469dfd99a532f1324999a77256d91a8}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-send\-\_\-status@{amigo\-\_\-send\-\_\-status}}
-\index{amigo\-\_\-send\-\_\-status@{amigo\-\_\-send\-\_\-status}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-send\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-send\-\_\-status (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+send\+\_\+status@{amigo\+\_\+send\+\_\+status}}
+\index{amigo\+\_\+send\+\_\+status@{amigo\+\_\+send\+\_\+status}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+send\+\_\+status()}{amigo_send_status()}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+send\+\_\+status (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a5469dfd99a532f1324999a77256d91a8}
+)}\hypertarget{amigo_8c_a5469dfd99a532f1324999a77256d91a8}{}\label{amigo_8c_a5469dfd99a532f1324999a77256d91a8}
 
 
-Send drive status in amigo\-\_\-status\mbox{[}\mbox{]}. 
+Send drive status in amigo\+\_\+status\mbox{[}\mbox{]}. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: A15-\/\-A19.
-\item State\-: Execute$>$ \begin{DoxyReturn}{Returns}
+\item Reference\+: A15-\/\+A19.
+\item State\+: Execute$>$ \begin{DoxyReturn}{Returns}
 0 
 
-status G\-P\-I\-B error flags on fail 
+status G\+P\+IB error flags on fail 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See Also}
-\hyperlink{gpib_8h}{gpib.\-h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\-R\-R\-O\-R\-\_\-\-M\-A\-S\-K} defines for a full list. 
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list. 
 \end{DoxySeeAlso}
 
 \end{DoxyItemize}
 
-Definition at line 290 of file amigo.\-c.
+Definition at line 290 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Execute().
+Referenced by Amigo\+\_\+\+Execute().
 
-\hypertarget{amigo_8c_a437bef06e567b3f6728f2519b9065354}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-todo@{amigo\-\_\-todo}}
-\index{amigo\-\_\-todo@{amigo\-\_\-todo}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-todo}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-todo (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+todo@{amigo\+\_\+todo}}
+\index{amigo\+\_\+todo@{amigo\+\_\+todo}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+todo(uint8\+\_\+t secondary)}{amigo_todo(uint8_t secondary)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+todo (
 \begin{DoxyParamCaption}
-\item[{uint8\-\_\-t}]{secondary}
+\item[{uint8\+\_\+t}]{secondary}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a437bef06e567b3f6728f2519b9065354}
+)}\hypertarget{amigo_8c_a437bef06e567b3f6728f2519b9065354}{}\label{amigo_8c_a437bef06e567b3f6728f2519b9065354}
 
 
 Report any Unimplimented commands. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em secondary} & G\-P\-I\-B seconday command\\
+\mbox{\tt in}  & {\em secondary} & G\+P\+IB seconday command\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -793,32 +790,32 @@ Report any Unimplimented commands.
 \end{DoxyReturn}
 
 
-Definition at line 816 of file amigo.\-c.
+Definition at line 816 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Execute().
+Referenced by Amigo\+\_\+\+Execute().
 
-\hypertarget{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-todo\-\_\-op@{amigo\-\_\-todo\-\_\-op}}
-\index{amigo\-\_\-todo\-\_\-op@{amigo\-\_\-todo\-\_\-op}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-todo\-\_\-op}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-todo\-\_\-op (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+todo\+\_\+op@{amigo\+\_\+todo\+\_\+op}}
+\index{amigo\+\_\+todo\+\_\+op@{amigo\+\_\+todo\+\_\+op}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+todo\+\_\+op(uint8\+\_\+t secondary, uint8\+\_\+t opcode, int len)}{amigo_todo_op(uint8_t secondary, uint8_t opcode, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+todo\+\_\+op (
 \begin{DoxyParamCaption}
-\item[{uint8\-\_\-t}]{secondary, }
-\item[{uint8\-\_\-t}]{opcode, }
+\item[{uint8\+\_\+t}]{secondary, }
+\item[{uint8\+\_\+t}]{opcode, }
 \item[{int}]{len}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}
+)}\hypertarget{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}{}\label{amigo_8c_a6c99539773ae8be3bd4d3bd7493c16d6}
 
 
 Report any Unimplimented commands with Op Codes. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em secondary} & G\-P\-I\-B secondary command \\
+\mbox{\tt in}  & {\em secondary} & G\+P\+IB secondary command \\
 \hline
-\mbox{\tt in}  & {\em opcode} & G\-P\-I\-B data byte O\-P Code \\
+\mbox{\tt in}  & {\em opcode} & G\+P\+IB data byte OP Code \\
 \hline
-\mbox{\tt in}  & {\em len} & Length of G\-O\-I\-B data returned \\
+\mbox{\tt in}  & {\em len} & Length of G\+O\+IB data returned \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -826,106 +823,106 @@ Report any Unimplimented commands with Op Codes.
 \end{DoxyReturn}
 
 
-Definition at line 791 of file amigo.\-c.
+Definition at line 791 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
-\hypertarget{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-verify@{amigo\-\_\-verify}}
-\index{amigo\-\_\-verify@{amigo\-\_\-verify}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-verify}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\-\_\-verify (
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+verify@{amigo\+\_\+verify}}
+\index{amigo\+\_\+verify@{amigo\+\_\+verify}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+verify(uint16\+\_\+t sectors)}{amigo_verify(uint16_t sectors)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+verify (
 \begin{DoxyParamCaption}
-\item[{uint16\-\_\-t}]{sectors}
+\item[{uint16\+\_\+t}]{sectors}
 \end{DoxyParamCaption}
-)}}\label{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}
+)}\hypertarget{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}{}\label{amigo_8c_ab08912bf94dc6e8fbe87990ff41f46f0}
 
 
 Verify Disk Sectors at current position. 
 
 
 \begin{DoxyItemize}
-\item Refernce\-: A36 \begin{DoxyReturn}{Returns}
+\item Refernce\+: A36 \begin{DoxyReturn}{Returns}
 0 ok 
 
-1 Error, Sets dsj and Amigo\-\_\-errors 
+1 Error, Sets dsj and Amigo\+\_\+errors 
 \end{DoxyReturn}
 
 \end{DoxyItemize}
 
-Definition at line 437 of file amigo.\-c.
+Definition at line 437 of file amigo.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command().
+Referenced by Amigo\+\_\+\+Command().
 
 
 
 \subsection{Variable Documentation}
-\hypertarget{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-logical\-\_\-address@{amigo\-\_\-logical\-\_\-address}}
-\index{amigo\-\_\-logical\-\_\-address@{amigo\-\_\-logical\-\_\-address}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-logical\-\_\-address}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t amigo\-\_\-logical\-\_\-address\mbox{[}4\mbox{]}}}\label{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+logical\+\_\+address@{amigo\+\_\+logical\+\_\+address}}
+\index{amigo\+\_\+logical\+\_\+address@{amigo\+\_\+logical\+\_\+address}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+logical\+\_\+address}{amigo_logical_address}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+logical\+\_\+address\mbox{[}4\mbox{]}}\hypertarget{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}{}\label{amigo_8c_a6fb33a50bd780fadbf58b74710ba0a59}
 
 
-A\-M\-I\-G\-O disk address. 
-
-
-
-Definition at line 107 of file amigo.\-c.
+A\+M\+I\+GO disk address. 
 
 
 
-Referenced by amigo\-\_\-init(), amigo\-\_\-request\-\_\-logical\-\_\-address(), and amigo\-\_\-send\-\_\-logical\-\_\-address().
-
-\hypertarget{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-state@{amigo\-\_\-state}}
-\index{amigo\-\_\-state@{amigo\-\_\-state}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t amigo\-\_\-state}}\label{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}
-
-
-A\-M\-I\-G\-O emulator state machine index. 
+Definition at line 107 of file amigo.\+c.
 
 
 
-Definition at line 101 of file amigo.\-c.
+Referenced by amigo\+\_\+init(), amigo\+\_\+request\+\_\+logical\+\_\+address(), and amigo\+\_\+send\+\_\+logical\+\_\+address().
+
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+state@{amigo\+\_\+state}}
+\index{amigo\+\_\+state@{amigo\+\_\+state}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+state}{amigo_state}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+state}\hypertarget{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}{}\label{amigo_8c_aa06fad89376ae2fd6a76e740b065e2a5}
+
+
+A\+M\+I\+GO emulator state machine index. 
 
 
 
-Referenced by Amigo\-\_\-\-Command(), Amigo\-\_\-\-Execute(), amigo\-\_\-init(), amigo\-\_\-todo(), and amigo\-\_\-todo\-\_\-op().
-
-\hypertarget{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-status@{amigo\-\_\-status}}
-\index{amigo\-\_\-status@{amigo\-\_\-status}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t amigo\-\_\-status\mbox{[}4\mbox{]}}}\label{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}
-
-
-A\-M\-I\-G\-O disk status. 
+Definition at line 101 of file amigo.\+c.
 
 
 
-Definition at line 105 of file amigo.\-c.
+Referenced by Amigo\+\_\+\+Command(), Amigo\+\_\+\+Execute(), amigo\+\_\+init(), amigo\+\_\+todo(), and amigo\+\_\+todo\+\_\+op().
+
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+status@{amigo\+\_\+status}}
+\index{amigo\+\_\+status@{amigo\+\_\+status}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+status}{amigo_status}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+status\mbox{[}4\mbox{]}}\hypertarget{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}{}\label{amigo_8c_ab3f5595b5a0e986b16b6752ca3ba307d}
+
+
+A\+M\+I\+GO disk status. 
 
 
 
-Referenced by amigo\-\_\-init(), amigo\-\_\-request\-\_\-status(), and amigo\-\_\-send\-\_\-status().
-
-\hypertarget{amigo_8c_a53591672cac336bb185dd00fa0babdf7}{\index{amigo.\-c@{amigo.\-c}!amigo\-\_\-unit@{amigo\-\_\-unit}}
-\index{amigo\-\_\-unit@{amigo\-\_\-unit}!amigo.c@{amigo.\-c}}
-\subsubsection[{amigo\-\_\-unit}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t amigo\-\_\-unit = 0}}\label{amigo_8c_a53591672cac336bb185dd00fa0babdf7}
-
-
-A\-M\-I\-G\-O disk unit number. 
+Definition at line 105 of file amigo.\+c.
 
 
 
-Definition at line 103 of file amigo.\-c.
+Referenced by amigo\+\_\+init(), amigo\+\_\+request\+\_\+status(), and amigo\+\_\+send\+\_\+status().
+
+\index{amigo.\+c@{amigo.\+c}!amigo\+\_\+unit@{amigo\+\_\+unit}}
+\index{amigo\+\_\+unit@{amigo\+\_\+unit}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+unit}{amigo_unit}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+unit = 0}\hypertarget{amigo_8c_a53591672cac336bb185dd00fa0babdf7}{}\label{amigo_8c_a53591672cac336bb185dd00fa0babdf7}
+
+
+A\+M\+I\+GO disk unit number. 
 
 
 
-Referenced by amigo\-\_\-chs\-\_\-to\-\_\-logical(), Amigo\-\_\-\-Command(), amigo\-\_\-init(), and amigo\-\_\-request\-\_\-status().
+Definition at line 103 of file amigo.\+c.
 
-\hypertarget{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}{\index{amigo.\-c@{amigo.\-c}!D9121\-D@{D9121\-D}}
-\index{D9121\-D@{D9121\-D}!amigo.c@{amigo.\-c}}
-\subsubsection[{D9121\-D}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\-\_\-parm} D9121\-D}}\label{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}
-{\bfseries Initial value\-:}
+
+
+Referenced by amigo\+\_\+chs\+\_\+to\+\_\+logical(), Amigo\+\_\+\+Command(), amigo\+\_\+init(), and amigo\+\_\+request\+\_\+status().
+
+\index{amigo.\+c@{amigo.\+c}!D9121D@{D9121D}}
+\index{D9121D@{D9121D}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{D9121D}{D9121D}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\+\_\+parm} D9121D}\hypertarget{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}{}\label{amigo_8c_a59a0dddcfe06895fe8083fd3769e2f75}
+{\bfseries Initial value\+:}
 \begin{DoxyCode}
 =
 \{
@@ -937,16 +934,16 @@ Referenced by amigo\-\_\-chs\-\_\-to\-\_\-logical(), Amigo\-\_\-\-Command(), ami
 \end{DoxyCode}
 
 
-A\-M\-I\-G\-O D9121\-D ident Bytes per sector, sectors per track, heads, cylinders. 
+A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. 
 
 
 
-Definition at line 113 of file amigo.\-c.
+Definition at line 113 of file amigo.\+c.
 
-\hypertarget{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}{\index{amigo.\-c@{amigo.\-c}!D9134\-A@{D9134\-A}}
-\index{D9134\-A@{D9134\-A}!amigo.c@{amigo.\-c}}
-\subsubsection[{D9134\-A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\-\_\-parm} D9134\-A}}\label{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}
-{\bfseries Initial value\-:}
+\index{amigo.\+c@{amigo.\+c}!D9134A@{D9134A}}
+\index{D9134A@{D9134A}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{D9134A}{D9134A}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\+\_\+parm} D9134A}\hypertarget{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}{}\label{amigo_8c_acca9e6686a343af528f971a2d91a8f9b}
+{\bfseries Initial value\+:}
 \begin{DoxyCode}
 =
 \{
@@ -958,16 +955,16 @@ Definition at line 113 of file amigo.\-c.
 \end{DoxyCode}
 
 
-A\-M\-I\-G\-O D9134\-A ident Bytes per sector, sectors per track, heads, cylinders. 
+A\+M\+I\+GO D9134A ident Bytes per sector, sectors per track, heads, cylinders. 
 
 
 
-Definition at line 131 of file amigo.\-c.
+Definition at line 131 of file amigo.\+c.
 
-\hypertarget{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}{\index{amigo.\-c@{amigo.\-c}!D9895\-A@{D9895\-A}}
-\index{D9895\-A@{D9895\-A}!amigo.c@{amigo.\-c}}
-\subsubsection[{D9895\-A}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\-\_\-parm} D9895\-A}}\label{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}
-{\bfseries Initial value\-:}
+\index{amigo.\+c@{amigo.\+c}!D9895A@{D9895A}}
+\index{D9895A@{D9895A}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{D9895A}{D9895A}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\+\_\+parm} D9895A}\hypertarget{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}{}\label{amigo_8c_a44cda26ccf9f64e7a1b713168af35b90}
+{\bfseries Initial value\+:}
 \begin{DoxyCode}
 =
 \{
@@ -979,16 +976,16 @@ Definition at line 131 of file amigo.\-c.
 \end{DoxyCode}
 
 
-A\-M\-I\-G\-O D9885\-A ident Bytes per sector, sectors per track, heads, cylinders. 
+A\+M\+I\+GO D9885A ident Bytes per sector, sectors per track, heads, cylinders. 
 
 
 
-Definition at line 122 of file amigo.\-c.
+Definition at line 122 of file amigo.\+c.
 
-\hypertarget{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}{\index{amigo.\-c@{amigo.\-c}!de@{de}}
-\index{de@{de}!amigo.c@{amigo.\-c}}
-\subsubsection[{de}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dir\-Entry\-Type} de}}\label{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}
-{\bfseries Initial value\-:}
+\index{amigo.\+c@{amigo.\+c}!de@{de}}
+\index{de@{de}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{de}{de}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dir\+Entry\+Type} de}\hypertarget{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}{}\label{amigo_8c_acdc9db327daa9bd83d5df64bf016a4da}
+{\bfseries Initial value\+:}
 \begin{DoxyCode}
 =
 \{
@@ -1000,70 +997,70 @@ Definition at line 122 of file amigo.\-c.
 \end{DoxyCode}
 
 
-L\-I\-F D\-Irectory Entry. 
+L\+IF D\+Irectory Entry. 
 
 
 \begin{DoxyItemize}
-\item Reference\-: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\-gustafsson@pedago.\-fi}
-\item L\-I\-F filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\-://www.\-hp9845.\-net/9845/projects/hpdir/\#lif\-\_\-filesystem}
-\item L\-I\-F data is B\-I\-G endian 
+\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
+\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
+\item L\+IF data is B\+IG endian 
 \end{DoxyItemize}
 
-Definition at line 89 of file amigo.\-c.
+Definition at line 89 of file amigo.\+c.
 
 
 
-Referenced by gpib\-\_\-format\-\_\-disk().
+Referenced by gpib\+\_\+format\+\_\+disk(), and ls().
 
-\hypertarget{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}{\index{amigo.\-c@{amigo.\-c}!Disk@{Disk}}
-\index{Disk@{Disk}!amigo.c@{amigo.\-c}}
-\subsubsection[{Disk}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Disk\-Type} Disk}}\label{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}
-
-
-A\-M\-I\-G\-O D\-I\-S\-K. 
+\index{amigo.\+c@{amigo.\+c}!Disk@{Disk}}
+\index{Disk@{Disk}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{Disk}{Disk}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Disk\+Type} Disk}\hypertarget{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}{}\label{amigo_8c_af3a689eeb0e8702b2a6367c66165b1f1}
 
 
-
-Definition at line 110 of file amigo.\-c.
+A\+M\+I\+GO D\+I\+SK. 
 
 
 
-Referenced by amigo\-\_\-increment().
+Definition at line 110 of file amigo.\+c.
 
-\hypertarget{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{\index{amigo.\-c@{amigo.\-c}!listening@{listening}}
-\index{listening@{listening}!amigo.c@{amigo.\-c}}
-\subsubsection[{listening}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t listening}}\label{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}
+
+
+Referenced by amigo\+\_\+increment().
+
+\index{amigo.\+c@{amigo.\+c}!listening@{listening}}
+\index{listening@{listening}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{listening}{listening}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t listening}\hypertarget{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{}\label{amigo_8c_a906eb6f6a81521d91f73f9ab2e03b02e}
 
 
 gpib listen address 
 
 
 
-Definition at line 89 of file gpib.\-c.
+Definition at line 90 of file gpib.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), Amigo\-\_\-\-Execute(), amigo\-\_\-todo(), amigo\-\_\-todo\-\_\-op(), G\-P\-I\-B(), G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S(), G\-P\-I\-B\-\_\-\-T\-A\-L\-K(), gpib\-\_\-task(), and P\-R\-I\-N\-T\-E\-R\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S().
+Referenced by Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), Amigo\+\_\+\+Execute(), amigo\+\_\+todo(), amigo\+\_\+todo\+\_\+op(), G\+P\+I\+B(), G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+task(), and P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 
-\hypertarget{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}{\index{amigo.\-c@{amigo.\-c}!talking@{talking}}
-\index{talking@{talking}!amigo.c@{amigo.\-c}}
-\subsubsection[{talking}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t talking}}\label{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}
+\index{amigo.\+c@{amigo.\+c}!talking@{talking}}
+\index{talking@{talking}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{talking}{talking}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t talking}\hypertarget{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}{}\label{amigo_8c_acef501d1e292f230efac5ed0cddf90e8}
 
 
 gpib talk address 
 
 
 
-Definition at line 84 of file gpib.\-c.
+Definition at line 85 of file gpib.\+c.
 
 
 
-Referenced by Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), Amigo\-\_\-\-Execute(), amigo\-\_\-todo(), amigo\-\_\-todo\-\_\-op(), G\-P\-I\-B(), G\-P\-I\-B\-\_\-\-C\-O\-M\-M\-A\-N\-D\-S(), G\-P\-I\-B\-\_\-\-L\-I\-S\-T\-E\-N(), G\-P\-I\-B\-\_\-\-S\-E\-C\-O\-N\-D\-A\-R\-Y\-\_\-\-A\-D\-D\-R\-E\-S\-S(), and G\-P\-I\-B\-\_\-\-T\-A\-L\-K().
+Referenced by Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), Amigo\+\_\+\+Execute(), amigo\+\_\+todo(), amigo\+\_\+todo\+\_\+op(), G\+P\+I\+B(), G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
 
-\hypertarget{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}{\index{amigo.\-c@{amigo.\-c}!vl@{vl}}
-\index{vl@{vl}!amigo.c@{amigo.\-c}}
-\subsubsection[{vl}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Volume\-Label\-Type} vl}}\label{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}
-{\bfseries Initial value\-:}
+\index{amigo.\+c@{amigo.\+c}!vl@{vl}}
+\index{vl@{vl}!amigo.\+c@{amigo.\+c}}
+\subsubsection[{\texorpdfstring{vl}{vl}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Volume\+Label\+Type} vl}\hypertarget{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}{}\label{amigo_8c_a7cde3fe5600434f06d6c872090dc5390}
+{\bfseries Initial value\+:}
 \begin{DoxyCode}
 =
 \{
@@ -1078,7 +1075,7 @@ Referenced by Amigo\-\_\-\-Command(), A\-M\-I\-G\-O\-\_\-\-C\-O\-M\-M\-A\-N\-D\-
 \end{DoxyCode}
 
 
-L\-I\-F data structures used by stand alone formatting utility. 
+L\+IF data structures used by stand alone formatting utility. 
 
 \begin{DoxyVerb}///  Reference: Amigo Command Set Reference used in this document
 ///  Short Form         Title
@@ -1119,16 +1116,16 @@ L\-I\-F data structures used by stand alone formatting utility.
 ///  T    Read Self Test Results    ---     2       A13     N
 ///  L    Initiat Self Test         ---     2       A24     N
 /// \end{DoxyVerb}
-L\-I\-F Volume label structure
+L\+IF Volume label structure
 \begin{DoxyItemize}
-\item Reference\-: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\-gustafsson@pedago.\-fi}
-\item L\-I\-F filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\-://www.\-hp9845.\-net/9845/projects/hpdir/\#lif\-\_\-filesystem}
-\item L\-I\-F data is B\-I\-G endian 
+\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
+\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
+\item L\+IF data is B\+IG endian 
 \end{DoxyItemize}
 
-Definition at line 74 of file amigo.\-c.
+Definition at line 74 of file amigo.\+c.
 
 
 
-Referenced by gpib\-\_\-format\-\_\-disk().
+Referenced by gpib\+\_\+format\+\_\+disk().
 

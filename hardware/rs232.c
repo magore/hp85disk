@@ -108,10 +108,10 @@ int uart_init(uint8_t uart, uint32_t baud)
 
         cli();
 
-        AVR_LATCH_HI(RX0);
-        AVR_LATCH_HI(TX0);
-        AVR_DIR_IN(RX0);
-        AVR_DIR_OUT(TX0);
+        GPIO_PIN_LATCH_HI(RX0);
+        GPIO_PIN_LATCH_HI(TX0);
+        GPIO_PIN_DIR_IN(RX0);
+        GPIO_PIN_DIR_OUT(TX0);
 
         UCSR0B = (1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0);
 
@@ -129,10 +129,10 @@ int uart_init(uint8_t uart, uint32_t baud)
 
         cli();
 
-        AVR_LATCH_HI(RX1);
-        AVR_LATCH_HI(TX1);
-        AVR_DIR_IN(RX1);
-        AVR_DIR_OUT(TX1);
+        GPIO_PIN_LATCH_HI(RX1);
+        GPIO_PIN_LATCH_HI(TX1);
+        GPIO_PIN_DIR_IN(RX1);
+        GPIO_PIN_DIR_OUT(TX1);
 
         UCSR1B = (1<<RXCIE1)|(1<<RXEN1)|(1<<TXEN1);
 

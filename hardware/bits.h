@@ -30,6 +30,6 @@
 #define BIT14   14
 #define BIT15   15
 
-#define BIT_SET(x,y)    (x |=  (1 << (y)))
-#define BIT_CLR(x,y)    (x &= ~(1 << (y)))
-#define BIT_TST(x,y)    ((x  &  (1 << (y))) ? (int) 1 : (int) 0)
+#define BIT_SET(x,y)    ((x) |=  (1 << (y)))
+#define BIT_CLR(x,y)    ((x) &= ~(1 << (y)))
+#define BIT_TST(x,y)    (((x)  &  (1 << (y))) ? (int) 1 : (int) 0)

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['rows',['rows',['../struct__mat.html#a5e6bcb8b0c0239ca9b782c48b0b3c98a',1,'_mat']]],
   ['rtc_5fok',['rtc_ok',['../rtc_8h.html#a8e105ca35123da90e3d4db81f8848c4a',1,'rtc.h']]],
   ['rx_5fbuf',['rx_buf',['../struct__uart.html#a68a8939d4be8a563157c98b5baa50ae0',1,'_uart']]],
   ['rx_5fcount',['rx_count',['../struct__uart.html#a50b344402c339343e3f32c82358e190c',1,'_uart']]],

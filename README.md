@@ -182,7 +182,7 @@ ___
           +-V-+       |         |     |    |   |14 VCC 
      EOI 2|   |       |         |     |    +---+ 
      ATN 1|   |       |         |     \--- each line has its own 
-          |   | 1--13 |/OE      |          10K resistor to GND 
+          |   | 3--13 |/OE      |          10K resistor to GND 
     VCC 14|   |       |         | 16 VCC 
     GND  7|   |       |         |  8 GND 
           +---+       +---------+ 
