@@ -9,7 +9,7 @@
 ## HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
  * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
- This project emulates three GPIB devices
+ This project emulates three GPIB device
   * SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
   * Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
   * Printer capture   at 720 for my HP54645D scope
@@ -54,26 +54,31 @@ section and page# reference to these works.
    * <http://www.hpmusuem.org>
    * <http://bitsavers.trailing-edge.com>
    * <http://en.wikipedia.org/wiki/IEEE-488>
+   * See Documents folder
 
 ## SS80 References: ("SS80" is the short form used in the project)
    * "Subset 80 from Fixed and flexible disc drives"
    * Printed November, 1985
    * HP Part# 5958-4129 
+   * See Documents folder
 
 ## CS80 References: ("CS80" is the short form used in the project)
    * "CS/80 Instruction Set Programming Manual"
    * Printed: APR 1983
    * HP Part# 5955-3442
+   * See Documents folder
 
 ## Amigo References: ("A" or "Amigo" is the short form used in the project)
    * "Appendix A of 9895A Flexible Disc Memory Service Manual"
    * HP Part# 09895-90030
+   * See Documents folder
 
 ## HP-IB
    * ("HP-IB" is the short form used in the project)
    * "Condensed Description of the Hewlett Packard Interface Bus"
    * Printed March 1975
    * HP Part# 59401-90030
+   * See Documents folder
 
 ## Tutorial Description of The Hewllet Packard Interface Bus
    * ("HP-IB Tutorial" is the short form used in the project)
@@ -81,17 +86,21 @@ section and page# reference to these works.
    * Printed January 1983
    * <http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf>
    * Printed 1987
+   * See Documents folder
 
 ## GPIB / IEEE 488 Tutorial by Ian Poole
     * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
+   * See Documents folder
 
 ## HP 9133/9134 D/H/L References
    * "HP 9133/9134 D/H/L Service Manual"
    * HP Part# 5957-6560
    * Printed: APRIL 1985, Edition 2
+   * See Documents folder
 
 ## LIF Filesystem Format
    * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
+   * See Documents folder
 
 ## Useful Utilities
    * HP Drive  (HP Drive Emulators for Windows Platform)
