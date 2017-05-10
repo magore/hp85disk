@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['adjugate',['Adjugate',['../matrix_8c.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
+  ['adjugate',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['amigo_5fbuffered_5fread',['amigo_buffered_read',['../amigo_8c.html#a825aa1ed704bfabe55d37787234a273d',1,'amigo_buffered_read():&#160;amigo.c'],['../amigo_8h.html#a4934ae332e168979dbb865a9948de88b',1,'amigo_buffered_read(void):&#160;amigo.c']]],
   ['amigo_5fbuffered_5fwrite',['amigo_buffered_write',['../amigo_8c.html#ac92648301b959f38296610669487727a',1,'amigo_buffered_write():&#160;amigo.c'],['../amigo_8h.html#ae9c3505761b1afba4f47a6b593527583',1,'amigo_buffered_write(void):&#160;amigo.c']]],
   ['amigo_5fchs_5fto_5flogical',['amigo_chs_to_logical',['../amigo_8c.html#a239c2ab58413343ad8e0e7d9603ed225',1,'amigo.c']]],

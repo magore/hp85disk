@@ -26,7 +26,7 @@ var searchData=
   ['clrerror',['clrerror',['../posix_8c.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c'],['../posix_8h.html#a03baa4d851a2a855656081a4b7c8d72c',1,'clrerror(FILE *stream):&#160;posix.c']]],
   ['clust2sect',['clust2sect',['../ff_8c.html#a45bbeb9d5097317ba431e90e2a9c45f8',1,'ff.c']]],
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
-  ['cofactor',['Cofactor',['../matrix_8c.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
+  ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
   ['create_5fname',['create_name',['../ff_8c.html#af119220c4aeabfeb316349e8279413ca',1,'ff.c']]],
   ['ctime',['ctime',['../time_8c.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c'],['../time_8h.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c']]],

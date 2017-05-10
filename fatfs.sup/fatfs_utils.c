@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
+#include "fatfs.h"
 
 #ifdef AVR
 //#include <stdio.h>
@@ -35,7 +36,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "printf/mathio.h"
 
-#include "fatfs.sup/fatfs.h"
 #include "fatfs.sup/posix.h"
 
 

@@ -1,6 +1,7 @@
 \hypertarget{ff_8c}{}\section{fatfs/ff.c File Reference}
 \label{ff_8c}\index{fatfs/ff.\+c@{fatfs/ff.\+c}}
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}fatfs/ff.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}fatfs.\+hal/diskio.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdarg.\+h$>$}\\*
@@ -472,7 +473,7 @@ static const \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} 
 \subsubsection[{\texorpdfstring{\+\_\+\+D\+F1S}{_DF1S}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+D\+F1S~0}\hypertarget{ff_8c_a228bfd2cabe490c8567aaf08b8b2cc14}{}\label{ff_8c_a228bfd2cabe490c8567aaf08b8b2cc14}
 
 
-Definition at line 131 of file ff.\+c.
+Definition at line 132 of file ff.\+c.
 
 
 
@@ -494,7 +495,7 @@ Referenced by create\+\_\+name(), f\+\_\+getlabel(), f\+\_\+setlabel(), get\+\_\
 \end{DoxyCode}
 
 
-Definition at line 132 of file ff.\+c.
+Definition at line 133 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!A\+B\+O\+RT@{A\+B\+O\+RT}}
 \index{A\+B\+O\+RT@{A\+B\+O\+RT}!ff.\+c@{ff.\+c}}
@@ -506,7 +507,7 @@ Definition at line 132 of file ff.\+c.
 )~\{ fp-\/$>$err = ({\bf B\+Y\+TE})(res); {\bf L\+E\+A\+V\+E\+\_\+\+FF}(fs, res); \}}\hypertarget{ff_8c_a41e4c46636679236568cf50b5535847f}{}\label{ff_8c_a41e4c46636679236568cf50b5535847f}
 
 
-Definition at line 38 of file ff.\+c.
+Definition at line 39 of file ff.\+c.
 
 
 
@@ -517,7 +518,7 @@ Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+read(), f\+\_\+truncate(),
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+L\+FN}{AM_LFN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+L\+FN~0x0\+F	/$\ast$ L\+F\+N entry $\ast$/}\hypertarget{ff_8c_a91161ef62e0e85ba3c2876d3d339473d}{}\label{ff_8c_a91161ef62e0e85ba3c2876d3d339473d}
 
 
-Definition at line 358 of file ff.\+c.
+Definition at line 359 of file ff.\+c.
 
 
 
@@ -528,7 +529,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and put\+\_\+lfn().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+M\+A\+SK}{AM_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+M\+A\+SK~0x3\+F	/$\ast$ Mask of defined bits $\ast$/}\hypertarget{ff_8c_aefa78fd6b130faaca4e115602869b57c}{}\label{ff_8c_aefa78fd6b130faaca4e115602869b57c}
 
 
-Definition at line 359 of file ff.\+c.
+Definition at line 360 of file ff.\+c.
 
 
 
@@ -539,7 +540,7 @@ Referenced by dir\+\_\+find(), and dir\+\_\+read().
 \subsubsection[{\texorpdfstring{A\+M\+\_\+\+V\+OL}{AM_VOL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+\_\+\+V\+OL~0x08	/$\ast$ Volume label $\ast$/}\hypertarget{ff_8c_a5cfae62dabae0a54809e43b36685ce7c}{}\label{ff_8c_a5cfae62dabae0a54809e43b36685ce7c}
 
 
-Definition at line 357 of file ff.\+c.
+Definition at line 358 of file ff.\+c.
 
 
 
@@ -550,14 +551,14 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and f\+\_\+setlabel().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Act\+Fat\+Ex}{BPB_ActFatEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Act\+Fat\+Ex~107		/$\ast$ ex\+F\+A\+T\+: Active F\+AT flags ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a44afd74528bc3b7208dee55c78505a0a}{}\label{ff_8c_a44afd74528bc3b7208dee55c78505a0a}
 
 
-Definition at line 441 of file ff.\+c.
+Definition at line 442 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+P\+B\+\_\+\+Bk\+Boot\+Sec32@{B\+P\+B\+\_\+\+Bk\+Boot\+Sec32}}
 \index{B\+P\+B\+\_\+\+Bk\+Boot\+Sec32@{B\+P\+B\+\_\+\+Bk\+Boot\+Sec32}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Bk\+Boot\+Sec32}{BPB_BkBootSec32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Bk\+Boot\+Sec32~50		/$\ast$ F\+A\+T32\+: Offset of backup boot sector ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a6fceac966c2f2b277e8f472c5a7de0c7}{}\label{ff_8c_a6fceac966c2f2b277e8f472c5a7de0c7}
 
 
-Definition at line 421 of file ff.\+c.
+Definition at line 422 of file ff.\+c.
 
 
 
@@ -568,7 +569,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Byts\+Per\+Sec}{BPB_BytsPerSec}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Byts\+Per\+Sec~11		/$\ast$ Sector size \mbox{[}byte\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a8551844b4eb4e15aecd8cc9aa3585fa2}{}\label{ff_8c_a8551844b4eb4e15aecd8cc9aa3585fa2}
 
 
-Definition at line 395 of file ff.\+c.
+Definition at line 396 of file ff.\+c.
 
 
 
@@ -579,7 +580,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Byts\+Per\+Sec\+Ex}{BPB_BytsPerSecEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Byts\+Per\+Sec\+Ex~108		/$\ast$ ex\+F\+A\+T\+: Log2 of sector size in byte ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a3d35e000a1033bb913d3fbc3aa5c68af}{}\label{ff_8c_a3d35e000a1033bb913d3fbc3aa5c68af}
 
 
-Definition at line 442 of file ff.\+c.
+Definition at line 443 of file ff.\+c.
 
 
 
@@ -590,7 +591,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Data\+Ofs\+Ex}{BPB_DataOfsEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Data\+Ofs\+Ex~88		/$\ast$ ex\+F\+A\+T\+: Data offset from top of the volume \mbox{[}sector\mbox{]} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ad3ab64cc288e66c0643af23094aa9645}{}\label{ff_8c_ad3ab64cc288e66c0643af23094aa9645}
 
 
-Definition at line 435 of file ff.\+c.
+Definition at line 436 of file ff.\+c.
 
 
 
@@ -601,7 +602,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Drv\+Num\+Ex}{BPB_DrvNumEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Drv\+Num\+Ex~111		/$\ast$ ex\+F\+A\+T\+: Physical drive number for int13h ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_ac926d7c74f368a033dc8240167df9bc0}{}\label{ff_8c_ac926d7c74f368a033dc8240167df9bc0}
 
 
-Definition at line 445 of file ff.\+c.
+Definition at line 446 of file ff.\+c.
 
 
 
@@ -612,14 +613,14 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Ext\+Flags32}{BPB_ExtFlags32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Ext\+Flags32~40		/$\ast$ F\+A\+T32\+: Extended flags ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a25b233cdbcc8c78db0a791be2623d988}{}\label{ff_8c_a25b233cdbcc8c78db0a791be2623d988}
 
 
-Definition at line 417 of file ff.\+c.
+Definition at line 418 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+P\+B\+\_\+\+Fat\+Ofs\+Ex@{B\+P\+B\+\_\+\+Fat\+Ofs\+Ex}}
 \index{B\+P\+B\+\_\+\+Fat\+Ofs\+Ex@{B\+P\+B\+\_\+\+Fat\+Ofs\+Ex}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Fat\+Ofs\+Ex}{BPB_FatOfsEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Fat\+Ofs\+Ex~80		/$\ast$ ex\+F\+A\+T\+: F\+AT offset from top of the volume \mbox{[}sector\mbox{]} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a12af2061024593ffc7a92daf1c2d3470}{}\label{ff_8c_a12af2061024593ffc7a92daf1c2d3470}
 
 
-Definition at line 433 of file ff.\+c.
+Definition at line 434 of file ff.\+c.
 
 
 
@@ -630,7 +631,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+F\+A\+T\+Sz16}{BPB_FATSz16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+F\+A\+T\+Sz16~22		/$\ast$ F\+AT size (16-\/bit) \mbox{[}sector\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a60a2f6efeb6a4c7cb2da1e5def6ca43b}{}\label{ff_8c_a60a2f6efeb6a4c7cb2da1e5def6ca43b}
 
 
-Definition at line 402 of file ff.\+c.
+Definition at line 403 of file ff.\+c.
 
 
 
@@ -641,7 +642,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+F\+A\+T\+Sz32}{BPB_FATSz32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+F\+A\+T\+Sz32~36		/$\ast$ F\+A\+T32\+: F\+AT size \mbox{[}sector\mbox{]} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a6e6340030dc29e7da2e9f92e472a763d}{}\label{ff_8c_a6e6340030dc29e7da2e9f92e472a763d}
 
 
-Definition at line 416 of file ff.\+c.
+Definition at line 417 of file ff.\+c.
 
 
 
@@ -652,7 +653,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Fat\+Sz\+Ex}{BPB_FatSzEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Fat\+Sz\+Ex~84		/$\ast$ ex\+F\+A\+T\+: F\+AT size \mbox{[}sector\mbox{]} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a54579961bdbed995bcb7e077fedff1f4}{}\label{ff_8c_a54579961bdbed995bcb7e077fedff1f4}
 
 
-Definition at line 434 of file ff.\+c.
+Definition at line 435 of file ff.\+c.
 
 
 
@@ -663,7 +664,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+F\+S\+Info32}{BPB_FSInfo32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+F\+S\+Info32~48		/$\ast$ F\+A\+T32\+: Offset of F\+S\+I\+N\+FO sector ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a86b761a0ed35d7f6e9774be44482ee5b}{}\label{ff_8c_a86b761a0ed35d7f6e9774be44482ee5b}
 
 
-Definition at line 420 of file ff.\+c.
+Definition at line 421 of file ff.\+c.
 
 
 
@@ -674,7 +675,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+F\+S\+Ver32}{BPB_FSVer32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+F\+S\+Ver32~42		/$\ast$ F\+A\+T32\+: File system version ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aed6c1d79c193debd85f7dc9afd05eb22}{}\label{ff_8c_aed6c1d79c193debd85f7dc9afd05eb22}
 
 
-Definition at line 418 of file ff.\+c.
+Definition at line 419 of file ff.\+c.
 
 
 
@@ -685,7 +686,7 @@ Referenced by find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+F\+S\+Ver\+Ex}{BPB_FSVerEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+F\+S\+Ver\+Ex~104		/$\ast$ ex\+F\+A\+T\+: File system version ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a86f95a0a4b798a61967e086540e6ebd9}{}\label{ff_8c_a86f95a0a4b798a61967e086540e6ebd9}
 
 
-Definition at line 439 of file ff.\+c.
+Definition at line 440 of file ff.\+c.
 
 
 
@@ -696,7 +697,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Hidd\+Sec}{BPB_HiddSec}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Hidd\+Sec~28		/$\ast$ {\bf Volume} offset from top of the drive ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a449d4ed5c4c8105daf29aad9488277f7}{}\label{ff_8c_a449d4ed5c4c8105daf29aad9488277f7}
 
 
-Definition at line 405 of file ff.\+c.
+Definition at line 406 of file ff.\+c.
 
 
 
@@ -707,7 +708,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Media}{BPB_Media}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Media~21		/$\ast$ Media descriptor byte ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a414e054c4b5ea3414ebefa3539e7e554}{}\label{ff_8c_a414e054c4b5ea3414ebefa3539e7e554}
 
 
-Definition at line 401 of file ff.\+c.
+Definition at line 402 of file ff.\+c.
 
 
 
@@ -718,7 +719,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Num\+Clus\+Ex}{BPB_NumClusEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Num\+Clus\+Ex~92		/$\ast$ ex\+F\+A\+T\+: Number of clusters ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a5bb065cee85104cbb58390ea9dfa01d8}{}\label{ff_8c_a5bb065cee85104cbb58390ea9dfa01d8}
 
 
-Definition at line 436 of file ff.\+c.
+Definition at line 437 of file ff.\+c.
 
 
 
@@ -729,7 +730,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Num\+F\+A\+Ts}{BPB_NumFATs}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Num\+F\+A\+Ts~16		/$\ast$ Number of F\+A\+Ts ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_af44a1e8c89ec5502595f23496d24cbf1}{}\label{ff_8c_af44a1e8c89ec5502595f23496d24cbf1}
 
 
-Definition at line 398 of file ff.\+c.
+Definition at line 399 of file ff.\+c.
 
 
 
@@ -740,7 +741,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Num\+F\+A\+Ts\+Ex}{BPB_NumFATsEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Num\+F\+A\+Ts\+Ex~110		/$\ast$ ex\+F\+A\+T\+: Number of F\+A\+Ts ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a20cab50b62fe9cb5a99ce28cb54da60e}{}\label{ff_8c_a20cab50b62fe9cb5a99ce28cb54da60e}
 
 
-Definition at line 444 of file ff.\+c.
+Definition at line 445 of file ff.\+c.
 
 
 
@@ -751,7 +752,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Num\+Heads}{BPB_NumHeads}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Num\+Heads~26		/$\ast$ Number of heads for int13h ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a9c03603c3be34d4c5cc1b481b0bc6774}{}\label{ff_8c_a9c03603c3be34d4c5cc1b481b0bc6774}
 
 
-Definition at line 404 of file ff.\+c.
+Definition at line 405 of file ff.\+c.
 
 
 
@@ -762,7 +763,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Perc\+In\+Use\+Ex}{BPB_PercInUseEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Perc\+In\+Use\+Ex~112		/$\ast$ ex\+F\+A\+T\+: Percent in use ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a935b5f7cb38489adf96f42775583025b}{}\label{ff_8c_a935b5f7cb38489adf96f42775583025b}
 
 
-Definition at line 446 of file ff.\+c.
+Definition at line 447 of file ff.\+c.
 
 
 
@@ -773,7 +774,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Root\+Clus32}{BPB_RootClus32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Root\+Clus32~44		/$\ast$ F\+A\+T32\+: Root directory cluster ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a4c99b85429f73c8f6a0ac2bc7a1d81ea}{}\label{ff_8c_a4c99b85429f73c8f6a0ac2bc7a1d81ea}
 
 
-Definition at line 419 of file ff.\+c.
+Definition at line 420 of file ff.\+c.
 
 
 
@@ -784,7 +785,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Root\+Clus\+Ex}{BPB_RootClusEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Root\+Clus\+Ex~96		/$\ast$ ex\+F\+A\+T\+: Root directory cluster ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a8447a1c7d19cab308ab198e1de2e086f}{}\label{ff_8c_a8447a1c7d19cab308ab198e1de2e086f}
 
 
-Definition at line 437 of file ff.\+c.
+Definition at line 438 of file ff.\+c.
 
 
 
@@ -795,7 +796,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Root\+Ent\+Cnt}{BPB_RootEntCnt}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Root\+Ent\+Cnt~17		/$\ast$ Size of root directory area for F\+A\+T12/16 \mbox{[}entry\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aaa667f14c87c45dc128f2ab208e92f98}{}\label{ff_8c_aaa667f14c87c45dc128f2ab208e92f98}
 
 
-Definition at line 399 of file ff.\+c.
+Definition at line 400 of file ff.\+c.
 
 
 
@@ -806,14 +807,14 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Rsvd\+Ex}{BPB_RsvdEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Rsvd\+Ex~113		/$\ast$ ex\+F\+A\+T\+: Reserved (7-\/byte) $\ast$/}\hypertarget{ff_8c_a1f1f5c2e566e3d7d226e4b2a7b70ee2d}{}\label{ff_8c_a1f1f5c2e566e3d7d226e4b2a7b70ee2d}
 
 
-Definition at line 447 of file ff.\+c.
+Definition at line 448 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt@{B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt}}
 \index{B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt@{B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt}{BPB_RsvdSecCnt}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Rsvd\+Sec\+Cnt~14		/$\ast$ Size of reserved area \mbox{[}sector\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ab3ec444c8457c9bc98aa07e846f5c1b7}{}\label{ff_8c_ab3ec444c8457c9bc98aa07e846f5c1b7}
 
 
-Definition at line 397 of file ff.\+c.
+Definition at line 398 of file ff.\+c.
 
 
 
@@ -824,7 +825,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Sec\+Per\+Clus}{BPB_SecPerClus}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Sec\+Per\+Clus~13		/$\ast$ Cluster size \mbox{[}sector\mbox{]} ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_aab78e41c617a14b9540c0563d6b957fa}{}\label{ff_8c_aab78e41c617a14b9540c0563d6b957fa}
 
 
-Definition at line 396 of file ff.\+c.
+Definition at line 397 of file ff.\+c.
 
 
 
@@ -835,7 +836,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Sec\+Per\+Clus\+Ex}{BPB_SecPerClusEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Sec\+Per\+Clus\+Ex~109		/$\ast$ ex\+F\+A\+T\+: Log2 of cluster size in sector ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a64dfd457aa404e53c16d58a3d249adfe}{}\label{ff_8c_a64dfd457aa404e53c16d58a3d249adfe}
 
 
-Definition at line 443 of file ff.\+c.
+Definition at line 444 of file ff.\+c.
 
 
 
@@ -846,7 +847,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Sec\+Per\+Trk}{BPB_SecPerTrk}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Sec\+Per\+Trk~24		/$\ast$ Track size for int13h \mbox{[}sector\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ac71bb771432ea532bc47713a028ebd76}{}\label{ff_8c_ac71bb771432ea532bc47713a028ebd76}
 
 
-Definition at line 403 of file ff.\+c.
+Definition at line 404 of file ff.\+c.
 
 
 
@@ -857,7 +858,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Tot\+Sec16}{BPB_TotSec16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Tot\+Sec16~19		/$\ast$ {\bf Volume} size (16-\/bit) \mbox{[}sector\mbox{]} ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a4eb540eecde0f2df26fa8c7969341d68}{}\label{ff_8c_a4eb540eecde0f2df26fa8c7969341d68}
 
 
-Definition at line 400 of file ff.\+c.
+Definition at line 401 of file ff.\+c.
 
 
 
@@ -868,7 +869,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Tot\+Sec32}{BPB_TotSec32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Tot\+Sec32~32		/$\ast$ {\bf Volume} size (32-\/bit) \mbox{[}sector\mbox{]} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a7723a9f0da553e8879d60909d85ccb7b}{}\label{ff_8c_a7723a9f0da553e8879d60909d85ccb7b}
 
 
-Definition at line 406 of file ff.\+c.
+Definition at line 407 of file ff.\+c.
 
 
 
@@ -879,7 +880,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Tot\+Sec\+Ex}{BPB_TotSecEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Tot\+Sec\+Ex~72		/$\ast$ ex\+F\+A\+T\+: {\bf Volume} size \mbox{[}sector\mbox{]} ({\bf Q\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ac0c21531f17f5690b31622fcf98d3581}{}\label{ff_8c_ac0c21531f17f5690b31622fcf98d3581}
 
 
-Definition at line 432 of file ff.\+c.
+Definition at line 433 of file ff.\+c.
 
 
 
@@ -890,7 +891,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Vol\+Flag\+Ex}{BPB_VolFlagEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Vol\+Flag\+Ex~106		/$\ast$ ex\+F\+A\+T\+: {\bf Volume} flags ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_af7b37995f89d832a47898aa787ecfbc8}{}\label{ff_8c_af7b37995f89d832a47898aa787ecfbc8}
 
 
-Definition at line 440 of file ff.\+c.
+Definition at line 441 of file ff.\+c.
 
 
 
@@ -901,7 +902,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Vol\+I\+D\+Ex}{BPB_VolIDEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Vol\+I\+D\+Ex~100		/$\ast$ ex\+F\+A\+T\+: {\bf Volume} serial number ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a465d34bfcd2bf930e04ae1b379047199}{}\label{ff_8c_a465d34bfcd2bf930e04ae1b379047199}
 
 
-Definition at line 438 of file ff.\+c.
+Definition at line 439 of file ff.\+c.
 
 
 
@@ -912,7 +913,7 @@ Referenced by f\+\_\+getlabel(), and f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Vol\+Ofs\+Ex}{BPB_VolOfsEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Vol\+Ofs\+Ex~64		/$\ast$ ex\+F\+A\+T\+: {\bf Volume} offset from top of the drive \mbox{[}sector\mbox{]} ({\bf Q\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ab09fe2e1cd6205eb848e5fd00374efd4}{}\label{ff_8c_ab09fe2e1cd6205eb848e5fd00374efd4}
 
 
-Definition at line 431 of file ff.\+c.
+Definition at line 432 of file ff.\+c.
 
 
 
@@ -923,7 +924,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+P\+B\+\_\+\+Zeroed\+Ex}{BPB_ZeroedEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+P\+B\+\_\+\+Zeroed\+Ex~11		/$\ast$ ex\+F\+A\+T\+: M\+BZ field (53-\/byte) $\ast$/}\hypertarget{ff_8c_a8b262d23932b103fc341cf6b631539bd}{}\label{ff_8c_a8b262d23932b103fc341cf6b631539bd}
 
 
-Definition at line 430 of file ff.\+c.
+Definition at line 431 of file ff.\+c.
 
 
 
@@ -934,7 +935,7 @@ Referenced by find\+\_\+volume().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+55\+AA}{BS_55AA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+55\+AA~510		/$\ast$ Signature word ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a74b810b3f3583c1eb54bd4305c0f261a}{}\label{ff_8c_a74b810b3f3583c1eb54bd4305c0f261a}
 
 
-Definition at line 414 of file ff.\+c.
+Definition at line 415 of file ff.\+c.
 
 
 
@@ -945,21 +946,21 @@ Referenced by check\+\_\+fs(), f\+\_\+mkfs(), find\+\_\+volume(), and sync\+\_\+
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Boot\+Code}{BS_BootCode}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Boot\+Code~62		/$\ast$ Boot code (448-\/byte) $\ast$/}\hypertarget{ff_8c_a42b6c0366bbc0ad92da5b4997c052b9a}{}\label{ff_8c_a42b6c0366bbc0ad92da5b4997c052b9a}
 
 
-Definition at line 413 of file ff.\+c.
+Definition at line 414 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+S\+\_\+\+Boot\+Code32@{B\+S\+\_\+\+Boot\+Code32}}
 \index{B\+S\+\_\+\+Boot\+Code32@{B\+S\+\_\+\+Boot\+Code32}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Boot\+Code32}{BS_BootCode32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Boot\+Code32~90		/$\ast$ F\+A\+T32\+: Boot code (420-\/byte) $\ast$/}\hypertarget{ff_8c_a6df4d5ea8d94280f9dc935cd6995761d}{}\label{ff_8c_a6df4d5ea8d94280f9dc935cd6995761d}
 
 
-Definition at line 428 of file ff.\+c.
+Definition at line 429 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+S\+\_\+\+Boot\+Code\+Ex@{B\+S\+\_\+\+Boot\+Code\+Ex}}
 \index{B\+S\+\_\+\+Boot\+Code\+Ex@{B\+S\+\_\+\+Boot\+Code\+Ex}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Boot\+Code\+Ex}{BS_BootCodeEx}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Boot\+Code\+Ex~120		/$\ast$ ex\+F\+A\+T\+: Boot code (390-\/byte) $\ast$/}\hypertarget{ff_8c_adea4123eb450eb09933fac339b08eeee}{}\label{ff_8c_adea4123eb450eb09933fac339b08eeee}
 
 
-Definition at line 448 of file ff.\+c.
+Definition at line 449 of file ff.\+c.
 
 
 
@@ -970,7 +971,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Boot\+Sig}{BS_BootSig}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Boot\+Sig~38		/$\ast$ Extended boot signature ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a85a92e790602efef4da3a2f141611ce8}{}\label{ff_8c_a85a92e790602efef4da3a2f141611ce8}
 
 
-Definition at line 409 of file ff.\+c.
+Definition at line 410 of file ff.\+c.
 
 
 
@@ -981,7 +982,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Boot\+Sig32}{BS_BootSig32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Boot\+Sig32~66		/$\ast$ F\+A\+T32\+: Extended boot signature ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a59c4b2f802ab4bc9319e5bd840e615b8}{}\label{ff_8c_a59c4b2f802ab4bc9319e5bd840e615b8}
 
 
-Definition at line 424 of file ff.\+c.
+Definition at line 425 of file ff.\+c.
 
 
 
@@ -992,7 +993,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Drv\+Num}{BS_DrvNum}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Drv\+Num~36		/$\ast$ Physical drive number for int13h ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a0c51f7393341b839dfb241c2951f3ef4}{}\label{ff_8c_a0c51f7393341b839dfb241c2951f3ef4}
 
 
-Definition at line 407 of file ff.\+c.
+Definition at line 408 of file ff.\+c.
 
 
 
@@ -1003,7 +1004,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Drv\+Num32}{BS_DrvNum32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Drv\+Num32~64		/$\ast$ F\+A\+T32\+: Physical drive number for int13h ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_aa670c7b495f5b347c442df67b188c58f}{}\label{ff_8c_aa670c7b495f5b347c442df67b188c58f}
 
 
-Definition at line 422 of file ff.\+c.
+Definition at line 423 of file ff.\+c.
 
 
 
@@ -1014,7 +1015,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Fil\+Sys\+Type}{BS_FilSysType}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Fil\+Sys\+Type~54		/$\ast$ File system type string (8-\/byte) $\ast$/}\hypertarget{ff_8c_a2264848692d36c1b2499c9b6a10acf75}{}\label{ff_8c_a2264848692d36c1b2499c9b6a10acf75}
 
 
-Definition at line 412 of file ff.\+c.
+Definition at line 413 of file ff.\+c.
 
 
 
@@ -1025,7 +1026,7 @@ Referenced by check\+\_\+fs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Fil\+Sys\+Type32}{BS_FilSysType32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Fil\+Sys\+Type32~82		/$\ast$ F\+A\+T32\+: File system type string (8-\/byte) $\ast$/}\hypertarget{ff_8c_a8d8786452966cd0ce579f2575a54a348}{}\label{ff_8c_a8d8786452966cd0ce579f2575a54a348}
 
 
-Definition at line 427 of file ff.\+c.
+Definition at line 428 of file ff.\+c.
 
 
 
@@ -1036,7 +1037,7 @@ Referenced by check\+\_\+fs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Jmp\+Boot}{BS_JmpBoot}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Jmp\+Boot~0		/$\ast$ x86 jump instruction (3-\/byte) $\ast$/}\hypertarget{ff_8c_a664130f8583af5ccc48d5c79952cea8a}{}\label{ff_8c_a664130f8583af5ccc48d5c79952cea8a}
 
 
-Definition at line 393 of file ff.\+c.
+Definition at line 394 of file ff.\+c.
 
 
 
@@ -1047,28 +1048,28 @@ Referenced by check\+\_\+fs(), and f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+N\+Tres}{BS_NTres}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+N\+Tres~37		/$\ast$ Error flag ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a97d9de2942e551e182747f3ed01ab5b4}{}\label{ff_8c_a97d9de2942e551e182747f3ed01ab5b4}
 
 
-Definition at line 408 of file ff.\+c.
+Definition at line 409 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+S\+\_\+\+N\+Tres32@{B\+S\+\_\+\+N\+Tres32}}
 \index{B\+S\+\_\+\+N\+Tres32@{B\+S\+\_\+\+N\+Tres32}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+N\+Tres32}{BS_NTres32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+N\+Tres32~65		/$\ast$ F\+A\+T32\+: Error flag ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a0970c574d425c190a0d6fc6d40bcd9df}{}\label{ff_8c_a0970c574d425c190a0d6fc6d40bcd9df}
 
 
-Definition at line 423 of file ff.\+c.
+Definition at line 424 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+S\+\_\+\+O\+E\+M\+Name@{B\+S\+\_\+\+O\+E\+M\+Name}}
 \index{B\+S\+\_\+\+O\+E\+M\+Name@{B\+S\+\_\+\+O\+E\+M\+Name}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+O\+E\+M\+Name}{BS_OEMName}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+O\+E\+M\+Name~3		/$\ast$ O\+EM name (8-\/byte) $\ast$/}\hypertarget{ff_8c_a02a76ada191ec2dc5f8af60ff3576da7}{}\label{ff_8c_a02a76ada191ec2dc5f8af60ff3576da7}
 
 
-Definition at line 394 of file ff.\+c.
+Definition at line 395 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!B\+S\+\_\+\+Vol\+ID@{B\+S\+\_\+\+Vol\+ID}}
 \index{B\+S\+\_\+\+Vol\+ID@{B\+S\+\_\+\+Vol\+ID}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Vol\+ID}{BS_VolID}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Vol\+ID~39		/$\ast$ {\bf Volume} serial number ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a383a71bda500a0fb5a37f4edd785acbf}{}\label{ff_8c_a383a71bda500a0fb5a37f4edd785acbf}
 
 
-Definition at line 410 of file ff.\+c.
+Definition at line 411 of file ff.\+c.
 
 
 
@@ -1079,7 +1080,7 @@ Referenced by f\+\_\+getlabel(), and f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Vol\+I\+D32}{BS_VolID32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Vol\+I\+D32~67		/$\ast$ F\+A\+T32\+: {\bf Volume} serial number ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_abaa3aafdcf5e83f8cb7e2bb373b13525}{}\label{ff_8c_abaa3aafdcf5e83f8cb7e2bb373b13525}
 
 
-Definition at line 425 of file ff.\+c.
+Definition at line 426 of file ff.\+c.
 
 
 
@@ -1090,7 +1091,7 @@ Referenced by f\+\_\+getlabel(), and f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Vol\+Lab}{BS_VolLab}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Vol\+Lab~43		/$\ast$ {\bf Volume} label string (8-\/byte) $\ast$/}\hypertarget{ff_8c_a28498ba4b07ff90aaa9628e81fb89d32}{}\label{ff_8c_a28498ba4b07ff90aaa9628e81fb89d32}
 
 
-Definition at line 411 of file ff.\+c.
+Definition at line 412 of file ff.\+c.
 
 
 
@@ -1101,7 +1102,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{B\+S\+\_\+\+Vol\+Lab32}{BS_VolLab32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+S\+\_\+\+Vol\+Lab32~71		/$\ast$ F\+A\+T32\+: {\bf Volume} label string (8-\/byte) $\ast$/}\hypertarget{ff_8c_a8241a49bce313184a58617ba1ad9e84c}{}\label{ff_8c_a8241a49bce313184a58617ba1ad9e84c}
 
 
-Definition at line 426 of file ff.\+c.
+Definition at line 427 of file ff.\+c.
 
 
 
@@ -1112,7 +1113,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{D\+D\+EM}{DDEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+D\+EM~0x\+E5	/$\ast$ Deleted directory entry mark set to D\+I\+R\+\_\+\+Name\mbox{[}0\mbox{]} $\ast$/}\hypertarget{ff_8c_a0f2455f7318e6d56318c62f5e4048e1e}{}\label{ff_8c_a0f2455f7318e6d56318c62f5e4048e1e}
 
 
-Definition at line 507 of file ff.\+c.
+Definition at line 508 of file ff.\+c.
 
 
 
@@ -1123,7 +1124,7 @@ Referenced by create\+\_\+name(), dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+re
 \subsubsection[{\texorpdfstring{D\+E\+F\+\_\+\+N\+A\+M\+B\+UF}{DEF_NAMBUF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+F\+\_\+\+N\+A\+M\+B\+UF~{\bf W\+C\+H\+AR} $\ast$lfn;}\hypertarget{ff_8c_ad9aa172b1cf1d54aca234228a7ae8503}{}\label{ff_8c_ad9aa172b1cf1d54aca234228a7ae8503}
 
 
-Definition at line 573 of file ff.\+c.
+Definition at line 574 of file ff.\+c.
 
 
 
@@ -1134,7 +1135,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+getcwd(), f\+\_\+mkdir(), f
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Attr}{DIR_Attr}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Attr~11		/$\ast$ Attribute ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_ad3233e40118ed66095f3c9545b788f8a}{}\label{ff_8c_ad3233e40118ed66095f3c9545b788f8a}
 
 
-Definition at line 469 of file ff.\+c.
+Definition at line 470 of file ff.\+c.
 
 
 
@@ -1145,7 +1146,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), f\+\_\+chmod(), f\+\_\+mkdir(), 
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Crt\+Time}{DIR_CrtTime}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Crt\+Time~14		/$\ast$ Created {\bf time} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a47fb1881ea71d860db9b8280564cb4d5}{}\label{ff_8c_a47fb1881ea71d860db9b8280564cb4d5}
 
 
-Definition at line 472 of file ff.\+c.
+Definition at line 473 of file ff.\+c.
 
 
 
@@ -1156,14 +1157,14 @@ Referenced by f\+\_\+open().
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Crt\+Time10}{DIR_CrtTime10}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Crt\+Time10~13		/$\ast$ Created {\bf time} sub-\/second ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_af8ddb351ddcaaac5d52923ad442fd8cb}{}\label{ff_8c_af8ddb351ddcaaac5d52923ad442fd8cb}
 
 
-Definition at line 471 of file ff.\+c.
+Definition at line 472 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!D\+I\+R\+\_\+\+File\+Size@{D\+I\+R\+\_\+\+File\+Size}}
 \index{D\+I\+R\+\_\+\+File\+Size@{D\+I\+R\+\_\+\+File\+Size}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+File\+Size}{DIR_FileSize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+File\+Size~28		/$\ast$ File size ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_abfbfa613864a02a65f0bf70ead6672c7}{}\label{ff_8c_abfbfa613864a02a65f0bf70ead6672c7}
 
 
-Definition at line 477 of file ff.\+c.
+Definition at line 478 of file ff.\+c.
 
 
 
@@ -1174,7 +1175,7 @@ Referenced by f\+\_\+open(), f\+\_\+sync(), and get\+\_\+fileinfo().
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Fst\+Clus\+HI}{DIR_FstClusHI}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Fst\+Clus\+HI~20		/$\ast$ Higher 16-\/bit of first cluster ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a0bc29c3f09e1e9c40c414f7d50d7905c}{}\label{ff_8c_a0bc29c3f09e1e9c40c414f7d50d7905c}
 
 
-Definition at line 474 of file ff.\+c.
+Definition at line 475 of file ff.\+c.
 
 
 
@@ -1185,7 +1186,7 @@ Referenced by ld\+\_\+clust(), and st\+\_\+clust().
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Fst\+Clus\+LO}{DIR_FstClusLO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Fst\+Clus\+LO~26		/$\ast$ Lower 16-\/bit of first cluster ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aebe0e913bff75a89d38dbcb04baf5dff}{}\label{ff_8c_aebe0e913bff75a89d38dbcb04baf5dff}
 
 
-Definition at line 476 of file ff.\+c.
+Definition at line 477 of file ff.\+c.
 
 
 
@@ -1196,7 +1197,7 @@ Referenced by ld\+\_\+clust(), and st\+\_\+clust().
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Lst\+Acc\+Date}{DIR_LstAccDate}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Lst\+Acc\+Date~18		/$\ast$ Last accessed date ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_afa0625d73f4683df24345f51e7a43da3}{}\label{ff_8c_afa0625d73f4683df24345f51e7a43da3}
 
 
-Definition at line 473 of file ff.\+c.
+Definition at line 474 of file ff.\+c.
 
 
 
@@ -1207,7 +1208,7 @@ Referenced by f\+\_\+sync().
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Mod\+Time}{DIR_ModTime}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Mod\+Time~22		/$\ast$ Modified {\bf time} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aa136ac8eaf0b3febba999e37b7d01803}{}\label{ff_8c_aa136ac8eaf0b3febba999e37b7d01803}
 
 
-Definition at line 475 of file ff.\+c.
+Definition at line 476 of file ff.\+c.
 
 
 
@@ -1218,7 +1219,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+sync(), f\+\_\+utime(), and 
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+Name}{DIR_Name}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+Name~0		/$\ast$ Short file name (11-\/byte) $\ast$/}\hypertarget{ff_8c_afa89348e9fc2de82ae9e12c661366b0e}{}\label{ff_8c_afa89348e9fc2de82ae9e12c661366b0e}
 
 
-Definition at line 468 of file ff.\+c.
+Definition at line 469 of file ff.\+c.
 
 
 
@@ -1229,7 +1230,7 @@ Referenced by dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+read(), dir\+\_\+regis
 \subsubsection[{\texorpdfstring{D\+I\+R\+\_\+\+N\+Tres}{DIR_NTres}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+I\+R\+\_\+\+N\+Tres~12		/$\ast$ Lower case flag ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a87ee1f701c2ab941862e3ce00c1c1e9d}{}\label{ff_8c_a87ee1f701c2ab941862e3ce00c1c1e9d}
 
 
-Definition at line 470 of file ff.\+c.
+Definition at line 471 of file ff.\+c.
 
 
 
@@ -1244,7 +1245,7 @@ Referenced by dir\+\_\+register(), and get\+\_\+fileinfo().
 )}\hypertarget{ff_8c_a458e336ac53f8249ed02d844469b7076}{}\label{ff_8c_a458e336ac53f8249ed02d844469b7076}
 
 
-Definition at line 49 of file ff.\+c.
+Definition at line 50 of file ff.\+c.
 
 
 
@@ -1255,7 +1256,7 @@ Referenced by find\+\_\+volume(), and validate().
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+D\+I\+R\+TY}{FA_DIRTY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+D\+I\+R\+TY~0x80	/$\ast$ F\+I\+L.\+buf\mbox{[}$\,$\mbox{]} needs to be written-\/back $\ast$/}\hypertarget{ff_8c_affd69e5e6d205e09e1070b2f3c039072}{}\label{ff_8c_affd69e5e6d205e09e1070b2f3c039072}
 
 
-Definition at line 365 of file ff.\+c.
+Definition at line 366 of file ff.\+c.
 
 
 
@@ -1266,7 +1267,7 @@ Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+read(), f\+\_\+sync(), f\+
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+M\+O\+D\+I\+F\+I\+ED}{FA_MODIFIED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+M\+O\+D\+I\+F\+I\+ED~0x40	/$\ast$ File has been modified $\ast$/}\hypertarget{ff_8c_a9ae82de1b6841df9041411357f8d3eb5}{}\label{ff_8c_a9ae82de1b6841df9041411357f8d3eb5}
 
 
-Definition at line 364 of file ff.\+c.
+Definition at line 365 of file ff.\+c.
 
 
 
@@ -1277,7 +1278,7 @@ Referenced by f\+\_\+expand(), f\+\_\+lseek(), f\+\_\+open(), f\+\_\+sync(), f\+
 \subsubsection[{\texorpdfstring{F\+A\+\_\+\+S\+E\+E\+K\+E\+ND}{FA_SEEKEND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+\_\+\+S\+E\+E\+K\+E\+ND~0x20	/$\ast$ Seek to end of the file on file open $\ast$/}\hypertarget{ff_8c_ad4d0d6afc5e28678b87a1b75b6645f7d}{}\label{ff_8c_ad4d0d6afc5e28678b87a1b75b6645f7d}
 
 
-Definition at line 363 of file ff.\+c.
+Definition at line 364 of file ff.\+c.
 
 
 
@@ -1292,7 +1293,7 @@ Referenced by f\+\_\+open().
 )~{\bf ff\+\_\+memfree}(lfn)}\hypertarget{ff_8c_aa2d2dda6ad1a1ec4a09e5cb30ae40e2a}{}\label{ff_8c_aa2d2dda6ad1a1ec4a09e5cb30ae40e2a}
 
 
-Definition at line 575 of file ff.\+c.
+Definition at line 576 of file ff.\+c.
 
 
 
@@ -1303,7 +1304,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+getcwd(), f\+\_\+mkdir(), f
 \subsubsection[{\texorpdfstring{F\+S\+I\+\_\+\+Free\+\_\+\+Count}{FSI_Free_Count}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+I\+\_\+\+Free\+\_\+\+Count~488		/$\ast$ F\+A\+T32 F\+S\+I\+: Number of {\bf free} clusters ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ab711e50459aba01b11c6b46a7cc1410b}{}\label{ff_8c_ab711e50459aba01b11c6b46a7cc1410b}
 
 
-Definition at line 452 of file ff.\+c.
+Definition at line 453 of file ff.\+c.
 
 
 
@@ -1314,7 +1315,7 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and sync\+\_\+fs().
 \subsubsection[{\texorpdfstring{F\+S\+I\+\_\+\+Lead\+Sig}{FSI_LeadSig}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+I\+\_\+\+Lead\+Sig~0		/$\ast$ F\+A\+T32 F\+S\+I\+: Leading signature ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a318e58c1966aba52b90ab98dcb649883}{}\label{ff_8c_a318e58c1966aba52b90ab98dcb649883}
 
 
-Definition at line 450 of file ff.\+c.
+Definition at line 451 of file ff.\+c.
 
 
 
@@ -1325,7 +1326,7 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and sync\+\_\+fs().
 \subsubsection[{\texorpdfstring{F\+S\+I\+\_\+\+Nxt\+\_\+\+Free}{FSI_Nxt_Free}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+I\+\_\+\+Nxt\+\_\+\+Free~492		/$\ast$ F\+A\+T32 F\+S\+I\+: Last allocated cluster ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a320700cedf300c9b418edf56e5e6b086}{}\label{ff_8c_a320700cedf300c9b418edf56e5e6b086}
 
 
-Definition at line 453 of file ff.\+c.
+Definition at line 454 of file ff.\+c.
 
 
 
@@ -1336,7 +1337,7 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and sync\+\_\+fs().
 \subsubsection[{\texorpdfstring{F\+S\+I\+\_\+\+Struc\+Sig}{FSI_StrucSig}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+S\+I\+\_\+\+Struc\+Sig~484		/$\ast$ F\+A\+T32 F\+S\+I\+: Structure signature ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a3bac0e6ff5907873030db1d0a7c4ebef}{}\label{ff_8c_a3bac0e6ff5907873030db1d0a7c4ebef}
 
 
-Definition at line 451 of file ff.\+c.
+Definition at line 452 of file ff.\+c.
 
 
 
@@ -1351,7 +1352,7 @@ Referenced by f\+\_\+mkfs(), find\+\_\+volume(), and sync\+\_\+fs().
 )~{\bf get\+\_\+fattime}()}\hypertarget{ff_8c_a72589f5bbb514c0b222ab8b292764418}{}\label{ff_8c_a72589f5bbb514c0b222ab8b292764418}
 
 
-Definition at line 73 of file ff.\+c.
+Definition at line 74 of file ff.\+c.
 
 
 
@@ -1366,7 +1367,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+open(), and f\+\_\+sync().
 )~\{ lfn = {\bf ff\+\_\+memalloc}(({\bf \+\_\+\+M\+A\+X\+\_\+\+L\+FN}+1)$\ast$2); if (!lfn) {\bf L\+E\+A\+V\+E\+\_\+\+FF}(fs, {\bf F\+R\+\_\+\+N\+O\+T\+\_\+\+E\+N\+O\+U\+G\+H\+\_\+\+C\+O\+RE}); (fs)-\/$>$lfnbuf = lfn; \}}\hypertarget{ff_8c_a9880dce2d33fe7708f982b5f80a31142}{}\label{ff_8c_a9880dce2d33fe7708f982b5f80a31142}
 
 
-Definition at line 574 of file ff.\+c.
+Definition at line 575 of file ff.\+c.
 
 
 
@@ -1381,7 +1382,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+getcwd(), f\+\_\+mkdir(), f
 )~0}\hypertarget{ff_8c_a58d63a832a117f179e41c7373d013dd6}{}\label{ff_8c_a58d63a832a117f179e41c7373d013dd6}
 
 
-Definition at line 350 of file ff.\+c.
+Definition at line 351 of file ff.\+c.
 
 
 
@@ -1396,7 +1397,7 @@ Referenced by create\+\_\+name(), f\+\_\+getlabel(), f\+\_\+gets(), f\+\_\+setla
 )~0}\hypertarget{ff_8c_a66a3fa880af6078ef181656c1d7d8ef1}{}\label{ff_8c_a66a3fa880af6078ef181656c1d7d8ef1}
 
 
-Definition at line 351 of file ff.\+c.
+Definition at line 352 of file ff.\+c.
 
 
 
@@ -1411,7 +1412,7 @@ Referenced by create\+\_\+name(), f\+\_\+getlabel(), f\+\_\+setlabel(), get\+\_\
 )~(((c)$>$=\textquotesingle{}0\textquotesingle{})\&\&((c)$<$=\textquotesingle{}9\textquotesingle{}))}\hypertarget{ff_8c_a65dee564f69f2ec27f25b67a348018b9}{}\label{ff_8c_a65dee564f69f2ec27f25b67a348018b9}
 
 
-Definition at line 332 of file ff.\+c.
+Definition at line 333 of file ff.\+c.
 
 
 
@@ -1426,7 +1427,7 @@ Referenced by f\+\_\+printf().
 )~(((c)$>$=\textquotesingle{}a\textquotesingle{})\&\&((c)$<$=\textquotesingle{}z\textquotesingle{}))}\hypertarget{ff_8c_a4a9d454724926bd51a3aed589a97f08b}{}\label{ff_8c_a4a9d454724926bd51a3aed589a97f08b}
 
 
-Definition at line 331 of file ff.\+c.
+Definition at line 332 of file ff.\+c.
 
 
 
@@ -1441,7 +1442,7 @@ Referenced by create\+\_\+name(), f\+\_\+printf(), f\+\_\+setlabel(), get\+\_\+a
 )~(((c)$>$=\textquotesingle{}A\textquotesingle{})\&\&((c)$<$=\textquotesingle{}Z\textquotesingle{}))}\hypertarget{ff_8c_a89b2514198590e139dd064c5d534f302}{}\label{ff_8c_a89b2514198590e139dd064c5d534f302}
 
 
-Definition at line 330 of file ff.\+c.
+Definition at line 331 of file ff.\+c.
 
 
 
@@ -1452,7 +1453,7 @@ Referenced by create\+\_\+name(), and get\+\_\+fileinfo().
 \subsubsection[{\texorpdfstring{L\+D\+I\+R\+\_\+\+Attr}{LDIR_Attr}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+D\+I\+R\+\_\+\+Attr~11		/$\ast$ L\+FN attribute ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a28dcd75633b49e40b42a31f0cf5f5929}{}\label{ff_8c_a28dcd75633b49e40b42a31f0cf5f5929}
 
 
-Definition at line 479 of file ff.\+c.
+Definition at line 480 of file ff.\+c.
 
 
 
@@ -1463,7 +1464,7 @@ Referenced by put\+\_\+lfn().
 \subsubsection[{\texorpdfstring{L\+D\+I\+R\+\_\+\+Chksum}{LDIR_Chksum}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+D\+I\+R\+\_\+\+Chksum~13		/$\ast$ Checksum of the S\+FN entry ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_ade1d529763d2d097a6d1410956c8a84f}{}\label{ff_8c_ade1d529763d2d097a6d1410956c8a84f}
 
 
-Definition at line 481 of file ff.\+c.
+Definition at line 482 of file ff.\+c.
 
 
 
@@ -1474,7 +1475,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and put\+\_\+lfn().
 \subsubsection[{\texorpdfstring{L\+D\+I\+R\+\_\+\+Fst\+Clus\+LO}{LDIR_FstClusLO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+D\+I\+R\+\_\+\+Fst\+Clus\+LO~26		/$\ast$ Must be zero ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ad73024151eff6baea94e680f7928969d}{}\label{ff_8c_ad73024151eff6baea94e680f7928969d}
 
 
-Definition at line 482 of file ff.\+c.
+Definition at line 483 of file ff.\+c.
 
 
 
@@ -1485,7 +1486,7 @@ Referenced by cmp\+\_\+lfn(), pick\+\_\+lfn(), and put\+\_\+lfn().
 \subsubsection[{\texorpdfstring{L\+D\+I\+R\+\_\+\+Ord}{LDIR_Ord}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+D\+I\+R\+\_\+\+Ord~0		/$\ast$ L\+FN entry order and L\+LE flag ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a6c97d545619e6586b02b5d4f39f7be25}{}\label{ff_8c_a6c97d545619e6586b02b5d4f39f7be25}
 
 
-Definition at line 478 of file ff.\+c.
+Definition at line 479 of file ff.\+c.
 
 
 
@@ -1496,7 +1497,7 @@ Referenced by cmp\+\_\+lfn(), pick\+\_\+lfn(), and put\+\_\+lfn().
 \subsubsection[{\texorpdfstring{L\+D\+I\+R\+\_\+\+Type}{LDIR_Type}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+D\+I\+R\+\_\+\+Type~12		/$\ast$ L\+FN type ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_acb98a052a9be81564b56854df35480a0}{}\label{ff_8c_acb98a052a9be81564b56854df35480a0}
 
 
-Definition at line 480 of file ff.\+c.
+Definition at line 481 of file ff.\+c.
 
 
 
@@ -1512,7 +1513,7 @@ Referenced by put\+\_\+lfn().
 )~return res}\hypertarget{ff_8c_a7e653d8ca0ae09faa49cd5b7335fea84}{}\label{ff_8c_a7e653d8ca0ae09faa49cd5b7335fea84}
 
 
-Definition at line 50 of file ff.\+c.
+Definition at line 51 of file ff.\+c.
 
 
 
@@ -1523,7 +1524,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+expand(), f\+\_\+getcwd(), 
 \subsubsection[{\texorpdfstring{L\+L\+EF}{LLEF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+L\+EF~0x40	/$\ast$ Last long entry flag in L\+D\+I\+R\+\_\+\+Ord $\ast$/}\hypertarget{ff_8c_a31ec96cd263bb14418cb8b7b2b54b3ca}{}\label{ff_8c_a31ec96cd263bb14418cb8b7b2b54b3ca}
 
 
-Definition at line 506 of file ff.\+c.
+Definition at line 507 of file ff.\+c.
 
 
 
@@ -1534,7 +1535,7 @@ Referenced by cmp\+\_\+lfn(), dir\+\_\+find(), dir\+\_\+read(), pick\+\_\+lfn(),
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+D\+IR}{MAX_DIR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+D\+IR~0x200000		/$\ast$ Maximum size of F\+A\+T directory $\ast$/}\hypertarget{ff_8c_a556a1452c85d74c908fe071754ce4a71}{}\label{ff_8c_a556a1452c85d74c908fe071754ce4a71}
 
 
-Definition at line 385 of file ff.\+c.
+Definition at line 386 of file ff.\+c.
 
 
 
@@ -1545,7 +1546,7 @@ Referenced by dir\+\_\+next(), and dir\+\_\+sdi().
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+D\+I\+R\+\_\+\+EX}{MAX_DIR_EX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+D\+I\+R\+\_\+\+EX~0x10000000		/$\ast$ Maximum size of ex\+F\+A\+T directory $\ast$/}\hypertarget{ff_8c_aeac7903cb4fde8e45722fca3244257e7}{}\label{ff_8c_aeac7903cb4fde8e45722fca3244257e7}
 
 
-Definition at line 386 of file ff.\+c.
+Definition at line 387 of file ff.\+c.
 
 
 
@@ -1556,7 +1557,7 @@ Referenced by dir\+\_\+next(), and dir\+\_\+sdi().
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+E\+X\+F\+AT}{MAX_EXFAT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+E\+X\+F\+AT~0x7\+F\+F\+F\+F\+F\+F\+D		/$\ast$ Maximum number of ex\+F\+A\+T clusters (limited by implementation) $\ast$/}\hypertarget{ff_8c_ad7bea1c4a86cb654807e6da0370cb694}{}\label{ff_8c_ad7bea1c4a86cb654807e6da0370cb694}
 
 
-Definition at line 384 of file ff.\+c.
+Definition at line 385 of file ff.\+c.
 
 
 
@@ -1567,7 +1568,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+F\+A\+T12}{MAX_FAT12}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+F\+A\+T12~0x\+F\+F5			/$\ast$ Maximum number of F\+A\+T12 clusters $\ast$/}\hypertarget{ff_8c_a03962fce05a65b3e0ff6855d5436869f}{}\label{ff_8c_a03962fce05a65b3e0ff6855d5436869f}
 
 
-Definition at line 381 of file ff.\+c.
+Definition at line 382 of file ff.\+c.
 
 
 
@@ -1578,7 +1579,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+F\+A\+T16}{MAX_FAT16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+F\+A\+T16~0x\+F\+F\+F5			/$\ast$ Maximum number of F\+A\+T16 clusters $\ast$/}\hypertarget{ff_8c_a259e5a1973d5209304482a5bcd89372f}{}\label{ff_8c_a259e5a1973d5209304482a5bcd89372f}
 
 
-Definition at line 382 of file ff.\+c.
+Definition at line 383 of file ff.\+c.
 
 
 
@@ -1589,7 +1590,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+F\+A\+T32}{MAX_FAT32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+F\+A\+T32~0x\+F\+F\+F\+F\+F\+F5		/$\ast$ Maximum number of F\+A\+T32 clusters $\ast$/}\hypertarget{ff_8c_a40e7471b7ae3620a0419aa4d8d6dc684}{}\label{ff_8c_a40e7471b7ae3620a0419aa4d8d6dc684}
 
 
-Definition at line 383 of file ff.\+c.
+Definition at line 384 of file ff.\+c.
 
 
 
@@ -1600,7 +1601,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{M\+B\+R\+\_\+\+Table}{MBR_Table}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+B\+R\+\_\+\+Table~446		/$\ast$ M\+B\+R\+: Offset of partition table in the M\+BR $\ast$/}\hypertarget{ff_8c_ac3f187bf0ba891551f594af6b61f3188}{}\label{ff_8c_ac3f187bf0ba891551f594af6b61f3188}
 
 
-Definition at line 455 of file ff.\+c.
+Definition at line 456 of file ff.\+c.
 
 
 
@@ -1611,7 +1612,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+B\+O\+DY}{NS_BODY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+B\+O\+DY~0x08	/$\ast$ Lower case flag (body) $\ast$/}\hypertarget{ff_8c_a4a0e89b504dece19e2e4b02c83782ca2}{}\label{ff_8c_a4a0e89b504dece19e2e4b02c83782ca2}
 
 
-Definition at line 373 of file ff.\+c.
+Definition at line 374 of file ff.\+c.
 
 
 
@@ -1622,7 +1623,7 @@ Referenced by create\+\_\+name(), dir\+\_\+register(), and get\+\_\+fileinfo().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+D\+OT}{NS_DOT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+D\+OT~0x20	/$\ast$ Dot entry $\ast$/}\hypertarget{ff_8c_a2db528782a021797b34bdc6e9e9de1c3}{}\label{ff_8c_a2db528782a021797b34bdc6e9e9de1c3}
 
 
-Definition at line 375 of file ff.\+c.
+Definition at line 376 of file ff.\+c.
 
 
 
@@ -1633,7 +1634,7 @@ Referenced by create\+\_\+name(), dir\+\_\+register(), f\+\_\+chmod(), f\+\_\+mk
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+E\+XT}{NS_EXT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+E\+XT~0x10	/$\ast$ Lower case flag (ext) $\ast$/}\hypertarget{ff_8c_a3b7fad0942e816fdb84d869c1f7a613e}{}\label{ff_8c_a3b7fad0942e816fdb84d869c1f7a613e}
 
 
-Definition at line 374 of file ff.\+c.
+Definition at line 375 of file ff.\+c.
 
 
 
@@ -1644,7 +1645,7 @@ Referenced by create\+\_\+name(), dir\+\_\+register(), and get\+\_\+fileinfo().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+L\+A\+ST}{NS_LAST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+L\+A\+ST~0x04	/$\ast$ Last segment $\ast$/}\hypertarget{ff_8c_a5a0742bfc1d94f0c3baa5ede485048c4}{}\label{ff_8c_a5a0742bfc1d94f0c3baa5ede485048c4}
 
 
-Definition at line 372 of file ff.\+c.
+Definition at line 373 of file ff.\+c.
 
 
 
@@ -1655,7 +1656,7 @@ Referenced by create\+\_\+name(), and follow\+\_\+path().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+L\+FN}{NS_LFN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+L\+FN~0x02	/$\ast$ Force to create L\+F\+N entry $\ast$/}\hypertarget{ff_8c_ae957b8d4065ea0b3eed822aec5368d29}{}\label{ff_8c_ae957b8d4065ea0b3eed822aec5368d29}
 
 
-Definition at line 371 of file ff.\+c.
+Definition at line 372 of file ff.\+c.
 
 
 
@@ -1666,7 +1667,7 @@ Referenced by create\+\_\+name(), and dir\+\_\+register().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+L\+O\+SS}{NS_LOSS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+L\+O\+SS~0x01	/$\ast$ Out of 8.\+3 format $\ast$/}\hypertarget{ff_8c_ac92c92c3a3d6b9235ac98feeb00e565a}{}\label{ff_8c_ac92c92c3a3d6b9235ac98feeb00e565a}
 
 
-Definition at line 370 of file ff.\+c.
+Definition at line 371 of file ff.\+c.
 
 
 
@@ -1677,7 +1678,7 @@ Referenced by create\+\_\+name(), dir\+\_\+find(), and dir\+\_\+register().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+N\+O\+L\+FN}{NS_NOLFN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+N\+O\+L\+FN~0x40	/$\ast$ Do not find L\+F\+N $\ast$/}\hypertarget{ff_8c_a4355b699eba89ff8a3615ef62128caff}{}\label{ff_8c_a4355b699eba89ff8a3615ef62128caff}
 
 
-Definition at line 376 of file ff.\+c.
+Definition at line 377 of file ff.\+c.
 
 
 
@@ -1688,7 +1689,7 @@ Referenced by dir\+\_\+find(), and dir\+\_\+register().
 \subsubsection[{\texorpdfstring{N\+S\+\_\+\+N\+O\+N\+A\+ME}{NS_NONAME}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+\_\+\+N\+O\+N\+A\+ME~0x80	/$\ast$ Not followed $\ast$/}\hypertarget{ff_8c_a03a711029b966a7fad4f01e546b5e034}{}\label{ff_8c_a03a711029b966a7fad4f01e546b5e034}
 
 
-Definition at line 377 of file ff.\+c.
+Definition at line 378 of file ff.\+c.
 
 
 
@@ -1699,7 +1700,7 @@ Referenced by dir\+\_\+register(), f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+open()
 \subsubsection[{\texorpdfstring{N\+S\+F\+L\+AG}{NSFLAG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+S\+F\+L\+AG~11		/$\ast$ Index of name status byte in fn\mbox{[}$\,$\mbox{]} $\ast$/}\hypertarget{ff_8c_ad2306816015e67e72cfd0a20a880b227}{}\label{ff_8c_ad2306816015e67e72cfd0a20a880b227}
 
 
-Definition at line 369 of file ff.\+c.
+Definition at line 370 of file ff.\+c.
 
 
 
@@ -1710,7 +1711,7 @@ Referenced by create\+\_\+name(), dir\+\_\+find(), dir\+\_\+register(), f\+\_\+c
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+Boot}{PTE_Boot}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+Boot~0		/$\ast$ M\+BR P\+T\+E\+: Boot indicator $\ast$/}\hypertarget{ff_8c_a74c1bb03f929236b18eb9c4a3df26a8c}{}\label{ff_8c_a74c1bb03f929236b18eb9c4a3df26a8c}
 
 
-Definition at line 457 of file ff.\+c.
+Definition at line 458 of file ff.\+c.
 
 
 
@@ -1721,7 +1722,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+Ed\+Cyl}{PTE_EdCyl}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+Ed\+Cyl~7		/$\ast$ M\+BR P\+T\+E\+: End cylinder $\ast$/}\hypertarget{ff_8c_a0f96bb9d52c3a5bbd489b59772463cab}{}\label{ff_8c_a0f96bb9d52c3a5bbd489b59772463cab}
 
 
-Definition at line 464 of file ff.\+c.
+Definition at line 465 of file ff.\+c.
 
 
 
@@ -1732,7 +1733,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+Ed\+Head}{PTE_EdHead}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+Ed\+Head~5		/$\ast$ M\+BR P\+T\+E\+: End head $\ast$/}\hypertarget{ff_8c_a151137a5b01c29730bbf4ee63c773d12}{}\label{ff_8c_a151137a5b01c29730bbf4ee63c773d12}
 
 
-Definition at line 462 of file ff.\+c.
+Definition at line 463 of file ff.\+c.
 
 
 
@@ -1743,7 +1744,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+Ed\+Sec}{PTE_EdSec}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+Ed\+Sec~6		/$\ast$ M\+BR P\+T\+E\+: End sector $\ast$/}\hypertarget{ff_8c_aa3b0eae83b150116114dfa582a297ee9}{}\label{ff_8c_aa3b0eae83b150116114dfa582a297ee9}
 
 
-Definition at line 463 of file ff.\+c.
+Definition at line 464 of file ff.\+c.
 
 
 
@@ -1754,7 +1755,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+Siz\+Lba}{PTE_SizLba}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+Siz\+Lba~12		/$\ast$ M\+BR P\+T\+E\+: Size in L\+BA $\ast$/}\hypertarget{ff_8c_a195f11dd0185a4edbe7064ebe40092bc}{}\label{ff_8c_a195f11dd0185a4edbe7064ebe40092bc}
 
 
-Definition at line 466 of file ff.\+c.
+Definition at line 467 of file ff.\+c.
 
 
 
@@ -1765,7 +1766,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+St\+Cyl}{PTE_StCyl}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+St\+Cyl~3		/$\ast$ M\+BR P\+T\+E\+: Start cylinder $\ast$/}\hypertarget{ff_8c_a973d54c6ad9ae5c0b40e1832db4976f9}{}\label{ff_8c_a973d54c6ad9ae5c0b40e1832db4976f9}
 
 
-Definition at line 460 of file ff.\+c.
+Definition at line 461 of file ff.\+c.
 
 
 
@@ -1776,7 +1777,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+St\+Head}{PTE_StHead}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+St\+Head~1		/$\ast$ M\+BR P\+T\+E\+: Start head $\ast$/}\hypertarget{ff_8c_a72ec8d9f48ea97de79e5878dfa593ca3}{}\label{ff_8c_a72ec8d9f48ea97de79e5878dfa593ca3}
 
 
-Definition at line 458 of file ff.\+c.
+Definition at line 459 of file ff.\+c.
 
 
 
@@ -1787,7 +1788,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+St\+Lba}{PTE_StLba}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+St\+Lba~8		/$\ast$ M\+BR P\+T\+E\+: Start in L\+BA $\ast$/}\hypertarget{ff_8c_ae33f69bfe238a35fb3fd1949c4e087da}{}\label{ff_8c_ae33f69bfe238a35fb3fd1949c4e087da}
 
 
-Definition at line 465 of file ff.\+c.
+Definition at line 466 of file ff.\+c.
 
 
 
@@ -1798,7 +1799,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+St\+Sec}{PTE_StSec}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+St\+Sec~2		/$\ast$ M\+BR P\+T\+E\+: Start sector $\ast$/}\hypertarget{ff_8c_a3fd894243a30fe6253a78fb9221eb5f4}{}\label{ff_8c_a3fd894243a30fe6253a78fb9221eb5f4}
 
 
-Definition at line 459 of file ff.\+c.
+Definition at line 460 of file ff.\+c.
 
 
 
@@ -1809,7 +1810,7 @@ Referenced by f\+\_\+mkfs().
 \subsubsection[{\texorpdfstring{P\+T\+E\+\_\+\+System}{PTE_System}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+T\+E\+\_\+\+System~4		/$\ast$ M\+BR P\+T\+E\+: System ID $\ast$/}\hypertarget{ff_8c_a71a2bd9498580394a97fe0b5246635d6}{}\label{ff_8c_a71a2bd9498580394a97fe0b5246635d6}
 
 
-Definition at line 461 of file ff.\+c.
+Definition at line 462 of file ff.\+c.
 
 
 
@@ -1820,7 +1821,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{R\+D\+D\+EM}{RDDEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+D\+D\+EM~0x05	/$\ast$ Replacement of the character collides with D\+D\+E\+M $\ast$/}\hypertarget{ff_8c_a24b6bc427cbd37fbe76e087f7f188abb}{}\label{ff_8c_a24b6bc427cbd37fbe76e087f7f188abb}
 
 
-Definition at line 508 of file ff.\+c.
+Definition at line 509 of file ff.\+c.
 
 
 
@@ -1835,7 +1836,7 @@ Referenced by create\+\_\+name(), and get\+\_\+fileinfo().
 )~(({\bf U\+I\+NT}){\bf \+\_\+\+M\+A\+X\+\_\+\+SS})	/$\ast$ Fixed sector size $\ast$/}\hypertarget{ff_8c_a42b5140fc5e09a53c8f4cba66dc0e6c1}{}\label{ff_8c_a42b5140fc5e09a53c8f4cba66dc0e6c1}
 
 
-Definition at line 60 of file ff.\+c.
+Definition at line 61 of file ff.\+c.
 
 
 
@@ -1846,7 +1847,7 @@ Referenced by clmt\+\_\+clust(), dir\+\_\+next(), dir\+\_\+register(), dir\+\_\+
 \subsubsection[{\texorpdfstring{S\+Z\+\_\+\+P\+TE}{SZ_PTE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+\_\+\+P\+TE~16		/$\ast$ M\+B\+R\+: Size of a partition table entry $\ast$/}\hypertarget{ff_8c_af133060c47366e7e557d4085d931183f}{}\label{ff_8c_af133060c47366e7e557d4085d931183f}
 
 
-Definition at line 456 of file ff.\+c.
+Definition at line 457 of file ff.\+c.
 
 
 
@@ -1857,7 +1858,7 @@ Referenced by f\+\_\+mkfs(), and find\+\_\+volume().
 \subsubsection[{\texorpdfstring{S\+Z\+D\+I\+RE}{SZDIRE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Z\+D\+I\+RE~32		/$\ast$ Size of a directory entry $\ast$/}\hypertarget{ff_8c_a90943705ce4b32e47562c9f56860c7af}{}\label{ff_8c_a90943705ce4b32e47562c9f56860c7af}
 
 
-Definition at line 505 of file ff.\+c.
+Definition at line 506 of file ff.\+c.
 
 
 
@@ -1868,7 +1869,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+next(), dir\+\_\+register(), dir\+\_\+sd
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Acc\+Time}{XDIR_AccTime}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Acc\+Time~16		/$\ast$ Last accessed {\bf time} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_af0a826e3f3902172e3ebd5a3132a0153}{}\label{ff_8c_af0a826e3f3902172e3ebd5a3132a0153}
 
 
-Definition at line 492 of file ff.\+c.
+Definition at line 493 of file ff.\+c.
 
 
 
@@ -1879,14 +1880,14 @@ Referenced by f\+\_\+sync().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Acc\+TZ}{XDIR_AccTZ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Acc\+TZ~24		/$\ast$ Last accessed {\bf timezone} ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_ab12e9f890b539722562824d569969959}{}\label{ff_8c_ab12e9f890b539722562824d569969959}
 
 
-Definition at line 497 of file ff.\+c.
+Definition at line 498 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!X\+D\+I\+R\+\_\+\+Attr@{X\+D\+I\+R\+\_\+\+Attr}}
 \index{X\+D\+I\+R\+\_\+\+Attr@{X\+D\+I\+R\+\_\+\+Attr}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Attr}{XDIR_Attr}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Attr~4		/$\ast$ File attribute ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aafe8687fb9356906c13ccd9fe88eb3de}{}\label{ff_8c_aafe8687fb9356906c13ccd9fe88eb3de}
 
 
-Definition at line 489 of file ff.\+c.
+Definition at line 490 of file ff.\+c.
 
 
 
@@ -1897,14 +1898,14 @@ Referenced by dir\+\_\+read(), f\+\_\+chmod(), f\+\_\+mkdir(), f\+\_\+open(), f\
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Case\+Sum}{XDIR_CaseSum}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Case\+Sum~4		/$\ast$ Sum of case conversion table ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a966901795f1a82003139433a0ba318dd}{}\label{ff_8c_a966901795f1a82003139433a0ba318dd}
 
 
-Definition at line 486 of file ff.\+c.
+Definition at line 487 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!X\+D\+I\+R\+\_\+\+Crt\+Time@{X\+D\+I\+R\+\_\+\+Crt\+Time}}
 \index{X\+D\+I\+R\+\_\+\+Crt\+Time@{X\+D\+I\+R\+\_\+\+Crt\+Time}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Crt\+Time}{XDIR_CrtTime}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Crt\+Time~8		/$\ast$ Created {\bf time} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a74046208323ac5e8b5214b05e1a43b87}{}\label{ff_8c_a74046208323ac5e8b5214b05e1a43b87}
 
 
-Definition at line 490 of file ff.\+c.
+Definition at line 491 of file ff.\+c.
 
 
 
@@ -1915,7 +1916,7 @@ Referenced by f\+\_\+open().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Crt\+Time10}{XDIR_CrtTime10}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Crt\+Time10~20		/$\ast$ Created {\bf time} subsecond ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a15318ffa52c4e35fdce00a64ab3ccbf9}{}\label{ff_8c_a15318ffa52c4e35fdce00a64ab3ccbf9}
 
 
-Definition at line 493 of file ff.\+c.
+Definition at line 494 of file ff.\+c.
 
 
 
@@ -1926,14 +1927,14 @@ Referenced by f\+\_\+open().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Crt\+TZ}{XDIR_CrtTZ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Crt\+TZ~22		/$\ast$ Created {\bf timezone} ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a2358527d5a3665a4ffb363e014ee421b}{}\label{ff_8c_a2358527d5a3665a4ffb363e014ee421b}
 
 
-Definition at line 495 of file ff.\+c.
+Definition at line 496 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!X\+D\+I\+R\+\_\+\+File\+Size@{X\+D\+I\+R\+\_\+\+File\+Size}}
 \index{X\+D\+I\+R\+\_\+\+File\+Size@{X\+D\+I\+R\+\_\+\+File\+Size}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+File\+Size}{XDIR_FileSize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+File\+Size~56		/$\ast$ File/Directory size ({\bf Q\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a899bf596ce53d81a373229662249f524}{}\label{ff_8c_a899bf596ce53d81a373229662249f524}
 
 
-Definition at line 503 of file ff.\+c.
+Definition at line 504 of file ff.\+c.
 
 
 
@@ -1944,7 +1945,7 @@ Referenced by dir\+\_\+register(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+opendir
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Fst\+Clus}{XDIR_FstClus}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Fst\+Clus~52		/$\ast$ First cluster of the file data ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ae08bbe65fd20259cb98c85ce08aa53cb}{}\label{ff_8c_ae08bbe65fd20259cb98c85ce08aa53cb}
 
 
-Definition at line 502 of file ff.\+c.
+Definition at line 503 of file ff.\+c.
 
 
 
@@ -1955,7 +1956,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+opendir(), f
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Gen\+Flags}{XDIR_GenFlags}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Gen\+Flags~33		/$\ast$ Gneral {\bf secondary} flags ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ac3fd42ab7ee833b0e3683b1843d310d6}{}\label{ff_8c_ac3fd42ab7ee833b0e3683b1843d310d6}
 
 
-Definition at line 498 of file ff.\+c.
+Definition at line 499 of file ff.\+c.
 
 
 
@@ -1966,7 +1967,7 @@ Referenced by dir\+\_\+register(), f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+opendir
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Label}{XDIR_Label}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Label~2		/$\ast$ {\bf Volume} label (11-\/{\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_ac154e61682dfed7bb071b0926db1efac}{}\label{ff_8c_ac154e61682dfed7bb071b0926db1efac}
 
 
-Definition at line 485 of file ff.\+c.
+Definition at line 486 of file ff.\+c.
 
 
 
@@ -1977,7 +1978,7 @@ Referenced by f\+\_\+getlabel(), and f\+\_\+setlabel().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Mod\+Time}{XDIR_ModTime}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Mod\+Time~12		/$\ast$ Modified {\bf time} ({\bf D\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_aecb0af980a40b38b30dd0a736c8d6406}{}\label{ff_8c_aecb0af980a40b38b30dd0a736c8d6406}
 
 
-Definition at line 491 of file ff.\+c.
+Definition at line 492 of file ff.\+c.
 
 
 
@@ -1988,7 +1989,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+sync(), f\+\_\+utime(), and 
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Mod\+Time10}{XDIR_ModTime10}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Mod\+Time10~21		/$\ast$ Modified {\bf time} subsecond ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a0f63c605687d0ed66c633ba6a10c01e5}{}\label{ff_8c_a0f63c605687d0ed66c633ba6a10c01e5}
 
 
-Definition at line 494 of file ff.\+c.
+Definition at line 495 of file ff.\+c.
 
 
 
@@ -1999,14 +2000,14 @@ Referenced by f\+\_\+open(), and f\+\_\+sync().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Mod\+TZ}{XDIR_ModTZ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Mod\+TZ~23		/$\ast$ Modified {\bf timezone} ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_abe933d1753a1f0c30a94131e02f23ab5}{}\label{ff_8c_abe933d1753a1f0c30a94131e02f23ab5}
 
 
-Definition at line 496 of file ff.\+c.
+Definition at line 497 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!X\+D\+I\+R\+\_\+\+Name\+Hash@{X\+D\+I\+R\+\_\+\+Name\+Hash}}
 \index{X\+D\+I\+R\+\_\+\+Name\+Hash@{X\+D\+I\+R\+\_\+\+Name\+Hash}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Name\+Hash}{XDIR_NameHash}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Name\+Hash~36		/$\ast$ Hash of file name ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a7c0a94f8a7efc7a710d6eb897059462d}{}\label{ff_8c_a7c0a94f8a7efc7a710d6eb897059462d}
 
 
-Definition at line 500 of file ff.\+c.
+Definition at line 501 of file ff.\+c.
 
 
 
@@ -2017,7 +2018,7 @@ Referenced by dir\+\_\+find(), f\+\_\+rename(), and sum\+\_\+sfn().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Num\+Label}{XDIR_NumLabel}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Num\+Label~1		/$\ast$ Number of volume label characters ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_aac6d45371e0269e7b10c5a08f2f4b422}{}\label{ff_8c_aac6d45371e0269e7b10c5a08f2f4b422}
 
 
-Definition at line 484 of file ff.\+c.
+Definition at line 485 of file ff.\+c.
 
 
 
@@ -2028,7 +2029,7 @@ Referenced by f\+\_\+getlabel(), and f\+\_\+setlabel().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Num\+Name}{XDIR_NumName}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Num\+Name~35		/$\ast$ Number of file name characters ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a382f456b33f0c719163bcf521aa7ecea}{}\label{ff_8c_a382f456b33f0c719163bcf521aa7ecea}
 
 
-Definition at line 499 of file ff.\+c.
+Definition at line 500 of file ff.\+c.
 
 
 
@@ -2039,7 +2040,7 @@ Referenced by dir\+\_\+find(), f\+\_\+rename(), and sum\+\_\+sfn().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Num\+Sec}{XDIR_NumSec}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Num\+Sec~1		/$\ast$ Number of {\bf secondary} entries ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a37e729265403caf1ae349714e069a3e6}{}\label{ff_8c_a37e729265403caf1ae349714e069a3e6}
 
 
-Definition at line 487 of file ff.\+c.
+Definition at line 488 of file ff.\+c.
 
 
 
@@ -2050,7 +2051,7 @@ Referenced by f\+\_\+rename(), and sum\+\_\+sfn().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Set\+Sum}{XDIR_SetSum}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Set\+Sum~2		/$\ast$ Sum of the set of directory entries ({\bf W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a784a27bba3d35dddeb57d7fa99670b2a}{}\label{ff_8c_a784a27bba3d35dddeb57d7fa99670b2a}
 
 
-Definition at line 488 of file ff.\+c.
+Definition at line 489 of file ff.\+c.
 
 
 
@@ -2061,7 +2062,7 @@ Referenced by sum\+\_\+sfn().
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Type}{XDIR_Type}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Type~0		/$\ast$ Type of ex\+F\+AT directory entry ({\bf B\+Y\+TE}) $\ast$/}\hypertarget{ff_8c_a55c8dde2fcff23002e196ae2c3eeaa08}{}\label{ff_8c_a55c8dde2fcff23002e196ae2c3eeaa08}
 
 
-Definition at line 483 of file ff.\+c.
+Definition at line 484 of file ff.\+c.
 
 
 
@@ -2072,7 +2073,7 @@ Referenced by dir\+\_\+alloc(), dir\+\_\+remove(), f\+\_\+setlabel(), and sum\+\
 \subsubsection[{\texorpdfstring{X\+D\+I\+R\+\_\+\+Valid\+File\+Size}{XDIR_ValidFileSize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define X\+D\+I\+R\+\_\+\+Valid\+File\+Size~40		/$\ast$ Valid file size ({\bf Q\+W\+O\+RD}) $\ast$/}\hypertarget{ff_8c_a543e2a11cefac978a0108a7973416d56}{}\label{ff_8c_a543e2a11cefac978a0108a7973416d56}
 
 
-Definition at line 501 of file ff.\+c.
+Definition at line 502 of file ff.\+c.
 
 
 
@@ -2091,7 +2092,7 @@ Referenced by dir\+\_\+register(), f\+\_\+mkdir(), f\+\_\+open(), and f\+\_\+syn
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a5a0aaea328e942cf6f21bae6e19e911b}{}\label{ff_8c_a5a0aaea328e942cf6f21bae6e19e911b}
 
 
-Definition at line 2968 of file ff.\+c.
+Definition at line 2969 of file ff.\+c.
 
 
 
@@ -2107,7 +2108,7 @@ Referenced by find\+\_\+volume().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ae4d7b7df154c6409348965aea5462ccc}{}\label{ff_8c_ae4d7b7df154c6409348965aea5462ccc}
 
 
-Definition at line 720 of file ff.\+c.
+Definition at line 721 of file ff.\+c.
 
 
 
@@ -2123,7 +2124,7 @@ Referenced by create\+\_\+name(), and f\+\_\+setlabel().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ac3e06d01ef9482b307130f53c6b4331b}{}\label{ff_8c_ac3e06d01ef9482b307130f53c6b4331b}
 
 
-Definition at line 1422 of file ff.\+c.
+Definition at line 1423 of file ff.\+c.
 
 
 
@@ -2139,7 +2140,7 @@ Referenced by f\+\_\+lseek(), f\+\_\+read(), and f\+\_\+write().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a45bbeb9d5097317ba431e90e2a9c45f8}{}\label{ff_8c_a45bbeb9d5097317ba431e90e2a9c45f8}
 
 
-Definition at line 985 of file ff.\+c.
+Definition at line 986 of file ff.\+c.
 
 
 
@@ -2155,7 +2156,7 @@ Referenced by dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+expand(), f\+\_\+lseek(), 
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_adcedde346219d87f91e412c1efa9a7b5}{}\label{ff_8c_adcedde346219d87f91e412c1efa9a7b5}
 
 
-Definition at line 1665 of file ff.\+c.
+Definition at line 1666 of file ff.\+c.
 
 
 
@@ -2171,7 +2172,7 @@ Referenced by dir\+\_\+find().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_abebb32f5dee5e071e8f0916e25446dd9}{}\label{ff_8c_abebb32f5dee5e071e8f0916e25446dd9}
 
 
-Definition at line 1336 of file ff.\+c.
+Definition at line 1337 of file ff.\+c.
 
 
 
@@ -2187,7 +2188,7 @@ Referenced by dir\+\_\+next(), f\+\_\+lseek(), f\+\_\+mkdir(), and f\+\_\+write(
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_af119220c4aeabfeb316349e8279413ca}{}\label{ff_8c_af119220c4aeabfeb316349e8279413ca}
 
 
-Definition at line 2621 of file ff.\+c.
+Definition at line 2622 of file ff.\+c.
 
 
 
@@ -2203,7 +2204,7 @@ Referenced by follow\+\_\+path().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a4d56c285f91e80d8b00c9e1af0ce6989}{}\label{ff_8c_a4d56c285f91e80d8b00c9e1af0ce6989}
 
 
-Definition at line 1574 of file ff.\+c.
+Definition at line 1575 of file ff.\+c.
 
 
 
@@ -2218,7 +2219,7 @@ Referenced by dir\+\_\+register(), and f\+\_\+setlabel().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_aedd36565b13cee164754d8a7ecfc13c5}{}\label{ff_8c_aedd36565b13cee164754d8a7ecfc13c5}
 
 
-Definition at line 2211 of file ff.\+c.
+Definition at line 2212 of file ff.\+c.
 
 
 
@@ -2234,7 +2235,7 @@ Referenced by dir\+\_\+register(), and follow\+\_\+path().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a09e57d7b469320805a32eaac5afe5c9b}{}\label{ff_8c_a09e57d7b469320805a32eaac5afe5c9b}
 
 
-Definition at line 1503 of file ff.\+c.
+Definition at line 1504 of file ff.\+c.
 
 
 
@@ -2250,7 +2251,7 @@ Referenced by dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+read(), dir\+\_\+regis
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a70bf05468949f8d3de1a724386c20fe2}{}\label{ff_8c_a70bf05468949f8d3de1a724386c20fe2}
 
 
-Definition at line 2133 of file ff.\+c.
+Definition at line 2134 of file ff.\+c.
 
 
 
@@ -2265,7 +2266,7 @@ Referenced by dir\+\_\+find(), f\+\_\+getcwd(), f\+\_\+getlabel(), f\+\_\+readdi
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_af83c242d085aa482a0e3afd0e75c12fe}{}\label{ff_8c_af83c242d085aa482a0e3afd0e75c12fe}
 
 
-Definition at line 2291 of file ff.\+c.
+Definition at line 2292 of file ff.\+c.
 
 
 
@@ -2280,7 +2281,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+open(), and f\+\_\+rename().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ab3dd06af3ef30ee7eb858c2cd282abe7}{}\label{ff_8c_ab3dd06af3ef30ee7eb858c2cd282abe7}
 
 
-Definition at line 2395 of file ff.\+c.
+Definition at line 2396 of file ff.\+c.
 
 
 
@@ -2296,7 +2297,7 @@ Referenced by f\+\_\+rename(), and f\+\_\+unlink().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a502fb2ad559e4a4409bf5d6398bca464}{}\label{ff_8c_a502fb2ad559e4a4409bf5d6398bca464}
 
 
-Definition at line 1453 of file ff.\+c.
+Definition at line 1454 of file ff.\+c.
 
 
 
@@ -2311,7 +2312,7 @@ Referenced by dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+register(), dir\+\_\+r
 )}\hypertarget{ff_8c_a99a8f0eee3b847f8148f4a3ce30b7dc1}{}\label{ff_8c_a99a8f0eee3b847f8148f4a3ce30b7dc1}
 
 
-Definition at line 3865 of file ff.\+c.
+Definition at line 3866 of file ff.\+c.
 
 
 
@@ -2328,7 +2329,7 @@ Referenced by chdir(), and fatfs\+\_\+cat().
 )}\hypertarget{ff_8c_ab007bc58e2fdfc5d1ae8e87796e73965}{}\label{ff_8c_ab007bc58e2fdfc5d1ae8e87796e73965}
 
 
-Definition at line 4822 of file ff.\+c.
+Definition at line 4823 of file ff.\+c.
 
 
 
@@ -2343,7 +2344,7 @@ Referenced by chmod(), and fatfs\+\_\+tests().
 )}\hypertarget{ff_8c_adab02d5c0e368f7d131ef7d7d2676c7a}{}\label{ff_8c_adab02d5c0e368f7d131ef7d7d2676c7a}
 
 
-Definition at line 3807 of file ff.\+c.
+Definition at line 3808 of file ff.\+c.
 
 
 
@@ -2358,7 +2359,7 @@ Referenced by close(), dbf\+\_\+close(), fatfs\+\_\+cat(), and open().
 )}\hypertarget{ff_8c_a7a27f3b36634e7031af1f60b94beea40}{}\label{ff_8c_a7a27f3b36634e7031af1f60b94beea40}
 
 
-Definition at line 4225 of file ff.\+c.
+Definition at line 4226 of file ff.\+c.
 
 
 
@@ -2375,7 +2376,7 @@ Referenced by closedir().
 )}\hypertarget{ff_8c_a49c68d4c6127a8645ab98f6b2ae147c5}{}\label{ff_8c_a49c68d4c6127a8645ab98f6b2ae147c5}
 
 
-Definition at line 5132 of file ff.\+c.
+Definition at line 5133 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+findfirst@{f\+\_\+findfirst}}
 \index{f\+\_\+findfirst@{f\+\_\+findfirst}!ff.\+c@{ff.\+c}}
@@ -2389,7 +2390,7 @@ Definition at line 5132 of file ff.\+c.
 )}\hypertarget{ff_8c_aa369bb7dcc47216cdf204ed6cc10f835}{}\label{ff_8c_aa369bb7dcc47216cdf204ed6cc10f835}
 
 
-Definition at line 4322 of file ff.\+c.
+Definition at line 4323 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+findnext@{f\+\_\+findnext}}
 \index{f\+\_\+findnext@{f\+\_\+findnext}!ff.\+c@{ff.\+c}}
@@ -2401,7 +2402,7 @@ Definition at line 4322 of file ff.\+c.
 )}\hypertarget{ff_8c_a0faa6e4f9eb3a6c79965df420aed0bab}{}\label{ff_8c_a0faa6e4f9eb3a6c79965df420aed0bab}
 
 
-Definition at line 4296 of file ff.\+c.
+Definition at line 4297 of file ff.\+c.
 
 
 
@@ -2417,7 +2418,7 @@ Referenced by f\+\_\+findfirst().
 )}\hypertarget{ff_8c_a7da7c8d04f20b7f630073721eff53572}{}\label{ff_8c_a7da7c8d04f20b7f630073721eff53572}
 
 
-Definition at line 3918 of file ff.\+c.
+Definition at line 3919 of file ff.\+c.
 
 
 
@@ -2434,7 +2435,7 @@ Referenced by fatfs\+\_\+cat(), and getcwd().
 )}\hypertarget{ff_8c_a72098afbbef7ff8b850bacfc721d6bd0}{}\label{ff_8c_a72098afbbef7ff8b850bacfc721d6bd0}
 
 
-Definition at line 4386 of file ff.\+c.
+Definition at line 4387 of file ff.\+c.
 
 
 
@@ -2451,7 +2452,7 @@ Referenced by fatfs\+\_\+ls(), and fatfs\+\_\+status().
 )}\hypertarget{ff_8c_a71190e4130c3c252996cae7936a94fca}{}\label{ff_8c_a71190e4130c3c252996cae7936a94fca}
 
 
-Definition at line 4914 of file ff.\+c.
+Definition at line 4915 of file ff.\+c.
 
 
 
@@ -2468,7 +2469,7 @@ Referenced by fatfs\+\_\+status().
 )}\hypertarget{ff_8c_a75939ddb9d8a9e7d17625c0364a1efb7}{}\label{ff_8c_a75939ddb9d8a9e7d17625c0364a1efb7}
 
 
-Definition at line 5825 of file ff.\+c.
+Definition at line 5826 of file ff.\+c.
 
 
 
@@ -2484,7 +2485,7 @@ Referenced by Fat\+Fs\+\_\+\+Read\+\_\+\+Config().
 )}\hypertarget{ff_8c_a1ade4a85f88359e47c474a5436cc20fa}{}\label{ff_8c_a1ade4a85f88359e47c474a5436cc20fa}
 
 
-Definition at line 3999 of file ff.\+c.
+Definition at line 4000 of file ff.\+c.
 
 
 
@@ -2499,7 +2500,7 @@ Referenced by dbf\+\_\+lseek(), ftruncate(), lseek(), open(), and truncate().
 )}\hypertarget{ff_8c_a3d18a7f44fbdca3752f437264055c1ba}{}\label{ff_8c_a3d18a7f44fbdca3752f437264055c1ba}
 
 
-Definition at line 4621 of file ff.\+c.
+Definition at line 4622 of file ff.\+c.
 
 
 
@@ -2518,7 +2519,7 @@ Referenced by fatfs\+\_\+cat(), and mkdir().
 )}\hypertarget{ff_8c_a52ff3c14f48a7bd12b5d8fcef84787ea}{}\label{ff_8c_a52ff3c14f48a7bd12b5d8fcef84787ea}
 
 
-Definition at line 5295 of file ff.\+c.
+Definition at line 5296 of file ff.\+c.
 
 
 
@@ -2535,7 +2536,7 @@ Referenced by fatfs\+\_\+tests().
 )}\hypertarget{ff_8c_a3bff54412627eb9cf8951ec88a464d1c}{}\label{ff_8c_a3bff54412627eb9cf8951ec88a464d1c}
 
 
-Definition at line 3254 of file ff.\+c.
+Definition at line 3255 of file ff.\+c.
 
 
 
@@ -2552,7 +2553,7 @@ Referenced by fatfs\+\_\+tests(), and mmc\+\_\+init().
 )}\hypertarget{ff_8c_ab13b513f64fe29bc02dcba9581ab3bfa}{}\label{ff_8c_ab13b513f64fe29bc02dcba9581ab3bfa}
 
 
-Definition at line 3303 of file ff.\+c.
+Definition at line 3304 of file ff.\+c.
 
 
 
@@ -2568,7 +2569,7 @@ Referenced by dbf\+\_\+open(), fatfs\+\_\+cat(), open(), and truncate().
 )}\hypertarget{ff_8c_aeb607fa4b05d127d971ff40f143bac66}{}\label{ff_8c_aeb607fa4b05d127d971ff40f143bac66}
 
 
-Definition at line 4154 of file ff.\+c.
+Definition at line 4155 of file ff.\+c.
 
 
 
@@ -2585,7 +2586,7 @@ Referenced by f\+\_\+findfirst(), fatfs\+\_\+ls(), fatfs\+\_\+scan\+\_\+files(),
 )}\hypertarget{ff_8c_aae46e99c2a7043f29029662717c22f4a}{}\label{ff_8c_aae46e99c2a7043f29029662717c22f4a}
 
 
-Definition at line 6039 of file ff.\+c.
+Definition at line 6040 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+putc@{f\+\_\+putc}}
 \index{f\+\_\+putc@{f\+\_\+putc}!ff.\+c@{ff.\+c}}
@@ -2597,7 +2598,7 @@ Definition at line 6039 of file ff.\+c.
 )}\hypertarget{ff_8c_a60f42a8443057a62d29e7a21d4f00f6d}{}\label{ff_8c_a60f42a8443057a62d29e7a21d4f00f6d}
 
 
-Definition at line 5997 of file ff.\+c.
+Definition at line 5998 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+puts@{f\+\_\+puts}}
 \index{f\+\_\+puts@{f\+\_\+puts}!ff.\+c@{ff.\+c}}
@@ -2609,7 +2610,7 @@ Definition at line 5997 of file ff.\+c.
 )}\hypertarget{ff_8c_aa8e98069211c760671efe4b2ac7b8642}{}\label{ff_8c_aa8e98069211c760671efe4b2ac7b8642}
 
 
-Definition at line 6018 of file ff.\+c.
+Definition at line 6019 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+read@{f\+\_\+read}}
 \index{f\+\_\+read@{f\+\_\+read}!ff.\+c@{ff.\+c}}
@@ -2623,7 +2624,7 @@ Definition at line 6018 of file ff.\+c.
 )}\hypertarget{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{}\label{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}
 
 
-Definition at line 3505 of file ff.\+c.
+Definition at line 3506 of file ff.\+c.
 
 
 
@@ -2639,7 +2640,7 @@ Referenced by dbf\+\_\+read(), f\+\_\+gets(), fatfs\+\_\+cat(), fatfs\+\_\+getc(
 )}\hypertarget{ff_8c_ae9647e339708c3d803db8de141986d96}{}\label{ff_8c_ae9647e339708c3d803db8de141986d96}
 
 
-Definition at line 4259 of file ff.\+c.
+Definition at line 4260 of file ff.\+c.
 
 
 
@@ -2655,7 +2656,7 @@ Referenced by f\+\_\+findnext(), fatfs\+\_\+ls(), fatfs\+\_\+scan\+\_\+files(), 
 )}\hypertarget{ff_8c_a82160e688e49b549c8023a08517a65cb}{}\label{ff_8c_a82160e688e49b549c8023a08517a65cb}
 
 
-Definition at line 4715 of file ff.\+c.
+Definition at line 4716 of file ff.\+c.
 
 
 
@@ -2670,7 +2671,7 @@ Referenced by ls(), and rename().
 )}\hypertarget{ff_8c_a195ac87900f88305de8be82274fd6669}{}\label{ff_8c_a195ac87900f88305de8be82274fd6669}
 
 
-Definition at line 5004 of file ff.\+c.
+Definition at line 5005 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+stat@{f\+\_\+stat}}
 \index{f\+\_\+stat@{f\+\_\+stat}!ff.\+c@{ff.\+c}}
@@ -2682,7 +2683,7 @@ Definition at line 5004 of file ff.\+c.
 )}\hypertarget{ff_8c_a84b14214901bda30fdfe7f45f1aeb634}{}\label{ff_8c_a84b14214901bda30fdfe7f45f1aeb634}
 
 
-Definition at line 4350 of file ff.\+c.
+Definition at line 4351 of file ff.\+c.
 
 
 
@@ -2697,7 +2698,7 @@ Referenced by fatfs\+\_\+cat(), and stat().
 )}\hypertarget{ff_8c_a96ea1b2dd03a41635e07216b5002d1fa}{}\label{ff_8c_a96ea1b2dd03a41635e07216b5002d1fa}
 
 
-Definition at line 3728 of file ff.\+c.
+Definition at line 3729 of file ff.\+c.
 
 
 
@@ -2712,7 +2713,7 @@ Referenced by f\+\_\+close(), and syncfs().
 )}\hypertarget{ff_8c_a032d09ef6df748b4ce23206d80ef67c5}{}\label{ff_8c_a032d09ef6df748b4ce23206d80ef67c5}
 
 
-Definition at line 4474 of file ff.\+c.
+Definition at line 4475 of file ff.\+c.
 
 
 
@@ -2727,7 +2728,7 @@ Referenced by ftruncate(), and truncate().
 )}\hypertarget{ff_8c_ac4f434f28feb4769fc4453f0cefe84f8}{}\label{ff_8c_ac4f434f28feb4769fc4453f0cefe84f8}
 
 
-Definition at line 4525 of file ff.\+c.
+Definition at line 4526 of file ff.\+c.
 
 
 
@@ -2743,7 +2744,7 @@ Referenced by fatfs\+\_\+cat(), rmdir(), and unlink().
 )}\hypertarget{ff_8c_ae69d637bea36b3aa303fb8265b2dd573}{}\label{ff_8c_ae69d637bea36b3aa303fb8265b2dd573}
 
 
-Definition at line 4868 of file ff.\+c.
+Definition at line 4869 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!f\+\_\+write@{f\+\_\+write}}
 \index{f\+\_\+write@{f\+\_\+write}!ff.\+c@{ff.\+c}}
@@ -2757,7 +2758,7 @@ Definition at line 4868 of file ff.\+c.
 )}\hypertarget{ff_8c_abecaaa3eb194f786ab6042cf3b5e4ee7}{}\label{ff_8c_abecaaa3eb194f786ab6042cf3b5e4ee7}
 
 
-Definition at line 3606 of file ff.\+c.
+Definition at line 3607 of file ff.\+c.
 
 
 
@@ -2774,7 +2775,7 @@ Referenced by dbf\+\_\+write(), fatfs\+\_\+cat(), fatfs\+\_\+putc(), putc\+\_\+b
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a5230d4a9f66c2a2bb44e10e20a504890}{}\label{ff_8c_a5230d4a9f66c2a2bb44e10e20a504890}
 
 
-Definition at line 2997 of file ff.\+c.
+Definition at line 2998 of file ff.\+c.
 
 
 
@@ -2790,7 +2791,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+getcwd(), f\+\_\+getfree(),
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a908a7f4673078575c176cefd15ceecf4}{}\label{ff_8c_a908a7f4673078575c176cefd15ceecf4}
 
 
-Definition at line 2817 of file ff.\+c.
+Definition at line 2818 of file ff.\+c.
 
 
 
@@ -2808,7 +2809,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+chmod(), f\+\_\+mkdir(), f\+\_\+open(), f\+
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a402f41aa1a2a5652bd4cbaa40b4603d3}{}\label{ff_8c_a402f41aa1a2a5652bd4cbaa40b4603d3}
 
 
-Definition at line 1780 of file ff.\+c.
+Definition at line 1781 of file ff.\+c.
 
 
 
@@ -2823,7 +2824,7 @@ Referenced by dir\+\_\+register().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ac154a33b2d6207b0288c9cd002b5cba6}{}\label{ff_8c_ac154a33b2d6207b0288c9cd002b5cba6}
 
 
-Definition at line 2547 of file ff.\+c.
+Definition at line 2548 of file ff.\+c.
 
 
 
@@ -2839,7 +2840,7 @@ Referenced by pattern\+\_\+matching().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ab1107a4b1792c8f9072165d6d0f170b5}{}\label{ff_8c_ab1107a4b1792c8f9072165d6d0f170b5}
 
 
-Definition at line 1004 of file ff.\+c.
+Definition at line 1005 of file ff.\+c.
 
 
 
@@ -2855,7 +2856,7 @@ Referenced by create\+\_\+chain(), dir\+\_\+next(), dir\+\_\+sdi(), f\+\_\+expan
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a375d42a0c21654f0224732e716d772e1}{}\label{ff_8c_a375d42a0c21654f0224732e716d772e1}
 
 
-Definition at line 2444 of file ff.\+c.
+Definition at line 2445 of file ff.\+c.
 
 
 
@@ -2870,7 +2871,7 @@ Referenced by f\+\_\+getcwd(), f\+\_\+readdir(), and f\+\_\+stat().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_aac35773065b3bbd30b1f94ac1b5477af}{}\label{ff_8c_aac35773065b3bbd30b1f94ac1b5477af}
 
 
-Definition at line 2906 of file ff.\+c.
+Definition at line 2907 of file ff.\+c.
 
 
 
@@ -2886,7 +2887,7 @@ Referenced by f\+\_\+close(), f\+\_\+mkfs(), f\+\_\+mount(), f\+\_\+rename(), an
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ab71a8ed00e289dbdc10eaf58c85e986d}{}\label{ff_8c_ab71a8ed00e289dbdc10eaf58c85e986d}
 
 
-Definition at line 1618 of file ff.\+c.
+Definition at line 1619 of file ff.\+c.
 
 
 
@@ -2901,7 +2902,7 @@ Referenced by f\+\_\+chdir(), f\+\_\+getcwd(), f\+\_\+open(), f\+\_\+opendir(), 
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_aa4880817cfec23d4e560b785d1ceefcb}{}\label{ff_8c_aa4880817cfec23d4e560b785d1ceefcb}
 
 
-Definition at line 614 of file ff.\+c.
+Definition at line 615 of file ff.\+c.
 
 
 
@@ -2916,7 +2917,7 @@ Referenced by check\+\_\+fs(), f\+\_\+chdir(), f\+\_\+getfree(), f\+\_\+getlabel
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_afb2ad66be348163ba091faf871b0d9b6}{}\label{ff_8c_afb2ad66be348163ba091faf871b0d9b6}
 
 
-Definition at line 604 of file ff.\+c.
+Definition at line 605 of file ff.\+c.
 
 
 
@@ -2933,7 +2934,7 @@ Referenced by check\+\_\+fs(), cmp\+\_\+lfn(), dir\+\_\+find(), f\+\_\+getfree()
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a5d7ad73ef8624ad401d2b203ed68cf5c}{}\label{ff_8c_a5d7ad73ef8624ad401d2b203ed68cf5c}
 
 
-Definition at line 706 of file ff.\+c.
+Definition at line 707 of file ff.\+c.
 
 
 
@@ -2950,7 +2951,7 @@ Referenced by check\+\_\+fs(), and dir\+\_\+find().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ab502bf68f83fa3db838786790286f36f}{}\label{ff_8c_ab502bf68f83fa3db838786790286f36f}
 
 
-Definition at line 685 of file ff.\+c.
+Definition at line 686 of file ff.\+c.
 
 
 
@@ -2967,7 +2968,7 @@ Referenced by dir\+\_\+register(), f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+read(),
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a5b4afd2c9d4a7951c572715494672833}{}\label{ff_8c_a5b4afd2c9d4a7951c572715494672833}
 
 
-Definition at line 697 of file ff.\+c.
+Definition at line 698 of file ff.\+c.
 
 
 
@@ -2983,7 +2984,7 @@ Referenced by create\+\_\+name(), dir\+\_\+next(), dir\+\_\+register(), f\+\_\+m
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a63674ef94ad033f4e411f6377e00c0c7}{}\label{ff_8c_a63674ef94ad033f4e411f6377e00c0c7}
 
 
-Definition at line 912 of file ff.\+c.
+Definition at line 913 of file ff.\+c.
 
 
 
@@ -3001,7 +3002,7 @@ Referenced by check\+\_\+fs(), dir\+\_\+alloc(), dir\+\_\+find(), dir\+\_\+read(
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a0d7fa5cad355d8555eab672703d5a97f}{}\label{ff_8c_a0d7fa5cad355d8555eab672703d5a97f}
 
 
-Definition at line 2572 of file ff.\+c.
+Definition at line 2573 of file ff.\+c.
 
 
 
@@ -3017,7 +3018,7 @@ Referenced by f\+\_\+findnext().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a675b0b45a44cb21f0c6aafa6faa7defe}{}\label{ff_8c_a675b0b45a44cb21f0c6aafa6faa7defe}
 
 
-Definition at line 1702 of file ff.\+c.
+Definition at line 1703 of file ff.\+c.
 
 
 
@@ -3034,7 +3035,7 @@ Referenced by dir\+\_\+read().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a233bbf22750d863f2e9c805e34edda64}{}\label{ff_8c_a233bbf22750d863f2e9c805e34edda64}
 
 
-Definition at line 1081 of file ff.\+c.
+Definition at line 1082 of file ff.\+c.
 
 
 
@@ -3052,7 +3053,7 @@ Referenced by create\+\_\+chain(), f\+\_\+expand(), and remove\+\_\+chain().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a64c8872a6cfb7f64a9800465142ef1fb}{}\label{ff_8c_a64c8872a6cfb7f64a9800465142ef1fb}
 
 
-Definition at line 1741 of file ff.\+c.
+Definition at line 1742 of file ff.\+c.
 
 
 
@@ -3068,7 +3069,7 @@ Referenced by dir\+\_\+register().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ad8151a454444395529a19280ddfadde8}{}\label{ff_8c_ad8151a454444395529a19280ddfadde8}
 
 
-Definition at line 5913 of file ff.\+c.
+Definition at line 5914 of file ff.\+c.
 
 
 
@@ -3083,7 +3084,7 @@ Referenced by f\+\_\+printf(), f\+\_\+putc(), and f\+\_\+puts().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a698074f026e34a99f67db156a9b343c2}{}\label{ff_8c_a698074f026e34a99f67db156a9b343c2}
 
 
-Definition at line 5970 of file ff.\+c.
+Definition at line 5971 of file ff.\+c.
 
 
 
@@ -3099,7 +3100,7 @@ Referenced by f\+\_\+printf(), f\+\_\+putc(), and f\+\_\+puts().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a021d016197091151b68cb9ae0492eec6}{}\label{ff_8c_a021d016197091151b68cb9ae0492eec6}
 
 
-Definition at line 5985 of file ff.\+c.
+Definition at line 5986 of file ff.\+c.
 
 
 
@@ -3116,7 +3117,7 @@ Referenced by f\+\_\+printf(), f\+\_\+putc(), and f\+\_\+puts().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a9d9d4fa5f45110afd3b5d784c5f8a819}{}\label{ff_8c_a9d9d4fa5f45110afd3b5d784c5f8a819}
 
 
-Definition at line 1255 of file ff.\+c.
+Definition at line 1256 of file ff.\+c.
 
 
 
@@ -3133,7 +3134,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+truncate(), and f\+\_\+unlin
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_af9229179c04736dc2052137f3f1aa1da}{}\label{ff_8c_af9229179c04736dc2052137f3f1aa1da}
 
 
-Definition at line 1637 of file ff.\+c.
+Definition at line 1638 of file ff.\+c.
 
 
 
@@ -3149,7 +3150,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+open(), f\+\_\+rename(), and f\+\_\+sync().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_af413a4e38a1ca8b203e332163d086d88}{}\label{ff_8c_af413a4e38a1ca8b203e332163d086d88}
 
 
-Definition at line 652 of file ff.\+c.
+Definition at line 653 of file ff.\+c.
 
 
 
@@ -3165,7 +3166,7 @@ Referenced by f\+\_\+mkdir(), f\+\_\+mkfs(), f\+\_\+open(), f\+\_\+sync(), f\+\_
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a2c55656b749270f0183938bc68f4e004}{}\label{ff_8c_a2c55656b749270f0183938bc68f4e004}
 
 
-Definition at line 645 of file ff.\+c.
+Definition at line 646 of file ff.\+c.
 
 
 
@@ -3180,7 +3181,7 @@ Referenced by f\+\_\+mkfs(), f\+\_\+rename(), f\+\_\+setlabel(), f\+\_\+sync(), 
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a6777613d0fbb01b79be0e799017db7cf}{}\label{ff_8c_a6777613d0fbb01b79be0e799017db7cf}
 
 
-Definition at line 1840 of file ff.\+c.
+Definition at line 1841 of file ff.\+c.
 
 
 
@@ -3195,7 +3196,7 @@ Referenced by dir\+\_\+find(), dir\+\_\+read(), and dir\+\_\+register().
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_ae8bea7f3ba458b7fafd40a72277c2c38}{}\label{ff_8c_ae8bea7f3ba458b7fafd40a72277c2c38}
 
 
-Definition at line 945 of file ff.\+c.
+Definition at line 946 of file ff.\+c.
 
 
 
@@ -3210,7 +3211,7 @@ Referenced by f\+\_\+chmod(), f\+\_\+mkdir(), f\+\_\+rename(), f\+\_\+setlabel()
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a763ac5ab16aef830e5510c70765b56cf}{}\label{ff_8c_a763ac5ab16aef830e5510c70765b56cf}
 
 
-Definition at line 882 of file ff.\+c.
+Definition at line 883 of file ff.\+c.
 
 
 
@@ -3226,7 +3227,7 @@ Referenced by dir\+\_\+next(), f\+\_\+mkdir(), f\+\_\+write(), move\+\_\+window(
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_acb932c7098752f390c97a9b002e864d7}{}\label{ff_8c_acb932c7098752f390c97a9b002e864d7}
 
 
-Definition at line 3219 of file ff.\+c.
+Definition at line 3220 of file ff.\+c.
 
 
 
@@ -3240,7 +3241,7 @@ Referenced by f\+\_\+close(), f\+\_\+closedir(), f\+\_\+expand(), f\+\_\+lseek()
 \subsubsection[{\texorpdfstring{Ex\+Cvt}{ExCvt}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf B\+Y\+TE} Ex\+Cvt\mbox{[}$\,$\mbox{]} = {\bf \+\_\+\+E\+X\+C\+VT}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_aded249c8b2fc2c9ca7997e028d07771b}{}\label{ff_8c_aded249c8b2fc2c9ca7997e028d07771b}
 
 
-Definition at line 584 of file ff.\+c.
+Definition at line 585 of file ff.\+c.
 
 
 
@@ -3251,14 +3252,14 @@ Referenced by create\+\_\+name(), f\+\_\+setlabel(), and get\+\_\+achar().
 \subsubsection[{\texorpdfstring{Fat\+Fs}{FatFs}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+A\+T\+FS}$\ast$ Fat\+Fs\mbox{[}{\bf \+\_\+\+V\+O\+L\+U\+M\+ES}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a3d7aad0939745576943767bf6c410eaf}{}\label{ff_8c_a3d7aad0939745576943767bf6c410eaf}
 
 
-Definition at line 527 of file ff.\+c.
+Definition at line 528 of file ff.\+c.
 
 \index{ff.\+c@{ff.\+c}!Fsid@{Fsid}}
 \index{Fsid@{Fsid}!ff.\+c@{ff.\+c}}
 \subsubsection[{\texorpdfstring{Fsid}{Fsid}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf W\+O\+RD} Fsid\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a0b3f41d8c416222e9b1c16e36d66e18b}{}\label{ff_8c_a0b3f41d8c416222e9b1c16e36d66e18b}
 
 
-Definition at line 528 of file ff.\+c.
+Definition at line 529 of file ff.\+c.
 
 
 
@@ -3269,5 +3270,5 @@ Referenced by find\+\_\+volume().
 \subsubsection[{\texorpdfstring{Lfn\+Ofs}{LfnOfs}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf B\+Y\+TE} Lfn\+Ofs\mbox{[}$\,$\mbox{]} = \{1,3,5,7,9,14,16,18,20,22,24,28,30\}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{ff_8c_a3b4d3baf920ca4a0ac8731e7b3e680c4}{}\label{ff_8c_a3b4d3baf920ca4a0ac8731e7b3e680c4}
 
 
-Definition at line 1657 of file ff.\+c.
+Definition at line 1658 of file ff.\+c.
 

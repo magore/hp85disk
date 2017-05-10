@@ -60,7 +60,7 @@ var searchData=
   ['cmd9',['CMD9',['../mmc_8c.html#a1fac6a251d7e7dc204d21639bf521459',1,'mmc.c']]],
   ['cmd_5fmask',['CMD_MASK',['../gpib_8h.html#aede8404e1d3398c2c235eaa17ea2cd5d',1,'gpib.h']]],
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
-  ['cofactor',['Cofactor',['../matrix_8c.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#af2847fd6933b17808bd3a4a9844c4d07',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
+  ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
   ['controllerdescription',['ControllerDescription',['../ss80_8c.html#a6c2c7eb732e226999d4a4699b3d5ff82',1,'ss80.c']]],

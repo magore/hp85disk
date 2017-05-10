@@ -10,7 +10,7 @@ var searchData=
   ['acmd41',['ACMD41',['../mmc_8c.html#a9b6fdfed1b57ac31269b6b9987e0761b',1,'mmc.c']]],
   ['addr',['addr',['../structSDIO__CTRL.html#a15025848d3f3733f366504d30a1d9bb2',1,'SDIO_CTRL']]],
   ['address',['Address',['../ss80_8c.html#ace411a975dd8cfe7840d4e36bd2f9d97',1,'ss80.c']]],
-  ['adjugate',['Adjugate',['../matrix_8c.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a8cd6e3bc1bdeee4558e193c510e05b2d',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
+  ['adjugate',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['all',['all',['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t']]],
   ['alt',['alt',['../unionf__t.html#a907a8d8af4803c9a18bc0586d22d6881',1,'f_t']]],
   ['altname',['altname',['../structFILINFO.html#a37243296fadacbde8500b5668d99682e',1,'FILINFO']]],

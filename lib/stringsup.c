@@ -605,7 +605,7 @@ int set_value(char *str, char *pat, int minval, int maxval, int *val)
 {
 	int tmp,ret;
 	char *ptr = str;
-	char endptr;
+	char *endptr;
 	int base;
 
 	// default is 0
@@ -644,7 +644,7 @@ int set_value(char *str, char *pat, int minval, int maxval, int *val)
 			base = 2;
 			ptr += 2;
 		}
-		tmp = strtol(ptr, &endptr, base);
+		tmp = strtol(ptr, (char **)&endptr, base);
 		// make sure we process at least one digit and the numver is in range
 		if( (ptr != endptr) && (tmp >= minval && tmp <= maxval))
 		{

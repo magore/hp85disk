@@ -6,6 +6,7 @@
 
 
 #include "user_config.h"
+#include "fatfs.h"
 
 #ifdef AVR
 #include <stdlib.h>
