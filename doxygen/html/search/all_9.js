@@ -30,7 +30,7 @@ var searchData=
   ['isdio_5fmrite',['ISDIO_MRITE',['../diskio_8h.html#aa79f4043470c49016d80558773e740a5',1,'diskio.h']]],
   ['isdio_5fread',['ISDIO_READ',['../diskio_8h.html#a9eb2d8ccc0b89299bc442396811f8723',1,'diskio.h']]],
   ['isdio_5fwrite',['ISDIO_WRITE',['../diskio_8h.html#a9637dcd58e0f1f301edf0cccff9e3507',1,'diskio.h']]],
-  ['islower',['IsLower',['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c'],['../stringsup_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c']]],
+  ['islower',['islower',['../stringsup_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c']]],
   ['isr',['ISR',['../rs232_8c.html#a084f0a9cf05b1877bd8a71a90dae7ff8',1,'rs232.c']]],
   ['isupper',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
 ];

@@ -293,6 +293,18 @@ void SS80_Test(void)
 
 /// @return void
 
+
+///@beief default SS80 address
+uint8_t ss80_addr    = SS80_DEFAULT_ADDRESS;
+uint8_t ss80_ppr     = SS80_DEFAULT_PPR;
+
+///@beief default AMIGO address
+uint8_t amigo_addr   = AMIGO_DEFAULT_ADDRESS;
+uint8_t amigo_ppr    = AMIGO_DEFAULT_PPR;
+
+///@brief default PRINTER address
+uint8_t printer_addr = PRINTER_DEFAULT_ADDRESS;
+
 void SS80_init(void)
 {
     Clear_Common(15);
@@ -983,7 +995,7 @@ int SS80_Command_State( void )
 ///     the because the system defaults when they are unspecified.
 ///  2) If, in the same message, they proceed a Real Time, General Purpose
 ///     or Diagnostic they are TEMPORARY - just for that single transaction!
-///  3) The eception to these rules are Set Unit, Set Volume
+///  3) The exeption to these rules are Set Unit, Set Volume
 
 
 /// @todo  Only handles 4-byte Addresses at the moment
@@ -1299,6 +1311,7 @@ int SS80_Transparent_State( void )
     uint16_t status;                              // Current status
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
     int ind;                                      // Buffer index
+	// work in progress, unit support
     int cunit = 0;                                // Unit Complementary , optional
 
 

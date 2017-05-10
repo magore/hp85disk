@@ -10,11 +10,52 @@
 
 */
 
+
+#include "user_config.h"
+
+#include "defines.h"
+#include "gpib.h"
+#include "gpib_hal.h"
+#include "gpib_task.h"
+#include "amigo.h"
+
+
+/// @brief LIF data structures used by stand alone formatting utility
+
+/// @brief LIF Volume label structure
+/// - Reference: hpdisk (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
+/// - LIF filesystem http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem
+/// - LIF data is BIG endian
+
+VolumeLabelType vl =
+{
+    0x0080,
+    { 'L','A','B','E','L','1'},
+    0,0x200,
+    0x0080,
+    0,
+    0,0x0e00,       // Changed this to 0x0e -> LIF directory too big
+    0
+};
+
+/// @brief LIF DIrectory Entry
+/// - Reference: hpdisk (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
+/// - LIF filesystem http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem
+/// - LIF data is BIG endian
+DirEntryType de =
+{
+    { 'M','Y','F','I','L','E','1','2','3','4'},
+    0x100,0,0x100,0,0x20,
+    {0x13,0x10,0x12,0x00,0x00,0x00},
+    1,0,0
+};
+
+
 /// @brief LDIF Format file.
 ///
 /// @param[in] name: file name of LIF image to format.
 ///
-/// @todo  Work in progress.
+/// @todo  currently coded for AMIGO - Work in progress.
 /// @return  FatFs FRESULT.
 
 FRESULT gpib_format_disk(char *name)

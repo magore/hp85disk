@@ -34,4 +34,5 @@ int GPIB_TALK ( uint8_t ch );
 int GPIB_SECONDARY_ADDRESS ( uint8_t ch );
 void listen_cleanup ( void );
 void talk_cleanup ( void );
+
 #endif

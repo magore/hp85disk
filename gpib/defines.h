@@ -21,6 +21,51 @@
 -------------------------------------------------------------------------*/
 #include "user_config.h"
 
+/// ==============================================================
+///@brief address and PPR for SS80 AMIGO and PRINTER
+/// Can be set if specified in user config
+/// If NOT specified see Power on Defaults below
+///@see ss80.c 
+
+///@brief SS80 address 
+extern uint8_t ss80_addr;
+///@brief SS80 parallel poll bit number
+extern uint8_t ss80_ppr;
+
+///@brief AMIGO address 
+extern uint8_t amigo_addr;
+///@brief AMIGO parallel poll bit number 
+extern uint8_t amigo_ppr;
+
+///@brief PRINTER address
+extern uint8_t printer_addr;
+///@brief printer do not use parallel poll
+
+/// ==============================================================
+///@brief Power on defaults  address and PPR for SS80 AMIGO and PRINTER
+/// Can be changed if specified in user config
+///@see ss80.c 
+
+///@brief Default SS80 address 
+#define SS80_DEFAULT_ADDRESS 0        /* SS80 default address */
+
+///@brief Default SS80 Parallel Poll Response bit
+/// 0 here is bit 8 on the BUS
+#define SS80_DEFAULT_PPR 0            /* SS80 default PPR BIT */
+
+///@brief Default AMIGO address 
+#define AMIGO_DEFAULT_ADDRESS 1       /* AMIGO default address */
+
+///@brief Default AMIGO Parallel Poll Response bit 
+/// 1 here is bit 7 on the BUS
+#define AMIGO_DEFAULT_PPR 1           /* AMIGO default PPR BIT */
+
+///@brief Default PRINTER address 
+#define PRINTER_DEFAULT_ADDRESS 2     /* PRINTER default address */
+///@brief printer do not use parallel poll
+
+/// ==============================================================
+
 
 #define ABORT_FLAG 1  /*< user abort */
 #define MEDIA_FLAG 2  /*< missing media */
@@ -62,19 +107,23 @@
 #define UNL          0x3F   //<  Unlisten
 #define UNT          0x5F   //<  Untalk
 
-#define SS80_MLA     0x20   //<  My listen address = 0 (0+0x20)
-#define SS80_MTA     0x40   //<  My talk address = 0 (0+0x40)
-#define SS80_MSA     0x60   //<  My seconday address = 0 (0+0x60)
-#define SS80_PPR     0      //<  PPR Address
+#define BASE_MLA     0x20   //<  Base listen address = 0 (0+0x20)
+#define BASE_MTA     0x40   //<  Base talk address = 0 (0+0x40)
+#define BASE_MSA     0x60   //<  Base seconday address = 0 (0+0x60)
 
-#define AMIGO_MLA    0x21   //<  My listen address = 0 (0+0x20)
-#define AMIGO_MTA    0x41   //<  My talk address = 0 (0+0x40)
-#define AMIGO_MSA    0x61   //<  My seconday address = 0 (0+0x60)
-#define AMIGO_PPR    1      //<  PPR Address
 
-#define PRINTER_MLA  0x22   //<  My listen address = 0 (0+0x20)
-#define PRINTER_MTA  0x42   //<  My talk address = 0 (0+0x40)
-#define PRINTER_MSA  0x62   //<  My seconday address = 0 (0+0x60)
+#define SS80_MLA     (BASE_MLA+ss80_addr)    //<  SS80 listen address 
+#define SS80_MTA     (BASE_MTA+ss80_addr)   //<  SS80 talk address 
+#define SS80_MSA     (BASE_MSA+ss80_addr)   //<  SS80 seconday address 
+#define SS80_PPR     (ss80_ppr)             //<  SS80 PPR Address
+#define AMIGO_MLA    (BASE_MLA+amigo_addr)  //<  AMIGO listen address
+#define AMIGO_MTA    (BASE_MTA+amigo_addr)  //<  AMIGO talk address 
+#define AMIGO_MSA    (BASE_MSA+amigo_addr)  //<  AMIGO seconday address
+#define AMIGO_PPR    (amigo_ppr)            //<  AMIGO PPR Address
+
+#define PRINTER_MLA  (BASE_MLA+printer_addr) //<  PRINTER listen address 
+#define PRINTER_MTA  (BASE_MTA+printer_addr) //<  PRINTER talk address 
+#define PRINTER_MSA  (BASE_MSA+printer_addr) //<  PRINTER seconday address 
 
 #define ERR_READ   0b00000001 	//< Read Error
 #define ERR_WRITE  0b00000010	//< Write Error 
@@ -103,6 +152,7 @@ typedef struct _disp_parm
     int16_t cylinders;
 } disk_parm;
 
+///@brief used with SS80
 typedef struct   //< Controller description, 5 bytes
 {
     uint8_t C1;  //<  Installed unit byte, one unit:
@@ -112,6 +162,7 @@ typedef struct   //< Controller description, 5 bytes
     uint8_t C5;  //<  Controller type 4 = SS/80 single unit
 } ControllerDescriptionType;
 
+///@brief used with SS80
 typedef struct   //<  Unit description, 19 bytes
 {
     uint8_t U1;  //<  Type 0-Fixed, 1-Flexible, 2-Tape (+128-dumb, does not detect media change)
@@ -135,6 +186,7 @@ typedef struct   //<  Unit description, 19 bytes
     uint8_t U19; //<  Removable volume byte, one bit per volume, ie 00000111 = 3 volumes
 } UnitDescriptionType;
 
+///@brief used with SS80
 typedef struct   //<  Volume description,  bytes
 {
     uint8_t V1;  //<  Max cylinder MSB
@@ -153,14 +205,19 @@ typedef struct   //<  Volume description,  bytes
 
 } VolumeDescriptionType;
 
-//@brief
+///@brief used with SS80
 typedef union
 {
     uint32_t Length;
     uint8_t Lenbytes[4];
 } LengthType;
 
-//@brief LIF disk label record
+
+
+
+/// LIF formating structures
+///@see format.c
+///@brief LIF disk label record
 typedef struct
 {
     uint16_t LIFid;
@@ -174,7 +231,7 @@ typedef struct
     uint16_t version;
 } VolumeLabelType;
 
-//@brief LIF directory entry
+///@brief LIF directory entry
 typedef struct
 {
     char filename[10];
@@ -188,4 +245,5 @@ typedef struct
     uint16_t implementationhi;
     uint16_t implementationlo;
 } DirEntryType;
+/// =================
 #endif     // DEFINES_H

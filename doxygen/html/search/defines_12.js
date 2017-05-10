@@ -43,6 +43,8 @@ var searchData=
   ['srq',['SRQ',['../gpib__hal_8h.html#afb7e2b9da4a7821f2ef93bbcd5a06455',1,'gpib_hal.h']]],
   ['srq_5fflag',['SRQ_FLAG',['../gpib_8h.html#aadec0e361e7d2ed6a82ef28bee7231f6',1,'gpib.h']]],
   ['ss',['SS',['../ff_8c.html#a42b5140fc5e09a53c8f4cba66dc0e6c1',1,'ff.c']]],
+  ['ss80_5fdefault_5faddress',['SS80_DEFAULT_ADDRESS',['../defines_8h.html#a3a870c471b971e16437e31ad7c531785',1,'defines.h']]],
+  ['ss80_5fdefault_5fppr',['SS80_DEFAULT_PPR',['../defines_8h.html#a62aaf52773ccfe02685d935ada1a5179',1,'defines.h']]],
   ['ss80_5fmla',['SS80_MLA',['../defines_8h.html#a7882c62558652a16d39dc7ea5a94fa64',1,'defines.h']]],
   ['ss80_5fmsa',['SS80_MSA',['../defines_8h.html#a2f3b19d7a7f009cdd9913f5b179e3ca8',1,'defines.h']]],
   ['ss80_5fmta',['SS80_MTA',['../defines_8h.html#afeaf965938a244975b919224e0cecfb4',1,'defines.h']]],

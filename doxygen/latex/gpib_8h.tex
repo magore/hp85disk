@@ -1369,7 +1369,46 @@ Definition at line 95 of file gpib.\+c.
 
 gpib talk address 
 
-
+\begin{DoxyVerb}///  Reference: Amigo Command Set Reference used in this document
+///  Short Form         Title
+///  SS80       "Subset 80 from Fixed and flexible disc drives" 5958-4129
+///  HP9123         9123 disc drive manual addendum 5957-6584
+///  A          Appendix A "HP 9895A Disc Memory Commends Set"
+///             See Receive Status A16
+///  L    Buffered Read             0x05    2       A33     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///             See Send Address A20
+/// 
+///  0x6B Command Op Codes          OP      bytes
+///  L    Buffered Read Verify      0x05    2       A37     Y
+///  L    ID Triggered Read         0x06    2       A41     Y
+/// 
+///  0x6C Command Op Codes          OP      bytes
+///  L    Unbuffered Read Verify    0x05    2       A38     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///  L    Format Request            0x18    2       A50     N
+///  L    Door Lock                 0x19    2       A30     N
+///  L    Door Unlock               0x1A    2       A31     N
+/// 
+///  0x6F Command Op Codes          OP      bytes
+///  L    Download Controller       ---     1..256  A26     N
+/// 
+///  0x70 Command Op Codes          OP      bytes
+///  L    HP-300 Clear              ---     1       A23     N
+///  T    DSJ                       ---     1       A11     N
+/// 
+///  0x77 Command Op Codes          OP      bytes
+///  T/L  HP-IB CRC                 ---     ---     A30     N
+/// 
+///  0x7E Command Op Codes          OP      bytes
+///  L    Write Loopback Record     ---     1..256  A25     N
+///  T    Read Loopback Record      ---     1..256  A14     N
+/// 
+///  0x7F Command Op Codes          OP      bytes
+///  T    Read Self Test Results    ---     2       A13     N
+///  L    Initiat Self Test         ---     2       A24     N
+/// \end{DoxyVerb}
+ 
 
 Definition at line 85 of file gpib.\+c.
 

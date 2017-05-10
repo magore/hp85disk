@@ -706,7 +706,10 @@ deselect();
 ///@brief mmc timer processes
 void mmc_disk_timerproc (void)
 {
-    BYTE n, s;
+    BYTE n;
+#ifdef DETECT_WP
+    BYTE s;
+#endif
 
     n = Timer1;             /* 100Hz decrement timer */
     if (n) Timer1 = --n;
@@ -715,7 +718,7 @@ void mmc_disk_timerproc (void)
 
 // FIXME our Micro SD card holder does not do WP or CD
 // We assign STA_NODISK if we get a timeout
-#if 0
+#ifdef DETECT_WP
     s = Stat;
 
     if (MMC_WP)             /* Write protected */

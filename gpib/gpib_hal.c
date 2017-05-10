@@ -33,10 +33,6 @@ void gpib_timer_init()
 
 
 
-///@brief Save Port Direction Register
-static uint8_t gpib_bus_ddr_save;
-///@brief Save Port Register
-static uint8_t gpib_bus_save;
 
 ///@brief Parallel Poll Response bit mask.
 static uint8_t _ppr_reg;
@@ -98,10 +94,14 @@ void ppr_set(uint8_t mask)
 
 
 #ifdef SOFTWARE_PP
+///@brief Save Port Direction Register
+static uint8_t gpib_bus_ddr_save;
+///@brief Save Port Register
+static uint8_t gpib_bus_save;
 /// @brief  Simulate Asserting PPR hardware using software.
 ///
 /// - Save DATA BUS state and assert PPR
-/// @warning the timeing response required of the PPR is too fast to
+/// @WARNING the timeing response required of the PPR is too fast to
 /// be pratical - sub microsecond. But it MIGHT work for you.
 ///
 /// @return  void

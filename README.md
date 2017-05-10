@@ -230,4 +230,233 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
       * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
       * There is an example with the AVR mkii programer as well.
 
-
+## Files
+  * ./COPYRIGHT.md
+    Project Copyrights 
+  * ./main.c
+    Main startup code
+  * ./main.h
+    Main startup code
+  * ./notes.txt
+    Note - working on converting compiled constants into run time configuration
+  * ./README.md
+    This file
+  * Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf
+    * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
+  * Documents/5955-3442_cs80-is-pm-ocr.pdf
+    * CS/80 INSTRUCTION SET
+  * Documents/5957-6560_9133_9134_D_H_L_Service_Apr88.pdf
+    * HP 9133/9134 D/H/L Service Manual
+  * Documents/5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf
+    * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030
+  * Documents/5958-4129_SS80_Nov-1985-ocr.pdf
+    * SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)
+  * Documents/amigo-command-set-ocr.pdf
+    * Appendix A HP 9895A Disc Memory Command Set
+  * Documents/CIB24SRA.pdf
+    * GPIB connector diagram of the part we used in this project form L-COM 
+  * Documents/CIB24SRA.step
+    * GPIB connector design file of the part we used in this project form L-COM 
+  * GPIB protocol.pdf
+    * Copy of GPIB commands and pinout from Linux GPIB project
+    * See: http://linux-gpib.sourceforge.net
+  * Documents/handshake.pdf
+    * Highlighted excerpt of just the 3 wire GPIB handshake
+  * Documents/HANDSHAKING.pdf
+    * Highlighted full version of 3 wire GPIB handshake by Ian Poole
+  * Documents/HP85Disk.pdf
+    * Detailed pinouts of this project and a schematic
+  * Documents/HP9133AB-09134-90032-Aug-1983.pdf
+    * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
+  * Documents/HP913x.pdf
+    * HP 9133A/B, 9134A/B, and 9135A Disc Mentory Users Manual
+  * Documents/hp-ib_tutorial_1980.pdf
+    * Tutorial Description of the Hewlett-Packard Interface Bus
+  * Documents/HPIB_tutorial_HP.pdf
+    * Tutorial Description of the Hewlett-Packard Interface Bus
+  * Documents/IEEE-488_Wikipedia_offline.pdf
+    * Offline copy of Wikipedia GPIB article
+  * Documents/README.md 
+    * Discription of file under the Documents folder
+  * fatfs
+    * R0.12b FatFS code from (C)ChaN, 2016 - With very minimal changes 
+    * fatfs/00history.txt
+    * fatfs/00readme.txt
+    * fatfs/ff.c
+    * fatfs/ffconf.h
+    * fatfs/ff.h
+    * fatfs/integer.h
+  * fatfs.hal
+    * R0.12b FatFS code from (C)ChaN, 2016 with changes
+    * Hardware abstraction layer based on example AVR project
+    * fatfs.hal/diskio.c
+      * Low level disk I/O module glue functions (C)ChaN, 2016 
+    * fatfs.hal/diskio.h
+      * Low level disk I/O module glue functions (C)ChaN, 2016 
+    * fatfs.hal/mmc.c
+      * Low level MMC I/O by (C)ChaN, 2016 with modifications
+    * fatfs.hal/mmc.h
+      * Low level MMC I/O by (C)ChaN, 2016 with modifications
+    * fatfs.hal/mmc_hal.c
+      * My Hardware abstraction layer code
+    * fatfs.hal/mmc_hal.h
+      * My Hardware abstraction layer code
+  * fatfs.sup
+    * Support utility and POSIX rapper fuctions
+    * fatfs.sup/fatfs.h
+      * FAtFS header files
+    * fatfs.sup/fatfs_sup.c
+      * FatFS file listing and display functions
+    * fatfs.sup/fatfs_sup.h
+      * FatFS file listing and display functions
+    * fatfs.sup/fatfs_utils.c
+      * FatFS user test functions
+    * fatfs.sup/fatfs_utils.h
+      * FatFS user test functions
+    * fatfs.sup/posix.c
+      * POSIX rappers for fatfs - unix file IO function call wrappers
+    * fatfs.sup/posix.h
+      * POSIX rappers for fatfs - unix file IO function call wrappers
+  * gpib
+    * My GPIB code for AMIGO SS80 and PPRINTER support
+    * gpib/amigo.c
+      * AMIGO parser
+    * gpib/amigo.h
+      * AMIGO parser
+    * gpib/amigo.txt
+      * AMIGO command structure
+    * gpib/defines.h
+      * Main GPIB header and configuration options
+    * gpib/format.c
+      * Work in progress LIF format utility
+    * gpib/gpib.c
+      * All low level GPIB bus code
+    * gpib/gpib.h
+      * GPIB I/O code
+    * gpib/gpib_hal.c
+      * GPIB hardware abstraction code
+    * gpib/gpib_hal.h
+      * GPIB hardware abstraction code
+    * gpib/gpib_task.c
+      * GPIB command handler , initialization and tracing code
+    * gpib/gpib_task.h
+      * GPIB command handler , initialization and tracing code
+    * gpib/gpib_tests.c
+      * GPIB user tests
+    * gpib/gpib_tests.h
+      * GPIB user tests
+    * gpib/printer.c
+      * GPIB printer capture code
+    * gpib/printer.h
+      * GPIB printer capture code
+    * gpib/references.txt
+      * Main S80 SS80 AMIGO and GPIB references part numbers and web links
+    * gpib/ss80.c
+      * SS80 parser
+    * gpib/ss80.h
+      * SS80 parser
+  * hardware
+    * CPU hardware specific code
+    * hardware/bits.h
+      * BIT set and clear functions
+    * hardware/cpu.h
+      * CPU specific include files
+    * hardware/delay.c
+      * Delay code
+    * hardware/delay.h
+      * Delay code
+    * hardware/hal.c
+      * GPIO functions, spi hardware abstraction layer and chip select logic
+    * hardware/hal.h
+      * GPIO functions, spi hardware abstraction layer and chip select logic
+    * hardware/iom1284p.h
+      * GPIO map for ATEMEGA 1284p
+    * hardware/mkdef.c
+      * Not used
+    * hardware/pins.txt
+      * AVR function to GPIO pin map
+    * hardware/ram.c
+      * Memory functions
+    * hardware/ram.h
+      * Memory functions
+    * hardware/rs232.c
+      * RS232 IO
+    * hardware/rs232.h
+      * RS232 IO
+    * hardware/rtc.c
+      * DS1307 I2C RTC code
+    * hardware/rtc.h
+      * DS1307 I2C RTC code
+    * hardware/spi.c
+      * SPI BUS code
+    * hardware/spi.h
+      * SPI BUS code
+    * hardware/TWI_AVR8.c
+      * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+    * hardware/TWI_AVR8.h
+      * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+    * hardware/user_config.h
+      * Main include file MMC SLOW and FATS frequency and CPU frequecy settings
+  * lib
+    * Library functions
+    * lib/bcpp.cfg
+      * BCPP C code formatter config
+    * lib/matrix.c
+      * Matrix code - not used
+    * lib/matrix.h
+      * Matrix code - not used
+    * lib/matrix.txt
+      *  A few notes about matrix operations
+    * lib/queue.c
+      * Queue functions
+    * lib/queue.h
+      * Queue functions
+    * lib/sort.c
+      * Sort functions - not used
+    * lib/sort.h
+      * Sort functions - not used
+    * lib/stringsup.c
+      * Various string processing functions
+    * lib/stringsup.h
+      * Various string processing functions
+    * lib/time.c
+      * POSIX time functions
+    * lib/time.h
+      * POSIX time functions
+    * lib/timer.c
+      * Timer task functions
+    * lib/timer.h
+      * Timer task functions
+    * lib/timer_hal.c
+      * Timer task hardware abstraction layer
+    * lib/timetests.c
+      * Time and timer test code
+  * printf
+    * Printf and math IO functions
+    * printf/mathio.c
+      * Number conversions 
+    * printf/mathio.h
+      * Number conversions 
+    * printf/n2a.c
+      * Binary to ASCII converter number size only limited by memory
+    * printf/printf.c
+      * My small printf code - includes floating point support and user defined low character level IO
+    * printf/sscanf.c
+      * My small scanf code - work in progress
+    * printf/test_printf.c
+      * Test my printf against glibs 1,000,000 tests per data type
+  * sdcard
+    My HP85 AMIGO and SS80 disk image and bus trace files
+    * sdcard/amigo.lif
+      * AMIGO disk image file
+    * sdcard/amigo_trace.txt
+      * AMIGO trace file when connected to HP85 showing odd out of order command issue
+    * sdcard/gpib_reset.txt
+      * GPIB reset trace when connected to HP85
+    * sdcard/gpib_trace.txt
+      * GPIB transaction trace when connected to HP85
+    * sdcard/hpdisk.cfg
+      * User config file DEBUG level and SS80,AMIGO, PRINTER address and PPR respons bit override
+    * sdcard/ss80.lif
+      * SS80 hard drive disk image file
+  ___ 

@@ -30,7 +30,7 @@ enum \hyperlink{ss80_8c_afb6bc082487a21bfdcd35e9ec81a93b7}{ss80exec} \{ \\*
 void \hyperlink{ss80_8c_af50a313d8234d38511925a0ca5a9a8a3}{S\+S80\+\_\+\+Test} (void)
 \begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB function. \end{DoxyCompactList}\item 
 void \hyperlink{ss80_8c_a46587aecd8aff545fb96ef5b308f28ff}{S\+S80\+\_\+init} (void)
-\begin{DoxyCompactList}\small\item\em Initialize S\+S80 state and bus. \end{DoxyCompactList}\item 
+\item 
 int \hyperlink{ss80_8c_a96c26a457f1066d6b26f70baeb2c6bf0}{S\+S80\+\_\+\+Execute\+\_\+\+State} (void)
 \begin{DoxyCompactList}\small\item\em S\+S80 Execute state process. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_acad6de863f4566b55cb8860eb1ffd09c}{S\+S80\+\_\+locate\+\_\+and\+\_\+read} (void)
@@ -101,7 +101,17 @@ int \hyperlink{ss80_8c_a371674275b8f987e031f123917a4fe9e}{Errors}
 \hyperlink{structVolumeDescriptionType}{Volume\+Description\+Type} \hyperlink{ss80_8c_ad3fc9850ccd63667e3c8101b69f85a7e}{Volume\+Description}
 \begin{DoxyCompactList}\small\item\em H\+P9134L Volume Description. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a239f4cd0f1360dbfd90fa043d1323e67}{TD} \mbox{[}$\,$\mbox{]}
-\begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB test string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB test string. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}{ss80\+\_\+addr} = \hyperlink{defines_8h_a3a870c471b971e16437e31ad7c531785}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}
+\begin{DoxyCompactList}\small\item\em Initialize S\+S80 state and bus. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ss80_8c_a3c6e1c6730f78b7b8f2f62178d640e8a}{ss80\+\_\+ppr} = \hyperlink{defines_8h_a62aaf52773ccfe02685d935ada1a5179}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}
+\begin{DoxyCompactList}\small\item\em S\+S80 parallel poll bit number. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}{amigo\+\_\+addr} = \hyperlink{defines_8h_a6ce667fdb46d53fe8998934b9dc11548}{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}
+\begin{DoxyCompactList}\small\item\em default A\+M\+I\+GO address \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ss80_8c_ace6a78b7d602a59cf1f95e7fdd8418e3}{amigo\+\_\+ppr} = \hyperlink{defines_8h_ad96827a238bf6b3bb84bcec32689141d}{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO parallel poll bit number. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr} = \hyperlink{defines_8h_ae9f0ac7886649a3b31e17faad9956e4b}{P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}
+\begin{DoxyCompactList}\small\item\em default P\+R\+I\+N\+T\+ER address \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -245,7 +255,7 @@ void
 \item[\hyperlink{todo__todo000061}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1594 of file ss80.\+c.
+Definition at line 1607 of file ss80.\+c.
 
 
 
@@ -277,7 +287,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1691 of file ss80.\+c.
+Definition at line 1704 of file ss80.\+c.
 
 
 
@@ -311,7 +321,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000065}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1727 of file ss80.\+c.
+Definition at line 1740 of file ss80.\+c.
 
 
 
@@ -350,7 +360,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1635 of file ss80.\+c.
+Definition at line 1648 of file ss80.\+c.
 
 
 
@@ -386,7 +396,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000058}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1452 of file ss80.\+c.
+Definition at line 1465 of file ss80.\+c.
 
 
 
@@ -458,7 +468,7 @@ flags on fail.
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000034}{Todo}]F\+I\+X\+ME Important S\+S80 and C\+S80 differences regarding Complementary Commands! C\+S80 pg 2-\/1 1) In C\+S80 if only complementary commands appear in a message then the because the system defaults when they are unspecified. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are T\+E\+M\+P\+O\+R\+A\+RY -\/ just for that single transaction! 3) The eception to these rules are Set Unit, Set Volume \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000034}{Todo}]F\+I\+X\+ME Important S\+S80 and C\+S80 differences regarding Complementary Commands! C\+S80 pg 2-\/1 1) In C\+S80 if only complementary commands appear in a message then the because the system defaults when they are unspecified. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are T\+E\+M\+P\+O\+R\+A\+RY -\/ just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
@@ -523,7 +533,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000048}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 909 of file ss80.\+c.
+Definition at line 921 of file ss80.\+c.
 
 
 
@@ -561,7 +571,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1792 of file ss80.\+c.
+Definition at line 1805 of file ss80.\+c.
 
 
 
@@ -591,7 +601,7 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 825 of file ss80.\+c.
+Definition at line 837 of file ss80.\+c.
 
 
 
@@ -618,7 +628,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1759 of file ss80.\+c.
+Definition at line 1772 of file ss80.\+c.
 
 
 
@@ -649,7 +659,7 @@ G\+P\+IB error flags on fail
 
 \end{DoxyItemize}
 
-Definition at line 329 of file ss80.\+c.
+Definition at line 341 of file ss80.\+c.
 
 
 
@@ -674,7 +684,7 @@ Increment position Vectory by 256.
 
 \end{DoxyItemize}
 
-Definition at line 1742 of file ss80.\+c.
+Definition at line 1755 of file ss80.\+c.
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+c@{ss80.\+c}}
@@ -683,30 +693,11 @@ Definition at line 1742 of file ss80.\+c.
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}\hypertarget{ss80_8c_a46587aecd8aff545fb96ef5b308f28ff}{}\label{ss80_8c_a46587aecd8aff545fb96ef5b308f28ff}
-
-
-Initialize S\+S80 state and bus. 
-
-\begin{DoxyVerb}///  Reference:
-///  CS80 Page B-12
-///  Table B-5. Complementary Command Power-on Values
-///  COMPLEMENTARY POWER-ON       COMPLEMENTARY               POWER-ON
-///  COMMAND       VALUE COMMAND  COMMAND                     VALUE
-///  Set Unit     0               Set Retry Time              device specific
-///  Set Volume   0               Set Status Mask             disabled
-///  Set Address  0,0,0           No Op                       Not Applicable
-///  Set Length  -1 (full volume) Set Release                 T = O Z = O
-///  Set Burst   disable          Set Options                 device specific
-///  Set RPS     disabled         Set Return Addressing Mode  single vector
-/// \end{DoxyVerb}
- \begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000026}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 296 of file ss80.\+c.
+Definition at line 308 of file ss80.\+c.
 
 
 
@@ -752,7 +743,7 @@ Return
 \end{DoxyReturn}
 Note\+: this should not happen unless we exit on errors above 
 
-Definition at line 382 of file ss80.\+c.
+Definition at line 394 of file ss80.\+c.
 
 
 
@@ -790,7 +781,7 @@ G\+P\+IB error flags on fail.
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 514 of file ss80.\+c.
+Definition at line 526 of file ss80.\+c.
 
 
 
@@ -831,7 +822,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1501 of file ss80.\+c.
+Definition at line 1514 of file ss80.\+c.
 
 
 
@@ -864,7 +855,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1671 of file ss80.\+c.
+Definition at line 1684 of file ss80.\+c.
 
 
 
@@ -992,7 +983,7 @@ Note\+: Diagnostic Result bit is N\+OT set
 \item[\hyperlink{todo__todo000029}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 754 of file ss80.\+c.
+Definition at line 766 of file ss80.\+c.
 
 
 
@@ -1103,7 +1094,7 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000057}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
-Definition at line 1294 of file ss80.\+c.
+Definition at line 1306 of file ss80.\+c.
 
 
 
@@ -1139,7 +1130,7 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000062}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1653 of file ss80.\+c.
+Definition at line 1666 of file ss80.\+c.
 
 
 
@@ -1158,6 +1149,36 @@ Definition at line 113 of file ss80.\+c.
 
 
 Referenced by S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Test().
+
+\index{ss80.\+c@{ss80.\+c}!amigo\+\_\+addr@{amigo\+\_\+addr}}
+\index{amigo\+\_\+addr@{amigo\+\_\+addr}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+addr}{amigo_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+addr = {\bf A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}}\hypertarget{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}{}\label{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}
+
+
+default A\+M\+I\+GO address 
+
+A\+M\+I\+GO address. 
+
+Definition at line 302 of file ss80.\+c.
+
+
+
+Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+\index{ss80.\+c@{ss80.\+c}!amigo\+\_\+ppr@{amigo\+\_\+ppr}}
+\index{amigo\+\_\+ppr@{amigo\+\_\+ppr}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+ppr}{amigo_ppr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+ppr = {\bf A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}}\hypertarget{ss80_8c_ace6a78b7d602a59cf1f95e7fdd8418e3}{}\label{ss80_8c_ace6a78b7d602a59cf1f95e7fdd8418e3}
+
+
+A\+M\+I\+GO parallel poll bit number. 
+
+
+
+Definition at line 303 of file ss80.\+c.
+
+
+
+Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
 \index{ss80.\+c@{ss80.\+c}!Controller\+Description@{Controller\+Description}}
 \index{Controller\+Description@{Controller\+Description}!ss80.\+c@{ss80.\+c}}
@@ -1247,6 +1268,21 @@ Definition at line 115 of file ss80.\+c.
 
 Referenced by S\+S80\+\_\+cmd\+\_\+seek(), and S\+S80\+\_\+init().
 
+\index{ss80.\+c@{ss80.\+c}!printer\+\_\+addr@{printer\+\_\+addr}}
+\index{printer\+\_\+addr@{printer\+\_\+addr}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{printer\+\_\+addr}{printer_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t printer\+\_\+addr = {\bf P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}}\hypertarget{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{}\label{ss80_8c_ae930147fd6b6db510b4d55205bca2763}
+
+
+default P\+R\+I\+N\+T\+ER address 
+
+P\+R\+I\+N\+T\+ER address. 
+
+Definition at line 306 of file ss80.\+c.
+
+
+
+Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
 \index{ss80.\+c@{ss80.\+c}!qstat@{qstat}}
 \index{qstat@{qstat}!ss80.\+c@{ss80.\+c}}
 \subsubsection[{\texorpdfstring{qstat}{qstat}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t qstat}\hypertarget{ss80_8c_adc574bdd28c054bd114ba7c400e38398}{}\label{ss80_8c_adc574bdd28c054bd114ba7c400e38398}
@@ -1277,6 +1313,53 @@ Definition at line 95 of file gpib.\+c.
 
 Referenced by G\+P\+I\+B(), gpib\+\_\+state\+\_\+init(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
 
+\index{ss80.\+c@{ss80.\+c}!ss80\+\_\+addr@{ss80\+\_\+addr}}
+\index{ss80\+\_\+addr@{ss80\+\_\+addr}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{ss80\+\_\+addr}{ss80_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t ss80\+\_\+addr = {\bf S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}}\hypertarget{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}{}\label{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}
+
+
+Initialize S\+S80 state and bus. 
+
+address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if specified in user config If N\+OT specified see Power on Defaults below
+
+\begin{DoxyVerb}///  Reference:
+///  CS80 Page B-12
+///  Table B-5. Complementary Command Power-on Values
+///  COMPLEMENTARY POWER-ON       COMPLEMENTARY               POWER-ON
+///  COMMAND       VALUE COMMAND  COMMAND                     VALUE
+///  Set Unit     0               Set Retry Time              device specific
+///  Set Volume   0               Set Status Mask             disabled
+///  Set Address  0,0,0           No Op                       Not Applicable
+///  Set Length  -1 (full volume) Set Release                 T = O Z = O
+///  Set Burst   disable          Set Options                 device specific
+///  Set RPS     disabled         Set Return Addressing Mode  single vector
+/// \end{DoxyVerb}
+ \begin{DoxyReturn}{Returns}
+void  default S\+S80 address 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file ss80.\+c.
+
+
+
+Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+\index{ss80.\+c@{ss80.\+c}!ss80\+\_\+ppr@{ss80\+\_\+ppr}}
+\index{ss80\+\_\+ppr@{ss80\+\_\+ppr}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{ss80\+\_\+ppr}{ss80_ppr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t ss80\+\_\+ppr = {\bf S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}}\hypertarget{ss80_8c_a3c6e1c6730f78b7b8f2f62178d640e8a}{}\label{ss80_8c_a3c6e1c6730f78b7b8f2f62178d640e8a}
+
+
+S\+S80 parallel poll bit number. 
+
+
+
+Definition at line 299 of file ss80.\+c.
+
+
+
+Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
 \index{ss80.\+c@{ss80.\+c}!talking@{talking}}
 \index{talking@{talking}!ss80.\+c@{ss80.\+c}}
 \subsubsection[{\texorpdfstring{talking}{talking}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t talking}\hypertarget{ss80_8c_acef501d1e292f230efac5ed0cddf90e8}{}\label{ss80_8c_acef501d1e292f230efac5ed0cddf90e8}
@@ -1284,7 +1367,46 @@ Referenced by G\+P\+I\+B(), gpib\+\_\+state\+\_\+init(), and G\+P\+I\+B\+\_\+\+T
 
 gpib talk address 
 
-
+\begin{DoxyVerb}///  Reference: Amigo Command Set Reference used in this document
+///  Short Form         Title
+///  SS80       "Subset 80 from Fixed and flexible disc drives" 5958-4129
+///  HP9123         9123 disc drive manual addendum 5957-6584
+///  A          Appendix A "HP 9895A Disc Memory Commends Set"
+///             See Receive Status A16
+///  L    Buffered Read             0x05    2       A33     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///             See Send Address A20
+/// 
+///  0x6B Command Op Codes          OP      bytes
+///  L    Buffered Read Verify      0x05    2       A37     Y
+///  L    ID Triggered Read         0x06    2       A41     Y
+/// 
+///  0x6C Command Op Codes          OP      bytes
+///  L    Unbuffered Read Verify    0x05    2       A38     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///  L    Format Request            0x18    2       A50     N
+///  L    Door Lock                 0x19    2       A30     N
+///  L    Door Unlock               0x1A    2       A31     N
+/// 
+///  0x6F Command Op Codes          OP      bytes
+///  L    Download Controller       ---     1..256  A26     N
+/// 
+///  0x70 Command Op Codes          OP      bytes
+///  L    HP-300 Clear              ---     1       A23     N
+///  T    DSJ                       ---     1       A11     N
+/// 
+///  0x77 Command Op Codes          OP      bytes
+///  T/L  HP-IB CRC                 ---     ---     A30     N
+/// 
+///  0x7E Command Op Codes          OP      bytes
+///  L    Write Loopback Record     ---     1..256  A25     N
+///  T    Read Loopback Record      ---     1..256  A14     N
+/// 
+///  0x7F Command Op Codes          OP      bytes
+///  T    Read Self Test Results    ---     2       A13     N
+///  L    Initiat Self Test         ---     2       A24     N
+/// \end{DoxyVerb}
+ 
 
 Definition at line 85 of file gpib.\+c.
 

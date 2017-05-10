@@ -566,6 +566,7 @@ void POSIX_Read_Config(char *name)
     char *str = (char *) gpib_iobuff;  //< not being used at this moment
     char *ptr;
     FILE *cfg;
+	int val;
 
     cfg = fopen(name, "r");
     if(cfg == NULL)
@@ -577,26 +578,29 @@ void POSIX_Read_Config(char *name)
     lines = 0;
     while(fgets(str,253,cfg) != NULL)
     {
-        ++lines;
+
         ptr = str;
-        trim_tail(str);
-        len = strlen(str);
+        ++lines;
+        trim_tail(ptr);
+		ptr = skipspaces(ptr);
+        len = strlen(ptr);
         if(!len)
             continue;
-        if( (ret = token(str, "PROTO")) )
-        {
-            ptr += ret;
-            ptr = skipspaces(ptr);
-            protocol = atoi(ptr) & 0xff;
-            printf("protocol=%d\n", protocol);
-        }
-        if( (ret = token(str, "DEBUG")) )
-        {
-            ptr += ret;
-            ptr = skipspaces(ptr);
-            debuglevel= atoi(ptr) & 0xff;
-            printf("debuglevel=%d\n", debuglevel);
-        }
+
+		if ( set_value(ptr,"PROTO", 0, 1, &val) )
+			protocol = val;
+		if ( set_value(ptr,"DEBUG", 0, 255, &val) )
+			debuglevel = val;
+		if ( set_value(ptr,"SS80_DEFAULT_ADDRESS", 0, 14, &val) )
+			ss80_addr = val;
+		if ( set_value(ptr,"SS80_DEFAULT_PPR", 0, 7, &val) )
+			ss80_ppr = val;
+		if ( set_value(ptr,"AMIGO_DEFAULT_ADDRESS", 0, 14, &val) )
+			amigo_addr = val;
+		if ( set_value(ptr,"AMIGO_DEFAULT_PPR", 0, 7, &val) )
+			amigo_ppr = val;
+		if ( set_value(ptr,"PRINTER_DEFAULT_ADDRESS", 0, 14, &val) )
+			printer_addr = val;
     }
 
     printf("Read_Config: read(%d) lines\n", lines);

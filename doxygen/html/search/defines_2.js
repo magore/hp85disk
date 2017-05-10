@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
+  ['base_5fmsa',['BASE_MSA',['../defines_8h.html#ac0b05d2eeae663c6ee42b7814be45181',1,'defines.h']]],
+  ['base_5fmta',['BASE_MTA',['../defines_8h.html#a68b8e22957870863b8c5b2c58fed767b',1,'defines.h']]],
   ['bit0',['BIT0',['../bits_8h.html#ad4d43f8748b542bce39e18790f845ecc',1,'bits.h']]],
   ['bit1',['BIT1',['../bits_8h.html#a601923eba46784638244c1ebf2622a2a',1,'bits.h']]],
   ['bit10',['BIT10',['../bits_8h.html#a8c0f01fdf020d0f7467449b181fe95cb',1,'bits.h']]],

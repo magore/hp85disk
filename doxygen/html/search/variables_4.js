@@ -6,7 +6,7 @@ var searchData=
   ['d_5fname',['d_name',['../structdirent.html#ae61380f3ccbc6c32e8650d7bce76197b',1,'dirent']]],
   ['data',['data',['../struct__mat.html#a00dcd82a8de11b7f16f7edfde55bcfae',1,'_mat::data()'],['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL::data()']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
-  ['de',['de',['../amigo_8c.html#acdc9db327daa9bd83d5df64bf016a4da',1,'de():&#160;amigo.c'],['../amigo_8h.html#acdc9db327daa9bd83d5df64bf016a4da',1,'de():&#160;amigo.c']]],
+  ['de',['de',['../amigo_8h.html#acdc9db327daa9bd83d5df64bf016a4da',1,'de():&#160;format.c'],['../format_8c.html#acdc9db327daa9bd83d5df64bf016a4da',1,'de():&#160;format.c']]],
   ['debuglevel',['debuglevel',['../gpib_8h.html#a888e5117d479036c3f27eacda6da569a',1,'debuglevel():&#160;gpib_task.c'],['../gpib__task_8c.html#a888e5117d479036c3f27eacda6da569a',1,'debuglevel():&#160;gpib_task.c']]],
   ['dir',['dir',['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR']]],
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],

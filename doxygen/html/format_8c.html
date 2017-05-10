@@ -89,7 +89,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">format.c File Reference</div>  </div>
 </div><!--header-->
@@ -97,7 +98,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>LIF Disk Format.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpib_8h_source.html">gpib.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpib__hal_8h_source.html">gpib_hal.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpib__task_8h_source.html">gpib_task.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="amigo_8h_source.html">amigo.h</a>&quot;</code><br />
+</div>
 <p><a href="format_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -105,6 +112,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ad9c8cb11032d1cc2335ef13f6942170a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#ad9c8cb11032d1cc2335ef13f6942170a">gpib_format_disk</a> (char *name)</td></tr>
 <tr class="memdesc:ad9c8cb11032d1cc2335ef13f6942170a"><td class="mdescLeft">&#160;</td><td class="mdescRight">LDIF Format file.  <a href="#ad9c8cb11032d1cc2335ef13f6942170a">More...</a><br /></td></tr>
 <tr class="separator:ad9c8cb11032d1cc2335ef13f6942170a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7cde3fe5600434f06d6c872090dc5390"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVolumeLabelType.html">VolumeLabelType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a7cde3fe5600434f06d6c872090dc5390">vl</a></td></tr>
+<tr class="memdesc:a7cde3fe5600434f06d6c872090dc5390"><td class="mdescLeft">&#160;</td><td class="mdescRight">LIF data structures used by stand alone formatting utility.  <a href="#a7cde3fe5600434f06d6c872090dc5390">More...</a><br /></td></tr>
+<tr class="separator:a7cde3fe5600434f06d6c872090dc5390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdc9db327daa9bd83d5df64bf016a4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDirEntryType.html">DirEntryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#acdc9db327daa9bd83d5df64bf016a4da">de</a></td></tr>
+<tr class="memdesc:acdc9db327daa9bd83d5df64bf016a4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">LIF DIrectory Entry.  <a href="#acdc9db327daa9bd83d5df64bf016a4da">More...</a><br /></td></tr>
+<tr class="separator:acdc9db327daa9bd83d5df64bf016a4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>LIF Disk Format. </p>
@@ -137,20 +153,65 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Work in progress. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>currently coded for AMIGO - Work in progress. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>FatFs FRESULT. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>return(rc); </dd></dl>
 
-<p>Definition at line <a class="el" href="format_8c_source.html#l00020">20</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+<p>Definition at line <a class="el" href="format_8c_source.html#l00061">61</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00054">gpib_tests()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="acdc9db327daa9bd83d5df64bf016a4da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structDirEntryType.html">DirEntryType</a> de</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    { <span class="charliteral">&#39;M&#39;</span>,<span class="charliteral">&#39;Y&#39;</span>,<span class="charliteral">&#39;F&#39;</span>,<span class="charliteral">&#39;I&#39;</span>,<span class="charliteral">&#39;L&#39;</span>,<span class="charliteral">&#39;E&#39;</span>,<span class="charliteral">&#39;1&#39;</span>,<span class="charliteral">&#39;2&#39;</span>,<span class="charliteral">&#39;3&#39;</span>,<span class="charliteral">&#39;4&#39;</span>},</div><div class="line">    0x100,0,0x100,0,0x20,</div><div class="line">    {0x13,0x10,0x12,0x00,0x00,0x00},</div><div class="line">    1,0,0</div><div class="line">}</div></div><!-- fragment -->
+<p>LIF DIrectory Entry. </p>
+<ul>
+<li>Reference: hpdisk (c) 2014 Anders Gustafsson <a href="#" onclick="location.href='mai'+'lto:'+'and'+'er'+'s.g'+'us'+'taf'+'ss'+'on@'+'pe'+'dag'+'o.'+'fi'; return false;">ander<span style="display: none;">.nosp@m.</span>s.gu<span style="display: none;">.nosp@m.</span>stafs<span style="display: none;">.nosp@m.</span>son@<span style="display: none;">.nosp@m.</span>pedag<span style="display: none;">.nosp@m.</span>o.fi</a></li>
+<li>LIF filesystem <a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
+<li>LIF data is BIG endian </li>
+</ul>
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00045">45</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00225">ls()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7cde3fe5600434f06d6c872090dc5390"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structVolumeLabelType.html">VolumeLabelType</a> vl</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    0x0080,</div><div class="line">    { <span class="charliteral">&#39;L&#39;</span>,<span class="charliteral">&#39;A&#39;</span>,<span class="charliteral">&#39;B&#39;</span>,<span class="charliteral">&#39;E&#39;</span>,<span class="charliteral">&#39;L&#39;</span>,<span class="charliteral">&#39;1&#39;</span>},</div><div class="line">    0,0x200,</div><div class="line">    0x0080,</div><div class="line">    0,</div><div class="line">    0,0x0e00,       </div><div class="line">    0</div><div class="line">}</div></div><!-- fragment -->
+<p>LIF data structures used by stand alone formatting utility. </p>
+<p>LIF Volume label structure</p><ul>
+<li>Reference: hpdisk (c) 2014 Anders Gustafsson <a href="#" onclick="location.href='mai'+'lto:'+'and'+'er'+'s.g'+'us'+'taf'+'ss'+'on@'+'pe'+'dag'+'o.'+'fi'; return false;">ander<span style="display: none;">.nosp@m.</span>s.gu<span style="display: none;">.nosp@m.</span>stafs<span style="display: none;">.nosp@m.</span>son@<span style="display: none;">.nosp@m.</span>pedag<span style="display: none;">.nosp@m.</span>o.fi</a></li>
+<li>LIF filesystem <a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
+<li>LIF data is BIG endian </li>
+</ul>
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00030">30</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 8 2017 14:45:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 10 2017 13:19:54 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

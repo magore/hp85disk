@@ -5,11 +5,24 @@
 L\+IF Disk Format.  
 
 
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}amigo.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{format_8c_ad9c8cb11032d1cc2335ef13f6942170a}{gpib\+\_\+format\+\_\+disk} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em L\+D\+IF Format file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structVolumeLabelType}{Volume\+Label\+Type} \hyperlink{format_8c_a7cde3fe5600434f06d6c872090dc5390}{vl}
+\begin{DoxyCompactList}\small\item\em L\+IF data structures used by stand alone formatting utility. \end{DoxyCompactList}\item 
+\hyperlink{structDirEntryType}{Dir\+Entry\+Type} \hyperlink{format_8c_acdc9db327daa9bd83d5df64bf016a4da}{de}
+\begin{DoxyCompactList}\small\item\em L\+IF D\+Irectory Entry. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -44,7 +57,7 @@ L\+D\+IF Format file.
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000012}{Todo}]Work in progress. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000012}{Todo}]currently coded for A\+M\+I\+GO -\/ Work in progress. \end{DoxyRefDesc}
 \begin{DoxyReturn}{Returns}
 Fat\+Fs F\+R\+E\+S\+U\+LT. 
 \end{DoxyReturn}
@@ -53,9 +66,71 @@ return(rc);
 \end{DoxyReturn}
 
 
-Definition at line 20 of file format.\+c.
+Definition at line 61 of file format.\+c.
 
 
 
 Referenced by gpib\+\_\+tests().
+
+
+
+\subsection{Variable Documentation}
+\index{format.\+c@{format.\+c}!de@{de}}
+\index{de@{de}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{de}{de}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dir\+Entry\+Type} de}\hypertarget{format_8c_acdc9db327daa9bd83d5df64bf016a4da}{}\label{format_8c_acdc9db327daa9bd83d5df64bf016a4da}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    \{ \textcolor{charliteral}{'M'},\textcolor{charliteral}{'Y'},\textcolor{charliteral}{'F'},\textcolor{charliteral}{'I'},\textcolor{charliteral}{'L'},\textcolor{charliteral}{'E'},\textcolor{charliteral}{'1'},\textcolor{charliteral}{'2'},\textcolor{charliteral}{'3'},\textcolor{charliteral}{'4'}\},
+    0x100,0,0x100,0,0x20,
+    \{0x13,0x10,0x12,0x00,0x00,0x00\},
+    1,0,0
+\}
+\end{DoxyCode}
+
+
+L\+IF D\+Irectory Entry. 
+
+
+\begin{DoxyItemize}
+\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
+\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
+\item L\+IF data is B\+IG endian 
+\end{DoxyItemize}
+
+Definition at line 45 of file format.\+c.
+
+
+
+Referenced by ls().
+
+\index{format.\+c@{format.\+c}!vl@{vl}}
+\index{vl@{vl}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{vl}{vl}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Volume\+Label\+Type} vl}\hypertarget{format_8c_a7cde3fe5600434f06d6c872090dc5390}{}\label{format_8c_a7cde3fe5600434f06d6c872090dc5390}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    0x0080,
+    \{ \textcolor{charliteral}{'L'},\textcolor{charliteral}{'A'},\textcolor{charliteral}{'B'},\textcolor{charliteral}{'E'},\textcolor{charliteral}{'L'},\textcolor{charliteral}{'1'}\},
+    0,0x200,
+    0x0080,
+    0,
+    0,0x0e00,       
+    0
+\}
+\end{DoxyCode}
+
+
+L\+IF data structures used by stand alone formatting utility. 
+
+L\+IF Volume label structure
+\begin{DoxyItemize}
+\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
+\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
+\item L\+IF data is B\+IG endian 
+\end{DoxyItemize}
+
+Definition at line 30 of file format.\+c.
 

@@ -13,6 +13,8 @@ var searchData=
   ['am_5frdo',['AM_RDO',['../ff_8h.html#add6d85d1e7a02b4f6188783ef91a5f1e',1,'ff.h']]],
   ['am_5fsys',['AM_SYS',['../ff_8h.html#a1f25d5c17b5a3a6397b3398add8cdc15',1,'ff.h']]],
   ['am_5fvol',['AM_VOL',['../ff_8c.html#a5cfae62dabae0a54809e43b36685ce7c',1,'ff.c']]],
+  ['amigo_5fdefault_5faddress',['AMIGO_DEFAULT_ADDRESS',['../defines_8h.html#a6ce667fdb46d53fe8998934b9dc11548',1,'defines.h']]],
+  ['amigo_5fdefault_5fppr',['AMIGO_DEFAULT_PPR',['../defines_8h.html#ad96827a238bf6b3bb84bcec32689141d',1,'defines.h']]],
   ['amigo_5fmla',['AMIGO_MLA',['../defines_8h.html#ab26008315661743310bdcb6eed9d37bb',1,'defines.h']]],
   ['amigo_5fmsa',['AMIGO_MSA',['../defines_8h.html#a73330fc1bc5b8e8079c298d75b8d8023',1,'defines.h']]],
   ['amigo_5fmta',['AMIGO_MTA',['../defines_8h.html#a85152d5e018112c88ce73eb7dce7eefa',1,'defines.h']]],

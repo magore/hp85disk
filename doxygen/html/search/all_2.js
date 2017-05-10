@@ -1,6 +1,9 @@
 var searchData=
 [
   ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t']]],
+  ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
+  ['base_5fmsa',['BASE_MSA',['../defines_8h.html#ac0b05d2eeae663c6ee42b7814be45181',1,'defines.h']]],
+  ['base_5fmta',['BASE_MTA',['../defines_8h.html#a68b8e22957870863b8c5b2c58fed767b',1,'defines.h']]],
   ['baseext',['baseext',['../posix_8c.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c'],['../posix_8h.html#a0b33c90b99d00a8bd2595f254d1409e1',1,'baseext(char *str):&#160;posix.c']]],
   ['basename',['basename',['../posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c'],['../posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c']]],
   ['bcdtobin',['BCDtoBIN',['../rtc_8c.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c']]],
