@@ -255,11 +255,12 @@ int main(void)
 	printf("==============================\n");
     printf("INIT\n");
     printf("F_CPU: %lu\n", F_CPU);
+/*
     printf("sin(45) = %f\n", sin(45.0 * 0.0174532925));
     printf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
     printf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
     printf("log(10.0) = %f\n", log(10.0));
-
+*/
 
 	printf("initializing SPI bus\n");
 
@@ -274,38 +275,32 @@ int main(void)
 	{
 		printf("Calloc: line failed ***************************\n");
 	}
-    PrintFree();
-
-    gpib_bus_init(0);
 
     delayms(200);
+
+    clock_clear();
+    printf("Clock cleared\n");
+    clock_getres(0, (ts_t *) &ts);
+    printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
+    setup_clock();
+    display_time();
+
+    mmc_init(1);
+
+    gpib_timer_init();
+    printf("GPIB Timer init done\n");
+
+    gpib_file_init();
 
     gpib_bus_init(0);
     printf("GPIB BUS init done\n");
 
     gpib_state_init();
 
-    gpib_timer_init();
-    printf("GPIB Timer init done\n");
-
     printer_init();
     printf("Printer Init done\n");
 
-    clock_clear();
-    printf("Clock cleared\n");
-
-    clock_getres(0, (ts_t *) &ts);
-    printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
-
-    setup_clock();
-
-    display_time();
-
 	printf("==============================\n");
-
-    mmc_init(1);
-
-    gpib_file_init();
 
     while (1)
     {

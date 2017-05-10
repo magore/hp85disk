@@ -160,7 +160,7 @@ var searchData=
   ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t']]],
   ['startaddhi',['startaddhi',['../structDirEntryType.html#a0cab2915e9f864e25b24d298c36c11db',1,'DirEntryType']]],
   ['startaddlo',['startaddlo',['../structDirEntryType.html#aea0e798bb172b4bddf174ce339a4a54a',1,'DirEntryType']]],
-  ['stat',['stat',['../structstat.html',1,'stat'],['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c'],['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c']]],
+  ['stat',['stat',['../structstat.html',1,'stat'],['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
   ['status_5fmask',['STATUS_MASK',['../gpib_8h.html#aeb86657b890e53489f6178591bbd5b97',1,'gpib.h']]],
   ['stderr',['stderr',['../posix_8h.html#a5ce35bd5ba5021fd3b2e951e8f497656',1,'posix.h']]],
   ['stdin',['stdin',['../posix_8h.html#aaca70138f0cb63ddb026921afc635179',1,'posix.h']]],

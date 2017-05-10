@@ -25,8 +25,6 @@
 char cfgfile[] = "/hpdisk.cfg";                   
 FIL  fp_file;
 
-/// @brief protocol flag - not used at this time
-uint8_t protocol;
 /// @brief Debug flag - used to log GPIB and emulator messages
 uint8_t debuglevel;
 
@@ -36,40 +34,18 @@ FILE *gpib_log_fp;
 
 /// @brief  Read GPIB emulator Configuration file
 ///
-/// Sets protocol and debuglevel
+/// Sets debuglevel
 /// @return  0
 
 void gpib_file_init()
 {
 
-    protocol = 1;                                 // Default protocol: SS/80
     debuglevel = 0;                               // Default loglevel
 
-    printf("HP Disk and Device Emulator\n");
-    printf("Created on:%s %s\n", __DATE__,__TIME__);
+    //FatFs_Read_Config(cfgfile);
 
-#ifdef SOFTWARE_PP
-    printf("\nSoftware PP\n");
-#else
-    printf("\nHardware PP\n");
-#endif                                        // SOFTWARE_PP
-
-    delayms(500);
-
-    FatFs_Read_Config(cfgfile);
-
-
-#if defined(HP9122D)
-    printf("SS/80 9122D\n");
-#endif
-
-#if defined(HP9134L)
-    printf("SS/80 9134L\n");
-#endif
-
-#if defined(HP9121D)
-    printf("Amigo 9121D\n");
-#endif
+    POSIX_Read_Config(cfgfile);
+	
 
     if(mmc_wp_status())
     {
@@ -495,64 +471,67 @@ void DumpData(unsigned char *ptr,int length)
     printf("\n");
 }
 
-
-/// @brief Read and parse a config file using FatFs functions
+/// @brief Display configuration settings
 ///
-/// - Set protocol and debuglevel
-/// - protocol is not being used
-///
-/// @param name: config file name to process
-///
-/// @return  0
-
-void FatFs_Read_Config(char *name)
+/// @return void
+void display_settings()
 {
-    int ret;
-    int len;
-    int lines;
-    char *str = (char *) gpib_iobuff;             // not being used at this moment
-    char *ptr;
-    FIL cfg;
+    printf("HP Disk and Device Emulator\n");
+    printf("Created on:%s %s\n", __DATE__,__TIME__);
 
-    ret = dbf_open(&cfg, name, FA_OPEN_EXISTING | FA_READ);
-    if(ret != RES_OK)
-        return;
+#ifdef SOFTWARE_PP
+    printf("\nSoftware PP\n");
+#else
+    printf("\nHardware PP\n");
+#endif                                        // SOFTWARE_PP
 
-    lines = 0;
-    while(f_gets(str,253,&cfg) != NULL)
-    {
-        ++lines;
-        ptr = str;
-        trim_tail(str);
-        len = strlen(str);
-        if(!len)
-            continue;
-        if( (ret = token(str, "PROTO")) )
-        {
-            ptr += ret;
-            ptr = skipspaces(ptr);
-            protocol = atoi(ptr) & 0xff;
-            printf("protocol=%d\n", protocol);
-        }
-        if( (ret = token(str, "DEBUG")) )
-        {
-            ptr += ret;
-            ptr = skipspaces(ptr);
-            debuglevel= atoi(ptr) & 0xff;
-            printf("debuglevel=%d\n", debuglevel);
-        }
-    }
+#if defined(HP9122D)
+    printf("SS/80 9122D\n");
+#endif
 
-    printf("Read_Config: read(%d) lines\n", lines);
+#if defined(HP9134L)
+    printf("SS/80 9134L\n");
+#endif
 
-    dbf_close(&cfg);
+#if defined(HP9121D)
+    printf("Amigo 9121D\n");
+#endif
+
+	printf("debuglevel   = %02x\n",(int)debuglevel);
+	printf("\n");
+	printf("ss80_addr    = %02x\n",(int)ss80_addr);
+	printf("ss80_ppr     = %02x\n",(int)ss80_ppr);
+	printf("\n");
+	printf("amigo_addr   = %02x\n",(int)amigo_addr);
+	printf("amigo_ppr    = %02x\n",(int)amigo_ppr);
+	printf("\n");
+	printf("printer_addr = %02x\n",(int)printer_addr);
+	printf("\n");
+	printf("BASE_MLA     = %02x\n",BASE_MLA);
+	printf("BASE_MTA     = %02x\n",BASE_MTA);
+	printf("BASE_MSA     = %02x\n",BASE_MSA);
+	printf("\n");
+	printf("SS80_MLA     = %02x\n",SS80_MLA);
+	printf("SS80_MTA     = %02x\n",SS80_MTA);
+	printf("SS80_MSA     = %02x\n",SS80_MSA);
+	printf("SS80_PPR     = %02x\n",SS80_PPR);
+	printf("\n");
+	printf("AMIGO_MLA    = %02x\n",AMIGO_MLA);
+	printf("AMIGO_MTA    = %02x\n",AMIGO_MTA);
+	printf("AMIGO_MSA    = %02x\n",AMIGO_MSA);
+	printf("AMIGO_PPR    = %02x\n",AMIGO_PPR);
+	printf("\n");
+	printf("PRINTER_MLA  = %02x\n",PRINTER_MLA);
+	printf("PRINTER_MTA  = %02x\n",PRINTER_MTA);
+	printf("PRINTER_MSA  = %02x\n",PRINTER_MSA);
+	printf("\n");
 }
+
 
 
 /// @brief Read and parse a config file using POSIX functions
 ///
-/// - Set protocol and debuglevel
-/// - protocol is not being used
+/// - Set debuglevel and other device settings
 ///
 /// @param name: config file name to process
 ///
@@ -563,11 +542,12 @@ void POSIX_Read_Config(char *name)
     int ret;
     int len;
     int lines;
-    char *str = (char *) gpib_iobuff;  //< not being used at this moment
+    char str[128];
     char *ptr;
     FILE *cfg;
 	int val;
 
+	printf("Reading: %s\n", name);
     cfg = fopen(name, "r");
     if(cfg == NULL)
     {
@@ -576,19 +556,22 @@ void POSIX_Read_Config(char *name)
     }
 
     lines = 0;
-    while(fgets(str,253,cfg) != NULL)
+    while(ptr = fgets(str,sizeof(str)-2,cfg) != NULL)
     {
+        ++lines;
+		printf("line: %d [%s]\n", lines, ptr);
 
         ptr = str;
-        ++lines;
+
         trim_tail(ptr);
 		ptr = skipspaces(ptr);
         len = strlen(ptr);
         if(!len)
             continue;
+		// Skip comments
+		if(*ptr == '#')
+			continue;
 
-		if ( set_value(ptr,"PROTO", 0, 1, &val) )
-			protocol = val;
 		if ( set_value(ptr,"DEBUG", 0, 255, &val) )
 			debuglevel = val;
 		if ( set_value(ptr,"SS80_DEFAULT_ADDRESS", 0, 14, &val) )
@@ -610,7 +593,9 @@ void POSIX_Read_Config(char *name)
     {
         perror("Read_Config - close error");
     }
+	display_settings();
 }
+
 
 
 /// @brief  Send drive identify- 2 bytes

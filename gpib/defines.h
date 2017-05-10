@@ -112,18 +112,18 @@ extern uint8_t printer_addr;
 #define BASE_MSA     0x60   //<  Base seconday address = 0 (0+0x60)
 
 
-#define SS80_MLA     (BASE_MLA+ss80_addr)    //<  SS80 listen address 
-#define SS80_MTA     (BASE_MTA+ss80_addr)   //<  SS80 talk address 
-#define SS80_MSA     (BASE_MSA+ss80_addr)   //<  SS80 seconday address 
+#define SS80_MLA     (BASE_MLA + ss80_addr)    //<  SS80 listen address 
+#define SS80_MTA     (BASE_MTA + ss80_addr)   //<  SS80 talk address 
+#define SS80_MSA     (BASE_MSA + ss80_addr)   //<  SS80 seconday address 
 #define SS80_PPR     (ss80_ppr)             //<  SS80 PPR Address
-#define AMIGO_MLA    (BASE_MLA+amigo_addr)  //<  AMIGO listen address
-#define AMIGO_MTA    (BASE_MTA+amigo_addr)  //<  AMIGO talk address 
-#define AMIGO_MSA    (BASE_MSA+amigo_addr)  //<  AMIGO seconday address
+#define AMIGO_MLA    (BASE_MLA + amigo_addr)  //<  AMIGO listen address
+#define AMIGO_MTA    (BASE_MTA + amigo_addr)  //<  AMIGO talk address 
+#define AMIGO_MSA    (BASE_MSA + amigo_addr)  //<  AMIGO seconday address
 #define AMIGO_PPR    (amigo_ppr)            //<  AMIGO PPR Address
 
-#define PRINTER_MLA  (BASE_MLA+printer_addr) //<  PRINTER listen address 
-#define PRINTER_MTA  (BASE_MTA+printer_addr) //<  PRINTER talk address 
-#define PRINTER_MSA  (BASE_MSA+printer_addr) //<  PRINTER seconday address 
+#define PRINTER_MLA  (BASE_MLA + printer_addr) //<  PRINTER listen address 
+#define PRINTER_MTA  (BASE_MTA + printer_addr) //<  PRINTER talk address 
+#define PRINTER_MSA  (BASE_MSA + printer_addr) //<  PRINTER seconday address 
 
 #define ERR_READ   0b00000001 	//< Read Error
 #define ERR_WRITE  0b00000010	//< Write Error 

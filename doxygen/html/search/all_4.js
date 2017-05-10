@@ -78,6 +78,7 @@ var searchData=
   ['diskio_2ec',['diskio.c',['../diskio_8c.html',1,'']]],
   ['diskio_2eh',['diskio.h',['../diskio_8h.html',1,'']]],
   ['disktype',['DiskType',['../structDiskType.html',1,'']]],
+  ['display_5fsettings',['display_settings',['../gpib__task_8c.html#a44e76acfcd1c549f9ca1c487183dccf9',1,'display_settings():&#160;gpib_task.c'],['../gpib__task_8h.html#a0d5844320e03a837569a2f4faa21dc8d',1,'display_settings(void):&#160;gpib_task.c']]],
   ['display_5ftime',['display_time',['../main_8c.html#a4eb8933c334d8d88e9ff0b0d1152951c',1,'main.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
   ['down_5fcounter',['down_counter',['../struct__gpib__t.html#a21ed3be06f76b0a5237b5e64bc2e8793',1,'_gpib_t']]],
