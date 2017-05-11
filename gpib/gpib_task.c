@@ -559,7 +559,6 @@ void POSIX_Read_Config(char *name)
     while(ptr = fgets(str,sizeof(str)-2,cfg) != NULL)
     {
         ++lines;
-		printf("line: %d [%s]\n", lines, ptr);
 
         ptr = str;
 
