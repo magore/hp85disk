@@ -8,43 +8,11 @@ Bit manipulation macros.
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{bits_8h_ad4d43f8748b542bce39e18790f845ecc}{B\+I\+T0}~0
+\#define \hyperlink{bits_8h_a75a94310a1111452b9aae180c264dc5e}{B\+I\+T\+\_\+\+S\+ET}(x,  y)~(x $\vert$=  (1 $<$$<$ (y)))
 \begin{DoxyCompactList}\small\item\em Note\+: IF x and y are constants the compiler will fully reduce the expression. \end{DoxyCompactList}\item 
-\#define \hyperlink{bits_8h_a601923eba46784638244c1ebf2622a2a}{B\+I\+T1}~1
+\#define \hyperlink{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{B\+I\+T\+\_\+\+C\+LR}(x,  y)~(x \&= $\sim$(1 $<$$<$ (y)))
 \item 
-\#define \hyperlink{bits_8h_a9c9560bccccb00174801c728f1ed1399}{B\+I\+T2}~2
-\item 
-\#define \hyperlink{bits_8h_a8e44574a8a8becc885b05f3bc367ef6a}{B\+I\+T3}~3
-\item 
-\#define \hyperlink{bits_8h_aa731e0b6cf75f4e637ee88959315f5e4}{B\+I\+T4}~4
-\item 
-\#define \hyperlink{bits_8h_ae692bc3df48028ceb1ddc2534a993bb8}{B\+I\+T5}~5
-\item 
-\#define \hyperlink{bits_8h_acc2d074401e2b6322ee8f03476c24677}{B\+I\+T6}~6
-\item 
-\#define \hyperlink{bits_8h_aa6b8f3261ae9e2e1043380c192f7b5f0}{B\+I\+T7}~7
-\item 
-\#define \hyperlink{bits_8h_a0e80e65237843fa1ff15c68cd78066f8}{B\+I\+T8}~8
-\item 
-\#define \hyperlink{bits_8h_a3aa20ab5eb33383fa31b0e94f4401cdf}{B\+I\+T9}~9
-\item 
-\#define \hyperlink{bits_8h_a8c0f01fdf020d0f7467449b181fe95cb}{B\+I\+T10}~10
-\item 
-\#define \hyperlink{bits_8h_a2cda1debde057b596766eba6a76daca0}{B\+I\+T11}~11
-\item 
-\#define \hyperlink{bits_8h_aaa0a6acba8436baabcaa1e91fad6c0bd}{B\+I\+T12}~12
-\item 
-\#define \hyperlink{bits_8h_a965dc1748ab1cf91426bd04a2fe16ecf}{B\+I\+T13}~13
-\item 
-\#define \hyperlink{bits_8h_a41e750b67eb36c8da10328c565b90dd5}{B\+I\+T14}~14
-\item 
-\#define \hyperlink{bits_8h_ae40f5db1c57c98c6db42f15e0a56f03a}{B\+I\+T15}~15
-\item 
-\#define \hyperlink{bits_8h_a75a94310a1111452b9aae180c264dc5e}{B\+I\+T\+\_\+\+S\+ET}(x,  y)~((x) $\vert$=  (1 $<$$<$ (y)))
-\item 
-\#define \hyperlink{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{B\+I\+T\+\_\+\+C\+LR}(x,  y)~((x) \&= $\sim$(1 $<$$<$ (y)))
-\item 
-\#define \hyperlink{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{B\+I\+T\+\_\+\+T\+ST}(x,  y)~(((x)  \&  (1 $<$$<$ (y))) ? (int) 1 \+: (int) 0)
+\#define \hyperlink{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{B\+I\+T\+\_\+\+T\+ST}(x,  y)~((x  \&  (1 $<$$<$ (y))) ? (int) 1 \+: (int) 0)
 \end{DoxyCompactItemize}
 
 
@@ -54,131 +22,15 @@ Bit manipulation macros.
 \begin{DoxyParagraph}{Edit History}
 
 \begin{DoxyItemize}
-\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\item \mbox{[}1.\+1\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
 \end{DoxyItemize}
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, Inc. All rights reserved.}
 
 \end{DoxyParagraph}
 
 
 \subsection{Macro Definition Documentation}
-\index{bits.\+h@{bits.\+h}!B\+I\+T0@{B\+I\+T0}}
-\index{B\+I\+T0@{B\+I\+T0}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T0}{BIT0}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T0~0}\hypertarget{bits_8h_ad4d43f8748b542bce39e18790f845ecc}{}\label{bits_8h_ad4d43f8748b542bce39e18790f845ecc}
-
-
-Note\+: IF x and y are constants the compiler will fully reduce the expression. 
-
-
-
-Definition at line 15 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T1@{B\+I\+T1}}
-\index{B\+I\+T1@{B\+I\+T1}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T1}{BIT1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T1~1}\hypertarget{bits_8h_a601923eba46784638244c1ebf2622a2a}{}\label{bits_8h_a601923eba46784638244c1ebf2622a2a}
-
-
-Definition at line 16 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T10@{B\+I\+T10}}
-\index{B\+I\+T10@{B\+I\+T10}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T10}{BIT10}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T10~10}\hypertarget{bits_8h_a8c0f01fdf020d0f7467449b181fe95cb}{}\label{bits_8h_a8c0f01fdf020d0f7467449b181fe95cb}
-
-
-Definition at line 26 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T11@{B\+I\+T11}}
-\index{B\+I\+T11@{B\+I\+T11}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T11}{BIT11}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T11~11}\hypertarget{bits_8h_a2cda1debde057b596766eba6a76daca0}{}\label{bits_8h_a2cda1debde057b596766eba6a76daca0}
-
-
-Definition at line 27 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T12@{B\+I\+T12}}
-\index{B\+I\+T12@{B\+I\+T12}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T12}{BIT12}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T12~12}\hypertarget{bits_8h_aaa0a6acba8436baabcaa1e91fad6c0bd}{}\label{bits_8h_aaa0a6acba8436baabcaa1e91fad6c0bd}
-
-
-Definition at line 28 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T13@{B\+I\+T13}}
-\index{B\+I\+T13@{B\+I\+T13}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T13}{BIT13}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T13~13}\hypertarget{bits_8h_a965dc1748ab1cf91426bd04a2fe16ecf}{}\label{bits_8h_a965dc1748ab1cf91426bd04a2fe16ecf}
-
-
-Definition at line 29 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T14@{B\+I\+T14}}
-\index{B\+I\+T14@{B\+I\+T14}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T14}{BIT14}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T14~14}\hypertarget{bits_8h_a41e750b67eb36c8da10328c565b90dd5}{}\label{bits_8h_a41e750b67eb36c8da10328c565b90dd5}
-
-
-Definition at line 30 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T15@{B\+I\+T15}}
-\index{B\+I\+T15@{B\+I\+T15}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T15}{BIT15}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T15~15}\hypertarget{bits_8h_ae40f5db1c57c98c6db42f15e0a56f03a}{}\label{bits_8h_ae40f5db1c57c98c6db42f15e0a56f03a}
-
-
-Definition at line 31 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T2@{B\+I\+T2}}
-\index{B\+I\+T2@{B\+I\+T2}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T2}{BIT2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T2~2}\hypertarget{bits_8h_a9c9560bccccb00174801c728f1ed1399}{}\label{bits_8h_a9c9560bccccb00174801c728f1ed1399}
-
-
-Definition at line 17 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T3@{B\+I\+T3}}
-\index{B\+I\+T3@{B\+I\+T3}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T3}{BIT3}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T3~3}\hypertarget{bits_8h_a8e44574a8a8becc885b05f3bc367ef6a}{}\label{bits_8h_a8e44574a8a8becc885b05f3bc367ef6a}
-
-
-Definition at line 18 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T4@{B\+I\+T4}}
-\index{B\+I\+T4@{B\+I\+T4}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T4}{BIT4}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T4~4}\hypertarget{bits_8h_aa731e0b6cf75f4e637ee88959315f5e4}{}\label{bits_8h_aa731e0b6cf75f4e637ee88959315f5e4}
-
-
-Definition at line 19 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T5@{B\+I\+T5}}
-\index{B\+I\+T5@{B\+I\+T5}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T5}{BIT5}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T5~5}\hypertarget{bits_8h_ae692bc3df48028ceb1ddc2534a993bb8}{}\label{bits_8h_ae692bc3df48028ceb1ddc2534a993bb8}
-
-
-Definition at line 20 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T6@{B\+I\+T6}}
-\index{B\+I\+T6@{B\+I\+T6}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T6}{BIT6}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T6~6}\hypertarget{bits_8h_acc2d074401e2b6322ee8f03476c24677}{}\label{bits_8h_acc2d074401e2b6322ee8f03476c24677}
-
-
-Definition at line 21 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T7@{B\+I\+T7}}
-\index{B\+I\+T7@{B\+I\+T7}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T7}{BIT7}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T7~7}\hypertarget{bits_8h_aa6b8f3261ae9e2e1043380c192f7b5f0}{}\label{bits_8h_aa6b8f3261ae9e2e1043380c192f7b5f0}
-
-
-Definition at line 22 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T8@{B\+I\+T8}}
-\index{B\+I\+T8@{B\+I\+T8}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T8}{BIT8}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T8~8}\hypertarget{bits_8h_a0e80e65237843fa1ff15c68cd78066f8}{}\label{bits_8h_a0e80e65237843fa1ff15c68cd78066f8}
-
-
-Definition at line 24 of file bits.\+h.
-
-\index{bits.\+h@{bits.\+h}!B\+I\+T9@{B\+I\+T9}}
-\index{B\+I\+T9@{B\+I\+T9}!bits.\+h@{bits.\+h}}
-\subsubsection[{\texorpdfstring{B\+I\+T9}{BIT9}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T9~9}\hypertarget{bits_8h_a3aa20ab5eb33383fa31b0e94f4401cdf}{}\label{bits_8h_a3aa20ab5eb33383fa31b0e94f4401cdf}
-
-
-Definition at line 25 of file bits.\+h.
-
 \index{bits.\+h@{bits.\+h}!B\+I\+T\+\_\+\+C\+LR@{B\+I\+T\+\_\+\+C\+LR}}
 \index{B\+I\+T\+\_\+\+C\+LR@{B\+I\+T\+\_\+\+C\+LR}!bits.\+h@{bits.\+h}}
 \subsubsection[{\texorpdfstring{B\+I\+T\+\_\+\+C\+LR}{BIT_CLR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+I\+T\+\_\+\+C\+LR(
@@ -186,10 +38,10 @@ Definition at line 25 of file bits.\+h.
 \item[{}]{x, }
 \item[{}]{y}
 \end{DoxyParamCaption}
-)~((x) \&= $\sim$(1 $<$$<$ (y)))}\hypertarget{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{}\label{bits_8h_a4021778be6452ef56bfb20488d19bcdc}
+)~(x \&= $\sim$(1 $<$$<$ (y)))}\hypertarget{bits_8h_a4021778be6452ef56bfb20488d19bcdc}{}\label{bits_8h_a4021778be6452ef56bfb20488d19bcdc}
 
 
-Definition at line 34 of file bits.\+h.
+Definition at line 18 of file bits.\+h.
 
 
 
@@ -202,10 +54,14 @@ Referenced by ppr\+\_\+bit\+\_\+clr(), S\+P\+I0\+\_\+\+Mode(), S\+P\+I0\+\_\+\+S
 \item[{}]{x, }
 \item[{}]{y}
 \end{DoxyParamCaption}
-)~((x) $\vert$=  (1 $<$$<$ (y)))}\hypertarget{bits_8h_a75a94310a1111452b9aae180c264dc5e}{}\label{bits_8h_a75a94310a1111452b9aae180c264dc5e}
+)~(x $\vert$=  (1 $<$$<$ (y)))}\hypertarget{bits_8h_a75a94310a1111452b9aae180c264dc5e}{}\label{bits_8h_a75a94310a1111452b9aae180c264dc5e}
 
 
-Definition at line 33 of file bits.\+h.
+Note\+: IF x and y are constants the compiler will fully reduce the expression. 
+
+
+
+Definition at line 17 of file bits.\+h.
 
 
 
@@ -218,10 +74,10 @@ Referenced by ppr\+\_\+bit\+\_\+set(), S\+P\+I0\+\_\+\+Init(), S\+P\+I0\+\_\+\+M
 \item[{}]{x, }
 \item[{}]{y}
 \end{DoxyParamCaption}
-)~(((x)  \&  (1 $<$$<$ (y))) ? (int) 1 \+: (int) 0)}\hypertarget{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{}\label{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}
+)~((x  \&  (1 $<$$<$ (y))) ? (int) 1 \+: (int) 0)}\hypertarget{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}{}\label{bits_8h_a49c0cc46bd6dee049981fca0036e7f86}
 
 
-Definition at line 35 of file bits.\+h.
+Definition at line 19 of file bits.\+h.
 
 
 
