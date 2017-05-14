@@ -49,7 +49,7 @@ int \hyperlink{amigo_8h_af4df946daf08c99b2d3b85318c9e9df8}{amigo\+\_\+send\+\_\+
 \begin{DoxyCompactList}\small\item\em Send drive status in amigo\+\_\+status\mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
 int \hyperlink{amigo_8h_ae6c9b56f7f0179eecd6d57c2844bc56c}{amigo\+\_\+increment} (char $\ast$msg)
 \begin{DoxyCompactList}\small\item\em Increment sector if it will not overflow. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8h_a737360bbcfd3fa3cf9d504757f202e48}{amigo\+\_\+seek} (\hyperlink{structDiskType}{Disk\+Type} $\ast$p)
+int \hyperlink{amigo_8h_abaa4a5a10994faf7494dd561a4fd96f2}{amigo\+\_\+seek} (\hyperlink{structAMIGOStatusType}{A\+M\+I\+G\+O\+Status\+Type} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Seek to the position held in the disk structure. \end{DoxyCompactList}\item 
 int \hyperlink{amigo_8h_ab08912bf94dc6e8fbe87990ff41f46f0}{amigo\+\_\+verify} (uint16\+\_\+t sectors)
 \begin{DoxyCompactList}\small\item\em Verify Disk Sectors at current position. \end{DoxyCompactList}\item 
@@ -75,17 +75,6 @@ int \hyperlink{amigo_8h_ad7271e45e6b3bb6edef42da4ad5bb25a}{Amigo\+\_\+\+Execute}
 \begin{DoxyCompactList}\small\item\em Amigo Execute command processing. \end{DoxyCompactList}\item 
 int \hyperlink{amigo_8h_a77b7d46bd469c79c73696a9ae2a3543d}{A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Command state processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{structVolumeLabelType}{Volume\+Label\+Type} \hyperlink{amigo_8h_a7cde3fe5600434f06d6c872090dc5390}{vl}
-\begin{DoxyCompactList}\small\item\em L\+IF data structures used by stand alone formatting utility. \end{DoxyCompactList}\item 
-\hyperlink{structDirEntryType}{Dir\+Entry\+Type} \hyperlink{amigo_8h_acdc9db327daa9bd83d5df64bf016a4da}{de}
-\begin{DoxyCompactList}\small\item\em L\+IF D\+Irectory Entry. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{amigo_8h_aa06fad89376ae2fd6a76e740b065e2a5}{amigo\+\_\+state}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO emulator state machine index. \end{DoxyCompactList}\item 
-int \hyperlink{amigo_8h_a8689fc8752751657671c10ed9744b6a0}{Amigo\+\_\+\+Errors}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -240,7 +229,7 @@ G\+P\+IB Errors status,Sets dsj and Amigo\+\_\+errors
 \item[\hyperlink{todo__todo000004}{Todo}]Do we fail on overflow ? currently djs is set -\/ do we want to report that now ? \end{DoxyRefDesc}
 
 
-Definition at line 520 of file amigo.\+c.
+Definition at line 575 of file amigo.\+c.
 
 
 
@@ -267,7 +256,7 @@ G\+P\+IB Errors status,Sets dsj and Amigo\+\_\+errors
 
 \end{DoxyItemize}
 
-Definition at line 586 of file amigo.\+c.
+Definition at line 641 of file amigo.\+c.
 
 
 
@@ -297,7 +286,7 @@ Response to selected device clear or all clear.
 
 Clear the D\+SJ byte that might be 2 after powerup
 
-Definition at line 733 of file amigo.\+c.
+Definition at line 788 of file amigo.\+c.
 
 
 
@@ -325,7 +314,7 @@ G\+P\+IB send Errors status
 \item Sets dsj and Amigo\+\_\+errors 
 \end{DoxyItemize}
 
-Definition at line 653 of file amigo.\+c.
+Definition at line 708 of file amigo.\+c.
 
 
 
@@ -357,7 +346,7 @@ G\+P\+IB Errors status -\/ or 0 OK
 \item[\hyperlink{todo__todo000006}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 695 of file amigo.\+c.
+Definition at line 750 of file amigo.\+c.
 
 \index{amigo.\+h@{amigo.\+h}!Amigo\+\_\+\+Command@{Amigo\+\_\+\+Command}}
 \index{Amigo\+\_\+\+Command@{Amigo\+\_\+\+Command}!amigo.\+h@{amigo.\+h}}
@@ -442,7 +431,7 @@ Reference\+: A48 .. A50
 
 Reference\+: A23 
 
-Definition at line 826 of file amigo.\+c.
+Definition at line 881 of file amigo.\+c.
 
 
 
@@ -484,7 +473,7 @@ or G\+P\+IB error flags on fail
 \end{DoxySeeAlso}
 
 
-Definition at line 1248 of file amigo.\+c.
+Definition at line 1303 of file amigo.\+c.
 
 
 
@@ -516,7 +505,7 @@ or G\+P\+IB error flags on fail
 \end{DoxySeeAlso}
 
 
-Definition at line 1136 of file amigo.\+c.
+Definition at line 1191 of file amigo.\+c.
 
 
 
@@ -556,7 +545,7 @@ Format Disk.
 \end{DoxyReturn}
 
 
-Definition at line 464 of file amigo.\+c.
+Definition at line 519 of file amigo.\+c.
 
 
 
@@ -585,7 +574,7 @@ Increment sector if it will not overflow.
 \end{DoxyReturn}
 
 
-Definition at line 353 of file amigo.\+c.
+Definition at line 408 of file amigo.\+c.
 
 
 
@@ -609,7 +598,7 @@ void
 \item[\hyperlink{todo__todo000002}{Todo}]verify that we always want P\+PR disabled Enable\+P\+P\+R(\+A\+M\+I\+G\+O\+\_\+\+P\+P\+R); \end{DoxyRefDesc}
 
 
-Definition at line 127 of file amigo.\+c.
+Definition at line 182 of file amigo.\+c.
 
 
 
@@ -635,7 +624,7 @@ Set current address in amigo\+\_\+logical\+\_\+address\mbox{[}\mbox{]}.
 
 \end{DoxyItemize}
 
-Definition at line 155 of file amigo.\+c.
+Definition at line 210 of file amigo.\+c.
 
 
 
@@ -663,7 +652,7 @@ Set drive status in amigo\+\_\+status\mbox{[}\mbox{]}.
 \item[\hyperlink{todo__todo000003}{Todo}]dsj \end{DoxyRefDesc}
 
 
-Definition at line 172 of file amigo.\+c.
+Definition at line 227 of file amigo.\+c.
 
 
 
@@ -671,11 +660,11 @@ Referenced by Amigo\+\_\+\+Command().
 
 \index{amigo.\+h@{amigo.\+h}!amigo\+\_\+seek@{amigo\+\_\+seek}}
 \index{amigo\+\_\+seek@{amigo\+\_\+seek}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{amigo\+\_\+seek(\+Disk\+Type $\ast$p)}{amigo_seek(DiskType *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+seek (
+\subsubsection[{\texorpdfstring{amigo\+\_\+seek(\+A\+M\+I\+G\+O\+Status\+Type $\ast$p)}{amigo_seek(AMIGOStatusType *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+seek (
 \begin{DoxyParamCaption}
-\item[{{\bf Disk\+Type} $\ast$}]{p}
+\item[{{\bf A\+M\+I\+G\+O\+Status\+Type} $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{amigo_8h_a737360bbcfd3fa3cf9d504757f202e48}{}\label{amigo_8h_a737360bbcfd3fa3cf9d504757f202e48}
+)}\hypertarget{amigo_8h_abaa4a5a10994faf7494dd561a4fd96f2}{}\label{amigo_8h_abaa4a5a10994faf7494dd561a4fd96f2}
 
 
 Seek to the position held in the disk structure. 
@@ -688,7 +677,7 @@ Seek to the position held in the disk structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em p} & \hyperlink{structDiskType}{Disk\+Type} (Current Disk Position) pointer.\\
+\mbox{\tt in}  & {\em p} & \hyperlink{structAMIGOStatusType}{A\+M\+I\+G\+O\+Status\+Type} (Current Disk Position) pointer.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -698,7 +687,7 @@ Seek to the position held in the disk structure.
 \end{DoxyReturn}
 
 
-Definition at line 379 of file amigo.\+c.
+Definition at line 434 of file amigo.\+c.
 
 
 
@@ -729,7 +718,7 @@ status G\+P\+IB error flags on fail
 
 \end{DoxyItemize}
 
-Definition at line 223 of file amigo.\+c.
+Definition at line 278 of file amigo.\+c.
 
 
 
@@ -760,7 +749,7 @@ status G\+P\+IB error flags on fail
 
 \end{DoxyItemize}
 
-Definition at line 260 of file amigo.\+c.
+Definition at line 315 of file amigo.\+c.
 
 
 
@@ -787,7 +776,7 @@ Report any Unimplimented commands.
 \end{DoxyReturn}
 
 
-Definition at line 786 of file amigo.\+c.
+Definition at line 841 of file amigo.\+c.
 
 
 
@@ -820,7 +809,7 @@ Report any Unimplimented commands with Op Codes.
 \end{DoxyReturn}
 
 
-Definition at line 761 of file amigo.\+c.
+Definition at line 816 of file amigo.\+c.
 
 
 
@@ -847,66 +836,9 @@ Verify Disk Sectors at current position.
 
 \end{DoxyItemize}
 
-Definition at line 407 of file amigo.\+c.
+Definition at line 462 of file amigo.\+c.
 
 
 
 Referenced by Amigo\+\_\+\+Command().
-
-
-
-\subsection{Variable Documentation}
-\index{amigo.\+h@{amigo.\+h}!Amigo\+\_\+\+Errors@{Amigo\+\_\+\+Errors}}
-\index{Amigo\+\_\+\+Errors@{Amigo\+\_\+\+Errors}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{Amigo\+\_\+\+Errors}{Amigo_Errors}}]{\setlength{\rightskip}{0pt plus 5cm}int Amigo\+\_\+\+Errors}\hypertarget{amigo_8h_a8689fc8752751657671c10ed9744b6a0}{}\label{amigo_8h_a8689fc8752751657671c10ed9744b6a0}
-\index{amigo.\+h@{amigo.\+h}!amigo\+\_\+state@{amigo\+\_\+state}}
-\index{amigo\+\_\+state@{amigo\+\_\+state}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{amigo\+\_\+state}{amigo_state}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+state}\hypertarget{amigo_8h_aa06fad89376ae2fd6a76e740b065e2a5}{}\label{amigo_8h_aa06fad89376ae2fd6a76e740b065e2a5}
-
-
-A\+M\+I\+GO emulator state machine index. 
-
-
-
-Definition at line 71 of file amigo.\+c.
-
-
-
-Referenced by Amigo\+\_\+\+Command(), Amigo\+\_\+\+Execute(), amigo\+\_\+init(), amigo\+\_\+todo(), and amigo\+\_\+todo\+\_\+op().
-
-\index{amigo.\+h@{amigo.\+h}!de@{de}}
-\index{de@{de}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{de}{de}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dir\+Entry\+Type} de}\hypertarget{amigo_8h_acdc9db327daa9bd83d5df64bf016a4da}{}\label{amigo_8h_acdc9db327daa9bd83d5df64bf016a4da}
-
-
-L\+IF D\+Irectory Entry. 
-
-
-\begin{DoxyItemize}
-\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
-\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
-\item L\+IF data is B\+IG endian 
-\end{DoxyItemize}
-
-Definition at line 45 of file format.\+c.
-
-
-
-Referenced by ls().
-
-\index{amigo.\+h@{amigo.\+h}!vl@{vl}}
-\index{vl@{vl}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{vl}{vl}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Volume\+Label\+Type} vl}\hypertarget{amigo_8h_a7cde3fe5600434f06d6c872090dc5390}{}\label{amigo_8h_a7cde3fe5600434f06d6c872090dc5390}
-
-
-L\+IF data structures used by stand alone formatting utility. 
-
-L\+IF Volume label structure
-\begin{DoxyItemize}
-\item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
-\item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
-\item L\+IF data is B\+IG endian 
-\end{DoxyItemize}
-
-Definition at line 30 of file format.\+c.
 

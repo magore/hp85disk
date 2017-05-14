@@ -1,12 +1,12 @@
 var searchData=
 [
+  ['l',['L',['../unionSS80LengthType.html#a8939afbd3197ba892aa2b15782086a71',1,'SS80LengthType::L()'],['../unionSS80AddressType.html#a4949ed9f8da550f9e09937db92750586',1,'SS80AddressType::L()']]],
   ['label',['label',['../structVolumeLabelType.html#a265fc834b203868cc48482a8be64f60c',1,'VolumeLabelType']]],
   ['last_5fclst',['last_clst',['../structFATFS.html#ac26e848817569fedc15a9a4e49ddedd1',1,'FATFS']]],
   ['lastcmd',['lastcmd',['../gpib_8c.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c'],['../gpib_8h.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c']]],
   ['left',['left',['../unionf__t.html#a5f89cd6194ccc6a288f1fe31d39b2e64',1,'f_t']]],
   ['len',['len',['../struct__printf__t.html#a5139902cde74159b79e6418a34712bee',1,'_printf_t::len()'],['../struct____file.html#a30309efd13a75ed510bb2370debafaf8',1,'__file::len()']]],
-  ['lenbytes',['Lenbytes',['../unionLengthType.html#a51f62c21aa27a0cbe1c99de05e33fcf7',1,'LengthType']]],
-  ['length',['Length',['../unionLengthType.html#a27186a51a0bcb9e93e44b9f1e49e5f27',1,'LengthType::Length()'],['../ss80_8c.html#a03f3f3cb1560e9bc3f899ede44d48724',1,'Length():&#160;ss80.c']]],
+  ['length',['Length',['../ss80_8c.html#a7cfe6bde8a0d5cc15b4541d82acbe54e',1,'ss80.c']]],
   ['lengthhi',['lengthhi',['../structDirEntryType.html#ad7aaba7b01038bc8bacb096bd66fff08',1,'DirEntryType']]],
   ['lengthlo',['lengthlo',['../structDirEntryType.html#ad1cde25a0229866557cd5983c27fbd31',1,'DirEntryType']]],
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],

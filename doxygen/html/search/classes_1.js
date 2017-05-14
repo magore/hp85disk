@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['controllerdescriptiontype',['ControllerDescriptionType',['../structControllerDescriptionType.html',1,'']]]
+  ['amigodisktype',['AMIGODiskType',['../structAMIGODiskType.html',1,'']]],
+  ['amigostatustype',['AMIGOStatusType',['../structAMIGOStatusType.html',1,'']]]
 ];

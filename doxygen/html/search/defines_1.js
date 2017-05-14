@@ -19,8 +19,6 @@ var searchData=
   ['amigo_5fmsa',['AMIGO_MSA',['../defines_8h.html#a73330fc1bc5b8e8079c298d75b8d8023',1,'defines.h']]],
   ['amigo_5fmta',['AMIGO_MTA',['../defines_8h.html#a85152d5e018112c88ce73eb7dce7eefa',1,'defines.h']]],
   ['amigo_5fppr',['AMIGO_PPR',['../defines_8h.html#ac9af540664b428a924a0b24d91a1a0ab',1,'defines.h']]],
-  ['amigoid1',['AMIGOID1',['../defines_8h.html#a3b1dea63813032ba451d06e9bf3c6c81',1,'defines.h']]],
-  ['amigoid2',['AMIGOID2',['../defines_8h.html#a58ec5fb3f465bf341bb99005d561400b',1,'defines.h']]],
   ['ata_5fget_5fmodel',['ATA_GET_MODEL',['../diskio_8h.html#a31f556ab98ab80c39058b38d9283865d',1,'diskio.h']]],
   ['ata_5fget_5frev',['ATA_GET_REV',['../diskio_8h.html#a23f5fff3341e98825ea1f7367fd09f1a',1,'diskio.h']]],
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],

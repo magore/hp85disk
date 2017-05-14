@@ -65,7 +65,7 @@ FRESULT gpib_format_disk(char *name)
     DWORD fpos, max;                              // File position
     FIL fp;
     char *buffer;
-    extern VolumeDescriptionType VolumeDescription;
+    extern SS80Type SS80Disk;
 
     buffer = safecalloc(512+1,1);
     if(!buffer)
@@ -125,10 +125,10 @@ FRESULT gpib_format_disk(char *name)
         return(rc);
     }
 
-    max = VolumeDescription.V9 * 0x100000000L +
-        VolumeDescription.V10 * 0x1000000L +
-        VolumeDescription.V11 * 0x10000L +
-        VolumeDescription.V12 * 0x100L;
+    max = SS80Disk.Volume.V9 * 0x100000000L +
+        SS80Disk.Volume.V10 * 0x1000000L +
+        SS80Disk.Volume.V11 * 0x10000L +
+        SS80Disk.Volume.V12 * 0x100L;
 
     fpos = f_tell(fp);
     memset(buffer,' ',512);

@@ -183,7 +183,7 @@ ___
 <pre>
     ATMEGA               HC595             HC05 
                       +----V----+          +-V-+  
-    3 PB3 -------- 12 |RCLK   Q0| 15 -x- 1 |   | 2 --- GPIB D8 
+    3 PB2 -------- 12 |RCLK   Q0| 15 -x- 1 |   | 2 --- GPIB D8 
     6 MOSI ------- 14 |SER    Q1| 1  -x- 3 |   | 4 --- GPIB D7 
     8 SCK -------- 11 |SRCLK  Q2| 2  -x- 5 |   | 6 --- GPIB D6 
     9 IFC -------- 10 |SRCLR  Q3| 3  -x- 9 |   | 8 --- GPIB D5 
@@ -323,10 +323,12 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
       * AMIGO parser
     * gpib/amigo.h
       * AMIGO parser
-    * gpib/amigo.txt
-      * AMIGO command structure
     * gpib/defines.h
       * Main GPIB header and configuration options
+    * gpib/drives.c
+      * Supported Drive Parameters 
+    * gpib/drive_references.txt
+      * General Drive Parameters Documentation for all known drive types
     * gpib/format.c
       * Work in progress LIF format utility
     * gpib/gpib.c

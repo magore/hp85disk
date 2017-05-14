@@ -25,6 +25,7 @@ extern uint8_t qstat;
 
 /* ss80.c */
 void SS80_Test ( void );
+DWORD SS80_MaxVector ( void );
 void SS80_init ( void );
 int SS80_Execute_State ( void );
 int SS80_locate_and_read ( void );
@@ -44,4 +45,7 @@ int SS80_Cancel ( int u );
 int SS80_increment ( void );
 int SS80_error_return ( void );
 int SS80_COMMANDS ( uint8_t ch );
+
+
+
 #endif

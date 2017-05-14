@@ -23,7 +23,6 @@ var searchData=
   ['_5fcs_5fpin',['_cs_pin',['../hal_8c.html#a1d1ec6333b265b4dd659ee605a2421de',1,'hal.c']]],
   ['_5fde',['_de',['../posix_8c.html#a42837e7607f8e3b8ae74286253989724',1,'posix.c']]],
   ['_5fdf1s',['_DF1S',['../ff_8c.html#a228bfd2cabe490c8567aaf08b8b2cc14',1,'ff.c']]],
-  ['_5fdisp_5fparm',['_disp_parm',['../struct__disp__parm.html',1,'']]],
   ['_5fdp',['_dp',['../posix_8c.html#ae5badb2fbda49f0741042e68c364532b',1,'posix.c']]],
   ['_5fexcvt',['_EXCVT',['../ff_8c.html#a4d9c368236443f6568fd60eebb809d0f',1,'ff.c']]],
   ['_5ffatfs',['_FATFS',['../ff_8h.html#a749228947bc890224b8bd5de6e11faa3',1,'ff.h']]],

@@ -9,18 +9,24 @@ G\+P\+IB, A\+M\+I\+GO, S\+S80 and device defines.
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structDiskType}{Disk\+Type}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Disk structure -\/ position and error status. \end{DoxyCompactList}\item 
-struct \hyperlink{struct__disp__parm}{\+\_\+disp\+\_\+parm}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Disk structure -\/ ID bytes and layout. \end{DoxyCompactList}\item 
-struct \hyperlink{structControllerDescriptionType}{Controller\+Description\+Type}
+struct \hyperlink{structIdentifyType}{Identify\+Type}
+\begin{DoxyCompactList}\small\item\em used with A\+M\+I\+GO and S\+S80 \end{DoxyCompactList}\item 
+struct \hyperlink{structAMIGODiskType}{A\+M\+I\+G\+O\+Disk\+Type}
+\begin{DoxyCompactList}\small\item\em ==================================================================== \end{DoxyCompactList}\item 
+struct \hyperlink{structAMIGOStatusType}{A\+M\+I\+G\+O\+Status\+Type}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO status structure -\/ position and error status. \end{DoxyCompactList}\item 
+struct \hyperlink{structSS80ControllerType}{S\+S80\+Controller\+Type}
+\begin{DoxyCompactList}\small\item\em Controller Information Structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structSS80UnitType}{S\+S80\+Unit\+Type}
+\begin{DoxyCompactList}\small\item\em Unit Information Structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structSS80VolumeType}{S\+S80\+Volume\+Type}
+\begin{DoxyCompactList}\small\item\em Volume Information Structure. \end{DoxyCompactList}\item 
+union \hyperlink{unionSS80LengthType}{S\+S80\+Length\+Type}
 \begin{DoxyCompactList}\small\item\em used with S\+S80 \end{DoxyCompactList}\item 
-struct \hyperlink{structUnitDescriptionType}{Unit\+Description\+Type}
+union \hyperlink{unionSS80AddressType}{S\+S80\+Address\+Type}
 \begin{DoxyCompactList}\small\item\em used with S\+S80 \end{DoxyCompactList}\item 
-struct \hyperlink{structVolumeDescriptionType}{Volume\+Description\+Type}
-\begin{DoxyCompactList}\small\item\em used with S\+S80 \end{DoxyCompactList}\item 
-union \hyperlink{unionLengthType}{Length\+Type}
-\begin{DoxyCompactList}\small\item\em used with S\+S80 \end{DoxyCompactList}\item 
+struct \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}
+\begin{DoxyCompactList}\small\item\em Disk Information Structure. \end{DoxyCompactList}\item 
 struct \hyperlink{structVolumeLabelType}{Volume\+Label\+Type}
 \begin{DoxyCompactList}\small\item\em L\+IF disk label record. \end{DoxyCompactList}\item 
 struct \hyperlink{structDirEntryType}{Dir\+Entry\+Type}
@@ -29,7 +35,7 @@ struct \hyperlink{structDirEntryType}{Dir\+Entry\+Type}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{defines_8h_a3a870c471b971e16437e31ad7c531785}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}~0        /$\ast$ S\+S80 default address $\ast$/
-\begin{DoxyCompactList}\small\item\em printer do not use parallel poll \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Power on defaults address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be changed if specified in user config. \end{DoxyCompactList}\item 
 \#define \hyperlink{defines_8h_a62aaf52773ccfe02685d935ada1a5179}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}~0            /$\ast$ S\+S80 default P\+PR B\+IT $\ast$/
 \begin{DoxyCompactList}\small\item\em Default S\+S80 Parallel Poll Response bit 0 here is bit 8 on the B\+US. \end{DoxyCompactList}\item 
 \#define \hyperlink{defines_8h_a6ce667fdb46d53fe8998934b9dc11548}{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}~1       /$\ast$ A\+M\+I\+GO default address $\ast$/
@@ -45,14 +51,6 @@ struct \hyperlink{structDirEntryType}{Dir\+Entry\+Type}
 \#define \hyperlink{defines_8h_adc21759335a3d21784de3624a8dbdcde}{H\+P9121D}
 \item 
 \#define \hyperlink{defines_8h_acbb3c06e9315e4230f5097bd9e89faf0}{H\+P9134L}
-\item 
-\#define \hyperlink{defines_8h_a3b1dea63813032ba451d06e9bf3c6c81}{A\+M\+I\+G\+O\+I\+D1}~0x01 /$\ast$$<$ A\+M\+I\+G\+O device I\+D byte 1 $\ast$/
-\item 
-\#define \hyperlink{defines_8h_a58ec5fb3f465bf341bb99005d561400b}{A\+M\+I\+G\+O\+I\+D2}~0x04 /$\ast$$<$ A\+M\+I\+G\+O device I\+D byte 2 $\ast$/
-\item 
-\#define \hyperlink{defines_8h_a50096467dc88621fe3748e03aa063f34}{S\+S80\+I\+D1}~0x02
-\item 
-\#define \hyperlink{defines_8h_a749916c90f3fb51ff4900201fa5e5762}{S\+S80\+I\+D2}~0x21
 \item 
 \#define \hyperlink{defines_8h_a4a5ce0eaf1fcd7131fba9ec08df9bc1e}{G\+TL}~0x01
 \item 
@@ -84,28 +82,6 @@ struct \hyperlink{structDirEntryType}{Dir\+Entry\+Type}
 \item 
 \#define \hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA}~0x60
 \item 
-\#define \hyperlink{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}{S\+S80\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + \hyperlink{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}{ss80\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_afeaf965938a244975b919224e0cecfb4}{S\+S80\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + \hyperlink{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}{ss80\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}{S\+S80\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + \hyperlink{ss80_8c_a7bb9a6967b8558248e77748a5ca590de}{ss80\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}{S\+S80\+\_\+\+P\+PR}~(\hyperlink{ss80_8c_a3c6e1c6730f78b7b8f2f62178d640e8a}{ss80\+\_\+ppr})
-\item 
-\#define \hyperlink{defines_8h_ab26008315661743310bdcb6eed9d37bb}{A\+M\+I\+G\+O\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + \hyperlink{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}{amigo\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}{A\+M\+I\+G\+O\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + \hyperlink{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}{amigo\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}{A\+M\+I\+G\+O\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + \hyperlink{ss80_8c_af8873dfcbc5be9878e0f0c416176344f}{amigo\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}{A\+M\+I\+G\+O\+\_\+\+P\+PR}~(\hyperlink{ss80_8c_ace6a78b7d602a59cf1f95e7fdd8418e3}{amigo\+\_\+ppr})
-\item 
-\#define \hyperlink{defines_8h_a888d70c1d31e849e2d55df070beb33f3}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_a90dea75ab52ec1f7d5c45b0cdfc51a19}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
-\item 
-\#define \hyperlink{defines_8h_af4297017b18de1a4f866b073614b610f}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
-\item 
 \#define \hyperlink{defines_8h_a6b84d62f127a9e48e8a98f7c4f50f3ff}{E\+R\+R\+\_\+\+R\+E\+AD}~0b00000001
 \item 
 \#define \hyperlink{defines_8h_abdfbdd5affe2e04429a4373950c83cd5}{E\+R\+R\+\_\+\+W\+R\+I\+TE}~0b00000010
@@ -117,25 +93,38 @@ struct \hyperlink{structDirEntryType}{Dir\+Entry\+Type}
 \#define \hyperlink{defines_8h_a865d33ae8b1e4b84c233893b9f07acc5}{E\+R\+R\+\_\+\+D\+I\+SK}~0b00010000
 \item 
 \#define \hyperlink{defines_8h_a42e8438d9e1706b0223fe65237be9fc1}{E\+R\+R\+\_\+\+G\+P\+IB}~0b00100000
-\end{DoxyCompactItemize}
-\subsection*{Typedefs}
-\begin{DoxyCompactItemize}
 \item 
-typedef struct \hyperlink{struct__disp__parm}{\+\_\+disp\+\_\+parm} \hyperlink{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{disk\+\_\+parm}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Disk structure -\/ ID bytes and layout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \hyperlink{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}{S\+S80\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + S\+S80\+Disk.\+ss80\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_afeaf965938a244975b919224e0cecfb4}{S\+S80\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + S\+S80\+Disk.\+ss80\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}{S\+S80\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + S\+S80\+Disk.\+ss80\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}{S\+S80\+\_\+\+P\+PR}~(S\+S80\+Disk.\+ss80\+\_\+ppr)
+\item 
+\#define \hyperlink{defines_8h_ab26008315661743310bdcb6eed9d37bb}{A\+M\+I\+G\+O\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}{A\+M\+I\+G\+O\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}{A\+M\+I\+G\+O\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)
+\item 
+\#define \hyperlink{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}{A\+M\+I\+G\+O\+\_\+\+P\+PR}~(A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+ppr)
+\item 
+\#define \hyperlink{defines_8h_a888d70c1d31e849e2d55df070beb33f3}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA}~(\hyperlink{defines_8h_a944275020270df551673379e7f726a88}{B\+A\+S\+E\+\_\+\+M\+LA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
+\item 
+\#define \hyperlink{defines_8h_a90dea75ab52ec1f7d5c45b0cdfc51a19}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+TA}~(\hyperlink{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{B\+A\+S\+E\+\_\+\+M\+TA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
+\item 
+\#define \hyperlink{defines_8h_af4297017b18de1a4f866b073614b610f}{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+SA}~(\hyperlink{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{B\+A\+S\+E\+\_\+\+M\+SA} + \hyperlink{ss80_8c_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr})
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-uint8\+\_\+t \hyperlink{defines_8h_a7bb9a6967b8558248e77748a5ca590de}{ss80\+\_\+addr}
-\begin{DoxyCompactList}\small\item\em address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if specified in user config If N\+OT specified see Power on Defaults below \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{defines_8h_a3c6e1c6730f78b7b8f2f62178d640e8a}{ss80\+\_\+ppr}
-\begin{DoxyCompactList}\small\item\em S\+S80 parallel poll bit number. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{defines_8h_af8873dfcbc5be9878e0f0c416176344f}{amigo\+\_\+addr}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO address. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{defines_8h_ace6a78b7d602a59cf1f95e7fdd8418e3}{amigo\+\_\+ppr}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO parallel poll bit number. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{defines_8h_ae930147fd6b6db510b4d55205bca2763}{printer\+\_\+addr}
-\begin{DoxyCompactList}\small\item\em P\+R\+I\+N\+T\+ER address. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em ================= \end{DoxyCompactList}\item 
+\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} \hyperlink{defines_8h_a16d811299d42f1c1d920caa2b1423491}{S\+S80\+Disk}
+\begin{DoxyCompactList}\small\item\em printer do not use parallel poll \end{DoxyCompactList}\item 
+\hyperlink{structAMIGODiskType}{A\+M\+I\+G\+O\+Disk\+Type} \hyperlink{defines_8h_ab4a2514f2ef1f255d1d99485f29d959f}{A\+M\+I\+G\+O\+Disk}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -162,7 +151,7 @@ printer do not use parallel poll
 
 ============================================================== 
 
-Definition at line 70 of file defines.\+h.
+Definition at line 52 of file defines.\+h.
 
 
 
@@ -177,7 +166,7 @@ Default A\+M\+I\+GO address.
 
 
 
-Definition at line 57 of file defines.\+h.
+Definition at line 39 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR@{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}}
 \index{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR@{A\+M\+I\+G\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}!defines.\+h@{defines.\+h}}
@@ -188,14 +177,14 @@ Default A\+M\+I\+GO Parallel Poll Response bit 1 here is bit 7 on the B\+US.
 
 
 
-Definition at line 61 of file defines.\+h.
+Definition at line 43 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+\_\+\+M\+LA@{A\+M\+I\+G\+O\+\_\+\+M\+LA}}
 \index{A\+M\+I\+G\+O\+\_\+\+M\+LA@{A\+M\+I\+G\+O\+\_\+\+M\+LA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+LA}{AMIGO_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+LA~({\bf B\+A\+S\+E\+\_\+\+M\+LA} + {\bf amigo\+\_\+addr})}\hypertarget{defines_8h_ab26008315661743310bdcb6eed9d37bb}{}\label{defines_8h_ab26008315661743310bdcb6eed9d37bb}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+LA}{AMIGO_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+LA~({\bf B\+A\+S\+E\+\_\+\+M\+LA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)}\hypertarget{defines_8h_ab26008315661743310bdcb6eed9d37bb}{}\label{defines_8h_ab26008315661743310bdcb6eed9d37bb}
 
 
-Definition at line 119 of file defines.\+h.
+Definition at line 260 of file defines.\+h.
 
 
 
@@ -203,10 +192,10 @@ Referenced by Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+
 
 \index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+\_\+\+M\+SA@{A\+M\+I\+G\+O\+\_\+\+M\+SA}}
 \index{A\+M\+I\+G\+O\+\_\+\+M\+SA@{A\+M\+I\+G\+O\+\_\+\+M\+SA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+SA}{AMIGO_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+SA~({\bf B\+A\+S\+E\+\_\+\+M\+SA} + {\bf amigo\+\_\+addr})}\hypertarget{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}{}\label{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+SA}{AMIGO_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+SA~({\bf B\+A\+S\+E\+\_\+\+M\+SA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)}\hypertarget{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}{}\label{defines_8h_a73330fc1bc5b8e8079c298d75b8d8023}
 
 
-Definition at line 121 of file defines.\+h.
+Definition at line 262 of file defines.\+h.
 
 
 
@@ -214,10 +203,10 @@ Referenced by display\+\_\+settings(), and G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A
 
 \index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+\_\+\+M\+TA@{A\+M\+I\+G\+O\+\_\+\+M\+TA}}
 \index{A\+M\+I\+G\+O\+\_\+\+M\+TA@{A\+M\+I\+G\+O\+\_\+\+M\+TA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+TA}{AMIGO_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+TA~({\bf B\+A\+S\+E\+\_\+\+M\+TA} + {\bf amigo\+\_\+addr})}\hypertarget{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}{}\label{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+M\+TA}{AMIGO_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+M\+TA~({\bf B\+A\+S\+E\+\_\+\+M\+TA} + A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+addr)}\hypertarget{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}{}\label{defines_8h_a85152d5e018112c88ce73eb7dce7eefa}
 
 
-Definition at line 120 of file defines.\+h.
+Definition at line 261 of file defines.\+h.
 
 
 
@@ -225,43 +214,21 @@ Referenced by Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+
 
 \index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+\_\+\+P\+PR@{A\+M\+I\+G\+O\+\_\+\+P\+PR}}
 \index{A\+M\+I\+G\+O\+\_\+\+P\+PR@{A\+M\+I\+G\+O\+\_\+\+P\+PR}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+P\+PR}{AMIGO_PPR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+P\+PR~({\bf amigo\+\_\+ppr})}\hypertarget{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}{}\label{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+\_\+\+P\+PR}{AMIGO_PPR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+\_\+\+P\+PR~(A\+M\+I\+G\+O\+Disk.\+amigo\+\_\+ppr)}\hypertarget{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}{}\label{defines_8h_ac9af540664b428a924a0b24d91a1a0ab}
 
 
-Definition at line 122 of file defines.\+h.
+Definition at line 263 of file defines.\+h.
 
 
 
 Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+cmd\+\_\+clear(), amigo\+\_\+cmd\+\_\+wakeup(), Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), Amigo\+\_\+\+Execute(), amigo\+\_\+format(), amigo\+\_\+init(), amigo\+\_\+request\+\_\+status(), amigo\+\_\+seek(), amigo\+\_\+send\+\_\+logical\+\_\+address(), amigo\+\_\+send\+\_\+status(), amigo\+\_\+todo(), amigo\+\_\+todo\+\_\+op(), amigo\+\_\+verify(), display\+\_\+settings(), and G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S().
-
-\index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+I\+D1@{A\+M\+I\+G\+O\+I\+D1}}
-\index{A\+M\+I\+G\+O\+I\+D1@{A\+M\+I\+G\+O\+I\+D1}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+I\+D1}{AMIGOID1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+I\+D1~0x01 /$\ast$$<$ A\+M\+I\+G\+O device I\+D byte 1 $\ast$/}\hypertarget{defines_8h_a3b1dea63813032ba451d06e9bf3c6c81}{}\label{defines_8h_a3b1dea63813032ba451d06e9bf3c6c81}
-
-
-Definition at line 78 of file defines.\+h.
-
-
-
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S().
-
-\index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+I\+D2@{A\+M\+I\+G\+O\+I\+D2}}
-\index{A\+M\+I\+G\+O\+I\+D2@{A\+M\+I\+G\+O\+I\+D2}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+I\+D2}{AMIGOID2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+I\+G\+O\+I\+D2~0x04 /$\ast$$<$ A\+M\+I\+G\+O device I\+D byte 2 $\ast$/}\hypertarget{defines_8h_a58ec5fb3f465bf341bb99005d561400b}{}\label{defines_8h_a58ec5fb3f465bf341bb99005d561400b}
-
-
-Definition at line 79 of file defines.\+h.
-
-
-
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S().
 
 \index{defines.\+h@{defines.\+h}!B\+A\+S\+E\+\_\+\+M\+LA@{B\+A\+S\+E\+\_\+\+M\+LA}}
 \index{B\+A\+S\+E\+\_\+\+M\+LA@{B\+A\+S\+E\+\_\+\+M\+LA}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{B\+A\+S\+E\+\_\+\+M\+LA}{BASE_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+S\+E\+\_\+\+M\+LA~0x20}\hypertarget{defines_8h_a944275020270df551673379e7f726a88}{}\label{defines_8h_a944275020270df551673379e7f726a88}
 
 
-Definition at line 110 of file defines.\+h.
+Definition at line 72 of file defines.\+h.
 
 
 
@@ -272,7 +239,7 @@ Referenced by display\+\_\+settings().
 \subsubsection[{\texorpdfstring{B\+A\+S\+E\+\_\+\+M\+SA}{BASE_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+S\+E\+\_\+\+M\+SA~0x60}\hypertarget{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}{}\label{defines_8h_ac0b05d2eeae663c6ee42b7814be45181}
 
 
-Definition at line 112 of file defines.\+h.
+Definition at line 74 of file defines.\+h.
 
 
 
@@ -283,7 +250,7 @@ Referenced by display\+\_\+settings().
 \subsubsection[{\texorpdfstring{B\+A\+S\+E\+\_\+\+M\+TA}{BASE_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+S\+E\+\_\+\+M\+TA~0x40}\hypertarget{defines_8h_a68b8e22957870863b8c5b2c58fed767b}{}\label{defines_8h_a68b8e22957870863b8c5b2c58fed767b}
 
 
-Definition at line 111 of file defines.\+h.
+Definition at line 73 of file defines.\+h.
 
 
 
@@ -294,14 +261,14 @@ Referenced by display\+\_\+settings().
 \subsubsection[{\texorpdfstring{D\+CL}{DCL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+CL~0x14}\hypertarget{defines_8h_a865c763cb20dd8d8d1bbe2df29f6a50d}{}\label{defines_8h_a865c763cb20dd8d8d1bbe2df29f6a50d}
 
 
-Definition at line 102 of file defines.\+h.
+Definition at line 64 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!E\+R\+R\+\_\+\+D\+I\+SK@{E\+R\+R\+\_\+\+D\+I\+SK}}
 \index{E\+R\+R\+\_\+\+D\+I\+SK@{E\+R\+R\+\_\+\+D\+I\+SK}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+D\+I\+SK}{ERR_DISK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+D\+I\+SK~0b00010000}\hypertarget{defines_8h_a865d33ae8b1e4b84c233893b9f07acc5}{}\label{defines_8h_a865d33ae8b1e4b84c233893b9f07acc5}
 
 
-Definition at line 132 of file defines.\+h.
+Definition at line 82 of file defines.\+h.
 
 
 
@@ -312,7 +279,7 @@ Referenced by amigo\+\_\+request\+\_\+status(), dbf\+\_\+open\+\_\+read(), and d
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+G\+P\+IB}{ERR_GPIB}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+G\+P\+IB~0b00100000}\hypertarget{defines_8h_a42e8438d9e1706b0223fe65237be9fc1}{}\label{defines_8h_a42e8438d9e1706b0223fe65237be9fc1}
 
 
-Definition at line 133 of file defines.\+h.
+Definition at line 83 of file defines.\+h.
 
 
 
@@ -323,7 +290,7 @@ Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(),
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+R\+E\+AD}{ERR_READ}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+R\+E\+AD~0b00000001}\hypertarget{defines_8h_a6b84d62f127a9e48e8a98f7c4f50f3ff}{}\label{defines_8h_a6b84d62f127a9e48e8a98f7c4f50f3ff}
 
 
-Definition at line 128 of file defines.\+h.
+Definition at line 78 of file defines.\+h.
 
 
 
@@ -334,7 +301,7 @@ Referenced by amigo\+\_\+verify(), dbf\+\_\+open\+\_\+read(), dbf\+\_\+open\+\_\
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+S\+E\+EK}{ERR_SEEK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+S\+E\+EK~0b00000100}\hypertarget{defines_8h_a3b4ab922133fc255b6823a9f8434f5c1}{}\label{defines_8h_a3b4ab922133fc255b6823a9f8434f5c1}
 
 
-Definition at line 130 of file defines.\+h.
+Definition at line 80 of file defines.\+h.
 
 
 
@@ -345,7 +312,7 @@ Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(),
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+WP}{ERR_WP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+WP~0b00001000}\hypertarget{defines_8h_a3288f14d5ae8b9aa3ee273aca37970ba}{}\label{defines_8h_a3288f14d5ae8b9aa3ee273aca37970ba}
 
 
-Definition at line 131 of file defines.\+h.
+Definition at line 81 of file defines.\+h.
 
 
 
@@ -356,7 +323,7 @@ Referenced by S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+send\+\_
 \subsubsection[{\texorpdfstring{E\+R\+R\+\_\+\+W\+R\+I\+TE}{ERR_WRITE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+\_\+\+W\+R\+I\+TE~0b00000010}\hypertarget{defines_8h_abdfbdd5affe2e04429a4373950c83cd5}{}\label{defines_8h_abdfbdd5affe2e04429a4373950c83cd5}
 
 
-Definition at line 129 of file defines.\+h.
+Definition at line 79 of file defines.\+h.
 
 
 
@@ -367,42 +334,42 @@ Referenced by amigo\+\_\+format(), amigo\+\_\+request\+\_\+status(), S\+S80\+\_\
 \subsubsection[{\texorpdfstring{G\+ET}{GET}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+ET~0x08}\hypertarget{defines_8h_a982a66f513611f7f83ebfa4b4ecf1df9}{}\label{defines_8h_a982a66f513611f7f83ebfa4b4ecf1df9}
 
 
-Definition at line 99 of file defines.\+h.
+Definition at line 61 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!G\+TL@{G\+TL}}
 \index{G\+TL@{G\+TL}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{G\+TL}{GTL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+TL~0x01}\hypertarget{defines_8h_a4a5ce0eaf1fcd7131fba9ec08df9bc1e}{}\label{defines_8h_a4a5ce0eaf1fcd7131fba9ec08df9bc1e}
 
 
-Definition at line 96 of file defines.\+h.
+Definition at line 58 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!H\+P9121D@{H\+P9121D}}
 \index{H\+P9121D@{H\+P9121D}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{H\+P9121D}{HP9121D}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+P9121D}\hypertarget{defines_8h_adc21759335a3d21784de3624a8dbdcde}{}\label{defines_8h_adc21759335a3d21784de3624a8dbdcde}
 
 
-Definition at line 73 of file defines.\+h.
+Definition at line 55 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!H\+P9134L@{H\+P9134L}}
 \index{H\+P9134L@{H\+P9134L}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{H\+P9134L}{HP9134L}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+P9134L}\hypertarget{defines_8h_acbb3c06e9315e4230f5097bd9e89faf0}{}\label{defines_8h_acbb3c06e9315e4230f5097bd9e89faf0}
 
 
-Definition at line 74 of file defines.\+h.
+Definition at line 56 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!L\+LO@{L\+LO}}
 \index{L\+LO@{L\+LO}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{L\+LO}{LLO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+LO~0x11}\hypertarget{defines_8h_af75952fda4dcd61b5fd81ecc2f764413}{}\label{defines_8h_af75952fda4dcd61b5fd81ecc2f764413}
 
 
-Definition at line 101 of file defines.\+h.
+Definition at line 63 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!M\+E\+D\+I\+A\+\_\+\+F\+L\+AG@{M\+E\+D\+I\+A\+\_\+\+F\+L\+AG}}
 \index{M\+E\+D\+I\+A\+\_\+\+F\+L\+AG@{M\+E\+D\+I\+A\+\_\+\+F\+L\+AG}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{M\+E\+D\+I\+A\+\_\+\+F\+L\+AG}{MEDIA_FLAG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+D\+I\+A\+\_\+\+F\+L\+AG~2  /$\ast$$<$ missing media $\ast$/}\hypertarget{defines_8h_ab24e084972f8d90062d2a3fcec3d07eb}{}\label{defines_8h_ab24e084972f8d90062d2a3fcec3d07eb}
 
 
-Definition at line 71 of file defines.\+h.
+Definition at line 53 of file defines.\+h.
 
 
 
@@ -413,14 +380,14 @@ Referenced by gpib\+\_\+task().
 \subsubsection[{\texorpdfstring{P\+PC}{PPC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+PC~0x05}\hypertarget{defines_8h_aa53c4577418b64bd81732884048fae00}{}\label{defines_8h_aa53c4577418b64bd81732884048fae00}
 
 
-Definition at line 98 of file defines.\+h.
+Definition at line 60 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!P\+PU@{P\+PU}}
 \index{P\+PU@{P\+PU}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{P\+PU}{PPU}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+PU~0x15}\hypertarget{defines_8h_aa9720ef12852cf4e0293b5a0a8b19bdc}{}\label{defines_8h_aa9720ef12852cf4e0293b5a0a8b19bdc}
 
 
-Definition at line 103 of file defines.\+h.
+Definition at line 65 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS@{P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}}
 \index{P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS@{P\+R\+I\+N\+T\+E\+R\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}!defines.\+h@{defines.\+h}}
@@ -431,14 +398,14 @@ Default P\+R\+I\+N\+T\+ER address.
 
 
 
-Definition at line 64 of file defines.\+h.
+Definition at line 46 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA@{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA}}
 \index{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA@{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA}{PRINTER_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+LA~({\bf B\+A\+S\+E\+\_\+\+M\+LA} + {\bf printer\+\_\+addr})}\hypertarget{defines_8h_a888d70c1d31e849e2d55df070beb33f3}{}\label{defines_8h_a888d70c1d31e849e2d55df070beb33f3}
 
 
-Definition at line 124 of file defines.\+h.
+Definition at line 265 of file defines.\+h.
 
 
 
@@ -449,7 +416,7 @@ Referenced by display\+\_\+settings(), G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(
 \subsubsection[{\texorpdfstring{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+SA}{PRINTER_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+SA~({\bf B\+A\+S\+E\+\_\+\+M\+SA} + {\bf printer\+\_\+addr})}\hypertarget{defines_8h_af4297017b18de1a4f866b073614b610f}{}\label{defines_8h_af4297017b18de1a4f866b073614b610f}
 
 
-Definition at line 126 of file defines.\+h.
+Definition at line 267 of file defines.\+h.
 
 
 
@@ -460,7 +427,7 @@ Referenced by display\+\_\+settings().
 \subsubsection[{\texorpdfstring{P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+TA}{PRINTER_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+I\+N\+T\+E\+R\+\_\+\+M\+TA~({\bf B\+A\+S\+E\+\_\+\+M\+TA} + {\bf printer\+\_\+addr})}\hypertarget{defines_8h_a90dea75ab52ec1f7d5c45b0cdfc51a19}{}\label{defines_8h_a90dea75ab52ec1f7d5c45b0cdfc51a19}
 
 
-Definition at line 125 of file defines.\+h.
+Definition at line 266 of file defines.\+h.
 
 
 
@@ -471,35 +438,35 @@ Referenced by display\+\_\+settings(), G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(
 \subsubsection[{\texorpdfstring{S\+DC}{SDC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+DC~0x04}\hypertarget{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{}\label{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}
 
 
-Definition at line 97 of file defines.\+h.
+Definition at line 59 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!S\+PD@{S\+PD}}
 \index{S\+PD@{S\+PD}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{S\+PD}{SPD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+PD~0x19}\hypertarget{defines_8h_a3fee30674709bf7cf2601f2e499372cf}{}\label{defines_8h_a3fee30674709bf7cf2601f2e499372cf}
 
 
-Definition at line 105 of file defines.\+h.
+Definition at line 67 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!S\+PE@{S\+PE}}
 \index{S\+PE@{S\+PE}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{S\+PE}{SPE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+PE~0x18}\hypertarget{defines_8h_a4b23fe370a3a09cc47acd1e837a5b125}{}\label{defines_8h_a4b23fe370a3a09cc47acd1e837a5b125}
 
 
-Definition at line 104 of file defines.\+h.
+Definition at line 66 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}}
 \index{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS}{SS80_DEFAULT_ADDRESS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+D\+D\+R\+E\+SS~0        /$\ast$ S\+S80 default address $\ast$/}\hypertarget{defines_8h_a3a870c471b971e16437e31ad7c531785}{}\label{defines_8h_a3a870c471b971e16437e31ad7c531785}
 
 
-printer do not use parallel poll 
+Power on defaults address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be changed if specified in user config. 
 
-============================================================== Power on defaults address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be changed if specified in user config \begin{DoxySeeAlso}{See also}
+============================================================== \begin{DoxySeeAlso}{See also}
 \hyperlink{ss80_8c}{ss80.\+c} Default S\+S80 address 
 \end{DoxySeeAlso}
 
 
-Definition at line 50 of file defines.\+h.
+Definition at line 32 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}}
 \index{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+PR}!defines.\+h@{defines.\+h}}
@@ -510,14 +477,14 @@ Default S\+S80 Parallel Poll Response bit 0 here is bit 8 on the B\+US.
 
 
 
-Definition at line 54 of file defines.\+h.
+Definition at line 36 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+M\+LA@{S\+S80\+\_\+\+M\+LA}}
 \index{S\+S80\+\_\+\+M\+LA@{S\+S80\+\_\+\+M\+LA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+LA}{SS80_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+LA~({\bf B\+A\+S\+E\+\_\+\+M\+LA} + {\bf ss80\+\_\+addr})}\hypertarget{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}{}\label{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+LA}{SS80_MLA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+LA~({\bf B\+A\+S\+E\+\_\+\+M\+LA} + S\+S80\+Disk.\+ss80\+\_\+addr)}\hypertarget{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}{}\label{defines_8h_a7882c62558652a16d39dc7ea5a94fa64}
 
 
-Definition at line 115 of file defines.\+h.
+Definition at line 256 of file defines.\+h.
 
 
 
@@ -525,10 +492,10 @@ Referenced by display\+\_\+settings(), G\+P\+I\+B(), G\+P\+I\+B\+\_\+\+C\+O\+M\+
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+M\+SA@{S\+S80\+\_\+\+M\+SA}}
 \index{S\+S80\+\_\+\+M\+SA@{S\+S80\+\_\+\+M\+SA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+SA}{SS80_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+SA~({\bf B\+A\+S\+E\+\_\+\+M\+SA} + {\bf ss80\+\_\+addr})}\hypertarget{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}{}\label{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+SA}{SS80_MSA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+SA~({\bf B\+A\+S\+E\+\_\+\+M\+SA} + S\+S80\+Disk.\+ss80\+\_\+addr)}\hypertarget{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}{}\label{defines_8h_a2f3b19d7a7f009cdd9913f5b179e3ca8}
 
 
-Definition at line 117 of file defines.\+h.
+Definition at line 258 of file defines.\+h.
 
 
 
@@ -536,10 +503,10 @@ Referenced by display\+\_\+settings(), gpib\+\_\+read\+\_\+byte(), and G\+P\+I\+
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+M\+TA@{S\+S80\+\_\+\+M\+TA}}
 \index{S\+S80\+\_\+\+M\+TA@{S\+S80\+\_\+\+M\+TA}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+TA}{SS80_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+TA~({\bf B\+A\+S\+E\+\_\+\+M\+TA} + {\bf ss80\+\_\+addr})}\hypertarget{defines_8h_afeaf965938a244975b919224e0cecfb4}{}\label{defines_8h_afeaf965938a244975b919224e0cecfb4}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+M\+TA}{SS80_MTA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+M\+TA~({\bf B\+A\+S\+E\+\_\+\+M\+TA} + S\+S80\+Disk.\+ss80\+\_\+addr)}\hypertarget{defines_8h_afeaf965938a244975b919224e0cecfb4}{}\label{defines_8h_afeaf965938a244975b919224e0cecfb4}
 
 
-Definition at line 116 of file defines.\+h.
+Definition at line 257 of file defines.\+h.
 
 
 
@@ -547,127 +514,65 @@ Referenced by display\+\_\+settings(), G\+P\+I\+B(), G\+P\+I\+B\+\_\+\+C\+O\+M\+
 
 \index{defines.\+h@{defines.\+h}!S\+S80\+\_\+\+P\+PR@{S\+S80\+\_\+\+P\+PR}}
 \index{S\+S80\+\_\+\+P\+PR@{S\+S80\+\_\+\+P\+PR}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+P\+PR}{SS80_PPR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+P\+PR~({\bf ss80\+\_\+ppr})}\hypertarget{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}{}\label{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+P\+PR}{SS80_PPR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+\_\+\+P\+PR~(S\+S80\+Disk.\+ss80\+\_\+ppr)}\hypertarget{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}{}\label{defines_8h_aac36c34ab63f53ba04e53b3164c561d8}
 
 
-Definition at line 118 of file defines.\+h.
+Definition at line 259 of file defines.\+h.
 
 
 
 Referenced by display\+\_\+settings(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), and S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear().
-
-\index{defines.\+h@{defines.\+h}!S\+S80\+I\+D1@{S\+S80\+I\+D1}}
-\index{S\+S80\+I\+D1@{S\+S80\+I\+D1}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+I\+D1}{SS80ID1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+I\+D1~0x02}\hypertarget{defines_8h_a50096467dc88621fe3748e03aa063f34}{}\label{defines_8h_a50096467dc88621fe3748e03aa063f34}
-
-
-Definition at line 90 of file defines.\+h.
-
-
-
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S().
-
-\index{defines.\+h@{defines.\+h}!S\+S80\+I\+D2@{S\+S80\+I\+D2}}
-\index{S\+S80\+I\+D2@{S\+S80\+I\+D2}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+I\+D2}{SS80ID2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+S80\+I\+D2~0x21}\hypertarget{defines_8h_a749916c90f3fb51ff4900201fa5e5762}{}\label{defines_8h_a749916c90f3fb51ff4900201fa5e5762}
-
-
-Definition at line 91 of file defines.\+h.
-
-
-
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S().
 
 \index{defines.\+h@{defines.\+h}!T\+CT@{T\+CT}}
 \index{T\+CT@{T\+CT}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{T\+CT}{TCT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+CT~0x09}\hypertarget{defines_8h_a62d9d5d853e9cf2072dd811ce956ec56}{}\label{defines_8h_a62d9d5d853e9cf2072dd811ce956ec56}
 
 
-Definition at line 100 of file defines.\+h.
+Definition at line 62 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!U\+NL@{U\+NL}}
 \index{U\+NL@{U\+NL}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{U\+NL}{UNL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+NL~0x3F}\hypertarget{defines_8h_a2853286c50783f39131810ec2b0e9610}{}\label{defines_8h_a2853286c50783f39131810ec2b0e9610}
 
 
-Definition at line 107 of file defines.\+h.
+Definition at line 69 of file defines.\+h.
 
 \index{defines.\+h@{defines.\+h}!U\+NT@{U\+NT}}
 \index{U\+NT@{U\+NT}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{U\+NT}{UNT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+NT~0x5F}\hypertarget{defines_8h_aa370bdc64b3b5d37eeb63a4c499f3ef3}{}\label{defines_8h_aa370bdc64b3b5d37eeb63a4c499f3ef3}
 
 
-Definition at line 108 of file defines.\+h.
-
-
-
-\subsection{Typedef Documentation}
-\index{defines.\+h@{defines.\+h}!disk\+\_\+parm@{disk\+\_\+parm}}
-\index{disk\+\_\+parm@{disk\+\_\+parm}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{disk\+\_\+parm}{disk_parm}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+disp\+\_\+parm}  {\bf disk\+\_\+parm}}\hypertarget{defines_8h_af1c376e62a85bf1232b570b00dcb399f}{}\label{defines_8h_af1c376e62a85bf1232b570b00dcb399f}
-
-
-A\+M\+I\+GO Disk structure -\/ ID bytes and layout. 
+Definition at line 70 of file defines.\+h.
 
 
 
 \subsection{Variable Documentation}
-\index{defines.\+h@{defines.\+h}!amigo\+\_\+addr@{amigo\+\_\+addr}}
-\index{amigo\+\_\+addr@{amigo\+\_\+addr}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{amigo\+\_\+addr}{amigo_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+addr}\hypertarget{defines_8h_af8873dfcbc5be9878e0f0c416176344f}{}\label{defines_8h_af8873dfcbc5be9878e0f0c416176344f}
+\index{defines.\+h@{defines.\+h}!A\+M\+I\+G\+O\+Disk@{A\+M\+I\+G\+O\+Disk}}
+\index{A\+M\+I\+G\+O\+Disk@{A\+M\+I\+G\+O\+Disk}!defines.\+h@{defines.\+h}}
+\subsubsection[{\texorpdfstring{A\+M\+I\+G\+O\+Disk}{AMIGODisk}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\+M\+I\+G\+O\+Disk\+Type} A\+M\+I\+G\+O\+Disk}\hypertarget{defines_8h_ab4a2514f2ef1f255d1d99485f29d959f}{}\label{defines_8h_ab4a2514f2ef1f255d1d99485f29d959f}
 
 
-A\+M\+I\+GO address. 
-
-A\+M\+I\+GO address. 
-
-Definition at line 302 of file ss80.\+c.
+A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. 
 
 
 
-Referenced by display\+\_\+settings(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
-
-\index{defines.\+h@{defines.\+h}!amigo\+\_\+ppr@{amigo\+\_\+ppr}}
-\index{amigo\+\_\+ppr@{amigo\+\_\+ppr}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{amigo\+\_\+ppr}{amigo_ppr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t amigo\+\_\+ppr}\hypertarget{defines_8h_ace6a78b7d602a59cf1f95e7fdd8418e3}{}\label{defines_8h_ace6a78b7d602a59cf1f95e7fdd8418e3}
-
-
-A\+M\+I\+GO parallel poll bit number. 
+Definition at line 162 of file drives.\+c.
 
 
 
-Definition at line 303 of file ss80.\+c.
-
-
-
-Referenced by display\+\_\+settings(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+chs\+\_\+to\+\_\+logical(), amigo\+\_\+format(), amigo\+\_\+overflow\+\_\+check(), amigo\+\_\+verify(), display\+\_\+settings(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
 \index{defines.\+h@{defines.\+h}!printer\+\_\+addr@{printer\+\_\+addr}}
 \index{printer\+\_\+addr@{printer\+\_\+addr}!defines.\+h@{defines.\+h}}
 \subsubsection[{\texorpdfstring{printer\+\_\+addr}{printer_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t printer\+\_\+addr}\hypertarget{defines_8h_ae930147fd6b6db510b4d55205bca2763}{}\label{defines_8h_ae930147fd6b6db510b4d55205bca2763}
 
 
-P\+R\+I\+N\+T\+ER address. 
+================= 
 
-P\+R\+I\+N\+T\+ER address. 
-
-Definition at line 306 of file ss80.\+c.
-
-
-
-Referenced by display\+\_\+settings(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
-
-\index{defines.\+h@{defines.\+h}!ss80\+\_\+addr@{ss80\+\_\+addr}}
-\index{ss80\+\_\+addr@{ss80\+\_\+addr}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{ss80\+\_\+addr}{ss80_addr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t ss80\+\_\+addr}\hypertarget{defines_8h_a7bb9a6967b8558248e77748a5ca590de}{}\label{defines_8h_a7bb9a6967b8558248e77748a5ca590de}
-
-
-address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if specified in user config If N\+OT specified see Power on Defaults below 
-
-============================================================== \begin{DoxySeeAlso}{See also}
-\hyperlink{ss80_8c}{ss80.\+c} S\+S80 address
+============================================================== address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if specified in user config If N\+OT specified see Power on Defaults below \begin{DoxySeeAlso}{See also}
+\hyperlink{ss80_8c}{ss80.\+c} P\+R\+I\+N\+T\+ER address
 \end{DoxySeeAlso}
-address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if specified in user config If N\+OT specified see Power on Defaults below
+=================
 
 \begin{DoxyVerb}///  Reference:
 ///  CS80 Page B-12
@@ -682,28 +587,37 @@ address and P\+PR for S\+S80 A\+M\+I\+GO and P\+R\+I\+N\+T\+ER Can be set if spe
 ///  Set RPS     disabled         Set Return Addressing Mode  single vector
 /// \end{DoxyVerb}
  \begin{DoxyReturn}{Returns}
-void  default S\+S80 address 
+void default P\+R\+I\+N\+T\+ER address 
 \end{DoxyReturn}
 
 
-Definition at line 298 of file ss80.\+c.
+Definition at line 173 of file ss80.\+c.
 
 
 
 Referenced by display\+\_\+settings(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
-\index{defines.\+h@{defines.\+h}!ss80\+\_\+ppr@{ss80\+\_\+ppr}}
-\index{ss80\+\_\+ppr@{ss80\+\_\+ppr}!defines.\+h@{defines.\+h}}
-\subsubsection[{\texorpdfstring{ss80\+\_\+ppr}{ss80_ppr}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t ss80\+\_\+ppr}\hypertarget{defines_8h_a3c6e1c6730f78b7b8f2f62178d640e8a}{}\label{defines_8h_a3c6e1c6730f78b7b8f2f62178d640e8a}
+\index{defines.\+h@{defines.\+h}!S\+S80\+Disk@{S\+S80\+Disk}}
+\index{S\+S80\+Disk@{S\+S80\+Disk}!defines.\+h@{defines.\+h}}
+\subsubsection[{\texorpdfstring{S\+S80\+Disk}{SS80Disk}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+Disk\+Type} S\+S80\+Disk}\hypertarget{defines_8h_a16d811299d42f1c1d920caa2b1423491}{}\label{defines_8h_a16d811299d42f1c1d920caa2b1423491}
 
 
-S\+S80 parallel poll bit number. 
+printer do not use parallel poll 
+
+printer do not use parallel poll
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000012}{Todo}]Should we move this into the actual Disk image or config file ?? Size = 5 Bytes\end{DoxyRefDesc}
 
 
 
-Definition at line 299 of file ss80.\+c.
+\begin{DoxyItemize}
+\item Notes\+: H\+P/\+L\+IF data is B\+IG endian 
+\end{DoxyItemize}
+
+Definition at line 97 of file drives.\+c.
 
 
 
-Referenced by display\+\_\+settings(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by display\+\_\+settings(), gpib\+\_\+format\+\_\+disk(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), S\+S80\+\_\+describe(), and S\+S80\+\_\+\+Max\+Vector().
 

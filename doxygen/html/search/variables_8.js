@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['head',['head',['../structDiskType.html#ac4cc3cfd8e1fd4d6ec9dded35384786f',1,'DiskType']]],
-  ['heads',['heads',['../struct__disp__parm.html#a013e3f25cec51e3edfae124ed5d22cb9',1,'_disp_parm']]]
+  ['head',['head',['../structAMIGOStatusType.html#af10e6015013496cad58cfc7a8aec6b1f',1,'AMIGOStatusType']]],
+  ['heads',['heads',['../structAMIGODiskType.html#ac24acfa9854cf9333d7aace761a739be',1,'AMIGODiskType']]]
 ];

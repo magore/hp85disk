@@ -33,10 +33,6 @@
 #define GET     0x08                              // Group execute trigger
 #define TCT     0x09                              // Take control
 
-extern VolumeLabelType vl;
-extern DirEntryType de;
-extern uint8_t amigo_state;
-extern int Amigo_Errors;
 
 /* amigo.c */
 void amigo_init ( void );
@@ -45,7 +41,7 @@ int amigo_request_status ( void );
 int amigo_send_logical_address ( void );
 int amigo_send_status ( void );
 int amigo_increment ( char *msg );
-int amigo_seek ( DiskType *p );
+int amigo_seek ( AMIGOStatusType *p );
 int amigo_verify ( uint16_t sectors );
 int amigo_format ( uint8_t override , uint8_t interleave , uint8_t db );
 int amigo_buffered_read ( void );
@@ -58,4 +54,5 @@ int amigo_todo ( uint8_t secondary );
 int Amigo_Command ( int secondary );
 int Amigo_Execute ( int secondary );
 int AMIGO_COMMANDS ( uint8_t ch );
+
 #endif

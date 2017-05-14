@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['id',['id',['../struct__disp__parm.html#adc781d8c48b2aa39c092fcb206f15e8c',1,'_disp_parm::id()'],['../structFATFS.html#a417095d7c20d56d417dc0998e0dd5a5c',1,'FATFS::id()'],['../struct__FDID.html#a363d7bdab408418b911ac1502bc22ea6',1,'_FDID::id()']]],
+  ['i1',['I1',['../structIdentifyType.html#a8a504de4df6ede470dc1d541b62c7ec8',1,'IdentifyType']]],
+  ['i2',['I2',['../structIdentifyType.html#a7cb0551ebecaa249b8f5d5df24e156af',1,'IdentifyType']]],
+  ['id',['id',['../structAMIGODiskType.html#a184bee0e5c2958f174c972130c241cbe',1,'AMIGODiskType::id()'],['../structSS80DiskType.html#a051107cea479ec682a317e0c44ca5f51',1,'SS80DiskType::id()'],['../structFATFS.html#a417095d7c20d56d417dc0998e0dd5a5c',1,'FATFS::id()'],['../struct__FDID.html#a363d7bdab408418b911ac1502bc22ea6',1,'_FDID::id()']]],
   ['idbyte1',['idbyte1',['../gpib_8h.html#a631bd42b868b4e744a9442e117ac6f3c',1,'gpib.h']]],
   ['idbyte2',['idbyte2',['../gpib_8h.html#a7cd7b4d430193268651db4a679c76260',1,'gpib.h']]],
   ['idx',['idx',['../structputbuff.html#a10a3ca93af8df07e9836ebd5230c06d8',1,'putbuff']]],

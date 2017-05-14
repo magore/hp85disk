@@ -49,8 +49,6 @@ var searchData=
   ['ss80_5fmsa',['SS80_MSA',['../defines_8h.html#a2f3b19d7a7f009cdd9913f5b179e3ca8',1,'defines.h']]],
   ['ss80_5fmta',['SS80_MTA',['../defines_8h.html#afeaf965938a244975b919224e0cecfb4',1,'defines.h']]],
   ['ss80_5fppr',['SS80_PPR',['../defines_8h.html#aac36c34ab63f53ba04e53b3164c561d8',1,'defines.h']]],
-  ['ss80id1',['SS80ID1',['../defines_8h.html#a50096467dc88621fe3748e03aa063f34',1,'defines.h']]],
-  ['ss80id2',['SS80ID2',['../defines_8h.html#a749916c90f3fb51ff4900201fa5e5762',1,'defines.h']]],
   ['sta_5fnodisk',['STA_NODISK',['../diskio_8h.html#aec625080763d6cf487e550a6c9a2dd19',1,'diskio.h']]],
   ['sta_5fnoinit',['STA_NOINIT',['../diskio_8h.html#abd6503c70d862b979a3f7080a59e9acd',1,'diskio.h']]],
   ['sta_5fprotect',['STA_PROTECT',['../diskio_8h.html#a9ec6dc5f6620a33fabe388d3a111ca8c',1,'diskio.h']]],

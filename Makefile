@@ -46,7 +46,8 @@ gpib/gpib_task.c \
 gpib/gpib_tests.c \
 gpib/ss80.c \
 gpib/amigo.c \
-gpib/printer.c
+gpib/printer.c \
+gpib/drives.c
 
 CSRC    = \
 printf/printf.c \

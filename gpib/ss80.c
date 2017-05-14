@@ -25,28 +25,6 @@
 #include "amigo.h"
 #include "ss80.h"
 
-/// @brief Execute state index
-int estate;
-
-extern uint8_t talking;
-extern uint8_t listening;
-extern uint8_t spoll;
-
-/// @brief Qstat variable
-uint8_t qstat;
-
-/// @enum
-enum ss80exec 
-{
-    EXEC_IDLE,
-    EXEC_LOCATE_AND_READ,
-    EXEC_LOCATE_AND_WRITE,
-    EXEC_SEND_STATUS,
-    EXEC_DESCRIBE
-};
-
-
-
 /// @verbatim
 ///  See LIF filesystem Reference
 ///  Reference from "Subset 80 for Fixed and Flexible Disk Drives"
@@ -105,133 +83,37 @@ enum ss80exec
 ///  Figure 3- 8. Secondaries and Opcodes
 /// @endverbatim
 
+///@brief GPIB BUS states
+extern uint8_t talking;
+extern uint8_t listening;
+extern uint8_t spoll;
 
+/// @brief Execute states
+/// @enum
+enum ss80exec 
+{
+    EXEC_IDLE,
+    EXEC_LOCATE_AND_READ,
+    EXEC_LOCATE_AND_WRITE,
+    EXEC_SEND_STATUS,
+    EXEC_DESCRIBE
+};
 
+/// @brief Execute state index
+int estate;
 
+/// @brief Qstat variable
+uint8_t qstat;
+
+///@brief SS80 Unit and Volume Number
 BYTE Unit;           //< Unit Number - we only do 1
 BYTE Volume;         //< Volume Number - we only do 1
-BYTE Address[6];     //< SS80 Address, Address[5] = LSB. In blocks
-DWORD Vector;        //< Vector, ie file position, in 256 blocks
-DWORD Maxvector;     //< Maximum upper bounds initialised by SS80_init.
-LengthType Length;   //< Length, in blocks
+
+///@brief values specific to selected disk
+SS80AddressType Vector;   //< Address in bytes
+SS80LengthType Length;   //< Length, in blocks
 
 int Errors;          //< Error byte
-
-/// @todo  Should we move this into the actual Disk image or config file ??
-/// Size = 5 Bytes
-///
-/// - Notes: HP/LIF data is BIG endian
-/// 
-/// @brief HP9122D Controller Description
-#if defined(HP9122D)
-ControllerDescriptionType ControllerDescription =
-{
-    0b10000000,
-    0b00000001,                                   // One unit
-    0x02,                                         // Transfer rate 744 = 0x2e8
-    0xe8,
-    0x05                                          // Controller type
-};
-
-/// @brief HP9122D Uint Description
-/// Size = 19 Bytes
-UnitDescriptionType UnitDescription =
-{
-    0x01,                                         // Unit type = floppy
-    0x09,                                         // Type 9122
-    0x12,
-    0x20,
-    0x01,                                         // Bytes per block = 256
-    0x00,
-    0x01,                                         // Number of buffered blocks
-    0x00,                                         // Burst size = 0
-    0x17,                                         // Block time in us = 5888 = 0x1700
-    0x00,
-    0x00,                                         // Continous transfer rate = 45
-    0x2d,
-    0x11,                                         // Optimal retry = 4500 = 0x1194
-    0x94,
-    0x20,                                         // Access time = 8400 = 0x20d0
-    0xd0,
-    0x0f,                                         // Maximum interleave
-    0x00,                                         // Fixed volume byte (no fixed volumes)
-    0x01                                          // Removable volume byte = 1
-};
-
-/// @brief HP9122D Volume Description
-/// Size = 13 bytes
-VolumeDescriptionType VolumeDescription =
-{
-    0x00,                                         // Max cylinder
-    0x00,
-    0x00,
-    0x00,                                         // Max head
-    0x00,                                         // Max sector
-    0x00,
-    0x00,                                         // Max single vector address = 2463 = 99f
-    0x00,
-    0x00,
-    0x00,
-    0x09,
-    0x9f,
-    0x02                                          // Current interleave = 2
-};
-#elif defined(HP9134L)
-/// @brief HP9134L Controller Description
-ControllerDescriptionType ControllerDescription =
-{
-    0b10000000,
-    0b00000001,                                   // One unit
-    0x02,                                         // Transfer rate 744 = 0x2e8
-    0xe8,
-    0x05                                          // Controller type
-};
-
-/// @brief HP9134L Uint Description
-UnitDescriptionType UnitDescription =
-{
-    0x00,                                         // Unit type = winchester
-    0x09,                                         // Type 9134
-    0x13,
-    0x40,
-    0x01,                                         // Bytes per block = 256
-    0x00,
-    0x01,                                         // Number of buffered blocks
-    0x00,                                         // Burst size = 0
-    0x01,                                         // Block time in us = 502 = 0x1F6
-    0xF6,
-    0x00,                                         // Continous transfer rate = 140 kb/s
-    0x8c,
-    0x11,                                         // Optimal retry = 4500 = 0x1194 = 45000 = 4,5s worstcase
-    0x94,
-    0x11,                                         // Access time = 4500 = 0x1194
-    0x94,
-    0x1f,                                         // Maximum interleave
-    0x01,                                         // Fixed volume byte (1 fixed volumes)
-    0x00                                          // Removable volume byte = 0 (fixed)
-};
-
-/// @brief HP9134L Volume Description
-VolumeDescriptionType VolumeDescription =
-{
-    0x00,                                         // Max cylinder
-    0x00,
-    0x00,
-    0x00,                                         // Max head
-    0x00,                                         // Max sector
-    0x00,
-    0x00,                                         // Max single vector address = 58176 = e340
-    0x00,
-    0x00,
-    0x00,
-    0xe3,
-    0x40,
-    0x07                                          // Current interleave = 2
-};
-#else
-	#error You must define a floppy in defines.h
-#endif
-
 
 /// @brief SS80 GPIB test string
 /// @todo get this working
@@ -254,17 +136,10 @@ int TD[] =
 /// @todo get this working
 void SS80_Test(void)
 {
-    int i;
 #if SDEBUG >= 1
     if(debuglevel > 1)
         printf("[SS80 Test]\n");
 #endif
-    Length.Lenbytes[1] = 2;
-    Address[5] = 2;
-    Vector = Address[2] * 0x100000000L + Address[3] * 0x1000000L + Address[4] * 0x10000L + Address[5] * 0x100L;
-    for(i=0;TD[i] == -1;i++)
-    {
-    }
 #if SDEBUG >= 1
     if(debuglevel > 1)
     {
@@ -294,16 +169,18 @@ void SS80_Test(void)
 /// @return void
 
 
-///@beief default SS80 address
-uint8_t ss80_addr    = SS80_DEFAULT_ADDRESS;
-uint8_t ss80_ppr     = SS80_DEFAULT_PPR;
-
-///@beief default AMIGO address
-uint8_t amigo_addr   = AMIGO_DEFAULT_ADDRESS;
-uint8_t amigo_ppr    = AMIGO_DEFAULT_PPR;
-
 ///@brief default PRINTER address
 uint8_t printer_addr = PRINTER_DEFAULT_ADDRESS;
+
+// Maximum block number
+DWORD SS80_MaxVector()
+{
+    DWORD val = SS80Disk.Volume.V9 * 0x1000000L +
+        SS80Disk.Volume.V10 * 0x10000L +
+        SS80Disk.Volume.V11 * 0x100L +
+        SS80Disk.Volume.V12;
+	return(val);
+}
 
 void SS80_init(void)
 {
@@ -311,10 +188,6 @@ void SS80_init(void)
 
     gpib_bus_init(1);
 
-    Maxvector = VolumeDescription.V9 * 0x100000000L +
-        VolumeDescription.V10 * 0x1000000L +
-        VolumeDescription.V11 * 0x10000L +
-        VolumeDescription.V12 * 0x100L;
 #if SDEBUG >= 1
     if(debuglevel >= 1)
         printf("[SS80 INIT]\n");
@@ -379,7 +252,7 @@ int SS80_Execute_State(void)
 /// @brief  SS80 Locate and Read COmmend
 ///
 /// - Reference: SS80 4-39
-/// - Read (Length.Length) disk bytes at (Vector) offset.
+/// - Read (Length.L) disk bytes at (Vector) offset.
 /// - Send this data to the GPIB bus.
 /// - State: EXEC STATE COMMAND.
 /// @return 0 on sucess
@@ -412,7 +285,7 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Read @%08lx(%lx)]\n", Vector, Length.Length);
+        printf("[SS80 Locate and Read @%08lx(%lx)]\n", Vector.L * 256L, Length.L);
 #endif
 
     if( SS80_cmd_seek() )
@@ -420,7 +293,7 @@ int SS80_locate_and_read( void )
         return(SS80_error_return());
     }
 
-    count = Length.Length;
+    count = Length.L;
     total_bytes = 0;
     while(count > 0 )
     {
@@ -445,7 +318,7 @@ int SS80_locate_and_read( void )
             gpib_timer_elapsed_begin();
 #endif
 
-        len = dbf_open_read("/ss80.lif", Vector, gpib_iobuff, chunk, &Errors);
+        len = dbf_open_read("/ss80.lif", Vector.L * 256L, gpib_iobuff, chunk, &Errors);
 #if SDEBUG > 1
         if(debuglevel > 2)
             gpib_timer_elapsed_end("Disk Read");
@@ -488,7 +361,7 @@ int SS80_locate_and_read( void )
 
         total_bytes = total_bytes + len;
         count -= len;
-        Vector = Vector + 256;
+        Vector.L = Vector.L + 1;
     }
 ///  Note: this should not happen unless we exit on errors above
     if(count > 0)
@@ -512,7 +385,7 @@ int SS80_locate_and_read( void )
 /// @brief  SS80 Locate and Write Commend.
 ///
 /// - Reference: SS80 pg 4-45, CS80 pg 2-8.
-/// - Write (Length.Length) disk bytes from GPIB at (Vector) offset.
+/// - Write (Length.L) disk bytes from GPIB at (Vector) offset.
 /// - State: EXEC STATE COMMAND.
 /// - Disk I/O errors will set qstat and Errors.
 /// - Limitations.
@@ -534,7 +407,7 @@ int SS80_locate_and_write(void)
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Write @%08lx(%lx)]\n", Vector, Length.Length);
+        printf("[SS80 Locate and Write @%08lx(%lx)]\n", Vector.L * 256L, Length.L);
 #endif
 
     qstat = 0;
@@ -548,7 +421,7 @@ int SS80_locate_and_write(void)
         io_skip = 1;
     }
 
-    count = Length.Length;
+    count = Length.L;
     total_bytes = 0;
 
     status = 0;
@@ -604,7 +477,7 @@ int SS80_locate_and_write(void)
                 if(debuglevel > 2)
                     gpib_timer_elapsed_begin();
 #endif
-                len2 = dbf_open_write("/ss80.lif", Vector, gpib_iobuff, 256, &Errors);
+                len2 = dbf_open_write("/ss80.lif", Vector.L * 256L, gpib_iobuff, 256, &Errors);
 #if SDEBUG > 1
                 if(debuglevel > 2)
                     gpib_timer_elapsed_end("Disk Write");
@@ -627,7 +500,8 @@ int SS80_locate_and_write(void)
                     if(debuglevel > 1)
                         printf("[SS80 Locate and Write wrote(%d)]\n", len2);
 #endif
-                    Vector = Vector + 0x100L;
+					// FIXME block size
+                    Vector.L = Vector.L + 1;
                 }
 
                 if(len2 >= len)
@@ -800,13 +674,17 @@ int SS80_send_status( void )
 /// 4:63,64
 
 ///  Note: Diagnostic Result bit is NOT set
-    tmp[10] = Address[0];
-    tmp[11] = Address[1];
-    tmp[12] = Address[2];
-    tmp[13] = Address[3];
-    tmp[14] = Address[4];
-    tmp[15] = Address[5];
-
+///@see SET ADDRESS
+	if(!Errors)
+	{
+		// FIXME block size
+		tmp[10] = Vector.B[5];	// MSB unused
+		tmp[11] = Vector.B[4];	// unused
+		tmp[12] = Vector.B[3];
+		tmp[13] = Vector.B[2];
+		tmp[14] = Vector.B[1];
+		tmp[15] = Vector.B[0];	// LSB
+	}
 
 /// @todo Fixme
     if(Errors)
@@ -844,8 +722,8 @@ int SS80_describe( void )
 #endif
 
     status = 0;
-    if(gpib_write_str((uint8_t *) &ControllerDescription,sizeof(ControllerDescription), &status) !=
-        sizeof(ControllerDescription))
+    if(gpib_write_str((uint8_t *) &SS80Disk.Controller,sizeof(SS80Disk.Controller), &status) !=
+        sizeof(SS80Disk.Controller))
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -855,8 +733,8 @@ int SS80_describe( void )
     }
 
     status = 0;
-    if(gpib_write_str((uint8_t *) &UnitDescription,sizeof(UnitDescription), &status) !=
-        sizeof(UnitDescription))
+    if(gpib_write_str((uint8_t *) &SS80Disk.Unit,sizeof(SS80Disk.Unit), &status) !=
+        sizeof(SS80Disk.Unit))
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -866,8 +744,8 @@ int SS80_describe( void )
     }
 
     status = EOI_FLAG;
-    if(gpib_write_str((uint8_t *) &VolumeDescription,sizeof(VolumeDescription),&status) !=
-        sizeof(VolumeDescription))
+    if(gpib_write_str((uint8_t *) &SS80Disk.Volume,sizeof(SS80Disk.Volume),&status) !=
+        sizeof(SS80Disk.Volume))
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -991,24 +869,28 @@ int SS80_Command_State( void )
 /// @todo FIXME
 ///  Important SS80 and CS80 differences regarding Complementary Commands!
 ///  CS80 pg 2-1
-///  1) In CS80 if only complementary commands appear in a message then
-///     the because the system defaults when they are unspecified.
+///  1) In CS80 when only complementary commands appear in a message 
+///     they will set the system defaults:
+///     Unit, number, data transfer length, burst size, maximum retry time, 
+///     and Rotational Position Sensing (RPS) window size and location.
 ///  2) If, in the same message, they proceed a Real Time, General Purpose
-///     or Diagnostic they are TEMPORARY - just for that single transaction!
+///     or Diagnostic they are TEMPORARY and just for that single transaction!
 ///  3) The exeption to these rules are Set Unit, Set Volume
 
-
 /// @todo  Only handles 4-byte Addresses at the moment
-///  SS80 pg 4-67
 ///  CS80 pg 4-11, 2-14
-
+///  SS80 pg 4-67
+		// Set address
         if (ch == 0x10)
         {
-            Vector = \
-                gpib_iobuff[ind+2] * 0x100000000L \
-                + gpib_iobuff[ind+3] * 0x1000000L \
-                + gpib_iobuff[ind+4] * 0x10000L \
-                + gpib_iobuff[ind+5] * 0x100L;
+			/* upper two MSB unused */
+			Vector.B[5] = gpib_iobuff[ind+0];// MSB unused
+			Vector.B[4] = gpib_iobuff[ind+1];// unused
+			Vector.B[3] = gpib_iobuff[ind+2];
+			Vector.B[2] = gpib_iobuff[ind+3];
+			Vector.B[1] = gpib_iobuff[ind+4];
+			Vector.B[0] = gpib_iobuff[ind+5];//LSB
+
             ind += 6;
 #if SDEBUG > 1
             if(debuglevel > 1)
@@ -1017,16 +899,18 @@ int SS80_Command_State( void )
             continue;
         }
 
+///  SS80 pg 4-73
+		// Set Length
         if(ch == 0x18)
         {
-            Length.Lenbytes[3] = gpib_iobuff[ind];// MSB
-            Length.Lenbytes[2] = gpib_iobuff[ind+1];
-            Length.Lenbytes[1] = gpib_iobuff[ind+2];
-            Length.Lenbytes[0] = gpib_iobuff[ind+3];
+            Length.B[3] = gpib_iobuff[ind+0];// MSB
+            Length.B[2] = gpib_iobuff[ind+1];
+            Length.B[1] = gpib_iobuff[ind+2];
+            Length.B[0] = gpib_iobuff[ind+3];//LSB
             ind += 4;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Length:(%08lx)]\n", Length.Length);
+                printf("[SS80 Set Length:(%08lx)]\n", Length.L);
 #endif
             continue;
         }
@@ -1041,6 +925,8 @@ int SS80_Command_State( void )
             continue;
         }
 
+// SS80 $S80 4-47
+		// NO OP
         if(ch == 0x34)
         {
 #if SDEBUG > 1
@@ -1049,6 +935,8 @@ int SS80_Command_State( void )
 #endif
             continue;
         }
+// SS80 $S80 4-79
+		// Set RPS
         if (ch == 0x39)
         {
             ind += 2;
@@ -1059,6 +947,8 @@ int SS80_Command_State( void )
             continue;
         }
 
+// SS80 $S80 4-75
+		// Set Release
         if (ch == 0x3B)
         {
             ind++;
@@ -1467,7 +1357,7 @@ int SS80_cmd_seek( void )
 
 /// @todo  Let f_lseek do bounds checking instead ???
 ///  Will we read or write past the end of the disk ??
-    if ((Vector + Length.Length) > Maxvector)
+    if ((Vector.L + (Length.L/256L)) > SS80_MaxVector())
     {
         qstat = 1;
         Errors |= ERR_SEEK;
@@ -1612,8 +1502,8 @@ void Clear_Common(int u)
     if(u == 15)
         Unit = 0;
     Volume = 0;
-    Vector = 0;
-    Length.Length = 0;
+    Vector.L = 0;
+    Length.L = 0;
     estate = EXEC_IDLE;
 
 /// @todo FIXME
@@ -1754,7 +1644,7 @@ int SS80_Cancel( int u )
 
 int SS80_increment( void )
 {
-    Vector += 0x100L;
+    Vector.L += 1L;
 #if SDEBUG > 1
     if(debuglevel > 1)
         printf("[SS80 Increment to (%lx)]\n", Vector);

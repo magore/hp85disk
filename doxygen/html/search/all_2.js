@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t']]],
+  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t::b()'],['../unionSS80LengthType.html#ae34b090db3881e2a81df6daa00e09f96',1,'SS80LengthType::B()'],['../unionSS80AddressType.html#a0f11f4f6624071d1844f92934f05a8f9',1,'SS80AddressType::B()']]],
   ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
   ['base_5fmsa',['BASE_MSA',['../defines_8h.html#ac0b05d2eeae663c6ee42b7814be45181',1,'defines.h']]],
   ['base_5fmta',['BASE_MTA',['../defines_8h.html#a68b8e22957870863b8c5b2c58fed767b',1,'defines.h']]],
@@ -76,5 +76,5 @@ var searchData=
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
-  ['bytes_5fper_5fsector',['bytes_per_sector',['../struct__disp__parm.html#ad575790e79a6bdf19bffcb8dda1df180',1,'_disp_parm']]]
+  ['bytes_5fper_5fsector',['bytes_per_sector',['../structAMIGODiskType.html#aaba90c38cd54cffcffefd43955f137c2',1,'AMIGODiskType']]]
 ];

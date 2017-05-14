@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['c1',['C1',['../structControllerDescriptionType.html#a042a33e692d7d242a384d8edc94af2f2',1,'ControllerDescriptionType']]],
-  ['c2',['C2',['../structControllerDescriptionType.html#ae2ac8a001bde9c68f92c6bb3a7287517',1,'ControllerDescriptionType']]],
-  ['c3',['C3',['../structControllerDescriptionType.html#ad24f2f797685ffd8f0bc96a800e5a6a8',1,'ControllerDescriptionType']]],
-  ['c4',['C4',['../structControllerDescriptionType.html#abc2badc5707de3327d15a00919fb7e08',1,'ControllerDescriptionType']]],
-  ['c5',['C5',['../structControllerDescriptionType.html#a5b520889371f53fb89e36a0de5f071e9',1,'ControllerDescriptionType']]],
+  ['c1',['C1',['../structSS80ControllerType.html#aa71282f54bf2b38fd8ace152aa9221b7',1,'SS80ControllerType']]],
+  ['c2',['C2',['../structSS80ControllerType.html#a99a2d4b94a756273b7ad2e4bdc786de8',1,'SS80ControllerType']]],
+  ['c3',['C3',['../structSS80ControllerType.html#acdbaaa95ad03c2a60f9e5cb0f9558ff8',1,'SS80ControllerType']]],
+  ['c4',['C4',['../structSS80ControllerType.html#a1d3d0ce7719f1fcb2d4c8c0c70750cdf',1,'SS80ControllerType']]],
+  ['c5',['C5',['../structSS80ControllerType.html#ae968d050e8c1a5b20a607dd16b4322c8',1,'SS80ControllerType']]],
   ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'calloc():&#160;user_config.h'],['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;ram.h']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
@@ -63,8 +63,7 @@ var searchData=
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
-  ['controllerdescription',['ControllerDescription',['../ss80_8c.html#a6c2c7eb732e226999d4a4699b3d5ff82',1,'ss80.c']]],
-  ['controllerdescriptiontype',['ControllerDescriptionType',['../structControllerDescriptionType.html',1,'']]],
+  ['controller',['Controller',['../structSS80DiskType.html#a2fe71dc8a453df2e8cde8e8dded1bb63',1,'SS80DiskType']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../struct__plot.html#af4d84e2aa52eabdc7ccc2fbf18272e98',1,'_plot']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],
@@ -92,7 +91,7 @@ var searchData=
   ['ctrl_5ftrim',['CTRL_TRIM',['../diskio_8h.html#af09fd84bea8d4e889e272471f44d60d6',1,'diskio.h']]],
   ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]],
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
-  ['cyl',['cyl',['../structDiskType.html#a990d2a05bc2d8bf1328d0249202539e5',1,'DiskType']]],
-  ['cylinders',['cylinders',['../struct__disp__parm.html#ac4687d407f95a65e86313cde433832a4',1,'_disp_parm']]],
+  ['cyl',['cyl',['../structAMIGOStatusType.html#af5b8f182ebd61f2eb51614fc402b69ee',1,'AMIGOStatusType']]],
+  ['cylinders',['cylinders',['../structAMIGODiskType.html#ae89d76a3143c33f3d61b0465ac2e8fe3',1,'AMIGODiskType']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

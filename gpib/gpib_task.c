@@ -13,6 +13,7 @@
 
 #include "user_config.h"
 
+#include "posix.h"
 #include "defines.h"
 #include "gpib_hal.h"
 #include "gpib.h"
@@ -30,7 +31,6 @@ uint8_t debuglevel;
 
 /// @brief GPIB log file handel
 FILE *gpib_log_fp;
-
 
 /// @brief  Read GPIB emulator Configuration file
 ///
@@ -499,11 +499,11 @@ void display_settings()
 
 	printf("debuglevel   = %02x\n",(int)debuglevel);
 	printf("\n");
-	printf("ss80_addr    = %02x\n",(int)ss80_addr);
-	printf("ss80_ppr     = %02x\n",(int)ss80_ppr);
+	printf("ss80_addr    = %02x\n",(int)SS80Disk.ss80_addr);
+	printf("ss80_ppr     = %02x\n",(int)SS80Disk.ss80_ppr);
 	printf("\n");
-	printf("amigo_addr   = %02x\n",(int)amigo_addr);
-	printf("amigo_ppr    = %02x\n",(int)amigo_ppr);
+	printf("amigo_addr   = %02x\n",(int)AMIGODisk.amigo_addr);
+	printf("amigo_ppr    = %02x\n",(int)AMIGODisk.amigo_ppr);
 	printf("\n");
 	printf("printer_addr = %02x\n",(int)printer_addr);
 	printf("\n");
@@ -574,13 +574,13 @@ void POSIX_Read_Config(char *name)
 		if ( set_value(ptr,"DEBUG", 0, 255, &val) )
 			debuglevel = val;
 		if ( set_value(ptr,"SS80_DEFAULT_ADDRESS", 0, 14, &val) )
-			ss80_addr = val;
+			SS80Disk.ss80_addr = val;
 		if ( set_value(ptr,"SS80_DEFAULT_PPR", 0, 7, &val) )
-			ss80_ppr = val;
+			SS80Disk.ss80_ppr = val;
 		if ( set_value(ptr,"AMIGO_DEFAULT_ADDRESS", 0, 14, &val) )
-			amigo_addr = val;
+			AMIGODisk.amigo_addr = val;
 		if ( set_value(ptr,"AMIGO_DEFAULT_PPR", 0, 7, &val) )
-			amigo_ppr = val;
+			AMIGODisk.amigo_ppr = val;
 		if ( set_value(ptr,"PRINTER_DEFAULT_ADDRESS", 0, 14, &val) )
 			printer_addr = val;
     }
@@ -605,32 +605,26 @@ void POSIX_Read_Config(char *name)
 ///  - CS80 pg 4-27, 3-10
 ///  - A11
 ///
-/// @param[in] byte1: first Send Identify byte
-/// @param[in] byte2: second Send Identify byte
+/// @param[in] ch: channel
 ///
 /// @return  0 on GPIB error returns error flags
 /// @see gpib.h ERROR_MASK for a full list.
 
-int Send_Identify( uint8_t byte1, uint8_t byte2)
+int Send_Identify(uint8_t ch, IdentifyType id)
 {
-    uint16_t status;
-    uint8_t tmp[2];
-
-    tmp[0] = byte1;
-    tmp[1] = byte2;
-
-    status = EOI_FLAG;
-    if( gpib_write_str(tmp,sizeof(tmp), &status) != sizeof(tmp))
-    {
+    uint16_t status = EOI_FLAG;
+	if(gpib_write_str((uint8_t *)&id,sizeof(id), &status) 
+		!= sizeof(id))
+	{
 #if SDEBUG >= 1
-        if(debuglevel >= 1)
-            printf("[IDENT failed]\n");
+		if(debuglevel >= 1)
+			printf("[IDENT Unit:%02x=%02x%02x FAILED]\n", (int)ch,(int)id.I1,(int)id.I2);
 #endif
-        return(status & ERROR_MASK);
-    }
+		return(status & ERROR_MASK);
+	}
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[IDENT %02x %02x]\n", 0xff & byte1, 0xff & byte2);
+		printf("[IDENT Unit:%02x=%02x%02x]\n", (int)ch,(int)id.I1,(int)id.I2);
 #endif
     return (status & ERROR_MASK);
 }
@@ -914,7 +908,8 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
             printf("[SA %02x SS80]\n", 0xff & ch);
 #endif
         DisablePPR(SS80_PPR);
-        return( Send_Identify( SS80ID1, SS80ID2) );
+        return( Send_Identify( ch, SS80Disk.id) );
+
     }
 
 #ifdef AMIGO
@@ -927,7 +922,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
             printf("[SA %02x AMIGO]\n", 0xff & ch);
 #endif
         DisablePPR(AMIGO_PPR);
-        return( Send_Identify( AMIGOID1, AMIGOID2) );
+        return( Send_Identify( ch, AMIGODisk.id) );
     }
 #endif                                        // AMIGO
 

@@ -6,6 +6,7 @@ High level G\+P\+IB command handler for H\+P85 disk emulator project for A\+V\+R
 
 
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\\*
@@ -36,7 +37,7 @@ void \hyperlink{gpib__task_8c_a44e76acfcd1c549f9ca1c487183dccf9}{display\+\_\+se
 \begin{DoxyCompactList}\small\item\em Display configuration settings. \end{DoxyCompactList}\item 
 void \hyperlink{gpib__task_8c_a5338f8cf89ab5f251b525c11dc34052d}{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Read and parse a config file using P\+O\+S\+IX functions. \end{DoxyCompactList}\item 
-int \hyperlink{gpib__task_8c_a6124af586deb96d91b919667d616cd94}{Send\+\_\+\+Identify} (uint8\+\_\+t byte1, uint8\+\_\+t byte2)
+int \hyperlink{gpib__task_8c_ab15ca3db45137f4d5b9ccbc05540dfeb}{Send\+\_\+\+Identify} (uint8\+\_\+t ch, \hyperlink{structIdentifyType}{Identify\+Type} id)
 \begin{DoxyCompactList}\small\item\em Send drive identify-\/ 2 bytes. \end{DoxyCompactList}\item 
 int \hyperlink{gpib__task_8c_ac63d4e431ab55dddfbf436d87135128e}{G\+P\+IB} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em Main G\+P\+IB command handler. \end{DoxyCompactList}\item 
@@ -161,24 +162,24 @@ G\+P\+IB error flags on fail
 \hyperlink{gpib_8h}{gpib.\+h} \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK} defines for a full list. 
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000017}{Todo}]T\+O\+DO \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000018}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
-
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000018}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
-
-
-Note\+: Suposed to be unsupported in S\+S80 -\/ pg 4-\/2 C\+S80 3-\/4
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000019}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
+Note\+: Suposed to be unsupported in S\+S80 -\/ pg 4-\/2 C\+S80 3-\/4
+
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000020}{Todo}]Fixme \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000020}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 651 of file gpib\+\_\+task.\+c.
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000021}{Todo}]Fixme \end{DoxyRefDesc}
+
+
+Definition at line 645 of file gpib\+\_\+task.\+c.
 
 
 
@@ -287,7 +288,7 @@ A\+B\+O\+RT flag on user keypress
 \end{DoxyReturn}
 
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000016}{Todo}]do we want to always exit here ? low level G\+P\+IB functions are still useful even without a D\+I\+SK \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000017}{Todo}]do we want to always exit here ? low level G\+P\+IB functions are still useful even without a D\+I\+SK \end{DoxyRefDesc}
 
 
 Definition at line 161 of file gpib\+\_\+task.\+c.
@@ -364,7 +365,7 @@ Process all G\+P\+IB Listen commands.
 \end{DoxyReturn}
 N\+O\+TE\+: we must track the \char`\"{}addressed state\char`\"{} of each device so we can determine its state -\/ ie\+: command vs Secondary states 
 
-Definition at line 756 of file gpib\+\_\+task.\+c.
+Definition at line 750 of file gpib\+\_\+task.\+c.
 
 
 
@@ -408,7 +409,7 @@ N\+O\+TE\+: We now know that ch $>$= 0x60 \&\& ch $<$= 0x7f Previous tests ensur
 
 note\+: any errors will reset lastcmd Universal Talk mode Treat this as a Secondary Address ? S\+S80 Ident 4-\/31 If we have our secondary address then send I\+D\+E\+NT 
 
-Definition at line 899 of file gpib\+\_\+task.\+c.
+Definition at line 893 of file gpib\+\_\+task.\+c.
 
 
 
@@ -435,7 +436,7 @@ Process all G\+P\+IB Talk commands.
 \end{DoxyReturn}
 N\+O\+TE\+: we must track the \char`\"{}addressed state\char`\"{} of each device so we can determine its state -\/ ie\+: command vs Secondary states save talking state 
 
-Definition at line 826 of file gpib\+\_\+task.\+c.
+Definition at line 820 of file gpib\+\_\+task.\+c.
 
 
 
@@ -520,7 +521,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 949 of file gpib\+\_\+task.\+c.
+Definition at line 944 of file gpib\+\_\+task.\+c.
 
 
 
@@ -560,12 +561,12 @@ Referenced by gpib\+\_\+file\+\_\+init().
 
 \index{gpib\+\_\+task.\+c@{gpib\+\_\+task.\+c}!Send\+\_\+\+Identify@{Send\+\_\+\+Identify}}
 \index{Send\+\_\+\+Identify@{Send\+\_\+\+Identify}!gpib\+\_\+task.\+c@{gpib\+\_\+task.\+c}}
-\subsubsection[{\texorpdfstring{Send\+\_\+\+Identify(uint8\+\_\+t byte1, uint8\+\_\+t byte2)}{Send_Identify(uint8_t byte1, uint8_t byte2)}}]{\setlength{\rightskip}{0pt plus 5cm}int Send\+\_\+\+Identify (
+\subsubsection[{\texorpdfstring{Send\+\_\+\+Identify(uint8\+\_\+t ch, Identify\+Type id)}{Send_Identify(uint8_t ch, IdentifyType id)}}]{\setlength{\rightskip}{0pt plus 5cm}int Send\+\_\+\+Identify (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{byte1, }
-\item[{uint8\+\_\+t}]{byte2}
+\item[{uint8\+\_\+t}]{ch, }
+\item[{{\bf Identify\+Type}}]{id}
 \end{DoxyParamCaption}
-)}\hypertarget{gpib__task_8c_a6124af586deb96d91b919667d616cd94}{}\label{gpib__task_8c_a6124af586deb96d91b919667d616cd94}
+)}\hypertarget{gpib__task_8c_ab15ca3db45137f4d5b9ccbc05540dfeb}{}\label{gpib__task_8c_ab15ca3db45137f4d5b9ccbc05540dfeb}
 
 
 Send drive identify-\/ 2 bytes. 
@@ -583,9 +584,7 @@ Send drive identify-\/ 2 bytes.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em byte1} & first Send Identify byte \\
-\hline
-\mbox{\tt in}  & {\em byte2} & second Send Identify byte\\
+\mbox{\tt in}  & {\em ch} & channel\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -596,7 +595,7 @@ Send drive identify-\/ 2 bytes.
 \end{DoxySeeAlso}
 
 
-Definition at line 614 of file gpib\+\_\+task.\+c.
+Definition at line 613 of file gpib\+\_\+task.\+c.
 
 
 
@@ -625,7 +624,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 966 of file gpib\+\_\+task.\+c.
+Definition at line 961 of file gpib\+\_\+task.\+c.
 
 
 
@@ -643,7 +642,7 @@ Config file name.
 
 
 
-Definition at line 25 of file gpib\+\_\+task.\+c.
+Definition at line 26 of file gpib\+\_\+task.\+c.
 
 
 
@@ -658,7 +657,7 @@ Debug flag -\/ used to log G\+P\+IB and emulator messages.
 
 
 
-Definition at line 29 of file gpib\+\_\+task.\+c.
+Definition at line 30 of file gpib\+\_\+task.\+c.
 
 
 
@@ -669,7 +668,7 @@ Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(),
 \subsubsection[{\texorpdfstring{fp\+\_\+file}{fp_file}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+IL} fp\+\_\+file}\hypertarget{gpib__task_8c_aa82c05f8b2bc31c887ebb86caddec02a}{}\label{gpib__task_8c_aa82c05f8b2bc31c887ebb86caddec02a}
 
 
-Definition at line 26 of file gpib\+\_\+task.\+c.
+Definition at line 27 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+c@{gpib\+\_\+task.\+c}!gpib\+\_\+log\+\_\+fp@{gpib\+\_\+log\+\_\+fp}}
 \index{gpib\+\_\+log\+\_\+fp@{gpib\+\_\+log\+\_\+fp}!gpib\+\_\+task.\+c@{gpib\+\_\+task.\+c}}
@@ -690,7 +689,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 32 of file gpib\+\_\+task.\+c.
+Definition at line 33 of file gpib\+\_\+task.\+c.
 
 
 

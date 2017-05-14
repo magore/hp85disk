@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lengthtype',['LengthType',['../unionLengthType.html',1,'']]]
+  ['identifytype',['IdentifyType',['../structIdentifyType.html',1,'']]]
 ];

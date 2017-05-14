@@ -26,14 +26,14 @@ uint16_t GPIB_COMMANDS ( uint16_t val , uint8_t unread );
 void gpib_task ( void );
 void DumpData ( unsigned char *ptr , int length );
 void display_settings ( void );
-void FatFs_Read_Config ( char *name );
 void POSIX_Read_Config ( char *name );
-int Send_Identify ( uint8_t byte1 , uint8_t byte2 );
+int Send_Identify ( uint8_t ch , IdentifyType id );
 int GPIB ( uint8_t ch );
 int GPIB_LISTEN ( uint8_t ch );
 int GPIB_TALK ( uint8_t ch );
 int GPIB_SECONDARY_ADDRESS ( uint8_t ch );
 void listen_cleanup ( void );
 void talk_cleanup ( void );
+
 
 #endif
