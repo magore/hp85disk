@@ -292,7 +292,7 @@ void receive_plot( char *name )
 int PRINTER_COMMANDS(uint8_t ch)
 {
 
-    if(listening == PRINTER_MLA)
+    if(PRINTER_is_MLA(listening))
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -301,7 +301,7 @@ int PRINTER_COMMANDS(uint8_t ch)
         return(0);
     }
 
-    if(listening == PRINTER_MTA)
+    if(PRINTER_is_MTA(talking))
     {
 #if SDEBUG > 1
         if(debuglevel > 1)

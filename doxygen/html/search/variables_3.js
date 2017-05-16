@@ -16,6 +16,6 @@ var searchData=
   ['createtime',['createtime',['../structDirEntryType.html#a627fd55537c73d4fee596b140e106c01',1,'DirEntryType']]],
   ['csize',['csize',['../structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568',1,'FATFS']]],
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
-  ['cyl',['cyl',['../structAMIGOStatusType.html#af5b8f182ebd61f2eb51614fc402b69ee',1,'AMIGOStatusType']]],
+  ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType']]],
   ['cylinders',['cylinders',['../structAMIGODiskType.html#ae89d76a3143c33f3d61b0465ac2e8fe3',1,'AMIGODiskType']]]
 ];

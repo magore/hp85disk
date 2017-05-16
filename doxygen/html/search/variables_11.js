@@ -4,7 +4,7 @@ var searchData=
   ['sclust',['sclust',['../struct__FDID.html#ae2fbaaa31b5d12b333cb6d1ded099412',1,'_FDID']]],
   ['secondary',['secondary',['../gpib_8c.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c'],['../gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c']]],
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
-  ['sector',['sector',['../structAMIGOStatusType.html#ada8db219718dd44d4251d10cbd523117',1,'AMIGOStatusType']]],
+  ['sector',['sector',['../structAMIGOStateType.html#a90615dad99e4fb6852b176bf6712f40b',1,'AMIGOStateType']]],
   ['sectors_5fper_5ftrack',['sectors_per_track',['../structAMIGODiskType.html#a110284612bb89198e8c9fe31c8dabcba',1,'AMIGODiskType']]],
   ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
   ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
@@ -16,6 +16,7 @@ var searchData=
   ['ss80_5faddr',['ss80_addr',['../structSS80DiskType.html#af41bd36ae711bae5aaa86722798ea281',1,'SS80DiskType']]],
   ['ss80_5fppr',['ss80_ppr',['../structSS80DiskType.html#a93cbe7ea84a0d2d33ecc4eaae8367bd5',1,'SS80DiskType']]],
   ['ss80disk',['SS80Disk',['../defines_8h.html#a16d811299d42f1c1d920caa2b1423491',1,'SS80Disk():&#160;drives.c'],['../drives_8c.html#a16d811299d42f1c1d920caa2b1423491',1,'SS80Disk():&#160;drives.c']]],
+  ['ss80state',['SS80State',['../defines_8h.html#aaa6a2958d958388054d80d289939d028',1,'SS80State():&#160;drives.c'],['../drives_8c.html#aaa6a2958d958388054d80d289939d028',1,'SS80State():&#160;drives.c']]],
   ['st_5fatime',['st_atime',['../structstat.html#ab74d1e7e345e88b9d0fb2688a97cba64',1,'stat']]],
   ['st_5fblksize',['st_blksize',['../structstat.html#a38d474e1ae3cf6fbdde89ac3c3e308f1',1,'stat']]],
   ['st_5fblocks',['st_blocks',['../structstat.html#a42dd716b2f9234f961d949fc9500eefb',1,'stat']]],
@@ -33,6 +34,8 @@ var searchData=
   ['startaddhi',['startaddhi',['../structDirEntryType.html#a0cab2915e9f864e25b24d298c36c11db',1,'DirEntryType']]],
   ['startaddlo',['startaddlo',['../structDirEntryType.html#aea0e798bb172b4bddf174ce339a4a54a',1,'DirEntryType']]],
   ['stat',['stat',['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
+  ['state',['state',['../structAMIGOStateType.html#ab3ba7202566a784c93d437960f8f332e',1,'AMIGOStateType']]],
+  ['status',['status',['../structAMIGOStateType.html#a20ecb3cbbcb1fe4746c2d38edc125412',1,'AMIGOStateType']]],
   ['str',['str',['../structp__ch__t.html#aa3c8616342a2717bc714bf1b6d00516f',1,'p_ch_t']]],
   ['sys_5ferrlist',['sys_errlist',['../posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0',1,'posix.c']]]
 ];

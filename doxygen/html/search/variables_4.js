@@ -5,6 +5,7 @@ var searchData=
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['de',['de',['../format_8c.html#acdc9db327daa9bd83d5df64bf016a4da',1,'format.c']]],
   ['debuglevel',['debuglevel',['../gpib_8h.html#a888e5117d479036c3f27eacda6da569a',1,'debuglevel():&#160;gpib_task.c'],['../gpib__task_8c.html#a888e5117d479036c3f27eacda6da569a',1,'debuglevel():&#160;gpib_task.c']]],
+  ['device',['device',['../gpib_8c.html#a1b595c4136454db2525576508c951b63',1,'device():&#160;gpib.c'],['../gpib_8h.html#a2376f17d1e7367401184b2a3978bcd3a',1,'device():&#160;gpib.c']]],
   ['dir',['dir',['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR']]],
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],
   ['dir_5fsect',['dir_sect',['../structFIL.html#ab203794f939ad4480e81dfa488770783',1,'FIL']]],
@@ -17,7 +18,7 @@ var searchData=
   ['down_5fcounter_5fdone',['down_counter_done',['../struct__gpib__t.html#af2622dd8668ecb24c42a2da2d8956538',1,'_gpib_t']]],
   ['dptr',['dptr',['../structDIR.html#a0330e9554e1f38795debe4495156873e',1,'DIR']]],
   ['drv',['drv',['../structFATFS.html#a6a791560e2687e8b1569bfce61208d2d',1,'FATFS']]],
-  ['dsj',['dsj',['../structAMIGOStatusType.html#a8c10963988b7c4633720397bca443b59',1,'AMIGOStatusType']]],
+  ['dsj',['dsj',['../structAMIGOStateType.html#ab2294deecb44cdb1675e4096dba22eb1',1,'AMIGOStateType']]],
   ['dst',['dst',['../time_8c.html#a5a388b2bb2a2a9914c7d68ed3d09f7e9',1,'time.c']]],
   ['dummy',['dummy',['../structVolumeLabelType.html#affbd520c08374524f13708acc05f3f4e',1,'VolumeLabelType']]]
 ];

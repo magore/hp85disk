@@ -13,10 +13,10 @@ var searchData=
   ['v7',['V7',['../structSS80VolumeType.html#ab3b5337987dc6c7806fc290a819c5c8c',1,'SS80VolumeType']]],
   ['v8',['V8',['../structSS80VolumeType.html#a0859b6387f103bf2c3aee91d8786f4a8',1,'SS80VolumeType']]],
   ['v9',['V9',['../structSS80VolumeType.html#aeea3a5985e301877bb9011e2df62b427',1,'SS80VolumeType']]],
-  ['vector',['Vector',['../ss80_8c.html#a11b7bf8b37732cefd06edb15125ca54c',1,'ss80.c']]],
   ['version',['version',['../structVolumeLabelType.html#a59f56fd1f28549bc625aeaaa57c8d0d2',1,'VolumeLabelType']]],
   ['vl',['vl',['../format_8c.html#a7cde3fe5600434f06d6c872090dc5390',1,'format.c']]],
   ['volbase',['volbase',['../structFATFS.html#a8f0ca578755749d204f59dc83f1a7649',1,'FATFS']]],
+  ['volno',['volNO',['../structAMIGOStateType.html#a9825e282ac5844225a43b7f0835da67f',1,'AMIGOStateType::volNO()'],['../structSS80StateType.html#ac197866db7677ec4bf9ad5e29e4a58a3',1,'SS80StateType::volNO()']]],
   ['volnumber',['volnumber',['../structDirEntryType.html#add9ab11f89586efb100471f6580e75c5',1,'DirEntryType']]],
-  ['volume',['Volume',['../structSS80DiskType.html#a34eaa5702599d69fcd7c2fc7e13a2256',1,'SS80DiskType::Volume()'],['../ss80_8c.html#ae012bb91ec461da24211de167b1f6f58',1,'Volume():&#160;ss80.c']]]
+  ['volume',['Volume',['../structSS80DiskType.html#a34eaa5702599d69fcd7c2fc7e13a2256',1,'SS80DiskType']]]
 ];

@@ -41,7 +41,7 @@ int amigo_request_status ( void );
 int amigo_send_logical_address ( void );
 int amigo_send_status ( void );
 int amigo_increment ( char *msg );
-int amigo_seek ( AMIGOStatusType *p );
+int amigo_seek ( AMIGOStateType *p );
 int amigo_verify ( uint16_t sectors );
 int amigo_format ( uint8_t override , uint8_t interleave , uint8_t db );
 int amigo_buffered_read ( void );

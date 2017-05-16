@@ -99,22 +99,6 @@ enum ss80exec
     EXEC_DESCRIBE
 };
 
-/// @brief Execute state index
-int estate;
-
-/// @brief Qstat variable
-uint8_t qstat;
-
-///@brief SS80 Unit and Volume Number
-BYTE Unit;           //< Unit Number - we only do 1
-BYTE Volume;         //< Volume Number - we only do 1
-
-///@brief values specific to selected disk
-SS80AddressType Vector;   //< Address in bytes
-SS80LengthType Length;   //< Length, in blocks
-
-int Errors;          //< Error byte
-
 /// @brief SS80 GPIB test string
 /// @todo get this working
 int TD[] =
@@ -172,8 +156,9 @@ void SS80_Test(void)
 ///@brief default PRINTER address
 uint8_t printer_addr = PRINTER_DEFAULT_ADDRESS;
 
+
 // Maximum block number
-DWORD SS80_MaxVector()
+DWORD SS80_MaxAddress()
 {
     DWORD val = SS80Disk.Volume.V9 * 0x1000000L +
         SS80Disk.Volume.V10 * 0x10000L +
@@ -193,11 +178,11 @@ void SS80_init(void)
         printf("[SS80 INIT]\n");
 #endif
 
-    estate = EXEC_IDLE;
+    SS80State.estate = EXEC_IDLE;
 
-    Errors = 0;
+    SS80State.Errors = 0;
 
-    qstat = 2;
+    SS80State.qstat = 2;
 
 /// @todo FIXME
     DisablePPR(SS80_PPR);
@@ -216,32 +201,32 @@ int SS80_Execute_State(void)
     int ret = 0;
 
     DisablePPR(SS80_PPR);
-    switch(estate)
+    switch(SS80State.estate)
     {
         case EXEC_IDLE:
             break;
         case EXEC_LOCATE_AND_READ:
             ret = SS80_locate_and_read();
-            estate = EXEC_IDLE;
+            SS80State.estate = EXEC_IDLE;
             break;
         case EXEC_LOCATE_AND_WRITE:
             ret = SS80_locate_and_write();
-            estate = EXEC_IDLE;
+            SS80State.estate = EXEC_IDLE;
             break;
         case EXEC_SEND_STATUS:
             ret = SS80_send_status();
-            estate = EXEC_IDLE;
+            SS80State.estate = EXEC_IDLE;
             break;
         case EXEC_DESCRIBE:
             ret = SS80_describe();
-            estate = EXEC_IDLE;
+            SS80State.estate = EXEC_IDLE;
             break;
         default:
 #if SDEBUG >= 1
             if(debuglevel >= 1)
-                printf("[SS80 EXEC state:%d error]\n", estate);
+                printf("[SS80 EXEC state:%d error]\n", SS80State.estate);
 #endif
-            estate = EXEC_IDLE;
+            SS80State.estate = EXEC_IDLE;
             break;
     }
     EnablePPR(SS80_PPR);
@@ -252,7 +237,7 @@ int SS80_Execute_State(void)
 /// @brief  SS80 Locate and Read COmmend
 ///
 /// - Reference: SS80 4-39
-/// - Read (Length.L) disk bytes at (Vector) offset.
+/// - Read (SS80State.Length.L) disk bytes at (Address) offset.
 /// - Send this data to the GPIB bus.
 /// - State: EXEC STATE COMMAND.
 /// @return 0 on sucess
@@ -272,7 +257,7 @@ int SS80_locate_and_read( void )
     int len;
     uint16_t status;
 
-    qstat = 0;
+    SS80State.qstat = 0;
 
     status = 0;
 
@@ -285,7 +270,7 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Read @%08lx(%lx)]\n", Vector.L * 256L, Length.L);
+        printf("[SS80 Locate and Read @%08lx(%lx)]\n", SS80State.Address.L * 256L, SS80State.Length.L);
 #endif
 
     if( SS80_cmd_seek() )
@@ -293,7 +278,7 @@ int SS80_locate_and_read( void )
         return(SS80_error_return());
     }
 
-    count = Length.L;
+    count = SS80State.Length.L;
     total_bytes = 0;
     while(count > 0 )
     {
@@ -318,7 +303,8 @@ int SS80_locate_and_read( void )
             gpib_timer_elapsed_begin();
 #endif
 
-        len = dbf_open_read("/ss80.lif", Vector.L * 256L, gpib_iobuff, chunk, &Errors);
+        len = dbf_open_read("/ss80.lif", SS80State.Address.L * 256L, gpib_iobuff, chunk, &SS80State.Errors);
+
 #if SDEBUG > 1
         if(debuglevel > 2)
             gpib_timer_elapsed_end("Disk Read");
@@ -327,7 +313,7 @@ int SS80_locate_and_read( void )
 #endif
         if(len < 0)
         {
-            qstat = 1;
+            SS80State.qstat = 1;
 /// @return Return
 #if SDEBUG >= 1
             if(debuglevel >= 1)
@@ -347,21 +333,21 @@ int SS80_locate_and_read( void )
 #endif
         if( len != chunk)
         {
-            qstat = 1;
+            SS80State.qstat = 1;
 #if SDEBUG >= 1
             if(debuglevel >= 1)
                 printf("[SS80 GPIB Write Wrror]\n");
 #endif
             if(status & ERROR_MASK)
             {
-                Errors |= ERR_GPIB;
+                SS80State.Errors |= ERR_GPIB;
                 break;
             }
         }
 
         total_bytes = total_bytes + len;
         count -= len;
-        Vector.L = Vector.L + 1;
+        SS80State.Address.L = SS80State.Address.L + 1;
     }
 ///  Note: this should not happen unless we exit on errors above
     if(count > 0)
@@ -385,7 +371,7 @@ int SS80_locate_and_read( void )
 /// @brief  SS80 Locate and Write Commend.
 ///
 /// - Reference: SS80 pg 4-45, CS80 pg 2-8.
-/// - Write (Length.L) disk bytes from GPIB at (Vector) offset.
+/// - Write (SS80State.Length.L) disk bytes from GPIB at (Address) offset.
 /// - State: EXEC STATE COMMAND.
 /// - Disk I/O errors will set qstat and Errors.
 /// - Limitations.
@@ -407,21 +393,21 @@ int SS80_locate_and_write(void)
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Write @%08lx(%lx)]\n", Vector.L * 256L, Length.L);
+        printf("[SS80 Locate and Write @%08lx(%lx)]\n", SS80State.Address.L * 256L, SS80State.Length.L);
 #endif
 
-    qstat = 0;
+    SS80State.qstat = 0;
 
     if( GPIB_IO_RD(IFC) == 0)
         return(IFC_FLAG);
 
     if( SS80_cmd_seek() )
     {
-        Errors |= ERR_WRITE;
+        SS80State.Errors |= ERR_WRITE;
         io_skip = 1;
     }
 
-    count = Length.L;
+    count = SS80State.Length.L;
     total_bytes = 0;
 
     status = 0;
@@ -459,8 +445,8 @@ int SS80_locate_and_write(void)
                 if(debuglevel >= 1)
                     printf("[GPIB Read Error]\n");
 #endif
-                Errors |= ERR_WRITE;
-                qstat = 1;
+                SS80State.Errors |= ERR_WRITE;
+                SS80State.qstat = 1;
                 break;
             }
             if(!len && (EOI_FLAG & status))
@@ -477,17 +463,17 @@ int SS80_locate_and_write(void)
                 if(debuglevel > 2)
                     gpib_timer_elapsed_begin();
 #endif
-                len2 = dbf_open_write("/ss80.lif", Vector.L * 256L, gpib_iobuff, 256, &Errors);
+                len2 = dbf_open_write("/ss80.lif", SS80State.Address.L * 256L, gpib_iobuff, 256, &SS80State.Errors);
 #if SDEBUG > 1
                 if(debuglevel > 2)
                     gpib_timer_elapsed_end("Disk Write");
 #endif
                 if(len2 != 256)
                 {
-                    Errors |= ERR_WRITE;
+                    SS80State.Errors |= ERR_WRITE;
                     if(mmc_wp_status())
-                        Errors |= ERR_WP;
-                    qstat = 1;
+                        SS80State.Errors |= ERR_WP;
+                    SS80State.qstat = 1;
                     io_skip = 1;                  // Stop writing
 #if SDEBUG >= 1
                     if(debuglevel >= 1)
@@ -501,7 +487,7 @@ int SS80_locate_and_write(void)
                         printf("[SS80 Locate and Write wrote(%d)]\n", len2);
 #endif
 					// FIXME block size
-                    Vector.L = Vector.L + 1;
+                    SS80State.Address.L = SS80State.Address.L + 1;
                 }
 
                 if(len2 >= len)
@@ -649,25 +635,25 @@ int SS80_send_status( void )
 
     Mem_Clear(tmp);
 
-    tmp[0] = ((Volume & 0x0f) << 4) | (Unit & 0x0f);
+    tmp[0] = ((SS80State.volNO& 0x0f) << 4) | (SS80State.unitNO & 0x0f);
 
     tmp[1] = 0xff;
 
 
-    if(Errors & ERR_SEEK)
+    if(SS80State.Errors & ERR_SEEK)
         tmp[3] = 0b00000001;                      // address bounds = Byte 3
 
 
-    if(Errors & ERR_READ)
+    if(SS80State.Errors & ERR_READ)
         tmp[4] = 0b00000010;                      // unit fault = Byte 5
 
-    if(Errors & ERR_WRITE)
+    if(SS80State.Errors & ERR_WRITE)
         tmp[4] = 0b00000010;                      // unit fault = Byte 5
 
 /// @todo  add Diagnostic Result status (MSB of byte 5)
 
 
-    if(Errors & ERR_WP)
+    if(SS80State.Errors & ERR_WP)
         tmp[6] = 0b00001000;                      // Write protect = Byte 7
 
 
@@ -675,20 +661,20 @@ int SS80_send_status( void )
 
 ///  Note: Diagnostic Result bit is NOT set
 ///@see SET ADDRESS
-	if(!Errors)
+	if(!SS80State.Errors)
 	{
 		// FIXME block size
-		tmp[10] = Vector.B[5];	// MSB unused
-		tmp[11] = Vector.B[4];	// unused
-		tmp[12] = Vector.B[3];
-		tmp[13] = Vector.B[2];
-		tmp[14] = Vector.B[1];
-		tmp[15] = Vector.B[0];	// LSB
+		tmp[10] = SS80State.Address.B[5];	// MSB unused
+		tmp[11] = SS80State.Address.B[4];	// unused
+		tmp[12] = SS80State.Address.B[3];
+		tmp[13] = SS80State.Address.B[2];
+		tmp[14] = SS80State.Address.B[1];
+		tmp[15] = SS80State.Address.B[0];	// LSB
 	}
 
 /// @todo Fixme
-    if(Errors)
-        qstat = 1;
+    if(SS80State.Errors)
+        SS80State.qstat = 1;
 
     status = EOI_FLAG;
     if(gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
@@ -846,7 +832,7 @@ int SS80_Command_State( void )
         {
 /// @todo FIXME,
 ///  In Execute state calls  SS80_locate_and_read();
-            estate = EXEC_LOCATE_AND_READ;
+            SS80State.estate = EXEC_LOCATE_AND_READ;
 #if SDEBUG > 1
             if(debuglevel > 1)
                 printf("[SS80 Locate and Read]\n");
@@ -858,7 +844,7 @@ int SS80_Command_State( void )
         {
 /// @todo FIXME,
 ///  SS80_locate_and_write();
-            estate = EXEC_LOCATE_AND_WRITE;
+            SS80State.estate = EXEC_LOCATE_AND_WRITE;
 #if SDEBUG > 1
             if(debuglevel > 1)
                 printf("[SS80 Locate and Write]\n");
@@ -884,17 +870,17 @@ int SS80_Command_State( void )
         if (ch == 0x10)
         {
 			/* upper two MSB unused */
-			Vector.B[5] = gpib_iobuff[ind+0];// MSB unused
-			Vector.B[4] = gpib_iobuff[ind+1];// unused
-			Vector.B[3] = gpib_iobuff[ind+2];
-			Vector.B[2] = gpib_iobuff[ind+3];
-			Vector.B[1] = gpib_iobuff[ind+4];
-			Vector.B[0] = gpib_iobuff[ind+5];//LSB
+			SS80State.Address.B[5] = gpib_iobuff[ind+0];// MSB unused
+			SS80State.Address.B[4] = gpib_iobuff[ind+1];// unused
+			SS80State.Address.B[3] = gpib_iobuff[ind+2];
+			SS80State.Address.B[2] = gpib_iobuff[ind+3];
+			SS80State.Address.B[1] = gpib_iobuff[ind+4];
+			SS80State.Address.B[0] = gpib_iobuff[ind+5];//LSB
 
             ind += 6;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Address:(%08lx)]\n", Vector);
+                printf("[SS80 Set Address:(%08lx)]\n", SS80State.Address.L);
 #endif
             continue;
         }
@@ -903,24 +889,25 @@ int SS80_Command_State( void )
 		// Set Length
         if(ch == 0x18)
         {
-            Length.B[3] = gpib_iobuff[ind+0];// MSB
-            Length.B[2] = gpib_iobuff[ind+1];
-            Length.B[1] = gpib_iobuff[ind+2];
-            Length.B[0] = gpib_iobuff[ind+3];//LSB
+            SS80State.Length.B[3] = gpib_iobuff[ind+0];// MSB
+            SS80State.Length.B[2] = gpib_iobuff[ind+1];
+            SS80State.Length.B[1] = gpib_iobuff[ind+2];
+            SS80State.Length.B[0] = gpib_iobuff[ind+3];//LSB
             ind += 4;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Length:(%08lx)]\n", Length.L);
+                printf("[SS80 Set Length:(%08lx)]\n", SS80State.Length.L);
 #endif
             continue;
         }
 
+		///@brief set unit number
         if(ch >= 0x20 && ch <= 0x2f)
         {
-            Unit = ch - 0x20;
+            SS80State.unitNO = ch - 0x20;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Unit:(%d)]\n", Unit);
+                printf("[SS80 Set Unit:(%d)]\n", SS80State.unitNO);
 #endif
             continue;
         }
@@ -961,10 +948,10 @@ int SS80_Command_State( void )
 
         if(ch >= 0x40 && ch <= 0x4f)
         {
-            Volume = ch - 0x40;
+            SS80State.volNO = ch - 0x40;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Volume: (%d)]\n", Volume);
+                printf("[SS80 Set Volume: (%d)]\n", SS80State.volNO);
 #endif
             continue;
         }
@@ -1045,7 +1032,7 @@ int SS80_Command_State( void )
 
         if(ch == 0x35)
         {
-            estate = EXEC_DESCRIBE;
+            SS80State.estate = EXEC_DESCRIBE;
 #if SDEBUG > 1
             if(debuglevel > 1)
                 printf("[SS80 Describe]\n");
@@ -1112,7 +1099,7 @@ int SS80_Command_State( void )
 
         if(ch == 0x0D)
         {
-            estate = EXEC_SEND_STATUS;
+            SS80State.estate = EXEC_SEND_STATUS;
 #if SDEBUG > 1
             if(debuglevel > 1)
                 printf("[SS80 Request Status]\n");
@@ -1201,7 +1188,7 @@ int SS80_Transparent_State( void )
     uint16_t status;                              // Current status
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
     int ind;                                      // Buffer index
-	// work in progress, unit support
+	///@brief  work in progress, unit support
     int cunit = 0;                                // Unit Complementary , optional
 
 
@@ -1302,9 +1289,9 @@ int SS80_Transparent_State( void )
         {
 #if SDEBUG >= 1
             if(debuglevel >= 1)
-                printf("[SS80 Channel Independent Clear (%d)]\n", Unit);
+                printf("[SS80 Channel Independent Clear (%d)]\n", SS80State.unitNO);
 #endif
-            return(SS80_Channel_Independent_Clear( Unit ));
+            return(SS80_Channel_Independent_Clear( SS80State.unitNO ));
         }
 
 /// @todo FIXME
@@ -1315,9 +1302,9 @@ int SS80_Transparent_State( void )
         {
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Cancel (%d)]\n", Unit);
+                printf("[SS80 Cancel (%d)]\n", SS80State.unitNO);
 #endif
-            return(SS80_Cancel( Unit ));
+            return(SS80_Cancel( SS80State.unitNO ));
 
             break;
         }
@@ -1357,10 +1344,10 @@ int SS80_cmd_seek( void )
 
 /// @todo  Let f_lseek do bounds checking instead ???
 ///  Will we read or write past the end of the disk ??
-    if ((Vector.L + (Length.L/256L)) > SS80_MaxVector())
+    if ((SS80State.Address.L + (SS80State.Length.L/256L)) > SS80_MaxAddress())
     {
-        qstat = 1;
-        Errors |= ERR_SEEK;
+        SS80State.qstat = 1;
+        SS80State.Errors |= ERR_SEEK;
 
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -1371,7 +1358,7 @@ int SS80_cmd_seek( void )
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Seek:%08lx]\n", Vector);
+        printf("[SS80 Seek:%08lx]\n", SS80State.Address);
 #endif
     return (0);
 }
@@ -1406,7 +1393,7 @@ int SS80_Report( void )
     uint8_t tmp[1];
     uint16_t status;
 
-    tmp[0] = qstat;
+    tmp[0] = SS80State.qstat;
 
     status = EOI_FLAG;
     if( gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
@@ -1421,10 +1408,10 @@ int SS80_Report( void )
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[SS80 qstat %02X]\n", qstat);
+            printf("[SS80 qstat %02X]\n", SS80State.qstat);
 #endif
     }
-    qstat = 0;
+    SS80State.qstat = 0;
     return ( 0 );
 }
 
@@ -1432,7 +1419,7 @@ int SS80_Report( void )
 /// @brief Uiniversal and Decvice clear code
 ///
 /// - Clear Settings to poweron values.
-///  - Clear Unit, Vector, Length, Error Status, qstat
+///  - Clear Unit, Address, Length, Error Status, qstat
 /// @see: SS80_Selected_Device_Clear()
 /// @see: SS80_Universal_Device_Clear()
 /// @see: SS80_Amigo_Clear()
@@ -1496,15 +1483,15 @@ int SS80_Report( void )
 
 void Clear_Common(int u)
 {
-    if(u != Unit && u != 15)
+    if(u != SS80State.unitNO && u != 15)
         return;
 
     if(u == 15)
-        Unit = 0;
-    Volume = 0;
-    Vector.L = 0;
-    Length.L = 0;
-    estate = EXEC_IDLE;
+        SS80State.unitNO = 0;
+    SS80State.volNO = 0;
+    SS80State.Address.L = 0;
+    SS80State.Length.L = 0;
+    SS80State.estate = EXEC_IDLE;
 
 /// @todo FIXME
 ///    Normally the poweron value is -1 (Full volume)
@@ -1519,8 +1506,8 @@ void Clear_Common(int u)
 ///    If we have a Diagnostic Report bit then
 ///    we do not clear the Status/Error bits
 ///  SS80 4-12
-    Errors = 0;                                   // Status Mask
-    qstat = 0;                                    // Clear qstat
+    SS80State.Errors = 0;                                   // Status Mask
+    SS80State.qstat = 0;                                    // Clear qstat
 }
 
 
@@ -1631,23 +1618,23 @@ int SS80_Cancel( int u )
 {
 /// @todo FIXME
 
-    estate = EXEC_IDLE;
+    SS80State.estate = EXEC_IDLE;
     EnablePPR(SS80_PPR);
     return(0);
 }
 
 
-/// @brief  Increment position Vectory by 256
+/// @brief  Increment position Addressy by 256
 ///
 /// - References: SS80 4-39, 4-45.
 /// @return  0
 
 int SS80_increment( void )
 {
-    Vector.L += 1L;
+    SS80State.Address.L += 1L;
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Increment to (%lx)]\n", Vector);
+        printf("[SS80 Increment to (%lx)]\n", SS80State.Address.L);
 #endif
     return(0);
 }
@@ -1664,8 +1651,8 @@ int SS80_error_return( void )
     uint8_t tmp[1];
     uint16_t status = EOI_FLAG;
 
-    qstat = 1;
-    tmp[0] = qstat;
+    SS80State.qstat = 1;
+    tmp[0] = SS80State.qstat;
 
     status = EOI_FLAG;
     if( gpib_write_str(tmp,sizeof(tmp), &status) != sizeof(tmp))
@@ -1676,7 +1663,7 @@ int SS80_error_return( void )
 #endif
         return(status & ERROR_MASK);
     }
-    qstat = 0;
+    SS80State.qstat = 0;
     return(0);
 }
 
@@ -1694,11 +1681,11 @@ int SS80_error_return( void )
 /// @see gpib.h _FLAGS defines for a full list.
 int SS80_COMMANDS(uint8_t ch)
 {
-    if(talking == SS80_MTA || listening == SS80_MLA)
+    if(SS80_is_MTA(talking) || SS80_is_MLA(listening))
     {
         if(ch == 0x65 )
         {
-            if(listening == SS80_MLA)
+            if(SS80_is_MLA(listening))
             {
 #if SDEBUG > 1
                 if(debuglevel > 1)
@@ -1711,7 +1698,7 @@ int SS80_COMMANDS(uint8_t ch)
 
         if(ch == 0x6e )
         {
-            if(listening == SS80_MLA  || talking == SS80_MTA)
+            if(SS80_is_MLA(listening)  || SS80_is_MTA(talking))
             {
 #if SDEBUG > 1
                 if(debuglevel > 1)
@@ -1725,7 +1712,7 @@ int SS80_COMMANDS(uint8_t ch)
 
         if(ch == 0x70 )
         {
-            if(talking == SS80_MTA )
+            if(SS80_is_MTA(talking) )
             {
 #if SDEBUG > 1
                 if(debuglevel > 1)
@@ -1734,7 +1721,7 @@ int SS80_COMMANDS(uint8_t ch)
                 return( SS80_Report() );
             }
 
-            if(listening == SS80_MLA)
+            if(SS80_is_MLA(listening))
             {
 #if SDEBUG > 1
                 if(debuglevel > 1)
@@ -1747,7 +1734,7 @@ int SS80_COMMANDS(uint8_t ch)
         }
         if(ch == 0x72 )
         {
-            if(listening == SS80_MLA )
+            if(SS80_is_MLA(listening) )
             {
 #if SDEBUG > 1
                 if(debuglevel > 1)

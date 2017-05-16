@@ -25,7 +25,7 @@ extern uint8_t qstat;
 
 /* ss80.c */
 void SS80_Test ( void );
-DWORD SS80_MaxVector ( void );
+DWORD SS80_MaxAddress ( void );
 void SS80_init ( void );
 int SS80_Execute_State ( void );
 int SS80_locate_and_read ( void );

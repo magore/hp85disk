@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t::b()'],['../unionSS80LengthType.html#ae34b090db3881e2a81df6daa00e09f96',1,'SS80LengthType::B()'],['../unionSS80AddressType.html#a0f11f4f6624071d1844f92934f05a8f9',1,'SS80AddressType::B()']]],
+  ['b',['B',['../unionSS80LengthType.html#ae34b090db3881e2a81df6daa00e09f96',1,'SS80LengthType::B()'],['../unionSS80AddressType.html#a0f11f4f6624071d1844f92934f05a8f9',1,'SS80AddressType::B()'],['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t::b()']]],
   ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
   ['base_5fmsa',['BASE_MSA',['../defines_8h.html#ac0b05d2eeae663c6ee42b7814be45181',1,'defines.h']]],
   ['base_5fmta',['BASE_MTA',['../defines_8h.html#a68b8e22957870863b8c5b2c58fed767b',1,'defines.h']]],

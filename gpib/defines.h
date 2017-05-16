@@ -91,6 +91,27 @@ typedef struct   //< Identify, 2 bytes
 } IdentifyType;
 
 
+
+/// ====================================================================
+/// @brief AMIGO emulator state machine index.
+typedef struct
+{
+	uint8_t state;
+	/// @brief AMIGO disk unit number
+	uint8_t unitNO;
+	/// @brief AMIGO disk volume number
+	uint8_t volNO;
+    uint8_t cyl;
+    uint8_t head;
+    uint8_t sector;
+    uint8_t dsj;
+    int Errors;
+	/// @brief AMIGO disk status
+	uint8_t status[4];
+	/// @brief AMIGO disk address
+	uint8_t logical_address[4];
+} AMIGOStateType;
+
 /// ====================================================================
 
 ///@brief AMIGO Disk structure - ID bytes and layout.
@@ -107,15 +128,41 @@ typedef struct
     int16_t cylinders;
 } AMIGODiskType;
 
-///@brief AMIGO status structure - position and error status
+
+/// ====================================================================
+///@brief used with SS80
+typedef union
+{
+    DWORD L;
+    BYTE B[4];
+} SS80LengthType;
+
+///@brief used with SS80
+typedef union
+{
+    DWORD L;
+    BYTE B[6];
+} SS80AddressType;
+
+/// ====================================================================
+///@brief Emulated disk state information
 typedef struct
 {
-    uint8_t cyl;
-    uint8_t head;
-    uint8_t sector;
-    uint8_t dsj;
-    int Amigo_Errors;
-} AMIGOStatusType;
+	/// @brief Execute state index
+	int estate;
+	/// @brief Qstat variable
+	uint8_t qstat;
+	///@brief Errors
+	int Errors;         //< Error byte
+	///@brief SS80 Unit 
+	BYTE unitNO;        //< Unit Number - we only do 1
+	///@brief SS80 Volume 
+	BYTE volNO;         //< Volume Number - we only do 1
+	///@brief Address in Blocks
+	SS80AddressType Address; 
+	///@brief Length in Blocks
+	SS80LengthType Length;
+} SS80StateType;
 
 
 /// ====================================================================
@@ -179,20 +226,6 @@ typedef struct   //<  Volume description,  bytes
 } SS80VolumeType;
 
 
-///@brief used with SS80
-typedef union
-{
-    DWORD L;
-    BYTE B[4];
-} SS80LengthType;
-
-///@brief used with SS80
-typedef union
-{
-    DWORD L;
-    BYTE B[6];
-} SS80AddressType;
-
 ///@brief Disk Information Structure
 typedef struct {
 	///@brief SS80 address 
@@ -251,7 +284,9 @@ extern uint8_t printer_addr;
 
 
 extern SS80DiskType SS80Disk;
+extern SS80StateType SS80State;
 extern AMIGODiskType AMIGODisk;
+extern AMIGOStateType AMIGOState;
 
 #define SS80_MLA     (BASE_MLA + SS80Disk.ss80_addr)    //<  SS80 listen address 
 #define SS80_MTA     (BASE_MTA + SS80Disk.ss80_addr)   //<  SS80 talk address 

@@ -19,6 +19,15 @@
 /* gpib_task.c */
 void gpib_file_init ( void );
 void gpib_log ( char *str );
+int SS80_is_MLA ( int addr );
+int SS80_is_MTA ( int addr );
+int SS80_is_MSA ( int addr );
+int AMIGO_is_MLA ( int addr );
+int AMIGO_is_MTA ( int addr );
+int AMIGO_is_MSA ( int addr );
+int PRINTER_is_MLA ( int addr );
+int PRINTER_is_MTA ( int addr );
+int PRINTER_is_MSA ( int addr );
 void gpib_trace_task ( char *name );
 uint16_t gpib_error_test ( uint16_t val );
 void gpib_init_devices ( void );

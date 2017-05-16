@@ -23,18 +23,16 @@
 #include "amigo.h"
 #include "ss80.h"
 
-/// @todo  Should we move this into the actual Disk image or config file ??
-/// Size = 5 Bytes
-///
-/// - Notes: HP/LIF data is BIG endian
-/// 
-/// @brief HP9122D Controller Description
 
+/// ==================================================================
+///@brief AMIGO
+/// @brief HP9122D Controller Description
 #if defined(HP9122D)
 SS80DiskType SS80Disk = 
 {
 	SS80_DEFAULT_ADDRESS,
 	SS80_DEFAULT_PPR,
+
 	///@see defines.h
     /* Identify, 2 bytes */
     {
@@ -98,6 +96,7 @@ SS80DiskType SS80Disk =
 {
 	SS80_DEFAULT_ADDRESS,
 	SS80_DEFAULT_PPR,
+
 	///@see defines.h
     /* Identify, 2 bytes */
     {
@@ -156,6 +155,22 @@ SS80DiskType SS80Disk =
 };
 #endif
 
+SS80StateType SS80State =
+/* Status 5 + 6 + 4 */
+{
+	0,	// estate
+	0,	// qstat
+	0,	// Errors
+	0,	// Unit
+	0,	// Volume
+	{ 0 },	// Address
+	{ 0 }	// Length
+};
+
+
+/// ==================================================================
+///@brief AMIGO
+
 
 /// @brief  AMIGO D9121D ident Bytes per sector, sectors per track, heads, cylinders
 #if defined(HP9121D)
@@ -193,5 +208,21 @@ AMIGODiskType AMIGODisk =
         0x01, 0x06
     },
     256, 31, 4, 153
+};
+#endif
+
+#ifdef AMIGO
+AMIGOStateType AMIGOState =
+{
+    0, // state
+	0, // unit number
+	0, // volume number
+	0, // current cylinder
+	0, // current head
+    0, // current sector
+    0, // dsj status
+	0, // Errors
+    { 0 }, // status
+    { 0 }  // address
 };
 #endif

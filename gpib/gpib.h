@@ -91,6 +91,7 @@ extern uint8_t listening_last;
 extern uint8_t spoll;
 extern uint16_t current,lastcmd;
 extern uint8_t secondary;
+extern uint8_t device;
 
 /* gpib.c */
 void gpib_timer_elapsed_begin ( void );
@@ -101,8 +102,10 @@ void gpib_timeout_set ( uint32_t time );
 uint8_t gpib_timeout_test ( void );
 void gpib_bus_init ( int cold );
 void gpib_state_init ( void );
-void EnablePPR ( uint8_t val );
-void DisablePPR ( uint8_t val );
+int address_to_device ( uint8_t address );
+int device_to_PPR ( uint8_t address );
+void EnablePPR ( uint8_t bit );
+void DisablePPR ( uint8_t bit );
 uint8_t Parallel_Poll ( void );
 void gpib_assert_ifc ( void );
 void gpib_assert_ren ( unsigned char state );
@@ -114,4 +117,5 @@ void gpib_decode_str ( uint16_t ch , char *str );
 void gpib_decode ( uint16_t ch );
 int gpib_read_str ( uint8_t *buf , int size , uint16_t *status );
 int gpib_write_str ( uint8_t *buf , int size , uint16_t *status );
+
 #endif                                            // GPIB_H_

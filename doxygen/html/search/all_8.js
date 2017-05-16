@@ -3,7 +3,7 @@ var searchData=
   ['hal_2ec',['hal.c',['../hal_8c.html',1,'']]],
   ['hal_2eh',['hal.h',['../hal_8h.html',1,'']]],
   ['have_5fhires_5ftimer',['HAVE_HIRES_TIMER',['../user__config_8h.html#ace7ce1901bf0c350e7704eb37b07ad74',1,'user_config.h']]],
-  ['head',['head',['../structAMIGOStatusType.html#af10e6015013496cad58cfc7a8aec6b1f',1,'AMIGOStatusType']]],
+  ['head',['head',['../structAMIGOStateType.html#a92b01a4e3912d2fcacebcc15a21c66c9',1,'AMIGOStateType']]],
   ['heads',['heads',['../structAMIGODiskType.html#ac24acfa9854cf9333d7aace761a739be',1,'AMIGODiskType']]],
   ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],
   ['heapsort',['heapsort',['../sort_8c.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c'],['../sort_8h.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c']]],

@@ -80,6 +80,8 @@ uint8_t gpib_unread_f = 0;                        // saved character flag
 /// @brief gpib_unread() data
 uint16_t gpib_unread_data;                        // saved character and status
 
+///@brief Device number - working to support more then one device support
+BYTE device; 
 
 /// @brief gpib talk address
 uint8_t talking;
@@ -265,20 +267,46 @@ void gpib_state_init( void )
     lastcmd = 0;
     current = 0;
     secondary = 0;
+	device = 0;
+}
+
+/// @brief Map device address, MLA,MTA,MSA to PPR address
+///TODO include lookup array
+/// @return  device number index or -1 if no match
+int address_to_device(uint8_t address)
+{
+	device = address & 0x1f;
+	return(device);
+}
+
+/// @brief Map device address, MLA,MTA,MSA to PPR address
+///TODO include lookup array
+/// @return  device number index or -1 if no match
+int device_to_PPR(uint8_t address)
+{
+
+	int device = address_to_device(address);
+	if(device == SS80Disk.ss80_addr)
+		return(SS80Disk.ss80_ppr);
+	if(device == AMIGODisk.amigo_addr)
+		return(AMIGODisk.amigo_ppr);
+#if SDEBUG > 1
+    if(debuglevel > 1)
+        printf("[ERROR Unmatched PPR address: %02x]\n", address);
+#endif
+	return(-1);
 }
 
 
-/// @brief Enable PPR (Parallel Poll Response) for a device
 ///
 /// - Reference: SS80 pg 3-4, section 3-3
 /// @return  void
-
-void EnablePPR(uint8_t val)
+void EnablePPR(uint8_t bit)
 {
-    ppr_bit_set(val);
+    ppr_bit_set(bit);
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[EPPR %d, mask:%02x]\n",0xff & val, 0xff & ppr_reg());
+        printf("[EPPR %d, mask:%02x]\n",0xff & bit , 0xff & ppr_reg());
 #endif
 }
 
@@ -288,12 +316,12 @@ void EnablePPR(uint8_t val)
 /// - Reference: SS80 pg 3-4, section 3-3
 /// @return  void
 
-void DisablePPR(uint8_t val)
+void DisablePPR(uint8_t bit)
 {
-    ppr_bit_clr(val);
+    ppr_bit_clr(bit);
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[DPPR %d, mask:%02x]\n",0xff & val, 0xff & ppr_reg());
+        printf("[DPPR %d, mask:%02x]\n",0xff & bit, 0xff & ppr_reg());
 #endif
 }
 
@@ -785,14 +813,6 @@ uint16_t gpib_read_byte( void )
 
                 ch |= (val | status);
 
-///  References: 	SS80 pg 3-4, section 3-3
-
-#if 0                                 // Disabled example
-                if((status & ATN_FLAG) && (ch & 0x7f) == SS80_MSA && talking == UNT)
-                {
-                    DisablePPR();
-                }
-#endif
                 GPIB_PIN_FLOAT(NDAC);              // Acknowledge Read
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 gpib_timeout_set(HTIMEOUT);

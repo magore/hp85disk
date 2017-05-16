@@ -6,12 +6,13 @@ var searchData=
   ['lastcmd',['lastcmd',['../gpib_8c.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c'],['../gpib_8h.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c']]],
   ['left',['left',['../unionf__t.html#a5f89cd6194ccc6a288f1fe31d39b2e64',1,'f_t']]],
   ['len',['len',['../struct__printf__t.html#a5139902cde74159b79e6418a34712bee',1,'_printf_t::len()'],['../struct____file.html#a30309efd13a75ed510bb2370debafaf8',1,'__file::len()']]],
-  ['length',['Length',['../ss80_8c.html#a7cfe6bde8a0d5cc15b4541d82acbe54e',1,'ss80.c']]],
+  ['length',['Length',['../structSS80StateType.html#a87107fe3c2aadb7aba586a1612f052c3',1,'SS80StateType']]],
   ['lengthhi',['lengthhi',['../structDirEntryType.html#ad7aaba7b01038bc8bacb096bd66fff08',1,'DirEntryType']]],
   ['lengthlo',['lengthlo',['../structDirEntryType.html#ad1cde25a0229866557cd5983c27fbd31',1,'DirEntryType']]],
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
   ['lifid',['LIFid',['../structVolumeLabelType.html#a16bdde2d19114ac3238477c29fe75b4a',1,'VolumeLabelType']]],
   ['listening',['listening',['../amigo_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8h.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../ss80_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c']]],
-  ['listening_5flast',['listening_last',['../gpib_8c.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c'],['../gpib_8h.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c']]]
+  ['listening_5flast',['listening_last',['../gpib_8c.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c'],['../gpib_8h.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c']]],
+  ['logical_5faddress',['logical_address',['../structAMIGOStateType.html#a924a685ad68765a91714aa6ad4b20d9f',1,'AMIGOStateType']]]
 ];

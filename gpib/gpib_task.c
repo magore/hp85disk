@@ -32,10 +32,6 @@ uint8_t debuglevel;
 /// @brief GPIB log file handel
 FILE *gpib_log_fp;
 
-/// @brief  Read GPIB emulator Configuration file
-///
-/// Sets debuglevel
-/// @return  0
 
 void gpib_file_init()
 {
@@ -45,7 +41,6 @@ void gpib_file_init()
     //FatFs_Read_Config(cfgfile);
 
     POSIX_Read_Config(cfgfile);
-	
 
     if(mmc_wp_status())
     {
@@ -58,7 +53,6 @@ void gpib_file_init()
 ///
 /// @param str: message to log
 /// @return  void
-
 FILE *gpib_log_fp;
 void gpib_log( char *str )
 {
@@ -66,6 +60,110 @@ void gpib_log( char *str )
         fprintf(gpib_log_fp,"%s\n", str);
 }
 
+
+/// @brief  Read GPIB emulator Configuration file
+///
+/// Sets debuglevel
+/// @return  0
+
+/// @brief  Check if SS80 listening address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int SS80_is_MLA(int addr)
+{
+	if(addr == SS80_MLA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if SS80 talking address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int SS80_is_MTA(int addr)
+{
+	if(addr == SS80_MTA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if SS80 secondary address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int SS80_is_MSA(int addr)
+{
+	if(addr == SS80_MSA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if AMIGO listening address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int AMIGO_is_MLA(int addr)
+{
+	if(addr == AMIGO_MLA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if AMIGO talking address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int AMIGO_is_MTA(int addr)
+{
+	if(addr == AMIGO_MTA)
+		return(1);
+	return(0);
+}
+/// @brief  Check if AMIGO secondary address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int AMIGO_is_MSA(int addr)
+{
+	if(addr == AMIGO_MSA)
+		return(1);
+	return(0);
+
+}
+
+/// @brief  Check if PRINTER listening address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int PRINTER_is_MLA(int addr)
+{
+	if(addr == PRINTER_MLA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if PRINTER talking address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int PRINTER_is_MTA(int addr)
+{
+	if(addr == PRINTER_MTA)
+		return(1);
+	return(0);
+}
+
+/// @brief  Check if PRINTER secondary address
+///
+/// - Used at power up, Bus IFC or user aborts
+/// @return  1 if true or 0
+int PRINTER_is_MSA(int addr)
+{
+	if(addr == PRINTER_MSA)
+		return(1);
+	return(0);
+}
 
 /// @brief  Trace GPIB activity passively - saving to a log file
 ///
@@ -228,7 +326,6 @@ uint16_t gpib_error_test(uint16_t val)
 ///
 /// - Used at power up, Bus IFC or user aborts
 /// @return  void
-
 void gpib_init_devices(void)
 {
     SS80_init();                                  // SS80 state init
@@ -236,7 +333,6 @@ void gpib_init_devices(void)
     amigo_init();                                 // AMIGO state init
 #endif
     printer_close();                              // Close any open fprinter files
-
 }
 
 
@@ -257,30 +353,33 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
 {
     uint16_t status;
 
+	///@brief talking ?
     if(talking != UNT)
     {
 
 #ifdef AMIGO
-        if ( listening == AMIGO_MLA )
+        if ( AMIGO_is_MLA(listening) )
         {
             if(unread)
                 gpib_unread(val);
+			// secondary was previously set
             status = AMIGO_COMMANDS(secondary);
             secondary = 0;
             return(status);
         }
 #endif                                    // ifdef AMIGO
 
-        if ( listening == SS80_MLA )
+        if ( SS80_is_MLA(listening) )
         {
             if(unread)
                 gpib_unread(val);
+			// secondary was previously set
             status = SS80_COMMANDS(secondary);
             secondary = 0;
             return(status);
         }
 
-        if ( listening == PRINTER_MLA )
+        if ( PRINTER_is_MLA(listening) )
         {
             if(unread)
                 gpib_unread(val);
@@ -290,10 +389,11 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
         }
     }
 
+	///@brief listening ?
     if(listening != UNL)
     {
 #ifdef AMIGO
-        if ( talking == AMIGO_MTA )
+        if ( AMIGO_is_MTA(talking) )
         {
             if(unread)
                 gpib_unread(val);
@@ -303,7 +403,7 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
         }
 #endif                                    // ifdef AMIGO
 
-        if ( talking == SS80_MTA )
+        if ( SS80_is_MTA(talking) )
         {
             if(unread)
                 gpib_unread(val);
@@ -312,7 +412,7 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
             return(status);
         }
 
-        if ( talking == PRINTER_MTA )
+        if ( PRINTER_is_MTA(talking) )
         {
             if(unread)
                 gpib_unread(val);
@@ -325,7 +425,9 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
 }
 
 
-/// @brief  Top most GPIB device emulator task.
+/// @brief  Top most main GPIB device emulator task.
+/// This is main() for GPIB state machine loop
+/// All tasks are dispatched from here
 ///
 /// - Initializes BUS, Devices, State.
 /// - Reads and processes GPIB control or data bytes
@@ -370,6 +472,7 @@ void gpib_task(void)
         {
             continue;
         }
+		///@brief GPIB commands with ATN set
         if(val & ATN_FLAG)
         {
             ch = val & CMD_MASK;
@@ -378,16 +481,22 @@ void gpib_task(void)
                 GPIB(ch);
                 continue;
             }
+			///@brief GPIB listen
             if(ch >= 0x20 && ch <= 0x3f)
             {
                 GPIB_LISTEN(ch);
                 continue;
             }
+			///@brief GPIB talk
             if(ch >= 0x40 && ch <= 0x5f)
             {
                 GPIB_TALK(ch);
                 continue;
             }
+
+			///@brief GPIB secondary
+			/// Note: We know ch >= 0x60 && ch <= 0x7f because of previous tests
+
             if( listening && lastcmd == UNT)
             {
                 secondary = 0;
@@ -395,8 +504,10 @@ void gpib_task(void)
                 continue;
             }
 
+			///@brief We have to keep track of secondary address that may happen out of order with older AMIGO protocol
+			/// this method works for SS80 as well
             secondary = ch;
-
+			///@brief GPIB_COMMANDS does most of the work
             status = GPIB_COMMANDS(secondary,0);
             status = gpib_error_test(status);
             if(status & ( ABORT_FLAG | MEDIA_FLAG ))
@@ -411,9 +522,10 @@ void gpib_task(void)
 
         }                                         // GPIB ATN
 
+		///@brief GPIB commands without ATN set
         else                                      // GPIB Data
         {
-            if ( listening == PRINTER_MLA )
+            if ( PRINTER_is_MLA(listening) )
             {
                 printer_buffer( 0xff & val );
                 continue;
@@ -422,8 +534,10 @@ void gpib_task(void)
             if(!secondary)
                 continue;
 
+			///@brief GPIB_COMMANDS does most of the work
             status = GPIB_COMMANDS(val,1);
             status = gpib_error_test(status);
+
             if(status & ( ABORT_FLAG | MEDIA_FLAG ))
             {
                 return;
@@ -556,7 +670,7 @@ void POSIX_Read_Config(char *name)
     }
 
     lines = 0;
-    while(ptr = fgets(str,sizeof(str)-2,cfg) != NULL)
+    while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
     {
         ++lines;
 
@@ -631,7 +745,7 @@ int Send_Identify(uint8_t ch, IdentifyType id)
 
 
 /// @brief  Main GPIB command handler
-///
+/// Commands 0x00 .. 0x1f
 /// - We only ever called with ATN=1 commands.
 /// - ch = GPIB command and status (ie it has the ATN_FLAG set).
 /// - Notes: We track any device states and call handelers.
@@ -645,7 +759,18 @@ int Send_Identify(uint8_t ch, IdentifyType id)
 int GPIB(uint8_t ch)
 {
 /// @todo  TODO
-    if(ch == 0x15)
+	///@brief Parallel Poll Configure
+    if(ch == PPC)
+    {
+#if SDEBUG > 1
+        if(debuglevel > 1)
+            printf("[PPC unsupported]\n");
+#endif
+        spoll = 0;
+        return 0;
+    }
+	///@brief Parallel Poll Unconfigure
+    if(ch == PPU)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -657,6 +782,7 @@ int GPIB(uint8_t ch)
 
 /// @todo FIXME
 #if defined(SPOLL)
+	///@brief Serial Poll Enable
     if(ch == SPE)
     {
 #if SDEBUG > 1
@@ -664,13 +790,14 @@ int GPIB(uint8_t ch)
             printf("[SPE]\n");
 #endif
         spoll = 1;
-        if(talking == SS80_MTA)
+        if(SS80_is_MTA(talking))
         {
             return( SS80_Report() );
         }
         return 0;
     }
 
+	///@brief Serial Poll Disable
     if(ch == SPD)
     {
 #if SDEBUG > 1
@@ -682,26 +809,26 @@ int GPIB(uint8_t ch)
     }
 #endif
 
+	///@brief Selected Device Clear
     if(ch == SDC )
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
             printf("[SDC]\n");
 #endif
-        if(listening == SS80_MLA)
+        if(SS80_is_MLA(listening))
         {
-            extern BYTE Unit;
 ///  Note: Suposed to be unsupported in SS80 - pg 4-2
 ///  CS80 3-4
 #if SDEBUG > 1
             if(debuglevel > 1)
                 printf("[SDC SS80]\n");
 #endif
-            return( SS80_Selected_Device_Clear( Unit) );
+            return(SS80_Selected_Device_Clear(SS80State.unitNO) );
         }
 
 #ifdef AMIGO
-        if(listening == AMIGO_MLA)
+        if(AMIGO_is_MLA(listening))
         {
 ///  Note: Suposed to be unsupported in SS80 - pg 4-2
 #if SDEBUG > 1
@@ -716,6 +843,7 @@ int GPIB(uint8_t ch)
         return( 0 );
     }
 
+	///@brief 	(Universal) Device Clear
     if(ch == DCL )
     {
 #if SDEBUG > 1
@@ -742,6 +870,7 @@ int GPIB(uint8_t ch)
 
 
 /// @brief  Process all GPIB Listen commands
+/// - We only ever called with ATN=1 commands.
 ///
 /// @param[in] ch 8 bit listen command
 ///
@@ -753,17 +882,24 @@ int GPIB_LISTEN(uint8_t ch)
 
     listening_last = listening;
     listening = ch;
+
+	device = ch;
+
     listen_cleanup();
 
 ///  NOTE: we must track the "addressed state" of each device
 ///  so we can determine its state - ie: command vs Secondary states
-    if(ch == UNL)                                 // Universal Unlisten
+	///@brief  Universal Unlisten
+    if(ch == UNL)                                 
     {
         listening = 0;
+		device = 0;
+	
 #if SDEBUG > 1
         if(debuglevel > 1)
 		{
             printf("[UNL]\n");
+			///@brief add a break if weboth Untalk and Unlisten
 			if(lastcmd == UNT)
 				printf("\n");
 		}
@@ -772,7 +908,7 @@ int GPIB_LISTEN(uint8_t ch)
     }
 
 #ifdef AMIGO
-    if(ch == AMIGO_MLA)
+    if(AMIGO_is_MLA(ch))
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -782,7 +918,7 @@ int GPIB_LISTEN(uint8_t ch)
     }
 #endif
 
-    if(ch == SS80_MLA)
+    if(SS80_is_MLA(ch))
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -791,7 +927,7 @@ int GPIB_LISTEN(uint8_t ch)
         return(0);
     }
 
-    if(ch == PRINTER_MLA)
+    if(PRINTER_is_MLA(ch))
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -812,6 +948,7 @@ int GPIB_LISTEN(uint8_t ch)
 
 
 /// @brief  Process all GPIB Talk commands
+/// - We only ever called with ATN=1 commands.
 ///
 /// @param[in] ch 8 bit talk command
 ///
@@ -825,10 +962,13 @@ int GPIB_TALK(uint8_t ch)
 ///  save talking state
     talking_last = talking;
     talking = ch;
+
     talk_cleanup();
 
-    if(ch == UNT)                                 // Universal Untalk
+	///@brief  Universal Untalk
+    if(ch == UNT)
     {
+		//FIXME talking = 0 ????
 #if SDEBUG > 1
         if(debuglevel > 1)
             printf("[UNT]\n");
@@ -836,7 +976,8 @@ int GPIB_TALK(uint8_t ch)
         return(0);
     }
 
-    if(ch == SS80_MTA)                            // SS80
+	
+    if(SS80_is_MTA(ch))                            // SS80
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -851,7 +992,7 @@ int GPIB_TALK(uint8_t ch)
     }
 
 #ifdef AMIGO
-    if(ch == AMIGO_MTA)                           // AMIGO
+    if(AMIGO_is_MTA(ch))                           // AMIGO
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -861,7 +1002,7 @@ int GPIB_TALK(uint8_t ch)
     }
 #endif
 
-    if(ch == PRINTER_MTA)                         // PRINTER
+    if(PRINTER_is_MTA(ch))                         // PRINTER
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
@@ -870,7 +1011,7 @@ int GPIB_TALK(uint8_t ch)
         return(0);
     }
 
-    if(listening == PRINTER_MLA)
+    if(PRINTER_is_MLA(listening))
     {
         printer_open(NULL);
         return(0);
@@ -885,35 +1026,37 @@ int GPIB_TALK(uint8_t ch)
 
 
 /// @brief  Process all GPIB Secondary Addresses
+/// - We only ever called with ATN=1 commands.
+/// Secondary Address, talking == UNT
 ///
 /// @param[in] ch 8 bit secondary address.
 ///
 /// @return  0
-
 int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 {
 ///  NOTE: We now know that ch >= 0x60 && ch <= 0x7f
 ///  Previous tests ensure this fact is true and because CMD_MASK == 0x7f
-
+	device = ch;
 
 ///  note: any errors will reset lastcmd
 ///  Universal Talk mode
 ///  Treat this as a Secondary Address ?
 ///  SS80 Ident 4-31
 ///  If we have our secondary address then send IDENT
-    if(ch == SS80_MSA )
+    if(SS80_is_MSA(ch) )
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
             printf("[SA %02x SS80]\n", 0xff & ch);
 #endif
+		///@brief ch = secondary address
         DisablePPR(SS80_PPR);
         return( Send_Identify( ch, SS80Disk.id) );
 
     }
 
 #ifdef AMIGO
-    if(ch == AMIGO_MSA )
+    if(AMIGO_is_MSA(ch) )
     {
 /// @todo 
 /// 	Two identify bytes should be repeated until untalked
@@ -921,6 +1064,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
         if(debuglevel > 1)
             printf("[SA %02x AMIGO]\n", 0xff & ch);
 #endif
+		///@brief ch = secondary address
         DisablePPR(AMIGO_PPR);
         return( Send_Identify( ch, AMIGODisk.id) );
     }
@@ -932,7 +1076,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
             0xff & ch, 0xff & listening, 0xff & talking);
 #endif
     return(0);
-}                                                 // Secondary Address, talking == UNT
+} 
 
 
 /// @brief  Called when the listen address changes.

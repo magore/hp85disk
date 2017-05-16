@@ -16,9 +16,11 @@ S\+S80 disk emulator for H\+P85 disk emulator project for A\+V\+R8.
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} \hyperlink{drives_8c_a16d811299d42f1c1d920caa2b1423491}{S\+S80\+Disk}
-\begin{DoxyCompactList}\small\item\em H\+P9122D Controller Description. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO. \end{DoxyCompactList}\item 
+\hyperlink{structSS80StateType}{S\+S80\+State\+Type} \hyperlink{drives_8c_aaa6a2958d958388054d80d289939d028}{S\+S80\+State}
+\item 
 \hyperlink{structAMIGODiskType}{A\+M\+I\+G\+O\+Disk\+Type} \hyperlink{drives_8c_ab4a2514f2ef1f255d1d99485f29d959f}{A\+M\+I\+G\+O\+Disk}
-\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A\+M\+I\+GO. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -59,37 +61,55 @@ S\+S80 disk emulator for H\+P85 disk emulator project for A\+V\+R8.
 \end{DoxyCode}
 
 
-A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders. 
+A\+M\+I\+GO. 
+
+==================================================================A\+M\+I\+GO D9121D ident Bytes per sector, sectors per track, heads, cylinders 
+
+Definition at line 177 of file drives.\+c.
 
 
 
-Definition at line 162 of file drives.\+c.
-
-
-
-Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+chs\+\_\+to\+\_\+logical(), amigo\+\_\+format(), amigo\+\_\+overflow\+\_\+check(), amigo\+\_\+verify(), display\+\_\+settings(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+buffered\+\_\+write(), amigo\+\_\+chs\+\_\+to\+\_\+logical(), amigo\+\_\+format(), amigo\+\_\+overflow\+\_\+check(), amigo\+\_\+verify(), device\+\_\+to\+\_\+\+P\+P\+R(), display\+\_\+settings(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
 \index{drives.\+c@{drives.\+c}!S\+S80\+Disk@{S\+S80\+Disk}}
 \index{S\+S80\+Disk@{S\+S80\+Disk}!drives.\+c@{drives.\+c}}
 \subsubsection[{\texorpdfstring{S\+S80\+Disk}{SS80Disk}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+Disk\+Type} S\+S80\+Disk}\hypertarget{drives_8c_a16d811299d42f1c1d920caa2b1423491}{}\label{drives_8c_a16d811299d42f1c1d920caa2b1423491}
 
 
-H\+P9122D Controller Description. 
+A\+M\+I\+GO. 
 
 printer do not use parallel poll
 
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000012}{Todo}]Should we move this into the actual Disk image or config file ?? Size = 5 Bytes\end{DoxyRefDesc}
+================================================================== H\+P9122D Controller Description 
+
+Definition at line 95 of file drives.\+c.
 
 
 
-\begin{DoxyItemize}
-\item Notes\+: H\+P/\+L\+IF data is B\+IG endian 
-\end{DoxyItemize}
+Referenced by device\+\_\+to\+\_\+\+P\+P\+R(), display\+\_\+settings(), gpib\+\_\+format\+\_\+disk(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), S\+S80\+\_\+describe(), and S\+S80\+\_\+\+Max\+Address().
 
-Definition at line 97 of file drives.\+c.
+\index{drives.\+c@{drives.\+c}!S\+S80\+State@{S\+S80\+State}}
+\index{S\+S80\+State@{S\+S80\+State}!drives.\+c@{drives.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+State}{SS80State}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+State\+Type} S\+S80\+State}\hypertarget{drives_8c_aaa6a2958d958388054d80d289939d028}{}\label{drives_8c_aaa6a2958d958388054d80d289939d028}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+
+\{
+    0,  
+    0,  
+    0,  
+    0,  
+    0,  
+    \{ 0 \},  
+    \{ 0 \}   
+\}
+\end{DoxyCode}
+
+
+Definition at line 158 of file drives.\+c.
 
 
 
-Referenced by display\+\_\+settings(), gpib\+\_\+format\+\_\+disk(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), S\+S80\+\_\+describe(), and S\+S80\+\_\+\+Max\+Vector().
+Referenced by Clear\+\_\+\+Common(), G\+P\+I\+B(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+increment(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
 

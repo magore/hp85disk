@@ -22,6 +22,7 @@ var searchData=
   ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'rs232.c']]],
   ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
-  ['unit',['Unit',['../structSS80DiskType.html#a53779c62a77383b446ab9097ed70481d',1,'SS80DiskType::Unit()'],['../ss80_8c.html#a9b9d3dd10366f58893315f84a9f61a3e',1,'Unit():&#160;ss80.c']]],
+  ['unit',['Unit',['../structSS80DiskType.html#a53779c62a77383b446ab9097ed70481d',1,'SS80DiskType']]],
+  ['unitno',['unitNO',['../structAMIGOStateType.html#a3d0cc02f8822c817feddf93dd08a5034',1,'AMIGOStateType::unitNO()'],['../structSS80StateType.html#ad2b3cd5353f5650df931520a39b385e7',1,'SS80StateType::unitNO()']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];
