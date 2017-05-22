@@ -15,6 +15,7 @@
 
 #include "posix.h"
 #include "defines.h"
+#include "drives.h"
 #include "gpib_hal.h"
 #include "gpib.h"
 #include "gpib_task.h"
@@ -554,162 +555,6 @@ void gpib_task(void)
 
 
 
-/// @brief  HEX and ASCII dump of string in human-readable format
-///
-/// - Used only for debugging
-/// @param[in] ptr: data
-/// @param[in] length: length of data string
-///
-/// @return  void
-
-void DumpData(unsigned char *ptr,int length)
-{
-    int i,j;
-    char ch;
-    printf("[Dump: %d]\n",length);
-    for(j=0;j<80&&(j*16<length);j++)
-    {
-        printf("\n");
-        for(i=0;i<16 && (i+j*16<length);i++)
-        {
-            ch = *(ptr+i+j*16);
-            printf(" %02X",ch&0xFF);
-        }
-        printf(" | ");
-        for(i=0;i<16 && (i+j*16<length);i++)
-        {
-            if(*(ptr+i+j*16)>' ') printf("%c",(*(ptr+i+j*16))&0xFF);
-            else printf(".");
-        }
-    }
-    printf("\n");
-}
-
-/// @brief Display configuration settings
-///
-/// @return void
-void display_settings()
-{
-    printf("HP Disk and Device Emulator\n");
-    printf("Created on:%s %s\n", __DATE__,__TIME__);
-
-#ifdef SOFTWARE_PP
-    printf("\nSoftware PP\n");
-#else
-    printf("\nHardware PP\n");
-#endif                                        // SOFTWARE_PP
-
-#if defined(HP9122D)
-    printf("SS/80 9122D\n");
-#endif
-
-#if defined(HP9134L)
-    printf("SS/80 9134L\n");
-#endif
-
-#if defined(HP9121D)
-    printf("Amigo 9121D\n");
-#endif
-
-	printf("debuglevel   = %02x\n",(int)debuglevel);
-	printf("\n");
-	printf("ss80_addr    = %02x\n",(int)SS80Disk.ss80_addr);
-	printf("ss80_ppr     = %02x\n",(int)SS80Disk.ss80_ppr);
-	printf("\n");
-	printf("amigo_addr   = %02x\n",(int)AMIGODisk.amigo_addr);
-	printf("amigo_ppr    = %02x\n",(int)AMIGODisk.amigo_ppr);
-	printf("\n");
-	printf("printer_addr = %02x\n",(int)printer_addr);
-	printf("\n");
-	printf("BASE_MLA     = %02x\n",BASE_MLA);
-	printf("BASE_MTA     = %02x\n",BASE_MTA);
-	printf("BASE_MSA     = %02x\n",BASE_MSA);
-	printf("\n");
-	printf("SS80_MLA     = %02x\n",SS80_MLA);
-	printf("SS80_MTA     = %02x\n",SS80_MTA);
-	printf("SS80_MSA     = %02x\n",SS80_MSA);
-	printf("SS80_PPR     = %02x\n",SS80_PPR);
-	printf("\n");
-	printf("AMIGO_MLA    = %02x\n",AMIGO_MLA);
-	printf("AMIGO_MTA    = %02x\n",AMIGO_MTA);
-	printf("AMIGO_MSA    = %02x\n",AMIGO_MSA);
-	printf("AMIGO_PPR    = %02x\n",AMIGO_PPR);
-	printf("\n");
-	printf("PRINTER_MLA  = %02x\n",PRINTER_MLA);
-	printf("PRINTER_MTA  = %02x\n",PRINTER_MTA);
-	printf("PRINTER_MSA  = %02x\n",PRINTER_MSA);
-	printf("\n");
-}
-
-
-
-/// @brief Read and parse a config file using POSIX functions
-///
-/// - Set debuglevel and other device settings
-///
-/// @param name: config file name to process
-///
-/// @return  0
-
-void POSIX_Read_Config(char *name)
-{
-    int ret;
-    int len;
-    int lines;
-    char str[128];
-    char *ptr;
-    FILE *cfg;
-	int val;
-
-	printf("Reading: %s\n", name);
-    cfg = fopen(name, "r");
-    if(cfg == NULL)
-    {
-        perror("Read_Config - open");
-        return;
-    }
-
-    lines = 0;
-    while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
-    {
-        ++lines;
-
-        ptr = str;
-
-        trim_tail(ptr);
-		ptr = skipspaces(ptr);
-        len = strlen(ptr);
-        if(!len)
-            continue;
-		// Skip comments
-		if(*ptr == '#')
-			continue;
-
-		if ( set_value(ptr,"DEBUG", 0, 255, &val) )
-			debuglevel = val;
-		if ( set_value(ptr,"SS80_DEFAULT_ADDRESS", 0, 14, &val) )
-			SS80Disk.ss80_addr = val;
-		if ( set_value(ptr,"SS80_DEFAULT_PPR", 0, 7, &val) )
-			SS80Disk.ss80_ppr = val;
-		if ( set_value(ptr,"AMIGO_DEFAULT_ADDRESS", 0, 14, &val) )
-			AMIGODisk.amigo_addr = val;
-		if ( set_value(ptr,"AMIGO_DEFAULT_PPR", 0, 7, &val) )
-			AMIGODisk.amigo_ppr = val;
-		if ( set_value(ptr,"PRINTER_DEFAULT_ADDRESS", 0, 14, &val) )
-			printer_addr = val;
-    }
-
-    printf("Read_Config: read(%d) lines\n", lines);
-
-    ret = fclose(cfg);
-    if(ret == EOF)
-    {
-        perror("Read_Config - close error");
-    }
-	display_settings();
-}
-
-
 
 /// @brief  Send drive identify- 2 bytes
 ///
@@ -724,21 +569,24 @@ void POSIX_Read_Config(char *name)
 /// @return  0 on GPIB error returns error flags
 /// @see gpib.h ERROR_MASK for a full list.
 
-int Send_Identify(uint8_t ch, IdentifyType id)
+int Send_Identify(uint8_t ch, uint16_t ID)
 {
     uint16_t status = EOI_FLAG;
-	if(gpib_write_str((uint8_t *)&id,sizeof(id), &status) 
-		!= sizeof(id))
+	uint8_t tmp[2];
+
+	V2B(tmp,0,2,ID);
+	if(gpib_write_str(tmp,2, &status) != 2)
 	{
 #if SDEBUG >= 1
 		if(debuglevel >= 1)
-			printf("[IDENT Unit:%02x=%02x%02x FAILED]\n", (int)ch,(int)id.I1,(int)id.I2);
+			printf("[IDENT Unit:%02x=%04x FAILED]\n", 
+				(int)ch,(int)ID);
 #endif
 		return(status & ERROR_MASK);
 	}
 #if SDEBUG > 1
     if(debuglevel > 1)
-		printf("[IDENT Unit:%02x=%02x%02x]\n", (int)ch,(int)id.I1,(int)id.I2);
+		printf("[IDENT Unit:%02x=%04x]\n", (int)ch,(int)ID);
 #endif
     return (status & ERROR_MASK);
 }
@@ -1051,7 +899,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 #endif
 		///@brief ch = secondary address
         DisablePPR(SS80_PPR);
-        return( Send_Identify( ch, SS80Disk.id) );
+        return(Send_Identify( ch, SS80Disk.CONFIG.ID) );
 
     }
 
@@ -1066,7 +914,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 #endif
 		///@brief ch = secondary address
         DisablePPR(AMIGO_PPR);
-        return( Send_Identify( ch, AMIGODisk.id) );
+        return( Send_Identify( ch, AMIGODisk.CONFIG.ID) );
     }
 #endif                                        // AMIGO
 
@@ -1106,3 +954,34 @@ void talk_cleanup()
 {
 
 }
+/// @brief  HEX and ASCII dump of string in human-readable format
+///
+/// - Used only for debugging
+/// @param[in] ptr: data
+/// @param[in] length: length of data string
+///
+/// @return  void
+
+void DumpData(unsigned char *ptr,int length)
+{
+    int i,j;
+    char ch;
+    printf("[Dump: %d]\n",length);
+    for(j=0;j<80&&(j*16<length);j++)
+    {
+        printf("\n");
+        for(i=0;i<16 && (i+j*16<length);i++)
+        {
+            ch = *(ptr+i+j*16);
+            printf(" %02X",ch&0xFF);
+        }
+        printf(" | ");
+        for(i=0;i<16 && (i+j*16<length);i++)
+        {
+            if(*(ptr+i+j*16)>' ') printf("%c",(*(ptr+i+j*16))&0xFF);
+            else printf(".");
+        }
+    }
+    printf("\n");
+}
+

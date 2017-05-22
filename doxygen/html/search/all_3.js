@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['c1',['C1',['../structSS80ControllerType.html#aa71282f54bf2b38fd8ace152aa9221b7',1,'SS80ControllerType']]],
-  ['c2',['C2',['../structSS80ControllerType.html#a99a2d4b94a756273b7ad2e4bdc786de8',1,'SS80ControllerType']]],
-  ['c3',['C3',['../structSS80ControllerType.html#acdbaaa95ad03c2a60f9e5cb0f9558ff8',1,'SS80ControllerType']]],
-  ['c4',['C4',['../structSS80ControllerType.html#a1d3d0ce7719f1fcb2d4c8c0c70750cdf',1,'SS80ControllerType']]],
-  ['c5',['C5',['../structSS80ControllerType.html#ae968d050e8c1a5b20a607dd16b4322c8',1,'SS80ControllerType']]],
   ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'calloc():&#160;user_config.h'],['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;ram.h']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
@@ -62,8 +57,11 @@ var searchData=
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
+  ['config',['CONFIG',['../structAMIGODiskType.html#aae94c3403ceb917006591e7bd4109207',1,'AMIGODiskType::CONFIG()'],['../structSS80DiskType.html#aeff2b9e1dcd95310e9e8dee63a60ed95',1,'SS80DiskType::CONFIG()']]],
+  ['configtype',['ConfigType',['../structConfigType.html',1,'']]],
+  ['continous_5ftransfer_5frate',['CONTINOUS_TRANSFER_RATE',['../structSS80UnitType.html#a0486673977da185f2f69aaff378f81a2',1,'SS80UnitType']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
-  ['controller',['Controller',['../structSS80DiskType.html#a2fe71dc8a453df2e8cde8e8dded1bb63',1,'SS80DiskType']]],
+  ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../struct__plot.html#af4d84e2aa52eabdc7ccc2fbf18272e98',1,'_plot']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],
@@ -92,6 +90,6 @@ var searchData=
   ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]],
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType']]],
-  ['cylinders',['cylinders',['../structAMIGODiskType.html#ae89d76a3143c33f3d61b0465ac2e8fe3',1,'AMIGODiskType']]],
+  ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

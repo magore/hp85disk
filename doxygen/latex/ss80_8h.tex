@@ -46,7 +46,7 @@ int \hyperlink{ss80_8h_a9efbe3d75e86d4003a9fbf1c8cd69919}{S\+S80\+\_\+\+Amigo\+\
 int \hyperlink{ss80_8h_a21c26f6bd9041fecdeed562156b0ae92}{S\+S80\+\_\+\+Cancel} (int u)
 \begin{DoxyCompactList}\small\item\em Cancel transaction. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8h_aeca10a525f30100d58c856f41297a9ff}{S\+S80\+\_\+increment} (void)
-\begin{DoxyCompactList}\small\item\em Increment position Addressy by 256. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Increment position Addressy by one block. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8h_af2c41eecbfd8f409ffbcf3fa941b0945}{S\+S80\+\_\+error\+\_\+return} (void)
 \begin{DoxyCompactList}\small\item\em Common S\+S80 Error Return function. Send qstat = 1. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8h_a06549a3278a77fd82f78525ce3260a8f}{S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
@@ -176,7 +176,7 @@ void
 \item[\hyperlink{todo__todo000060}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1484 of file ss80.\+c.
+Definition at line 1596 of file ss80.\+c.
 
 
 
@@ -208,7 +208,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1581 of file ss80.\+c.
+Definition at line 1693 of file ss80.\+c.
 
 
 
@@ -242,7 +242,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000064}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1617 of file ss80.\+c.
+Definition at line 1729 of file ss80.\+c.
 
 
 
@@ -281,7 +281,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1525 of file ss80.\+c.
+Definition at line 1637 of file ss80.\+c.
 
 
 
@@ -317,7 +317,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000057}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1342 of file ss80.\+c.
+Definition at line 1453 of file ss80.\+c.
 
 
 
@@ -458,7 +458,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000047}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 785 of file ss80.\+c.
+Definition at line 891 of file ss80.\+c.
 
 
 
@@ -496,7 +496,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1682 of file ss80.\+c.
+Definition at line 1794 of file ss80.\+c.
 
 
 
@@ -526,7 +526,7 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 701 of file ss80.\+c.
+Definition at line 800 of file ss80.\+c.
 
 
 
@@ -553,7 +553,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1649 of file ss80.\+c.
+Definition at line 1761 of file ss80.\+c.
 
 
 
@@ -584,7 +584,7 @@ G\+P\+IB error flags on fail
 
 \end{DoxyItemize}
 
-Definition at line 199 of file ss80.\+c.
+Definition at line 292 of file ss80.\+c.
 
 
 
@@ -599,7 +599,7 @@ Referenced by S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 )}\hypertarget{ss80_8h_aeca10a525f30100d58c856f41297a9ff}{}\label{ss80_8h_aeca10a525f30100d58c856f41297a9ff}
 
 
-Increment position Addressy by 256. 
+Increment position Addressy by one block. 
 
 
 \begin{DoxyItemize}
@@ -609,7 +609,7 @@ Increment position Addressy by 256.
 
 \end{DoxyItemize}
 
-Definition at line 1632 of file ss80.\+c.
+Definition at line 1744 of file ss80.\+c.
 
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+h@{ss80.\+h}}
@@ -622,7 +622,7 @@ Definition at line 1632 of file ss80.\+c.
 \item[\hyperlink{todo__todo000025}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 170 of file ss80.\+c.
+Definition at line 263 of file ss80.\+c.
 
 
 
@@ -642,7 +642,7 @@ S\+S80 Locate and Read C\+Ommend.
 
 \begin{DoxyItemize}
 \item Reference\+: S\+S80 4-\/39
-\item Read (S\+S80\+State.\+Length.\+L) disk bytes at (Address) offset.
+\item Read (S\+S80\+State.\+Length) disk bytes at (Address) offset.
 \item Send this data to the G\+P\+IB bus.
 \item State\+: E\+X\+EC S\+T\+A\+TE C\+O\+M\+M\+A\+ND. \begin{DoxyReturn}{Returns}
 0 on sucess 
@@ -668,7 +668,7 @@ Return
 \end{DoxyReturn}
 Note\+: this should not happen unless we exit on errors above 
 
-Definition at line 252 of file ss80.\+c.
+Definition at line 345 of file ss80.\+c.
 
 
 
@@ -688,7 +688,7 @@ S\+S80 Locate and Write Commend.
 
 \begin{DoxyItemize}
 \item Reference\+: S\+S80 pg 4-\/45, C\+S80 pg 2-\/8.
-\item Write (S\+S80\+State.\+Length.\+L) disk bytes from G\+P\+IB at (Address) offset.
+\item Write (S\+S80\+State.\+Length) disk bytes from G\+P\+IB at (Address) offset.
 \item State\+: E\+X\+EC S\+T\+A\+TE C\+O\+M\+M\+A\+ND.
 \item Disk I/O errors will set qstat and Errors.
 \item Limitations.
@@ -706,7 +706,7 @@ G\+P\+IB error flags on fail.
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 385 of file ss80.\+c.
+Definition at line 482 of file ss80.\+c.
 
 
 
@@ -719,14 +719,6 @@ Referenced by S\+S80\+\_\+\+Execute\+\_\+\+State().
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}\hypertarget{ss80_8h_aaf0865a75311d55756b971bbca21c2c1}{}\label{ss80_8h_aaf0865a75311d55756b971bbca21c2c1}
-
-
-Definition at line 161 of file ss80.\+c.
-
-
-
-Referenced by S\+S80\+\_\+cmd\+\_\+seek().
-
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+\+Report@{S\+S80\+\_\+\+Report}}
 \index{S\+S80\+\_\+\+Report@{S\+S80\+\_\+\+Report}!ss80.\+h@{ss80.\+h}}
 \subsubsection[{\texorpdfstring{S\+S80\+\_\+\+Report(void)}{SS80_Report(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int S\+S80\+\_\+\+Report (
@@ -762,7 +754,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1391 of file ss80.\+c.
+Definition at line 1503 of file ss80.\+c.
 
 
 
@@ -795,7 +787,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1561 of file ss80.\+c.
+Definition at line 1673 of file ss80.\+c.
 
 
 
@@ -918,13 +910,13 @@ S\+S80 send detailed status.
 4\+:63,64
 
 Note\+: Diagnostic Result bit is N\+OT set \begin{DoxySeeAlso}{See also}
-S\+ET A\+D\+D\+R\+E\+SS
+S\+ET A\+D\+D\+R\+E\+SS in blocks
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000028}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 626 of file ss80.\+c.
+Definition at line 723 of file ss80.\+c.
 
 
 
@@ -1037,7 +1029,7 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000056}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
-Definition at line 1183 of file ss80.\+c.
+Definition at line 1294 of file ss80.\+c.
 
 
 
@@ -1073,7 +1065,7 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000061}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1543 of file ss80.\+c.
+Definition at line 1655 of file ss80.\+c.
 
 
 

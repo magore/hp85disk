@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['i1',['I1',['../structIdentifyType.html#a8a504de4df6ede470dc1d541b62c7ec8',1,'IdentifyType']]],
-  ['i2',['I2',['../structIdentifyType.html#a7cb0551ebecaa249b8f5d5df24e156af',1,'IdentifyType']]],
-  ['id',['id',['../structAMIGODiskType.html#a184bee0e5c2958f174c972130c241cbe',1,'AMIGODiskType::id()'],['../structSS80DiskType.html#a051107cea479ec682a317e0c44ca5f51',1,'SS80DiskType::id()'],['../structFATFS.html#a417095d7c20d56d417dc0998e0dd5a5c',1,'FATFS::id()'],['../struct__FDID.html#a363d7bdab408418b911ac1502bc22ea6',1,'_FDID::id()']]],
+  ['id',['id',['../structFATFS.html#a417095d7c20d56d417dc0998e0dd5a5c',1,'FATFS::id()'],['../struct__FDID.html#a363d7bdab408418b911ac1502bc22ea6',1,'_FDID::id()'],['../structConfigType.html#a7d89346361dc0f06db0917c7ff37501a',1,'ConfigType::ID()']]],
   ['idbyte1',['idbyte1',['../gpib_8h.html#a631bd42b868b4e744a9442e117ac6f3c',1,'gpib.h']]],
   ['idbyte2',['idbyte2',['../gpib_8h.html#a7cd7b4d430193268651db4a679c76260',1,'gpib.h']]],
-  ['identifytype',['IdentifyType',['../structIdentifyType.html',1,'']]],
   ['idx',['idx',['../structputbuff.html#a10a3ca93af8df07e9836ebd5230c06d8',1,'putbuff']]],
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['ifc',['IFC',['../gpib__hal_8h.html#a98c8976d9563bbcf85c8584e18da38fe',1,'gpib_hal.h']]],
@@ -16,12 +13,14 @@ var searchData=
   ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../struct__plot.html#ab02a041a2c701b09447d883089abba4f',1,'_plot::ind()']]],
   ['index_20page',['index page',['../index.html',1,'']]],
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],
+  ['init_5fstates',['init_states',['../drives_8c.html#af9a12d478b90355ca61fdc2bc5463d83',1,'drives.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
   ['ino_5ft',['ino_t',['../posix_8h.html#aed4e918b44240739869c4bdb1c4787a9',1,'posix.h']]],
   ['insert_5fsort',['insert_sort',['../sort_8c.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c'],['../sort_8h.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c']]],
   ['install_5ftimers_5fisr',['install_timers_isr',['../timer_8h.html#a49353e09a3623d95083574b87e9aadc5',1,'timer.h']]],
   ['int',['INT',['../integer_8h.html#a392e62da233ed3e2f7c3fd4f487a3896',1,'integer.h']]],
   ['integer_2eh',['integer.h',['../integer_8h.html',1,'']]],
+  ['interleave',['INTERLEAVE',['../structSS80VolumeType.html#accc9f011ff8edebcc6d781d1aa51f16d',1,'SS80VolumeType']]],
   ['invert',['Invert',['../matrix_8c.html#a7d4a273868c8ba43d51338aee9310b00',1,'Invert(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a7d4a273868c8ba43d51338aee9310b00',1,'Invert(mat_t MatA):&#160;matrix.c']]],
   ['iom1284p_2eh',['iom1284p.h',['../iom1284p_8h.html',1,'']]],
   ['is_5fdst',['is_dst',['../time_8c.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c'],['../time_8h.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c']]],
@@ -35,5 +34,5 @@ var searchData=
   ['isdio_5fwrite',['ISDIO_WRITE',['../diskio_8h.html#a9637dcd58e0f1f301edf0cccff9e3507',1,'diskio.h']]],
   ['islower',['IsLower',['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c'],['../stringsup_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c']]],
   ['isr',['ISR',['../rs232_8c.html#a084f0a9cf05b1877bd8a71a90dae7ff8',1,'rs232.c']]],
-  ['isupper',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
+  ['isupper',['isupper',['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
 ];

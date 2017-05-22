@@ -6,6 +6,7 @@ var searchData=
   ['fdate',['fdate',['../structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52',1,'FILINFO']]],
   ['filename',['filename',['../structDirEntryType.html#aa60fae0a6b7ba9c966cbcf46e555f396',1,'DirEntryType']]],
   ['filetype',['filetype',['../structDirEntryType.html#ada14562440087858ebf04bc4c81eedd2',1,'DirEntryType']]],
+  ['fixed_5fvolumes',['FIXED_VOLUMES',['../structSS80UnitType.html#ae1d52bfc5a9bdb8f6f26ba6dffd7c2f6',1,'SS80UnitType']]],
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
   ['flags',['flags',['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
   ['fn',['fn',['../structDIR.html#ad90d974c0e7640307598c586bf141b32',1,'DIR']]],

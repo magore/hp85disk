@@ -15,6 +15,8 @@
 #define _GPIB_TASK_H
 
 #include <user_config.h>
+#include "drives.h"
+
 
 /* gpib_task.c */
 void gpib_file_init ( void );
@@ -33,16 +35,14 @@ uint16_t gpib_error_test ( uint16_t val );
 void gpib_init_devices ( void );
 uint16_t GPIB_COMMANDS ( uint16_t val , uint8_t unread );
 void gpib_task ( void );
-void DumpData ( unsigned char *ptr , int length );
-void display_settings ( void );
-void POSIX_Read_Config ( char *name );
-int Send_Identify ( uint8_t ch , IdentifyType id );
+int Send_Identify ( uint8_t ch , uint16_t ID );
 int GPIB ( uint8_t ch );
 int GPIB_LISTEN ( uint8_t ch );
 int GPIB_TALK ( uint8_t ch );
 int GPIB_SECONDARY_ADDRESS ( uint8_t ch );
 void listen_cleanup ( void );
 void talk_cleanup ( void );
+void DumpData ( unsigned char *ptr , int length );
 
 
 #endif

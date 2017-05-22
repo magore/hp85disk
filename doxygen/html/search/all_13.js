@@ -54,6 +54,7 @@ var searchData=
   ['token',['token',['../stringsup_8c.html#ae9142769a957bcb8c0fad1934576f576',1,'token(char *str, char *pat):&#160;stringsup.c'],['../stringsup_8h.html#ae9142769a957bcb8c0fad1934576f576',1,'token(char *str, char *pat):&#160;stringsup.c']]],
   ['tolower',['tolower',['../stringsup_8c.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c']]],
   ['toupper',['toupper',['../stringsup_8c.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c']]],
+  ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['transpose',['Transpose',['../matrix_8c.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c']]],
   ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c']]],
   ['true',['true',['../user__config_8h.html#af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b',1,'user_config.h']]],
@@ -74,6 +75,7 @@ var searchData=
   ['twi_5fstarttransmission',['TWI_StartTransmission',['../TWI__AVR8_8c.html#a5e9fac0280a2414490f628071c0073c2',1,'TWI_StartTransmission(const uint8_t SlaveAddress, const uint8_t TimeoutMS):&#160;TWI_AVR8.c'],['../TWI__AVR8_8h.html#a5e9fac0280a2414490f628071c0073c2',1,'TWI_StartTransmission(const uint8_t SlaveAddress, const uint8_t TimeoutMS):&#160;TWI_AVR8.c']]],
   ['twi_5fstoptransmission',['TWI_StopTransmission',['../TWI__AVR8_8c.html#af2949f6e420bec4caf6b005a4e7bdf0a',1,'TWI_AVR8.c']]],
   ['twi_5fwritepacket',['TWI_WritePacket',['../TWI__AVR8_8c.html#a7a9c708e4d9fbe6ed807f582bcbded0e',1,'TWI_WritePacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, const uint8_t *Buffer, uint8_t Length):&#160;TWI_AVR8.c'],['../TWI__AVR8_8h.html#a7a9c708e4d9fbe6ed807f582bcbded0e',1,'TWI_WritePacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, const uint8_t *Buffer, uint8_t Length):&#160;TWI_AVR8.c']]],
+  ['type',['TYPE',['../structSS80ControllerType.html#a255739680bca0ad3b4d1346cf5017332',1,'SS80ControllerType']]],
   ['tz_5fdsttime',['tz_dsttime',['../structtimezone.html#a85259977aeb63b17e6ce94f19afdfd99',1,'timezone']]],
   ['tz_5fminuteswest',['tz_minuteswest',['../structtimezone.html#a3042f7eff6e1b980728def76b1fa0eb7',1,'timezone']]],
   ['tz_5ft',['tz_t',['../time_8h.html#a63629b2492d6773f4d4948d6e60022a8',1,'time.h']]]

@@ -33,7 +33,7 @@ Various string and character functions.
 \begin{DoxyCompactList}\small\item\em copy a string \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_ad632f38aae4098a138813d533eef5093}{strncpy} (char $\ast$dest, const char $\ast$src, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
 \begin{DoxyCompactList}\small\item\em copy a string of at most N characters \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}{stpcpy} (char $\ast$dest, const char $\ast$src)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} char $\ast$ \hyperlink{stringsup_8h_ad3dc00f0e87b54ad3c6f1fb8416616da}{stpcpy} (char $\ast$dest, const char $\ast$src)
 \begin{DoxyCompactList}\small\item\em copy a string returning a pointer to its end \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}{reverse} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
@@ -67,7 +67,11 @@ Various string and character functions.
 \begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8h_a24819b9bacebff4d5720f49fb9b9639d}{set\+\_\+value} (char $\ast$str, char $\ast$pat, int minval, int maxval, int $\ast$val)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t \hyperlink{stringsup_8h_a6074ec91354fd8fb9494814066ab421e}{get\+\_\+value} (char $\ast$str, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)
+\begin{DoxyCompactList}\small\item\em get a number \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t \hyperlink{stringsup_8h_ae78f11be35495270c0b61549df7135c2}{assign\+\_\+value} (char $\ast$str, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)
+\begin{DoxyCompactList}\small\item\em assigned a value \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t \hyperlink{stringsup_8h_a532b38f29ca8ee0990d00299f6bac643}{parse\+\_\+value} (char $\ast$str, char $\ast$pat, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)
 \begin{DoxyCompactList}\small\item\em Set at configuration value. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_a11f9265694fbed4de67d91c6959a0d18}{strnalloc} (char $\ast$str, int len)
 \begin{DoxyCompactList}\small\item\em Allocate space for string with maximum size. \end{DoxyCompactList}\item 
@@ -112,6 +116,45 @@ Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), skipchars(),
 
 
 \subsection{Function Documentation}
+\index{stringsup.\+h@{stringsup.\+h}!assign\+\_\+value@{assign\+\_\+value}}
+\index{assign\+\_\+value@{assign\+\_\+value}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{assign\+\_\+value(char $\ast$str, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)}{assign_value(char *str, int32_t minval, int32_t maxval, int32_t *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t assign\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int32\+\_\+t}]{minval, }
+\item[{int32\+\_\+t}]{maxval, }
+\item[{int32\+\_\+t $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_ae78f11be35495270c0b61549df7135c2}{}\label{stringsup_8h_ae78f11be35495270c0b61549df7135c2}
+
+
+assigned a value 
+
+
+\begin{DoxyItemize}
+\item Used only for debugging 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to examine \\
+\hline
+\mbox{\tt in}  & {\em minval} & minimum value \\
+\hline
+\mbox{\tt in}  & {\em maxval} & maximum value \\
+\hline
+\mbox{\tt in}  & {\em $\ast$val} & value to set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 is matched and value in range, 0 not matched or out of range 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 652 of file stringsup.\+c.
+
+
+
+Referenced by parse\+\_\+value(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
 \index{stringsup.\+h@{stringsup.\+h}!get\+\_\+token@{get\+\_\+token}}
 \index{get\+\_\+token@{get\+\_\+token}!stringsup.\+h@{stringsup.\+h}}
 \subsubsection[{\texorpdfstring{get\+\_\+token(char $\ast$str, char $\ast$token, int max)}{get_token(char *str, char *token, int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ get\+\_\+token (
@@ -152,6 +195,45 @@ Definition at line 522 of file stringsup.\+c.
 
 
 Referenced by fatfs\+\_\+tests().
+
+\index{stringsup.\+h@{stringsup.\+h}!get\+\_\+value@{get\+\_\+value}}
+\index{get\+\_\+value@{get\+\_\+value}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+value(char $\ast$str, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)}{get_value(char *str, int32_t minval, int32_t maxval, int32_t *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t get\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int32\+\_\+t}]{minval, }
+\item[{int32\+\_\+t}]{maxval, }
+\item[{int32\+\_\+t $\ast$}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_a6074ec91354fd8fb9494814066ab421e}{}\label{stringsup_8h_a6074ec91354fd8fb9494814066ab421e}
+
+
+get a number 
+
+
+\begin{DoxyItemize}
+\item Used only for debugging 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to examine \\
+\hline
+\mbox{\tt in}  & {\em minval} & minimum value \\
+\hline
+\mbox{\tt in}  & {\em maxval} & maximum value \\
+\hline
+\mbox{\tt in}  & {\em $\ast$val} & value to set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 is matched and value in range, 0 not matched or out of range 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 603 of file stringsup.\+c.
+
+
+
+Referenced by assign\+\_\+value().
 
 \index{stringsup.\+h@{stringsup.\+h}!isdigit@{isdigit}}
 \index{isdigit@{isdigit}!stringsup.\+h@{stringsup.\+h}}
@@ -348,7 +430,7 @@ Definition at line 493 of file stringsup.\+c.
 
 
 
-Referenced by set\+\_\+value().
+Referenced by get\+\_\+value().
 
 \index{stringsup.\+h@{stringsup.\+h}!memchr@{memchr}}
 \index{memchr@{memchr}!stringsup.\+h@{stringsup.\+h}}
@@ -402,40 +484,17 @@ pointer to first white space character
 
 Definition at line 281 of file stringsup.\+c.
 
-\index{stringsup.\+h@{stringsup.\+h}!reverse@{reverse}}
-\index{reverse@{reverse}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{reverse(char $\ast$str)}{reverse(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void {\bf W\+E\+A\+K\+\_\+\+A\+TR} reverse (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}{}\label{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}
-
-
-Reverse a string in place Example\+: abcdef -\/$>$ fedcba. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-string length 
-\end{DoxyReturn}
-
-
-Definition at line 204 of file stringsup.\+c.
-
-\index{stringsup.\+h@{stringsup.\+h}!set\+\_\+value@{set\+\_\+value}}
-\index{set\+\_\+value@{set\+\_\+value}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{set\+\_\+value(char $\ast$str, char $\ast$pat, int minval, int maxval, int $\ast$val)}{set_value(char *str, char *pat, int minval, int maxval, int *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int set\+\_\+value (
+\index{stringsup.\+h@{stringsup.\+h}!parse\+\_\+value@{parse\+\_\+value}}
+\index{parse\+\_\+value@{parse\+\_\+value}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{parse\+\_\+value(char $\ast$str, char $\ast$pat, int32\+\_\+t minval, int32\+\_\+t maxval, int32\+\_\+t $\ast$val)}{parse_value(char *str, char *pat, int32_t minval, int32_t maxval, int32_t *val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t parse\+\_\+value (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{str, }
 \item[{char $\ast$}]{pat, }
-\item[{int}]{minval, }
-\item[{int}]{maxval, }
-\item[{int $\ast$}]{val}
+\item[{int32\+\_\+t}]{minval, }
+\item[{int32\+\_\+t}]{maxval, }
+\item[{int32\+\_\+t $\ast$}]{val}
 \end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a24819b9bacebff4d5720f49fb9b9639d}{}\label{stringsup_8h_a24819b9bacebff4d5720f49fb9b9639d}
+)}\hypertarget{stringsup_8h_a532b38f29ca8ee0990d00299f6bac643}{}\label{stringsup_8h_a532b38f29ca8ee0990d00299f6bac643}
 
 
 Set at configuration value. 
@@ -461,11 +520,30 @@ Set at configuration value.
 
 \end{DoxyItemize}
 
-Definition at line 604 of file stringsup.\+c.
+Definition at line 681 of file stringsup.\+c.
+
+\index{stringsup.\+h@{stringsup.\+h}!reverse@{reverse}}
+\index{reverse@{reverse}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{reverse(char $\ast$str)}{reverse(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void {\bf W\+E\+A\+K\+\_\+\+A\+TR} reverse (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}{}\label{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}
 
 
+Reverse a string in place Example\+: abcdef -\/$>$ fedcba. 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string length 
+\end{DoxyReturn}
+
+
+Definition at line 204 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!stringsup.\+h@{stringsup.\+h}}
@@ -518,16 +596,16 @@ Definition at line 264 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), get\+\_\+token(), gpib\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), receive\+\_\+plot(), set\+\_\+value(), task(), timetests(), and token().
+Referenced by assign\+\_\+value(), fatfs\+\_\+tests(), get\+\_\+token(), get\+\_\+value(), gpib\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), parse\+\_\+value(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), receive\+\_\+plot(), task(), timetests(), and token().
 
 \index{stringsup.\+h@{stringsup.\+h}!stpcpy@{stpcpy}}
 \index{stpcpy@{stpcpy}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{stpcpy(char $\ast$dest, const char $\ast$src)}{stpcpy(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ stpcpy (
+\subsubsection[{\texorpdfstring{stpcpy(char $\ast$dest, const char $\ast$src)}{stpcpy(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ stpcpy (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{dest, }
 \item[{const char $\ast$}]{src}
 \end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}{}\label{stringsup_8h_a258b53e25783cb95a93cacb815adfa1f}
+)}\hypertarget{stringsup_8h_ad3dc00f0e87b54ad3c6f1fb8416616da}{}\label{stringsup_8h_ad3dc00f0e87b54ad3c6f1fb8416616da}
 
 
 copy a string returning a pointer to its end 
@@ -574,7 +652,7 @@ N\+U\+LL on out of memory.
 \end{DoxyReturn}
 
 
-Definition at line 710 of file stringsup.\+c.
+Definition at line 755 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -664,7 +742,7 @@ Definition at line 152 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+scan\+\_\+files(), and stralloc().
+Referenced by fatfs\+\_\+scan\+\_\+files(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and stralloc().
 
 \index{stringsup.\+h@{stringsup.\+h}!strlen@{strlen}}
 \index{strlen@{strlen}!stringsup.\+h@{stringsup.\+h}}
@@ -718,7 +796,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 686 of file stringsup.\+c.
+Definition at line 731 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -877,7 +955,7 @@ Definition at line 565 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), plot\+\_\+echo(), rcvr\+\_\+datablock(), set\+\_\+value(), and task().
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), parse\+\_\+value(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), rcvr\+\_\+datablock(), and task().
 
 \index{stringsup.\+h@{stringsup.\+h}!tolower@{tolower}}
 \index{tolower@{tolower}!stringsup.\+h@{stringsup.\+h}}
@@ -957,5 +1035,5 @@ Definition at line 246 of file stringsup.\+c.
 
 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and set\+\_\+value().
+Referenced by parse\+\_\+value(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 

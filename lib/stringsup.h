@@ -40,17 +40,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef tolower
 #undef toupper
 
-/* string.c */
+
+/* ../lib/stringsup.c */
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE int WEAK_ATR isupper ( int c );
 MEMSPACE int WEAK_ATR islower ( int c );
 MEMSPACE int WEAK_ATR tolower ( int c );
 MEMSPACE int WEAK_ATR toupper ( int c );
-MEMSPACE void *memchr(const void *str, int c, size_t size);
+MEMSPACE void *memchr ( const void *str , int c , size_t size );
 MEMSPACE size_t WEAK_ATR strlen ( const char *str );
-MEMSPACE char *strcpy(char *dest, const char *src);
-MEMSPACE char *strncpy(char *dest, const char *src, size_t size);
-MEMSPACE char *stpcpy(char *dest, const char *src);
+MEMSPACE char *strcpy ( char *dest , const char *src );
+MEMSPACE char *strncpy ( char *dest , const char *src , size_t size );
+MEMSPACE WEAK_ATR char *stpcpy ( char *dest , const char *src );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
 MEMSPACE void trim_tail ( char *str );
@@ -67,9 +68,12 @@ MEMSPACE int MATCH_LEN ( char *str , char *pat );
 MEMSPACE int MATCHI_LEN ( char *str , char *pat );
 MEMSPACE char *get_token ( char *str , char *token , int max );
 MEMSPACE int token ( char *str , char *pat );
-MEMSPACE int set_value ( char *str , char *pat , int minval , int maxval , int *val );
+MEMSPACE int32_t get_value ( char *str , int32_t minval , int32_t maxval , int32_t *val );
+MEMSPACE int32_t assign_value ( char *str , int32_t minval , int32_t maxval , int32_t *val );
+MEMSPACE int32_t parse_value ( char *str , char *pat , int32_t minval , int32_t maxval , int32_t *val );
 MEMSPACE char *strnalloc ( char *str , int len );
 MEMSPACE char *stralloc ( char *str );
+
 
 
 #endif

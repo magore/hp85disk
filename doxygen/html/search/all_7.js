@@ -1,6 +1,7 @@
 var searchData=
 [
   ['gen_5fnumname',['gen_numname',['../ff_8c.html#a402f41aa1a2a5652bd4cbaa40b4603d3',1,'ff.c']]],
+  ['geometry',['GEOMETRY',['../structAMIGODiskType.html#aa75cfbfabf8081ff7bca08cf87af4da8',1,'AMIGODiskType']]],
   ['get',['get',['../struct____file.html#a2d816b077c3af0425344fe4b283dad33',1,'__file::get()'],['../amigo_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;amigo.h'],['../defines_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;defines.h']]],
   ['get_5fachar',['get_achar',['../ff_8c.html#ac154a33b2d6207b0288c9cd002b5cba6',1,'ff.c']]],
   ['get_5fblock_5fsize',['GET_BLOCK_SIZE',['../diskio_8h.html#aec3bb4dfe075d0ba2f3b07b300a95500',1,'diskio.h']]],
@@ -12,6 +13,7 @@ var searchData=
   ['get_5fsector_5fcount',['GET_SECTOR_COUNT',['../diskio_8h.html#a570216006f6a8fc4e1698b1bbb2d1dde',1,'diskio.h']]],
   ['get_5fsector_5fsize',['GET_SECTOR_SIZE',['../diskio_8h.html#ac73b5cf2135cbd459d109b96c9aa346a',1,'diskio.h']]],
   ['get_5ftoken',['get_token',['../stringsup_8c.html#a9387f7db4933b1bafd14bddad8e8c9c8',1,'get_token(char *str, char *token, int max):&#160;stringsup.c'],['../stringsup_8h.html#a9387f7db4933b1bafd14bddad8e8c9c8',1,'get_token(char *str, char *token, int max):&#160;stringsup.c']]],
+  ['get_5fvalue',['get_value',['../stringsup_8c.html#a6074ec91354fd8fb9494814066ab421e',1,'get_value(char *str, int32_t minval, int32_t maxval, int32_t *val):&#160;stringsup.c'],['../stringsup_8h.html#a6074ec91354fd8fb9494814066ab421e',1,'get_value(char *str, int32_t minval, int32_t maxval, int32_t *val):&#160;stringsup.c']]],
   ['getchar',['getchar',['../posix_8c.html#a65ef3ba32c47b84f7727e36de68ef86c',1,'getchar():&#160;posix.c'],['../posix_8h.html#ab38efc888190556f106cafb08d17d16f',1,'getchar(void):&#160;posix.c']]],
   ['getcwd',['getcwd',['../posix_8c.html#a6411298bb01166960f5a0378ac0fdb82',1,'getcwd(char *pathname, int len):&#160;posix.c'],['../posix_8h.html#a6411298bb01166960f5a0378ac0fdb82',1,'getcwd(char *pathname, int len):&#160;posix.c']]],
   ['gettimeofday',['gettimeofday',['../time_8c.html#a96a115b6a8104959a7340938f150a350',1,'gettimeofday(tv_t *tv, tz_t *tz):&#160;time.c'],['../time_8h.html#a96a115b6a8104959a7340938f150a350',1,'gettimeofday(tv_t *tv, tz_t *tz):&#160;time.c']]],

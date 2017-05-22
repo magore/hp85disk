@@ -1,5 +1,10 @@
 var searchData=
 [
   ['max',['max',['../structp__ch__t.html#a0dee9f28e498d427e53051b7e1846d34',1,'p_ch_t']]],
+  ['max_5fblock_5fnumber',['MAX_BLOCK_NUMBER',['../structSS80VolumeType.html#afe3db69c9ec54fa6d9fd48f3e6e9097b',1,'SS80VolumeType']]],
+  ['max_5fcylinder',['MAX_CYLINDER',['../structSS80VolumeType.html#a53b65739246cea4e0d9095c88b03be8e',1,'SS80VolumeType']]],
+  ['max_5fhead',['MAX_HEAD',['../structSS80VolumeType.html#acc2870eb0a52a0e7f4dc57f036d903b1',1,'SS80VolumeType']]],
+  ['max_5fsector',['MAX_SECTOR',['../structSS80VolumeType.html#a0a367b3bf05801cdee9dadc8324a3bdb',1,'SS80VolumeType']]],
+  ['maximum_5finterleave',['MAXIMUM_INTERLEAVE',['../structSS80UnitType.html#ab215c7a9a84d0d5003a2dcfbd18e4b7d',1,'SS80UnitType']]],
   ['mmc_5finit_5fflag',['mmc_init_flag',['../mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4',1,'mmc_hal.c']]]
 ];

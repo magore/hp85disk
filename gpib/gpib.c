@@ -286,10 +286,10 @@ int device_to_PPR(uint8_t address)
 {
 
 	int device = address_to_device(address);
-	if(device == SS80Disk.ss80_addr)
-		return(SS80Disk.ss80_ppr);
-	if(device == AMIGODisk.amigo_addr)
-		return(AMIGODisk.amigo_ppr);
+	if(device == SS80Disk.HEADER.ADDRESS)
+		return(SS80Disk.HEADER.PPR);
+	if(device == AMIGODisk.HEADER.ADDRESS)
+		return(AMIGODisk.HEADER.PPR);
 #if SDEBUG > 1
     if(debuglevel > 1)
         printf("[ERROR Unmatched PPR address: %02x]\n", address);

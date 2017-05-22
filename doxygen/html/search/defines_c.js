@@ -9,6 +9,7 @@ var searchData=
   ['max_5ffat32',['MAX_FAT32',['../ff_8c.html#a40e7471b7ae3620a0419aa4d8d6dc684',1,'ff.c']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'posix.h']]],
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],
+  ['max_5fstates',['MAX_STATES',['../drives_8c.html#a9568de9296df1e94aeb0b7f24cc678a9',1,'drives.c']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],
   ['mbr_5ftable',['MBR_Table',['../ff_8c.html#ac3f187bf0ba891551f594af6b61f3188',1,'ff.c']]],
   ['media_5fflag',['MEDIA_FLAG',['../defines_8h.html#ab24e084972f8d90062d2a3fcec3d07eb',1,'defines.h']]],

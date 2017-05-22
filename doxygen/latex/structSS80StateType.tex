@@ -2,12 +2,12 @@
 \label{structSS80StateType}\index{S\+S80\+State\+Type@{S\+S80\+State\+Type}}
 
 
-Emulated disk state information.  
+S\+S80 Emulated disk state information.  
 
 
 
 
-{\ttfamily \#include $<$defines.\+h$>$}
+{\ttfamily \#include $<$drives.\+h$>$}
 
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
@@ -22,32 +22,32 @@ int \hyperlink{structSS80StateType_a7a5c363c6f617ee457a4daacadb3a7b2}{Errors}
 \begin{DoxyCompactList}\small\item\em S\+S80 Unit. \end{DoxyCompactList}\item 
 \hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{structSS80StateType_ac197866db7677ec4bf9ad5e29e4a58a3}{vol\+NO}
 \begin{DoxyCompactList}\small\item\em S\+S80 Volume. \end{DoxyCompactList}\item 
-\hyperlink{unionSS80AddressType}{S\+S80\+Address\+Type} \hyperlink{structSS80StateType_add8ae66386ef9535cba918cea113cc4e}{Address}
+uint32\+\_\+t \hyperlink{structSS80StateType_a6cffa1e36a57bce4188ede4bd9dbd7ad}{Address\+Blocks}
 \begin{DoxyCompactList}\small\item\em Address in Blocks. \end{DoxyCompactList}\item 
-\hyperlink{unionSS80LengthType}{S\+S80\+Length\+Type} \hyperlink{structSS80StateType_a87107fe3c2aadb7aba586a1612f052c3}{Length}
-\begin{DoxyCompactList}\small\item\em Length in Blocks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+uint32\+\_\+t \hyperlink{structSS80StateType_a507159f0a0a4f3127488081fd618e8f6}{Length}
+\begin{DoxyCompactList}\small\item\em Length in Bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Emulated disk state information. 
+S\+S80 Emulated disk state information. 
 
 ==================================================================== 
 
-Definition at line 149 of file defines.\+h.
+Definition at line 106 of file drives.\+h.
 
 
 
 \subsection{Field Documentation}
-\index{S\+S80\+State\+Type@{S\+S80\+State\+Type}!Address@{Address}}
-\index{Address@{Address}!S\+S80\+State\+Type@{S\+S80\+State\+Type}}
-\subsubsection[{\texorpdfstring{Address}{Address}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+Address\+Type} S\+S80\+State\+Type\+::\+Address}\hypertarget{structSS80StateType_add8ae66386ef9535cba918cea113cc4e}{}\label{structSS80StateType_add8ae66386ef9535cba918cea113cc4e}
+\index{S\+S80\+State\+Type@{S\+S80\+State\+Type}!Address\+Blocks@{Address\+Blocks}}
+\index{Address\+Blocks@{Address\+Blocks}!S\+S80\+State\+Type@{S\+S80\+State\+Type}}
+\subsubsection[{\texorpdfstring{Address\+Blocks}{AddressBlocks}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t S\+S80\+State\+Type\+::\+Address\+Blocks}\hypertarget{structSS80StateType_a6cffa1e36a57bce4188ede4bd9dbd7ad}{}\label{structSS80StateType_a6cffa1e36a57bce4188ede4bd9dbd7ad}
 
 
 Address in Blocks. 
 
 
 
-Definition at line 162 of file defines.\+h.
+Definition at line 119 of file drives.\+h.
 
 
 
@@ -62,7 +62,7 @@ Errors.
 
 
 
-Definition at line 156 of file defines.\+h.
+Definition at line 113 of file drives.\+h.
 
 
 
@@ -77,7 +77,7 @@ Execute state index.
 
 
 
-Definition at line 152 of file defines.\+h.
+Definition at line 109 of file drives.\+h.
 
 
 
@@ -85,14 +85,14 @@ Referenced by Clear\+\_\+\+Common(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Comma
 
 \index{S\+S80\+State\+Type@{S\+S80\+State\+Type}!Length@{Length}}
 \index{Length@{Length}!S\+S80\+State\+Type@{S\+S80\+State\+Type}}
-\subsubsection[{\texorpdfstring{Length}{Length}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+Length\+Type} S\+S80\+State\+Type\+::\+Length}\hypertarget{structSS80StateType_a87107fe3c2aadb7aba586a1612f052c3}{}\label{structSS80StateType_a87107fe3c2aadb7aba586a1612f052c3}
+\subsubsection[{\texorpdfstring{Length}{Length}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t S\+S80\+State\+Type\+::\+Length}\hypertarget{structSS80StateType_a507159f0a0a4f3127488081fd618e8f6}{}\label{structSS80StateType_a507159f0a0a4f3127488081fd618e8f6}
 
 
-Length in Blocks. 
+Length in Bytes. 
 
 
 
-Definition at line 164 of file defines.\+h.
+Definition at line 121 of file drives.\+h.
 
 
 
@@ -107,7 +107,7 @@ Qstat variable.
 
 
 
-Definition at line 154 of file defines.\+h.
+Definition at line 111 of file drives.\+h.
 
 
 
@@ -122,7 +122,7 @@ S\+S80 Unit.
 
 
 
-Definition at line 158 of file defines.\+h.
+Definition at line 115 of file drives.\+h.
 
 
 
@@ -137,7 +137,7 @@ S\+S80 Volume.
 
 
 
-Definition at line 160 of file defines.\+h.
+Definition at line 117 of file drives.\+h.
 
 
 
@@ -147,4 +147,4 @@ Referenced by Clear\+\_\+\+Common(), S\+S80\+\_\+\+Command\+\_\+\+State(), and S
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-gpib/\hyperlink{defines_8h}{defines.\+h}\end{DoxyCompactItemize}
+gpib/\hyperlink{drives_8h}{drives.\+h}\end{DoxyCompactItemize}

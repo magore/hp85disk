@@ -341,10 +341,10 @@ int amigo_send_status()
 static DWORD amigo_chs_to_logical(AMIGOStateType *p, char *msg)
 {
     DWORD pos;
-    pos =  (long) ( AMIGODisk.sectors_per_track * p->head);
-    pos += (long) ( (AMIGODisk.sectors_per_track * AMIGODisk.heads) * p->cyl);
+    pos =  (long) ( AMIGODisk.GEOMETRY.SECTORS_PER_TRACK * p->head);
+    pos += (long) ( (AMIGODisk.GEOMETRY.SECTORS_PER_TRACK * AMIGODisk.GEOMETRY.HEADS) * p->cyl);
     pos += (long) p->sector;
-    pos *= (long) AMIGODisk.bytes_per_sector;
+    pos *= (long) AMIGODisk.GEOMETRY.BYTES_PER_SECTOR;
 
 #if SDEBUG > 1
     if(debuglevel > 1)
@@ -364,15 +364,15 @@ static DWORD amigo_chs_to_logical(AMIGOStateType *p, char *msg)
 static int amigo_overflow_check(AMIGOStateType *p, char *msg)
 {
     int stat = 0;
-    while(p->sector >= AMIGODisk.sectors_per_track)
+    while(p->sector >= AMIGODisk.GEOMETRY.SECTORS_PER_TRACK)
     {
         p->sector = 0;
         p->head++;
-        while (p->head >= AMIGODisk.heads)
+        while (p->head >= AMIGODisk.GEOMETRY.HEADS)
         {
             p->head = 0;
             p->cyl++;
-            if (p->cyl >= AMIGODisk.cylinders)
+            if (p->cyl >= AMIGODisk.GEOMETRY.CYLINDERS)
             {
                 stat = 1;
 #if SDEBUG > 1
@@ -469,13 +469,13 @@ int amigo_verify(uint16_t sectors)
             gpib_timer_elapsed_begin();
 #endif
 
-        len = dbf_open_read("/amigo.lif", pos, gpib_iobuff, AMIGODisk.bytes_per_sector, &AMIGOState.Errors);
+        len = dbf_open_read(AMIGODisk.HEADER.NAME, pos, gpib_iobuff, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &AMIGOState.Errors);
 
 #if SDEBUG > 1
         if(debuglevel > 2)
             gpib_timer_elapsed_end("Disk Read");
 #endif
-        if(len != AMIGODisk.bytes_per_sector)
+        if(len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
         {
             AMIGOState.dsj = 1;
             AMIGOState.Errors |= ERR_READ;
@@ -515,7 +515,7 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
     AMIGOState.head = 0;
     AMIGOState.cyl = 0;
 
-    memset((void *) gpib_iobuff, db, AMIGODisk.bytes_per_sector);
+    memset((void *) gpib_iobuff, db, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR);
 
 #if SDEBUG > 1
     if(debuglevel > 2)
@@ -525,10 +525,10 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
     {
         pos = amigo_chs_to_logical((AMIGOStateType *) &AMIGOState, "Format");
 
-        len = dbf_open_write("/amigo.lif",
-            pos, gpib_iobuff,AMIGODisk.bytes_per_sector, &AMIGOState.Errors);
+        len = dbf_open_write(AMIGODisk.HEADER.NAME,
+            pos, gpib_iobuff,AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &AMIGOState.Errors);
 
-        if(len != AMIGODisk.bytes_per_sector)
+        if(len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
         {
             AMIGOState.Errors |= ERR_WRITE;
             AMIGOState.dsj = 1;
@@ -573,13 +573,13 @@ int amigo_buffered_read()
         gpib_timer_elapsed_begin();
 #endif
 
-    len = dbf_open_read("/amigo.lif", pos, gpib_iobuff, AMIGODisk.bytes_per_sector, &AMIGOState.Errors);
+    len = dbf_open_read(AMIGODisk.HEADER.NAME, pos, gpib_iobuff, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &AMIGOState.Errors);
 
 #if SDEBUG > 1
     if(debuglevel > 2)
         gpib_timer_elapsed_end("Disk Read");
 #endif
-    if(len != AMIGODisk.bytes_per_sector)
+    if(len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOState.dsj = 1;
         return(0);
@@ -590,12 +590,12 @@ int amigo_buffered_read()
         gpib_timer_elapsed_begin();
 #endif
     status = EOI_FLAG;
-    len = gpib_write_str(gpib_iobuff, AMIGODisk.bytes_per_sector, &status);
+    len = gpib_write_str(gpib_iobuff, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &status);
 #if SDEBUG > 1
     if(debuglevel > 2)
         gpib_timer_elapsed_end("GPIB write");
 #endif
-    if(status & ERROR_MASK || len != AMIGODisk.bytes_per_sector)
+    if(status & ERROR_MASK || len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOState.dsj = 1;
         AMIGOState.Errors |= ERR_GPIB;
@@ -640,14 +640,14 @@ int amigo_buffered_write()
         gpib_timer_elapsed_begin();
 #endif
     status = 0;
-    len = gpib_read_str(gpib_iobuff, AMIGODisk.bytes_per_sector, &status);
+    len = gpib_read_str(gpib_iobuff, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &status);
 
 #if SDEBUG > 1
     if(debuglevel > 2)
         gpib_timer_elapsed_end("GPIB read str");
 #endif
 
-    if(status & ERROR_MASK || len != AMIGODisk.bytes_per_sector)
+    if(status & ERROR_MASK || len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOState.dsj = 1;
         AMIGOState.Errors |= ERR_GPIB;
@@ -664,14 +664,14 @@ int amigo_buffered_write()
         gpib_timer_elapsed_begin();
 #endif
 
-    len = dbf_open_write("/amigo.lif", pos, gpib_iobuff, AMIGODisk.bytes_per_sector, &AMIGOState.Errors);
+    len = dbf_open_write(AMIGODisk.HEADER.NAME, pos, gpib_iobuff, AMIGODisk.GEOMETRY.BYTES_PER_SECTOR, &AMIGOState.Errors);
 
 #if SDEBUG > 1
     if(debuglevel > 2)
         gpib_timer_elapsed_end("Disk Write");
 #endif
 
-    if(len != AMIGODisk.bytes_per_sector)
+    if(len != AMIGODisk.GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOState.dsj = 1;
         return(0);

@@ -43,7 +43,9 @@ void gpib_help()
         "plot_echo 1/0\n"
         "plot filename.txt\n"
         "gpib_elapsed\n"
-        "gpib_elapsed_reset\n");
+        "gpib_elapsed_reset\n"
+        "config\n");
+
 }
 
 
@@ -68,6 +70,11 @@ int gpib_tests(char *str)
         sscanf(ptr,"%d", &level);
         debuglevel = level;
         printf("debug=%d\n", debuglevel);
+        return(1);
+    }
+    if ((len = token(ptr,"config")) )
+    {
+		display_Config();
         return(1);
     }
     else if ((len = token(ptr,"ss80_test")) )

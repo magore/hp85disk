@@ -156,15 +156,108 @@ void SS80_Test(void)
 ///@brief default PRINTER address
 uint8_t printer_addr = PRINTER_DEFAULT_ADDRESS;
 
-
-// Maximum block number
-DWORD SS80_MaxAddress()
+///@brief SS80 Describe helper functions
+///The SS80 docs number describe bytes 1 to N for Controller,Unit and Volume
+/// MSB ... LSB
+void SS80_V2B(uint8_t *B, int index,int size, uint32_t val)
 {
-    DWORD val = SS80Disk.Volume.V9 * 0x1000000L +
-        SS80Disk.Volume.V10 * 0x10000L +
-        SS80Disk.Volume.V11 * 0x100L +
-        SS80Disk.Volume.V12;
-	return(val);
+	///@brief remove 1 bias
+	V2B(B, index-1,size, val);
+}
+
+uint8_t *SS80ControllerPack(int *size)
+{
+	static uint8_t B[5];
+	*size = 5;
+    /*
+        uint8_t C1;  //<  MSB units installed bit field
+                     //< one bit per unit, Unit 15 always set
+        uint8_t C2;  //<  LSB
+        uint8_t C3;  //<  MSB Instantaneous transfer rate in kb/s
+        uint8_t C4;  //<  LSB
+        uint8_t C5;  //<  Controller type
+                 //< 0 = CS/80 integrated single unit controller.
+                 //< 1 = CS/8O integrated multi-unit controller.
+                 //< 2 = CS/8O integrated multi-port controller.
+                 //< 4 = SS/8O integrated single unit controller.
+                 //< 5 = SS/80 integrated multi-unit controller.
+                 //< 6 = SS/80 integrated multi-port controller.
+    */
+	SS80_V2B(B,1,2,SS80Disk.CONTROLLER.UNITS_INSTALLED);
+	SS80_V2B(B,2,2,SS80Disk.CONTROLLER.TRANSFER_RATE);
+	SS80_V2B(B,5,1,SS80Disk.CONTROLLER.TYPE);
+
+	return(B);
+}
+
+uint8_t *SS80UnitPack(int *size)
+{
+	static uint8_t B[19];
+	*size = 19;
+    /*
+        uint8_t U1;  //<  Type 0-Fixed, 1-Flexible, 2-Tape
+                     //< (+128-dumb, does not detect media change)
+        uint8_t U2;  //<  MSB Device number
+        uint8_t U3;  //<  (HP 9133 = 09 13 30)
+        uint8_t U4;  //<     LSB
+        uint8_t U5;  //<  MSB Bytes per block
+        uint8_t U6;  //<     LSB
+        uint8_t U7;  //<  Number of buffered blocks
+        uint8_t U8;  //<  Burst size (0 for SS/80)
+        uint8_t U9;  //<  MSB Block time in ms
+        uint8_t U10; //<     LSB
+        uint8_t U11; //<  MSB Continous average transfer rate
+        uint8_t U12; //<     LSB
+        uint8_t U13; //<  MSB Optimal retry in tens of ms
+        uint8_t U14; //<     LSB
+        uint8_t U15; //<  MSB Access time in tens of ms
+        uint8_t U16; //<     LSB
+        uint8_t U17; //<  Maximum interleave or 0
+        uint8_t U18; //<  Fixed volume byte, one bit per volume,
+                     //< ie 00000111 = 3 volumes
+        uint8_t U19; //<  Removable volume byte, one bit per volume,
+                     //< ie 00000111 = 3 volumes
+    */
+	SS80_V2B(B,1,1,SS80Disk.UNIT.UNIT_TYPE);
+	SS80_V2B(B,2,3,SS80Disk.UNIT.DEVICE_NUMBER);
+	SS80_V2B(B,5,2,SS80Disk.UNIT.BYTES_PER_BLOCK);
+	SS80_V2B(B,7,1,SS80Disk.UNIT.BUFFERED_BLOCKS);
+	SS80_V2B(B,8,1,SS80Disk.UNIT.BURST_SIZE);
+	SS80_V2B(B,9,2,SS80Disk.UNIT.BLOCK_TIME);
+	SS80_V2B(B,11,2,SS80Disk.UNIT.CONTINOUS_TRANSFER_RATE);
+	SS80_V2B(B,13,2,SS80Disk.UNIT.OPTIMAL_RETRY_TIME);
+	SS80_V2B(B,15,2,SS80Disk.UNIT.ACCESS_TIME);
+	SS80_V2B(B,17,1,SS80Disk.UNIT.MAXIMUM_INTERLEAVE);
+	SS80_V2B(B,18,1,SS80Disk.UNIT.FIXED_VOLUMES);
+	SS80_V2B(B,19,1,SS80Disk.UNIT.REMOVABLE_VOLUMES);
+	return(B);
+}
+
+uint8_t *SS80VolumePack(int *size)
+{
+	static uint8_t B[13];
+	*size = 13;
+    /*
+        uint8_t V1;  //<  MSB Max cylinder
+        uint8_t V2;  //<
+        uint8_t V3;  //<     LSB
+        uint8_t V4;  //<  Maximum head 0 based
+        uint8_t V5;  //<  MSB Maximum sector 0 based
+        uint8_t V6;  //<     LSB
+        uint8_t V7;  //<  MSB Max number of blocks
+        uint8_t V8;
+        uint8_t V9;
+        uint8_t V10;
+        uint8_t V11;
+        uint8_t V12; //<     LSB
+        uint8_t V13; //<  Interleave
+    */
+	SS80_V2B(B,1,3,SS80Disk.VOLUME.MAX_CYLINDER);
+	SS80_V2B(B,4,1,SS80Disk.VOLUME.MAX_HEAD);
+	SS80_V2B(B,5,2,SS80Disk.VOLUME.MAX_SECTOR);
+	SS80_V2B(B,7,6,SS80Disk.VOLUME.MAX_BLOCK_NUMBER);
+	SS80_V2B(B,13,1,SS80Disk.VOLUME.INTERLEAVE);
+	return(B);
 }
 
 void SS80_init(void)
@@ -237,7 +330,7 @@ int SS80_Execute_State(void)
 /// @brief  SS80 Locate and Read COmmend
 ///
 /// - Reference: SS80 4-39
-/// - Read (SS80State.Length.L) disk bytes at (Address) offset.
+/// - Read (SS80State.Length) disk bytes at (Address) offset.
 /// - Send this data to the GPIB bus.
 /// - State: EXEC STATE COMMAND.
 /// @return 0 on sucess
@@ -256,6 +349,8 @@ int SS80_locate_and_read( void )
     int chunk;
     int len;
     uint16_t status;
+	uint32_t Address = (SS80State.AddressBlocks * SS80Disk.UNIT.BYTES_PER_BLOCK);
+
 
     SS80State.qstat = 0;
 
@@ -270,7 +365,7 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Read @%08lx(%lx)]\n", SS80State.Address.L * 256L, SS80State.Length.L);
+        printf("[SS80 Locate and Read @%08lx(%lx)]\n", Address,SS80State.Length);
 #endif
 
     if( SS80_cmd_seek() )
@@ -278,7 +373,7 @@ int SS80_locate_and_read( void )
         return(SS80_error_return());
     }
 
-    count = SS80State.Length.L;
+    count = SS80State.Length;
     total_bytes = 0;
     while(count > 0 )
     {
@@ -303,7 +398,7 @@ int SS80_locate_and_read( void )
             gpib_timer_elapsed_begin();
 #endif
 
-        len = dbf_open_read("/ss80.lif", SS80State.Address.L * 256L, gpib_iobuff, chunk, &SS80State.Errors);
+        len = dbf_open_read(SS80Disk.HEADER.NAME, Address, gpib_iobuff, chunk, &SS80State.Errors);
 
 #if SDEBUG > 1
         if(debuglevel > 2)
@@ -345,9 +440,9 @@ int SS80_locate_and_read( void )
             }
         }
 
+        Address += chunk;
         total_bytes = total_bytes + len;
         count -= len;
-        SS80State.Address.L = SS80State.Address.L + 1;
     }
 ///  Note: this should not happen unless we exit on errors above
     if(count > 0)
@@ -364,6 +459,8 @@ int SS80_locate_and_read( void )
             printf("[SS80 Buffered Read Total(%ld) Bytes]\n", total_bytes);
 #endif
     }
+
+	SS80State.AddressBlocks = (Address/SS80Disk.UNIT.BYTES_PER_BLOCK);
     return (status & ERROR_MASK);
 }
 
@@ -371,7 +468,7 @@ int SS80_locate_and_read( void )
 /// @brief  SS80 Locate and Write Commend.
 ///
 /// - Reference: SS80 pg 4-45, CS80 pg 2-8.
-/// - Write (SS80State.Length.L) disk bytes from GPIB at (Address) offset.
+/// - Write (SS80State.Length) disk bytes from GPIB at (Address) offset.
 /// - State: EXEC STATE COMMAND.
 /// - Disk I/O errors will set qstat and Errors.
 /// - Limitations.
@@ -388,12 +485,13 @@ int SS80_locate_and_write(void)
     int chunk, count, len;
     int io_skip;
     uint16_t status;
+	uint32_t Address = (SS80State.AddressBlocks * SS80Disk.UNIT.BYTES_PER_BLOCK);
 
     io_skip = 0;
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Locate and Write @%08lx(%lx)]\n", SS80State.Address.L * 256L, SS80State.Length.L);
+        printf("[SS80 Locate and Write @%08lx(%lx)]\n", Address, SS80State.Length);
 #endif
 
     SS80State.qstat = 0;
@@ -407,7 +505,7 @@ int SS80_locate_and_write(void)
         io_skip = 1;
     }
 
-    count = SS80State.Length.L;
+    count = SS80State.Length;
     total_bytes = 0;
 
     status = 0;
@@ -463,12 +561,12 @@ int SS80_locate_and_write(void)
                 if(debuglevel > 2)
                     gpib_timer_elapsed_begin();
 #endif
-                len2 = dbf_open_write("/ss80.lif", SS80State.Address.L * 256L, gpib_iobuff, 256, &SS80State.Errors);
+                len2 = dbf_open_write(SS80Disk.HEADER.NAME, Address, gpib_iobuff, len, &SS80State.Errors);
 #if SDEBUG > 1
                 if(debuglevel > 2)
                     gpib_timer_elapsed_end("Disk Write");
 #endif
-                if(len2 != 256)
+                if(len2 != len)
                 {
                     SS80State.Errors |= ERR_WRITE;
                     if(mmc_wp_status())
@@ -486,8 +584,7 @@ int SS80_locate_and_write(void)
                     if(debuglevel > 1)
                         printf("[SS80 Locate and Write wrote(%d)]\n", len2);
 #endif
-					// FIXME block size
-                    SS80State.Address.L = SS80State.Address.L + 1;
+                    Address += len;
                 }
 
                 if(len2 >= len)
@@ -517,7 +614,7 @@ int SS80_locate_and_write(void)
             printf("[SS80 Locate and Write Wrote Total(%ld)]\n", total_bytes);
 #endif
     }
-
+	SS80State.AddressBlocks = (Address/SS80Disk.UNIT.BYTES_PER_BLOCK);
     return ( status & ERROR_MASK );
 }
 
@@ -660,16 +757,18 @@ int SS80_send_status( void )
 /// 4:63,64
 
 ///  Note: Diagnostic Result bit is NOT set
-///@see SET ADDRESS
+///@see SET ADDRESS in blocks
 	if(!SS80State.Errors)
 	{
-		// FIXME block size
-		tmp[10] = SS80State.Address.B[5];	// MSB unused
-		tmp[11] = SS80State.Address.B[4];	// unused
-		tmp[12] = SS80State.Address.B[3];
-		tmp[13] = SS80State.Address.B[2];
-		tmp[14] = SS80State.Address.B[1];
-		tmp[15] = SS80State.Address.B[0];	// LSB
+/*
+		tmp[10] = SS80State.AddressBlocks.B[5];	// MSB unused
+		tmp[11] = SS80State.AddressBlocks.B[4];	// unused
+		tmp[12] = SS80State.AddressBlocks.B[3];
+		tmp[13] = SS80State.AddressBlocks.B[2];
+		tmp[14] = SS80State.AddressBlocks.B[1];
+		tmp[15] = SS80State.AddressBlocks.B[0];	// LSB
+*/
+		V2B(tmp,10,6,SS80State.AddressBlocks);
 	}
 
 /// @todo Fixme
@@ -702,14 +801,20 @@ int SS80_describe( void )
 {
     uint16_t status;
 
+	uint8_t *B;
+	int size;
+
+		
+
 #if SDEBUG > 1
     if(debuglevel > 1)
         printf("[SS80 Describe]\n");
 #endif
 
     status = 0;
-    if(gpib_write_str((uint8_t *) &SS80Disk.Controller,sizeof(SS80Disk.Controller), &status) !=
-        sizeof(SS80Disk.Controller))
+
+	B = SS80ControllerPack(&size);
+    if(gpib_write_str(B,size, &status) != size)
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -719,8 +824,9 @@ int SS80_describe( void )
     }
 
     status = 0;
-    if(gpib_write_str((uint8_t *) &SS80Disk.Unit,sizeof(SS80Disk.Unit), &status) !=
-        sizeof(SS80Disk.Unit))
+
+	B = SS80UnitPack(&size);
+    if(gpib_write_str(B,size, &status) != size)
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -730,8 +836,8 @@ int SS80_describe( void )
     }
 
     status = EOI_FLAG;
-    if(gpib_write_str((uint8_t *) &SS80Disk.Volume,sizeof(SS80Disk.Volume),&status) !=
-        sizeof(SS80Disk.Volume))
+	B = SS80VolumePack(&size);
+    if(gpib_write_str(B,size,&status) != size)
     {
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -870,17 +976,19 @@ int SS80_Command_State( void )
         if (ch == 0x10)
         {
 			/* upper two MSB unused */
-			SS80State.Address.B[5] = gpib_iobuff[ind+0];// MSB unused
-			SS80State.Address.B[4] = gpib_iobuff[ind+1];// unused
-			SS80State.Address.B[3] = gpib_iobuff[ind+2];
-			SS80State.Address.B[2] = gpib_iobuff[ind+3];
-			SS80State.Address.B[1] = gpib_iobuff[ind+4];
-			SS80State.Address.B[0] = gpib_iobuff[ind+5];//LSB
-
+			/*
+			SS80State.AddressBlocks.B[5] = gpib_iobuff[ind+0];// MSB unused
+			SS80State.AddressBlocks.B[4] = gpib_iobuff[ind+1];// unused
+			SS80State.AddressBlocks.B[3] = gpib_iobuff[ind+2];
+			SS80State.AddressBlocks.B[2] = gpib_iobuff[ind+3];
+			SS80State.AddressBlocks.B[1] = gpib_iobuff[ind+4];
+			SS80State.AddressBlocks.B[0] = gpib_iobuff[ind+5];//LSB
+			*/
+			SS80State.AddressBlocks = B2V(gpib_iobuff,ind,6);
             ind += 6;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Address:(%08lx)]\n", SS80State.Address.L);
+                printf("[SS80 Set Address:(%08lx)]\n", SS80State.AddressBlocks);
 #endif
             continue;
         }
@@ -889,14 +997,17 @@ int SS80_Command_State( void )
 		// Set Length
         if(ch == 0x18)
         {
+			/*
             SS80State.Length.B[3] = gpib_iobuff[ind+0];// MSB
             SS80State.Length.B[2] = gpib_iobuff[ind+1];
             SS80State.Length.B[1] = gpib_iobuff[ind+2];
             SS80State.Length.B[0] = gpib_iobuff[ind+3];//LSB
+			*/
+            SS80State.Length = B2V(gpib_iobuff,ind,4);
             ind += 4;
 #if SDEBUG > 1
             if(debuglevel > 1)
-                printf("[SS80 Set Length:(%08lx)]\n", SS80State.Length.L);
+                printf("[SS80 Set Length:(%08lx)]\n", SS80State.Length);
 #endif
             continue;
         }
@@ -1344,7 +1455,8 @@ int SS80_cmd_seek( void )
 
 /// @todo  Let f_lseek do bounds checking instead ???
 ///  Will we read or write past the end of the disk ??
-    if ((SS80State.Address.L + (SS80State.Length.L/256L)) > SS80_MaxAddress())
+    if ( (SS80State.AddressBlocks + (SS80State.Length/(SS80Disk.UNIT.BYTES_PER_BLOCK)))
+             > SS80Disk.VOLUME.MAX_BLOCK_NUMBER)
     {
         SS80State.qstat = 1;
         SS80State.Errors |= ERR_SEEK;
@@ -1358,7 +1470,7 @@ int SS80_cmd_seek( void )
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Seek:%08lx]\n", SS80State.Address);
+        printf("[SS80 Seek:%08lx]\n", SS80State.AddressBlocks);
 #endif
     return (0);
 }
@@ -1489,8 +1601,8 @@ void Clear_Common(int u)
     if(u == 15)
         SS80State.unitNO = 0;
     SS80State.volNO = 0;
-    SS80State.Address.L = 0;
-    SS80State.Length.L = 0;
+    SS80State.AddressBlocks = 0;
+    SS80State.Length = 0;
     SS80State.estate = EXEC_IDLE;
 
 /// @todo FIXME
@@ -1624,17 +1736,17 @@ int SS80_Cancel( int u )
 }
 
 
-/// @brief  Increment position Addressy by 256
+/// @brief  Increment position Addressy by one block
 ///
 /// - References: SS80 4-39, 4-45.
 /// @return  0
 
 int SS80_increment( void )
 {
-    SS80State.Address.L += 1L;
+    SS80State.AddressBlocks += 1L;
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SS80 Increment to (%lx)]\n", SS80State.Address.L);
+        printf("[SS80 Increment to (%lx)]\n", SS80State.AddressBlocks);
 #endif
     return(0);
 }

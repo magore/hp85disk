@@ -6,6 +6,7 @@ High level G\+P\+IB command handler for H\+P85 disk emulator project for A\+V\+R
 
 
 {\ttfamily \#include $<$user\+\_\+config.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}drives.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,13 +42,7 @@ uint16\+\_\+t \hyperlink{gpib__task_8h_a986d23075dcf4a3e6fd14995d0e82704}{G\+P\+
 \begin{DoxyCompactList}\small\item\em Process all G\+P\+IB Secondary Commands. \end{DoxyCompactList}\item 
 void \hyperlink{gpib__task_8h_af6b5cba8eb1142502f2ce96fc86a933f}{gpib\+\_\+task} (void)
 \begin{DoxyCompactList}\small\item\em Top most main G\+P\+IB device emulator task. This is \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for G\+P\+IB state machine loop All tasks are dispatched from here. \end{DoxyCompactList}\item 
-void \hyperlink{gpib__task_8h_ab62b0b328847bfeb43baded10b34d28b}{Dump\+Data} (unsigned char $\ast$ptr, int length)
-\begin{DoxyCompactList}\small\item\em H\+EX and A\+S\+C\+II dump of string in human-\/readable format. \end{DoxyCompactList}\item 
-void \hyperlink{gpib__task_8h_a0d5844320e03a837569a2f4faa21dc8d}{display\+\_\+settings} (void)
-\begin{DoxyCompactList}\small\item\em Display configuration settings. \end{DoxyCompactList}\item 
-void \hyperlink{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config} (char $\ast$name)
-\begin{DoxyCompactList}\small\item\em Read and parse a config file using P\+O\+S\+IX functions. \end{DoxyCompactList}\item 
-int \hyperlink{gpib__task_8h_ab15ca3db45137f4d5b9ccbc05540dfeb}{Send\+\_\+\+Identify} (uint8\+\_\+t ch, \hyperlink{structIdentifyType}{Identify\+Type} id)
+int \hyperlink{gpib__task_8h_af7ec1aa9752ef65efd1bfd8a582a29c2}{Send\+\_\+\+Identify} (uint8\+\_\+t ch, uint16\+\_\+t ID)
 \begin{DoxyCompactList}\small\item\em Send drive identify-\/ 2 bytes. \end{DoxyCompactList}\item 
 int \hyperlink{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}{G\+P\+IB} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em Main G\+P\+IB command handler Commands 0x00 .. 0x1f. \end{DoxyCompactList}\item 
@@ -60,7 +55,9 @@ int \hyperlink{gpib__task_8h_ad18e29cb0500dc2226b4bebbf0fcbf0c}{G\+P\+I\+B\+\_\+
 void \hyperlink{gpib__task_8h_a61b7b85789f90b1cc0e6cb4f71f6797d}{listen\+\_\+cleanup} (void)
 \begin{DoxyCompactList}\small\item\em Called when the listen address changes. \end{DoxyCompactList}\item 
 void \hyperlink{gpib__task_8h_a509eb3426def2f282b1a31c411e9cbb7}{talk\+\_\+cleanup} (void)
-\begin{DoxyCompactList}\small\item\em Called when the G\+P\+IB talk address changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Called when the G\+P\+IB talk address changes. \end{DoxyCompactList}\item 
+void \hyperlink{gpib__task_8h_ab62b0b328847bfeb43baded10b34d28b}{Dump\+Data} (unsigned char $\ast$ptr, int length)
+\begin{DoxyCompactList}\small\item\em H\+EX and A\+S\+C\+II dump of string in human-\/readable format. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -97,7 +94,7 @@ Check if A\+M\+I\+GO listening address.
 
 \end{DoxyItemize}
 
-Definition at line 106 of file gpib\+\_\+task.\+c.
+Definition at line 107 of file gpib\+\_\+task.\+c.
 
 
 
@@ -122,7 +119,7 @@ Check if A\+M\+I\+GO secondary address.
 
 \end{DoxyItemize}
 
-Definition at line 127 of file gpib\+\_\+task.\+c.
+Definition at line 128 of file gpib\+\_\+task.\+c.
 
 
 
@@ -147,33 +144,11 @@ Check if A\+M\+I\+GO talking address.
 
 \end{DoxyItemize}
 
-Definition at line 117 of file gpib\+\_\+task.\+c.
+Definition at line 118 of file gpib\+\_\+task.\+c.
 
 
 
 Referenced by Amigo\+\_\+\+Command(), A\+M\+I\+G\+O\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), Amigo\+\_\+\+Execute(), amigo\+\_\+todo(), amigo\+\_\+todo\+\_\+op(), G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
-
-\index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!display\+\_\+settings@{display\+\_\+settings}}
-\index{display\+\_\+settings@{display\+\_\+settings}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
-\subsubsection[{\texorpdfstring{display\+\_\+settings(void)}{display_settings(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+settings (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__task_8h_a0d5844320e03a837569a2f4faa21dc8d}{}\label{gpib__task_8h_a0d5844320e03a837569a2f4faa21dc8d}
-
-
-Display configuration settings. 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 591 of file gpib\+\_\+task.\+c.
-
-
-
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!Dump\+Data@{Dump\+Data}}
 \index{Dump\+Data@{Dump\+Data}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -202,7 +177,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 565 of file gpib\+\_\+task.\+c.
+Definition at line 965 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!G\+P\+IB@{G\+P\+IB}}
 \index{G\+P\+IB@{G\+P\+IB}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -261,7 +236,7 @@ Note\+: Suposed to be unsupported in S\+S80 -\/ pg 4-\/2 C\+S80 3-\/4
 \item[\hyperlink{todo__todo000020}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 759 of file gpib\+\_\+task.\+c.
+Definition at line 607 of file gpib\+\_\+task.\+c.
 
 
 
@@ -302,7 +277,7 @@ talking ?
 
 listening ? 
 
-Definition at line 352 of file gpib\+\_\+task.\+c.
+Definition at line 353 of file gpib\+\_\+task.\+c.
 
 
 
@@ -375,7 +350,7 @@ A\+B\+O\+RT flag on user keypress
 \item[\hyperlink{todo__todo000016}{Todo}]do we want to always exit here ? low level G\+P\+IB functions are still useful even without a D\+I\+SK \end{DoxyRefDesc}
 
 
-Definition at line 259 of file gpib\+\_\+task.\+c.
+Definition at line 260 of file gpib\+\_\+task.\+c.
 
 
 
@@ -390,7 +365,7 @@ Referenced by gpib\+\_\+task().
 )}\hypertarget{gpib__task_8h_a5859304d546fa05404d17db34c704906}{}\label{gpib__task_8h_a5859304d546fa05404d17db34c704906}
 
 
-Definition at line 36 of file gpib\+\_\+task.\+c.
+Definition at line 37 of file gpib\+\_\+task.\+c.
 
 
 
@@ -415,7 +390,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 329 of file gpib\+\_\+task.\+c.
+Definition at line 330 of file gpib\+\_\+task.\+c.
 
 
 
@@ -449,7 +424,7 @@ N\+O\+TE\+: we must track the \char`\"{}addressed state\char`\"{} of each device
 
 Universal Unlisten 
 
-Definition at line 879 of file gpib\+\_\+task.\+c.
+Definition at line 727 of file gpib\+\_\+task.\+c.
 
 
 
@@ -464,7 +439,7 @@ Referenced by gpib\+\_\+task().
 )}\hypertarget{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}{}\label{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}
 
 
-Definition at line 57 of file gpib\+\_\+task.\+c.
+Definition at line 58 of file gpib\+\_\+task.\+c.
 
 
 
@@ -500,7 +475,7 @@ note\+: any errors will reset lastcmd Universal Talk mode Treat this as a Second
 
 ch = secondary address 
 
-Definition at line 1035 of file gpib\+\_\+task.\+c.
+Definition at line 883 of file gpib\+\_\+task.\+c.
 
 
 
@@ -534,7 +509,7 @@ N\+O\+TE\+: we must track the \char`\"{}addressed state\char`\"{} of each device
 
 Universal Untalk 
 
-Definition at line 957 of file gpib\+\_\+task.\+c.
+Definition at line 805 of file gpib\+\_\+task.\+c.
 
 
 
@@ -574,7 +549,7 @@ G\+P\+IB commands without A\+TN set
 
 G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+DS does most of the work 
 
-Definition at line 437 of file gpib\+\_\+task.\+c.
+Definition at line 438 of file gpib\+\_\+task.\+c.
 
 
 
@@ -607,7 +582,7 @@ void Exit on Key Press
 \end{DoxyReturn}
 
 
-Definition at line 178 of file gpib\+\_\+task.\+c.
+Definition at line 179 of file gpib\+\_\+task.\+c.
 
 
 
@@ -633,43 +608,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 1088 of file gpib\+\_\+task.\+c.
+Definition at line 936 of file gpib\+\_\+task.\+c.
 
 
 
 Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), and gpib\+\_\+state\+\_\+init().
-
-\index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config@{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config}}
-\index{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config@{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
-\subsubsection[{\texorpdfstring{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(char $\ast$name)}{POSIX_Read_Config(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}{}\label{gpib__task_8h_a5338f8cf89ab5f251b525c11dc34052d}
-
-
-Read and parse a config file using P\+O\+S\+IX functions. 
-
-
-\begin{DoxyItemize}
-\item Set debuglevel and other device settings
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em name} & config file name to process\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 
-\end{DoxyReturn}
-
-
-Definition at line 654 of file gpib\+\_\+task.\+c.
-
-
-
-Referenced by gpib\+\_\+file\+\_\+init().
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+LA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+LA}}
 \index{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+LA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+LA}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -690,7 +633,7 @@ Check if P\+R\+I\+N\+T\+ER listening address.
 
 \end{DoxyItemize}
 
-Definition at line 139 of file gpib\+\_\+task.\+c.
+Definition at line 140 of file gpib\+\_\+task.\+c.
 
 
 
@@ -715,7 +658,7 @@ Check if P\+R\+I\+N\+T\+ER secondary address.
 
 \end{DoxyItemize}
 
-Definition at line 161 of file gpib\+\_\+task.\+c.
+Definition at line 162 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA}}
 \index{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -736,7 +679,7 @@ Check if P\+R\+I\+N\+T\+ER talking address.
 
 \end{DoxyItemize}
 
-Definition at line 150 of file gpib\+\_\+task.\+c.
+Definition at line 151 of file gpib\+\_\+task.\+c.
 
 
 
@@ -744,12 +687,12 @@ Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), G\+P\+I\+B\+\_\+\+T\+A
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!Send\+\_\+\+Identify@{Send\+\_\+\+Identify}}
 \index{Send\+\_\+\+Identify@{Send\+\_\+\+Identify}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
-\subsubsection[{\texorpdfstring{Send\+\_\+\+Identify(uint8\+\_\+t ch, Identify\+Type id)}{Send_Identify(uint8_t ch, IdentifyType id)}}]{\setlength{\rightskip}{0pt plus 5cm}int Send\+\_\+\+Identify (
+\subsubsection[{\texorpdfstring{Send\+\_\+\+Identify(uint8\+\_\+t ch, uint16\+\_\+t I\+D)}{Send_Identify(uint8_t ch, uint16_t ID)}}]{\setlength{\rightskip}{0pt plus 5cm}int Send\+\_\+\+Identify (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{ch, }
-\item[{{\bf Identify\+Type}}]{id}
+\item[{uint16\+\_\+t}]{ID}
 \end{DoxyParamCaption}
-)}\hypertarget{gpib__task_8h_ab15ca3db45137f4d5b9ccbc05540dfeb}{}\label{gpib__task_8h_ab15ca3db45137f4d5b9ccbc05540dfeb}
+)}\hypertarget{gpib__task_8h_af7ec1aa9752ef65efd1bfd8a582a29c2}{}\label{gpib__task_8h_af7ec1aa9752ef65efd1bfd8a582a29c2}
 
 
 Send drive identify-\/ 2 bytes. 
@@ -778,7 +721,7 @@ Send drive identify-\/ 2 bytes.
 \end{DoxySeeAlso}
 
 
-Definition at line 727 of file gpib\+\_\+task.\+c.
+Definition at line 572 of file gpib\+\_\+task.\+c.
 
 
 
@@ -806,7 +749,7 @@ Sets debuglevel \begin{DoxyReturn}{Returns}
 
 \end{DoxyItemize}
 
-Definition at line 73 of file gpib\+\_\+task.\+c.
+Definition at line 74 of file gpib\+\_\+task.\+c.
 
 
 
@@ -831,7 +774,7 @@ Check if S\+S80 secondary address.
 
 \end{DoxyItemize}
 
-Definition at line 95 of file gpib\+\_\+task.\+c.
+Definition at line 96 of file gpib\+\_\+task.\+c.
 
 
 
@@ -856,7 +799,7 @@ Check if S\+S80 talking address.
 
 \end{DoxyItemize}
 
-Definition at line 84 of file gpib\+\_\+task.\+c.
+Definition at line 85 of file gpib\+\_\+task.\+c.
 
 
 
@@ -885,7 +828,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1105 of file gpib\+\_\+task.\+c.
+Definition at line 953 of file gpib\+\_\+task.\+c.
 
 
 

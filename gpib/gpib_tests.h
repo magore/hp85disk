@@ -13,10 +13,9 @@
 
 #ifndef _GPIB_TESTS_H_
 #define _GPIB_TESTS_H_
-
 /* gpib_tests.c */
 void gpib_help ( void );
 int gpib_tests ( char *str );
 
-
 #endif                                            // _GPIB_TESTS_H_
+

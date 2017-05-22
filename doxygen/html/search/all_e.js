@@ -17,5 +17,6 @@ var searchData=
   ['off_5ft',['off_t',['../posix_8h.html#aac46e03c2018bada012333c31f41df12',1,'posix.h']]],
   ['open',['open',['../posix_8c.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c'],['../posix_8h.html#a3e5e6f96d36b5cdacfaf6b3976cd5af2',1,'open(const char *pathname, int flags):&#160;posix.c']]],
   ['opendir',['opendir',['../posix_8c.html#a19051b9081dfef221d9bf4583e935031',1,'opendir(const char *pathdir):&#160;posix.c'],['../posix_8h.html#a19051b9081dfef221d9bf4583e935031',1,'opendir(const char *pathdir):&#160;posix.c']]],
+  ['optimal_5fretry_5ftime',['OPTIMAL_RETRY_TIME',['../structSS80UnitType.html#ab7ae848f0a65aa2e29b613bc110c9085',1,'SS80UnitType']]],
   ['out',['out',['../structqueue__t.html#a8f6e1c623d2ceed398a71a0aab93b0fa',1,'queue_t']]]
 ];
