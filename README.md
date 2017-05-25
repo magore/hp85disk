@@ -56,11 +56,9 @@ section and page# reference to these works.
    * <http://en.wikipedia.org/wiki/IEEE-488>
    * See Documents folder
 
-## SS80 References: ("SS80" is the short form used in the project)
-   * "Subset 80 from Fixed and flexible disc drives"
-   * Printed November, 1985
-   * HP Part# 5958-4129 
-   * See Documents folder
+## Enhanced version of Tony Duell's lif_utils by Joachim
+   * <https://github.com/bug400/lifutils>
+   * Create/Modify LIF images
 
 ## CS80 References: ("CS80" is the short form used in the project)
    * "CS/80 Instruction Set Programming Manual"

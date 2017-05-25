@@ -46,9 +46,9 @@ struct _uart
 /* rs232.c */
 void uart_rx_flush ( uint8_t uart );
 uint8_t uart0_getchar ( FILE *f );
-void uart0_putchar ( char c , FILE *f );
+int uart0_putchar ( char c , FILE *f );
 uint8_t uart1_getchar ( FILE *f );
-void uart1_putchar ( char c , FILE *f );
+int uart1_putchar ( char c , FILE *f );
 int uart_init ( uint8_t uart , uint32_t baud );
 void uart_rx_interrupt ( uint8_t uart , uint8_t data );
 uint8_t uart_peek_tail ( uint8_t uart );

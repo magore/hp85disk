@@ -13,6 +13,7 @@ var searchData=
   ['amigo_5frequest_5fstatus_5fbuffered',['AMIGO_REQUEST_STATUS_BUFFERED',['../amigo_8c.html#a7d3869d64c8e26be25a286779419d335a6d7ced0a2fc673da1446a166df5ef08f',1,'amigo.c']]],
   ['amigo_5frequest_5fstatus_5funbuffered',['AMIGO_REQUEST_STATUS_UNBUFFERED',['../amigo_8c.html#a7d3869d64c8e26be25a286779419d335a6fd2f3e3f356ce8341f1c4f42c220978',1,'amigo.c']]],
   ['amigo_5fstate',['AMIGO_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11',1,'drives.h']]],
+  ['amigo_5ftype',['AMIGO_TYPE',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d',1,'drives.h']]],
   ['amigo_5fwrite_5fbuffered',['AMIGO_WRITE_BUFFERED',['../amigo_8c.html#a7d3869d64c8e26be25a286779419d335a39479dd4c934ff0cc21697e3ec8b8d29',1,'amigo.c']]],
   ['amigo_5fwrite_5funbuffered',['AMIGO_WRITE_UNBUFFERED',['../amigo_8c.html#a7d3869d64c8e26be25a286779419d335a9a43858ee7b188686415fa08d20702c6',1,'amigo.c']]]
 ];

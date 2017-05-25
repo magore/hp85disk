@@ -470,7 +470,13 @@ MEMSPACE
 int
 puts(const char *str)
 {
-	return ( fputs(str,stdout) );
+    while(*str)
+    {
+        if(fputc(*str, stdout) == EOF)
+            return(EOF);
+		++str;
+    }
+	return ( fputc('\n',stdout) );
 }
 
 #endif

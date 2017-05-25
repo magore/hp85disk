@@ -594,15 +594,11 @@ int token(char *str, char *pat)
 ///
 /// - Used only for debugging
 /// @param[in] str: string to examine
-/// @param[in] minval: minimum value
-/// @param[in] maxval: maximum value
-/// @param[in] *val: value to set
 ///
-/// @return  1 is matched and value in range, 0 not matched or out of range
+/// @return  value
 MEMSPACE
-int32_t get_value(char *str, int32_t minval, int32_t maxval, int32_t *val)
+int32_t get_value(char *str)
 { 
-	int32_t tmp;
 	int base;
 	int ret;
 	char *ptr;
@@ -611,7 +607,6 @@ int32_t get_value(char *str, int32_t minval, int32_t maxval, int32_t *val)
 
 	ptr = skipspaces(str);
 	base = 10;
-	*val = 0;
 
 	// convert number base 10, 16, 8 and 2
 	if( (ret = MATCHI_LEN(ptr,"0x")) )
@@ -629,89 +624,7 @@ int32_t get_value(char *str, int32_t minval, int32_t maxval, int32_t *val)
 		base = 2;
 		ptr += ret;
 	}
-	tmp = strtol(ptr, (char **)&endptr, base);
-	// make sure we process at least one digit and the numver is in range
-	if( (ptr != endptr) && (tmp >= minval && tmp <= maxval))
-	{
-		*val = tmp;
-		return(1);
-	}
-	return(0);
-}
-
-/// @brief assigned a value
-///
-/// - Used only for debugging
-/// @param[in] str: string to examine
-/// @param[in] minval: minimum value
-/// @param[in] maxval: maximum value
-/// @param[in] *val: value to set
-///
-/// @return  1 is matched and value in range, 0 not matched or out of range
-MEMSPACE
-int32_t assign_value(char *str, int32_t minval, int32_t maxval, int32_t *val)
-{ 
-	char *ptr;
-
-	*val = 0;
-
-	// Skip spaces before assignment
-	ptr = skipspaces(str);
-	// Skip optional '='
-	if(*ptr == '=')
-	{
-		++ptr;
-		// skip spaces after assignment
-		ptr = skipspaces(ptr);
-	}
-	return( get_value(ptr, minval, maxval, val) );
-}
-
-/// @brief Set at configuration value 
-///
-/// - Used only for debugging
-/// @param[in] str: string to examine
-/// @param[in] pat: patern to match
-/// @param[in] minval: minimum value
-/// @param[in] maxval: maximum value
-/// @param[in] *val: value to set
-///
-/// @return  1 is matched and value in range, 0 not matched or out of range
-MEMSPACE
-int32_t parse_value(char *str, char *pat, int32_t minval, int32_t maxval, int32_t *val)
-{
-	int ret;
-	char *ptr;
-
-	*val = 0;
-
-	//printf("set_value: str:[%s], pat:[%s]\n",str,pat);
-
-	// skip leading spaces
-	ptr = skipspaces(str);
-	// skip trailing spaces
-	trim_tail(ptr);
-
-	if(strlen(ptr) < strlen(pat))
-		return(0);
-
-	if( (ret = token(ptr, pat)) )
-	{
-		// skip matched pattern
-		ptr += ret;
-		if(assign_value(ptr, minval, maxval, val) )
-		{
-			printf("%s=%d\n", pat, *val);
-			// good value
-			return(1);
-		}
-		else
-		{
-			printf("%s=%d is out of expected range (%d to %d) not setting\n", pat, *val, minval,maxval);
-		}
-	}
-	// fail
-	return(0);
+	return(strtol(ptr, (char **)&endptr, base));
 }
 
 // ==================================================

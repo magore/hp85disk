@@ -252,9 +252,24 @@ int main(void)
     uart_init(0, 115200U); // Serial Port Initialize
     delayms(200);
 
+	///@ initialize bus state as soon as practical
+    gpib_bus_init(0);
+
 	printf("==============================\n");
     printf("INIT\n");
     printf("F_CPU: %lu\n", F_CPU);
+
+
+    printf("HP Disk and Device Emulator\n");
+    printf("Created on:%s %s\n", __DATE__,__TIME__);
+    printf("debuglevel   = %02x\n",(int)debuglevel);
+    printf("\n");
+
+#ifdef SOFTWARE_PP
+    printf("\nSoftware PP\n");
+#else
+    printf("\nHardware PP\n");
+#endif                                        // SOFTWARE_PP
 /*
     printf("sin(45) = %f\n", sin(45.0 * 0.0174532925));
     printf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
@@ -263,18 +278,17 @@ int main(void)
 */
 
 	printf("initializing SPI bus\n");
-
 	spi_init(MMC_SLOW,GPIO_B3);
 
+	printf("initializing I2C bus\n");
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
 
-
-    PrintFree();
 	line = calloc(80,1);
 	if(!line)
 	{
 		printf("Calloc: line failed ***************************\n");
 	}
+    PrintFree();
 
     delayms(200);
 
@@ -285,20 +299,32 @@ int main(void)
     setup_clock();
     display_time();
 
+    printf("GPIB BUS init done\n");
+    gpib_bus_init(0);
+
     mmc_init(1);
+    printf("MMC init done\n");
 
     gpib_timer_init();
     printf("GPIB Timer init done\n");
 
+
+	///@brief process config file
     gpib_file_init();
+    printf("GPIB File init done\n");
 
-    gpib_bus_init(0);
-    printf("GPIB BUS init done\n");
+	///@brief Display Config
+	display_Config();
 
-    gpib_state_init();
+	///@brief Address Summary
+	display_Addresses();
 
     printer_init();
     printf("Printer Init done\n");
+
+	///@brief GPIB talking/listening state variables 
+	///Must be done AFTER gpib_file_init() so we have a valid configuration
+    gpib_state_init();
 
 	printf("==============================\n");
 

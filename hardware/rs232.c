@@ -55,9 +55,10 @@ uint8_t uart0_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 0);.
 /// @see fdevopen() from avr-libc.
-void uart0_putchar(char c, FILE *f)
+int uart0_putchar(char c, FILE *f)
 {
     uart_putchar(c, 0);
+	return(0);
 }
 
 
@@ -81,9 +82,10 @@ uint8_t uart1_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 1);.
 /// @see fdevopen() from avr-libc.
-void uart1_putchar(char c, FILE *f)
+int uart1_putchar(char c, FILE *f)
 {
     uart_putchar(c, 1);
+	return(0);
 }
 #endif
 

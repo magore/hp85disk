@@ -15,6 +15,7 @@
 
 #include <user_config.h>
 
+
 /* printer.c */
 void printer_open ( char *name );
 void printer_init ( void );
@@ -24,4 +25,5 @@ void printer_buffer ( uint16_t val );
 void receive_plot ( char *name );
 int PRINTER_COMMANDS ( uint8_t ch );
 void plot_echo ( int echo );
+
 #endif

@@ -18,6 +18,8 @@
 #include "gpib_task.h"
 #include "printer.h"
 
+#include "posix.h"
+
 ///@brief Plotter file data structure definition used for saving plot data.
 struct _plot
 {
@@ -188,13 +190,13 @@ void printer_buffer( uint16_t val )
     ch = val & 0xff;
     if(val & (0xff00 & ~REN_FLAG))
     {
-        char str[40];
+		char *ptr;
         if( receive_plot_flush() )
             plot.error = 1;
-        gpib_decode_str(ch, str);
-        puts(str);
-        fprintf(plot.fp,"%s\n", str);
-        plot.count += strlen(str);
+        ptr = gpib_decode_str(ch);
+        puts(ptr);
+        fprintf(plot.fp,"%s\n", ptr);
+        plot.count += strlen(ptr);
     }
     else
     {
@@ -252,12 +254,12 @@ void receive_plot( char *name )
 
         if(ch & (0xff00 & ~REN_FLAG))
         {
-            char str[40];
+            char *ptr;
             if( receive_plot_flush() )
                 plot.error = 1;
-            gpib_decode_str(ch, str);
-            puts(str);
-            fprintf(plot.fp,"%s\n", str);
+            ptr = gpib_decode_str(ch);
+            puts(ptr);
+            fprintf(plot.fp,"%s\n", ptr);
         }
         else
         {
@@ -378,9 +380,9 @@ void plot_echo( int echo )
         {
             if(ch & (0xff00 & ~REN_FLAG))
             {
-                char str[40];
-                gpib_decode_str(ch, str);
-                puts(str);
+                char *ptr;
+                ptr = gpib_decode_str(ch);
+                puts(ptr);
             }
             else
             {

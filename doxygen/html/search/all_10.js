@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['qstat',['qstat',['../structSS80StateType.html#ad4911c7b89ec1ff2c0aa01881b1e3d3a',1,'SS80StateType::qstat()'],['../ss80_8h.html#adc574bdd28c054bd114ba7c400e38398',1,'qstat():&#160;ss80.h']]],
+  ['qstat',['qstat',['../structSS80StateType.html#ad4911c7b89ec1ff2c0aa01881b1e3d3a',1,'SS80StateType']]],
   ['queue_2ec',['queue.c',['../queue_8c.html',1,'']]],
   ['queue_2eh',['queue.h',['../queue_8h.html',1,'']]],
   ['queue_5fdel',['queue_del',['../queue_8c.html#a6bac5e705b44fd0b677b9ff9b3a19a23',1,'queue_del(queue_t *q):&#160;queue.c'],['../queue_8h.html#a6bac5e705b44fd0b677b9ff9b3a19a23',1,'queue_del(queue_t *q):&#160;queue.c']]],

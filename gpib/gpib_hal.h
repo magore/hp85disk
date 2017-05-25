@@ -187,4 +187,5 @@ FRESULT dbf_close ( FIL *fp );
 int dbf_open_read ( char *name , uint32_t pos , void *buff , int size , int *errors );
 int dbf_open_write ( char *name , uint32_t pos , void *buff , int size , int *errors );
 
+
 #endif                                            // _GPIB_HAL_H_

@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>SS80 disk emulator for HP85 disk emulator project for AVR8.  
+<p>drive definitions for HP85 disk emulator project for AVR.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
@@ -113,157 +113,234 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a9568de9296df1e94aeb0b7f24cc678a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a9568de9296df1e94aeb0b7f24cc678a9">MAX_STATES</a>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:a9568de9296df1e94aeb0b7f24cc678a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">AMIGO Disk States.  <a href="#a9568de9296df1e94aeb0b7f24cc678a9">More...</a><br /></td></tr>
-<tr class="separator:a9568de9296df1e94aeb0b7f24cc678a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f400f61a9a345a22df811a5b3ddc63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a78f400f61a9a345a22df811a5b3ddc63">print_var</a>(format,  args...)&#160;&#160;&#160;<a class="el" href="drives_8c.html#ab0cc4deddae206c7762399a8d54856e1">print_var_P</a>(PSTR(format), ##args)</td></tr>
-<tr class="memdesc:a78f400f61a9a345a22df811a5b3ddc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">print_var strings into __memx space  <a href="#a78f400f61a9a345a22df811a5b3ddc63">More...</a><br /></td></tr>
-<tr class="separator:a78f400f61a9a345a22df811a5b3ddc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39fe89f113f9ddf062c4bdc0bb5a781b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a39fe89f113f9ddf062c4bdc0bb5a781b">print_str</a>(format,  args...)&#160;&#160;&#160;<a class="el" href="drives_8c.html#a3da86aaab90b0d4bb14f79e296a155bb">print_str_P</a>(PSTR(format), ##args)</td></tr>
-<tr class="memdesc:a39fe89f113f9ddf062c4bdc0bb5a781b"><td class="mdescLeft">&#160;</td><td class="mdescRight">print_var strings into __memx space  <a href="#a39fe89f113f9ddf062c4bdc0bb5a781b">More...</a><br /></td></tr>
-<tr class="separator:a39fe89f113f9ddf062c4bdc0bb5a781b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af24298a5ce56647751e432673282c6e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#af24298a5ce56647751e432673282c6e2">MAX_STACK</a>&#160;&#160;&#160;5</td></tr>
+<tr class="memdesc:af24298a5ce56647751e432673282c6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Config Parser Stack.  <a href="#af24298a5ce56647751e432673282c6e2">More...</a><br /></td></tr>
+<tr class="separator:af24298a5ce56647751e432673282c6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e132cfaa78353e3af1474a86b2dd535"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a4e132cfaa78353e3af1474a86b2dd535">MAX_DEVICES</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a4e132cfaa78353e3af1474a86b2dd535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa9e357b74bab805ab8c9b1a1f4ff3589"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#aa9e357b74bab805ab8c9b1a1f4ff3589">V2B</a> (uint8_t *B, int index, int size, uint32_t val)</td></tr>
-<tr class="memdesc:aa9e357b74bab805ab8c9b1a1f4ff3589"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a value to packed bytes at a given offset bytes are MSB ... LSB order.  <a href="#aa9e357b74bab805ab8c9b1a1f4ff3589">More...</a><br /></td></tr>
+<tr class="memdesc:aa9e357b74bab805ab8c9b1a1f4ff3589"><td class="mdescLeft">&#160;</td><td class="mdescRight">=====================================================  <a href="#aa9e357b74bab805ab8c9b1a1f4ff3589">More...</a><br /></td></tr>
 <tr class="separator:aa9e357b74bab805ab8c9b1a1f4ff3589"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15acb3e0855d4922ff7bef41050b97d3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a15acb3e0855d4922ff7bef41050b97d3">B2V</a> (uint8_t *B, int index, int size)</td></tr>
-<tr class="memdesc:a15acb3e0855d4922ff7bef41050b97d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a value to packed bytes at a given offset bytes are MSB ... LSB order.  <a href="#a15acb3e0855d4922ff7bef41050b97d3">More...</a><br /></td></tr>
+<tr class="memdesc:a15acb3e0855d4922ff7bef41050b97d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a byte array into a value bytes are MSB ... LSB order.  <a href="#a15acb3e0855d4922ff7bef41050b97d3">More...</a><br /></td></tr>
 <tr class="separator:a15acb3e0855d4922ff7bef41050b97d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9a12d478b90355ca61fdc2bc5463d83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#af9a12d478b90355ca61fdc2bc5463d83">init_states</a> ()</td></tr>
-<tr class="memdesc:af9a12d478b90355ca61fdc2bc5463d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init Config Parser Stack.  <a href="#af9a12d478b90355ca61fdc2bc5463d83">More...</a><br /></td></tr>
-<tr class="separator:af9a12d478b90355ca61fdc2bc5463d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc9af84417d1ea9757b9f0596fd709b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#adc9af84417d1ea9757b9f0596fd709b3">find_type</a> (int type)</td></tr>
+<tr class="memdesc:adc9af84417d1ea9757b9f0596fd709b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seach Devices[] for ANY definitions of a disk type.  <a href="#adc9af84417d1ea9757b9f0596fd709b3">More...</a><br /></td></tr>
+<tr class="separator:adc9af84417d1ea9757b9f0596fd709b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa43e282b0ff4a2e5b2ce59f0fce3fb68"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#aa43e282b0ff4a2e5b2ce59f0fce3fb68">type_to_str</a> (int type)</td></tr>
+<tr class="memdesc:aa43e282b0ff4a2e5b2ce59f0fce3fb68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a disk type into a string.  <a href="#aa43e282b0ff4a2e5b2ce59f0fce3fb68">More...</a><br /></td></tr>
+<tr class="separator:aa43e282b0ff4a2e5b2ce59f0fce3fb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc23d2ab247de5b92eae0d0bc06aab2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#afc23d2ab247de5b92eae0d0bc06aab2e">find_free</a> ()</td></tr>
+<tr class="memdesc:afc23d2ab247de5b92eae0d0bc06aab2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find first free Devices[] slot.  <a href="#afc23d2ab247de5b92eae0d0bc06aab2e">More...</a><br /></td></tr>
+<tr class="separator:afc23d2ab247de5b92eae0d0bc06aab2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4164c671ecff0b80ace6674e37a0bfc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a4164c671ecff0b80ace6674e37a0bfc8">find_device</a> (int type, int address)</td></tr>
+<tr class="memdesc:a4164c671ecff0b80ace6674e37a0bfc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a device with matching type AND address.  <a href="#a4164c671ecff0b80ace6674e37a0bfc8">More...</a><br /></td></tr>
+<tr class="separator:a4164c671ecff0b80ace6674e37a0bfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6c0068150e5b428b49efb8fc9fd8398"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ab6c0068150e5b428b49efb8fc9fd8398">set_device_by_index</a> (int index)</td></tr>
+<tr class="memdesc:ab6c0068150e5b428b49efb8fc9fd8398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Active disk device pointer.  <a href="#ab6c0068150e5b428b49efb8fc9fd8398">More...</a><br /></td></tr>
+<tr class="separator:ab6c0068150e5b428b49efb8fc9fd8398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bcc7c02d03d815d81b62308d45e7f18"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a7bcc7c02d03d815d81b62308d45e7f18">set_device</a> (int type, int address)</td></tr>
+<tr class="memdesc:a7bcc7c02d03d815d81b62308d45e7f18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Active disk by type and address.  <a href="#a7bcc7c02d03d815d81b62308d45e7f18">More...</a><br /></td></tr>
+<tr class="separator:a7bcc7c02d03d815d81b62308d45e7f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a779f57c67af69afdde92e28cb4ee9adb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a779f57c67af69afdde92e28cb4ee9adb">alloc_device</a> (int type)</td></tr>
+<tr class="memdesc:a779f57c67af69afdde92e28cb4ee9adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a Device structure for a disk or printer.  <a href="#a779f57c67af69afdde92e28cb4ee9adb">More...</a><br /></td></tr>
+<tr class="separator:a779f57c67af69afdde92e28cb4ee9adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756aa4b7d6e1757b9465729dffe7ed7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f">init_Devices</a> ()</td></tr>
+<tr class="memdesc:a756aa4b7d6e1757b9465729dffe7ed7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init Config Parser Stack Called only durring power up so we do not have to free memory.  <a href="#a756aa4b7d6e1757b9465729dffe7ed7f">More...</a><br /></td></tr>
+<tr class="separator:a756aa4b7d6e1757b9465729dffe7ed7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21b219166399e8a1195b92d6a9872bbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a21b219166399e8a1195b92d6a9872bbe">push_state</a> (int state)</td></tr>
 <tr class="memdesc:a21b219166399e8a1195b92d6a9872bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push Parser State.  <a href="#a21b219166399e8a1195b92d6a9872bbe">More...</a><br /></td></tr>
 <tr class="separator:a21b219166399e8a1195b92d6a9872bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45b0cf880b953984f9351f5d2bd9c77d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a45b0cf880b953984f9351f5d2bd9c77d">pop_state</a> ()</td></tr>
 <tr class="memdesc:a45b0cf880b953984f9351f5d2bd9c77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop Parser State.  <a href="#a45b0cf880b953984f9351f5d2bd9c77d">More...</a><br /></td></tr>
 <tr class="separator:a45b0cf880b953984f9351f5d2bd9c77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27684090bd1a441b3cb0478d2f7fedc5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a27684090bd1a441b3cb0478d2f7fedc5">assign_value</a> (char *str, uint32_t minval, uint32_t maxval, uint32_t *val)</td></tr>
+<tr class="memdesc:a27684090bd1a441b3cb0478d2f7fedc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">assigned a value  <a href="#a27684090bd1a441b3cb0478d2f7fedc5">More...</a><br /></td></tr>
+<tr class="separator:a27684090bd1a441b3cb0478d2f7fedc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af14d66761d39f4a2d5f7c3ac59439034"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#af14d66761d39f4a2d5f7c3ac59439034">set_Config_Defaults</a> ()</td></tr>
+<tr class="memdesc:af14d66761d39f4a2d5f7c3ac59439034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty.  <a href="#af14d66761d39f4a2d5f7c3ac59439034">More...</a><br /></td></tr>
+<tr class="separator:af14d66761d39f4a2d5f7c3ac59439034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f8d1205c8538831eb4196a29cf3f186"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a8f8d1205c8538831eb4196a29cf3f186">POSIX_Read_Config</a> (char *name)</td></tr>
 <tr class="memdesc:a8f8d1205c8538831eb4196a29cf3f186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and parse a config file using POSIX functions.  <a href="#a8f8d1205c8538831eb4196a29cf3f186">More...</a><br /></td></tr>
 <tr class="separator:a8f8d1205c8538831eb4196a29cf3f186"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0cc4deddae206c7762399a8d54856e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ab0cc4deddae206c7762399a8d54856e1">print_var_P</a> (<a class="el" href="mathio_8h.html#a9306b0c3083933632aca02ebb1fe14d5">__memx</a> const char *str, uint32_t val)</td></tr>
-<tr class="memdesc:ab0cc4deddae206c7762399a8d54856e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Config Variable.  <a href="#ab0cc4deddae206c7762399a8d54856e1">More...</a><br /></td></tr>
+<tr class="memdesc:ab0cc4deddae206c7762399a8d54856e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Configuration File variable.  <a href="#ab0cc4deddae206c7762399a8d54856e1">More...</a><br /></td></tr>
 <tr class="separator:ab0cc4deddae206c7762399a8d54856e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3da86aaab90b0d4bb14f79e296a155bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a3da86aaab90b0d4bb14f79e296a155bb">print_str_P</a> (<a class="el" href="mathio_8h.html#a9306b0c3083933632aca02ebb1fe14d5">__memx</a> const char *str, char *arg)</td></tr>
-<tr class="memdesc:a3da86aaab90b0d4bb14f79e296a155bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Config Variable.  <a href="#a3da86aaab90b0d4bb14f79e296a155bb">More...</a><br /></td></tr>
+<tr class="memdesc:a3da86aaab90b0d4bb14f79e296a155bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Configuration File string.  <a href="#a3da86aaab90b0d4bb14f79e296a155bb">More...</a><br /></td></tr>
 <tr class="separator:a3da86aaab90b0d4bb14f79e296a155bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dbca8748b76da795e7fe56b61762b51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a1dbca8748b76da795e7fe56b61762b51">display_Addresses</a> ()</td></tr>
+<tr class="memdesc:a1dbca8748b76da795e7fe56b61762b51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Configuration device address saummary.  <a href="#a1dbca8748b76da795e7fe56b61762b51">More...</a><br /></td></tr>
+<tr class="separator:a1dbca8748b76da795e7fe56b61762b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c4d2fa0db8c1159a73186871c4639b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a7c4d2fa0db8c1159a73186871c4639b2">display_Config</a> ()</td></tr>
-<tr class="memdesc:a7c4d2fa0db8c1159a73186871c4639b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Current config values.  <a href="#a7c4d2fa0db8c1159a73186871c4639b2">More...</a><br /></td></tr>
+<tr class="memdesc:a7c4d2fa0db8c1159a73186871c4639b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display current Configuration File values.  <a href="#a7c4d2fa0db8c1159a73186871c4639b2">More...</a><br /></td></tr>
 <tr class="separator:a7c4d2fa0db8c1159a73186871c4639b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44e76acfcd1c549f9ca1c487183dccf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a44e76acfcd1c549f9ca1c487183dccf9">display_settings</a> ()</td></tr>
-<tr class="memdesc:a44e76acfcd1c549f9ca1c487183dccf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display configuration settings.  <a href="#a44e76acfcd1c549f9ca1c487183dccf9">More...</a><br /></td></tr>
-<tr class="separator:a44e76acfcd1c549f9ca1c487183dccf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a16d811299d42f1c1d920caa2b1423491"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80DiskType.html">SS80DiskType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a16d811299d42f1c1d920caa2b1423491">SS80Disk</a></td></tr>
-<tr class="separator:a16d811299d42f1c1d920caa2b1423491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa6a2958d958388054d80d289939d028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80StateType.html">SS80StateType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#aaa6a2958d958388054d80d289939d028">SS80State</a></td></tr>
-<tr class="memdesc:aaa6a2958d958388054d80d289939d028"><td class="mdescLeft">&#160;</td><td class="mdescRight">=====================================================  <a href="#aaa6a2958d958388054d80d289939d028">More...</a><br /></td></tr>
-<tr class="separator:aaa6a2958d958388054d80d289939d028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a75d47eaaab43bb638c69431a4ae588"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a1a75d47eaaab43bb638c69431a4ae588">states_ind</a> = 0</td></tr>
-<tr class="separator:a1a75d47eaaab43bb638c69431a4ae588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a765265c685c618f195d8685b1c36604d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a765265c685c618f195d8685b1c36604d">states</a> [<a class="el" href="drives_8c.html#a9568de9296df1e94aeb0b7f24cc678a9">MAX_STATES</a>]</td></tr>
-<tr class="separator:a765265c685c618f195d8685b1c36604d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c18df3efdb3fcd126c2df631f2f2515"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a4c18df3efdb3fcd126c2df631f2f2515">stack_ind</a> = 0</td></tr>
+<tr class="separator:a4c18df3efdb3fcd126c2df631f2f2515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7396cc31899052a2a171fbfe3f32b2d9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a7396cc31899052a2a171fbfe3f32b2d9">stack_p</a> [<a class="el" href="drives_8c.html#af24298a5ce56647751e432673282c6e2">MAX_STACK</a>]</td></tr>
+<tr class="separator:a7396cc31899052a2a171fbfe3f32b2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfedc9290d5356e240da3373bb0ebdbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDeviceType.html">DeviceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#acfedc9290d5356e240da3373bb0ebdbd">Devices</a> [<a class="el" href="drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535">MAX_DEVICES</a>]</td></tr>
+<tr class="separator:acfedc9290d5356e240da3373bb0ebdbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#abe5ffe9f7c96ad748b695ed5b45d6e52">PRINTERp</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memdesc:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active Printer Device.  <a href="#abe5ffe9f7c96ad748b695ed5b45d6e52">More...</a><br /></td></tr>
+<tr class="separator:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80DiskType.html">SS80DiskType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ae2b90e5f9a8ae9e5df3fdee98a215939">SS80p</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memdesc:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active SS80 Device.  <a href="#ae2b90e5f9a8ae9e5df3fdee98a215939">More...</a><br /></td></tr>
+<tr class="separator:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e0264b8581231a3a90fbb418f5812a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80StateType.html">SS80StateType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a26e0264b8581231a3a90fbb418f5812a">SS80s</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a26e0264b8581231a3a90fbb418f5812a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0d1c374e73e044c76887528a73faae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAMIGODiskType.html">AMIGODiskType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a8b0d1c374e73e044c76887528a73faae">AMIGOp</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memdesc:a8b0d1c374e73e044c76887528a73faae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active AMIGO Device.  <a href="#a8b0d1c374e73e044c76887528a73faae">More...</a><br /></td></tr>
+<tr class="separator:a8b0d1c374e73e044c76887528a73faae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37355892437ec761d9178e9da6c1f35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAMIGOStateType.html">AMIGOStateType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#af37355892437ec761d9178e9da6c1f35">AMIGOs</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:af37355892437ec761d9178e9da6c1f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c3a0a9ab88737f26d6554d34a35030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ae5c3a0a9ab88737f26d6554d34a35030">PRINTERDeviceDefault</a></td></tr>
+<tr class="memdesc:ae5c3a0a9ab88737f26d6554d34a35030"><td class="mdescLeft">&#160;</td><td class="mdescRight">==================================================================  <a href="#ae5c3a0a9ab88737f26d6554d34a35030">More...</a><br /></td></tr>
+<tr class="separator:ae5c3a0a9ab88737f26d6554d34a35030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c7953c08107cdbf2d0c264f2b32eab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80DiskType.html">SS80DiskType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a21c7953c08107cdbf2d0c264f2b32eab">SS80DiskDefault</a></td></tr>
+<tr class="memdesc:a21c7953c08107cdbf2d0c264f2b32eab"><td class="mdescLeft">&#160;</td><td class="mdescRight">SS80 Disk Definitions.  <a href="#a21c7953c08107cdbf2d0c264f2b32eab">More...</a><br /></td></tr>
+<tr class="separator:a21c7953c08107cdbf2d0c264f2b32eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9921ae02cadccc99dd6c3a9b68be050a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a9921ae02cadccc99dd6c3a9b68be050a">lines</a> = 0</td></tr>
+<tr class="memdesc:a9921ae02cadccc99dd6c3a9b68be050a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Config file line number.  <a href="#a9921ae02cadccc99dd6c3a9b68be050a">More...</a><br /></td></tr>
+<tr class="separator:a9921ae02cadccc99dd6c3a9b68be050a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>SS80 disk emulator for HP85 disk emulator project for AVR8. </p>
+<div class="textblock"><p>drive definitions for HP85 disk emulator project for AVR. </p>
 <dl class="section user"><dt>Edit History</dt><dd><ul>
-<li>[1.0] [Mike Gore] Initial revision of file.</li>
+<li>[1.0] [Mike Gore] Initial revision of file. </li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
-<dl class="section user"><dt>Based on work by Anders Gustafsson.</dt><dd></dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Anders Gustafsson All rights reserved..</dt><dd></dd></dl>
 
 <p>Definition in file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a9568de9296df1e94aeb0b7f24cc678a9"></a>
+<a class="anchor" id="a4e132cfaa78353e3af1474a86b2dd535"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_STATES&#160;&#160;&#160;5</td>
+          <td class="memname">#define MAX_DEVICES&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>AMIGO Disk States. </p>
-<p>===================================================== Config Parser Stack </p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00025">25</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00244">244</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
-
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00257">push_state()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="drives_8c_source.html#l01170">display_Addresses()</a>, <a class="el" href="drives_8c_source.html#l01205">display_Config()</a>, <a class="el" href="drives_8c_source.html#l00282">find_device()</a>, <a class="el" href="drives_8c_source.html#l00242">find_type()</a>, <a class="el" href="drives_8c_source.html#l00431">init_Devices()</a>, <a class="el" href="drives_8c_source.html#l00299">set_device_by_index()</a>, and <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a39fe89f113f9ddf062c4bdc0bb5a781b"></a>
+<a class="anchor" id="af24298a5ce56647751e432673282c6e2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define print_str</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">format, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">args...&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="drives_8c.html#a3da86aaab90b0d4bb14f79e296a155bb">print_str_P</a>(PSTR(format), ##args)</td>
+          <td class="memname">#define MAX_STACK&#160;&#160;&#160;5</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>print_var strings into __memx space </p>
+<p>Config Parser Stack. </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00844">844</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00021">21</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00848">display_Config()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a78f400f61a9a345a22df811a5b3ddc63"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define print_var</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">format, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">args...&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="drives_8c.html#ab0cc4deddae206c7762399a8d54856e1">print_var_P</a>(PSTR(format), ##args)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>print_var strings into __memx space </p>
-
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00842">842</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
-
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00848">display_Config()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00448">push_state()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a779f57c67af69afdde92e28cb4ee9adb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int alloc_device </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allocate a Device structure for a disk or printer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Devices[] index on sucess or -1 </dd></dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00388">388</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27684090bd1a441b3cb0478d2f7fedc5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t assign_value </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>minval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>maxval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>assigned a value </p>
+<ul>
+<li>Used only for debugging <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>string to examine </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minval</td><td>minimum value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxval</td><td>maximum value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*val</td><td>value to set</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 is matched and value in range, 0 not matched or out of range </dd></dl>
+</li>
+</ul>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00479">479</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a15acb3e0855d4922ff7bef41050b97d3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -294,11 +371,43 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert a value to packed bytes at a given offset bytes are MSB ... LSB order. </p>
+<p>Convert a byte array into a value bytes are MSB ... LSB order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">B</td><td>byte array </td></tr>
+    <tr><td class="paramname">index</td><td>offset into byte array </td></tr>
+    <tr><td class="paramname">size</td><td>number of bytes to process </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>value </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00042">42</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00224">224</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00891">SS80_Command_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1dbca8748b76da795e7fe56b61762b51"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void display_Addresses </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Display Configuration device address saummary. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l01170">1170</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="main_8c_source.html#l00244">main()</a>.</p>
 
 </div>
 </div>
@@ -316,21 +425,64 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Display Current config values. </p>
+<p>Display current Configuration File values. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>Active Printer Device</p>
+<p>Active SS80 Device</p>
+<p>Active AMIGO Device </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00848">848</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l01205">1205</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00906">display_settings()</a>, and <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00244">main()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a44e76acfcd1c549f9ca1c487183dccf9"></a>
+<a class="anchor" id="a4164c671ecff0b80ace6674e37a0bfc8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void display_settings </td>
+          <td class="memname">int find_device </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>address</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find a device with matching type AND address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type </td></tr>
+    <tr><td class="paramname">address</td><td>GPIB device address 0 based </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Devices[] index or -1 if not found </dd></dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00282">282</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00971">listen_cleanup()</a>, and <a class="el" href="drives_8c_source.html#l00364">set_device()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc23d2ab247de5b92eae0d0bc06aab2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int find_free </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -339,33 +491,63 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Display configuration settings. </p>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>Find first free Devices[] slot. </p>
+<dl class="section return"><dt>Returns</dt><dd>Devices[] index of free slot or -1 </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00906">906</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00272">272</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00283">POSIX_Read_Config()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00388">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00523">set_Config_Defaults()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af9a12d478b90355ca61fdc2bc5463d83"></a>
+<a class="anchor" id="adc9af84417d1ea9757b9f0596fd709b3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void init_states </td>
+          <td class="memname">int find_type </td>
           <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Seach Devices[] for ANY definitions of a disk type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type like SS80_TYPE </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00242">242</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00272">find_free()</a>, and <a class="el" href="drives_8c_source.html#l00523">set_Config_Defaults()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a756aa4b7d6e1757b9465729dffe7ed7f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_Devices </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Init Config Parser Stack. </p>
+<p>Init Config Parser Stack Called only durring power up so we do not have to free memory. </p>
+<p>===================================================== </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00249">249</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00431">431</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00283">POSIX_Read_Config()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -376,6 +558,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int pop_state </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -385,9 +568,9 @@ Variables</h2></td></tr>
 <p>Pop Parser State. </p>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00268">268</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00459">459</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00283">POSIX_Read_Config()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -416,10 +599,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on parse error </dd></dl>
+<p>Printer Device</p>
+<p>SS80 Device</p>
+<p>AMIGO Device</p>
+<p>Display all device settings </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00283">283</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00586">586</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00037">gpib_file_init()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00038">gpib_file_init()</a>.</p>
 
 </div>
 </div>
@@ -447,17 +634,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Display Config Variable. </p>
+<p>Display Configuration File string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td>variable name </td></tr>
-    <tr><td class="paramname">val</td><td>variable value </td></tr>
+    <tr><td class="paramname">*str</td><td>title </td></tr>
+    <tr><td class="paramname">*arg</td><td>string </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00831">831</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l01158">1158</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -485,17 +672,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Display Config Variable. </p>
+<p>Display Configuration File variable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td>variable name </td></tr>
+    <tr><td class="paramname">str</td><td>title </td></tr>
     <tr><td class="paramname">val</td><td>variable value </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00816">816</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l01143">1143</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -522,9 +709,131 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00448">448</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af14d66761d39f4a2d5f7c3ac59439034"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_Config_Defaults </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<p>Add optional hard coded devices for any that are missing </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00523">523</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7bcc7c02d03d815d81b62308d45e7f18"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int set_device </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>address</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Active disk by type and address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type </td></tr>
+    <tr><td class="paramname">address</td><td>GPIB address 0 based </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success or 0 on fail </dd></dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00364">364</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00121">AMIGO_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00150">AMIGO_is_MSA()</a>, <a class="el" href="gpib__task_8c_source.html#l00136">AMIGO_is_MTA()</a>, <a class="el" href="gpib__task_8c_source.html#l00167">PRINTER_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00195">PRINTER_is_MSA()</a>, <a class="el" href="gpib__task_8c_source.html#l00181">PRINTER_is_MTA()</a>, <a class="el" href="gpib__task_8c_source.html#l00075">SS80_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00105">SS80_is_MSA()</a>, and <a class="el" href="gpib__task_8c_source.html#l00090">SS80_is_MTA()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6c0068150e5b428b49efb8fc9fd8398"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int set_device_by_index </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Active disk device pointer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Devices[] index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success or 0 on fail </dd></dl>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00299">299</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00364">set_device()</a>, and <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa43e282b0ff4a2e5b2ce59f0fce3fb68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* type_to_str </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a disk type into a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type like SS80_TYPE </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string pointer </dd></dl>
+
 <p>Definition at line <a class="el" href="drives_8c_source.html#l00257">257</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00283">POSIX_Read_Config()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00388">alloc_device()</a>, <a class="el" href="drives_8c_source.html#l00242">find_type()</a>, <a class="el" href="drives_8c_source.html#l00364">set_device()</a>, and <a class="el" href="drives_8c_source.html#l00299">set_device_by_index()</a>.</p>
 
 </div>
 </div>
@@ -564,52 +873,177 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Convert a value to packed bytes at a given offset bytes are MSB ... LSB order. </p>
+<p>===================================================== </p>
+<p>===================================================== Convert Value into byte array bytes are MSB ... LSB order </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">B</td><td>byte array </td></tr>
+    <tr><td class="paramname">index</td><td>offset into byte array </td></tr>
+    <tr><td class="paramname">size</td><td>number of bytes to process </td></tr>
+    <tr><td class="paramname">val</td><td>Value to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00030">30</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00208">208</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00572">Send_Identify()</a>, <a class="el" href="ss80_8c_source.html#l00723">SS80_send_status()</a>, and <a class="el" href="ss80_8c_source.html#l00162">SS80_V2B()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00607">Send_Identify()</a>, <a class="el" href="ss80_8c_source.html#l00720">SS80_send_status()</a>, and <a class="el" href="ss80_8c_source.html#l00157">SS80_V2B()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a16d811299d42f1c1d920caa2b1423491"></a>
+<a class="anchor" id="a8b0d1c374e73e044c76887528a73faae"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSS80DiskType.html">SS80DiskType</a> SS80Disk</td>
+          <td class="memname"><a class="el" href="structAMIGODiskType.html">AMIGODiskType</a>* AMIGOp = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>================================================================== Disk Definitions </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00101">101</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Active AMIGO Device. </p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00042">B2V()</a>, <a class="el" href="gpib_8c_source.html#l00285">device_to_PPR()</a>, <a class="el" href="format_8c_source.html#l00061">gpib_format_disk()</a>, <a class="el" href="gpib__task_8c_source.html#l00883">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="ss80_8c_source.html#l01453">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00345">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00482">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l00168">SS80ControllerPack()</a>, <a class="el" href="ss80_8c_source.html#l00193">SS80UnitPack()</a>, and <a class="el" href="ss80_8c_source.html#l00236">SS80VolumePack()</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00036">36</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00350">amigo_chs_to_logical()</a>, <a class="el" href="amigo_8c_source.html#l00785">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00747">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="amigo_8c_source.html#l00373">amigo_overflow_check()</a>, <a class="el" href="amigo_8c_source.html#l00224">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00432">amigo_seek()</a>, <a class="el" href="amigo_8c_source.html#l00275">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00312">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>, and <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aaa6a2958d958388054d80d289939d028"></a>
+<a class="anchor" id="af37355892437ec761d9178e9da6c1f35"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSS80StateType.html">SS80StateType</a> SS80State</td>
+          <td class="memname"><a class="el" href="structAMIGOStateType.html">AMIGOStateType</a>* AMIGOs = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line"></div><div class="line">{</div><div class="line">    0,  </div><div class="line">    0,  </div><div class="line">    0,  </div><div class="line">    0,  </div><div class="line">    0,  </div><div class="line">    0,  </div><div class="line">    0   </div><div class="line">}</div></div><!-- fragment -->
-<p>===================================================== </p>
-<p>SS80 Disk States </p>
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00211">211</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00037">37</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01596">Clear_Common()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="ss80_8c_source.html#l01729">SS80_Cancel()</a>, <a class="el" href="ss80_8c_source.html#l01453">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00891">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01761">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00292">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01744">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00263">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l00345">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00482">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l01503">SS80_Report()</a>, <a class="el" href="ss80_8c_source.html#l00723">SS80_send_status()</a>, and <a class="el" href="ss80_8c_source.html#l01294">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00350">amigo_chs_to_logical()</a>, <a class="el" href="amigo_8c_source.html#l00785">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00705">amigo_cmd_dsj()</a>, <a class="el" href="amigo_8c_source.html#l00747">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00405">amigo_increment()</a>, <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="amigo_8c_source.html#l00207">amigo_request_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00224">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00432">amigo_seek()</a>, <a class="el" href="amigo_8c_source.html#l00275">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00312">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, and <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a765265c685c618f195d8685b1c36604d"></a>
+<a class="anchor" id="acfedc9290d5356e240da3373bb0ebdbd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structDeviceType.html">DeviceType</a> Devices[<a class="el" href="drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535">MAX_DEVICES</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00026">26</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, and <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9921ae02cadccc99dd6c3a9b68be050a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lines = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Config file line number. </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00468">468</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00479">assign_value()</a>, <a class="el" href="matrix_8c_source.html#l00527">MatRead()</a>, and <a class="el" href="drives_8c_source.html#l00586">POSIX_Read_Config()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5c3a0a9ab88737f26d6554d34a35030"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a> PRINTERDeviceDefault</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    { </div><div class="line">        2,      </div><div class="line">        0xff,   </div><div class="line">        <span class="stringliteral">&quot;/printer.txt&quot;</span></div><div class="line">    }</div><div class="line">}</div></div><!-- fragment -->
+<p>================================================================== </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00040">40</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe5ffe9f7c96ad748b695ed5b45d6e52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a>* PRINTERp = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Active Printer Device. </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00029">29</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a21c7953c08107cdbf2d0c264f2b32eab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSS80DiskType.html">SS80DiskType</a> SS80DiskDefault</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SS80 Disk Definitions. </p>
+<p>==================================================================SS80 HP9134L Disk Definitions </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00095">95</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2b90e5f9a8ae9e5df3fdee98a215939"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSS80DiskType.html">SS80DiskType</a>* SS80p = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Active SS80 Device. </p>
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00032">32</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="ss80_8c_source.html#l01690">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01726">SS80_Cancel()</a>, <a class="el" href="ss80_8c_source.html#l01634">SS80_Channel_Independent_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01450">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01791">SS80_COMMANDS()</a>, <a class="el" href="ss80_8c_source.html#l00290">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l01670">SS80_Selected_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>, <a class="el" href="ss80_8c_source.html#l01652">SS80_Universal_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00163">SS80ControllerPack()</a>, <a class="el" href="ss80_8c_source.html#l00188">SS80UnitPack()</a>, and <a class="el" href="ss80_8c_source.html#l00231">SS80VolumePack()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a26e0264b8581231a3a90fbb418f5812a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSS80StateType.html">SS80StateType</a>* SS80s = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00033">33</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01593">Clear_Common()</a>, <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="ss80_8c_source.html#l01726">SS80_Cancel()</a>, <a class="el" href="ss80_8c_source.html#l01450">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01758">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00290">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01741">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>, <a class="el" href="ss80_8c_source.html#l01500">SS80_Report()</a>, <a class="el" href="ss80_8c_source.html#l00720">SS80_send_status()</a>, and <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4c18df3efdb3fcd126c2df631f2f2515"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -617,7 +1051,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int states[<a class="el" href="drives_8c.html#a9568de9296df1e94aeb0b7f24cc678a9">MAX_STATES</a>]</td>
+          <td class="memname">int stack_ind = 0</td>
         </tr>
       </table>
   </td>
@@ -627,13 +1061,13 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00246">246</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00022">22</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00268">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00257">push_state()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00431">init_Devices()</a>, <a class="el" href="drives_8c_source.html#l00459">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00448">push_state()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1a75d47eaaab43bb638c69431a4ae588"></a>
+<a class="anchor" id="a7396cc31899052a2a171fbfe3f32b2d9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -641,7 +1075,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int states_ind = 0</td>
+          <td class="memname">int stack_p[<a class="el" href="drives_8c.html#af24298a5ce56647751e432673282c6e2">MAX_STACK</a>]</td>
         </tr>
       </table>
   </td>
@@ -651,16 +1085,16 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="drives_8c_source.html#l00245">245</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p>Definition at line <a class="el" href="drives_8c_source.html#l00023">23</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00249">init_states()</a>, <a class="el" href="drives_8c_source.html#l00268">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00257">push_state()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00459">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00448">push_state()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 22 2017 19:39:06 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 24 2017 21:39:30 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

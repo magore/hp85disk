@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['address_5fto_5fdevice',['address_to_device',['../gpib_8c.html#a6717ad07fa753169ccfa297faa8fb172',1,'address_to_device(uint8_t address):&#160;gpib.c'],['../gpib_8h.html#a6717ad07fa753169ccfa297faa8fb172',1,'address_to_device(uint8_t address):&#160;gpib.c']]],
   ['adjugate',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
+  ['alloc_5fdevice',['alloc_device',['../drives_8c.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c'],['../drives_8h.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c']]],
   ['amigo_5fbuffered_5fread',['amigo_buffered_read',['../amigo_8c.html#a825aa1ed704bfabe55d37787234a273d',1,'amigo_buffered_read():&#160;amigo.c'],['../amigo_8h.html#a4934ae332e168979dbb865a9948de88b',1,'amigo_buffered_read(void):&#160;amigo.c']]],
   ['amigo_5fbuffered_5fwrite',['amigo_buffered_write',['../amigo_8c.html#ac92648301b959f38296610669487727a',1,'amigo_buffered_write():&#160;amigo.c'],['../amigo_8h.html#ae9c3505761b1afba4f47a6b593527583',1,'amigo_buffered_write(void):&#160;amigo.c']]],
   ['amigo_5fchs_5fto_5flogical',['amigo_chs_to_logical',['../amigo_8c.html#ab3e935afb5accc656f08aa5f16881c09',1,'amigo.c']]],
@@ -28,7 +28,7 @@ var searchData=
   ['amigo_5fverify',['amigo_verify',['../amigo_8c.html#ab08912bf94dc6e8fbe87990ff41f46f0',1,'amigo_verify(uint16_t sectors):&#160;amigo.c'],['../amigo_8h.html#ab08912bf94dc6e8fbe87990ff41f46f0',1,'amigo_verify(uint16_t sectors):&#160;amigo.c']]],
   ['asctime',['asctime',['../time_8c.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c'],['../time_8h.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c']]],
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],
-  ['assign_5fvalue',['assign_value',['../stringsup_8c.html#ae78f11be35495270c0b61549df7135c2',1,'assign_value(char *str, int32_t minval, int32_t maxval, int32_t *val):&#160;stringsup.c'],['../stringsup_8h.html#ae78f11be35495270c0b61549df7135c2',1,'assign_value(char *str, int32_t minval, int32_t maxval, int32_t *val):&#160;stringsup.c']]],
+  ['assign_5fvalue',['assign_value',['../drives_8c.html#a27684090bd1a441b3cb0478d2f7fedc5',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c'],['../drives_8h.html#a27684090bd1a441b3cb0478d2f7fedc5',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c']]],
   ['atodigit',['atodigit',['../mathio_8c.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;mathio.c'],['../mathio_8h.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;mathio.c']]],
   ['atof',['atof',['../mathio_8h.html#a7e733f84057711222341263fe2f0bd15',1,'mathio.h']]],
   ['atoh',['atoh',['../mathio_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;mathio.c'],['../mathio_8h.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;mathio.c']]],

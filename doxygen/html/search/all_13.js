@@ -75,7 +75,8 @@ var searchData=
   ['twi_5fstarttransmission',['TWI_StartTransmission',['../TWI__AVR8_8c.html#a5e9fac0280a2414490f628071c0073c2',1,'TWI_StartTransmission(const uint8_t SlaveAddress, const uint8_t TimeoutMS):&#160;TWI_AVR8.c'],['../TWI__AVR8_8h.html#a5e9fac0280a2414490f628071c0073c2',1,'TWI_StartTransmission(const uint8_t SlaveAddress, const uint8_t TimeoutMS):&#160;TWI_AVR8.c']]],
   ['twi_5fstoptransmission',['TWI_StopTransmission',['../TWI__AVR8_8c.html#af2949f6e420bec4caf6b005a4e7bdf0a',1,'TWI_AVR8.c']]],
   ['twi_5fwritepacket',['TWI_WritePacket',['../TWI__AVR8_8c.html#a7a9c708e4d9fbe6ed807f582bcbded0e',1,'TWI_WritePacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, const uint8_t *Buffer, uint8_t Length):&#160;TWI_AVR8.c'],['../TWI__AVR8_8h.html#a7a9c708e4d9fbe6ed807f582bcbded0e',1,'TWI_WritePacket(const uint8_t SlaveAddress, const uint8_t TimeoutMS, const uint8_t *InternalAddress, uint8_t InternalAddressLen, const uint8_t *Buffer, uint8_t Length):&#160;TWI_AVR8.c']]],
-  ['type',['TYPE',['../structSS80ControllerType.html#a255739680bca0ad3b4d1346cf5017332',1,'SS80ControllerType']]],
+  ['type',['TYPE',['../structSS80ControllerType.html#a255739680bca0ad3b4d1346cf5017332',1,'SS80ControllerType::TYPE()'],['../structDeviceType.html#acee5219162b6f47a9423b2086d127ede',1,'DeviceType::TYPE()']]],
+  ['type_5fto_5fstr',['type_to_str',['../drives_8c.html#aa43e282b0ff4a2e5b2ce59f0fce3fb68',1,'type_to_str(int type):&#160;drives.c'],['../drives_8h.html#aa43e282b0ff4a2e5b2ce59f0fce3fb68',1,'type_to_str(int type):&#160;drives.c']]],
   ['tz_5fdsttime',['tz_dsttime',['../structtimezone.html#a85259977aeb63b17e6ce94f19afdfd99',1,'timezone']]],
   ['tz_5fminuteswest',['tz_minuteswest',['../structtimezone.html#a3042f7eff6e1b980728def76b1fa0eb7',1,'timezone']]],
   ['tz_5ft',['tz_t',['../time_8h.html#a63629b2492d6773f4d4948d6e60022a8',1,'time.h']]]

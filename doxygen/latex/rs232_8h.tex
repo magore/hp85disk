@@ -34,7 +34,7 @@ struct \hyperlink{struct__uart}{\+\_\+uart}
 \item 
 \#define \hyperlink{rs232_8h_aeddebfcb46db9f5421188decb3e21edb}{kbhit}(uart)~\hyperlink{rs232_8h_aa8413cd0d098fabe8a888be1addc3924}{uart\+\_\+rx\+\_\+count}( uart )
 \item 
-\#define \hyperlink{rs232_8h_a2be774878148befdb085b93380cba587}{uart\+\_\+putc}(a,  c)~\hyperlink{rs232_8h_aaa1e5ec2d5858ed3ee8cd589dbaf1838}{uart0\+\_\+putchar}(c,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL})
+\#define \hyperlink{rs232_8h_a2be774878148befdb085b93380cba587}{uart\+\_\+putc}(a,  c)~\hyperlink{rs232_8h_af3ddd9e29428ea9f50ca1006a0c4b658}{uart0\+\_\+putchar}(c,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL})
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -43,11 +43,11 @@ void \hyperlink{rs232_8h_ab823b4d83752db47c0852bfa36a59036}{uart\+\_\+rx\+\_\+fl
 \begin{DoxyCompactList}\small\item\em Flush receive ring buffer for specified uart. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{rs232_8h_a4942fe8b3196939f4809e424adabcb8b}{uart0\+\_\+getchar} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
-void \hyperlink{rs232_8h_aaa1e5ec2d5858ed3ee8cd589dbaf1838}{uart0\+\_\+putchar} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_af3ddd9e29428ea9f50ca1006a0c4b658}{uart0\+\_\+putchar} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{rs232_8h_a1a6cc0d97bdc0fa5b73e0bb8f8203904}{uart1\+\_\+getchar} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
 \item 
-void \hyperlink{rs232_8h_a5b5143c94f1c8175b5850581e3106fec}{uart1\+\_\+putchar} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_a83b1883a3059a78349b58f4397254a14}{uart1\+\_\+putchar} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
 \item 
 int \hyperlink{rs232_8h_a4973143ccfb71e6e9f99cb680af22957}{uart\+\_\+init} (uint8\+\_\+t uart, uint32\+\_\+t baud)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT initialization function that works with avr-\/libc functions. \end{DoxyCompactList}\item 
@@ -221,7 +221,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 375 of file rs232.\+c.
+Definition at line 377 of file rs232.\+c.
 
 \index{rs232.\+h@{rs232.\+h}!uart0\+\_\+getchar@{uart0\+\_\+getchar}}
 \index{uart0\+\_\+getchar@{uart0\+\_\+getchar}!rs232.\+h@{rs232.\+h}}
@@ -255,12 +255,12 @@ Referenced by uart\+\_\+get(), and uart\+\_\+init().
 
 \index{rs232.\+h@{rs232.\+h}!uart0\+\_\+putchar@{uart0\+\_\+putchar}}
 \index{uart0\+\_\+putchar@{uart0\+\_\+putchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(char c, F\+I\+L\+E $\ast$f)}{uart0_putchar(char c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}void uart0\+\_\+putchar (
+\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(char c, F\+I\+L\+E $\ast$f)}{uart0_putchar(char c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+putchar (
 \begin{DoxyParamCaption}
 \item[{char}]{c, }
 \item[{{\bf F\+I\+LE} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_aaa1e5ec2d5858ed3ee8cd589dbaf1838}{}\label{rs232_8h_aaa1e5ec2d5858ed3ee8cd589dbaf1838}
+)}\hypertarget{rs232_8h_af3ddd9e29428ea9f50ca1006a0c4b658}{}\label{rs232_8h_af3ddd9e29428ea9f50ca1006a0c4b658}
 
 
 U\+A\+RT transmit character function using avr-\/libc. 
@@ -299,12 +299,12 @@ Referenced by uart0\+\_\+putchar(), and uart\+\_\+init().
 
 \index{rs232.\+h@{rs232.\+h}!uart1\+\_\+putchar@{uart1\+\_\+putchar}}
 \index{uart1\+\_\+putchar@{uart1\+\_\+putchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart1\+\_\+putchar(char c, F\+I\+L\+E $\ast$f)}{uart1_putchar(char c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}void uart1\+\_\+putchar (
+\subsubsection[{\texorpdfstring{uart1\+\_\+putchar(char c, F\+I\+L\+E $\ast$f)}{uart1_putchar(char c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart1\+\_\+putchar (
 \begin{DoxyParamCaption}
 \item[{char}]{c, }
 \item[{{\bf F\+I\+LE} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_a5b5143c94f1c8175b5850581e3106fec}{}\label{rs232_8h_a5b5143c94f1c8175b5850581e3106fec}
+)}\hypertarget{rs232_8h_a83b1883a3059a78349b58f4397254a14}{}\label{rs232_8h_a83b1883a3059a78349b58f4397254a14}
 
 
 Referenced by uart0\+\_\+putchar(), and uart\+\_\+init().
@@ -325,7 +325,7 @@ character
 \end{DoxyReturn}
 
 
-Definition at line 365 of file rs232.\+c.
+Definition at line 367 of file rs232.\+c.
 
 
 
@@ -363,7 +363,7 @@ character.
 \end{DoxySeeAlso}
 
 
-Definition at line 219 of file rs232.\+c.
+Definition at line 221 of file rs232.\+c.
 
 
 
@@ -395,7 +395,7 @@ Character.
 \end{DoxyReturn}
 
 
-Definition at line 279 of file rs232.\+c.
+Definition at line 281 of file rs232.\+c.
 
 
 
@@ -430,7 +430,7 @@ U\+A\+RT initialization function that works with avr-\/libc functions.
 \end{DoxySeeAlso}
 
 
-Definition at line 98 of file rs232.\+c.
+Definition at line 100 of file rs232.\+c.
 
 
 
@@ -462,7 +462,7 @@ Character count in receive buffer.
 \end{DoxyReturn}
 
 
-Definition at line 349 of file rs232.\+c.
+Definition at line 351 of file rs232.\+c.
 
 
 
@@ -486,7 +486,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 197 of file rs232.\+c.
+Definition at line 199 of file rs232.\+c.
 
 \index{rs232.\+h@{rs232.\+h}!uart\+\_\+put@{uart\+\_\+put}}
 \index{uart\+\_\+put@{uart\+\_\+put}!rs232.\+h@{rs232.\+h}}
@@ -509,7 +509,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 358 of file rs232.\+c.
+Definition at line 360 of file rs232.\+c.
 
 
 
@@ -542,7 +542,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 334 of file rs232.\+c.
+Definition at line 336 of file rs232.\+c.
 
 
 
@@ -569,7 +569,7 @@ Character.
 \end{DoxyReturn}
 
 
-Definition at line 266 of file rs232.\+c.
+Definition at line 268 of file rs232.\+c.
 
 
 
@@ -596,7 +596,7 @@ Character count in ring buffer.
 \end{DoxyReturn}
 
 
-Definition at line 244 of file rs232.\+c.
+Definition at line 246 of file rs232.\+c.
 
 
 
@@ -653,7 +653,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 175 of file rs232.\+c.
+Definition at line 177 of file rs232.\+c.
 
 
 
@@ -683,7 +683,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 308 of file rs232.\+c.
+Definition at line 310 of file rs232.\+c.
 
 
 

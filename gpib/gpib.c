@@ -28,6 +28,9 @@
 #include "amigo.h"
 #include "ss80.h"
 
+#include "posix.h"
+
+
 /// - References: Documenation and related sources of information
 ///  - Web Resources:
 ///    - http://www.hp9845.net
@@ -270,39 +273,16 @@ void gpib_state_init( void )
 	device = 0;
 }
 
-/// @brief Map device address, MLA,MTA,MSA to PPR address
-///TODO include lookup array
-/// @return  device number index or -1 if no match
-int address_to_device(uint8_t address)
-{
-	device = address & 0x1f;
-	return(device);
-}
-
-/// @brief Map device address, MLA,MTA,MSA to PPR address
-///TODO include lookup array
-/// @return  device number index or -1 if no match
-int device_to_PPR(uint8_t address)
-{
-
-	int device = address_to_device(address);
-	if(device == SS80Disk.HEADER.ADDRESS)
-		return(SS80Disk.HEADER.PPR);
-	if(device == AMIGODisk.HEADER.ADDRESS)
-		return(AMIGODisk.HEADER.PPR);
-#if SDEBUG > 1
-    if(debuglevel > 1)
-        printf("[ERROR Unmatched PPR address: %02x]\n", address);
-#endif
-	return(-1);
-}
-
-
 ///
 /// - Reference: SS80 pg 3-4, section 3-3
 /// @return  void
-void EnablePPR(uint8_t bit)
+void EnablePPR(int bit)
 {
+	if(bit < 0 || bit > 7)
+	{
+		printf("EnablePPR: bit %d out of range\n", (int) bit);
+		return;
+	}
     ppr_bit_set(bit);
 #if SDEBUG > 1
     if(debuglevel > 1)
@@ -316,8 +296,13 @@ void EnablePPR(uint8_t bit)
 /// - Reference: SS80 pg 3-4, section 3-3
 /// @return  void
 
-void DisablePPR(uint8_t bit)
+void DisablePPR(int bit)
 {
+	if(bit < 0 || bit > 7)
+	{
+		printf("DisablePPR: bit %d out of range\n", (int) bit);
+		return;
+	}
     ppr_bit_clr(bit);
 #if SDEBUG > 1
     if(debuglevel > 1)
@@ -917,9 +902,10 @@ void gpib_decode_header( void )
 /// @see: gpib_decode_header()
 ///
 /// @return  void
-void gpib_decode_str(uint16_t ch, char *str)
+char *gpib_decode_str(uint16_t ch)
 {
-    char *tmp;
+    static char str[64];
+	char *tmp = str;
     uint16_t status,val;
     uint16_t printable;
 
@@ -969,6 +955,7 @@ void gpib_decode_str(uint16_t ch, char *str)
     else
         *tmp++ = '-';
     *tmp = 0;
+	return(str);
 }
 
 
@@ -980,12 +967,11 @@ void gpib_decode_str(uint16_t ch, char *str)
 
 void gpib_decode(uint16_t ch)
 {
-    char str[32];
-
+	char *ptr;
     extern void gpib_log( char *str );
-    gpib_decode_str(ch, str);
-    gpib_log(str);
-    puts(str);
+    ptr = gpib_decode_str(ch);
+    gpib_log(ptr);
+    puts(ptr);
 }
 
 
@@ -1169,9 +1155,8 @@ int gpib_write_str(uint8_t *buf, int size, uint16_t *status)
     {
 #if SDEBUG > 1
         if(debuglevel >= 1)
-            printf("[gpib_write_str sent(%d) expected(%d)]\n",
-        #endif
-                ind , size);
+            printf("[gpib_write_str sent(%d) expected(%d)]\n", ind,size);
+#endif
     }
     return(ind);
 }

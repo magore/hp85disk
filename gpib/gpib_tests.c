@@ -131,7 +131,8 @@ int gpib_tests(char *str)
     {
         ptr += len;
 #if 0
-        gpib_format_disk(file);
+		//FIXME
+        gpib_format_disk(file, 40000000L);
 #endif
         return(1);
     }

@@ -68,9 +68,7 @@ MEMSPACE int MATCH_LEN ( char *str , char *pat );
 MEMSPACE int MATCHI_LEN ( char *str , char *pat );
 MEMSPACE char *get_token ( char *str , char *token , int max );
 MEMSPACE int token ( char *str , char *pat );
-MEMSPACE int32_t get_value ( char *str , int32_t minval , int32_t maxval , int32_t *val );
-MEMSPACE int32_t assign_value ( char *str , int32_t minval , int32_t maxval , int32_t *val );
-MEMSPACE int32_t parse_value ( char *str , char *pat , int32_t minval , int32_t maxval , int32_t *val );
+MEMSPACE int32_t get_value ( char *str );
 MEMSPACE char *strnalloc ( char *str , int len );
 MEMSPACE char *stralloc ( char *str );
 

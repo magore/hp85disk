@@ -134,16 +134,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:a0eec1cf4ce108a8bc0c5831b0bb149b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Amigo state machine, Disk Position, Error status.  <a href="#a0eec1cf4ce108a8bc0c5831b0bb149b7">More...</a><br /></td></tr>
 <tr class="separator:a0eec1cf4ce108a8bc0c5831b0bb149b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c8b9f945c52bab66fa4c7aaac5df625"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8c.html#a4c8b9f945c52bab66fa4c7aaac5df625">amigo_request_logical_address</a> ()</td></tr>
-<tr class="memdesc:a4c8b9f945c52bab66fa4c7aaac5df625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current address in AMIGOState.logical_address[].  <a href="#a4c8b9f945c52bab66fa4c7aaac5df625">More...</a><br /></td></tr>
+<tr class="memdesc:a4c8b9f945c52bab66fa4c7aaac5df625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current address in AMIGOs-&gt;logical_address[].  <a href="#a4c8b9f945c52bab66fa4c7aaac5df625">More...</a><br /></td></tr>
 <tr class="separator:a4c8b9f945c52bab66fa4c7aaac5df625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3755431f029d6bf480c5d2eceaca7e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8c.html#ac3755431f029d6bf480c5d2eceaca7e6">amigo_request_status</a> ()</td></tr>
-<tr class="memdesc:ac3755431f029d6bf480c5d2eceaca7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set drive status in AMIGOState.status[].  <a href="#ac3755431f029d6bf480c5d2eceaca7e6">More...</a><br /></td></tr>
+<tr class="memdesc:ac3755431f029d6bf480c5d2eceaca7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set drive status in AMIGOs-&gt;status[].  <a href="#ac3755431f029d6bf480c5d2eceaca7e6">More...</a><br /></td></tr>
 <tr class="separator:ac3755431f029d6bf480c5d2eceaca7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a288fab8221af2cef3cd52be5db8bc834"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8c.html#a288fab8221af2cef3cd52be5db8bc834">amigo_send_logical_address</a> ()</td></tr>
-<tr class="memdesc:a288fab8221af2cef3cd52be5db8bc834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send current address in AMIGOState.logical_address[].  <a href="#a288fab8221af2cef3cd52be5db8bc834">More...</a><br /></td></tr>
+<tr class="memdesc:a288fab8221af2cef3cd52be5db8bc834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send current address in AMIGOs-&gt;logical_address[].  <a href="#a288fab8221af2cef3cd52be5db8bc834">More...</a><br /></td></tr>
 <tr class="separator:a288fab8221af2cef3cd52be5db8bc834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5469dfd99a532f1324999a77256d91a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8c.html#a5469dfd99a532f1324999a77256d91a8">amigo_send_status</a> ()</td></tr>
-<tr class="memdesc:a5469dfd99a532f1324999a77256d91a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send drive status in AMIGOState.status[].  <a href="#a5469dfd99a532f1324999a77256d91a8">More...</a><br /></td></tr>
+<tr class="memdesc:a5469dfd99a532f1324999a77256d91a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send drive status in AMIGOs-&gt;status[].  <a href="#a5469dfd99a532f1324999a77256d91a8">More...</a><br /></td></tr>
 <tr class="separator:a5469dfd99a532f1324999a77256d91a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3e935afb5accc656f08aa5f16881c09"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="integer_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8c.html#ab3e935afb5accc656f08aa5f16881c09">amigo_chs_to_logical</a> (<a class="el" href="structAMIGOStateType.html">AMIGOStateType</a> *p, char *msg)</td></tr>
 <tr class="memdesc:ab3e935afb5accc656f08aa5f16881c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert Drive CHS position to offset.  <a href="#ab3e935afb5accc656f08aa5f16881c09">More...</a><br /></td></tr>
@@ -274,9 +274,9 @@ GPIB Errors status,Sets dsj and Amigo_errors </dd></dl>
 </ul>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Do we fail on overflow ? currently djs is set - do we want to report that now ? </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00563">563</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00572">572</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>.</p>
 
 </div>
 </div>
@@ -302,9 +302,9 @@ GPIB Errors status,Sets dsj and Amigo_errors </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00629">629</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00638">638</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>.</p>
 
 </div>
 </div>
@@ -353,9 +353,9 @@ GPIB Errors status,Sets dsj and Amigo_errors </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00341">341</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00350">350</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00563">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00629">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00507">amigo_format()</a>, and <a class="el" href="amigo_8c_source.html#l00450">amigo_verify()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, and <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>.</p>
 
 </div>
 </div>
@@ -382,9 +382,9 @@ GPIB Errors status,Sets dsj and Amigo_errors </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>FIXME</dd></dl>
 <p>Clear the DSJ byte that might be 2 after powerup</p>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00776">776</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00785">785</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>.</p>
 
 </div>
 </div>
@@ -411,9 +411,9 @@ GPIB send Errors status</dd></dl>
 <li>Sets dsj and Amigo_errors </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00696">696</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00705">705</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01291">AMIGO_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -440,7 +440,7 @@ GPIB send Errors status</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>GPIB Errors status - or 0 OK </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00738">738</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00747">747</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
 </div>
 </div>
@@ -490,22 +490,23 @@ or GPIB error flags on fail </dd></dl>
 <p>Reference: A25</p>
 <p>Note: the function will "unread" any commands and return All Data MUST have EOI</p>
 <p>Reference: A40</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<p>Fill in temparary address</p>
 <p>Reference: A27</p>
 <p>Seek 1 byte cylinder</p>
+<p>Fill in temparary address</p>
 <p>Reference: A27</p>
 <p>Seek 2 byte cylinder</p>
+<p>Fill in temparary address</p>
 <p>Reference: A15</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>is this the unit $ ? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>is this the unit $ ? </dd></dl>
 <p>Reference: A35</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>unit ??? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>unit ??? </dd></dl>
 <p>Reference: A48 .. A50</p>
 <p>Reference: A23 </p>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00869">869</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00878">878</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01291">AMIGO_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -543,9 +544,9 @@ or GPIB error flags on fail </dd></dl>
 or GPIB error flags on fail </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> defines for a full list. </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l01291">1291</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l01304">1304</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00353">GPIB_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -575,9 +576,9 @@ or GPIB error flags on fail </dd></dl>
 or GPIB error flags on fail </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> defines for a full list) </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l01179">1179</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l01192">1192</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01291">AMIGO_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -627,9 +628,9 @@ or GPIB error flags on fail </dd></dl>
 <dd>
 1 on Error,Sets dsj and Amigo_errors </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00507">507</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00516">516</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -658,9 +659,9 @@ or GPIB error flags on fail </dd></dl>
 <dd>
 1 error. </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00396">396</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00405">405</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00563">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00629">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00507">amigo_format()</a>, and <a class="el" href="amigo_8c_source.html#l00450">amigo_verify()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, and <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>.</p>
 
 </div>
 </div>
@@ -684,7 +685,7 @@ or GPIB error flags on fail </dd></dl>
 
 <p>Definition at line <a class="el" href="amigo_8c_source.html#l00171">171</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00330">gpib_init_devices()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00359">gpib_init_devices()</a>.</p>
 
 </div>
 </div>
@@ -728,9 +729,9 @@ or GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00364">364</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00373">373</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00396">amigo_increment()</a>, and <a class="el" href="amigo_8c_source.html#l00422">amigo_seek()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00405">amigo_increment()</a>, and <a class="el" href="amigo_8c_source.html#l00432">amigo_seek()</a>.</p>
 
 </div>
 </div>
@@ -748,16 +749,16 @@ or GPIB error flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set current address in AMIGOState.logical_address[]. </p>
+<p>Set current address in AMIGOs-&gt;logical_address[]. </p>
 <ul>
 <li>Reference: A15-A19</li>
 <li>State: Command <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00198">198</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00207">207</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -775,7 +776,7 @@ or GPIB error flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set drive status in AMIGOState.status[]. </p>
+<p>Set drive status in AMIGOs-&gt;status[]. </p>
 <ul>
 <li>Reference: A15-A19.</li>
 <li>State: Command. <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
@@ -783,9 +784,9 @@ or GPIB error flags on fail </dd></dl>
 </ul>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>dsj </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00215">215</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00224">224</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -806,7 +807,7 @@ or GPIB error flags on fail </dd></dl>
 <p>Seek to the position held in the disk structure. </p>
 <ul>
 <li>Reference: A27.</li>
-<li>We should not commit bad head/sector/cylinder values until tested!..</li>
+<li>We should not commit bad head/sector/cylinder values until tested!.. We update our real address only on sucess</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -818,9 +819,9 @@ or GPIB error flags on fail </dd></dl>
 <dd>
 1 error </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00422">422</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00432">432</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -838,7 +839,7 @@ or GPIB error flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Send current address in AMIGOState.logical_address[]. </p>
+<p>Send current address in AMIGOs-&gt;logical_address[]. </p>
 <ul>
 <li>Reference: A15-A19.</li>
 <li>State: Execute <dl class="section return"><dt>Returns</dt><dd>0 on sucess </dd>
@@ -848,9 +849,9 @@ status GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00266">266</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00275">275</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>.</p>
 
 </div>
 </div>
@@ -868,7 +869,7 @@ status GPIB error flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Send drive status in AMIGOState.status[]. </p>
+<p>Send drive status in AMIGOs-&gt;status[]. </p>
 <ul>
 <li>Reference: A15-A19.</li>
 <li>State: Execute&gt; <dl class="section return"><dt>Returns</dt><dd>0 </dd>
@@ -878,9 +879,9 @@ status GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00303">303</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00312">312</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>.</p>
 
 </div>
 </div>
@@ -907,9 +908,9 @@ status GPIB error flags on fail </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00829">829</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00838">838</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>.</p>
 
 </div>
 </div>
@@ -954,9 +955,9 @@ status GPIB error flags on fail </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00804">804</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00813">813</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -982,9 +983,9 @@ status GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="amigo_8c_source.html#l00450">450</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
+<p>Definition at line <a class="el" href="amigo_8c_source.html#l00460">460</a> of file <a class="el" href="amigo_8c_source.html">amigo.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>.</p>
 
 </div>
 </div>
@@ -1001,9 +1002,9 @@ status GPIB error flags on fail </dd></dl>
 
 <p>gpib listen address </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00092">92</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00095">95</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01291">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00829">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00804">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00353">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00727">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00883">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00805">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00438">gpib_task()</a>, and <a class="el" href="printer_8c_source.html#l00292">PRINTER_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, and <a class="el" href="printer_8c_source.html#l00294">PRINTER_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -1133,16 +1134,16 @@ status GPIB error flags on fail </dd></dl>
 /// T    Read Self Test Results         ---     2       A13     N
 /// L    Initiat Self Test          ---     2       A24     N
 /// </pre> 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00087">87</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00090">90</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00869">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01291">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01179">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00829">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00804">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00353">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00727">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00883">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00805">GPIB_TALK()</a>, and <a class="el" href="printer_8c_source.html#l00292">PRINTER_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>, and <a class="el" href="printer_8c_source.html#l00294">PRINTER_COMMANDS()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 22 2017 19:39:06 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 24 2017 21:39:30 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

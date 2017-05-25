@@ -26,40 +26,22 @@
 #define HP9121D     //< HP9121 dual 270K AMIGO floppy drive
 #define HP9134L     //< HP9134L 40M SS/80 Winchester drive
 
-/// ==============================================================
-///@brief address and PPR for SS80 AMIGO and PRINTER
-/// Can be set if specified in user config
-/// If NOT specified see Power on Defaults below
-///@see ss80.c
-
-#define SS80_MLA     (BASE_MLA + SS80Disk.HEADER.ADDRESS)    //<  SS80 listen address 
-#define SS80_MTA     (BASE_MTA + SS80Disk.HEADER.ADDRESS)   //<  SS80 talk address 
-#define SS80_MSA     (BASE_MSA + SS80Disk.HEADER.ADDRESS)   //<  SS80 seconday address 
-#define SS80_PPR     (SS80Disk.HEADER.PPR)             //<  SS80 PPR Address
-#define AMIGO_MLA    (BASE_MLA + AMIGODisk.HEADER.ADDRESS)  //<  AMIGO listen address
-#define AMIGO_MTA    (BASE_MTA + AMIGODisk.HEADER.ADDRESS)  //<  AMIGO talk address 
-#define AMIGO_MSA    (BASE_MSA + AMIGODisk.HEADER.ADDRESS)  //<  AMIGO seconday address
-#define AMIGO_PPR    (AMIGODisk.HEADER.PPR)            //<  AMIGO PPR Address
-
-#define PRINTER_MLA  (BASE_MLA + printer_addr) //<  PRINTER listen address 
-#define PRINTER_MTA  (BASE_MTA + printer_addr) //<  PRINTER talk address 
-#define PRINTER_MSA  (BASE_MSA + printer_addr) //<  PRINTER seconday address 
-
-
 /// ====================================================================
-typedef struct 
-{
-	uint16_t ID; 		//<  Identify, For 9122 I1=02, I2=22H
-} ConfigType;
+#define MAX_DEVICES 8
 
+//@brief Drive index, Address, PPR and file name for emulated drive
 typedef struct 
 {
-	uint8_t DRIVE;		// Emulated Drive number
 	uint8_t ADDRESS;	//< GPIB Address
 	uint8_t PPR;		//< Parallel Poll Response Bit
 	char     NAME[32];
 } HeaderType;
 
+//@brief Identify Bytes for Drives
+typedef struct 
+{
+	uint16_t ID; 		//<  Identify, For 9122 I1=02, I2=22H
+} ConfigType;
 
 /// ====================================================================
 /// @brief AMIGO emulator state machine index.
@@ -82,6 +64,13 @@ typedef struct
 } AMIGOStateType;
 
 /// ====================================================================
+///@brief Printer structure 
+typedef struct 
+{
+	HeaderType HEADER;
+} PRINTERDeviceType;
+
+/// ====================================================================
 
 typedef struct
 {
@@ -102,27 +91,6 @@ typedef struct
 
 
 /// ====================================================================
-///@brief SS80 Emulated disk state information
-typedef struct
-{
-	/// @brief Execute state index
-	int estate;
-	/// @brief Qstat variable
-	uint8_t qstat;
-	///@brief Errors
-	int Errors;         //< Error byte
-	///@brief SS80 Unit 
-	BYTE unitNO;        //< Unit Number - we only do 1
-	///@brief SS80 Volume 
-	BYTE volNO;         //< Volume Number - we only do 1
-	///@brief Address in Blocks
-	uint32_t AddressBlocks; 
-	///@brief Length in Bytes
-	uint32_t Length;
-} SS80StateType;
-
-	
-
 ///@brief SS80 Controller 5 bytes
 typedef struct {
 	/*
@@ -202,16 +170,36 @@ typedef struct
 } SS80VolumeType;
 
 
-
 ///@brief Disk Information Structure
-typedef struct {
+typedef struct 
+{
 	HeaderType HEADER;
 	ConfigType CONFIG;
     SS80ControllerType CONTROLLER;
     SS80UnitType UNIT;
     SS80VolumeType VOLUME;
 } SS80DiskType;
+/// ====================================================================
 
+///@brief SS80 Emulated disk state information
+typedef struct
+{
+	/// @brief Execute state index
+	int estate;
+	/// @brief Qstat variable
+	uint8_t qstat;
+	///@brief Errors
+	int Errors;         //< Error byte
+	///@brief SS80 Unit 
+	BYTE unitNO;        //< Unit Number - we only do 1
+	///@brief SS80 Volume 
+	BYTE volNO;         //< Volume Number - we only do 1
+	///@brief Address in Blocks
+	uint32_t AddressBlocks; 
+	///@brief Length in Bytes
+	uint32_t Length;
+} SS80StateType;
+/// ====================================================================
 
 enum PARSE_STATES
 {
@@ -230,20 +218,59 @@ enum PARSE_STATES
 	PRINTER_CONFIG
 };
 
+/// ====================================================================
+///@brief
+enum DEVICE_TYPES
+{
+	NO_TYPE,	
+	AMIGO_TYPE,
+	SS80_TYPE,
+	PRINTER_TYPE
+};
 
-extern SS80DiskType SS80Disk;
-extern SS80StateType SS80State;
-extern AMIGODiskType AMIGODisk;
-extern AMIGOStateType AMIGOState;
-///@brief printer do not use parallel poll
-extern uint8_t printer_addr;
+///@brief Device Type 
+typedef struct
+{
+	uint8_t TYPE;	// TYPE SS80,AMIGO or PRINTER TYPE
+	uint8_t ADDRESS;// ADDRESS
+	uint8_t PPR;    // PPR
+	void *dev;		// Disk or Printer Structure
+	void *state;	// Disk or Printer State Structure
+} DeviceType;
+/// ====================================================================
+///@convert print_var strings into __memx space
+#define print_var(format, args...) print_var_P(PSTR(format), ##args)
+///@convert print_var strings into __memx space
+#define print_str(format, args...) print_str_P(PSTR(format), ##args)
+
+
+extern SS80DiskType *SS80p;
+extern SS80StateType *SS80s;
+extern AMIGODiskType *AMIGOp;
+extern AMIGOStateType *AMIGOs;
+extern PRINTERDeviceType *PRINTERp;
+extern DeviceType Devices[MAX_DEVICES];
 
 /* drives.c */
 void V2B ( uint8_t *B , int index , int size , uint32_t val );
 uint32_t B2V ( uint8_t *B , int index , int size );
+int find_type ( int type );
+char *type_to_str ( int type );
+int find_free ( void );
+int find_device ( int type , int address );
+int set_device_by_index ( int index );
+int set_device ( int type , int address );
+int alloc_device ( int type );
+void init_Devices ( void );
+int push_state ( int state );
+int pop_state ( void );
+uint32_t assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
+void set_Config_Defaults ( void );
 int POSIX_Read_Config ( char *name );
+void print_var_P ( __memx const char *str , uint32_t val );
+void print_str_P ( __memx const char *str , char *arg );
+void display_Addresses ( void );
 void display_Config ( void );
-void display_settings ( void );
 
 
 /// =================

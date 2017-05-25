@@ -20,12 +20,12 @@
 
 #include "gpib/defines.h"
 
-extern int Errors;
-extern uint8_t qstat;
-
 /* ss80.c */
 void SS80_Test ( void );
-DWORD SS80_MaxAddress ( void );
+void SS80_V2B ( uint8_t *B , int index , int size , uint32_t val );
+uint8_t *SS80ControllerPack ( int *size );
+uint8_t *SS80UnitPack ( int *size );
+uint8_t *SS80VolumePack ( int *size );
 void SS80_init ( void );
 int SS80_Execute_State ( void );
 int SS80_locate_and_read ( void );
@@ -45,7 +45,5 @@ int SS80_Cancel ( int u );
 int SS80_increment ( void );
 int SS80_error_return ( void );
 int SS80_COMMANDS ( uint8_t ch );
-
-
 
 #endif

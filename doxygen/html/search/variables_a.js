@@ -11,6 +11,7 @@ var searchData=
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
   ['lifid',['LIFid',['../structVolumeLabelType.html#a16bdde2d19114ac3238477c29fe75b4a',1,'VolumeLabelType']]],
+  ['lines',['lines',['../drives_8c.html#a9921ae02cadccc99dd6c3a9b68be050a',1,'drives.c']]],
   ['listening',['listening',['../amigo_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8h.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../ss80_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c']]],
   ['listening_5flast',['listening_last',['../gpib_8c.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c'],['../gpib_8h.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c']]],
   ['logical_5faddress',['logical_address',['../structAMIGOStateType.html#a924a685ad68765a91714aa6ad4b20d9f',1,'AMIGOStateType']]]

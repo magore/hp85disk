@@ -1,7 +1,7 @@
 var searchData=
 [
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
-  ['init_5fstates',['init_states',['../drives_8c.html#af9a12d478b90355ca61fdc2bc5463d83',1,'drives.c']]],
+  ['init_5fdevices',['init_Devices',['../drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f',1,'init_Devices():&#160;drives.c'],['../drives_8h.html#a31361bab0d441c06afb14a7af1d657c9',1,'init_Devices(void):&#160;drives.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
   ['insert_5fsort',['insert_sort',['../sort_8c.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c'],['../sort_8h.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c']]],
   ['install_5ftimers_5fisr',['install_timers_isr',['../timer_8h.html#a49353e09a3623d95083574b87e9aadc5',1,'timer.h']]],

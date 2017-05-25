@@ -4,7 +4,7 @@ var searchData=
   ['hal_2eh',['hal.h',['../hal_8h.html',1,'']]],
   ['have_5fhires_5ftimer',['HAVE_HIRES_TIMER',['../user__config_8h.html#ace7ce1901bf0c350e7704eb37b07ad74',1,'user_config.h']]],
   ['head',['head',['../structAMIGOStateType.html#a92b01a4e3912d2fcacebcc15a21c66c9',1,'AMIGOStateType']]],
-  ['header',['HEADER',['../structAMIGODiskType.html#a9814efe6f564b104fc7e0100231908a8',1,'AMIGODiskType::HEADER()'],['../structSS80DiskType.html#ae66c0130dee8c362743dfdfc41539c3b',1,'SS80DiskType::HEADER()']]],
+  ['header',['HEADER',['../structPRINTERDeviceType.html#ac1ae5b29520f726e4aaab0232ecd6463',1,'PRINTERDeviceType::HEADER()'],['../structAMIGODiskType.html#a9814efe6f564b104fc7e0100231908a8',1,'AMIGODiskType::HEADER()'],['../structSS80DiskType.html#ae66c0130dee8c362743dfdfc41539c3b',1,'SS80DiskType::HEADER()']]],
   ['headertype',['HeaderType',['../structHeaderType.html',1,'']]],
   ['heads',['HEADS',['../structAMIGOGemometryType.html#a33131d3948935e2064af9af151653033',1,'AMIGOGemometryType']]],
   ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],

@@ -13,7 +13,6 @@
 
 #include "user_config.h"
 
-#include "posix.h"
 #include "defines.h"
 #include "drives.h"
 #include "gpib_hal.h"
@@ -22,6 +21,8 @@
 #include "amigo.h"
 #include "ss80.h"
 #include "printer.h"
+
+#include "posix.h"
 
 /// @brief Config file name
 char cfgfile[] = "/hpdisk.cfg";                   
@@ -73,8 +74,12 @@ void gpib_log( char *str )
 /// @return  1 if true or 0
 int SS80_is_MLA(int addr)
 {
-	if(addr == SS80_MLA)
-		return(1);
+	if(addr >= BASE_MLA && addr <= (BASE_MLA+30))
+	{	
+		addr -= BASE_MLA;
+		if(set_device(SS80_TYPE, addr))
+			return(1);
+	}
 	return(0);
 }
 
@@ -84,8 +89,12 @@ int SS80_is_MLA(int addr)
 /// @return  1 if true or 0
 int SS80_is_MTA(int addr)
 {
-	if(addr == SS80_MTA)
-		return(1);
+	if(addr >= BASE_MTA && addr <= (BASE_MTA+30))
+	{	
+		addr -= BASE_MTA;
+		if(set_device(SS80_TYPE, addr))
+			return(1);
+	}
 	return(0);
 }
 
@@ -95,8 +104,13 @@ int SS80_is_MTA(int addr)
 /// @return  1 if true or 0
 int SS80_is_MSA(int addr)
 {
-	if(addr == SS80_MSA)
-		return(1);
+	if(addr >= BASE_MSA && addr <= (BASE_MSA+30))
+	{	
+		addr -= BASE_MSA;
+		//FIXME do we just want to test the address and NOT set it
+		if(set_device(SS80_TYPE, addr))
+			return(1);
+	}
 	return(0);
 }
 
@@ -106,8 +120,12 @@ int SS80_is_MSA(int addr)
 /// @return  1 if true or 0
 int AMIGO_is_MLA(int addr)
 {
-	if(addr == AMIGO_MLA)
-		return(1);
+	if(addr >= BASE_MLA && addr <= (BASE_MLA+30))
+	{	
+		addr -= BASE_MLA;
+		if(set_device(AMIGO_TYPE, addr))
+			return(1);
+	}
 	return(0);
 }
 
@@ -117,8 +135,12 @@ int AMIGO_is_MLA(int addr)
 /// @return  1 if true or 0
 int AMIGO_is_MTA(int addr)
 {
-	if(addr == AMIGO_MTA)
-		return(1);
+	if(addr >= BASE_MTA && addr <= (BASE_MTA+30))
+	{	
+		addr -= BASE_MTA;
+		if(set_device(AMIGO_TYPE, addr))
+			return(1);
+	}
 	return(0);
 }
 /// @brief  Check if AMIGO secondary address
@@ -127,8 +149,13 @@ int AMIGO_is_MTA(int addr)
 /// @return  1 if true or 0
 int AMIGO_is_MSA(int addr)
 {
-	if(addr == AMIGO_MSA)
-		return(1);
+	if(addr >= BASE_MSA && addr <= (BASE_MSA+30))
+	{	
+		addr -= BASE_MSA;
+		//FIXME do we just want to test the address and NOT set it
+		if(set_device(AMIGO_TYPE, addr))
+			return(1);
+	}
 	return(0);
 
 }
@@ -139,8 +166,11 @@ int AMIGO_is_MSA(int addr)
 /// @return  1 if true or 0
 int PRINTER_is_MLA(int addr)
 {
-	if(addr == PRINTER_MLA)
-		return(1);
+	if(addr >= BASE_MLA && addr <= (BASE_MLA+30))
+	{	
+		if(set_device(PRINTER_TYPE, addr - BASE_MLA))
+			return(1);
+	}
 	return(0);
 }
 
@@ -150,8 +180,11 @@ int PRINTER_is_MLA(int addr)
 /// @return  1 if true or 0
 int PRINTER_is_MTA(int addr)
 {
-	if(addr == PRINTER_MTA)
-		return(1);
+	if(addr >= BASE_MTA && addr <= (BASE_MTA+30))
+	{	
+		if(set_device(PRINTER_TYPE, addr - BASE_MTA))
+			return(1);
+	}
 	return(0);
 }
 
@@ -161,8 +194,12 @@ int PRINTER_is_MTA(int addr)
 /// @return  1 if true or 0
 int PRINTER_is_MSA(int addr)
 {
-	if(addr == PRINTER_MSA)
-		return(1);
+	if(addr >= BASE_MSA && addr <= (BASE_MSA+30))
+	{	
+		//FIXME do we just want to test the address and NOT set it
+		if(set_device(PRINTER_TYPE, addr - BASE_MSA))
+			return(1);
+	}
 	return(0);
 }
 
@@ -180,7 +217,7 @@ void gpib_trace_task( char *name )
 {
     int ch;
     long count;
-    char str[32];
+    char *ptr;
 
     gpib_log_fp = NULL;
 
@@ -211,10 +248,9 @@ void gpib_trace_task( char *name )
 
         ch = gpib_read_byte();
 
-        gpib_decode_str(ch, str);
-        gpib_log(str);
-        puts(str);
-
+        ptr = gpib_decode_str(ch);
+        gpib_log(ptr);
+        puts(ptr);
         if(( count & 255L ) == 0)
             printf("%08ld\r",count);
         ++count;
@@ -264,13 +300,6 @@ uint16_t gpib_error_test(uint16_t val)
     {
         val &= ERROR_MASK;
 
-#if 0                                     // GPIB BUS init/reset are done in gpib_read() and gpib_write()
-        if(val & IFC_FLAG || uart_keyhit(0))
-        {
-            gpib_bus_init(1);                     // Warm init float ALL lines
-            gpib_state_init();                    // Init PPR talking and listening states
-        }
-#endif
 
 #if SDEBUG >= 1
         if(debuglevel >= 1)
@@ -329,7 +358,13 @@ uint16_t gpib_error_test(uint16_t val)
 /// @return  void
 void gpib_init_devices(void)
 {
+    gpib_bus_init(1);
+	// FIXME FIXME what does this break ???
+	// Init PPR talking and listening states
+	// gpib_state_init();   
+
     SS80_init();                                  // SS80 state init
+
 #ifdef AMIGO
     amigo_init();                                 // AMIGO state init
 #endif
@@ -440,7 +475,7 @@ void gpib_task(void)
     uint16_t val;
     uint8_t ch;
     uint16_t status;
-    char str[40];
+    char *ptr;
 
     gpib_bus_init(1);                             // Warm init float ALL lines
     gpib_state_init();                            // Init PPR talking and listening states
@@ -456,8 +491,8 @@ void gpib_task(void)
 #if SDEBUG >= 1
         if(debuglevel >= 9)
         {
-            gpib_decode_str(val, str);
-            puts(str);
+            ptr = gpib_decode_str(val);
+            puts(ptr);
         }
 #endif
         status = gpib_error_test(val);
@@ -579,14 +614,14 @@ int Send_Identify(uint8_t ch, uint16_t ID)
 	{
 #if SDEBUG >= 1
 		if(debuglevel >= 1)
-			printf("[IDENT Unit:%02x=%04x FAILED]\n", 
+			printf("[IDENT Unit:%02xH=%04xH FAILED]\n", 
 				(int)ch,(int)ID);
 #endif
 		return(status & ERROR_MASK);
 	}
 #if SDEBUG > 1
     if(debuglevel > 1)
-		printf("[IDENT Unit:%02x=%04x]\n", (int)ch,(int)ID);
+		printf("[IDENT Unit:%02xH=%04xH]\n", (int)ch,(int)ID);
 #endif
     return (status & ERROR_MASK);
 }
@@ -672,7 +707,7 @@ int GPIB(uint8_t ch)
             if(debuglevel > 1)
                 printf("[SDC SS80]\n");
 #endif
-            return(SS80_Selected_Device_Clear(SS80State.unitNO) );
+            return(SS80_Selected_Device_Clear(SS80s->unitNO) );
         }
 
 #ifdef AMIGO
@@ -711,7 +746,7 @@ int GPIB(uint8_t ch)
 
 #if SDEBUG >= 1
     if(debuglevel > 1)
-        printf("[HPIB (%02x) not defined]\n", 0xff & ch);
+        printf("[HPIB (%02xH) not defined]\n", 0xff & ch);
 #endif
     return(0);
 }
@@ -760,7 +795,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[LA %02x AMIGO]\n", 0xff & ch);
+            printf("[LA %02xH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -770,7 +805,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[LA %02x SS80]\n", 0xff & ch);
+            printf("[LA %02xH SS80]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -779,7 +814,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[LA %02x PRINTER]\n", 0xff & ch);
+            printf("[LA %02xH PRINTER]\n", 0xff & ch);
 #endif
         if(talking != UNT)
         {
@@ -789,7 +824,7 @@ int GPIB_LISTEN(uint8_t ch)
     }
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[LA %02x]\n", 0xff & ch);
+        printf("[LA %02xH]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Listen Primary Address group
@@ -829,7 +864,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[TA %02x SS80]\n", 0xff & ch);
+            printf("[TA %02xH SS80]\n", 0xff & ch);
 #endif
 
         if (spoll)
@@ -844,7 +879,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[TA %02x AMIGO]\n", 0xff & ch);
+            printf("[TA %02xH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -854,7 +889,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[TA %02x PRINTER]\n", 0xff & ch);
+            printf("[TA %02xH PRINTER]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -867,7 +902,7 @@ int GPIB_TALK(uint8_t ch)
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[TA %02x]\n", 0xff & ch);
+        printf("[TA %02xH]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Talk Address primary address group
@@ -895,11 +930,11 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
     {
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[SA %02x SS80]\n", 0xff & ch);
+            printf("[SA %02xH SS80]\n", 0xff & ch);
 #endif
 		///@brief ch = secondary address
-        DisablePPR(SS80_PPR);
-        return(Send_Identify( ch, SS80Disk.CONFIG.ID) );
+        DisablePPR(SS80p->HEADER.PPR);
+        return(Send_Identify( ch, SS80p->CONFIG.ID) );
 
     }
 
@@ -910,17 +945,17 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 /// 	Two identify bytes should be repeated until untalked
 #if SDEBUG > 1
         if(debuglevel > 1)
-            printf("[SA %02x AMIGO]\n", 0xff & ch);
+            printf("[SA %02xH AMIGO]\n", 0xff & ch);
 #endif
 		///@brief ch = secondary address
-        DisablePPR(AMIGO_PPR);
-        return( Send_Identify( ch, AMIGODisk.CONFIG.ID) );
+        DisablePPR(AMIGOp->HEADER.PPR);
+        return( Send_Identify( ch, AMIGOp->CONFIG.ID) );
     }
 #endif                                        // AMIGO
 
 #if SDEBUG > 1
     if(debuglevel > 1)
-        printf("[SA %02x, listen:%02x, talk:%02x]\n",
+        printf("[SA %02xH, listen:%02xH, talk:%02xH]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
 #endif
     return(0);
@@ -935,10 +970,15 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 
 void listen_cleanup()
 {
-    if(listening_last == PRINTER_MLA)
-    {
-        printer_close();
-    }
+	if(listening_last)
+	{
+		//FIXME this tosses an error because listening_last 
+		// may not be anough state information
+		if(find_device(PRINTER_TYPE, listening_last - BASE_MLA))
+		{
+			printer_close();
+		}
+	}
 }
 
 

@@ -50,7 +50,6 @@ DirEntryType de =
     1,0,0
 };
 
-
 /// @brief LDIF Format file.
 ///
 /// @param[in] name: file name of LIF image to format.
@@ -58,14 +57,13 @@ DirEntryType de =
 /// @todo  currently coded for AMIGO - Work in progress.
 /// @return  FatFs FRESULT.
 
-FRESULT gpib_format_disk(char *name)
+FRESULT gpib_format_disk(char *name, uint32_t size)
 {
     FRESULT rc;
     UINT nbytes;
     DWORD fpos, max;                              // File position
     FIL fp;
     char *buffer;
-    extern SS80Type SS80Disk;
 
     buffer = safecalloc(512+1,1);
     if(!buffer)
@@ -125,14 +123,9 @@ FRESULT gpib_format_disk(char *name)
         return(rc);
     }
 
-    max = SS80Disk.Volume.V9 * 0x100000000L +
-        SS80Disk.Volume.V10 * 0x1000000L +
-        SS80Disk.Volume.V11 * 0x10000L +
-        SS80Disk.Volume.V12 * 0x100L;
-
     fpos = f_tell(fp);
     memset(buffer,' ',512);
-    while(fpos < max )
+    while(fpos < size)
     {
         rc=dbf_write(&fp, buffer, 512, &nbytes);
         if(rc)
