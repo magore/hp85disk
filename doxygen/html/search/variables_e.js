@@ -1,7 +1,7 @@
 var searchData=
 [
   ['pat',['pat',['../structDIR.html#a1f636884096de91deb97f59209d60e96',1,'DIR']]],
-  ['plot',['plot',['../printer_8c.html#a53b33375d3fa7b380ce0404074463b34',1,'printer.c']]],
+  ['plot',['plot',['../printer_8c.html#af553ce48b56b862023dcd451e94e65ac',1,'printer.c']]],
   ['plot_5fstr',['plot_str',['../printer_8c.html#a86ffa26ff3c8695d7cd5536829aa3684',1,'printer.c']]],
   ['plus',['plus',['../unionf__t.html#a63ebe04d55417685e439b779dfa8dafe',1,'f_t']]],
   ['ppr',['PPR',['../structHeaderType.html#ac642cdad0f3874495afa0ab687a56fd0',1,'HeaderType::PPR()'],['../structDeviceType.html#ae0e59c6c17582ff80bdab3f2010e8d57',1,'DeviceType::PPR()']]],

@@ -194,7 +194,7 @@ int isatty(int fileno)
 
 /// @brief Get byte from a TTY device or FatFs file stream
 /// open() or fopen() sets stream->get = fatfs_getc() for FatFs functions
-/// fdevopen()        sets stream->get for TTY devices
+/// See fdevopen()        sets stream->get for TTY devices
 ///
 /// - man page fgetc (3).
 ///
@@ -257,7 +257,7 @@ fgetc(FILE *stream)
 
 /// @brief Put a byte to TTY device or FatFs file stream
 /// open() or fopen() sets stream->put = fatfs_outc() for FatFs functions
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fputc (3).
 ///
@@ -269,6 +269,7 @@ int
 fputc(int c, FILE *stream)
 {
     errno = 0;
+	int ret;
 
     if(stream == NULL)
     {
@@ -302,11 +303,10 @@ fputc(int c, FILE *stream)
 			printf("fputc stream->put NULL\n");
 			return(EOF);
 		}
-        if (stream->put(c, stream) == 0) {
+        ret = stream->put(c, stream);
+		if(ret != EOF)
             stream->len++;
-            return c;
-        } else
-            return EOF;
+		return(ret);
     }
 }
 
@@ -315,7 +315,7 @@ fputc(int c, FILE *stream)
 ///@brief functions normally defined as macros
 #ifndef IO_MACROS
 /// @brief get a character from stdin
-/// fdevopen()   sets stream->get for TTY devices
+/// See fdevopen()   sets stream->get for TTY devices
 ///
 /// - man page getchar (3).
 ///
@@ -330,7 +330,7 @@ getchar()
 }
 
 /// @brief put a character to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page putchar (3).
 ///
@@ -381,7 +381,7 @@ ungetc(int c, FILE *stream)
 #ifndef IO_MACROS
 /// ==================================================================
 /// @brief Put a character to a stream
-/// fdevopen()  sets stream->put get for TTY devices
+/// See fdevopen()  sets stream->put get for TTY devices
 ///
 /// - man page putc (3).
 ///
@@ -399,7 +399,7 @@ putc(int c, FILE *stream)
 /// ==============================================================
 ///  POSIX string I/O
 /// @brief get a string from stdin
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fgets (3).
 ///
@@ -436,7 +436,7 @@ fgets(char *str, int size, FILE *stream)
 }
 
 /// @brief put a string to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page fputs (3).
 ///
@@ -459,7 +459,7 @@ fputs(const char *str, FILE *stream)
 
 #ifndef IO_MACROS
 /// @brief put a string to stdout
-/// fdevopen()        sets stream->put get for TTY devices
+/// See fdevopen()        sets stream->put get for TTY devices
 ///
 /// - man page puts (3).
 ///

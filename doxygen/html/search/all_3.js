@@ -63,7 +63,7 @@ var searchData=
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
   ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
-  ['count',['count',['../struct__plot.html#af4d84e2aa52eabdc7ccc2fbf18272e98',1,'_plot']]],
+  ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
   ['create_5flinkmap',['CREATE_LINKMAP',['../ff_8h.html#aee297a9011164cf485a4df2a72758b08',1,'ff.h']]],

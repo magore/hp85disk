@@ -7,6 +7,6 @@ var searchData=
   ['implementationhi',['implementationhi',['../structDirEntryType.html#a27a15eea3264d44c9e93e3be77093151',1,'DirEntryType']]],
   ['implementationlo',['implementationlo',['../structDirEntryType.html#a8164d577c06fb7c312aaa4955d491449',1,'DirEntryType']]],
   ['in',['in',['../structqueue__t.html#a7a6832e36c70a1db7fddc93fb6be9d63',1,'queue_t']]],
-  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../struct__plot.html#ab02a041a2c701b09447d883089abba4f',1,'_plot::ind()']]],
+  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../structPRINTERStateType.html#a7d8873d0011f31d7dd00c2b7e0d362bd',1,'PRINTERStateType::ind()']]],
   ['interleave',['INTERLEAVE',['../structSS80VolumeType.html#accc9f011ff8edebcc6d781d1aa51f16d',1,'SS80VolumeType']]]
 ];

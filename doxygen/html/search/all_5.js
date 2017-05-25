@@ -53,7 +53,7 @@ var searchData=
   ['err_5fwp',['ERR_WP',['../defines_8h.html#a3288f14d5ae8b9aa3ee273aca37970ba',1,'defines.h']]],
   ['err_5fwrite',['ERR_WRITE',['../defines_8h.html#abdfbdd5affe2e04429a4373950c83cd5',1,'defines.h']]],
   ['errno',['errno',['../posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf',1,'posix.c']]],
-  ['error',['error',['../struct__plot.html#a9a9516230fefbc6cdd6e4ca5d6403509',1,'_plot']]],
+  ['error',['error',['../structPRINTERStateType.html#a6e5b550f5396901febd5475445132dd0',1,'PRINTERStateType']]],
   ['error_5fmask',['ERROR_MASK',['../gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b',1,'gpib.h']]],
   ['errors',['Errors',['../structAMIGOStateType.html#ad04b5b3ffd8fabff547e6498d534feac',1,'AMIGOStateType::Errors()'],['../structSS80StateType.html#a7a5c363c6f617ee457a4daacadb3a7b2',1,'SS80StateType::Errors()']]],
   ['espipe',['ESPIPE',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e5433f0863ce3470329184a3ee495a7',1,'posix.h']]],

@@ -27,6 +27,9 @@
 #define XOFF_PUT    2
 #define XOFF_GET    1
 
+#ifndef EOF
+#define EOF (-1)
+#endif
 
 struct _uart
 {
@@ -45,22 +48,22 @@ struct _uart
 
 /* rs232.c */
 void uart_rx_flush ( uint8_t uart );
-uint8_t uart0_getchar ( FILE *f );
-int uart0_putchar ( char c , FILE *f );
-uint8_t uart1_getchar ( FILE *f );
-int uart1_putchar ( char c , FILE *f );
+int uart0_getchar ( FILE *f );
+int uart0_putchar ( int c , FILE *f );
+int uart1_getchar ( FILE *f );
+int uart1_putchar ( int c , FILE *f );
 int uart_init ( uint8_t uart , uint32_t baud );
 void uart_rx_interrupt ( uint8_t uart , uint8_t data );
-uint8_t uart_peek_tail ( uint8_t uart );
-uint8_t uart_get_tail ( uint8_t uart );
-uint8_t uart_rx_count ( uint8_t uart );
+int uart_peek_tail ( uint8_t uart );
+int uart_get_tail ( uint8_t uart );
+int uart_rx_count ( uint8_t uart );
 int uart_rx_byte ( uint8_t uart );
-char uart_getchar ( uint8_t uart );
-void uart_tx_byte ( char c , uint8_t uart );
-void uart_putchar ( char c , int uart );
-uint8_t uart_keyhit ( uint8_t uart );
-void uart_put ( uint8_t c );
-char uart_get ( void );
+int uart_getchar ( uint8_t uart );
+int uart_tx_byte ( int c , uint8_t uart );
+int uart_putchar ( int c , int uart );
+int uart_keyhit ( uint8_t uart );
+int uart_put ( int c );
+int uart_get ( void );
 int get_line ( char *buff , int len );
 
 #endif                                            // _RS232_H_

@@ -7,16 +7,12 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+V\+R8.
 
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}drives.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}printer.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
-\subsection*{Data Structures}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{struct__plot}{\+\_\+plot}
-\begin{DoxyCompactList}\small\item\em Plotter file data structure definition used for saving plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,13 +29,13 @@ void \hyperlink{printer_8c_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\+\_\+buffe
 void \hyperlink{printer_8c_ac649161dc4d63963c35b30a12037e09c}{receive\+\_\+plot} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Manually receive plot data -\/ user called function. \end{DoxyCompactList}\item 
 int \hyperlink{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
-\begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary r\+Ccommand Printer commands. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary Command Printer commands. \end{DoxyCompactList}\item 
 void \hyperlink{printer_8c_a3e02cbb071ea6b261c2271cc604be495}{plot\+\_\+echo} (int echo)
-\begin{DoxyCompactList}\small\item\em Instruct Intrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Instruct Instrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct__plot}{\+\_\+plot} \hyperlink{printer_8c_a53b33375d3fa7b380ce0404074463b34}{plot}
+\hyperlink{structPRINTERStateType}{P\+R\+I\+N\+T\+E\+R\+State\+Type} \hyperlink{printer_8c_af553ce48b56b862023dcd451e94e65ac}{plot}
 \begin{DoxyCompactList}\small\item\em Plotter file data structure used for saving plot data. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{printer_8c_a86ffa26ff3c8695d7cd5536829aa3684}{plot\+\_\+str} \mbox{[}$\,$\mbox{]} = \{ 0x3f, 0x5f, 0x47, 0x21 \}
 \begin{DoxyCompactList}\small\item\em Plotter G\+P\+IB test vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -69,7 +65,7 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+V\+R8.
 )}\hypertarget{printer_8c_a3e02cbb071ea6b261c2271cc604be495}{}\label{printer_8c_a3e02cbb071ea6b261c2271cc604be495}
 
 
-Instruct Intrument to send Plot data. 
+Instruct Instrument to send Plot data. 
 
 
 \begin{DoxyItemize}
@@ -79,7 +75,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 323 of file printer.\+c.
+Definition at line 316 of file printer.\+c.
 
 
 
@@ -111,7 +107,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 182 of file printer.\+c.
+Definition at line 175 of file printer.\+c.
 
 
 
@@ -144,7 +140,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 117 of file printer.\+c.
+Definition at line 110 of file printer.\+c.
 
 
 
@@ -159,7 +155,7 @@ Referenced by G\+P\+I\+B(), gpib\+\_\+init\+\_\+devices(), listen\+\_\+cleanup()
 )}\hypertarget{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{}\label{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}
 
 
-G\+P\+IB Secondary r\+Ccommand Printer commands. 
+G\+P\+IB Secondary Command Printer commands. 
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000020}{Todo}]Fully emulated plotter response. \end{DoxyRefDesc}
@@ -168,7 +164,7 @@ G\+P\+IB Secondary r\+Ccommand Printer commands.
 \end{DoxyReturn}
 
 
-Definition at line 294 of file printer.\+c.
+Definition at line 287 of file printer.\+c.
 
 
 
@@ -193,7 +189,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 98 of file printer.\+c.
+Definition at line 91 of file printer.\+c.
 
 
 
@@ -225,7 +221,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 46 of file printer.\+c.
+Definition at line 39 of file printer.\+c.
 
 
 
@@ -258,7 +254,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 227 of file printer.\+c.
+Definition at line 220 of file printer.\+c.
 
 
 
@@ -292,7 +288,7 @@ file handle
 \end{DoxyReturn}
 
 
-Definition at line 151 of file printer.\+c.
+Definition at line 144 of file printer.\+c.
 
 
 
@@ -303,18 +299,14 @@ Referenced by printer\+\_\+buffer(), printer\+\_\+close(), and receive\+\_\+plot
 \subsection{Variable Documentation}
 \index{printer.\+c@{printer.\+c}!plot@{plot}}
 \index{plot@{plot}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{plot}{plot}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf \+\_\+plot} plot}\hypertarget{printer_8c_a53b33375d3fa7b380ce0404074463b34}{}\label{printer_8c_a53b33375d3fa7b380ce0404074463b34}
+\subsubsection[{\texorpdfstring{plot}{plot}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+R\+I\+N\+T\+E\+R\+State\+Type} plot}\hypertarget{printer_8c_af553ce48b56b862023dcd451e94e65ac}{}\label{printer_8c_af553ce48b56b862023dcd451e94e65ac}
 
 
 Plotter file data structure used for saving plot data. 
 
 
 
-Definition at line 33 of file printer.\+c.
-
-
-
-Referenced by printer\+\_\+buffer(), printer\+\_\+close(), printer\+\_\+init(), printer\+\_\+open(), receive\+\_\+plot(), and receive\+\_\+plot\+\_\+flush().
+Definition at line 26 of file printer.\+c.
 
 \index{printer.\+c@{printer.\+c}!plot\+\_\+str@{plot\+\_\+str}}
 \index{plot\+\_\+str@{plot\+\_\+str}!printer.\+c@{printer.\+c}}
@@ -325,7 +317,7 @@ Plotter G\+P\+IB test vector.
 
 
 
-Definition at line 36 of file printer.\+c.
+Definition at line 29 of file printer.\+c.
 
 
 

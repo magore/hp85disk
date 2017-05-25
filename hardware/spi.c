@@ -189,6 +189,7 @@ void SPI0_Init(uint32_t speed)
 {
 
     GPIO_PIN_HI(SS);                                    // SS Output HI
+
     delayus(10);
 
     GPIO_PIN_HI(SCK);                                   // SCK Output

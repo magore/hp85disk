@@ -71,7 +71,17 @@ typedef struct
 } PRINTERDeviceType;
 
 /// ====================================================================
+///@brief Plotter file data structure definition used for saving plot data.
+typedef struct 
+{
+    uint32_t count;                               // total bytes
+    int16_t ind;                                  // buffer cache index
+    uint8_t error;                                // error status
+    FILE *fp;
+    char *buf;
+} PRINTERStateType;
 
+/// ====================================================================
 typedef struct
 {
 	int16_t BYTES_PER_SECTOR;
@@ -199,8 +209,8 @@ typedef struct
 	///@brief Length in Bytes
 	uint32_t Length;
 } SS80StateType;
-/// ====================================================================
 
+/// ====================================================================
 enum PARSE_STATES
 {
 	START_STATE,

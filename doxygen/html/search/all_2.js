@@ -73,7 +73,7 @@ var searchData=
   ['bs_5fvolid32',['BS_VolID32',['../ff_8c.html#abaa3aafdcf5e83f8cb7e2bb373b13525',1,'ff.c']]],
   ['bs_5fvollab',['BS_VolLab',['../ff_8c.html#a28498ba4b07ff90aaa9628e81fb89d32',1,'ff.c']]],
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
-  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../struct__plot.html#ad7907cd2e279a361e68160bae8106ae4',1,'_plot::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
+  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structPRINTERStateType.html#aa48220761aa3c77c954a55f09388c615',1,'PRINTERStateType::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
   ['buffer',['buffer',['../struct__printf__t.html#ad35884151d0be6667caafad8caacc76f',1,'_printf_t']]],
   ['buffered_5fblocks',['BUFFERED_BLOCKS',['../structSS80UnitType.html#a575a381fe873ba8ba9aa4630673516a4',1,'SS80UnitType']]],
   ['burst_5fsize',['BURST_SIZE',['../structSS80UnitType.html#a4bc66bc02c06dbfe279be6d2af808a04',1,'SS80UnitType']]],

@@ -10,7 +10,7 @@ var searchData=
   ['implementationhi',['implementationhi',['../structDirEntryType.html#a27a15eea3264d44c9e93e3be77093151',1,'DirEntryType']]],
   ['implementationlo',['implementationlo',['../structDirEntryType.html#a8164d577c06fb7c312aaa4955d491449',1,'DirEntryType']]],
   ['in',['in',['../structqueue__t.html#a7a6832e36c70a1db7fddc93fb6be9d63',1,'queue_t']]],
-  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../struct__plot.html#ab02a041a2c701b09447d883089abba4f',1,'_plot::ind()']]],
+  ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../structPRINTERStateType.html#a7d8873d0011f31d7dd00c2b7e0d362bd',1,'PRINTERStateType::ind()']]],
   ['index_20page',['index page',['../index.html',1,'']]],
   ['init_5fdevices',['init_Devices',['../drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f',1,'init_Devices():&#160;drives.c'],['../drives_8h.html#a31361bab0d441c06afb14a7af1d657c9',1,'init_Devices(void):&#160;drives.c']]],
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],

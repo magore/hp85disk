@@ -13,24 +13,17 @@
 #include "user_config.h"
 
 #include "defines.h"
+
+#include "drives.h"
+
 #include "gpib_hal.h"
 #include "gpib.h"
 #include "gpib_task.h"
 #include "printer.h"
-
 #include "posix.h"
 
-///@brief Plotter file data structure definition used for saving plot data.
-struct _plot
-{
-    uint32_t count;                               // total bytes
-    int16_t ind;                                  // buffer cache index
-    uint8_t error;                                // error status
-    FILE *fp;
-    char *buf;
-};
 ///@brief Plotter file data structure used for saving plot data.
-struct _plot plot;
+PRINTERStateType plot;
 
 ///@brief Plotter GPIB test vector.
 uint8_t plot_str[] = { 0x3f, 0x5f, 0x47, 0x21 };
@@ -286,7 +279,7 @@ void receive_plot( char *name )
 }
 
 
-/// @brief  GPIB Secondary rCcommand Printer commands.
+/// @brief  GPIB Secondary Command Printer commands.
 ///
 /// @todo  Fully emulated plotter response.
 /// @return  0
@@ -315,7 +308,7 @@ int PRINTER_COMMANDS(uint8_t ch)
 }
 
 
-/// @brief  Instruct Intrument to send Plot data.
+/// @brief  Instruct Instrument to send Plot data.
 ///
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
@@ -347,7 +340,7 @@ void plot_echo( int echo )
         if(uart_keyhit(0))
         {
 #if 1
-            extern void uart_put(uint8_t c);
+            extern int uart_put(int c);
             extern int get_line (char *buff, int len);
 
             uart_put('>');

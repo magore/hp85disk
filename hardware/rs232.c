@@ -42,7 +42,7 @@ void uart_rx_flush(uint8_t uart)
 ///
 /// @return  uart_getchar(0);.
 /// @see fdevopen() from avr-libc.
-uint8_t uart0_getchar(FILE *f)
+int uart0_getchar(FILE *f)
 {
     return( uart_getchar(0) );
 }
@@ -55,10 +55,10 @@ uint8_t uart0_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 0);.
 /// @see fdevopen() from avr-libc.
-int uart0_putchar(char c, FILE *f)
+int uart0_putchar(int c, FILE *f)
 {
     uart_putchar(c, 0);
-	return(0);
+	return(c);
 }
 
 
@@ -69,7 +69,7 @@ int uart0_putchar(char c, FILE *f)
 ///
 /// @return  uart_getchar(1);.
 /// @see fdevopen() from avr-libc.
-uint8_t uart1_getchar(FILE *f)
+int uart1_getchar(FILE *f)
 {
     return( uart_getchar(1) );
 }
@@ -82,10 +82,10 @@ uint8_t uart1_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 1);.
 /// @see fdevopen() from avr-libc.
-int uart1_putchar(char c, FILE *f)
+int uart1_putchar(int c, FILE *f)
 {
     uart_putchar(c, 1);
-	return(0);
+	return(c);
 }
 #endif
 
@@ -95,14 +95,14 @@ int uart1_putchar(char c, FILE *f)
 /// @param[in] baud: Baud Rate in HZ.
 ///
 /// @return  0 on success.
-/// @return  -1 on fail.
+/// @return  EOF on fail.
 /// @see fdevopen() avr-libc function.
 int uart_init(uint8_t uart, uint32_t baud)
 {
     uint16_t uart_select_baud = (uint16_t) ( F_CPU/16L/baud );
 
     if(uart >= UARTS)
-        return(-1);
+        return(EOF);
 
     if(uart == 0)                                 /* uart == 0( first serial ) */
     {
@@ -196,17 +196,17 @@ void uart_rx_interrupt(uint8_t uart, uint8_t data)
 /// @brief Return character waiting in ring buffer without removing it.
 /// @return character.
 /// @return 0 on error.
-uint8_t uart_peek_tail(uint8_t uart)
+int uart_peek_tail(uint8_t uart)
 {
     uint8_t c;
 
     if(uart >= UARTS)
-        return(0);
+        return(EOF);
 
     cli();
     c = uarts[uart].rx_buf[uarts[uart].rx_tail];
     sei();
-    return (c);
+    return (c & 0xff);
 }
 
 
@@ -218,11 +218,11 @@ uint8_t uart_peek_tail(uint8_t uart)
 /// @return character.
 /// @return 0 on error.
 /// @see uart_rx_count().
-uint8_t uart_get_tail(uint8_t uart)
+int uart_get_tail(uint8_t uart)
 {
     uint8_t c;
     if(uart >= UARTS)
-        return(0);
+        return(EOF);
 
     while ( uart_rx_count(uart) == 0 )
         ;
@@ -234,7 +234,7 @@ uint8_t uart_get_tail(uint8_t uart)
     uarts[uart].rx_count--;
 
     sei();
-    return (c);
+    return (c & 0xff);
 }
 
 
@@ -243,12 +243,12 @@ uint8_t uart_get_tail(uint8_t uart)
 /// @param[in] uart: uart number to check count for.
 ///
 /// @return  Character count in ring buffer.
-uint8_t uart_rx_count(uint8_t uart)
+int uart_rx_count(uint8_t uart)
 {
     int count;
 
     if(uart >= UARTS)
-        return(0);
+        return(EOF);
 
     cli();
 
@@ -267,7 +267,7 @@ uint8_t uart_rx_count(uint8_t uart)
 /// @return  Character.
 int uart_rx_byte(uint8_t uart)
 {
-    return( uart_get_tail(uart) );
+    return( uart_get_tail(uart) & 0xff);
 }
 
 
@@ -278,13 +278,12 @@ int uart_rx_byte(uint8_t uart)
 /// @param[in] uart: uart number.
 ///
 /// @return  Character.
-char uart_getchar(uint8_t uart)
+int uart_getchar(uint8_t uart)
 {
     uint8_t c;
 
     if(uart >= UARTS)
-        return(0);
-
+        return(EOF);
 #if 0
     while(1)
     {
@@ -307,22 +306,25 @@ char uart_getchar(uint8_t uart)
 /// @param[in] uart: uart number.
 ///
 /// @return void.
-void uart_tx_byte(char c, uint8_t uart)
+int uart_tx_byte(int c, uint8_t uart)
 {
     if(uart == 0)
     {
         while (!BIT_TST(UCSR0A, UDRE0))
             ;
-        UDR0 = c;
+        UDR0 = c & 0x7f;
+		return(c);
     }
 #ifdef UARTS > 1
     if(uart == 1)
     {
         while (!BIT_TST(UCSR1A, UDRE1))
             ;
-        UDR1 = c;
+        UDR1 = c & 0x7f;
+		return(c);
     }
 #endif
+	return(EOF);
 }
 
 
@@ -333,11 +335,12 @@ void uart_tx_byte(char c, uint8_t uart)
 /// @param[in] uart: uart number.
 ///
 /// @return void.
-void uart_putchar(char c, int uart)
+int uart_putchar(int c, int uart)
 {
     uart_tx_byte(c, uart);
     if( c == '\n')
         uart_tx_byte('\r', uart);
+	return(c);
 }
 
 
@@ -348,7 +351,7 @@ void uart_putchar(char c, int uart)
 /// @param[in] uart: uart number.
 ///
 /// @return  Character count in receive buffer.
-uint8_t uart_keyhit(uint8_t uart)
+int uart_keyhit(uint8_t uart)
 {
     return ( uart_rx_count( uart ) );
 }
@@ -357,14 +360,14 @@ uint8_t uart_keyhit(uint8_t uart)
 /// @brief  Transmit a character on UART 0
 /// @param[in] c: character to write
 /// @return  void
-void uart_put(uint8_t c)
+int uart_put(int c)
 {
-    uart0_putchar(c,0);
+    return( uart0_putchar(c,0) );
 }
 
 /// @brief  Receive a character from UART 0
 /// @return  character
-char uart_get(void)
+int uart_get(void)
 {
     return(uart0_getchar(0));
 }

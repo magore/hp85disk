@@ -64,11 +64,10 @@ int gpib_tests(char *str)
     len = strlen(ptr);
     if ((len = token(ptr,"debug")) )
     {
-        int level;
+        uint32_t val;
         ptr += len;
-        ptr=skipspaces(ptr);
-        sscanf(ptr,"%d", &level);
-        debuglevel = level;
+        if(assign_value(ptr,0,256,&val))
+			debuglevel=val;
         printf("debug=%d\n", debuglevel);
         return(1);
     }
