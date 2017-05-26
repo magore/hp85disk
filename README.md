@@ -9,10 +9,12 @@
 ## HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
  * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
- This project emulates three GPIB device
-  * SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
-  * Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
-  * Printer capture   at 720 for my HP54645D scope
+ This project emulates five GPIB devices
+  * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
+  * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
+  * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
+  * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
+  * Printer capture at 750 for my HP54645D scope
 
 ___
 
@@ -31,10 +33,9 @@ ___
  time as I learned the protocols and specifications - NOT because of any 
  problems with his original work. 
 
- I have retained Anders HP HP9121D and HP9134L data structures found
- in gpib/defines without modification. Although mostly rewritten I have 
- maintained the concept of state machines for GPIB read and write functions 
- as well as for SS80 execute state tracking. 
+ I Although mostly rewritten I have maintained the basic concept of using 
+ state machines for GPIB read and write functions as well as for SS80 execute 
+ state tracking. 
 
 ___
 # Abbreviations
@@ -132,15 +133,16 @@ ___
 ___
 
 ## AVR ATMEGA1284P pin assignments for HP85 Disk
-  * GPIB:  Each GPIB pin (8 data and 8 control lines ) attach to CPU with a 120 ohm current limit resistor .
-    * Each GPIB pin (8 data and 8 control lines ) have a 10K pull-up resistor to VCC.
+  * @see Documents/P85Disk.pdf for a hand drawn diagram
+  * GPIB:  Each GPIB pin (8 data and 8 control lines ) attach to CPU via 120 ohm current limit resistor .
+    * Each GPIB connector pin (8 data and 8 control lines) have a 10K pull-up resistor to VCC.
   * ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header
   * Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor.
     * Micro SD interface has level shifters and internal 5V to 3.3V regulator
+    * PB3 /CS must have a 10K pullup up to VCC to prevent access durring ISP programming
+    * PB4 should have a 10K pull up help assure the SPI bus does not go into slave mode.
   * RS232 TTL: connect to FTDI232 USB  board which also provides 5V VCC power to all circuits..
   * I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up
-
-
 <pre>
 
                        ATMEGA1284P (and ATMEGA644P) 
@@ -195,18 +197,52 @@ ___
           +---+       +---------+ 
 </pre>
 
-
 Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
   * If any HC595 output is high the GPIB bus bit will be pulled low
   * IFC low resets the HC595 outputs low - so the HC05 outputs will float.
 
+___ 
+
+## Testing
+  * Testing was done with an HP85A (with extended EMS rom) 
+    * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
+    * This makes my HP85A look like and HP85B 
+      * I can also use the normal mass storage rom if I limit to AMIGO drives.
+
+  * Note: the EMS rom has extended INITIALIZE attributes
+<pre>
+  #Initializing: (already done on these images so you do not have to)
+  INITIALIZE "SS80-1",":D700",128,1
+  INITIALIZE "AMIGO1",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "AMIGO2",":D730",14,1
+  
+  #Listing files:
+  #first SS80
+  CAT ":D700"
+  #first AMIGO
+  CAT ":D710"
+  #second SS80
+  CAT ":D720"
+  #second AMIGO
+  CAT ":D730"
+  
+  #Loading file from second SS80:
+  LOAD "HELLO:D720"
+  #Copying file between devices: fist AMIGO to second AMIGO
+  COPY "HELLO:D710" TO "HELLO:D730"
+  #Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D700" TO ":D720"
+</pre>
+
+___ 
 
 ## OS Requirements for software building
   * I use *Ubuntu 14.04* so these instruction will cover that version
     * It should be easy to setup the same build with Windows gcc tools.
 
 
-## Ubuntu 14.04LTS install and setup notes
+## Ubuntu 16.04LTS and 14.04LTS install and setup notes
   * *apt-get update*
   * *apt-get install aptitude*
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
@@ -446,17 +482,30 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
     * printf/test_printf.c
       * Test my printf against glibs 1,000,000 tests per data type
   * sdcard
-    My HP85 AMIGO and SS80 disk image and bus trace files
-    * sdcard/amigo.lif
-      * AMIGO disk image file
-    * sdcard/amigo_trace.txt
-      * AMIGO trace file when connected to HP85 showing odd out of order command issue
-    * sdcard/gpib_reset.txt
-      * GPIB reset trace when connected to HP85
-    * sdcard/gpib_trace.txt
-      * GPIB transaction trace when connected to HP85
-    * sdcard/hpdisk.cfg
-      * User config file DEBUG level and SS80,AMIGO, PRINTER address and PPR respons bit override
-    * sdcard/ss80.lif
-      * SS80 hard drive disk image file
-  ___ 
+    * My HP85 AMIGO and SS80 disk images
+      * sdcard/hpdisk.cfg
+        * All Disk definitions, address, PPR, DEBUG leve for SS80 and AMIGO drives
+        * PRINTER address
+      * sdcard/amigo.lif
+        * AMIGO disk image file number 1
+        * Has some demo basic programs in it
+      * sdcard/amigo-2.lif
+        * AMIGO disk image file number 2
+        * Has some demo basic programs in it
+      * sdcard/ss80.lif
+        * SS80 hard drive disk image file number 1
+        * Has some demo basic programs in it
+      * sdcard/ss80-2.lif
+        * SS80 hard drive disk image file number 2
+        * Has some demo basic programs in it
+    * My HP85 bus trace files
+      * sdcard/amigo_trace.txt
+        * AMIGO trace file when connected to HP85 showing odd out of order command issue
+      * sdcard/gpib_reset.txt
+        * GPIB reset trace when connected to HP85
+      * sdcard/gpib_trace.txt
+        * GPIB transaction trace when connected to HP85
+    * My HP85 plot capture files
+        * sdcard/plot1.plt
+        * sdcard/plot2.plt
+___ 

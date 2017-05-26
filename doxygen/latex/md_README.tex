@@ -16,11 +16,13 @@
 \item See \hyperlink{md_COPYRIGHT}{C\+O\+P\+Y\+R\+I\+G\+HT} for a full copywrite notice for the project
 \end{DoxyItemize}
 
-This project emulates three G\+P\+IB device
+This project emulates five G\+P\+IB devices
 \begin{DoxyItemize}
-\item S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A roms)
-\item Amigo 9121D disk at 710 for my H\+P85B (with 85B roms)
-\item Printer capture at 720 for my H\+P54645D scope
+\item first S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A roms)
+\item first Amigo 9121D disk at 710 for my H\+P85B (with 85B roms)
+\item second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A roms)
+\item second Amigo 9121D disk at 730 for my H\+P85B (with 85B roms)
+\item Printer capture at 750 for my H\+P54645D scope
 \end{DoxyItemize}
 
 
@@ -42,7 +44,7 @@ This project emulates three G\+P\+IB device
 
 As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.
 
-I have retained Anders HP H\+P9121D and H\+P9134L data structures found in gpib/defines without modification. Although mostly rewritten I have maintained the concept of state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
+I Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
 
 
 
@@ -200,20 +202,23 @@ See Documents folder
 
 
 \begin{DoxyItemize}
-\item G\+P\+IB\+: Each G\+P\+IB pin (8 data and 8 control lines ) attach to C\+PU with a 120 ohm current limit resistor .
+\item \begin{DoxySeeAlso}{See also}
+Documents/\+P85\+Disk.\+pdf for a hand drawn diagram
+\end{DoxySeeAlso}
+
+\item G\+P\+IB\+: Each G\+P\+IB pin (8 data and 8 control lines ) attach to C\+PU via 120 ohm current limit resistor .
 \begin{DoxyItemize}
-\item Each G\+P\+IB pin (8 data and 8 control lines ) have a 10K pull-\/up resistor to V\+CC.
+\item Each G\+P\+IB connector pin (8 data and 8 control lines) have a 10K pull-\/up resistor to V\+CC.
 \end{DoxyItemize}
 \item I\+SP header\+: M\+O\+SI,M\+I\+SO,S\+CK,/\+Reset connects directly to I\+SP header
 \item Micro SD Interface\+: M\+O\+SI,M\+I\+SO,S\+CK attach to C\+PU function via a 1k series resistor.
 \begin{DoxyItemize}
 \item Micro SD interface has level shifters and internal 5V to 3.\+3V regulator
+\item P\+B3 /\+CS must have a 10K pullup up to V\+CC to prevent access durring I\+SP programming
+\item P\+B4 should have a 10K pull up help assure the S\+PI bus does not go into slave mode.
 \end{DoxyItemize}
 \item R\+S232 T\+TL\+: connect to F\+T\+D\+I232 U\+SB board which also provides 5V V\+CC power to all circuits..
-\item I2C\+: S\+CL,S\+DA connect to optional D\+S1307 R\+TC board with each line having a 2k2 pull-\/up
-\end{DoxyItemize}
-
-
+\item I2C\+: S\+CL,S\+DA connect to optional D\+S1307 R\+TC board with each line having a 2k2 pull-\/up 
 \begin{DoxyPre}\end{DoxyPre}
 
 
@@ -243,6 +248,7 @@ See Documents folder
                        +-------+ 
 \end{DoxyPre}
 
+\end{DoxyItemize}
 
 
 
@@ -281,6 +287,58 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item I\+FC low resets the H\+C595 outputs low -\/ so the H\+C05 outputs will float.
 \end{DoxyItemize}
 
+
+
+
+
+\subsection*{Testing}
+
+
+\begin{DoxyItemize}
+\item Testing was done with an H\+P85A (with extended E\+MS rom)
+\begin{DoxyItemize}
+\item Using the Hewlett-\/\+Packard Series 80 -\/ P\+R\+M-\/85 by Bill Kotaska
+\item This makes my H\+P85A look like and H\+P85B
+\begin{DoxyItemize}
+\item I can also use the normal mass storage rom if I limit to A\+M\+I\+GO drives.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Note\+: the E\+MS rom has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
+\begin{DoxyPre}
+  #Initializing: (already done on these images so you do not have to)
+  INITIALIZE "SS80-1",":D700",128,1
+  INITIALIZE "AMIGO1",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "AMIGO2",":D730",14,1\end{DoxyPre}
+
+\end{DoxyItemize}
+
+
+\begin{DoxyPre}  #Listing files:
+  #first SS80
+  CAT ":D700"
+  #first AMIGO
+  CAT ":D710"
+  #second SS80
+  CAT ":D720"
+  #second AMIGO
+  CAT ":D730"\end{DoxyPre}
+
+
+
+\begin{DoxyPre}  #Loading file from second SS80:
+  LOAD "HELLO:D720"
+  #Copying file between devices: fist AMIGO to second AMIGO
+  COPY "HELLO:D710" TO "HELLO:D730"
+  #Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D700" TO ":D720"
+\end{DoxyPre}
+
+
+
+
+
+
 \subsection*{OS Requirements for software building}
 
 
@@ -291,7 +349,7 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Ubuntu 14.\+04\+L\+TS install and setup notes}
+\subsection*{Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS install and setup notes}
 
 
 \begin{DoxyItemize}
@@ -743,12 +801,38 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item sdcard My H\+P85 A\+M\+I\+GO and S\+S80 disk image and bus trace files
+\item sdcard
 \begin{DoxyItemize}
+\item My H\+P85 A\+M\+I\+GO and S\+S80 disk images
+\begin{DoxyItemize}
+\item sdcard/hpdisk.\+cfg
+\begin{DoxyItemize}
+\item All Disk definitions, address, P\+PR, D\+E\+B\+UG leve for S\+S80 and A\+M\+I\+GO drives
+\item P\+R\+I\+N\+T\+ER address
+\end{DoxyItemize}
 \item sdcard/amigo.\+lif
 \begin{DoxyItemize}
-\item A\+M\+I\+GO disk image file
+\item A\+M\+I\+GO disk image file number 1
+\item Has some demo basic programs in it
 \end{DoxyItemize}
+\item sdcard/amigo-\/2.\+lif
+\begin{DoxyItemize}
+\item A\+M\+I\+GO disk image file number 2
+\item Has some demo basic programs in it
+\end{DoxyItemize}
+\item sdcard/ss80.\+lif
+\begin{DoxyItemize}
+\item S\+S80 hard drive disk image file number 1
+\item Has some demo basic programs in it
+\end{DoxyItemize}
+\item sdcard/ss80-\/2.\+lif
+\begin{DoxyItemize}
+\item S\+S80 hard drive disk image file number 2
+\item Has some demo basic programs in it
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item My H\+P85 bus trace files
+\begin{DoxyItemize}
 \item sdcard/amigo\+\_\+trace.\+txt
 \begin{DoxyItemize}
 \item A\+M\+I\+GO trace file when connected to H\+P85 showing odd out of order command issue
@@ -761,13 +845,11 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \begin{DoxyItemize}
 \item G\+P\+IB transaction trace when connected to H\+P85
 \end{DoxyItemize}
-\item sdcard/hpdisk.\+cfg
-\begin{DoxyItemize}
-\item User config file D\+E\+B\+UG level and S\+S80,A\+M\+I\+GO, P\+R\+I\+N\+T\+ER address and P\+PR respons bit override
 \end{DoxyItemize}
-\item sdcard/ss80.\+lif
+\item My H\+P85 plot capture files
 \begin{DoxyItemize}
-\item S\+S80 hard drive disk image file 
+\item sdcard/plot1.\+plt
+\item sdcard/plot2.\+plt 
 
  
 \end{DoxyItemize}

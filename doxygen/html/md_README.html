@@ -95,10 +95,12 @@ README</h1>
 <ul>
 <li>See <a class="el" href="md_COPYRIGHT.html">COPYRIGHT</a> for a full copywrite notice for the project</li>
 </ul>
-<p>This project emulates three GPIB device</p><ul>
-<li>SS80 HP9134L disk at 700 for my HP85A (with 85A roms)</li>
-<li>Amigo 9121D disk at 710 for my HP85B (with 85B roms)</li>
-<li>Printer capture at 720 for my HP54645D scope</li>
+<p>This project emulates five GPIB devices</p><ul>
+<li>first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)</li>
+<li>first Amigo 9121D disk at 710 for my HP85B (with 85B roms)</li>
+<li>second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)</li>
+<li>second Amigo 9121D disk at 730 for my HP85B (with 85B roms)</li>
+<li>Printer capture at 750 for my HP54645D scope</li>
 </ul>
 <hr/>
 <h1>Credits</h1>
@@ -111,7 +113,7 @@ README</h1>
 </ul>
 <p><b>Anders Gustafsson was extremely helpful in providing me his current code and details of his project - which I am very thankful for.</b></p>
 <p>As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications - NOT because of any problems with his original work.</p>
-<p>I have retained Anders HP HP9121D and HP9134L data structures found in gpib/defines without modification. Although mostly rewritten I have maintained the concept of state machines for GPIB read and write functions as well as for SS80 execute state tracking.</p>
+<p>I Although mostly rewritten I have maintained the basic concept of using state machines for GPIB read and write functions as well as for SS80 execute state tracking.</p>
 <hr/>
  <h1>Abbreviations</h1>
 <p>Within this project I have attempted to provide detailed referces to to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
@@ -218,19 +220,21 @@ README</h1>
 </pre><hr/>
 <h2>AVR ATMEGA1284P pin assignments for HP85 Disk</h2>
 <ul>
-<li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU with a 120 ohm current limit resistor .<ul>
-<li>Each GPIB pin (8 data and 8 control lines ) have a 10K pull-up resistor to VCC.</li>
+<li><dl class="section see"><dt>See also</dt><dd>Documents/P85Disk.pdf for a hand drawn diagram</dd></dl>
+</li>
+<li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU via 120 ohm current limit resistor .<ul>
+<li>Each GPIB connector pin (8 data and 8 control lines) have a 10K pull-up resistor to VCC.</li>
 </ul>
 </li>
 <li>ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header</li>
 <li>Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor.<ul>
 <li>Micro SD interface has level shifters and internal 5V to 3.3V regulator</li>
+<li>PB3 /CS must have a 10K pullup up to VCC to prevent access durring ISP programming</li>
+<li>PB4 should have a 10K pull up help assure the SPI bus does not go into slave mode.</li>
 </ul>
 </li>
 <li>RS232 TTL: connect to FTDI232 USB board which also provides 5V VCC power to all circuits..</li>
-<li>I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up</li>
-</ul>
-<pre></pre><pre>                       ATMEGA1284P (and ATMEGA644P) 
+<li><p class="startli">I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up </p><pre></pre><pre>                       ATMEGA1284P (and ATMEGA644P) 
                        +---V---+ 
      5 EOI INT0  PB0  1|       |40  PA0      D1  1 
      6 DAV INT1  PB1  2|       |39  PA1      D2  2 
@@ -253,7 +257,9 @@ README</h1>
     10 SRQ  PWM  PD5 19|       |22  PC0  SCL I2C  
     11 ATN  PWM  PD6 20|       |21  PD7  PWM REN 17 
                        +-------+ 
-</pre><hr/>
+</pre></li>
+</ul>
+<hr/>
 <h2>Parallel Poll Response circuit</h2>
 <ul>
 <li>Uses: Three chips 74HC05, 74HC32, 74HC595</li>
@@ -278,6 +284,39 @@ README</h1>
 <li>If any HC595 output is high the GPIB bus bit will be pulled low</li>
 <li>IFC low resets the HC595 outputs low - so the HC05 outputs will float.</li>
 </ul>
+<hr/>
+<h2>Testing</h2>
+<ul>
+<li>Testing was done with an HP85A (with extended EMS rom)<ul>
+<li>Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska</li>
+<li>This makes my HP85A look like and HP85B<ul>
+<li>I can also use the normal mass storage rom if I limit to AMIGO drives.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note: the EMS rom has extended INITIALIZE attributes <pre>
+  #Initializing: (already done on these images so you do not have to)
+  INITIALIZE "SS80-1",":D700",128,1
+  INITIALIZE "AMIGO1",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "AMIGO2",":D730",14,1</pre></li>
+</ul>
+<pre>  #Listing files:
+  #first SS80
+  CAT ":D700"
+  #first AMIGO
+  CAT ":D710"
+  #second SS80
+  CAT ":D720"
+  #second AMIGO
+  CAT ":D730"</pre><pre>  #Loading file from second SS80:
+  LOAD "HELLO:D720"
+  #Copying file between devices: fist AMIGO to second AMIGO
+  COPY "HELLO:D710" TO "HELLO:D730"
+  #Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D700" TO ":D720"
+</pre><hr/>
 <h2>OS Requirements for software building</h2>
 <ul>
 <li>I use <em>Ubuntu 14.04</em> so these instruction will cover that version<ul>
@@ -285,7 +324,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>Ubuntu 14.04LTS install and setup notes</h2>
+<h2>Ubuntu 16.04LTS and 14.04LTS install and setup notes</h2>
 <ul>
 <li><em>apt-get update</em></li>
 <li><em>apt-get install aptitude</em></li>
@@ -723,11 +762,36 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>sdcard My HP85 AMIGO and SS80 disk image and bus trace files<ul>
-<li>sdcard/amigo.lif<ul>
-<li>AMIGO disk image file</li>
+<li>sdcard<ul>
+<li>My HP85 AMIGO and SS80 disk images<ul>
+<li>sdcard/hpdisk.cfg<ul>
+<li>All Disk definitions, address, PPR, DEBUG leve for SS80 and AMIGO drives</li>
+<li>PRINTER address</li>
 </ul>
 </li>
+<li>sdcard/amigo.lif<ul>
+<li>AMIGO disk image file number 1</li>
+<li>Has some demo basic programs in it</li>
+</ul>
+</li>
+<li>sdcard/amigo-2.lif<ul>
+<li>AMIGO disk image file number 2</li>
+<li>Has some demo basic programs in it</li>
+</ul>
+</li>
+<li>sdcard/ss80.lif<ul>
+<li>SS80 hard drive disk image file number 1</li>
+<li>Has some demo basic programs in it</li>
+</ul>
+</li>
+<li>sdcard/ss80-2.lif<ul>
+<li>SS80 hard drive disk image file number 2</li>
+<li>Has some demo basic programs in it</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>My HP85 bus trace files<ul>
 <li>sdcard/amigo_trace.txt<ul>
 <li>AMIGO trace file when connected to HP85 showing odd out of order command issue</li>
 </ul>
@@ -740,12 +804,11 @@ README</h1>
 <li>GPIB transaction trace when connected to HP85</li>
 </ul>
 </li>
-<li>sdcard/hpdisk.cfg<ul>
-<li>User config file DEBUG level and SS80,AMIGO, PRINTER address and PPR respons bit override</li>
 </ul>
 </li>
-<li>sdcard/ss80.lif<ul>
-<li>SS80 hard drive disk image file <hr/>
+<li>My HP85 plot capture files<ul>
+<li>sdcard/plot1.plt</li>
+<li>sdcard/plot2.plt <hr/>
  </li>
 </ul>
 </li>
@@ -755,7 +818,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 25 2017 16:46:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 25 2017 23:11:43 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
