@@ -238,7 +238,7 @@ ___
 ___ 
 
 ## OS Requirements for software building
-  * I use *Ubuntu 14.04* so these instruction will cover that version
+  * I use *Ubuntu 16.04 and 14.04* so these instruction will cover that version
     * It should be easy to setup the same build with Windows gcc tools.
 
 
