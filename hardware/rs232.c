@@ -388,15 +388,12 @@ int get_line (char *buff, int len)
         c = uart_get() & 0x7f;
 		uart_put(c);
         if (c == '\n' || c == '\r')
-		{
             break;
-		}
 
         if (c == '\b')
         {
-			if(i > 0) {
+			if(i > 0)
 				i--;
-			}
             continue;
         }
 
@@ -409,13 +406,13 @@ int get_line (char *buff, int len)
 			break;
 		}
     }
+	buff[i++] = 0;
 
 	// Discard remaining characters
     while(uart_keyhit(0))
     {
         c = uart_get() & 0x7f;
     }
-    buff[i] = 0;
     uart_put('\n');
 	return(i);
 }

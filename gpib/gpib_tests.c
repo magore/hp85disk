@@ -67,8 +67,7 @@ int gpib_tests(char *str)
     {
         uint32_t val;
         ptr += len;
-        if(assign_value(ptr,0,256,&val))
-			debuglevel=val;
+		debuglevel=get_value(ptr);
         printf("debug=%02XH\n", debuglevel);
         return(1);
     }

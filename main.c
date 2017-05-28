@@ -183,9 +183,7 @@ void task(char *line, int max, uint8_t gpib)
     int len;
 
 	if(gpib)
-	{
 		gpib_task();
-	}
 
     if(!uart_keyhit(0))
         return;
@@ -193,9 +191,6 @@ void task(char *line, int max, uint8_t gpib)
 
     uart_put('>');
     get_line(line, max-1);
-
-	printf("Enter: gpib_task\n");	
-	printf(" To restart GPIB command processor\n");
 
     ptr = skipspaces(line);
 
@@ -334,7 +329,6 @@ int main(void)
 
     while (1)
     {
-        task(line, MAX_LINE-1, cold);
-		cold = 0;
+        task(line, MAX_LINE-1, 1);
     }
 }

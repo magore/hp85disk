@@ -1289,11 +1289,11 @@ int AMIGO_COMMANDS(uint8_t ch)
 
         if(talking == UNT && AMIGO_is_MLA(listening))
         {
-            printf("AMIGO COMMANDS %02XH NO TALK ADDRESS!\n", ch);
+            // printf("AMIGO COMMANDS %02XH NO TALK ADDRESS!\n", ch);
         }
         if(listening == 0 && AMIGO_is_MTA(talking))
         {
-            printf("AMIGO COMMANDS %02XH NO LISTEN ADDRESS!\n", ch);
+            // printf("AMIGO COMMANDS %02XH NO LISTEN ADDRESS!\n", ch);
         }
 
         if(ch == 0x60 && (AMIGO_is_MTA(talking) || AMIGO_is_MLA(listening)) )
