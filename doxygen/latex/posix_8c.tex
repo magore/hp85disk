@@ -111,7 +111,7 @@ int \hyperlink{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}{closedir} (\hyperlink
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r} (int errnum, char $\ast$buf, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} buflen)
 \begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen} (int($\ast$put)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$), int($\ast$get)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$))
-\begin{DoxyCompactList}\small\item\em Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Device open functions. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
 \begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
@@ -162,11 +162,9 @@ static \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} \hy
 
 fprintf character write function 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX fprintf function }
-
-====================================================================
+\begin{DoxyItemize}
+\item P\+O\+S\+IX fprintf function
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$p} & printf user buffer \\
 \hline
@@ -174,6 +172,7 @@ fprintf character write function
 \hline
 \end{DoxyParams}
 
+\end{DoxyItemize}
 
 Definition at line 2301 of file posix.\+c.
 
@@ -215,13 +214,9 @@ Definition at line 1422 of file posix.\+c.
 
 P\+O\+S\+IX Basename of filename. 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX file and directory manipulation }
-
-====================================================================
 \begin{DoxyItemize}
-\item man page (3).
+\item P\+O\+S\+IX file and directory manipulation-\/ man page (3).
 \end{DoxyItemize}
 
 
@@ -318,13 +313,9 @@ Referenced by mkdir().
 
 P\+O\+S\+IX Close a file with fileno handel. 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX file functions }
-
-====================================================================
 \begin{DoxyItemize}
-\item man page close (2).
+\item P\+O\+S\+IX file functions-\/ man page close (2).
 \end{DoxyItemize}
 
 
@@ -356,13 +347,9 @@ Referenced by fclose().
 
 P\+O\+S\+IX closedir. 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX -\/ directory scanning functions }
-
-====================================================================
 \begin{DoxyItemize}
-\item man page closedir (2).
+\item P\+O\+S\+IX -\/ directory scanning functions-\/ man page closedir (2).
 \end{DoxyItemize}
 
 
@@ -394,11 +381,10 @@ Referenced by ls().
 
 clrerror resets stream E\+OF and error flags 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX error functions }
-
-====================================================================-\/ man page clrerror(3).
+\begin{DoxyItemize}
+\item P\+O\+S\+IX error functions-\/ man page clrerror(3).
+\end{DoxyItemize}
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -460,11 +446,9 @@ Definition at line 1507 of file posix.\+c.
 
 Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P\+O\+S\+IX. 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX file information functions }
-
-====================================================================
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file information functions
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em sp} & struct stat pointer.\\
 \hline
@@ -473,6 +457,7 @@ Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P
 void. 
 \end{DoxyReturn}
 
+\end{DoxyItemize}
 
 Definition at line 1246 of file posix.\+c.
 
@@ -529,12 +514,9 @@ Referenced by stat().
 
 Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ Fat\+FS to P\+O\+S\+IX bridge functions }
-
-====================================================================-\/ man page fgetc (3).
 \begin{DoxyItemize}
+\item Fat\+FS to P\+O\+S\+IX bridge functions-\/ man page fgetc (3).
 \item Notes\+: fgetc does all tests prior to caling us, including ungetc.
 \end{DoxyItemize}
 
@@ -697,13 +679,11 @@ Referenced by gpib\+\_\+trace\+\_\+task(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I
 )}\hypertarget{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{}\label{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}
 
 
-Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX. 
+Device open functions. 
 
-\subsection*{==================================================================== }
+Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX
 
-\subsection*{Device open functions }
 
-==================================================================== 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em $\ast$put} & uart putc function pointer \\
 \hline
@@ -729,13 +709,9 @@ Referenced by uart\+\_\+init().
 
 feof reports if the stream is at E\+OF 
 
-\subsection*{==================================================================== }
 
-\subsection*{-\/ P\+O\+S\+IX file position functions }
-
-====================================================================
 \begin{DoxyItemize}
-\item man page feof (3).
+\item P\+O\+S\+IX file position functions-\/ man page feof (3).
 \end{DoxyItemize}
 
 
@@ -858,7 +834,7 @@ Definition at line 513 of file posix.\+c.
 
 get a string from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
 
-============================================================== P\+O\+S\+IX string I/O
+P\+O\+S\+IX string I/O
 \begin{DoxyItemize}
 \item man page fgets (3).
 \end{DoxyItemize}
@@ -1443,7 +1419,7 @@ Definition at line 1552 of file posix.\+c.
 
 Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. 
 
-==============================================================
+
 \begin{DoxyItemize}
 \item P\+O\+S\+IX character I/O functions
 \begin{DoxyItemize}
@@ -1594,7 +1570,7 @@ Definition at line 1575 of file posix.\+c.
 
 Allocate a P\+O\+S\+IX F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. 
 
-==================================================================== \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 fileno on success. 
 
 -\/1 on failure with errno set. 
@@ -1772,7 +1748,7 @@ Referenced by fopen().
 
 Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. 
 
-==================================================================
+
 \begin{DoxyItemize}
 \item man page putc (3).
 \end{DoxyItemize}

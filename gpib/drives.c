@@ -36,7 +36,7 @@ SS80StateType *SS80s = NULL;
 AMIGODiskType *AMIGOp = NULL;
 AMIGOStateType *AMIGOs = NULL;
 
-/// ==================================================================
+// =============================================
 PRINTERDeviceType PRINTERDeviceDefault =
 {
 	{ 
@@ -46,7 +46,7 @@ PRINTERDeviceType PRINTERDeviceDefault =
 	}
 };
 
-/// ==================================================================
+// =============================================
 ///@brief SS80 Disk Definitions
 
 #if defined(HP9122D)
@@ -195,9 +195,9 @@ AMIGODiskType AMIGODiskDefault =
 };
 #endif
 #endif // AMIGO
-/// =====================================================
+// =============================================
 
-/// =====================================================
+// =============================================
 ///@brief Convert Value into byte array 
 /// bytes are MSB ... LSB order
 ///@param B: byte array 
@@ -247,7 +247,6 @@ int find_type(int type)
 		if( Devices[i].TYPE == type)
 			return(i);
 	}
-	printf("find_type: type:%d:%s not found\n", type,type_to_str(type));
 	return(-1);
 }
 
@@ -266,6 +265,19 @@ char *type_to_str(int type)
 		return("PRINTER_TYPE");
 	return("INVALID TYPE");
 }
+///@brief Convert base address into a string identifier
+///@param base: BASE_MAL, BASE_MTA or BASE_MSA only
+///@return string "MLA", "MTA", "MSA" or error string
+char *base_to_str(int base)
+{
+	if(base == BASE_MLA)
+		return("MLA");
+	else if(base == BASE_MTA)
+		return("MTA");
+	else if(base == BASE_MSA)
+		return("MSA");
+	return("*INVALID BASE*");
+}
 
 ///@brief Find first free Devices[] slot
 ///@return Devices[] index of free slot or -1
@@ -274,20 +286,46 @@ int find_free()
 	return(find_type(NO_TYPE));
 }
 
-
 ///@brief Find a device with matching type AND address
 ///@param type: disk type
 ///@param address: GPIB device address 0 based
-///@return Devices[] index or -1 if not found
-int find_device(int type, int address)
+///@param base: BASE_MLA,BASE_MTA or BASE_MSA address range
+///@return index of Devices[] or -1 if not found
+int find_device(int type, int address, int base)
 {
 	int i;
+
+	///@skip Only interested in device addresses
+	if(address < BASE_MLA || address >(BASE_MSA+30))
+		return(-1);
+
+	///@brief Make sure address is in expected range
+	if(address < base || address > (base+30))
+	{
+		if(debuglevel & 1)
+		{
+			printf("[%s %s address:%02xH out of range]\n", 
+				base_to_str(base), type_to_str(type), address);
+		}
+		return(-1);
+	}
+
+	///@brief convert to device address
+	address -= base;
+
+	///@brief search for device address
 	for(i=0;i<MAX_DEVICES;++i)
 	{
-		if(Devices[i].TYPE == type)
+		if(Devices[i].TYPE == type && Devices[i].ADDRESS == address)
 		{
-			if( Devices[i].ADDRESS == address)
+#if SDEBUG
+			if(debuglevel & (4+32))
+			{
+				printf("[%s %s address:%02xH]\n", 
+					base_to_str(base), type_to_str(type), address);
 				return(i);
+			}
+#endif
 		}
 	}
 	return(-1);
@@ -296,33 +334,42 @@ int find_device(int type, int address)
 ///@brief Set the Active disk device pointer
 ///@param index: Devices[] index
 ///@return 1 on success or 0 on fail
-int set_device_by_index(int index)
+int set_active_device(int index)
 {
 	int type,address;
 
+	///@brief We also check for -1 
+	/// So the result of find_device() can be used without additional tests
+	if(index == -1)
+		return(0);
+
 	if(index < 0 || index >= MAX_DEVICES)
 	{
-		printf("set_device_by_index:(%d) out of range\n", index);
+		if(debuglevel & 1)
+			printf("set_active_device:(%d) out of range\n", index);
 		return(0);
 	}
 	type = Devices[index].TYPE;
 	address = Devices[index].ADDRESS;
 	if(address < 0 || address > 30)
 	{
-		printf("set_device_by_index: index:%d address: %02xH out of range\n", index,address);
+		if(debuglevel & 1)
+			printf("set_active_device: index:%d address: %02xH out of range\n", index,address);
 		return(0);
 	}
 
 	if(Devices[index].dev == NULL)
 	{
-		printf("set_device_by_index: index:%d type:%d:%s, dev == NULL\n", 
-		index,type,type_to_str(type));
+		if(debuglevel & 1)
+			printf("set_active_device: index:%d type:%d:%s, dev == NULL\n", 
+				index,type,type_to_str(type));
 		return(0);
 	}
 	if(type == NO_TYPE)
 	{
-		printf("set_device_by_index: index %d uninitalized type:%d:%s\n", 
-			index,type,type_to_str(type));
+		if(debuglevel & 1)
+			printf("set_active_device: index %d uninitalized type:%d:%s\n", 
+				index,type,type_to_str(type));
 		return(0);
 	}
 	if(type == PRINTER_TYPE)
@@ -335,8 +382,9 @@ int set_device_by_index(int index)
 	{
 		if(Devices[index].state == NULL)
 		{
-			printf("set_device_by_index: index: %d type:%d:%s, state == NULL\n",
-				 index,type,type_to_str(type));
+			if(debuglevel & 1)
+				printf("set_active_device: index: %d type:%d:%s, state == NULL\n",
+					 index,type,type_to_str(type));
 			return(0);
 		}
 		if(type == AMIGO_TYPE)
@@ -352,34 +400,10 @@ int set_device_by_index(int index)
 			return(1);
 		}
 	}
-	printf("set_device_by_index:(%d) invalid type:%d:%s\n", 
+	if(debuglevel & 1)
+		printf("set_active_device:(%d) invalid type:%d:%s\n", 
 			index,type,type_to_str(type));
 	return(0);
-}
-
-///@brief Set the Active disk by type and address
-///@param type: disk type
-///@param address: GPIB address 0 based
-///@return 1 on success or 0 on fail
-int set_device(int type, int address)
-{
-	// all addresses should be unique
-	int index = find_device(type,address);
-	if(index == -1)
-	{
-#if SDEBUG > 1
-    if(debuglevel > 1)
-		printf("set_device:(%d) type:%d:%s, address:%02xH\n", 
-			index,type,type_to_str(type), address);
-#endif
-		return(0);
-	}
-#if SDEBUG > 1
-    if(debuglevel > 2)
-		printf("set_device:(%d) type:%d:%s, address:%02xH\n", 
-			index,type,type_to_str(type), address);
-#endif
-	return(set_device_by_index(index));
 }
 
 ///@brief Allocate a Device structure for a disk or printer
@@ -394,7 +418,8 @@ int alloc_device(int type)
 	ind = find_free();
 	if(ind == -1)
 	{
-		printf("alloc_device: Device table is full\n", type);
+		if(debuglevel & 1)
+			printf("alloc_device: Device table is full\n", type);
 		return(ind);
 	}
 
@@ -419,13 +444,14 @@ int alloc_device(int type)
 			index = ind;
 			break;
 		default:
-			printf("alloc_device: invalid type:%d:%s\n", type,type_to_str(type));
+			if(debuglevel & 1)
+				printf("alloc_device: invalid type:%d:%s\n", type,type_to_str(type));
 			break;
 	}
 	return(index);
 }
 
-/// =====================================================
+// =============================================
 /// @brief Init Config Parser Stack
 /// Called only durring power up so we do not have to free memory
 void init_Devices()
@@ -493,7 +519,8 @@ uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val
     }
 	if(!*ptr)
 	{
-        printf("line:%d, missing value\n", lines);
+		if(debuglevel & 1)
+			printf("line:%d, missing value\n", lines);
 		bad = 1;
 	}
 	if(!bad)
@@ -605,6 +632,8 @@ int POSIX_Read_Config(char *name)
 
 	init_Devices();
 
+    lines = 0;
+
 	printf("Reading: %s\n", name);
     cfg = fopen(name, "r");
     if(cfg == NULL)
@@ -616,7 +645,6 @@ int POSIX_Read_Config(char *name)
         return(0);
     }
 
-    lines = 0;
     while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
     {
         ++lines;
@@ -676,7 +704,7 @@ int POSIX_Read_Config(char *name)
 			else if( (ind = token(ptr,"DEBUG")) )
 			{
 				ptr += ind;
-				if ( assign_value(ptr, 0, 255, &val) )
+				if ( assign_value(ptr, 0, 65535, &val) )
 					debuglevel = val;
 			}
 			else if( (ind = token(ptr,"PRINTER_DEFAULT_ADDRESS")) )
@@ -762,13 +790,7 @@ int POSIX_Read_Config(char *name)
 			break;
 
 		case SS80_HEADER:
-			if( (ind = token(ptr,"DRIVE")) )
-			{
-				ptr += ind;
-				//FIXME REMOVE from config
-				printf("Skipping %s, at line:%d\n", ptr,lines);
-			}
-			else if( (ind = token(ptr,"ADDRESS")) )
+			if( (ind = token(ptr,"ADDRESS")) )
 			{
 				ptr += ind;
 				tmp = 0xff;
@@ -799,7 +821,8 @@ int POSIX_Read_Config(char *name)
 					++ptr;
 					ptr = skipspaces(ptr);
 				}
-				strcpy(SS80p->HEADER.NAME,ptr);
+				strncpy(SS80p->HEADER.NAME,ptr, MAX_FILE_NAME_LEN-1);
+				SS80p->HEADER.NAME[MAX_FILE_NAME_LEN-1] = 0;
 			}
 			else
 			{
@@ -1047,7 +1070,8 @@ int POSIX_Read_Config(char *name)
 					++ptr;
 					ptr = skipspaces(ptr);
 				}
-				strcpy(AMIGOp->HEADER.NAME,ptr);
+				strncpy(AMIGOp->HEADER.NAME,ptr, MAX_NAME_LEN-1);
+				AMIGOp->HEADER.NAME[MAX_FILE_NAME_LEN-1] = 0;
 			}
 			else
 			{
@@ -1212,7 +1236,7 @@ void display_Config()
 	///@brief Active AMIGO Device
 	AMIGODiskType *AMIGOp = NULL;
 
-
+	printf("Current Configuration Settings\n");
 	for(i=0;i<MAX_DEVICES;++i)
 	{
 		if(Devices[i].TYPE == NO_TYPE)

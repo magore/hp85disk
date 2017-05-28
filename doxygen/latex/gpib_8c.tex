@@ -46,7 +46,7 @@ void \hyperlink{gpib_8c_ad0320b576cbb529fcec04e1fed8da198}{Enable\+P\+PR} (int b
 void \hyperlink{gpib_8c_a09fd9be01cfd79cffd369aacae939408}{Disable\+P\+PR} (int bit)
 \begin{DoxyCompactList}\small\item\em Disable P\+PR (Parallel Poll Response) for a device. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8c_a42d306c338c639682d0d6f0434a5c88b}{Parallel\+\_\+\+Poll} ()
-\begin{DoxyCompactList}\small\item\em Detect Parallel Poll state. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a01eaf30370a0b43263d19ebaa2fa4a38}{gpib\+\_\+assert\+\_\+ifc} (void)
 \begin{DoxyCompactList}\small\item\em Assert Interface clear for 250us. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_ae826d722b789698ce9217758fe55fdcb}{gpib\+\_\+assert\+\_\+ren} (unsigned char state)
@@ -76,8 +76,6 @@ uint8\+\_\+t \hyperlink{gpib_8c_a2296b83cccf9d7a3b954d18ece282bd1}{gpib\+\_\+unr
 \begin{DoxyCompactList}\small\item\em \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread()} flag \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_a8f8b0bbe03e4f62aa8e736a9a1f5f609}{gpib\+\_\+unread\+\_\+data}
 \begin{DoxyCompactList}\small\item\em \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread()} data \end{DoxyCompactList}\item 
-\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{gpib_8c_a1b595c4136454db2525576508c951b63}{device}
-\begin{DoxyCompactList}\small\item\em Device number -\/ working to support more then one device support. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8c_acef501d1e292f230efac5ed0cddf90e8}{talking}
 \begin{DoxyCompactList}\small\item\em gpib talk address \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8c_a8f34b1ce42fbf3391219cfedde825495}{talking\+\_\+last}
@@ -207,7 +205,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 299 of file gpib.\+c.
+Definition at line 298 of file gpib.\+c.
 
 
 
@@ -228,7 +226,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 279 of file gpib.\+c.
+Definition at line 278 of file gpib.\+c.
 
 
 
@@ -254,7 +252,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 382 of file gpib.\+c.
+Definition at line 365 of file gpib.\+c.
 
 
 
@@ -280,7 +278,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 402 of file gpib.\+c.
+Definition at line 385 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+c@{gpib.\+c}}
@@ -310,7 +308,7 @@ void
 \end{DoxyItemize}
 \end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
 
-Definition at line 215 of file gpib.\+c.
+Definition at line 212 of file gpib.\+c.
 
 
 
@@ -335,11 +333,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 968 of file gpib.\+c.
+Definition at line 938 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+read\+\_\+str(), gpib\+\_\+unread(), gpib\+\_\+write\+\_\+str(), S\+S80\+\_\+\+Command\+\_\+\+State(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+Referenced by gpib\+\_\+read\+\_\+str(), and gpib\+\_\+write\+\_\+str().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}}
 \index{gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}!gpib.\+c@{gpib.\+c}}
@@ -362,7 +360,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 864 of file gpib.\+c.
+Definition at line 834 of file gpib.\+c.
 
 
 
@@ -432,7 +430,7 @@ return
 \end{DoxyReturn}
 
 
-Definition at line 905 of file gpib.\+c.
+Definition at line 875 of file gpib.\+c.
 
 
 
@@ -494,7 +492,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 727 of file gpib.\+c.
+Definition at line 697 of file gpib.\+c.
 
 
 
@@ -583,7 +581,7 @@ status
 \item[\hyperlink{todo__todo000013}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1013 of file gpib.\+c.
+Definition at line 983 of file gpib.\+c.
 
 
 
@@ -609,7 +607,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 252 of file gpib.\+c.
+Definition at line 253 of file gpib.\+c.
 
 
 
@@ -634,7 +632,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 189 of file gpib.\+c.
+Definition at line 186 of file gpib.\+c.
 
 
 
@@ -659,7 +657,7 @@ Test G\+P\+IB timeout timer for timeout condition.
 \end{DoxyReturn}
 
 
-Definition at line 201 of file gpib.\+c.
+Definition at line 198 of file gpib.\+c.
 
 
 
@@ -681,7 +679,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 115 of file gpib.\+c.
+Definition at line 112 of file gpib.\+c.
 
 
 
@@ -703,7 +701,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 146 of file gpib.\+c.
+Definition at line 143 of file gpib.\+c.
 
 
 
@@ -725,7 +723,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 132 of file gpib.\+c.
+Definition at line 129 of file gpib.\+c.
 
 
 
@@ -751,7 +749,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 172 of file gpib.\+c.
+Definition at line 169 of file gpib.\+c.
 
 
 
@@ -791,7 +789,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 675 of file gpib.\+c.
+Definition at line 654 of file gpib.\+c.
 
 
 
@@ -875,7 +873,7 @@ See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
 \item[\hyperlink{todo__todo000012}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 459 of file gpib.\+c.
+Definition at line 442 of file gpib.\+c.
 
 
 
@@ -957,7 +955,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1110 of file gpib.\+c.
+Definition at line 1072 of file gpib.\+c.
 
 
 
@@ -972,21 +970,14 @@ Referenced by amigo\+\_\+buffered\+\_\+read(), amigo\+\_\+cmd\+\_\+dsj(), amigo\
 )}\hypertarget{gpib_8c_a42d306c338c639682d0d6f0434a5c88b}{}\label{gpib_8c_a42d306c338c639682d0d6f0434a5c88b}
 
 
-Detect Parallel Poll state. 
+Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state. 
 
 
 \begin{DoxyItemize}
 \item P\+PR is short for \char`\"{}\+Parellel Poll Response\char`\"{}
-\item P\+PR happens when the C\+IC (controller in charge) holds both
-\begin{DoxyItemize}
-\item A\+TN == 0 and E\+OI == 0
-\end{DoxyItemize}
-\item E\+OI is never used in command mode (A\+TN = 0)
-\item P\+PR state is happening if we see both A\+TN and E\+OI L\+OW at once If P\+PR is enabled we have two options\+: 1) If software Parrallel Poll is defined we save D\+A\+TA B\+US state and hold P\+PR D\+A\+TA B\+US lines L\+OW. 2) Hardware will automatically hold D\+A\+TA B\+US lines low.
-\begin{DoxyItemize}
-\item Nest We go to the D\+E\+T\+E\+C\+T\+ED state
-\end{DoxyItemize}
-\item In the D\+E\+T\+E\+C\+T\+ED state we wait for A\+TN and E\+OI to change Once this happens\+: 1) If software Parrallel Poll is defined we restore the D\+A\+TA B\+US state. 2) Hardware will automatically release D\+A\+TA B\+US state. We report detecting if(debug\+\_\+level)
+\item P\+PR happens when the C\+IC (controller in charge) holds B\+O\+TH of A\+TN == 0 and E\+OI == 0
+\item P\+PR Response happens using hardware The hardware pulls a bit low on the G\+P\+IB bus corresponding to the device. But only if any P\+PR mask bits are set in the hardware
+\item Note\+: E\+OI is never used in command mode (A\+TN = 0) 1) Hardware will automatically hold D\+A\+TA B\+US lines low
 \item \hyperlink{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}{ppr\+\_\+reg()} determines if we have P\+PR enabled.
 \item References\+:
 \begin{DoxyItemize}
@@ -1000,9 +991,11 @@ Detect Parallel Poll state.
 \end{DoxyReturn}
 
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}Bus pin states
 
-Definition at line 339 of file gpib.\+c.
+debugging -\/ ddr bits should be 0xff 
+
+Definition at line 330 of file gpib.\+c.
 
 
 
@@ -1016,26 +1009,11 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 \subsubsection[{\texorpdfstring{current}{current}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t current}\hypertarget{gpib_8c_aaad5615d233044464c3661481a6760cd}{}\label{gpib_8c_aaad5615d233044464c3661481a6760cd}
 
 
-Definition at line 102 of file gpib.\+c.
+Definition at line 99 of file gpib.\+c.
 
 
 
 Referenced by clock\+\_\+elapsed\+\_\+end(), gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+state\+\_\+init().
-
-\index{gpib.\+c@{gpib.\+c}!device@{device}}
-\index{device@{device}!gpib.\+c@{gpib.\+c}}
-\subsubsection[{\texorpdfstring{device}{device}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf B\+Y\+TE} device}\hypertarget{gpib_8c_a1b595c4136454db2525576508c951b63}{}\label{gpib_8c_a1b595c4136454db2525576508c951b63}
-
-
-Device number -\/ working to support more then one device support. 
-
-
-
-Definition at line 87 of file gpib.\+c.
-
-
-
-Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), and gpib\+\_\+state\+\_\+init().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+iobuff@{gpib\+\_\+iobuff}}
 \index{gpib\+\_\+iobuff@{gpib\+\_\+iobuff}!gpib.\+c@{gpib.\+c}}
@@ -1091,7 +1069,7 @@ gpib current and last command
 
 
 
-Definition at line 102 of file gpib.\+c.
+Definition at line 99 of file gpib.\+c.
 
 
 
@@ -1106,7 +1084,7 @@ gpib listen address
 
 
 
-Definition at line 95 of file gpib.\+c.
+Definition at line 92 of file gpib.\+c.
 
 
 
@@ -1121,7 +1099,7 @@ gpib last listen address
 
 
 
-Definition at line 97 of file gpib.\+c.
+Definition at line 94 of file gpib.\+c.
 
 
 
@@ -1136,7 +1114,7 @@ gpib secondary
 
 
 
-Definition at line 105 of file gpib.\+c.
+Definition at line 102 of file gpib.\+c.
 
 
 
@@ -1151,7 +1129,7 @@ gpib serial poll status
 
 
 
-Definition at line 100 of file gpib.\+c.
+Definition at line 97 of file gpib.\+c.
 
 
 
@@ -1285,7 +1263,7 @@ G\+P\+IB B\+US states.
 /// \end{DoxyVerb}
  
 
-Definition at line 90 of file gpib.\+c.
+Definition at line 87 of file gpib.\+c.
 
 
 
@@ -1300,7 +1278,7 @@ gpib last talk address
 
 
 
-Definition at line 92 of file gpib.\+c.
+Definition at line 89 of file gpib.\+c.
 
 
 

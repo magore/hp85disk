@@ -44,7 +44,8 @@ void gpib_help()
         "plot filename.txt\n"
         "gpib_elapsed\n"
         "gpib_elapsed_reset\n"
-        "config\n");
+        "config\n"
+        "addresses\n");
 
 }
 
@@ -68,12 +69,17 @@ int gpib_tests(char *str)
         ptr += len;
         if(assign_value(ptr,0,256,&val))
 			debuglevel=val;
-        printf("debug=%d\n", debuglevel);
+        printf("debug=%02xH\n", debuglevel);
         return(1);
     }
     if ((len = token(ptr,"config")) )
     {
 		display_Config();
+        return(1);
+    }
+    if ((len = token(ptr,"addresses")) )
+    {
+		display_Addresses();
         return(1);
     }
     else if ((len = token(ptr,"ss80_test")) )

@@ -11,8 +11,8 @@
 */
 
 
-#ifndef _GPIB_TASK_H
-#define _GPIB_TASK_H
+#ifndef _GPIB_TASK_H_
+#define _GPIB_TASK_H_
 
 #include <user_config.h>
 #include "drives.h"
@@ -20,15 +20,15 @@
 /* gpib_task.c */
 void gpib_file_init ( void );
 void gpib_log ( char *str );
-int SS80_is_MLA ( int addr );
-int SS80_is_MTA ( int addr );
-int SS80_is_MSA ( int addr );
-int AMIGO_is_MLA ( int addr );
-int AMIGO_is_MTA ( int addr );
-int AMIGO_is_MSA ( int addr );
-int PRINTER_is_MLA ( int addr );
-int PRINTER_is_MTA ( int addr );
-int PRINTER_is_MSA ( int addr );
+int SS80_is_MLA ( int address );
+int SS80_is_MTA ( int address );
+int SS80_is_MSA ( int address );
+int AMIGO_is_MLA ( int address );
+int AMIGO_is_MTA ( int address );
+int AMIGO_is_MSA ( int address );
+int PRINTER_is_MLA ( int address );
+int PRINTER_is_MTA ( int address );
+int PRINTER_is_MSA ( int address );
 void gpib_trace_task ( char *name );
 uint16_t gpib_error_test ( uint16_t val );
 void gpib_init_devices ( void );
@@ -43,4 +43,5 @@ void listen_cleanup ( void );
 void talk_cleanup ( void );
 void DumpData ( unsigned char *ptr , int length );
 
-#endif
+
+#endif	//_GPIB_TASK_H_

@@ -111,7 +111,7 @@ var searchData=
   ['fileno_5fto_5fstream',['fileno_to_stream',['../posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57',1,'fileno_to_stream(int fileno):&#160;posix.c'],['../posix_8h.html#a2c01fe0e0aa550b2a8b4dcc326983b57',1,'fileno_to_stream(int fileno):&#160;posix.c']]],
   ['filetype',['filetype',['../structDirEntryType.html#ada14562440087858ebf04bc4c81eedd2',1,'DirEntryType']]],
   ['filinfo',['FILINFO',['../structFILINFO.html',1,'']]],
-  ['find_5fdevice',['find_device',['../drives_8c.html#a4164c671ecff0b80ace6674e37a0bfc8',1,'find_device(int type, int address):&#160;drives.c'],['../drives_8h.html#a4164c671ecff0b80ace6674e37a0bfc8',1,'find_device(int type, int address):&#160;drives.c']]],
+  ['find_5fdevice',['find_device',['../drives_8c.html#ab339aa60e0bd99e09f10d0732f10b26e',1,'find_device(int type, int address, int base):&#160;drives.c'],['../drives_8h.html#ab339aa60e0bd99e09f10d0732f10b26e',1,'find_device(int type, int address, int base):&#160;drives.c']]],
   ['find_5fdst',['find_dst',['../time_8c.html#abc775c1cfa2760ddccbfe11c8c0b6efa',1,'find_dst(int dst, time_t epoch, int year, int month, int weekno, int dayno, int hour):&#160;time.c'],['../time_8h.html#abc775c1cfa2760ddccbfe11c8c0b6efa',1,'find_dst(int dst, time_t epoch, int year, int month, int weekno, int dayno, int hour):&#160;time.c']]],
   ['find_5ffree',['find_free',['../drives_8c.html#afc23d2ab247de5b92eae0d0bc06aab2e',1,'find_free():&#160;drives.c'],['../drives_8h.html#aa2cf846e25affda2e38d0035ad46bcdb',1,'find_free(void):&#160;drives.c']]],
   ['find_5ftype',['find_type',['../drives_8c.html#adc9af84417d1ea9757b9f0596fd709b3',1,'find_type(int type):&#160;drives.c'],['../drives_8h.html#adc9af84417d1ea9757b9f0596fd709b3',1,'find_type(int type):&#160;drives.c']]],

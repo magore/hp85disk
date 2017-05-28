@@ -11,8 +11,8 @@
 
 */
 
-#ifndef DRIVES_H
-#define DRIVES_H
+#ifndef _DRIVES_H
+#define _DRIVES_H
 /*-------------------------------------------------------------------------
   defines.h - global defines
 
@@ -22,19 +22,23 @@
 #include "user_config.h"
 
 
-
+///@brief defulats if not drives defined in sdcard config file
 #define HP9121D     //< HP9121 dual 270K AMIGO floppy drive
 #define HP9134L     //< HP9134L 40M SS/80 Winchester drive
 
-/// ====================================================================
+// =============================================
+///@brief Maximum number of emulated devices
 #define MAX_DEVICES 8
+
+///@brief Maximun lengh of device file name
+#define MAX_FILE_NAME_LEN 32
 
 //@brief Drive index, Address, PPR and file name for emulated drive
 typedef struct 
 {
 	uint8_t ADDRESS;	//< GPIB Address
 	uint8_t PPR;		//< Parallel Poll Response Bit
-	char     NAME[32];
+	char     NAME[MAX_FILE_NAME_LEN+1];	// Filename of emulated image
 } HeaderType;
 
 //@brief Identify Bytes for Drives
@@ -43,7 +47,7 @@ typedef struct
 	uint16_t ID; 		//<  Identify, For 9122 I1=02, I2=22H
 } ConfigType;
 
-/// ====================================================================
+// =============================================
 /// @brief AMIGO emulator state machine index.
 typedef struct
 {
@@ -63,14 +67,14 @@ typedef struct
 	uint8_t logical_address[4];
 } AMIGOStateType;
 
-/// ====================================================================
+// =============================================
 ///@brief Printer structure 
 typedef struct 
 {
 	HeaderType HEADER;
 } PRINTERDeviceType;
 
-/// ====================================================================
+// =============================================
 ///@brief Plotter file data structure definition used for saving plot data.
 typedef struct 
 {
@@ -81,7 +85,7 @@ typedef struct
     char *buf;
 } PRINTERStateType;
 
-/// ====================================================================
+// =============================================
 typedef struct
 {
 	int16_t BYTES_PER_SECTOR;
@@ -100,10 +104,11 @@ typedef struct
 
 
 
-/// ====================================================================
-///@brief SS80 Controller 5 bytes
+// =============================================
+///@brief SS80 Controller 
 typedef struct {
 	/*
+		When packed this is 5 bytes
 		CONTROLLER DESCRIPTION
 		C1-C2    C1 = MSB, C2 = LSB
 		         Installed unit byte; 1 bit for each unit.
@@ -124,10 +129,11 @@ typedef struct {
 	uint8_t TYPE;
 } SS80ControllerType;
 
-///@brief SS80 Unit 19 bytes
+///@brief SS80 Unit 
 typedef struct   //<  Unit description, 19 bytes
 {
 	/*
+		When packed this is 19 bytes
 		UNIT DESCRIPTION
 		U1      Generic Unit Type, 0 = fixed, 1 - floppy, 2 = tape
                 OR with 128 implies dumb can not detect media change
@@ -162,6 +168,7 @@ typedef struct   //<  Unit description, 19 bytes
 typedef struct 
 {
 	/*
+		When packed this is 13 bytes
 		VOLUME DESCRIPTION
 		SS80 units use single vecor mode so MAX CYLINDER,HEAD and SECTOR are not used
 		V1-V3  Maximum value of cylinder address vector.
@@ -189,7 +196,7 @@ typedef struct
     SS80UnitType UNIT;
     SS80VolumeType VOLUME;
 } SS80DiskType;
-/// ====================================================================
+// =============================================
 
 ///@brief SS80 Emulated disk state information
 typedef struct
@@ -210,7 +217,7 @@ typedef struct
 	uint32_t Length;
 } SS80StateType;
 
-/// ====================================================================
+// =============================================
 enum PARSE_STATES
 {
 	START_STATE,
@@ -228,7 +235,7 @@ enum PARSE_STATES
 	PRINTER_CONFIG
 };
 
-/// ====================================================================
+// =============================================
 ///@brief
 enum DEVICE_TYPES
 {
@@ -247,7 +254,7 @@ typedef struct
 	void *dev;		// Disk or Printer Structure
 	void *state;	// Disk or Printer State Structure
 } DeviceType;
-/// ====================================================================
+// =============================================
 ///@convert print_var strings into __memx space
 #define print_var(format, args...) print_var_P(PSTR(format), ##args)
 ///@convert print_var strings into __memx space
@@ -266,10 +273,10 @@ void V2B ( uint8_t *B , int index , int size , uint32_t val );
 uint32_t B2V ( uint8_t *B , int index , int size );
 int find_type ( int type );
 char *type_to_str ( int type );
+char *base_to_str ( int base );
 int find_free ( void );
-int find_device ( int type , int address );
-int set_device_by_index ( int index );
-int set_device ( int type , int address );
+int find_device ( int type , int address , int base );
+int set_active_device ( int index );
 int alloc_device ( int type );
 void init_Devices ( void );
 int push_state ( int state );
@@ -283,5 +290,5 @@ void display_Addresses ( void );
 void display_Config ( void );
 
 
-/// =================
-#endif     // DRIVES_H
+// =============================================
+#endif     // _DRIVES_H

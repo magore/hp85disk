@@ -1,7 +1,7 @@
 var searchData=
 [
   ['talk_5fcleanup',['talk_cleanup',['../gpib__task_8c.html#af4bf5ed0317de478278afbb1d1bf8614',1,'talk_cleanup():&#160;gpib_task.c'],['../gpib__task_8h.html#a509eb3426def2f282b1a31c411e9cbb7',1,'talk_cleanup(void):&#160;gpib_task.c']]],
-  ['task',['task',['../main_8c.html#a5e7efd58ce09c57b7dda19e2f9411b3e',1,'task(char *line, uint8_t gpib):&#160;main.c'],['../main_8h.html#acbfb668d7b4cfa39aa1a5a5dac3c0e7e',1,'task(void):&#160;main.h']]],
+  ['task',['task',['../main_8c.html#a2771e513dfe7d81fe8ea232427b7e6eb',1,'task(char *line, int max, uint8_t gpib):&#160;main.c'],['../main_8h.html#acbfb668d7b4cfa39aa1a5a5dac3c0e7e',1,'task(void):&#160;main.h']]],
   ['testsquare',['TestSquare',['../matrix_8c.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c']]],
   ['time',['time',['../time_8c.html#a32b1cbd925752f0cd61d202bbe204a69',1,'time(time_t *t):&#160;time.c'],['../time_8h.html#a32b1cbd925752f0cd61d202bbe204a69',1,'time(time_t *t):&#160;time.c']]],
   ['time_5ftest',['time_test',['../main_8h.html#ace107c9b76ee90e28373c1a313bc11d9',1,'main.h']]],

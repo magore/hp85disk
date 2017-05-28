@@ -71,7 +71,8 @@ FRESULT gpib_format_disk(char *name, uint32_t size)
         return(FR_NOT_ENOUGH_CORE);
     }
 
-    printf("Format:[%s]\n", name);
+	if(debuglevel & 32)
+		printf("Format:[%s]\n", name);
 
     rc = dbf_open(&fp, name, FA_CREATE_ALWAYS | FA_WRITE | FA_READ);
     if(rc)
@@ -81,7 +82,8 @@ FRESULT gpib_format_disk(char *name, uint32_t size)
     rc=dbf_read(&fp, buffer,10,&nbytes);
 
 /// @return return(rc);
-    printf("Read (%d) bytes:[%s]\n", nbytes, buffer);
+	if(debuglevel & 32)
+		printf("Read (%d) bytes:[%s]\n", nbytes, buffer);
 
     memset(buffer,' ',512);
     memcpy(buffer,&vl,sizeof(vl));                // Volume
@@ -135,7 +137,8 @@ FRESULT gpib_format_disk(char *name, uint32_t size)
         }
     }
     rc= dbf_close(&fp);
-    printf("Done\n");
+	if(debuglevel & 32)
+		printf("Done\n");
     safefree(buffer);
     return(rc);
 }

@@ -68,6 +68,12 @@ main.c \
  $(FATFS) \
  $(GPIB)
 
+# Use GIT last modify time if we have it 
+# GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
+
+# update.last is safer to use, the file is touched by my git commit script
+GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
+LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
 
 CC = avr-gcc
 
@@ -134,6 +140,8 @@ COMMON = -Wl,-u,vfprintf -lprintf_flt -lm
 
 # Flags for C files
 CFLAGS = $(COMMON)
+CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
+CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
 CFLAGS += -Wall 
 CFLAGS += -std=$(CSTD)
 CFLAGS += -funsigned-char
@@ -179,13 +187,14 @@ SRCS = $(CSRC)
 #all: doxy version $(LIBS) build size $(PROGS)
 all: version $(LIBS) build size $(PROGS)
 
+
 flash:  all
 #
 	# Program with avrdude using atmelice_isp
 	# avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using avrispmkii 
-	# avrdude -P usb -p m1284p -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex"
+	# avrdude -P usb -p m1284p -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using dragon_isp
 	# avrdude -P usb -p m1284p -c dragon_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
@@ -237,6 +246,7 @@ lss: $(PROJECT).lss
 
 # Display compiler version information.
 version :
+	@if [ ! -f "update.last" ]; then touch "update.last"; fi
 	@$(CC) --version
 	echo COBJ: $(COBJ)
 

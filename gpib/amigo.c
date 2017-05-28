@@ -175,8 +175,7 @@ void amigo_init()
     {
         if(Devices[i].TYPE == AMIGO_TYPE)
         {
-            set_device(AMIGO_TYPE,Devices[i].ADDRESS);
-
+            set_active_device(i);
 			AMIGOs->state = AMIGO_IDLE;
 
 			memset(AMIGOs->status,0,sizeof(AMIGOs->status));
@@ -224,8 +223,8 @@ int amigo_request_logical_address()
 int amigo_request_status()
 {
 /// @todo  dsj
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO request status]\n");
 #endif
     AMIGOs->status[0] = 0x00;                       // Status 1
@@ -277,8 +276,8 @@ int amigo_send_logical_address()
     uint16_t status;
     UINT len;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO send logical address]\n");
 #endif
     status = EOI_FLAG;
@@ -289,10 +288,8 @@ int amigo_send_logical_address()
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-#endif
         EnablePPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
@@ -314,8 +311,8 @@ int amigo_send_status()
     uint16_t status;
     UINT len;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO send status]\n");
 #endif
     status = EOI_FLAG;
@@ -326,10 +323,8 @@ int amigo_send_status()
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-#endif
         EnablePPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
@@ -355,8 +350,8 @@ static DWORD amigo_chs_to_logical(AMIGOStateType *p, char *msg)
     pos += (long) p->sector;
     pos *= (long) AMIGOp->GEOMETRY.BYTES_PER_SECTOR;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO %s, P:%08lx, U:%d C:%d H:%d S:%d]\n",
             msg, pos, AMIGOs->unitNO, p->cyl, p->head, p->sector);
 #endif
@@ -384,10 +379,8 @@ static int amigo_overflow_check(AMIGOStateType *p, char *msg)
             if (p->cyl >= AMIGOp->GEOMETRY.CYLINDERS)
             {
                 stat = 1;
-#if SDEBUG > 1
-                if(debuglevel > 1)
+                if(debuglevel & 1)
                     printf("[AMIGO %s pos OVERFLOW]\n", msg);
-#endif
             }
         }
     }
@@ -465,8 +458,8 @@ int amigo_verify(uint16_t sectors)
 
     pos = amigo_chs_to_logical(AMIGOs, "Verify Start");
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO verify P:%08lx, sectors:%04x]\n", pos, sectors);
 #endif
 
@@ -474,15 +467,15 @@ int amigo_verify(uint16_t sectors)
     {
         pos = amigo_chs_to_logical(AMIGOs, "Verfify");
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_begin();
 #endif
 
         len = dbf_open_read(AMIGOp->HEADER.NAME, pos, gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_end("Disk Read");
 #endif
         if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
@@ -526,8 +519,10 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
 
     memset((void *) gpib_iobuff, db, AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+	if(debuglevel & 32)
+		printf("[AMIGO format]\n");
+    if(debuglevel & 64)
         gpib_timer_elapsed_begin();
 #endif
     while( 1 )
@@ -553,11 +548,12 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
             break;
         }
     }
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 64)
         gpib_timer_elapsed_end("Format");
+	if(debuglevel & 32)
+		printf("[AMIGO format done]\n");
 #endif
-
     EnablePPR(AMIGOp->HEADER.PPR);
     return(stat);
 }
@@ -577,15 +573,15 @@ int amigo_buffered_read()
 
     pos = amigo_chs_to_logical(AMIGOs, "Buffered Read");
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 64)
         gpib_timer_elapsed_begin();
 #endif
 
     len = dbf_open_read(AMIGOp->HEADER.NAME, pos, gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 64)
         gpib_timer_elapsed_end("Disk Read");
 #endif
     if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
@@ -594,24 +590,22 @@ int amigo_buffered_read()
         return(0);
     }
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
-        gpib_timer_elapsed_begin();
+#if SDEBUG
+	if(debuglevel & 128)
+		gpib_timer_elapsed_begin();
 #endif
     status = EOI_FLAG;
     len = gpib_write_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 128)
         gpib_timer_elapsed_end("GPIB write");
 #endif
     if(status & ERROR_MASK || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-#endif
         EnablePPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
@@ -644,15 +638,15 @@ int amigo_buffered_write()
 
     pos = amigo_chs_to_logical(AMIGOs, "Buffered Write");
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 128)
         gpib_timer_elapsed_begin();
 #endif
     status = 0;
     len = gpib_read_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 128)
         gpib_timer_elapsed_end("GPIB read str");
 #endif
 
@@ -660,23 +654,21 @@ int amigo_buffered_write()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO Write GPIB read error]\n");
-#endif
         EnablePPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel & 64)
         gpib_timer_elapsed_begin();
 #endif
 
     len = dbf_open_write(AMIGOp->HEADER.NAME, pos, gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
 
-#if SDEBUG > 1
-    if(debuglevel > 2)
+#if SDEBUG
+    if(debuglevel  & 64)
         gpib_timer_elapsed_end("Disk Write");
 #endif
 
@@ -718,16 +710,14 @@ int amigo_cmd_dsj()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AIMGO: DSJ send failed]\n");
-#endif
         return(status & ERROR_MASK);
     }
     else
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+        if(debuglevel & 32)
             printf("[DSJ %02X]\n", AMIGOs->dsj);
 #endif
     }
@@ -750,11 +740,9 @@ int amigo_cmd_wakeup()
     uint16_t status;
     UINT len;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
-    {
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO Wakeup]\n");
-    }
 #endif
     tmp[0] = AMIGOs->dsj;
     len = gpib_write_str(tmp, 1, &status);
@@ -764,10 +752,8 @@ int amigo_cmd_wakeup()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-#endif
     }
 /// @todo FIXME
     EnablePPR(AMIGOp->HEADER.PPR);
@@ -784,8 +770,8 @@ int amigo_cmd_wakeup()
 
 int amigo_cmd_clear()
 {
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO Clear]\n");
 #endif
     AMIGOs->sector = 0;
@@ -882,8 +868,8 @@ int Amigo_Command( int secondary )
     uint16_t status;                              // Current status
     UINT len;                                     // Size of Data/Op Codes/Parameters read in bytes
 
-#if SDEBUG >= 1
-    if(debuglevel >= 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO Command(%02x): listen:%02x, talk:%02x]\n",
             secondary, listening, talking);
 #endif
@@ -899,10 +885,8 @@ int Amigo_Command( int secondary )
         {
             AMIGOs->dsj = 1;
             AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+            if(debuglevel & 1)
                 printf("[AMIGO_Command:GPIB write error]\n");
-#endif
         }
         return(status & ERROR_MASK);
     }
@@ -911,14 +895,14 @@ int Amigo_Command( int secondary )
     if (secondary == 0x7f && AMIGO_is_MLA(listening))
     {
         DisablePPR(AMIGOp->HEADER.PPR);
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 128)
             gpib_timer_elapsed_begin();
 #endif
         status = EOI_FLAG;
         len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 128)
             gpib_timer_elapsed_end("GPIB read str");
 #endif
         EnablePPR(AMIGOp->HEADER.PPR);
@@ -926,10 +910,8 @@ int Amigo_Command( int secondary )
         {
             AMIGOs->dsj = 1;
             AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+            if(debuglevel & 1)
                 printf("[AMIGO Command:GPIB read error]\n");
-#endif
         }
         return(status & ERROR_MASK);
     }
@@ -949,14 +931,12 @@ int Amigo_Command( int secondary )
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[AMIGO Command:GPIB read error]\n");
-#endif
         return(status & ERROR_MASK);
     }
-#if SDEBUG >= 1
-    if(debuglevel >= 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[AMIGO Command(%02x): GPIB read bytes:%02x]\n",
             secondary, len);
 #endif
@@ -977,8 +957,8 @@ int Amigo_Command( int secondary )
 ///  Reference: A40
 
             AMIGOStateType tmp;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Cold Load Read Command]\n");
 #endif
             AMIGOs->unitNO = 0;
@@ -1002,8 +982,8 @@ int Amigo_Command( int secondary )
 ///  Seek 1 byte cylinder
 
             AMIGOStateType tmp;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Seek len=5]\n");
 #endif
             AMIGOs->unitNO = 0xff & *ptr++;
@@ -1023,8 +1003,8 @@ int Amigo_Command( int secondary )
 ///  Seek 2 byte cylinder
 
             AMIGOStateType tmp;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Seek len=6]\n");
 #endif
             AMIGOs->unitNO = 0xff & *ptr++;
@@ -1041,8 +1021,8 @@ int Amigo_Command( int secondary )
         else if(op == 0x03 && len == 2)
         {
 ///  Reference: A15
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Request Status Buffered Command]\n");
 #endif
 /// @todo  is this the unit $ ?
@@ -1054,8 +1034,8 @@ int Amigo_Command( int secondary )
         else if(op == 0x05 && len == 2)
         {
 ///  Reference: A35
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Read Unbuffered Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1066,8 +1046,8 @@ int Amigo_Command( int secondary )
         else if(op == 0x07 && len == 4)
         {
             uint16_t sectors;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Verify]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1077,8 +1057,8 @@ int Amigo_Command( int secondary )
         }
         else if(op == 0x08 && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Write Unbuffered Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1088,8 +1068,8 @@ int Amigo_Command( int secondary )
         }
         else if((op == 0x0B || op == 0x2b) && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Initialize Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1099,8 +1079,8 @@ int Amigo_Command( int secondary )
         }
         else if(op == 0x14 && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Request Logical Address Command]\n");
 #endif
 /// @todo  unit ???
@@ -1114,8 +1094,8 @@ int Amigo_Command( int secondary )
     {
         if(op == 0x08 && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Write Buffered Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1128,8 +1108,8 @@ int Amigo_Command( int secondary )
     {
         if(op == 0x08 && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Request Status Unbuffered Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1139,8 +1119,8 @@ int Amigo_Command( int secondary )
         }
         if(op == 0x05 && len == 2)
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Read Buffered Command]\n");
 #endif
             AMIGOs->unitNO = *ptr++;
@@ -1158,8 +1138,8 @@ int Amigo_Command( int secondary )
             uint8_t override;
             uint8_t interleave;
             uint8_t db;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[AMIGO Format]\n");
 #endif
             AMIGOs->unitNO = 0xff & *ptr++;
@@ -1191,8 +1171,8 @@ int Amigo_Command( int secondary )
 
 int Amigo_Execute( int secondary )
 {
-#if SDEBUG >= 1
-    if(debuglevel >= 1)
+#if SDEBUG
+	if(debuglevel & 32)
         printf("[AMIGO Execute(%02x): listen:%02x, talk:%02x]\n",
             secondary, listening, talking);
 #endif
@@ -1215,38 +1195,38 @@ int Amigo_Execute( int secondary )
             case AMIGO_IDLE:
                 return(0);
             case AMIGO_COLD_LOAD_READ:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+				if(debuglevel & 32)
                     printf("[AMIGO Execute Cold Load Read]\n");
 #endif
                 return ( amigo_buffered_read() );
             case AMIGO_READ_UNBUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Read Unbuffered]\n");
 #endif
                 return ( amigo_buffered_read() );
             case AMIGO_READ_BUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Read Buffered]\n");
 #endif
                 return ( amigo_buffered_read() );
             case AMIGO_WRITE_UNBUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Write Unbuffered]\n");
 #endif
                 return ( amigo_buffered_write() );
             case AMIGO_INITIALIZE:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Initialize]\n");
 #endif
                 return ( amigo_buffered_write() );
             case AMIGO_WRITE_BUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Write Buffered]\n");
 #endif
                 return ( amigo_buffered_write() );
@@ -1262,20 +1242,20 @@ int Amigo_Execute( int secondary )
             case AMIGO_IDLE:
                 return(0);
             case AMIGO_REQUEST_STATUS_BUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+				if(debuglevel & 32)
                     printf("[AMIGO Execute Request Status Buffered]\n");
 #endif
                 return ( amigo_send_status() );
             case AMIGO_REQUEST_STATUS_UNBUFFERED:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+				if(debuglevel & 32)
                     printf("[AMIGO Exicute Request Status Unbuffered]\n");
 #endif
                 return ( amigo_send_status() );
             case AMIGO_REQUEST_LOGICAL_ADDRESS:
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+#if SDEBUG
+				if(debuglevel & 32)
                     printf("[AMIGO Execute Request Logical Address]\n");
 #endif
                 return ( amigo_send_logical_address() );

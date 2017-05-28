@@ -82,53 +82,11 @@ uint8_t reverse_8bits(uint8_t mask)
 void ppr_set(uint8_t mask)
 {
     _ppr_reg = mask;
-#ifdef SOFTWARE_PP
-
-    _soft_ppr_reg = reverse_8bits(mask);
-#else                                         // SOFTWARE_PP
     SPI0_TXRX_Byte(_ppr_reg);
     GPIB_IO_HI(PPE);
     GPIB_IO_LOW(PPE);
-#endif                                        // ifndef SOFTWARE_PP
 }
 
-
-#ifdef SOFTWARE_PP
-///@brief Save Port Direction Register
-static uint8_t gpib_bus_ddr_save;
-///@brief Save Port Register
-static uint8_t gpib_bus_save;
-/// @brief  Simulate Asserting PPR hardware using software.
-///
-/// - Save DATA BUS state and assert PPR
-/// @WARNING the timeing response required of the PPR is too fast to
-/// be pratical - sub microsecond. But it MIGHT work for you.
-///
-/// @return  void
-
-void soft_ppr_assert( void )
-{
-    gpib_bus_ddr_save = DDRA;
-    gpib_bus_save = PORTA;
-    PORTA = _soft_ppr_reg ^ 0xff;
-    DDRA = _soft_ppr_reg;
-}
-
-
-/// @brief  Restore Simulatated PPR assert using software.
-///
-/// - Restore DATA BUS state saved by soft_ppr_assert().
-/// @warning the timeing response required of the PPR is too fast to
-/// be pratical - sub microsecond. But it MIGHT work for you.
-/// @see soft_ppr_assert().
-/// @return  void
-
-void soft_ppr_restore(void)
-{
-    DDRA = gpib_bus_ddr_save;
-    PORTA = gpib_bus_save;
-}
-#endif                                            // SOFTWARE_PP
 
 /// @brief  Return PPR enable register.
 ///
@@ -148,6 +106,10 @@ uint8_t ppr_reg()
 
 void ppr_init()
 {
+#if SDEBUG
+    if(debuglevel & 2 )
+        printf("[PPR DISABLE ALL]\n");
+#endif
     ppr_set(0);
 }
 

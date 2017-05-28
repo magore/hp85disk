@@ -22,7 +22,9 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+V\+R8.
 \#define \hyperlink{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME}~(1406357902\+L -\/ 3600\+L $\ast$ 4\+L)
 \begin{DoxyCompactList}\small\item\em Defines a default E\+P\+O\+CH time to set the R\+TC if not initialied. \end{DoxyCompactList}\item 
 \#define \hyperlink{main_8c_a77a4765d1e38b93e353315ca174c9959}{T\+I\+M\+E\+Z\+O\+NE}~300\+L                             /$\ast$ west $\ast$/
-\begin{DoxyCompactList}\small\item\em Timezone west in minutes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Timezone west in minutes. \end{DoxyCompactList}\item 
+\#define \hyperlink{main_8c_a842ed03f27719bc87666bfd1f75415b8}{M\+A\+X\+\_\+\+L\+I\+NE}~80
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,10 +36,15 @@ void \hyperlink{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}{setup\+\_\+clock} ()
 \begin{DoxyCompactList}\small\item\em Read R\+TC D\+S1307. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}{display\+\_\+time} ()
 \begin{DoxyCompactList}\small\item\em Display current D\+S1307 R\+TC time. \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}{task} (char $\ast$line, uint8\+\_\+t gpib)
+void \hyperlink{main_8c_a2771e513dfe7d81fe8ea232427b7e6eb}{task} (char $\ast$\hyperlink{main_8c_a4381722bcf21e1580d2d3990afd4f580}{line}, int max, uint8\+\_\+t gpib)
 \begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
 int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 \begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{main_8c_a4381722bcf21e1580d2d3990afd4f580}{line} \mbox{[}\hyperlink{main_8c_a842ed03f27719bc87666bfd1f75415b8}{M\+A\+X\+\_\+\+L\+I\+NE}+1\mbox{]}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -69,6 +76,17 @@ Definition at line 88 of file main.\+c.
 
 
 Referenced by setup\+\_\+clock().
+
+\index{main.\+c@{main.\+c}!M\+A\+X\+\_\+\+L\+I\+NE@{M\+A\+X\+\_\+\+L\+I\+NE}}
+\index{M\+A\+X\+\_\+\+L\+I\+NE@{M\+A\+X\+\_\+\+L\+I\+NE}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+L\+I\+NE}{MAX_LINE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+L\+I\+NE~80}\hypertarget{main_8c_a842ed03f27719bc87666bfd1f75415b8}{}\label{main_8c_a842ed03f27719bc87666bfd1f75415b8}
+
+
+Definition at line 246 of file main.\+c.
+
+
+
+Referenced by main().
 
 \index{main.\+c@{main.\+c}!T\+I\+M\+E\+Z\+O\+NE@{T\+I\+M\+E\+Z\+O\+NE}}
 \index{T\+I\+M\+E\+Z\+O\+NE@{T\+I\+M\+E\+Z\+O\+NE}!main.\+c@{main.\+c}}
@@ -176,17 +194,23 @@ Referenced by task().
 \begin{DoxyReturn}{Returns}
 should never return! 
 \end{DoxyReturn}
+Power up delay
+
+Power up delay
+
 @ initialize bus state as soon as practical
 
 process config file
+
+G\+P\+IB talking/listening state variables Must be done A\+F\+T\+ER \hyperlink{gpib__task_8c_a29b89503cfbf214695082b16d6d40f52}{gpib\+\_\+file\+\_\+init()} so we have a valid configuration
 
 Display Config
 
 Address Summary
 
-G\+P\+IB talking/listening state variables Must be done A\+F\+T\+ER \hyperlink{gpib__task_8c_a29b89503cfbf214695082b16d6d40f52}{gpib\+\_\+file\+\_\+init()} so we have a valid configuration 
+Display debug level 
 
-Definition at line 244 of file main.\+c.
+Definition at line 251 of file main.\+c.
 
 
 
@@ -219,12 +243,13 @@ Referenced by main().
 
 \index{main.\+c@{main.\+c}!task@{task}}
 \index{task@{task}!main.\+c@{main.\+c}}
-\subsubsection[{\texorpdfstring{task(char $\ast$line, uint8\+\_\+t gpib)}{task(char *line, uint8_t gpib)}}]{\setlength{\rightskip}{0pt plus 5cm}void task (
+\subsubsection[{\texorpdfstring{task(char $\ast$line, int max, uint8\+\_\+t gpib)}{task(char *line, int max, uint8_t gpib)}}]{\setlength{\rightskip}{0pt plus 5cm}void task (
 \begin{DoxyParamCaption}
 \item[{char $\ast$}]{line, }
+\item[{int}]{max, }
 \item[{uint8\+\_\+t}]{gpib}
 \end{DoxyParamCaption}
-)}\hypertarget{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}{}\label{main_8c_a5e7efd58ce09c57b7dda19e2f9411b3e}
+)}\hypertarget{main_8c_a2771e513dfe7d81fe8ea232427b7e6eb}{}\label{main_8c_a2771e513dfe7d81fe8ea232427b7e6eb}
 
 
 User command handler -\/ called as main task. 
@@ -240,6 +265,20 @@ void
 
 
 Definition at line 180 of file main.\+c.
+
+
+
+Referenced by main().
+
+
+
+\subsection{Variable Documentation}
+\index{main.\+c@{main.\+c}!line@{line}}
+\index{line@{line}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{line}{line}}]{\setlength{\rightskip}{0pt plus 5cm}char line\mbox{[}{\bf M\+A\+X\+\_\+\+L\+I\+NE}+1\mbox{]}}\hypertarget{main_8c_a4381722bcf21e1580d2d3990afd4f580}{}\label{main_8c_a4381722bcf21e1580d2d3990afd4f580}
+
+
+Definition at line 247 of file main.\+c.
 
 
 

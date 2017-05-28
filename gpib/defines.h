@@ -23,7 +23,7 @@
 
 
 
-/// ==============================================================
+// =============================================
 ///@brief Power on defaults  address and PPR for SS80 AMIGO and PRINTER
 /// Can be changed if specified in user config
 ///@see ss80.c 
@@ -46,7 +46,7 @@
 #define PRINTER_DEFAULT_ADDRESS 2     /* PRINTER default address */
 ///@brief printer do not use parallel poll
 
-/// ==============================================================
+// =============================================
 
 
 #define ABORT_FLAG 1  /*< user abort */
@@ -80,7 +80,7 @@
 #define ERR_DISK   0b00010000	//< Disk Error
 #define ERR_GPIB   0b00100000	//<GPIB Error
 
-/// ====================================================================
+// =============================================
 /// LIF formating structures
 ///@see format.c
 ///@brief LIF disk label record
@@ -111,5 +111,5 @@ typedef struct
     uint16_t implementationhi;
     uint16_t implementationlo;
 } DirEntryType;
-/// =================
+// =============================================
 #endif     // DEFINES_H

@@ -160,7 +160,7 @@ void xmit_spi_multi (
 
 
 
-// ===========================================
+// =============================================
 ///@brief wait for card ready
 ///@param [in] wt: ms to wait
 ///@return 1 Ready

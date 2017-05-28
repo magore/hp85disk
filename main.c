@@ -177,7 +177,7 @@ void display_time()
 /// ? will return a list of fuctions and paramters permitted
 /// @param[in] gpib
 /// @return  void
-void task(char *line, uint8_t gpib)
+void task(char *line, int max, uint8_t gpib)
 {
     char *ptr;
     int len;
@@ -190,8 +190,12 @@ void task(char *line, uint8_t gpib)
     if(!uart_keyhit(0))
         return;
 
+
     uart_put('>');
-    get_line(line, 79);
+    get_line(line, max-1);
+
+	printf("Enter: gpib_task\n");	
+	printf(" To restart GPIB command processor\n");
 
     ptr = skipspaces(line);
 
@@ -239,43 +243,45 @@ void task(char *line, uint8_t gpib)
 }
 
 
+#define MAX_LINE 80
+char line[MAX_LINE+1];
+
 /// @brief  main() for gpib project
 /// @return  should never return!
 int main(void)
 {
     ts_t ts;
 	int cold = 1;
-	char *line;
 
     init_timers();
 
     uart_init(0, 115200U); // Serial Port Initialize
-    delayms(200);
+    delayms(200); ///@brief Power up delay
 
-	///@ initialize bus state as soon as practical
-    gpib_bus_init(0);
+    printf("Start\n");
 
-	printf("==============================\n");
-    printf("INIT\n");
-    printf("F_CPU: %lu\n", F_CPU);
+	sep();
+    printf("HP85 Disk and Device Emulator\n");
+    printf("-> https://github.com/magore/hp85disk\n");
 
+    printf("   GIT version:             %s\n", GIT_VERSION);
+    printf("   Last local modification: %s\n", LOCAL_MOD);
 
-    printf("HP Disk and Device Emulator\n");
-    printf("Created on:%s %s\n", __DATE__,__TIME__);
-    printf("debuglevel   = %02x\n",(int)debuglevel);
-    printf("\n");
-
+	sep();
+    printf("CPU Clock = %lu\n", F_CPU);
 #ifdef SOFTWARE_PP
     printf("\nSoftware PP\n");
 #else
     printf("\nHardware PP\n");
-#endif                                        // SOFTWARE_PP
-/*
-    printf("sin(45) = %f\n", sin(45.0 * 0.0174532925));
-    printf("cos(45) = %f\n", cos(45.0 * 0.0174532925));
-    printf("tan(45) = %f\n", tan(45.0 * 0.0174532925));
-    printf("log(10.0) = %f\n", log(10.0));
-*/
+#endif
+	sep();
+    PrintFree();
+
+	sep();
+    delayms(200); ///@brief Power up delay
+	///@ initialize bus state as soon as practical
+	printf("initializing GPIB bus\n");
+    gpib_bus_init(0);
 
 	printf("initializing SPI bus\n");
 	spi_init(MMC_SLOW,GPIO_B3);
@@ -283,15 +289,7 @@ int main(void)
 	printf("initializing I2C bus\n");
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
 
-	line = calloc(80,1);
-	if(!line)
-	{
-		printf("Calloc: line failed ***************************\n");
-	}
-    PrintFree();
-
-    delayms(200);
-
+	sep();
     clock_clear();
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
@@ -299,38 +297,47 @@ int main(void)
     setup_clock();
     display_time();
 
-    printf("GPIB BUS init done\n");
-    gpib_bus_init(0);
-
+	sep();
     mmc_init(1);
-    printf("MMC init done\n");
+
+	sep();
+    printer_init();
+    printf("Printer Init done\n");
+
+	sep();
+    printf("GPIB Setup\n");
 
     gpib_timer_init();
     printf("GPIB Timer init done\n");
-
 
 	///@brief process config file
     gpib_file_init();
     printf("GPIB File init done\n");
 
-	///@brief Display Config
-	display_Config();
-
-	///@brief Address Summary
-	display_Addresses();
-
-    printer_init();
-    printf("Printer Init done\n");
-
 	///@brief GPIB talking/listening state variables 
 	///Must be done AFTER gpib_file_init() so we have a valid configuration
     gpib_state_init();
+    printf("GPIB File init done\n");
 
-	printf("==============================\n");
+	///@brief Display Config
+	sep();
+	display_Config();
+
+	///@brief Address Summary
+	sep();
+	display_Addresses();
+
+	sep();
+	///@brief Display debug level
+    printf("debuglevel   = %02xH\n",(int)debuglevel);
+
+	sep();
+	printf("Starting GPIB TASK\n");
+
 
     while (1)
     {
-        task(line, cold);
+        task(line, MAX_LINE-1, cold);
 		cold = 0;
     }
 }

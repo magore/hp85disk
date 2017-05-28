@@ -77,11 +77,9 @@ enum
 };
 
 #define GPIB_IOBUFF_LEN     256                   /* Max length of RX/TX GPIB string */
-
-extern uint8_t debuglevel;
 extern uint8_t gpib_iobuff[GPIB_IOBUFF_LEN];
-extern unsigned char idbyte1;
-extern unsigned char idbyte2;
+
+extern int debuglevel;
 
 extern uint8_t talk31;
 extern uint8_t talking;

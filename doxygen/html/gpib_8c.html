@@ -152,7 +152,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a09fd9be01cfd79cffd369aacae939408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable PPR (Parallel Poll Response) for a device.  <a href="#a09fd9be01cfd79cffd369aacae939408">More...</a><br /></td></tr>
 <tr class="separator:a09fd9be01cfd79cffd369aacae939408"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42d306c338c639682d0d6f0434a5c88b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib_8c.html#a42d306c338c639682d0d6f0434a5c88b">Parallel_Poll</a> ()</td></tr>
-<tr class="memdesc:a42d306c338c639682d0d6f0434a5c88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detect Parallel Poll state.  <a href="#a42d306c338c639682d0d6f0434a5c88b">More...</a><br /></td></tr>
+<tr class="memdesc:a42d306c338c639682d0d6f0434a5c88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to detect the Parallel Poll Reposnse state Used only for debugging - it is unlikely that we will catch this state.  <a href="#a42d306c338c639682d0d6f0434a5c88b">More...</a><br /></td></tr>
 <tr class="separator:a42d306c338c639682d0d6f0434a5c88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01eaf30370a0b43263d19ebaa2fa4a38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib_8c.html#a01eaf30370a0b43263d19ebaa2fa4a38">gpib_assert_ifc</a> (void)</td></tr>
 <tr class="memdesc:a01eaf30370a0b43263d19ebaa2fa4a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert Interface clear for 250us.  <a href="#a01eaf30370a0b43263d19ebaa2fa4a38">More...</a><br /></td></tr>
@@ -196,9 +196,6 @@ Variables</h2></td></tr>
 <tr class="memitem:a8f8b0bbe03e4f62aa8e736a9a1f5f609"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib_8c.html#a8f8b0bbe03e4f62aa8e736a9a1f5f609">gpib_unread_data</a></td></tr>
 <tr class="memdesc:a8f8b0bbe03e4f62aa8e736a9a1f5f609"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="gpib_8c.html#a2fdb3d4996ff399dc2fbfcada417bb1a" title="GPIB ungets one character and all status states. ">gpib_unread()</a> data  <a href="#a8f8b0bbe03e4f62aa8e736a9a1f5f609">More...</a><br /></td></tr>
 <tr class="separator:a8f8b0bbe03e4f62aa8e736a9a1f5f609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b595c4136454db2525576508c951b63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib_8c.html#a1b595c4136454db2525576508c951b63">device</a></td></tr>
-<tr class="memdesc:a1b595c4136454db2525576508c951b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device number - working to support more then one device support.  <a href="#a1b595c4136454db2525576508c951b63">More...</a><br /></td></tr>
-<tr class="separator:a1b595c4136454db2525576508c951b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acef501d1e292f230efac5ed0cddf90e8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib_8c.html#acef501d1e292f230efac5ed0cddf90e8">talking</a></td></tr>
 <tr class="memdesc:acef501d1e292f230efac5ed0cddf90e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">gpib talk address  <a href="#acef501d1e292f230efac5ed0cddf90e8">More...</a><br /></td></tr>
 <tr class="separator:acef501d1e292f230efac5ed0cddf90e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -302,7 +299,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="gpib_8c_source.html#l00076">76</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00459">gpib_write_byte()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>.</p>
 
 </div>
 </div>
@@ -327,9 +324,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00299">299</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00298">298</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01791">SS80_COMMANDS()</a>, <a class="el" href="ss80_8c_source.html#l00290">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>, and <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01284">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01172">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00171">amigo_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00878">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="ss80_8c_source.html#l00865">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01731">SS80_COMMANDS()</a>, <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>, and <a class="el" href="ss80_8c_source.html#l01253">SS80_Transparent_State()</a>.</p>
 
 </div>
 </div>
@@ -351,9 +348,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00279">279</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00278">278</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00785">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00747">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00224">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00432">amigo_seek()</a>, <a class="el" href="amigo_8c_source.html#l00275">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00312">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>, <a class="el" href="ss80_8c_source.html#l01690">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01726">SS80_Cancel()</a>, <a class="el" href="ss80_8c_source.html#l01634">SS80_Channel_Independent_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00290">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01670">SS80_Selected_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>, and <a class="el" href="ss80_8c_source.html#l01652">SS80_Universal_Device_Clear()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00568">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00632">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00771">amigo_cmd_clear()</a>, <a class="el" href="amigo_8c_source.html#l00737">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00509">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00223">amigo_request_status()</a>, <a class="el" href="amigo_8c_source.html#l00425">amigo_seek()</a>, <a class="el" href="amigo_8c_source.html#l00274">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00309">amigo_send_status()</a>, <a class="el" href="amigo_8c_source.html#l00824">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00799">amigo_todo_op()</a>, <a class="el" href="amigo_8c_source.html#l00453">amigo_verify()</a>, <a class="el" href="ss80_8c_source.html#l01634">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01668">SS80_Cancel()</a>, <a class="el" href="ss80_8c_source.html#l01578">SS80_Channel_Independent_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00865">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>, <a class="el" href="ss80_8c_source.html#l01614">SS80_Selected_Device_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01253">SS80_Transparent_State()</a>, and <a class="el" href="ss80_8c_source.html#l01596">SS80_Universal_Device_Clear()</a>.</p>
 
 </div>
 </div>
@@ -378,7 +375,7 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00382">382</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00365">365</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00180">task()</a>.</p>
 
@@ -405,7 +402,7 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00402">402</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00385">385</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
 </div>
 </div>
@@ -439,9 +436,9 @@ Variables</h2></td></tr>
 </ul>
 <p>References: HP-IB Tutorial pg 12,13 HP-IB pg 8-11 </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00215">215</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00212">212</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00359">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00216">gpib_trace_task()</a>, <a class="el" href="main_8c_source.html#l00244">main()</a>, <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00220">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00326">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00186">gpib_trace_task()</a>, <a class="el" href="main_8c_source.html#l00251">main()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>.</p>
 
 </div>
 </div>
@@ -463,9 +460,9 @@ Variables</h2></td></tr>
 <p>Display: decode/display all control flags and data on GPIB BUS. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8c.html#a702e73930b9d9909d1fd8fb26d716797" title="decode/display all control flags and data on the GPIB BUS ">gpib_decode_str()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00968">968</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00938">938</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l01013">gpib_read_str()</a>, <a class="el" href="gpib_8c_source.html#l00675">gpib_unread()</a>, <a class="el" href="gpib_8c_source.html#l01110">gpib_write_str()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, and <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00983">gpib_read_str()</a>, and <a class="el" href="gpib_8c_source.html#l01072">gpib_write_str()</a>.</p>
 
 </div>
 </div>
@@ -489,9 +486,9 @@ Variables</h2></td></tr>
 : gpib_trace() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00864">864</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00834">834</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00216">gpib_trace_task()</a>, and <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00186">gpib_trace_task()</a>, and <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>.</p>
 
 </div>
 </div>
@@ -556,9 +553,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>return </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00905">905</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00875">875</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00968">gpib_decode()</a>, <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00216">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>, <a class="el" href="printer_8c_source.html#l00175">printer_buffer()</a>, and <a class="el" href="printer_8c_source.html#l00220">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00938">gpib_decode()</a>, <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00186">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, <a class="el" href="printer_8c_source.html#l00186">printer_buffer()</a>, and <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>.</p>
 
 </div>
 </div>
@@ -615,9 +612,9 @@ Variables</h2></td></tr>
 <li>GPIB TX state expects NRFD LOW on entry or it is an ERROR! </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00727">727</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00697">697</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l01013">gpib_read_str()</a>, <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00216">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00220">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00983">gpib_read_str()</a>, <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00186">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>.</p>
 
 </div>
 </div>
@@ -711,9 +708,9 @@ status</dd></dl>
 </ul>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>TODO decode this state - for now I just set the EOI_FLAG </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l01013">1013</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00983">983</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="ss80_8c_source.html#l01690">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>, and <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00632">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="ss80_8c_source.html#l01634">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00865">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00470">SS80_locate_and_write()</a>, and <a class="el" href="ss80_8c_source.html#l01253">SS80_Transparent_State()</a>.</p>
 
 </div>
 </div>
@@ -738,9 +735,9 @@ status</dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00252">252</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00253">253</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00216">gpib_trace_task()</a>, <a class="el" href="main_8c_source.html#l00244">main()</a>, <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00220">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00186">gpib_trace_task()</a>, <a class="el" href="main_8c_source.html#l00251">main()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>.</p>
 
 </div>
 </div>
@@ -762,9 +759,9 @@ status</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>: <a class="el" href="gpib_8c.html#a3eb10b99d17dd69982b6bfc820fb29db" title="Test GPIB timeout timer for timeout condition. ">gpib_timeout_test()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00189">189</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00186">186</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00459">gpib_write_byte()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>.</p>
 
 </div>
 </div>
@@ -786,9 +783,9 @@ status</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>: <a class="el" href="gpib_8c.html#a687395337dd5c6604a775e3ffd3f006f" title="Set GPIB timeout timer in units of GPIB_TASK_TIC_US. ">gpib_timeout_set()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if timeout, 0 if not </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00201">201</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00198">198</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00459">gpib_write_byte()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>.</p>
 
 </div>
 </div>
@@ -809,9 +806,9 @@ status</dd></dl>
 <p>Start measuring time - used with hpib_timer_elapsed_end() </p>
 <p>See <a class="el" href="gpib__hal_8c.html" title="GPIB emulator hardwware layer for HP85 disk emulator project for AVR8. ">gpib_hal.c</a> for CPU specific code Provide Elapsed timer and Timeout timer - both in Microseconds We use the lower level clock elapsed timer functions here </p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00115">115</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00112">112</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>, <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00568">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00632">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00509">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00453">amigo_verify()</a>, <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>, <a class="el" href="ss80_8c_source.html#l00340">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00470">SS80_locate_and_write()</a>.</p>
 
 </div>
 </div>
@@ -832,9 +829,9 @@ status</dd></dl>
 <p>Display user message and time delta since <a class="el" href="gpib_8c.html#a6a3c1941e17626338b878123677ae797" title="Start measuring time - used with hpib_timer_elapsed_end() ">gpib_timer_elapsed_begin()</a> call. </p>
 <p>Display a message </p><dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00146">146</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00143">143</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>, <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00568">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00632">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00509">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00453">amigo_verify()</a>, <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>, <a class="el" href="ss80_8c_source.html#l00340">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00470">SS80_locate_and_write()</a>.</p>
 
 </div>
 </div>
@@ -855,7 +852,7 @@ status</dd></dl>
 <p>Reset elapsed and timeout timers Elapses and Timeout Timers. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00132">132</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00129">129</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__hal_8c_source.html#l00026">gpib_timer_init()</a>.</p>
 
@@ -882,7 +879,7 @@ status</dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00172">172</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00169">169</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__hal_8c_source.html#l00026">gpib_timer_init()</a>.</p>
 
@@ -922,9 +919,9 @@ status</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> _FLAGS defines for a full list. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ch </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00675">675</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00654">654</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, and <a class="el" href="gpib_8c_source.html#l01013">gpib_read_str()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00355">GPIB_COMMANDS()</a>, and <a class="el" href="gpib_8c_source.html#l00983">gpib_read_str()</a>.</p>
 
 </div>
 </div>
@@ -999,9 +996,9 @@ status</dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>FIXME If we test NRFD == 1 and NDAC == 1 and exit rather then waiting we frequently fail. Why does this happen ??? Disabling the test and waiting fixes the problem. Why ??? </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00459">459</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00442">442</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l01110">gpib_write_str()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l01072">gpib_write_str()</a>.</p>
 
 </div>
 </div>
@@ -1087,9 +1084,9 @@ status</dd></dl>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>Returns </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l01110">1110</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l01072">1072</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00705">amigo_cmd_dsj()</a>, <a class="el" href="amigo_8c_source.html#l00747">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00275">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00312">amigo_send_status()</a>, <a class="el" href="printer_8c_source.html#l00316">plot_echo()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">Send_Identify()</a>, <a class="el" href="ss80_8c_source.html#l00797">SS80_describe()</a>, <a class="el" href="ss80_8c_source.html#l01758">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l01500">SS80_Report()</a>, and <a class="el" href="ss80_8c_source.html#l00720">SS80_send_status()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00568">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00697">amigo_cmd_dsj()</a>, <a class="el" href="amigo_8c_source.html#l00737">amigo_cmd_wakeup()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00274">amigo_send_logical_address()</a>, <a class="el" href="amigo_8c_source.html#l00309">amigo_send_status()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, <a class="el" href="gpib__task_8c_source.html#l00574">Send_Identify()</a>, <a class="el" href="ss80_8c_source.html#l00780">SS80_describe()</a>, <a class="el" href="ss80_8c_source.html#l01700">SS80_error_return()</a>, <a class="el" href="ss80_8c_source.html#l00340">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l01446">SS80_Report()</a>, and <a class="el" href="ss80_8c_source.html#l00705">SS80_send_status()</a>.</p>
 
 </div>
 </div>
@@ -1107,19 +1104,12 @@ status</dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Detect Parallel Poll state. </p>
+<p>Attempt to detect the Parallel Poll Reposnse state Used only for debugging - it is unlikely that we will catch this state. </p>
 <ul>
 <li>PPR is short for "Parellel Poll Response"</li>
-<li>PPR happens when the CIC (controller in charge) holds both<ul>
-<li>ATN == 0 and EOI == 0</li>
-</ul>
-</li>
-<li>EOI is never used in command mode (ATN = 0)</li>
-<li>PPR state is happening if we see both ATN and EOI LOW at once If PPR is enabled we have two options: 1) If software Parrallel Poll is defined we save DATA BUS state and hold PPR DATA BUS lines LOW. 2) Hardware will automatically hold DATA BUS lines low.<ul>
-<li>Nest We go to the DETECTED state</li>
-</ul>
-</li>
-<li>In the DETECTED state we wait for ATN and EOI to change Once this happens: 1) If software Parrallel Poll is defined we restore the DATA BUS state. 2) Hardware will automatically release DATA BUS state. We report detecting if(debug_level)</li>
+<li>PPR happens when the CIC (controller in charge) holds BOTH of ATN == 0 and EOI == 0</li>
+<li>PPR Response happens using hardware The hardware pulls a bit low on the GPIB bus corresponding to the device. But only if any PPR mask bits are set in the hardware</li>
+<li>Note: EOI is never used in command mode (ATN = 0) 1) Hardware will automatically hold DATA BUS lines low</li>
 <li><a class="el" href="gpib__hal_8c.html#a639fcfaa605f43d589798545d9d1a975" title="Return PPR enable register. ">ppr_reg()</a> determines if we have PPR enabled.</li>
 <li>References:<ul>
 <li>SS80 pg 3-4, section 3-3 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8c.html#ad0320b576cbb529fcec04e1fed8da198">EnablePPR()</a> </dd>
@@ -1130,10 +1120,12 @@ status</dd></dl>
 </ul>
 </li>
 </ul>
+<p>Bus pin states</p>
+<p>debugging - ddr bits should be 0xff </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00339">339</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00330">330</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00459">gpib_write_byte()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>.</p>
 
 </div>
 </div>
@@ -1148,27 +1140,9 @@ status</dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00102">102</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00099">99</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="timer_8c_source.html#l00200">clock_elapsed_end()</a>, <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1b595c4136454db2525576508c951b63"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a> device</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Device number - working to support more then one device support. </p>
-
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00087">87</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
-
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, and <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>.</p>
+<p>Referenced by <a class="el" href="timer_8c_source.html#l00200">clock_elapsed_end()</a>, <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1160,7 @@ status</dd></dl>
 
 <p>Definition at line <a class="el" href="gpib_8c_source.html#l00079">79</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00572">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00638">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00516">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00460">amigo_verify()</a>, <a class="el" href="ss80_8c_source.html#l00888">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00343">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00479">SS80_locate_and_write()</a>, and <a class="el" href="ss80_8c_source.html#l01291">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00568">amigo_buffered_read()</a>, <a class="el" href="amigo_8c_source.html#l00632">amigo_buffered_write()</a>, <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l00509">amigo_format()</a>, <a class="el" href="amigo_8c_source.html#l00453">amigo_verify()</a>, <a class="el" href="ss80_8c_source.html#l00865">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l00340">SS80_locate_and_read()</a>, <a class="el" href="ss80_8c_source.html#l00470">SS80_locate_and_write()</a>, and <a class="el" href="ss80_8c_source.html#l01253">SS80_Transparent_State()</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1178,7 @@ status</dd></dl>
 
 <p>Definition at line <a class="el" href="gpib_8c_source.html#l00084">84</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00675">gpib_unread()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00654">gpib_unread()</a>.</p>
 
 </div>
 </div>
@@ -1222,7 +1196,7 @@ status</dd></dl>
 
 <p>Definition at line <a class="el" href="gpib_8c_source.html#l00082">82</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00215">gpib_bus_init()</a>, <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00675">gpib_unread()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00212">gpib_bus_init()</a>, <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, and <a class="el" href="gpib_8c_source.html#l00654">gpib_unread()</a>.</p>
 
 </div>
 </div>
@@ -1238,9 +1212,9 @@ status</dd></dl>
 
 <p>gpib current and last command </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00102">102</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00099">99</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l00727">gpib_read_byte()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -1256,9 +1230,9 @@ status</dd></dl>
 
 <p>gpib listen address </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00095">95</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00092">92</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>, <a class="el" href="printer_8c_source.html#l00287">PRINTER_COMMANDS()</a>, and <a class="el" href="ss80_8c_source.html#l01791">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01284">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01172">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00824">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00799">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00355">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00878">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00798">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>, <a class="el" href="printer_8c_source.html#l00309">PRINTER_COMMANDS()</a>, and <a class="el" href="ss80_8c_source.html#l01731">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -1274,9 +1248,9 @@ status</dd></dl>
 
 <p>gpib last listen address </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00097">97</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00094">94</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00971">listen_cleanup()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00930">listen_cleanup()</a>.</p>
 
 </div>
 </div>
@@ -1292,9 +1266,9 @@ status</dd></dl>
 
 <p>gpib secondary </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00105">105</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00102">102</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00473">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00355">GPIB_COMMANDS()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00440">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -1310,9 +1284,9 @@ status</dd></dl>
 
 <p>gpib serial poll status </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00100">100</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00097">97</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00798">GPIB_TALK()</a>.</p>
 
 </div>
 </div>
@@ -1443,9 +1417,9 @@ status</dd></dl>
 /// T    Read Self Test Results         ---     2       A13     N
 /// L    Initiat Self Test          ---     2       A24     N
 /// </pre> 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00090">90</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00087">87</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="amigo_8c_source.html#l00878">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01304">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01192">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00838">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00813">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00642">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00388">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00762">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00918">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>, <a class="el" href="printer_8c_source.html#l00287">PRINTER_COMMANDS()</a>, and <a class="el" href="ss80_8c_source.html#l01791">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="amigo_8c_source.html#l00864">Amigo_Command()</a>, <a class="el" href="amigo_8c_source.html#l01284">AMIGO_COMMANDS()</a>, <a class="el" href="amigo_8c_source.html#l01172">Amigo_Execute()</a>, <a class="el" href="amigo_8c_source.html#l00824">amigo_todo()</a>, <a class="el" href="amigo_8c_source.html#l00799">amigo_todo_op()</a>, <a class="el" href="gpib__task_8c_source.html#l00607">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00355">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00878">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00798">GPIB_TALK()</a>, <a class="el" href="printer_8c_source.html#l00309">PRINTER_COMMANDS()</a>, and <a class="el" href="ss80_8c_source.html#l01731">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -1461,16 +1435,16 @@ status</dd></dl>
 
 <p>gpib last talk address </p>
 
-<p>Definition at line <a class="el" href="gpib_8c_source.html#l00092">92</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib_8c_source.html#l00089">89</a> of file <a class="el" href="gpib_8c_source.html">gpib.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00252">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00840">GPIB_TALK()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00798">GPIB_TALK()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 25 2017 23:13:40 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 27 2017 23:59:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

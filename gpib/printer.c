@@ -65,13 +65,17 @@ void printer_open(char *name)
         ptr = name;
     }
 
-    printf("Capturing plot to:%s\n", ptr);
+	if(debuglevel & 32)
+		printf("Capturing plot to:%s\n", ptr);
 
     plot.fp = fopen(ptr,"w");
     if(plot.fp == NULL)
     {
-        perror("open failed");
-        printf("exiting...\n");
+		if(debuglevel & (1+32))
+		{
+			perror("open failed");
+			printf("exiting...\n");
+		}
         return;
     }
 
@@ -112,13 +116,17 @@ void printer_close()
     if( receive_plot_flush() )
         plot.error = 1;
 
-    if(plot.error)
-        printf("ERROR durring write\n");
+	if(debuglevel & (1+32))
+	{
+		if(plot.error)
+			printf("ERROR durring write\n");
+	}
 
     if(plot.fp)
     {
         fclose(plot.fp);
-        printf("\nDONE: %08ld\n",plot.count);
+		if(debuglevel & 32)
+			printf("\nDONE: %08ld\n",plot.count);
     }
 
     plot.error = 0;
@@ -152,8 +160,11 @@ int receive_plot_flush()
     ret  = fwrite(plot.buf, 1, plot.ind , plot.fp);
     if(ret != plot.ind)
     {
-        perror("receive_plot_flush");
-        printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
+		if(debuglevel & (1+32))
+		{
+			perror("receive_plot_flush");
+			printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
+		}
         return(-1);
     }
 
@@ -177,8 +188,11 @@ void printer_buffer( uint16_t val )
 
     uint16_t ch;
 
-    if( ( plot.count & 255L ) == 0)
-        printf("%08ld\r",plot.count);
+	if(debuglevel & (1+32))
+	{
+		if( ( plot.count & 255L ) == 0)
+			printf("%08ld\r",plot.count);
+	}
 
     ch = val & 0xff;
     if(val & (0xff00 & ~REN_FLAG))
@@ -229,7 +243,8 @@ void receive_plot( char *name )
     name = skipspaces(name);
     if(!*name)
     {
-        printf("receive_plot: expected file name\m");
+		if(debuglevel & (1+32))
+			printf("receive_plot: expected file name\m");
         return;
     }
 
@@ -242,8 +257,11 @@ void receive_plot( char *name )
 
         ch = gpib_read_byte();
 
-        if(( plot.count & 255L ) == 0)
-            printf("%08ld\r",plot.count);
+		if(debuglevel & 32)
+		{
+			if(( plot.count & 255L ) == 0)
+				printf("%08ld\r",plot.count);
+		}
 
         if(ch & (0xff00 & ~REN_FLAG))
         {
@@ -251,18 +269,22 @@ void receive_plot( char *name )
             if( receive_plot_flush() )
                 plot.error = 1;
             ptr = gpib_decode_str(ch);
-            puts(ptr);
-            fprintf(plot.fp,"%s\n", ptr);
+			if(debuglevel & 256)
+				puts(ptr);
+			fprintf(plot.fp,"%s\n", ptr);
         }
         else
         {
             ch &= 0xff;
             plot.buf[plot.ind++] = ch;
 
-            if(ch == '\n')
-                printf("\n%ld EOL\n", plot.count);
-            if(ch == '\r')
-                printf("\n%ld CR\n", plot.count);
+			if(debuglevel & 32)
+			{
+				if(ch == '\n')
+					printf("\n%ld EOL\n", plot.count);
+				if(ch == '\r')
+					printf("\n%ld CR\n", plot.count);
+			}
 
             if(plot.ind >= 256)
             {
@@ -289,8 +311,8 @@ int PRINTER_COMMANDS(uint8_t ch)
 
     if(PRINTER_is_MLA(listening))
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+		if(debuglevel & 32)
             printf("[SC PRINTER Listen: %02x]\n",  0xff & ch );
 #endif
         return(0);
@@ -298,8 +320,8 @@ int PRINTER_COMMANDS(uint8_t ch)
 
     if(PRINTER_is_MTA(talking))
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+		if(debuglevel & 32)
             printf("[SC PRINTER Talk: %02x]\n",  0xff & ch );
 #endif
         return(0);

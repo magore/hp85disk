@@ -120,15 +120,15 @@ int TD[] =
 /// @todo get this working
 void SS80_Test(void)
 {
-#if SDEBUG >= 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Test]\n");
 #endif
-#if SDEBUG >= 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
     {
         printf("[SS80 Test Done]\n");
-        printf("==============================\n");
+        sep();
     }
 #endif
 }
@@ -263,14 +263,13 @@ void SS80_init(void)
     {
         if(Devices[i].TYPE == SS80_TYPE)
         {
-			if(!set_device_by_index(i))
+			if(!set_active_device(i))
 				continue;
-	
 			Clear_Common(15);
 			// Power On State
 			SS80s->qstat = 2;
-#if SDEBUG >= 1
-			if(debuglevel >= 1)
+#if SDEBUG
+			if(debuglevel & 32)
 				printf("[SS80 %d INIT]\n", Devices[i].ADDRESS);
 #endif
 		/// @todo FIXME
@@ -313,10 +312,8 @@ int SS80_Execute_State(void)
             SS80s->estate = EXEC_IDLE;
             break;
         default:
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+            if(debuglevel & 1)
                 printf("[SS80 EXEC state:%d error]\n", SS80s->estate);
-#endif
             SS80s->estate = EXEC_IDLE;
             break;
     }
@@ -360,8 +357,8 @@ int SS80_locate_and_read( void )
 ///  SS80 4-39
 ///  For now we will assume the controller will never do this
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Locate and Read @%08lx(%lx)]\n", Address,SS80s->Length);
 #endif
 
@@ -390,46 +387,42 @@ int SS80_locate_and_read( void )
             status |= EOI_FLAG;                   // GPIB EOI on final charater
         }
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_begin();
 #endif
 
         len = dbf_open_read(SS80p->HEADER.NAME, Address, gpib_iobuff, chunk, &SS80s->Errors);
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_end("Disk Read");
-        if(debuglevel >= 1)
+        if(debuglevel & 32)
             printf("[SS80 Disk Read %d bytes]\n", len);
 #endif
         if(len < 0)
         {
             SS80s->qstat = 1;
 /// @return Return
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+            if(debuglevel & 1)
                 printf("[SS80 Disk Read Error]\n");
-#endif
             return( SS80_error_return() );
         }
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_begin();
 #endif
         len = gpib_write_str(gpib_iobuff, chunk, &status);
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 64)
             gpib_timer_elapsed_end("GPIB Write");
 #endif
         if( len != chunk)
         {
             SS80s->qstat = 1;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+            if(debuglevel & 1)
                 printf("[SS80 GPIB Write Wrror]\n");
-#endif
             if(status & ERROR_MASK)
             {
                 SS80s->Errors |= ERR_GPIB;
@@ -444,15 +437,13 @@ int SS80_locate_and_read( void )
 ///  Note: this should not happen unless we exit on errors above
     if(count > 0)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Buffered Read DID NOT FINISH]\n");
-#endif
     }
     else
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+        if(debuglevel & 32)
             printf("[SS80 Buffered Read Total(%ld) Bytes]\n", total_bytes);
 #endif
     }
@@ -486,8 +477,8 @@ int SS80_locate_and_write(void)
 
     io_skip = 0;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Locate and Write @%08lx(%lx)]\n", Address, SS80s->Length);
 #endif
 
@@ -521,14 +512,14 @@ int SS80_locate_and_write(void)
 
         Mem_Clear(gpib_iobuff);
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 128)
             gpib_timer_elapsed_begin();
 #endif
         len = gpib_read_str(gpib_iobuff, (UINT) chunk, &status);
 
-#if SDEBUG > 1
-        if(debuglevel > 2)
+#if SDEBUG
+        if(debuglevel & 128)
             gpib_timer_elapsed_end("GPIB Read");
 #endif
 
@@ -536,10 +527,8 @@ int SS80_locate_and_write(void)
         {
             if(status & ERROR_MASK)
             {
-#if SDEBUG >= 1
-                if(debuglevel >= 1)
+                if(debuglevel & 1)
                     printf("[GPIB Read Error]\n");
-#endif
                 SS80s->Errors |= ERR_WRITE;
                 SS80s->qstat = 1;
                 break;
@@ -554,13 +543,13 @@ int SS80_locate_and_write(void)
             if(len)
             {
                 int len2;
-#if SDEBUG > 1
-                if(debuglevel > 2)
+#if SDEBUG
+                if(debuglevel & 64)
                     gpib_timer_elapsed_begin();
 #endif
                 len2 = dbf_open_write(SS80p->HEADER.NAME, Address, gpib_iobuff, len, &SS80s->Errors);
-#if SDEBUG > 1
-                if(debuglevel > 2)
+#if SDEBUG
+                if(debuglevel & 64)
                     gpib_timer_elapsed_end("Disk Write");
 #endif
                 if(len2 != len)
@@ -570,15 +559,13 @@ int SS80_locate_and_write(void)
                         SS80s->Errors |= ERR_WP;
                     SS80s->qstat = 1;
                     io_skip = 1;                  // Stop writing
-#if SDEBUG >= 1
-                    if(debuglevel >= 1)
+                    if(debuglevel & 1)
                         printf("[Disk Write Error]\n");
-#endif
                 }
                 else
                 {
-#if SDEBUG > 1
-                    if(debuglevel > 1)
+#if SDEBUG
+                    if(debuglevel & 32)
                         printf("[SS80 Locate and Write wrote(%d)]\n", len2);
 #endif
                     Address += len;
@@ -599,15 +586,13 @@ int SS80_locate_and_write(void)
 
     if(count > 0)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Locate and Write DID NOT FINISH]\n");
-#endif
     }
     else
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+        if(debuglevel & 32)
             printf("[SS80 Locate and Write Wrote Total(%ld)]\n", total_bytes);
 #endif
     }
@@ -722,8 +707,8 @@ int SS80_send_status( void )
     uint8_t tmp[20];
     uint16_t status;
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Send Status]\n");
 #endif
 
@@ -775,10 +760,8 @@ int SS80_send_status( void )
     status = EOI_FLAG;
     if(gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Send Status FAILED]\n");
-#endif
     }
 
     return ( status & ERROR_MASK );
@@ -803,8 +786,8 @@ int SS80_describe( void )
 
 		
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Describe]\n");
 #endif
 
@@ -813,10 +796,8 @@ int SS80_describe( void )
 	B = SS80ControllerPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Describe Controller FAILED]\n");
-#endif
         return(status & ERROR_MASK);
     }
 
@@ -825,10 +806,8 @@ int SS80_describe( void )
 	B = SS80UnitPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Describe Unit FAILED]\n");
-#endif
         return(status & ERROR_MASK);
     }
 
@@ -836,10 +815,8 @@ int SS80_describe( void )
 	B = SS80VolumePack(&size);
     if(gpib_write_str(B,size,&status) != size)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Describe Volume FAILED]\n");
-#endif
         return(status & ERROR_MASK);
     }
 
@@ -896,16 +873,13 @@ int SS80_Command_State( void )
 
     DisablePPR(SS80p->HEADER.PPR);
 
-
     status = EOI_FLAG;
     len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
     if(status & ERROR_MASK)
     {
 /// @todo FIXME
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
-            printf("[GPIB Read ERROR]\n");
-#endif
+        if(debuglevel & 1)
+            printf("[SS80 Command State GPIB Read ERROR]\n");
         return(status & ERROR_MASK);
     }
 
@@ -914,10 +888,8 @@ int SS80_Command_State( void )
 
     if( !(status & EOI_FLAG) )
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[GPIB buffer OVERFLOW!]\n");
-#endif
     }
 
     ind = 0;
@@ -925,19 +897,13 @@ int SS80_Command_State( void )
     {
         ch = gpib_iobuff[ind++];
 
-#if SDEBUG > 1
-///  Note - status is omitted so this is just a byte dump
-        if(debuglevel >= 9)
-            gpib_decode(ch);
-#endif
-
         if(ch == 0x00)
         {
 /// @todo FIXME,
 ///  In Execute state calls  SS80_locate_and_read();
             SS80s->estate = EXEC_LOCATE_AND_READ;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Locate and Read]\n");
 #endif
             break;
@@ -948,8 +914,8 @@ int SS80_Command_State( void )
 /// @todo FIXME,
 ///  SS80_locate_and_write();
             SS80s->estate = EXEC_LOCATE_AND_WRITE;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Locate and Write]\n");
 #endif
             break;
@@ -983,8 +949,8 @@ int SS80_Command_State( void )
 			*/
 			SS80s->AddressBlocks = B2V(gpib_iobuff,ind,6);
             ind += 6;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set Address:(%08lx)]\n", SS80s->AddressBlocks);
 #endif
             continue;
@@ -1002,8 +968,8 @@ int SS80_Command_State( void )
 			*/
             SS80s->Length = B2V(gpib_iobuff,ind,4);
             ind += 4;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set Length:(%08lx)]\n", SS80s->Length);
 #endif
             continue;
@@ -1013,8 +979,8 @@ int SS80_Command_State( void )
         if(ch >= 0x20 && ch <= 0x2f)
         {
             SS80s->unitNO = ch - 0x20;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
 #endif
             continue;
@@ -1024,8 +990,8 @@ int SS80_Command_State( void )
 		// NO OP
         if(ch == 0x34)
         {
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 NO-OP]\n");
 #endif
             continue;
@@ -1035,8 +1001,8 @@ int SS80_Command_State( void )
         if (ch == 0x39)
         {
             ind += 2;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set RPS NO-OP]\n");
 #endif
             continue;
@@ -1047,8 +1013,8 @@ int SS80_Command_State( void )
         if (ch == 0x3B)
         {
             ind++;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set Release NO-OP]\n");
 #endif
             continue;
@@ -1057,8 +1023,8 @@ int SS80_Command_State( void )
         if(ch >= 0x40 && ch <= 0x4f)
         {
             SS80s->volNO = ch - 0x40;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
 #endif
             continue;
@@ -1075,8 +1041,8 @@ int SS80_Command_State( void )
 /// @todo TODO
 ///  Skip Parameters
             ind++;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16 + 32))
                 printf("[SS80 Set Return Addressing - TODO]\n");
 #endif
             continue;
@@ -1091,8 +1057,8 @@ int SS80_Command_State( void )
 /// @todo TODO
 /// @todo FIXME
 ///  Execute NOW
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16 +32))
                 printf("[SS80 Locate and Verify - TODO]\n");
 #endif
             break;
@@ -1100,8 +1066,8 @@ int SS80_Command_State( void )
 
         if(ch == 0x0E)
         {
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Release NO-OP]\n");
 #endif
 /// @todo FIXME
@@ -1110,8 +1076,8 @@ int SS80_Command_State( void )
         }
         if(ch == 0x0F)
         {
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Release Denied NO-OP]\n");
 #endif
 /// @todo FIXME
@@ -1131,8 +1097,8 @@ int SS80_Command_State( void )
 /// @todo TODO
 ///  Skip Parameters
             ind += 2;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Validate Key - TODO]\n");
 #endif
             break;
@@ -1141,8 +1107,8 @@ int SS80_Command_State( void )
         if(ch == 0x35)
         {
             SS80s->estate = EXEC_DESCRIBE;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Describe]\n");
 #endif
             break;
@@ -1160,8 +1126,8 @@ int SS80_Command_State( void )
             ind += 2;
 /// @todo TODO
 /// @todo FIXME
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16 + 32))
                 printf("[SS80 Initialize Media TODO]\n");
 #endif
             break;
@@ -1178,8 +1144,8 @@ int SS80_Command_State( void )
         {
 /// @todo TODO
             ind += 8;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Set Status Mask - TODO]\n");
 #endif
             break;
@@ -1188,8 +1154,8 @@ int SS80_Command_State( void )
         if (ch == 0x4C)
         {
 /// @todo TODO
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Door UnLock - TODO]\n");
 #endif
             break;
@@ -1198,8 +1164,8 @@ int SS80_Command_State( void )
         if (ch == 0x4D)
         {
 /// @todo TODO
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Door Lock - TODO]\n");
 #endif
             break;
@@ -1208,8 +1174,8 @@ int SS80_Command_State( void )
         if(ch == 0x0D)
         {
             SS80s->estate = EXEC_SEND_STATUS;
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Request Status]\n");
 #endif
             break;
@@ -1226,27 +1192,23 @@ int SS80_Command_State( void )
         {
 /// @todo TODO
             ind += 3;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Iniate Diagnostic - TODO]\n");
 #endif
             break;
         }
 
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1 )
             printf("[SS80 Invalid OP Code (%02x)]\n", ch & 0xff);
-#endif
 
         break;
     }
 
     if( ind != len)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Execute Command, opcode processing error (%d) of (%d) OP Codes]\n", ind, len);
-#endif
     }
 
     EnablePPR(SS80p->HEADER.PPR);
@@ -1310,10 +1272,8 @@ int SS80_Transparent_State( void )
     if(status & ERROR_MASK)
     {
 /// @todo FIXME
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[GPIB Read ERROR]\n");
-#endif
         return(status & ERROR_MASK);
     }
 
@@ -1322,10 +1282,8 @@ int SS80_Transparent_State( void )
 
     if( !(status & EOI_FLAG) )
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[GPIB buffer OVERFLOW!]\n");
-#endif
     }
 
     ind = 0;
@@ -1334,19 +1292,13 @@ int SS80_Transparent_State( void )
     {
         ch = gpib_iobuff[ind++];
 
-#if SDEBUG > 1
-///  Note - status is omitted so this is just a byte dump
-        if(debuglevel >= 9)
-            gpib_decode(ch);
-#endif
-
         if(ch == 0x01)
         {
 /// @todo TODO
 ///  Skip Paramter
             ind++;
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 HP-IB Parity Checking - TODO]\n");
 #endif
             EnablePPR(SS80p->HEADER.PPR);
@@ -1361,8 +1313,8 @@ int SS80_Transparent_State( void )
             ind += 4;
 /// @todo TODO
 ///  DO NOT EPPR
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Read Loopback - TODO]\n");
 #endif
             break;
@@ -1376,8 +1328,8 @@ int SS80_Transparent_State( void )
             ind += 4;
 /// @todo TODO
 ///  DO NOT EPPR
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & (16+32))
                 printf("[SS80 Write Loopback - TODO]\n");
 #endif
             break;
@@ -1395,8 +1347,8 @@ int SS80_Transparent_State( void )
 
         if(ch == 0x08)                            // 0x08 OP Code
         {
-#if SDEBUG >= 1
-            if(debuglevel >= 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Channel Independent Clear (%d)]\n", SS80s->unitNO);
 #endif
             return(SS80_Channel_Independent_Clear( SS80s->unitNO ));
@@ -1408,8 +1360,8 @@ int SS80_Transparent_State( void )
 
         if(ch == 0x09)                            // 0x09 OP Code
         {
-#if SDEBUG > 1
-            if(debuglevel > 1)
+#if SDEBUG
+            if(debuglevel & 32)
                 printf("[SS80 Cancel (%d)]\n", SS80s->unitNO);
 #endif
             return(SS80_Cancel( SS80s->unitNO ));
@@ -1417,19 +1369,15 @@ int SS80_Transparent_State( void )
             break;
         }
 
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Invalid OP Code (%02x)]\n", ch & 0xff);
-#endif
         break;
     }
 
     if( ind != len)
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Transparent Command, processing ERROR(%d) of (%d) OP Codes]\n", ind, len);
-#endif
     }
 
 
@@ -1458,15 +1406,13 @@ int SS80_cmd_seek( void )
         SS80s->qstat = 1;
         SS80s->Errors |= ERR_SEEK;
 
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 Seek OVERFLOW]\n");
-#endif                                    // if 0
         return(1);
     }
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Seek:%08lx]\n", SS80s->AddressBlocks);
 #endif
     return (0);
@@ -1507,16 +1453,14 @@ int SS80_Report( void )
     status = EOI_FLAG;
     if( gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[SS80 qstat send FAILED]\n");
-#endif
         return(status & ERROR_MASK);
     }
     else
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+        if(debuglevel & 32)
             printf("[SS80 qstat %02X]\n", SS80s->qstat);
 #endif
     }
@@ -1669,8 +1613,8 @@ int SS80_Universal_Device_Clear(void)
 
 int SS80_Selected_Device_Clear( int u )
 {
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 SDC]\n");
 #endif
     Clear_Common( u );
@@ -1695,16 +1639,14 @@ int SS80_Amigo_Clear( void )
     status = 0;
     if( gpib_read_str(parity, sizeof(parity), &status) != sizeof(parity))
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[GPIB Read Error]\n");
-#endif
         return(status & ERROR_MASK);
     }
     else
     {
-#if SDEBUG > 1
-        if(debuglevel > 1)
+#if SDEBUG
+        if(debuglevel & 32)
             printf("[Amigo Clear]\n");
 #endif
     }
@@ -1741,8 +1683,8 @@ int SS80_Cancel( int u )
 int SS80_increment( void )
 {
     SS80s->AddressBlocks += 1L;
-#if SDEBUG > 1
-    if(debuglevel > 1)
+#if SDEBUG
+    if(debuglevel & 32)
         printf("[SS80 Increment to (%lx)]\n", SS80s->AddressBlocks);
 #endif
     return(0);
@@ -1766,10 +1708,8 @@ int SS80_error_return( void )
     status = EOI_FLAG;
     if( gpib_write_str(tmp,sizeof(tmp), &status) != sizeof(tmp))
     {
-#if SDEBUG >= 1
-        if(debuglevel >= 1)
+        if(debuglevel & 1)
             printf("[GPIB Error Return - Write ERROR]\n");
-#endif
         return(status & ERROR_MASK);
     }
     SS80s->qstat = 0;
@@ -1796,8 +1736,8 @@ int SS80_COMMANDS(uint8_t ch)
         {
             if(SS80_is_MLA(listening))
             {
-#if SDEBUG > 1
-                if(debuglevel > 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[SS80 Command State]\n");
 #endif
                 return ( SS80_Command_State() );
@@ -1809,10 +1749,8 @@ int SS80_COMMANDS(uint8_t ch)
         {
             if(SS80_is_MLA(listening)  || SS80_is_MTA(talking))
             {
-#if SDEBUG > 1
-                if(debuglevel > 1)
+                if(debuglevel & 32)
                     printf("[SS00 Execute State]\n");
-#endif
                 return ( SS80_Execute_State() );
 
             }
@@ -1823,8 +1761,8 @@ int SS80_COMMANDS(uint8_t ch)
         {
             if(SS80_is_MTA(talking) )
             {
-#if SDEBUG > 1
-                if(debuglevel > 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[SS80 Report State]\n");
 #endif
                 return( SS80_Report() );
@@ -1832,8 +1770,8 @@ int SS80_COMMANDS(uint8_t ch)
 
             if(SS80_is_MLA(listening))
             {
-#if SDEBUG > 1
-                if(debuglevel > 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[Amigo Clear]\n");
 #endif
                 DisablePPR(SS80p->HEADER.PPR);
@@ -1845,25 +1783,21 @@ int SS80_COMMANDS(uint8_t ch)
         {
             if(SS80_is_MLA(listening) )
             {
-#if SDEBUG > 1
-                if(debuglevel > 1)
+#if SDEBUG
+                if(debuglevel & 32)
                     printf("[SS80 Transparent]\n");
 #endif
                 return( SS80_Transparent_State() );
             }
         }
-#if SDEBUG > 1
-        if(debuglevel > 1)
+        if(debuglevel & 1)
             printf("[SS80 SC Unknown: %02x, listen:%02x, talk:%02x]\n",
                 0xff & ch, 0xff & listening, 0xff & talking);
-#endif
         return(0);
     }
 
-#if SDEBUG > 1
-    if(debuglevel > 1)
+    if(debuglevel & 1)
         printf("[SS80 Unknown SC: %02x, listen:%02x, talk:%02x]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
-#endif
     return(0);
 }

@@ -26,11 +26,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include "lib/stringsup.h"
 
-// ==================================================
+// =============================================
 // Character functions
-// ==================================================
+// =============================================
 
-// ==================================================
+// =============================================
 /// @brief test if a character is a digit
 /// @param[in] c: character
 /// @return true or false
@@ -44,7 +44,7 @@ isdigit(int c)
     return(0);
 }
 
-// ==================================================
+// =============================================
 ///@brief Is a character upper case
 ///
 /// @param[in] c: character.
@@ -60,7 +60,7 @@ isupper(int c)
     return(0);
 }
 
-// ==================================================
+// =============================================
 //@brief Is a character lower case
 ///
 /// @param[in] c: character.
@@ -76,7 +76,7 @@ islower(int c)
     return(0);
 }
 
-// ==================================================
+// =============================================
 ///@brief Convert character to lower case, only if it is upper case
 ///
 /// @param[in] c: character.
@@ -92,7 +92,7 @@ tolower(int c)
     return(c);
 }
 
-// ==================================================
+// =============================================
 ///@brief Convert character to upper case, only if it is lower case
 ///
 /// @param[in] c: character.
@@ -125,10 +125,10 @@ void *memchr(const void *str, int c, size_t size)
     return NULL;
 }
 
-// ==================================================
+// =============================================
 // String functions
-// ==================================================
-// ==================================================
+// =============================================
+// =============================================
 /// @brief String Length
 /// @param[in] str: string
 /// @return string length
@@ -193,7 +193,7 @@ char *stpcpy(char *dest, const char *src)
 	return(dest);
 }
 
-// ==================================================
+// =============================================
 /// @brief Reverse a string in place
 ///  Example: abcdef -> fedcba
 /// @param[in] str: string
@@ -216,7 +216,7 @@ reverse(char *str)
     }
 }
 
-// ==================================================
+// =============================================
 /// @brief UPPERCASE a string
 /// @param[in] str: string
 /// @return void
@@ -235,7 +235,7 @@ strupper(char *str)
 }
 
 
-// ==================================================
+// =============================================
 ///@brief Trim White space and control characters from end of string.
 ///
 ///@param[in] str: string
@@ -254,7 +254,7 @@ void trim_tail(char *str)
     }
 }
 
-// ==================================================
+// =============================================
 ///@brief Skip white space in a string - tabs and spaces.
 ///
 ///@param[in] ptr: input string
@@ -271,7 +271,7 @@ char *skipspaces(char *ptr)
     return(ptr);
 }
 
-// ==================================================
+// =============================================
 ///@brief Skip to first white space in a string - tabs and spaces.
 ///
 ///@param[in] ptr: input string
@@ -292,7 +292,7 @@ char *nextspace(char *ptr)
     return(ptr);
 }
 
-// ==================================================
+// =============================================
 ///@brief Skip characters defined in user string.
 ///
 ///@param[in] str: string
@@ -322,9 +322,9 @@ char *skipchars(char *str, char *pat)
     return(str);
 }
 
-// ==================================================
+// =============================================
 // String Matching
-// ==================================================
+// =============================================
 ///@brief Compare two strings
 ///
 ///@param[in] str: string to match.
@@ -348,7 +348,7 @@ strcmp(const char *str, const char *pat)
     return(ret);
 }
 
-// ==================================================
+// =============================================
 ///@brief Compare two strings maximum len bytes in size
 ///
 ///@param[in] str: string to match.
@@ -372,7 +372,7 @@ strncmp(const char *str, const char *pat, size_t len)
     return(ret);
 }
 
-// ==================================================
+// =============================================
 ///@brief Compare two strings without case
 ///
 ///@param[in] str: string to match.
@@ -418,7 +418,7 @@ strncasecmp(const char *str, const char *pat, size_t len)
     return(ret);
 }
 
-// ==================================================
+// =============================================
 ///@brief Compare two strings.
 ///
 ///@param[in] str: string to match.
@@ -437,7 +437,7 @@ int MATCH(char *str, char *pat)
 }
 
 
-// ==================================================
+// =============================================
 ///@brief Compare two strings without case.
 ///
 ///@param[in] str: string to match.
@@ -454,7 +454,7 @@ int MATCHI(char *str, char *pat)
         return(len);
     return(0);
 }
-// ==================================================
+// =============================================
 ///@brief Compare two strings limted to length of pattern.
 ///
 ///@param[in] str: string to match.
@@ -480,7 +480,7 @@ int MATCH_LEN(char *str, char *pat)
     return(0);
 }
 
-// ==================================================
+// =============================================
 ///@brief Compare two strings without case limted to length of pattern.
 ///
 ///@param[in] str: string to match.
@@ -506,7 +506,7 @@ int MATCHI_LEN(char *str, char *pat)
     return(0);
 }
 
-// ==================================================
+// =============================================
 ///@brief return next token
 ///
 /// - Skips all non printable ASCII characters before token
@@ -550,7 +550,7 @@ char *get_token(char *str, char *token, int max)
 }
 
 
-// ==================================================
+// =============================================
 ///@brief Search for token in a string matching user pattern.
 ///
 /// - Skips all non printable ASCII characters before trying match.
@@ -588,7 +588,7 @@ int token(char *str, char *pat)
         return(len);
     return(0);
 }
-// ==================================================
+// =============================================
 
 /// @brief get a number
 ///
@@ -627,10 +627,10 @@ int32_t get_value(char *str)
 	return(strtol(ptr, (char **)&endptr, base));
 }
 
-// ==================================================
+// =============================================
 // String memory allocation functions
-// ==================================================
-// ==================================================
+// =============================================
+// =============================================
 ///@brief Allocate space for string with maximum size.
 ///
 /// - Copies tring into allocated space limited to maximum size.
@@ -655,7 +655,7 @@ char *strnalloc(char *str, int len)
 
 }
 
-// ==================================================
+// =============================================
 ///@brief Allocate space for string.
 ///
 /// - Copies tring into allocated space.
