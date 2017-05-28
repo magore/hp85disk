@@ -264,8 +264,8 @@ int main(void)
     printf("HP85 Disk and Device Emulator\n");
     printf("-> https://github.com/magore/hp85disk\n");
 
-    printf("   GIT version:             %s\n", GIT_VERSION);
-    printf("   Last local modification: %s\n", LOCAL_MOD);
+    printf("   GIT pushed:        %s\n", GIT_VERSION);
+    printf("   Last updated file: %s\n", LOCAL_MOD);
 
 	sep();
     printf("CPU Clock = %lu\n", F_CPU);
