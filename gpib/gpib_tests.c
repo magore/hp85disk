@@ -69,7 +69,7 @@ int gpib_tests(char *str)
         ptr += len;
         if(assign_value(ptr,0,256,&val))
 			debuglevel=val;
-        printf("debug=%02xH\n", debuglevel);
+        printf("debug=%02XH\n", debuglevel);
         return(1);
     }
     if ((len = token(ptr,"config")) )

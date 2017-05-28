@@ -285,7 +285,7 @@ void EnablePPR(int bit)
     ppr_bit_set(bit);
 #if SDEBUG
     if(debuglevel & 2)
-        printf("[EPPR %d, mask:%02x]\n",0xff & bit , 0xff & ppr_reg());
+        printf("[EPPR %d, mask:%02XH]\n",0xff & bit , 0xff & ppr_reg());
 #endif
 }
 
@@ -305,7 +305,7 @@ void DisablePPR(int bit)
     ppr_bit_clr(bit);
 #if SDEBUG
     if(debuglevel & 2)
-        printf("[DPPR %d, mask:%02x]\n",0xff & bit, 0xff & ppr_reg());
+        printf("[DPPR %d, mask:%02XH]\n",0xff & bit, 0xff & ppr_reg());
 #endif
 }
 
@@ -339,7 +339,7 @@ uint8_t Parallel_Poll()
         ddr = GPIB_PPR_DDR_RD();
 #if SDEBUG
         if(debuglevel & (2+512))
-            printf("[PPR:%02x, PIN:%02x, DDR:%02x]\n",
+            printf("[PPR:%02XH, PIN:%02XH, DDR:%02XH]\n",
                 ppr_reg(), 0xff & pins, 0xff & ddr );
 #endif
 //FIXME do we want to wait for this state to end ?
@@ -889,8 +889,8 @@ char *gpib_decode_str(uint16_t ch)
         printable = val;
     else printable = ' ';
 
-    sprintf(str, "%02x %c ", val & 0xff, printable & 0xff);
-    tmp = str + 5;
+    sprintf(str, "%02XH %c ", val & 0xff, printable & 0xff);
+    tmp = str + 6;
 
     if(status & ATN_FLAG)
         *tmp++ = 'A';
@@ -1009,7 +1009,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
         if((*status & ATN_FLAG) != (val & ATN_FLAG))
         {
             if(debuglevel & (1+4))
-                printf("gpib_read_str(ind:%d): ATN %02x unexpected\n",ind, 0xff & val);
+                printf("gpib_read_str(ind:%d): ATN %02XH unexpected\n",ind, 0xff & val);
             gpib_unread(val);
             break;
         }

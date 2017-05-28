@@ -580,13 +580,13 @@ int Send_Identify(uint8_t ch, uint16_t ID)
 	if(gpib_write_str(tmp,2, &status) != 2)
 	{
 		if(debuglevel & (1+4))
-			printf("[IDENT Unit:%02xH=%04xH FAILED]\n", 
+			printf("[IDENT Unit:%02XH=%04XH FAILED]\n", 
 				(int)ch,(int)ID);
 		return(status & ERROR_MASK);
 	}
 #if SDEBUG
     if(debuglevel & 4)
-		printf("[IDENT Unit:%02xH=%04xH]\n", (int)ch,(int)ID);
+		printf("[IDENT Unit:%02XH=%04XH]\n", (int)ch,(int)ID);
 #endif
     return (status & ERROR_MASK);
 }
@@ -710,7 +710,7 @@ int GPIB(uint8_t ch)
     }
 
 	if(debuglevel & (1+4+16))
-        printf("[HPIB (%02xH) not defined]\n", 0xff & ch);
+        printf("[HPIB (%02XH) not defined]\n", 0xff & ch);
     return(0);
 }
 
@@ -753,7 +753,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[LA %02xH AMIGO]\n", 0xff & ch);
+            printf("[LA %02XH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -763,7 +763,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[LA %02xH SS80]\n", 0xff & ch);
+            printf("[LA %02XH SS80]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -772,7 +772,7 @@ int GPIB_LISTEN(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[LA %02xH PRINTER]\n", 0xff & ch);
+            printf("[LA %02XH PRINTER]\n", 0xff & ch);
 #endif
         if(talking != UNT)
         {
@@ -782,7 +782,7 @@ int GPIB_LISTEN(uint8_t ch)
     }
 #if SDEBUG
 	if(debuglevel & 4)
-        printf("[LA %02xH]\n", 0xff & ch);
+        printf("[LA %02XH]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Listen Primary Address group
@@ -822,7 +822,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[TA %02xH SS80]\n", 0xff & ch);
+            printf("[TA %02XH SS80]\n", 0xff & ch);
 #endif
 
         if (spoll)
@@ -837,7 +837,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[TA %02xH AMIGO]\n", 0xff & ch);
+            printf("[TA %02XH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -847,7 +847,7 @@ int GPIB_TALK(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[TA %02xH PRINTER]\n", 0xff & ch);
+            printf("[TA %02XH PRINTER]\n", 0xff & ch);
 #endif
         return(0);
     }
@@ -862,7 +862,7 @@ int GPIB_TALK(uint8_t ch)
 
 #if SDEBUG
 	if(debuglevel & 4)
-        printf("[TA %02xH]\n", 0xff & ch);
+        printf("[TA %02XH]\n", 0xff & ch);
 #endif
     return(0);
 }                                                 // Talk Address primary address group
@@ -889,7 +889,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[SA %02xH SS80]\n", 0xff & ch);
+            printf("[SA %02XH SS80]\n", 0xff & ch);
 #endif
 		///@brief ch = secondary address
         DisablePPR(SS80p->HEADER.PPR);
@@ -904,7 +904,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 /// 	Two identify bytes should be repeated until untalked
 #if SDEBUG
 		if(debuglevel & (4+32))
-            printf("[SA %02xH AMIGO]\n", 0xff & ch);
+            printf("[SA %02XH AMIGO]\n", 0xff & ch);
 #endif
 		///@brief ch = secondary address
         DisablePPR(AMIGOp->HEADER.PPR);
@@ -914,7 +914,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 
 #if SDEBUG
 	if(debuglevel & (4+32))
-        printf("[SA %02xH, listen:%02xH, talk:%02xH]\n",
+        printf("[SA %02XH, listen:%02XH, talk:%02XH]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
 #endif
     return(0);

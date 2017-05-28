@@ -304,7 +304,7 @@ int find_device(int type, int address, int base)
 	{
 		if(debuglevel & 1)
 		{
-			printf("[%s %s address:%02xH out of range]\n", 
+			printf("[%s %s address:%02XH out of range]\n", 
 				base_to_str(base), type_to_str(type), address);
 		}
 		return(-1);
@@ -350,7 +350,7 @@ int set_active_device(int index)
 	if(address < 0 || address > 30)
 	{
 		if(debuglevel & 1)
-			printf("set_active_device: index:%d address: %02xH out of range\n", index,address);
+			printf("set_active_device: index:%d address: %02XH out of range\n", index,address);
 		return(0);
 	}
 
@@ -1202,21 +1202,21 @@ void display_Addresses()
 
 		if(Devices[i].TYPE == SS80_TYPE)
 		{
-			printf("  SS80_MLA    = %02xH\n",BASE_MLA + address );
-			printf("  SS80_MTA    = %02xH\n",BASE_MTA + address );
-			printf("  SS80_MSA    = %02xH\n",BASE_MSA + address );
+			printf("  SS80_MLA    = %02XH\n",BASE_MLA + address );
+			printf("  SS80_MTA    = %02XH\n",BASE_MTA + address );
+			printf("  SS80_MSA    = %02XH\n",BASE_MSA + address );
 		}
 		if(Devices[i].TYPE == AMIGO_TYPE )
 		{
-			printf("  AMIGO_MLA   = %02xH\n",BASE_MLA + address );
-			printf("  AMIGO_MTA   = %02xH\n",BASE_MTA + address );
-			printf("  AMIGO_MSA   = %02xH\n",BASE_MSA + address );
+			printf("  AMIGO_MLA   = %02XH\n",BASE_MLA + address );
+			printf("  AMIGO_MTA   = %02XH\n",BASE_MTA + address );
+			printf("  AMIGO_MSA   = %02XH\n",BASE_MSA + address );
 		}
 		if(Devices[i].TYPE == PRINTER_TYPE )
 		{
-			printf("  PRINTER_MLA = %02xH\n",BASE_MLA + address );
-			printf("  PRINTER_MTA = %02xH\n",BASE_MTA + address );
-			printf("  PRINTER_MSA = %02xH\n",BASE_MSA + address );
+			printf("  PRINTER_MLA = %02XH\n",BASE_MLA + address );
+			printf("  PRINTER_MTA = %02XH\n",BASE_MTA + address );
+			printf("  PRINTER_MSA = %02XH\n",BASE_MSA + address );
 		}
 	}
 	printf("\n");

@@ -352,7 +352,7 @@ static DWORD amigo_chs_to_logical(AMIGOStateType *p, char *msg)
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[AMIGO %s, P:%08lx, U:%d C:%d H:%d S:%d]\n",
+        printf("[AMIGO %s, P:%08lxH, U:%d C:%d H:%d S:%d]\n",
             msg, pos, AMIGOs->unitNO, p->cyl, p->head, p->sector);
 #endif
     return(pos);
@@ -460,7 +460,7 @@ int amigo_verify(uint16_t sectors)
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[AMIGO verify P:%08lx, sectors:%04x]\n", pos, sectors);
+        printf("[AMIGO verify P:%08lXH, sectors:%04XH]\n", pos, sectors);
 #endif
 
     while(sectors--)
@@ -718,7 +718,7 @@ int amigo_cmd_dsj()
     {
 #if SDEBUG
         if(debuglevel & 32)
-            printf("[DSJ %02X]\n", AMIGOs->dsj);
+            printf("[DSJ %02XH]\n", AMIGOs->dsj);
 #endif
     }
     AMIGOs->dsj = 0;
@@ -799,16 +799,16 @@ int amigo_cmd_clear()
 int amigo_todo_op(uint8_t secondary, uint8_t opcode, int len)
 {
     if(AMIGO_is_MLA(listening))
-        printf("[L   Amigo TODO secondary: %02x, state:%02x, opcode:%02x, len:%3d, listening:%02x, talking:%02x]\n",
+        printf("[L   Amigo TODO secondary: %02XH, state:%02XH, opcode:%02XH, len:%3d, listening:%02XH, talking:%02XH]\n",
             secondary, AMIGOs->state, opcode, len, listening, talking);
     else if(AMIGO_is_MTA(talking))
-        printf("[T   Amigo TODO secondary: %02x, state:%02x, opcode:%02x, len:%3d, listening:%02x, talking:%02x]\n",
+        printf("[T   Amigo TODO secondary: %02XH, state:%02XH, opcode:%02XH, len:%3d, listening:%02XH, talking:%02XH]\n",
                 secondary, AMIGOs->state, opcode, len, listening, talking);
     else if(talking == UNT)
-        printf("[UNT Amigo TODO secondary: %02x, state:%02x, opcode:%02x, len:%3d, listening:%02x, talking:%02x]\n",
+        printf("[UNT Amigo TODO secondary: %02XH, state:%02XH, opcode:%02XH, len:%3d, listening:%02XH, talking:%02XH]\n",
                 secondary, AMIGOs->state, opcode, len, listening, talking);
     else
-        printf("[U Amigo TODO secondary: %02x, state:%02x, opcode:%02x, len:%3d, listening:%02x, talking:%02x]\n",
+        printf("[U Amigo TODO secondary: %02XH, state:%02XH, opcode:%02XH, len:%3d, listening:%02XH, talking:%02XH]\n",
             secondary, AMIGOs->state, opcode, len, listening, talking);
     EnablePPR(AMIGOp->HEADER.PPR);
     return(0);
@@ -824,16 +824,16 @@ int amigo_todo_op(uint8_t secondary, uint8_t opcode, int len)
 int amigo_todo(uint8_t secondary)
 {
     if(AMIGO_is_MLA(listening))
-        printf("[L   Amigo TODO secondary: %02x, state:%02x, listening:%02x, talking:%02x]\n",
+        printf("[L   Amigo TODO secondary: %02XH, state:%02XH, listening:%02XH, talking:%02XH]\n",
             secondary,AMIGOs->state,listening,talking);
     else if(AMIGO_is_MTA(talking))
-        printf("[T   Amigo TODO secondary: %02x, state:%02x, listening:%02x, talking:%02x]\n",
+        printf("[T   Amigo TODO secondary: %02XH, state:%02XH, listening:%02XH, talking:%02XH]\n",
                 secondary,AMIGOs->state,listening,talking);
     else if(talking == UNT)
-        printf("[UNT Amigo TODO secondary: %02x, state:%02x, listening:%02x, talking:%02x]\n",
+        printf("[UNT Amigo TODO secondary: %02XH, state:%02XH, listening:%02XH, talking:%02XH]\n",
                 secondary,AMIGOs->state,listening,talking);
     else
-        printf("[E   Amigo ERROR secondary: %02x, state:%02x, listening:%02x, talking:%02x]\n",
+        printf("[E   Amigo ERROR secondary: %02XH, state:%02XH, listening:%02XH, talking:%02XH]\n",
             secondary,AMIGOs->state,listening,talking);
     EnablePPR(AMIGOp->HEADER.PPR);
     return(0);
@@ -870,7 +870,7 @@ int Amigo_Command( int secondary )
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[AMIGO Command(%02x): listen:%02x, talk:%02x]\n",
+        printf("[AMIGO Command(%02XH): listen:%02XH, talk:%02XH]\n",
             secondary, listening, talking);
 #endif
 
@@ -937,7 +937,7 @@ int Amigo_Command( int secondary )
     }
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[AMIGO Command(%02x): GPIB read bytes:%02x]\n",
+        printf("[AMIGO Command(%02XH): GPIB read bytes:%02XH]\n",
             secondary, len);
 #endif
     if(!len)
@@ -1173,7 +1173,7 @@ int Amigo_Execute( int secondary )
 {
 #if SDEBUG
 	if(debuglevel & 32)
-        printf("[AMIGO Execute(%02x): listen:%02x, talk:%02x]\n",
+        printf("[AMIGO Execute(%02XH): listen:%02XH, talk:%02XH]\n",
             secondary, listening, talking);
 #endif
 
@@ -1289,11 +1289,11 @@ int AMIGO_COMMANDS(uint8_t ch)
 
         if(talking == UNT && AMIGO_is_MLA(listening))
         {
-            printf("AMIGO COMMANDS %02x NO TALK ADDRESS!\n", ch);
+            printf("AMIGO COMMANDS %02XH NO TALK ADDRESS!\n", ch);
         }
         if(listening == 0 && AMIGO_is_MTA(talking))
         {
-            printf("AMIGO COMMANDS %02x NO LISTEN ADDRESS!\n", ch);
+            printf("AMIGO COMMANDS %02XH NO LISTEN ADDRESS!\n", ch);
         }
 
         if(ch == 0x60 && (AMIGO_is_MTA(talking) || AMIGO_is_MLA(listening)) )

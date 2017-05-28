@@ -359,7 +359,7 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Read @%08lx(%lx)]\n", Address,SS80s->Length);
+        printf("[SS80 Locate and Read @%08lxH(%lxH)]\n", Address,SS80s->Length);
 #endif
 
     if( SS80_cmd_seek() )
@@ -479,7 +479,7 @@ int SS80_locate_and_write(void)
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Write @%08lx(%lx)]\n", Address, SS80s->Length);
+        printf("[SS80 Locate and Write @%08lxH(%lxH)]\n", Address, SS80s->Length);
 #endif
 
     SS80s->qstat = 0;
@@ -1200,7 +1200,7 @@ int SS80_Command_State( void )
         }
 
         if(debuglevel & 1 )
-            printf("[SS80 Invalid OP Code (%02x)]\n", ch & 0xff);
+            printf("[SS80 Invalid OP Code (%02XH)]\n", ch & 0xff);
 
         break;
     }
@@ -1370,7 +1370,7 @@ int SS80_Transparent_State( void )
         }
 
         if(debuglevel & 1)
-            printf("[SS80 Invalid OP Code (%02x)]\n", ch & 0xff);
+            printf("[SS80 Invalid OP Code (%02XH)]\n", ch & 0xff);
         break;
     }
 
@@ -1685,7 +1685,7 @@ int SS80_increment( void )
     SS80s->AddressBlocks += 1L;
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Increment to (%lx)]\n", SS80s->AddressBlocks);
+        printf("[SS80 Increment to (%lxH)]\n", SS80s->AddressBlocks);
 #endif
     return(0);
 }
@@ -1791,13 +1791,13 @@ int SS80_COMMANDS(uint8_t ch)
             }
         }
         if(debuglevel & 1)
-            printf("[SS80 SC Unknown: %02x, listen:%02x, talk:%02x]\n",
+            printf("[SS80 SC Unknown: %02XH, listen:%02XH, talk:%02XH]\n",
                 0xff & ch, 0xff & listening, 0xff & talking);
         return(0);
     }
 
     if(debuglevel & 1)
-        printf("[SS80 Unknown SC: %02x, listen:%02x, talk:%02x]\n",
+        printf("[SS80 Unknown SC: %02XH, listen:%02XH, talk:%02XH]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
     return(0);
 }

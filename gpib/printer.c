@@ -313,7 +313,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & 32)
-            printf("[SC PRINTER Listen: %02x]\n",  0xff & ch );
+            printf("[SC PRINTER Listen: %02XH]\n",  0xff & ch );
 #endif
         return(0);
     }
@@ -322,7 +322,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     {
 #if SDEBUG
 		if(debuglevel & 32)
-            printf("[SC PRINTER Talk: %02x]\n",  0xff & ch );
+            printf("[SC PRINTER Talk: %02XH]\n",  0xff & ch );
 #endif
         return(0);
     }
