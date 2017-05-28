@@ -19,7 +19,7 @@ var searchData=
   ['uart_5frx_5fflush',['uart_rx_flush',['../rs232_8c.html#ab823b4d83752db47c0852bfa36a59036',1,'uart_rx_flush(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#ab823b4d83752db47c0852bfa36a59036',1,'uart_rx_flush(uint8_t uart):&#160;rs232.c']]],
   ['uart_5frx_5finterrupt',['uart_rx_interrupt',['../rs232_8c.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c'],['../rs232_8h.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c']]],
   ['uart_5ftx_5fbyte',['uart_tx_byte',['../rs232_8c.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c']]],
-  ['uarts',['UARTS',['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h'],['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c']]],
+  ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c'],['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h']]],
   ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['uid_5ft',['uid_t',['../posix_8h.html#a0f43c63879b4ab6960f41e756392c77d',1,'posix.h']]],
   ['uint',['UINT',['../integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec',1,'integer.h']]],

@@ -616,6 +616,7 @@ int SS80_locate_and_write(void)
 }
 
 ///@brief fault messages
+///TODO move these to __memx
 /// - Reference: SS80 pg 4-59..64.
 fault_t faults[] =
 {
@@ -653,7 +654,7 @@ fault_t faults[] =
 /// @brief  SS80 test extendend status bits and display them
 /// 
 /// - Reference: SS80 pg 4-58..64.
-/// - Look at the 8 status bits of the extended status message
+/// - Look at the 8 status bytes of the extended status message
 /// - Debuuging
 /// @param *p: extended status vector
 /// @param bit: bit number starting at MSB of first byte as 0
@@ -667,6 +668,23 @@ int SS80_test_extended_status(uint8_t *p, int bit)
 	return((p[byte] & mask) ? 1 : 0);
 }
 
+/// @brief  SS80 set extendend status bits 
+/// 
+/// - Reference: SS80 pg 4-58..64.
+/// - 8 status bytes of the extended status message
+/// @param *p: extended status vector
+/// @param bit: bit number starting at MSB of first byte as 0
+/// @return void
+void SS80_set_extended_status(uint8_t *p, int bit)
+{
+	uint8_t mask;
+	int byte = bit >> 3;
+	bit &= 7;
+	mask = (0x80 >> bit);
+	p[byte] |= mask;
+}
+
+
 /// @brief  SS80 Display extended 8 byte status messages for debuging
 /// @param *p: extended status vector
 /// @param *message: message header for display
@@ -674,9 +692,9 @@ int SS80_test_extended_status(uint8_t *p, int bit)
 void SS80_display_extended_status(uint8_t *p, char *message)
 {
 
-	int i;
-	int bit;
+	int i,bit;
 	int status = 0;
+
 	// See if ANY bits are set
 	for(i=0;i<8;++i)
 	{
@@ -691,7 +709,9 @@ void SS80_display_extended_status(uint8_t *p, char *message)
 		{
 			bit = faults[i].index;
 			if(SS80_test_extended_status(p,bit))
-				printf("    %d:%s\n", faults[i].index,faults[i].msg);
+			{
+				printf("    %d:%s\n", faults[i].index, faults[i].msg);
+			}
 		}
 	}
 }
@@ -768,6 +788,17 @@ void SS80_display_extended_status(uint8_t *p, char *message)
 ///  57 = Recoverable Data Overflow
 ///  59 = Recoverable Data
 /// 
+/// SS80 4:58
+/// The following fault error bits will NEVER be set by an SS/80 device:
+/// 26 = Operator request
+/// 27 = Diagnostic request
+/// 28 = Internal maintenance
+/// 32 = Illegal parallel operation
+/// 48 = Operator Request
+/// 49 = Diagnostic Request
+/// 50 = Internal Maintenance
+/// 58 = Marginal Data
+/// 61 = Maintenance Track Overflow
 ///
 /// SS80 pg 4-64
 /// P6 (10 .. 15) is SS80 Specific
@@ -814,21 +845,24 @@ int SS80_send_status( void )
     tmp[1] = 0xff;
 
 
+	// Bit 7 Address Bounds
     if(SS80s->Errors & ERR_SEEK)
-        tmp[3] |= 0b00000001;                      // address bounds = Byte 3
+		SS80_set_extended_status(tmp+2, 7);
 
-
+	// Bit 22 Unit fault
     if(SS80s->Errors & ERR_READ)
-        tmp[4] |= 0b00000010;                      // unit fault = Byte 5
+		SS80_set_extended_status(tmp+2, 22);
 
+	// Bit 22 Unit fault
     if(SS80s->Errors & ERR_WRITE)
-        tmp[4] |= 0b00000010;                      // unit fault = Byte 5
+		SS80_set_extended_status(tmp+2, 22);
 
 /// @todo  add Diagnostic Result status (MSB of byte 5)
 
 
+	// Bit 36 Write Protect
     if(SS80s->Errors & ERR_WP)
-        tmp[6] = 0b00001000;                      // Write protect = Byte 7
+        tmp[6] = 0b00001000;
 
 
 /// 4:63,64

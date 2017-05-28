@@ -183,7 +183,7 @@ void
 \item[\hyperlink{todo__todo000058}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1621 of file ss80.\+c.
+Definition at line 1655 of file ss80.\+c.
 
 
 
@@ -215,7 +215,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1718 of file ss80.\+c.
+Definition at line 1752 of file ss80.\+c.
 
 
 
@@ -293,7 +293,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000062}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1752 of file ss80.\+c.
+Definition at line 1786 of file ss80.\+c.
 
 
 
@@ -332,7 +332,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1662 of file ss80.\+c.
+Definition at line 1696 of file ss80.\+c.
 
 
 
@@ -368,7 +368,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000055}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1482 of file ss80.\+c.
+Definition at line 1516 of file ss80.\+c.
 
 
 
@@ -509,7 +509,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000045}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 954 of file ss80.\+c.
+Definition at line 988 of file ss80.\+c.
 
 
 
@@ -547,7 +547,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1816 of file ss80.\+c.
+Definition at line 1850 of file ss80.\+c.
 
 
 
@@ -577,7 +577,7 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 869 of file ss80.\+c.
+Definition at line 903 of file ss80.\+c.
 
 
 
@@ -607,7 +607,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 674 of file ss80.\+c.
+Definition at line 692 of file ss80.\+c.
 
 
 
@@ -634,7 +634,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1785 of file ss80.\+c.
+Definition at line 1819 of file ss80.\+c.
 
 
 
@@ -690,7 +690,7 @@ Increment position Addressy by one block.
 
 \end{DoxyItemize}
 
-Definition at line 1767 of file ss80.\+c.
+Definition at line 1801 of file ss80.\+c.
 
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+h@{ss80.\+h}}
@@ -828,7 +828,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1530 of file ss80.\+c.
+Definition at line 1564 of file ss80.\+c.
 
 
 
@@ -861,7 +861,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1698 of file ss80.\+c.
+Definition at line 1732 of file ss80.\+c.
 
 
 
@@ -950,6 +950,17 @@ S\+S80 send detailed status.
 ///  57 = Recoverable Data Overflow
 ///  59 = Recoverable Data
 /// 
+/// SS80 4:58
+/// The following fault error bits will NEVER be set by an SS/80 device:
+/// 26 = Operator request
+/// 27 = Diagnostic request
+/// 28 = Internal maintenance
+/// 32 = Illegal parallel operation
+/// 48 = Operator Request
+/// 49 = Diagnostic Request
+/// 50 = Internal Maintenance
+/// 58 = Marginal Data
+/// 61 = Maintenance Track Overflow
 ///
 /// SS80 pg 4-64
 /// P6 (10 .. 15) is SS80 Specific
@@ -990,7 +1001,7 @@ S\+ET A\+D\+D\+R\+E\+SS in blocks
 \item[\hyperlink{todo__todo000026}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 800 of file ss80.\+c.
+Definition at line 831 of file ss80.\+c.
 
 
 
@@ -1032,7 +1043,7 @@ S\+S80 test extendend status bits and display them.
 
 \begin{DoxyItemize}
 \item Reference\+: S\+S80 pg 4-\/58..64.
-\item Look at the 8 status bits of the extended status message
+\item Look at the 8 status bytes of the extended status message
 \item Debuuging 
 \begin{DoxyParams}{Parameters}
 {\em $\ast$p} & extended status vector \\
@@ -1046,7 +1057,7 @@ S\+S80 test extendend status bits and display them.
 
 \end{DoxyItemize}
 
-Definition at line 661 of file ss80.\+c.
+Definition at line 662 of file ss80.\+c.
 
 
 
@@ -1138,7 +1149,7 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000054}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
-Definition at line 1336 of file ss80.\+c.
+Definition at line 1370 of file ss80.\+c.
 
 
 
@@ -1174,7 +1185,7 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000059}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1680 of file ss80.\+c.
+Definition at line 1714 of file ss80.\+c.
 
 
 
