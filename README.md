@@ -214,7 +214,7 @@ ___
   #Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
   INITIALIZE "AMIGO1",":D710",14,1
-  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D720",128,1
   INITIALIZE "AMIGO2",":D730",14,1
   
   #Listing files:
