@@ -84,6 +84,8 @@ var searchData=
   ['fatfs_5fw',['FATFS_W',['../posix_8h.html#a58a8434d968e434626088e2dc6ae6124',1,'posix.h']]],
   ['fatfs_5fx',['FATFS_X',['../posix_8h.html#a0a88f1032e29e7cc97a96b40cdc996a5',1,'posix.h']]],
   ['fattrib',['fattrib',['../structFILINFO.html#a838d542585831b085537b363f18205c0',1,'FILINFO']]],
+  ['fault_5ft',['fault_t',['../structfault__t.html',1,'']]],
+  ['faults',['faults',['../ss80_8c.html#a5c1734271a4cf86ec6c7675e9ec48996',1,'ss80.c']]],
   ['fclk_5ffast',['FCLK_FAST',['../mmc_8c.html#a1ffcdd6f111fd9b4229f49a5e37046b7',1,'mmc.c']]],
   ['fclk_5fslow',['FCLK_SLOW',['../mmc_8c.html#ae3d9176798d1718d779e2db397de4bb5',1,'mmc.c']]],
   ['fclose',['fclose',['../posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033',1,'fclose(FILE *stream):&#160;posix.c'],['../posix_8h.html#ad6fd240fec1d65213f34b6e6465a8033',1,'fclose(FILE *stream):&#160;posix.c']]],

@@ -32,6 +32,8 @@ uint32_t SS80_Blocks_to_Bytes ( uint32_t block );
 uint32_t SS80_Bytes_to_Blocks ( uint32_t bytes );
 int SS80_locate_and_read ( void );
 int SS80_locate_and_write ( void );
+int SS80_test_extended_status ( uint8_t *p , int bit );
+void SS80_display_extended_status ( uint8_t *p , char *message );
 int SS80_send_status ( void );
 int SS80_describe ( void );
 int SS80_Command_State ( void );

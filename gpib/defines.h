@@ -81,6 +81,14 @@
 #define ERR_GPIB   0b00100000	//<GPIB Error
 
 // =============================================
+///@brief Fault bit and Message type
+typedef struct
+{
+    int index;
+    char *msg;
+} fault_t;
+
+// =============================================
 /// LIF formating structures
 ///@see format.c
 ///@brief LIF disk label record

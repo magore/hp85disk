@@ -615,6 +615,86 @@ int SS80_locate_and_write(void)
     return ( status & ERROR_MASK );
 }
 
+///@brief fault messages
+/// - Reference: SS80 pg 4-59..64.
+fault_t faults[] =
+{
+    { 2, "Channel Parity Error or the Loopback command failed." },
+    { 5, "Illegal Opcode or command not allowed on Unit 15" },
+    { 6, "illegal Volume or Unit number was specified for this device." },
+    { 7, "Address Bounds exceeded for this device." },
+    { 8, "Parameter Bounds error (other than unit, volume, or target address)"},
+    { 9, "Parameter field wrong length for the opcode preceding it." },
+    { 10,"Unexpected Secondary. Except for active reject,fault or access errors" },
+    { 12,"Message Length error" },
+    { 17,"Unit 15 Cross-unit error" },
+    { 19,"Controller hardware Fault" },
+    { 22,"Unit hardware Fault" },
+    { 24,"Diagnostic failed selftest" },
+    { 30,"Power Fail, or a new Tape or Flexible disc was loaded." },
+    { 31,"Re-try preceding transaction" },
+    { 33,"Uninitialized media" },
+    { 34,"No Spares Available" },
+    { 35,"Not Ready, medium has not loaded?" },
+    { 36,"Write attempt while write protected" },
+    { 37,"Tapes: read block accessed but not yet written. Disks: Validate key mismatch" },
+    { 40,"Unrecoverable Data" },
+    { 41,"Unrecoverable Data P1-P6 will contain the address of first bad block" },
+    { 43,"End of File End encountered on file structured device." },
+    { 44,"End of Volume attempted to access past end" },
+    { 51,"Flexible disc or tape medium is wearing out" },
+    { 52,"Latency induced bit because of retries" },
+    { 55,"Device has automatically spared a block." },
+    { 57,"Too many recoverable data error status messages queued since last request" },
+    { 59,"Recoverable Data latency was introduced because of retries" },
+	{ -1,NULL }
+};
+
+/// @brief  SS80 test extendend status bits and display them
+/// 
+/// - Reference: SS80 pg 4-58..64.
+/// - Look at the 8 status bits of the extended status message
+/// - Debuuging
+/// @param *p: extended status vector
+/// @param bit: bit number starting at MSB of first byte as 0
+/// @return 1 if set
+int SS80_test_extended_status(uint8_t *p, int bit)
+{
+	uint8_t mask;
+	int byte = bit >> 3;
+	bit &= 7;
+	mask = (0x80 >> bit);
+	return((p[byte] & mask) ? 1 : 0);
+}
+
+/// @brief  SS80 Display extended 8 byte status messages for debuging
+/// @param *p: extended status vector
+/// @param *message: message header for display
+/// @return void
+void SS80_display_extended_status(uint8_t *p, char *message)
+{
+
+	int i;
+	int bit;
+	int status = 0;
+	// See if ANY bits are set
+	for(i=0;i<8;++i)
+	{
+		if(p[i])
+			status = 1;
+	}
+	// Display all of the messages
+	if(status)
+	{
+		printf("%s:\n",message);
+		for(i=0;faults[i].index != -1;++i)
+		{
+			bit = faults[i].index;
+			if(SS80_test_extended_status(p,bit))
+				printf("    %d:%s\n", faults[i].index,faults[i].msg);
+		}
+	}
+}
 
 /// @brief  SS80 send detailed status.
 /// 
@@ -735,14 +815,14 @@ int SS80_send_status( void )
 
 
     if(SS80s->Errors & ERR_SEEK)
-        tmp[3] = 0b00000001;                      // address bounds = Byte 3
+        tmp[3] |= 0b00000001;                      // address bounds = Byte 3
 
 
     if(SS80s->Errors & ERR_READ)
-        tmp[4] = 0b00000010;                      // unit fault = Byte 5
+        tmp[4] |= 0b00000010;                      // unit fault = Byte 5
 
     if(SS80s->Errors & ERR_WRITE)
-        tmp[4] = 0b00000010;                      // unit fault = Byte 5
+        tmp[4] |= 0b00000010;                      // unit fault = Byte 5
 
 /// @todo  add Diagnostic Result status (MSB of byte 5)
 
@@ -1142,11 +1222,14 @@ int SS80_Command_State( void )
         if(ch == 0x3E)
         {
 /// @todo TODO
-            ind += 8;
 #if SDEBUG
             if(debuglevel & (16+32))
+			{
                 printf("[SS80 Set Status Mask - TODO]\n");
+				SS80_display_extended_status(gpib_iobuff+ind, "TODO Mask these Status Bits");
+			}
 #endif
+            ind += 8;
             break;
         }
 

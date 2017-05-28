@@ -263,11 +263,16 @@ uint16_t gpib_error_test(uint16_t val)
     {
         val &= ERROR_MASK;
 
+		///@brief IFC is and important state so display it for most messages
+        if(debuglevel & (2+4+8+0x20))
+        {
+			/// Bus Clear, reseat all states, etc
+            if(val & IFC_FLAG)
+                printf("<IFC>\n");
+		}
 
         if(debuglevel & (1+4))
         {
-            if(val & IFC_FLAG)
-                printf("<IFC>\n");
             if(val & TIMEOUT_FLAG)
                 printf("<TIMEOUT>\n");
             if(val & BUS_ERROR_FLAG)

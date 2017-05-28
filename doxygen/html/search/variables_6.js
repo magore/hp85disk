@@ -3,6 +3,7 @@ var searchData=
   ['fatbase',['fatbase',['../structFATFS.html#a848fba02c4aabe02ef2984e578f33d64',1,'FATFS']]],
   ['fatfs',['FatFs',['../ff_8c.html#a3d7aad0939745576943767bf6c410eaf',1,'FatFs():&#160;ff.c'],['../fatfs__sup_8c.html#aae427cc909a4b5993032934d85fd8c31',1,'Fatfs():&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#aae427cc909a4b5993032934d85fd8c31',1,'Fatfs():&#160;fatfs_sup.c']]],
   ['fattrib',['fattrib',['../structFILINFO.html#a838d542585831b085537b363f18205c0',1,'FILINFO']]],
+  ['faults',['faults',['../ss80_8c.html#a5c1734271a4cf86ec6c7675e9ec48996',1,'ss80.c']]],
   ['fdate',['fdate',['../structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52',1,'FILINFO']]],
   ['filename',['filename',['../structDirEntryType.html#aa60fae0a6b7ba9c966cbcf46e555f396',1,'DirEntryType']]],
   ['filetype',['filetype',['../structDirEntryType.html#ada14562440087858ebf04bc4c81eedd2',1,'DirEntryType']]],

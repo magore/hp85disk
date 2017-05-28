@@ -49,6 +49,10 @@ int \hyperlink{ss80_8c_acad6de863f4566b55cb8860eb1ffd09c}{S\+S80\+\_\+locate\+\_
 \begin{DoxyCompactList}\small\item\em S\+S80 Locate and Read C\+Ommend. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a41ef37ec5419463815401485cfcb62b1}{S\+S80\+\_\+locate\+\_\+and\+\_\+write} (void)
 \begin{DoxyCompactList}\small\item\em S\+S80 Locate and Write Commend. \end{DoxyCompactList}\item 
+int \hyperlink{ss80_8c_ae03555718f2325805ec9618dce066a90}{S\+S80\+\_\+test\+\_\+extended\+\_\+status} (uint8\+\_\+t $\ast$p, int bit)
+\begin{DoxyCompactList}\small\item\em S\+S80 test extendend status bits and display them. \end{DoxyCompactList}\item 
+void \hyperlink{ss80_8c_a4668606dd0eed9d8419358e0fa51fbc6}{S\+S80\+\_\+display\+\_\+extended\+\_\+status} (uint8\+\_\+t $\ast$p, char $\ast$message)
+\begin{DoxyCompactList}\small\item\em S\+S80 Display extended 8 byte status messages for debuging. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_ac4c1287b3b8b6a51f5b79522c62d4cea}{S\+S80\+\_\+send\+\_\+status} (void)
 \begin{DoxyCompactList}\small\item\em S\+S80 send detailed status. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a0942f8e0b65e2fa73e2fca9c4d583050}{S\+S80\+\_\+describe} (void)
@@ -89,7 +93,9 @@ uint8\+\_\+t \hyperlink{ss80_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{listening}
 uint8\+\_\+t \hyperlink{ss80_8c_a0205f89c3878a7a6cb4ee1f75de35fb3}{spoll}
 \begin{DoxyCompactList}\small\item\em gpib serial poll status \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a239f4cd0f1360dbfd90fa043d1323e67}{TD} \mbox{[}$\,$\mbox{]}
-\begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB test string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB test string. \end{DoxyCompactList}\item 
+\hyperlink{structfault__t}{fault\+\_\+t} \hyperlink{ss80_8c_a5c1734271a4cf86ec6c7675e9ec48996}{faults} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em fault messages \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -233,7 +239,7 @@ void
 \item[\hyperlink{todo__todo000058}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1538 of file ss80.\+c.
+Definition at line 1621 of file ss80.\+c.
 
 
 
@@ -265,7 +271,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1635 of file ss80.\+c.
+Definition at line 1718 of file ss80.\+c.
 
 
 
@@ -343,7 +349,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000062}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1669 of file ss80.\+c.
+Definition at line 1752 of file ss80.\+c.
 
 
 
@@ -382,7 +388,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1579 of file ss80.\+c.
+Definition at line 1662 of file ss80.\+c.
 
 
 
@@ -418,7 +424,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000055}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1399 of file ss80.\+c.
+Definition at line 1482 of file ss80.\+c.
 
 
 
@@ -559,7 +565,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000045}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 874 of file ss80.\+c.
+Definition at line 954 of file ss80.\+c.
 
 
 
@@ -597,7 +603,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1733 of file ss80.\+c.
+Definition at line 1816 of file ss80.\+c.
 
 
 
@@ -627,11 +633,41 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 789 of file ss80.\+c.
+Definition at line 869 of file ss80.\+c.
 
 
 
 Referenced by S\+S80\+\_\+\+Execute\+\_\+\+State().
+
+\index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+display\+\_\+extended\+\_\+status@{S\+S80\+\_\+display\+\_\+extended\+\_\+status}}
+\index{S\+S80\+\_\+display\+\_\+extended\+\_\+status@{S\+S80\+\_\+display\+\_\+extended\+\_\+status}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+display\+\_\+extended\+\_\+status(uint8\+\_\+t $\ast$p, char $\ast$message)}{SS80_display_extended_status(uint8_t *p, char *message)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+display\+\_\+extended\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{p, }
+\item[{char $\ast$}]{message}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8c_a4668606dd0eed9d8419358e0fa51fbc6}{}\label{ss80_8c_a4668606dd0eed9d8419358e0fa51fbc6}
+
+
+S\+S80 Display extended 8 byte status messages for debuging. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & extended status vector \\
+\hline
+{\em $\ast$message} & message header for display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 674 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+\_\+\+Command\+\_\+\+State().
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+error\+\_\+return@{S\+S80\+\_\+error\+\_\+return}}
 \index{S\+S80\+\_\+error\+\_\+return@{S\+S80\+\_\+error\+\_\+return}!ss80.\+c@{ss80.\+c}}
@@ -654,7 +690,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1702 of file ss80.\+c.
+Definition at line 1785 of file ss80.\+c.
 
 
 
@@ -710,7 +746,7 @@ Increment position Addressy by one block.
 
 \end{DoxyItemize}
 
-Definition at line 1684 of file ss80.\+c.
+Definition at line 1767 of file ss80.\+c.
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+c@{ss80.\+c}}
@@ -848,7 +884,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1447 of file ss80.\+c.
+Definition at line 1530 of file ss80.\+c.
 
 
 
@@ -881,7 +917,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1615 of file ss80.\+c.
+Definition at line 1698 of file ss80.\+c.
 
 
 
@@ -1010,7 +1046,7 @@ S\+ET A\+D\+D\+R\+E\+SS in blocks
 \item[\hyperlink{todo__todo000026}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 720 of file ss80.\+c.
+Definition at line 800 of file ss80.\+c.
 
 
 
@@ -1036,6 +1072,41 @@ Definition at line 121 of file ss80.\+c.
 
 
 Referenced by gpib\+\_\+tests().
+
+\index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+test\+\_\+extended\+\_\+status@{S\+S80\+\_\+test\+\_\+extended\+\_\+status}}
+\index{S\+S80\+\_\+test\+\_\+extended\+\_\+status@{S\+S80\+\_\+test\+\_\+extended\+\_\+status}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+test\+\_\+extended\+\_\+status(uint8\+\_\+t $\ast$p, int bit)}{SS80_test_extended_status(uint8_t *p, int bit)}}]{\setlength{\rightskip}{0pt plus 5cm}int S\+S80\+\_\+test\+\_\+extended\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{p, }
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8c_ae03555718f2325805ec9618dce066a90}{}\label{ss80_8c_ae03555718f2325805ec9618dce066a90}
+
+
+S\+S80 test extendend status bits and display them. 
+
+
+\begin{DoxyItemize}
+\item Reference\+: S\+S80 pg 4-\/58..64.
+\item Look at the 8 status bits of the extended status message
+\item Debuuging 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & extended status vector \\
+\hline
+{\em bit} & bit number starting at M\+SB of first byte as 0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if set 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 661 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+\_\+display\+\_\+extended\+\_\+status().
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+\+Transparent\+\_\+\+State@{S\+S80\+\_\+\+Transparent\+\_\+\+State}}
 \index{S\+S80\+\_\+\+Transparent\+\_\+\+State@{S\+S80\+\_\+\+Transparent\+\_\+\+State}!ss80.\+c@{ss80.\+c}}
@@ -1123,7 +1194,7 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000054}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
-Definition at line 1253 of file ss80.\+c.
+Definition at line 1336 of file ss80.\+c.
 
 
 
@@ -1159,7 +1230,7 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000059}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1597 of file ss80.\+c.
+Definition at line 1680 of file ss80.\+c.
 
 
 
@@ -1250,6 +1321,20 @@ Referenced by S\+S80\+\_\+describe().
 
 
 \subsection{Variable Documentation}
+\index{ss80.\+c@{ss80.\+c}!faults@{faults}}
+\index{faults@{faults}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{faults}{faults}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf fault\+\_\+t} faults\mbox{[}$\,$\mbox{]}}\hypertarget{ss80_8c_a5c1734271a4cf86ec6c7675e9ec48996}{}\label{ss80_8c_a5c1734271a4cf86ec6c7675e9ec48996}
+
+
+fault messages 
+
+
+\begin{DoxyItemize}
+\item Reference\+: S\+S80 pg 4-\/59..64. 
+\end{DoxyItemize}
+
+Definition at line 620 of file ss80.\+c.
+
 \index{ss80.\+c@{ss80.\+c}!listening@{listening}}
 \index{listening@{listening}!ss80.\+c@{ss80.\+c}}
 \subsubsection[{\texorpdfstring{listening}{listening}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t listening}\hypertarget{ss80_8c_a906eb6f6a81521d91f73f9ab2e03b02e}{}\label{ss80_8c_a906eb6f6a81521d91f73f9ab2e03b02e}
