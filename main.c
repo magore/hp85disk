@@ -258,6 +258,7 @@ int main(void)
     uart_init(0, 115200U); // Serial Port Initialize
     delayms(200); ///@brief Power up delay
 
+	sep();
     printf("Start\n");
     printf("CPU Clock = %lu\n", F_CPU);
 
