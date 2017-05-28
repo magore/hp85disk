@@ -5,7 +5,7 @@
 
 ___
 
-## HP85 Disk Emulator Copyright &copy; 2014 Mike Gore
+## HP85 Disk Emulator Copyright &copy; 2014-2017 Mike Gore
 
  HP85 Disk Emulator is a CS80, SS80 and AMIGO disk emulator that has been tested
  on the following devices (may work on other systems)
