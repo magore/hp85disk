@@ -322,6 +322,20 @@ int SS80_Execute_State(void)
 }
 
 
+/// @brief  SS80 Return current address in bytes
+/// @return Byte Address
+uint32_t SS80_Blocks_to_Bytes(uint32_t block)
+{
+	return(block * SS80p->UNIT.BYTES_PER_BLOCK);
+	
+}
+/// @brief  SS80 Return current block addresss from bytes
+/// @return Block Address
+uint32_t SS80_Bytes_to_Blocks(uint32_t bytes)
+{
+	return(bytes / SS80p->UNIT.BYTES_PER_BLOCK);
+}
+
 /// @brief  SS80 Locate and Read COmmend
 ///
 /// - Reference: SS80 4-39
@@ -344,7 +358,7 @@ int SS80_locate_and_read( void )
     int chunk;
     int len;
     uint16_t status;
-	uint32_t Address = (SS80s->AddressBlocks * SS80p->UNIT.BYTES_PER_BLOCK);
+	uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
 
     SS80s->qstat = 0;
 
@@ -359,7 +373,7 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Read @%08lxH(%lxH)]\n", Address,SS80s->Length);
+        printf("[SS80 Locate and Read at %08lXH(%lXH)]\n", Address, SS80s->Length);
 #endif
 
     if( SS80_cmd_seek() )
@@ -448,7 +462,7 @@ int SS80_locate_and_read( void )
 #endif
     }
 
-	SS80s->AddressBlocks = (Address/SS80p->UNIT.BYTES_PER_BLOCK);
+	SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
     return (status & ERROR_MASK);
 }
 
@@ -473,13 +487,13 @@ int SS80_locate_and_write(void)
     int chunk, count, len;
     int io_skip;
     uint16_t status;
-	uint32_t Address = (SS80s->AddressBlocks * SS80p->UNIT.BYTES_PER_BLOCK);
+	uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
 
     io_skip = 0;
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Write @%08lxH(%lxH)]\n", Address, SS80s->Length);
+        printf("[SS80 Locate and Write at %08lXH(%lXH)]\n", Address, SS80s->Length);
 #endif
 
     SS80s->qstat = 0;
@@ -596,7 +610,7 @@ int SS80_locate_and_write(void)
             printf("[SS80 Locate and Write Wrote Total(%ld)]\n", total_bytes);
 #endif
     }
-	SS80s->AddressBlocks = (Address/SS80p->UNIT.BYTES_PER_BLOCK);
+	SS80s->AddressBlocks = SS80_Blocks_to_Bytes(Address);
     return ( status & ERROR_MASK );
 }
 
@@ -939,19 +953,14 @@ int SS80_Command_State( void )
         if (ch == 0x10)
         {
 			/* upper two MSB unused */
-			/*
-			SS80s->AddressBlocks.B[5] = gpib_iobuff[ind+0];// MSB unused
-			SS80s->AddressBlocks.B[4] = gpib_iobuff[ind+1];// unused
-			SS80s->AddressBlocks.B[3] = gpib_iobuff[ind+2];
-			SS80s->AddressBlocks.B[2] = gpib_iobuff[ind+3];
-			SS80s->AddressBlocks.B[1] = gpib_iobuff[ind+4];
-			SS80s->AddressBlocks.B[0] = gpib_iobuff[ind+5];//LSB
-			*/
+			/* gpib_iobuff[ind+0] MSB unused */
+			/* gpib_iobuff[ind+1] MSB unused */
 			SS80s->AddressBlocks = B2V(gpib_iobuff,ind,6);
             ind += 6;
 #if SDEBUG
             if(debuglevel & 32)
-                printf("[SS80 Set Address:(%08lx)]\n", SS80s->AddressBlocks);
+                printf("[SS80 Set Address:(%08lXH)]\n", 
+					SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
             continue;
         }
@@ -960,17 +969,12 @@ int SS80_Command_State( void )
 		// Set Length
         if(ch == 0x18)
         {
-			/*
-            SS80s->Length.B[3] = gpib_iobuff[ind+0];// MSB
-            SS80s->Length.B[2] = gpib_iobuff[ind+1];
-            SS80s->Length.B[1] = gpib_iobuff[ind+2];
-            SS80s->Length.B[0] = gpib_iobuff[ind+3];//LSB
-			*/
+            /* gpib_iobuff[ind+0] MSB */
             SS80s->Length = B2V(gpib_iobuff,ind,4);
             ind += 4;
 #if SDEBUG
             if(debuglevel & 32)
-                printf("[SS80 Set Length:(%08lx)]\n", SS80s->Length);
+                printf("[SS80 Set Length:(%08lXH)]\n", SS80s->Length);
 #endif
             continue;
         }
@@ -1397,7 +1401,6 @@ int SS80_Transparent_State( void )
 
 int SS80_cmd_seek( void )
 {
-
 /// @todo  Let f_lseek do bounds checking instead ???
 ///  Will we read or write past the end of the disk ??
     if ( (SS80s->AddressBlocks + (SS80s->Length/(SS80p->UNIT.BYTES_PER_BLOCK)))
@@ -1413,7 +1416,7 @@ int SS80_cmd_seek( void )
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Seek:%08lx]\n", SS80s->AddressBlocks);
+        printf("[SS80 Seek:%08lXH]\n", SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return (0);
 }
@@ -1685,7 +1688,7 @@ int SS80_increment( void )
     SS80s->AddressBlocks += 1L;
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Increment to (%lxH)]\n", SS80s->AddressBlocks);
+        printf("[SS80 Increment to (%lXH)]\n", SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return(0);
 }

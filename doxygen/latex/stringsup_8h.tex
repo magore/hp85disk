@@ -15,8 +15,10 @@ Various string and character functions.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{isdigit} (int c)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}{sep} (void)
 \begin{DoxyCompactList}\small\item\em undo any existing macros \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{isdigit} (int c)
+\begin{DoxyCompactList}\small\item\em test if a character is a digit \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_aa1caa55b6624cc08af06c04cbfe6c02a}{isupper} (int c)
 \begin{DoxyCompactList}\small\item\em Is a character upper case. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{stringsup_8h_a15c5aeb16e6527e860098b0e062168b5}{islower} (int c)
@@ -107,7 +109,7 @@ Definition at line 33 of file stringsup.\+h.
 
 
 
-Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), skipchars(), stpcpy(), strcasecmp(), strcmp(), strlen(), strncmp(), strncpy(), and tolower().
+Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), sep(), skipchars(), stpcpy(), strcasecmp(), strcmp(), strlen(), strncmp(), strncpy(), and tolower().
 
 
 
@@ -147,7 +149,7 @@ N\+U\+LL if no token found
 \end{DoxyReturn}
 
 
-Definition at line 522 of file stringsup.\+c.
+Definition at line 530 of file stringsup.\+c.
 
 
 
@@ -177,7 +179,7 @@ value
 
 \end{DoxyItemize}
 
-Definition at line 600 of file stringsup.\+c.
+Definition at line 608 of file stringsup.\+c.
 
 
 
@@ -192,9 +194,7 @@ Referenced by assign\+\_\+value().
 )}\hypertarget{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{}\label{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}
 
 
-undo any existing macros 
-
-undo any existing macros
+test if a character is a digit 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -206,7 +206,7 @@ true or false
 \end{DoxyReturn}
 
 
-Definition at line 40 of file stringsup.\+c.
+Definition at line 48 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!islower@{islower}}
 \index{islower@{islower}!stringsup.\+h@{stringsup.\+h}}
@@ -225,7 +225,7 @@ Definition at line 40 of file stringsup.\+c.
 \end{DoxyReturn}
 
 
-Definition at line 72 of file stringsup.\+c.
+Definition at line 80 of file stringsup.\+c.
 
 
 
@@ -252,7 +252,7 @@ Is a character upper case.
 \end{DoxyReturn}
 
 
-Definition at line 56 of file stringsup.\+c.
+Definition at line 64 of file stringsup.\+c.
 
 
 
@@ -284,7 +284,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 430 of file stringsup.\+c.
+Definition at line 438 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
@@ -315,7 +315,7 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 467 of file stringsup.\+c.
+Definition at line 475 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}}
 \index{M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}!stringsup.\+h@{stringsup.\+h}}
@@ -343,7 +343,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 449 of file stringsup.\+c.
+Definition at line 457 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
@@ -374,7 +374,7 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 493 of file stringsup.\+c.
+Definition at line 501 of file stringsup.\+c.
 
 
 
@@ -407,7 +407,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 117 of file stringsup.\+c.
+Definition at line 125 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!nextspace@{nextspace}}
 \index{nextspace@{nextspace}!stringsup.\+h@{stringsup.\+h}}
@@ -430,7 +430,7 @@ pointer to first white space character
 \end{DoxyReturn}
 
 
-Definition at line 281 of file stringsup.\+c.
+Definition at line 289 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!reverse@{reverse}}
 \index{reverse@{reverse}!stringsup.\+h@{stringsup.\+h}}
@@ -453,7 +453,26 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 204 of file stringsup.\+c.
+Definition at line 212 of file stringsup.\+c.
+
+\index{stringsup.\+h@{stringsup.\+h}!sep@{sep}}
+\index{sep@{sep}!stringsup.\+h@{stringsup.\+h}}
+\subsubsection[{\texorpdfstring{sep(void)}{sep(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void sep (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}{}\label{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}
+
+
+undo any existing macros 
+
+undo any existing macros 
+
+Definition at line 32 of file stringsup.\+c.
+
+
+
+Referenced by gpib\+\_\+decode\+\_\+header(), main(), and S\+S80\+\_\+\+Test().
 
 \index{stringsup.\+h@{stringsup.\+h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!stringsup.\+h@{stringsup.\+h}}
@@ -479,7 +498,7 @@ pointer to string after skipped characters.
 \end{DoxyReturn}
 
 
-Definition at line 303 of file stringsup.\+c.
+Definition at line 311 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!skipspaces@{skipspaces}}
 \index{skipspaces@{skipspaces}!stringsup.\+h@{stringsup.\+h}}
@@ -502,7 +521,7 @@ pointer to first non white space character
 \end{DoxyReturn}
 
 
-Definition at line 264 of file stringsup.\+c.
+Definition at line 272 of file stringsup.\+c.
 
 
 
@@ -532,7 +551,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 189 of file stringsup.\+c.
+Definition at line 197 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!stralloc@{stralloc}}
 \index{stralloc@{stralloc}!stringsup.\+h@{stringsup.\+h}}
@@ -562,7 +581,7 @@ N\+U\+LL on out of memory.
 \end{DoxyReturn}
 
 
-Definition at line 668 of file stringsup.\+c.
+Definition at line 676 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -588,7 +607,7 @@ Compare two strings without case.
 \end{DoxyReturn}
 
 
-Definition at line 385 of file stringsup.\+c.
+Definition at line 393 of file stringsup.\+c.
 
 
 
@@ -618,7 +637,7 @@ Compare two strings.
 \end{DoxyReturn}
 
 
-Definition at line 337 of file stringsup.\+c.
+Definition at line 345 of file stringsup.\+c.
 
 
 
@@ -648,7 +667,7 @@ destination string
 \end{DoxyReturn}
 
 
-Definition at line 152 of file stringsup.\+c.
+Definition at line 160 of file stringsup.\+c.
 
 
 
@@ -675,7 +694,7 @@ string length
 \end{DoxyReturn}
 
 
-Definition at line 138 of file stringsup.\+c.
+Definition at line 146 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strnalloc@{strnalloc}}
 \index{strnalloc@{strnalloc}!stringsup.\+h@{stringsup.\+h}}
@@ -706,7 +725,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 644 of file stringsup.\+c.
+Definition at line 652 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+h@{stringsup.\+h}}
@@ -735,7 +754,7 @@ Compare two strings without case maximum len bytes in size.
 \end{DoxyReturn}
 
 
-Definition at line 407 of file stringsup.\+c.
+Definition at line 415 of file stringsup.\+c.
 
 
 
@@ -768,7 +787,7 @@ Compare two strings maximum len bytes in size.
 \end{DoxyReturn}
 
 
-Definition at line 361 of file stringsup.\+c.
+Definition at line 369 of file stringsup.\+c.
 
 
 
@@ -801,7 +820,7 @@ destination string
 \end{DoxyReturn}
 
 
-Definition at line 169 of file stringsup.\+c.
+Definition at line 177 of file stringsup.\+c.
 
 
 
@@ -828,7 +847,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 226 of file stringsup.\+c.
+Definition at line 234 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!token@{token}}
 \index{token@{token}!stringsup.\+h@{stringsup.\+h}}
@@ -861,7 +880,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 565 of file stringsup.\+c.
+Definition at line 573 of file stringsup.\+c.
 
 
 
@@ -888,7 +907,7 @@ character or lowercase value or character
 \end{DoxyReturn}
 
 
-Definition at line 88 of file stringsup.\+c.
+Definition at line 96 of file stringsup.\+c.
 
 \index{stringsup.\+h@{stringsup.\+h}!toupper@{toupper}}
 \index{toupper@{toupper}!stringsup.\+h@{stringsup.\+h}}
@@ -911,7 +930,7 @@ character or upper case value or character
 \end{DoxyReturn}
 
 
-Definition at line 104 of file stringsup.\+c.
+Definition at line 112 of file stringsup.\+c.
 
 
 
@@ -941,7 +960,7 @@ Overwrites White space and control characters with E\+OS.
 \end{DoxyWarning}
 
 
-Definition at line 246 of file stringsup.\+c.
+Definition at line 254 of file stringsup.\+c.
 
 
 

@@ -41,7 +41,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef toupper
 
 
-/* ../lib/stringsup.c */
+/* stringsup.c */
+MEMSPACE void sep ( void );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE int WEAK_ATR isupper ( int c );
 MEMSPACE int WEAK_ATR islower ( int c );

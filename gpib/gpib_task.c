@@ -35,13 +35,6 @@ int debuglevel = 1;
 FILE *gpib_log_fp;
 
 
-///@brief print seperator
-void sep()
-{
-	printf("==============================\n");
-}
-
-
 ///@brief Read Configuration File
 void gpib_file_init()
 {

@@ -28,6 +28,8 @@ uint8_t *SS80UnitPack ( int *size );
 uint8_t *SS80VolumePack ( int *size );
 void SS80_init ( void );
 int SS80_Execute_State ( void );
+uint32_t SS80_Blocks_to_Bytes ( uint32_t block );
+uint32_t SS80_Bytes_to_Blocks ( uint32_t bytes );
 int SS80_locate_and_read ( void );
 int SS80_locate_and_write ( void );
 int SS80_send_status ( void );
