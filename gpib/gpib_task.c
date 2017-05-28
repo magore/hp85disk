@@ -290,9 +290,6 @@ uint16_t gpib_error_test(uint16_t val)
             gpib_init_devices();
         }
 
-        if(debuglevel & (1+4))
-            printf("\n");
-
         if(uart_keyhit(0))
         {
             gpib_init_devices();
