@@ -129,6 +129,8 @@ void ppr_init()
 
 void ppr_bit_set(uint8_t bit)
 {
+///FIXME
+	_ppr_reg = 0;
     BIT_SET(_ppr_reg,bit);
     ppr_set(_ppr_reg);
 }
@@ -148,6 +150,8 @@ void ppr_bit_set(uint8_t bit)
 
 void ppr_bit_clr(uint8_t bit)
 {
+///FIXME
+	_ppr_reg = 0;
     BIT_CLR(_ppr_reg,bit);
     ppr_set(_ppr_reg);
 }

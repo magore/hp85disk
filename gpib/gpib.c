@@ -285,7 +285,7 @@ void EnablePPR(int bit)
     ppr_bit_set(bit);
 #if SDEBUG
     if(debuglevel & 2)
-        printf("[EPPR %d, mask:%02XH]\n",0xff & bit , 0xff & ppr_reg());
+        printf("[EPPR bit:%d, mask:%02XH]\n",0xff & bit , 0xff & ppr_reg());
 #endif
 }
 
@@ -305,7 +305,7 @@ void DisablePPR(int bit)
     ppr_bit_clr(bit);
 #if SDEBUG
     if(debuglevel & 2)
-        printf("[DPPR %d, mask:%02XH]\n",0xff & bit, 0xff & ppr_reg());
+        printf("[DPPR bit:%d, mask:%02XH]\n",0xff & bit, 0xff & ppr_reg());
 #endif
 }
 

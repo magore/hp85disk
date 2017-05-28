@@ -301,14 +301,7 @@ int find_device(int type, int address, int base)
 
 	///@brief Make sure address is in expected range
 	if(address < base || address > (base+30))
-	{
-		if(debuglevel & 1)
-		{
-			printf("[%s %s address:%02XH out of range]\n", 
-				base_to_str(base), type_to_str(type), address);
-		}
 		return(-1);
-	}
 
 	///@brief convert to device address
 	address -= base;

@@ -270,7 +270,7 @@ void SS80_init(void)
 			SS80s->qstat = 2;
 #if SDEBUG
 			if(debuglevel & 32)
-				printf("[SS80 %d INIT]\n", Devices[i].ADDRESS);
+				printf("[SS80 %02XH INIT]\n", Devices[i].ADDRESS);
 #endif
 		/// @todo FIXME
 			DisablePPR(SS80p->HEADER.PPR);
@@ -373,7 +373,8 @@ int SS80_locate_and_read( void )
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Read at %08lXH(%lXH)]\n", Address, SS80s->Length);
+        printf("[SS80 Locate and Read at %08lXH(%lXH)]\n", 
+			(long) Address, (long) SS80s->Length);
 #endif
 
     if( SS80_cmd_seek() )
@@ -412,7 +413,7 @@ int SS80_locate_and_read( void )
         if(debuglevel & 64)
             gpib_timer_elapsed_end("Disk Read");
         if(debuglevel & 32)
-            printf("[SS80 Disk Read %d bytes]\n", len);
+            printf("[SS80 Disk Read %02XH bytes]\n", len);
 #endif
         if(len < 0)
         {
@@ -458,7 +459,7 @@ int SS80_locate_and_read( void )
     {
 #if SDEBUG
         if(debuglevel & 32)
-            printf("[SS80 Buffered Read Total(%ld) Bytes]\n", total_bytes);
+            printf("[SS80 Buffered Read Total(%lXH) bytes]\n", (long) total_bytes);
 #endif
     }
 
@@ -493,7 +494,7 @@ int SS80_locate_and_write(void)
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Locate and Write at %08lXH(%lXH)]\n", Address, SS80s->Length);
+        printf("[SS80 Locate and Write at %08lXH(%lXH)]\n", (long)Address, (long)SS80s->Length);
 #endif
 
     SS80s->qstat = 0;
@@ -580,7 +581,7 @@ int SS80_locate_and_write(void)
                 {
 #if SDEBUG
                     if(debuglevel & 32)
-                        printf("[SS80 Locate and Write wrote(%d)]\n", len2);
+                        printf("[SS80 Locate and Write wrote(%02XH)]\n", len2);
 #endif
                     Address += len;
                 }
@@ -607,10 +608,10 @@ int SS80_locate_and_write(void)
     {
 #if SDEBUG
         if(debuglevel & 32)
-            printf("[SS80 Locate and Write Wrote Total(%ld)]\n", total_bytes);
+            printf("[SS80 Locate and Write Wrote Total(%lxH)]\n", total_bytes);
 #endif
     }
-	SS80s->AddressBlocks = SS80_Blocks_to_Bytes(Address);
+	SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
     return ( status & ERROR_MASK );
 }
 
@@ -756,14 +757,8 @@ int SS80_send_status( void )
 ///@see SET ADDRESS in blocks
 	if(!SS80s->Errors)
 	{
-/*
-		tmp[10] = SS80s->AddressBlocks.B[5];	// MSB unused
-		tmp[11] = SS80s->AddressBlocks.B[4];	// unused
-		tmp[12] = SS80s->AddressBlocks.B[3];
-		tmp[13] = SS80s->AddressBlocks.B[2];
-		tmp[14] = SS80s->AddressBlocks.B[1];
-		tmp[15] = SS80s->AddressBlocks.B[0];	// LSB
-*/
+		/* tmp[10] = SS80s->AddressBlocks.B[5] MSB unused */
+		/* tmp[11] = SS80s->AddressBlocks.B[4] unused */
 		V2B(tmp,10,6,SS80s->AddressBlocks);
 	}
 
@@ -960,7 +955,7 @@ int SS80_Command_State( void )
 #if SDEBUG
             if(debuglevel & 32)
                 printf("[SS80 Set Address:(%08lXH)]\n", 
-					SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+					(long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
             continue;
         }
@@ -974,7 +969,7 @@ int SS80_Command_State( void )
             ind += 4;
 #if SDEBUG
             if(debuglevel & 32)
-                printf("[SS80 Set Length:(%08lXH)]\n", SS80s->Length);
+                printf("[SS80 Set Length:(%08lXH)]\n", (long)SS80s->Length);
 #endif
             continue;
         }
@@ -1212,7 +1207,8 @@ int SS80_Command_State( void )
     if( ind != len)
     {
         if(debuglevel & 1)
-            printf("[SS80 Execute Command, opcode processing error (%d) of (%d) OP Codes]\n", ind, len);
+            printf("[SS80 Execute Command, Error at (%d) of (%d) OP Codes]\n", 
+				ind, len);
     }
 
     EnablePPR(SS80p->HEADER.PPR);
@@ -1381,7 +1377,8 @@ int SS80_Transparent_State( void )
     if( ind != len)
     {
         if(debuglevel & 1)
-            printf("[SS80 Transparent Command, processing ERROR(%d) of (%d) OP Codes]\n", ind, len);
+            printf("[SS80 Transparent Command, Error at (%d) of (%d) OP Codes]\n", 
+				ind,len);
     }
 
 
@@ -1403,20 +1400,21 @@ int SS80_cmd_seek( void )
 {
 /// @todo  Let f_lseek do bounds checking instead ???
 ///  Will we read or write past the end of the disk ??
-    if ( (SS80s->AddressBlocks + (SS80s->Length/(SS80p->UNIT.BYTES_PER_BLOCK)))
-             > SS80p->VOLUME.MAX_BLOCK_NUMBER)
+    if ( (SS80s->AddressBlocks + SS80_Bytes_to_Blocks(SS80s->Length))
+             > SS80p->VOLUME.MAX_BLOCK_NUMBER )
     {
         SS80s->qstat = 1;
         SS80s->Errors |= ERR_SEEK;
 
         if(debuglevel & 1)
-            printf("[SS80 Seek OVERFLOW]\n");
+            printf("[SS80 Seek OVERFLOW at %08lXH]\n", 
+				(long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
         return(1);
     }
 
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Seek:%08lXH]\n", SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+        printf("[SS80 Seek:%08lXH]\n", (long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return (0);
 }
@@ -1688,7 +1686,8 @@ int SS80_increment( void )
     SS80s->AddressBlocks += 1L;
 #if SDEBUG
     if(debuglevel & 32)
-        printf("[SS80 Increment to (%lXH)]\n", SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+        printf("[SS80 Increment to (%lXH)]\n", 
+			(long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return(0);
 }
