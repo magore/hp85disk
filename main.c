@@ -262,9 +262,10 @@ int main(void)
 
 	sep();
     printf("HP85 Disk and Device Emulator\n");
+    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
-
-    printf("   GIT pushed:        %s\n", GIT_VERSION);
+    printf("   GIT last pushed:   %s\n", GIT_VERSION);
     printf("   Last updated file: %s\n", LOCAL_MOD);
 
 	sep();
