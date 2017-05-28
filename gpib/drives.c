@@ -317,21 +317,14 @@ int find_device(int type, int address, int base)
 	for(i=0;i<MAX_DEVICES;++i)
 	{
 		if(Devices[i].TYPE == type && Devices[i].ADDRESS == address)
-		{
-#if SDEBUG
-			if(debuglevel & (4+32))
-			{
-				printf("[%s %s address:%02xH]\n", 
-					base_to_str(base), type_to_str(type), address);
-				return(i);
-			}
-#endif
-		}
+			return(i);
 	}
 	return(-1);
 }
 
-///@brief Set the Active disk device pointer
+///@brief Set the Active disk or device pointers
+/// Since we can be called multiple times per single GPIB state we do not
+/// display state changes here. Other code displays the active state.
 ///@param index: Devices[] index
 ///@return 1 on success or 0 on fail
 int set_active_device(int index)
@@ -341,7 +334,9 @@ int set_active_device(int index)
 	///@brief We also check for -1 
 	/// So the result of find_device() can be used without additional tests
 	if(index == -1)
+	{
 		return(0);
+	}
 
 	if(index < 0 || index >= MAX_DEVICES)
 	{
@@ -349,6 +344,7 @@ int set_active_device(int index)
 			printf("set_active_device:(%d) out of range\n", index);
 		return(0);
 	}
+
 	type = Devices[index].TYPE;
 	address = Devices[index].ADDRESS;
 	if(address < 0 || address > 30)
@@ -365,6 +361,7 @@ int set_active_device(int index)
 				index,type,type_to_str(type));
 		return(0);
 	}
+
 	if(type == NO_TYPE)
 	{
 		if(debuglevel & 1)
@@ -372,6 +369,7 @@ int set_active_device(int index)
 				index,type,type_to_str(type));
 		return(0);
 	}
+
 	if(type == PRINTER_TYPE)
 	{
 		PRINTERp = (PRINTERDeviceType *) Devices[index].dev;
