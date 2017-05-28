@@ -314,7 +314,7 @@ int main(void)
 	///@brief GPIB talking/listening state variables 
 	///Must be done AFTER gpib_file_init() so we have a valid configuration
     gpib_state_init();
-    printf("GPIB File init done\n");
+    printf("GPIB State init done\n");
 
 	///@brief Display Config
 	sep();
