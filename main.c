@@ -259,6 +259,7 @@ int main(void)
     delayms(200); ///@brief Power up delay
 
     printf("Start\n");
+    printf("CPU Clock = %lu\n", F_CPU);
 
 	sep();
     printf("HP85 Disk and Device Emulator\n");
@@ -269,18 +270,12 @@ int main(void)
     printf("   Last updated file: %s\n", LOCAL_MOD);
 
 	sep();
-    printf("CPU Clock = %lu\n", F_CPU);
-#ifdef SOFTWARE_PP
-    printf("\nSoftware PP\n");
-#else
-    printf("\nHardware PP\n");
-#endif
-	sep();
     PrintFree();
 
 	sep();
     delayms(200); ///@brief Power up delay
 	///@ initialize bus state as soon as practical
+
 	printf("initializing GPIB bus\n");
     gpib_bus_init(0);
 
