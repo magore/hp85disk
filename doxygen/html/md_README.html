@@ -95,14 +95,27 @@ README</h1>
 <ul>
 <li>See <a class="el" href="md_COPYRIGHT.html">COPYRIGHT</a> for a full copywrite notice for the project</li>
 </ul>
-<p>This project emulates five GPIB devices</p><ul>
+<h2>Features</h2>
+<ul>
+<li>This project emulates GPIB drives and HPGL printer for HP85A and HP85B<ul>
+<li>AMIGO drices work with HP85A</li>
+<li>SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)</li>
+<li>Each drive can be fully defines in the hpdisk.cfg file on the SD CARD</li>
+<li>Working example sdcard files included<ul>
 <li>first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)</li>
 <li>first Amigo 9121D disk at 710 for my HP85B (with 85B roms)</li>
 <li>second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)</li>
 <li>second Amigo 9121D disk at 730 for my HP85B (with 85B roms)</li>
-<li>Printer capture at 750 for my HP54645D scope</li>
+<li>Printer capture at 750 for my HP54645D scope<ul>
+<li>Will capture plot data to sdcard with timestamp <hr/>
+</li>
 </ul>
-<hr/>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h1>Credits</h1>
 <p><b>I really owe the very existence of this project to the original work done by Anders Gustafsson and his great "HP Disk Emulator" </b></p><ul>
 <li>You can visit his project at this site:<ul>
@@ -220,7 +233,7 @@ README</h1>
 </pre><hr/>
 <h2>AVR ATMEGA1284P pin assignments for HP85 Disk</h2>
 <ul>
-<li><dl class="section see"><dt>See also</dt><dd>Documents/P85Disk.pdf for a hand drawn diagram</dd></dl>
+<li><dl class="section see"><dt>See also</dt><dd>Documents/HP85Disk.pdf for a hand drawn diagram</dd></dl>
 </li>
 <li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU via 120 ohm current limit resistor .<ul>
 <li>Each GPIB connector pin (8 data and 8 control lines) have a 10K pull-up resistor to VCC.</li>
@@ -264,7 +277,7 @@ README</h1>
 <ul>
 <li>Uses: Three chips 74HC05, 74HC32, 74HC595</li>
 <li>Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!</li>
-</ul>
+<li><dl class="section see"><dt>See also</dt><dd>Documents/HP85Disk.pdf for a hand drawn diagram</dd></dl>
 <pre>
     ATMEGA               HC595             HC05 
                       +----V----+          +-V-+  
@@ -280,7 +293,9 @@ README</h1>
     VCC 14|   |       |         | 16 VCC 
     GND  7|   |       |         |  8 GND 
           +---+       +---------+ 
-</pre><p>Notes: When both EOI and ATN are low the HC32 enables HC595 outputs</p><ul>
+</pre></li>
+</ul>
+<p>Notes: When both EOI and ATN are low the HC32 enables HC595 outputs</p><ul>
 <li>If any HC595 output is high the GPIB bus bit will be pulled low</li>
 <li>IFC low resets the HC595 outputs low - so the HC05 outputs will float.</li>
 </ul>
@@ -823,7 +838,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 30 2017 14:28:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 30 2017 18:38:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

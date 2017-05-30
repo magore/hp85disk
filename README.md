@@ -9,13 +9,18 @@
 ## HP85 Disk Emulator Copyright &copy; 2014-2017 Mike Gore
  * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
- This project emulates five GPIB devices
-  * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
-  * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
-  * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
-  * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
-  * Printer capture at 750 for my HP54645D scope
-
+## Features
+ * This project emulates GPIB drives and HPGL printer for HP85A and HP85B
+   * AMIGO drices work with HP85A 
+   * SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)
+   * Each drive can be fully defines in the hpdisk.cfg file on the SD CARD
+   * Working example sdcard files included
+     * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
+     * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
+     * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
+     * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
+     * Printer capture at 750 for my HP54645D scope
+       * Will capture plot data to sdcard with timestamp
 ___
 
 # Credits
@@ -133,7 +138,7 @@ ___
 ___
 
 ## AVR ATMEGA1284P pin assignments for HP85 Disk
-  * @see Documents/P85Disk.pdf for a hand drawn diagram
+  * @see Documents/HP85Disk.pdf for a hand drawn diagram
   * GPIB:  Each GPIB pin (8 data and 8 control lines ) attach to CPU via 120 ohm current limit resistor .
     * Each GPIB connector pin (8 data and 8 control lines) have a 10K pull-up resistor to VCC.
   * ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header
@@ -178,6 +183,7 @@ ___
 ## Parallel Poll Response circuit
   * Uses: Three chips 74HC05, 74HC32, 74HC595
   * Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
+  * @see Documents/HP85Disk.pdf for a hand drawn diagram
 
 
 <pre>

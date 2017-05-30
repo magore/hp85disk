@@ -16,18 +16,30 @@
 \item See \hyperlink{md_COPYRIGHT}{C\+O\+P\+Y\+R\+I\+G\+HT} for a full copywrite notice for the project
 \end{DoxyItemize}
 
-This project emulates five G\+P\+IB devices
+\subsection*{Features}
+
+
+\begin{DoxyItemize}
+\item This project emulates G\+P\+IB drives and H\+P\+GL printer for H\+P85A and H\+P85B
+\begin{DoxyItemize}
+\item A\+M\+I\+GO drices work with H\+P85A
+\item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 add on board see links)
+\item Each drive can be fully defines in the hpdisk.\+cfg file on the SD C\+A\+RD
+\item Working example sdcard files included
 \begin{DoxyItemize}
 \item first S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A roms)
 \item first Amigo 9121D disk at 710 for my H\+P85B (with 85B roms)
 \item second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A roms)
 \item second Amigo 9121D disk at 730 for my H\+P85B (with 85B roms)
 \item Printer capture at 750 for my H\+P54645D scope
+\begin{DoxyItemize}
+\item Will capture plot data to sdcard with timestamp 
+
+
 \end{DoxyItemize}
-
-
-
-
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 \section*{Credits}
 
@@ -203,7 +215,7 @@ See Documents folder
 
 \begin{DoxyItemize}
 \item \begin{DoxySeeAlso}{See also}
-Documents/\+P85\+Disk.\+pdf for a hand drawn diagram
+Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxySeeAlso}
 
 \item G\+P\+IB\+: Each G\+P\+IB pin (8 data and 8 control lines ) attach to C\+PU via 120 ohm current limit resistor .
@@ -260,8 +272,9 @@ Documents/\+P85\+Disk.\+pdf for a hand drawn diagram
 \begin{DoxyItemize}
 \item Uses\+: Three chips 74\+H\+C05, 74\+H\+C32, 74\+H\+C595
 \item Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
-\end{DoxyItemize}
-
+\item \begin{DoxySeeAlso}{See also}
+Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
+\end{DoxySeeAlso}
 
 \begin{DoxyPre}
     ATMEGA               HC595             HC05 
@@ -280,6 +293,7 @@ Documents/\+P85\+Disk.\+pdf for a hand drawn diagram
           +---+       +---------+ 
 \end{DoxyPre}
 
+\end{DoxyItemize}
 
 Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \begin{DoxyItemize}
