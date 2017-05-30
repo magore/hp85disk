@@ -267,8 +267,6 @@ ___
 ## Files
   * ./COPYRIGHT.md
     Project Copyrights 
-  * ./baudrate.c
-    Baud rate calculation tool. Supply CPU clock and desired baud rate, will list the actual baud rate and registers
   * ./main.c
     Main startup code
   * ./main.h
@@ -395,6 +393,8 @@ ___
       * SS80 parser
   * hardware
     * CPU hardware specific code
+    *  hardware/baudrate.c
+      * Baud rate calculation tool. Supply CPU clock and desired baud rate, will list the actual baud rate and registers
     * hardware/bits.h
       * BIT set and clear functions
     * hardware/cpu.h

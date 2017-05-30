@@ -182,14 +182,14 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
 
 SRCS = $(CSRC)
-PROGS = baudrate
+PROGS = hardware/baudrate
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
 all: version $(LIBS) build size $(PROGS)
 
-baudrate:  baudrate.c
-	gcc baudrate.c -o baudrate -lm
+hardware/baudrate:  hardware/baudrate.c
+	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
 
 flash:  all
