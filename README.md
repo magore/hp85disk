@@ -394,7 +394,7 @@ ___
   * hardware
     * CPU hardware specific code
     * hardware/baudrate.c
-      * Baud rate calculation tool. Giving CPU clock and desired baud rate, will list the actual baud rate and registers
+      * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
     * hardware/bits.h
       * BIT set and clear functions
     * hardware/cpu.h
