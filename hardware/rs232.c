@@ -89,20 +89,68 @@ int uart1_putchar(int c, FILE *f)
 }
 #endif
 
+/// @brief  UART baud rate caluculation
+/// We compute the best values of baud rate register and prescale
+/// @param[in] uart: desired baud rate in HZ
+/// @param[in] *u2x: computed prescale 1 = divide by 8, 0 = divide by 16
+/// @param[in] *actual: Actual computed baud rate, closest we could get with register settings
+///
+/// @return  baud rate register value
+/// @see fdevopen() avr-libc function that attaches uart functions to getchar and putchar POSIX functions.
+uint16_t uart_ubr(uint32_t baud, int *u2x, uint32_t *actual)
+{
+	double div;
+	uint32_t ubr_regi;
+
+	// Calculating Baud Rate
+	// (U2X = 0) 
+	// BAUD = Fosc/(16*(UBRn+1))
+	// UBRn = Fosc/(16*Baud) -1
+	// (U2X = 1) 
+	// BAUD = Fosc/(8*(UBRn+1))
+	// UBRn = Fosc/(8*Baud) -1
+
+	///@brief Use 8 prescale as a default
+	*u2x = 1;
+	div = 8;
+	ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
+
+	// For lower baud rates use 16 divider if the UBRR register overflows
+	// URBRR register is only a 12 bit register!
+	if(ubr_regi > 4095)
+	{
+		///@brief Use 16 prescale f we have a low baud rate
+		*u2x = 0;
+		div = 16.0;
+		ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
+	}
+	//overflow, baud rate was too low - so we clip to maximum allowed
+	if(ubr_regi > 4095)
+		ubr_regi = 4095;
+
+	*actual = ((double)F_CPU/(div*((double)(ubr_regi+1))));
+
+	return(ubr_regi);
+}
+
 /// @brief  UART initialization function that works with avr-libc functions.
 ///
 /// @param[in] uart: UART number.
 /// @param[in] baud: Baud Rate in HZ.
 ///
-/// @return  0 on success.
-/// @return  EOF on fail.
-/// @see fdevopen() avr-libc function.
-int uart_init(uint8_t uart, uint32_t baud)
+/// @return  actual baud rate, closest we could get with register settings
+/// @see fdevopen() avr-libc function that attaches uart functions to getchar and putchar POSIX functions.
+uint32_t uart_init(uint8_t uart, uint32_t baud)
 {
-    uint16_t uart_select_baud = (uint16_t) ( F_CPU/16L/baud );
+    uint16_t ubr_register;
+	uint32_t actual;
+	int u2x = 0;
+
 
     if(uart >= UARTS)
-        return(EOF);
+        return(0);
+
+    ubr_register = uart_ubr(baud,(int*)&u2x,(uint32_t *)&actual);
 
     if(uart == 0)                                 /* uart == 0( first serial ) */
     {
@@ -117,11 +165,15 @@ int uart_init(uint8_t uart, uint32_t baud)
 
         UCSR0B = (1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0);
 
-        UBRR0H = (uint8_t) 0xff & (uart_select_baud >> 8);
-        UBRR0L = (uint8_t) 0xff & (uart_select_baud);
+		if(u2x)
+			UCSR0A = (1<<U2X0);
+
+        UBRR0H = (uint8_t) 0xff & (ubr_register >> 8);
+        UBRR0L = (uint8_t) 0xff & (ubr_register);
 
         sei();
 
+		//@brief see posix.c this attaches uart functions to putchar() and getchar()
         fdevopen((void *)uart0_putchar, (void *)uart0_getchar);
     }
 #if UARTS > 1
@@ -138,15 +190,20 @@ int uart_init(uint8_t uart, uint32_t baud)
 
         UCSR1B = (1<<RXCIE1)|(1<<RXEN1)|(1<<TXEN1);
 
-        UBRR1H = (uint8_t) 0xff & (uart_select_baud >> 8);
-        UBRR1L = (uint8_t) 0xff & (uart_select_baud);
+		if(u2x)
+			UCSR1A = (1<<U2X1);
+
+        UBRR1H = (uint8_t) 0xff & (ubr_register >> 8);
+        UBRR1L = (uint8_t) 0xff & (ubr_register);
 
         sei();
 
+		//@brief see posix.c this attaches uart functions to putchar() and getchar()
         fdevopen((void *)uart1_putchar, (void *)uart1_getchar);
     }
 #endif
-    return(0);
+	///@brief actual baud rate
+    return(actual);
 }
 
 

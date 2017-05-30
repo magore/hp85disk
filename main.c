@@ -246,16 +246,19 @@ char line[MAX_LINE+1];
 int main(void)
 {
     ts_t ts;
+	uint32_t baud;
 	int cold = 1;
 
     init_timers();
 
-    uart_init(0, 115200U); // Serial Port Initialize
+	// returns actual baud rate which may differ slightly because of limited resolution of baud rate clock and devisors
+    baud = uart_init(0, 115200U); // Serial Port Initialize
     delayms(200); ///@brief Power up delay
 
 	sep();
     printf("Start\n");
     printf("CPU Clock = %lu\n", F_CPU);
+    printf("Actual Baud Rate = %lu\n", baud);
 
 	sep();
     printf("HP85 Disk and Device Emulator\n");

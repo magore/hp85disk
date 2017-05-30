@@ -16,7 +16,9 @@ int \hyperlink{rs232_8c_a7cc27636375d3ac8475246e44f59a845}{uart0\+\_\+getchar} (
 \begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
 int \hyperlink{rs232_8c_af3a596ad95e6425f623181b8fc746119}{uart0\+\_\+putchar} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8c_a4973143ccfb71e6e9f99cb680af22957}{uart\+\_\+init} (uint8\+\_\+t uart, uint32\+\_\+t baud)
+uint16\+\_\+t \hyperlink{rs232_8c_acf0f1788a444afef4ccd7c614429df05}{uart\+\_\+ubr} (uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}{uart\+\_\+init} (uint8\+\_\+t uart, uint32\+\_\+t baud)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT initialization function that works with avr-\/libc functions. \end{DoxyCompactList}\item 
 \hyperlink{rs232_8c_a084f0a9cf05b1877bd8a71a90dae7ff8}{I\+SR} (U\+S\+A\+R\+T0\+\_\+\+R\+X\+\_\+vect)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT 0 Receive Interrupt runction. \end{DoxyCompactList}\item 
@@ -90,7 +92,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 380 of file rs232.\+c.
+Definition at line 437 of file rs232.\+c.
 
 
 
@@ -112,7 +114,7 @@ U\+A\+RT 0 Receive Interrupt runction.
 \end{DoxySeeAlso}
 
 
-Definition at line 155 of file rs232.\+c.
+Definition at line 212 of file rs232.\+c.
 
 \index{rs232.\+c@{rs232.\+c}!uart0\+\_\+getchar@{uart0\+\_\+getchar}}
 \index{uart0\+\_\+getchar@{uart0\+\_\+getchar}!rs232.\+c@{rs232.\+c}}
@@ -193,7 +195,7 @@ character
 \end{DoxyReturn}
 
 
-Definition at line 370 of file rs232.\+c.
+Definition at line 427 of file rs232.\+c.
 
 
 
@@ -231,7 +233,7 @@ character.
 \end{DoxySeeAlso}
 
 
-Definition at line 221 of file rs232.\+c.
+Definition at line 278 of file rs232.\+c.
 
 
 
@@ -263,7 +265,7 @@ Character.
 \end{DoxyReturn}
 
 
-Definition at line 281 of file rs232.\+c.
+Definition at line 338 of file rs232.\+c.
 
 
 
@@ -271,12 +273,12 @@ Referenced by uart0\+\_\+getchar(), and uart0\+\_\+putchar().
 
 \index{rs232.\+c@{rs232.\+c}!uart\+\_\+init@{uart\+\_\+init}}
 \index{uart\+\_\+init@{uart\+\_\+init}!rs232.\+c@{rs232.\+c}}
-\subsubsection[{\texorpdfstring{uart\+\_\+init(uint8\+\_\+t uart, uint32\+\_\+t baud)}{uart_init(uint8_t uart, uint32_t baud)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart\+\_\+init (
+\subsubsection[{\texorpdfstring{uart\+\_\+init(uint8\+\_\+t uart, uint32\+\_\+t baud)}{uart_init(uint8_t uart, uint32_t baud)}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t uart\+\_\+init (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t}]{uart, }
 \item[{uint32\+\_\+t}]{baud}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8c_a4973143ccfb71e6e9f99cb680af22957}{}\label{rs232_8c_a4973143ccfb71e6e9f99cb680af22957}
+)}\hypertarget{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}{}\label{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}
 
 
 U\+A\+RT initialization function that works with avr-\/libc functions. 
@@ -289,16 +291,14 @@ U\+A\+RT initialization function that works with avr-\/libc functions.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-0 on success. 
-
-E\+OF on fail. 
+actual baud rate, closest we could get with register settings 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} avr-\/libc function. 
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} avr-\/libc function that attaches uart functions to \hyperlink{posix_8h_ab38efc888190556f106cafb08d17d16f}{getchar} and \hyperlink{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX} functions. 
 \end{DoxySeeAlso}
+actual baud rate 
 
-
-Definition at line 100 of file rs232.\+c.
+Definition at line 143 of file rs232.\+c.
 
 
 
@@ -330,7 +330,7 @@ Character count in receive buffer.
 \end{DoxyReturn}
 
 
-Definition at line 354 of file rs232.\+c.
+Definition at line 411 of file rs232.\+c.
 
 
 
@@ -354,7 +354,7 @@ character.
 \end{DoxyReturn}
 
 
-Definition at line 199 of file rs232.\+c.
+Definition at line 256 of file rs232.\+c.
 
 \index{rs232.\+c@{rs232.\+c}!uart\+\_\+put@{uart\+\_\+put}}
 \index{uart\+\_\+put@{uart\+\_\+put}!rs232.\+c@{rs232.\+c}}
@@ -377,7 +377,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 363 of file rs232.\+c.
+Definition at line 420 of file rs232.\+c.
 
 
 
@@ -410,7 +410,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 338 of file rs232.\+c.
+Definition at line 395 of file rs232.\+c.
 
 
 
@@ -437,7 +437,7 @@ Character.
 \end{DoxyReturn}
 
 
-Definition at line 268 of file rs232.\+c.
+Definition at line 325 of file rs232.\+c.
 
 
 
@@ -464,7 +464,7 @@ Character count in ring buffer.
 \end{DoxyReturn}
 
 
-Definition at line 246 of file rs232.\+c.
+Definition at line 303 of file rs232.\+c.
 
 
 
@@ -521,7 +521,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 177 of file rs232.\+c.
+Definition at line 234 of file rs232.\+c.
 
 
 
@@ -551,11 +551,49 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 309 of file rs232.\+c.
+Definition at line 366 of file rs232.\+c.
 
 
 
 Referenced by uart\+\_\+putchar().
+
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+ubr@{uart\+\_\+ubr}}
+\index{uart\+\_\+ubr@{uart\+\_\+ubr}!rs232.\+c@{rs232.\+c}}
+\subsubsection[{\texorpdfstring{uart\+\_\+ubr(uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)}{uart_ubr(uint32_t baud, int *u2x, uint32_t *actual)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t uart\+\_\+ubr (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t}]{baud, }
+\item[{int $\ast$}]{u2x, }
+\item[{uint32\+\_\+t $\ast$}]{actual}
+\end{DoxyParamCaption}
+)}\hypertarget{rs232_8c_acf0f1788a444afef4ccd7c614429df05}{}\label{rs232_8c_acf0f1788a444afef4ccd7c614429df05}
+
+
+U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & desired baud rate in HZ \\
+\hline
+\mbox{\tt in}  & {\em $\ast$u2x} & computed prescale 1 = divide by 8, 0 = divide by 16 \\
+\hline
+\mbox{\tt in}  & {\em $\ast$actual} & Actual computed baud rate, closest we could get with register settings\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+baud rate register value 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} avr-\/libc function that attaches uart functions to \hyperlink{posix_8h_ab38efc888190556f106cafb08d17d16f}{getchar} and \hyperlink{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX} functions. 
+\end{DoxySeeAlso}
+Use 8 prescale as a default
+
+Use 16 prescale f we have a low baud rate 
+
+Definition at line 100 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+init().
 
 
 

@@ -148,9 +148,12 @@ Functions</h2></td></tr>
 <tr class="separator:a0fe59f883cf763d61db1192e9d5e5a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37201a1a083614a9d94109b41c6a3098"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rs232_8h.html#a37201a1a083614a9d94109b41c6a3098">uart1_putchar</a> (int c, <a class="el" href="posix_8h.html#aed4dabeb9f7c518ded42f930a04abce8">FILE</a> *f)</td></tr>
 <tr class="separator:a37201a1a083614a9d94109b41c6a3098"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4973143ccfb71e6e9f99cb680af22957"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rs232_8h.html#a4973143ccfb71e6e9f99cb680af22957">uart_init</a> (uint8_t uart, uint32_t baud)</td></tr>
-<tr class="memdesc:a4973143ccfb71e6e9f99cb680af22957"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART initialization function that works with avr-libc functions.  <a href="#a4973143ccfb71e6e9f99cb680af22957">More...</a><br /></td></tr>
-<tr class="separator:a4973143ccfb71e6e9f99cb680af22957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf0f1788a444afef4ccd7c614429df05"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rs232_8h.html#acf0f1788a444afef4ccd7c614429df05">uart_ubr</a> (uint32_t baud, int *u2x, uint32_t *actual)</td></tr>
+<tr class="memdesc:acf0f1788a444afef4ccd7c614429df05"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART baud rate caluculation We compute the best values of baud rate register and prescale.  <a href="#acf0f1788a444afef4ccd7c614429df05">More...</a><br /></td></tr>
+<tr class="separator:acf0f1788a444afef4ccd7c614429df05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadb33b98af6eefa927f6d623cd5759e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rs232_8h.html#aeadb33b98af6eefa927f6d623cd5759e">uart_init</a> (uint8_t uart, uint32_t baud)</td></tr>
+<tr class="memdesc:aeadb33b98af6eefa927f6d623cd5759e"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART initialization function that works with avr-libc functions.  <a href="#aeadb33b98af6eefa927f6d623cd5759e">More...</a><br /></td></tr>
+<tr class="separator:aeadb33b98af6eefa927f6d623cd5759e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382aa76e85fa3a1a2add5111578e954e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rs232_8h.html#a382aa76e85fa3a1a2add5111578e954e">uart_rx_interrupt</a> (uint8_t uart, uint8_t data)</td></tr>
 <tr class="memdesc:a382aa76e85fa3a1a2add5111578e954e"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Receive Interrupt task.  <a href="#a382aa76e85fa3a1a2add5111578e954e">More...</a><br /></td></tr>
 <tr class="separator:a382aa76e85fa3a1a2add5111578e954e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,7 +231,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rs232_8h_source.html#l00018">18</a> of file <a class="el" href="rs232_8h_source.html">rs232.h</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00221">uart_get_tail()</a>, and <a class="el" href="rs232_8c_source.html#l00177">uart_rx_interrupt()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00278">uart_get_tail()</a>, and <a class="el" href="rs232_8c_source.html#l00234">uart_rx_interrupt()</a>.</p>
 
 </div>
 </div>
@@ -258,7 +261,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rs232_8h_source.html#l00021">21</a> of file <a class="el" href="rs232_8h_source.html">rs232.h</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00177">uart_rx_interrupt()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00234">uart_rx_interrupt()</a>.</p>
 
 </div>
 </div>
@@ -304,7 +307,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rs232_8h_source.html#l00044">44</a> of file <a class="el" href="rs232_8h_source.html">rs232.h</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00221">uart_get_tail()</a>, <a class="el" href="rs232_8c_source.html#l00281">uart_getchar()</a>, <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>, <a class="el" href="rs232_8c_source.html#l00199">uart_peek_tail()</a>, <a class="el" href="rs232_8c_source.html#l00246">uart_rx_count()</a>, and <a class="el" href="rs232_8c_source.html#l00022">uart_rx_flush()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00278">uart_get_tail()</a>, <a class="el" href="rs232_8c_source.html#l00338">uart_getchar()</a>, <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>, <a class="el" href="rs232_8c_source.html#l00256">uart_peek_tail()</a>, <a class="el" href="rs232_8c_source.html#l00303">uart_rx_count()</a>, and <a class="el" href="rs232_8c_source.html#l00022">uart_rx_flush()</a>.</p>
 
 </div>
 </div>
@@ -413,7 +416,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00380">380</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00437">437</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
 </div>
 </div>
@@ -443,7 +446,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rs232_8c_source.html#l00045">45</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00370">uart_get()</a>, and <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00427">uart_get()</a>, and <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -484,7 +487,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="rs232_8c_source.html#l00058">58</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>, and <a class="el" href="rs232_8c_source.html#l00363">uart_put()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>, and <a class="el" href="rs232_8c_source.html#l00420">uart_put()</a>.</p>
 
 </div>
 </div>
@@ -502,7 +505,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>, and <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>, and <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -530,7 +533,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>, and <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>, and <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -551,9 +554,9 @@ Functions</h2></td></tr>
 <p>Receive a character from UART 0. </p>
 <dl class="section return"><dt>Returns</dt><dd>character </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00370">370</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00427">427</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00380">get_line()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00437">get_line()</a>.</p>
 
 </div>
 </div>
@@ -587,9 +590,9 @@ Functions</h2></td></tr>
 0 on error. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="rs232_8c.html#a72746897c9285db2e3d50c9c38e8bb93" title="return count of character count waiting in UART ring buffer. ">uart_rx_count()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00221">221</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00278">278</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00268">uart_rx_byte()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00325">uart_rx_byte()</a>.</p>
 
 </div>
 </div>
@@ -619,18 +622,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Character. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00281">281</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00338">338</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
 <p>Referenced by <a class="el" href="rs232_8c_source.html#l00045">uart0_getchar()</a>, and <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4973143ccfb71e6e9f99cb680af22957"></a>
+<a class="anchor" id="aeadb33b98af6eefa927f6d623cd5759e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int uart_init </td>
+          <td class="memname">uint32_t uart_init </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>uart</em>, </td>
@@ -657,12 +660,11 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success. </dd>
-<dd>
-EOF on fail. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="posix_8c.html#ab814cff71bcbcc3a72a6c399e5084573" title="Device open functions. ">fdevopen()</a> avr-libc function. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>actual baud rate, closest we could get with register settings </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="posix_8c.html#ab814cff71bcbcc3a72a6c399e5084573" title="Device open functions. ">fdevopen()</a> avr-libc function that attaches uart functions to <a class="el" href="posix_8h.html#ab38efc888190556f106cafb08d17d16f" title="functions normally defined as macros ">getchar</a> and <a class="el" href="posix_8h.html#ac9195b3de02e450cfdeea1ce97b32da4" title="put a character to stdout See fdevopen() sets stream-&gt;put get for TTY devices ">putchar</a> <a class="el" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> functions. </dd></dl>
+<p>actual baud rate </p>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00100">100</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00143">143</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00246">main()</a>.</p>
 
@@ -694,9 +696,9 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Character count in receive buffer. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00354">354</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00411">411</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00380">get_line()</a>, <a class="el" href="gpib__task_8c_source.html#l00259">gpib_error_test()</a>, <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, <a class="el" href="gpib__task_8c_source.html#l00179">gpib_trace_task()</a>, <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>, and <a class="el" href="main_8c_source.html#l00180">task()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00437">get_line()</a>, <a class="el" href="gpib__task_8c_source.html#l00259">gpib_error_test()</a>, <a class="el" href="gpib_8c_source.html#l00697">gpib_read_byte()</a>, <a class="el" href="gpib__task_8c_source.html#l00179">gpib_trace_task()</a>, <a class="el" href="gpib_8c_source.html#l00442">gpib_write_byte()</a>, <a class="el" href="printer_8c_source.html#l00338">plot_echo()</a>, <a class="el" href="printer_8c_source.html#l00234">receive_plot()</a>, and <a class="el" href="main_8c_source.html#l00180">task()</a>.</p>
 
 </div>
 </div>
@@ -719,7 +721,7 @@ EOF on fail. </dd></dl>
 <dd>
 0 on error. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00199">199</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00256">256</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
 </div>
 </div>
@@ -746,9 +748,9 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00363">363</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00420">420</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00380">get_line()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00437">get_line()</a>.</p>
 
 </div>
 </div>
@@ -789,7 +791,7 @@ EOF on fail. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00338">338</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00395">395</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
 <p>Referenced by <a class="el" href="rs232_8c_source.html#l00058">uart0_putchar()</a>.</p>
 
@@ -818,9 +820,9 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Character. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00268">268</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00325">325</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00281">uart_getchar()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00338">uart_getchar()</a>.</p>
 
 </div>
 </div>
@@ -847,9 +849,9 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Character count in ring buffer. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00246">246</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00303">303</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00221">uart_get_tail()</a>, and <a class="el" href="rs232_8c_source.html#l00354">uart_keyhit()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00278">uart_get_tail()</a>, and <a class="el" href="rs232_8c_source.html#l00411">uart_keyhit()</a>.</p>
 
 </div>
 </div>
@@ -872,7 +874,7 @@ EOF on fail. </dd></dl>
 
 <p>Definition at line <a class="el" href="rs232_8c_source.html#l00022">22</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00100">uart_init()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>.</p>
 
 </div>
 </div>
@@ -913,9 +915,9 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00177">177</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00234">234</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00155">ISR()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00212">ISR()</a>.</p>
 
 </div>
 </div>
@@ -953,16 +955,66 @@ EOF on fail. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
 
-<p>Definition at line <a class="el" href="rs232_8c_source.html#l00309">309</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00366">366</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
 
-<p>Referenced by <a class="el" href="rs232_8c_source.html#l00338">uart_putchar()</a>.</p>
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00395">uart_putchar()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf0f1788a444afef4ccd7c614429df05"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t uart_ubr </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>baud</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>u2x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>actual</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UART baud rate caluculation We compute the best values of baud rate register and prescale. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">uart</td><td>desired baud rate in HZ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*u2x</td><td>computed prescale 1 = divide by 8, 0 = divide by 16 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*actual</td><td>Actual computed baud rate, closest we could get with register settings</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>baud rate register value </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="posix_8c.html#ab814cff71bcbcc3a72a6c399e5084573" title="Device open functions. ">fdevopen()</a> avr-libc function that attaches uart functions to <a class="el" href="posix_8h.html#ab38efc888190556f106cafb08d17d16f" title="functions normally defined as macros ">getchar</a> and <a class="el" href="posix_8h.html#ac9195b3de02e450cfdeea1ce97b32da4" title="put a character to stdout See fdevopen() sets stream-&gt;put get for TTY devices ">putchar</a> <a class="el" href="posix_8h.html#a1c3d85ae80df5590fa314acffd8bf840">POSIX</a> functions. </dd></dl>
+<p>Use 8 prescale as a default</p>
+<p>Use 16 prescale f we have a low baud rate </p>
+
+<p>Definition at line <a class="el" href="rs232_8c_source.html#l00100">100</a> of file <a class="el" href="rs232_8c_source.html">rs232.c</a>.</p>
+
+<p>Referenced by <a class="el" href="rs232_8c_source.html#l00143">uart_init()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun May 28 2017 15:36:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 29 2017 22:58:42 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
