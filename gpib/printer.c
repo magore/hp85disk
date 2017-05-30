@@ -171,6 +171,7 @@ int receive_plot_flush()
     fno = fileno( plot.fp );
     if(ret < 0)
         return(ret);
+	///@brief sync filesystem after every write 
     ret = syncfs( fno );
     return ( ret );
 }
@@ -222,7 +223,7 @@ void printer_buffer( uint16_t val )
 
 
 /// @brief  Manually receive plot data - user called function.
-///
+/// For debuuging only
 /// - This function would be manually invoked prior to invoking a 
 /// Send Plot command on a GPIB device.
 /// - Exit on user key press.
@@ -331,7 +332,6 @@ int PRINTER_COMMANDS(uint8_t ch)
 
 
 /// @brief  Instruct Instrument to send Plot data.
-///
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
 

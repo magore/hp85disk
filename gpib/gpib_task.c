@@ -771,6 +771,7 @@ int GPIB_LISTEN(uint8_t ch)
 #endif
         if(talking != UNT)
         {
+			///@brief NULL creates a file named based on date and time
             printer_open(NULL);
         }
         return(0);
