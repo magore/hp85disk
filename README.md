@@ -14,6 +14,10 @@
    * AMIGO drices work with HP85A 
    * SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)
    * Each drive can be fully defines in the hpdisk.cfg file on the SD CARD
+   * Printer can capture data sent to GPIB printer to a file
+     * Can also capture programs from the HP85:
+       * PRINTER IS 705
+       * PLIST
    * Working example sdcard files included
      * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
      * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
