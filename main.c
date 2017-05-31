@@ -193,6 +193,10 @@ void task(char *line, int max, uint8_t gpib)
     get_line(line, max-1);
 
     ptr = skipspaces(line);
+	trim_tail(ptr);
+	if(!*ptr)
+		return;
+	
 
     if(fatfs_tests(ptr))
         return;

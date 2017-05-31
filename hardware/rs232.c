@@ -237,15 +237,12 @@ void uart_rx_interrupt(uint8_t uart, uint8_t data)
     {
         uarts[uart].rx_buf[uarts[uart].rx_head++] = data;
         uarts[uart].rx_count++;
+		if (uarts[uart].rx_head >= RX_BUF_SIZE )
+			uarts[uart].rx_head = 0;
     }
     else                                          // Overflow
     {
         uarts[uart].rx_error |= RX_OVERFLOW;
-    }
-
-    if (uarts[uart].rx_head >= RX_BUF_SIZE )
-    {
-        uarts[uart].rx_head = 0;
     }
 }
 
@@ -281,16 +278,15 @@ int uart_get_tail(uint8_t uart)
     if(uart >= UARTS)
         return(EOF);
 
-    while ( uart_rx_count(uart) == 0 )
-        ;
+	while(uart_rx_count(uart) < 1)
+		;
     cli();
-
     c = uarts[uart].rx_buf[uarts[uart].rx_tail++];
-    if (uarts[uart].rx_tail > RX_BUF_SIZE)
+    if (uarts[uart].rx_tail >= RX_BUF_SIZE)
         uarts[uart].rx_tail = 0;
     uarts[uart].rx_count--;
-
     sei();
+
     return (c & 0xff);
 }
 
