@@ -22,6 +22,8 @@
 #include "gpib_task.h"
 #include "amigo.h"
 
+#ifdef AMIGO
+
 /// @verbatim
 /// SS80 References: ("SS80" is the short form used in the project)
 ///  "Subset 80 from Fixed and flexible disc drives"
@@ -181,6 +183,7 @@ void amigo_init()
 			memset(AMIGOs->status,0,sizeof(AMIGOs->status));
 			memset(AMIGOs->logical_address,0,sizeof(AMIGOs->logical_address));
 
+			///TODO we don not support multiple units yet
 			AMIGOs->unitNO = 0;
 
 			AMIGOs->sector = 0;
@@ -228,6 +231,7 @@ int amigo_request_status()
         printf("[AMIGO request status]\n");
 #endif
     AMIGOs->status[0] = 0x00;                       // Status 1
+	///TODO we don not support multiple units yet
     AMIGOs->status[1] = AMIGOs->unitNO;                 // Unit
     AMIGOs->status[2] = 0x0d;                       // Status 2 (0110 = hp format) << 1, 1=HP9121
     AMIGOs->status[3] = 0x00;                       //
@@ -961,6 +965,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Cold Load Read Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0;
             AMIGOs->dsj = 0;
             AMIGOs->Errors = 0;
@@ -986,6 +991,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Seek len=5]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
 			/// Fill in temparary address
             tmp.cyl = 0xff & *ptr++;
@@ -1007,6 +1013,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Seek len=6]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
 			/// Fill in temparary address
             tmp.cyl = (0xff & *ptr++) << 8;       // MSB
@@ -1025,7 +1032,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Request Status Buffered Command]\n");
 #endif
-/// @todo  is this the unit $ ?
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
             amigo_request_status();
             AMIGOs->state = AMIGO_REQUEST_STATUS_BUFFERED;
@@ -1038,6 +1045,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Read Unbuffered Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_UNBUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1050,6 +1058,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Verify]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             sectors = (0xff & *ptr++) << 8;
             sectors |= (0xff & *ptr++);
@@ -1061,6 +1070,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Write Unbuffered Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_UNBUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1072,6 +1082,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Initialize Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_INITIALIZE;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1098,6 +1109,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Write Buffered Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_BUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1112,6 +1124,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Request Status Unbuffered Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_REQUEST_STATUS_UNBUFFERED;
             amigo_request_status();
@@ -1123,6 +1136,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Read Buffered Command]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_BUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1142,6 +1156,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Format]\n");
 #endif
+			///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
             override = 0xff & *ptr++;
             interleave = 0xff & *ptr++;
@@ -1338,3 +1353,4 @@ int AMIGO_COMMANDS(uint8_t ch)
     }
     return(0);
 }
+#endif //ifdef AMIGO

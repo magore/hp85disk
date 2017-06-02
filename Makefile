@@ -21,6 +21,13 @@ PROJECT = gpib
 
 ### Source files and search directory
 
+# Disable AMIGO support code
+# AMIGO=0
+
+# Enable AMIGO support Code
+AMIGO=1
+
+# Extended user interactive fatfs tests
 FATFS_TESTS=1
 
 FATFS = \
@@ -70,7 +77,6 @@ main.c \
 
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
-
 # update.last is safer to use, the file is touched by my git commit script
 GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
 LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
@@ -86,7 +92,6 @@ DEVICE  = atmega1284p
 
 ### Optimization level (0, 1, 2, 3, 4 or s)
 OPTIMIZE = s
-# OPTIMIZE = s
 
 ### C Standard level (c89, gnu89, c99 or gnu99)
 CSTD = gnu99
@@ -94,12 +99,9 @@ CSTD = gnu99
 ### Include dirs, library dirs and definitions
 LIBS    =
 LIBDIRS =
-#INCDIRS =/share/embedded/GPIB/mike/mine
 INCDIRS =. hardware lib printf gpib fatfs fatfs.hal fatfs.sup
 
-#DEFS    = F_CPU=20000000 SDEBUG=9 SOFTWARE_PP=1 SPOLL=1 HP9134L=1
-DEFS    = AVR F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
-	AMIGO AMIGO_HACK \
+DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO \
 	FATFS_UTILS_FULL \
@@ -107,7 +109,10 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) \
 ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
-#DEFS    = F_CPU=20000000 SDEBUG=10 SPOLL=1 HP9134L=1 $(DEVICE) FATFS_TESTS
+ifeq ($(AMIGO),1)
+	DEFS += AMIGO 
+endif
+
 ADEFS   =
 
 ### Warning contorls
@@ -133,9 +138,11 @@ AOBJ      = $(ASRC:.S=.o)
 #PROJECT   := $(PROJECT)
 
 
-## Options common to compile, link and assembly rules
+# Next to examples are used to set memory sections ofr MEGA series AVRs only
 # COMMON = -mmcu=$(DEVICE) -Wl,--section-start,.data=0x801100,--defsym=__heap_start=0x803000,--defsym=__heap_end=0x807fff
 # COMMON = -Wl,--section-start,.data=0x801100,--defsym=__heap_end=0x807fff
+
+## Options common to compile, link and assembly rules
 COMMON = -Wl,-u,vfprintf -lprintf_flt -lm
 
 # Flags for C files
@@ -160,12 +167,10 @@ CFLAGS += -ffunction-sections
 CFLAGS += -Wl,-gc-sections
 CFLAGS += -Waddr-space-convert
 
-
 # Assembler flags
 ASFLAGS += $(COMMON)
 ASFLAGS += $(addprefix -D,$(ADEFS)) -Wa,-gstabs,-g$(DEBUG)
 ALL_ASFLAGS = -mmcu=$(DEVICE) -I. -x assembler-with-cpp $(ASFLAGS)
-
 
 # Linker flags
 LDFLAGS = $(COMMON)
@@ -214,6 +219,7 @@ flash:  all
 	./term
 	#./miniterm
 	# ===================================================
+
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc
 doxyfile.inc:

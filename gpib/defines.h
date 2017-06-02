@@ -11,14 +11,10 @@
 
 */
 
-#ifndef DEFINES_H
-#define DEFINES_H
-/*-------------------------------------------------------------------------
-  defines.h - global defines
+#ifndef _DEFINES_H
+#define _DEFINES_H
 
-             (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
 
--------------------------------------------------------------------------*/
 #include "user_config.h"
 
 
@@ -35,12 +31,14 @@
 /// 0 here is bit 8 on the BUS
 #define SS80_DEFAULT_PPR 0            /* SS80 default PPR BIT */
 
+#ifdef AMIGO
 ///@brief Default AMIGO address 
 #define AMIGO_DEFAULT_ADDRESS 1       /* AMIGO default address */
 
 ///@brief Default AMIGO Parallel Poll Response bit 
 /// 1 here is bit 7 on the BUS
 #define AMIGO_DEFAULT_PPR 1           /* AMIGO default PPR BIT */
+#endif
 
 ///@brief Default PRINTER address 
 #define PRINTER_DEFAULT_ADDRESS 2     /* PRINTER default address */
@@ -55,6 +53,8 @@
 #define HP9121D     //< HP9121 dual 270K AMIGO floppy drive
 #define HP9134L     //< HP9134L 40M SS/80 Winchester drive
 
+/// =========================================================
+///@brief  GPIB defines provided from Anders Gustafsson <anders.gustafsson@pedago.fi>
 #define GTL     0x01        //<  Go to local
 #define SDC     0x04        //<  Selected device clear
 #define PPC     0x05        //<  Parallell poll configure
@@ -68,6 +68,7 @@
 
 #define UNL          0x3F   //<  Unlisten
 #define UNT          0x5F   //<  Untalk
+/// =========================================================
 
 #define BASE_MLA     0x20   //<  Base listen address = 0 (0+0x20)
 #define BASE_MTA     0x40   //<  Base talk address = 0 (0+0x40)
@@ -120,4 +121,4 @@ typedef struct
     uint16_t implementationlo;
 } DirEntryType;
 // =============================================
-#endif     // DEFINES_H
+#endif     // #ifndef _DEFINES_H

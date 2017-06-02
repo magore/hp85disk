@@ -38,10 +38,16 @@ FILE *gpib_log_fp;
 ///@brief Read Configuration File
 void gpib_file_init()
 {
+	int errors;
 
     debuglevel = 0;
 
-    POSIX_Read_Config(cfgfile);
+    errors = POSIX_Read_Config(cfgfile);
+	printf("%s had %d errors\n", cfgfile, errors);
+
+	///@brief set any compile time defaults - but only those NOT already set by the config file
+    set_Config_Defaults();
+
     if(mmc_wp_status())
         printf("Card is write protected\n");
 }
@@ -95,6 +101,7 @@ int SS80_is_MSA(int address)
 	return(set_active_device(index));
 }
 
+#ifdef AMIGO
 /// @brief  Check if AMIGO listening address
 ///
 /// - Used at power up, Bus IFC or user aborts
@@ -118,6 +125,7 @@ int AMIGO_is_MTA(int address)
 		return(0);
 	return(set_active_device(index));
 }
+
 /// @brief  Check if AMIGO secondary address
 ///
 /// - Used at power up, Bus IFC or user aborts
@@ -129,6 +137,7 @@ int AMIGO_is_MSA(int address)
 		return(0);
 	return(set_active_device(index));
 }
+#endif 						// #ifdef AMIGO
 
 /// @brief  Check if PRINTER listening address
 ///
@@ -365,7 +374,7 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
             secondary = 0;
             return(status);
         }
-#endif                                    // ifdef AMIGO
+#endif  					// ifdef AMIGO
 
         if ( SS80_is_MLA(listening) )
         {
@@ -399,7 +408,7 @@ uint16_t GPIB_COMMANDS(uint16_t val, uint8_t unread)
             secondary = 0;
             return(status);
         }
-#endif                                    // ifdef AMIGO
+#endif 
 
         if ( SS80_is_MTA(talking) )
         {
@@ -589,7 +598,7 @@ int Send_Identify(uint8_t ch, uint16_t ID)
 
 /// @brief  Main GPIB command handler
 /// Commands 0x00 .. 0x1f
-/// - We only ever called with ATN=1 commands.
+/// - We are only ever called with ATN=1 commands.
 /// - ch = GPIB command and status (ie it has the ATN_FLAG set).
 /// - Notes: We track any device states and call handelers.
 ///
@@ -601,8 +610,8 @@ int Send_Identify(uint8_t ch, uint16_t ID)
 
 int GPIB(uint8_t ch)
 {
-/// @todo  TODO
 	///@brief Parallel Poll Configure
+	///TODO
     if(ch == PPC)
     {
 #if SDEBUG
@@ -613,6 +622,7 @@ int GPIB(uint8_t ch)
         return 0;
     }
 	///@brief Parallel Poll Unconfigure
+	///TODO
     if(ch == PPU)
     {
 #if SDEBUG
@@ -650,7 +660,7 @@ int GPIB(uint8_t ch)
         spoll = 0;
         return 0;
     }
-#endif
+#endif  					// #if defined(SPOLL)
 
 	///@brief Selected Device Clear
     if(ch == SDC )
@@ -680,9 +690,9 @@ int GPIB(uint8_t ch)
 #endif
             return( amigo_cmd_clear() );
         }
-#endif
+#endif 						// #ifdef AMIGO
 
-/// @todo FIXME
+		/// @todo FIXME
         return( 0 );
     }
 
@@ -752,7 +762,7 @@ int GPIB_LISTEN(uint8_t ch)
 #endif
         return(0);
     }
-#endif
+#endif 						// #ifdef AMIGO
 
     if(SS80_is_MLA(ch))
     {
@@ -814,7 +824,7 @@ int GPIB_TALK(uint8_t ch)
     }
 
 	
-    if(SS80_is_MTA(ch))                            // SS80
+    if(SS80_is_MTA(ch))
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
@@ -829,7 +839,7 @@ int GPIB_TALK(uint8_t ch)
     }
 
 #ifdef AMIGO
-    if(AMIGO_is_MTA(ch))                           // AMIGO
+    if(AMIGO_is_MTA(ch))
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
@@ -837,9 +847,9 @@ int GPIB_TALK(uint8_t ch)
 #endif
         return(0);
     }
-#endif
+#endif 						// #ifdef AMIGO
 
-    if(PRINTER_is_MTA(ch))                         // PRINTER
+    if(PRINTER_is_MTA(ch))
     {
 #if SDEBUG
 		if(debuglevel & (4+32))
@@ -906,7 +916,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
         DisablePPR(AMIGOp->HEADER.PPR);
         return( Send_Identify( ch, AMIGOp->CONFIG.ID) );
     }
-#endif                                        // AMIGO
+#endif 						// #ifdef AMIGO
 
 #if SDEBUG
 	if(debuglevel & (4+32))

@@ -26,4 +26,4 @@ void receive_plot ( char *name );
 int PRINTER_COMMANDS ( uint8_t ch );
 void plot_echo ( int echo );
 
-#endif
+#endif  // #ifndef _PRINTER_H

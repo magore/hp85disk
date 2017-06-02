@@ -1089,6 +1089,7 @@ int SS80_Command_State( void )
         }
 
 		///@brief set unit number
+		///TODO We do not support multiple units yet
         if(ch >= 0x20 && ch <= 0x2f)
         {
             SS80s->unitNO = ch - 0x20;
@@ -1133,6 +1134,7 @@ int SS80_Command_State( void )
             continue;
         }
 
+		///TODO We do not support multiple Volumes yet
         if(ch >= 0x40 && ch <= 0x4f)
         {
             SS80s->volNO = ch - 0x40;
@@ -1462,6 +1464,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-11
 ///  CS80 4-26, 3-2,3-5
 
+		///TODO We do not support multiple units yet
         if(ch == 0x08)                            // 0x08 OP Code
         {
 #if SDEBUG
@@ -1475,6 +1478,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-9
 ///  CS80 4-26, 3-6
 
+		///TODO We do not support multiple units yet
         if(ch == 0x09)                            // 0x09 OP Code
         {
 #if SDEBUG
@@ -1652,6 +1656,8 @@ int SS80_Report( void )
 /// @param[in] u: unit
 /// @return  void
 
+///TODO We do not support multiple units yet
+///TODO We do not support multiple Volumes yet
 void Clear_Common(int u)
 {
     if(u != SS80s->unitNO && u != 15)

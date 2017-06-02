@@ -13,8 +13,6 @@ var searchData=
   ['am_5frdo',['AM_RDO',['../ff_8h.html#add6d85d1e7a02b4f6188783ef91a5f1e',1,'ff.h']]],
   ['am_5fsys',['AM_SYS',['../ff_8h.html#a1f25d5c17b5a3a6397b3398add8cdc15',1,'ff.h']]],
   ['am_5fvol',['AM_VOL',['../ff_8c.html#a5cfae62dabae0a54809e43b36685ce7c',1,'ff.c']]],
-  ['amigo_5fdefault_5faddress',['AMIGO_DEFAULT_ADDRESS',['../defines_8h.html#a6ce667fdb46d53fe8998934b9dc11548',1,'defines.h']]],
-  ['amigo_5fdefault_5fppr',['AMIGO_DEFAULT_PPR',['../defines_8h.html#ad96827a238bf6b3bb84bcec32689141d',1,'defines.h']]],
   ['ata_5fget_5fmodel',['ATA_GET_MODEL',['../diskio_8h.html#a31f556ab98ab80c39058b38d9283865d',1,'diskio.h']]],
   ['ata_5fget_5frev',['ATA_GET_REV',['../diskio_8h.html#a23f5fff3341e98825ea1f7367fd09f1a',1,'diskio.h']]],
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],

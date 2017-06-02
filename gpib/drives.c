@@ -32,9 +32,11 @@ PRINTERDeviceType *PRINTERp = NULL;
 SS80DiskType *SS80p = NULL;
 SS80StateType *SS80s = NULL;
 
+#ifdef AMIGO
 ///@brief Active AMIGO Device
 AMIGODiskType *AMIGOp = NULL;
 AMIGOStateType *AMIGOs = NULL;
+#endif
 
 // =============================================
 PRINTERDeviceType PRINTERDeviceDefault =
@@ -88,7 +90,7 @@ SS80DiskType SS80DiskDefault =
 		2			// Interleave
 	}
 };
-#endif
+#endif // #if defined(HP9122D)
 
 #if defined(HP9134L)
 ///@brief SS80 HP9134L Disk Definitions
@@ -129,11 +131,12 @@ SS80DiskType SS80DiskDefault =
 		31			// Interleave
 	}
 };
-#endif
+#endif // #if defined(HP9134L)
 
 #ifdef AMIGO
-/// @brief  AMIGO D9121D ident Bytes per sector, sectors per track, heads, cylinders
+
 #if defined(HP9121D)
+/// @brief  AMIGO D9121D ident Bytes per sector, sectors per track, heads, cylinders
 AMIGODiskType AMIGODiskDefault =
 {
 	{
@@ -151,7 +154,7 @@ AMIGODiskType AMIGODiskDefault =
 		35			// Cylinders
 	}
 };
-#endif
+#endif // #if defined(HP9121D)
 
 #if defined(HP9995A)
 /// @brief  AMIGO D9885A ident Bytes per sector, sectors per track, heads, cylinders
@@ -172,7 +175,7 @@ AMIGODiskType AMIGODiskDefault =
 		77			// Cylinders
 	}
 };
-#endif
+#endif // #if defined(HP9995A)
 
 #if defined(HP9134A)
 /// @brief  AMIGO D9134A ident Bytes per sector, sectors per track, heads, cylinders
@@ -193,8 +196,9 @@ AMIGODiskType AMIGODiskDefault =
 		153			// Cylinders
 	}
 };
-#endif
-#endif // AMIGO
+#endif // #if defined(HP9134A)
+
+#endif // ifdef AMIGO
 // =============================================
 
 // =============================================
@@ -378,12 +382,14 @@ int set_active_device(int index)
 					 index,type,type_to_str(type));
 			return(0);
 		}
+#ifdef AMIGO
 		if(type == AMIGO_TYPE)
 		{
 			AMIGOp = (AMIGODiskType *) Devices[index].dev;
 			AMIGOs = (AMIGOStateType *) Devices[index].state;
 			return(1);
 		}
+#endif
 		if(type == SS80_TYPE)
 		{
 			SS80p = (SS80DiskType *) Devices[index].dev;
@@ -422,12 +428,14 @@ int alloc_device(int type)
 			Devices[ind].state = safecalloc(sizeof(SS80StateType)+7,1);
 			index = ind;
 			break;
+#ifdef AMIGO
 		case AMIGO_TYPE:
 			Devices[ind].TYPE = type;
 			Devices[ind].dev = safecalloc(sizeof(AMIGODiskType)+7,1);
 			Devices[ind].state = safecalloc(sizeof(AMIGOStateType)+7,1);
 			index = ind;
 			break;
+#endif
 		case PRINTER_TYPE:
 			Devices[ind].TYPE = type;
 			Devices[ind].dev = safecalloc(sizeof(PRINTERDeviceType)+7,1);
@@ -549,7 +557,7 @@ void set_Config_Defaults()
 		printf("set_Config_Defaults: Using default SS/80 9122D\n");
 #endif
 #if defined(HP9134L)
-		printf("set_Config_Defaults:  Using default SS/80 9134L\n");
+		printf("set_Config_Defaults: Using default SS/80 9134L\n");
 #endif
 		index = find_free();
 		if(index != -1)
@@ -561,6 +569,7 @@ void set_Config_Defaults()
 			Devices[index].state = calloc(sizeof(SS80StateType)+7,1);
 		}
 	}
+#ifdef AMIGO
 	// Make sure we have a AMIGO defined
 	if(find_type(AMIGO_TYPE) == -1)
 	{
@@ -577,6 +586,7 @@ void set_Config_Defaults()
 			Devices[index].state = calloc(sizeof(AMIGOStateType)+7,1);
 		}
 	}
+#endif //#ifdef AMIGO
 	// Make sure we have a PRINTER defined
 	if(find_type(PRINTER_TYPE) == -1)
 	{
@@ -595,12 +605,10 @@ void set_Config_Defaults()
 
 
 /// @brief Read and parse a config file using POSIX functions
-///
-/// - Set debuglevel and other device settings
+/// Set all drive parameters and debuglevel 
 ///
 /// @param name: config file name to process
-///
-/// @return  0 on parse error
+/// @return  number of parse errors
 int POSIX_Read_Config(char *name)
 {
     int ind,ret,len;
@@ -615,8 +623,10 @@ int POSIX_Read_Config(char *name)
 	PRINTERDeviceType *PRINTERp = NULL;
 	///@brief SS80 Device
 	SS80DiskType *SS80p = NULL;
+#ifdef AMIGO
 	///@brief AMIGO Device
 	AMIGODiskType *AMIGOp = NULL;
+#endif
 
     char *ptr;
     char str[128];
@@ -629,11 +639,12 @@ int POSIX_Read_Config(char *name)
     cfg = fopen(name, "r");
     if(cfg == NULL)
     {
+		++errors;
 		//FIXME
         perror("Read_Config - open");
-        printf("POSIX_Read_Config: open(%s) failed\n", name);
+        printf("Read_Config: open(%s) failed\n", name);
 		set_Config_Defaults();
-        return(0);
+        return(errors);
     }
 
     while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
@@ -671,6 +682,7 @@ int POSIX_Read_Config(char *name)
 				else
 					SS80p = (SS80DiskType *) Devices[index].dev;
 			}
+#ifdef AMIGO
 			else if(token(ptr,"AMIGO"))
 			{
 				push_state(state);
@@ -682,6 +694,7 @@ int POSIX_Read_Config(char *name)
 					AMIGOp = (AMIGODiskType *) Devices[index].dev;
 
 			}
+#endif
 			else if(token(ptr,"PRINTER"))
 			{
 				push_state(state);
@@ -1000,6 +1013,7 @@ int POSIX_Read_Config(char *name)
 			}
 			break;
 
+#ifdef AMIGO
 		case AMIGO_STATE:
 			if(token(ptr,"HEADER"))
 			{
@@ -1070,6 +1084,7 @@ int POSIX_Read_Config(char *name)
 				++errors;
 			}
 			break;
+
 		case AMIGO_CONFIG:
 			if( (ind = token(ptr,"ID")) )
 			{
@@ -1120,6 +1135,7 @@ int POSIX_Read_Config(char *name)
 				++errors;
 			}
 			break;
+#endif // #ifdef AMIGO
 
 		default:
 			printf("Unexpected STATE: %s, at line:%d\n", ptr,lines);
@@ -1141,14 +1157,10 @@ int POSIX_Read_Config(char *name)
     if(ret == EOF)
     {
         perror("Read_Config - close error");
+		++errors;
     }
 
-	set_Config_Defaults();
-
-	///@brief Display all device settings
-	if(errors)
-		return(0);
-	return(1);
+	return(errors);
 }
 
 /// @brief Display Configuration File variable
@@ -1199,12 +1211,14 @@ void display_Addresses()
 			printf("  SS80_MTA    = %02XH\n",BASE_MTA + address );
 			printf("  SS80_MSA    = %02XH\n",BASE_MSA + address );
 		}
+#ifdef AMIGO
 		if(Devices[i].TYPE == AMIGO_TYPE )
 		{
 			printf("  AMIGO_MLA   = %02XH\n",BASE_MLA + address );
 			printf("  AMIGO_MTA   = %02XH\n",BASE_MTA + address );
 			printf("  AMIGO_MSA   = %02XH\n",BASE_MSA + address );
 		}
+#endif
 		if(Devices[i].TYPE == PRINTER_TYPE )
 		{
 			printf("  PRINTER_MLA = %02XH\n",BASE_MLA + address );
@@ -1224,8 +1238,11 @@ void display_Config()
 	PRINTERDeviceType *PRINTERp = NULL;
 	///@brief Active SS80 Device
 	SS80DiskType *SS80p = NULL;
+
+#ifdef AMIGO
 	///@brief Active AMIGO Device
 	AMIGODiskType *AMIGOp = NULL;
+#endif
 
 	printf("Current Configuration Settings\n");
 	for(i=0;i<MAX_DEVICES;++i)
@@ -1269,6 +1286,7 @@ void display_Config()
 				print_var("INTERLEAVE", (uint32_t)SS80p->VOLUME.INTERLEAVE);
 		} // SS80_TYPE
 
+#ifdef AMIGO
 		if(Devices[i].TYPE == AMIGO_TYPE )
 		{
 			AMIGOp= (AMIGODiskType *)Devices[i].dev;
@@ -1285,7 +1303,8 @@ void display_Config()
 				print_var("SECTORS_PER_TRACK", (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
 				print_var("HEADS", (uint32_t) AMIGOp->GEOMETRY.HEADS);
 				print_var("CYLINDERS", (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
-		} // AMIGO_TYPE
+		} 
+#endif // #ifdef AMIGO
 
 		if(Devices[i].TYPE == PRINTER_TYPE )
 		{

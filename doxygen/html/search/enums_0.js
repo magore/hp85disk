@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['amigo_5fstates',['AMIGO_states',['../amigo_8c.html#a7d3869d64c8e26be25a286779419d335',1,'amigo.c']]]
+  ['bool',['bool',['../user__config_8h.html#af6a258d8f3ee5206d682d799316314b1',1,'user_config.h']]]
 ];

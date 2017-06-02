@@ -14,8 +14,8 @@
 */
 
 
-#ifndef AMIGO_H_
-#define AMIGO_H_
+#ifndef _AMIGO_H_
+#define _AMIGO_H_
 
 #include "user_config.h"
 #include "defines.h"
@@ -56,4 +56,4 @@ int Amigo_Execute ( int secondary );
 int AMIGO_COMMANDS ( uint8_t ch );
 
 
-#endif
+#endif // #ifndef _AMIGO_H_

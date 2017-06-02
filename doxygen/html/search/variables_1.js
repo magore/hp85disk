@@ -10,7 +10,5 @@ var searchData=
   ['all',['all',['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t']]],
   ['alt',['alt',['../unionf__t.html#a907a8d8af4803c9a18bc0586d22d6881',1,'f_t']]],
   ['altname',['altname',['../structFILINFO.html#a37243296fadacbde8500b5668d99682e',1,'FILINFO']]],
-  ['amigop',['AMIGOp',['../drives_8c.html#a8b0d1c374e73e044c76887528a73faae',1,'AMIGOp():&#160;drives.c'],['../drives_8h.html#a8b0d1c374e73e044c76887528a73faae',1,'AMIGOp():&#160;drives.c']]],
-  ['amigos',['AMIGOs',['../drives_8c.html#af37355892437ec761d9178e9da6c1f35',1,'AMIGOs():&#160;drives.c'],['../drives_8h.html#af37355892437ec761d9178e9da6c1f35',1,'AMIGOs():&#160;drives.c']]],
   ['attr',['attr',['../struct__FDID.html#a6912cfc1ea914d7b68a18b846065d790',1,'_FDID']]]
 ];

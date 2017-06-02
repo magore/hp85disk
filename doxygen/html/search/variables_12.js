@@ -1,7 +1,7 @@
 var searchData=
 [
   ['talk31',['talk31',['../gpib_8h.html#ab80645c1c89c0842fa2e440cb2229c24',1,'gpib.h']]],
-  ['talking',['talking',['../amigo_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../gpib_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../gpib_8h.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../ss80_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c']]],
+  ['talking',['talking',['../gpib_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../gpib_8h.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../ss80_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c']]],
   ['talking_5flast',['talking_last',['../gpib_8c.html#a8f34b1ce42fbf3391219cfedde825495',1,'talking_last():&#160;gpib.c'],['../gpib_8h.html#a8f34b1ce42fbf3391219cfedde825495',1,'talking_last():&#160;gpib.c']]],
   ['td',['TD',['../ss80_8c.html#a239f4cd0f1360dbfd90fa043d1323e67',1,'ss80.c']]],
   ['timer',['timer',['../structTIMERS.html#a0b10fdb7b0e6b1d3ca49718f47c4514d',1,'TIMERS']]],

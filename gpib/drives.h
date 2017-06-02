@@ -23,7 +23,9 @@
 
 
 ///@brief defulats if not drives defined in sdcard config file
+#ifdef AMIGO
 #define HP9121D     //< HP9121 dual 270K AMIGO floppy drive
+#endif
 #define HP9134L     //< HP9134L 40M SS/80 Winchester drive
 
 // =============================================
@@ -101,7 +103,6 @@ typedef struct
 	ConfigType CONFIG;
     AMIGOGemometryType GEOMETRY;
 } AMIGODiskType;
-
 
 
 // =============================================
@@ -263,8 +264,10 @@ typedef struct
 
 extern SS80DiskType *SS80p;
 extern SS80StateType *SS80s;
+#ifdef AMIGO
 extern AMIGODiskType *AMIGOp;
 extern AMIGOStateType *AMIGOs;
+#endif
 extern PRINTERDeviceType *PRINTERp;
 extern DeviceType Devices[MAX_DEVICES];
 

@@ -15,8 +15,8 @@
 */
 
 
-#ifndef SS80_H_
-#define SS80_H_
+#ifndef _SS80_H_
+#define _SS80_H_
 
 #include "gpib/defines.h"
 
@@ -50,4 +50,4 @@ int SS80_increment ( void );
 int SS80_error_return ( void );
 int SS80_COMMANDS ( uint8_t ch );
 
-#endif
+#endif // #ifndef _SS80_H_
