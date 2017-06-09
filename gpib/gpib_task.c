@@ -339,6 +339,7 @@ void gpib_init_devices(void)
 #ifdef AMIGO
     amigo_init();                                 // AMIGO state init
 #endif
+
     printer_close();                              // Close any open fprinter files
 }
 
@@ -479,7 +480,7 @@ void gpib_task(void)
         {
             continue;
         }
-		///@brief GPIB commands with ATN set
+		///@brief GPIB commands with ATN set (COMMANDS)
         if(val & ATN_FLAG)
         {
             ch = val & CMD_MASK;
@@ -529,7 +530,7 @@ void gpib_task(void)
 
         }                                         // GPIB ATN
 
-		///@brief GPIB commands without ATN set
+		///@brief GPIB commands without ATN set (DATA)
         else                                      // GPIB Data
         {
             if ( PRINTER_is_MLA(listening) )
@@ -541,6 +542,7 @@ void gpib_task(void)
             if(!secondary)
                 continue;
 
+			// ONLY secondar commands at this point
 			///@brief GPIB_COMMANDS does most of the work
             status = GPIB_COMMANDS(val,1);
             status = gpib_error_test(status);
@@ -929,10 +931,10 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 
 /// @brief  Called when the listen address changes.
 ///
-/// - Used to cleanup or close at the end of a listen transation.
+/// - Used to cleanup or close at the end of any listen address transition.
 /// - Also called when GPIB bus reset or unlisten.
+/// For now we just use this to close printer capture
 /// @return  void
-
 void listen_cleanup()
 {
 	if(listening_last)

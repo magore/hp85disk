@@ -23,7 +23,7 @@
 #include "posix.h"
 
 ///@brief Plotter file data structure used for saving plot data.
-PRINTERStateType plot;
+PRINTERStateType plot = { 0 };
 
 ///@brief Plotter GPIB test vector.
 uint8_t plot_str[] = { 0x3f, 0x5f, 0x47, 0x21 };
@@ -81,9 +81,7 @@ void printer_open(char *name)
 
     plot.buf = calloc(256+1,1);
     if(plot.buf == NULL)
-    {
         printer_close();
-    }
 }
 
 
@@ -110,7 +108,8 @@ void printer_init()
 /// @see posix.c
 /// @see posix.h
 /// @return  void
-
+/// FYI: for the HP54645D plots end with: pd;pu;pu;sp0;
+/// This gets called
 void printer_close()
 {
     if( receive_plot_flush() )
@@ -129,14 +128,9 @@ void printer_close()
 			printf("\nDONE: %08ld\n",plot.count);
     }
 
-    plot.error = 0;
-    plot.count = 0;
-    plot.ind = 0;
-    plot.fp = NULL;
-
     if(plot.buf)
         safefree(plot.buf);
-    plot.buf = NULL;
+	printer_init();
 }
 
 
@@ -239,7 +233,7 @@ void receive_plot( char *name )
     gpib_bus_init(1);
     gpib_state_init();
 
-    printer_close();
+	///@brief printer_close() gets called on GPIB bus init DCL and any unlisten
 
     name = skipspaces(name);
     if(!*name)
@@ -310,6 +304,8 @@ void receive_plot( char *name )
 int PRINTER_COMMANDS(uint8_t ch)
 {
 
+	// We could, for example, use secondaries to set file names, etc
+	// We don not use them yet
     if(PRINTER_is_MLA(listening))
     {
 #if SDEBUG
@@ -334,7 +330,6 @@ int PRINTER_COMMANDS(uint8_t ch)
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
-
 void plot_echo( int echo )
 {
     int ch;
