@@ -200,19 +200,35 @@ AMIGODiskType AMIGODiskDefault =
 
 #endif // ifdef AMIGO
 // =============================================
-
 // =============================================
-///@brief Convert Value into byte array 
+///@brief Convert Value into byte array
 /// bytes are MSB ... LSB order
-///@param B: byte array 
+///@param B: byte array
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@param val: Value to convert
 ///@return void
-void V2B(uint8_t *B, int index, int size, uint32_t val)
+void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
 {
     int i;
     for(i=size-1;i>=0;--i)
+    {
+        B[index+i] = val & 0xff;
+        val >>= 8;
+    }
+}
+// =============================================
+///@brief Convert Value into byte array
+/// bytes are LSB ... MSB order
+///@param B: byte array
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@param val: Value to convert
+///@return void
+void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
+{
+    int i;
+    for(i=0;i<size;++i)
     {
         B[index+i] = val & 0xff;
         val >>= 8;
@@ -225,7 +241,7 @@ void V2B(uint8_t *B, int index, int size, uint32_t val)
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@return value
-uint32_t B2V(uint8_t *B, int index, int size)
+uint32_t B2V_MSB(uint8_t *B, int index, int size)
 {
     int i;
     uint32_t val = 0;

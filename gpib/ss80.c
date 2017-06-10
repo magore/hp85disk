@@ -152,12 +152,12 @@ void SS80_Test(void)
 
 /// @return void
 ///@brief SS80 Describe helper functions
-///The SS80 docs number describe bytes 1 to N for Controller,Unit and Volume
+///The SS80 docs number bytes offset as 1 to N for Controller,Unit and Volume
 /// MSB ... LSB
-void SS80_V2B(uint8_t *B, int index,int size, uint32_t val)
+void V2B_MSB_Index1(uint8_t *B, int index,int size, uint32_t val)
 {
 	///@brief remove 1 bias
-	V2B(B, index-1,size, val);
+	V2B_MSB(B, index-1,size, val);
 }
 
 uint8_t *SS80ControllerPack(int *size)
@@ -178,9 +178,9 @@ uint8_t *SS80ControllerPack(int *size)
                  //< 5 = SS/80 integrated multi-unit controller.
                  //< 6 = SS/80 integrated multi-port controller.
     */
-	SS80_V2B(B,1,2,SS80p->CONTROLLER.UNITS_INSTALLED);
-	SS80_V2B(B,2,2,SS80p->CONTROLLER.TRANSFER_RATE);
-	SS80_V2B(B,5,1,SS80p->CONTROLLER.TYPE);
+	V2B_MSB_Index1(B,1,2,SS80p->CONTROLLER.UNITS_INSTALLED);
+	V2B_MSB_Index1(B,2,2,SS80p->CONTROLLER.TRANSFER_RATE);
+	V2B_MSB_Index1(B,5,1,SS80p->CONTROLLER.TYPE);
 
 	return(B);
 }
@@ -213,18 +213,18 @@ uint8_t *SS80UnitPack(int *size)
         uint8_t U19; //<  Removable volume byte, one bit per volume,
                      //< ie 00000111 = 3 volumes
     */
-	SS80_V2B(B,1,1,SS80p->UNIT.UNIT_TYPE);
-	SS80_V2B(B,2,3,SS80p->UNIT.DEVICE_NUMBER);
-	SS80_V2B(B,5,2,SS80p->UNIT.BYTES_PER_BLOCK);
-	SS80_V2B(B,7,1,SS80p->UNIT.BUFFERED_BLOCKS);
-	SS80_V2B(B,8,1,SS80p->UNIT.BURST_SIZE);
-	SS80_V2B(B,9,2,SS80p->UNIT.BLOCK_TIME);
-	SS80_V2B(B,11,2,SS80p->UNIT.CONTINOUS_TRANSFER_RATE);
-	SS80_V2B(B,13,2,SS80p->UNIT.OPTIMAL_RETRY_TIME);
-	SS80_V2B(B,15,2,SS80p->UNIT.ACCESS_TIME);
-	SS80_V2B(B,17,1,SS80p->UNIT.MAXIMUM_INTERLEAVE);
-	SS80_V2B(B,18,1,SS80p->UNIT.FIXED_VOLUMES);
-	SS80_V2B(B,19,1,SS80p->UNIT.REMOVABLE_VOLUMES);
+	V2B_MSB_Index1(B,1,1,SS80p->UNIT.UNIT_TYPE);
+	V2B_MSB_Index1(B,2,3,SS80p->UNIT.DEVICE_NUMBER);
+	V2B_MSB_Index1(B,5,2,SS80p->UNIT.BYTES_PER_BLOCK);
+	V2B_MSB_Index1(B,7,1,SS80p->UNIT.BUFFERED_BLOCKS);
+	V2B_MSB_Index1(B,8,1,SS80p->UNIT.BURST_SIZE);
+	V2B_MSB_Index1(B,9,2,SS80p->UNIT.BLOCK_TIME);
+	V2B_MSB_Index1(B,11,2,SS80p->UNIT.CONTINOUS_TRANSFER_RATE);
+	V2B_MSB_Index1(B,13,2,SS80p->UNIT.OPTIMAL_RETRY_TIME);
+	V2B_MSB_Index1(B,15,2,SS80p->UNIT.ACCESS_TIME);
+	V2B_MSB_Index1(B,17,1,SS80p->UNIT.MAXIMUM_INTERLEAVE);
+	V2B_MSB_Index1(B,18,1,SS80p->UNIT.FIXED_VOLUMES);
+	V2B_MSB_Index1(B,19,1,SS80p->UNIT.REMOVABLE_VOLUMES);
 	return(B);
 }
 
@@ -247,11 +247,11 @@ uint8_t *SS80VolumePack(int *size)
         uint8_t V12; //<     LSB
         uint8_t V13; //<  Interleave
     */
-	SS80_V2B(B,1,3,SS80p->VOLUME.MAX_CYLINDER);
-	SS80_V2B(B,4,1,SS80p->VOLUME.MAX_HEAD);
-	SS80_V2B(B,5,2,SS80p->VOLUME.MAX_SECTOR);
-	SS80_V2B(B,7,6,SS80p->VOLUME.MAX_BLOCK_NUMBER);
-	SS80_V2B(B,13,1,SS80p->VOLUME.INTERLEAVE);
+	V2B_MSB_Index1(B,1,3,SS80p->VOLUME.MAX_CYLINDER);
+	V2B_MSB_Index1(B,4,1,SS80p->VOLUME.MAX_HEAD);
+	V2B_MSB_Index1(B,5,2,SS80p->VOLUME.MAX_SECTOR);
+	V2B_MSB_Index1(B,7,6,SS80p->VOLUME.MAX_BLOCK_NUMBER);
+	V2B_MSB_Index1(B,13,1,SS80p->VOLUME.INTERLEAVE);
 	return(B);
 }
 
@@ -873,7 +873,8 @@ int SS80_send_status( void )
 	{
 		/* tmp[10] = SS80s->AddressBlocks.B[5] MSB unused */
 		/* tmp[11] = SS80s->AddressBlocks.B[4] unused */
-		V2B(tmp,10,6,SS80s->AddressBlocks);
+		/* index 0 offset */
+		V2B_MSB(tmp,10,6,SS80s->AddressBlocks);
 	}
 
 /// @todo Fixme
@@ -1064,7 +1065,7 @@ int SS80_Command_State( void )
 			/* upper two MSB unused */
 			/* gpib_iobuff[ind+0] MSB unused */
 			/* gpib_iobuff[ind+1] MSB unused */
-			SS80s->AddressBlocks = B2V(gpib_iobuff,ind,6);
+			SS80s->AddressBlocks = B2V_MSB(gpib_iobuff,ind,6);
             ind += 6;
 #if SDEBUG
             if(debuglevel & 32)
@@ -1079,7 +1080,7 @@ int SS80_Command_State( void )
         if(ch == 0x18)
         {
             /* gpib_iobuff[ind+0] MSB */
-            SS80s->Length = B2V(gpib_iobuff,ind,4);
+            SS80s->Length = B2V_MSB(gpib_iobuff,ind,4);
             ind += 4;
 #if SDEBUG
             if(debuglevel & 32)

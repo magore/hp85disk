@@ -11,7 +11,7 @@ S\+S80 disk emulator for H\+P85 disk emulator project for A\+V\+R8.
 \item 
 void \hyperlink{ss80_8h_af50a313d8234d38511925a0ca5a9a8a3}{S\+S80\+\_\+\+Test} (void)
 \begin{DoxyCompactList}\small\item\em S\+S80 G\+P\+IB function. \end{DoxyCompactList}\item 
-void \hyperlink{ss80_8h_a0b2de8fedb3b37b23e5ef53efb2853f7}{S\+S80\+\_\+\+V2B} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+void \hyperlink{ss80_8h_ab2837c96245d4ea7a064c193aba58738}{V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em Initialize S\+S80 state and bus. \end{DoxyCompactList}\item 
 uint8\+\_\+t $\ast$ \hyperlink{ss80_8h_a3b427e9e80cfe6b48d7378c6a4635a74}{S\+S80\+Controller\+Pack} (int $\ast$size)
 \item 
@@ -33,6 +33,8 @@ int \hyperlink{ss80_8h_a41ef37ec5419463815401485cfcb62b1}{S\+S80\+\_\+locate\+\_
 \begin{DoxyCompactList}\small\item\em S\+S80 Locate and Write Commend. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8h_ae03555718f2325805ec9618dce066a90}{S\+S80\+\_\+test\+\_\+extended\+\_\+status} (uint8\+\_\+t $\ast$p, int bit)
 \begin{DoxyCompactList}\small\item\em S\+S80 test extendend status bits and display them. \end{DoxyCompactList}\item 
+void \hyperlink{ss80_8h_aed186be3e1fadc7c529fad4d0b5fe93d}{S\+S80\+\_\+set\+\_\+extended\+\_\+status} (uint8\+\_\+t $\ast$p, int bit)
+\begin{DoxyCompactList}\small\item\em S\+S80 set extendend status bits. \end{DoxyCompactList}\item 
 void \hyperlink{ss80_8h_a4668606dd0eed9d8419358e0fa51fbc6}{S\+S80\+\_\+display\+\_\+extended\+\_\+status} (uint8\+\_\+t $\ast$p, char $\ast$message)
 \begin{DoxyCompactList}\small\item\em S\+S80 Display extended 8 byte status messages for debuging. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8h_ac4c1287b3b8b6a51f5b79522c62d4cea}{S\+S80\+\_\+send\+\_\+status} (void)
@@ -183,7 +185,7 @@ void T\+O\+DO We do not support multiple units yet T\+O\+DO We do not support mu
 \item[\hyperlink{todo__todo000049}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1661 of file ss80.\+c.
+Definition at line 1662 of file ss80.\+c.
 
 
 
@@ -215,7 +217,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1758 of file ss80.\+c.
+Definition at line 1759 of file ss80.\+c.
 
 
 
@@ -293,7 +295,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000053}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1792 of file ss80.\+c.
+Definition at line 1793 of file ss80.\+c.
 
 
 
@@ -332,7 +334,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1702 of file ss80.\+c.
+Definition at line 1703 of file ss80.\+c.
 
 
 
@@ -368,7 +370,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000046}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1520 of file ss80.\+c.
+Definition at line 1521 of file ss80.\+c.
 
 
 
@@ -511,7 +513,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000036}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 988 of file ss80.\+c.
+Definition at line 989 of file ss80.\+c.
 
 
 
@@ -549,7 +551,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1856 of file ss80.\+c.
+Definition at line 1857 of file ss80.\+c.
 
 
 
@@ -579,7 +581,7 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 903 of file ss80.\+c.
+Definition at line 904 of file ss80.\+c.
 
 
 
@@ -636,7 +638,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1825 of file ss80.\+c.
+Definition at line 1826 of file ss80.\+c.
 
 
 
@@ -692,7 +694,7 @@ Increment position Addressy by one block.
 
 \end{DoxyItemize}
 
-Definition at line 1807 of file ss80.\+c.
+Definition at line 1808 of file ss80.\+c.
 
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+h@{ss80.\+h}}
@@ -830,7 +832,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1568 of file ss80.\+c.
+Definition at line 1569 of file ss80.\+c.
 
 
 
@@ -863,7 +865,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1738 of file ss80.\+c.
+Definition at line 1739 of file ss80.\+c.
 
 
 
@@ -1008,6 +1010,40 @@ Definition at line 831 of file ss80.\+c.
 
 
 Referenced by S\+S80\+\_\+\+Execute\+\_\+\+State().
+
+\index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+set\+\_\+extended\+\_\+status@{S\+S80\+\_\+set\+\_\+extended\+\_\+status}}
+\index{S\+S80\+\_\+set\+\_\+extended\+\_\+status@{S\+S80\+\_\+set\+\_\+extended\+\_\+status}!ss80.\+h@{ss80.\+h}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+set\+\_\+extended\+\_\+status(uint8\+\_\+t $\ast$p, int bit)}{SS80_set_extended_status(uint8_t *p, int bit)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+set\+\_\+extended\+\_\+status (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{p, }
+\item[{int}]{bit}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8h_aed186be3e1fadc7c529fad4d0b5fe93d}{}\label{ss80_8h_aed186be3e1fadc7c529fad4d0b5fe93d}
+
+
+S\+S80 set extendend status bits. 
+
+
+\begin{DoxyItemize}
+\item Reference\+: S\+S80 pg 4-\/58..64.
+\item 8 status bytes of the extended status message 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$p} & extended status vector \\
+\hline
+{\em bit} & bit number starting at M\+SB of first byte as 0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 678 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+\_\+send\+\_\+status().
 
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+\+Test@{S\+S80\+\_\+\+Test}}
 \index{S\+S80\+\_\+\+Test@{S\+S80\+\_\+\+Test}!ss80.\+h@{ss80.\+h}}
@@ -1155,7 +1191,7 @@ T\+O\+DO We do not support multiple units yet
 
 T\+O\+DO We do not support multiple units yet 
 
-Definition at line 1372 of file ss80.\+c.
+Definition at line 1373 of file ss80.\+c.
 
 
 
@@ -1191,48 +1227,11 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000050}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1720 of file ss80.\+c.
+Definition at line 1721 of file ss80.\+c.
 
 
 
 Referenced by G\+P\+I\+B().
-
-\index{ss80.\+h@{ss80.\+h}!S\+S80\+\_\+\+V2B@{S\+S80\+\_\+\+V2B}}
-\index{S\+S80\+\_\+\+V2B@{S\+S80\+\_\+\+V2B}!ss80.\+h@{ss80.\+h}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+V2\+B(uint8\+\_\+t $\ast$\+B, int index, int size, uint32\+\_\+t val)}{SS80_V2B(uint8_t *B, int index, int size, uint32_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+\+V2B (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{int}]{index, }
-\item[{int}]{size, }
-\item[{uint32\+\_\+t}]{val}
-\end{DoxyParamCaption}
-)}\hypertarget{ss80_8h_a0b2de8fedb3b37b23e5ef53efb2853f7}{}\label{ss80_8h_a0b2de8fedb3b37b23e5ef53efb2853f7}
-
-
-Initialize S\+S80 state and bus. 
-
-\begin{DoxyVerb}///  Reference:
-///  CS80 Page B-12
-///  Table B-5. Complementary Command Power-on Values
-///  COMPLEMENTARY POWER-ON       COMPLEMENTARY               POWER-ON
-///  COMMAND       VALUE COMMAND  COMMAND                     VALUE
-///  Set Unit     0               Set Retry Time              device specific
-///  Set Volume   0               Set Status Mask             disabled
-///  Set Address  0,0,0           No Op                       Not Applicable
-///  Set Length  -1 (full volume) Set Release                 T = O Z = O
-///  Set Burst   disable          Set Options                 device specific
-///  Set RPS     disabled         Set Return Addressing Mode  single vector
-/// \end{DoxyVerb}
- \begin{DoxyReturn}{Returns}
-void S\+S80 Describe helper functions The S\+S80 docs number describe bytes 1 to N for Controller,Unit and Volume M\+SB ... L\+SB 
-\end{DoxyReturn}
-remove 1 bias 
-
-Definition at line 157 of file ss80.\+c.
-
-
-
-Referenced by S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 
 \index{ss80.\+h@{ss80.\+h}!S\+S80\+Controller\+Pack@{S\+S80\+Controller\+Pack}}
 \index{S\+S80\+Controller\+Pack@{S\+S80\+Controller\+Pack}!ss80.\+h@{ss80.\+h}}
@@ -1278,4 +1277,41 @@ Definition at line 231 of file ss80.\+c.
 
 
 Referenced by S\+S80\+\_\+describe().
+
+\index{ss80.\+h@{ss80.\+h}!V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1@{V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1}}
+\index{V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1@{V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1}!ss80.\+h@{ss80.\+h}}
+\subsubsection[{\texorpdfstring{V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1(uint8\+\_\+t $\ast$\+B, int index, int size, uint32\+\_\+t val)}{V2B_MSB_Index1(uint8_t *B, int index, int size, uint32_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1 (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{uint32\+\_\+t}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8h_ab2837c96245d4ea7a064c193aba58738}{}\label{ss80_8h_ab2837c96245d4ea7a064c193aba58738}
+
+
+Initialize S\+S80 state and bus. 
+
+\begin{DoxyVerb}///  Reference:
+///  CS80 Page B-12
+///  Table B-5. Complementary Command Power-on Values
+///  COMPLEMENTARY POWER-ON       COMPLEMENTARY               POWER-ON
+///  COMMAND       VALUE COMMAND  COMMAND                     VALUE
+///  Set Unit     0               Set Retry Time              device specific
+///  Set Volume   0               Set Status Mask             disabled
+///  Set Address  0,0,0           No Op                       Not Applicable
+///  Set Length  -1 (full volume) Set Release                 T = O Z = O
+///  Set Burst   disable          Set Options                 device specific
+///  Set RPS     disabled         Set Return Addressing Mode  single vector
+/// \end{DoxyVerb}
+ \begin{DoxyReturn}{Returns}
+void S\+S80 Describe helper functions The S\+S80 docs number bytes offset as 1 to N for Controller,Unit and Volume M\+SB ... L\+SB 
+\end{DoxyReturn}
+remove 1 bias 
+
+Definition at line 157 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 

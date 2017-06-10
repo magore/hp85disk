@@ -272,8 +272,9 @@ extern PRINTERDeviceType *PRINTERp;
 extern DeviceType Devices[MAX_DEVICES];
 
 /* drives.c */
-void V2B ( uint8_t *B , int index , int size , uint32_t val );
-uint32_t B2V ( uint8_t *B , int index , int size );
+void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
+void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
+uint32_t B2V_MSB ( uint8_t *B , int index , int size );
 int find_type ( int type );
 char *type_to_str ( int type );
 char *base_to_str ( int base );

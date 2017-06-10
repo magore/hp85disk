@@ -582,7 +582,7 @@ int Send_Identify(uint8_t ch, uint16_t ID)
     uint16_t status = EOI_FLAG;
 	uint8_t tmp[2];
 
-	V2B(tmp,0,2,ID);
+	V2B_MSB(tmp,0,2,ID);
 	if(gpib_write_str(tmp,2, &status) != 2)
 	{
 		if(debuglevel & (1+4))

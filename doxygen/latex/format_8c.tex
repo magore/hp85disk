@@ -14,13 +14,15 @@ L\+IF Disk Format.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{format_8c_a0b2de8fedb3b37b23e5ef53efb2853f7}{S\+S80\+\_\+\+V2B} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+\item 
 \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{format_8c_a6897c56caeb4ebc5c5003c1f33a3b14c}{gpib\+\_\+format\+\_\+disk} (char $\ast$name, uint32\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em L\+D\+IF Format file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} \hyperlink{format_8c_a7cde3fe5600434f06d6c872090dc5390}{vl}
-\begin{DoxyCompactList}\small\item\em L\+IF data structures used by stand alone formatting utility. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Disk Layout  \href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\tt https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}. \end{DoxyCompactList}\item 
 \hyperlink{structDirEntryType}{Dir\+Entry\+Type} \hyperlink{format_8c_acdc9db327daa9bd83d5df64bf016a4da}{de}
 \begin{DoxyCompactList}\small\item\em L\+IF D\+Irectory Entry. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -67,11 +69,25 @@ return(rc);
 \end{DoxyReturn}
 
 
-Definition at line 60 of file format.\+c.
+Definition at line 93 of file format.\+c.
 
 
 
 Referenced by gpib\+\_\+tests().
+
+\index{format.\+c@{format.\+c}!S\+S80\+\_\+\+V2B@{S\+S80\+\_\+\+V2B}}
+\index{S\+S80\+\_\+\+V2B@{S\+S80\+\_\+\+V2B}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+V2\+B(uint8\+\_\+t $\ast$\+B, int index, int size, uint32\+\_\+t val)}{SS80_V2B(uint8_t *B, int index, int size, uint32_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+\+V2B (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{uint32\+\_\+t}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{format_8c_a0b2de8fedb3b37b23e5ef53efb2853f7}{}\label{format_8c_a0b2de8fedb3b37b23e5ef53efb2853f7}
+remove 1 bias 
+
+Definition at line 23 of file format.\+c.
 
 
 
@@ -100,7 +116,7 @@ L\+IF D\+Irectory Entry.
 \item L\+IF data is B\+IG endian 
 \end{DoxyItemize}
 
-Definition at line 45 of file format.\+c.
+Definition at line 78 of file format.\+c.
 
 
 
@@ -124,14 +140,18 @@ Referenced by ls().
 \end{DoxyCode}
 
 
-L\+IF data structures used by stand alone formatting utility. 
+Disk Layout  \href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\tt https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}. 
 
-L\+IF Volume label structure
+D\+I\+SK L\+A\+Y\+O\+UT The H\+P-\/85 disks used the L\+IF (Logical Interchange Format) disk layout. The first 2 sectors on the disk (cylinder 0, head 0, sector 0-\/1) contained the V\+O\+L\+U\+ME sectors. The important things in the V\+O\+L\+U\+ME S\+E\+C\+T\+O\+RS were thus\+:
+
+B\+Y\+T\+ES D\+E\+S\+C\+R\+I\+P\+T\+I\+ON 
+
+ 0-\/1 L\+IF identifier, must be 0x80, 0x00 (0x8000) 2-\/7 6-\/character volume L\+A\+B\+EL 8-\/11 directory start block (always 0,0,0,2 = 0x00000002) 12-\/13 L\+IF identifer for System 3000 machines (always 0x10,0 = 0x1000) 14-\/15 always 0 16-\/19 \# of sectors in D\+I\+R\+E\+C\+T\+O\+RY (usually 0,0,0,something) 20-\/21 L\+IF version number (always 0,1 = 0x0001) 22-\/23 always 0 24-\/27 number of tracks per surface 28-\/31 number of surfaces 32-\/35 number of sectors per track 36-\/41 date and time that the volume was initialized (YY,MM,DD,HH,mm,SS) All date values are in B\+CD format. YY is (year-\/1900). HH is 0-\/23.\+L\+IF data structures used by stand alone formatting utility L\+IF Volume label structure
 \begin{DoxyItemize}
 \item Reference\+: hpdisk (c) 2014 Anders Gustafsson \href{mailto:anders.gustafsson@pedago.fi}{\tt anders.\+gustafsson@pedago.\+fi}
 \item L\+IF filesystem \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
 \item L\+IF data is B\+IG endian 
 \end{DoxyItemize}
 
-Definition at line 30 of file format.\+c.
+Definition at line 63 of file format.\+c.
 

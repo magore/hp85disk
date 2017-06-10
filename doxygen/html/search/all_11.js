@@ -11,7 +11,6 @@ var searchData=
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['receive_5fplot',['receive_plot',['../printer_8c.html#ac649161dc4d63963c35b30a12037e09c',1,'receive_plot(char *name):&#160;printer.c'],['../printer_8h.html#ac649161dc4d63963c35b30a12037e09c',1,'receive_plot(char *name):&#160;printer.c']]],
   ['receive_5fplot_5fflush',['receive_plot_flush',['../printer_8c.html#a49cd5ed3c7bfd27122f36ad0f9f16fac',1,'receive_plot_flush():&#160;printer.c'],['../printer_8h.html#a06cc5819c3a956913f41114deb55a113',1,'receive_plot_flush(void):&#160;printer.c']]],
-  ['reg_2ec',['reg.c',['../reg_8c.html',1,'']]],
   ['removable_5fvolumes',['REMOVABLE_VOLUMES',['../structSS80UnitType.html#a6dcef2939bd0a19951ad1592b1ec8c31',1,'SS80UnitType']]],
   ['remove_5fchain',['remove_chain',['../ff_8c.html#a9d9d4fa5f45110afd3b5d784c5f8a819',1,'ff.c']]],
   ['ren',['REN',['../gpib__hal_8h.html#aa2fb3f18026b5d00ec5ef71cf8d4b11a',1,'gpib_hal.h']]],
