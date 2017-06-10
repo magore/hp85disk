@@ -160,6 +160,9 @@ void V2B_MSB_Index1(uint8_t *B, int index,int size, uint32_t val)
 	V2B_MSB(B, index-1,size, val);
 }
 
+///@brief Pack Controller data into bytes
+///@param[out] *size: number of bytes in result
+///@return pointer to packer array
 uint8_t *SS80ControllerPack(int *size)
 {
 	static uint8_t B[5];
@@ -185,6 +188,9 @@ uint8_t *SS80ControllerPack(int *size)
 	return(B);
 }
 
+///@brief Pack Unit data into bytes
+///@param[out] *size: number of bytes in result
+///@return pointer to packer array
 uint8_t *SS80UnitPack(int *size)
 {
 	static uint8_t B[19];
@@ -227,7 +233,9 @@ uint8_t *SS80UnitPack(int *size)
 	V2B_MSB_Index1(B,19,1,SS80p->UNIT.REMOVABLE_VOLUMES);
 	return(B);
 }
-
+///@brief Pack Voulme data into bytes
+///@param[out] *size: number of bytes in result
+///@return pointer to packer array
 uint8_t *SS80VolumePack(int *size)
 {
 	static uint8_t B[13];
@@ -255,6 +263,8 @@ uint8_t *SS80VolumePack(int *size)
 	return(B);
 }
 
+/// @brief  SS80 nitialize all devices
+///  Initialize ALL SS80 devives
 void SS80_init(void)
 {
 

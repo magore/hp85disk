@@ -5,8 +5,7 @@ var searchData=
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['ifc',['IFC',['../gpib__hal_8h.html#a98c8976d9563bbcf85c8584e18da38fe',1,'gpib_hal.h']]],
   ['ifc_5fflag',['IFC_FLAG',['../gpib_8h.html#a0202c6cc39130a2c251235ef2336cd13',1,'gpib.h']]],
-  ['implementationhi',['implementationhi',['../structDirEntryType.html#a27a15eea3264d44c9e93e3be77093151',1,'DirEntryType']]],
-  ['implementationlo',['implementationlo',['../structDirEntryType.html#a8164d577c06fb7c312aaa4955d491449',1,'DirEntryType']]],
+  ['implimentation',['implimentation',['../structDirEntryType.html#ac406aba583917a5c26ed94df41a368a9',1,'DirEntryType']]],
   ['in',['in',['../structqueue__t.html#a7a6832e36c70a1db7fddc93fb6be9d63',1,'queue_t']]],
   ['ind',['ind',['../structp__ch__t.html#a9d6834d749cd9232a16cb20b598fe90d',1,'p_ch_t::ind()'],['../structPRINTERStateType.html#a7d8873d0011f31d7dd00c2b7e0d362bd',1,'PRINTERStateType::ind()']]],
   ['index',['index',['../structfault__t.html#a540c9496df912b65e22c50b6a40535ef',1,'fault_t::index()'],['../index.html',1,'(Global Namespace)']]],
@@ -32,5 +31,5 @@ var searchData=
   ['isdio_5fwrite',['ISDIO_WRITE',['../diskio_8h.html#a9637dcd58e0f1f301edf0cccff9e3507',1,'diskio.h']]],
   ['islower',['IsLower',['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c'],['../stringsup_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c']]],
   ['isr',['ISR',['../rs232_8c.html#a084f0a9cf05b1877bd8a71a90dae7ff8',1,'rs232.c']]],
-  ['isupper',['isupper',['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
+  ['isupper',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
 ];

@@ -68,7 +68,6 @@ var searchData=
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
   ['create_5flinkmap',['CREATE_LINKMAP',['../ff_8h.html#aee297a9011164cf485a4df2a72758b08',1,'ff.h']]],
   ['create_5fname',['create_name',['../ff_8c.html#af119220c4aeabfeb316349e8279413ca',1,'ff.c']]],
-  ['createtime',['createtime',['../structDirEntryType.html#a627fd55537c73d4fee596b140e106c01',1,'DirEntryType']]],
   ['cs_5fhigh',['CS_HIGH',['../mmc_8c.html#af67a5c0216de0cfadf059fa4cf05d65d',1,'mmc.c']]],
   ['cs_5flow',['CS_LOW',['../mmc_8c.html#ab6b224028ee993b43049cd45010ec00f',1,'mmc.c']]],
   ['csize',['csize',['../structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568',1,'FATFS']]],

@@ -110,12 +110,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab2837c96245d4ea7a064c193aba58738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize SS80 state and bus.  <a href="#ab2837c96245d4ea7a064c193aba58738">More...</a><br /></td></tr>
 <tr class="separator:ab2837c96245d4ea7a064c193aba58738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b427e9e80cfe6b48d7378c6a4635a74"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ss80_8h.html#a3b427e9e80cfe6b48d7378c6a4635a74">SS80ControllerPack</a> (int *size)</td></tr>
+<tr class="memdesc:a3b427e9e80cfe6b48d7378c6a4635a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack Controller data into bytes.  <a href="#a3b427e9e80cfe6b48d7378c6a4635a74">More...</a><br /></td></tr>
 <tr class="separator:a3b427e9e80cfe6b48d7378c6a4635a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e29fe885b7dba5b589263460ec7cbe8"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ss80_8h.html#a0e29fe885b7dba5b589263460ec7cbe8">SS80UnitPack</a> (int *size)</td></tr>
+<tr class="memdesc:a0e29fe885b7dba5b589263460ec7cbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack Unit data into bytes.  <a href="#a0e29fe885b7dba5b589263460ec7cbe8">More...</a><br /></td></tr>
 <tr class="separator:a0e29fe885b7dba5b589263460ec7cbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ce1c3c53904ebbf9d2a1c57e9bc8407"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ss80_8h.html#a6ce1c3c53904ebbf9d2a1c57e9bc8407">SS80VolumePack</a> (int *size)</td></tr>
+<tr class="memdesc:a6ce1c3c53904ebbf9d2a1c57e9bc8407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack Voulme data into bytes.  <a href="#a6ce1c3c53904ebbf9d2a1c57e9bc8407">More...</a><br /></td></tr>
 <tr class="separator:a6ce1c3c53904ebbf9d2a1c57e9bc8407"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46587aecd8aff545fb96ef5b308f28ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ss80_8h.html#a46587aecd8aff545fb96ef5b308f28ff">SS80_init</a> (void)</td></tr>
+<tr class="memdesc:a46587aecd8aff545fb96ef5b308f28ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">SS80 nitialize all devices Initialize ALL SS80 devives.  <a href="#a46587aecd8aff545fb96ef5b308f28ff">More...</a><br /></td></tr>
 <tr class="separator:a46587aecd8aff545fb96ef5b308f28ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96c26a457f1066d6b26f70baeb2c6bf0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ss80_8h.html#a96c26a457f1066d6b26f70baeb2c6bf0">SS80_Execute_State</a> (void)</td></tr>
 <tr class="memdesc:a96c26a457f1066d6b26f70baeb2c6bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">SS80 Execute state process.  <a href="#a96c26a457f1066d6b26f70baeb2c6bf0">More...</a><br /></td></tr>
@@ -271,7 +275,7 @@ Functions</h2></td></tr>
 ///     requested. Note: QSTAT will indicate any diagnostic results
 ///     in addition to the occurrence of an internal release request.
 ///  6. Enter the reporting state.
-/// </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd><p class="startdd">We do not have RPS or Burst settings yet so we do not clear them/ </p>
+/// </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd><p class="startdd">We do not have RPS or Burst settings yet so we do not clear them/ </p>
 <p class="enddd">We do not have a diagnostic mode so bits ALWAYS get cleared. </p>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -285,12 +289,12 @@ Functions</h2></td></tr>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd>FIXME Normally the poweron value is -1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value BEFORE a transfer. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000049">Todo:</a></b></dt><dd>FIXME If we have a Diagnostic Report bit then we do not clear the Status/Error bits SS80 4-12 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd>FIXME Normally the poweron value is -1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value BEFORE a transfer. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd>FIXME If we have a Diagnostic Report bit then we do not clear the Status/Error bits SS80 4-12 </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01662">1662</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01672">1672</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01759">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01703">SS80_Channel_Independent_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00258">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l01739">SS80_Selected_Device_Clear()</a>, and <a class="el" href="ss80_8c_source.html#l01721">SS80_Universal_Device_Clear()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01769">SS80_Amigo_Clear()</a>, <a class="el" href="ss80_8c_source.html#l01713">SS80_Channel_Independent_Clear()</a>, <a class="el" href="ss80_8c_source.html#l00268">SS80_init()</a>, <a class="el" href="ss80_8c_source.html#l01749">SS80_Selected_Device_Clear()</a>, and <a class="el" href="ss80_8c_source.html#l01731">SS80_Universal_Device_Clear()</a>.</p>
 
 </div>
 </div>
@@ -314,13 +318,13 @@ Functions</h2></td></tr>
 <dd>
 GPIB flags on send error. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> _FLAGS defines for a full list. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000051">Todo:</a></b></dt><dd>do something with Parity Check Bit ? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000050">Todo:</a></b></dt><dd>do something with Parity Check Bit ? </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01759">1759</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01769">1769</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01857">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01867">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -341,9 +345,9 @@ GPIB flags on send error. </dd></dl>
 <p>SS80 Return current address in bytes. </p>
 <dl class="section return"><dt>Returns</dt><dd>Byte Address </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00327">327</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00337">337</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01521">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00989">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01808">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00354">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00485">SS80_locate_and_write()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01531">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00999">SS80_Command_State()</a>, <a class="el" href="ss80_8c_source.html#l01818">SS80_increment()</a>, <a class="el" href="ss80_8c_source.html#l00364">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00495">SS80_locate_and_write()</a>.</p>
 
 </div>
 </div>
@@ -364,9 +368,9 @@ GPIB flags on send error. </dd></dl>
 <p>SS80 Return current block addresss from bytes. </p>
 <dl class="section return"><dt>Returns</dt><dd>Block Address </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00334">334</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00344">344</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01521">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00354">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00485">SS80_locate_and_write()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01531">SS80_cmd_seek()</a>, <a class="el" href="ss80_8c_source.html#l00364">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00495">SS80_locate_and_write()</a>.</p>
 
 </div>
 </div>
@@ -392,16 +396,16 @@ GPIB flags on send error. </dd></dl>
 </ul>
 </li>
 <li>State: TRANSPARENT 0x72<ul>
-<li>Phases: Command, Report <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000052">Todo:</a></b></dt><dd></dd></dl>
+<li>Phases: Command, Report <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000051">Todo:</a></b></dt><dd></dd></dl>
 </li>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000053">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000052">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01793">1793</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01803">1803</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01373">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01383">SS80_Transparent_State()</a>.</p>
 
 </div>
 </div>
@@ -438,9 +442,9 @@ GPIB flags on send error. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01703">1703</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01713">1713</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01373">SS80_Transparent_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01383">SS80_Transparent_State()</a>.</p>
 
 </div>
 </div>
@@ -470,11 +474,11 @@ fatfs error on fail</dd></dl>
 </li>
 <li>Fail will set: qstat = 1, Errors |= ERR_SEEK. </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>Let f_lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>Let f_lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01521">1521</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01531">1531</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00354">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00485">SS80_locate_and_write()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00364">SS80_locate_and_read()</a>, and <a class="el" href="ss80_8c_source.html#l00495">SS80_locate_and_write()</a>.</p>
 
 </div>
 </div>
@@ -526,37 +530,37 @@ flags on fail. </dd></dl>
 ///     Skip the remaining codes, Wait for Report Phase
 /// </pre> </li>
 </ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>FIXME, In Execute state calls <a class="el" href="ss80_8c.html#acad6de863f4566b55cb8860eb1ffd09c" title="SS80 Locate and Read COmmend. ">SS80_locate_and_read()</a>; </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>FIXME, <a class="el" href="ss80_8c.html#a41ef37ec5419463815401485cfcb62b1" title="SS80 Locate and Write Commend. ">SS80_locate_and_write()</a>; </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>FIXME Important SS80 and CS80 differences regarding Complementary Commands! CS80 pg 2-1 1) In CS80 when only complementary commands appear in a message they will set the system defaults: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (RPS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are TEMPORARY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>Only handles 4-byte Addresses at the moment CS80 pg 4-11, 2-14 SS80 pg 4-67 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>FIXME, In Execute state calls <a class="el" href="ss80_8c.html#acad6de863f4566b55cb8860eb1ffd09c" title="SS80 Locate and Read COmmend. ">SS80_locate_and_read()</a>; </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>FIXME, <a class="el" href="ss80_8c.html#a41ef37ec5419463815401485cfcb62b1" title="SS80 Locate and Write Commend. ">SS80_locate_and_write()</a>; </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>FIXME Important SS80 and CS80 differences regarding Complementary Commands! CS80 pg 2-1 1) In CS80 when only complementary commands appear in a message they will set the system defaults: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (RPS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are TEMPORARY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>Only handles 4-byte Addresses at the moment CS80 pg 4-11, 2-14 SS80 pg 4-67 </dd></dl>
 <p>SS80 pg 4-73</p>
 <p>set unit number TODO We do not support multiple units yet</p>
 <p>TODO We do not support multiple Volumes yet</p>
 <p>Set Return Addressing Type: COMPLEMENTARY Phases: Command, Report SS80 pg 4-81 CS80 4-18,2-24</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>not implmented yet SS80 pg 4-43 CS80 pg 4-20, 2-28 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>FIXME Execute NOW </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>not implmented yet SS80 pg 4-43 CS80 pg 4-20, 2-28 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>FIXME Execute NOW </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
 <p>Validate Key, Set Format Options, Download Type: GENERAL PURPOSE Phases: Command, Report Must be last command in sequence SS80 pg 4-91 CS80 N/A</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
 <p>Initialize Media Type: GENERAL PURPOSE Phases: Command, Report This command must be last and only one SS80 pg 4-33 CS80 4-19,2-26</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>Set Status Mask Type: GENERAL PURPOSE Phases: Command, Report Must be last command in sequence SS80 pg 4-81 CS80 4-15,2-20</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>TODO </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>TODO </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>TODO </dd></dl>
 <p>Initiate Diagnostic Type: DIAGNOSTIC Phases: Command, Report Must be last command in sequence SS80 pg 4-35 CS80 N/A</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>TODO </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00989">989</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00999">999</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01857">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01867">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -592,7 +596,7 @@ flags on fail. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01857">1857</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01867">1867</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>.</p>
 
@@ -621,9 +625,9 @@ flags on fail. </dd></dl>
 <dd>
 flags on fail. @ <a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> ERROR_MASK defines for a full list of error flags. </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00904">904</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00914">914</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00299">SS80_Execute_State()</a>.</p>
 
 </div>
 </div>
@@ -661,9 +665,9 @@ flags on fail. @ <a class="el" href="gpib_8h.html" title="GPIB emulator for HP85
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00692">692</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00702">702</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00989">SS80_Command_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00999">SS80_Command_State()</a>.</p>
 
 </div>
 </div>
@@ -687,9 +691,9 @@ flags on fail. @ <a class="el" href="gpib_8h.html" title="GPIB emulator for HP85
 GPIB flags on send error </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR8. ">gpib.h</a> _FLAGS defines for a full list. </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01826">1826</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01836">1836</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00354">SS80_locate_and_read()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00364">SS80_locate_and_read()</a>.</p>
 
 </div>
 </div>
@@ -717,9 +721,9 @@ GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00289">289</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00299">299</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01857">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01867">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -743,7 +747,7 @@ GPIB error flags on fail </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01808">1808</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01818">1818</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
 </div>
 </div>
@@ -760,9 +764,11 @@ GPIB error flags on fail </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00258">258</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>SS80 nitialize all devices Initialize ALL SS80 devives. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>FIXME </dd></dl>
+
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00268">268</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00330">gpib_init_devices()</a>, and <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>.</p>
 
@@ -799,13 +805,13 @@ GPIB error flags on fail. </dd></dl>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>FIXME SS80 4-39 For now we will assume the controller will never do this </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>FIXME SS80 4-39 For now we will assume the controller will never do this </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Return</dd></dl>
 <p>Note: this should not happen unless we exit on errors above </p>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00354">354</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00364">364</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00299">SS80_Execute_State()</a>.</p>
 
 </div>
 </div>
@@ -840,9 +846,9 @@ GPIB error flags on fail. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00485">485</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00495">495</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00299">SS80_Execute_State()</a>.</p>
 
 </div>
 </div>
@@ -880,9 +886,9 @@ GPIB error flags on fail. </dd></dl>
 ///     power-on values.
 /// </pre> <pre class="fragment">@return  0 on sucess
 @see: gpib.h ERROR_MASK defines for a full list.  </pre> 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01569">1569</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01579">1579</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="ss80_8c_source.html#l01857">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="ss80_8c_source.html#l01867">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -912,7 +918,7 @@ GPIB error flags on fail. </dd></dl>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01739">1739</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01749">1749</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>.</p>
 
@@ -1039,14 +1045,14 @@ GPIB error flags on fail. </dd></dl>
 ///  44 = End of Volume
 /// </pre> <pre class="fragment">@return 0.
 @return GPIB error flags on fail&gt;
-@see gpib.h ERROR_MASK defines for a full list.  </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>add Diagnostic Result status (MSB of byte 5) </dd></dl>
+@see gpib.h ERROR_MASK defines for a full list.  </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>add Diagnostic Result status (MSB of byte 5) </dd></dl>
 <p>4:63,64</p>
 <p>Note: Diagnostic Result bit is NOT set </p><dl class="section see"><dt>See also</dt><dd>SET ADDRESS in blocks</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Fixme </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Fixme </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00831">831</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00841">841</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00289">SS80_Execute_State()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00299">SS80_Execute_State()</a>.</p>
 
 </div>
 </div>
@@ -1088,9 +1094,9 @@ GPIB error flags on fail. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00678">678</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00688">688</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00831">SS80_send_status()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00841">SS80_send_status()</a>.</p>
 
 </div>
 </div>
@@ -1109,7 +1115,7 @@ GPIB error flags on fail. </dd></dl>
 </div><div class="memdoc">
 
 <p>SS80 GPIB function. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>get this working </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>get this working </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00121">121</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -1156,9 +1162,9 @@ GPIB error flags on fail. </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00662">662</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00672">672</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00692">SS80_display_extended_status()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00702">SS80_display_extended_status()</a>.</p>
 
 </div>
 </div>
@@ -1207,23 +1213,23 @@ flags on fail </dd></dl>
 ///     Skip the remaining codes, Wait for Report Phase
 /// </pre> </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>work in progress, unit support</p>
 <p>Note: Enabling Parallel Poll is up to each function Many transparent Commands require Parallel Poll disabled when done</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>TODO Skip Paramter </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>FIXME SS80 4-11 CS80 4-26, 3-2,3-5 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>TODO Skip Paramter </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>FIXME SS80 4-11 CS80 4-26, 3-2,3-5 </dd></dl>
 <p>TODO We do not support multiple units yet</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>FIXME SS80 4-9 CS80 4-26, 3-6 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>FIXME SS80 4-9 CS80 4-26, 3-6 </dd></dl>
 <p>TODO We do not support multiple units yet </p>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01373">1373</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01383">1383</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l01857">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l01867">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -1253,9 +1259,9 @@ flags on fail </dd></dl>
 </ul>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000050">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000049">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l01721">1721</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l01731">1731</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>.</p>
 
@@ -1275,9 +1281,18 @@ flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00163">163</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Pack Controller data into bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">*size</td><td>number of bytes in result </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to packer array </dd></dl>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00904">SS80_describe()</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00166">166</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00914">SS80_describe()</a>.</p>
 
 </div>
 </div>
@@ -1295,9 +1310,18 @@ flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00188">188</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Pack Unit data into bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">*size</td><td>number of bytes in result </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to packer array </dd></dl>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00904">SS80_describe()</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00194">194</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00914">SS80_describe()</a>.</p>
 
 </div>
 </div>
@@ -1315,9 +1339,18 @@ flags on fail </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ss80_8c_source.html#l00231">231</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+<p>Pack Voulme data into bytes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">*size</td><td>number of bytes in result </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to packer array </dd></dl>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00904">SS80_describe()</a>.</p>
+<p>Definition at line <a class="el" href="ss80_8c_source.html#l00239">239</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
+
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00914">SS80_describe()</a>.</p>
 
 </div>
 </div>
@@ -1374,14 +1407,14 @@ flags on fail </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00157">157</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
-<p>Referenced by <a class="el" href="ss80_8c_source.html#l00163">SS80ControllerPack()</a>, <a class="el" href="ss80_8c_source.html#l00188">SS80UnitPack()</a>, and <a class="el" href="ss80_8c_source.html#l00231">SS80VolumePack()</a>.</p>
+<p>Referenced by <a class="el" href="ss80_8c_source.html#l00166">SS80ControllerPack()</a>, <a class="el" href="ss80_8c_source.html#l00194">SS80UnitPack()</a>, and <a class="el" href="ss80_8c_source.html#l00239">SS80VolumePack()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 9 2017 22:26:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 9 2017 23:49:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

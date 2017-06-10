@@ -54,6 +54,7 @@ var searchData=
   ['token',['token',['../stringsup_8c.html#ae9142769a957bcb8c0fad1934576f576',1,'token(char *str, char *pat):&#160;stringsup.c'],['../stringsup_8h.html#ae9142769a957bcb8c0fad1934576f576',1,'token(char *str, char *pat):&#160;stringsup.c']]],
   ['tolower',['tolower',['../stringsup_8c.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c']]],
   ['toupper',['toupper',['../stringsup_8c.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c']]],
+  ['tracks_5fper_5fside',['tracks_per_side',['../structVolumeLabelType.html#a590051c8debbe3d157761235c0e80d79',1,'VolumeLabelType']]],
   ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['transpose',['Transpose',['../matrix_8c.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c']]],
   ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c']]],

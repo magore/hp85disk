@@ -2,7 +2,7 @@
 \label{structDirEntryType}\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}}
 
 
-L\+IF directory entry.  
+Directory layout.  
 
 
 
@@ -14,107 +14,122 @@ L\+IF directory entry.
 \item 
 char \hyperlink{structDirEntryType_aa60fae0a6b7ba9c966cbcf46e555f396}{filename} \mbox{[}10\mbox{]}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_ada14562440087858ebf04bc4c81eedd2}{filetype}
+uint16\+\_\+t \hyperlink{structDirEntryType_a97b6ddc8d198c32bf4a29c4784ab7188}{File\+Type}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_a0cab2915e9f864e25b24d298c36c11db}{startaddhi}
+uint32\+\_\+t \hyperlink{structDirEntryType_a062849a9cc935042c7a3a28ed90ab6a1}{File\+Start\+Sector}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_aea0e798bb172b4bddf174ce339a4a54a}{startaddlo}
+uint32\+\_\+t \hyperlink{structDirEntryType_a0ad3a6b6da198caa68e7e82d025975cb}{File\+Length\+Sectors}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_ad7aaba7b01038bc8bacb096bd66fff08}{lengthhi}
+uint8\+\_\+t \hyperlink{structDirEntryType_a1850264d3e4eac53b665a702ac7000fd}{date} \mbox{[}6\mbox{]}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_ad1cde25a0229866557cd5983c27fbd31}{lengthlo}
+uint16\+\_\+t \hyperlink{structDirEntryType_a2fe2eefd68aafcce0bb14bf53e4cba00}{Vol\+Number}
 \item 
-char \hyperlink{structDirEntryType_a627fd55537c73d4fee596b140e106c01}{createtime} \mbox{[}6\mbox{]}
+uint16\+\_\+t \hyperlink{structDirEntryType_ab92ab53cd08e0ffe0f0098c583ce5eba}{Sector\+Size}
 \item 
-uint16\+\_\+t \hyperlink{structDirEntryType_add9ab11f89586efb100471f6580e75c5}{volnumber}
-\item 
-uint16\+\_\+t \hyperlink{structDirEntryType_a27a15eea3264d44c9e93e3be77093151}{implementationhi}
-\item 
-uint16\+\_\+t \hyperlink{structDirEntryType_a8164d577c06fb7c312aaa4955d491449}{implementationlo}
+uint16\+\_\+t \hyperlink{structDirEntryType_ac406aba583917a5c26ed94df41a368a9}{implimentation}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-L\+IF directory entry. 
+Directory layout. 
 
-Definition at line 110 of file defines.\+h.
+\begin{DoxySeeAlso}{See also}
+\href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\tt https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}
+\end{DoxySeeAlso}
+Each D\+I\+R\+E\+C\+T\+O\+RY S\+E\+C\+T\+O\+RS held 8 32-\/byte directory entries. Each entry contained these values\+:
+
+B\+Y\+TE D\+E\+S\+C\+R\+I\+P\+T\+I\+ON 
+
+ 0-\/9 10-\/character file name (blank filled) 10-\/11 File T\+Y\+PE M\+SB first 12-\/15 Start of file in sectors M\+SB first 16-\/19 File length in sectors M\+SB first 20-\/25 file creation D\+A\+TE YY,MM,DD,HH,MM,SS 26-\/27 always 0x8001 entire file is on volume M\+SB first 28-\/29 size of file in bytes M\+SB first May be 0 use for some file types so use number of sectors instead 30-\/31 bytes per record, typically 256 Note\+: bytes 28-\/31 are implementation dependent i.\+e. non-\/\+Series-\/80 systems may write other information into these bytes.\+L\+IF directory entry 
+
+Definition at line 164 of file defines.\+h.
 
 
 
 \subsection{Field Documentation}
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!createtime@{createtime}}
-\index{createtime@{createtime}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{createtime}{createtime}}]{\setlength{\rightskip}{0pt plus 5cm}char Dir\+Entry\+Type\+::createtime\mbox{[}6\mbox{]}}\hypertarget{structDirEntryType_a627fd55537c73d4fee596b140e106c01}{}\label{structDirEntryType_a627fd55537c73d4fee596b140e106c01}
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!date@{date}}
+\index{date@{date}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{date}{date}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Dir\+Entry\+Type\+::date\mbox{[}6\mbox{]}}\hypertarget{structDirEntryType_a1850264d3e4eac53b665a702ac7000fd}{}\label{structDirEntryType_a1850264d3e4eac53b665a702ac7000fd}
 
 
-Definition at line 118 of file defines.\+h.
+Definition at line 170 of file defines.\+h.
+
+
+
+Referenced by L\+I\+F\+Pack\+Dir().
+
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!File\+Length\+Sectors@{File\+Length\+Sectors}}
+\index{File\+Length\+Sectors@{File\+Length\+Sectors}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{File\+Length\+Sectors}{FileLengthSectors}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Dir\+Entry\+Type\+::\+File\+Length\+Sectors}\hypertarget{structDirEntryType_a0ad3a6b6da198caa68e7e82d025975cb}{}\label{structDirEntryType_a0ad3a6b6da198caa68e7e82d025975cb}
+
+
+Definition at line 169 of file defines.\+h.
+
+
+
+Referenced by L\+I\+F\+Pack\+Dir().
 
 \index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!filename@{filename}}
 \index{filename@{filename}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
 \subsubsection[{\texorpdfstring{filename}{filename}}]{\setlength{\rightskip}{0pt plus 5cm}char Dir\+Entry\+Type\+::filename\mbox{[}10\mbox{]}}\hypertarget{structDirEntryType_aa60fae0a6b7ba9c966cbcf46e555f396}{}\label{structDirEntryType_aa60fae0a6b7ba9c966cbcf46e555f396}
 
 
-Definition at line 112 of file defines.\+h.
-
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!filetype@{filetype}}
-\index{filetype@{filetype}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{filetype}{filetype}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::filetype}\hypertarget{structDirEntryType_ada14562440087858ebf04bc4c81eedd2}{}\label{structDirEntryType_ada14562440087858ebf04bc4c81eedd2}
-
-
-Definition at line 113 of file defines.\+h.
+Definition at line 166 of file defines.\+h.
 
 
 
-Referenced by gpib\+\_\+format\+\_\+disk().
+Referenced by L\+I\+F\+Pack\+Dir().
 
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!implementationhi@{implementationhi}}
-\index{implementationhi@{implementationhi}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{implementationhi}{implementationhi}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::implementationhi}\hypertarget{structDirEntryType_a27a15eea3264d44c9e93e3be77093151}{}\label{structDirEntryType_a27a15eea3264d44c9e93e3be77093151}
-
-
-Definition at line 120 of file defines.\+h.
-
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!implementationlo@{implementationlo}}
-\index{implementationlo@{implementationlo}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{implementationlo}{implementationlo}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::implementationlo}\hypertarget{structDirEntryType_a8164d577c06fb7c312aaa4955d491449}{}\label{structDirEntryType_a8164d577c06fb7c312aaa4955d491449}
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!File\+Start\+Sector@{File\+Start\+Sector}}
+\index{File\+Start\+Sector@{File\+Start\+Sector}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{File\+Start\+Sector}{FileStartSector}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t Dir\+Entry\+Type\+::\+File\+Start\+Sector}\hypertarget{structDirEntryType_a062849a9cc935042c7a3a28ed90ab6a1}{}\label{structDirEntryType_a062849a9cc935042c7a3a28ed90ab6a1}
 
 
-Definition at line 121 of file defines.\+h.
-
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!lengthhi@{lengthhi}}
-\index{lengthhi@{lengthhi}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{lengthhi}{lengthhi}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::lengthhi}\hypertarget{structDirEntryType_ad7aaba7b01038bc8bacb096bd66fff08}{}\label{structDirEntryType_ad7aaba7b01038bc8bacb096bd66fff08}
+Definition at line 168 of file defines.\+h.
 
 
-Definition at line 116 of file defines.\+h.
 
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!lengthlo@{lengthlo}}
-\index{lengthlo@{lengthlo}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{lengthlo}{lengthlo}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::lengthlo}\hypertarget{structDirEntryType_ad1cde25a0229866557cd5983c27fbd31}{}\label{structDirEntryType_ad1cde25a0229866557cd5983c27fbd31}
+Referenced by L\+I\+F\+Pack\+Dir().
 
-
-Definition at line 117 of file defines.\+h.
-
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!startaddhi@{startaddhi}}
-\index{startaddhi@{startaddhi}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{startaddhi}{startaddhi}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::startaddhi}\hypertarget{structDirEntryType_a0cab2915e9f864e25b24d298c36c11db}{}\label{structDirEntryType_a0cab2915e9f864e25b24d298c36c11db}
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!File\+Type@{File\+Type}}
+\index{File\+Type@{File\+Type}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{File\+Type}{FileType}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::\+File\+Type}\hypertarget{structDirEntryType_a97b6ddc8d198c32bf4a29c4784ab7188}{}\label{structDirEntryType_a97b6ddc8d198c32bf4a29c4784ab7188}
 
 
-Definition at line 114 of file defines.\+h.
+Definition at line 167 of file defines.\+h.
 
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!startaddlo@{startaddlo}}
-\index{startaddlo@{startaddlo}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{startaddlo}{startaddlo}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::startaddlo}\hypertarget{structDirEntryType_aea0e798bb172b4bddf174ce339a4a54a}{}\label{structDirEntryType_aea0e798bb172b4bddf174ce339a4a54a}
-
-
-Definition at line 115 of file defines.\+h.
-
-\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!volnumber@{volnumber}}
-\index{volnumber@{volnumber}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
-\subsubsection[{\texorpdfstring{volnumber}{volnumber}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::volnumber}\hypertarget{structDirEntryType_add9ab11f89586efb100471f6580e75c5}{}\label{structDirEntryType_add9ab11f89586efb100471f6580e75c5}
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!implimentation@{implimentation}}
+\index{implimentation@{implimentation}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{implimentation}{implimentation}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::implimentation}\hypertarget{structDirEntryType_ac406aba583917a5c26ed94df41a368a9}{}\label{structDirEntryType_ac406aba583917a5c26ed94df41a368a9}
 
 
-Definition at line 119 of file defines.\+h.
+Definition at line 179 of file defines.\+h.
+
+
+
+Referenced by L\+I\+F\+Pack\+Dir().
+
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!Sector\+Size@{Sector\+Size}}
+\index{Sector\+Size@{Sector\+Size}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{Sector\+Size}{SectorSize}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::\+Sector\+Size}\hypertarget{structDirEntryType_ab92ab53cd08e0ffe0f0098c583ce5eba}{}\label{structDirEntryType_ab92ab53cd08e0ffe0f0098c583ce5eba}
+
+
+Definition at line 178 of file defines.\+h.
+
+
+
+Referenced by L\+I\+F\+Pack\+Dir().
+
+\index{Dir\+Entry\+Type@{Dir\+Entry\+Type}!Vol\+Number@{Vol\+Number}}
+\index{Vol\+Number@{Vol\+Number}!Dir\+Entry\+Type@{Dir\+Entry\+Type}}
+\subsubsection[{\texorpdfstring{Vol\+Number}{VolNumber}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Dir\+Entry\+Type\+::\+Vol\+Number}\hypertarget{structDirEntryType_a2fe2eefd68aafcce0bb14bf53e4cba00}{}\label{structDirEntryType_a2fe2eefd68aafcce0bb14bf53e4cba00}
+
+
+Definition at line 177 of file defines.\+h.
+
+
+
+Referenced by L\+I\+F\+Pack\+Dir().
 
 
 

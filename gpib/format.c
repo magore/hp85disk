@@ -20,74 +20,48 @@
 #include "amigo.h"
 
 
-void SS80_V2B(uint8_t *B, int index,int size, uint32_t val)
+///@brief Pack VolumeLabelType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] T: VolumeLabelType structure pointer
+///@return null
+void LIFPackVolume(uint8_t *B, VolumeLabelType *T)
 {
-    ///@brief remove 1 bias
-    V2BMSB(B, index-1,size, val);
+	V2B_MSB(B,0,2,T->LIFid);
+	memcpy(B+2,T->Label,6);
+	V2B_MSB(B,8,4,T->DirStartSector);
+	V2B_MSB(B,12,2,T->System3000LIFid);
+	V2B_MSB(B,14,2,T->zero1);
+	V2B_MSB(B,16,4,T->DirSectors);
+	V2B_MSB(B,20,2,T->LIFVersion);
+	V2B_MSB(B,22,2,T->zero2);
+	V2B_MSB(B,24,4,T->tracks_per_size);
+	V2B_MSB(B,28,4,T->sides);
+	memcpy(B+36,6,T->date,6);
+	return(B);
+}
+
+///@brief Pack DirEntryType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] D: DirEntryType structure pointer
+///@return null
+uint8_t * LIFPackDir(uint8_t *B, DirEntryType *D)
+{
+	memcpy(B+0,D->filename,10);
+	V2B_MSB(B,10,2,D->FileTYpe);
+	V2B_MSB(B,12,4,D->FileStartSector);
+	V2B_MSB(B,16,4,D->FileLengthSectors);
+	memcpy(B+20,D->date,6);
+	V2B_MSB(B,26,2,D->VolNumber);
+	V2B_MSB(B,28,2,D->SectorSize);
+	V2B_MSB(B,30,2,D->implimentation);
+	return(B);
 }
 
 
-
-/**
- @brief Disk Layout
- @credits https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout
-
-	DISK LAYOUT
-	The HP-85 disks used the LIF (Logical Interchange Format) disk layout.  The first 2 sectors on the disk (cylinder 0, head 0, sector 0-1) contained the VOLUME sectors.  The important things in the VOLUME SECTORS were thus:
-
-	BYTES   DESCRIPTION
-	-----   -----------------------------------------------------------
-	  0-1   LIF identifier, must be 0x80, 0x00 (0x8000)
-	  2-7   6-character volume LABEL
-	 8-11   directory start block (always 0,0,0,2 = 0x00000002)
-	12-13   LIF identifer for System 3000 machines (always 0x10,0 = 0x1000)
-	14-15   always 0
-	16-19   # of sectors in DIRECTORY (usually 0,0,0,something)
-	20-21   LIF version number (always 0,1 = 0x0001)
-	22-23   always 0
-	24-27   number of tracks per surface
-	28-31   number of surfaces
-	32-35   number of sectors per track
-	36-41   date and time that the volume was initialized (YY,MM,DD,HH,mm,SS)
-			All date values are in BCD format.  YY is (year-1900). HH is 0-23.
-*/
-
-
-/// @brief LIF data structures used by stand alone formatting utility
-
-/// @brief LIF Volume label structure
-/// - Reference: hpdisk (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
-/// - LIF filesystem http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem
-/// - LIF data is BIG endian
-
-VolumeLabelType vl =
-{
-    0x0080,
-    { 'L','A','B','E','L','1'},
-    0,0x200,
-    0x0080,
-    0,
-    0,0x0e00,       // Changed this to 0x0e -> LIF directory too big
-    0
-};
-
-/// @brief LIF DIrectory Entry
-/// - Reference: hpdisk (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
-/// - LIF filesystem http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem
-/// - LIF data is BIG endian
-DirEntryType de =
-{
-    { 'M','Y','F','I','L','E','1','2','3','4'},
-    0x100,0,0x100,0,0x20,
-    {0x13,0x10,0x12,0x00,0x00,0x00},
-    1,0,0
-};
-
-/// @brief LDIF Format file.
-///
+/// @brief Format LIF disk
+/// TODO
 /// @param[in] name: file name of LIF image to format.
 ///
-/// @todo  currently coded for AMIGO - Work in progress.
 /// @return  FatFs FRESULT.
 
 FRESULT gpib_format_disk(char *name, uint32_t size)

@@ -90,35 +90,93 @@ typedef struct
 } fault_t;
 
 // =============================================
+/**
+  @brief Disk Layout
+  @see https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout
+
+    DISK LAYOUT
+    The HP-85 disks used the LIF (Logical Interchange Format) disk layout.  The first 2 sectors on the disk (cylinder 0, head 0, sector 0-1) contained the VOLUME sectors.  The important things in the VOLUME SECTORS were thus:
+
+    BYTES   DESCRIPTION
+    -----   -----------------------------------------------------------
+      0-1   LIF identifier, must be 0x8000 MSB first
+      2-7   6-character volume LABEL
+     8-11   directory start block always 0x00000002 MSB first
+    12-13   LIF identifer for System 3000 machines always 0x1000 MSB first
+    14-15   always 0x0000 MSB first
+    16-19   # of sectors in DIRECTORY MSB first
+    20-21   LIF version number always 0x0001 MSB first
+    22-23   always 0x0000 MSB first
+    24-27   number of tracks per surface MSB first
+    28-31   number of surfaces MSB first
+    32-35   number of sectors per track MSB first
+    36-41   date and time that the volume was initialized (YY,MM,DD,HH,mm,SS)
+*/
+
 /// LIF formating structures
 ///@see format.c
 ///@brief LIF disk label record
 typedef struct
 {
-    uint16_t LIFid;
-    uint16_t label[6];
-    uint16_t dirstarthi;
-    uint16_t dirstartlo;
-    uint16_t s3000;
-    uint16_t dummy;
-    uint16_t dirlenhi;
-    uint16_t dirlenlo;
-    uint16_t version;
+    uint16_t LIFid;					// 0
+    uint8_t  Label[6];				// 2
+    uint32_t DirStartSector;		// 8
+    uint16_t System3000LIFid;		// 12
+    uint16_t zero1;					// 14
+    uint32_t DirSectors;			// 16
+    uint16_t LIFversion;			// 20
+    uint16_t zero2;					// 22
+	uint32_t tracks_per_side;		// 24
+	uint32_t sides;					// 28
+	uint32_t sectors_per_track;	    // 32
+    uint8_t  date[6];               // 36
+					// YY; //BCD
+					// MM; // BCD
+					// DD; // BCD
+					// HH; // BCD
+					// MM; // BCD
+					// SS; // BCD
 } VolumeLabelType;
 
+/**
+ @brief Directory layout
+  @see https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout
+
+  Each DIRECTORY SECTORS held 8 32-byte directory entries.  
+  Each entry contained these values:
+
+  BYTE	DESCRIPTION
+  ----	------------------------------------------------
+  0-9	10-character file name (blank filled)
+  10-11	File TYPE MSB first
+  12-15	Start of file in sectors MSB first
+  16-19	File length in sectors MSB first
+  20-25	file creation DATE YY,MM,DD,HH,MM,SS
+  26-27	always 0x8001 entire file is on volume MSB first
+  28-29 size of file in bytes MSB first
+        May be 0 use for some file types so use number of sectors instead
+  30-31 bytes per record, typically 256
+  Note: bytes 28-31 are implementation dependent
+    i.e. non-Series-80 systems may write other information into these bytes.
+*/
+       
 ///@brief LIF directory entry
 typedef struct
 {
-    char filename[10];
-    uint16_t filetype;
-    uint16_t startaddhi;
-    uint16_t startaddlo;
-    uint16_t lengthhi;
-    uint16_t lengthlo;
-    char createtime[6];    //< BCD digits
-    uint16_t volnumber;
-    uint16_t implementationhi;
-    uint16_t implementationlo;
+    char filename[10];			// 0
+    uint16_t FileType;			// 10
+    uint32_t FileStartSector;	// 12
+    uint32_t FileLengthSectors;	// 16
+    uint8_t  date[6];           // 20
+			// YY; //BCD
+			// MM; // BCD
+			// DD; // BCD
+			// HH; // BCD
+			// MM; // BCD
+			// SS; // BCD
+    uint16_t VolNumber;			// 26
+    uint16_t SectorSize;		// 28
+    uint16_t implimentation;	// 30
 } DirEntryType;
 // =============================================
 #endif     // #ifndef _DEFINES_H
