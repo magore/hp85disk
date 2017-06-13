@@ -1,12 +1,12 @@
 /**
  @file gpib/gpib_tests.c
 
- @brief GPIB diagnostic tests for HP85 disk emulator project for AVR8.
+ @brief GPIB diagnostic tests for HP85 disk emulator project for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2017-2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -22,6 +22,7 @@
 #include "gpib_tests.h"
 #include "stringsup.h"
 #include "printer.h"
+#include "format.h"
 
 
 /// @brief 
@@ -31,22 +32,22 @@
 
 void gpib_help()
 {
-    printf("debug N\n"
-        "ss80_test\n"
+    printf(
+		"addresses\n"
+		"config\n"
+		"debug N\n"
+		"format image label directory_sectors sectors\n"
+        "gpib_elapsed\n"
+        "gpib_elapsed_reset\n"
         "gpib_task\n"
         "gpib_trace filename.txt\n"
+        "plot_echo address\n   Intruct device to send a plot\n"
+        "plot filename.txt\n"
         "ppr_bit_on N\n"
         "ppr_bit_off N\n"
         "ppr_set XX\n"
         "ppr_init\n"
-        "plot filename.txt\n"
-        "plot_echo 1/0\n"
-        "plot filename.txt\n"
-        "gpib_elapsed\n"
-        "gpib_elapsed_reset\n"
-        "config\n"
-        "addresses\n");
-
+		);
 }
 
 
@@ -63,80 +64,52 @@ int gpib_tests(char *str)
     ptr = skipspaces(str);
 
     len = strlen(ptr);
-    if ((len = token(ptr,"debug")) )
+    if ((len = token(ptr,"addresses")) )
+    {
+		display_Addresses();
+        return(1);
+    }
+    else if ((len = token(ptr,"config")) )
+    {
+		display_Config();
+        return(1);
+    }
+    else if ((len = token(ptr,"debug")) )
     {
         ptr += len;
 		debuglevel=get_value(ptr);
         printf("debug=%02XH\n", debuglevel);
         return(1);
     }
-    if ((len = token(ptr,"config")) )
+    else if ((len = token(ptr,"format")) )
     {
-		display_Config();
-        return(1);
-    }
-    if ((len = token(ptr,"addresses")) )
-    {
-		display_Addresses();
-        return(1);
-    }
-    else if ((len = token(ptr,"ss80_test")) )
-    {
+		char name[64],label[6];
+		char num[12];
+		long dirsecs, sectors, result;
+
         ptr += len;
-/// @todo FIXME
-        printf("SS80_TEST\n");
-        SS80_init();
-        SS80_Test();
-        return(1);
-    }
-    else if ((len = token(ptr,"ppr_bit_set")) )
-    {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_bit_set(val);
-        return(1);
-    }
-    else if ((len = token(ptr,"ppr_bit_clr")) )
-    {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_bit_clr(val);
-        return(1);
-    }
-    else if ((len = token(ptr,"ppr_set")) )
-    {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_set(val);
-        return(1);
-    }
-    else if ((len = token(ptr,"ppr_init")) )
-    {
-        ppr_init();
-        return(1);
-    }
-    else if ((len = token(ptr,"plot_echo")) )
-    {
-        int option;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        option = atoi(ptr);
-        plot_echo(option);
-        return(1);
-    }
-    else if ((len = token(ptr,"gpib_format")) )
-    {
-        ptr += len;
-#if 0
-		//FIXME
-        gpib_format_disk(file, 40000000L);
-#endif
+
+		// IMAGE name
+		ptr = get_token(ptr, name, 63);
+
+		// IMAGE LABEL
+		ptr = get_token(ptr, label, 7);
+
+		// Directory Sectors
+		ptr = get_token(ptr, num, 11);
+        dirsecs = atol(num);
+
+		// Image total Sectors
+		ptr = get_token(ptr, num, 11);
+        sectors= atol(num);
+		
+		///@brief format LIF image
+		result = create_lif_image(name,label,dirsecs,sectors);
+		if(result != sectors)
+		{
+			if(debuglevel & 1)
+				printf("create_format_image: failed\n");
+		}
         return(1);
     }
     else if ((len = token(ptr,"gpib_elapsed_reset")) )
@@ -173,14 +146,39 @@ int gpib_tests(char *str)
         plot_echo(option);
         return(1);
     }
-    else if ((len = token(ptr,"plot")) )
+    else if ((len = token(ptr,"ppr_bit_clr")) )
     {
+        uint8_t val;
         ptr += len;
         ptr = skipspaces(ptr);
-        receive_plot(ptr);
+        val = atoh(ptr);
+        ppr_bit_clr(val);
         return(1);
     }
-    if ( (len = token(ptr,"gpib_help")) )
+    else if ((len = token(ptr,"ppr_bit_set")) )
+    {
+        uint8_t val;
+        ptr += len;
+        ptr = skipspaces(ptr);
+        val = atoh(ptr);
+        ppr_bit_set(val);
+        return(1);
+    }
+    else if ((len = token(ptr,"ppr_set")) )
+    {
+        uint8_t val;
+        ptr += len;
+        ptr = skipspaces(ptr);
+        val = atoh(ptr);
+        ppr_set(val);
+        return(1);
+    }
+    else if ((len = token(ptr,"ppr_init")) )
+    {
+        ppr_init();
+        return(1);
+    }
+    else if ( (len = token(ptr,"gpib_help")) )
     {
         gpib_help();
         return(1);

@@ -4,7 +4,6 @@ var searchData=
   ['rcvr_5fspi_5fmulti',['rcvr_spi_multi',['../mmc_8c.html#a50ff2f4928f652f9968097d326623808',1,'mmc.c']]],
   ['read',['read',['../posix_8c.html#af104a2c05bef787e54c6925616e867df',1,'read(int fd, const void *buf, size_t count):&#160;posix.c'],['../posix_8h.html#af104a2c05bef787e54c6925616e867df',1,'read(int fd, const void *buf, size_t count):&#160;posix.c']]],
   ['readdir',['readdir',['../posix_8c.html#a1508fedaef509d2976b43300306d1400',1,'readdir(DIR *dirp):&#160;posix.c'],['../posix_8h.html#a58257faf8b13b3f14558613c632b2373',1,'readdir(DIR *dirp):&#160;posix.c']]],
-  ['receive_5fplot',['receive_plot',['../printer_8c.html#ac649161dc4d63963c35b30a12037e09c',1,'receive_plot(char *name):&#160;printer.c'],['../printer_8h.html#ac649161dc4d63963c35b30a12037e09c',1,'receive_plot(char *name):&#160;printer.c']]],
   ['receive_5fplot_5fflush',['receive_plot_flush',['../printer_8c.html#a49cd5ed3c7bfd27122f36ad0f9f16fac',1,'receive_plot_flush():&#160;printer.c'],['../printer_8h.html#a06cc5819c3a956913f41114deb55a113',1,'receive_plot_flush(void):&#160;printer.c']]],
   ['remove_5fchain',['remove_chain',['../ff_8c.html#a9d9d4fa5f45110afd3b5d784c5f8a819',1,'ff.c']]],
   ['rename',['rename',['../posix_8c.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c'],['../posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c']]],

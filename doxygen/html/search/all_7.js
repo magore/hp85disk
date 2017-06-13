@@ -40,7 +40,6 @@ var searchData=
   ['gpib_5fdecode_5fstr',['gpib_decode_str',['../gpib_8c.html#a702e73930b9d9909d1fd8fb26d716797',1,'gpib_decode_str(uint16_t ch):&#160;gpib.c'],['../gpib_8h.html#a702e73930b9d9909d1fd8fb26d716797',1,'gpib_decode_str(uint16_t ch):&#160;gpib.c']]],
   ['gpib_5ferror_5ftest',['gpib_error_test',['../gpib__task_8c.html#a903eb44d83bf8f2db71e6f32a35fec62',1,'gpib_error_test(uint16_t val):&#160;gpib_task.c'],['../gpib__task_8h.html#a903eb44d83bf8f2db71e6f32a35fec62',1,'gpib_error_test(uint16_t val):&#160;gpib_task.c']]],
   ['gpib_5ffile_5finit',['gpib_file_init',['../gpib__task_8c.html#a29b89503cfbf214695082b16d6d40f52',1,'gpib_file_init():&#160;gpib_task.c'],['../gpib__task_8h.html#a5859304d546fa05404d17db34c704906',1,'gpib_file_init(void):&#160;gpib_task.c']]],
-  ['gpib_5fformat_5fdisk',['gpib_format_disk',['../format_8c.html#a6897c56caeb4ebc5c5003c1f33a3b14c',1,'format.c']]],
   ['gpib_5fhal_2ec',['gpib_hal.c',['../gpib__hal_8c.html',1,'']]],
   ['gpib_5fhal_2eh',['gpib_hal.h',['../gpib__hal_8h.html',1,'']]],
   ['gpib_5fhelp',['gpib_help',['../gpib__tests_8c.html#a48d3cb0472f32b3aac3af47bad350db2',1,'gpib_help():&#160;gpib_tests.c'],['../gpib__tests_8h.html#a222ec78e208ea8b6c35df0b4454fd043',1,'gpib_help(void):&#160;gpib_tests.c']]],

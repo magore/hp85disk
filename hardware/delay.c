@@ -1,12 +1,12 @@
 /**
  @file hardware/delay.c
 
- @brief Extended delay routines for AVR8.
+ @brief Extended delay routines for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 

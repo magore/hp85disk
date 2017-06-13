@@ -38,6 +38,7 @@ var searchData=
   ['secondary',['secondary',['../gpib_8c.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c'],['../gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c']]],
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['sector',['sector',['../structAMIGOStateType.html#a90615dad99e4fb6852b176bf6712f40b',1,'AMIGOStateType']]],
+  ['sector_5fsize',['SECTOR_SIZE',['../defines_8h.html#aa35bad1e92008da628f27b2f6bb270aa',1,'defines.h']]],
   ['sectors_5fper_5ftrack',['sectors_per_track',['../structVolumeLabelType.html#a0014a4795dfcf4117212bba590fc889e',1,'VolumeLabelType::sectors_per_track()'],['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()']]],
   ['sectorsize',['SectorSize',['../structDirEntryType.html#ab92ab53cd08e0ffe0f0098c583ce5eba',1,'DirEntryType']]],
   ['seek_5fcur',['SEEK_CUR',['../posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39',1,'posix.h']]],

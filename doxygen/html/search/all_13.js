@@ -16,6 +16,7 @@ var searchData=
   ['time_2eh',['time.h',['../time_8h.html',1,'']]],
   ['time_5ft',['time_t',['../time_8h.html#a3346b04b0420b32ccf6b706551b70762',1,'time_t():&#160;time.h'],['../posix_8h.html#a3346b04b0420b32ccf6b706551b70762',1,'time_t():&#160;posix.h']]],
   ['time_5ftest',['time_test',['../main_8h.html#ace107c9b76ee90e28373c1a313bc11d9',1,'main.h']]],
+  ['time_5fto_5flif',['time_to_LIF',['../format_8c.html#a29835cfd7801ccbdac38780528eaae2d',1,'time_to_LIF(uint8_t *bcd, time_t t):&#160;format.c'],['../format_8h.html#a29835cfd7801ccbdac38780528eaae2d',1,'time_to_LIF(uint8_t *bcd, time_t t):&#160;format.c']]],
   ['time_5fto_5ftm',['time_to_tm',['../time_8c.html#a09b5af92607205b927df4dcc1f2baa53',1,'time_to_tm(time_t epoch, int32_t offset, tm_t *t):&#160;time.c'],['../time_8h.html#a09b5af92607205b927df4dcc1f2baa53',1,'time_to_tm(time_t epoch, int32_t offset, tm_t *t):&#160;time.c']]],
   ['timegm',['timegm',['../time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5',1,'timegm(tm_t *t):&#160;time.c'],['../time_8h.html#a8386ff819a39512ea00cfc78ce5a27d5',1,'timegm(tm_t *t):&#160;time.c']]],
   ['timeout_5fflag',['TIMEOUT_FLAG',['../gpib_8h.html#abc15e280bc4f374b8813d358059a121e',1,'gpib.h']]],

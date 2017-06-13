@@ -7,7 +7,7 @@
 
  @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 

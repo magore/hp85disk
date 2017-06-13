@@ -1,12 +1,12 @@
 /**
  @file gpib/printer.c
 
- @brief HPGL printer capture code for HP85 disk emulator project for AVR8. 
+ @brief HPGL printer capture code for HP85 disk emulator project for AVR. 
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -112,7 +112,7 @@ void printer_init()
 /// This gets called
 void printer_close()
 {
-    if( receive_plot_flush() )
+    if( receive_plot_flush() < 0 )
         plot.error = 1;
 
 	if(debuglevel & (1+32))
@@ -163,11 +163,11 @@ int receive_plot_flush()
     }
 
     fno = fileno( plot.fp );
-    if(ret < 0)
-        return(ret);
+    if(fno < 0)
+        return(-1);
 	///@brief sync filesystem after every write 
-    ret = syncfs( fno );
-    return ( ret );
+    syncfs( fno );
+    return (ret);
 }
 
 
@@ -208,91 +208,11 @@ void printer_buffer( uint16_t val )
 
         if(plot.ind >= 256)
         {
-            if( receive_plot_flush() )
+            if( receive_plot_flush() < 0 )
                 plot.error = 1;
             plot.ind  = 0;
         }
     }
-}
-
-
-/// @brief  Manually receive plot data - user called function.
-/// For debuuging only
-/// - This function would be manually invoked prior to invoking a 
-/// Send Plot command on a GPIB device.
-/// - Exit on user key press.
-///
-/// @param[in] name: file name to save plot data in.
-///
-/// @return  void
-
-void receive_plot( char *name )
-{
-    uint16_t ch;
-
-    gpib_bus_init(1);
-    gpib_state_init();
-
-	///@brief printer_close() gets called on GPIB bus init DCL and any unlisten
-
-    name = skipspaces(name);
-    if(!*name)
-    {
-		if(debuglevel & (1+32))
-			printf("receive_plot: expected file name\m");
-        return;
-    }
-
-    printer_open(name);
-
-    while(1)                                      // Main loop, forever
-    {
-        if(uart_keyhit(0))
-            break;
-
-        ch = gpib_read_byte();
-
-		if(debuglevel & 32)
-		{
-			if(( plot.count & 255L ) == 0)
-				printf("%08ld\r",plot.count);
-		}
-
-        if(ch & (0xff00 & ~REN_FLAG))
-        {
-            char *ptr;
-            if( receive_plot_flush() )
-                plot.error = 1;
-            ptr = gpib_decode_str(ch);
-			if(debuglevel & 256)
-				puts(ptr);
-			fprintf(plot.fp,"%s\n", ptr);
-        }
-        else
-        {
-            ch &= 0xff;
-            plot.buf[plot.ind++] = ch;
-
-			if(debuglevel & 32)
-			{
-				if(ch == '\n')
-					printf("\n%ld EOL\n", plot.count);
-				if(ch == '\r')
-					printf("\n%ld CR\n", plot.count);
-			}
-
-            if(plot.ind >= 256)
-            {
-                if( receive_plot_flush() )
-                    plot.error = 1;
-                plot.ind  = 0;
-            }
-        }
-        plot.count++;
-    }
-    if( receive_plot_flush() )
-        plot.error = 1;
-    printer_close();
 }
 
 
@@ -330,8 +250,9 @@ int PRINTER_COMMANDS(uint8_t ch)
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
-void plot_echo( int echo )
+void plot_echo( int gpib_address)
 {
+#if 0
     int ch;
     long count;
     char *ptr;
@@ -339,24 +260,17 @@ void plot_echo( int echo )
     uint16_t status;
     char Line[40+2];
 
+    count = 0;
+
     gpib_bus_init(1);
     gpib_state_init();
-
     printer_close();
 
     gpib_decode_header();
-
-    if(echo)
-        printf("echo: on\n");
-    else
-        printf("echo: off\n");
-
-    count = 0;
     while(1)                                      // Main loop, forever
     {
         if(uart_keyhit(0))
         {
-#if 1
             extern int uart_put(int c);
             extern int get_line (char *buff, int len);
 
@@ -378,9 +292,6 @@ void plot_echo( int echo )
             status = 0;
             if(gpib_write_str((uint8_t *) ptr, len, &status) != len)
                 printf("[write failed]\n");
-#else
-            return;
-#endif
         }
         ch = gpib_read_byte();
 
@@ -402,4 +313,5 @@ void plot_echo( int echo )
         ++count;
     }
     printf("\nLogged %ld\n",count);
+#endif
 }

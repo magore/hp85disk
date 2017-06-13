@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">format.c File Reference</div>  </div>
@@ -103,20 +104,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="gpib__hal_8h_source.html">gpib_hal.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gpib__task_8h_source.html">gpib_task.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="amigo_8h_source.html">amigo.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="time_8h_source.html">time.h</a>&gt;</code><br />
 </div>
 <p><a href="format_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a79fd02f4522485fe04d29e8003cf4bf0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a79fd02f4522485fe04d29e8003cf4bf0">CHUNKS</a>&#160;&#160;&#160;16</td></tr>
+<tr class="memdesc:a79fd02f4522485fe04d29e8003cf4bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">When formatting a disk define how many sectors we can write at once Depends on how much free ram we have.  <a href="#a79fd02f4522485fe04d29e8003cf4bf0">More...</a><br /></td></tr>
+<tr class="separator:a79fd02f4522485fe04d29e8003cf4bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3cfda4f3a9f978ec759f206cf186fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#aea3cfda4f3a9f978ec759f206cf186fe">CHUNK_SIZE</a>&#160;&#160;&#160;(<a class="el" href="defines_8h.html#aa35bad1e92008da628f27b2f6bb270aa">SECTOR_SIZE</a>*<a class="el" href="format_8c.html#a79fd02f4522485fe04d29e8003cf4bf0">CHUNKS</a>)</td></tr>
+<tr class="separator:aea3cfda4f3a9f978ec759f206cf186fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae761c66f97a572ad6982ea954095be99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#ae761c66f97a572ad6982ea954095be99">LIFPackVolume</a> (uint8_t *B, <a class="el" href="structVolumeLabelType.html">VolumeLabelType</a> *T)</td></tr>
-<tr class="memdesc:ae761c66f97a572ad6982ea954095be99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack <a class="el" href="structVolumeLabelType.html" title="Disk Layout. ">VolumeLabelType</a> data into bytes.  <a href="#ae761c66f97a572ad6982ea954095be99">More...</a><br /></td></tr>
-<tr class="separator:ae761c66f97a572ad6982ea954095be99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d646551c1f87fab68780af6bd81bff"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a10d646551c1f87fab68780af6bd81bff">LIFPackDir</a> (uint8_t *B, <a class="el" href="structDirEntryType.html">DirEntryType</a> *D)</td></tr>
 <tr class="memdesc:a10d646551c1f87fab68780af6bd81bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack <a class="el" href="structDirEntryType.html" title="Directory layout. ">DirEntryType</a> data into bytes.  <a href="#a10d646551c1f87fab68780af6bd81bff">More...</a><br /></td></tr>
 <tr class="separator:a10d646551c1f87fab68780af6bd81bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6897c56caeb4ebc5c5003c1f33a3b14c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a6897c56caeb4ebc5c5003c1f33a3b14c">gpib_format_disk</a> (char *name, uint32_t size)</td></tr>
-<tr class="memdesc:a6897c56caeb4ebc5c5003c1f33a3b14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format LIF disk TODO.  <a href="#a6897c56caeb4ebc5c5003c1f33a3b14c">More...</a><br /></td></tr>
-<tr class="separator:a6897c56caeb4ebc5c5003c1f33a3b14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f19694bb196d8a22ba52371c8c56cb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a5f19694bb196d8a22ba52371c8c56cb2">LIFPackVolume</a> (uint8_t *B, <a class="el" href="structVolumeLabelType.html">VolumeLabelType</a> *V)</td></tr>
+<tr class="memdesc:a5f19694bb196d8a22ba52371c8c56cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pack <a class="el" href="structVolumeLabelType.html" title="Disk Layout. ">VolumeLabelType</a> data into bytes.  <a href="#a5f19694bb196d8a22ba52371c8c56cb2">More...</a><br /></td></tr>
+<tr class="separator:a5f19694bb196d8a22ba52371c8c56cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1ad25108ea81aa9d49583504eda206"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a0e1ad25108ea81aa9d49583504eda206">BIN2BCD</a> (uint8_t data)</td></tr>
+<tr class="memdesc:a0e1ad25108ea81aa9d49583504eda206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert number &gt;= 0 and &lt;= 99 to BCD.  <a href="#a0e1ad25108ea81aa9d49583504eda206">More...</a><br /></td></tr>
+<tr class="separator:a0e1ad25108ea81aa9d49583504eda206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29835cfd7801ccbdac38780528eaae2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#a29835cfd7801ccbdac38780528eaae2d">time_to_LIF</a> (uint8_t *bcd, <a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> t)</td></tr>
+<tr class="memdesc:a29835cfd7801ccbdac38780528eaae2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">UNIX time to LIF time format.  <a href="#a29835cfd7801ccbdac38780528eaae2d">More...</a><br /></td></tr>
+<tr class="separator:a29835cfd7801ccbdac38780528eaae2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea9162f967a2229bfc637a896f087c9"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8c.html#abea9162f967a2229bfc637a896f087c9">create_lif_image</a> (char *name, char *label, long dirsecs, long sectors)</td></tr>
+<tr class="memdesc:abea9162f967a2229bfc637a896f087c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create LIF disk image This can take a while to run.  <a href="#abea9162f967a2229bfc637a896f087c9">More...</a><br /></td></tr>
+<tr class="separator:abea9162f967a2229bfc637a896f087c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>LIF Disk Format. </p>
@@ -124,16 +140,84 @@ Functions</h2></td></tr>
 <li>[1.0] [Mike Gore] Initial revision of file.</li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
 
 <p>Definition in file <a class="el" href="format_8c_source.html">format.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a6897c56caeb4ebc5c5003c1f33a3b14c"></a>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="aea3cfda4f3a9f978ec759f206cf186fe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> gpib_format_disk </td>
+          <td class="memname">#define CHUNK_SIZE&#160;&#160;&#160;(<a class="el" href="defines_8h.html#aa35bad1e92008da628f27b2f6bb270aa">SECTOR_SIZE</a>*<a class="el" href="format_8c.html#a79fd02f4522485fe04d29e8003cf4bf0">CHUNKS</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00027">27</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a79fd02f4522485fe04d29e8003cf4bf0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHUNKS&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When formatting a disk define how many sectors we can write at once Depends on how much free ram we have. </p>
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00026">26</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a0e1ad25108ea81aa9d49583504eda206"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BIN2BCD </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert number &gt;= 0 and &lt;= 99 to BCD. </p>
+<ul>
+<li>BCD format has each hex nibble has a digit 0 .. 9</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>number to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>BCD value </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>we assume the number is in range. </dd></dl>
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00073">73</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00085">time_to_LIF()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abea9162f967a2229bfc637a896f087c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long create_lif_image </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -141,8 +225,20 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>label</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>dirsecs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>sectors</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -152,19 +248,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Format LIF disk TODO. </p>
+<p>Create LIF disk image This can take a while to run. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>file name of LIF image to format.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>LIF disk image name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">label</td><td>LIF Volume Label name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dirsecs</td><td>Number of LIF directory sectors </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sectors</td><td>total disk image size in sectors </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>FatFs FRESULT. </dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>return(rc); </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bytes writting to disk image </dd></dl>
+<p>Current Date</p>
+<p>Opne disk image for writting</p>
+<p>Initial file position</p>
+<p>File type of 0xffff is last directory entry</p>
+<p>FIXME this is the default that the HPdrive project uses, not sure of this</p>
+<p>Zero out remining disk image </p>
 
-<p>Definition at line <a class="el" href="format_8c_source.html#l00067">67</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+<p>Definition at line <a class="el" href="format_8c_source.html#l00106">106</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l01343">format_drives()</a>, and <a class="el" href="gpib__tests_8c_source.html#l00058">gpib_tests()</a>.</p>
 
 </div>
 </div>
@@ -201,11 +305,13 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="format_8c_source.html#l00047">47</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+<p>Definition at line <a class="el" href="format_8c_source.html#l00034">34</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae761c66f97a572ad6982ea954095be99"></a>
+<a class="anchor" id="a5f19694bb196d8a22ba52371c8c56cb2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -219,7 +325,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structVolumeLabelType.html">VolumeLabelType</a> *&#160;</td>
-          <td class="paramname"><em>T</em>&#160;</td>
+          <td class="paramname"><em>V</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -238,14 +344,57 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="format_8c_source.html#l00027">27</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+<p>Definition at line <a class="el" href="format_8c_source.html#l00051">51</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29835cfd7801ccbdac38780528eaae2d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void time_to_LIF </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>bcd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a>&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>UNIX time to LIF time format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">bcd</td><td>packed 6 byte BCD LIF time YY,MM,DD,HH,MM,SS </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>UNIX time_t time value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69" title="Return second from epoch - POSIX function. ">time()</a> in <a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="format_8c_source.html#l00085">85</a> of file <a class="el" href="format_8c_source.html">format.c</a>.</p>
+
+<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 9 2017 23:49:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 12 2017 21:44:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -29,6 +29,7 @@ var searchData=
   ['s_5fixoth',['S_IXOTH',['../posix_8h.html#a40223db1b95a04f5b28cceb3c34cfebd',1,'posix.h']]],
   ['s_5fixusr',['S_IXUSR',['../posix_8h.html#af10a35e3950795d6ee4e07157d000131',1,'posix.h']]],
   ['sdc',['SDC',['../amigo_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;amigo.h'],['../defines_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;defines.h']]],
+  ['sector_5fsize',['SECTOR_SIZE',['../defines_8h.html#aa35bad1e92008da628f27b2f6bb270aa',1,'defines.h']]],
   ['seek_5fcur',['SEEK_CUR',['../posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39',1,'posix.h']]],
   ['seek_5fend',['SEEK_END',['../posix_8h.html#ad2a2e6c114780c3071efd24f16c7f7d8',1,'posix.h']]],
   ['seek_5fset',['SEEK_SET',['../posix_8h.html#a0d112bae8fd35be772185b6ec6bcbe64',1,'posix.h']]],

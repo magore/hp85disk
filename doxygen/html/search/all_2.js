@@ -10,6 +10,7 @@ var searchData=
   ['basename',['basename',['../posix_8c.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c'],['../posix_8h.html#a4d3dfaf2f5a63e2e4eaa128477a9b5e7',1,'basename(char *str):&#160;posix.c']]],
   ['baudrate_2ec',['baudrate.c',['../baudrate_8c.html',1,'']]],
   ['bcdtobin',['BCDtoBIN',['../rtc_8c.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a2487d4ced293cbe6f2779960032e30c2',1,'BCDtoBIN(uint8_t data):&#160;rtc.c']]],
+  ['bin2bcd',['BIN2BCD',['../format_8c.html#a0e1ad25108ea81aa9d49583504eda206',1,'BIN2BCD(uint8_t data):&#160;format.c'],['../format_8h.html#a0e1ad25108ea81aa9d49583504eda206',1,'BIN2BCD(uint8_t data):&#160;format.c']]],
   ['bin2num',['bin2num',['../mathio_8h.html#aa95ef42dcc41a90255c084e0e1a9bcde',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c'],['../printf_8c.html#aa95ef42dcc41a90255c084e0e1a9bcde',1,'bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int numsize, int sign_ch):&#160;printf.c']]],
   ['bintobcd',['BINtoBCD',['../rtc_8c.html#a221016815913bd1b20c9b619900b40b8',1,'BINtoBCD(uint8_t data):&#160;rtc.c'],['../rtc_8h.html#a221016815913bd1b20c9b619900b40b8',1,'BINtoBCD(uint8_t data):&#160;rtc.c']]],
   ['bit_5fclr',['BIT_CLR',['../bits_8h.html#a4021778be6452ef56bfb20488d19bcdc',1,'bits.h']]],

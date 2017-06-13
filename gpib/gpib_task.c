@@ -1,12 +1,12 @@
 /**
  @file gpib/gpib_task.c
 
- @brief High level GPIB command handler for HP85 disk emulator project for AVR8.
+ @brief High level GPIB command handler for HP85 disk emulator project for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -941,7 +941,7 @@ void listen_cleanup()
 	{
 		int index = find_device(PRINTER_TYPE, listening_last, BASE_MLA);
 		if(index == -1)
-			return(0);
+			return;
 
 		//We should not set the active device globally
 		//FIXME if we have to then printer close should temprarily do so

@@ -16,7 +16,7 @@ var searchData=
   ['pick_5flfn',['pick_lfn',['../ff_8c.html#a675b0b45a44cb21f0c6aafa6faa7defe',1,'ff.c']]],
   ['pin_5fbase',['PIN_BASE',['../iom1284p_8h.html#aefbd8c331081417f7e39490423bc55ee',1,'iom1284p.h']]],
   ['plot',['plot',['../printer_8c.html#af553ce48b56b862023dcd451e94e65ac',1,'printer.c']]],
-  ['plot_5fecho',['plot_echo',['../printer_8c.html#a3e02cbb071ea6b261c2271cc604be495',1,'plot_echo(int echo):&#160;printer.c'],['../printer_8h.html#a3e02cbb071ea6b261c2271cc604be495',1,'plot_echo(int echo):&#160;printer.c']]],
+  ['plot_5fecho',['plot_echo',['../printer_8c.html#ab0733357c2cffe1aaf6dfcf9240f86fb',1,'plot_echo(int gpib_address):&#160;printer.c'],['../printer_8h.html#ab0733357c2cffe1aaf6dfcf9240f86fb',1,'plot_echo(int gpib_address):&#160;printer.c']]],
   ['plot_5fstr',['plot_str',['../printer_8c.html#a86ffa26ff3c8695d7cd5536829aa3684',1,'printer.c']]],
   ['plus',['plus',['../unionf__t.html#a63ebe04d55417685e439b779dfa8dafe',1,'f_t']]],
   ['pop_5fstate',['pop_state',['../drives_8c.html#a45b0cf880b953984f9351f5d2bd9c77d',1,'pop_state():&#160;drives.c'],['../drives_8h.html#a8848ed41fc10bb2ac57676522df757f4',1,'pop_state(void):&#160;drives.c']]],

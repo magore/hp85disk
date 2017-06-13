@@ -14,6 +14,7 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}amigo.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ss80.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}format.\+h\char`\"{}}\\*
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,7 +64,9 @@ void \hyperlink{drives_8c_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\
 void \hyperlink{drives_8c_a1dbca8748b76da795e7fe56b61762b51}{display\+\_\+\+Addresses} ()
 \begin{DoxyCompactList}\small\item\em Display Configuration device address saummary. \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_a7c4d2fa0db8c1159a73186871c4639b2}{display\+\_\+\+Config} ()
-\begin{DoxyCompactList}\small\item\em Display current Configuration File values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Display current Configuration File values. \end{DoxyCompactList}\item 
+void \hyperlink{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}{format\+\_\+drives} ()
+\begin{DoxyCompactList}\small\item\em Format devices that have no image file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -107,11 +110,11 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 \subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}{MAX_DEVICES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES~8}\hypertarget{drives_8c_a4e132cfaa78353e3af1474a86b2dd535}{}\label{drives_8c_a4e132cfaa78353e3af1474a86b2dd535}
 
 
-Definition at line 25 of file drives.\+c.
+Definition at line 26 of file drives.\+c.
 
 
 
-Referenced by display\+\_\+\+Addresses(), display\+\_\+\+Config(), find\+\_\+device(), find\+\_\+type(), init\+\_\+\+Devices(), set\+\_\+active\+\_\+device(), and S\+S80\+\_\+init().
+Referenced by display\+\_\+\+Addresses(), display\+\_\+\+Config(), find\+\_\+device(), find\+\_\+type(), format\+\_\+drives(), init\+\_\+\+Devices(), set\+\_\+active\+\_\+device(), and S\+S80\+\_\+init().
 
 \index{drives.\+c@{drives.\+c}!M\+A\+X\+\_\+\+S\+T\+A\+CK@{M\+A\+X\+\_\+\+S\+T\+A\+CK}}
 \index{M\+A\+X\+\_\+\+S\+T\+A\+CK@{M\+A\+X\+\_\+\+S\+T\+A\+CK}!drives.\+c@{drives.\+c}}
@@ -122,7 +125,7 @@ Config Parser Stack.
 
 
 
-Definition at line 21 of file drives.\+c.
+Definition at line 22 of file drives.\+c.
 
 
 
@@ -152,7 +155,7 @@ Devices\mbox{[}\mbox{]} index on sucess or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 425 of file drives.\+c.
+Definition at line 426 of file drives.\+c.
 
 
 
@@ -191,7 +194,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 520 of file drives.\+c.
+Definition at line 521 of file drives.\+c.
 
 
 
@@ -224,7 +227,7 @@ value
 \end{DoxyReturn}
 
 
-Definition at line 244 of file drives.\+c.
+Definition at line 245 of file drives.\+c.
 
 
 
@@ -251,7 +254,7 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 \end{DoxyReturn}
 
 
-Definition at line 291 of file drives.\+c.
+Definition at line 292 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!display\+\_\+\+Addresses@{display\+\_\+\+Addresses}}
 \index{display\+\_\+\+Addresses@{display\+\_\+\+Addresses}!drives.\+c@{drives.\+c}}
@@ -269,7 +272,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1213 of file drives.\+c.
+Definition at line 1214 of file drives.\+c.
 
 
 
@@ -293,7 +296,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1250 of file drives.\+c.
+Definition at line 1251 of file drives.\+c.
 
 
 
@@ -336,7 +339,7 @@ convert to device address
 
 search for device address 
 
-Definition at line 314 of file drives.\+c.
+Definition at line 315 of file drives.\+c.
 
 
 
@@ -358,7 +361,7 @@ Devices\mbox{[}\mbox{]} index of free slot or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 304 of file drives.\+c.
+Definition at line 305 of file drives.\+c.
 
 
 
@@ -382,11 +385,35 @@ Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type.
 \end{DoxyParams}
 
 
-Definition at line 262 of file drives.\+c.
+Definition at line 263 of file drives.\+c.
 
 
 
 Referenced by find\+\_\+free(), and set\+\_\+\+Config\+\_\+\+Defaults().
+
+\index{drives.\+c@{drives.\+c}!format\+\_\+drives@{format\+\_\+drives}}
+\index{format\+\_\+drives@{format\+\_\+drives}!drives.\+c@{drives.\+c}}
+\subsubsection[{\texorpdfstring{format\+\_\+drives()}{format_drives()}}]{\setlength{\rightskip}{0pt plus 5cm}void format\+\_\+drives (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}{}\label{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}
+
+
+Format devices that have no image file. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Active Printer Device
+
+Active S\+S80 Device 
+
+Definition at line 1343 of file drives.\+c.
+
+
+
+Referenced by main().
 
 \index{drives.\+c@{drives.\+c}!init\+\_\+\+Devices@{init\+\_\+\+Devices}}
 \index{init\+\_\+\+Devices@{init\+\_\+\+Devices}!drives.\+c@{drives.\+c}}
@@ -401,7 +428,7 @@ Init Config Parser Stack Called only durring power up so we do not have to free 
 
 
 
-Definition at line 472 of file drives.\+c.
+Definition at line 473 of file drives.\+c.
 
 
 
@@ -423,7 +450,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 500 of file drives.\+c.
+Definition at line 501 of file drives.\+c.
 
 
 
@@ -452,7 +479,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 628 of file drives.\+c.
+Definition at line 629 of file drives.\+c.
 
 
 
@@ -482,7 +509,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1201 of file drives.\+c.
+Definition at line 1202 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
 \index{print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}!drives.\+c@{drives.\+c}}
@@ -508,7 +535,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1186 of file drives.\+c.
+Definition at line 1187 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
 \index{push\+\_\+state@{push\+\_\+state}!drives.\+c@{drives.\+c}}
@@ -531,7 +558,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 489 of file drives.\+c.
+Definition at line 490 of file drives.\+c.
 
 
 
@@ -558,7 +585,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \end{DoxyReturn}
 We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
 
-Definition at line 343 of file drives.\+c.
+Definition at line 344 of file drives.\+c.
 
 
 
@@ -580,7 +607,7 @@ void
 \end{DoxyReturn}
 Add optional hard coded devices for any that are missing 
 
-Definition at line 565 of file drives.\+c.
+Definition at line 566 of file drives.\+c.
 
 
 
@@ -607,7 +634,7 @@ string pointer
 \end{DoxyReturn}
 
 
-Definition at line 276 of file drives.\+c.
+Definition at line 277 of file drives.\+c.
 
 
 
@@ -643,7 +670,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 228 of file drives.\+c.
+Definition at line 229 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}}
 \index{V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}!drives.\+c@{drives.\+c}}
@@ -675,7 +702,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 211 of file drives.\+c.
+Definition at line 212 of file drives.\+c.
 
 
 
@@ -689,7 +716,7 @@ Referenced by L\+I\+F\+Pack\+Dir(), L\+I\+F\+Pack\+Volume(), Send\+\_\+\+Identif
 \subsubsection[{\texorpdfstring{Devices}{Devices}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Device\+Type} Devices\mbox{[}{\bf M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}\mbox{]}}\hypertarget{drives_8c_acfedc9290d5356e240da3373bb0ebdbd}{}\label{drives_8c_acfedc9290d5356e240da3373bb0ebdbd}
 
 
-Definition at line 26 of file drives.\+c.
+Definition at line 27 of file drives.\+c.
 
 
 
@@ -704,7 +731,7 @@ Config file line number.
 
 
 
-Definition at line 509 of file drives.\+c.
+Definition at line 510 of file drives.\+c.
 
 
 
@@ -726,7 +753,7 @@ Referenced by assign\+\_\+value(), Mat\+Read(), and P\+O\+S\+I\+X\+\_\+\+Read\+\
 \end{DoxyCode}
 
 
-Definition at line 42 of file drives.\+c.
+Definition at line 43 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}}
 \index{P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}!drives.\+c@{drives.\+c}}
@@ -737,7 +764,7 @@ Active Printer Device.
 
 
 
-Definition at line 29 of file drives.\+c.
+Definition at line 30 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}}
 \index{S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}!drives.\+c@{drives.\+c}}
@@ -748,7 +775,7 @@ S\+S80 Disk Definitions.
 
 S\+S80 H\+P9134L Disk Definitions 
 
-Definition at line 97 of file drives.\+c.
+Definition at line 98 of file drives.\+c.
 
 \index{drives.\+c@{drives.\+c}!S\+S80p@{S\+S80p}}
 \index{S\+S80p@{S\+S80p}!drives.\+c@{drives.\+c}}
@@ -759,7 +786,7 @@ Active S\+S80 Device.
 
 
 
-Definition at line 32 of file drives.\+c.
+Definition at line 33 of file drives.\+c.
 
 
 
@@ -770,7 +797,7 @@ Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+
 \subsubsection[{\texorpdfstring{S\+S80s}{SS80s}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf S\+S80\+State\+Type}$\ast$ S\+S80s = {\bf N\+U\+LL}}\hypertarget{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{}\label{drives_8c_a26e0264b8581231a3a90fbb418f5812a}
 
 
-Definition at line 33 of file drives.\+c.
+Definition at line 34 of file drives.\+c.
 
 
 
@@ -781,7 +808,7 @@ Referenced by Clear\+\_\+\+Common(), G\+P\+I\+B(), S\+S80\+\_\+\+Cancel(), S\+S8
 \subsubsection[{\texorpdfstring{stack\+\_\+ind}{stack_ind}}]{\setlength{\rightskip}{0pt plus 5cm}int stack\+\_\+ind = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{drives_8c_a4c18df3efdb3fcd126c2df631f2f2515}{}\label{drives_8c_a4c18df3efdb3fcd126c2df631f2f2515}
 
 
-Definition at line 22 of file drives.\+c.
+Definition at line 23 of file drives.\+c.
 
 
 
@@ -792,7 +819,7 @@ Referenced by init\+\_\+\+Devices(), pop\+\_\+state(), and push\+\_\+state().
 \subsubsection[{\texorpdfstring{stack\+\_\+p}{stack_p}}]{\setlength{\rightskip}{0pt plus 5cm}int stack\+\_\+p\mbox{[}{\bf M\+A\+X\+\_\+\+S\+T\+A\+CK}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{drives_8c_a7396cc31899052a2a171fbfe3f32b2d9}{}\label{drives_8c_a7396cc31899052a2a171fbfe3f32b2d9}
 
 
-Definition at line 23 of file drives.\+c.
+Definition at line 24 of file drives.\+c.
 
 
 

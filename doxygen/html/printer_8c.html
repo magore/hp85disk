@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>HPGL printer capture code for HP85 disk emulator project for AVR8.  
+<p>HPGL printer capture code for HP85 disk emulator project for AVR.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
@@ -126,15 +126,12 @@ Functions</h2></td></tr>
 <tr class="memitem:acc37d9e3a9cc3aec5e5986dbfff7da6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#acc37d9e3a9cc3aec5e5986dbfff7da6b">printer_buffer</a> (uint16_t val)</td></tr>
 <tr class="memdesc:acc37d9e3a9cc3aec5e5986dbfff7da6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer Plotter data and flush when buffer is full.  <a href="#acc37d9e3a9cc3aec5e5986dbfff7da6b">More...</a><br /></td></tr>
 <tr class="separator:acc37d9e3a9cc3aec5e5986dbfff7da6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac649161dc4d63963c35b30a12037e09c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#ac649161dc4d63963c35b30a12037e09c">receive_plot</a> (char *name)</td></tr>
-<tr class="memdesc:ac649161dc4d63963c35b30a12037e09c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually receive plot data - user called function. For debuuging only.  <a href="#ac649161dc4d63963c35b30a12037e09c">More...</a><br /></td></tr>
-<tr class="separator:ac649161dc4d63963c35b30a12037e09c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a72686fe9d4969430b6ef1f1fe68a6efe">PRINTER_COMMANDS</a> (uint8_t ch)</td></tr>
 <tr class="memdesc:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIB Secondary Command Printer commands.  <a href="#a72686fe9d4969430b6ef1f1fe68a6efe">More...</a><br /></td></tr>
 <tr class="separator:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e02cbb071ea6b261c2271cc604be495"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a3e02cbb071ea6b261c2271cc604be495">plot_echo</a> (int echo)</td></tr>
-<tr class="memdesc:a3e02cbb071ea6b261c2271cc604be495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruct Instrument to send Plot data.  <a href="#a3e02cbb071ea6b261c2271cc604be495">More...</a><br /></td></tr>
-<tr class="separator:a3e02cbb071ea6b261c2271cc604be495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#ab0733357c2cffe1aaf6dfcf9240f86fb">plot_echo</a> (int gpib_address)</td></tr>
+<tr class="memdesc:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruct Instrument to send Plot data.  <a href="#ab0733357c2cffe1aaf6dfcf9240f86fb">More...</a><br /></td></tr>
+<tr class="separator:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -146,16 +143,16 @@ Variables</h2></td></tr>
 <tr class="separator:a86ffa26ff3c8695d7cd5536829aa3684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>HPGL printer capture code for HP85 disk emulator project for AVR8. </p>
+<div class="textblock"><p>HPGL printer capture code for HP85 disk emulator project for AVR. </p>
 <dl class="section user"><dt>Edit History</dt><dd><ul>
 <li>[1.0] [Mike Gore] Initial revision of file.</li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.</dt><dd></dd></dl>
 
 <p>Definition in file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a3e02cbb071ea6b261c2271cc604be495"></a>
+<a class="anchor" id="ab0733357c2cffe1aaf6dfcf9240f86fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -163,7 +160,7 @@ Variables</h2></td></tr>
           <td class="memname">void plot_echo </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>echo</em></td><td>)</td>
+          <td class="paramname"><em>gpib_address</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -175,9 +172,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00333">333</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00253">253</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00058">gpib_tests()</a>.</p>
 
 </div>
 </div>
@@ -236,7 +233,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00113">113</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00330">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00938">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00333">plot_echo()</a>, <a class="el" href="printer_8c_source.html#l00039">printer_open()</a>, and <a class="el" href="printer_8c_source.html#l00229">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00330">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00938">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00039">printer_open()</a>.</p>
 
 </div>
 </div>
@@ -255,10 +252,10 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>GPIB Secondary Command Printer commands. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Fully emulated plotter response. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Fully emulated plotter response. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00304">304</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00224">224</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>.</p>
 
@@ -315,41 +312,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00039">39</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="printer_8c_source.html#l00229">receive_plot()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac649161dc4d63963c35b30a12037e09c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void receive_plot </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Manually receive plot data - user called function. For debuuging only. </p>
-<ul>
-<li>This function would be manually invoked prior to invoking a Send Plot command on a GPIB device.</li>
-<li>Exit on user key press.</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>file name to save plot data in.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-<p><a class="el" href="printer_8c.html#a08ea52e3eccce111b91a40d22846bbf0" title="Close current plot file and reset states. ">printer_close()</a> gets called on GPIB bus init DCL and any unlisten </p>
-
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00229">229</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
-
-<p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00057">gpib_tests()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, and <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>.</p>
 
 </div>
 </div>
@@ -381,7 +344,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00146">146</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00181">printer_buffer()</a>, <a class="el" href="printer_8c_source.html#l00113">printer_close()</a>, and <a class="el" href="printer_8c_source.html#l00229">receive_plot()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00181">printer_buffer()</a>, and <a class="el" href="printer_8c_source.html#l00113">printer_close()</a>.</p>
 
 </div>
 </div>
@@ -416,14 +379,14 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00029">29</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00333">plot_echo()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 9 2017 23:49:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 12 2017 21:44:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

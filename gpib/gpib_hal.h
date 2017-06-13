@@ -1,12 +1,12 @@
 /**
  @file gpib/gpib_hal.h
 
- @brief GPIB emulator hardwware layer for HP85 disk emulator project for AVR8.
+ @brief GPIB emulator hardwware layer for HP85 disk emulator project for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2017-2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 

@@ -5,9 +5,9 @@
 
  @par Edit History - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
 */
 
@@ -44,6 +44,10 @@
 #define PRINTER_DEFAULT_ADDRESS 2     /* PRINTER default address */
 ///@brief printer do not use parallel poll
 
+// =============================================
+
+///Sector size
+#define SECTOR_SIZE 256
 // =============================================
 
 
@@ -124,7 +128,7 @@ typedef struct
     uint16_t System3000LIFid;		// 12
     uint16_t zero1;					// 14
     uint32_t DirSectors;			// 16
-    uint16_t LIFversion;			// 20
+    uint16_t LIFVersion;			// 20
     uint16_t zero2;					// 22
 	uint32_t tracks_per_side;		// 24
 	uint32_t sides;					// 28

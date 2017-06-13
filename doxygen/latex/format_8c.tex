@@ -11,15 +11,27 @@ L\+IF Disk Format.
 {\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}amigo.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{format_8c_a79fd02f4522485fe04d29e8003cf4bf0}{C\+H\+U\+N\+KS}~16
+\begin{DoxyCompactList}\small\item\em When formatting a disk define how many sectors we can write at once Depends on how much free ram we have. \end{DoxyCompactList}\item 
+\#define \hyperlink{format_8c_aea3cfda4f3a9f978ec759f206cf186fe}{C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE}~(\hyperlink{defines_8h_aa35bad1e92008da628f27b2f6bb270aa}{S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}$\ast$\hyperlink{format_8c_a79fd02f4522485fe04d29e8003cf4bf0}{C\+H\+U\+N\+KS})
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{format_8c_ae761c66f97a572ad6982ea954095be99}{L\+I\+F\+Pack\+Volume} (uint8\+\_\+t $\ast$B, \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} $\ast$T)
-\begin{DoxyCompactList}\small\item\em Pack \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} data into bytes. \end{DoxyCompactList}\item 
 uint8\+\_\+t $\ast$ \hyperlink{format_8c_a10d646551c1f87fab68780af6bd81bff}{L\+I\+F\+Pack\+Dir} (uint8\+\_\+t $\ast$B, \hyperlink{structDirEntryType}{Dir\+Entry\+Type} $\ast$D)
 \begin{DoxyCompactList}\small\item\em Pack \hyperlink{structDirEntryType}{Dir\+Entry\+Type} data into bytes. \end{DoxyCompactList}\item 
-\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} \hyperlink{format_8c_a6897c56caeb4ebc5c5003c1f33a3b14c}{gpib\+\_\+format\+\_\+disk} (char $\ast$name, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em Format L\+IF disk T\+O\+DO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{format_8c_a5f19694bb196d8a22ba52371c8c56cb2}{L\+I\+F\+Pack\+Volume} (uint8\+\_\+t $\ast$B, \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} $\ast$V)
+\begin{DoxyCompactList}\small\item\em Pack \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} data into bytes. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{format_8c_a0e1ad25108ea81aa9d49583504eda206}{B\+I\+N2\+B\+CD} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Convert number $>$= 0 and $<$= 99 to B\+CD. \end{DoxyCompactList}\item 
+void \hyperlink{format_8c_a29835cfd7801ccbdac38780528eaae2d}{time\+\_\+to\+\_\+\+L\+IF} (uint8\+\_\+t $\ast$bcd, \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} t)
+\begin{DoxyCompactList}\small\item\em U\+N\+IX time to L\+IF time format. \end{DoxyCompactList}\item 
+long \hyperlink{format_8c_abea9162f967a2229bfc637a896f087c9}{create\+\_\+lif\+\_\+image} (char $\ast$name, char $\ast$label, long dirsecs, long sectors)
+\begin{DoxyCompactList}\small\item\em Create L\+IF disk image This can take a while to run. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -31,42 +43,121 @@ L\+IF Disk Format.
 \item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
 \end{DoxyItemize}
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014 Mike Gore, Inc. All rights reserved.}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, Inc. All rights reserved.}
 
 \end{DoxyParagraph}
 
 
+\subsection{Macro Definition Documentation}
+\index{format.\+c@{format.\+c}!C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE@{C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE}}
+\index{C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE@{C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE}{CHUNK_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+U\+N\+K\+\_\+\+S\+I\+ZE~({\bf S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}$\ast${\bf C\+H\+U\+N\+KS})}\hypertarget{format_8c_aea3cfda4f3a9f978ec759f206cf186fe}{}\label{format_8c_aea3cfda4f3a9f978ec759f206cf186fe}
+
+
+Definition at line 27 of file format.\+c.
+
+
+
+Referenced by create\+\_\+lif\+\_\+image().
+
+\index{format.\+c@{format.\+c}!C\+H\+U\+N\+KS@{C\+H\+U\+N\+KS}}
+\index{C\+H\+U\+N\+KS@{C\+H\+U\+N\+KS}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{C\+H\+U\+N\+KS}{CHUNKS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+U\+N\+KS~16}\hypertarget{format_8c_a79fd02f4522485fe04d29e8003cf4bf0}{}\label{format_8c_a79fd02f4522485fe04d29e8003cf4bf0}
+
+
+When formatting a disk define how many sectors we can write at once Depends on how much free ram we have. 
+
+
+
+Definition at line 26 of file format.\+c.
+
+
+
+Referenced by create\+\_\+lif\+\_\+image().
+
+
+
 \subsection{Function Documentation}
-\index{format.\+c@{format.\+c}!gpib\+\_\+format\+\_\+disk@{gpib\+\_\+format\+\_\+disk}}
-\index{gpib\+\_\+format\+\_\+disk@{gpib\+\_\+format\+\_\+disk}!format.\+c@{format.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+format\+\_\+disk(char $\ast$name, uint32\+\_\+t size)}{gpib_format_disk(char *name, uint32_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} gpib\+\_\+format\+\_\+disk (
+\index{format.\+c@{format.\+c}!B\+I\+N2\+B\+CD@{B\+I\+N2\+B\+CD}}
+\index{B\+I\+N2\+B\+CD@{B\+I\+N2\+B\+CD}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{B\+I\+N2\+B\+C\+D(uint8\+\_\+t data)}{BIN2BCD(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t B\+I\+N2\+B\+CD (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{name, }
-\item[{uint32\+\_\+t}]{size}
+\item[{uint8\+\_\+t}]{data}
 \end{DoxyParamCaption}
-)}\hypertarget{format_8c_a6897c56caeb4ebc5c5003c1f33a3b14c}{}\label{format_8c_a6897c56caeb4ebc5c5003c1f33a3b14c}
+)}\hypertarget{format_8c_a0e1ad25108ea81aa9d49583504eda206}{}\label{format_8c_a0e1ad25108ea81aa9d49583504eda206}
 
 
-Format L\+IF disk T\+O\+DO. 
+Convert number $>$= 0 and $<$= 99 to B\+CD. 
+
+
+\begin{DoxyItemize}
+\item B\+CD format has each hex nibble has a digit 0 .. 9
+\end{DoxyItemize}
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em name} & file name of L\+IF image to format.\\
+\mbox{\tt in}  & {\em data} & number to convert. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Fat\+Fs F\+R\+E\+S\+U\+LT. 
+B\+CD value 
 \end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+we assume the number is in range. 
+\end{DoxyWarning}
+
+
+Definition at line 73 of file format.\+c.
+
+
+
+Referenced by time\+\_\+to\+\_\+\+L\+I\+F().
+
+\index{format.\+c@{format.\+c}!create\+\_\+lif\+\_\+image@{create\+\_\+lif\+\_\+image}}
+\index{create\+\_\+lif\+\_\+image@{create\+\_\+lif\+\_\+image}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{create\+\_\+lif\+\_\+image(char $\ast$name, char $\ast$label, long dirsecs, long sectors)}{create_lif_image(char *name, char *label, long dirsecs, long sectors)}}]{\setlength{\rightskip}{0pt plus 5cm}long create\+\_\+lif\+\_\+image (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{char $\ast$}]{label, }
+\item[{long}]{dirsecs, }
+\item[{long}]{sectors}
+\end{DoxyParamCaption}
+)}\hypertarget{format_8c_abea9162f967a2229bfc637a896f087c9}{}\label{format_8c_abea9162f967a2229bfc637a896f087c9}
+
+
+Create L\+IF disk image This can take a while to run. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & L\+IF disk image name \\
+\hline
+\mbox{\tt in}  & {\em label} & L\+IF Volume Label name \\
+\hline
+\mbox{\tt in}  & {\em dirsecs} & Number of L\+IF directory sectors \\
+\hline
+\mbox{\tt in}  & {\em sectors} & total disk image size in sectors \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-return(rc); 
+bytes writting to disk image 
 \end{DoxyReturn}
+Current Date
+
+Opne disk image for writting
+
+Initial file position
+
+File type of 0xffff is last directory entry
+
+F\+I\+X\+ME this is the default that the H\+Pdrive project uses, not sure of this
+
+Zero out remining disk image 
+
+Definition at line 106 of file format.\+c.
 
 
-Definition at line 67 of file format.\+c.
 
-
-
-Referenced by gpib\+\_\+tests().
+Referenced by format\+\_\+drives(), and gpib\+\_\+tests().
 
 \index{format.\+c@{format.\+c}!L\+I\+F\+Pack\+Dir@{L\+I\+F\+Pack\+Dir}}
 \index{L\+I\+F\+Pack\+Dir@{L\+I\+F\+Pack\+Dir}!format.\+c@{format.\+c}}
@@ -89,16 +180,20 @@ Pack \hyperlink{structDirEntryType}{Dir\+Entry\+Type} data into bytes.
 \end{DoxyParams}
 
 
-Definition at line 47 of file format.\+c.
+Definition at line 34 of file format.\+c.
+
+
+
+Referenced by create\+\_\+lif\+\_\+image().
 
 \index{format.\+c@{format.\+c}!L\+I\+F\+Pack\+Volume@{L\+I\+F\+Pack\+Volume}}
 \index{L\+I\+F\+Pack\+Volume@{L\+I\+F\+Pack\+Volume}!format.\+c@{format.\+c}}
-\subsubsection[{\texorpdfstring{L\+I\+F\+Pack\+Volume(uint8\+\_\+t $\ast$\+B, Volume\+Label\+Type $\ast$\+T)}{LIFPackVolume(uint8_t *B, VolumeLabelType *T)}}]{\setlength{\rightskip}{0pt plus 5cm}void L\+I\+F\+Pack\+Volume (
+\subsubsection[{\texorpdfstring{L\+I\+F\+Pack\+Volume(uint8\+\_\+t $\ast$\+B, Volume\+Label\+Type $\ast$\+V)}{LIFPackVolume(uint8_t *B, VolumeLabelType *V)}}]{\setlength{\rightskip}{0pt plus 5cm}void L\+I\+F\+Pack\+Volume (
 \begin{DoxyParamCaption}
 \item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{{\bf Volume\+Label\+Type} $\ast$}]{T}
+\item[{{\bf Volume\+Label\+Type} $\ast$}]{V}
 \end{DoxyParamCaption}
-)}\hypertarget{format_8c_ae761c66f97a572ad6982ea954095be99}{}\label{format_8c_ae761c66f97a572ad6982ea954095be99}
+)}\hypertarget{format_8c_a5f19694bb196d8a22ba52371c8c56cb2}{}\label{format_8c_a5f19694bb196d8a22ba52371c8c56cb2}
 
 
 Pack \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} data into bytes. 
@@ -112,5 +207,42 @@ Pack \hyperlink{structVolumeLabelType}{Volume\+Label\+Type} data into bytes.
 \end{DoxyParams}
 
 
-Definition at line 27 of file format.\+c.
+Definition at line 51 of file format.\+c.
+
+
+
+Referenced by create\+\_\+lif\+\_\+image().
+
+\index{format.\+c@{format.\+c}!time\+\_\+to\+\_\+\+L\+IF@{time\+\_\+to\+\_\+\+L\+IF}}
+\index{time\+\_\+to\+\_\+\+L\+IF@{time\+\_\+to\+\_\+\+L\+IF}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{time\+\_\+to\+\_\+\+L\+I\+F(uint8\+\_\+t $\ast$bcd, time\+\_\+t t)}{time_to_LIF(uint8_t *bcd, time_t t)}}]{\setlength{\rightskip}{0pt plus 5cm}void time\+\_\+to\+\_\+\+L\+IF (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{bcd, }
+\item[{{\bf time\+\_\+t}}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{format_8c_a29835cfd7801ccbdac38780528eaae2d}{}\label{format_8c_a29835cfd7801ccbdac38780528eaae2d}
+
+
+U\+N\+IX time to L\+IF time format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em bcd} & packed 6 byte B\+CD L\+IF time YY,MM,DD,HH,MM,SS \\
+\hline
+\mbox{\tt in}  & {\em t} & U\+N\+IX time\+\_\+t time value \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a32b1cbd925752f0cd61d202bbe204a69}{time()} in \hyperlink{time_8c}{time.\+c} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file format.\+c.
+
+
+
+Referenced by create\+\_\+lif\+\_\+image().
 

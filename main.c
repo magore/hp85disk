@@ -1,12 +1,12 @@
 /**
  @file main.c
 
- @brief Main for GPIB emulator for HP85 disk emulator project for AVR8 
+ @brief Main for GPIB emulator for HP85 disk emulator project for AVR 
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -323,6 +323,9 @@ int main(void)
 	///@brief Display Config
 	sep();
 	display_Config();
+
+	///@format drives if they do not exist
+	format_drives();
 
 	///@brief Address Summary
 	sep();

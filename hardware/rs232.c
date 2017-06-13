@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -447,6 +447,7 @@ int get_line (char *buff, int len)
         {
 			if(i > 0)
 				i--;
+            buff[i] = 0;
             continue;
         }
 

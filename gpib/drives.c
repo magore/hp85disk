@@ -16,6 +16,7 @@
 #include "gpib_task.h"
 #include "amigo.h"
 #include "ss80.h"
+#include "format.h"
 
 /// @brief Config Parser Stack
 #define MAX_STACK 5
@@ -1334,5 +1335,85 @@ void display_Config()
 	}
 	printf("END\n");
 	printf("\n");
+	printf("\n");
+}
+
+/// @brief Format devices that have no image file
+/// @return  void
+void format_drives()
+{
+	int i;
+	struct stat st;
+	long sectors;
+	char label[32];
+	int ss80 = 1;
+	int amigo = 1;
+
+	///@brief Active Printer Device
+	PRINTERDeviceType *PRINTERp = NULL;
+	///@brief Active SS80 Device
+	SS80DiskType *SS80p = NULL;
+
+#ifdef AMIGO
+	///@brief Active AMIGO Device
+	AMIGODiskType *AMIGOp = NULL;
+#endif
+
+	for(i=0;i<MAX_DEVICES;++i)
+	{
+		if(Devices[i].TYPE == NO_TYPE)
+			continue;
+
+		if(Devices[i].TYPE == SS80_TYPE)
+		{
+			SS80p= (SS80DiskType *)Devices[i].dev;
+
+			if(stat(SS80p->HEADER.NAME, &st) == -1) 
+			{
+				if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
+				{
+					printf("Can not use non 256 byte sectors\n");
+					continue;
+				}
+				//SS80p->VOLUME.MAX_CYLINDER;
+				//SS80p->VOLUME.MAX_HEAD;
+				//SS80p->VOLUME.MAX_SECTOR;
+				sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER;
+				sprintf(label,"SS80-%d", ss80);
+				create_lif_image(SS80p->HEADER.NAME,
+					label,
+					128, 
+					sectors);
+
+			}
+			ss80++;
+		} // SS80_TYPE
+
+#ifdef AMIGO
+		if(Devices[i].TYPE == AMIGO_TYPE )
+		{
+			AMIGOp= (AMIGODiskType *)Devices[i].dev;
+			if(stat(AMIGOp->HEADER.NAME, &st) == -1) 
+			{
+				if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
+				{
+					printf("Can not use non 256 byte sectors\n");
+					continue;
+				}
+				sectors = AMIGOp->GEOMETRY.SECTORS_PER_TRACK
+				 * AMIGOp->GEOMETRY.HEADS
+				 * AMIGOp->GEOMETRY.CYLINDERS;
+
+				sprintf(label,"AMIGO%d", amigo);
+				create_lif_image(AMIGOp->HEADER.NAME,
+					label,
+					15, 
+					sectors);
+			}
+			sprintf(label,"AMIGO%d", amigo);
+			amigo++;
+		} 
+#endif // #ifdef AMIGO
+	}
 	printf("\n");
 }

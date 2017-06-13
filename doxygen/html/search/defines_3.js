@@ -1,6 +1,8 @@
 var searchData=
 [
   ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'user_config.h']]],
+  ['chunk_5fsize',['CHUNK_SIZE',['../format_8c.html#aea3cfda4f3a9f978ec759f206cf186fe',1,'format.c']]],
+  ['chunks',['CHUNKS',['../format_8c.html#a79fd02f4522485fe04d29e8003cf4bf0',1,'format.c']]],
   ['clock_5fhz',['CLOCK_HZ',['../timer_8h.html#a4068229bfd30e574c7a9f1a8c6687582',1,'timer.h']]],
   ['clock_5ftic_5fns',['CLOCK_TIC_NS',['../timer_8h.html#a6aacf2441874a27f25ae927bbddf1235',1,'timer.h']]],
   ['clock_5ftic_5fus',['CLOCK_TIC_US',['../timer_8h.html#a1aa52cddadb40365ae68d2c45600d684',1,'timer.h']]],

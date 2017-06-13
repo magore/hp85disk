@@ -375,7 +375,7 @@ ___
     * gpib/drive_references.txt
       * General Drive Parameters Documentation for all known drive types
     * gpib/format.c
-      * Work in progress LIF format utility
+      * LIF format utility
     * gpib/gpib.c
       * All low level GPIB bus code
     * gpib/gpib.h
