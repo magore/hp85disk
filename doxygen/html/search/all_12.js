@@ -182,7 +182,7 @@ var searchData=
   ['sta_5fprotect',['STA_PROTECT',['../diskio_8h.html#a9ec6dc5f6620a33fabe388d3a111ca8c',1,'diskio.h']]],
   ['stack_5find',['stack_ind',['../drives_8c.html#a4c18df3efdb3fcd126c2df631f2f2515',1,'drives.c']]],
   ['stack_5fp',['stack_p',['../drives_8c.html#a7396cc31899052a2a171fbfe3f32b2d9',1,'drives.c']]],
-  ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t']]],
+  ['start',['start',['../structdst__t.html#af1868fb321db3637664e3a3bf11cf56b',1,'dst_t::start()'],['../structlifdir__t.html#a4f82d919dbc56557a5dcb3e3d9e016c6',1,'lifdir_t::start()']]],
   ['start_5fstate',['START_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e',1,'drives.h']]],
   ['stat',['stat',['../structstat.html',1,'stat'],['../struct__FDID.html#a1a2ff09f2ef172772f4e7312070be708',1,'_FDID::stat()'],['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../mmc_8c.html#a014a1e17b21e3c0b80fe0afc0106976f',1,'Stat():&#160;mmc.c'],['../mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f',1,'Stat():&#160;mmc.c']]],
   ['state',['state',['../structAMIGOStateType.html#ab3ba7202566a784c93d437960f8f332e',1,'AMIGOStateType::state()'],['../structDeviceType.html#ad0fc43d63606bab6c259047e36512e08',1,'DeviceType::state()']]],

@@ -5,7 +5,7 @@ var searchData=
   ['lastcmd',['lastcmd',['../gpib_8c.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c'],['../gpib_8h.html#ab8bc74192b6d8a3e352b03e724dac5b7',1,'lastcmd():&#160;gpib.c']]],
   ['left',['left',['../unionf__t.html#a5f89cd6194ccc6a288f1fe31d39b2e64',1,'f_t']]],
   ['len',['len',['../struct__printf__t.html#a5139902cde74159b79e6418a34712bee',1,'_printf_t::len()'],['../struct____file.html#a30309efd13a75ed510bb2370debafaf8',1,'__file::len()']]],
-  ['length',['Length',['../structSS80StateType.html#a507159f0a0a4f3127488081fd618e8f6',1,'SS80StateType']]],
+  ['length',['length',['../structlifdir__t.html#a6645831320dcb5d1383a8796ae49a3e8',1,'lifdir_t::length()'],['../structSS80StateType.html#a507159f0a0a4f3127488081fd618e8f6',1,'SS80StateType::Length()']]],
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
   ['lifid',['LIFid',['../structVolumeLabelType.html#a16bdde2d19114ac3238477c29fe75b4a',1,'VolumeLabelType']]],

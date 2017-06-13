@@ -1,88 +1,115 @@
-// =============================================
-/**
-  @brief Disk Layout
-  @see https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout
 
-    DISK LAYOUT
-    The HP-85 disks used the LIF (Logical Interchange Format) disk layout.  The first 2 sectors on the disk (cylinder 0, head 0, sector 0-1) contained the VOLUME sectors.  The important things in the VOLUME SECTORS were thus:
 
-    BYTES   DESCRIPTION
-    -----   -----------------------------------------------------------
-      0-1   LIF identifier, must be 0x8000 MSB first
-      2-7   6-character volume LABEL
-     8-11   directory start block always 0x00000002 MSB first
-    12-13   LIF identifer for System 3000 machines always 0x1000 MSB first
-    14-15   always 0x0000 MSB first
-    16-19   # of sectors in DIRECTORY MSB first
-    20-21   LIF version number always 0x0001 MSB first
-    22-23   always 0x0000 MSB first
-    24-27   number of tracks per surface MSB first
-    28-31   number of surfaces MSB first
-    32-35   number of sectors per track MSB first
-    36-41   date and time that the volume was initialized (YY,MM,DD,HH,mm,SS)
-*/
+#include "user_config.h"
 
-/// LIF formating structures
-///@see format.c
-///@brief LIF disk label record
-typedef struct
+#include "defines.h"
+#include "gpib.h"
+#include "gpib_hal.h"
+#include "gpib_task.h"
+#include "amigo.h"
+#include <time.h>
+
+
+///@brief Pack VolumeLabelType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] T: VolumeLabelType structure pointer
+///@return null
+void LIFPackVolume(uint8_t *B, VolumeLabelType *V)
 {
-    uint16_t LIFid;
-    uint16_t label[6];
-    uint32_t dirstart;
-    uint16_t System3000LIFid;
-    uint16_t zero1;
-    uint32_t dirsectors;
-    uint16_t LIFversion;
-    uint16_t zero2;
-	uint32_t tracks_per_side;
-	uint32_t sides;
-	uint32_t sectors_per_track;
-    uint8_t  YY; // BCD
-    uint8_t  MM; // BCD
-    uint8_t  DD; // BCD
-    uint8_t  HH; // BCD
-    uint8_t  MM; // BCD
-    uint8_t  SS; // BCD
-} VolumeLabelType;
+	V2B_MSB(B,0,2,V->LIFid);
+	memcpy((void *)(B+2),V->Label,6);
+	V2B_MSB(B,8,4,V->DirStartSector);
+	V2B_MSB(B,12,2,V->System3000LIFid);
+	V2B_MSB(B,14,2,0);
+	V2B_MSB(B,16,4,V->DirSectors);
+	V2B_MSB(B,20,2,V->LIFVersion);
+	V2B_MSB(B,24,4,V->tracks_per_side);
+	V2B_MSB(B,28,4,V->sides);
+	V2B_MSB(B,28,4,V->sectors_per_track);
+	memcpy((void *) (B+36),V->date,6);
+}
 
-/**
- @brief Directory layout
-  @see https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout
-
-  Each DIRECTORY SECTORS held 8 32-byte directory entries.  
-  Each entry contained these values:
-
-  BYTE	DESCRIPTION
-  ----	------------------------------------------------
-  0-9	10-character file name (blank filled)
-  10-11	File TYPE MSB first
-  12-15	Start of file in sectors MSB first
-  16-19	File length in sectors MSB first
-  20-25	file creation DATE YY,MM,DD,HH,MM,SS
-  26-27	always 0x8001 entire file is on volume MSB first
-  28-29 size of file in bytes MSB first
-        May be 0 use for some file types so use number of sectors instead
-  30-31 bytes per record, typically 256
-  Note: bytes 28-31 are implementation dependent
-    i.e. non-Series-80 systems may write other information into these bytes.
-*/
-       
-///@brief LIF directory entry
-typedef struct
+///@brief UnPack VolumeLabelType data from bytes
+///@param[in] B: byte vector to pack data into
+///@param[out] T: VolumeLabelType structure pointer
+///@return null
+void LIFUnPackVolume(uint8_t *B, VolumeLabelType *V)
 {
-    char filename[10];
-    uint16_t FileType;
-    uint16_t FileStartSector;
-    uint16_t FileLengthSector;
-    uint8_t  YY; // BCD
-    uint8_t  MM; // BCD
-    uint8_t  DD; // BCD
-    uint8_t  HH; // BCD
-    uint8_t  MM; // BCD
-    uint8_t  SS; // BCD
-    uint16_t VolNumber;
-    uint16_t SectorSize;
-    uint16_t implementationlo;
-} DirEntryType;
-// =============================================
+	V->LIFid = B2V_MSB(B,0,2);
+	memcpy((void *)V->Label,(B+2),6);
+	V->DirStartSector = B2V_MSB(B,8,4);
+	V->System3000LIFid = B2V_MSB(B,12,2);
+	V->zero1 = B2V_MSB(B,14,2);
+	V->DirSectors = B2V_MSB(B,16,4);
+	V->LIFVersion = B2V_MSB(B,20,2);
+	V->zero2 = B2V_MSB(B,22,2);
+	V->tracks_per_side = B2V_MSB(B,24,4);
+	V->sides = B2V_MSB(B,28,4);
+	V->sectors_per_track = B2V_MSB(B,28,4);
+	memcpy((void *) V->date, (B+36),6);
+}
+
+///@brief Pack DireEntryType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] D: DirEntryType structure pointer
+///@return B
+void LIFPackDir(uint8_t *B, DirEntryType *D)
+{
+	memcpy(B+0,D->filename,10);
+	V2B_MSB(B,10,2,D->FileType);
+	V2B_MSB(B,12,4,D->FileStartSector);
+	V2B_MSB(B,16,4,D->FileLengthSectors);
+	memcpy(B+20,D->date,6);
+	V2B_MSB(B,26,2,D->VolNumber);
+	V2B_MSB(B,28,2,D->FileBytes);
+	V2B_MSB(B,30,2,D->SectorSize);
+}
+
+///@brief UnPack DireEntryType data from bytes
+///@param[in] B: byte vector to extract data from
+///@param[int] D: DirEntryType structure pointer
+///@return B
+void LIFUnPackDir(uint8_t *B, DirEntryType *D)
+{
+	memcpy(D->filename,B,10);
+	D->FileType = B2V_MSB(B, 10, 2);
+	D->FileStartSector = B2V_MSB(B, 12, 4);
+	D->FileLengthSectors = B2V_MSB(B, 16, 4) * LIF_SECTOR_SIZE;
+	memcpy(D->date,B+20,6);
+	D->VolNumber = B2V_MSB(B, 26, 2); 
+	D->FileBytes = B2V_LSB(B, 28, 2);
+	D->SectorSize= B2V_LSB(B, 30, 2);
+}
+
+/// @brief Convert number >= 0 and <= 99 to BCD.
+///
+///  - BCD format has each hex nibble has a digit 0 .. 9
+///
+/// @param[in] data: number to convert.
+/// @return  BCD value
+/// @warning we assume the number is in range.
+uint8_t BIN2BCD(uint8_t data)
+{
+    return(  ( (data/10U) << 4 ) | (data%10U) );
+}
+
+
+///@brief UNIX time to LIF time format
+///@param[out] bcd: packed 6 byte BCD LIF time
+///   YY,MM,DD,HH,MM,SS
+///@param[in] t: UNIX time_t time value
+///@see time() in time.c
+///@return void
+void time_to_LIF(uint8_t *bcd, time_t t)
+{
+	tm_t tm;
+	localtime_r((time_t *) &t, (tm_t *)&tm);
+	bcd[0] = BIN2BCD(tm.tm_year & 100);
+	bcd[1] = BIN2BCD(tm.tm_mon);
+	bcd[2] = BIN2BCD(tm.tm_mday);
+	bcd[3] = BIN2BCD(tm.tm_hour);
+	bcd[4] = BIN2BCD(tm.tm_min);
+	bcd[5] = BIN2BCD(tm.tm_sec);
+}
+
+

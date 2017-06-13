@@ -245,12 +245,40 @@ ___
   #Copying ALL files between devices: FIRST SS80 to Second SS80
   COPY ":D700" TO ":D720"
 </pre>
+___ 
 
+## AVR Terminal Commands
+ * Pressing any key will break out of the gpib task loop untill a command is entered
+   * help
+      Will list all avalable commands and options
+
+   * Examples:
+      * lifdir 
+      <pre>
+          lifdir /amigo1.lif
+          NAME       TYPE   START SECTOR      SIZE RECSIZE
+          HELLO      e020       00000010       323     256
+          CIRCLE     e020       00000012       156     256
+          GPIB-S     e020       00000013       338     256
+          GPIB-T     e020       00000015      1413     256
+          GPIB7      e020       0000001b       197     256
+          AMIGO1     e020       0000001c        51     256
+          HELLO2     e010       0000001d       512     256
+          HELLO3     e010       0000001f       512     256
+      </pre>
+
+      * format
+      <pre>
+         # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         format /amigo3.lif AMIGO3 15 1120
+         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+         Formating: wrote:[1120] sectors
+      </pre>
 ___ 
 
 ## OS Requirements for software building
   * I use *Ubuntu 16.04 and 14.04* so these instruction will cover that version
-    * It should be easy to setup the same build with Windows gcc tools.
+  * It should be easy to setup the same build with Windows gcc tools.
 
 
 ## Ubuntu 16.04LTS and 14.04LTS install and setup notes
@@ -375,7 +403,7 @@ ___
     * gpib/drive_references.txt
       * General Drive Parameters Documentation for all known drive types
     * gpib/format.c
-      * LIF format utility
+      * LIF format and file utilities
     * gpib/gpib.c
       * All low level GPIB bus code
     * gpib/gpib.h

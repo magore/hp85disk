@@ -13,14 +13,17 @@
 
 
 #include "user_config.h"
+#include "defines.h"
 
 
-#endif // #ifndef _FORMAT_H_
 
 /* format.c */
-uint8_t *LIFPackDir ( uint8_t *B , DirEntryType *D );
-void LIFPackVolume ( uint8_t *B , VolumeLabelType *V );
-uint8_t BIN2BCD ( uint8_t data );
-void time_to_LIF ( uint8_t *bcd , time_t t );
-long create_lif_image ( char *name , char *label , long dirsecs , long sectors );
+int lif_closedir ( lifdir_t *DIR );
+lifdir_t *lif_opendir ( char *name );
+DirEntryType *lif_readdir ( lifdir_t *DIR );
+void lif_filename ( char *name , DirEntryType *DE );
+long lif_filelength ( DirEntryType *DE );
+int lif_dir ( char *name );
+long lif_create_image ( char *name , char *label , long dirsecs , long sectors );
 
+#endif // #ifndef _FORMAT_H_

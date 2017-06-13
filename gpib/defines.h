@@ -17,6 +17,7 @@
 
 #include "user_config.h"
 
+extern int debuglevel;
 
 
 // =============================================
@@ -114,7 +115,7 @@ typedef struct
     24-27   number of tracks per surface MSB first
     28-31   number of surfaces MSB first
     32-35   number of sectors per track MSB first
-    36-41   date and time that the volume was initialized (YY,MM,DD,HH,mm,SS)
+    36-41   time volume was initialized in BCD (YY,MM,DD,HH,mm,SS)
 */
 
 /// LIF formating structures
@@ -133,13 +134,7 @@ typedef struct
 	uint32_t tracks_per_side;		// 24
 	uint32_t sides;					// 28
 	uint32_t sectors_per_track;	    // 32
-    uint8_t  date[6];               // 36
-					// YY; //BCD
-					// MM; // BCD
-					// DD; // BCD
-					// HH; // BCD
-					// MM; // BCD
-					// SS; // BCD
+    uint8_t  date[6];               // 36 BCD (YY MM DD HH MM SS)
 } VolumeLabelType;
 
 /**
@@ -171,16 +166,34 @@ typedef struct
     uint16_t FileType;			// 10
     uint32_t FileStartSector;	// 12
     uint32_t FileLengthSectors;	// 16
-    uint8_t  date[6];           // 20
-			// YY; //BCD
-			// MM; // BCD
-			// DD; // BCD
-			// HH; // BCD
-			// MM; // BCD
-			// SS; // BCD
+    uint8_t  date[6];           // 20 File date in BCD (YY MM DD HH MM SS)
     uint16_t VolNumber;			// 26
+    uint16_t FileBytes;			// 30
     uint16_t SectorSize;		// 28
-    uint16_t implimentation;	// 30
 } DirEntryType;
+
+
+///@brief When formatting a disk define how many sectors we can write at once
+///Depends on how much free ram we have
+#define LIF_SECTOR_SIZE 256
+
+///@brief used for formatting
+#define LIF_CHUNKS 16
+#define LIF_CHUNK_SIZE (LIF_SECTOR_SIZE*LIF_CHUNKS)
+
+///@brief Used for lif_opendir(), lif_readdir()
+#define LIF_DIR_SIZE 32
+#define LIF_IMAGE_NAME_SIZE 64
+
+typedef struct {
+    char filename[LIF_IMAGE_NAME_SIZE+1];
+	VolumeLabelType V;
+    uint8_t dirbuf[LIF_DIR_SIZE];
+    FILE *fp;
+    long start;
+    long length;
+    long index;
+} lifdir_t;
+
 // =============================================
 #endif     // #ifndef _DEFINES_H

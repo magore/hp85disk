@@ -17,6 +17,7 @@
 #include "amigo.h"
 #include "ss80.h"
 #include "format.h"
+#include <time.h>
 
 /// @brief Config Parser Stack
 #define MAX_STACK 5
@@ -200,6 +201,10 @@ AMIGODiskType AMIGODiskDefault =
 #endif // #if defined(HP9134A)
 
 #endif // ifdef AMIGO
+
+
+
+
 // =============================================
 // =============================================
 ///@brief Convert Value into byte array
@@ -254,6 +259,133 @@ uint32_t B2V_MSB(uint8_t *B, int index, int size)
     }
 	return(val);
 }
+
+///@brief Convert a byte array into a value
+/// bytes are LSB ... MSB order
+///@param B: byte array 
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@return value
+uint32_t B2V_LSB(uint8_t *B, int index, int size)
+{
+    int i;
+    uint32_t val = 0;
+
+    for(i=size-1;i>=0;--i)
+    {
+        val <<= 8;
+        val |= (uint8_t) (B[i+index] & 0xff);
+    }
+	return(val);
+}
+
+
+
+
+///@brief Pack VolumeLabelType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] T: VolumeLabelType structure pointer
+///@return null
+void LIFPackVolume(uint8_t *B, VolumeLabelType *V)
+{
+	V2B_MSB(B,0,2,V->LIFid);
+	memcpy((void *)(B+2),V->Label,6);
+	V2B_MSB(B,8,4,V->DirStartSector);
+	V2B_MSB(B,12,2,V->System3000LIFid);
+	V2B_MSB(B,14,2,0);
+	V2B_MSB(B,16,4,V->DirSectors);
+	V2B_MSB(B,20,2,V->LIFVersion);
+	V2B_MSB(B,22,2,0);
+	V2B_MSB(B,24,4,V->tracks_per_side);
+	V2B_MSB(B,28,4,V->sides);
+	V2B_MSB(B,32,4,V->sectors_per_track);
+	memcpy((void *) (B+36),V->date,6);
+}
+
+///@brief UnPack VolumeLabelType data from bytes
+///@param[in] B: byte vector to pack data into
+///@param[out] T: VolumeLabelType structure pointer
+///@return null
+void LIFUnPackVolume(uint8_t *B, VolumeLabelType *V)
+{
+	V->LIFid = B2V_MSB(B,0,2);
+	memcpy((void *)V->Label,(B+2),6);
+	V->DirStartSector = B2V_MSB(B,8,4);
+	V->System3000LIFid = B2V_MSB(B,12,2);
+	V->zero1 = B2V_MSB(B,14,2);
+	V->DirSectors = B2V_MSB(B,16,4);
+	V->LIFVersion = B2V_MSB(B,20,2);
+	V->zero2 = B2V_MSB(B,22,2);
+	V->tracks_per_side = B2V_MSB(B,24,4);
+	V->sides = B2V_MSB(B,28,4);
+	V->sectors_per_track = B2V_MSB(B,32,4);
+	memcpy((void *) V->date, (B+36),6);
+}
+
+///@brief Pack DireEntryType data into bytes
+///@param[out] B: byte vector to pack data into
+///@param[int] D: DirEntryType structure pointer
+///@return null
+void LIFPackDir(uint8_t *B, DirEntryType *D)
+{
+	memcpy(B+0,D->filename,10);
+	V2B_MSB(B,10,2,D->FileType);
+	V2B_MSB(B,12,4,D->FileStartSector);
+	V2B_MSB(B,16,4,D->FileLengthSectors);
+	memcpy(B+20,D->date,6);
+	V2B_MSB(B,26,2,D->VolNumber);
+	V2B_MSB(B,28,2,D->FileBytes);
+	V2B_MSB(B,30,2,D->SectorSize);
+}
+
+///@brief UnPack DireEntryType data from bytes
+///@param[in] B: byte vector to extract data from
+///@param[int] D: DirEntryType structure pointer
+///@return null
+void LIFUnPackDir(uint8_t *B, DirEntryType *D)
+{
+	memcpy(D->filename,B,10);
+	D->FileType = B2V_MSB(B, 10, 2);
+	D->FileStartSector = B2V_MSB(B, 12, 4);
+	D->FileLengthSectors = B2V_MSB(B, 16, 4);
+	memcpy(D->date,B+20,6);
+	D->VolNumber = B2V_MSB(B, 26, 2); 
+	D->FileBytes = B2V_LSB(B, 28, 2);
+	D->SectorSize= B2V_LSB(B, 30, 2);
+}
+
+/// @brief Convert number >= 0 and <= 99 to BCD.
+///
+///  - BCD format has each hex nibble has a digit 0 .. 9
+///
+/// @param[in] data: number to convert.
+/// @return  BCD value
+/// @warning we assume the number is in range.
+uint8_t BIN2BCD(uint8_t data)
+{
+    return(  ( (data/10U) << 4 ) | (data%10U) );
+}
+
+
+///@brief UNIX time to LIF time format
+///@param[out] bcd: packed 6 byte BCD LIF time
+///   YY,MM,DD,HH,MM,SS
+///@param[in] t: UNIX time_t time value
+///@see time() in time.c
+///@return void
+void time_to_LIF(uint8_t *bcd, time_t t)
+{
+	tm_t tm;
+	localtime_r((time_t *) &t, (tm_t *)&tm);
+	bcd[0] = BIN2BCD(tm.tm_year & 100);
+	bcd[1] = BIN2BCD(tm.tm_mon);
+	bcd[2] = BIN2BCD(tm.tm_mday);
+	bcd[3] = BIN2BCD(tm.tm_hour);
+	bcd[4] = BIN2BCD(tm.tm_min);
+	bcd[5] = BIN2BCD(tm.tm_sec);
+}
+
+
 
 
 
@@ -1380,7 +1512,7 @@ void format_drives()
 				//SS80p->VOLUME.MAX_SECTOR;
 				sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER;
 				sprintf(label,"SS80-%d", ss80);
-				create_lif_image(SS80p->HEADER.NAME,
+				lif_create_image(SS80p->HEADER.NAME,
 					label,
 					128, 
 					sectors);
@@ -1405,7 +1537,7 @@ void format_drives()
 				 * AMIGOp->GEOMETRY.CYLINDERS;
 
 				sprintf(label,"AMIGO%d", amigo);
-				create_lif_image(AMIGOp->HEADER.NAME,
+				lif_create_image(AMIGOp->HEADER.NAME,
 					label,
 					15, 
 					sectors);

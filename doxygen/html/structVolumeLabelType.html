@@ -129,9 +129,9 @@ Data Fields</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a href="https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout">https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout</a></dd></dl>
 <p>DISK LAYOUT The HP-85 disks used the LIF (Logical Interchange Format) disk layout. The first 2 sectors on the disk (cylinder 0, head 0, sector 0-1) contained the VOLUME sectors. The important things in the VOLUME SECTORS were thus:</p>
 <p>BYTES DESCRIPTION </p><hr/>
-<p> 0-1 LIF identifier, must be 0x8000 MSB first 2-7 6-character volume LABEL 8-11 directory start block always 0x00000002 MSB first 12-13 LIF identifer for System 3000 machines always 0x1000 MSB first 14-15 always 0x0000 MSB first 16-19 # of sectors in DIRECTORY MSB first 20-21 LIF version number always 0x0001 MSB first 22-23 always 0x0000 MSB first 24-27 number of tracks per surface MSB first 28-31 number of surfaces MSB first 32-35 number of sectors per track MSB first 36-41 date and time that the volume was initialized (YY,MM,DD,HH,mm,SS) LIF formating structures </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="format_8c.html" title="LIF Disk Format. ">format.c</a> LIF disk label record </dd></dl>
+<p> 0-1 LIF identifier, must be 0x8000 MSB first 2-7 6-character volume LABEL 8-11 directory start block always 0x00000002 MSB first 12-13 LIF identifer for System 3000 machines always 0x1000 MSB first 14-15 always 0x0000 MSB first 16-19 # of sectors in DIRECTORY MSB first 20-21 LIF version number always 0x0001 MSB first 22-23 always 0x0000 MSB first 24-27 number of tracks per surface MSB first 28-31 number of surfaces MSB first 32-35 number of sectors per track MSB first 36-41 time volume was initialized in BCD (YY,MM,DD,HH,mm,SS) LIF formating structures </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="format_8c.html" title="LIF Disk Format. ">format.c</a> LIF disk label record </dd></dl>
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00123">123</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00124">124</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="afd5885a37ea57ff74409f8c62a55bd1a"></a>
 <div class="memitem">
@@ -143,9 +143,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00136">136</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00137">137</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -159,9 +159,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00130">130</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00131">131</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="format_8c_source.html#l00040">lif_opendir()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -175,9 +175,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00127">127</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00128">128</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="format_8c_source.html#l00040">lif_opendir()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -191,9 +191,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00126">126</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00127">127</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -207,9 +207,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00125">125</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00126">126</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -223,9 +223,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00131">131</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00132">132</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -239,9 +239,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00135">135</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00136">136</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -255,9 +255,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00134">134</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00135">135</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -271,9 +271,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00128">128</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00129">129</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -287,9 +287,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00133">133</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00134">134</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
 
-<p>Referenced by <a class="el" href="format_8c_source.html#l00106">create_lif_image()</a>, and <a class="el" href="format_8c_source.html#l00051">LIFPackVolume()</a>.</p>
+<p>Referenced by <a class="el" href="format_8c_source.html#l00205">lif_create_image()</a>, <a class="el" href="drives_8c_source.html#l00289">LIFPackVolume()</a>, and <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -303,7 +303,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00129">129</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00130">130</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -317,7 +319,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="defines_8h_source.html#l00132">132</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+<p>Definition at line <a class="el" href="defines_8h_source.html#l00133">133</a> of file <a class="el" href="defines_8h_source.html">defines.h</a>.</p>
+
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00309">LIFUnPackVolume()</a>.</p>
 
 </div>
 </div>
@@ -327,7 +331,7 @@ Data Fields</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 12 2017 21:44:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 13 2017 19:45:00 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -41,6 +41,7 @@ void gpib_help()
         "gpib_elapsed_reset\n"
         "gpib_task\n"
         "gpib_trace filename.txt\n"
+        "lifdir\n"
         "plot_echo address\n   Intruct device to send a plot\n"
         "plot filename.txt\n"
         "ppr_bit_on N\n"
@@ -104,7 +105,7 @@ int gpib_tests(char *str)
         sectors= atol(num);
 		
 		///@brief format LIF image
-		result = create_lif_image(name,label,dirsecs,sectors);
+		result = lif_create_image(name,label,dirsecs,sectors);
 		if(result != sectors)
 		{
 			if(debuglevel & 1)
@@ -137,6 +138,16 @@ int gpib_tests(char *str)
         gpib_trace_task(ptr);
         return(1);
     }
+    else if ((len = token(ptr,"lifdir")) )
+    {
+		long files;
+		char name[64];
+        ptr += len;
+		// IMAGE name
+		ptr = get_token(ptr, name, 63);
+		files = lif_dir(name);
+		return(1);
+	}
     else if ((len = token(ptr,"plot_echo")) )
     {
         int option;

@@ -10,91 +10,190 @@
 
 */
 
-
 #include "user_config.h"
 
 #include "defines.h"
-#include "gpib.h"
-#include "gpib_hal.h"
-#include "gpib_task.h"
-#include "amigo.h"
+#include "drives.h"
+#include "format.h"
 #include <time.h>
 
 
-///@brief When formatting a disk define how many sectors we can write at once
-///Depends on how much free ram we have
-#define CHUNKS 16
-#define CHUNK_SIZE (SECTOR_SIZE*CHUNKS)
-
-
-///@brief Pack DirEntryType data into bytes
-///@param[out] B: byte vector to pack data into
-///@param[int] D: DirEntryType structure pointer
-///@return null
-uint8_t * LIFPackDir(uint8_t *B, DirEntryType *D)
+/// @brief Close LIF directory 
+/// Modeled after Linux closedir()
+/// @param[in] *DIR: pointer to LIF Volume/Directoy structure
+/// @return 0 on sucesss, -1 on error
+int lif_closedir(lifdir_t *DIR)
 {
-	memcpy(B+0,D->filename,10);
-	V2B_MSB(B,10,2,D->FileType);
-	V2B_MSB(B,12,4,D->FileStartSector);
-	V2B_MSB(B,16,4,D->FileLengthSectors);
-	memcpy(B+20,D->date,6);
-	V2B_MSB(B,26,2,D->VolNumber);
-	V2B_MSB(B,28,2,D->SectorSize);
-	V2B_MSB(B,30,2,D->implimentation);
-	return(B);
+	if(DIR->fp)
+	{
+		fclose(DIR->fp);
+		return(0);
+	}
+	return(-1);
 }
 
-///@brief Pack VolumeLabelType data into bytes
-///@param[out] B: byte vector to pack data into
-///@param[int] T: VolumeLabelType structure pointer
-///@return null
-void LIFPackVolume(uint8_t *B, VolumeLabelType *V)
+/// @brief Open LIF directory for reading
+/// Modeled after Linux opendir()
+/// @param[in] *name: file name of LIF image
+/// @return NULL on error, lifdir_t pointer to LIF Volume/Directoy structure on sucesss
+static lifdir_t _lifdir;
+lifdir_t *lif_opendir(char *name)
 {
-	V2B_MSB(B,0,2,V->LIFid);
-	memcpy((void *)(B+2),V->Label,6);
-	V2B_MSB(B,8,4,V->DirStartSector);
-	V2B_MSB(B,12,2,V->System3000LIFid);
-	V2B_MSB(B,14,2,0);
-	V2B_MSB(B,16,4,V->DirSectors);
-	V2B_MSB(B,20,2,V->LIFVersion);
-	V2B_MSB(B,24,4,V->tracks_per_side);
-	V2B_MSB(B,28,4,V->sides);
-	V2B_MSB(B,28,4,V->sectors_per_track);
-	memcpy((void *) (B+36),V->date,6);
+	int len;
+
+	lifdir_t *DIR = (lifdir_t *) &_lifdir;
+
+	uint8_t buffer[LIF_SECTOR_SIZE];
+
+	DIR->length = 0;
+	DIR->start = 0;
+	DIR->index = 0;
+	strncpy(DIR->filename,name,LIF_IMAGE_NAME_SIZE);
+
+    DIR->fp = fopen(DIR->filename, "r");
+    if( DIR->fp == NULL)
+    {
+		if(debuglevel & 1)
+			printf("Can't open:%s\n", DIR->filename);
+        return(NULL);
+    }
+
+	///@brief Initial file position
+	len = fread(buffer, 1, LIF_SECTOR_SIZE, DIR->fp);
+	if( len < LIF_SECTOR_SIZE)
+	{
+		if(debuglevel & 1)
+			printf("Read error %s @ 0\n", DIR->filename);
+        return(NULL);
+	}
+
+	// directory start sector
+	LIFUnPackVolume(buffer, (VolumeLabelType *)&DIR->V);
+	DIR->start = DIR->V.DirStartSector;
+	DIR->length =  DIR->V.DirSectors;
+	DIR->index = 0;
+	return(DIR);
 }
 
-/// @brief Convert number >= 0 and <= 99 to BCD.
-///
-///  - BCD format has each hex nibble has a digit 0 .. 9
-///
-/// @param[in] data: number to convert.
-/// @return  BCD value
-/// @warning we assume the number is in range.
-uint8_t BIN2BCD(uint8_t data)
+/// @brief Open LIF directory for reading
+/// Modeled after Linux readdir()
+/// @param[in] *DIR: to LIF Volume/Diractoy structure 
+/// @return DirEntryType filled with directory structure, or NULL on error of end of Directory
+static DirEntryType _lifent;
+DirEntryType *lif_readdir(lifdir_t *DIR)
 {
-    return(  ( (data/10U) << 4 ) | (data%10U) );
+	int len;
+	long offset,end;
+
+	DirEntryType *DE = (DirEntryType *) &_lifent;
+
+	offset = (DIR->index * LIF_DIR_SIZE) + (DIR->start * LIF_SECTOR_SIZE);
+	end = (DIR->start + DIR->length) * LIF_SECTOR_SIZE;
+
+	if(offset >= end)
+		return(NULL);
+
+	if(fseek(DIR->fp, offset, SEEK_SET) < 0)
+	{
+		if(debuglevel & 1)
+			printf("Seek error %s @ %ld\n", DIR->filename, offset);
+		return(NULL);
+
+	}
+	///@brief Initial file position
+	len = fread(DIR->dirbuf, 1, sizeof(DIR->dirbuf), DIR->fp);
+	if( len != sizeof(DIR->dirbuf))
+	{
+		if(debuglevel & 1)
+			printf("Read error %s @ %ld\n", DIR->filename, offset);
+		return(NULL);
+	}
+
+	LIFUnPackDir(DIR->dirbuf, DE);
+
+
+	if(DE->FileType == 0xffff)
+		return(NULL);
+
+	if(DE->VolNumber != 0x8001 )
+		return(NULL);
+
+
+	DIR->index++;
+	return(DE);
+}
+/// @brief get LIF file name from directory entry
+/// @param[in] name: LIF disk image name
+/// @param[in] DE: LIF directory entry
+/// @retrun void
+void lif_filename(char *name, DirEntryType *DE)
+{
+	int i;
+	memcpy(name,DE->filename,10);
+
+	name[10] =0;
+	for(i=9;i>=0;--i)
+	{
+		if(name[i] != ' ')
+			break;
+		name[i] = 0;
+	}
 }
 
-
-///@brief UNIX time to LIF time format
-///@param[out] bcd: packed 6 byte BCD LIF time
-///   YY,MM,DD,HH,MM,SS
-///@param[in] t: UNIX time_t time value
-///@see time() in time.c
-///@return void
-void time_to_LIF(uint8_t *bcd, time_t t)
+/// @brief get LIF file size from directory entry
+/// @param[in] name: LIF disk image name
+/// @param[in] DE: LIF directory entry
+/// @retrun void
+long lif_filelength(DirEntryType *DE)
 {
-	tm_t tm;
-	localtime_r((time_t *) &t, (tm_t *)&tm);
-	bcd[0] = BIN2BCD(tm.tm_year & 100);
-	bcd[1] = BIN2BCD(tm.tm_mon);
-	bcd[2] = BIN2BCD(tm.tm_mday);
-	bcd[3] = BIN2BCD(tm.tm_hour);
-	bcd[4] = BIN2BCD(tm.tm_min);
-	bcd[5] = BIN2BCD(tm.tm_sec);
+	long bytes;
+	bytes = DE->FileBytes;
+	if(!bytes)
+		bytes = (DE->FileLengthSectors * LIF_SECTOR_SIZE);
+	return(bytes);
 }
 
+	
+/// @brief Display a LIF image file directory
+/// @param[in] name: LIF disk image name
+/// @retrn -1 on error or number of files found
+int lif_dir(char *name)
+{
+	DirEntryType *DE;
+	lifdir_t *DIR = lif_opendir(name);
+	long bytes;
+	char fname[12];
 
+	int files = 0;
+
+	if(DIR == NULL)
+		return(-1);
+	
+	printf("NAME       TYPE   START SECTOR      SIZE RECSIZE\n");
+	while(1)
+	{
+		DE = lif_readdir(DIR);
+		if(DE == NULL)
+			break;
+
+		//printf("Bytes:%d, FileLengthSectors:%ld\n", (int)DE->FileBytes, (long) DE->FileLengthSectors);
+		bytes = lif_filelength(DE);
+		lif_filename(fname, DE);
+
+		// name type start size
+		printf("%-10s %04x       %08lx %9ld    %4d\n", 
+			fname, 
+			(int)DE->FileType, 
+			(long)DE->FileStartSector, 
+			(long)bytes, 
+			(int)DE->SectorSize  );
+
+		if(DE->FileType != 0)
+			++files;
+	}	
+	lif_closedir(DIR);
+	return(files);
+}
 
 /// @brief Create LIF disk image
 /// This can take a while to run
@@ -103,41 +202,21 @@ void time_to_LIF(uint8_t *bcd, time_t t)
 /// @param[in] dirsecs: Number of LIF directory sectors
 /// @param[in] sectors: total disk image size in sectors
 ///@return bytes writting to disk image
-long create_lif_image(char *name, char *label, long dirsecs, long sectors)
+long lif_create_image(char *name, char *label, long dirsecs, long sectors)
 {
     FILE *fp;
     uint8_t *buffer;
-	long size, sector,chunks;
-	long l;
+	long remainder, sector,chunks;
+	long li;
 	int len;
 	int i;
 	
 	VolumeLabelType V;
-	DirEntryType D;
+	DirEntryType DE;
 
-	// size of disk after volume start and directory sectors
-	size = sectors - (dirsecs + 2);
 
+	///@brief Setup Volume Header
 	strupper(label);
-
-	printf("Formating LIF image:[%s], Label:[%s], Dir Sectors:[%ld], sectors:[%ld]\n", 
-		name, label, (long)dirsecs, (long)sectors);
-
-	if(size < 0)
-	{
-		if(debuglevel & 1)
-			printf("Sectors must be > 2 + Directory Sectors\n");
-		return(-1);
-	}
-
-
-    buffer = safecalloc(CHUNK_SIZE,1);
-    if(!buffer)
-	{
-		if(debuglevel & 1)
-			printf("Can't Allocate %ld bytes memory:%ld\n", (long)CHUNK_SIZE);
-        return(-1);
-	}
 	memset((void *) &V,0,sizeof(V));
 	// Initialize volume header
 	V.LIFid = 0x8000;
@@ -145,7 +224,6 @@ long create_lif_image(char *name, char *label, long dirsecs, long sectors)
 		V.Label[i] = label[i];	
 	for(;i<6;++i)
 		V.Label[i] = ' ';
-
 	V.DirStartSector = 2;
 	V.DirSectors = dirsecs;
 	V.System3000LIFid = 0x1000;
@@ -155,7 +233,17 @@ long create_lif_image(char *name, char *label, long dirsecs, long sectors)
 	///@brief Current Date
 	time_to_LIF(V.date, time(NULL));
 
-	LIFPackVolume(buffer, (VolumeLabelType *) &V);
+	printf("Formating LIF image:[%s], Label:[%s], Dir Sectors:[%ld], sectors:[%ld]\n", 
+		name, label, (long)V.DirSectors, (long)sectors);
+
+	// Size of of disk after volume start and directory sectors hae been written
+	remainder = sectors - (V.DirSectors + V.DirStartSector);
+	if(remainder < 0)
+	{
+		if(debuglevel & 1)
+			printf("Too few sectors specified in image fil\n");
+		return(-1);
+	}
 
 	///@brief Opne disk image for writting
     fp = fopen(name, "w");
@@ -163,55 +251,72 @@ long create_lif_image(char *name, char *label, long dirsecs, long sectors)
     {
 		if(debuglevel & 1)
 			printf("Can't open:%s\n", name);
-		safefree(buffer);
         return( -1 );
     }
 
 	///@brief Initial file position
 	sector = 0;
 
+	///@brief Allocate working buffer for all writes
+    buffer = safecalloc(LIF_CHUNK_SIZE,1);
+    if(!buffer)
+	{
+		if(debuglevel & 1)
+			printf("Can't Allocate %ld bytes memory:%ld\n", (long)LIF_CHUNK_SIZE);
+		fclose(fp);
+        return(-1);
+	}
+	///@brief store Volume data into buffer
+	LIFPackVolume(buffer, (VolumeLabelType *) &V);
+
 	// Write Volume Header
-	len = fwrite(buffer, 1, SECTOR_SIZE, fp);
-	if( len < SECTOR_SIZE)
+	len = fwrite(buffer, 1, LIF_SECTOR_SIZE, fp);
+	if( len < LIF_SECTOR_SIZE)
 	{
 		if(debuglevel & 1)
 			printf("Write error %s @ %ld\n", name, sector);
+		fclose(fp);
 		safefree(buffer);
         return( -1 );
 	}
 	++sector;
 
 	// Write Empty Sector
-	memset(buffer,0,SECTOR_SIZE);
-	len = fwrite(buffer, 1, SECTOR_SIZE, fp);
-	if( len < SECTOR_SIZE)
+	memset(buffer,0,LIF_SECTOR_SIZE);
+	for(li=1; (uint32_t) li < V.DirStartSector; ++li)
 	{
-		if(debuglevel & 1)
-			printf("Write error %s @ %ld\n", name, sector);
-		safefree(buffer);
-        return( -1 );
-	}
-	++sector;
-
-	memset((void *) &D,0,sizeof(D));
-	// Fill in Directory Entry
-	///@brief File type of 0xffff is last directory entry
-	D.FileType = 0xffff;
-	///FIXME this is the default that the HPdrive project uses, not sure of this
-	D.FileLengthSectors = 0x7fffUL;
-
-	// Fill in full Directory sector
-	for(i=0;i<8;++i)
-		LIFPackDir(buffer + i*32, (DirEntryType *) &D);
-
-	// Write Directory sectors
-	for(l=0;l<dirsecs;++l)
-	{
-		len = fwrite(buffer, 1, SECTOR_SIZE, fp);
-		if( len < SECTOR_SIZE)
+		len = fwrite(buffer, 1, LIF_SECTOR_SIZE, fp);
+		if( len < LIF_SECTOR_SIZE)
 		{
 			if(debuglevel & 1)
 				printf("Write error %s @ %ld\n", name, sector);
+			fclose(fp);
+			safefree(buffer);
+			return( -1 );
+		}
+		++sector;
+	}
+
+	memset((void *) &DE,0,sizeof(DE));
+	// Fill in Directory Entry
+	///@brief File type of 0xffff is last directory entry
+	DE.FileType = 0xffff;
+	///FIXME this is the default that the HPdrive project uses, not sure of this
+	DE.FileLengthSectors = 0x7fffUL;
+
+	// Fill sector with Directory entries
+	for(i=0; i<LIF_SECTOR_SIZE; i+= LIF_DIR_SIZE)
+		LIFPackDir(buffer + i, (DirEntryType *) &DE);
+
+	// Write Directory sectors
+	for(li=0;(uint32_t) li< V.DirSectors;++li)
+	{
+		len = fwrite(buffer, 1, LIF_SECTOR_SIZE, fp);
+		if( len < LIF_SECTOR_SIZE)
+		{
+			if(debuglevel & 1)
+				printf("Write error %s @ %ld\n", name, sector);
+			fclose(fp);
 			safefree(buffer);
 			return( -1 );
 		}
@@ -220,36 +325,38 @@ long create_lif_image(char *name, char *label, long dirsecs, long sectors)
 	}
 
 	///@brief Zero out remining disk image
-	memset(buffer,0,SECTOR_SIZE);
+	memset(buffer,0,LIF_SECTOR_SIZE);
 
 // If we have enough memory we can write faster by using large chunks
-#if CHUNKS > 1
-	chunks = size / CHUNKS;
+#if LIF_CHUNKS > 1
+	chunks = remainder / LIF_CHUNKS;
 	// Write remaining in large chunks for speed
-	for(i=0;i<chunks;++i)
+	for(li=0;li<chunks;++li)
 	{
-		len = fwrite(buffer, 1, CHUNK_SIZE, fp);
-		if( len < CHUNK_SIZE)
+		len = fwrite(buffer, 1, LIF_CHUNK_SIZE, fp);
+		if( len < LIF_CHUNK_SIZE)
 		{
 			if(debuglevel & 1)
 				printf("Write error %s @ %ld\n", name, sector);
+			fclose(fp);
 			safefree(buffer);
 			return( -1 );
 		}
-		sector += CHUNKS;
-		size -= CHUNKS;
+		sector += LIF_CHUNKS;
+		remainder -= LIF_CHUNKS;
 		printf("sector: %ld\r", sector);
 	}
 #endif
 
 	// Write remaining in large chunks for speed
-	for(l=0;l<size;++l)
+	for(li=0;li<remainder;++li)
 	{
-		len = fwrite(buffer, 1, SECTOR_SIZE, fp);
-		if( len < SECTOR_SIZE)
+		len = fwrite(buffer, 1, LIF_SECTOR_SIZE, fp);
+		if( len < LIF_SECTOR_SIZE)
 		{
 			if(debuglevel & 1)
 				printf("Write error %s @ %ld\n", name, sector);
+			fclose(fp);
 			safefree(buffer);
 			return( -1 );
 		}

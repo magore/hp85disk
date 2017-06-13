@@ -340,13 +340,40 @@ README</h1>
   COPY "HELLO:D710" TO "HELLO:D730"
   #Copying ALL files between devices: FIRST SS80 to Second SS80
   COPY ":D700" TO ":D720"
-</pre><hr/>
-<h2>OS Requirements for software building</h2>
+</pre> <hr/>
+<h2>AVR Terminal Commands</h2>
 <ul>
-<li>I use <em>Ubuntu 16.04 and 14.04</em> so these instruction will cover that version<ul>
-<li>It should be easy to setup the same build with Windows gcc tools.</li>
+<li>Pressing any key will break out of the gpib task loop untill a command is entered<ul>
+<li>help Will list all avalable commands and options</li>
+<li>Examples:<ul>
+<li>lifdir <pre>
+          lifdir /amigo1.lif
+          NAME       TYPE   START SECTOR      SIZE RECSIZE
+          HELLO      e020       00000010       323     256
+          CIRCLE     e020       00000012       156     256
+          GPIB-S     e020       00000013       338     256
+          GPIB-T     e020       00000015      1413     256
+          GPIB7      e020       0000001b       197     256
+          AMIGO1     e020       0000001c        51     256
+          HELLO2     e010       0000001d       512     256
+          HELLO3     e010       0000001f       512     256
+      </pre></li>
+<li>format <pre>
+         # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         format /amigo3.lif AMIGO3 15 1120
+         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+         Formating: wrote:[1120] sectors
+      </pre> <hr/>
+</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h2>OS Requirements for software building</h2>
+<ul>
+<li>I use <em>Ubuntu 16.04 and 14.04</em> so these instruction will cover that version</li>
+<li>It should be easy to setup the same build with Windows gcc tools.</li>
 </ul>
 <h2>Ubuntu 16.04LTS and 14.04LTS install and setup notes</h2>
 <ul>
@@ -549,7 +576,7 @@ README</h1>
 </ul>
 </li>
 <li><a class="el" href="format_8c.html" title="LIF Disk Format. ">gpib/format.c</a><ul>
-<li>LIF format utility</li>
+<li>LIF format and file utilities</li>
 </ul>
 </li>
 <li><a class="el" href="gpib_8c.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib/gpib.c</a><ul>
@@ -846,7 +873,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 12 2017 21:44:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 13 2017 19:45:00 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

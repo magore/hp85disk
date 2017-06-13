@@ -77,7 +77,7 @@ var searchData=
   ['finddayofweek',['finddayofweek',['../time_8c.html#ae0a1ae285cfe1e2fc598ac12f46ceaef',1,'finddayofweek(int year, int month, int day):&#160;time.c'],['../time_8h.html#ae0a1ae285cfe1e2fc598ac12f46ceaef',1,'finddayofweek(int year, int month, int day):&#160;time.c']]],
   ['follow_5fpath',['follow_path',['../ff_8c.html#a908a7f4673078575c176cefd15ceecf4',1,'ff.c']]],
   ['fopen',['fopen',['../posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c'],['../posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c']]],
-  ['format_5fdrives',['format_drives',['../drives_8c.html#ade13ccf70ad5e99d4c3f6e06e8c4796b',1,'drives.c']]],
+  ['format_5fdrives',['format_drives',['../drives_8c.html#ade13ccf70ad5e99d4c3f6e06e8c4796b',1,'format_drives():&#160;drives.c'],['../drives_8h.html#ae5e26f65c0c469c7ad467201a7591fad',1,'format_drives(void):&#160;drives.c']]],
   ['fprintf',['fprintf',['../posix_8c.html#a91ade11061b9b43b1edd37ff32f76591',1,'fprintf(FILE *fp, const char *format,...):&#160;posix.c'],['../posix_8h.html#a91ade11061b9b43b1edd37ff32f76591',1,'fprintf(FILE *fp, const char *format,...):&#160;posix.c']]],
   ['fputc',['fputc',['../posix_8c.html#a6bdef0a37397953c3b0f14c4d5d0eb10',1,'fputc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#a6bdef0a37397953c3b0f14c4d5d0eb10',1,'fputc(int c, FILE *stream):&#160;posix.c']]],
   ['fputs',['fputs',['../posix_8c.html#a30a4070a8b1719d53cb01dd4b2a65069',1,'fputs(const char *str, FILE *stream):&#160;posix.c'],['../posix_8h.html#a30a4070a8b1719d53cb01dd4b2a65069',1,'fputs(const char *str, FILE *stream):&#160;posix.c']]],

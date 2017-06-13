@@ -275,6 +275,13 @@ extern DeviceType Devices[MAX_DEVICES];
 void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
 void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
 uint32_t B2V_MSB ( uint8_t *B , int index , int size );
+uint32_t B2V_LSB ( uint8_t *B , int index , int size );
+void LIFPackVolume ( uint8_t *B , VolumeLabelType *V );
+void LIFUnPackVolume ( uint8_t *B , VolumeLabelType *V );
+void LIFPackDir ( uint8_t *B , DirEntryType *D );
+void LIFUnPackDir ( uint8_t *B , DirEntryType *D );
+uint8_t BIN2BCD ( uint8_t data );
+void time_to_LIF ( uint8_t *bcd , time_t t );
 int find_type ( int type );
 char *type_to_str ( int type );
 char *base_to_str ( int base );
@@ -292,7 +299,7 @@ void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
 void display_Config ( void );
-
+void format_drives ( void );
 
 // =============================================
 #endif     // _DRIVES_H

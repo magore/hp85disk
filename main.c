@@ -251,7 +251,6 @@ int main(void)
 {
     ts_t ts;
 	uint32_t actual,baud;
-	int cold = 1;
 
     init_timers();
 

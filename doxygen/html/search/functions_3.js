@@ -28,7 +28,6 @@ var searchData=
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
-  ['create_5flif_5fimage',['create_lif_image',['../format_8c.html#abea9162f967a2229bfc637a896f087c9',1,'create_lif_image(char *name, char *label, long dirsecs, long sectors):&#160;format.c'],['../format_8h.html#abea9162f967a2229bfc637a896f087c9',1,'create_lif_image(char *name, char *label, long dirsecs, long sectors):&#160;format.c']]],
   ['create_5fname',['create_name',['../ff_8c.html#af119220c4aeabfeb316349e8279413ca',1,'ff.c']]],
   ['ctime',['ctime',['../time_8c.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c'],['../time_8h.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c']]],
   ['ctime_5fgm',['ctime_gm',['../time_8c.html#acf34275ac6fb2f724205873402dc9f70',1,'ctime_gm(time_t *tp):&#160;time.c'],['../time_8h.html#acf34275ac6fb2f724205873402dc9f70',1,'ctime_gm(time_t *tp):&#160;time.c']]],
