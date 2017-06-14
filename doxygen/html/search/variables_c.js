@@ -6,5 +6,6 @@ var searchData=
   ['name',['NAME',['../structHeaderType.html#aac997fd2dc536b10072137ecaf1fd0b4',1,'HeaderType']]],
   ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],
-  ['neg',['neg',['../unionf__t.html#a08d5e77f0fdb784ab1ef1425625e23f7',1,'f_t']]]
+  ['neg',['neg',['../unionf__t.html#a08d5e77f0fdb784ab1ef1425625e23f7',1,'f_t']]],
+  ['next',['next',['../structlifdir__t.html#a52a7520a6393d4782afb0ccd42899215',1,'lifdir_t']]]
 ];

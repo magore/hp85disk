@@ -140,12 +140,11 @@ int gpib_tests(char *str)
     }
     else if ((len = token(ptr,"lifdir")) )
     {
-		long files;
 		char name[64];
         ptr += len;
 		// IMAGE name
 		ptr = get_token(ptr, name, 63);
-		files = lif_dir(name);
+		lif_dir(name);
 		return(1);
 	}
     else if ((len = token(ptr,"plot_echo")) )

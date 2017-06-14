@@ -18,6 +18,7 @@ var searchData=
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
   ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],
+  ['de',['DE',['../structlifdir__t.html#ab078670aa2cc7d106864d2dd1227def6',1,'lifdir_t']]],
   ['debuglevel',['debuglevel',['../defines_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib__task_8c.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c']]],
   ['def_5fnambuf',['DEF_NAMBUF',['../ff_8c.html#ad9aa172b1cf1d54aca234228a7ae8503',1,'ff.c']]],
   ['default_5ftime',['DEFAULT_TIME',['../main_8c.html#a7b7a6b774a78bf2034b3b9ba5702da15',1,'main.c']]],

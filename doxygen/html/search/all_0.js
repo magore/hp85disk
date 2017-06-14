@@ -47,7 +47,6 @@ var searchData=
   ['_5fgpib_5ft',['_gpib_t',['../struct__gpib__t.html',1,'']]],
   ['_5flfn_5funicode',['_LFN_UNICODE',['../ffconf_8h.html#a8dd7e7f166bb146970b394d53cf01d80',1,'ffconf.h']]],
   ['_5flifdir',['_lifdir',['../format_8c.html#a21b7472d17feca1b2680863dacd8e133',1,'format.c']]],
-  ['_5flifent',['_lifent',['../format_8c.html#a88c7fc9bca0a31b17c59a5e2ecadf7c4',1,'format.c']]],
   ['_5fmat',['_mat',['../struct__mat.html',1,'']]],
   ['_5fmax_5flfn',['_MAX_LFN',['../ffconf_8h.html#a14e73a5c703a586c614b3e40b849f82c',1,'ffconf.h']]],
   ['_5fmax_5fss',['_MAX_SS',['../ffconf_8h.html#ac271b697378912f17132cb9c7d0de024',1,'ffconf.h']]],

@@ -40,14 +40,32 @@ static lifdir_t _lifdir;
 lifdir_t *lif_opendir(char *name)
 {
 	int len;
-
-	lifdir_t *DIR = (lifdir_t *) &_lifdir;
+	struct stat sb;
 
 	uint8_t buffer[LIF_SECTOR_SIZE];
+	lifdir_t *DIR = (lifdir_t *) &_lifdir;
 
-	DIR->length = 0;
-	DIR->start = 0;
+	DIR->imagesize = 0;
+	DIR->current = 0;
+	DIR->next = 0;
 	DIR->index = 0;
+	DIR->used = 0;
+
+	if(stat(name, (struct stat *)&sb) < 0)
+	{
+		if(debuglevel & 1)
+			printf("Can't stat:%s\n", name);
+        return(NULL);
+	}
+
+	if(!S_ISREG(sb.st_mode))
+	{
+		if(debuglevel & 1)
+			printf("Not a file:%s\n", name);
+        return(NULL);
+	}
+	DIR->imagesize = sb.st_size;;
+
 	strncpy(DIR->filename,name,LIF_IMAGE_NAME_SIZE);
 
     DIR->fp = fopen(DIR->filename, "r");
@@ -69,26 +87,29 @@ lifdir_t *lif_opendir(char *name)
 
 	// directory start sector
 	LIFUnPackVolume(buffer, (VolumeLabelType *)&DIR->V);
-	DIR->start = DIR->V.DirStartSector;
-	DIR->length =  DIR->V.DirSectors;
-	DIR->index = 0;
+
+	// stat of file area
+	DIR->current = DIR->V.DirStartSector+DIR->V.DirSectors;
+	DIR->next = DIR->current;
+
 	return(DIR);
 }
+
+
 
 /// @brief Open LIF directory for reading
 /// Modeled after Linux readdir()
 /// @param[in] *DIR: to LIF Volume/Diractoy structure 
 /// @return DirEntryType filled with directory structure, or NULL on error of end of Directory
-static DirEntryType _lifent;
 DirEntryType *lif_readdir(lifdir_t *DIR)
 {
 	int len;
 	long offset,end;
 
-	DirEntryType *DE = (DirEntryType *) &_lifent;
+	DirEntryType *DE = (DirEntryType *) &DIR->DE;
 
-	offset = (DIR->index * LIF_DIR_SIZE) + (DIR->start * LIF_SECTOR_SIZE);
-	end = (DIR->start + DIR->length) * LIF_SECTOR_SIZE;
+	offset = (DIR->index * LIF_DIR_SIZE) + (DIR->V.DirStartSector * LIF_SECTOR_SIZE);
+	end = (DIR->V.DirStartSector +  DIR->V.DirSectors) * LIF_SECTOR_SIZE;
 
 	if(offset >= end)
 		return(NULL);
@@ -111,17 +132,25 @@ DirEntryType *lif_readdir(lifdir_t *DIR)
 
 	LIFUnPackDir(DIR->dirbuf, DE);
 
+	if(DE->VolNumber != 0x8001 )
+		return(NULL);
 
 	if(DE->FileType == 0xffff)
 		return(NULL);
 
-	if(DE->VolNumber != 0x8001 )
-		return(NULL);
+	// Update used sectors
+	DIR->used += DE->FileLengthSectors;
+
+	// Update first free sector as we read
+	DIR->current = DE->FileStartSector;
+	DIR->next = DE->FileStartSector + DE->FileLengthSectors;	
 
 
 	DIR->index++;
 	return(DE);
 }
+
+
 /// @brief get LIF file name from directory entry
 /// @param[in] name: LIF disk image name
 /// @param[in] DE: LIF directory entry
@@ -153,6 +182,40 @@ long lif_filelength(DirEntryType *DE)
 	return(bytes);
 }
 
+/// @brief Find offset to first free sector that is big enough
+/// Modeled after Linux readdir()
+/// @param[in] *DIR: to LIF Volume/Diractoy structure 
+/// @return Directory pointer
+lifdir_t *lif_find_free(char *name, long size)
+{
+	long bytes;
+	DirEntryType *DE;
+	lifdir_t *DIR;
+
+	DIR = lif_opendir(name);
+
+	if(DIR == NULL)
+		return(NULL);
+
+	while(1)
+	{
+		DE = lif_readdir(DIR);
+		if(DE == NULL)
+			break;
+		bytes = lif_filelength(DE);
+		// We can reuse this purged sector
+		if(DE->FileType == 0 && size <= bytes)
+			break;
+	}
+	lif_closedir(DIR);
+
+ 	if((DIR->next*SECTOR_SIZE) > DIR->imagesize)
+		return(NULL);
+	// DIR->next will point to free space
+	// DIR->current points to current file
+	return(DIR);		// Last valid directory entry
+}
+
 	
 /// @brief Display a LIF image file directory
 /// @param[in] name: LIF disk image name
@@ -160,16 +223,18 @@ long lif_filelength(DirEntryType *DE)
 int lif_dir(char *name)
 {
 	DirEntryType *DE;
-	lifdir_t *DIR = lif_opendir(name);
 	long bytes;
+	int files = 0;
+	int purged = 0;
+	lifdir_t *DIR;
 	char fname[12];
 
-	int files = 0;
+	DIR = lif_opendir(name);
 
 	if(DIR == NULL)
 		return(-1);
 	
-	printf("NAME       TYPE   START SECTOR      SIZE RECSIZE\n");
+	printf("NAME        TYPE   START SECTOR        SIZE RECSIZE\n");
 	while(1)
 	{
 		DE = lif_readdir(DIR);
@@ -181,7 +246,7 @@ int lif_dir(char *name)
 		lif_filename(fname, DE);
 
 		// name type start size
-		printf("%-10s %04x       %08lx %9ld    %4d\n", 
+		printf("%-10s  %04x       %08lxH  %9ld    %4d\n", 
 			fname, 
 			(int)DE->FileType, 
 			(long)DE->FileStartSector, 
@@ -190,7 +255,16 @@ int lif_dir(char *name)
 
 		if(DE->FileType != 0)
 			++files;
+		else
+			++purged;
 	}	
+
+	printf("\n");
+	printf("Files:         %4d\n", (int)files);
+	printf("Purged:        %4d\n", (int)purged);
+	printf("Used Sectors: %4lxH\n", DIR->used);
+	printf("First Free:   %4lxH\n", DIR->next);
+
 	lif_closedir(DIR);
 	return(files);
 }

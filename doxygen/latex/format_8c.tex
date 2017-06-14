@@ -18,11 +18,13 @@ int \hyperlink{format_8c_a2691478126c4c013b2dff751b6627921}{lif\+\_\+closedir} (
 \hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$ \hyperlink{format_8c_a6b37a1c50e14b4e64e8110f13b74dfeb}{lif\+\_\+opendir} (char $\ast$name)
 \item 
 \hyperlink{structDirEntryType}{Dir\+Entry\+Type} $\ast$ \hyperlink{format_8c_a988bd344905db14af1dc71642fbd6177}{lif\+\_\+readdir} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR})
-\item 
+\begin{DoxyCompactList}\small\item\em Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} \end{DoxyCompactList}\item 
 void \hyperlink{format_8c_a0b3856561199bf3d16df40c642e6fd39}{lif\+\_\+filename} (char $\ast$name, \hyperlink{structDirEntryType}{Dir\+Entry\+Type} $\ast$DE)
 \begin{DoxyCompactList}\small\item\em get L\+IF file name from directory entry \end{DoxyCompactList}\item 
 long \hyperlink{format_8c_a7432d0e114aafc7a2e6564fc8367a42a}{lif\+\_\+filelength} (\hyperlink{structDirEntryType}{Dir\+Entry\+Type} $\ast$DE)
 \begin{DoxyCompactList}\small\item\em get L\+IF file size from directory entry \end{DoxyCompactList}\item 
+\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$ \hyperlink{format_8c_a5f6f0773f5f6e94bc1bb6c63d32e243f}{lif\+\_\+find\+\_\+free} (char $\ast$name, long size)
+\begin{DoxyCompactList}\small\item\em Find offset to first free sector that is big enough Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} \end{DoxyCompactList}\item 
 int \hyperlink{format_8c_a63dc5fd58d2400c95df45fe39d1710b3}{lif\+\_\+dir} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Display a L\+IF image file directory. \end{DoxyCompactList}\item 
 long \hyperlink{format_8c_a59446cf1799ef917e028c8010c508927}{lif\+\_\+create\+\_\+image} (char $\ast$name, char $\ast$label, long dirsecs, long sectors)
@@ -31,9 +33,7 @@ long \hyperlink{format_8c_a59446cf1799ef917e028c8010c508927}{lif\+\_\+create\+\_
 \begin{DoxyCompactItemize}
 \item 
 static \hyperlink{structlifdir__t}{lifdir\+\_\+t} \hyperlink{format_8c_a21b7472d17feca1b2680863dacd8e133}{\+\_\+lifdir}
-\begin{DoxyCompactList}\small\item\em Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a19051b9081dfef221d9bf4583e935031}{opendir()} \end{DoxyCompactList}\item 
-static \hyperlink{structDirEntryType}{Dir\+Entry\+Type} \hyperlink{format_8c_a88c7fc9bca0a31b17c59a5e2ecadf7c4}{\+\_\+lifent}
-\begin{DoxyCompactList}\small\item\em Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a19051b9081dfef221d9bf4583e935031}{opendir()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -76,7 +76,7 @@ Definition at line 25 of file format.\+c.
 
 
 
-Referenced by lif\+\_\+dir().
+Referenced by lif\+\_\+dir(), and lif\+\_\+find\+\_\+free().
 
 \index{format.\+c@{format.\+c}!lif\+\_\+create\+\_\+image@{lif\+\_\+create\+\_\+image}}
 \index{lif\+\_\+create\+\_\+image@{lif\+\_\+create\+\_\+image}!format.\+c@{format.\+c}}
@@ -124,7 +124,7 @@ F\+I\+X\+ME this is the default that the H\+Pdrive project uses, not sure of thi
 
 Zero out remining disk image 
 
-Definition at line 205 of file format.\+c.
+Definition at line 279 of file format.\+c.
 
 
 
@@ -148,7 +148,7 @@ Display a L\+IF image file directory.
 \end{DoxyParams}
 
 
-Definition at line 160 of file format.\+c.
+Definition at line 223 of file format.\+c.
 
 
 
@@ -174,11 +174,11 @@ get L\+IF file size from directory entry
 \end{DoxyParams}
 
 
-Definition at line 147 of file format.\+c.
+Definition at line 176 of file format.\+c.
 
 
 
-Referenced by lif\+\_\+dir().
+Referenced by lif\+\_\+dir(), and lif\+\_\+find\+\_\+free().
 
 \index{format.\+c@{format.\+c}!lif\+\_\+filename@{lif\+\_\+filename}}
 \index{lif\+\_\+filename@{lif\+\_\+filename}!format.\+c@{format.\+c}}
@@ -201,11 +201,35 @@ get L\+IF file name from directory entry
 \end{DoxyParams}
 
 
-Definition at line 129 of file format.\+c.
+Definition at line 158 of file format.\+c.
 
 
 
 Referenced by lif\+\_\+dir().
+
+\index{format.\+c@{format.\+c}!lif\+\_\+find\+\_\+free@{lif\+\_\+find\+\_\+free}}
+\index{lif\+\_\+find\+\_\+free@{lif\+\_\+find\+\_\+free}!format.\+c@{format.\+c}}
+\subsubsection[{\texorpdfstring{lif\+\_\+find\+\_\+free(char $\ast$name, long size)}{lif_find_free(char *name, long size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lifdir\+\_\+t}$\ast$ lif\+\_\+find\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{long}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{format_8c_a5f6f0773f5f6e94bc1bb6c63d32e243f}{}\label{format_8c_a5f6f0773f5f6e94bc1bb6c63d32e243f}
+
+
+Find offset to first free sector that is big enough Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$\+D\+IR} & to L\+IF Volume/\+Diractoy structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Directory pointer 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file format.\+c.
 
 \index{format.\+c@{format.\+c}!lif\+\_\+opendir@{lif\+\_\+opendir}}
 \index{lif\+\_\+opendir@{lif\+\_\+opendir}!format.\+c@{format.\+c}}
@@ -220,7 +244,7 @@ Definition at line 40 of file format.\+c.
 
 
 
-Referenced by lif\+\_\+dir().
+Referenced by lif\+\_\+dir(), and lif\+\_\+find\+\_\+free().
 
 \index{format.\+c@{format.\+c}!lif\+\_\+readdir@{lif\+\_\+readdir}}
 \index{lif\+\_\+readdir@{lif\+\_\+readdir}!format.\+c@{format.\+c}}
@@ -229,13 +253,25 @@ Referenced by lif\+\_\+dir().
 \item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR}
 \end{DoxyParamCaption}
 )}\hypertarget{format_8c_a988bd344905db14af1dc71642fbd6177}{}\label{format_8c_a988bd344905db14af1dc71642fbd6177}
+
+
+Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$\+D\+IR} & to L\+IF Volume/\+Diractoy structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structDirEntryType}{Dir\+Entry\+Type} filled with directory structure, or N\+U\+LL on error of end of Directory 
+\end{DoxyReturn}
 Initial file position 
 
-Definition at line 83 of file format.\+c.
+Definition at line 104 of file format.\+c.
 
 
 
-Referenced by lif\+\_\+dir().
+Referenced by lif\+\_\+dir(), and lif\+\_\+find\+\_\+free().
 
 
 
@@ -258,23 +294,4 @@ N\+U\+LL on error, \hyperlink{structlifdir__t}{lifdir\+\_\+t} pointer to L\+IF V
 
 
 Definition at line 39 of file format.\+c.
-
-\index{format.\+c@{format.\+c}!\+\_\+lifent@{\+\_\+lifent}}
-\index{\+\_\+lifent@{\+\_\+lifent}!format.\+c@{format.\+c}}
-\subsubsection[{\texorpdfstring{\+\_\+lifent}{_lifent}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dir\+Entry\+Type} \+\_\+lifent\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{format_8c_a88c7fc9bca0a31b17c59a5e2ecadf7c4}{}\label{format_8c_a88c7fc9bca0a31b17c59a5e2ecadf7c4}
-
-
-Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$\+D\+IR} & to L\+IF Volume/\+Diractoy structure \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\hyperlink{structDirEntryType}{Dir\+Entry\+Type} filled with directory structure, or N\+U\+LL on error of end of Directory 
-\end{DoxyReturn}
-
-
-Definition at line 82 of file format.\+c.
 

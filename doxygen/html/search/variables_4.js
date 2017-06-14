@@ -4,6 +4,7 @@ var searchData=
   ['data',['data',['../struct__mat.html#a00dcd82a8de11b7f16f7edfde55bcfae',1,'_mat::data()'],['../structSDIO__CTRL.html#ab04c9adb4d3027a14925fb30b469f0c0',1,'SDIO_CTRL::data()']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['date',['date',['../structVolumeLabelType.html#afd5885a37ea57ff74409f8c62a55bd1a',1,'VolumeLabelType::date()'],['../structDirEntryType.html#a1850264d3e4eac53b665a702ac7000fd',1,'DirEntryType::date()']]],
+  ['de',['DE',['../structlifdir__t.html#ab078670aa2cc7d106864d2dd1227def6',1,'lifdir_t']]],
   ['debuglevel',['debuglevel',['../defines_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib__task_8c.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c']]],
   ['dev',['dev',['../structDeviceType.html#a59fc3b3cb45f8ee0cd1016bd64804d3b',1,'DeviceType']]],
   ['device',['device',['../gpib_8h.html#a2376f17d1e7367401184b2a3978bcd3a',1,'gpib.h']]],

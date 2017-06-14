@@ -190,9 +190,12 @@ typedef struct {
 	VolumeLabelType V;
     uint8_t dirbuf[LIF_DIR_SIZE];
     FILE *fp;
-    long start;
-    long length;
-    long index;
+	DirEntryType DE;
+	long imagesize;		// LIF image size
+	long current;	    // first sector of file
+	long next;		    // next free sector area
+	long used;		    // used sectors
+    long index;			// directory index
 } lifdir_t;
 
 // =============================================

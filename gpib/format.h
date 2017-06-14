@@ -15,15 +15,15 @@
 #include "user_config.h"
 #include "defines.h"
 
-
-
 /* format.c */
 int lif_closedir ( lifdir_t *DIR );
 lifdir_t *lif_opendir ( char *name );
 DirEntryType *lif_readdir ( lifdir_t *DIR );
 void lif_filename ( char *name , DirEntryType *DE );
 long lif_filelength ( DirEntryType *DE );
+lifdir_t *lif_find_free ( char *name , long size );
 int lif_dir ( char *name );
 long lif_create_image ( char *name , char *label , long dirsecs , long sectors );
+
 
 #endif // #ifndef _FORMAT_H_
