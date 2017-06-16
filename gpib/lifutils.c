@@ -698,7 +698,7 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 	/// Byte 1: (0xdf = data) or (0xef = EOF)
 	/// Byte 2: LSB number of bytes to next LIF record 
 	/// Byte 3: MSB nunber of bytes to next LIF record 
-	/// EOF has these 6 bytes
+	/// EOF has these 4 bytes
     ///     0xdf 0x00 0x00 0xef 0xff 0xff
 	/// Example small file:
 	///    0xdf 0x05 0x00 "HP85\r" 0xdf 0x00 0x00 0xef 0xff 0xff ....
@@ -747,23 +747,29 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 	buffer[1] = 0;
 	buffer[2] = 0;
 	buffer[3] = 0xef;
-	buffer[4] = 0xff;
-	buffer[5] = 0xff;
+	bytes += 4;
 
-	// Size of END record
-	bytes += 6;
-
-	// Write END record
-	if(DIR)
+	// PAD last sector
+	len = 4;
+	while( len < LIF_SECTOR_SIZE && (bytes % LIF_SECTOR_SIZE) != 0)
 	{
-		len = lif_write(DIR->filename, buffer, offset, 6);
-		if(len < 6)
+		buffer[len] = 0xff;
+		len++;
+		bytes++;
+	}
+
+	// Write PAD
+	if(DIR && len)
+	{
+		int len2;
+		len2 = lif_write(DIR->filename, buffer, offset, len);
+		if(len2 < len)
 			return(-1);
-		offset += len;
 		if(debuglevel & 0x400)
 			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
 	}
-
+	offset += len;
+	
 	if(debuglevel & 0x400)
 		printf("User Size:       %ld\n",(long)bytes);
 	return(bytes);
@@ -814,6 +820,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 	// Now find free entry
 	DIR = lif_find_free(lifimagename, bytes);
 	if(DIR == NULL)
+		return(-1);	
 
 	// Write converted file into free space
 	bytes = lif_user2lif(userfile, DIR);
