@@ -1,0 +1,922 @@
+1 !
+2 ALPHA 16,1 @ OFF CURSOR @ CLEAR @ ALPHA 1,1 @ OFF CURSOR @ CLEAR
+10 DISP "SSSS TTTTT  AAA  RRRR"
+11 DISP "SS     T   A   A R   R"
+12 DISP "  SS   T   AAAAA RRRR"
+13 DISP "SSSS   T   A   A R   R   |TREK|"
+14 DISP "               _______________"
+15 DISP "    _._       (__  ___________|)"
+16 DISP "<=========>      ||"
+17 DISP "    \_/ \  \     ||"
+18 DISP "         \  \----||___"
+19 DISP "       )}=| NCC-1702 _/)"
+20 DISP "          |--------/"
+30 DISP "k1 - Quadrant Map"
+40 DISP "k2 - Status Screen"
+50 DISP "k3 - Command Screen"
+60 DISP "k4 - Galaxy Map"
+70 DISP "k5 - Toggle Sound"
+75 !
+80 DIM K(8,8),S(8,8),A(8,8),R(5),C(9),E(9),F(9),S$[6],A$[256],F$[21]
+90 DIM G(10),H(10),L(8,8),E$[1]
+100 DIM R1(10),X$[64],L$[32]
+110 FOR I=1 TO 256 @ A$[I,I]=CHR$(I-1) @ NEXT I
+120 ON KYBD K0,A$[1,136]&A$[151,158]&A$[161,169] GOSUB 7900
+130 A$=A$[33,128]
+140 P0=1
+150 S0=1 @ GOSUB 7310
+160 F$="   <@>+++>*< *  .  + "
+170 L$=RPT$(" ",32) @ L$[32,32]=CHR$(13)
+180 FOR I=9 TO 38 @ ALPHA I,1 @ AWRIT "" @ WAIT (38-I)*20 @ NEXT I
+190 ALPHA 1,1 @ CLEAR @ ALPHA 17,1 @ CLEAR
+200 ALPHA 33,1 @ CLEAR @ ALPHA 49,1 @ CLEAR
+210 ! quadrant map
+220 J=FNP1(" $Sectors of QUADRANT")
+230 X$="+-1--2--3--4--5--6--7--8-+"
+240 J=FNP1(A$[3,3]&"#"&X$)
+250 FOR X=4 TO 11
+260  J=FNP1(A$[X,X]&A$[3,3]&VAL$(X-3)&"|")
+270  J=FNP1(A$[X,X]&A$[29,29]&"|"&VAL$(X-3))
+280 NEXT X
+290 J=FNP1("+#"&X$)
+300 J=FNP1("-! * Star         <@> Enterprise")
+310 J=FNP1(".!>*< Starbase    +++ Klingon")
+320 ! galaxy map
+370 J=FNP1("Q%Quadrants of the GALAXY")
+375 X$="-1---2---3---4---5---6---7---8-"
+380 J=FNP1("S!"&X$)
+390 ! Galaxy map (LR)
+400 FOR X=53 TO 60
+410  J=FNP1(A$[X,X]&A$[1,1]&VAL$(X-52))
+420  FOR Y=1 TO 7
+430   J=FNP1(A$[X,X]&A$[4*Y+1,4*Y+1]&":")
+440  NEXT Y
+450 NEXT X
+460 J=FNP1("\!"&X$)
+470 !
+480 J=FNP1("1 Warp Engines")
+490 J=FNP1("2 SR.Sensors")
+500 J=FNP1("3 LR.Sensors")
+510 J=FNP1("4 Phasers")
+520 J=FNP1("5 Photon Tubes")
+530 J=FNP1("6 -----------------------")
+540 J=FNP1("7 Energy")
+550 J=FNP1("8 Dates Left")
+560 J=FNP1("9 Quadrant")
+570 J=FNP1(": Sector")
+580 J=FNP1("; Condition")
+590 J=FNP1("< Torpedoes")
+600 J=FNP1("= Shields")
+610 J=FNP1("> Klingons")
+620 J=FNP1("? Earth time")
+630 J=FNP1("67+-------+")
+640 J=FNP1("77| 4 3 2 |")
+650 J=FNP1("87| \ | / |")
+660 J=FNP1("97|  \|/  |")
+670 J=FNP1(":7| 5---1 |")
+680 J=FNP1(";7|  /|\  |")
+690 J=FNP1("<7| / | \ |")
+700 J=FNP1("=7| 6 7 8 |")
+710 J=FNP1(">7|Course |")
+720 J=FNP1("?7+-------+")
+730 !
+780 I1=0 ! uncloaked
+790 MAT S=ZER
+800 MAT C=ZER
+810 MAT A=ZER
+820 MAT E=ZER
+830 MAT F=ZER
+840 MAT G=ZER
+850 MAT H=ZER
+860 MAT R=CON
+870 MAT R=(10)*R
+880 MAT K=ZER
+890 MAT L=ZER
+900 E=3000
+910 T1=10
+920 K=0 @ S=0 @ F=0 @ R=0 @ B=0
+980 D=50 + INT(50*RND+1)
+990 ! P=INT(100*RND+1)
+1000 FOR X=1 TO 8
+1010  FOR Y=1 TO 8
+1020   IF RND<.75 THEN 1060
+1030   K(X,Y)=INT(5*RND)
+1040   K=K+K(X,Y)
+1050   L(X,Y)=L(X,Y)+100*K(X,Y)
+1060   B(X,Y)=INT(1*RND+.1)
+1070   B=B(X,Y)+B
+1080   L(X,Y)=L(X,Y)+10*B(X,Y)
+1090   S(X,Y)=INT(9*RND)
+1100   R=S(X,Y)+R
+1110   L(X,Y)=L(X,Y)+S(X,Y)
+1120  NEXT Y
+1130 NEXT X
+1135 ! select new quadrant
+1140 X=INT(8*RND+1) @ Y=INT(8*RND+1)
+1155 ! new Enterprise position
+1160 X1=INT(8*RND+1) @ Y1=INT(8*RND+1)
+1180 ! reset quadrant data
+1200 MAT A=ZER
+1210 GOSUB 9310 ! set up quadrant data
+1220 GOSUB 6630 ! update bars
+1230 GOSUB 6680 ! update numbers
+1240 GOSUB 6430 ! check for star base
+1250 GOSUB 7080 ! draw quadrant map
+1500 ! command loop
+1510 D=D-(INT(10*RND+1)+.5)/10
+1550 IF D>0 THEN 1585
+1560 J=FNP1("F Time's up!")
+1570 J=FNP1("G New game started.")
+1580 GOTO 790
+1582 !
+1585 J=FNP1("0 "&L$)
+1590 IF I1=0 THEN 1620
+1600 J=FNP1("0 Cloaking device DRAINING")
+1610 E=E-100
+1620 IF E>1 THEN 1650
+1630 J=FNP1("F No ENERGY left!")
+1635 J=FNP1("@ The ENTERPRISE is DEAD in space!")
+1640 GOTO 1570
+1650 IF S>=0 THEN 1680
+1660 J=FNP1("@ The ENTERPRISE was DESTROYED!")
+1670 GOTO 1570
+1680 GOSUB 6790 ! dates left
+1800 J=FNP1("?-"&TIME$)
+1825 ! get next command
+1826 ! to command page
+1827 K0 = 130 @ GOSUB 7930
+1830 J=FNP1("A "&L$) @ J=FNP2("A Command>")
+1840 ! get user input command C
+1850 C=R1(1) @ J=FNB(3)
+1852 IF C<0 OR C>15 THEN 1880
+1855 IF C>7 THEN 1870
+1860 ON C+1 GOTO 2330,3550,3620,3750,4030,4620,4740,4810
+1870 ON C-7 GOTO 5640,5770,5880,5970,6010,6120,6180,6290
+1880 J=FNP1("A Available Commands:")
+1890 J=FNP1("B 0-Warp Engine")
+1900 J=FNP1("C 1-SR. Scan")
+1910 J=FNP1("D 2-LR. Scan")
+1920 J=FNP1("E 3-Phasers")
+1930 J=FNP1("F 4-Photon Tubes")
+1940 J=FNP1("G 5-Shields")
+1950 J=FNP1("H 6-Klingon Field")
+1960 J=FNP1("I 7-Computer")
+1970 J=FNP1("B18-Time Warp")
+1980 J=FNP1("C19-Ext. LR. Scan")
+1990 J=FNP1("D010-Impulse Eng.")
+2000 J=FNP1("E011-Cloaking dev.")
+2010 J=FNP1("F012-Death ray")
+2020 J=FNP1("G013-Abort mission")
+2030 J=FNP1("H014-Super-Idiot")
+2040 J=FNP1("I015-COMMAND 15")
+2070 GOTO 1510
+2075 ! random damage: select one system (1...5)
+2080 T=INT(5*RND+1)
+2090 R(T)=R(T)-INT(R(T)*(1+RND)/2)
+2100 GOSUB 6630 ! update bars
+2110 IF R(2)>1 THEN 2170
+2115 ! blank quadrant map
+2120 FOR T=4 TO 11
+2130  J=FNP1(A$[T,T]&A$[5,5]&L$[1,24])
+2140  IF T#7 THEN 2160
+2150  J=FNP1(A$[T,T]&A$[9,9]&"SR. Sensors OUT")
+2160 NEXT T
+2170 IF R(3)>1 THEN 2200 ! LR sensor OK
+2175 ! blank galaxy map around X,Y
+2180 FOR X3=X-1 TO X+1
+2182  IF X3>8 OR X3<1 THEN 2195
+2184  FOR Y3=Y-1 TO Y+1
+2186   IF Y3>8 OR Y3<1 THEN 2190
+2188   J=FNP1(A$[X3+52,X3+52]&A$[4*Y3-2,4*Y3-2]&"???")
+2190  NEXT Y3
+2195 NEXT X3
+2200 GOSUB 2205
+2202 GOTO 1510
+2203 !
+2204 ! entry to show Klingon strength C(), position: E(), F() 
+2205 IF I1=1 THEN RETURN ! cloaked
+2208 IF F=1 THEN RETURN ! docked
+2210 ! to status pg.
+2220 K0=129 @ GOSUB 7930
+2230 FOR T=1 TO 9
+2240  IF C(T)<=0 THEN 2290
+2250  H=INT(C(T)*RND+1)
+2260  S=S-H ! reduce shields
+2265  J=FNP1(A$[21,21]&A$[26,26]&"H  X Y")
+2270  J=FNP1(A$[22,22]&A$[26,26]&VAL$(H))
+2275  J=FNP1(A$[22,22]&A$[29,29]&VAL$(E(T)))
+2280  J=FNP1(A$[22,22]&A$[31,31]&VAL$(F(T)))
+2285  J=FNT(4) @ WAIT 500
+2290 NEXT T
+2300 GOSUB 7040 ! screen#2: update shields
+2310 RETURN ! GOTO 1510
+2215 !
+2320 ! --- COMMAND #0: WARP ENGINES
+2330 IF R(1)>1 THEN 2380
+2340 J=FNP1("B Warp engines are DAMAGED!")
+2350 J=FNP1("C Try impulse engines.")
+2370 GOTO 1510
+2380 J=FNP2("B Course (1-9)>")
+2390 C=R1(1)
+2400 J=FNP2("C Warp factor (0-8)>")
+2410 W=R1(1)
+2420 W=ABS(W)
+2440 C=ABS(C)
+2450 IF C=0 OR W=0 THEN 1510
+2460 IF C>=9 OR W>8 THEN 2380
+2470 IF W<R(1) THEN 2500
+2480 J=FNP1("D Warp engines can't take it.")
+2490 GOTO 2400
+2500 C=(C-1)*2*3.14159/8
+2510 X4,X6=X1
+2530 Y4,Y6=Y1
+2550 X5=X
+2560 Y5=Y
+2570 FOR T=.125 TO INT(INT(W/0.125)+0.5)*0.125 STEP .125
+2580  F=0
+2590  X6=-SIN(C)+X6
+2600  X3=INT(X6+.5)
+2610  Y6=COS(C)+Y6
+2620  Y3=INT(Y6+.5)
+2630  E=E-T*T
+2640  IF X3<1 THEN 2690
+2650  IF X3>8 THEN 2720
+2660  IF Y3<1 THEN 2750
+2670  IF Y3>8 THEN 2780
+2680  GOTO 2980
+2690  X=X-1 ! quadrant to the left
+2700  X3=8 @ X1=8 @ X6=8 @ X4=8
+2710  GOTO 2800
+2720  X=X+1 ! quadrant to the right
+2730  X3=1 @ X1=1 @ X6=1 @ X4=1
+2740  GOTO 2800
+2750  Y=Y-1 ! quadrant up
+2760  Y3=8 @ Y1=8 @ Y6=8 @ Y4=8
+2770  GOTO 2800
+2780  Y=Y+1 ! quadrant down
+2790  Y3=1 @ Y1=1 @ Y6=1 @ Y4=1
+2800  IF X3<1 OR X3>8 OR Y3<1 OR Y3>8 THEN 2640
+2810  IF NOT (X<1 OR X>8 OR Y<1 OR Y>8) THEN 2840
+2820  J=FNB(3) @ J=FNP1("D You flew OUT of the GALAXY!")
+2825  J=FNP1("F Reinsertion takes place...")
+2826  WAIT 1000
+2827  J=FNP1("G                        ... done.")
+2830  GOTO 790
+2840  MAT A=ZER
+2850  MAT E=ZER
+2860  MAT F=ZER
+2870  MAT C=ZER
+2900  GOSUB 9310 ! set up quadrant data
+2910  GOSUB 6430 ! check for star base
+2920  IF R(2)<=1 THEN 2940 ! SR sensors OUT
+2930  GOSUB 7080 ! draw quadrant map
+2940  GOSUB 6810 ! screen #2: quadrant
+2950  GOSUB 6860 ! condition
+2960  GOTO 3420
+2970  ! space, Enterprise, Klingon, star base, star
+2980  ON A(X3,Y3)+1 GOTO 3380, 3460, 3010, 3150, 3240
+3000  STOP ! should never...
+3005  ! 2: hit Klingon 
+3010  FOR T2=1 TO 9
+3020   IF C(T2)<=0 THEN 3040
+3030   IF X3=E(T2) AND Y3=F(T2) THEN 3060
+3040  NEXT T2
+3050  GOTO 6036 ! Enterprise DESTROYED
+3060  S=S-C(T2)
+3070  C(T2)=0
+3076  X$="*** You hit a KLINGON ***"
+3078  J=FNP1("D "&X$) @ J=FNP1("/%"&X$)
+3080  Z$="E" @ GOSUB 7170 ! msg: K destroyed
+3090  GOSUB 7040 ! screen#2: update shields
+3100  GOTO 3380
+3140  ! 3: hit starbase
+3150  X$="*** You broke the STARBASE ***"
+3152  J=FNP1("E "&X$) @ J=FNP1("/!"&X$)
+3160  B(X,Y)=B(X,Y)-1
+3170  B=B-1
+3180  S=0
+3190  L(X,Y)=L(X,Y)-10
+3200  GOTO 3380
+3230  ! 4: star
+3240  X$="*** You hit a STAR ***"
+3242  J=FNP1("E "&X$) @ J=FNP1("/%"&X$)
+3250  FOR T0=1 TO 5
+3260   R(T0) = R(T0)-4*RND
+3270   IF R(T0)>0 THEN 3290
+3280   R(T0)=1
+3290  NEXT T0
+3300  IF R(2)<=1 THEN 2120
+3310  IF R(3)<=1 THEN 2180
+3320  GOSUB 6630 ! update bars
+3330  S=0
+3340  E=E-500
+3360  GOSUB 7040 ! update shields
+3370  GOTO 1510
+3371  ! --- update quadrant map
+3380  ! to map  pg.
+3385  K0 = 128 @ GOSUB 7930
+3390  X1=X3 @ Y1=Y3
+3395  ! erase prev. pos.
+3400  J=FNP1(A$[X4+3,X4+3]&A$[Y4*3+2,Y4*3+2]&F$[1,3])
+3405  ! draw new pos.
+3410  J=FNP1(A$[X3+3,X3+3]&A$[Y3*3+2,Y3*3+2]&F$[4,6])
+3420  A(X4,Y4)=0 @ A(X3,Y3)=1
+3440  X4=X3 @ Y4=Y3
+3460 NEXT T
+3470 GOSUB 6770 ! screen#2: energy
+3480 GOSUB 6830 ! sector
+3490 GOSUB 6860 ! condition
+3500 GOSUB 7040 ! shields
+3510 GOSUB 6430 ! check for star base
+3530 GOSUB 7270 ! galaxy map
+3540 GOTO 1510
+3545 ! --- COMMAND #1: SR SCAN
+3550 IF R(1)>1 THEN 3600
+3560 J=FNP1("B SR Sensors are OUT, better dock")
+3580 GOTO 2080 ! RANDOM action
+3590 ! to quadrant map
+3600 GOSUB 7080
+3610 GOTO 1510
+3615 ! --- COMMAND #2: LR SCAN
+3620 IF R(3)>1 THEN 3644
+3630 J=FNP1("B LR Sensors are OUT, try SR Sens.")
+3640 GOTO 2080 ! RANDOM action
+3642 ! to galaxy map
+3644 K0 = 131 @ GOSUB 7930
+3650 ! --- update long range galaxy map around X,Y
+3660 FOR X3=X-1 TO X+1
+3670  IF X3>8 OR X3<1 THEN 3720
+3680  FOR Y3=Y-1 TO Y+1
+3690   IF Y3>8 OR Y3<1 THEN 3710
+3692   X$="   "&VAL$(L(X3,Y3)) ! right align
+3694   L=LEN(X$)
+3700   J=FNP1(A$[X3+52,X3+52]&A$[4*Y3-2,4*Y3-2]&X$[L-2,L])
+3710  NEXT Y3
+3720 NEXT X3
+3730 J=FNP1("^#You are in Quadrant ("&VAL$(X)&","&VAL$(Y)&")")
+3740 GOTO 1510
+3745 ! --- COMMAND #3: PHASERS
+3750 IF R(4)>1 THEN 3790
+3760 J=FNP1("B Phasers OUT!  Try Photon Tubes")
+3780 GOTO 2080 ! RANDOM action
+3790 J=FNP1("B Phasers locked on target(s)")
+3800 J=FNP2("C Units to Phasers>")
+3810 P=ABS(R1(1))
+3820 IF P=0 THEN 1510
+3830 E=E-P
+3840 IF E<1 THEN 1630
+3850 ! to quadrant map
+3860 K0 = 128 @ GOSUB 7930
+3865 I=37 ! line idx
+3870 FOR T=1 TO 9
+3880  IF C(T)<=0 THEN 3980
+3890  H=(SQR(ABS(P^2-C(T)^2))+1)/(SQR((E(T)-X1)^2+(F(T)-Y1)^2)+1)
+3900  C(T)=C(T)-H
+3910  P=P-H @ H = INT(H*10)/10
+3915  Z$=A$[I,I] @ I=I+1
+3920  J=FNP1(Z$&" "&VAL$(H)&" units hit Klingon at "& VAL$(E(T))&","&VAL$(F(T)))
+3930  J=FNT(4) @ WAIT 500
+3940  IF C(T)>0 THEN 3980
+3950  Z$=A$[I,I] @ I=I+1 @ GOSUB 7170 ! K destroyed
+3952  ! to quadrant map
+3954  K0 = 128 @ GOSUB 7930
+3956  ! update sector map
+3960  J=FNP1(A$[E(T)+3,E(T)+3]&A$[F(T)*3+2,F(T)*3+2]&F$[1,3])
+3970  A(E(T),F(T))=0
+3980 NEXT T
+3990 GOSUB 6770 ! screen#2: energy
+4010 GOSUB 2205 ! show K strength
+4015 GOTO 1510
+4020 ! --- COMMAND #4: PHOTON TUBES / TORPEDOES
+4030 IF R(5)>1 THEN 4070
+4040 J=FNP1("B Photon Tubes DAMAGED Try Phasers")
+4050 GOTO 2080 ! RANDOM action
+4060 !
+4070 IF T1>0 THEN 4100
+4080 J=FNP1("B OUT of Torpedoes! Try Phasers")
+4090 GOTO 4050
+4100 J=FNP2("B Torpedoe course (1-9)>")
+4110 C=R1(1)
+4120 IF C=0 THEN 1510
+4122 ! to quadrant map
+4124 K0 = 128 @ GOSUB 7930
+4130 T=0
+4140 C9=0
+4145 T1=T1-1 ! one less
+4150 C=(C-1)*2*3.14159/8
+4160 Y3=INT(T*10*COS(C)+Y1+.5)
+4170  X3=INT(T*10*(-SIN(C))+X1+.5)
+4180  IF X3>8 OR Y3>8 OR X3<1 OR Y3<1 THEN 4300
+4182  IF A(X3,Y3)=0 THEN 4200 ! empty
+4184  IF A(X3,Y3)=1 THEN 4260
+4186  IF A(X3,Y3)=2 THEN 4340
+4188  IF A(X3,Y3)=3 THEN 4430
+4190  IF A(X3,Y3)=4 THEN 4500
+4200  C9=C9+1
+4210  G(C9)=X3 ! stores plotted path
+4220  H(C9)=Y3
+4230  P=INT(((10-R(2))*10+T1*8)*RND+.5)
+4240  IF P<5 THEN 4322
+4250  J=FNP1(A$[X3+3,X3+3]&A$[Y3*3+2,Y3*3+2]&F$[16,17])
+4260  T=T+.05
+4270  J=FNT(4)
+4280 GOTO 4160
+4290 ! out of Quadrant
+4300 X$="*** Missed! ***"
+4305 J=FNP1("C "&X$) @ J=FNP1("/'"&X$)
+4315 J=FNT(3)
+4320 GOTO 4510
+4321 ! show intercept in quadrant map
+4322 J=FNP1(A$[X3+3,X3+3]&A$[Y3*3+2,Y3*3+2]&F$[19,21])
+4323 X$="*** Klingon caught torpedo! ***"
+4324 J=FNP1("D "&X$) @ J=FNP1("/ "&X$)
+4326 J=FNT(3)
+4327 GOTO 4510
+4330 ! 2: Klingon
+4340 J=FNP1(A$[X3+3,X3+3]&A$[Y3*3+2,Y3*3+2]&F$[1,3])
+4350 FOR T2=1 TO 9
+4360  IF C(T2)<=0 THEN 4380
+4370  IF E(T2)=X3 AND F(T2)=Y3 THEN 4390
+4380 NEXT T2
+4390 C(T2)=0
+4400 Z$="E" @ GOSUB 7170
+4410 GOTO 4510
+4320 ! 3: Starbase
+4430 J=FNP1(A$[X3+3,X3+3]&A$[Y3*3+2,Y3*3+2]&F$[1,3])
+4440 X$="*** Starbase DESTROYED ***"
+4441 J=FNP1("E "&X$) @ J=FNP1("/#"&X$)
+4445 ! update Galaxy map
+4450 B=B-1
+4460 B(X,Y)=B(X,Y)-1
+4470 L(X,Y)=L(X,Y)-10
+4472 X$="   "&VAL$(L(X,Y)) ! right align
+4474 L=LEN(X$)
+4480 J=FNP1(A$[X+52,X+52]&A$[4*Y-2,4*Y-2]&X$[L-2,L])
+4485 J=FNT(3)
+4490 GOTO 4510
+4495 ! 4: Star
+4500 X$="You can't destroy a STAR, silly."
+4501 J=FNP1("C "&X$) @ J=FNP1("/ "&X$)
+4503 J=FNT(3)
+4504 GOTO 4510
+4505 ! clear plotted path
+4510 FOR C=1 TO C9
+4520  J=FNP1(A$[G(C)+3,G(C)+3]&A$[H(C)*3+2,H(C)*3+2]&F$[1,3])
+4530 NEXT C
+4550 GOSUB 7020 ! display # of torpedoes
+4570 IF X3<1 OR X3>8 OR Y3<1 OR Y3>8 THEN 4600
+4580 IF A(X3,Y3)=4 THEN 1510
+4590 A(X3,Y3)=0
+4600 GOSUB 2205 ! show K strength
+4610 GOTO 1510
+4615 ! --- COMMAND #5: SHIELDS
+4620 J=FNP1("B Energy available: "&VAL$(INT(E*10)/10)&" units")
+4630 J=FNP2("C Energy units to shields>")
+4640 E1=R1(1)
+4650 S=S+E1
+4660 E=E-E1
+4670 IF E<1 THEN 1630
+4680 IF S<0 THEN 1660
+4690 GOSUB 6770 ! screen#2: energy
+4700 GOSUB 6860 ! condition
+4710 GOSUB 7040 ! shields
+4730 GOTO 1510
+4735 ! --- COMMAND #6: KLINGON FIELD
+4740 C=0
+4745 FOR T=1 TO 9
+4750  IF C(T)<=0 THEN 4770
+4760  J=FNP1(A$[C+35,C+35]&" "&VAL$(C(T))&" units at "&VAL$(E(T))&","&VAL$(F(T)))
+4766  C=C+1
+4770 NEXT T
+4800 GOTO 1510
+4805 ! --- COMMAND #7: COMPUTER
+4810 J=FNP2("A Computer awaiting command>")
+4830 C=R1(1) @ J=FNB(3)
+4840 C=INT(ABS(C))
+4850 IF C<1 THEN GOTO 1510
+4860 IF C>3 THEN 4880
+4870 ON C GOTO 4920,5000,5350
+4880 !J=FNP1("C "&L$)
+4882 !J=FNP1("D "&L$)
+4884 !J=FNP1("E "&L$)
+4886 !J=FNP1("F "&L$)
+4890 J=FNP1("C 0-Back to Main Menu")
+4892 J=FNP1("D 1-Status report")
+4894 J=FNP1("E 2-Photon Tubes data")
+4900 J=FNP1("F 3-Autopilot")
+4910 GOTO 4810
+4915 ! --- COMPUTER COMMAND #1: STATUS REPORT
+4920 !J=FNP1("C "&L$)
+4922 !J=FNP1("D "&L$)
+4924 !J=FNP1("E "&L$)
+4928 J=FNP1("C Klingons:  "&VAL$(K))
+4930 J=FNP1("D Starbases: "&VAL$(B))
+4940 J=FNP1("E Stars:     "&VAL$(R))
+4950 GOSUB 6630 ! update bars
+4960 GOSUB 6680 ! update number displays
+4962 ! to command  pg.
+4964 K0 = 130 @ GOSUB 7930
+4990 GOTO 4810
+4995 ! --- COMPUTER COMMAND #2: PHOTON TUBES DATA
+5000 J=FNP1("C "&L$)
+5001 J=FNP1("D "&L$)
+5002 J=FNP1("E "&L$)
+5003 J=FNP1("F "&L$)
+5010 FOR T=1 TO 9
+5020  IF C(T)<=0 THEN 5270
+5030  Z1=F(T)-Y1
+5040  Z2=X1-E(T)
+5050  IF Z1<0 THEN 5150
+5060  IF Z2<0 THEN 5210
+5070  IF Z1>0 THEN 5090
+5080  IF Z2=0 THEN 5170
+5090  C1=1
+5100  IF ABS(Z2)<=ABS(Z1) THEN 5130
+5110  C=C1+(ABS(Z2)-ABS(Z1)+ABS(Z2))/ABS(Z2)
+5120  GOTO 5260
+5130  C=C1+ABS(Z2)/ABS(Z1)
+5140  GOTO 5260
+5150  IF Z2>0 THEN 5190
+5160  IF Z1=0 THEN 5210
+5170  C1=5
+5180  GOTO 5100
+5190  C1=3
+5200  GOTO 5220
+5210  C1=7
+5220  IF ABS(Z2)>=ABS(Z1) THEN 5250
+5230  C=C1+(ABS(Z1)-ABS(Z2)+ABS(Z1))/ABS(Z1)
+5240  GOTO 5260
+5250  C=C1+ABS(Z1)/ABS(Z2)
+5260  Z0=INT(E(T)*100)/100
+5262  Z1=INT(F(T)*100)/100
+5263  C=INT(C*1000)/1000
+5264  J=FNP1(A$[34+T,34+T]&" Suggested course for "&VAL$(Z0)&","&VAL$(Z1)&": "&VAL$(C))
+5270 NEXT T
+5300 GOTO 4810
+5345 ! --- COMPUTER COMMAND #3: AUTOPILOT
+5350 J=FNP1("C Where to (Quadrant(1-8,1-8),")
+5352 J=FNP1("D             Sector(1-8,1-8)")
+5354 J=FNP2("E >"&L$[2,32])
+5360 X3=R1(1) @ Y3=R1(2) @ X4=R1(3) @ Y4=R1(4)
+5370 P=0
+5380 IF X3+Y3+X4+Y4=0 THEN 1510
+5390 IF X3<1 OR X3>8 OR Y3<1 OR Y3>8 THEN 5350
+5400 IF X4<1 OR X4>8 OR Y4<1 OR Y4>8 THEN 5350
+5410 A(X1,Y1)=0
+5412 ! required energy
+5414 Q=(SQR((X3-X)^2+(Y3-Y)^2)*8+SQR((X4-X1)^2+(Y4-Y1)^2))*100
+5416 IF Q<E THEN 5425
+5418 J=FNP1("G Nice Try...")
+5419 J=FNP1("H If you only had that much Energy")
+5420 GOTO 4810
+5425 E=E-(SQR((X3-X)^2+(Y3-Y)^2)*8+SQR((X4-X1)^2+(Y4-Y1)^2))*100
+5430 X1=X4 ! new quadrant
+5440 Y1=Y4
+5450 X=X3 ! new position in quadrant
+5460 Y=Y3
+5480 MAT A=ZER
+5490 MAT C=ZER
+5500 MAT E=ZER
+5510 MAT F=ZER
+5520 F=0 ! undocked
+5530 GOSUB 9310 ! set up quadrant data
+5540 GOSUB 7080 ! draw quadrant map
+5550 GOSUB 6770 ! screen#2: energy
+5560 GOSUB 6810 ! quadrant
+5570 GOSUB 6830 ! sector
+5580 GOSUB 6860 ! condition
+5590 GOSUB 6430 ! check for star base
+5600 IF P#0 THEN 1510 ! from time warp
+5610 IF I1=0 THEN GOSUB 2205 ! show K strength
+5620 ! to command  pg.
+5630 K0 = 130 @ GOSUB 7930
+5635 GOTO 4810
+5636 ! --- COMMAND #8: TIME WARP
+5640 J=FNP1("C Where to (Quadrant(1-8,1-8)")
+5645 J=FNP1("D             Sector(1-8,1-8)")
+5650 J=FNP2("E >"&L$[2,32])
+5660 X3=R1(1) @ Y3=R1(2) @ X4=R1(3) @ Y4=R1(4)
+5670 IF X3+Y3+X4+Y4=0 THEN 1510
+5680 P=INT(100*RND+1)
+5690 IF P>15 THEN 5740
+5700 E=9000
+5710 S=9000
+5720 T1=90
+5730 GOTO 5390 ! with P#0
+5740 J=FNP1("K Transfer WASN'T successful!!")
+5760 GOTO 780
+5770 IF F=1 THEN 5800
+5780 J=FNP1("C The ENTERPRISE must be DOCKED !")
+5790 GOTO 1510
+5800 FOR T=X-2 TO X+2
+5810  IF T<1 OR T>8 THEN 5860
+5820  FOR T2=Y-2 TO Y+2
+5830   IF T2<1 OR T2>8 THEN 5850
+5832   X$="   "&VAL$(L(T,T2)) ! right align
+5834   L=LEN(X$)
+5840   J=FNP1(A$[T+52,T+52]&A$[4*T2-2,4*T2-2]&X$[L-2,L])
+5850  NEXT T2
+5860 NEXT T
+5870 GOTO 1510
+5875 ! --- COMMAND #10: IMPULSE ENGINES
+5880 J=FNP2("B Course (1-9)>")
+5890 C=R1(1)
+5900 J=FNP2("C Warp factor (0-.2)>")
+5910 W=R1(1)
+5920 W=ABS(W)
+5930 C=ABS(C)
+5940 IF W>.2 THEN 5900
+5950 E=E-100
+5960 GOTO 2450
+5965 ! --- COMMAND #11: CLOAKING DEVICE (reset at base only)
+5970 I1=1
+5980 E=E-1000
+5990 GOSUB 6860 ! screen#2: output of condition
+6000 GOTO 1510
+6005 ! --- COMMAND #12: DEATH RAY
+6010 J=FNP1("B WARNING")
+6015 J=FNP1("C This is still EXPERIMENTAL")
+6020 J=FNP1("D Firing up the Death Ray ...")
+6030 IF RND<.5 THEN 6050
+6036 J=FNP1("E You DESTROYED the ENTERPRISE!")
+6040 STOP
+6050 I=37
+6055 FOR T=1 TO K(X,Y)
+6060  IF C(T)<=0 THEN 6100
+6070  C(T)=0
+6080  J=FNP1(A$[E(T)+3,E(T)+3]&A$[F(T)*3+2,F(T)*3+2]&F$[1,3])
+6090  Z$=A$[I,I] @ I=I+1 @ GOSUB 7170
+6100 NEXT T
+6110 GOTO 1510
+6115 ! --- COMMAND #13: Abort Mission
+6120 J=FNP1("B Are you really SURE")
+6130 J=FNP1("B3") @ INPUT S$ @ S$=S$&" "
+6140 IF S$[1,1]="N" THEN 1510
+6141 OFF CURSOR
+6142 J=FNP1("B Are you really, really SURE")
+6144 J=FNP1("B<") @ INPUT S$ @ S$=S$&" "
+6146 IF S$[1,1]="N" OR S$[1,1]="n" THEN 1510
+6148 OFF CURSOR
+6150 J=FNP1("D#Y O U   C O W A R D  !")
+6155 J=FNP1("E#All our hope is lost.")
+6160 J=FNP1("F#There are "&VAL$(K)&" Klingons left.")
+6165 J=FNP1("H#Press [RUN] to restart")
+6166 J=FNP1("J ")
+6170 STOP
+6179 ! --- COMMAND #14: Super Idiot
+6180 FOR T=1 TO 8
+6190  FOR T2=1 TO 8
+6200   IF K(T,T2)=0 THEN 6240
+6210   K=K-K(T,T2)+9
+6220   K(T,T2)=9
+6230   L(T,T2)=L(T,T2)-INT(L(T,T2)/100)*100 + 900
+6240  NEXT T2
+6250 NEXT T
+6260 J=FNP1("C There are now ...")
+6270 J=FNP1("D  NINE (9) Klingons per quadrant!")
+6280 GOTO 1200
+6285 ! --- COMMAND #15: sometimes kill some Klingons
+6286 !     otherwise perform arbitary command
+6290 C=INT(100*RND)
+6300 IF C<=15 THEN 1855 ! does nothing
+6310 C=C-15
+6320 FOR T=1 TO C
+6330  X2=INT(8*RND+1)
+6340  Y2=INT(8*RND+1)
+6350  IF X2=X AND Y2=Y THEN 6330
+6360  IF K(X2,Y2)=0 THEN 6300
+6370  K(X2,Y2)=K(X2,Y2)-1
+6380  K=K-1
+6390  L(X2,Y2)=L(X2,Y2)-100
+6400  E=E-100*ABS(T-C)
+6410 NEXT T
+6420 GOTO 1200
+6425 ! --- check for star base
+6430 FOR S9=X1-1 TO X1+1
+6440  IF S9<1 OR S9>8 THEN 6490
+6450  FOR S8=Y1-1 TO Y1+1
+6460   IF S8<1 OR S8>8 THEN 6480
+6470   IF A(S9,S8)=3 THEN 6510
+6480  NEXT S8
+6490 NEXT S9
+6500 RETURN
+6505 ! at starbase: restock energy, torpedoes
+6510 F=1
+6520 Q=3000+E-INT((E+1)/6999)*6999
+6530 E=Q
+6540 S=I1=0 ! uncloaked
+6550 Q=10+T1-INT((T1+1)/89)*89
+6560 T1=Q
+6570 FOR T0=1 TO 5
+6580  R(T0)=10
+6590 NEXT T0
+6600 GOSUB 6630 ! update bars
+6610 GOSUB 6680 ! update numbers
+6620 RETURN
+6630 ! draw bars for Warp Engines, SR.Sensors, LR.Sensors, Phasers, Photon Tubes
+6640 FOR T=1 TO 5
+6650  J=FNP1(A$[17+T,17+T]&"-"&RPT$(CHR$(31),R(T))&RPT$("-",10-R(T)))
+6660 NEXT T
+6670 RETURN
+6675 ! update number displays
+6680 GOSUB 6770 ! energy
+6690 GOSUB 6790 ! dates left
+6700 GOSUB 6810 ! quadrant
+6710 GOSUB 6830 ! sector
+6720 GOSUB 6860 ! condition
+6730 GOSUB 7020 ! # of torpedoes
+6740 GOSUB 7040 ! shields
+6750 GOSUB 7060
+6760 RETURN
+6765 ! energy
+6770 Z$=VAL$(INT(E))
+6772 L=LEN(Z$)
+6774 J=FNP1("70"&L$[1,5-L]&Z$)
+6780 RETURN
+6785 ! dates Left
+6790 J=FNP1("80"&VAL$(D))
+6800 RETURN
+6805 ! quadrant
+6810 J=FNP1("92"&VAL$(X)&","&VAL$(Y))
+6815 J=FNP1(" 8("&VAL$(X)&","&VAL$(Y)&")")
+6820 RETURN
+6825 ! sector
+6830 J=FNP1(":2"&VAL$(X1)&","&VAL$(Y1))
+6840 RETURN
+6850 ! condition
+6860 IF F=0 THEN 6890
+6870 S$="Docked"
+6880 GOTO 7000
+6890 IF I1#1 THEN 6920
+6900 S$="Cloakd"
+6910 GOTO 7000
+6920 IF K(X,Y)=0 THEN 6990
+6930 IF S>500 THEN 6960
+6940 S$="  RED!"
+6950 GOTO 7000
+6960 S$="   RED"
+6970 GOTO 7000
+6980 S$="YELLOW"
+6990 S$=" GREEN"
+7000 J=FNP1(";/"&S$)
+7010 RETURN
+7015 ! torpedoes
+7020 Z$=VAL$(T1)
+7022 L=LEN(Z$)
+7024 J=FNP1("<0"&L$[1,5-L]&Z$)
+7030 RETURN
+7035 ! shields
+7040 Z$=VAL$(INT(S))
+7042 L=LEN(Z$)
+7044 J=FNP1("=0"&L$[1,5-L]&Z$)
+7050 RETURN
+7055 ! number of Klingons
+7060 Z$=VAL$(K)
+7062 L=LEN(Z$)
+7064 J=FNP1(">0"&L$[1,5-L]&Z$)
+7070 RETURN
+7075 ! draw quadrant map
+7080 K0 = 128 @ GOSUB 7930
+7090 FOR X2=1 TO 8
+7095  Z$=A$[X2+3,X2+3]
+7100  FOR Y2=1 TO 8
+7110   L=A(X2,Y2)*3+1
+7120   J=FNP1(Z$&A$[Y2*3+2,Y2*3+2]&F$[L,L+2])
+7130  NEXT Y2
+7140 NEXT X2
+7145 J=FNT(1)
+7150 RETURN
+7170 J=FNP1(Z$&" *** Klingon DESTROYED ***")
+7175 J=FNP1("/#*** Klingon DESTROYED ***")
+7180 J=FNT(2)
+7190 K=K-1
+7200 IF K>0 THEN 7240
+7210 J=FNP1("E All Klingon have been DESTROYED!")
+7215 J=FNT(2)
+7220 J=FNP1("F The galaxy is SAVED!!!")
+7230 STOP
+7235 !
+7240 K(X,Y)=K(X,Y)-1
+7250 L(X,Y)=L(X,Y)-100 ! one less
+7260 GOSUB 7060
+7270 X$="   "&VAL$(L(X,Y)) ! right align
+7272 L=LEN(X$)
+7274 J=FNP1(A$[X+52,X+52]&A$[4*Y-2,4*Y-2]&X$[L-2,L])
+7280 RETURN
+7300 ! toggle sound
+7310 S0=S0#1
+7315 IF S0=1 THEN Z$="SOUND"
+7316 IF S0#1 THEN Z$="     "
+7317 J=FNP1("1:"&Z$)
+7318 K0=129 @ GOSUB 7930
+7320 RETURN
+7330 ! --- key handler
+7890 ! space, comma, sign or digits
+7900 IF K0=32 OR K0=44 OR K0=45 OR K0=46 OR K0>=48 AND K0<=57 THEN 7960
+7910 IF K0=153 THEN 8050 ! [BACKSPACE]
+7920 IF K0=154 THEN 8100 ! [END LINE]
+7922 IF K0>=128 AND K0<=131 THEN 7930 ! [k1...k4]
+7923 IF K0=132 THEN 7310 ! [k5]
+7924 RETURN
+7930 K0=1+16*(K0-128) @ ALPHA K0+16,1 @ ALPHA K0,1 @ OFF CURSOR
+7940 RETURN
+7950 ! space, decimal, comma, sign or digits
+7960 E$=CHR$(K0) @ D$=D$&E$
+7970 ALPHA R0,C0 @ AWRIT E$&CHR$(31) @ C0=C0+1
+7980 RETURN
+7990 ! [BACKSPACE]
+8050 L=LEN(D$) @ IF L=0 THEN RETURN
+8060 C0=C0-1 @ D$=D$[1,L-1]
+8070 ALPHA R0,C0 @ AWRIT CHR$(31)&CHR$(13)
+8080 RETURN
+8090 ! [END LINE]
+8100 ALPHA R0,C0 @ AWRIT " "
+8110 RETURN
+8200 !
+8400 DEF FNP1(X$[34])
+8410  ! position and output X$="RCtext"
+8420  ALPHA NUM(X$[1])-31,NUM(X$[2])-31
+8430  ! PRINT VAL$(NUM(X$[1])-32)&" "&VAL$(NUM(X$[2])-32)&" ";
+8450  L=LEN(X$)
+8460  IF L<3 THEN 8490
+8470  AWRIT X$[3,L]
+8480  ! PRINT CHR$(34)&X$[3,L]&CHR$(34)&CHR$(13)&CHR$(10)
+8490  FNP1=L
+8500 FN END
+8510 !
+8520 DEF FNP2(X$[34])
+8530  ! ----- prompt, place cursor, wait
+8540  J=FNP1(X$)
+8550  FNP2=FNP1(X$[1,1]&CHR$(NUM(X$[2])+LEN(X$)-2))
+8560  GOSUB 9000
+8570 FN END
+8580 ! -----
+8900 ! input loop: loop until [END LINE]
+9000 C0=CURSCOL @ R0=CURSROW
+9002 K0=0 @ D$=""
+9003 IF P0#0 THEN ALPHA R0,C0 @ AWRIT CHR$(31)
+9004 WAIT 500
+9008 IF K0#154 THEN 9004
+9009 P0=1
+9010 FOR I=1 TO 10 @ R1(I)=-999 @ NEXT I
+9016 D$=TRIM$(D$)&" "
+9018 N=0 @ I0=1
+9020 FOR I=1 TO LEN(D$)
+9022 IF D$[I,I]#" " AND D$[I,I]#"," THEN 9032
+9024 IF I=1 THEN 9032
+9026 N=N+1
+9028 R1(N)=VAL(D$[I0,I-1])
+9030 I0=I+1
+9032 NEXT I
+9034 RETURN
+9040 ! -----
+9060 ! blank screen 2 down to line 16
+9070 DEF FNB(N)
+9080 FOR T=N TO 16
+9090 J=FNP1(A$[T+32,T+32]&" "&L$)
+9100 NEXT T
+9110 ! and bottom line on screen #1
+9120 J=FNP1("/ "&L$)
+9125 J=FNP1("@ ")
+9130 FNB=1
+9140 FN END
+9200 !
+9210 DEF FNT(N)
+9220 IF S0=0 THEN 9270
+9230 ON N GOTO 9240,9250,9260,9265
+9240 BEEP 1000,0.2 @ GOTO 9270
+9250 BEEP 120,60 @ BEEP 160,45 @ BEEP 120,60 @ GOTO 9270
+9260 FOR I=60 TO 120 @ BEEP I,20 @ NEXT I @ GOTO 9270
+9265 BEEP 10,10
+9270 FNT=0
+9280 FN END
+9290 ! 
+9300 ! set up new quadrant data
+9305 ! set Enterprise position at X1,Y1
+9310 A(X1,Y1)=1
+9315 ! distribute Klingons
+9320 FOR T0=1 TO K(X,Y)
+9330  X2=INT(8*RND+1)
+9340  Y2=INT(8*RND+1)
+9350  IF A(X2,Y2)#0 THEN 9330
+9360  E(T0)=X2
+9370  F(T0)=Y2
+9380  C(T0)=INT(100*RND+1)
+9390  A(X2,Y2)=2
+9400 NEXT T0
+9405 ! distribute starbases
+9410 FOR T0=1 TO B(X,Y)
+9420  X2=INT(8*RND+1)
+9430  Y2=INT(8*RND+1)
+9440  IF A(X2,Y2)#0 THEN 9410
+9450  A(X2,Y2)=3
+9460 NEXT T0
+9465 ! distribute stars
+9470 FOR T0=1 TO S(X,Y)
+9480  X2=INT(8*RND+1)
+9490  Y2=INT(8*RND+1)
+9500  IF A(X2,Y2)#0 THEN 9480
+9510  A(X2,Y2)=4
+9520 NEXT T0
+9530 RETURN
+9900 END

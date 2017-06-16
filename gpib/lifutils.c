@@ -677,7 +677,7 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 	FILE *fi;
 	long offset;
 	long bytes;
-	int len,len2;
+	int pad, reclen, len,len2;
 	char buffer[LIF_SECTOR_SIZE];
 
 	///@brief Read and process into image file
@@ -715,14 +715,16 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 		strcat(buffer+3,"\r");
 
 		// Compute distance to next LIF record
-		len = strlen(buffer+3) + 1;
+		len = strlen(buffer+3);
 
 		// Insert LIF header into buffer
+		// distance to next record
+		reclen = len;
 		buffer[0] = 0xdf;
-		buffer[1] = len & 0xff;
-		buffer[2] = (len >> 8)& 0xff;
+		buffer[1] = reclen & 0xff;
+		buffer[2] = (reclen >> 8)& 0xff;
 
-		// Computer size of entrier record
+		// len = size of data and header to write
 		len += 3;
 
 		// Write record
@@ -747,18 +749,8 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 	buffer[1] = 0;
 	buffer[2] = 0;
 	buffer[3] = 0xef;
-	bytes += 4;
 
-	// PAD last sector
 	len = 4;
-	while( len < LIF_SECTOR_SIZE && (bytes % LIF_SECTOR_SIZE) != 0)
-	{
-		buffer[len] = 0xff;
-		len++;
-		bytes++;
-	}
-
-	// Write PAD
 	if(DIR && len)
 	{
 		int len2;
@@ -769,7 +761,22 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
 	}
 	offset += len;
-	
+	bytes += 4;
+
+	// PAD remainder of sector
+	pad = LIF_SECTOR_SIZE - (bytes % LIF_SECTOR_SIZE);
+
+	// Write PAD
+	if(DIR && pad)
+	{
+		memset(buffer,0xff,LIF_SECTOR_SIZE);
+		len = lif_write(DIR->filename, buffer, offset, pad);
+		if(len < pad)
+			return(-1);
+		if(debuglevel & 0x400)
+			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
+	}
+	bytes += pad;
 	if(debuglevel & 0x400)
 		printf("User Size:       %ld\n",(long)bytes);
 	return(bytes);
@@ -846,7 +853,6 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		printf("First Sector:    %4lxH\n", DIR->DE.FileStartSector);
 		printf("Length Sectors:  %4lxH\n", DIR->DE.FileLengthSectors);
 		printf("Used Sectors:    %4lxH\n", (long)DIR->used);
-		printf("User Size:        %ld\n",(long)bytes);
 	}
 
 	// Write directory entry
@@ -860,8 +866,8 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		printf("First Sector:    %4lxH\n", DIR->DE.FileStartSector);
 		printf("Length Sectors:  %4lxH\n", DIR->DE.FileLengthSectors);
 		printf("Used Sectors:    %4lxH\n", (long)DIR->used);
-		printf("Size:            %4ld\n", bytes);
 	}
+	printf("Wrote: %ld\n", bytes);
 
 	// Return file size
 	return(bytes);
