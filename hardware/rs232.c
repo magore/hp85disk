@@ -461,13 +461,8 @@ int get_line (char *buff, int len)
 		}
     }
 	buff[i++] = 0;
-
-	// Discard remaining characters
-    while(uart_keyhit(0))
-    {
-        c = uart_get() & 0x7f;
-    }
     uart_put('\n');
-	return(i);
+
+	return(strlen(buff));
 }
 

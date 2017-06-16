@@ -1,0 +1,197 @@
+\hypertarget{structlifvol__t}{}\section{lifvol\+\_\+t Struct Reference}
+\label{structlifvol__t}\index{lifvol\+\_\+t@{lifvol\+\_\+t}}
+
+
+Disk Layout.  
+
+
+
+
+{\ttfamily \#include $<$lifutils.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \hyperlink{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}{L\+I\+Fid}
+\item 
+uint8\+\_\+t \hyperlink{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}{Label} \mbox{[}6+1\mbox{]}
+\item 
+uint32\+\_\+t \hyperlink{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}{Dir\+Start\+Sector}
+\item 
+uint16\+\_\+t \hyperlink{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}{System3000\+L\+I\+Fid}
+\item 
+uint16\+\_\+t \hyperlink{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}{zero1}
+\item 
+uint32\+\_\+t \hyperlink{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}{Dir\+Sectors}
+\item 
+uint16\+\_\+t \hyperlink{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}{L\+I\+F\+Version}
+\item 
+uint16\+\_\+t \hyperlink{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}{zero2}
+\item 
+uint32\+\_\+t \hyperlink{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}{tracks\+\_\+per\+\_\+side}
+\item 
+uint32\+\_\+t \hyperlink{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}{sides}
+\item 
+uint32\+\_\+t \hyperlink{structlifvol__t_ad245f7419e180934262f53acd9b4349c}{sectors\+\_\+per\+\_\+track}
+\item 
+uint8\+\_\+t \hyperlink{structlifvol__t_a41f630e7211326270dc6e72a55f94516}{date} \mbox{[}6\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Disk Layout. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\tt https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}
+\end{DoxySeeAlso}
+D\+I\+SK L\+A\+Y\+O\+UT The H\+P-\/85 disks used the L\+IF (Logical Interchange Format) disk layout. The first 2 sectors on the disk (cylinder 0, head 0, sector 0-\/1) contained the V\+O\+L\+U\+ME sectors. The important things in the V\+O\+L\+U\+ME S\+E\+C\+T\+O\+RS were thus\+:
+
+B\+Y\+T\+ES D\+E\+S\+C\+R\+I\+P\+T\+I\+ON 
+
+ 0-\/1 L\+IF identifier, must be 0x8000 M\+SB first 2-\/7 6-\/character volume L\+A\+B\+EL 8-\/11 directory start block always 0x00000002 M\+SB first 12-\/13 L\+IF identifer for System 3000 machines always 0x1000 M\+SB first 14-\/15 always 0x0000 M\+SB first 16-\/19 \# of sectors in D\+I\+R\+E\+C\+T\+O\+RY M\+SB first 20-\/21 L\+IF version number always 0x0001 M\+SB first 22-\/23 always 0x0000 M\+SB first 24-\/27 number of tracks per surface M\+SB first 28-\/31 number of surfaces M\+SB first 32-\/35 number of sectors per track M\+SB first 36-\/41 time volume was initialized in B\+CD (YY,MM,DD,HH,mm,SS) L\+IF formating structures \begin{DoxySeeAlso}{See also}
+format.\+c L\+IF disk label record 
+\end{DoxySeeAlso}
+
+
+Definition at line 64 of file lifutils.\+h.
+
+
+
+\subsection{Field Documentation}
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!date@{date}}
+\index{date@{date}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{date}{date}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t lifvol\+\_\+t\+::date\mbox{[}6\mbox{]}}\hypertarget{structlifvol__t_a41f630e7211326270dc6e72a55f94516}{}\label{structlifvol__t_a41f630e7211326270dc6e72a55f94516}
+
+
+Definition at line 77 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Dir\+Sectors@{Dir\+Sectors}}
+\index{Dir\+Sectors@{Dir\+Sectors}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{Dir\+Sectors}{DirSectors}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifvol\+\_\+t\+::\+Dir\+Sectors}\hypertarget{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}{}\label{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}
+
+
+Definition at line 71 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+opendir(), lif\+\_\+\+Pack\+Volume(), lif\+\_\+readdir(), lif\+\_\+\+Un\+Pack\+Volume(), and lif\+\_\+writedir().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Dir\+Start\+Sector@{Dir\+Start\+Sector}}
+\index{Dir\+Start\+Sector@{Dir\+Start\+Sector}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{Dir\+Start\+Sector}{DirStartSector}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifvol\+\_\+t\+::\+Dir\+Start\+Sector}\hypertarget{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}{}\label{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}
+
+
+Definition at line 68 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+opendir(), lif\+\_\+\+Pack\+Volume(), lif\+\_\+readdir(), lif\+\_\+\+Un\+Pack\+Volume(), and lif\+\_\+writedir().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Label@{Label}}
+\index{Label@{Label}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{Label}{Label}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t lifvol\+\_\+t\+::\+Label\mbox{[}6+1\mbox{]}}\hypertarget{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}{}\label{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}
+
+
+Definition at line 67 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!L\+I\+Fid@{L\+I\+Fid}}
+\index{L\+I\+Fid@{L\+I\+Fid}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{L\+I\+Fid}{LIFid}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t lifvol\+\_\+t\+::\+L\+I\+Fid}\hypertarget{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}{}\label{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}
+
+
+Definition at line 66 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!L\+I\+F\+Version@{L\+I\+F\+Version}}
+\index{L\+I\+F\+Version@{L\+I\+F\+Version}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{L\+I\+F\+Version}{LIFVersion}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t lifvol\+\_\+t\+::\+L\+I\+F\+Version}\hypertarget{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}{}\label{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}
+
+
+Definition at line 72 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}}
+\index{sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{sectors\+\_\+per\+\_\+track}{sectors_per_track}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifvol\+\_\+t\+::sectors\+\_\+per\+\_\+track}\hypertarget{structlifvol__t_ad245f7419e180934262f53acd9b4349c}{}\label{structlifvol__t_ad245f7419e180934262f53acd9b4349c}
+
+
+Definition at line 76 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!sides@{sides}}
+\index{sides@{sides}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{sides}{sides}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifvol\+\_\+t\+::sides}\hypertarget{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}{}\label{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}
+
+
+Definition at line 75 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!System3000\+L\+I\+Fid@{System3000\+L\+I\+Fid}}
+\index{System3000\+L\+I\+Fid@{System3000\+L\+I\+Fid}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{System3000\+L\+I\+Fid}{System3000LIFid}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t lifvol\+\_\+t\+::\+System3000\+L\+I\+Fid}\hypertarget{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}{}\label{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}
+
+
+Definition at line 69 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!tracks\+\_\+per\+\_\+side@{tracks\+\_\+per\+\_\+side}}
+\index{tracks\+\_\+per\+\_\+side@{tracks\+\_\+per\+\_\+side}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{tracks\+\_\+per\+\_\+side}{tracks_per_side}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifvol\+\_\+t\+::tracks\+\_\+per\+\_\+side}\hypertarget{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}{}\label{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}
+
+
+Definition at line 74 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+\+Pack\+Volume(), and lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!zero1@{zero1}}
+\index{zero1@{zero1}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{zero1}{zero1}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t lifvol\+\_\+t\+::zero1}\hypertarget{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}{}\label{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}
+
+
+Definition at line 70 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+\+Un\+Pack\+Volume().
+
+\index{lifvol\+\_\+t@{lifvol\+\_\+t}!zero2@{zero2}}
+\index{zero2@{zero2}!lifvol\+\_\+t@{lifvol\+\_\+t}}
+\subsubsection[{\texorpdfstring{zero2}{zero2}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t lifvol\+\_\+t\+::zero2}\hypertarget{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}{}\label{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}
+
+
+Definition at line 73 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+\+Un\+Pack\+Volume().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gpib/\hyperlink{lifutils_8h}{lifutils.\+h}\end{DoxyCompactItemize}

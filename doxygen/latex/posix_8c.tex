@@ -233,7 +233,7 @@ Definition at line 1402 of file posix.\+c.
 
 
 
-Referenced by ls\+\_\+info().
+Referenced by fatfs\+\_\+ls(), and lif\+\_\+fixname().
 
 \index{posix.\+c@{posix.\+c}!chdir@{chdir}}
 \index{chdir@{chdir}!posix.\+c@{posix.\+c}}
@@ -368,7 +368,7 @@ Definition at line 1670 of file posix.\+c.
 
 
 
-Referenced by ls().
+Referenced by fatfs\+\_\+ls().
 
 \index{posix.\+c@{posix.\+c}!clrerror@{clrerror}}
 \index{clrerror@{clrerror}!posix.\+c@{posix.\+c}}
@@ -667,7 +667,7 @@ Definition at line 1225 of file posix.\+c.
 
 
 
-Referenced by gpib\+\_\+trace\+\_\+task(), lif\+\_\+closedir(), lif\+\_\+create\+\_\+image(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+close(), and timetests().
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+create\+\_\+image(), lif\+\_\+read(), lif\+\_\+user2lif(), lif\+\_\+write(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+close(), and timetests().
 
 \index{posix.\+c@{posix.\+c}!fdevopen@{fdevopen}}
 \index{fdevopen@{fdevopen}!posix.\+c@{posix.\+c}}
@@ -853,7 +853,7 @@ Definition at line 411 of file posix.\+c.
 
 
 
-Referenced by Mat\+Read(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and setdate().
+Referenced by lif\+\_\+user2lif(), Mat\+Read(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and setdate().
 
 \index{posix.\+c@{posix.\+c}!fileno@{fileno}}
 \index{fileno@{fileno}!posix.\+c@{posix.\+c}}
@@ -994,7 +994,7 @@ Definition at line 768 of file posix.\+c.
 
 
 
-Referenced by gpib\+\_\+trace\+\_\+task(), lif\+\_\+create\+\_\+image(), lif\+\_\+opendir(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+open(), and timetests().
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+create\+\_\+image(), lif\+\_\+open(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+open(), and timetests().
 
 \index{posix.\+c@{posix.\+c}!fprintf@{fprintf}}
 \index{fprintf@{fprintf}!posix.\+c@{posix.\+c}}
@@ -1132,7 +1132,7 @@ Definition at line 789 of file posix.\+c.
 
 
 
-Referenced by lif\+\_\+opendir(), and lif\+\_\+readdir().
+Referenced by lif\+\_\+read().
 
 \index{posix.\+c@{posix.\+c}!free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}}
 \index{free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}!posix.\+c@{posix.\+c}}
@@ -1206,7 +1206,7 @@ Definition at line 536 of file posix.\+c.
 
 
 
-Referenced by fsetpos(), lif\+\_\+readdir(), and rewind().
+Referenced by fsetpos(), lif\+\_\+read(), lif\+\_\+write(), and rewind().
 
 \index{posix.\+c@{posix.\+c}!fsetpos@{fsetpos}}
 \index{fsetpos@{fsetpos}!posix.\+c@{posix.\+c}}
@@ -1349,7 +1349,7 @@ Definition at line 854 of file posix.\+c.
 
 
 
-Referenced by lif\+\_\+create\+\_\+image(), and receive\+\_\+plot\+\_\+flush().
+Referenced by fatfs\+\_\+tests(), lif\+\_\+create\+\_\+image(), lif\+\_\+write(), and receive\+\_\+plot\+\_\+flush().
 
 \index{posix.\+c@{posix.\+c}!getchar@{getchar}}
 \index{getchar@{getchar}!posix.\+c@{posix.\+c}}
@@ -1530,7 +1530,7 @@ Definition at line 1309 of file posix.\+c.
 
 
 
-Referenced by dump\+\_\+stat(), and ls\+\_\+info().
+Referenced by dump\+\_\+stat(), and fatfs\+\_\+ls().
 
 \index{posix.\+c@{posix.\+c}!mkdir@{mkdir}}
 \index{mkdir@{mkdir}!posix.\+c@{posix.\+c}}
@@ -1637,7 +1637,7 @@ Definition at line 1689 of file posix.\+c.
 
 
 
-Referenced by ls().
+Referenced by fatfs\+\_\+ls().
 
 \index{posix.\+c@{posix.\+c}!perror@{perror}}
 \index{perror@{perror}!posix.\+c@{posix.\+c}}
@@ -1883,7 +1883,7 @@ Definition at line 1708 of file posix.\+c.
 
 
 
-Referenced by ls().
+Referenced by fatfs\+\_\+ls().
 
 \index{posix.\+c@{posix.\+c}!rename@{rename}}
 \index{rename@{rename}!posix.\+c@{posix.\+c}}
@@ -2011,7 +2011,7 @@ Definition at line 1330 of file posix.\+c.
 
 
 
-Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), fatfs\+\_\+tests(), find\+\_\+volume(), format\+\_\+drives(), lif\+\_\+opendir(), ls(), ls\+\_\+info(), and mmc\+\_\+test().
+Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), fatfs\+\_\+ls(), fatfs\+\_\+tests(), find\+\_\+volume(), format\+\_\+drives(), lif\+\_\+stat(), and mmc\+\_\+test().
 
 \index{posix.\+c@{posix.\+c}!strerror@{strerror}}
 \index{strerror@{strerror}!posix.\+c@{posix.\+c}}

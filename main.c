@@ -26,6 +26,7 @@
 #include "gpib/printer.h"
 #include "gpib/amigo.h"
 #include "gpib/ss80.h"
+#include "gpib/lifutils.h"
 
 #include <math.h>
 
@@ -42,6 +43,7 @@ void help()
     printf("ifc\n");
     gpib_help();
     fatfs_help();
+    lif_help();
 }
 
 
@@ -204,6 +206,9 @@ void task(char *line, int max, uint8_t gpib)
     if(gpib_tests(ptr))
         return;
 
+    if(lif_tests(ptr))
+        return;
+
     if ( (len = token(ptr,"delay_tests")) )
     {
         delay_tests();
@@ -332,7 +337,7 @@ int main(void)
 
 	sep();
 	///@brief Display debug level
-    printf("debuglevel   = %02xH\n",(int)debuglevel);
+    printf("debuglevel   = %04xH\n",(int)debuglevel);
 
 	sep();
 	printf("Starting GPIB TASK\n");

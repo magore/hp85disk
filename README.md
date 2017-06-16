@@ -253,6 +253,21 @@ ___
       Will list all avalable commands and options
 
    * Examples:
+      * lifadd
+      <pre>
+         # Adds a translated ASCII file stored on SD card into a LIF disk image on the SD card
+         # Used to import files into the HP85 disk images
+         lifadd /amigo1.lif TEST1 /test.bas
+      </pre>
+
+      * lifcreate
+      <pre>
+         # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         format /amigo3.lif AMIGO3 15 1120
+         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+         Formating: wrote:[1120] sectors
+      </pre>
+
       * lifdir 
       <pre>
         lifdir /amigo1.lif
@@ -270,14 +285,6 @@ ___
         Purged:           0
         Used Sectors:   11H
         First Free:     21H
-      </pre>
-
-      * format
-      <pre>
-         # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         format /amigo3.lif AMIGO3 15 1120
-         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
-         Formating: wrote:[1120] sectors
       </pre>
 ___ 
 

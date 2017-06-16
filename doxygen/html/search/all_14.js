@@ -33,6 +33,7 @@ var searchData=
   ['unl',['UNL',['../amigo_8h.html#a2853286c50783f39131810ec2b0e9610',1,'UNL():&#160;amigo.h'],['../defines_8h.html#a2853286c50783f39131810ec2b0e9610',1,'UNL():&#160;defines.h']]],
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['unt',['UNT',['../amigo_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;amigo.h'],['../defines_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;defines.h']]],
+  ['upload_5ffile',['upload_file',['../fatfs__utils_8h.html#ab26c70db434254f4b980768395d1f89f',1,'fatfs_utils.h']]],
   ['used',['used',['../structlifdir__t.html#a20f303d91cccc01286974be1ee064a8f',1,'lifdir_t']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]

@@ -20,7 +20,7 @@ var searchData=
   ['tm_5fwday',['tm_wday',['../structtm.html#afe81a8c46f1c693c43f259b288859f4f',1,'tm']]],
   ['tm_5fyday',['tm_yday',['../structtm.html#a93a0ba77cc23796df84405dcbcc57eb1',1,'tm']]],
   ['tm_5fyear',['tm_year',['../structtm.html#a33adf78fd6476b2120ce3b9c4a852053',1,'tm']]],
-  ['tracks_5fper_5fside',['tracks_per_side',['../structVolumeLabelType.html#a590051c8debbe3d157761235c0e80d79',1,'VolumeLabelType']]],
+  ['tracks_5fper_5fside',['tracks_per_side',['../structlifvol__t.html#aae9e5135f98b80312eb785ac3747fc31',1,'lifvol_t']]],
   ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['tv_5fnsec',['tv_nsec',['../structtimespec.html#ae3c7510dafa8cbcaede866ed13c99683',1,'timespec']]],
   ['tv_5fsec',['tv_sec',['../structtimeval.html#aef6ddab1064c430758f9f913b7e4a21e',1,'timeval::tv_sec()'],['../structtimespec.html#afc3302668d7cb5952f590da69fdd4955',1,'timespec::tv_sec()']]],

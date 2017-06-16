@@ -12,7 +12,7 @@ var searchData=
   ['_5fcs_5fpin',['_cs_pin',['../hal_8c.html#a1d1ec6333b265b4dd659ee605a2421de',1,'hal.c']]],
   ['_5fde',['_de',['../posix_8c.html#a42837e7607f8e3b8ae74286253989724',1,'posix.c']]],
   ['_5fdp',['_dp',['../posix_8c.html#ae5badb2fbda49f0741042e68c364532b',1,'posix.c']]],
-  ['_5flifdir',['_lifdir',['../format_8c.html#a21b7472d17feca1b2680863dacd8e133',1,'format.c']]],
+  ['_5flifdir',['_lifdir',['../lifutils_8c.html#a21b7472d17feca1b2680863dacd8e133',1,'lifutils.c']]],
   ['_5fmmc_5fclock',['_mmc_clock',['../mmc__hal_8c.html#a72ddc159b1a36ffda342f0f2d5c144f4',1,'mmc_hal.c']]],
   ['_5fmmc_5fpre',['_mmc_pre',['../mmc__hal_8c.html#adc0a07c5ad80e8ecbabee0cf04a1564e',1,'mmc_hal.c']]],
   ['_5fmmc_5ftimeout',['_mmc_timeout',['../mmc__hal_8c.html#abf71973875545f3b42702ac99d5d87ef',1,'mmc_hal.c']]],

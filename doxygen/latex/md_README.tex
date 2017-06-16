@@ -369,6 +369,21 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item help Will list all avalable commands and options
 \item Examples\+:
 \begin{DoxyItemize}
+\item lifadd 
+\begin{DoxyPre}
+         \# Adds a translated ASCII file stored on SD card into a LIF disk image on the SD card
+         \# Used to import files into the HP85 disk images
+         lifadd /amigo1.lif TEST1 /test.bas
+      \end{DoxyPre}
+
+\item lifcreate 
+\begin{DoxyPre}
+         \# formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         format /amigo3.lif AMIGO3 15 1120
+         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+         Formating: wrote:[1120] sectors
+      \end{DoxyPre}
+
 \item lifdir 
 \begin{DoxyPre}
         lifdir /amigo1.lif
@@ -388,14 +403,6 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
         Purged:           0
         Used Sectors:   11H
         First Free:     21H
-      \end{DoxyPre}
-
-\item format 
-\begin{DoxyPre}
-         \# formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         format /amigo3.lif AMIGO3 15 1120
-         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
-         Formating: wrote:[1120] sectors
       \end{DoxyPre}
  
 
@@ -627,7 +634,7 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \begin{DoxyItemize}
 \item General Drive Parameters Documentation for all known drive types
 \end{DoxyItemize}
-\item \hyperlink{format_8c}{gpib/format.\+c}
+\item gpib/format.\+c
 \begin{DoxyItemize}
 \item L\+IF format and file utilities
 \end{DoxyItemize}

@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['sort_2ec',['sort.c',['../sort_8c.html',1,'']]],
-  ['sort_2eh',['sort.h',['../sort_8h.html',1,'']]],
-  ['spi_2ec',['spi.c',['../spi_8c.html',1,'']]],
-  ['spi_2eh',['spi.h',['../spi_8h.html',1,'']]],
-  ['ss80_2ec',['ss80.c',['../ss80_8c.html',1,'']]],
-  ['ss80_2eh',['ss80.h',['../ss80_8h.html',1,'']]],
-  ['sscanf_2ec',['sscanf.c',['../sscanf_8c.html',1,'']]],
-  ['stringsup_2ec',['stringsup.c',['../stringsup_8c.html',1,'']]],
-  ['stringsup_2eh',['stringsup.h',['../stringsup_8h.html',1,'']]]
+  ['ram_2ec',['ram.c',['../ram_8c.html',1,'']]],
+  ['ram_2eh',['ram.h',['../ram_8h.html',1,'']]],
+  ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
+  ['rs232_2ec',['rs232.c',['../rs232_8c.html',1,'']]],
+  ['rs232_2eh',['rs232.h',['../rs232_8h.html',1,'']]],
+  ['rtc_2ec',['rtc.c',['../rtc_8c.html',1,'']]],
+  ['rtc_2eh',['rtc.h',['../rtc_8h.html',1,'']]]
 ];

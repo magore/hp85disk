@@ -22,7 +22,7 @@
 #include "gpib_tests.h"
 #include "stringsup.h"
 #include "printer.h"
-#include "format.h"
+#include "lifutils.h"
 
 
 /// @brief 
@@ -36,12 +36,10 @@ void gpib_help()
 		"addresses\n"
 		"config\n"
 		"debug N\n"
-		"format image label directory_sectors sectors\n"
         "gpib_elapsed\n"
         "gpib_elapsed_reset\n"
         "gpib_task\n"
         "gpib_trace filename.txt\n"
-        "lifdir\n"
         "plot_echo address\n   Intruct device to send a plot\n"
         "plot filename.txt\n"
         "ppr_bit_on N\n"
@@ -52,10 +50,9 @@ void gpib_help()
 }
 
 
-/// @brief 
+/// @brief GPIB user tests
 ///  User invoked GPIB functions and tasks
 /// @return  1 matched token, 0 if not
-
 int gpib_tests(char *str)
 {
 
@@ -79,38 +76,7 @@ int gpib_tests(char *str)
     {
         ptr += len;
 		debuglevel=get_value(ptr);
-        printf("debug=%02XH\n", debuglevel);
-        return(1);
-    }
-    else if ((len = token(ptr,"format")) )
-    {
-		char name[64],label[6];
-		char num[12];
-		long dirsecs, sectors, result;
-
-        ptr += len;
-
-		// IMAGE name
-		ptr = get_token(ptr, name, 63);
-
-		// IMAGE LABEL
-		ptr = get_token(ptr, label, 7);
-
-		// Directory Sectors
-		ptr = get_token(ptr, num, 11);
-        dirsecs = atol(num);
-
-		// Image total Sectors
-		ptr = get_token(ptr, num, 11);
-        sectors= atol(num);
-		
-		///@brief format LIF image
-		result = lif_create_image(name,label,dirsecs,sectors);
-		if(result != sectors)
-		{
-			if(debuglevel & 1)
-				printf("create_format_image: failed\n");
-		}
+        printf("debug=%04XH\n", debuglevel);
         return(1);
     }
     else if ((len = token(ptr,"gpib_elapsed_reset")) )
@@ -138,15 +104,6 @@ int gpib_tests(char *str)
         gpib_trace_task(ptr);
         return(1);
     }
-    else if ((len = token(ptr,"lifdir")) )
-    {
-		char name[64];
-        ptr += len;
-		// IMAGE name
-		ptr = get_token(ptr, name, 63);
-		lif_dir(name);
-		return(1);
-	}
     else if ((len = token(ptr,"plot_echo")) )
     {
         int option;

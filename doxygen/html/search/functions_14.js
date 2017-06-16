@@ -19,5 +19,6 @@ var searchData=
   ['uart_5ftx_5fbyte',['uart_tx_byte',['../rs232_8c.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c']]],
   ['uart_5fubr',['uart_ubr',['../rs232_8c.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c'],['../rs232_8h.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c']]],
   ['ungetc',['ungetc',['../posix_8c.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c'],['../posix_8h.html#af979e8f6598be71d68be7cc49a41626b',1,'ungetc(int c, FILE *stream):&#160;posix.c']]],
-  ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]]
+  ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
+  ['upload_5ffile',['upload_file',['../fatfs__utils_8h.html#ab26c70db434254f4b980768395d1f89f',1,'fatfs_utils.h']]]
 ];

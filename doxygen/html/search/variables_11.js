@@ -4,10 +4,10 @@ var searchData=
   ['secondary',['secondary',['../gpib_8c.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c'],['../gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8',1,'secondary():&#160;gpib.c']]],
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['sector',['sector',['../structAMIGOStateType.html#a90615dad99e4fb6852b176bf6712f40b',1,'AMIGOStateType']]],
-  ['sectors_5fper_5ftrack',['sectors_per_track',['../structVolumeLabelType.html#a0014a4795dfcf4117212bba590fc889e',1,'VolumeLabelType::sectors_per_track()'],['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()']]],
-  ['sectorsize',['SectorSize',['../structDirEntryType.html#ab92ab53cd08e0ffe0f0098c583ce5eba',1,'DirEntryType']]],
+  ['sectors_5fper_5ftrack',['SECTORS_PER_TRACK',['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()'],['../structlifvol__t.html#ad245f7419e180934262f53acd9b4349c',1,'lifvol_t::sectors_per_track()']]],
+  ['sectorsize',['SectorSize',['../structlifdirent__t.html#a4c2a8fab6d73c7f1baa502c1ebef8658',1,'lifdirent_t']]],
   ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
-  ['sides',['sides',['../structVolumeLabelType.html#ac1e0f088685c022ec1974cb6fa4d255c',1,'VolumeLabelType']]],
+  ['sides',['sides',['../structlifvol__t.html#a5b8ecfb441b010f69cb90b923cc50719',1,'lifvol_t']]],
   ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
   ['space',['space',['../unionf__t.html#aba20a97e95d14a076e9c175989022717',1,'f_t']]],
   ['spi0_5finit_5fstate',['SPI0_Init_state',['../spi_8c.html#a4d167d8fd3bcfa0504b201183b94449b',1,'spi.c']]],
@@ -38,5 +38,5 @@ var searchData=
   ['status',['status',['../structAMIGOStateType.html#a20ecb3cbbcb1fe4746c2d38edc125412',1,'AMIGOStateType']]],
   ['str',['str',['../structp__ch__t.html#aa3c8616342a2717bc714bf1b6d00516f',1,'p_ch_t']]],
   ['sys_5ferrlist',['sys_errlist',['../posix_8c.html#a76ebfe24a40210e5935998c1fa86d3a0',1,'posix.c']]],
-  ['system3000lifid',['System3000LIFid',['../structVolumeLabelType.html#a08ea76c4d6e860804d6cfd24174d301f',1,'VolumeLabelType']]]
+  ['system3000lifid',['System3000LIFid',['../structlifvol__t.html#a98097f8c951448cbab6019b7b703e4d0',1,'lifvol_t']]]
 ];
