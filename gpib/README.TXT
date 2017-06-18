@@ -6,3 +6,4 @@ gpib_tests.c gpib user tests
 ss80.c SS80 drive emulation state machine
 amigo.c AMIGO drive emulation state machine
 printer.c PRINTER capture
+lifutils.c LIF image functions, directory listing and file adding

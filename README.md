@@ -255,11 +255,12 @@ ___
    * Examples:
       * lifadd
       <pre>
-         # Adds a translated ASCII file stored on SD card into a LIF disk image on the SD card
+         # Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          # Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
+         lifadd /amigo1.lif TREK85 /TREK85.BAS
+			# Note: this takes a LONG time > 10 minutes!
       </pre>
-
       * lifcreate
       <pre>
          # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
