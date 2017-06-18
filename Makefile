@@ -38,7 +38,7 @@ fatfs.hal/diskio.c  \
 fatfs.hal/mmc.c  \
 fatfs.hal/mmc_hal.c  \
 fatfs.sup/fatfs_sup.c  \
-fatfs.sup/posix.c
+fatfs.sup/posix.c 
 
 
 ifeq ($(FATFS_TESTS),1)

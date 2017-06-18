@@ -92,7 +92,9 @@ ___
  * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030)
    * 5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf
 ___
-
+## TREK85 Martin Hepperle, December 2015
+ * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+___
 
 ## FatFs Copyright &copy; 2013, ChaN, all right reserved.
 

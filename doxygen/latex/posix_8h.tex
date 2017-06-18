@@ -341,7 +341,7 @@ struct \hyperlink{structdirent}{dirent} $\ast$ \hyperlink{posix_8h_a58257faf8b13
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8h_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen} (int($\ast$put)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$), int($\ast$get)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$))
 \begin{DoxyCompactList}\small\item\em Device open functions. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
-\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
 \begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc()} to put a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc()} \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ac20f0fc565c27bbbb900bde3337b09b9}{fatfs\+\_\+to\+\_\+errno} (\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} Result)
@@ -1627,7 +1627,7 @@ epoch seconds
 \end{DoxyReturn}
 
 
-Definition at line 2082 of file posix.\+c.
+Definition at line 2083 of file posix.\+c.
 
 
 
@@ -1642,7 +1642,7 @@ Referenced by stat().
 )}\hypertarget{posix_8h_a5811041feb43c22c6e609a8875475abc}{}\label{posix_8h_a5811041feb43c22c6e609a8875475abc}
 
 
-Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} 
+Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} 
 
 
 \begin{DoxyItemize}
@@ -1662,7 +1662,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1884 of file posix.\+c.
+Definition at line 1885 of file posix.\+c.
 
 
 
@@ -1700,7 +1700,7 @@ E\+OF on error with errno set.
 \end{DoxyReturn}
 
 
-Definition at line 1929 of file posix.\+c.
+Definition at line 1930 of file posix.\+c.
 
 
 
@@ -1734,7 +1734,7 @@ E\+B\+A\+D\+M\+SG if no conversion possible.
 \end{DoxyReturn}
 
 
-Definition at line 1969 of file posix.\+c.
+Definition at line 1970 of file posix.\+c.
 
 
 
@@ -1763,7 +1763,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2045 of file posix.\+c.
+Definition at line 2046 of file posix.\+c.
 
 \index{posix.\+h@{posix.\+h}!fclose@{fclose}}
 \index{fclose@{fclose}!posix.\+h@{posix.\+h}}
@@ -1797,7 +1797,7 @@ Definition at line 1225 of file posix.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+ascii2lif(), lif\+\_\+create\+\_\+image(), lif\+\_\+read(), lif\+\_\+write(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+close(), and timetests().
+Referenced by buffer\+\_\+read\+\_\+close(), fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+ascii2lif(), lif\+\_\+create\+\_\+image(), lif\+\_\+read(), lif\+\_\+write(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+close(), and timetests().
 
 \index{posix.\+h@{posix.\+h}!fdevopen@{fdevopen}}
 \index{fdevopen@{fdevopen}!posix.\+h@{posix.\+h}}
@@ -2045,7 +2045,7 @@ N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 2109 of file posix.\+c.
+Definition at line 2110 of file posix.\+c.
 
 
 
@@ -2124,7 +2124,7 @@ Definition at line 768 of file posix.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+create\+\_\+image(), lif\+\_\+open(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+open(), and timetests().
+Referenced by buffer\+\_\+read\+\_\+open(), fatfs\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+create\+\_\+image(), lif\+\_\+open(), Mat\+Read(), Mat\+Write(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+open(), and timetests().
 
 \index{posix.\+h@{posix.\+h}!fprintf@{fprintf}}
 \index{fprintf@{fprintf}!posix.\+h@{posix.\+h}}
@@ -2153,7 +2153,7 @@ size of printed result
 \end{DoxyReturn}
 
 
-Definition at line 2317 of file posix.\+c.
+Definition at line 2318 of file posix.\+c.
 
 
 
@@ -2262,7 +2262,7 @@ Definition at line 789 of file posix.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), and lif\+\_\+read().
+Referenced by buffer\+\_\+getc(), fatfs\+\_\+tests(), and lif\+\_\+read().
 
 \index{posix.\+h@{posix.\+h}!free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}}
 \index{free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}!posix.\+h@{posix.\+h}}
@@ -2287,7 +2287,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2144 of file posix.\+c.
+Definition at line 2145 of file posix.\+c.
 
 
 
@@ -2715,7 +2715,7 @@ fileno on success.
 \end{DoxyReturn}
 
 
-Definition at line 2188 of file posix.\+c.
+Definition at line 2189 of file posix.\+c.
 
 
 
@@ -2868,7 +2868,7 @@ read and write B\+O\+TH share the same stream buffer and buffer index pointers.
 \end{DoxyWarning}
 
 
-Definition at line 2251 of file posix.\+c.
+Definition at line 2252 of file posix.\+c.
 
 
 

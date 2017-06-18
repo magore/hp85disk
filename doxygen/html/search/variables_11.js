@@ -8,7 +8,7 @@ var searchData=
   ['sectorsize',['SectorSize',['../structlifdirent__t.html#a4c2a8fab6d73c7f1baa502c1ebef8658',1,'lifdirent_t']]],
   ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
   ['sides',['sides',['../structlifvol__t.html#a5b8ecfb441b010f69cb90b923cc50719',1,'lifvol_t']]],
-  ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
+  ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../structbuffer__t.html#a34e81d898c6accf4f06ed9c1133d6361',1,'buffer_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
   ['space',['space',['../unionf__t.html#aba20a97e95d14a076e9c175989022717',1,'f_t']]],
   ['spi0_5finit_5fstate',['SPI0_Init_state',['../spi_8c.html#a4d167d8fd3bcfa0504b201183b94449b',1,'spi.c']]],
   ['spi0_5fmode_5fvalue',['SPI0_Mode_value',['../spi_8c.html#ae41154cf3f834c2d151bfa9e67cfc402',1,'spi.c']]],

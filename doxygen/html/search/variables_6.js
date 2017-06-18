@@ -15,7 +15,7 @@ var searchData=
   ['flags',['flags',['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
   ['fn',['fn',['../structDIR.html#ad90d974c0e7640307598c586bf141b32',1,'DIR']]],
   ['fname',['fname',['../structFILINFO.html#a7c3ce2dd03dc9a9726967fc43116079f',1,'FILINFO']]],
-  ['fp',['fp',['../structPRINTERStateType.html#a791c78d68d169f9d2e60d34b890e520a',1,'PRINTERStateType::fp()'],['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()']]],
+  ['fp',['fp',['../structPRINTERStateType.html#a791c78d68d169f9d2e60d34b890e520a',1,'PRINTERStateType::fp()'],['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()'],['../structbuffer__t.html#a00a55014e0827223c41b1b1d56e5be5d',1,'buffer_t::fp()']]],
   ['fp_5ffile',['fp_file',['../gpib__task_8c.html#aa82c05f8b2bc31c887ebb86caddec02a',1,'gpib_task.c']]],
   ['fptr',['fptr',['../structFIL.html#a088b03ab2e02f82e10e17bdd938190a6',1,'FIL']]],
   ['free_5fclst',['free_clst',['../structFATFS.html#ac834248773bf338df807f0d7e6b6a579',1,'FATFS']]],

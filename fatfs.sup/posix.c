@@ -1870,6 +1870,7 @@ fdevopen(int (*put)(char, FILE *), int (*get)(FILE *))
 // =============================================
 
 /// @brief Private FatFs function called by fgetc() to get a byte from file stream
+/// FIXME buffer this function call
 /// NOT POSIX
 /// open() assigns stream->get = fatfs_getc() 
 ///

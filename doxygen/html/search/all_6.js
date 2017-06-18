@@ -135,7 +135,7 @@ var searchData=
   ['follow_5fpath',['follow_path',['../ff_8c.html#a908a7f4673078575c176cefd15ceecf4',1,'ff.c']]],
   ['fopen',['fopen',['../posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c'],['../posix_8h.html#a8e661c338f41695d1a1e70aed6255e2d',1,'fopen(const char *path, const char *mode):&#160;posix.c']]],
   ['format_5fdrives',['format_drives',['../drives_8c.html#ade13ccf70ad5e99d4c3f6e06e8c4796b',1,'format_drives():&#160;drives.c'],['../drives_8h.html#ae5e26f65c0c469c7ad467201a7591fad',1,'format_drives(void):&#160;drives.c']]],
-  ['fp',['fp',['../structPRINTERStateType.html#a791c78d68d169f9d2e60d34b890e520a',1,'PRINTERStateType::fp()'],['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()']]],
+  ['fp',['fp',['../structPRINTERStateType.html#a791c78d68d169f9d2e60d34b890e520a',1,'PRINTERStateType::fp()'],['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()'],['../structbuffer__t.html#a00a55014e0827223c41b1b1d56e5be5d',1,'buffer_t::fp()']]],
   ['fp_5ffile',['fp_file',['../gpib__task_8c.html#aa82c05f8b2bc31c887ebb86caddec02a',1,'gpib_task.c']]],
   ['fprintf',['fprintf',['../posix_8c.html#a91ade11061b9b43b1edd37ff32f76591',1,'fprintf(FILE *fp, const char *format,...):&#160;posix.c'],['../posix_8h.html#a91ade11061b9b43b1edd37ff32f76591',1,'fprintf(FILE *fp, const char *format,...):&#160;posix.c']]],
   ['fptr',['fptr',['../structFIL.html#a088b03ab2e02f82e10e17bdd938190a6',1,'FIL']]],

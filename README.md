@@ -258,8 +258,9 @@ ___
          # Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          # Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
-         lifadd /amigo1.lif TREK85 /TREK85.BAS
+         lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
 			# Note: this takes a LONG time > 10 minutes!
+            # Intial start time after run is > 10 seconds
       </pre>
       * lifcreate
       <pre>
@@ -562,4 +563,11 @@ ___
     * My HP85 plot capture files
         * sdcard/plot1.plt
         * sdcard/plot2.plt
-___ 
+    * TREK85/
+	  * TREK85 by Martin Hepperle, December 2015
+	  * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+        * author.txt  
+        * readme.txt	
+        * Star Trek.pdf  
+        * TREK85.BAS  
+        * trek.lif

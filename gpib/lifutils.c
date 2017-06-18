@@ -673,9 +673,10 @@ int lif_dir(char *lifimagename)
 int lif_write_pad(lifdir_t *DIR, long offset)
 {
 	int i, len, pad;
-	uint8_t buf[LIF_SECTOR_SIZE];
+	uint8_t buf[LIF_SECTOR_SIZE+1];
 
 	pad = LIF_SECTOR_SIZE - (offset % LIF_SECTOR_SIZE);
+
 	if(DIR && pad < LIF_SECTOR_SIZE)
 	{
 		buf[0]  = 0xef;
@@ -719,14 +720,14 @@ int lif_write_pad(lifdir_t *DIR, long offset)
 /// @param[in] offset: offset to write to
 /// @param[in] str: string to write
 /// @return wtite size in bytes,  -1 on error
-int lif_write_string(lifdir_t *DIR, long offset, char *str)
+int lif_write_string(lifdir_t *DIR, long offset, void *str)
 {
 	int size;
 	int bytes;
 	int len;
 	int pad;
 
-	uint8_t buf[LIF_SECTOR_SIZE];
+	uint8_t buf[LIF_SECTOR_SIZE+1];
 
 	bytes = 0;
 
@@ -748,11 +749,10 @@ int lif_write_string(lifdir_t *DIR, long offset, char *str)
 		offset += pad;
 	}
 
-
 	// Now Write string
 	if(DIR)
 	{
-		strncpy((char *)buf+3,str, size);
+		strncpy((char *)buf+3,(char *)str, size);
 		// Insert LIF header into buffer ( distance to next record )
 		buf[0] = 0xdf;
 		buf[1] = len & 0xff;
@@ -785,13 +785,12 @@ long lif_ascii2lif(char *name, lifdir_t *DIR)
 	long offset;
 	long bytes;
 	int count;
-
 	int ind;
 	FILE *fi;
 
-	char str[LIF_SECTOR_SIZE];
+	uint8_t str[LIF_SECTOR_SIZE+1];
 
-	fi = lif_open(name,"r");
+	fi = lif_open(name, "r");
 	if(fi == NULL)
 		return(-1);
 
@@ -806,11 +805,12 @@ long lif_ascii2lif(char *name, lifdir_t *DIR)
 
 	count = 0;
 	// Read user file and write LIF records
-	// reserve 3 LIF header bytes
-	while( fgets(str,(int)sizeof(str)-4, fi) != NULL )
+	// reserve 3 LIF header bytes + 1
+	while( fgets((char *)str,(int)sizeof(str)-4, fi) != NULL )
 	{
-		trim_tail(str);
-		strcat(str,"\r"); // HP85 lines end with "\r"
+		trim_tail((char *)str);
+
+		strcat((char *)str,"\r"); // HP85 lines end with "\r"
 
 		// Write string
 		ind = lif_write_string(DIR, offset, str);
@@ -834,13 +834,13 @@ long lif_ascii2lif(char *name, lifdir_t *DIR)
 		}
 	}
 
+	fclose(fi);
+
+	str[0] = 0;
 	// Write EOF string
-	ind = lif_write_string(DIR, offset, "");
+	ind = lif_write_string(DIR, offset, str);
 	if(ind < 0)
-	{
-		fclose(fi);
 		return(-1);
-	}
 
 	offset += ind;
 	bytes += ind;
@@ -850,8 +850,6 @@ long lif_ascii2lif(char *name, lifdir_t *DIR)
 	ind = lif_write_pad(DIR, offset);
 	if(ind < 0)
 		return(-1);
-
-	fclose(fi);
 
 	// we do not add pdd to offsets of size at the file end
 
@@ -896,7 +894,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 	}
 
 	if(debuglevel & 0x400)
-		printf("LIF image:[%s], LIF name:[%s], user file::[%s]\n", 
+		printf("LIF image:[%s], LIF name:[%s], user file:[%s]\n", 
 			lifimagename, lifname, userfile);
 
 	// Find out how big converted file will be

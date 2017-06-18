@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['p_5fch_5ft',['p_ch_t',['../structp__ch__t.html',1,'']]],
-  ['printerdevicetype',['PRINTERDeviceType',['../structPRINTERDeviceType.html',1,'']]],
-  ['printerstatetype',['PRINTERStateType',['../structPRINTERStateType.html',1,'']]],
-  ['putbuff',['putbuff',['../structputbuff.html',1,'']]]
+  ['lifdir_5ft',['lifdir_t',['../structlifdir__t.html',1,'']]],
+  ['lifdirent_5ft',['lifdirent_t',['../structlifdirent__t.html',1,'']]],
+  ['lifvol_5ft',['lifvol_t',['../structlifvol__t.html',1,'']]]
 ];

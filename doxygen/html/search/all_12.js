@@ -59,7 +59,7 @@ var searchData=
   ['setup_5fclock',['setup_clock',['../main_8c.html#aaad9fc8eb63b077e9ad3d72a2092f27c',1,'main.c']]],
   ['short',['SHORT',['../integer_8h.html#a9909bd3cf05f0906045f2ee85be4eeac',1,'integer.h']]],
   ['sides',['sides',['../structlifvol__t.html#a5b8ecfb441b010f69cb90b923cc50719',1,'lifvol_t']]],
-  ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
+  ['size',['size',['../struct__mat.html#ab54203ad7b60fc23832cb3b2a863857f',1,'_mat::size()'],['../structqueue__t.html#a83a13b888f9d4ef127d706559818b779',1,'queue_t::size()'],['../structbuffer__t.html#a34e81d898c6accf4f06ed9c1133d6361',1,'buffer_t::size()'],['../struct____file.html#aff4a1ca8b6a12460812928afae81248d',1,'__file::size()']]],
   ['size_5ft',['size_t',['../user__config_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee',1,'user_config.h']]],
   ['skipchars',['skipchars',['../stringsup_8c.html#aae86b90fc6ccc0c432de5c492cdcbaba',1,'skipchars(char *str, char *pat):&#160;stringsup.c'],['../stringsup_8h.html#aae86b90fc6ccc0c432de5c492cdcbaba',1,'skipchars(char *str, char *pat):&#160;stringsup.c']]],
   ['skipspaces',['skipspaces',['../stringsup_8c.html#a8cebaf955a9e3b5f1f2af105641dad40',1,'skipspaces(char *ptr):&#160;stringsup.c'],['../stringsup_8h.html#a8cebaf955a9e3b5f1f2af105641dad40',1,'skipspaces(char *ptr):&#160;stringsup.c']]],
