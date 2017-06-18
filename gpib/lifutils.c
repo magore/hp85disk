@@ -720,12 +720,14 @@ int lif_write_pad(lifdir_t *DIR, long offset)
 /// @param[in] offset: offset to write to
 /// @param[in] str: string to write
 /// @return wtite size in bytes,  -1 on error
-int lif_write_string(lifdir_t *DIR, long offset, void *str)
+int lif_write_string(lifdir_t *DIR, long offset, void *vptr)
 {
-	int size;
-	int bytes;
+	int ind;
 	int len;
-	int pad;
+	int bytes;
+	int pos,rem;
+	
+	char *str = vptr;
 
 	uint8_t buf[LIF_SECTOR_SIZE+1];
 
@@ -733,40 +735,101 @@ int lif_write_string(lifdir_t *DIR, long offset, void *str)
 
 	// String size
 	len = strlen(str);
-	size = len + 3;
 
 	// Compute the current offset in this sector
-	pad = (offset % LIF_SECTOR_SIZE);
+	pos = (offset % LIF_SECTOR_SIZE);
 
-	// Would writting the string and its header overflow  this sector ?
-	// If so, then pad this sector and write, then write string in next sector
-	if((pad + size) > LIF_SECTOR_SIZE)
+	// Number of bytes free in this sector
+	rem = LIF_SECTOR_SIZE - pos;
+
+	// buffer index
+	ind = 0;
+
+	// Does the string + header fit ?
+	if(rem < (3 + len))
 	{
-		pad = lif_write_pad(DIR, offset);
-		if(pad < 0)
-			return(-1);
-		bytes += pad;
-		offset += pad;
-	}
+		// If we split a string we end up writting two headers
+		//  So for less then 6 bytes is no point splitting those strings
+		//  We just pad and write the string in the next sector
+		//  
+		if(rem < 6)
+		{
+			// PAD
+			buf[ind++] = 0xef;
+			while(ind<rem)
+				buf[ind++] = 0xff;
 
+			// NEW SECTOR
+			// Debugging make sure we are at sector boundry
+			if(((offset + ind)  % LIF_SECTOR_SIZE))
+			{
+				printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
+				return(-1);
+			}
+			// Write string in new sector
+			// The full string + header will fit
+			buf[ind++] = 0xdf;
+			buf[ind++] = len & 0xff;
+			buf[ind++] = (len >> 8) & 0xff;
+			// Write string
+			while(*str)
+				buf[ind++] = *str++;
+		}
+		else
+		{
+			// Split string
+			// String spans sector , so split the string
+			// Split string Header
+			buf[ind++] = 0xcf;
+			buf[ind++] = len & 0xff;
+			buf[ind++] = (len >>8) & 0xff;
+			// Write as much of the string as we can in this sector
+			while(*str && ind<rem)
+				buf[ind++] = *str++;
+
+			// NEW SECTOR
+			// Debugging make sure we are at sector boundry
+			if(((offset + ind)  % LIF_SECTOR_SIZE))
+			{
+				printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
+				return(-1);
+			}
+
+			// Update remining string length
+			len = strlen(str);
+			// Write split string continuation heaader at start of new sector
+			buf[ind++] = 0x6c;
+			buf[ind++] = (len & 0xff);
+			buf[ind++] = (len>>8) & 0xff;
+			// Write string
+			while(*str)
+				buf[ind++] = *str++;
+		}
+	}
+	else 
+	{
+		// The full string + header will fit
+		buf[ind++] = 0xdf;
+		buf[ind++] = len & 0xff;
+		buf[ind++] = (len >> 8) & 0xff;
+		while(*str)
+			buf[ind++] = *str++;
+
+	}
 	// Now Write string
 	if(DIR)
 	{
-		strncpy((char *)buf+3,(char *)str, size);
-		// Insert LIF header into buffer ( distance to next record )
-		buf[0] = 0xdf;
-		buf[1] = len & 0xff;
-		buf[2] = (len >> 8) & 0xff;
 
-		len = lif_write(DIR->filename, buf, offset, size);
-		if(len < size)
+		len = lif_write(DIR->filename, buf, offset, ind);
+		if(len < ind)
 			return(-1);
 
 		if(debuglevel & 0x400)
 			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
 	}
 
-	bytes += size;
+	offset += ind;
+	bytes += ind;
 	return( bytes );
 }
 	

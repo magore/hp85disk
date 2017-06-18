@@ -65,7 +65,7 @@ int \hyperlink{lifutils_8c_aca0a37c5d186a795d821d7c05c87dcc5}{lif\+\_\+dir} (cha
 \begin{DoxyCompactList}\small\item\em Display a L\+IF image file directory. \end{DoxyCompactList}\item 
 int \hyperlink{lifutils_8c_ae077333ae15ec21e05b9da7f9b77e63a}{lif\+\_\+write\+\_\+pad} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR}, long offset)
 \begin{DoxyCompactList}\small\item\em Pad the current sector to the end When \hyperlink{structDIR}{D\+IR} is null we do not write, just compute the write size. \end{DoxyCompactList}\item 
-int \hyperlink{lifutils_8c_a9beff3d539e7a3c08e3e92cfdecc3fcb}{lif\+\_\+write\+\_\+string} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR}, long offset, void $\ast$str)
+int \hyperlink{lifutils_8c_af9c97ea233d2bbd2265ece4966246543}{lif\+\_\+write\+\_\+string} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR}, long offset, void $\ast$vptr)
 \begin{DoxyCompactList}\small\item\em H\+P85 A\+S\+C\+II L\+IF records have a 3 byte header ef \mbox{[}ff\mbox{]}$\ast$ = end of data in this sector (no size) , pad with ff\textquotesingle{}s optionally if there is room df size = string cf size = split accross sector end \char`\"{}6f size\char`\"{} at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) ef send of sector and optional padding size = 16 bits L\+SB M\+SB. \end{DoxyCompactList}\item 
 long \hyperlink{lifutils_8c_a31f61566ccec3e137c93b259d508ea11}{lif\+\_\+ascii2lif} (char $\ast$name, \hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR})
 \begin{DoxyCompactList}\small\item\em Convert a user A\+S\+C\+II file into H\+P85 0x\+E010 L\+IF format We must know the convered file size B\+E\+F\+O\+RE writting So we must call this function T\+W\+I\+CE 1) find out how big the converted file is (\hyperlink{structDIR}{D\+IR} is N\+U\+LL) 2) Specify where to put it (\hyperlink{structDIR}{D\+IR} is set) \end{DoxyCompactList}\item 
@@ -122,7 +122,7 @@ size of data written into to L\+IF image, or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 870 of file lifutils.\+c.
+Definition at line 933 of file lifutils.\+c.
 
 
 
@@ -152,7 +152,7 @@ size of L\+IF image in bytes, or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 783 of file lifutils.\+c.
+Definition at line 846 of file lifutils.\+c.
 
 
 
@@ -288,7 +288,7 @@ F\+I\+X\+ME this is the default that the H\+Pdrive project uses, not sure of thi
 
 Zero out remining disk image 
 
-Definition at line 962 of file lifutils.\+c.
+Definition at line 1025 of file lifutils.\+c.
 
 
 
@@ -904,17 +904,17 @@ Definition at line 673 of file lifutils.\+c.
 
 
 
-Referenced by lif\+\_\+ascii2lif(), and lif\+\_\+write\+\_\+pad().
+Referenced by lif\+\_\+ascii2lif().
 
 \index{lifutils.\+c@{lifutils.\+c}!lif\+\_\+write\+\_\+string@{lif\+\_\+write\+\_\+string}}
 \index{lif\+\_\+write\+\_\+string@{lif\+\_\+write\+\_\+string}!lifutils.\+c@{lifutils.\+c}}
-\subsubsection[{\texorpdfstring{lif\+\_\+write\+\_\+string(lifdir\+\_\+t $\ast$\+D\+I\+R, long offset, void $\ast$str)}{lif_write_string(lifdir_t *DIR, long offset, void *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+write\+\_\+string (
+\subsubsection[{\texorpdfstring{lif\+\_\+write\+\_\+string(lifdir\+\_\+t $\ast$\+D\+I\+R, long offset, void $\ast$vptr)}{lif_write_string(lifdir_t *DIR, long offset, void *vptr)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+write\+\_\+string (
 \begin{DoxyParamCaption}
 \item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR, }
 \item[{long}]{offset, }
-\item[{void $\ast$}]{str}
+\item[{void $\ast$}]{vptr}
 \end{DoxyParamCaption}
-)}\hypertarget{lifutils_8c_a9beff3d539e7a3c08e3e92cfdecc3fcb}{}\label{lifutils_8c_a9beff3d539e7a3c08e3e92cfdecc3fcb}
+)}\hypertarget{lifutils_8c_af9c97ea233d2bbd2265ece4966246543}{}\label{lifutils_8c_af9c97ea233d2bbd2265ece4966246543}
 
 
 H\+P85 A\+S\+C\+II L\+IF records have a 3 byte header ef \mbox{[}ff\mbox{]}$\ast$ = end of data in this sector (no size) , pad with ff\textquotesingle{}s optionally if there is room df size = string cf size = split accross sector end \char`\"{}6f size\char`\"{} at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) ef send of sector and optional padding size = 16 bits L\+SB M\+SB. 

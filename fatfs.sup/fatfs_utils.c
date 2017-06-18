@@ -325,7 +325,9 @@ void upload_file(char *name)
 
     while(1)
     {
-        len = get_line(buffer,254);
+        if(fgets(buffer,254,stdin) == NULL)
+			break;
+		len = strlen(buffer);
         if(len < 1)
             break;
         strcat(buffer,"\n");
