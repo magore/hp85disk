@@ -367,7 +367,7 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item Pressing any key will break out of the gpib task loop untill a command is entered
 \begin{DoxyItemize}
 \item help Will list all avalable commands and options
-\item Examples\+:
+\item Example commands
 \begin{DoxyItemize}
 \item lifadd 
 \begin{DoxyPre}
@@ -375,10 +375,26 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
          \# Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
          lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
-            \# Note: this takes a LONG time > 10 minutes!
-            \# Intial start time after run is > 10 seconds
       \end{DoxyPre}
 
+\begin{DoxyItemize}
+\item Notes about T\+R\+E\+K85
+\begin{DoxyItemize}
+\item Author\+: T\+R\+E\+K85 port was done by Martin Hepperle
+\item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241}
+\begin{DoxyItemize}
+\item To load on H\+P85\+: G\+ET \char`\"{}\+T\+R\+E\+K85\+:\+D710\char`\"{}
+\begin{DoxyItemize}
+\item Note\+: G\+ET takes a L\+O\+NG time $>$ 10 minutes!
+\end{DoxyItemize}
+\item Assumes /amigo1.lif is \char`\"{}\+:\+D710\char`\"{}
+\begin{DoxyItemize}
+\item Intial R\+UN startup time is $>$ 40 seconds
+\end{DoxyItemize}
+\item Once S\+T\+O\+RE is used to save the load and run times are fast
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item lifcreate 
 \begin{DoxyPre}
          \# formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors

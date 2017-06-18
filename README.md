@@ -252,16 +252,22 @@ ___
    * help
       Will list all avalable commands and options
 
-   * Examples:
+   * Example commands
       * lifadd
       <pre>
          # Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          # Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
          lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
-			# Note: this takes a LONG time > 10 minutes!
-            # Intial start time after run is > 10 seconds
       </pre>
+         * Notes about TREK85
+           * Author: TREK85 port was done by Martin Hepperle
+           * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+             * To load on HP85: GET "TREK85:D710"
+               * Note: GET takes a LONG time > 10 minutes!
+             * Assumes /amigo1.lif is ":D710"
+               * Intial RUN startup time is > 40 seconds
+             * Once STORE is used to save the load and run times are fast
       * lifcreate
       <pre>
          # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
