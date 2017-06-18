@@ -57,7 +57,9 @@ void fatfs_help( void )
 		"copy file1 file2\n"
 		"create file str\n"
 #endif
-		"mmc_init\n"
+#ifdef POIX_WRAPPERS
+		"hexdump file\n");
+#endif
 		"mmc_test\n"
 		"ls dir\n"
 #ifdef POIX_WRAPPERS
@@ -107,59 +109,76 @@ int fatfs_tests(char *str)
 
     ptr = skipspaces(str);
 
-    if ((len = token(ptr,"mmc_test")) )
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"attrib")) )
     {
         ptr += len;
-        mmc_test();
-        return(1);
-    }
-    else if ((len = token(ptr,"mmc_init")) )
-    {
-        ptr += len;
-        mmc_init(1);
-        return(1);
-    }
-    else if ((len = token(ptr,"ls")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_ls(name1);
-        return(1);
-    }
-#ifdef POIX_WRAPPERS
-    else if ((len = token(ptr,"uls")) )
-    {
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        ls(name1,1);
+        ptr=skipspaces(ptr);
+        sscanf(ptr,"%lu %lu", &p1,&p2);
+        put_rc(f_chmod(ptr, p1, p2));
         return(1);
     }
 #endif
-    else if ((len = token(ptr,"ustat")) )
-    {
-		struct stat p;	
-        ptr += len;
-		ptr = get_token(ptr, name1, 126);
-		stat(name1, &p);                        // POSIX test
-		dump_stat(&p);
-        return(1);
-    }
-    else if ((len = token(ptr,"cat")) )
+    if ((len = token(ptr,"cat")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
         fatfs_cat(name1);
         return(1);
     }
-    else if ((len = token(ptr,"status")) )
+    if ((len = token(ptr,"create")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
-        fatfs_status(name1);
+        fatfs_create(name1,ptr);
         return(1);
     }
 #ifdef FATFS_UTILS_FULL
-    else if ((len = token(ptr,"mkfs")) )
+    if ((len = token(ptr,"copy")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+		ptr = get_token(ptr, name2, 126);
+        fatfs_copy(name1,name2);
+        return(1);
+    }
+#endif
+
+#if _FS_RPATH
+    if ((len = token(ptr,"cd")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_cd(name1);
+        return(1);
+    }
+#if _FS_RPATH >= 2
+    if ((len = token(ptr,"pwd")) )
+    {
+        fatfs_pwd();
+        return(1);
+    }
+#endif // #if _FS_RPATH 
+#endif // #if _FS_RPATH >= 2
+
+    if ( (len = token(ptr,"fatfs_help")) )
+    {
+        fatfs_help();
+        return(1);
+    }
+
+#ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"hexdump")) )
+    {
+        ptr += len;
+        ptr=skipspaces(ptr);
+        hexdump(ptr);
+        return(1);
+    }
+#endif
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"mkfs")) )
     {
         FATFS fs;
 		uint8_t *mem;
@@ -176,58 +195,59 @@ int fatfs_tests(char *str)
 		put_rc(res);
         return(1);
     }
-    else if ((len = token(ptr,"create")) )
+#endif
+    if ((len = token(ptr,"ls")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
-        fatfs_create(name1,ptr);
+        fatfs_ls(name1);
         return(1);
     }
-    else if ((len = token(ptr,"stat")) )
+
+    if ((len = token(ptr,"mmc_test")) )
     {
         ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_stat(name1);
+        mmc_test();
         return(1);
     }
-    else if ((len = token(ptr,"rm")) )
+    if ((len = token(ptr,"mmc_init")) )
     {
         ptr += len;
-		ptr = get_token(ptr, name1, 126);
-        fatfs_rm(name1);
+        mmc_init(1);
         return(1);
     }
-    else if ((len = token(ptr,"mkdir")) )
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"mkdir")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
         fatfs_mkdir(name1);
         return(1);
     }
-    else if ((len = token(ptr,"rmdir")) )
+#endif
+
+#ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"uls")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
-        fatfs_rmdir(name1);
+        ls(name1,1);
         return(1);
     }
-    else if ((len = token(ptr,"attrib")) )
+    if ((len = token(ptr,"ustat")) )
     {
-        ptr += len;
-        ptr=skipspaces(ptr);
-        sscanf(ptr,"%lu %lu", &p1,&p2);
-        put_rc(f_chmod(ptr, p1, p2));
-        return(1);
-    }
-    else if ((len = token(ptr,"copy")) )
-    {
+		struct stat p;	
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
-		ptr = get_token(ptr, name2, 126);
-        fatfs_copy(name1,name2);
+		stat(name1, &p);                        // POSIX test
+		dump_stat(&p);
         return(1);
     }
-    else if ((len = token(ptr,"rename")) )
+#endif
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"rename")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
@@ -235,30 +255,43 @@ int fatfs_tests(char *str)
         fatfs_rename(name1,name2);
         return(1);
     }
-#if _FS_RPATH
-    else if ((len = token(ptr,"cd")) )
+    if ((len = token(ptr,"rm")) )
     {
         ptr += len;
 		ptr = get_token(ptr, name1, 126);
-        fatfs_cd(name1);
+        fatfs_rm(name1);
         return(1);
     }
-#if _FS_RPATH >= 2
-    else if ((len = token(ptr,"pwd")) )
+    if ((len = token(ptr,"rmdir")) )
     {
-        fatfs_pwd();
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_rmdir(name1);
         return(1);
     }
-#endif // #if _FS_RPATH 
-#endif // #if _FS_RPATH >= 2
+#endif
+
+    if ((len = token(ptr,"status")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_status(name1);
+        return(1);
+    }
+
+#ifdef FATFS_UTILS_FULL
+    if ((len = token(ptr,"stat")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        fatfs_stat(name1);
+        return(1);
+    }
+
 #endif // #ifdef FATFS_UTILS_FULL
-    else if ( (len = token(ptr,"fatfs_help")) )
-    {
-        fatfs_help();
-        return(1);
-    }
+
 #ifdef POSIX_WRAPPERS
-    else if ((len = token(ptr,"upload")) )
+    if ((len = token(ptr,"upload")) )
     {
         ptr += len;
         ptr=skipspaces(ptr);
@@ -271,6 +304,7 @@ int fatfs_tests(char *str)
 }
 
 #ifdef POSIX_WRAPPERS
+
 /// @brief Capture an ASCII file to sdcard
 /// First blank line exits capture
 /// @param[in] *name: file to save on sdcard
@@ -285,7 +319,7 @@ void upload_file(char *name)
     fp = fopen(name, "w");
     if( fp == NULL)
 	{
-		printf("Can't open: %s\n", name);
+		printf("Can not open: %s\n", name);
         return;
 	}
 
@@ -302,6 +336,65 @@ void upload_file(char *name)
     }
     fclose(fp);
 }
+
+MEMSPACE
+void hexdump(char *name)
+{
+    long addr;
+	int i,c,len,count;
+
+    FILE *fi;
+    char buf[0x20];
+
+    fi=fopen(name,"r");
+    if(fi == NULL) 
+	{
+        printf("Can not open:%s\n",name);
+        return;
+    }
+
+	count = 0;
+	addr = 0;
+    while( (len = fread(buf,1, 16, fi)) > 0) 
+	{
+        printf("%08lx : ", addr);
+
+        for(i=0;i<len;++i) 
+            printf("%02x ",0xff & buf[i]);
+        for(;i<16;++i) 
+            printf("   ");
+
+        printf(" : ");
+
+        for(i=0;i<len;++i) 
+		{
+            if(buf[i] >= 0x20 && buf[i] <= 0x7e)
+                putchar(buf[i]);
+            else
+                putchar('.');
+        }
+        for(;i<16;++i) 
+			putchar('.');
+
+        printf("\n");
+        addr += len;
+		count += 16;
+		if(count >= 256)
+		{
+			printf("More..");
+			c = getchar();
+			printf("\r");
+
+			if(c == 'q')
+				break;
+			count = 0;
+		}
+			
+    }
+	printf("\n");
+    fclose(fi);
+}
+
 #endif 	// POSIX_WRAPPERS
 
 /// @brief Perform key FatFs diagnostics tests.

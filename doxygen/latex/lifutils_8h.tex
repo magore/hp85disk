@@ -82,10 +82,14 @@ long \hyperlink{lifutils_8h_a5c10caf1bb5c6d712e11c6a25cf9e1e7}{lif\+\_\+fileleng
 \begin{DoxyCompactList}\small\item\em Find offset to first free sector that is big enough Modeled after Linux \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir()} \end{DoxyCompactList}\item 
 int \hyperlink{lifutils_8h_aca0a37c5d186a795d821d7c05c87dcc5}{lif\+\_\+dir} (char $\ast$lifimagename)
 \begin{DoxyCompactList}\small\item\em Display a L\+IF image file directory. \end{DoxyCompactList}\item 
-long \hyperlink{lifutils_8h_a6e1ce15dd4303f2f22df70835e6c2af3}{lif\+\_\+user2lif} (char $\ast$userfile, \hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR})
+int \hyperlink{lifutils_8h_ae077333ae15ec21e05b9da7f9b77e63a}{lif\+\_\+write\+\_\+pad} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR}, long offset)
+\begin{DoxyCompactList}\small\item\em Pad the current sector to the end When \hyperlink{structDIR}{D\+IR} is null we do not write, just compute the write size. \end{DoxyCompactList}\item 
+int \hyperlink{lifutils_8h_aed28b2d7e7c22db322f343c925523932}{lif\+\_\+write\+\_\+string} (\hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR}, long offset, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em H\+P85 A\+S\+C\+II L\+IF records have a 3 byte header ef \mbox{[}ff\mbox{]}$\ast$ = end of data in this sector (no size) , pad with ff\textquotesingle{}s optionally if there is room df size = string cf size = split accross sector end \char`\"{}6f size\char`\"{} at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) ef send of sector and optional padding size = 16 bits L\+SB M\+SB. \end{DoxyCompactList}\item 
+long \hyperlink{lifutils_8h_a31f61566ccec3e137c93b259d508ea11}{lif\+\_\+ascii2lif} (char $\ast$name, \hyperlink{structlifdir__t}{lifdir\+\_\+t} $\ast$\hyperlink{structDIR}{D\+IR})
 \begin{DoxyCompactList}\small\item\em Convert a user A\+S\+C\+II file into H\+P85 0x\+E010 L\+IF format We must know the convered file size B\+E\+F\+O\+RE writting So we must call this function T\+W\+I\+CE 1) find out how big the converted file is (\hyperlink{structDIR}{D\+IR} is N\+U\+LL) 2) Specify where to put it (\hyperlink{structDIR}{D\+IR} is set) \end{DoxyCompactList}\item 
 long \hyperlink{lifutils_8h_acc02f6c04090b6b17f348804f7c45368}{lif\+\_\+add\+\_\+file} (char $\ast$lifimagename, char $\ast$lifname, char $\ast$userfile)
-\begin{DoxyCompactList}\small\item\em Add a user file to the L\+IF image The basename of the userfile, without extensions, is used as the L\+IF file name. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Add a user file to the L\+IF image The basename of the lifname, without extensions, is used as the L\+IF file name. \end{DoxyCompactList}\item 
 long \hyperlink{lifutils_8h_a5c7d1152746b689e81e293e23eb8339e}{lif\+\_\+create\+\_\+image} (char $\ast$lifimagename, char $\ast$liflabel, long dirsecs, long sectors)
 \begin{DoxyCompactList}\small\item\em Create/\+Format a L\+IF disk image This can take a while to run, about 1 min for 10,000,000 bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -157,7 +161,7 @@ Definition at line 26 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+create\+\_\+image(), lif\+\_\+filelength(), lif\+\_\+find\+\_\+free(), lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+user2lif(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+ascii2lif(), lif\+\_\+create\+\_\+image(), lif\+\_\+filelength(), lif\+\_\+find\+\_\+free(), lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+write\+\_\+pad(), and lif\+\_\+writedir().
 
 
 
@@ -183,7 +187,7 @@ Definition at line 23 of file lifutils.\+h.
 )}\hypertarget{lifutils_8h_acc02f6c04090b6b17f348804f7c45368}{}\label{lifutils_8h_acc02f6c04090b6b17f348804f7c45368}
 
 
-Add a user file to the L\+IF image The basename of the userfile, without extensions, is used as the L\+IF file name. 
+Add a user file to the L\+IF image The basename of the lifname, without extensions, is used as the L\+IF file name. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -199,11 +203,41 @@ size of data written into to L\+IF image, or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 792 of file lifutils.\+c.
+Definition at line 872 of file lifutils.\+c.
 
 
 
 Referenced by lif\+\_\+tests().
+
+\index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+ascii2lif@{lif\+\_\+ascii2lif}}
+\index{lif\+\_\+ascii2lif@{lif\+\_\+ascii2lif}!lifutils.\+h@{lifutils.\+h}}
+\subsubsection[{\texorpdfstring{lif\+\_\+ascii2lif(char $\ast$name, lifdir\+\_\+t $\ast$\+D\+I\+R)}{lif_ascii2lif(char *name, lifdir_t *DIR)}}]{\setlength{\rightskip}{0pt plus 5cm}long lif\+\_\+ascii2lif (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name, }
+\item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR}
+\end{DoxyParamCaption}
+)}\hypertarget{lifutils_8h_a31f61566ccec3e137c93b259d508ea11}{}\label{lifutils_8h_a31f61566ccec3e137c93b259d508ea11}
+
+
+Convert a user A\+S\+C\+II file into H\+P85 0x\+E010 L\+IF format We must know the convered file size B\+E\+F\+O\+RE writting So we must call this function T\+W\+I\+CE 1) find out how big the converted file is (\hyperlink{structDIR}{D\+IR} is N\+U\+LL) 2) Specify where to put it (\hyperlink{structDIR}{D\+IR} is set) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em userfile} & User A\+S\+C\+II file source \\
+\hline
+\mbox{\tt in}  & {\em $\ast$\+D\+IR} & Where to write file if set (not N\+U\+LL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of L\+IF image in bytes, or -\/1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 783 of file lifutils.\+c.
+
+
+
+Referenced by lif\+\_\+add\+\_\+file().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+\+B2S@{lif\+\_\+\+B2S}}
 \index{lif\+\_\+\+B2S@{lif\+\_\+\+B2S}!lifutils.\+h@{lifutils.\+h}}
@@ -335,7 +369,7 @@ F\+I\+X\+ME this is the default that the H\+Pdrive project uses, not sure of thi
 
 Zero out remining disk image 
 
-Definition at line 884 of file lifutils.\+c.
+Definition at line 964 of file lifutils.\+c.
 
 
 
@@ -362,7 +396,7 @@ Display a L\+IF image file directory.
 \end{DoxyReturn}
 
 
-Definition at line 611 of file lifutils.\+c.
+Definition at line 612 of file lifutils.\+c.
 
 
 
@@ -442,7 +476,7 @@ get L\+IF file size from directory entry
 \end{DoxyParams}
 
 
-Definition at line 566 of file lifutils.\+c.
+Definition at line 567 of file lifutils.\+c.
 
 
 
@@ -470,7 +504,7 @@ Directory pointer
 \end{DoxyReturn}
 
 
-Definition at line 579 of file lifutils.\+c.
+Definition at line 580 of file lifutils.\+c.
 
 
 
@@ -559,7 +593,7 @@ Definition at line 339 of file lifutils.\+c.
 
 
 
-Referenced by lif\+\_\+read(), lif\+\_\+user2lif(), and lif\+\_\+write().
+Referenced by lif\+\_\+ascii2lif(), lif\+\_\+read(), and lif\+\_\+write().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+opendir@{lif\+\_\+opendir}}
 \index{lif\+\_\+opendir@{lif\+\_\+opendir}!lifutils.\+h@{lifutils.\+h}}
@@ -570,7 +604,7 @@ Referenced by lif\+\_\+read(), lif\+\_\+user2lif(), and lif\+\_\+write().
 )}\hypertarget{lifutils_8h_a6b37a1c50e14b4e64e8110f13b74dfeb}{}\label{lifutils_8h_a6b37a1c50e14b4e64e8110f13b74dfeb}
 
 
-Definition at line 461 of file lifutils.\+c.
+Definition at line 462 of file lifutils.\+c.
 
 
 
@@ -687,7 +721,7 @@ Open L\+IF directory for reading Modeled after Linux \hyperlink{posix_8c_a1508fe
 \end{DoxyReturn}
 
 
-Definition at line 495 of file lifutils.\+c.
+Definition at line 496 of file lifutils.\+c.
 
 
 
@@ -860,38 +894,6 @@ Definition at line 221 of file lifutils.\+c.
 
 Referenced by lif\+\_\+opendir().
 
-\index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+user2lif@{lif\+\_\+user2lif}}
-\index{lif\+\_\+user2lif@{lif\+\_\+user2lif}!lifutils.\+h@{lifutils.\+h}}
-\subsubsection[{\texorpdfstring{lif\+\_\+user2lif(char $\ast$userfile, lifdir\+\_\+t $\ast$\+D\+I\+R)}{lif_user2lif(char *userfile, lifdir_t *DIR)}}]{\setlength{\rightskip}{0pt plus 5cm}long lif\+\_\+user2lif (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{userfile, }
-\item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR}
-\end{DoxyParamCaption}
-)}\hypertarget{lifutils_8h_a6e1ce15dd4303f2f22df70835e6c2af3}{}\label{lifutils_8h_a6e1ce15dd4303f2f22df70835e6c2af3}
-
-
-Convert a user A\+S\+C\+II file into H\+P85 0x\+E010 L\+IF format We must know the convered file size B\+E\+F\+O\+RE writting So we must call this function T\+W\+I\+CE 1) find out how big the converted file is (\hyperlink{structDIR}{D\+IR} is N\+U\+LL) 2) Specify where to put it (\hyperlink{structDIR}{D\+IR} is set) 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em userfile} & User A\+S\+C\+II file source \\
-\hline
-\mbox{\tt in}  & {\em $\ast$\+D\+IR} & Where to write file if set (not N\+U\+LL) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-size of L\+IF image in bytes, or -\/1 on error 
-\end{DoxyReturn}
-Read and process into image file
-
-H\+P85 A\+S\+C\+II L\+IF records have a 3 byte header Byte 1\+: (0xdf = data) or (0xef = E\+OF) Byte 2\+: L\+SB number of bytes to next L\+IF record Byte 3\+: M\+SB nunber of bytes to next L\+IF record E\+OF has these 4 bytes 0xdf 0x00 0x00 0xef 0xff 0xff Example small file\+: 0xdf 0x05 0x00 \char`\"{}\+H\+P85\textbackslash{}r\char`\"{} 0xdf 0x00 0x00 0xef 0xff 0xff .... 
-
-Definition at line 674 of file lifutils.\+c.
-
-
-
-Referenced by lif\+\_\+add\+\_\+file().
-
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+vol\+\_\+clear@{lif\+\_\+vol\+\_\+clear}}
 \index{lif\+\_\+vol\+\_\+clear@{lif\+\_\+vol\+\_\+clear}!lifutils.\+h@{lifutils.\+h}}
 \subsubsection[{\texorpdfstring{lif\+\_\+vol\+\_\+clear(lifdir\+\_\+t $\ast$\+D\+I\+R)}{lif_vol_clear(lifdir_t *DIR)}}]{\setlength{\rightskip}{0pt plus 5cm}void lif\+\_\+vol\+\_\+clear (
@@ -953,7 +955,72 @@ Definition at line 415 of file lifutils.\+c.
 
 
 
-Referenced by lif\+\_\+user2lif(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+write\+\_\+pad(), and lif\+\_\+writedir().
+
+\index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+write\+\_\+pad@{lif\+\_\+write\+\_\+pad}}
+\index{lif\+\_\+write\+\_\+pad@{lif\+\_\+write\+\_\+pad}!lifutils.\+h@{lifutils.\+h}}
+\subsubsection[{\texorpdfstring{lif\+\_\+write\+\_\+pad(lifdir\+\_\+t $\ast$\+D\+I\+R, long offset)}{lif_write_pad(lifdir_t *DIR, long offset)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+write\+\_\+pad (
+\begin{DoxyParamCaption}
+\item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR, }
+\item[{long}]{offset}
+\end{DoxyParamCaption}
+)}\hypertarget{lifutils_8h_ae077333ae15ec21e05b9da7f9b77e63a}{}\label{lifutils_8h_ae077333ae15ec21e05b9da7f9b77e63a}
+
+
+Pad the current sector to the end When \hyperlink{structDIR}{D\+IR} is null we do not write, just compute the write size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \hyperlink{structDIR}{D\+IR}} & L\+IF image file sructure \\
+\hline
+\mbox{\tt in}  & {\em offset} & offset to write to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pad size in bytes , -\/1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 673 of file lifutils.\+c.
+
+
+
+Referenced by lif\+\_\+ascii2lif(), and lif\+\_\+write\+\_\+pad().
+
+\index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+write\+\_\+string@{lif\+\_\+write\+\_\+string}}
+\index{lif\+\_\+write\+\_\+string@{lif\+\_\+write\+\_\+string}!lifutils.\+h@{lifutils.\+h}}
+\subsubsection[{\texorpdfstring{lif\+\_\+write\+\_\+string(lifdir\+\_\+t $\ast$\+D\+I\+R, long offset, char $\ast$str)}{lif_write_string(lifdir_t *DIR, long offset, char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+write\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{{\bf lifdir\+\_\+t} $\ast$}]{D\+IR, }
+\item[{long}]{offset, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{lifutils_8h_aed28b2d7e7c22db322f343c925523932}{}\label{lifutils_8h_aed28b2d7e7c22db322f343c925523932}
+
+
+H\+P85 A\+S\+C\+II L\+IF records have a 3 byte header ef \mbox{[}ff\mbox{]}$\ast$ = end of data in this sector (no size) , pad with ff\textquotesingle{}s optionally if there is room df size = string cf size = split accross sector end \char`\"{}6f size\char`\"{} at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) ef send of sector and optional padding size = 16 bits L\+SB M\+SB. 
+
+Example\+: 000080e0 \+: 4b 7c 22 0d cf 29 00 31 34 20 44 49 53 50 20 22 \+: K$\vert$\char`\"{}..).\+14 D\+I\+S\+P \char`\"{} 000080f0 \+: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 5f \+: \+\_\+ 00008100 \+: 6f 10 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f \+: o..\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+ 00008110 \+: 5f 22 0d df 2b 00 31 35 20 44 49 53 50 20 22 20 \+: \+\_\+\char`\"{}..+.\+15 D\+I\+S\+P \char`\"{}
+
+cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder) So 29 = 19 and 10 (yuck!)Write a string with header to a lif file When \hyperlink{structDIR}{D\+IR} is null we do not write, just compute the write size 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \hyperlink{structDIR}{D\+IR}} & L\+IF image file sructure \\
+\hline
+\mbox{\tt in}  & {\em offset} & offset to write to \\
+\hline
+\mbox{\tt in}  & {\em str} & string to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+wtite size in bytes, -\/1 on error 
+\end{DoxyReturn}
+
+
+Definition at line 722 of file lifutils.\+c.
+
+
+
+Referenced by lif\+\_\+ascii2lif(), and lif\+\_\+write\+\_\+pad().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+writedir@{lif\+\_\+writedir}}
 \index{lif\+\_\+writedir@{lif\+\_\+writedir}!lifutils.\+h@{lifutils.\+h}}
@@ -976,7 +1043,7 @@ number of bytes written
 \end{DoxyReturn}
 
 
-Definition at line 533 of file lifutils.\+c.
+Definition at line 534 of file lifutils.\+c.
 
 
 

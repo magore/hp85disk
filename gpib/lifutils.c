@@ -453,6 +453,7 @@ int lif_write(char *name, void *buf, long offset, int bytes)
 	return(len);
 }
 
+
 /// @brief Open LIF directory for reading
 /// Modeled after Linux opendir()
 /// @param[in] *name: file name of LIF image
@@ -662,6 +663,114 @@ int lif_dir(char *lifimagename)
 	return(files);
 }
 
+
+
+///@brief Pad the current sector to the end
+/// When DIR is null we do not write, just compute the write size
+/// @param[in] DIR: LIF image file sructure
+/// @param[in] offset: offset to write to
+/// @return pad size in bytes ,  -1 on error
+int lif_write_pad(lifdir_t *DIR, long offset)
+{
+	int i, len, pad;
+	uint8_t buf[LIF_SECTOR_SIZE];
+
+	pad = LIF_SECTOR_SIZE - (offset % LIF_SECTOR_SIZE);
+	if(DIR && pad < LIF_SECTOR_SIZE)
+	{
+		buf[0]  = 0xef;
+		for(i=1;i<pad;++i)
+			buf[i]  = 0xff;
+
+		len = lif_write(DIR->filename, buf, offset, pad);
+		if(len < pad)
+			return(-1);
+
+		if(debuglevel & 0x400)
+			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
+	}
+
+	return( pad );
+}
+
+/** @brief  HP85 ASCII LIF records have a 3 byte header 
+	ef [ff]* = end of data in this sector (no size) , pad with ff's optionally if there is room
+	df size = string
+	cf size = split accross sector end "6f size" at start of next sector 
+		   but the 6f size bytes are not included in cf size! (yuck!)
+	6f size = split continue (always starts at sector boundry)
+	df 00 00 ef [ff]* = EOF (df size = 0) ef send of sector and optional padding
+	size = 16 bits LSB MSB
+
+	Example:
+	000080e0 : 4b 7c 22 0d cf 29 00 31 34 20 44 49 53 50 20 22  : K|"..).14 DISP "
+	000080f0 : 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 5f  :                _
+	00008100 : 6f 10 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f  : o.._____________
+	00008110 : 5f 22 0d df 2b 00 31 35 20 44 49 53 50 20 22 20  : _"..+.15 DISP "
+
+	cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder)
+	So 29 = 19 and 10 (yuck!)
+*/
+
+
+///@brief Write a string with header to a lif file
+/// When DIR is null we do not write, just compute the write size
+/// @param[in] DIR: LIF image file sructure
+/// @param[in] offset: offset to write to
+/// @param[in] str: string to write
+/// @return wtite size in bytes,  -1 on error
+int lif_write_string(lifdir_t *DIR, long offset, char *str)
+{
+	int size;
+	int bytes;
+	int len;
+	int pad;
+
+	uint8_t buf[LIF_SECTOR_SIZE];
+
+	bytes = 0;
+
+	// String size
+	len = strlen(str);
+	size = len + 3;
+
+	// Compute the current offset in this sector
+	pad = (offset % LIF_SECTOR_SIZE);
+
+	// Would writting the string and its header overflow  this sector ?
+	// If so, then pad this sector and write, then write string in next sector
+	if((pad + size) > LIF_SECTOR_SIZE)
+	{
+		pad = lif_write_pad(DIR, offset);
+		if(pad < 0)
+			return(-1);
+		bytes += pad;
+		offset += pad;
+	}
+
+
+	// Now Write string
+	if(DIR)
+	{
+		strncpy((char *)buf+3,str, size);
+		// Insert LIF header into buffer ( distance to next record )
+		buf[0] = 0xdf;
+		buf[1] = len & 0xff;
+		buf[2] = (len >> 8) & 0xff;
+
+		len = lif_write(DIR->filename, buf, offset, size);
+		if(len < size)
+			return(-1);
+
+		if(debuglevel & 0x400)
+			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
+	}
+
+	bytes += size;
+	return( bytes );
+}
+	
+
 /// @brief Convert a user ASCII file into HP85 0xE010 LIF format 
 /// We must know the convered file size BEFORE writting
 /// So we must call this function TWICE
@@ -671,17 +780,18 @@ int lif_dir(char *lifimagename)
 /// @param[in] userfile: User ASCII file source
 /// @param[in] *DIR: Where to write file if set (not NULL)
 /// @return size of LIF image in bytes, or -1 on error
-long lif_user2lif(char *userfile, lifdir_t *DIR)
+long lif_ascii2lif(char *name, lifdir_t *DIR)
 {
-
-	FILE *fi;
 	long offset;
 	long bytes;
-	int pad, reclen, len,len2;
-	char buffer[LIF_SECTOR_SIZE];
+	int count;
 
-	///@brief Read and process into image file
-	fi = lif_open(userfile,"r");
+	int ind;
+	FILE *fi;
+
+	char str[LIF_SECTOR_SIZE];
+
+	fi = lif_open(name,"r");
 	if(fi == NULL)
 		return(-1);
 
@@ -690,101 +800,71 @@ long lif_user2lif(char *userfile, lifdir_t *DIR)
 	{
 		// DIR->next should be pointing at first free sector
 		offset  = DIR->next * LIF_SECTOR_SIZE;
-		if(debuglevel & 0x400)
-			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
 	}
-
-	///@brief  HP85 ASCII LIF records have a 3 byte header 
-	/// Byte 1: (0xdf = data) or (0xef = EOF)
-	/// Byte 2: LSB number of bytes to next LIF record 
-	/// Byte 3: MSB nunber of bytes to next LIF record 
-	/// EOF has these 4 bytes
-    ///     0xdf 0x00 0x00 0xef 0xff 0xff
-	/// Example small file:
-	///    0xdf 0x05 0x00 "HP85\r" 0xdf 0x00 0x00 0xef 0xff 0xff ....
 
 	bytes = 0;
+
+	count = 0;
 	// Read user file and write LIF records
 	// reserve 3 LIF header bytes
-	while( fgets(buffer+3,(long)sizeof(buffer)-1, fi) != NULL )
+	while( fgets(str,(int)sizeof(str)-4, fi) != NULL )
 	{
-		// Remove all tailing control characters from user file
-		trim_tail(buffer+3);
+		trim_tail(str);
+		strcat(str,"\r"); // HP85 lines end with "\r"
 
-		// HP85 lines end with '\r'
-		strcat(buffer+3,"\r");
+		// Write string
+		ind = lif_write_string(DIR, offset, str);
+		if(ind < 0)
+		{
+			fclose(fi);
+			return(-1);
+		}
 
-		// Compute distance to next LIF record
-		len = strlen(buffer+3);
+		offset += ind;
+		bytes += ind;
+		count += ind;
 
-		// Insert LIF header into buffer
-		// distance to next record
-		reclen = len;
-		buffer[0] = 0xdf;
-		buffer[1] = reclen & 0xff;
-		buffer[2] = (reclen >> 8)& 0xff;
-
-		// len = size of data and header to write
-		len += 3;
-
-		// Write record
 		if(DIR)
 		{
-			len2 = lif_write(DIR->filename, buffer, offset, len);
-			if(len2 < len)
-			{
-				fclose(fi);
-				return(-1);
+			if(count > 256)
+			{		
+				count = 0;
+				printf("Wrote: %8ld\r",(long)bytes);
 			}
-			if(debuglevel & 0x400)
-				printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
 		}
-		offset += len;
-		bytes += len;
 	}
+
+	// Write EOF string
+	ind = lif_write_string(DIR, offset, "");
+	if(ind < 0)
+	{
+		fclose(fi);
+		return(-1);
+	}
+
+	offset += ind;
+	bytes += ind;
+
+	// PAD the end of this last sector IF any bytes have been written to it
+	// Note: we do not add the pad to the file size!
+	ind = lif_write_pad(DIR, offset);
+	if(ind < 0)
+		return(-1);
+
 	fclose(fi);
 
-	//Write LIF END record
-	buffer[0] = 0xdf;
-	buffer[1] = 0;
-	buffer[2] = 0;
-	buffer[3] = 0xef;
+	// we do not add pdd to offsets of size at the file end
 
-	len = 4;
-	if(DIR && len)
-	{
-		int len2;
-		len2 = lif_write(DIR->filename, buffer, offset, len);
-		if(len2 < len)
-			return(-1);
-		if(debuglevel & 0x400)
-			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
-	}
-	offset += len;
-	bytes += 4;
+	if(DIR)
+		printf("Wrote: %8ld\r",(long)bytes);
 
-	// PAD remainder of sector
-	pad = LIF_SECTOR_SIZE - (bytes % LIF_SECTOR_SIZE);
-
-	// Write PAD
-	if(DIR && pad)
-	{
-		memset(buffer,0xff,LIF_SECTOR_SIZE);
-		len = lif_write(DIR->filename, buffer, offset, pad);
-		if(len < pad)
-			return(-1);
-		if(debuglevel & 0x400)
-			printf("Write Offset:   %4lxH\n", (long)offset/LIF_SECTOR_SIZE);
-	}
-	bytes += pad;
-	if(debuglevel & 0x400)
-		printf("User Size:       %ld\n",(long)bytes);
 	return(bytes);
 }
 
 
+
 /// @brief Add a user file to the LIF image
-/// The basename of the userfile, without extensions, is used as the LIF file name
+/// The basename of the lifname, without extensions, is used as the LIF file name
 /// @param[in] lifimagename: LIF image name
 /// @param[in] lifname: LIF file name
 /// @param[in] userfile: userfile name
@@ -804,8 +884,8 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 	}
 	if(!*lifname)
 	{
-		if(debuglevel & 1)
-			printf("lif_add_file: lifname is empty\n");
+			if(debuglevel & 1)
+				printf("lif_add_file: lifname is empty\n");
 		return(-1);
 	}
 	if(!*userfile)
@@ -820,7 +900,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 			lifimagename, lifname, userfile);
 
 	// Find out how big converted file will be
-	bytes = lif_user2lif(userfile, NULL);
+	bytes = lif_ascii2lif(userfile, NULL);
 	if(bytes < 0)
 		return(-1);
 
@@ -830,7 +910,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		return(-1);	
 
 	// Write converted file into free space
-	bytes = lif_user2lif(userfile, DIR);
+	bytes = lif_ascii2lif(userfile, DIR);
 
 	// Convert byte to sectors 
 	sectors = ((bytes | (LIF_SECTOR_SIZE-1))+1)/LIF_SECTOR_SIZE;
@@ -867,7 +947,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		printf("Length Sectors:  %4lxH\n", DIR->DE.FileLengthSectors);
 		printf("Used Sectors:    %4lxH\n", (long)DIR->used);
 	}
-	printf("Wrote: %ld\n", bytes);
+	printf("Wrote: %8ld\n", bytes);
 
 	// Return file size
 	return(bytes);

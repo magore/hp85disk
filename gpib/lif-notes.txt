@@ -1,0 +1,53 @@
+/*
+ef [ff]* = end of data in this sector (no size) , pad with ff's optionally if there is room
+df size = string
+cf size = split accross sector end "6f size" at start of next sector 
+       but the 6f size bytes are not included in cf size! (yuck!)
+6f size = split continue (always starts at sector boundry)
+df 00 00 ef [ff]* = EOF (df size = 0) ef send of sector and optional padding
+
+Example:
+000080e0 : 4b 7c 22 0d cf 29 00 31 34 20 44 49 53 50 20 22  : K|"..).14 DISP "
+000080f0 : 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 5f  :                _
+00008100 : 6f 10 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f  : o.._____________
+00008110 : 5f 22 0d df 2b 00 31 35 20 44 49 53 50 20 22 20  : _"..+.15 DISP "
+
+cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder)
+So 29 = 19 and 10 (yuck!)
+*/
+
+
+00009ae0 : 6f 72 20 28 30 2d 38 29 3e 22 29 0d df 0d 00 32  : or (0-8)>")....2
+00009af0 : 34 31 30 20 57 3d 52 31 28 31 29 0d cf 0e 00 32  : 410 W=R1(1)....2
+00009b00 : 6f 0d 00 34 32 30 20 57 3d 41 42 53 28 57 29 0d  : o..420 W=ABS(W).
+
+00009bf0 : 32 35 33 30 20 59 34 2c 59 36 3d 59 31 0d ef ff  : 2530 Y4,Y6=Y1...
+00009c00 : df 0a 00 32 35 35 30 20 58 35 3d 58 0d df 0a 00  : ...2550 X5=X....
+00009c10 : 32 35 36 30 20 59 35 3d 59 0d df 36 00 32 35 37  : 2560 Y5=Y..6.257
+
+0000b2e0 : 2b 32 5d 26 46 24 5b 31 36 2c 31 37 5d 29 0d df  : +2]&F$[16,17])..
+0000b2f0 : 0d 00 34 32 36 30 20 54 3d 54 2b 2e 30 35 0d ef  : ..4260 T=T+.05..
+0000b300 : df 0e 00 34 32 37 30 20 4a 3d 46 4e 54 28 34 29  : ...4270 J=FNT(4)
+0000b310 : 0d df 0f 00 34 32 38 30 20 47 4f 54 4f 20 34 31  : ....4280 GOTO 41
+
+0000bdd0 : 28 4b 29 29 0d df 25 00 34 39 33 30 20 4a 3d 46  : (K))..%.4930 J=F
+0000bde0 : 4e 50 31 28 22 44 20 53 74 61 72 62 61 73 65 73  : NP1("D Starbases
+0000bdf0 : 3a 20 22 26 56 41 4c 24 28 42 29 29 0d ef ff ff  : : "&VAL$(B))....
+0000be00 : df 25 00 34 39 34 30 20 4a 3d 46 4e 50 31 28 22  : .%.4940 J=FNP1("
+
+0000b2f0 : 0d 00 34 32 36 30 20 54 3d 54 2b 2e 30 35 0d ef  : ..4260 T=T+.05..
+0000b300 : df 0e 00 34 32 37 30 20 4a 3d 46 4e 54 28 34 29  : ...4270 J=FNT(4)
+0000b310 : 0d df 0f 00 34 32 38 30 20 47 4f 54 4f 20 34 31  : ....4280 GOTO 41
+
+0000c6d0 : 69 6f 6e 0d df 26 00 35 35 39 30 20 47 4f 53 55  : ion..&.5590 GOSU
+0000c6e0 : 42 20 36 34 33 30 20 21 20 63 68 65 63 6b 20 66  : B 6430 ! check f
+0000c6f0 : 6f 72 20 73 74 61 72 20 62 61 73 65 0d ef ff ff  : or star base....
+0000c700 : df 27 00 35 36 30 30 20 49 46 20 50 23 30 20 54  : .'.5600 IF P#0 T
+0000c710 : 48 45 4e 20 31 35 31 30 20 21 20 66 72 6f 6d 20  : HEN 1510 ! from
+0000c720 : 74 69 6d 65 20 77 61 72 70 0d df 2f 00 35 36 31  : time warp../.561
+
+0000ebb0 : df 09 00 39 39 30 30 20 45 4e 44 0d df 00 00 ef  : ...9900 END.....
+0000ebc0 : ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  : ................
+0000ebd0 : ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  : ................
+0000ebe0 : ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  : ................
+0000ebf0 : ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  : ................

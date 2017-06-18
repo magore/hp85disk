@@ -213,11 +213,17 @@ Functions</h2></td></tr>
 <tr class="memitem:aca0a37c5d186a795d821d7c05c87dcc5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#aca0a37c5d186a795d821d7c05c87dcc5">lif_dir</a> (char *lifimagename)</td></tr>
 <tr class="memdesc:aca0a37c5d186a795d821d7c05c87dcc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a LIF image file directory.  <a href="#aca0a37c5d186a795d821d7c05c87dcc5">More...</a><br /></td></tr>
 <tr class="separator:aca0a37c5d186a795d821d7c05c87dcc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e1ce15dd4303f2f22df70835e6c2af3"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#a6e1ce15dd4303f2f22df70835e6c2af3">lif_user2lif</a> (char *userfile, <a class="el" href="structlifdir__t.html">lifdir_t</a> *<a class="el" href="structDIR.html">DIR</a>)</td></tr>
-<tr class="memdesc:a6e1ce15dd4303f2f22df70835e6c2af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a user ASCII file into HP85 0xE010 LIF format We must know the convered file size BEFORE writting So we must call this function TWICE 1) find out how big the converted file is (<a class="el" href="structDIR.html">DIR</a> is NULL) 2) Specify where to put it (<a class="el" href="structDIR.html">DIR</a> is set)  <a href="#a6e1ce15dd4303f2f22df70835e6c2af3">More...</a><br /></td></tr>
-<tr class="separator:a6e1ce15dd4303f2f22df70835e6c2af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae077333ae15ec21e05b9da7f9b77e63a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#ae077333ae15ec21e05b9da7f9b77e63a">lif_write_pad</a> (<a class="el" href="structlifdir__t.html">lifdir_t</a> *<a class="el" href="structDIR.html">DIR</a>, long offset)</td></tr>
+<tr class="memdesc:ae077333ae15ec21e05b9da7f9b77e63a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pad the current sector to the end When <a class="el" href="structDIR.html">DIR</a> is null we do not write, just compute the write size.  <a href="#ae077333ae15ec21e05b9da7f9b77e63a">More...</a><br /></td></tr>
+<tr class="separator:ae077333ae15ec21e05b9da7f9b77e63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed28b2d7e7c22db322f343c925523932"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#aed28b2d7e7c22db322f343c925523932">lif_write_string</a> (<a class="el" href="structlifdir__t.html">lifdir_t</a> *<a class="el" href="structDIR.html">DIR</a>, long offset, char *str)</td></tr>
+<tr class="memdesc:aed28b2d7e7c22db322f343c925523932"><td class="mdescLeft">&#160;</td><td class="mdescRight">HP85 ASCII LIF records have a 3 byte header ef [ff]* = end of data in this sector (no size) , pad with ff's optionally if there is room df size = string cf size = split accross sector end "6f size" at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef [ff]* = EOF (df size = 0) ef send of sector and optional padding size = 16 bits LSB MSB.  <a href="#aed28b2d7e7c22db322f343c925523932">More...</a><br /></td></tr>
+<tr class="separator:aed28b2d7e7c22db322f343c925523932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f61566ccec3e137c93b259d508ea11"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#a31f61566ccec3e137c93b259d508ea11">lif_ascii2lif</a> (char *name, <a class="el" href="structlifdir__t.html">lifdir_t</a> *<a class="el" href="structDIR.html">DIR</a>)</td></tr>
+<tr class="memdesc:a31f61566ccec3e137c93b259d508ea11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a user ASCII file into HP85 0xE010 LIF format We must know the convered file size BEFORE writting So we must call this function TWICE 1) find out how big the converted file is (<a class="el" href="structDIR.html">DIR</a> is NULL) 2) Specify where to put it (<a class="el" href="structDIR.html">DIR</a> is set)  <a href="#a31f61566ccec3e137c93b259d508ea11">More...</a><br /></td></tr>
+<tr class="separator:a31f61566ccec3e137c93b259d508ea11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc02f6c04090b6b17f348804f7c45368"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#acc02f6c04090b6b17f348804f7c45368">lif_add_file</a> (char *lifimagename, char *lifname, char *userfile)</td></tr>
-<tr class="memdesc:acc02f6c04090b6b17f348804f7c45368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a user file to the LIF image The basename of the userfile, without extensions, is used as the LIF file name.  <a href="#acc02f6c04090b6b17f348804f7c45368">More...</a><br /></td></tr>
+<tr class="memdesc:acc02f6c04090b6b17f348804f7c45368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a user file to the LIF image The basename of the lifname, without extensions, is used as the LIF file name.  <a href="#acc02f6c04090b6b17f348804f7c45368">More...</a><br /></td></tr>
 <tr class="separator:acc02f6c04090b6b17f348804f7c45368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c7d1152746b689e81e293e23eb8339e"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lifutils_8h.html#a5c7d1152746b689e81e293e23eb8339e">lif_create_image</a> (char *lifimagename, char *liflabel, long dirsecs, long sectors)</td></tr>
 <tr class="memdesc:a5c7d1152746b689e81e293e23eb8339e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create/Format a LIF disk image This can take a while to run, about 1 min for 10,000,000 bytes.  <a href="#a5c7d1152746b689e81e293e23eb8339e">More...</a><br /></td></tr>
@@ -275,7 +281,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8h_source.html#l00034">34</a> of file <a class="el" href="lifutils_8h_source.html">lifutils.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>, <a class="el" href="lifutils_8c_source.html#l00495">lif_readdir()</a>, and <a class="el" href="lifutils_8c_source.html#l00533">lif_writedir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>, <a class="el" href="lifutils_8c_source.html#l00496">lif_readdir()</a>, and <a class="el" href="lifutils_8c_source.html#l00534">lif_writedir()</a>.</p>
 
 </div>
 </div>
@@ -293,7 +299,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8h_source.html#l00036">36</a> of file <a class="el" href="lifutils_8h_source.html">lifutils.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>.</p>
 
 </div>
 </div>
@@ -311,7 +317,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8h_source.html#l00026">26</a> of file <a class="el" href="lifutils_8h_source.html">lifutils.h</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00792">lif_add_file()</a>, <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>, <a class="el" href="lifutils_8c_source.html#l00566">lif_filelength()</a>, <a class="el" href="lifutils_8c_source.html#l00579">lif_find_free()</a>, <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>, <a class="el" href="lifutils_8c_source.html#l00495">lif_readdir()</a>, <a class="el" href="lifutils_8c_source.html#l00674">lif_user2lif()</a>, and <a class="el" href="lifutils_8c_source.html#l00533">lif_writedir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00872">lif_add_file()</a>, <a class="el" href="lifutils_8c_source.html#l00783">lif_ascii2lif()</a>, <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>, <a class="el" href="lifutils_8c_source.html#l00567">lif_filelength()</a>, <a class="el" href="lifutils_8c_source.html#l00580">lif_find_free()</a>, <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>, <a class="el" href="lifutils_8c_source.html#l00496">lif_readdir()</a>, <a class="el" href="lifutils_8c_source.html#l00673">lif_write_pad()</a>, and <a class="el" href="lifutils_8c_source.html#l00534">lif_writedir()</a>.</p>
 
 </div>
 </div>
@@ -361,7 +367,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add a user file to the LIF image The basename of the userfile, without extensions, is used as the LIF file name. </p>
+<p>Add a user file to the LIF image The basename of the lifname, without extensions, is used as the LIF file name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lifimagename</td><td>LIF image name </td></tr>
@@ -372,9 +378,49 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>size of data written into to LIF image, or -1 on error </dd></dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00792">792</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00872">872</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
 <p>Referenced by <a class="el" href="lifutils_8c_source.html#l00037">lif_tests()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a31f61566ccec3e137c93b259d508ea11"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long lif_ascii2lif </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structlifdir__t.html">lifdir_t</a> *&#160;</td>
+          <td class="paramname"><em>DIR</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert a user ASCII file into HP85 0xE010 LIF format We must know the convered file size BEFORE writting So we must call this function TWICE 1) find out how big the converted file is (<a class="el" href="structDIR.html">DIR</a> is NULL) 2) Specify where to put it (<a class="el" href="structDIR.html">DIR</a> is set) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">userfile</td><td>User ASCII file source </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*DIR</td><td>Where to write file if set (not NULL) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>size of LIF image in bytes, or -1 on error </dd></dl>
+
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00783">783</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00872">lif_add_file()</a>.</p>
 
 </div>
 </div>
@@ -481,7 +527,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00329">329</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00611">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00579">lif_find_free()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00612">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00580">lif_find_free()</a>.</p>
 
 </div>
 </div>
@@ -539,7 +585,7 @@ Variables</h2></td></tr>
 <p>FIXME this is the default that the HPdrive project uses, not sure of this</p>
 <p>Zero out remining disk image </p>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00884">884</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00964">964</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
 <p>Referenced by <a class="el" href="drives_8c_source.html#l01366">format_drives()</a>, and <a class="el" href="lifutils_8c_source.html#l00037">lif_tests()</a>.</p>
 
@@ -568,7 +614,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 on error or number of files found </dd></dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00611">611</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00612">612</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
 <p>Referenced by <a class="el" href="lifutils_8c_source.html#l00037">lif_tests()</a>.</p>
 
@@ -599,7 +645,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00303">303</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>.</p>
 
 </div>
 </div>
@@ -628,7 +674,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00312">312</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>.</p>
 
 </div>
 </div>
@@ -655,9 +701,9 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00566">566</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00567">567</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00611">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00579">lif_find_free()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00612">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00580">lif_find_free()</a>.</p>
 
 </div>
 </div>
@@ -694,9 +740,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Directory pointer </dd></dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00579">579</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00580">580</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00792">lif_add_file()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00872">lif_add_file()</a>.</p>
 
 </div>
 </div>
@@ -743,7 +789,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00148">148</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00792">lif_add_file()</a>, and <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00872">lif_add_file()</a>, and <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>.</p>
 
 </div>
 </div>
@@ -806,7 +852,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00339">339</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00377">lif_read()</a>, <a class="el" href="lifutils_8c_source.html#l00674">lif_user2lif()</a>, and <a class="el" href="lifutils_8c_source.html#l00415">lif_write()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00783">lif_ascii2lif()</a>, <a class="el" href="lifutils_8c_source.html#l00377">lif_read()</a>, and <a class="el" href="lifutils_8c_source.html#l00415">lif_write()</a>.</p>
 
 </div>
 </div>
@@ -824,9 +870,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00461">461</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00462">462</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00611">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00579">lif_find_free()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00612">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00580">lif_find_free()</a>.</p>
 
 </div>
 </div>
@@ -865,7 +911,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00241">241</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>, and <a class="el" href="lifutils_8c_source.html#l00533">lif_writedir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>, and <a class="el" href="lifutils_8c_source.html#l00534">lif_writedir()</a>.</p>
 
 </div>
 </div>
@@ -904,7 +950,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00201">201</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>.</p>
 
 </div>
 </div>
@@ -959,7 +1005,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00377">377</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>, and <a class="el" href="lifutils_8c_source.html#l00495">lif_readdir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>, and <a class="el" href="lifutils_8c_source.html#l00496">lif_readdir()</a>.</p>
 
 </div>
 </div>
@@ -986,9 +1032,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structlifdirent__t.html" title="Directory layout. ">lifdirent_t</a> filled with directory structure, or NULL on error of end of Directory </dd></dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00495">495</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00496">496</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00611">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00579">lif_find_free()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00612">lif_dir()</a>, and <a class="el" href="lifutils_8c_source.html#l00580">lif_find_free()</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +1108,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00353">353</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>.</p>
 
 </div>
 </div>
@@ -1127,7 +1173,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00288">288</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1212,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00257">257</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00495">lif_readdir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00496">lif_readdir()</a>.</p>
 
 </div>
 </div>
@@ -1206,49 +1252,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00221">221</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00461">lif_opendir()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6e1ce15dd4303f2f22df70835e6c2af3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long lif_user2lif </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>userfile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structlifdir__t.html">lifdir_t</a> *&#160;</td>
-          <td class="paramname"><em>DIR</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert a user ASCII file into HP85 0xE010 LIF format We must know the convered file size BEFORE writting So we must call this function TWICE 1) find out how big the converted file is (<a class="el" href="structDIR.html">DIR</a> is NULL) 2) Specify where to put it (<a class="el" href="structDIR.html">DIR</a> is set) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">userfile</td><td>User ASCII file source </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">*DIR</td><td>Where to write file if set (not NULL) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>size of LIF image in bytes, or -1 on error </dd></dl>
-<p>Read and process into image file</p>
-<p>HP85 ASCII LIF records have a 3 byte header Byte 1: (0xdf = data) or (0xef = EOF) Byte 2: LSB number of bytes to next LIF record Byte 3: MSB nunber of bytes to next LIF record EOF has these 4 bytes 0xdf 0x00 0x00 0xef 0xff 0xff Example small file: 0xdf 0x05 0x00 "HP85\r" 0xdf 0x00 0x00 0xef 0xff 0xff .... </p>
-
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00674">674</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
-
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00792">lif_add_file()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00462">lif_opendir()</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1281,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00320">320</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00884">lif_create_image()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00964">lif_create_image()</a>.</p>
 
 </div>
 </div>
@@ -1332,7 +1336,95 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="lifutils_8c_source.html#l00415">415</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00674">lif_user2lif()</a>, and <a class="el" href="lifutils_8c_source.html#l00533">lif_writedir()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00673">lif_write_pad()</a>, and <a class="el" href="lifutils_8c_source.html#l00534">lif_writedir()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae077333ae15ec21e05b9da7f9b77e63a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lif_write_pad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structlifdir__t.html">lifdir_t</a> *&#160;</td>
+          <td class="paramname"><em>DIR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pad the current sector to the end When <a class="el" href="structDIR.html">DIR</a> is null we do not write, just compute the write size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structDIR.html">DIR</a></td><td>LIF image file sructure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>offset to write to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pad size in bytes , -1 on error </dd></dl>
+
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00673">673</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00783">lif_ascii2lif()</a>, and <a class="el" href="lifutils_8c_source.html#l00673">lif_write_pad()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aed28b2d7e7c22db322f343c925523932"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lif_write_string </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structlifdir__t.html">lifdir_t</a> *&#160;</td>
+          <td class="paramname"><em>DIR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>HP85 ASCII LIF records have a 3 byte header ef [ff]* = end of data in this sector (no size) , pad with ff's optionally if there is room df size = string cf size = split accross sector end "6f size" at start of next sector but the 6f size bytes are not included in cf size! (yuck!) 6f size = split continue (always starts at sector boundry) df 00 00 ef [ff]* = EOF (df size = 0) ef send of sector and optional padding size = 16 bits LSB MSB. </p>
+<p>Example: 000080e0 : 4b 7c 22 0d cf 29 00 31 34 20 44 49 53 50 20 22 : K|"..).14 DISP " 000080f0 : 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 5f : _ 00008100 : 6f 10 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f : o.._____________ 00008110 : 5f 22 0d df 2b 00 31 35 20 44 49 53 50 20 22 20 : _"..+.15 DISP "</p>
+<p>cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder) So 29 = 19 and 10 (yuck!)Write a string with header to a lif file When <a class="el" href="structDIR.html">DIR</a> is null we do not write, just compute the write size </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="structDIR.html">DIR</a></td><td>LIF image file sructure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">offset</td><td>offset to write to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>string to write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>wtite size in bytes, -1 on error </dd></dl>
+
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00722">722</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00783">lif_ascii2lif()</a>, and <a class="el" href="lifutils_8c_source.html#l00673">lif_write_pad()</a>.</p>
 
 </div>
 </div>
@@ -1359,9 +1451,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of bytes written </dd></dl>
 
-<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00533">533</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
+<p>Definition at line <a class="el" href="lifutils_8c_source.html#l00534">534</a> of file <a class="el" href="lifutils_8c_source.html">lifutils.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00792">lif_add_file()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00872">lif_add_file()</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1479,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 01:18:27 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 17 2017 22:10:00 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

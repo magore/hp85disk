@@ -159,9 +159,10 @@ long lif_writedir ( lifdir_t *DIR );
 long lif_filelength ( lifdirent_t *DE );
 lifdir_t *lif_find_free ( char *name , long size );
 int lif_dir ( char *lifimagename );
-long lif_user2lif ( char *userfile , lifdir_t *DIR );
+int lif_write_pad ( lifdir_t *DIR , long offset );
+int lif_write_string ( lifdir_t *DIR , long offset , char *str );
+long lif_ascii2lif ( char *name , lifdir_t *DIR );
 long lif_add_file ( char *lifimagename , char *lifname , char *userfile );
 long lif_create_image ( char *lifimagename , char *liflabel , long dirsecs , long sectors );
-
 
 #endif     // #ifndef _LIFUTILS_H

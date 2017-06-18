@@ -410,26 +410,26 @@ MEMSPACE
 char *
 fgets(char *str, int size, FILE *stream)
 {
-    int ret;
+    int c;
 	int ind = 0;
     while(size--)
     {
-        ret = fgetc(stream);
-        if(ret == EOF)
+        c = fgetc(stream);
+        if(c == EOF)
 		{
 			if( ind == 0)
 				return(NULL);
 			break;
 		}
- 		if(ret == '\n')
+ 		if(c == '\n')
 			break;
-		if(ret == 0x08)
+		if(c == 0x08)
 		{
 			 if(ind > 0)
 				--ind;
 			continue;
 		}
-        str[ind++] = ret;
+        str[ind++] = c;
     }
     str[ind] = 0;
     return(str);
