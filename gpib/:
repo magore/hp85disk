@@ -744,17 +744,7 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 
 	DE = lif_find_file(lifimagename, lifname);
 	if(DE == NULL)
-	{
-		printf("File not found:%s\n", username);
 		return(0);
-	}
-
-	if((DE->FileType & 0xFFFC) != 0xE010)
-	{
-		printf("File %s has wrong type:[%04xH] expected 0xE010..0xE013\n", username, (int) DE->FileType);
-		return(0);
-	}
-
 	bytes = lif_filelength(DE);
 
 	bytes /= LIF_SECTOR_SIZE;
@@ -763,13 +753,11 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 	start = (long)DE->FileStartSector * LIF_SECTOR_SIZE;
 	end = start + bytes;
 
-		
-	offset = start;
-
 	fp = lif_open(username,"w");
 	if(fp == NULL)
 		return(0);
-
+		
+	offset = start;
 	printf("Extracting: %s\n", username);
 
 	bytes = 0;
@@ -786,13 +774,15 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 		}
 
 		ind = 0;
+		wind = 0;
+
 		while(ind < LIF_SECTOR_SIZE && !done)
 		{
-			if(buf[ind] == 0xDF || buf[ind] == 0xCF || buf[ind] == 0x6F)
+			if(buf[ind] == 0xDF || buf[ind] == 0xCF || buf[ind] == 0x6C)
 			{
 				++ind;
 				len = buf[ind++] & 0xff;
-				len |= ((buf[ind++] & 0xff) <<8); 
+				len |= (buf[ind++]<<8) & 0xff00;
 				// EOF ?
 				if(len == 0)
 				{
@@ -806,6 +796,7 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 					done = 1;
 					break;
 				}
+				ind += 2;
 			}
 			else if(buf[ind] == 0xEF)
 			{
@@ -833,7 +824,6 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 				{
 					wbuf[wind++] = buf[ind++];
 				}
-
 				if(wind >= LIF_SECTOR_SIZE)
 				{
 					size = fwrite(wbuf,1,wind,fp);
@@ -845,17 +835,14 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 						break;
 					}
 					bytes += size;
-					printf("Wrote: %8ld\r", bytes);
 					wind = 0;
 				}
-
-			}   // for(i=0;i <len && ind < LIF_SECTOR_SIZE;++i)
-
-		}  	// while(ind < LIF_SECTOR_SIZE && status)
+			}
+		}  		// while(ind < LIF_SECTOR_SIZE && status)
 
 		offset += LIF_SECTOR_SIZE;
 
-	} 	// while(offset <= end)
+	} 			// while(offset <= end)
 	// Flush any remaining bytes
 	if(wind)
 	{
@@ -966,7 +953,7 @@ int lif_write_string(lifdir_t *DIR, long offset, void *vptr)
 		if(rem < 6)
 		{
 			// PAD
-			buf[ind++] = 0xEF;
+			buf[ind++] = 0xef;
 			while(ind<rem)
 				buf[ind++] = 0xff;
 
@@ -979,7 +966,7 @@ int lif_write_string(lifdir_t *DIR, long offset, void *vptr)
 			}
 			// Write string in new sector
 			// The full string + header will fit
-			buf[ind++] = 0xDF;
+			buf[ind++] = 0xdf;
 			buf[ind++] = len & 0xff;
 			buf[ind++] = (len >> 8) & 0xff;
 			// Write string
@@ -991,7 +978,7 @@ int lif_write_string(lifdir_t *DIR, long offset, void *vptr)
 			// Split string
 			// String spans sector , so split the string
 			// Split string Header
-			buf[ind++] = 0xCF;
+			buf[ind++] = 0xcf;
 			buf[ind++] = len & 0xff;
 			buf[ind++] = (len >>8) & 0xff;
 			// Write as much of the string as we can in this sector
@@ -1009,7 +996,7 @@ int lif_write_string(lifdir_t *DIR, long offset, void *vptr)
 			// Update remining string length
 			len = strlen(str);
 			// Write split string continuation heaader at start of new sector
-			buf[ind++] = 0x6F;
+			buf[ind++] = 0x6C;
 			buf[ind++] = (len & 0xff);
 			buf[ind++] = (len>>8) & 0xff;
 			// Write string

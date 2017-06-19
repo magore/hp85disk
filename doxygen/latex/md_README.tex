@@ -369,7 +369,13 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item help Will list all avalable commands and options
 \item Example commands
 \begin{DoxyItemize}
-\item lifadd 
+\item lifadd
+\begin{DoxyItemize}
+\item Notes\+:
+\begin{DoxyItemize}
+\item Only adds A\+S\+C\+II type E010 files at this time
+\item Strings must be no longer then sector size -\/ 3
+\item Trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
 \begin{DoxyPre}
          \# Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          \# Used to import files into the HP85 disk images
@@ -377,8 +383,13 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
          lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
       \end{DoxyPre}
 
-\begin{DoxyItemize}
-\item Notes about T\+R\+E\+K85
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Notes about T\+R\+E\+K85
 \begin{DoxyItemize}
 \item Author\+: T\+R\+E\+K85 port was done by Martin Hepperle
 \item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241}
@@ -394,8 +405,8 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item Once S\+T\+O\+RE is used to save the load and run times are fast
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\item lifcreate 
+
+lifcreate 
 \begin{DoxyPre}
          \# formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
          format /amigo3.lif AMIGO3 15 1120
@@ -403,6 +414,9 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
          Formating: wrote:[1120] sectors
       \end{DoxyPre}
 
+
+
+\begin{DoxyItemize}
 \item lifdir 
 \begin{DoxyPre}
         lifdir /amigo1.lif
@@ -422,6 +436,20 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
         Purged:           0
         Used Sectors:   11H
         First Free:     21H
+      \end{DoxyPre}
+
+\item lifextract
+\begin{DoxyItemize}
+\item Notes\+:
+\begin{DoxyItemize}
+\item Only extracts A\+S\+C\+II type E010 files at this time
+\item Strings must be no longer then sector size -\/ 3
+\item Trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in SD card file 
+\begin{DoxyPre}
+         \# extracts an ASCII type E010 file from a LIF image and saves it on the SD card
+         lifextract /amigo1.lif HELLO3 /HELLO3.BAS
+         Extracting: /HELLO3.BAS
+         Wrote:      311
       \end{DoxyPre}
  
 

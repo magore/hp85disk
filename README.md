@@ -254,6 +254,10 @@ ___
 
    * Example commands
       * lifadd
+        * Notes:
+          * Only adds ASCII type E010 files at this time
+          * Strings must be no longer then sector size - 3
+          * Trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file
       <pre>
          # Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          # Used to import files into the HP85 disk images
@@ -293,6 +297,17 @@ ___
         Purged:           0
         Used Sectors:   11H
         First Free:     21H
+      </pre>
+      * lifextract
+        * Notes:
+          * Only extracts ASCII type E010 files at this time
+          * Strings must be no longer then sector size - 3
+          * Trailing "\n" and/or "\r" are coverted to "\n" when stored in SD card file
+      <pre>
+         # extracts an ASCII type E010 file from a LIF image and saves it on the SD card
+         lifextract /amigo1.lif HELLO3 /HELLO3.BAS
+         Extracting: /HELLO3.BAS
+         Wrote:      311
       </pre>
 ___ 
 
