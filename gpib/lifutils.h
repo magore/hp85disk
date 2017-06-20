@@ -105,7 +105,7 @@ typedef struct
     uint8_t  filename[10+1];	// 0
     uint16_t FileType;			// 10
     uint32_t FileStartSector;	// 12
-    uint32_t FileLengthSectors;	// 16
+    uint32_t FileSectors;		// 16
     uint8_t  date[6];           // 20 File date in BCD (YY MM DD HH MM SS)
     uint16_t VolNumber;			// 26
     uint16_t FileBytes;			// 30
@@ -123,11 +123,13 @@ typedef struct {
     char filename[LIF_IMAGE_NAME_SIZE+1];	// LIF image file name
 	lifvol_t V;			// LIF Volume header
 	lifdirent_t DE;		// LIF directory entry
-	long imagesize;		// LIF image size
-	long current;	    // Current sector
-	long next;		    // Next free sector 
-	long used;		    // Used sector count
-    long index;			// Directory index 0..N
+	long imagebytes;		// LIF image size in bytes
+	long imagesectors;		// LIF image size in sectors
+	uint32_t current;	    // Current sector
+	uint32_t next;		    // Next free sector 
+	uint32_t used;		    // Used sector count
+	uint32_t free;		    // Free sector count
+    uint32_t index;			// Directory index 0..N
 } lifdir_t;
 
 // =============================================
@@ -135,37 +137,42 @@ typedef struct {
 /* lifutils.c */
 void lif_help ( void );
 int lif_tests ( char *str );
-void lif_B2S ( uint8_t *B , uint8_t *name , int size );
+int lif_chars ( int c , int index );
+int lif_B2S ( uint8_t *B , uint8_t *name , int size );
+int lif_checkname ( char *name );
 void lif_S2B ( uint8_t *B , uint8_t *name , int size );
 int lif_fixname ( uint8_t *B , char *name , int size );
-void lif_PackVolume ( uint8_t *B , lifvol_t *V );
-void lif_UnPackVolume ( uint8_t *B , lifvol_t *V );
-void lif_PackDir ( uint8_t *B , lifdir_t *DIR );
-void lif_UnPackDir ( uint8_t *B , lifdir_t *DIR );
+lifvol_t *lif_PackVolume ( uint8_t *B , lifvol_t *V );
+int lif_ValidateVolume ( lifvol_t *V , int debug );
+lifvol_t *lif_UnPackVolume ( uint8_t *B , lifvol_t *V );
+lifdir_t *lif_PackDir ( uint8_t *B , lifdir_t *DIR );
+lifdir_t *lif_UnPackDir ( uint8_t *B , lifdir_t *DIR );
 uint8_t lif_BIN2BCD ( uint8_t data );
 void lif_time2lif ( uint8_t *bcd , time_t t );
 void lif_dir_clear ( lifdir_t *DIR );
 void lif_dirent_clear ( lifdir_t *DIR );
 void lif_vol_clear ( lifdir_t *DIR );
+void lif_rewinddir ( lifdir_t *DIR );
 int lif_closedir ( lifdir_t *DIR );
 FILE *lif_open ( char *name , char *mode );
 stat_t *lif_stat ( char *name );
 long lif_read ( char *name , void *buf , long offset , int bytes );
 int lif_write ( char *name , void *buf , long offset , int bytes );
-lifdir_t *lif_opendir ( char *name );
+uint32_t lif_bytes2sectors ( long bytes );
+lifdir_t *lif_opendir ( char *name , int debug );
 lifdirent_t *lif_readdir ( lifdir_t *DIR );
 long lif_writedir ( lifdir_t *DIR );
 long lif_filelength ( lifdirent_t *DE );
-lifdir_t *lif_find_free ( char *name , long size );
+lifdir_t *lif_find_free ( lifdir_t *DIR , uint32_t sectors );
+lifdir_t *lif_updatefree ( lifdir_t *DIR );
 int lif_dir ( char *lifimagename );
-lifdirent_t *lif_find_file ( char *lifimagename , char *username );
+lifdirent_t *lif_find_file ( lifdir_t *DIR , char *username );
 int lif_extract_file ( char *lifimagename , char *lifname , char *username );
 int lif_write_pad ( lifdir_t *DIR , long offset );
 int lif_write_string ( lifdir_t *DIR , long offset , void *vptr );
 long lif_ascii2lif ( char *name , lifdir_t *DIR );
 long lif_add_file ( char *lifimagename , char *lifname , char *userfile );
-long lif_create_image ( char *lifimagename , char *liflabel , long dirsecs , long sectors );
-
+long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsecs , uint32_t sectors );
 
 
 #endif     // #ifndef _LIFUTILS_H

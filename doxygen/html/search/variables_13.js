@@ -9,6 +9,6 @@ var searchData=
   ['unit_5ftype',['UNIT_TYPE',['../structSS80UnitType.html#ae00e42430682e849d83b1ca4c8f44013',1,'SS80UnitType']]],
   ['unitno',['unitNO',['../structAMIGOStateType.html#a3d0cc02f8822c817feddf93dd08a5034',1,'AMIGOStateType::unitNO()'],['../structSS80StateType.html#ad2b3cd5353f5650df931520a39b385e7',1,'SS80StateType::unitNO()']]],
   ['units_5finstalled',['UNITS_INSTALLED',['../structSS80ControllerType.html#a0868c32b362ef2af2ac64fa16aee8aae',1,'SS80ControllerType']]],
-  ['used',['used',['../structlifdir__t.html#a20f303d91cccc01286974be1ee064a8f',1,'lifdir_t']]],
+  ['used',['used',['../structlifdir__t.html#a70e5c34e0a4be7af60ee5871c45c28df',1,'lifdir_t']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

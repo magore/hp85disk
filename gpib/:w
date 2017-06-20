@@ -321,7 +321,6 @@ lifvol_t *lif_UnPackVolume(uint8_t *B, lifvol_t *V)
 {
 
 	V->LIFid = B2V_MSB(B,0,2);
-	lif_B2S(B+2,V->Label,6);
 	V->DirStartSector = B2V_MSB(B,8,4);
 	V->System3000LIFid = B2V_MSB(B,12,2);
 	V->zero1 = B2V_MSB(B,14,2);
@@ -344,7 +343,7 @@ lifdir_t *lif_PackDir(uint8_t *B, lifdir_t *DIR)
 	lif_S2B(B,DIR->DE.filename,10);				// 0
 	V2B_MSB(B,10,2,DIR->DE.FileType);			// 10
 	V2B_MSB(B,12,4,DIR->DE.FileStartSector);	// 12
-	V2B_MSB(B,16,4,DIR->DE.FileSectors);	// 16
+	V2B_MSB(B,16,4,DIR->DE.FileLengthSectors);	// 16
 	memcpy(B+20,DIR->DE.date,6);				// 20
 	V2B_MSB(B,26,2,DIR->DE.VolNumber);			// 26
 	V2B_LSB(B,28,2,DIR->DE.FileBytes);			// 28
@@ -361,7 +360,7 @@ lifdir_t *lif_UnPackDir(uint8_t *B, lifdir_t *DIR)
 	lif_B2S(B,DIR->DE.filename,10);
 	DIR->DE.FileType = B2V_MSB(B, 10, 2);
 	DIR->DE.FileStartSector = B2V_MSB(B, 12, 4);
-	DIR->DE.FileSectors = B2V_MSB(B, 16, 4);
+	DIR->DE.FileLengthSectors = B2V_MSB(B, 16, 4);
 	memcpy(DIR->DE.date,B+20,6);
 	DIR->DE.VolNumber = B2V_MSB(B, 26, 2); 
 	DIR->DE.FileBytes = B2V_LSB(B, 28, 2);
@@ -578,9 +577,9 @@ int lif_write(char *name, void *buf, long offset, int bytes)
 /// @brief Convert bytes into used sectors
 /// @param[in] bytes: size in bytes
 /// @return sectors
-uint32_t lif_bytes2sectors(long bytes)
+long lif_bytes2sectors(long bytes)
 {
-	uint32_t sectors = (bytes/LIF_SECTOR_SIZE);
+	long sectors = (bytes/LIF_SECTOR_SIZE);
 	if(bytes % LIF_SECTOR_SIZE)
 		++sectors;
 	return(sectors);
@@ -662,7 +661,7 @@ lifdirent_t *lif_readdir(lifdir_t *DIR)
 		return(NULL);
 
 	DIR->current = DIR->DE.FileStartSector;
-	DIR->next = DIR->DE.FileStartSector + DIR->DE.FileSectors;	
+	DIR->next = DIR->DE.FileStartSector + DIR->DE.FileLengthSectors;	
 	DIR->index++;
 	return((lifdirent_t *) &DIR->DE);
 }
@@ -691,11 +690,11 @@ long lif_writedir(lifdir_t *DIR)
         return(-1);
 
 	// Update used sectors
-	DIR->used += DIR->DE.FileSectors;
-	DIR->free -= DIR->DE.FileSectors;
+	DIR->used += DIR->DE.FileLengthSectors;
+	DIR->free -= DIR->DE.FileLengthSectors;
 	// Update first free sector as we read
 	DIR->current = DIR->DE.FileStartSector;
-	DIR->next = DIR->DE.FileStartSector + DIR->DE.FileSectors;	
+	DIR->next = DIR->DE.FileStartSector + DIR->DE.FileLengthSectors;	
 	DIR->index++;
 	return(len);
 }
@@ -710,7 +709,7 @@ long lif_filelength(lifdirent_t *DE)
 	long bytes;
 	bytes = DE->FileBytes;
 	if(!bytes)
-		bytes = (DE->FileSectors * LIF_SECTOR_SIZE);
+		bytes = (DE->FileLengthSectors * LIF_SECTOR_SIZE);
 	return(bytes);
 }
 
@@ -719,7 +718,7 @@ long lif_filelength(lifdirent_t *DE)
 /// Modeled after Linux readdir()
 /// @param[in] *DIR: DIR pointer
 /// @return Directory pointer
-lifdir_t *lif_find_free(lifdir_t *DIR, uint32_t sectors)
+lifdir_t *lif_find_free(lifdir_t *DIR, long sectors)
 {
 	lifdirent_t *DE;
 
@@ -727,16 +726,16 @@ lifdir_t *lif_find_free(lifdir_t *DIR, uint32_t sectors)
 		return(NULL);
 
 	if(sectors > DIR->free)
-		return(NULL);
+		return(NULL):
 
-	lif_rewinddir(DIR);
+	DIR=lif_rewinddir(DIR):
 	while(1)
 	{
 		DE = lif_readdir(DIR);
 		if(DE == NULL)
 			break;
 		// We can reuse this purged sector
-		if(DE->FileType == 0 && DE->FileSectors >= sectors)
+		if(DE->FileType == 0 && DE->FileLength >= sectors)
 			break;
 	}
 
@@ -750,6 +749,7 @@ lifdir_t *lif_find_free(lifdir_t *DIR, uint32_t sectors)
 /// @return Directory pointer
 lifdir_t *lif_updatefree(lifdir_t *DIR)
 {
+	long free = 0;;
 	lifdirent_t *DE;
 
 	if(DIR == NULL)
@@ -764,9 +764,9 @@ lifdir_t *lif_updatefree(lifdir_t *DIR)
 		if(DE == NULL)
 			break;
 		if(DE->FileType)
-			DIR->used += DIR->DE.FileSectors;
+			DIR->used += DIR->DE.FileLengthSectors;
 	}
-	DIR->free -= DIR->used;
+	DIR->free -= used;
 	lif_rewinddir(DIR);
 	return(DIR);		// Last valid directory entry
 }
@@ -787,8 +787,8 @@ int lif_dir(char *lifimagename)
 	if(DIR == NULL)
 		return(-1);
 	
-	printf("Volume: [%s]\n", DIR->V.Label);
-	printf("NAME         TYPE   START SECTOR        SIZE     RECSIZE\n");
+	printf("Volume:[%s]\n", DIR->V.Label);
+	printf("NAME        TYPE    START SECTOR       SIZE RECSIZE\n");
 	while(1)
 	{
 		DE = lif_readdir(DIR);
@@ -798,7 +798,7 @@ int lif_dir(char *lifimagename)
 		bytes = lif_filelength(DE);
 
 		// name type start size
-		printf("%-10s  %04Xh      %8lXh   %9ld       %4d\n", 
+		printf("%-10s  %04x       %08lxH  %9ld    %4d\n", 
 			DE->filename, 
 			(int)DE->FileType, 
 			(long)DE->FileStartSector, 
@@ -810,12 +810,14 @@ int lif_dir(char *lifimagename)
 		else
 			++purged;
 	}	
+
 	printf("\n");
-	printf("%8ld Files\n", (long)files);
-	printf("%8ld Purged\n", (long)purged);
-	printf("%8ld Used sectors\n", (long)DIR->used);
-	printf("%8ld Free sectors\n", (long)DIR->free);
-	printf("%8ld First free sector (%lXh)\n", (long)DIR->next,(long)DIR->next);
+	printf("Files:         %4d\n", (int)files);
+	printf("Purged:        %4d\n", (int)purged);
+	printf("Used Sectors: %4lxH\n", (long)DIR->used);
+	printf("First Free:   %4lxH\n", (long)DIR->next);
+	printf("Free Space:   %4lxH\n", (long)DIR->free);
+
 	lif_closedir(DIR);
 
 	return(files);
@@ -827,6 +829,7 @@ int lif_dir(char *lifimagename)
 /// @return lifdirent_t * directory entry, or NULL if no match
 lifdirent_t *lif_find_file(lifdir_t *DIR, char *username)
 {
+	lifdir_t *DIR;
 	lifdirent_t *DE;
 
 	if(DIR == NULL)
@@ -855,8 +858,8 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 {
 	lifdir_t *DIR;
 	lifdirent_t *DE;
-	uint32_t start, end;	// sectors
-	long offset, bytes;		// bytes
+	long offset, start, end;
+	long bytes;
 	int i, len,size;
 	int status = 1;
 	int done = 0;
@@ -883,12 +886,12 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 	}
 	if((DE->FileType & 0xFFFC) != 0xE010)
 	{
-		printf("File %s has wrong type:[%04XH] expected 0xE010..0xE013\n", username, (int) DE->FileType);
+		printf("File %s has wrong type:[%04xH] expected 0xE010..0xE013\n", username, (int) DE->FileType);
 		return(0);
 	}
 
 	start = DE->FileStartSector;
-	end = start + DE->FileSectors;
+	end = start + DE->FileLengthSectors;
 
 	offset = start * LIF_SECTOR_SIZE;
 
@@ -941,7 +944,7 @@ int lif_extract_file(char *lifimagename, char *lifname, char *username)
 			}
 			else
 			{
-				printf("lif_extract_file: unexpected control byte:[%02XH] @ offset: %8lx, ind:%02XH\n", (int)buf[ind], offset, (int)ind);
+				printf("lif_extract_file: unexpected control byte:[%02xH] @ offset: %8lx, ind:%02xH\n", (int)buf[ind], offset, (int)ind);
 				status = 0;
 				done = 1;
 				break;
@@ -1324,7 +1327,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 	lif_fixname(DIR->DE.filename, lifname,10);
 	DIR->DE.FileType = 0xe010;  			// 10
 	DIR->DE.FileStartSector = DIR->next;	// 12
-	DIR->DE.FileSectors = sectors;    // 16
+	DIR->DE.FileLengthSectors = sectors;    // 16
 	memset(DIR->DE.date,0,6);				// 20
 	DIR->DE.VolNumber = 0x8001;				// 26
 	DIR->DE.FileBytes = 0;					// 28
@@ -1336,7 +1339,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		printf("Name:              %s\n", DIR->DE.filename);
 		printf("Index:            %4d\n", (int)DIR->index);
 		printf("First Sector:    %4lxH\n", DIR->DE.FileStartSector);
-		printf("Length Sectors:  %4lxH\n", DIR->DE.FileSectors);
+		printf("Length Sectors:  %4lxH\n", DIR->DE.FileLengthSectors);
 		printf("Used Sectors:    %4lxH\n", (long)DIR->used);
 	}
 
@@ -1349,7 +1352,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 		printf("New Directory Information AFTER write\n");
 		printf("Index:            %4d\n", (int)DIR->index);
 		printf("First Sector:    %4lxH\n", DIR->DE.FileStartSector);
-		printf("Length Sectors:  %4lxH\n", DIR->DE.FileSectors);
+		printf("Length Sectors:  %4lxH\n", DIR->DE.FileLengthSectors);
 		printf("Used Sectors:    %4lxH\n", (long)DIR->used);
 	}
 	printf("Wrote: %8ld\n", bytes);
@@ -1366,7 +1369,7 @@ long lif_add_file(char *lifimagename, char *lifname, char *userfile)
 /// @param[in] dirsecs: Number of LIF directory sectors
 /// @param[in] sectors: total disk image size in sectors
 ///@return bytes writting to disk image
-long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsecs, uint32_t sectors)
+long lif_create_image(char *lifimagename, char *liflabel, long dirsecs, long sectors)
 {
     FILE *fp;
 	long remainder, sector;
@@ -1477,7 +1480,7 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsecs, uint
 	///@brief File type of 0xffff is last directory entry
 	DIR->DE.FileType = 0xffff;
 	///FIXME this is the default that the HPdrive project uses, not sure of this
-	DIR->DE.FileSectors = 0x7fffUL;
+	DIR->DE.FileLengthSectors = 0x7fffUL;
 
 	// Fill sector with Directory entries
 	for(i=0; i<LIF_SECTOR_SIZE; i+= LIF_DIR_SIZE)

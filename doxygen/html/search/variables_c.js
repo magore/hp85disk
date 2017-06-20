@@ -7,5 +7,5 @@ var searchData=
   ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],
   ['neg',['neg',['../unionf__t.html#a08d5e77f0fdb784ab1ef1425625e23f7',1,'f_t']]],
-  ['next',['next',['../structlifdir__t.html#a52a7520a6393d4782afb0ccd42899215',1,'lifdir_t']]]
+  ['next',['next',['../structlifdir__t.html#a0e0b720a376eb3d13f551626606f46a7',1,'lifdir_t']]]
 ];

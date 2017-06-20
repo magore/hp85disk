@@ -18,15 +18,19 @@ char \hyperlink{structlifdir__t_a21bfa7a6d54009982cc63962951ba615}{filename} \mb
 \item 
 \hyperlink{structlifdirent__t}{lifdirent\+\_\+t} \hyperlink{structlifdir__t_af9247c1579ce3fe0c57db9fd6b56c232}{DE}
 \item 
-long \hyperlink{structlifdir__t_a2cae1515444f013eaf439333e3952b1d}{imagesize}
+long \hyperlink{structlifdir__t_a17f59e8c3d17643205266afda1fc07e4}{imagebytes}
 \item 
-long \hyperlink{structlifdir__t_a662534fa317565f8f6992515e1eb39c4}{current}
+long \hyperlink{structlifdir__t_a142bc82acfe24a55318aeb19f7ae9e8e}{imagesectors}
 \item 
-long \hyperlink{structlifdir__t_a52a7520a6393d4782afb0ccd42899215}{next}
+uint32\+\_\+t \hyperlink{structlifdir__t_ae885e86a62d50c5b0c99ad2b63120e2c}{current}
 \item 
-long \hyperlink{structlifdir__t_a20f303d91cccc01286974be1ee064a8f}{used}
+uint32\+\_\+t \hyperlink{structlifdir__t_a0e0b720a376eb3d13f551626606f46a7}{next}
 \item 
-long \hyperlink{structlifdir__t_a7b9b45ee1a56ba386158da051605a8bd}{index}
+uint32\+\_\+t \hyperlink{structlifdir__t_a70e5c34e0a4be7af60ee5871c45c28df}{used}
+\item 
+uint32\+\_\+t \hyperlink{structlifdir__t_a502d704fe63e12080538e415ef3af68e}{free}
+\item 
+uint32\+\_\+t \hyperlink{structlifdir__t_a024aa12f9725f9f28875354c16e13d6b}{index}
 \end{DoxyCompactItemize}
 
 
@@ -40,14 +44,14 @@ Definition at line 122 of file lifutils.\+h.
 \subsection{Field Documentation}
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!current@{current}}
 \index{current@{current}!lifdir\+\_\+t@{lifdir\+\_\+t}}
-\subsubsection[{\texorpdfstring{current}{current}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::current}\hypertarget{structlifdir__t_a662534fa317565f8f6992515e1eb39c4}{}\label{structlifdir__t_a662534fa317565f8f6992515e1eb39c4}
+\subsubsection[{\texorpdfstring{current}{current}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifdir\+\_\+t\+::current}\hypertarget{structlifdir__t_ae885e86a62d50c5b0c99ad2b63120e2c}{}\label{structlifdir__t_ae885e86a62d50c5b0c99ad2b63120e2c}
 
 
-Definition at line 127 of file lifutils.\+h.
+Definition at line 128 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+opendir(), lif\+\_\+readdir(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+rewinddir(), and lif\+\_\+writedir().
 
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!DE@{DE}}
 \index{DE@{DE}!lifdir\+\_\+t@{lifdir\+\_\+t}}
@@ -58,7 +62,7 @@ Definition at line 125 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+create\+\_\+image(), lif\+\_\+dirent\+\_\+clear(), lif\+\_\+\+Pack\+Dir(), lif\+\_\+readdir(), lif\+\_\+\+Un\+Pack\+Dir(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+create\+\_\+image(), lif\+\_\+dirent\+\_\+clear(), lif\+\_\+\+Pack\+Dir(), lif\+\_\+readdir(), lif\+\_\+\+Un\+Pack\+Dir(), lif\+\_\+updatefree(), and lif\+\_\+writedir().
 
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!filename@{filename}}
 \index{filename@{filename}!lifdir\+\_\+t@{lifdir\+\_\+t}}
@@ -71,49 +75,71 @@ Definition at line 123 of file lifutils.\+h.
 
 Referenced by lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+write\+\_\+pad(), and lif\+\_\+writedir().
 
-\index{lifdir\+\_\+t@{lifdir\+\_\+t}!imagesize@{imagesize}}
-\index{imagesize@{imagesize}!lifdir\+\_\+t@{lifdir\+\_\+t}}
-\subsubsection[{\texorpdfstring{imagesize}{imagesize}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::imagesize}\hypertarget{structlifdir__t_a2cae1515444f013eaf439333e3952b1d}{}\label{structlifdir__t_a2cae1515444f013eaf439333e3952b1d}
+\index{lifdir\+\_\+t@{lifdir\+\_\+t}!free@{free}}
+\index{free@{free}!lifdir\+\_\+t@{lifdir\+\_\+t}}
+\subsubsection[{\texorpdfstring{free}{free}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifdir\+\_\+t\+::free}\hypertarget{structlifdir__t_a502d704fe63e12080538e415ef3af68e}{}\label{structlifdir__t_a502d704fe63e12080538e415ef3af68e}
+
+
+Definition at line 131 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+dir(), lif\+\_\+find\+\_\+free(), lif\+\_\+updatefree(), and lif\+\_\+writedir().
+
+\index{lifdir\+\_\+t@{lifdir\+\_\+t}!imagebytes@{imagebytes}}
+\index{imagebytes@{imagebytes}!lifdir\+\_\+t@{lifdir\+\_\+t}}
+\subsubsection[{\texorpdfstring{imagebytes}{imagebytes}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::imagebytes}\hypertarget{structlifdir__t_a17f59e8c3d17643205266afda1fc07e4}{}\label{structlifdir__t_a17f59e8c3d17643205266afda1fc07e4}
 
 
 Definition at line 126 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+find\+\_\+free(), and lif\+\_\+opendir().
+Referenced by lif\+\_\+opendir().
+
+\index{lifdir\+\_\+t@{lifdir\+\_\+t}!imagesectors@{imagesectors}}
+\index{imagesectors@{imagesectors}!lifdir\+\_\+t@{lifdir\+\_\+t}}
+\subsubsection[{\texorpdfstring{imagesectors}{imagesectors}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::imagesectors}\hypertarget{structlifdir__t_a142bc82acfe24a55318aeb19f7ae9e8e}{}\label{structlifdir__t_a142bc82acfe24a55318aeb19f7ae9e8e}
+
+
+Definition at line 127 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+opendir(), and lif\+\_\+updatefree().
 
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!index@{index}}
 \index{index@{index}!lifdir\+\_\+t@{lifdir\+\_\+t}}
-\subsubsection[{\texorpdfstring{index}{index}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::index}\hypertarget{structlifdir__t_a7b9b45ee1a56ba386158da051605a8bd}{}\label{structlifdir__t_a7b9b45ee1a56ba386158da051605a8bd}
+\subsubsection[{\texorpdfstring{index}{index}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifdir\+\_\+t\+::index}\hypertarget{structlifdir__t_a024aa12f9725f9f28875354c16e13d6b}{}\label{structlifdir__t_a024aa12f9725f9f28875354c16e13d6b}
 
 
-Definition at line 130 of file lifutils.\+h.
+Definition at line 132 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+readdir(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+readdir(), lif\+\_\+rewinddir(), and lif\+\_\+writedir().
 
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!next@{next}}
 \index{next@{next}!lifdir\+\_\+t@{lifdir\+\_\+t}}
-\subsubsection[{\texorpdfstring{next}{next}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::next}\hypertarget{structlifdir__t_a52a7520a6393d4782afb0ccd42899215}{}\label{structlifdir__t_a52a7520a6393d4782afb0ccd42899215}
-
-
-Definition at line 128 of file lifutils.\+h.
-
-
-
-Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+ascii2lif(), lif\+\_\+dir(), lif\+\_\+find\+\_\+free(), lif\+\_\+opendir(), lif\+\_\+readdir(), and lif\+\_\+writedir().
-
-\index{lifdir\+\_\+t@{lifdir\+\_\+t}!used@{used}}
-\index{used@{used}!lifdir\+\_\+t@{lifdir\+\_\+t}}
-\subsubsection[{\texorpdfstring{used}{used}}]{\setlength{\rightskip}{0pt plus 5cm}long lifdir\+\_\+t\+::used}\hypertarget{structlifdir__t_a20f303d91cccc01286974be1ee064a8f}{}\label{structlifdir__t_a20f303d91cccc01286974be1ee064a8f}
+\subsubsection[{\texorpdfstring{next}{next}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifdir\+\_\+t\+::next}\hypertarget{structlifdir__t_a0e0b720a376eb3d13f551626606f46a7}{}\label{structlifdir__t_a0e0b720a376eb3d13f551626606f46a7}
 
 
 Definition at line 129 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+dir(), lif\+\_\+readdir(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+ascii2lif(), lif\+\_\+dir(), lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+rewinddir(), and lif\+\_\+writedir().
+
+\index{lifdir\+\_\+t@{lifdir\+\_\+t}!used@{used}}
+\index{used@{used}!lifdir\+\_\+t@{lifdir\+\_\+t}}
+\subsubsection[{\texorpdfstring{used}{used}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lifdir\+\_\+t\+::used}\hypertarget{structlifdir__t_a70e5c34e0a4be7af60ee5871c45c28df}{}\label{structlifdir__t_a70e5c34e0a4be7af60ee5871c45c28df}
+
+
+Definition at line 130 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+add\+\_\+file(), lif\+\_\+dir(), lif\+\_\+updatefree(), and lif\+\_\+writedir().
 
 \index{lifdir\+\_\+t@{lifdir\+\_\+t}!V@{V}}
 \index{V@{V}!lifdir\+\_\+t@{lifdir\+\_\+t}}
@@ -124,7 +150,7 @@ Definition at line 124 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+vol\+\_\+clear(), and lif\+\_\+writedir().
+Referenced by lif\+\_\+create\+\_\+image(), lif\+\_\+dir(), lif\+\_\+opendir(), lif\+\_\+readdir(), lif\+\_\+rewinddir(), lif\+\_\+updatefree(), lif\+\_\+vol\+\_\+clear(), and lif\+\_\+writedir().
 
 
 
