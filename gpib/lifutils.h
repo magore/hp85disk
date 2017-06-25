@@ -153,6 +153,7 @@ void lif_help ( void );
 int lif_tests ( char *str );
 FILE *lif_open ( char *name , char *mode );
 stat_t *lif_stat ( char *name , stat_t *p );
+int lif_seek_msg ( FILE *fp , long offset , char *msg );
 long lif_read ( char *name , void *buf , long offset , int bytes );
 int lif_write ( char *name , void *buf , long offset , int bytes );
 int lif_chars ( int c , int index );
@@ -173,7 +174,7 @@ void lif_dump_vol ( lif_t *LIF );
 int lif_check_volume ( lif_t *LIF );
 int lif_check_lif_headers ( lif_t *LIF );
 int lif_check_dir ( lif_t *LIF );
-lif_t *lif_create_volume ( char *imagename , char *liflabel , int dirstart , int dirsectors );
+lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long sectors );
 void lif_close_volume ( lif_t *LIF );
 uint32_t lif_bytes2sectors ( uint32_t bytes );
 void lif_rewinddir ( lif_t *LIF );
@@ -185,7 +186,7 @@ int lif_writedirEOF ( lif_t *LIF , int index );
 lifdir_t *lif_readdir ( lif_t *LIF );
 lif_t *lif_opendir ( char *name );
 int lif_dir ( char *lifimagename );
-int lif_find_file ( lif_t *LIF , char *username );
+int lif_find_file ( lif_t *LIF , char *liflabel );
 int lif_findfree_dirindex ( lif_t *LIF , uint32_t sectors );
 int lif_ascii_string_to_e010 ( lif_t *LIF , long offset , void *vptr );
 long lif_add_ascii_file_as_e010_wrapper ( char *name , uint32_t offset , lif_t *LIF );
@@ -195,6 +196,6 @@ int lif_extract_lif_file ( char *lifimagename , char *lifname , char *username )
 long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
 int lif_del_file ( char *lifimagename , char *lifname );
 int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
-long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsecs , uint32_t sectors );
+long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
 
 #endif     // #ifndef _LIFUTILS_H

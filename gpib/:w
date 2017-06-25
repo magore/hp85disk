@@ -116,7 +116,7 @@ int lif_tests(char *str)
     {
         char name[64],label[6];
         char num[12];
-        long dirsectors, sectors, result;
+        long dirsecs, sectors, result;
 
         ptr += len;
 
@@ -128,14 +128,14 @@ int lif_tests(char *str)
 
         // Directory Sectors
         ptr = get_token(ptr, num, 11);
-        dirsectors = atol(num);
+        dirsecs = atol(num);
 
         // Image total Sectors
         ptr = get_token(ptr, num, 11);
         sectors= atol(num);
 
         ///@brief format LIF image
-        result = lif_create_image(name,label,dirsectors,sectors);
+        result = lif_create_image(name,label,dirsecs,sectors);
         if(result != sectors)
         {
             if(debuglevel & 1)
@@ -248,24 +248,6 @@ stat_t *lif_stat(char *name, stat_t *p)
 	return(p);
 }
 
-/// @brief File seek with error message
-/// @param[in] *fp: FILE pointer
-/// @param[in] offset: file offset
-/// @param[in] mesg: user string as part of error message
-/// @return 1 on success, 0 on error
-int lif_seek_msg(FILE *fp, long offset, char *msg)
-{
-	if(fseek(fp, offset, SEEK_SET) < 0)
-	{
-		if(debuglevel & 1)
-			printf("lif_read: %s Seek error %ld\n", msg, offset);
-		fseek(fp, 0, SEEK_END);
-		fclose(fp);
-		return(0);
-	}
-	return(1);
-}
-
 /// @brief Read data from a LIF image 
 /// File is closed after read
 /// WHY? We want time minimize file open to to avoid corruption on the SDCARD
@@ -273,7 +255,7 @@ int lif_seek_msg(FILE *fp, long offset, char *msg)
 /// @param[in] *buf: read buffer
 /// @param[in] offset: read offset
 /// @param[in] bytes: number of bytes to read
-/// @return 0 on error or number of bytes written 
+/// @return number of bytes read - OR - -1 on error
 long lif_read(char *name, void *buf, long offset, int bytes)
 {
 	FILE *fp;
@@ -281,10 +263,15 @@ long lif_read(char *name, void *buf, long offset, int bytes)
 
 	fp = lif_open(name, "r");
     if( fp == NULL)
-        return(0);
+        return(-1);
 
-	if(!lif_seek_msg(fp,offset,name))
-		return(0);
+	if(fseek(fp, offset, SEEK_SET) < 0)
+	{
+		if(debuglevel & 1)
+			printf("lif_read: Seek error %s @ %ld\n", name, offset);
+		fclose(fp);
+		return(-1);
+	}
 
 	///@brief Initial file position
 	len = fread(buf, 1, bytes, fp);
@@ -292,6 +279,8 @@ long lif_read(char *name, void *buf, long offset, int bytes)
 	{
 		if(debuglevel & 1)
 			printf("lif_read: Read error %s @ %ld\n", name, offset);
+		fclose(fp);
+		return(-1);
 	}
 	fclose(fp);
 	return(len);
@@ -304,7 +293,7 @@ long lif_read(char *name, void *buf, long offset, int bytes)
 /// @param[in] *buf: write buffer
 /// @param[in] offset: write offset
 /// @param[in] bytes: number of bytes to write
-/// @return 0 on error or number of bytes written 
+/// @return -1 on error or number of bytes written 
 int lif_write(char *name, void *buf, long offset, int bytes)
 {
 	FILE *fp;
@@ -312,19 +301,34 @@ int lif_write(char *name, void *buf, long offset, int bytes)
 
 	fp = lif_open(name, "r+");
     if( fp == NULL)
-        return(0);
+        return(-1);
 
 	// Seek to write position
-	if(!lif_seek_msg(fp, offset,name))
-		return(0);
+	if(fseek(fp, offset, SEEK_SET) < 0)
+	{
+		if(debuglevel & 1)
+			printf("lif_write: Seek error %s @ %ld\n", name, offset);
+
+		// try to seek to the end of file anyway
+		fseek(fp, 0, SEEK_END);
+		fclose(fp);
+		return(-1);
+
+	}
 
 	///@brief Initial file position
 	len = fwrite(buf, 1, bytes, fp);
 	if( len != bytes)
 	{
 		if(debuglevel & 1)
-			printf("lif_write: Writeerror %s @ %ld\n", name, offset);
+			printf("lif_write: Write error %s @ %ld\n", name, offset);
+
+		// seek to the end of file before close!
+		fseek(fp, 0, SEEK_END);
+		fclose(fp);
+		return(len);
 	}
+
 	// seek to the end of file before close!
 	fseek(fp, 0, SEEK_END);
 	fclose(fp);
@@ -642,13 +646,13 @@ int lif_check_volume(lif_t *LIF)
 	if(LIF->VOL.zero1 != 0)
 	{
 		if(debuglevel & 1)
-			printf("LIF Volume invalid bytes at offset 14&15 should be zero\n");
+			printf("LIF Volume invalid bytes at offset 14&15 sgould be zero\n");
 		status = 0;
 	}
 	if(LIF->VOL.zero2 != 0)
 	{
 		if(debuglevel & 1)
-			printf("LIF Volume invalid bytes at offset 22&23 should be zero\n");
+			printf("LIF Volume invalid bytes at offset 22&23 sgould be zero\n");
 		status = 0;
 	}
 
@@ -711,6 +715,8 @@ int lif_check_dir(lif_t *LIF)
 	int status = 1;
 
 
+	LIF->filesectors = LIF->sectors - LIF->filestart;
+
 	// We do not check purged or end of DIRECTORY ercordss
 	if(LIF->DIR.FileType == 0)
 	{
@@ -729,24 +735,18 @@ int lif_check_dir(lif_t *LIF)
 			printf("LIF Directory invalid Name:[%s]\n",LIF->DIR.filename);
 	}
 
-	if(LIF->filestart)
+	if(LIF->DIR.FileStartSector < LIF->filestart)
 	{
-		if(LIF->DIR.FileStartSector < LIF->filestart)
-		{
-			status = 0;
-			if(debuglevel & 1)
-				printf("LIF Directory invalid start sector:%lXh\n", (long)LIF->DIR.FileStartSector);
-		}
+		status = 0;
+		if(debuglevel & 1)
+			printf("LIF Directory invalid start sector:%lXh\n", (long)LIF->DIR.FileStartSector);
 	}
 
-	if(LIF->sectors)
+	if( (LIF->DIR.FileStartSector + LIF->DIR.FileSectors) > (LIF->filestart + LIF->sectors) )
 	{
-		if( (LIF->DIR.FileStartSector + LIF->DIR.FileSectors) > (LIF->sectors) )
-		{
-			status = 0;
-			if(debuglevel & 1)
-				printf("LIF Directory invalid end sector:%lXh\n", (long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
-		}
+		status = 0;
+		if(debuglevel & 1)
+			printf("LIF Directory invalid end sector:%lXh\n", (long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
 	}
 
 	if(LIF->DIR.VolNumber != 0x8001)
@@ -782,12 +782,12 @@ int lif_check_dir(lif_t *LIF)
 /// @param[in] dirstart:   Directory start sector
 /// @param[in] dirsectors: Directory sectors
 /// @return void
-lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long dirsectors, long filesectors)
+lif_t *lif_create_volume(char *imagename, char *liflabel, int dirstart, int dirsectors)
 {
 	FILE *fp;
 	long size;
-	long i;
-	long count;
+	int count;
+	int i;
 	uint8_t buffer[LIF_SECTOR_SIZE];
 
 	lif_t *LIF = safecalloc(sizeof(lif_t)+4,1);
@@ -832,92 +832,33 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 		fclose(fp);
 		return(NULL);
 	}
+	fclose(fp);
 
 	// update LIF headers
 	strncpy(LIF->name, imagename, LIF_IMAGE_NAME_SIZE);
 	LIF->name[LIF_IMAGE_NAME_SIZE-1] = 0;
-	LIF->filestart = (dirstart+dirsectors);
-	LIF->filesectors = filesectors;
-	LIF->sectors = (LIF->filestart+LIF->filesectors);
+	LIF->sectors = (dirstart+dirsectors);
 	LIF->bytes = LIF->sectors * LIF_SECTOR_SIZE;
-	LIF->free = LIF->filesectors;
+	LIF->filestart = (dirstart+dirsectors);
+	LIF->filesectors = 0;
 	LIF->used = 0;
+	LIF->free = 0;
 	LIF->files = 0;
 	LIF->purged = 0;
 	LIF->index = -1;
 
-	memset(buffer,0,LIF_SECTOR_SIZE);
-
-	count = 0;
-	// Write sectors between the volume header and directory start
-	for(i=1;i<dirstart;++i)
+	count = dirsectors * LIF_DIR_RECORDS_PER_SECTOR;
+	for(i=0;i<count;++i)
 	{
-		size = fwrite(buffer,1,LIF_SECTOR_SIZE,fp);	
-		if(size < LIF_SECTOR_SIZE)
+		if(!lif_writedirEOF(LIF,i))
 		{
-			if(debuglevel & 1)
-				printf("lif_create_volume:[%s] write error\n", liflabel);
-			fclose(fp);
 			lif_close_volume(LIF);
 			return(NULL);
-		}
-		if(debuglevel & 0x400)
-		{
-			if((count % 100) == 0)
-				printf("Wrote: %ld\r", count);
-			++count;
+
 		}
 	}
 
-	// Write directory sectors
-	lif_dir_clear(LIF);
-	LIF->DIR.FileType = 0xffff;
-
-	for(i=0;i<LIF_SECTOR_SIZE;i+=LIF_DIR_SIZE)
-		lif_dir2str(LIF,buffer+i);
-
-	for(i=0;i<dirsectors;++i)
-	{
-		size = fwrite(buffer,1,LIF_SECTOR_SIZE,fp);	
-		if(size < LIF_SECTOR_SIZE)
-		{
-			if(debuglevel & 1)
-				printf("lif_create_volume:[%s] write error\n", liflabel);
-			fclose(fp);
-			lif_close_volume(LIF);
-			return(NULL);
-		}
-		if(debuglevel & 0x400)
-		{
-			if((count % 100) == 0)
-				printf("Wrote: %ld\r", count);
-			++count;
-		}
-	}
-
-	memset(buffer,0,LIF_SECTOR_SIZE);
-	for(i=0;i<filesectors;++i)
-	{
-		size = fwrite(buffer,1,LIF_SECTOR_SIZE,fp);	
-		if(size < LIF_SECTOR_SIZE)
-		{
-			if(debuglevel & 1)
-				printf("lif_create_volume:[%s] write error\n", liflabel);
-			fclose(fp);
-			lif_close_volume(LIF);
-			return(NULL);
-		}
-		if(debuglevel & 0x400)
-		{
-			if((count % 100) == 0)
-				printf("Wrote: %ld\r", count);
-			++count;
-		}
-	}
-	fclose(fp);
 	lif_dump_vol(LIF);
-	if(debuglevel & 0x400)
-		printf("Wrote: %ld\n", count);
 
 	return(LIF);
 }
@@ -1011,6 +952,10 @@ int lif_readdirindex(lif_t *LIF, int index)
 	// read raw data
 	if( (lif_read(LIF->name, dir, offset, sizeof(dir)) < (long)sizeof(dir)) )
 	{
+		if(debuglevel & 1)
+			printf("lif_readdirindex:[%d] read error\n", index);
+		if(debuglevel & 0x400)
+			lif_dump_vol(LIF);
         return(0);
 	}
 
@@ -1059,7 +1004,13 @@ int lif_writedirindex(lif_t *LIF, int index)
 	lif_dir2str(LIF, dir);
 
 	if( (lif_write(LIF->name, dir, offset, sizeof(dir)) < (int ) sizeof(dir)) )
+	{
+		if(debuglevel & 1)
+			printf("lif_writedirindex:[%d] write error\n", index);
+		if(debuglevel & 0x400)
+			lif_dump_vol(LIF);
         return(0);
+	}
 
 	return(1);
 }
@@ -1685,8 +1636,6 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 
 	offset = LIF->space.start * LIF_SECTOR_SIZE;
 
-	lif_dump_vol(LIF);
-
 	// Write converted file into free space first
 	bytes = lif_add_ascii_file_as_e010_wrapper(userfile, offset, LIF);
 
@@ -1920,7 +1869,7 @@ int lif_extract_lif_file(char *lifimagename, char *lifname, char *username)
 	}
 
 	//Initialize the user file lif_t structure
-	ULIF = lif_create_volume(username, "HFSLIF",1,1,0);
+	ULIF = lif_create_volume(username, "HFSLIF",1,1);
 	if(ULIF == NULL)
 	{
 		lif_closedir(LIF);
@@ -2096,7 +2045,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 		return(-1);
 	}
 	lif_closedir(LIF);
-	printf("Wrote: %8ld\n", bytes);
+	printf("Wrote: %8ld  \n", bytes);
 	return(bytes);
 }
 
@@ -2221,13 +2170,16 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 /// This can take a while to run, about 1 min for 10,000,000 bytes
 /// @param[in] lifimagename: LIF disk image name
 /// @param[in] liflabel: LIF Volume Label name
-/// @param[in] dirsectors: Number of LIF directory sectors
+/// @param[in] dirsecs: Number of LIF directory sectors
 /// @param[in] sectors: total disk image size in sectors
 ///@return bytes writting to disk image
-long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, uint32_t sectors)
+long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsecs, uint32_t sectors)
 {
-	uint32_t dirstart,filestart,filesectors,end;
+	long offset, count, size;
+	int i;
 	lif_t *LIF;
+	uint8_t buffer[LIF_SECTOR_SIZE];
+	
 
 	if(!*lifimagename)
 	{
@@ -2239,9 +2191,9 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
 		printf("lif_create_image: liflabel is empty\n");
 		return(-1);
 	}
-	if(!dirsectors)
+	if(!dirsecs)
 	{
-		printf("lif_create_image: dirsectors is 0\n");
+		printf("lif_create_image: dirsecs is 0\n");
 		return(-1);
 	}
 	if(!sectors)
@@ -2250,16 +2202,32 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
 		return(-1);
 	}
 
-	dirstart = 2;
-	filestart = dirstart + dirsectors;
-	filesectors = sectors - filestart;
-	end = filestart + filesectors;
-
-	LIF = lif_create_volume(lifimagename, liflabel, dirstart, dirsectors, filesectors);
+	LIF = lif_create_volume(lifimagename, liflabel, 2, dirsecs);
 	if(LIF == NULL)
 		return(-1);
-	lif_close_volume(LIF);
 
-	printf("Formating: wrote:[%ld] sectors\n", end);
-    return(end);
+	printf("Formating LIF image:[%s], Label:[%s], Dir Sectors:[%ld], sectors:[%ld]\n", 
+		lifimagename, LIF->VOL.Label, (long)LIF->VOL.DirSectors, (long)sectors);
+
+	///@brief Zero out remining disk image
+	memset(buffer,0xff,LIF_SECTOR_SIZE);
+
+	offset = LIF->filestart * LIF_SECTOR_SIZE;
+
+	count = sectors - LIF->filestart;
+	
+	for(i=0;i<count;++i)
+	{
+		size = lif_write(LIF->name, buffer, offset, LIF_SECTOR_SIZE);
+		if( size < LIF_SECTOR_SIZE)
+		{
+			lif_close_volume(LIF);
+			return( -1 );
+		}
+		printf("sector: %ld\r", i + LIF->filestart);
+		offset += LIF_SECTOR_SIZE;
+	}
+	lif_close_volume(LIF);
+	printf("Formating: wrote:[%ld] sectors\n", sectors);
+    return(sectors);
 }
