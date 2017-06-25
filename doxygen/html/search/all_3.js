@@ -87,7 +87,7 @@ var searchData=
   ['ctrl_5fsync',['CTRL_SYNC',['../diskio_8h.html#a1b3c492f9aec325f0655941b75256f3c',1,'diskio.h']]],
   ['ctrl_5ftrim',['CTRL_TRIM',['../diskio_8h.html#af09fd84bea8d4e889e272471f44d60d6',1,'diskio.h']]],
   ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]],
-  ['current',['current',['../structlifdir__t.html#ae885e86a62d50c5b0c99ad2b63120e2c',1,'lifdir_t::current()'],['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
+  ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType']]],
   ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]

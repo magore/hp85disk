@@ -10,6 +10,7 @@ var searchData=
   ['leave_5fff',['LEAVE_FF',['../ff_8c.html#a7e653d8ca0ae09faa49cd5b7335fea84',1,'ff.c']]],
   ['lif_5fchunk_5fsize',['LIF_CHUNK_SIZE',['../lifutils_8h.html#a625b7a543a55b48e28ea93fbb61595eb',1,'lifutils.h']]],
   ['lif_5fchunks',['LIF_CHUNKS',['../lifutils_8h.html#a7e7f4ebd8f31cd7f9dcb0e9758ef8f44',1,'lifutils.h']]],
+  ['lif_5fdir_5frecords_5fper_5fsector',['LIF_DIR_RECORDS_PER_SECTOR',['../lifutils_8h.html#aa1750b32056b8fbaa729724402d587f2',1,'lifutils.h']]],
   ['lif_5fdir_5fsize',['LIF_DIR_SIZE',['../lifutils_8h.html#a99ad70dd3200a3ee46388bc2c36fe720',1,'lifutils.h']]],
   ['lif_5fimage_5fname_5fsize',['LIF_IMAGE_NAME_SIZE',['../lifutils_8h.html#a8cfa79b094fc3a5db37b26761a639e6d',1,'lifutils.h']]],
   ['lif_5fsector_5fsize',['LIF_SECTOR_SIZE',['../lifutils_8h.html#a9f32d2537f4daba6a314185cf52b7e56',1,'lifutils.h']]],

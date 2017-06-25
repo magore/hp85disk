@@ -11,7 +11,7 @@ var searchData=
   ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['csize',['csize',['../structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568',1,'FATFS']]],
-  ['current',['current',['../structlifdir__t.html#ae885e86a62d50c5b0c99ad2b63120e2c',1,'lifdir_t::current()'],['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
+  ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType']]],
   ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType']]]
 ];

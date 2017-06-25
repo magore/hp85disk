@@ -269,8 +269,6 @@ void fatfs_status(char *ptr)
 	char label[24+2];
 	DWORD vsn; // volume serial number
 
-    const BYTE ft[] = {0,12,16,32};
-
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
     printf("fatfs status:%s\n",ptr);
