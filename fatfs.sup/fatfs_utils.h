@@ -26,11 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _FATFS_UTILS_H
 #define _FATFS_UTILS_H
 
+
 /* fatfs_utils.c */
 MEMSPACE void fatfs_help ( void );
 MEMSPACE int fatfs_tests ( char *str );
 MEMSPACE void upload_file ( char *name );
 MEMSPACE void hexdump ( char *name );
+MEMSPACE void sum ( char *name );
 MEMSPACE void mmc_test ( void );
 MEMSPACE void fatfs_ls ( char *ptr );
 MEMSPACE int ls_info ( char *name , int verbose );

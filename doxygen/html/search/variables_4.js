@@ -13,6 +13,7 @@ var searchData=
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],
   ['dir_5fsect',['dir_sect',['../structFIL.html#ab203794f939ad4480e81dfa488770783',1,'FIL']]],
   ['dirbase',['dirbase',['../structFATFS.html#a3f72fd998dbcce4652a85a81fe944bc4',1,'FATFS']]],
+  ['dirindex',['dirindex',['../structlif__t.html#a74f8af3dc203c3c6b9dea3829bb4b6fa',1,'lif_t']]],
   ['dirsectors',['DirSectors',['../structlifvol__t.html#aceac3bc67cda1f79d91c002411e33897',1,'lifvol_t']]],
   ['dirstartsector',['DirStartSector',['../structlifvol__t.html#a89b86c990a7843cfa2addfff9a775137',1,'lifvol_t']]],
   ['down_5fcounter',['down_counter',['../struct__gpib__t.html#a21ed3be06f76b0a5237b5e64bc2e8793',1,'_gpib_t']]],

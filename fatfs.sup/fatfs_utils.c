@@ -50,10 +50,10 @@ void fatfs_help( void )
 {
 	printf("\n"
 		"fatfs_help\n"
-		"attrib p1 p2\n"
+		"attrib file p1 p2\n"
 		"cat file\n"
 #ifdef FATFS_UTILS_FULL
-		"cd path\n"
+		"cd dir\n"
 		"copy file1 file2\n"
 		"create file str\n"
 #endif
@@ -62,23 +62,23 @@ void fatfs_help( void )
 #endif
 		"mmc_test\n"
 		"ls dir\n"
-#ifdef POIX_WRAPPERS
-		"uls dir\n"
-#endif
 #ifdef FATFS_UTILS_FULL
-		"mkdir str\n"
+		"mkdir dir\n"
 		"mkfs\n"
 		"pwd\n"
 #endif
-		"status str\n"
+		"status file\n"
 #ifdef FATFS_UTILS_FULL
-		"stat str\n"
-		"ustat str\n"
-		"rm str\n"
-		"rmdir str\n"
-		"rename file1 file2\n"
+		"stat file\n"
+#ifdef POSIX_WRAPPERS
+		"sum file\n"
+#endif
+		"rm file\n"
+		"rmdir dir\n"
+		"rename old new\n"
 #endif
 #ifdef POSIX_WRAPPERS
+		"uls dir\n"
 		"upload file\n"
 #endif
 	);
@@ -228,6 +228,13 @@ int fatfs_tests(char *str)
 #endif
 
 #ifdef POSIX_WRAPPERS
+    if ((len = token(ptr,"sum")) )
+    {
+        ptr += len;
+		ptr = get_token(ptr, name1, 126);
+        sum(name1);
+        return(1);
+    }
     if ((len = token(ptr,"uls")) )
     {
         ptr += len;
@@ -337,8 +344,12 @@ void upload_file(char *name)
             break;
     }
     fclose(fp);
+	sync();
 }
 
+/// @brief hex listing of file with paging, "q" exits
+/// @param[in] *name: file to hexdump
+/// @retrun void
 MEMSPACE
 void hexdump(char *name)
 {
@@ -396,6 +407,33 @@ void hexdump(char *name)
 	printf("\n");
     fclose(fi);
 }
+
+/// @brief sum of a file with 16bit hex and integer results
+/// @param[in] *name: file to sum
+/// @retrun void
+void sum(char *name)
+{
+
+    FILE *fi;
+	uint16_t sum;
+	int i,len;
+    uint8_t buffer[256];
+
+    fi=fopen(name,"r");
+    if(fi == NULL) 
+	{
+        printf("Can not open:%s\n",name);
+        return;
+    }
+    while( (len = fread(buffer,1, 256, fi)) > 0) 
+	{
+        for(i=0;i<len;++i) 
+            sum += (0xff & buffer[i]);
+    }
+    fclose(fi);
+	printf("Sum: %04Xh, %5d\n", (int) sum, (int) sum);
+}
+
 
 #endif 	// POSIX_WRAPPERS
 

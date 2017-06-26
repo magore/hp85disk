@@ -61,6 +61,7 @@ var searchData=
   ['dirbase',['dirbase',['../structFATFS.html#a3f72fd998dbcce4652a85a81fe944bc4',1,'FATFS']]],
   ['dirent',['dirent',['../structdirent.html',1,'']]],
   ['dirent_5ft',['dirent_t',['../posix_8h.html#a6673e8f64ca9ebd7e26e6289dca06e87',1,'posix.h']]],
+  ['dirindex',['dirindex',['../structlif__t.html#a74f8af3dc203c3c6b9dea3829bb4b6fa',1,'lif_t']]],
   ['dirname',['dirname',['../posix_8c.html#a26a07a3db060ffc5659fe03495a29a1c',1,'dirname(char *str):&#160;posix.c'],['../posix_8h.html#a26a07a3db060ffc5659fe03495a29a1c',1,'dirname(char *str):&#160;posix.c']]],
   ['dirsectors',['DirSectors',['../structlifvol__t.html#aceac3bc67cda1f79d91c002411e33897',1,'lifvol_t']]],
   ['dirstartsector',['DirStartSector',['../structlifvol__t.html#a89b86c990a7843cfa2addfff9a775137',1,'lifvol_t']]],

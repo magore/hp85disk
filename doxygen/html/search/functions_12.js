@@ -96,6 +96,7 @@ var searchData=
   ['strtoll',['strtoll',['../mathio_8c.html#a00a26430103adfe060136c98afc39cab',1,'strtoll(const char *nptr, char **endptr, int base):&#160;mathio.c'],['../mathio_8h.html#a00a26430103adfe060136c98afc39cab',1,'strtoll(const char *nptr, char **endptr, int base):&#160;mathio.c']]],
   ['strupper',['strupper',['../stringsup_8c.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../mathio_8h.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../printf_8c.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;printf.c']]],
   ['subtract_5ftimespec',['subtract_timespec',['../timer_8c.html#ab92d687bae984bd62c3d741f2ba614ed',1,'subtract_timespec(ts_t *a, ts_t *b):&#160;timer.c'],['../timer_8h.html#ab92d687bae984bd62c3d741f2ba614ed',1,'subtract_timespec(ts_t *a, ts_t *b):&#160;timer.c']]],
+  ['sum',['sum',['../fatfs__utils_8h.html#a7820fd6266f2dd54c94202f062d8aa50',1,'fatfs_utils.h']]],
   ['sum_5fsfn',['sum_sfn',['../ff_8c.html#a6777613d0fbb01b79be0e799017db7cf',1,'ff.c']]],
   ['sync',['sync',['../posix_8c.html#a8f7f00d4ec0d99440762b0a664aebf70',1,'sync(void):&#160;posix.c'],['../posix_8h.html#a8f7f00d4ec0d99440762b0a664aebf70',1,'sync(void):&#160;posix.c']]],
   ['sync_5ffs',['sync_fs',['../ff_8c.html#ae8bea7f3ba458b7fafd40a72277c2c38',1,'ff.c']]],

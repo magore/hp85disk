@@ -5,7 +5,7 @@ var searchData=
   ['sect',['sect',['../structFIL.html#affec18b48fe716fdae6a60123fc61145',1,'FIL::sect()'],['../structDIR.html#ad01fcc812ed0dad11a593574336adc9e',1,'DIR::sect()']]],
   ['sector',['sector',['../structAMIGOStateType.html#a90615dad99e4fb6852b176bf6712f40b',1,'AMIGOStateType']]],
   ['sectors',['sectors',['../structlif__t.html#a262b14d8547abff49d9dd1b445faf6d5',1,'lif_t']]],
-  ['sectors_5fper_5ftrack',['sectors_per_track',['../structlifvol__t.html#ad245f7419e180934262f53acd9b4349c',1,'lifvol_t::sectors_per_track()'],['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()']]],
+  ['sectors_5fper_5ftrack',['SECTORS_PER_TRACK',['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()'],['../structlifvol__t.html#ad245f7419e180934262f53acd9b4349c',1,'lifvol_t::sectors_per_track()']]],
   ['sectorsize',['SectorSize',['../structlifdir__t.html#adf3c38eecddce15925157383ff38ef2d',1,'lifdir_t']]],
   ['sent',['sent',['../struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706',1,'_printf_t']]],
   ['sides',['sides',['../structlifvol__t.html#a5b8ecfb441b010f69cb90b923cc50719',1,'lifvol_t']]],

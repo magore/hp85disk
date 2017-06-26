@@ -20,7 +20,7 @@ var searchData=
   ['uart_5frx_5finterrupt',['uart_rx_interrupt',['../rs232_8c.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c'],['../rs232_8h.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c']]],
   ['uart_5ftx_5fbyte',['uart_tx_byte',['../rs232_8c.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c']]],
   ['uart_5fubr',['uart_ubr',['../rs232_8c.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c'],['../rs232_8h.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c']]],
-  ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c'],['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h']]],
+  ['uarts',['UARTS',['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h'],['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c']]],
   ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['uid_5ft',['uid_t',['../posix_8h.html#a0f43c63879b4ab6960f41e756392c77d',1,'posix.h']]],
   ['uint',['UINT',['../integer_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec',1,'integer.h']]],
@@ -35,7 +35,7 @@ var searchData=
   ['unlink',['unlink',['../posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c'],['../posix_8h.html#aa964d662c19b2021d9cfd0c71bc686bd',1,'unlink(const char *pathname):&#160;posix.c']]],
   ['unt',['UNT',['../amigo_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;amigo.h'],['../defines_8h.html#aa370bdc64b3b5d37eeb63a4c499f3ef3',1,'UNT():&#160;defines.h']]],
   ['upload_5ffile',['upload_file',['../fatfs__utils_8h.html#ab26c70db434254f4b980768395d1f89f',1,'fatfs_utils.h']]],
-  ['used',['used',['../structlif__t.html#a142abfc1f5e472ddfd8d3fc72e1e7428',1,'lif_t']]],
+  ['usedsectors',['usedsectors',['../structlif__t.html#ad81767a2f65b997d5abecba130b89814',1,'lif_t']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

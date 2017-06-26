@@ -21,20 +21,12 @@
 extern int debuglevel;
 typedef struct stat stat_t;
 
-///@brief size of image file name size used by lif_format()
-#define LIF_IMAGE_NAME_SIZE 64
-
 ///Depends on how much free ram we have
 #define LIF_SECTOR_SIZE 256
+
 ///@brief LIF directory entry size
 #define LIF_DIR_SIZE 32
 #define LIF_DIR_RECORDS_PER_SECTOR (LIF_SECTOR_SIZE/LIF_DIR_SIZE)
-
-///@brief used for formatting
-///@brief When formatting a disk define how many sectors we can write at once
-#define LIF_CHUNKS 16
-#define LIF_CHUNK_SIZE (LIF_SECTOR_SIZE*LIF_CHUNKS)
-
 
 /**
   @brief Disk Layout
@@ -117,10 +109,10 @@ typedef struct
 ///@brief Used by lif_findfree_index to a find free directory slot and file area 
 typedef struct
 {
-    uint32_t start;
-    uint32_t size;	// The space space available in a purged record
-    int index;		// Index of directory entry to 
-    int eof;
+    uint32_t start;	// Start of record in sectors
+    uint32_t size;	// Free space of purged record - or if EOF then file size
+    int index;		// Index of directory entry 
+    int eof;		// Free space is at EOF
     int purged;		// Was the record purged ?
 } lifspace_t;
 
@@ -131,19 +123,20 @@ typedef struct
 /// Current Directory Entry
 /// read/write flag
 typedef struct {
-    char name[LIF_IMAGE_NAME_SIZE+1];	// LIF image file name
+    char *name; 			// LIF image file name
+	FILE *fp;				// LIF file handel
 	uint32_t sectors;		// LIF image size in sectors
 	uint32_t bytes;			// LIF image size in bytes
-	uint32_t filestart;      // LIF file area start in sectors
+	uint32_t filestart;     // LIF file area start in sectors
 	uint32_t filesectors;	// LIF file area size in sectors
+	uint32_t usedsectors;	// Used sector count
+	uint32_t freesectors;	// Free sector count
 	lifvol_t VOL;			// LIF Volume header
 	lifdir_t DIR;			// LIF directory entry
 	lifspace_t space;		// Used for process free directory slots
-	uint32_t used;		    // Used sector count
-	uint32_t free;		    // Free sector count
-	int	   files;			// File count
-	int	   purged;			// Purged file count
-    int    index;			// Directory index 0..N
+	int	   	files;			// File count
+	int	   	purged;			// Purged file count
+    int    	dirindex;		// Directory index 0..N
 } lif_t;
 
 // =============================================
@@ -151,11 +144,14 @@ typedef struct {
 /* lifutils.c */
 void lif_help ( void );
 int lif_tests ( char *str );
+void *lif_calloc ( long size );
+void lif_free ( uint8_t *p );
+void *lif_stralloc ( char *str );
 FILE *lif_open ( char *name , char *mode );
 stat_t *lif_stat ( char *name , stat_t *p );
 int lif_seek_msg ( FILE *fp , long offset , char *msg );
-long lif_read ( char *name , void *buf , long offset , int bytes );
-int lif_write ( char *name , void *buf , long offset , int bytes );
+long lif_read ( lif_t *LIF , void *buf , long offset , int bytes );
+int lif_write ( lif_t *LIF , void *buf , long offset , int bytes );
 int lif_chars ( int c , int index );
 int lif_B2S ( uint8_t *B , uint8_t *name , int size );
 int lif_checkname ( char *name );
@@ -174,28 +170,29 @@ void lif_dump_vol ( lif_t *LIF );
 int lif_check_volume ( lif_t *LIF );
 int lif_check_lif_headers ( lif_t *LIF );
 int lif_check_dir ( lif_t *LIF );
-lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long sectors );
+lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long filesectors );
 void lif_close_volume ( lif_t *LIF );
 uint32_t lif_bytes2sectors ( uint32_t bytes );
 void lif_rewinddir ( lif_t *LIF );
-int lif_closedir ( lif_t *LIF );
+void lif_closedir ( lif_t *LIF );
 int lif_checkdirindex ( lif_t *LIF , int index );
 int lif_readdirindex ( lif_t *LIF , int index );
 int lif_writedirindex ( lif_t *LIF , int index );
 int lif_writedirEOF ( lif_t *LIF , int index );
 lifdir_t *lif_readdir ( lif_t *LIF );
 lif_t *lif_opendir ( char *name );
-int lif_dir ( char *lifimagename );
+void lif_dir ( char *lifimagename );
 int lif_find_file ( lif_t *LIF , char *liflabel );
 int lif_findfree_dirindex ( lif_t *LIF , uint32_t sectors );
-int lif_ascii_string_to_e010 ( lif_t *LIF , long offset , void *vptr );
-long lif_add_ascii_file_as_e010_wrapper ( char *name , uint32_t offset , lif_t *LIF );
+int lif_ascii_string_to_e010 ( char *str , long offset , uint8_t *wbuf );
+long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *name );
 long lif_add_ascii_file_as_e010 ( char *lifimagename , char *lifname , char *userfile );
 int lif_extract_e010_as_ascii ( char *lifimagename , char *lifname , char *username );
-int lif_extract_lif_file ( char *lifimagename , char *lifname , char *username );
+int lif_extract_lif_as_lif ( char *lifimagename , char *lifname , char *username );
 long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
 int lif_del_file ( char *lifimagename , char *lifname );
 int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
 long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
+
 
 #endif     // #ifndef _LIFUTILS_H
