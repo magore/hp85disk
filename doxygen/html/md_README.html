@@ -347,14 +347,20 @@ README</h1>
 <li>help Will list all avalable commands and options</li>
 <li>Example commands<ul>
 <li>lifadd<ul>
-<li>Notes:<ul>
-<li>Only adds ASCII type E010 files at this time</li>
+<li>add ASCII file converted to E010 format to existing LIF image on SD card</li>
 <li>Strings must be no longer then sector size - 3</li>
-<li>Trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file <pre>
-         # Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
+<li>Any trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file <pre>
          # Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
          lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
+      </pre></li>
+</ul>
+</li>
+<li>lifaddbin<ul>
+<li>add LIF file to existing LIF image , any format, on SD card <pre>
+         # Used to import files into the HP85 disk images
+         lifaddbin /amigo1.lif TEST /test.lif
+         lifaddbin /amigo1.lif TREK85 /TREK85/trek.lif
       </pre></li>
 </ul>
 </li>
@@ -363,7 +369,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
+<p>Notes about TREK85 in the examples</p><ul>
+<li>Author: TREK85 port was done by Martin Hepperle</li>
 </ul>
 <p>Notes about TREK85</p><ul>
 <li>Author: TREK85 port was done by Martin Hepperle</li>
@@ -380,13 +387,18 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>lifcreate </p><pre>
-         # formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+<p>lifcreate</p><ul>
+<li>Create a LIF image on SD card <pre>
+         # Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
          format /amigo3.lif AMIGO3 15 1120
          Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
          Formating: wrote:[1120] sectors
-      </pre><ul>
-<li><p class="startli">lifdir </p><pre>
+      </pre></li>
+</ul>
+<p>lifdel</p><ul>
+<li>Delete a file from LIF image on SD card</li>
+</ul>
+<p>lifdir </p><pre>
         lifdir /amigo1.lif
         Volume: [AMIGO2]
         NAME         TYPE   START SECTOR        SIZE    RECSIZE
@@ -404,21 +416,30 @@ README</h1>
              128 Used sectors
              976 Free sectors
              144 First free sector (90h)
-      </pre></li>
+      </pre><ul>
 <li>lifextract<ul>
 <li>Notes:<ul>
-<li>Only extracts ASCII type E010 files at this time</li>
-<li>Strings must be no longer then sector size - 3</li>
-<li>Trailing "\n" and/or "\r" are coverted to "\n" when stored in SD card file <pre>
+<li>Extracts E010 file from LIF image converting to ASCII file on SD card <pre>
          # extracts an ASCII type E010 file from a LIF image and saves it on the SD card
          lifextract /amigo1.lif HELLO3 /HELLO3.BAS
          Extracting: /HELLO3.BAS
          Wrote:      311
+      </pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>lifextractbin<ul>
+<li>Extracts file from LIF image to new LIF image on SD card <pre>
+         # extracts LIF from a LIF image and saves it as new LIF image on the SD card
+         lifextractbin /amigo1.lif HELLO3 /hello3.lif
+      </pre></li>
+</ul>
+</li>
+<li>lifrename *Renames file in LIF image <pre>
+         # Renames file in LIF image on the SD card
+         lifrename /amigo1.lif HELLO3 HELLO4
       </pre> <hr/>
-</li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 <h2>OS Requirements for software building</h2>
@@ -935,7 +956,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 25 2017 22:01:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 25 2017 23:01:12 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

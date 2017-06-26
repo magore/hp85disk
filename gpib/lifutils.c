@@ -17,6 +17,96 @@
 #include <time.h>
 #include "lifutils.h"
 
+/**
+
+## LIF Terminal Commands
+ * Pressing any key will break out of the gpib task loop untill a command is entered
+   * lifhelp
+      Will list all avalable commands and options
+
+   * Example commands
+      * lifadd
+          * add ASCII file converted to E010 format to existing LIF image on SD card
+          * Strings must be no longer then sector size - 3
+          * Any trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file
+      <pre>
+         # Used to import files into the HP85 disk images
+         lifadd /amigo1.lif TEST1 /test.bas
+         lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
+      </pre>
+      * lifaddbin
+          * add LIF file to existing LIF image , any format, on SD card 
+      <pre>
+         # Used to import files into the HP85 disk images
+         lifaddbin /amigo1.lif TEST /test.lif
+         lifaddbin /amigo1.lif TREK85 /TREK85/trek.lif
+      </pre>
+         * Notes about TREK85 in the examples
+           * Author: TREK85 port was done by Martin Hepperle
+         * Notes about TREK85
+           * Author: TREK85 port was done by Martin Hepperle
+           * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+             * To load on HP85: GET "TREK85:D710"
+               * Note: GET takes a LONG time > 10 minutes!
+             * Assumes /amigo1.lif is ":D710"
+               * Intial RUN startup time is > 40 seconds
+             * Once STORE is used to save the load and run times are fast
+      * lifcreate
+         * Create a LIF image  on SD card
+      <pre>
+         # Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         format /amigo3.lif AMIGO3 15 1120
+         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+         Formating: wrote:[1120] sectors
+      </pre>
+
+      * lifdel
+         * Delete a file from LIF image on SD card
+
+      * lifdir 
+      <pre>
+        lifdir /amigo1.lif
+        Volume: [AMIGO2]
+        NAME         TYPE   START SECTOR        SIZE    RECSIZE
+        HELLO       E020h            10h         323        256
+        CIRCLE      E020h            12h         156        256
+        GPIB-S      E020h            13h         338        256
+        GPIB-T      E020h            15h        1413        256
+        GPIB7       E020h            1Bh         197        256
+        AMIGO2      E020h            1Ch          51        256
+        HELLO2      E010h            1Dh         512        256
+        HELLO3      E010h            1Fh         512        256
+        TEST        E010h            21h         256        256
+        TREK85      E010h            22h       28160        256
+        
+              10 Files
+               0 Purged
+             128 Used sectors
+             976 Free sectors
+             144 First free sector (90h)
+      </pre>
+      * lifextract
+        * Notes:
+          * Extracts E010 file from LIF image converting to ASCII file on SD card
+      <pre>
+         # extracts an ASCII type E010 file from a LIF image and saves it on the SD card
+         lifextract /amigo1.lif HELLO3 /HELLO3.BAS
+         Extracting: /HELLO3.BAS
+         Wrote:      311
+      </pre>
+      * lifextractbin
+          * Extracts file from LIF image to new LIF image on SD card
+      <pre>
+         # extracts LIF from a LIF image and saves it as new LIF image on the SD card
+         lifextractbin /amigo1.lif HELLO3 /hello3.lif
+      </pre>
+      * lifrename
+          *Renames file in LIF image
+      <pre>
+         # Renames file in LIF image on the SD card
+         lifrename /amigo1.lif HELLO3 HELLO4
+      </pre>
+*/
 
 /// @brief
 ///  Help Menu for User invoked GPIB functions and tasks

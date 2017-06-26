@@ -371,22 +371,33 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \begin{DoxyItemize}
 \item lifadd
 \begin{DoxyItemize}
-\item Notes\+:
-\begin{DoxyItemize}
-\item Only adds A\+S\+C\+II type E010 files at this time
+\item add A\+S\+C\+II file converted to E010 format to existing L\+IF image on SD card
 \item Strings must be no longer then sector size -\/ 3
-\item Trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
+\item Any trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
 \begin{DoxyPre}
-         \# Adds a translated ASCII file stored on SD card into a LIF disk image on SD card
          \# Used to import files into the HP85 disk images
          lifadd /amigo1.lif TEST1 /test.bas
          lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
       \end{DoxyPre}
 
 \end{DoxyItemize}
+\item lifaddbin
+\begin{DoxyItemize}
+\item add L\+IF file to existing L\+IF image , any format, on SD card 
+\begin{DoxyPre}
+         \# Used to import files into the HP85 disk images
+         lifaddbin /amigo1.lif TEST /test.lif
+         lifaddbin /amigo1.lif TREK85 /TREK85/trek.lif
+      \end{DoxyPre}
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+Notes about T\+R\+E\+K85 in the examples
+\begin{DoxyItemize}
+\item Author\+: T\+R\+E\+K85 port was done by Martin Hepperle
 \end{DoxyItemize}
 
 Notes about T\+R\+E\+K85
@@ -406,18 +417,24 @@ Notes about T\+R\+E\+K85
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-lifcreate 
+lifcreate
+\begin{DoxyItemize}
+\item Create a L\+IF image on SD card 
 \begin{DoxyPre}
-         \# formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+         \# Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
          format /amigo3.lif AMIGO3 15 1120
          Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
          Formating: wrote:[1120] sectors
       \end{DoxyPre}
 
+\end{DoxyItemize}
 
-
+lifdel
 \begin{DoxyItemize}
-\item lifdir 
+\item Delete a file from L\+IF image on SD card
+\end{DoxyItemize}
+
+lifdir 
 \begin{DoxyPre}
         lifdir /amigo1.lif
         Volume: [AMIGO2]
@@ -442,24 +459,38 @@ lifcreate
              144 First free sector (90h)
       \end{DoxyPre}
 
+\begin{DoxyItemize}
 \item lifextract
 \begin{DoxyItemize}
 \item Notes\+:
 \begin{DoxyItemize}
-\item Only extracts A\+S\+C\+II type E010 files at this time
-\item Strings must be no longer then sector size -\/ 3
-\item Trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in SD card file 
+\item Extracts E010 file from L\+IF image converting to A\+S\+C\+II file on SD card 
 \begin{DoxyPre}
          \# extracts an ASCII type E010 file from a LIF image and saves it on the SD card
          lifextract /amigo1.lif HELLO3 /HELLO3.BAS
          Extracting: /HELLO3.BAS
          Wrote:      311
       \end{DoxyPre}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item lifextractbin
+\begin{DoxyItemize}
+\item Extracts file from L\+IF image to new L\+IF image on SD card 
+\begin{DoxyPre}
+         \# extracts LIF from a LIF image and saves it as new LIF image on the SD card
+         lifextractbin /amigo1.lif HELLO3 /hello3.lif
+      \end{DoxyPre}
+
+\end{DoxyItemize}
+\item lifrename $\ast$\+Renames file in L\+IF image 
+\begin{DoxyPre}
+         \# Renames file in LIF image on the SD card
+         lifrename /amigo1.lif HELLO3 HELLO4
+      \end{DoxyPre}
  
 
 
-\end{DoxyItemize}
-\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsection*{OS Requirements for software building}
