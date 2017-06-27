@@ -139,6 +139,7 @@ int lif_tests(char *str)
 
     if ((len = token(ptr,"lifhelp")) )
 	{
+		printf("\n");
 		lif_help();
 		return(1);
 	}
@@ -147,6 +148,8 @@ int lif_tests(char *str)
         char name[64];
         char lifname[64];
         char user[64];
+
+		printf("\n");
 
         ptr += len;
 
@@ -169,6 +172,8 @@ int lif_tests(char *str)
         char lifname[64];
         char user[64];
 
+		printf("\n");
+
         ptr += len;
 
         // LIF name
@@ -189,6 +194,8 @@ int lif_tests(char *str)
         char name[64];
         char lifname[64];
 
+		printf("\n");
+
         ptr += len;
 
         // LIF name
@@ -206,6 +213,8 @@ int lif_tests(char *str)
         char name[64],label[6];
         char num[12];
         long dirsectors, sectors, result;
+
+		printf("\n");
 
         ptr += len;
 
@@ -235,6 +244,7 @@ int lif_tests(char *str)
     else if ((len = token(ptr,"lifdir")) )
     {
         char name[64];
+		printf("\n");
         ptr += len;
         // LIF name
         ptr = get_token(ptr, name, 63);
@@ -247,6 +257,8 @@ int lif_tests(char *str)
         char name[64];
         char lifname[64];
         char user[64];
+
+		printf("\n");
 
         ptr += len;
 
@@ -269,6 +281,7 @@ int lif_tests(char *str)
         char lifname[64];
         char user[64];
 
+		printf("\n");
         ptr += len;
 
         // LIF name
@@ -289,6 +302,8 @@ int lif_tests(char *str)
         char name[64];
         char oldlifname[64];
         char newlifname[64];
+
+		printf("\n");
 
         ptr += len;
 
@@ -378,7 +393,6 @@ stat_t *lif_stat(char *name, stat_t *p)
 	return(p);
 }
 
-/// @brief File seek with error message
 /// Displays message on errors
 /// @param[in] *fp: FILE pointer
 /// @param[in] offset: file offset
@@ -416,7 +430,8 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 	if( len != bytes)
 	{
 		if(debuglevel & 1)
-			printf("lif_read: Read error %s @ %ld\n", LIF->name, offset);
+			printf("lif_read: read:[%s] offset:[%ld] write:[%d] expected:[%d]\n", 
+				LIF->name, offset, len, bytes);
 	}
 	return(len);
 }
@@ -430,7 +445,7 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 /// @return bytes read or 0 on error
 int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
 {
-	long len;
+	int len;
 
 	// Seek to write position
 	if(!lif_seek_msg(LIF->fp, offset,LIF->name))
@@ -441,7 +456,8 @@ int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
 	if( len != bytes)
 	{
 		if(debuglevel & 1)
-			printf("lif_write: Writeerror %s @ %ld\n", LIF->name, offset);
+			printf("lif_write: Write:[%s] offset:[%ld] write:[%d] expected:[%d]\n", 
+				LIF->name, offset, len, bytes);
 	}
 	return(len);
 }
@@ -647,23 +663,120 @@ uint8_t lif_BIN2BCD(uint8_t data)
 }
 
 
-///@brief UNIX time to LIF time format
-///@param[out] bcd: packed 6 byte BCD LIF time
-///   YY,MM,DD,HH,MM,SS
-///@param[in] t: UNIX time_t time value
-///@see time() in time.c
-///@return void
-void lif_time2lif(uint8_t *bcd, time_t t)
+/// @brief Convert BCD in the range 0 and <= 99 to BIN
+///  BCD format: each hex nibble has a digit 0 .. 9
+/// @param[in] data: number to convert to binary
+int lif_BCD2BIN(uint8_t bin)
+{
+    return( ((bin>>4)*10U)+(bin & 0x0f) );
+}
+
+
+/// @brief UNIX time to LIF BCD time format
+/// The BCD year is only the lower 2 digits of the year
+///      So We assume that values <= 70 are years >= 2000
+/// BCD Day and Month start at 1
+/// Note: If t == 0 we set ALL BCD digits to 0
+/// @param[in] t: UNIX time_t time value
+/// @param[out] *bcd: pcked 6 byte BCD LIF time YY MM DD HH MM SS
+/// @see time() in time.c
+/// @return void
+void lif_time2lifbcd(time_t t, uint8_t *bcd)
 {
 	tm_t tm;
-	localtime_r((time_t *) &t, (tm_t *)&tm);
-	bcd[0] = lif_BIN2BCD(tm.tm_year & 100);
-	bcd[1] = lif_BIN2BCD(tm.tm_mon);
+	int i;
+
+	if(t == 0)
+	{
+		for(i=0;i<6;++i)
+			bcd[i] = 0;
+		return;
+	}
+
+	gmtime_r((time_t *) &t, (tm_t *)&tm);
+	bcd[0] = lif_BIN2BCD(tm.tm_year % 100);
+	bcd[1] = lif_BIN2BCD(tm.tm_mon+1);
 	bcd[2] = lif_BIN2BCD(tm.tm_mday);
 	bcd[3] = lif_BIN2BCD(tm.tm_hour);
 	bcd[4] = lif_BIN2BCD(tm.tm_min);
 	bcd[5] = lif_BIN2BCD(tm.tm_sec);
 }
+
+/// @brief convert BCD date into time_t value
+/// The BCD year is only the lower 2 digits of the year
+///      So We assume that values <= 70 are years >= 2000
+/// BCD Day and Month start at 1
+/// If ALL BCD digits are 0 we return 0
+/// @param[in] *bcd: packed 6 byte BCD LIF time YY MM DD HH MM SS
+/// @return time_t result or 0 if all bcd digits were 0
+time_t lif_lifbcd2time(uint8_t *bcd)
+{
+	int year,mon;
+	tm_t tm;
+	time_t t;
+	int i;
+	int zerof = 1;
+
+	for(i=0;i<6;++i)
+	{
+		if(lif_BCD2BIN(bcd[i]))
+			zerof = 0;
+	}
+	if(!zerof)
+	{
+		year = lif_BCD2BIN(bcd[0]);
+		mon = lif_BCD2BIN(bcd[1])-1;
+		if(year < 70)
+			year += 100;
+		tm.tm_year = year;
+		tm.tm_mon = mon;
+		tm.tm_mday = lif_BCD2BIN(bcd[2]);
+		tm.tm_hour = lif_BCD2BIN(bcd[3]);
+		tm.tm_min= lif_BCD2BIN(bcd[4]);
+		tm.tm_sec= lif_BCD2BIN(bcd[5]);
+
+		t = timegm( (tm_t *) &tm);
+		return(t);
+	}
+	return(0);
+}
+
+/// @brief GMT version of POSIX ctime().
+///
+/// @param[in] tp: time_t * time input.
+///
+/// @return  buf[].
+///  - Example: "Thu Dec  8 21:45:05 EST 2011".
+/// @see ctime()
+/// @warning result is overwritten on each call.
+MEMSPACE
+char *lif_ctime_gmt(time_t *tp)
+{
+    static char buf[32];
+    tm_t tm;
+    return( asctime_r( gmtime_r(tp,&tm), buf) );
+}
+
+///@breif convert BCD time into a date string
+/// The BCD year is only the lower 2 digits of the year
+///      So We assume that values <= 70 are years >= 2000
+/// BCD Day and Month start at 1
+/// If BCD string is all zero we return <EMPTY>
+///@param[in] *bcd: pcked 6 byte BCD LIF time YY MM DD HH MM SS
+///@return string result
+char *lif_lifbcd2timestr(uint8_t *bcd)
+{
+	static char _timestr[32];
+   	time_t t = lif_lifbcd2time(bcd);
+
+	if(t)
+		strcpy(_timestr,lif_ctime_gmt((time_t *)&t));
+	else
+		strcpy(_timestr,"<EMPTY>");
+	return(_timestr);
+}
+
+/// @brief File seek with error message
 
 /// @brief Clear LIF structure 
 /// @param[in] *LIF: pointer to LIF structure
@@ -711,7 +824,7 @@ void lif_dump_vol(lif_t *LIF)
    printf("VOL Dir sectors:      %8lXh\n",(long)LIF->VOL.DirSectors);
    printf("VOL 3000LIFid:        %8Xh\n",(long)LIF->VOL.System3000LIFid);
    printf("VOL LIFVersion:       %8Xh\n",(long)LIF->VOL.LIFVersion);
-
+   printf("VOL Date:             %s\n", lif_lifbcd2timestr(LIF->VOL.date));
    printf("DIR File Name:        %s\n", LIF->DIR.filename);
    printf("DIR File Type:        %8Xh\n", (int)LIF->DIR.FileType);
    printf("DIR File Volume#:     %8Xh\n", (int)LIF->DIR.VolNumber);
@@ -719,6 +832,7 @@ void lif_dump_vol(lif_t *LIF)
    printf("DIR File sectors:     %8lXh\n", (long)LIF->DIR.FileSectors);
    printf("DIR File bytes:       %8lXh\n", (long)LIF->DIR.FileBytes);
    printf("DIR File sector size: %8Xh\n", (int)LIF->DIR.SectorSize);
+   printf("DIR File Date:        %s\n", lif_lifbcd2timestr(LIF->DIR.date));
 }
 
 ///@brief Check Volume Table for values in range
@@ -877,11 +991,25 @@ int lif_check_dir(lif_t *LIF)
 	}
 
 //FIXME check file types!
-	if( LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) != LIF->DIR.FileSectors )
+	if( LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) > LIF->DIR.FileSectors )
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Directory invalid FileBytes size:%ld\n", (long) LIF->DIR.FileBytes);
+			printf("LIF Directory invalid FileBytes:%ld as sectors:%ld > FileSectors:%ld\n", 
+				(long) LIF->DIR.FileBytes,
+				(long) lif_bytes2sectors(LIF->DIR.FileBytes),
+				(long) LIF->DIR.FileSectors);
+	}
+
+// Warning test only 
+// Does this LIF entry have more FileSectors then FileBytes when converted to sectors?
+	if( LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) < LIF->DIR.FileSectors )
+	{
+		if(debuglevel & 0x400)
+			printf("LIF Directory warning FileBytes:%ld as sectors:%ld < FileSectors:%ld\n", 
+				(long) LIF->DIR.FileBytes,
+				(long) lif_bytes2sectors(LIF->DIR.FileBytes),
+				(long) LIF->DIR.FileSectors);
 	}
 
 //FIXME check file types!
@@ -910,6 +1038,8 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 	long count;
 	uint8_t buffer[LIF_SECTOR_SIZE];
 
+	time_t t = time(NULL);
+
 	lif_t *LIF = lif_calloc(sizeof(lif_t)+4);
 	if(LIF == NULL)
 		return(NULL);
@@ -925,8 +1055,9 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
     LIF->VOL.tracks_per_side = 0;
     LIF->VOL.sides = 0;
     LIF->VOL.sectors_per_track = 0;
-    ///@brief Current Date
-    lif_time2lif(LIF->VOL.date, 0);
+    ///@brief 0 causes time to return the current date
+
+    lif_time2lifbcd(t, LIF->VOL.date);
 
 	// update LIF headers
 	LIF->name = lif_stralloc(imagename);
@@ -984,7 +1115,6 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 			return(NULL);
 		}
 		offset += size;
-		if((count % 100) == 0)
 			printf("Wrote: %ld\r", count);
 		++count;
 	}
@@ -1175,7 +1305,7 @@ int lif_writedirEOF(lif_t *LIF, int index)
 
 
 /// @brief Read a directory records from LIF image advancind directory index
-/// @see lif_opendir()
+/// @see lif_open_volume()
 /// nOte: skip all purged LIF directory records
 /// @param[in] *LIF: to LIF Volume/Diractoy structure 
 /// @return directory structure or NULL 
@@ -1184,7 +1314,7 @@ lifdir_t *lif_readdir(lif_t *LIF)
 	while(1)
 	{
 		// Advance index first 
-		// We start initialized at -1 by lif_opendir() and lif_rewinddir()
+		// We start initialized at -1 by lif_open_volume() and lif_rewinddir()
 		LIF->dirindex++;
 
 		if( !lif_readdirindex(LIF, LIF->dirindex) )
@@ -1204,8 +1334,9 @@ lifdir_t *lif_readdir(lif_t *LIF)
 
 /// @brief Open LIF directory for reading
 /// @param[in] *name: file name of LIF image
+/// @param[in] *mode: "r" = read, "r+" = rea/write
 /// @return LIF pointer on sucesses or NULL on error
-lif_t *lif_opendir(char *name)
+lif_t *lif_open_volume(char *name, char *mode)
 {
 	lif_t *LIF;
 	int index = 0;
@@ -1249,7 +1380,7 @@ lif_t *lif_opendir(char *name)
 	// Files
 	LIF->files = 0;
 
-	LIF->fp = lif_open(LIF->name,"r");
+	LIF->fp = lif_open(LIF->name,mode);
 		
 	// Volume header must be it least one sector
  	if( lif_read(LIF, buffer, 0, LIF_SECTOR_SIZE) < LIF_SECTOR_SIZE)
@@ -1314,13 +1445,20 @@ void lif_dir(char *lifimagename)
 	long bytes;
 	lif_t *LIF;
 	int index = 0;
+	char *vol;
 
-	LIF = lif_opendir(lifimagename);
+
+	LIF = lif_open_volume(lifimagename,"r");
 	if(LIF == NULL)
 		return;
+
+	vol = (char *)LIF->VOL.Label;
+	if(!vol[0])
+		vol = "<EMPTY>";
+
+	printf("Volume:[%s] Date:[%s]\n", vol, lif_lifbcd2timestr(LIF->VOL.date));
 	
-	printf("Volume: [%s]\n", LIF->VOL.Label);
-	printf("NAME         TYPE   START SECTOR        SIZE     RECSIZE\n");
+	printf("NAME         TYPE   START SECTOR        SIZE    RECSIZE   DATE\n");
 	while(1)
 	{
 		if(!lif_readdirindex(LIF,index))
@@ -1333,13 +1471,15 @@ void lif_dir(char *lifimagename)
 		if(!bytes)
 			bytes = (LIF->DIR.FileSectors * LIF_SECTOR_SIZE);
 
+
 		// name type start size
-		printf("%-10s  %04Xh      %8lXh   %9ld       %4d\n", 
+		printf("%-10s  %04Xh      %8lXh   %9ld       %4d   %s\n", 
 			(LIF->DIR.FileType ? (char *)LIF->DIR.filename : "<PURGED>"), 
 			(int)LIF->DIR.FileType, 
 			(long)LIF->DIR.FileStartSector, 
 			(long)bytes, 
-			(int)LIF->DIR.SectorSize  );
+			(int)LIF->DIR.SectorSize,
+			lif_lifbcd2timestr(LIF->DIR.date));
 
 		++index;
 	}	
@@ -1423,18 +1563,6 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 		if(!lif_readdirindex(LIF,index))
 			break;
 
-		// EOF Record
-		if(LIF->DIR.FileType == 0xffff)
-		{
-			// Start of free space is after last non-type 0 record - if we had a last record
-			LIF->space.start = start;
-			LIF->space.size = sectors;
-			LIF->space.index = index;
-			LIF->space.eof = 1;
-			LIF->dirindex = index;
-			return(index);
-		}
-
 		// Purged Record, the specs say we can NOT use the file size or start
 		if(LIF->DIR.FileType == 0)
 		{
@@ -1450,7 +1578,24 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 			continue;
 		}
 
-		// Valid Record
+		// EOF Record
+		if(LIF->DIR.FileType == 0xffff)
+		{
+			// Start of free space is after last non-type 0 record - if we had a last record
+			LIF->space.start = start;
+			LIF->space.size = sectors;
+			LIF->space.eof = 1;
+			if(purged)
+			{
+				LIF->dirindex = LIF->space.index;
+				return(LIF->dirindex);
+			}
+			LIF->space.index = index;
+			LIF->dirindex = index;
+			return(index);
+		}
+
+		// Valid Records after here
 
 		// We had a previous purged record
 		// Is there enough free space between valid records to save a new file of sectors in size ?
@@ -1465,9 +1610,9 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 			}
 			purged = 0;
 		}
-		// Find the start of the NEXT record
-		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
+
 		++index;
+		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
 	}
 
 	return(-1);
@@ -1620,7 +1765,7 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 /// @param[in] userfile: User ASCII file source
 /// @param[in] *LIF: Where to write file if set (not NULL)
 /// @return size of formatted result
-long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *name)
+long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *username)
 {
 	long bytes;
 	int count;
@@ -1633,7 +1778,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *name)
 	// output buffer must be larger then a single sectors because of either headers or padding
 	uint8_t obuf[LIF_SECTOR_SIZE*2];
 
-	fi = lif_open(name, "r");
+	fi = lif_open(username, "r");
 	if(fi == NULL)
 		return(-1);
 
@@ -1707,6 +1852,8 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	long offset;
 	int index;
 	lif_t *LIF;
+	stat_t st, *sp;
+
 
 	if(!*lifimagename)
 	{
@@ -1724,6 +1871,14 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 		return(-1);
 	}
 
+	//Get size and date info
+	sp = lif_stat(userfile, (stat_t *)&st);
+	if(!sp)
+	{
+		printf("lif_add_ascii_file_as_e010: userfile not found\n");
+		return(-1);
+	}
+
 	if(debuglevel & 0x400)
 		printf("LIF image:[%s], LIF name:[%s], user file:[%s]\n", 
 			lifimagename, lifname, userfile);
@@ -1732,7 +1887,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	bytes = lif_add_ascii_file_as_e010_wrapper(NULL,0,userfile);
 	sectors = lif_bytes2sectors(bytes);
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r+");
 	if(LIF == NULL)
 		return(-1);	
 
@@ -1751,7 +1906,8 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	LIF->DIR.FileType = 0xe010;  			// 10
 	LIF->DIR.FileStartSector = LIF->space.start;	// 12
 	LIF->DIR.FileSectors = sectors;    		// 16
-	memset(LIF->DIR.date,0,6);				// 20
+	lif_time2lifbcd(sp->st_mtime, LIF->DIR.date);
+
 	LIF->DIR.VolNumber = 0x8001;			// 26
 	LIF->DIR.FileBytes = 0;					// 28
 	LIF->DIR.SectorSize  = 0x100;			// 30
@@ -1796,6 +1952,8 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 }
 
 
+
+
 /// @brief Extract E010 type file from LIF image and save as user ASCII file
 /// @param[in] lifimagename: LIF disk image name
 /// @param[in] lifname:  name of file in LIF image
@@ -1811,6 +1969,8 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 	int status = 1;
 	int done = 0;
 
+	time_t t;
+
 	int ind,wind;
 	FILE *fo;
 
@@ -1820,7 +1980,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 	uint8_t wbuf[LIF_SECTOR_SIZE+4];
 
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r");
 	if(LIF == NULL)
 	{
 		printf("LIF image not found:%s\n", lifimagename);
@@ -1830,7 +1990,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 	index = lif_find_file(LIF, lifname);
 	if(index == -1)
 	{
-		printf("File not found:%s\n", username);
+		printf("LIF File not found:%s\n", lifname);
 		lif_closedir(LIF);
 		return(0);
 	}
@@ -1844,6 +2004,8 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 
 	start = LIF->DIR.FileStartSector;
 	end = start + LIF->DIR.FileSectors;
+
+	t = lif_lifbcd2time(LIF->DIR.date);
 
 	offset = start * LIF_SECTOR_SIZE;
 
@@ -1955,6 +2117,13 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 		bytes += size;
 	}
 	fclose(fo);
+	if(t)
+	{
+		struct utimbuf times;
+		times.modtime = t;
+		times.actime = t;
+		utime(username, (const struct utimbuf *) &times);
+	}
 	sync();
 	printf("Wrote: %8ld\n", bytes);
 	return(status);
@@ -1975,10 +2144,11 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 	long offset, uoffset, bytes;	
 	int index;
 	int i, size;
+	int sectors;
 
 	uint8_t buf[LIF_SECTOR_SIZE+4];
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r");
 	if(LIF == NULL)
 	{
 		printf("LIF image not found:%s\n", lifimagename);
@@ -1993,8 +2163,11 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 		return(0);
 	}
 
+	
+	sectors = LIF->DIR.FileSectors;
+
 	//Initialize the user file lif_t structure
-	ULIF = lif_create_volume(username, "HFSLIF",1,1,0);
+	ULIF = lif_create_volume(username, "HFSLIF",1,1,sectors);
 	if(ULIF == NULL)
 	{
 		lif_closedir(LIF);
@@ -2092,7 +2265,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 			lifimagename, lifname, userfile);
 
 	// open  userfile as LIF image
-	ULIF = lif_opendir(userfile);
+	ULIF = lif_open_volume(userfile,"r");
 	if(ULIF == NULL)
 		return(-1);	
 
@@ -2105,7 +2278,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 		return(0);
 	}
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r+");
 	if(LIF == NULL)
 		return(-1);	
 
@@ -2201,7 +2374,7 @@ int lif_del_file(char *lifimagename, char *lifname)
 			lifimagename, lifname);
 
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r+");
 	if(LIF == NULL)
 		return(-1);	
 
@@ -2260,7 +2433,7 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 
 	}
 
-	LIF = lif_opendir(lifimagename);
+	LIF = lif_open_volume(lifimagename,"r+");
 	if(LIF == NULL)
 		return(-1);	
 

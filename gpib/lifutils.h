@@ -141,6 +141,7 @@ typedef struct {
 
 // =============================================
 
+
 /* lifutils.c */
 void lif_help ( void );
 int lif_tests ( char *str );
@@ -162,7 +163,10 @@ void lif_str2vol ( uint8_t *B , lif_t *LIF );
 void lif_dir2str ( lif_t *LIF , uint8_t *B );
 void lif_str2dir ( uint8_t *B , lif_t *LIF );
 uint8_t lif_BIN2BCD ( uint8_t data );
-void lif_time2lif ( uint8_t *bcd , time_t t );
+int lif_BCD2BIN ( uint8_t bin );
+void lif_time2lifbcd ( time_t t , uint8_t *bcd );
+time_t lif_lifbcd2time ( uint8_t *bcd );
+char *lif_lifbcd2timestr ( uint8_t *bcd );
 void lif_image_clear ( lif_t *LIF );
 void lif_dir_clear ( lif_t *LIF );
 void lif_vol_clear ( lif_t *LIF );
@@ -180,12 +184,12 @@ int lif_readdirindex ( lif_t *LIF , int index );
 int lif_writedirindex ( lif_t *LIF , int index );
 int lif_writedirEOF ( lif_t *LIF , int index );
 lifdir_t *lif_readdir ( lif_t *LIF );
-lif_t *lif_opendir ( char *name );
+lif_t *lif_open_volume ( char *name , char *mode );
 void lif_dir ( char *lifimagename );
 int lif_find_file ( lif_t *LIF , char *liflabel );
 int lif_findfree_dirindex ( lif_t *LIF , uint32_t sectors );
 int lif_ascii_string_to_e010 ( char *str , long offset , uint8_t *wbuf );
-long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *name );
+long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *username );
 long lif_add_ascii_file_as_e010 ( char *lifimagename , char *lifname , char *userfile );
 int lif_extract_e010_as_ascii ( char *lifimagename , char *lifname , char *username );
 int lif_extract_lif_as_lif ( char *lifimagename , char *lifname , char *username );

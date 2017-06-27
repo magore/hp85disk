@@ -349,6 +349,8 @@ int uart_getchar(uint8_t uart)
         c = '\n';
 #endif
     c = uart_rx_byte(uart);
+//FIXME ECHO
+	uart_tx_byte(c, uart);
     return (c);
 }
 

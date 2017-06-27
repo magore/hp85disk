@@ -145,7 +145,10 @@ void display_time()
 
     if(rtc_read(&tc))
     {
-#if 0
+        seconds = timegm(&tc);
+        printf("rtc seconds: %lu\n",seconds);
+        printf("rtc time:    %s\n",asctime(&tc));
+#if RTC_DEBUG
         printf("rtc_read:%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
             (int) tc.tm_year + 1900,
             (int) tc.tm_mday,
@@ -155,10 +158,6 @@ void display_time()
             (int) tc.tm_sec,
             (int) tc.tm_wday);
 #endif
-        printf("rtc asctime: %s\n",asctime(&tc));
-        seconds = timegm(&tc);
-        printf("seconds:     %lu\n",seconds);
-        printf("asctime:     %s\n", asctime(gmtime(&seconds)));
     }
     else
     {
@@ -168,7 +167,7 @@ void display_time()
     clock_gettime(0, (ts_t *) &ts);
     seconds = ts.tv_sec;
     printf("clk seconds: %lu\n",seconds);
-    printf("clk asctime: %s\n", asctime(gmtime(&seconds)));
+    printf("clk time:    %s\n", asctime(gmtime(&seconds)));
 }
 
 
@@ -191,8 +190,8 @@ void task(char *line, int max, uint8_t gpib)
         return;
 
 
-    uart_put('>');
-    get_line(line, max-1);
+    printf("\n>");
+	fgets(line,max-1,stdin);
 
     ptr = skipspaces(line);
 	trim_tail(ptr);
