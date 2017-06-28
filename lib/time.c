@@ -33,11 +33,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "printf/mathio.h"
 
-#include "lib/time.h"
-#include "lib/timer.h"
+#include "time.h"
+#include "timer.h"
 
 #ifdef RTC
-#include "lib/rtc.h"
+#include "rtc.h"
 #endif
 
 /// @brief  System Clock Time

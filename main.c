@@ -98,11 +98,12 @@ void delay_tests()
 ///@see: clock_settime()
 void setup_clock()
 {
-    time_t seconds;
+    time_t seconds = 0;
     tm_t tc;
     ts_t ts;
     tz_t tz;
 
+#ifdef RTC
     if(!rtc_init(0,0L))
     {
         printf("rtc uninitilized\n");
@@ -122,6 +123,7 @@ void setup_clock()
         seconds = DEFAULT_TIME;
         printf("rtc read errorafter init\n");
     }
+#endif
     tz.tz_minuteswest = 300;
     tz.tz_dsttime = 0;
     settimezone( &tz );
@@ -143,6 +145,7 @@ void display_time()
     tm_t tc;
     ts_t ts;
 
+#ifdef RTC
     if(rtc_read(&tc))
     {
         seconds = timegm(&tc);
@@ -163,6 +166,7 @@ void display_time()
     {
         printf("RTC read failed\n");
     }
+#endif	// RTC
 
     clock_gettime(0, (ts_t *) &ts);
     seconds = ts.tv_sec;
@@ -182,7 +186,6 @@ void task(char *line, int max, uint8_t gpib)
 {
     char *ptr;
 	int ind;
-	int i;
 
 	char *argv[10];
 	int argc;

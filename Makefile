@@ -30,6 +30,9 @@ AMIGO=1
 # Extended user interactive fatfs tests
 FATFS_TESTS=1
 
+#We have an RTC
+RTC=1
+
 FATFS = \
 fatfs/ff.c  \
 fatfs/option/syscall.c  \
@@ -67,7 +70,6 @@ hardware/ram.c \
 hardware/delay.c \
 hardware/rs232.c \
 hardware/spi.c \
-hardware/rtc.c \
 hardware/TWI_AVR8.c \
 lib/stringsup.c \
 lib/timer_hal.c \
@@ -78,6 +80,12 @@ main.c \
  $(FATFS) \
  $(GPIB) \
  $(LIF)
+
+
+# We have an RTC
+ifeq ($(RTC),1)
+	CSRC += hardware/rtc.c 
+endif
 
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
@@ -109,12 +117,18 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO \
 	FATFS_UTILS_FULL \
-	POSIX_WRAPPERS
+	POSIX_WRAPPERS \
+
 ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
+
 ifeq ($(AMIGO),1)
 	DEFS += AMIGO 
+endif
+
+ifeq ($(RTC),1)
+	DEFS += RTC
 endif
 
 ADEFS   =
