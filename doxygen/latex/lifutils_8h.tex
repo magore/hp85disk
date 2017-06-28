@@ -1,5 +1,5 @@
-\hypertarget{lifutils_8h}{}\section{gpib/lifutils.h File Reference}
-\label{lifutils_8h}\index{gpib/lifutils.\+h@{gpib/lifutils.\+h}}
+\hypertarget{lifutils_8h}{}\section{lif/lifutils.h File Reference}
+\label{lifutils_8h}\index{lif/lifutils.\+h@{lif/lifutils.\+h}}
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
 \subsection*{Data Structures}
@@ -31,8 +31,8 @@ typedef struct \hyperlink{structstat}{stat} \hyperlink{lifutils_8h_aebb3d0e746d3
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{lifutils_8h_adcd52baa64a03567d69ce3579e3f66ea}{lif\+\_\+help} (void)
-\begin{DoxyCompactList}\small\item\em Help Menu for User invoked G\+P\+IB functions and tasks See\+: int \hyperlink{gpib__tests_8h_aed0c6a0a794f33d5cf7691c96d3e4955}{gpib\+\_\+tests(char $\ast$str)} \end{DoxyCompactList}\item 
-int \hyperlink{lifutils_8h_a32dc220253a6108ad1d2f6b06318d326}{lif\+\_\+tests} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Help Menu for User invoked G\+P\+IB functions and tasks See\+: int gpib\+\_\+tests(char $\ast$str) \end{DoxyCompactList}\item 
+int \hyperlink{lifutils_8h_a0df6a4473a3a9e6e6b68c740a2862300}{lif\+\_\+tests} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em L\+IF user tests. \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{lifutils_8h_a49aa170d2fe86ee0f45b87d3d32fd9c1}{lif\+\_\+calloc} (long size)
 \begin{DoxyCompactList}\small\item\em Allocate and clear memory Displays message on errors. \end{DoxyCompactList}\item 
@@ -76,6 +76,8 @@ void \hyperlink{lifutils_8h_aab67c73a7069705ea77d3cd929d02971}{lif\+\_\+time2lif
 \begin{DoxyCompactList}\small\item\em U\+N\+IX time to L\+IF B\+CD time format The B\+CD year is only the lower 2 digits of the year So We assume that values $<$= 70 are years $>$= 2000 B\+CD Day and Month start at 1 Note\+: If t == 0 we set A\+LL B\+CD digits to 0. \end{DoxyCompactList}\item 
 \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{lifutils_8h_a8af95c56917defb3644f848aaf3b731f}{lif\+\_\+lifbcd2time} (uint8\+\_\+t $\ast$bcd)
 \begin{DoxyCompactList}\small\item\em convert B\+CD date into time\+\_\+t value The B\+CD year is only the lower 2 digits of the year So We assume that values $<$= 70 are years $>$= 2000 B\+CD Day and Month start at 1 If A\+LL B\+CD digits are 0 we return 0 \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{lifutils_8h_a66037d0bcbffc6000a59cc291cbef769}{lif\+\_\+ctime\+\_\+gmt} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} $\ast$tp)
+\begin{DoxyCompactList}\small\item\em G\+MT version of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{lifutils_8h_a3547371f9e379fea1b710fb438b7d4fa}{lif\+\_\+lifbcd2timestr} (uint8\+\_\+t $\ast$bcd)
 \item 
 void \hyperlink{lifutils_8h_a58a5443fc260766e73f59d06516e5e30}{lif\+\_\+image\+\_\+clear} (\hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF)
@@ -121,7 +123,7 @@ int \hyperlink{lifutils_8h_a202c268417101307124dee4651d4e495}{lif\+\_\+find\+\_\
 int \hyperlink{lifutils_8h_ad805abeac64ec242a010dd8a40a0c61d}{lif\+\_\+findfree\+\_\+dirindex} (\hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF, uint32\+\_\+t sectors)
 \begin{DoxyCompactList}\small\item\em Find free directory slot that can hold $>$= sectors in size Unless a record is purged this will always be the last record. \end{DoxyCompactList}\item 
 int \hyperlink{lifutils_8h_a5b44a57be8a5bdea2526cbdb73c61359}{lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010} (char $\ast$str, long offset, uint8\+\_\+t $\ast$wbuf)
-\begin{DoxyCompactList}\small\item\em H\+P85 E010 A\+S\+C\+II L\+IF records ef \mbox{[}ff\mbox{]}$\ast$ = no more data in this sector df size \mbox{[}A\+S\+C\+II\mbox{]} = data must fit inside this sector cf size \mbox{[}A\+S\+C\+II\mbox{]} = split data accross sector boundry, \char`\"{}6f\char`\"{} record continues at start of next sector Note\+: The 6f header is I\+N\+S\+I\+DE the \char`\"{}cf\char`\"{} record and not included in the \char`\"{}cf\char`\"{} size value (yuck!) 6f size \mbox{[}A\+S\+C\+II\mbox{]} = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) pad with \char`\"{}ef\char`\"{} and \char`\"{}ff\char`\"{} until sector end size = 16 bits L\+SB M\+SB. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Convert an A\+S\+C\+II string into H\+P85 E010 format. \end{DoxyCompactList}\item 
 long \hyperlink{lifutils_8h_a5c39b7db30aac3b76f21d4525a58caab}{lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper} (\hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF, uint32\+\_\+t offset, char $\ast$username)
 \begin{DoxyCompactList}\small\item\em Add A\+S\+C\+II file as E010 data to L\+IF image -\/ or compute converted data size To find size of formatted result only, without writting, set L\+IF to N\+U\+LL. \end{DoxyCompactList}\item 
 long \hyperlink{lifutils_8h_a4e11267b7e55857ae3a6bfa1525aa672}{lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010} (char $\ast$lifimagename, char $\ast$lifname, char $\ast$userfile)
@@ -181,7 +183,7 @@ Definition at line 25 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+bytes2sectors(), lif\+\_\+check\+\_\+dir(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdirindex(), and lif\+\_\+writedirindex().
+Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+bytes2sectors(), lif\+\_\+check\+\_\+dir(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdirindex(), and lif\+\_\+writedirindex().
 
 
 
@@ -223,7 +225,7 @@ size of data written into to L\+IF image, or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 1848 of file lifutils.\+c.
+Definition at line 1787 of file lifutils.\+c.
 
 
 
@@ -254,7 +256,7 @@ size of formatted result
 \end{DoxyReturn}
 
 
-Definition at line 1768 of file lifutils.\+c.
+Definition at line 1693 of file lifutils.\+c.
 
 
 
@@ -287,7 +289,7 @@ size of data written into to L\+IF image, or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 2236 of file lifutils.\+c.
+Definition at line 2175 of file lifutils.\+c.
 
 
 
@@ -304,11 +306,9 @@ Referenced by lif\+\_\+tests().
 )}\hypertarget{lifutils_8h_a5b44a57be8a5bdea2526cbdb73c61359}{}\label{lifutils_8h_a5b44a57be8a5bdea2526cbdb73c61359}
 
 
-H\+P85 E010 A\+S\+C\+II L\+IF records ef \mbox{[}ff\mbox{]}$\ast$ = no more data in this sector df size \mbox{[}A\+S\+C\+II\mbox{]} = data must fit inside this sector cf size \mbox{[}A\+S\+C\+II\mbox{]} = split data accross sector boundry, \char`\"{}6f\char`\"{} record continues at start of next sector Note\+: The 6f header is I\+N\+S\+I\+DE the \char`\"{}cf\char`\"{} record and not included in the \char`\"{}cf\char`\"{} size value (yuck!) 6f size \mbox{[}A\+S\+C\+II\mbox{]} = split continue (always starts at sector boundry) df 00 00 ef \mbox{[}ff\mbox{]}$\ast$ = E\+OF (df size = 0) pad with \char`\"{}ef\char`\"{} and \char`\"{}ff\char`\"{} until sector end size = 16 bits L\+SB M\+SB. 
+Convert an A\+S\+C\+II string into H\+P85 E010 format. 
 
-Example\+: 000080e0 \+: 4b 7c 22 0d cf 29 00 31 34 20 44 49 53 50 20 22 \+: K$\vert$\char`\"{}..).\+14 D\+I\+S\+P \char`\"{} 000080f0 \+: 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 5f \+: \+\_\+ 00008100 \+: 6f 10 00 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f 5f \+: o..\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+\+\_\+ 00008110 \+: 5f 22 0d df 2b 00 31 35 20 44 49 53 50 20 22 20 \+: \+\_\+\char`\"{}..+.\+15 D\+I\+S\+P \char`\"{}
 
-cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder) So 29 = 19 and 10 (yuck!)Convert an A\+S\+C\+II string into H\+P85 E010 format 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em str} & A\+S\+C\+II string to write \\
 \hline
@@ -320,13 +320,16 @@ cf 29 00 (19 is to sector end) (new sector start with 6F 10 00 (10 is remainder)
 \begin{DoxyReturn}{Returns}
 size of E010 data 
 \end{DoxyReturn}
+We A\+L\+W\+A\+YS pad a sector if\+: There is no room for a 0xdf single header
+\begin{DoxyItemize}
+\item OR -\/ Spliting a string takes more space then padding here (extra header) 
+\end{DoxyItemize}
+
+Definition at line 1601 of file lifutils.\+c.
 
 
-Definition at line 1646 of file lifutils.\+c.
 
-
-
-Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), and lif\+\_\+findfree\+\_\+dirindex().
+Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+\+B2S@{lif\+\_\+\+B2S}}
 \index{lif\+\_\+\+B2S@{lif\+\_\+\+B2S}!lifutils.\+h@{lifutils.\+h}}
@@ -352,7 +355,7 @@ Convert L\+IF space padded string name into normal string.
 \end{DoxyParams}
 
 
-Definition at line 491 of file lifutils.\+c.
+Definition at line 373 of file lifutils.\+c.
 
 
 
@@ -376,7 +379,7 @@ Convert B\+CD in the range 0 and $<$= 99 to B\+IN B\+CD format\+: each hex nibbl
 \end{DoxyParams}
 
 
-Definition at line 669 of file lifutils.\+c.
+Definition at line 551 of file lifutils.\+c.
 
 
 
@@ -406,7 +409,7 @@ B\+CD value
 \end{DoxyReturn}
 
 
-Definition at line 660 of file lifutils.\+c.
+Definition at line 542 of file lifutils.\+c.
 
 
 
@@ -433,11 +436,11 @@ sectors
 \end{DoxyReturn}
 
 
-Definition at line 1189 of file lifutils.\+c.
+Definition at line 1087 of file lifutils.\+c.
 
 
 
-Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+check\+\_\+dir(), lif\+\_\+checkdirindex(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), and lif\+\_\+open\+\_\+volume().
+Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+check\+\_\+dir(), lif\+\_\+checkdirindex(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), and lif\+\_\+open\+\_\+volume().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+calloc@{lif\+\_\+calloc}}
 \index{lif\+\_\+calloc@{lif\+\_\+calloc}!lifutils.\+h@{lifutils.\+h}}
@@ -460,7 +463,7 @@ pointer to allocated memory
 \end{DoxyReturn}
 
 
-Definition at line 331 of file lifutils.\+c.
+Definition at line 213 of file lifutils.\+c.
 
 
 
@@ -487,7 +490,7 @@ Check if characters in a L\+IF volume or L\+IF file name are valid.
 \end{DoxyParams}
 
 
-Definition at line 471 of file lifutils.\+c.
+Definition at line 353 of file lifutils.\+c.
 
 
 
@@ -516,7 +519,7 @@ Validate Directory record values We only do basic out of bounds tests for this r
 \end{DoxyReturn}
 
 
-Definition at line 943 of file lifutils.\+c.
+Definition at line 825 of file lifutils.\+c.
 
 
 
@@ -543,7 +546,7 @@ Check L\+IF base structure value (Not\+: V\+OL, \hyperlink{structDIR}{D\+IR} or 
 \end{DoxyReturn}
 
 
-Definition at line 896 of file lifutils.\+c.
+Definition at line 778 of file lifutils.\+c.
 
 
 
@@ -570,7 +573,7 @@ Check Volume Table for values in range.
 \end{DoxyReturn}
 
 
-Definition at line 841 of file lifutils.\+c.
+Definition at line 723 of file lifutils.\+c.
 
 
 
@@ -600,7 +603,7 @@ Check directory index limits.
 \end{DoxyReturn}
 
 
-Definition at line 1220 of file lifutils.\+c.
+Definition at line 1118 of file lifutils.\+c.
 
 
 
@@ -624,7 +627,7 @@ Check volume if name or directory name is valid.
 \end{DoxyParams}
 
 
-Definition at line 511 of file lifutils.\+c.
+Definition at line 393 of file lifutils.\+c.
 
 
 
@@ -651,7 +654,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1168 of file lifutils.\+c.
+Definition at line 1066 of file lifutils.\+c.
 
 
 
@@ -678,7 +681,7 @@ Close L\+IF directory clear and free \hyperlink{structlif__t}{lif\+\_\+t} struct
 \end{DoxyReturn}
 
 
-Definition at line 1211 of file lifutils.\+c.
+Definition at line 1109 of file lifutils.\+c.
 
 
 
@@ -714,7 +717,7 @@ bytes writting to disk image
 \end{DoxyReturn}
 
 
-Definition at line 2471 of file lifutils.\+c.
+Definition at line 2414 of file lifutils.\+c.
 
 
 
@@ -751,11 +754,47 @@ pointer to L\+IF structure
 \end{DoxyReturn}
 0 causes time to return the current date 
 
-Definition at line 1033 of file lifutils.\+c.
+Definition at line 931 of file lifutils.\+c.
 
 
 
 Referenced by lif\+\_\+create\+\_\+image(), and lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif().
+
+\index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+ctime\+\_\+gmt@{lif\+\_\+ctime\+\_\+gmt}}
+\index{lif\+\_\+ctime\+\_\+gmt@{lif\+\_\+ctime\+\_\+gmt}!lifutils.\+h@{lifutils.\+h}}
+\subsubsection[{\texorpdfstring{lif\+\_\+ctime\+\_\+gmt(time\+\_\+t $\ast$tp)}{lif_ctime_gmt(time_t *tp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ lif\+\_\+ctime\+\_\+gmt (
+\begin{DoxyParamCaption}
+\item[{{\bf time\+\_\+t} $\ast$}]{tp}
+\end{DoxyParamCaption}
+)}\hypertarget{lifutils_8h_a66037d0bcbffc6000a59cc291cbef769}{}\label{lifutils_8h_a66037d0bcbffc6000a59cc291cbef769}
+
+
+G\+MT version of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tp} & time\+\_\+t $\ast$ time input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+buf\mbox{[}\mbox{]}.
+\begin{DoxyItemize}
+\item Example\+: \char`\"{}\+Thu Dec  8 21\+:45\+:05 E\+S\+T 2011\char`\"{}. 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxySeeAlso}
+\begin{DoxyWarning}{Warning}
+result is overwritten on each call. 
+\end{DoxyWarning}
+
+
+Definition at line 635 of file lifutils.\+c.
+
+
+
+Referenced by lif\+\_\+lifbcd2timestr().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+del\+\_\+file@{lif\+\_\+del\+\_\+file}}
 \index{lif\+\_\+del\+\_\+file@{lif\+\_\+del\+\_\+file}!lifutils.\+h@{lifutils.\+h}}
@@ -779,9 +818,9 @@ Delete L\+IF file in L\+IF image.
 \begin{DoxyReturn}{Returns}
 1 if deleted, 0 if not found, -\/1 error 
 \end{DoxyReturn}
+F\+I\+X\+ME if the the N\+E\+XT record is an E\+OF then write an E\+OF here OR if all the records after this are purged untill E\+OF write E\+OF here 
 
-
-Definition at line 2357 of file lifutils.\+c.
+Definition at line 2296 of file lifutils.\+c.
 
 
 
@@ -808,7 +847,7 @@ Display a L\+IF image file directory.
 \end{DoxyReturn}
 
 
-Definition at line 1443 of file lifutils.\+c.
+Definition at line 1341 of file lifutils.\+c.
 
 
 
@@ -833,7 +872,7 @@ Convert L\+IF directory records into byte vector.
 \end{DoxyParams}
 
 
-Definition at line 627 of file lifutils.\+c.
+Definition at line 509 of file lifutils.\+c.
 
 
 
@@ -860,7 +899,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 793 of file lifutils.\+c.
+Definition at line 675 of file lifutils.\+c.
 
 
 
@@ -887,7 +926,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 809 of file lifutils.\+c.
+Definition at line 691 of file lifutils.\+c.
 
 
 
@@ -920,7 +959,7 @@ Extract E010 type file from L\+IF image and save as user A\+S\+C\+II file.
 \end{DoxyReturn}
 
 
-Definition at line 1962 of file lifutils.\+c.
+Definition at line 1901 of file lifutils.\+c.
 
 
 
@@ -953,7 +992,7 @@ Extract a file from L\+IF image entry as standalone L\+IF image.
 \end{DoxyReturn}
 
 
-Definition at line 2138 of file lifutils.\+c.
+Definition at line 2077 of file lifutils.\+c.
 
 
 
@@ -983,7 +1022,7 @@ Directory index of record
 \end{DoxyReturn}
 
 
-Definition at line 1501 of file lifutils.\+c.
+Definition at line 1420 of file lifutils.\+c.
 
 
 
@@ -1013,7 +1052,7 @@ Directory index of matching record or -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 1542 of file lifutils.\+c.
+Definition at line 1461 of file lifutils.\+c.
 
 
 
@@ -1046,7 +1085,7 @@ length of result
 \end{DoxyReturn}
 
 
-Definition at line 550 of file lifutils.\+c.
+Definition at line 432 of file lifutils.\+c.
 
 
 
@@ -1073,7 +1112,7 @@ pointer to allocated memory
 \end{DoxyReturn}
 
 
-Definition at line 343 of file lifutils.\+c.
+Definition at line 225 of file lifutils.\+c.
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+help@{lif\+\_\+help}}
 \index{lif\+\_\+help@{lif\+\_\+help}!lifutils.\+h@{lifutils.\+h}}
@@ -1084,86 +1123,126 @@ Definition at line 343 of file lifutils.\+c.
 )}\hypertarget{lifutils_8h_adcd52baa64a03567d69ce3579e3f66ea}{}\label{lifutils_8h_adcd52baa64a03567d69ce3579e3f66ea}
 
 
-Help Menu for User invoked G\+P\+IB functions and tasks See\+: int \hyperlink{gpib__tests_8h_aed0c6a0a794f33d5cf7691c96d3e4955}{gpib\+\_\+tests(char $\ast$str)} 
+Help Menu for User invoked G\+P\+IB functions and tasks See\+: int gpib\+\_\+tests(char $\ast$str) 
 
-\subsubsection*{L\+IF Terminal Commands}
-
-Pressing any key will break out of the gpib task loop untill a command is entered lifhelp Will list all avalable commands and options
-
-Example commands lifadd add A\+S\+C\+II file converted to E010 format to existing L\+IF image on SD card Strings must be no longer then sector size -\/ 3 Any trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
+Example lif sdcard commands lif add add A\+S\+C\+II file converted to E010 format to existing L\+IF image on SD card Strings must be no longer then sector size -\/ 3 Any trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
 \begin{DoxyPre}
-         \# Used to import files into the HP85 disk images
-         lifadd /amigo1.lif TEST1 /test.bas
-         lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
-      \end{DoxyPre}
- lifaddbin add L\+IF file to existing L\+IF image , any format, on SD card 
+    \# Used to import files into the HP85 disk images
+    lif add /amigo1.lif TEST1 /test.bas
+    lif add /amigo1.lif TREK85 /TREK85/TREK85.BAS
+ \end{DoxyPre}
+
+
+lif addbin add L\+IF file to existing L\+IF image , any format, on SD card 
 \begin{DoxyPre}
-         \# Used to import files into the HP85 disk images
-         lifaddbin /amigo1.lif TEST /test.lif
-         lifaddbin /amigo1.lif TREK85 /TREK85/trek.lif
-      \end{DoxyPre}
- Notes about T\+R\+E\+K85 in the examples Author\+: T\+R\+E\+K85 port was done by Martin Hepperle Notes about T\+R\+E\+K85 Author\+: T\+R\+E\+K85 port was done by Martin Hepperle \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241} To load on H\+P85\+: G\+ET \char`\"{}\+T\+R\+E\+K85\+:\+D710\char`\"{} Note\+: G\+ET takes a L\+O\+NG time $>$ 10 minutes! Assumes /amigo1.lif is \char`\"{}\+:\+D710\char`\"{} Intial R\+UN startup time is $>$ 40 seconds Once S\+T\+O\+RE is used to save the load and run times are fast lifcreate Create a L\+IF image on SD card 
+    \# Used to import files into the HP85 disk images
+    lif addbin /amigo1.lif TEST /test.lif
+    lif addbin /amigo1.lif TREK85 /TREK85/trek.lif
+       \# Notes about TREK85 in the examples
+       \# Author: TREK85 port was done by Martin Hepperle
+       \# \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https://groups.io/g/hpseries80/topic/star\_trek\_game\_for\_hp\_85/4845241}\end{DoxyPre}
+
+
+
+\begin{DoxyPre}   lif create
+      Create a LIF image  on SD card
+ 
 \begin{DoxyPre}
-         \# Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         format /amigo3.lif AMIGO3 15 1120
-         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
-         Formating: wrote:[1120] sectors
-      \end{DoxyPre}
+    \# Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+    lif create /amigo3.lif AMIGO3 15 1120
+    Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
+    Formating: wrote:[1120] sectors
+ \end{DoxyPre}
+\end{DoxyPre}
 
 
-lifdel Delete a file from L\+IF image on SD card
 
-lifdir 
+\begin{DoxyPre}   lif del
+      Delete a file from LIF image on SD card
+ 
 \begin{DoxyPre}
-        lifdir /amigo1.lif
-        Volume: [AMIGO2]
-        NAME         TYPE   START SECTOR        SIZE    RECSIZE
-        HELLO       E020h            10h         323        256
-        CIRCLE      E020h            12h         156        256
-        GPIB-S      E020h            13h         338        256
-        GPIB-T      E020h            15h        1413        256
-        GPIB7       E020h            1Bh         197        256
-        AMIGO2      E020h            1Ch          51        256
-        HELLO2      E010h            1Dh         512        256
-        HELLO3      E010h            1Fh         512        256
-        TEST        E010h            21h         256        256
-        TREK85      E010h            22h       28160        256\end{DoxyPre}
+   lif del /amigo1.lif TREK85
+ \end{DoxyPre}
+\end{DoxyPre}
 
 
 
-\begin{DoxyPre}              10 Files
-               0 Purged
-             128 Used sectors
-             976 Free sectors
-             144 First free sector (90h)
-      \end{DoxyPre}
- lifextract Notes\+: Extracts E010 file from L\+IF image converting to A\+S\+C\+II file on SD card 
+\begin{DoxyPre}   lif dir 
+ 
 \begin{DoxyPre}
-         \# extracts an ASCII type E010 file from a LIF image and saves it on the SD card
-         lifextract /amigo1.lif HELLO3 /HELLO3.BAS
-         Extracting: /HELLO3.BAS
-         Wrote:      311
-      \end{DoxyPre}
- lifextractbin Extracts file from L\+IF image to new L\+IF image on SD card 
+   lif dir /amigo1.lif
+   Volume: [AMIGO2]
+   NAME         TYPE   START SECTOR        SIZE    RECSIZE
+   HELLO       E020h            10h         323        256
+   CIRCLE      E020h            12h         156        256
+   GPIB-S      E020h            13h         338        256
+   GPIB-T      E020h            15h        1413        256
+   GPIB7       E020h            1Bh         197        256
+   AMIGO2      E020h            1Ch          51        256
+   HELLO2      E010h            1Dh         512        256
+   HELLO3      E010h            1Fh         512        256
+   TEST        E010h            21h         256        256
+   TREK85      E010h            22h       28160        256\end{DoxyPre}
+\end{DoxyPre}
+
+
+
 \begin{DoxyPre}
-         \# extracts LIF from a LIF image and saves it as new LIF image on the SD card
-         lifextractbin /amigo1.lif HELLO3 /hello3.lif
-      \end{DoxyPre}
- lifrename Renames file in L\+IF image 
+\begin{DoxyPre}         10 Files
+          0 Purged
+        128 Used sectors
+        976 Free sectors
+        144 First free sector (90h)
+ \end{DoxyPre}
+\end{DoxyPre}
+
+
+
+\begin{DoxyPre}   lif extract
+     Notes:
+       Extracts E010 file from LIF image converting to ASCII file on SD card
+ 
+\begin{DoxyPre}
+    \# extracts an ASCII type E010 file from a LIF image and saves it on the SD card
+    lif extract /amigo1.lif HELLO3 /HELLO3.BAS
+    Extracting: /HELLO3.BAS
+    Wrote:      311
+ \end{DoxyPre}
+\end{DoxyPre}
+
+
+
+\begin{DoxyPre}   lif extractbin
+       Extracts file from LIF image to new LIF image on SD card
+ 
+\begin{DoxyPre}
+    \# extracts LIF from a LIF image and saves it as new LIF image on the SD card
+    lif extractbin /amigo1.lif HELLO3 /hello3.lif
+ \end{DoxyPre}
+\end{DoxyPre}
+
+
+
+\begin{DoxyPre}   lif rename
+      Renames file in LIF image
+ 
 \begin{DoxyPre}
 \subsection*{Renames file in LIF image on the SD card}\end{DoxyPre}
+\end{DoxyPre}
 
 
 
 \begin{DoxyPre}
-         lifrename /amigo1.lif HELLO3 HELLO4
-      \end{DoxyPre}
+\begin{DoxyPre}
+    lif rename /amigo1.lif HELLO3 HELLO4
+ \end{DoxyPre}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+\end{DoxyPre}
 
 
-Definition at line 115 of file lifutils.\+c.
+Definition at line 109 of file lifutils.\+c.
 
 
 
@@ -1190,7 +1269,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 784 of file lifutils.\+c.
+Definition at line 666 of file lifutils.\+c.
 
 
 
@@ -1217,7 +1296,7 @@ time\+\_\+t result or 0 if all bcd digits were 0
 \end{DoxyReturn}
 
 
-Definition at line 712 of file lifutils.\+c.
+Definition at line 594 of file lifutils.\+c.
 
 
 
@@ -1240,7 +1319,7 @@ string result
 \end{DoxyReturn}
 
 
-Definition at line 767 of file lifutils.\+c.
+Definition at line 649 of file lifutils.\+c.
 
 
 
@@ -1270,7 +1349,7 @@ F\+I\+LE $\ast$ pointer
 \end{DoxyReturn}
 
 
-Definition at line 370 of file lifutils.\+c.
+Definition at line 252 of file lifutils.\+c.
 
 
 
@@ -1300,7 +1379,7 @@ L\+IF pointer on sucesses or N\+U\+LL on error
 \end{DoxyReturn}
 Update free 
 
-Definition at line 1339 of file lifutils.\+c.
+Definition at line 1237 of file lifutils.\+c.
 
 
 
@@ -1336,7 +1415,7 @@ bytes read or 0 on error
 \end{DoxyReturn}
 Initial file position 
 
-Definition at line 421 of file lifutils.\+c.
+Definition at line 303 of file lifutils.\+c.
 
 
 
@@ -1366,7 +1445,7 @@ directory structure or N\+U\+LL
 \end{DoxyReturn}
 
 
-Definition at line 1312 of file lifutils.\+c.
+Definition at line 1210 of file lifutils.\+c.
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+readdirindex@{lif\+\_\+readdirindex}}
 \index{lif\+\_\+readdirindex@{lif\+\_\+readdirindex}!lifutils.\+h@{lifutils.\+h}}
@@ -1392,7 +1471,7 @@ Read L\+IF directory record number N.
 \end{DoxyReturn}
 
 
-Definition at line 1236 of file lifutils.\+c.
+Definition at line 1134 of file lifutils.\+c.
 
 
 
@@ -1425,7 +1504,7 @@ Rename L\+IF file in L\+IF image.
 \end{DoxyReturn}
 
 
-Definition at line 2408 of file lifutils.\+c.
+Definition at line 2351 of file lifutils.\+c.
 
 
 
@@ -1452,7 +1531,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1201 of file lifutils.\+c.
+Definition at line 1099 of file lifutils.\+c.
 
 
 
@@ -1482,7 +1561,7 @@ Convert string to L\+IF directory record.
 \end{DoxyParams}
 
 
-Definition at line 528 of file lifutils.\+c.
+Definition at line 410 of file lifutils.\+c.
 
 
 
@@ -1511,7 +1590,7 @@ Displays message on errors
 \end{DoxyReturn}
 
 
-Definition at line 401 of file lifutils.\+c.
+Definition at line 283 of file lifutils.\+c.
 
 
 
@@ -1541,7 +1620,7 @@ N\+U\+LL on error or copy of p
 \end{DoxyReturn}
 
 
-Definition at line 386 of file lifutils.\+c.
+Definition at line 268 of file lifutils.\+c.
 
 
 
@@ -1568,7 +1647,7 @@ Convert byte vector into byte vector.
 \end{DoxyParams}
 
 
-Definition at line 643 of file lifutils.\+c.
+Definition at line 525 of file lifutils.\+c.
 
 
 
@@ -1598,7 +1677,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 606 of file lifutils.\+c.
+Definition at line 488 of file lifutils.\+c.
 
 
 
@@ -1625,7 +1704,7 @@ pointer to allocated memory with string copy
 \end{DoxyReturn}
 
 
-Definition at line 355 of file lifutils.\+c.
+Definition at line 237 of file lifutils.\+c.
 
 
 
@@ -1633,11 +1712,12 @@ Referenced by lif\+\_\+create\+\_\+volume(), and lif\+\_\+open\+\_\+volume().
 
 \index{lifutils.\+h@{lifutils.\+h}!lif\+\_\+tests@{lif\+\_\+tests}}
 \index{lif\+\_\+tests@{lif\+\_\+tests}!lifutils.\+h@{lifutils.\+h}}
-\subsubsection[{\texorpdfstring{lif\+\_\+tests(char $\ast$str)}{lif_tests(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+tests (
+\subsubsection[{\texorpdfstring{lif\+\_\+tests(int argc, char $\ast$argv[])}{lif_tests(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+tests (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)}\hypertarget{lifutils_8h_a32dc220253a6108ad1d2f6b06318d326}{}\label{lifutils_8h_a32dc220253a6108ad1d2f6b06318d326}
+)}\hypertarget{lifutils_8h_a0df6a4473a3a9e6e6b68c740a2862300}{}\label{lifutils_8h_a0df6a4473a3a9e6e6b68c740a2862300}
 
 
 L\+IF user tests. 
@@ -1647,7 +1727,7 @@ L\+IF user tests.
 \end{DoxyReturn}
 format L\+IF image 
 
-Definition at line 132 of file lifutils.\+c.
+Definition at line 126 of file lifutils.\+c.
 
 
 
@@ -1680,7 +1760,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 684 of file lifutils.\+c.
+Definition at line 566 of file lifutils.\+c.
 
 
 
@@ -1710,7 +1790,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 586 of file lifutils.\+c.
+Definition at line 468 of file lifutils.\+c.
 
 
 
@@ -1737,7 +1817,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 801 of file lifutils.\+c.
+Definition at line 683 of file lifutils.\+c.
 
 
 
@@ -1773,7 +1853,7 @@ bytes read or 0 on error
 \end{DoxyReturn}
 Initial file position 
 
-Definition at line 446 of file lifutils.\+c.
+Definition at line 328 of file lifutils.\+c.
 
 
 
@@ -1803,7 +1883,7 @@ Write L\+IF drectory E\+OF.
 \end{DoxyReturn}
 
 
-Definition at line 1298 of file lifutils.\+c.
+Definition at line 1196 of file lifutils.\+c.
 
 
 
@@ -1833,7 +1913,7 @@ Write L\+IF drectory record number N.
 \end{DoxyReturn}
 
 
-Definition at line 1266 of file lifutils.\+c.
+Definition at line 1164 of file lifutils.\+c.
 
 
 

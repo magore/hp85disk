@@ -18,54 +18,45 @@
 #include "lifutils.h"
 
 /**
-
-## LIF Terminal Commands
- * Pressing any key will break out of the gpib task loop untill a command is entered
-   * lifhelp
-      Will list all avalable commands and options
-
-   * Example commands
-      * lifadd
+   * Example lif sdcard commands
+      * lif add
           * add ASCII file converted to E010 format to existing LIF image on SD card
           * Strings must be no longer then sector size - 3
           * Any trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file
       <pre>
          # Used to import files into the HP85 disk images
-         lifadd /amigo1.lif TEST1 /test.bas
-         lifadd /amigo1.lif TREK85 /TREK85/TREK85.BAS
+         lif add /amigo1.lif TEST1 /test.bas
+         lif add /amigo1.lif TREK85 /TREK85/TREK85.BAS
       </pre>
-      * lifaddbin
+
+      * lif addbin
           * add LIF file to existing LIF image , any format, on SD card 
       <pre>
          # Used to import files into the HP85 disk images
-         lifaddbin /amigo1.lif TEST /test.lif
-         lifaddbin /amigo1.lif TREK85 /TREK85/trek.lif
-      </pre>
-         * Notes about TREK85 in the examples
-           * Author: TREK85 port was done by Martin Hepperle
-         * Notes about TREK85
-           * Author: TREK85 port was done by Martin Hepperle
-           * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
-             * To load on HP85: GET "TREK85:D710"
-               * Note: GET takes a LONG time > 10 minutes!
-             * Assumes /amigo1.lif is ":D710"
-               * Intial RUN startup time is > 40 seconds
-             * Once STORE is used to save the load and run times are fast
-      * lifcreate
+         lif addbin /amigo1.lif TEST /test.lif
+         lif addbin /amigo1.lif TREK85 /TREK85/trek.lif
+            # Notes about TREK85 in the examples
+            # Author: TREK85 port was done by Martin Hepperle
+            # https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+
+      * lif create
          * Create a LIF image  on SD card
       <pre>
          # Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         format /amigo3.lif AMIGO3 15 1120
+         lif create /amigo3.lif AMIGO3 15 1120
          Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
          Formating: wrote:[1120] sectors
       </pre>
 
-      * lifdel
+      * lif del
          * Delete a file from LIF image on SD card
-
-      * lifdir 
       <pre>
-        lifdir /amigo1.lif
+		lif del /amigo1.lif TREK85
+      </pre>
+
+      * lif dir 
+      <pre>
+        lif dir /amigo1.lif
         Volume: [AMIGO2]
         NAME         TYPE   START SECTOR        SIZE    RECSIZE
         HELLO       E020h            10h         323        256
@@ -85,26 +76,29 @@
              976 Free sectors
              144 First free sector (90h)
       </pre>
-      * lifextract
+
+      * lif extract
         * Notes:
           * Extracts E010 file from LIF image converting to ASCII file on SD card
       <pre>
          # extracts an ASCII type E010 file from a LIF image and saves it on the SD card
-         lifextract /amigo1.lif HELLO3 /HELLO3.BAS
+         lif extract /amigo1.lif HELLO3 /HELLO3.BAS
          Extracting: /HELLO3.BAS
          Wrote:      311
       </pre>
-      * lifextractbin
+
+      * lif extractbin
           * Extracts file from LIF image to new LIF image on SD card
       <pre>
          # extracts LIF from a LIF image and saves it as new LIF image on the SD card
-         lifextractbin /amigo1.lif HELLO3 /hello3.lif
+         lif extractbin /amigo1.lif HELLO3 /hello3.lif
       </pre>
-      * lifrename
+
+      * lif rename
           *Renames file in LIF image
       <pre>
          # Renames file in LIF image on the SD card
-         lifrename /amigo1.lif HELLO3 HELLO4
+         lif rename /amigo1.lif HELLO3 HELLO4
       </pre>
 */
 
@@ -115,209 +109,97 @@
 void lif_help()
 {
     printf(
-		"lifhelp\n"
-        "lifadd lifimage lifname file\n"
-        "lifaddbin lifimage lifname file\n"
-        "lifcreate lifimage label directory_sectors sectors\n"
-        "lifdel\n"
-        "lifdir\n"
-        "lifextract lifimage lifname file\n"
-        "lifextractbin lifimage lifname file\n"
-        "lifrename old new\n"
+		"lif help\n"
+        "lif add lifimage lifname file\n"
+        "lif addbin lifimage lifname file\n"
+        "lif create lifimage label directory_sectors sectors\n"
+        "lif del\n"
+        "lif dir\n"
+        "lif extract lifimage lifname file\n"
+        "lif extractbin lifimage lifname file\n"
+        "lif rename old new\n"
         );
 }
 
 /// @brief LIF user tests
 /// @return  1 matched token, 0 if not
-int lif_tests(char *str)
+int lif_tests(int argc, char *argv[])
 {
 
-    int len;
+	int ind;
     char *ptr;
 
-    ptr = skipspaces(str);
 
-    if ((len = token(ptr,"lifhelp")) )
+	if(argc < 2)
+		return(0);
+
+	ind = 1;
+	ptr = argv[ind++];
+
+    if (MATCH(ptr,"lifhelp") && (ind + 0) == argc)
 	{
-		printf("\n");
 		lif_help();
 		return(1);
 	}
-    if ((len = token(ptr,"lifaddbin")) )
+
+    if(!MATCH(ptr,"lif") && (ind + 0) == argc)
+		return(0);
+
+	// We matched "lif" so skip the argument
+
+	ptr = argv[ind++];
+
+	// We are past the "lif" argument
+
+    if (MATCH(ptr,"help") && (ind + 0) == argc)
+	{
+		lif_help();
+		return(1);
+	}
+
+    if (MATCH(ptr,"addbin") && (ind + 3) == argc)
     {
-        char name[64];
-        char lifname[64];
-        char user[64];
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // lif file name
-        ptr = get_token(ptr, lifname, 63);
-
-        // User file name
-        ptr = get_token(ptr, user, 63);
-
-		lif_add_lif_file(name, lifname, user);
+		lif_add_lif_file(argv[ind],argv[ind+1],argv[ind+2]);
 
         return(1);
     }
-    if ((len = token(ptr,"lifadd")) )
+    if (MATCH(ptr,"add") && (ind + 3) == argc)
     {
-        char name[64];
-        char lifname[64];
-        char user[64];
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // lif file name
-        ptr = get_token(ptr, lifname, 63);
-
-        // User file name
-        ptr = get_token(ptr, user, 63);
-
-		lif_add_ascii_file_as_e010(name, lifname, user);
+		lif_add_ascii_file_as_e010(argv[ind],argv[ind+1],argv[ind+2]);
+        return(1);
+    }
+    if (MATCH(ptr,"del") && (ind + 2) == argc)
+    {
+		lif_del_file(argv[ind],argv[ind+1]);
 
         return(1);
     }
-    if ((len = token(ptr,"lifdel")) )
+    if (MATCH(ptr,"create") && (ind + 4) == argc)
     {
-        char name[64];
-        char lifname[64];
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // lif file name
-        ptr = get_token(ptr, lifname, 63);
-
-		lif_del_file(name, lifname);
-
-        return(1);
-    }
-    if ((len = token(ptr,"lifcreate")) )
-    {
-        char name[64],label[6];
-        char num[12];
-        long dirsectors, sectors, result;
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // LIF LABEL
-        ptr = get_token(ptr, label, 7);
-
-        // Directory Sectors
-        ptr = get_token(ptr, num, 11);
-        dirsectors = atol(num);
-
-        // Image total Sectors
-        ptr = get_token(ptr, num, 11);
-        sectors= atol(num);
-
         ///@brief format LIF image
-        result = lif_create_image(name,label,dirsectors,sectors);
-        if(result != sectors)
-        {
-            if(debuglevel & 1)
-                printf("create_format_image: failed\n");
-        }
+        lif_create_image(argv[ind],argv[ind+1], atol(argv[ind+2]), atol(argv[ind+3]) );
         return(1);
     }
-    else if ((len = token(ptr,"lifdir")) )
+    else if (MATCH(ptr,"dir") && (ind + 1) == argc)
     {
-        char name[64];
-		printf("\n");
-        ptr += len;
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-        lif_dir(name);
+        lif_dir(argv[ind]);
         return(1);
     }
-    if ((len = token(ptr,"lifextractbin")) )
+    if (MATCH(ptr,"extractbin") && (ind + 3) == argc)
 	{
 
-        char name[64];
-        char lifname[64];
-        char user[64];
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // lif file name
-        ptr = get_token(ptr, lifname, 63);
-
-        // User file name
-        ptr = get_token(ptr, user, 63);
-
-		lif_extract_lif_as_lif(name, lifname, user);
+		lif_extract_lif_as_lif(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
 	}
-    if ((len = token(ptr,"lifextract")) )
+    if (MATCH(ptr,"extract") && (ind + 3) == argc)
 	{
 
-        char name[64];
-        char lifname[64];
-        char user[64];
-
-		printf("\n");
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // lif file name
-        ptr = get_token(ptr, lifname, 63);
-
-        // User file name
-        ptr = get_token(ptr, user, 63);
-
-		lif_extract_e010_as_ascii(name, lifname, user);
-
+		lif_extract_e010_as_ascii(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
 	}
-    if ((len = token(ptr,"lifrename")) )
+    if (MATCH(ptr,"rename") && (ind + 3) == argc)
     {
-        char name[64];
-        char oldlifname[64];
-        char newlifname[64];
-
-		printf("\n");
-
-        ptr += len;
-
-        // LIF name
-        ptr = get_token(ptr, name, 63);
-
-        // old lif file name
-        ptr = get_token(ptr, oldlifname, 63);
-
-        // new lif file name
-        ptr = get_token(ptr, newlifname, 63);
-
-		lif_rename_file(name, oldlifname, newlifname);
-
+		lif_rename_file(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
     }
 	return(0);
@@ -960,7 +842,7 @@ int lif_check_dir(lif_t *LIF)
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Directory invalid Name:[%s]\n",LIF->DIR.filename);
+			printf("LIF Directory:[%s] invalid Name\n",LIF->DIR.filename);
 	}
 
 	if(LIF->filestart)
@@ -969,7 +851,7 @@ int lif_check_dir(lif_t *LIF)
 		{
 			status = 0;
 			if(debuglevel & 1)
-				printf("LIF Directory invalid start sector:%lXh\n", (long)LIF->DIR.FileStartSector);
+				printf("LIF Directory:[%s] invalid start sector:%lXh\n", LIF->DIR.filename, (long)LIF->DIR.FileStartSector);
 		}
 	}
 
@@ -979,7 +861,7 @@ int lif_check_dir(lif_t *LIF)
 		{
 			status = 0;
 			if(debuglevel & 1)
-				printf("LIF Directory invalid end sector:%lXh\n", (long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
+				printf("LIF Directory:[%s] invalid end sector:%lXh\n", LIF->DIR.filename,(long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
 		}
 	}
 
@@ -987,37 +869,53 @@ int lif_check_dir(lif_t *LIF)
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Directory invalid Volume Number:%Xh\n", (int)LIF->DIR.VolNumber);
+			printf("LIF Directory:[%s] invalid Volume Number:%Xh\n", LIF->DIR.filename, (int)LIF->DIR.VolNumber);
 	}
 
-//FIXME check file types!
-	if( LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) > LIF->DIR.FileSectors )
+	// Only inforce file type checks for types we know
+	// 0xE010 .. 0xE013 are the file types that can use LIF->DIR.FileBytes
+	if((LIF->DIR.FileType & 0xFFFC) == 0xE010)
 	{
-		status = 0;
-		if(debuglevel & 1)
-			printf("LIF Directory invalid FileBytes:%ld as sectors:%ld > FileSectors:%ld\n", 
-				(long) LIF->DIR.FileBytes,
-				(long) lif_bytes2sectors(LIF->DIR.FileBytes),
-				(long) LIF->DIR.FileSectors);
+		if(LIF->DIR.FileBytes)
+		{
+			// Error test
+			if( lif_bytes2sectors(LIF->DIR.FileBytes) > LIF->DIR.FileSectors )
+			{
+				status = 0;
+				if(debuglevel & 1)
+					printf("LIF Directory:[%s] invalid FileBytes:%ld as sectors:%ld > FileSectors:%ld\n", 
+						LIF->DIR.filename,
+						(long) LIF->DIR.FileBytes,
+						(long) lif_bytes2sectors(LIF->DIR.FileBytes),
+						(long) LIF->DIR.FileSectors);
+			}
+
+			// Warning test only 
+			// Does this LIF entry have more FileSectors then FileBytes when converted to sectors?
+			if( lif_bytes2sectors(LIF->DIR.FileBytes) < LIF->DIR.FileSectors )
+			{
+				if(debuglevel & 0x400)
+					printf("LIF Directory:[%s] warning FileBytes:%ld as sectors:%ld < FileSectors:%ld\n", 
+						LIF->DIR.filename,
+						(long) LIF->DIR.FileBytes,
+						(long) lif_bytes2sectors(LIF->DIR.FileBytes),
+						(long) LIF->DIR.FileSectors);
+			}
+			if(debuglevel & 1 && LIF->DIR.FileBytes == 0)
+			{
+				status = 0;
+				printf("LIF Directory:[%s] invalid FileBytes == 0\n", 
+					LIF->DIR.filename);
+			}
+		}
 	}
 
-// Warning test only 
-// Does this LIF entry have more FileSectors then FileBytes when converted to sectors?
-	if( LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) < LIF->DIR.FileSectors )
-	{
-		if(debuglevel & 0x400)
-			printf("LIF Directory warning FileBytes:%ld as sectors:%ld < FileSectors:%ld\n", 
-				(long) LIF->DIR.FileBytes,
-				(long) lif_bytes2sectors(LIF->DIR.FileBytes),
-				(long) LIF->DIR.FileSectors);
-	}
-
-//FIXME check file types!
+//FIXME check file types?!
 	if(LIF->DIR.SectorSize != LIF_SECTOR_SIZE)
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Directory invalid sector size:%ld\n", LIF->DIR.SectorSize);
+			printf("LIF Directory:[%s] invalid sector size:%ld\n", LIF->DIR.SectorSize);
 	}
 
 	return(status);
@@ -1447,6 +1345,9 @@ void lif_dir(char *lifimagename)
 	int index = 0;
 	char *vol;
 
+	int warn = ' ';
+
+
 
 	LIF = lif_open_volume(lifimagename,"r");
 	if(LIF == NULL)
@@ -1466,18 +1367,36 @@ void lif_dir(char *lifimagename)
 
 		if(LIF->DIR.FileType == 0xffff)
 			break;
-;
-		bytes = LIF->DIR.FileBytes;
-		if(!bytes)
-			bytes = (LIF->DIR.FileSectors * LIF_SECTOR_SIZE);
 
+		bytes = (LIF->DIR.FileSectors * LIF_SECTOR_SIZE);
+
+		if((LIF->DIR.FileType & 0xFFFC) == 0xE010)
+		{
+			if(LIF->DIR.FileBytes && lif_bytes2sectors(LIF->DIR.FileBytes) == LIF->DIR.FileSectors)
+			{
+				bytes = LIF->DIR.FileBytes;
+			}
+			else
+			{
+				warn = '!';
+				if(debuglevel & 0x400)
+				{
+					printf("LIF Directory:[%s] warning FileBytes:%ld as sectors:%ld != FileSectors:%ld\n", 
+						LIF->DIR.filename,
+						(long) LIF->DIR.FileBytes,
+						(long) lif_bytes2sectors(LIF->DIR.FileBytes),
+						(long) LIF->DIR.FileSectors);
+				}
+			}
+		}
 
 		// name type start size
-		printf("%-10s  %04Xh      %8lXh   %9ld       %4d   %s\n", 
+		printf("%-10s  %04Xh      %8lXh   %9ld%c      %4d   %s\n", 
 			(LIF->DIR.FileType ? (char *)LIF->DIR.filename : "<PURGED>"), 
 			(int)LIF->DIR.FileType, 
 			(long)LIF->DIR.FileStartSector, 
 			(long)bytes, 
+			warn,
 			(int)LIF->DIR.SectorSize,
 			lif_lifbcd2timestr(LIF->DIR.date));
 
@@ -1638,6 +1557,42 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 	So 29 = 19 and 10 (yuck!)
 */
 
+///@brief PAD wbuf to sector boundry
+/// @param[in] offset: sector offset
+/// @param[in] wbuf: E010 PAD data
+/// @return size of E010 PAD data
+int lif_e010_pad_sector(long offset, uint8_t *wbuf)
+{
+	int ind;
+	int pos,rem;
+	
+	// Compute the current offset in this sector
+	pos = (offset % LIF_SECTOR_SIZE);
+	if(!pos)
+		return(0);
+
+	// Number of bytes free in this sector
+	rem = LIF_SECTOR_SIZE - pos;
+
+	// Bytes written to wbuf
+	ind = 0;
+	// PAD
+	wbuf[ind++] = 0xEF;
+	while(ind<rem)
+		wbuf[ind++] = 0xff;
+
+	pos = (offset + ind)  % LIF_SECTOR_SIZE;
+	// NEW SECTOR
+	// Debugging make sure we are at sector boundry
+	if(pos)
+	{
+		if(debuglevel & 1)
+			printf("lif_e010_dap_sector: expected sector boundry: offset:%d\n", (int) pos);
+		return(-1);
+	}
+	return(ind);
+}
+
 ///@brief Convert an ASCII string into HP85 E010 format 
 /// @param[in] str: ASCII string to write
 /// @param[in] offset: E010 data sector offset, only used in formatting wbuf with headers
@@ -1647,118 +1602,88 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 {
 	int ind;
 	int len;
-	int bytes;
 	int pos,rem;
 	
-	// Data written to string
-	bytes = 0;
-
 	// String size
 	len = strlen(str);
-
-	// Compute the current offset in this sector
-	pos = (offset % LIF_SECTOR_SIZE);
-
-	// Number of bytes free in this sector
-	rem = LIF_SECTOR_SIZE - pos;
 
 	// Output buffer index
 	ind = 0;
 
-	// Does the string + header fit ?
-	if(len && rem < (3 + len))
+	// Compute the current offset in this sector
+	pos = (offset % LIF_SECTOR_SIZE);
+	// Number of bytes free in this sector
+	rem = LIF_SECTOR_SIZE - pos;
+
+	/// We ALWAYS pad a sector if:
+	///   There is no room for a 0xdf single header 
+    ///   - OR - 
+	///   Spliting a string takes more space then padding here (extra header)
+	if(rem < 6)
 	{
-		// If we split a string we end up writting two headers
-		//  So for less then 6 bytes is no point splitting those strings
-		//  We just pad and write the string in the next sector
-		//  
-		if(rem < 6)
-		{
-			// PAD
-			wbuf[ind++] = 0xEF;
-			while(ind<rem)
-				wbuf[ind++] = 0xff;
+		ind = lif_e010_pad_sector(offset, wbuf);
+		if(ind < 0)
+			return(ind);
 
-			// NEW SECTOR
-			// Debugging make sure we are at sector boundry
-			if(((offset + ind)  % LIF_SECTOR_SIZE))
-			{
-				if(debuglevel & 1)
-					printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
-				return(-1);
-			}
-			// Write string in new sector
-			// The full string + header will fit
-			wbuf[ind++] = 0xDF;
-			wbuf[ind++] = len & 0xff;
-			wbuf[ind++] = (len >> 8) & 0xff;
-			// Write string
-			while(*str)
-				wbuf[ind++] = *str++;
-		}
-		else
-		{
-			// Split string
-			// String spans sector , so split the string
-			// Split string Header
-			wbuf[ind++] = 0xCF;
-			wbuf[ind++] = len & 0xff;
-			wbuf[ind++] = (len >>8) & 0xff;
-			// Write as much of the string as we can in this sector
-			while(*str && ind<rem)
-				wbuf[ind++] = *str++;
+		// Compute the current offset in this sector
+		pos = ((offset + ind) % LIF_SECTOR_SIZE);
+		// Number of bytes free in this sector
+		rem = LIF_SECTOR_SIZE - pos;
+	}
 
-			// NEW SECTOR
-			// Debugging make sure we are at sector boundry
-			if(((offset + ind)  % LIF_SECTOR_SIZE))
-			{
-				if(debuglevel & 1)
-					printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
-				return(-1);
-			}
+	// Note: IMPORTANT we ALWAYS have >= 6 bytes at this point because of size or padding
 
-			// Update remining string length
-			len = strlen(str);
-			// Write split string continuation heaader at start of new sector
-			wbuf[ind++] = 0x6F;
-			wbuf[ind++] = (len & 0xff);
-			wbuf[ind++] = (len>>8) & 0xff;
-			// Write string
-			while(*str)
-				wbuf[ind++] = *str++;
-		}
+	// Do not have to split, there is enough room
+	if(rem > (3 + len)) 
+	{
+
+		// Write string in new sector
+		// The full string + header will fit
+		wbuf[ind++] = 0xDF;
+		wbuf[ind++] = len & 0xff;
+		wbuf[ind++] = (len >> 8) & 0xff;
+		// Write string
+		while(*str)
+			wbuf[ind++] = *str++;
 	}
 	else 
 	{
-		// Note: zero length is an EOF
+		// Split strings need at least 6 header bytes
+		// We KNOW that there are at least 6 bytes in this sector
 
-		// The full string + header will fit
-		wbuf[ind++] = 0xdf;
+		// CURRENT SECTOR
+		// String spans a sector , so split the string
+
+		// 1st Split string header
+		wbuf[ind++] = 0xCF;
 		wbuf[ind++] = len & 0xff;
-		wbuf[ind++] = (len >> 8) & 0xff;
+		wbuf[ind++] = (len >>8) & 0xff;
+		// Write as much of the string as we can in this sector
+		while(*str && ind<rem)
+			wbuf[ind++] = *str++;
 
+		// NEW SECTOR
+		// Debugging make sure we are at sector boundry
+		if(((offset + ind)  % LIF_SECTOR_SIZE))
+		{
+			if(debuglevel & 1)
+				printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
+			return(-1);
+		}
 
-		if(len)
-		{
-			while(*str)
-				wbuf[ind++] = *str++;
-		}
-		else 
-		{
-			// EOF is a zero length sector
-			wbuf[ind++]  = 0xef;
-			// Pad sector
-			while( (offset+ind) % LIF_SECTOR_SIZE)
-				wbuf[ind++] = 0xff;
-		}
+		// Update remining string length
+		len = strlen(str);
+		// 2nd Split string header 
+		wbuf[ind++] = 0x6F;
+		wbuf[ind++] = (len & 0xff);
+		wbuf[ind++] = (len>>8) & 0xff;
+		// Write string
+		while(*str)
+			wbuf[ind++] = *str++;
 	}
 
-	offset += ind;
-	bytes += ind;
-
-	return( bytes );
+	return(ind);
 }
-	
 
 /// @brief Add ASCII file as E010 data to LIF image - or compute converted data size
 /// To find size of formatted result only, without writting, set LIF to NULL
@@ -1820,9 +1745,12 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
 
 	fclose(fi);
 
+	// Write EOF
 	str[0] = 0;
+	// We only want to return the count of bytes in the file NOT the padding at the end
 	// Write EOF string with padding
 	size = lif_ascii_string_to_e010(str, offset,obuf);
+
 	if(LIF)
 	{
 		printf("Wrote: %8ld\r", (long)bytes);
@@ -1831,8 +1759,19 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
 			return(-1);
 
 	}
+
 	offset += size;
 	bytes += size;
+
+	// PAD
+	size = lif_e010_pad_sector(offset, obuf);
+	if(LIF)
+	{
+		len = lif_write(LIF, obuf, offset, size);
+		if(len < size)
+			return(-1);
+	}
+
 	if(LIF)
 		printf("Wrote: %8ld\r",(long)bytes);
 
@@ -1909,7 +1848,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	lif_time2lifbcd(sp->st_mtime, LIF->DIR.date);
 
 	LIF->DIR.VolNumber = 0x8001;			// 26
-	LIF->DIR.FileBytes = 0;					// 28
+	LIF->DIR.FileBytes = bytes;					// 28
 	LIF->DIR.SectorSize  = 0x100;			// 30
 
 	offset = LIF->space.start * LIF_SECTOR_SIZE;
@@ -1936,7 +1875,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 		return(-1);
 	}
 
-	// Write EOF is this is the last record
+	// Write EOF if this is the last record
 	if(LIF->space.eof && !lif_writedirEOF(LIF,index+1))
 	{
 		lif_closedir(LIF);
@@ -2388,6 +2327,9 @@ int lif_del_file(char *lifimagename, char *lifname)
 	}
 	LIF->DIR.FileType = 0;
 
+///FIXME if the the NEXT record is an EOF then write an EOF here
+/// OR if all the records after this are purged untill EOF  write EOF here
+
 	// re-Write directory record
 	if( !lif_writedirindex(LIF,index) )
 	{
@@ -2396,6 +2338,7 @@ int lif_del_file(char *lifimagename, char *lifname)
 	}
 	lif_closedir(LIF);
 	printf("Deleted: %10s\n", lifname);
+
 
 	return(1);
 }

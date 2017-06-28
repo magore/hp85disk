@@ -55,7 +55,9 @@ gpib/ss80.c \
 gpib/amigo.c \
 gpib/printer.c \
 gpib/drives.c \
-gpib/lifutils.c
+
+LIF = \
+	lif/lifutils.c
 
 CSRC    = \
 printf/printf.c \
@@ -74,7 +76,8 @@ lib/time.c \
 lib/queue.c \
 main.c \
  $(FATFS) \
- $(GPIB)
+ $(GPIB) \
+ $(LIF)
 
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
@@ -100,7 +103,7 @@ CSTD = gnu99
 ### Include dirs, library dirs and definitions
 LIBS    =
 LIBDIRS =
-INCDIRS =. hardware lib printf gpib fatfs fatfs.hal fatfs.sup
+INCDIRS =. hardware lib printf gpib lif fatfs fatfs.hal fatfs.sup
 
 DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	DEFINE_PRINTF \

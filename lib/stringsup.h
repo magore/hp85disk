@@ -67,6 +67,7 @@ MEMSPACE int MATCH ( char *str , char *pat );
 MEMSPACE int MATCHI ( char *str , char *pat );
 MEMSPACE int MATCH_LEN ( char *str , char *pat );
 MEMSPACE int MATCHI_LEN ( char *str , char *pat );
+MEMSPACE int split_args( char *str , char *argv [], int max );
 MEMSPACE char *get_token ( char *str , char *token , int max );
 MEMSPACE int token ( char *str , char *pat );
 MEMSPACE int32_t get_value ( char *str );

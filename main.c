@@ -26,7 +26,7 @@
 #include "gpib/printer.h"
 #include "gpib/amigo.h"
 #include "gpib/ss80.h"
-#include "gpib/lifutils.h"
+#include "lif/lifutils.h"
 
 #include <math.h>
 
@@ -181,7 +181,11 @@ void display_time()
 void task(char *line, int max, uint8_t gpib)
 {
     char *ptr;
-    int len;
+	int ind;
+	int i;
+
+	char *argv[10];
+	int argc;
 
 	if(gpib)
 		gpib_task();
@@ -189,60 +193,68 @@ void task(char *line, int max, uint8_t gpib)
     if(!uart_keyhit(0))
         return;
 
-
     printf("\n>");
 	fgets(line,max-1,stdin);
 
-    ptr = skipspaces(line);
-	trim_tail(ptr);
-	if(!*ptr)
+	argc = split_args(line,argv,10);
+
+#if 0
+	printf("Arguments:\n");
+	printf("   argc = %d\n", argc);
+	for(i=0;i<argc;++i)
+		printf("   [%s]\n", argv[i]);
+#endif
+
+	if(argc < 2)
 		return;
-	
 
-    if(fatfs_tests(ptr))
+	ind = 1;
+	ptr = argv[ind++];
+
+    if(fatfs_tests(argc,argv))
         return;
 
-    if(gpib_tests(ptr))
+    if(gpib_tests(argc,argv))
         return;
 
-    if(lif_tests(ptr))
+    if(lif_tests(argc,argv))
         return;
 
-    if ( (len = token(ptr,"delay_tests")) )
+    if (MATCH(ptr,"delay_tests"))
     {
         delay_tests();
         return;
 
     }
-    else if ( (len = token(ptr,"time")) )
+    if ( MATCH(ptr,"time"))
     {
         display_time();
         return;
     }
-    else if ( (len = token(ptr,"setdate")) )
+    if ( MATCH(ptr,"setdate") )
     {
         setdate();
         display_time();
         return;
     }
-    else if ( (len = token(ptr,"mem")) )
+    if ( MATCH(ptr,"mem") )
     {
         PrintFree();
         return;
 
     }
-    else if ( (len = token(ptr,"ifc")) )
+    if ( MATCH(ptr, "ifc") )
     {
         gpib_assert_ifc();
         return;
 
     }
-    else if ( (len = token(ptr,"help")) || *ptr == '?' )
+    if ( MATCH(ptr,"help") || MATCH(ptr,"?") )
     {
         help();
         return;
     }
-    printf("Error:[%s]\n",line);
+    printf("Error:[%s]\n",ptr);
 }
 
 

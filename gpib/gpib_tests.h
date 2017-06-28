@@ -17,7 +17,7 @@
 
 /* gpib_tests.c */
 void gpib_help ( void );
-int gpib_tests ( char *str );
+int gpib_tests ( int argc , char *argv []);
 
 
 #endif // #ifndef _GPIB_TESTS_H_

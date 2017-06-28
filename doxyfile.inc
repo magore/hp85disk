@@ -1,2 +1,2 @@
-INPUT         =  . hardware lib printf gpib fatfs fatfs.hal fatfs.sup
+INPUT         =  . hardware lib printf gpib lif fatfs fatfs.hal fatfs.sup
 FILE_PATTERNS =  *.h *.c *.md

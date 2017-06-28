@@ -56,6 +56,8 @@
 \begin{DoxyCompactList}\small\item\em Compare two strings limted to length of pattern. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_ab012fa46a47fa2430d6ebd25ed38c59e}{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_a84aa635d9cf4f3d41608b9e5639f71e9}{split\+\_\+args} (char $\ast$str, char $\ast$argv\mbox{[}$\,$\mbox{]}, int max)
+\begin{DoxyCompactList}\small\item\em Split string into arguments stored in argv\mbox{[}\mbox{]} We split source string into arguments Warning\+: source string is modified! To save memory each gap in the source string is terminated with an E\+OS This becomes the end of string for each argument returned Warning\+: Do N\+OT modify the source string or argument contents while using them You can reassign new pointers to the arguments if you like. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8c_a9387f7db4933b1bafd14bddad8e8c9c8}{get\+\_\+token} (char $\ast$str, char $\ast$\hyperlink{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
 \begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
@@ -104,11 +106,7 @@ N\+U\+LL if no token found
 \end{DoxyReturn}
 
 
-Definition at line 529 of file stringsup.\+c.
-
-
-
-Referenced by fatfs\+\_\+tests(), and lif\+\_\+tests().
+Definition at line 591 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!get\+\_\+value@{get\+\_\+value}}
 \index{get\+\_\+value@{get\+\_\+value}!stringsup.\+c@{stringsup.\+c}}
@@ -134,7 +132,7 @@ value
 
 \end{DoxyItemize}
 
-Definition at line 607 of file stringsup.\+c.
+Definition at line 669 of file stringsup.\+c.
 
 
 
@@ -244,6 +242,10 @@ string lenth on match.
 
 
 Definition at line 437 of file stringsup.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), and task().
 
 \index{stringsup.\+c@{stringsup.\+c}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}!stringsup.\+c@{stringsup.\+c}}
@@ -484,7 +486,33 @@ Definition at line 271 of file stringsup.\+c.
 
 
 
-Referenced by assign\+\_\+value(), fatfs\+\_\+tests(), get\+\_\+token(), get\+\_\+value(), gpib\+\_\+tests(), gpib\+\_\+trace\+\_\+task(), lif\+\_\+tests(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), task(), timetests(), and token().
+Referenced by assign\+\_\+value(), get\+\_\+token(), get\+\_\+value(), gpib\+\_\+trace\+\_\+task(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), split\+\_\+args(), timetests(), and token().
+
+\index{stringsup.\+c@{stringsup.\+c}!split\+\_\+args@{split\+\_\+args}}
+\index{split\+\_\+args@{split\+\_\+args}!stringsup.\+c@{stringsup.\+c}}
+\subsubsection[{\texorpdfstring{split\+\_\+args(char $\ast$str, char $\ast$argv[], int max)}{split_args(char *str, char *argv[], int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int split\+\_\+args (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8c_a84aa635d9cf4f3d41608b9e5639f71e9}{}\label{stringsup_8c_a84aa635d9cf4f3d41608b9e5639f71e9}
+
+
+Split string into arguments stored in argv\mbox{[}\mbox{]} We split source string into arguments Warning\+: source string is modified! To save memory each gap in the source string is terminated with an E\+OS This becomes the end of string for each argument returned Warning\+: Do N\+OT modify the source string or argument contents while using them You can reassign new pointers to the arguments if you like. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 529 of file stringsup.\+c.
+
+
+
+Referenced by task().
 
 \index{stringsup.\+c@{stringsup.\+c}!stpcpy@{stpcpy}}
 \index{stpcpy@{stpcpy}!stringsup.\+c@{stringsup.\+c}}
@@ -540,7 +568,7 @@ N\+U\+LL on out of memory.
 \end{DoxyReturn}
 
 
-Definition at line 675 of file stringsup.\+c.
+Definition at line 737 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+c@{stringsup.\+c}}
@@ -657,7 +685,7 @@ Definition at line 146 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+cat(), fatfs\+\_\+scan\+\_\+files(), fatfs\+\_\+tests(), get\+\_\+line(), gpib\+\_\+tests(), lif\+\_\+find\+\_\+file(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+fixname(), lif\+\_\+stralloc(), M\+A\+T\+C\+H(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+buffer(), readdir(), reverse(), stralloc(), token(), and trim\+\_\+tail().
+Referenced by fatfs\+\_\+cat(), fatfs\+\_\+scan\+\_\+files(), fatfs\+\_\+tests(), get\+\_\+line(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+find\+\_\+file(), lif\+\_\+fixname(), lif\+\_\+stralloc(), M\+A\+T\+C\+H(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), printer\+\_\+buffer(), readdir(), reverse(), stralloc(), token(), and trim\+\_\+tail().
 
 \index{stringsup.\+c@{stringsup.\+c}!strnalloc@{strnalloc}}
 \index{strnalloc@{strnalloc}!stringsup.\+c@{stringsup.\+c}}
@@ -688,7 +716,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 651 of file stringsup.\+c.
+Definition at line 713 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+c@{stringsup.\+c}}
@@ -843,11 +871,11 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 572 of file stringsup.\+c.
+Definition at line 634 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), rcvr\+\_\+datablock(), and task().
+Referenced by plot\+\_\+echo(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and rcvr\+\_\+datablock().
 
 \index{stringsup.\+c@{stringsup.\+c}!tolower@{tolower}}
 \index{tolower@{tolower}!stringsup.\+c@{stringsup.\+c}}
@@ -927,5 +955,5 @@ Definition at line 253 of file stringsup.\+c.
 
 
 
-Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+\+B2\+S(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and task().
+Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+\+B2\+S(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 

@@ -144,7 +144,7 @@ typedef struct {
 
 /* lifutils.c */
 void lif_help ( void );
-int lif_tests ( char *str );
+int lif_tests ( int argc , char *argv []);
 void *lif_calloc ( long size );
 void lif_free ( uint8_t *p );
 void *lif_stralloc ( char *str );
@@ -166,6 +166,7 @@ uint8_t lif_BIN2BCD ( uint8_t data );
 int lif_BCD2BIN ( uint8_t bin );
 void lif_time2lifbcd ( time_t t , uint8_t *bcd );
 time_t lif_lifbcd2time ( uint8_t *bcd );
+MEMSPACE char *lif_ctime_gmt ( time_t *tp );
 char *lif_lifbcd2timestr ( uint8_t *bcd );
 void lif_image_clear ( lif_t *LIF );
 void lif_dir_clear ( lif_t *LIF );
@@ -197,6 +198,5 @@ long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
 int lif_del_file ( char *lifimagename , char *lifname );
 int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
 long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
-
 
 #endif     // #ifndef _LIFUTILS_H

@@ -53,99 +53,80 @@ void gpib_help()
 /// @brief GPIB user tests
 ///  User invoked GPIB functions and tasks
 /// @return  1 matched token, 0 if not
-int gpib_tests(char *str)
+int gpib_tests(int argc, char * argv[])
 {
 
-    int len;
     char *ptr;
+	int ind;
 
-    ptr = skipspaces(str);
+	if(argc < 2)
+		return(0);
 
-    len = strlen(ptr);
-    if ((len = token(ptr,"addresses")) )
+	ind = 1;
+	ptr = argv[ind++];
+
+    if (MATCH(ptr,"addresses") )
     {
 		display_Addresses();
         return(1);
     }
-    else if ((len = token(ptr,"config")) )
+    else if (MATCH(ptr,"config") )
     {
 		display_Config();
         return(1);
     }
-    else if ((len = token(ptr,"debug")) )
+    else if (MATCH(ptr,"debug") && (ind+1) == argc)
     {
-        ptr += len;
-		debuglevel=get_value(ptr);
+		debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
         return(1);
     }
-    else if ((len = token(ptr,"gpib_elapsed_reset")) )
+    else if (MATCH(ptr,"gpib_elapsed_reset") )
     {
-        ptr += len;
         gpib_timer_elapsed_begin();
         return(1);
     }
-    else if ((len = token(ptr,"gpib_elapsed")) )
+    else if (MATCH(ptr,"gpib_elapsed") )
     {
-        ptr += len;
         gpib_timer_elapsed_end("gpib elapsed:");
         return(1);
     }
-    else if ((len = token(ptr,"gpib_task")) )
+    else if (MATCH(ptr,"gpib_task") )
     {
-        ptr += len;
         gpib_task();
         return(1);
     }
-    else if ((len = token(ptr,"gpib_trace")) )
+    else if (MATCH(ptr,"gpib_trace") && (ind+1) == argc)
     {
-        ptr += len;
-        ptr = skipspaces(ptr);
-        gpib_trace_task(ptr);
+        gpib_trace_task(argv[ind]);
         return(1);
     }
-    else if ((len = token(ptr,"plot_echo")) )
+    else if (MATCH(ptr,"plot_echo") && (ind+1) == argc)
     {
-        int option;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        option = atoi(ptr);
-        plot_echo(option);
+        plot_echo(atoi(argv[ind]) );
         return(1);
     }
-    else if ((len = token(ptr,"ppr_bit_clr")) )
+    else if (MATCH(ptr,"ppr_bit_clr") && (ind+1) == argc)
     {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_bit_clr(val);
+        ppr_bit_clr(atoh(argv[ind] ));
         return(1);
     }
-    else if ((len = token(ptr,"ppr_bit_set")) )
+    else if (MATCH(ptr,"ppr_bit_set") && (ind+1) == argc)
     {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_bit_set(val);
+        ppr_bit_set(atoh(argv[ind]) );
         return(1);
     }
-    else if ((len = token(ptr,"ppr_set")) )
+    else if (MATCH(ptr,"ppr_set") && (ind+1) == argc)
     {
-        uint8_t val;
-        ptr += len;
-        ptr = skipspaces(ptr);
-        val = atoh(ptr);
-        ppr_set(val);
+        ppr_set(atoh(argv[ind]) );
         return(1);
     }
-    else if ((len = token(ptr,"ppr_init")) )
+    else if (MATCH(ptr,"ppr_init") )
     {
         ppr_init();
         return(1);
     }
-    else if ( (len = token(ptr,"gpib_help")) )
+    else if ( MATCH(ptr,"gpib_help") )
     {
         gpib_help();
         return(1);
