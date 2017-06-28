@@ -15,8 +15,10 @@
 #define _LIFUTILS_H
 
 
+#ifndef LIF_STAND_ALONE
 #include "user_config.h"
 #include "defines.h"
+#endif
 
 extern int debuglevel;
 typedef struct stat stat_t;
@@ -122,7 +124,8 @@ typedef struct
 /// Volume Structure
 /// Current Directory Entry
 /// read/write flag
-typedef struct {
+typedef struct 
+{
     char *name; 			// LIF image file name
 	FILE *fp;				// LIF file handel
 	uint32_t sectors;		// LIF image size in sectors
@@ -143,6 +146,7 @@ typedef struct {
 
 
 /* lifutils.c */
+void trim_tail ( char *str );
 void lif_help ( void );
 int lif_tests ( int argc , char *argv []);
 void *lif_calloc ( long size );
@@ -189,6 +193,7 @@ lif_t *lif_open_volume ( char *name , char *mode );
 void lif_dir ( char *lifimagename );
 int lif_find_file ( lif_t *LIF , char *liflabel );
 int lif_findfree_dirindex ( lif_t *LIF , uint32_t sectors );
+int lif_e010_pad_sector ( long offset , uint8_t *wbuf );
 int lif_ascii_string_to_e010 ( char *str , long offset , uint8_t *wbuf );
 long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *username );
 long lif_add_ascii_file_as_e010 ( char *lifimagename , char *lifname , char *userfile );

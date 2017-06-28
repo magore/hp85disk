@@ -209,13 +209,13 @@ PROGS = hardware/baudrate
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
-all: version $(LIBS) build size $(PROGS)
+all: version $(LIBS) build size $(PROGS) lif
 
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
 
-flash:  all
+flash:  all 
 #
 	# Program with avrdude using atmelice_isp
 	# avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
@@ -243,6 +243,13 @@ flash:  all
 doxyfile.inc:
 	echo "INPUT         =  $(INCDIRS)" > doxyfile.inc
 	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
+
+.PHONY: lif
+lif:   
+	make -C lif
+
+install:
+	make -C lif install
 
 .PHONY: doxy
 doxy:	doxyfile.inc $(SRCS) 
@@ -365,6 +372,7 @@ $(AOBJ) : %.o : %.S
 clean:
 	@echo
 	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
+	make -C lif clean
 	
 
 # Include the dependency files.

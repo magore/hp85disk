@@ -10,12 +10,129 @@
 
 */
 
-#include "user_config.h"
+#ifdef LIF_STAND_ALONE
+#define MEMSPACE /**/
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <libgen.h>
+#include <sys/types.h>
+#include <utime.h>
+
+typedef struct tm tm_t;
+#define MATCH(a,b) (strcmp(a,b) == 0 ? 1: 0)
+#define safecalloc(a,b) calloc(a,b)
+#define safefree(a) free(a)
+#define sync() 
+
+int debuglevel = 0x0001;
+
+#include "lifutils.h"
+
+
+void trim_tail(char *str)
+{
+    int len = strlen(str);
+    while(len--)
+    {
+        if(str[len] > ' ')
+            break;
+        str[len] = 0;
+    }
+}
+
+
+///@brief Convert Value into byte array
+/// bytes are MSB ... LSB order
+///@param B: byte array
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@param val: Value to convert
+///@return void
+void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
+{
+    int i;
+    for(i=size-1;i>=0;--i)
+    {
+        B[index+i] = val & 0xff;
+        val >>= 8;
+    }
+}
+// =============================================
+///@brief Convert Value into byte array
+/// bytes are LSB ... MSB order
+///@param B: byte array
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@param val: Value to convert
+///@return void
+void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
+{
+    int i;
+    for(i=0;i<size;++i)
+    {
+        B[index+i] = val & 0xff;
+        val >>= 8;
+    }
+}
+
+
+
+///@brief Convert a byte array into a value
+/// bytes are MSB ... LSB order
+///@param B: byte array
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@return value
+uint32_t B2V_MSB(uint8_t *B, int index, int size)
+{
+    int i;
+    uint32_t val = 0;
+
+    for(i=0;i<size;++i)
+    {
+        val <<= 8;
+        val |= (uint8_t) (B[i+index] & 0xff);
+    }
+        return(val);
+}
+
+///@brief Convert a byte array into a value
+/// bytes are LSB ... MSB order
+///@param B: byte array
+///@param index: offset into byte array
+///@param size: number of bytes to process
+///@return value
+uint32_t B2V_LSB(uint8_t *B, int index, int size)
+{
+    int i;
+    uint32_t val = 0;
+
+    for(i=size-1;i>=0;--i)
+    {
+        val <<= 8;
+        val |= (uint8_t) (B[i+index] & 0xff);
+    }
+        return(val);
+}
+
+
+
+#else
+
+#include "user_config.h"
 #include "defines.h"
 #include "drives.h"
 #include <time.h>
 #include "lifutils.h"
+#endif
+
+
 
 /**
    * Example lif sdcard commands
@@ -129,6 +246,13 @@ int lif_tests(int argc, char *argv[])
 	int ind;
     char *ptr;
 
+
+#ifdef LIF_DEBUG
+	int i;
+	for(i=0;i<argc;++i)
+		printf("%02d:%s\n", i, argv[i]);
+	printf("\n");
+#endif
 
 	if(argc < 2)
 		return(0);
@@ -312,8 +436,8 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 	if( len != bytes)
 	{
 		if(debuglevel & 1)
-			printf("lif_read: read:[%s] offset:[%ld] write:[%d] expected:[%d]\n", 
-				LIF->name, offset, len, bytes);
+			printf("lif_read: read:[%s] offset:[%ld] write:[%ld] expected:[%d]\n", 
+				LIF->name, (long)offset, (long)len, (int)bytes);
 	}
 	return(len);
 }
@@ -704,8 +828,8 @@ void lif_dump_vol(lif_t *LIF)
    printf("VOL LIFid:            %8Xh\n",(int)LIF->VOL.LIFid);
    printf("VOL Dir start:        %8lXh\n",(long)LIF->VOL.DirStartSector);
    printf("VOL Dir sectors:      %8lXh\n",(long)LIF->VOL.DirSectors);
-   printf("VOL 3000LIFid:        %8Xh\n",(long)LIF->VOL.System3000LIFid);
-   printf("VOL LIFVersion:       %8Xh\n",(long)LIF->VOL.LIFVersion);
+   printf("VOL 3000LIFid:        %8Xh\n",(unsigned int)LIF->VOL.System3000LIFid);
+   printf("VOL LIFVersion:       %8Xh\n",(unsigned int)LIF->VOL.LIFVersion);
    printf("VOL Date:             %s\n", lif_lifbcd2timestr(LIF->VOL.date));
    printf("DIR File Name:        %s\n", LIF->DIR.filename);
    printf("DIR File Type:        %8Xh\n", (int)LIF->DIR.FileType);
@@ -734,7 +858,7 @@ int lif_check_volume(lif_t *LIF)
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Volume invalid start sector:%ld\n", LIF->VOL.DirStartSector);
+			printf("LIF Volume invalid start sector:%ld\n", (long)LIF->VOL.DirStartSector);
 	}
 	if(LIF->VOL.DirSectors < 1)
 	{
@@ -915,7 +1039,7 @@ int lif_check_dir(lif_t *LIF)
 	{
 		status = 0;
 		if(debuglevel & 1)
-			printf("LIF Directory:[%s] invalid sector size:%ld\n", LIF->DIR.SectorSize);
+			printf("LIF Directory:[%s] invalid sector size:%ld\n", LIF->name, (long)LIF->DIR.SectorSize);
 	}
 
 	return(status);
@@ -1251,7 +1375,7 @@ lif_t *lif_open_volume(char *name, char *mode)
 	if(sp->st_size < LIF_SECTOR_SIZE*2)
 	{
 		if(debuglevel & 1)
-			printf("lif_openimage:[%s] invalid volume header area too small:[%d]\n", name, sp->st_size);
+			printf("lif_openimage:[%s] invalid volume header area too small:[%ld]\n", name, (long)sp->st_size);
 		return(NULL);
 	}
 
@@ -1864,8 +1988,8 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 		printf("New Directory Information AFTER write\n");
 		printf("Name:              %s\n", LIF->DIR.filename);
 		printf("Index:            %4d\n", (int)index);
-		printf("First Sector:     %4lxH\n", LIF->DIR.FileStartSector);
-		printf("File Sectors:     %4lxH\n", LIF->DIR.FileSectors);
+		printf("First Sector:     %4lxH\n", (long) LIF->DIR.FileStartSector);
+		printf("File Sectors:     %4lxH\n", (long)LIF->DIR.FileSectors);
 	}
 
 	// Write directory record
@@ -2447,6 +2571,42 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
 		return(-1);
 	lif_close_volume(LIF);
 
-	printf("Formating: wrote:[%ld] sectors\n", end);
+	printf("Formating: wrote:[%ld] sectors\n", (long)end);
     return(end);
 }
+
+#ifdef LIF_STAND_ALONE
+
+int main(int argc, char *argv[])
+{
+	char *myargv[10];
+	int i;
+	int myargc;
+	int ind = 0;
+
+	myargv[ind++] = argv[0];
+	// in stand alone mode we automatically set the 2nd argument to "lif"
+	myargv[ind++] = "lif";
+
+	// If we used no arguments the set default help
+	if(argc < 2)
+	{
+		myargv[ind++] = "help";
+		printf("Stand alone version of LIF utilities for linux\n");
+		printf("HP85 Disk and Device Emulator\n");
+		printf(" (c) 2014-2017 by Mike Gore\n");
+		printf(" GNU version 3\n");
+		printf("-> https://github.com/magore/hp85disk\n");
+		printf("   GIT last pushed:   %s\n", GIT_VERSION);
+		printf("   Last updated file: %s\n", LOCAL_MOD);
+	}
+
+	for(i=1;i<argc;++i)
+		myargv[ind++] = argv[i];
+	myargc = ind;
+	for(i=ind;i<10;++i)
+		myargv[i] = NULL;
+
+	lif_tests(myargc,myargv);
+}
+#endif
