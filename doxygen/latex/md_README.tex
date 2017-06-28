@@ -367,575 +367,444 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item Pressing any key will break out of the gpib task loop untill a command is entered
 \begin{DoxyItemize}
 \item help Will list all avalable commands and options
-\item Example lif sdcard commands
-\begin{DoxyItemize}
-\item lif add
-\begin{DoxyItemize}
-\item add A\+S\+C\+II file converted to E010 format to existing L\+IF image on SD card
-\item Strings must be no longer then sector size -\/ 3
-\item Any trailing \char`\"{}\textbackslash{}n\char`\"{} and/or \char`\"{}\textbackslash{}r\char`\"{} are coverted to \char`\"{}\textbackslash{}n\char`\"{} when stored in L\+IF file 
-\begin{DoxyPre}
-         \# Used to import files into the HP85 disk images
-         lif add /amigo1.lif TEST1 /test.bas
-         lif add /amigo1.lif TREK85 /TREK85/TREK85.BAS
-      \end{DoxyPre}
+\item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of lif/lifutil.\+c 
 
-\end{DoxyItemize}
-\item lif addbin
-\begin{DoxyItemize}
-\item add L\+IF file to existing L\+IF image , any format, on SD card 
-\begin{DoxyPre}
-         \# Used to import files into the HP85 disk images
-         lif addbin /amigo1.lif TEST /test.lif
-         lif addbin /amigo1.lif TREK85 /TREK85/trek.lif
-            \# Notes about TREK85 in the examples
-            \# Author: TREK85 port was done by Martin Hepperle
-            \# \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https://groups.io/g/hpseries80/topic/star\_trek\_game\_for\_hp\_85/4845241}\end{DoxyPre}
 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
+\subsection*{OS Requirements for software building}
 
-\begin{DoxyPre}      * lif create
-         * Create a LIF image  on SD card
-      
-\begin{DoxyPre}
-         \# Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         lif create /amigo3.lif AMIGO3 15 1120
-         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
-         Formating: wrote:[1120] sectors
-      \end{DoxyPre}
 
 \begin{DoxyItemize}
-\item lif del
-\begin{DoxyItemize}
-\item Delete a file from L\+IF image on SD card 
-\begin{DoxyPre}
-        lif del /amigo1.lif TREK85
-      \end{DoxyPre}
-
-\end{DoxyItemize}
-\item lif dir 
-\begin{DoxyPre}
-        lif dir /amigo1.lif
-        Volume: [AMIGO2]
-        NAME         TYPE   START SECTOR        SIZE    RECSIZE
-        HELLO       E020h            10h         323        256
-        CIRCLE      E020h            12h         156        256
-        GPIB-S      E020h            13h         338        256
-        GPIB-T      E020h            15h        1413        256
-        GPIB7       E020h            1Bh         197        256
-        AMIGO2      E020h            1Ch          51        256
-        HELLO2      E010h            1Dh         512        256
-        HELLO3      E010h            1Fh         512        256
-        TEST        E010h            21h         256        256
-        TREK85      E010h            22h       28160        256\end{DoxyPre}
-
-
-
-\begin{DoxyPre}              10 Files
-               0 Purged
-             128 Used sectors
-             976 Free sectors
-             144 First free sector (90h)
-      \end{DoxyPre}
-
-\item lif extract
-\begin{DoxyItemize}
-\item Notes\+:
-\begin{DoxyItemize}
-\item Extracts E010 file from L\+IF image converting to A\+S\+C\+II file on SD card 
-\begin{DoxyPre}
-         \# extracts an ASCII type E010 file from a LIF image and saves it on the SD card
-         lif extract /amigo1.lif HELLO3 /HELLO3.BAS
-         Extracting: /HELLO3.BAS
-         Wrote:      311
-      \end{DoxyPre}
-
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item lif extractbin
-\begin{DoxyItemize}
-\item Extracts file from L\+IF image to new L\+IF image on SD card 
-\begin{DoxyPre}
-         \# extracts LIF from a LIF image and saves it as new LIF image on the SD card
-         lif extractbin /amigo1.lif HELLO3 /hello3.lif
-      \end{DoxyPre}
-
-\end{DoxyItemize}
-\item lif rename $\ast$\+Renames file in L\+IF image 
-\begin{DoxyPre}
-         \# Renames file in LIF image on the SD card
-         lif rename /amigo1.lif HELLO3 HELLO4
-      \end{DoxyPre}
- 
-
-
-\end{DoxyItemize}\end{DoxyPre}
-
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}\subsection*{OS Requirements for software building}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
-\begin{DoxyItemize}
-\item I use {\itshape Ubuntu 16.04 and 14.04} so these instruction will cover that version
+\item I use {\itshape Ubuntu 16.\+04 and 14.\+04} so these instruction will cover that version
 \item It should be easy to setup the same build with Windows gcc tools.
-\end{DoxyItemize}\end{DoxyPre}
+\end{DoxyItemize}
+
+\subsection*{Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS install and setup notes}
 
 
-
-\begin{DoxyPre}\subsection*{Ubuntu 16.04LTS and 14.04LTS install and setup notes}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
 \begin{DoxyItemize}
-\item {\itshape apt-get update}
-\item {\itshape apt-get install aptitude}
-\item {\itshape aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude}
-\end{DoxyItemize}\end{DoxyPre}
+\item {\itshape apt-\/get update}
+\item {\itshape apt-\/get install aptitude}
+\item {\itshape aptitude install --with-\/recommends avr-\/gcc avr-\/libc binutils-\/avr gdb-\/avr avrdude}
+\end{DoxyItemize}
+
+\subsection*{Building Doxygen documenation for the project -\/ optional}
 
 
-
-\begin{DoxyPre}\subsection*{Building Doxygen documenation for the project - optional}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
 \begin{DoxyItemize}
-\item {\itshape aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex}
+\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
 \item {\itshape If you omit this you will have to update the Makefile to omit the steps}
-\end{DoxyItemize}\end{DoxyPre}
+\end{DoxyItemize}
+
+\subsection*{Compiling the firmware}
 
 
-
-\begin{DoxyPre}\subsection*{Compiling the firmware}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
 \begin{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
-\end{DoxyItemize}\end{DoxyPre}
+\end{DoxyItemize}
+
+\subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}
 
 
-
-\begin{DoxyPre}\subsection*{Flashing the firmware to the AVR with avrdude and programmer}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
 \begin{DoxyItemize}
 \item {\itshape make flash}
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} with the new low cost Atmel ICE programmer.
+\item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
 \begin{DoxyItemize}
-\item If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
-\item There is an example with the AVR mkii programer as well.
+\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
+\item There is an example with the A\+VR mkii programer as well.
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\end{DoxyPre}
+\end{DoxyItemize}
+
+\subsection*{Files}
 
 
-
-\begin{DoxyPre}\subsection*{Files}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
 \begin{DoxyItemize}
-\item ./COPYRIGHT.md
-    Project Copyrights
-\item ./main.c
-    Main startup code
-\item ./main.h
-    Main startup code
-\item ./notes.txt
-    Note - working on converting compiled constants into run time configuration
-\item ./README.md
-    This file
-\item Documents/59401-90030\_Condensed\_Description\_of\_the\_Hewlett-Packard\_Interface\_Bus\_Mar75-ocr.pdf
+\item ./\+C\+O\+P\+Y\+R\+I\+G\+HT.md Project Copyrights
+\item ./main.c Main startup code
+\item ./main.h Main startup code
+\item ./notes.txt Note -\/ working on converting compiled constants into run time configuration
+\item ./\+R\+E\+A\+D\+ME.md This file
+\item Documents/59401-\/90030\+\_\+\+Condensed\+\_\+\+Description\+\_\+of\+\_\+the\+\_\+\+Hewlett-\/\+Packard\+\_\+\+Interface\+\_\+\+Bus\+\_\+\+Mar75-\/ocr.\+pdf
 \begin{DoxyItemize}
-\item CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
+\item C\+O\+N\+D\+E\+N\+S\+ED D\+E\+S\+C\+R\+I\+P\+T\+I\+ON OF T\+HE H\+E\+W\+L\+E\+T\+T·\+P\+A\+C\+K\+A\+RD I\+N\+T\+E\+R\+F\+A\+CE B\+US
 \end{DoxyItemize}
-\item Documents/5955-3442\_cs80-is-pm-ocr.pdf
+\item Documents/5955-\/3442\+\_\+cs80-\/is-\/pm-\/ocr.\+pdf
 \begin{DoxyItemize}
-\item CS/80 INSTRUCTION SET
+\item C\+S/80 I\+N\+S\+T\+R\+U\+C\+T\+I\+ON S\+ET
 \end{DoxyItemize}
-\item Documents/5957-6560\_9133\_9134\_D\_H\_L\_Service\_Apr88.pdf
+\item Documents/5957-\/6560\+\_\+9133\+\_\+9134\+\_\+\+D\+\_\+\+H\+\_\+\+L\+\_\+\+Service\+\_\+\+Apr88.\+pdf
 \begin{DoxyItemize}
-\item HP 9133/9134 D/H/L Service Manual
+\item HP 9133/9134 D/\+H/L Service Manual
 \end{DoxyItemize}
-\item Documents/5957-6584\_9123D\_3.5\_Flex\_Disc\_Nov85.pdf
+\item Documents/5957-\/6584\+\_\+9123\+D\+\_\+3.\+5\+\_\+\+Flex\+\_\+\+Disc\+\_\+\+Nov85.\+pdf
 \begin{DoxyItemize}
-\item UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030
+\item U\+P\+D\+A\+TE F\+OR T\+HE 3 1/2-\/\+I\+N\+CH F\+L\+E\+X\+I\+B\+LE D\+I\+SC D\+R\+I\+VE S\+E\+R\+V\+I\+CE M\+A\+N\+U\+AL (P\+A\+RT N\+U\+M\+B\+ER 09121-\/90030
 \end{DoxyItemize}
-\item Documents/5958-4129\_SS80\_Nov-1985-ocr.pdf
+\item Documents/5958-\/4129\+\_\+\+S\+S80\+\_\+\+Nov-\/1985-\/ocr.\+pdf
 \begin{DoxyItemize}
-\item SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)
+\item S\+U\+B\+S\+ET 80 F\+OR F\+I\+X\+ED A\+ND F\+L\+E\+X\+I\+B\+LE D\+I\+SC D\+R\+I\+V\+ES (H\+P-\/\+IB I\+M\+P\+L\+E\+M\+E\+N\+T\+A\+T\+I\+ON)
 \end{DoxyItemize}
-\item Documents/amigo-command-set-ocr.pdf
+\item Documents/amigo-\/command-\/set-\/ocr.\+pdf
 \begin{DoxyItemize}
 \item Appendix A HP 9895A Disc Memory Command Set
 \end{DoxyItemize}
-\item Documents/CIB24SRA.pdf
+\item Documents/\+C\+I\+B24\+S\+R\+A.\+pdf
 \begin{DoxyItemize}
-\item GPIB connector diagram of the part we used in this project form L-COM
+\item G\+P\+IB connector diagram of the part we used in this project form L-\/\+C\+OM
 \end{DoxyItemize}
-\item Documents/CIB24SRA.step
+\item Documents/\+C\+I\+B24\+S\+R\+A.\+step
 \begin{DoxyItemize}
-\item GPIB connector design file of the part we used in this project form L-COM
+\item G\+P\+IB connector design file of the part we used in this project form L-\/\+C\+OM
 \end{DoxyItemize}
-\item GPIB protocol.pdf
+\item G\+P\+IB protocol.\+pdf
 \begin{DoxyItemize}
-\item Copy of GPIB commands and pinout from Linux GPIB project
-\item See: \href{http://linux-gpib.sourceforge.net}{\tt http://linux-gpib.sourceforge.net}
+\item Copy of G\+P\+IB commands and pinout from Linux G\+P\+IB project
+\item See\+: \href{http://linux-gpib.sourceforge.net}{\tt http\+://linux-\/gpib.\+sourceforge.\+net}
 \end{DoxyItemize}
-\item Documents/handshake.pdf
+\item Documents/handshake.\+pdf
 \begin{DoxyItemize}
-\item Highlighted excerpt of just the 3 wire GPIB handshake
+\item Highlighted excerpt of just the 3 wire G\+P\+IB handshake
 \end{DoxyItemize}
-\item Documents/HANDSHAKING.pdf
+\item Documents/\+H\+A\+N\+D\+S\+H\+A\+K\+I\+N\+G.\+pdf
 \begin{DoxyItemize}
-\item Highlighted full version of 3 wire GPIB handshake by Ian Poole
+\item Highlighted full version of 3 wire G\+P\+IB handshake by Ian Poole
 \end{DoxyItemize}
-\item Documents/HP85Disk.pdf
+\item Documents/\+H\+P85\+Disk.\+pdf
 \begin{DoxyItemize}
 \item Detailed pinouts of this project and a schematic
 \end{DoxyItemize}
-\item Documents/HP9133AB-09134-90032-Aug-1983.pdf
+\item Documents/\+H\+P9133\+A\+B-\/09134-\/90032-\/\+Aug-\/1983.\+pdf
 \begin{DoxyItemize}
-\item HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
+\item H\+Ps 5 1/4-\/\+Inch Winchester Disc Drive Service Documentation -\/ HP 9133\+A/8, 9134\+A/B, and 9135A
 \end{DoxyItemize}
-\item Documents/HP913x.pdf
+\item Documents/\+H\+P913x.\+pdf
 \begin{DoxyItemize}
-\item HP 9133A/B, 9134A/B, and 9135A Disc Mentory Users Manual
+\item HP 9133\+A/B, 9134\+A/B, and 9135A Disc Mentory Users Manual
 \end{DoxyItemize}
-\item Documents/hp-ib\_tutorial\_1980.pdf
+\item Documents/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf
 \begin{DoxyItemize}
-\item Tutorial Description of the Hewlett-Packard Interface Bus
+\item Tutorial Description of the Hewlett-\/\+Packard Interface Bus
 \end{DoxyItemize}
-\item Documents/HPIB\_tutorial\_HP.pdf
+\item Documents/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf
 \begin{DoxyItemize}
-\item Tutorial Description of the Hewlett-Packard Interface Bus
+\item Tutorial Description of the Hewlett-\/\+Packard Interface Bus
 \end{DoxyItemize}
-\item Documents/IEEE-488\_Wikipedia\_offline.pdf
+\item Documents/\+I\+E\+E\+E-\/488\+\_\+\+Wikipedia\+\_\+offline.\+pdf
 \begin{DoxyItemize}
-\item Offline copy of Wikipedia GPIB article
+\item Offline copy of Wikipedia G\+P\+IB article
 \end{DoxyItemize}
-\item Documents/README.md
+\item Documents/\+R\+E\+A\+D\+M\+E.\+md
 \begin{DoxyItemize}
 \item Discription of file under the Documents folder
 \end{DoxyItemize}
 \item fatfs
 \begin{DoxyItemize}
-\item R0.12b FatFS code from (C)ChaN, 2016 - With very minimal changes
-\item fatfs/00history.txt
-\item fatfs/00readme.txt
-\item \hyperlink{ff_8c}{fatfs/ff.c}
-\item \hyperlink{ffconf_8h}{fatfs/ffconf.h}
-\item \hyperlink{ff_8h}{fatfs/ff.h}
-\item \hyperlink{integer_8h}{fatfs/integer.h}
+\item R0.\+12b Fat\+FS code from (C)ChaN, 2016 -\/ With very minimal changes
+\item fatfs/00history.\+txt
+\item fatfs/00readme.\+txt
+\item \hyperlink{ff_8c}{fatfs/ff.\+c}
+\item \hyperlink{ffconf_8h}{fatfs/ffconf.\+h}
+\item \hyperlink{ff_8h}{fatfs/ff.\+h}
+\item \hyperlink{integer_8h}{fatfs/integer.\+h}
 \end{DoxyItemize}
-\item fatfs.hal
+\item fatfs.\+hal
 \begin{DoxyItemize}
-\item R0.12b FatFS code from (C)ChaN, 2016 with changes
-\item Hardware abstraction layer based on example AVR project
-\item fatfs.hal/diskio.c
+\item R0.\+12b Fat\+FS code from (C)ChaN, 2016 with changes
+\item Hardware abstraction layer based on example A\+VR project
+\item fatfs.\+hal/diskio.c
 \begin{DoxyItemize}
 \item Low level disk I/O module glue functions (C)ChaN, 2016
 \end{DoxyItemize}
-\item fatfs.hal/diskio.h
+\item fatfs.\+hal/diskio.h
 \begin{DoxyItemize}
 \item Low level disk I/O module glue functions (C)ChaN, 2016
 \end{DoxyItemize}
-\item fatfs.hal/mmc.c
+\item fatfs.\+hal/mmc.c
 \begin{DoxyItemize}
-\item Low level MMC I/O by (C)ChaN, 2016 with modifications
+\item Low level M\+MC I/O by (C)ChaN, 2016 with modifications
 \end{DoxyItemize}
-\item fatfs.hal/mmc.h
+\item fatfs.\+hal/mmc.h
 \begin{DoxyItemize}
-\item Low level MMC I/O by (C)ChaN, 2016 with modifications
+\item Low level M\+MC I/O by (C)ChaN, 2016 with modifications
 \end{DoxyItemize}
-\item fatfs.hal/mmc\_hal.c
+\item fatfs.\+hal/mmc\+\_\+hal.c
 \begin{DoxyItemize}
 \item My Hardware abstraction layer code
 \end{DoxyItemize}
-\item fatfs.hal/mmc\_hal.h
+\item fatfs.\+hal/mmc\+\_\+hal.h
 \begin{DoxyItemize}
 \item My Hardware abstraction layer code
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item fatfs.sup
+\item fatfs.\+sup
 \begin{DoxyItemize}
-\item Support utility and POSIX rapper fuctions
-\item fatfs.sup/fatfs.h
+\item Support utility and P\+O\+S\+IX rapper fuctions
+\item fatfs.\+sup/fatfs.h
 \begin{DoxyItemize}
-\item FAtFS header files
+\item F\+At\+FS header files
 \end{DoxyItemize}
-\item fatfs.sup/fatfs\_sup.c
+\item fatfs.\+sup/fatfs\+\_\+sup.c
 \begin{DoxyItemize}
-\item FatFS file listing and display functions
+\item Fat\+FS file listing and display functions
 \end{DoxyItemize}
-\item fatfs.sup/fatfs\_sup.h
+\item fatfs.\+sup/fatfs\+\_\+sup.h
 \begin{DoxyItemize}
-\item FatFS file listing and display functions
+\item Fat\+FS file listing and display functions
 \end{DoxyItemize}
-\item fatfs.sup/fatfs\_utils.c
+\item fatfs.\+sup/fatfs\+\_\+utils.c
 \begin{DoxyItemize}
-\item FatFS user test functions
+\item Fat\+FS user test functions
 \end{DoxyItemize}
-\item fatfs.sup/fatfs\_utils.h
+\item fatfs.\+sup/fatfs\+\_\+utils.h
 \begin{DoxyItemize}
-\item FatFS user test functions
+\item Fat\+FS user test functions
 \end{DoxyItemize}
-\item fatfs.sup/posix.c
+\item fatfs.\+sup/posix.c
 \begin{DoxyItemize}
-\item POSIX rappers for fatfs - unix file IO function call wrappers
+\item P\+O\+S\+IX rappers for fatfs -\/ unix file IO function call wrappers
 \end{DoxyItemize}
-\item fatfs.sup/posix.h
+\item fatfs.\+sup/posix.h
 \begin{DoxyItemize}
-\item POSIX rappers for fatfs - unix file IO function call wrappers
+\item P\+O\+S\+IX rappers for fatfs -\/ unix file IO function call wrappers
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item gpib
 \begin{DoxyItemize}
-\item My GPIB code for AMIGO SS80 and PPRINTER support
-\item \hyperlink{amigo_8c}{gpib/amigo.c}
+\item My G\+P\+IB code for A\+M\+I\+GO S\+S80 and P\+P\+R\+I\+N\+T\+ER support
+\item \hyperlink{amigo_8c}{gpib/amigo.\+c}
 \begin{DoxyItemize}
-\item AMIGO parser
+\item A\+M\+I\+GO parser
 \end{DoxyItemize}
-\item \hyperlink{amigo_8h}{gpib/amigo.h}
+\item \hyperlink{amigo_8h}{gpib/amigo.\+h}
 \begin{DoxyItemize}
-\item AMIGO parser
+\item A\+M\+I\+GO parser
 \end{DoxyItemize}
-\item \hyperlink{defines_8h}{gpib/defines.h}
+\item \hyperlink{defines_8h}{gpib/defines.\+h}
 \begin{DoxyItemize}
-\item Main GPIB header and configuration options
+\item Main G\+P\+IB header and configuration options
 \end{DoxyItemize}
-\item \hyperlink{drives_8c}{gpib/drives.c}
+\item \hyperlink{drives_8c}{gpib/drives.\+c}
 \begin{DoxyItemize}
 \item Supported Drive Parameters
 \end{DoxyItemize}
-\item gpib/drive\_references.txt
+\item gpib/drive\+\_\+references.\+txt
 \begin{DoxyItemize}
 \item General Drive Parameters Documentation for all known drive types
 \end{DoxyItemize}
-\item gpib/format.c
+\item gpib/format.\+c
 \begin{DoxyItemize}
-\item LIF format and file utilities
+\item L\+IF format and file utilities
 \end{DoxyItemize}
-\item \hyperlink{gpib_8c}{gpib/gpib.c}
+\item \hyperlink{gpib_8c}{gpib/gpib.\+c}
 \begin{DoxyItemize}
-\item All low level GPIB bus code
+\item All low level G\+P\+IB bus code
 \end{DoxyItemize}
-\item \hyperlink{gpib_8h}{gpib/gpib.h}
+\item \hyperlink{gpib_8h}{gpib/gpib.\+h}
 \begin{DoxyItemize}
-\item GPIB I/O code
+\item G\+P\+IB I/O code
 \end{DoxyItemize}
-\item \hyperlink{gpib__hal_8c}{gpib/gpib\_hal.c}
+\item \hyperlink{gpib__hal_8c}{gpib/gpib\+\_\+hal.\+c}
 \begin{DoxyItemize}
-\item GPIB hardware abstraction code
+\item G\+P\+IB hardware abstraction code
 \end{DoxyItemize}
-\item \hyperlink{gpib__hal_8h}{gpib/gpib\_hal.h}
+\item \hyperlink{gpib__hal_8h}{gpib/gpib\+\_\+hal.\+h}
 \begin{DoxyItemize}
-\item GPIB hardware abstraction code
+\item G\+P\+IB hardware abstraction code
 \end{DoxyItemize}
-\item \hyperlink{gpib__task_8c}{gpib/gpib\_task.c}
+\item \hyperlink{gpib__task_8c}{gpib/gpib\+\_\+task.\+c}
 \begin{DoxyItemize}
-\item GPIB command handler , initialization and tracing code
+\item G\+P\+IB command handler , initialization and tracing code
 \end{DoxyItemize}
-\item \hyperlink{gpib__task_8h}{gpib/gpib\_task.h}
+\item \hyperlink{gpib__task_8h}{gpib/gpib\+\_\+task.\+h}
 \begin{DoxyItemize}
-\item GPIB command handler , initialization and tracing code
+\item G\+P\+IB command handler , initialization and tracing code
 \end{DoxyItemize}
-\item \hyperlink{gpib__tests_8c}{gpib/gpib\_tests.c}
+\item \hyperlink{gpib__tests_8c}{gpib/gpib\+\_\+tests.\+c}
 \begin{DoxyItemize}
-\item GPIB user tests
+\item G\+P\+IB user tests
 \end{DoxyItemize}
-\item \hyperlink{gpib__tests_8h}{gpib/gpib\_tests.h}
+\item \hyperlink{gpib__tests_8h}{gpib/gpib\+\_\+tests.\+h}
 \begin{DoxyItemize}
-\item GPIB user tests
+\item G\+P\+IB user tests
 \end{DoxyItemize}
-\item \hyperlink{printer_8c}{gpib/printer.c}
+\item \hyperlink{printer_8c}{gpib/printer.\+c}
 \begin{DoxyItemize}
-\item GPIB printer capture code
+\item G\+P\+IB printer capture code
 \end{DoxyItemize}
-\item \hyperlink{printer_8h}{gpib/printer.h}
+\item \hyperlink{printer_8h}{gpib/printer.\+h}
 \begin{DoxyItemize}
-\item GPIB printer capture code
+\item G\+P\+IB printer capture code
 \end{DoxyItemize}
-\item gpib/references.txt
+\item gpib/references.\+txt
 \begin{DoxyItemize}
-\item Main S80 SS80 AMIGO and GPIB references part numbers and web links
+\item Main S80 S\+S80 A\+M\+I\+GO and G\+P\+IB references part numbers and web links
 \end{DoxyItemize}
-\item \hyperlink{ss80_8c}{gpib/ss80.c}
+\item \hyperlink{ss80_8c}{gpib/ss80.\+c}
 \begin{DoxyItemize}
-\item SS80 parser
+\item S\+S80 parser
 \end{DoxyItemize}
-\item \hyperlink{ss80_8h}{gpib/ss80.h}
+\item \hyperlink{ss80_8h}{gpib/ss80.\+h}
 \begin{DoxyItemize}
-\item SS80 parser
+\item S\+S80 parser
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item hardware
 \begin{DoxyItemize}
-\item CPU hardware specific code
-\item \hyperlink{baudrate_8c}{hardware/baudrate.c}
+\item C\+PU hardware specific code
+\item \hyperlink{baudrate_8c}{hardware/baudrate.\+c}
 \begin{DoxyItemize}
-\item Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
+\item Baud rate calculation tool. Given C\+PU clock and desired baud rate, will list the actual baud rate and registers
 \end{DoxyItemize}
-\item \hyperlink{bits_8h}{hardware/bits.h}
+\item \hyperlink{bits_8h}{hardware/bits.\+h}
 \begin{DoxyItemize}
-\item BIT set and clear functions
+\item B\+IT set and clear functions
 \end{DoxyItemize}
-\item \hyperlink{cpu_8h}{hardware/cpu.h}
+\item \hyperlink{cpu_8h}{hardware/cpu.\+h}
 \begin{DoxyItemize}
-\item CPU specific include files
+\item C\+PU specific include files
 \end{DoxyItemize}
-\item \hyperlink{delay_8c}{hardware/delay.c}
-\begin{DoxyItemize}
-\item Delay code
-\end{DoxyItemize}
-\item \hyperlink{delay_8h}{hardware/delay.h}
+\item \hyperlink{delay_8c}{hardware/delay.\+c}
 \begin{DoxyItemize}
 \item Delay code
 \end{DoxyItemize}
-\item \hyperlink{hal_8c}{hardware/hal.c}
+\item \hyperlink{delay_8h}{hardware/delay.\+h}
 \begin{DoxyItemize}
-\item GPIO functions, spi hardware abstraction layer and chip select logic
+\item Delay code
 \end{DoxyItemize}
-\item \hyperlink{hal_8h}{hardware/hal.h}
+\item \hyperlink{hal_8c}{hardware/hal.\+c}
 \begin{DoxyItemize}
-\item GPIO functions, spi hardware abstraction layer and chip select logic
+\item G\+P\+IO functions, spi hardware abstraction layer and chip select logic
 \end{DoxyItemize}
-\item \hyperlink{iom1284p_8h}{hardware/iom1284p.h}
+\item \hyperlink{hal_8h}{hardware/hal.\+h}
 \begin{DoxyItemize}
-\item GPIO map for ATEMEGA 1284p
+\item G\+P\+IO functions, spi hardware abstraction layer and chip select logic
 \end{DoxyItemize}
-\item \hyperlink{mkdef_8c}{hardware/mkdef.c}
+\item \hyperlink{iom1284p_8h}{hardware/iom1284p.\+h}
+\begin{DoxyItemize}
+\item G\+P\+IO map for A\+T\+E\+M\+E\+GA 1284p
+\end{DoxyItemize}
+\item \hyperlink{mkdef_8c}{hardware/mkdef.\+c}
 \begin{DoxyItemize}
 \item Not used
 \end{DoxyItemize}
-\item hardware/pins.txt
+\item hardware/pins.\+txt
 \begin{DoxyItemize}
-\item AVR function to GPIO pin map
+\item A\+VR function to G\+P\+IO pin map
 \end{DoxyItemize}
-\item \hyperlink{ram_8c}{hardware/ram.c}
+\item \hyperlink{ram_8c}{hardware/ram.\+c}
 \begin{DoxyItemize}
 \item Memory functions
 \end{DoxyItemize}
-\item \hyperlink{ram_8h}{hardware/ram.h}
+\item \hyperlink{ram_8h}{hardware/ram.\+h}
 \begin{DoxyItemize}
 \item Memory functions
 \end{DoxyItemize}
-\item \hyperlink{rs232_8c}{hardware/rs232.c}
+\item \hyperlink{rs232_8c}{hardware/rs232.\+c}
 \begin{DoxyItemize}
-\item RS232 IO
+\item R\+S232 IO
 \end{DoxyItemize}
-\item \hyperlink{rs232_8h}{hardware/rs232.h}
+\item \hyperlink{rs232_8h}{hardware/rs232.\+h}
 \begin{DoxyItemize}
-\item RS232 IO
+\item R\+S232 IO
 \end{DoxyItemize}
-\item \hyperlink{rtc_8c}{hardware/rtc.c}
+\item \hyperlink{rtc_8c}{hardware/rtc.\+c}
 \begin{DoxyItemize}
-\item DS1307 I2C RTC code
+\item D\+S1307 I2C R\+TC code
 \end{DoxyItemize}
-\item \hyperlink{rtc_8h}{hardware/rtc.h}
+\item \hyperlink{rtc_8h}{hardware/rtc.\+h}
 \begin{DoxyItemize}
-\item DS1307 I2C RTC code
+\item D\+S1307 I2C R\+TC code
 \end{DoxyItemize}
-\item \hyperlink{spi_8c}{hardware/spi.c}
+\item \hyperlink{spi_8c}{hardware/spi.\+c}
 \begin{DoxyItemize}
-\item SPI BUS code
+\item S\+PI B\+US code
 \end{DoxyItemize}
-\item \hyperlink{spi_8h}{hardware/spi.h}
+\item \hyperlink{spi_8h}{hardware/spi.\+h}
 \begin{DoxyItemize}
-\item SPI BUS code
+\item S\+PI B\+US code
 \end{DoxyItemize}
-\item \hyperlink{TWI__AVR8_8c}{hardware/TWI\_AVR8.c}
+\item \hyperlink{TWI__AVR8_8c}{hardware/\+T\+W\+I\+\_\+\+A\+V\+R8.\+c}
 \begin{DoxyItemize}
-\item I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+\item I2C code L\+U\+FA Library Copyright (C) Dean Camera, 2011.
 \end{DoxyItemize}
-\item \hyperlink{TWI__AVR8_8h}{hardware/TWI\_AVR8.h}
+\item \hyperlink{TWI__AVR8_8h}{hardware/\+T\+W\+I\+\_\+\+A\+V\+R8.\+h}
 \begin{DoxyItemize}
-\item I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+\item I2C code L\+U\+FA Library Copyright (C) Dean Camera, 2011.
 \end{DoxyItemize}
-\item \hyperlink{user__config_8h}{hardware/user\_config.h}
+\item \hyperlink{user__config_8h}{hardware/user\+\_\+config.\+h}
 \begin{DoxyItemize}
-\item Main include file MMC SLOW and FATS frequency and CPU frequecy settings
+\item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequecy settings
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item lib
 \begin{DoxyItemize}
 \item Library functions
-\item lib/bcpp.cfg
+\item lib/bcpp.\+cfg
 \begin{DoxyItemize}
-\item BCPP C code formatter config
+\item B\+C\+PP C code formatter config
 \end{DoxyItemize}
-\item \hyperlink{matrix_8c}{lib/matrix.c}
+\item \hyperlink{matrix_8c}{lib/matrix.\+c}
 \begin{DoxyItemize}
-\item Matrix code - not used
+\item Matrix code -\/ not used
 \end{DoxyItemize}
-\item \hyperlink{matrix_8h}{lib/matrix.h}
+\item \hyperlink{matrix_8h}{lib/matrix.\+h}
 \begin{DoxyItemize}
-\item Matrix code - not used
+\item Matrix code -\/ not used
 \end{DoxyItemize}
-\item lib/matrix.txt
+\item lib/matrix.\+txt
 \begin{DoxyItemize}
 \item A few notes about matrix operations
 \end{DoxyItemize}
-\item \hyperlink{queue_8c}{lib/queue.c}
+\item \hyperlink{queue_8c}{lib/queue.\+c}
 \begin{DoxyItemize}
 \item Queue functions
 \end{DoxyItemize}
-\item \hyperlink{queue_8h}{lib/queue.h}
+\item \hyperlink{queue_8h}{lib/queue.\+h}
 \begin{DoxyItemize}
 \item Queue functions
 \end{DoxyItemize}
-\item \hyperlink{sort_8c}{lib/sort.c}
+\item \hyperlink{sort_8c}{lib/sort.\+c}
 \begin{DoxyItemize}
-\item Sort functions - not used
+\item Sort functions -\/ not used
 \end{DoxyItemize}
-\item \hyperlink{sort_8h}{lib/sort.h}
+\item \hyperlink{sort_8h}{lib/sort.\+h}
 \begin{DoxyItemize}
-\item Sort functions - not used
+\item Sort functions -\/ not used
 \end{DoxyItemize}
-\item \hyperlink{stringsup_8c}{lib/stringsup.c}
-\begin{DoxyItemize}
-\item Various string processing functions
-\end{DoxyItemize}
-\item \hyperlink{stringsup_8h}{lib/stringsup.h}
+\item \hyperlink{stringsup_8c}{lib/stringsup.\+c}
 \begin{DoxyItemize}
 \item Various string processing functions
 \end{DoxyItemize}
-\item \hyperlink{time_8c}{lib/time.c}
+\item \hyperlink{stringsup_8h}{lib/stringsup.\+h}
 \begin{DoxyItemize}
-\item POSIX time functions
+\item Various string processing functions
 \end{DoxyItemize}
-\item \hyperlink{time_8h}{lib/time.h}
+\item \hyperlink{time_8c}{lib/time.\+c}
 \begin{DoxyItemize}
-\item POSIX time functions
+\item P\+O\+S\+IX time functions
 \end{DoxyItemize}
-\item \hyperlink{timer_8c}{lib/timer.c}
+\item \hyperlink{time_8h}{lib/time.\+h}
+\begin{DoxyItemize}
+\item P\+O\+S\+IX time functions
+\end{DoxyItemize}
+\item \hyperlink{timer_8c}{lib/timer.\+c}
 \begin{DoxyItemize}
 \item Timer task functions
 \end{DoxyItemize}
-\item \hyperlink{timer_8h}{lib/timer.h}
+\item \hyperlink{timer_8h}{lib/timer.\+h}
 \begin{DoxyItemize}
 \item Timer task functions
 \end{DoxyItemize}
-\item \hyperlink{timer__hal_8c}{lib/timer\_hal.c}
+\item \hyperlink{timer__hal_8c}{lib/timer\+\_\+hal.\+c}
 \begin{DoxyItemize}
 \item Timer task hardware abstraction layer
 \end{DoxyItemize}
-\item \hyperlink{timetests_8c}{lib/timetests.c}
+\item \hyperlink{timetests_8c}{lib/timetests.\+c}
 \begin{DoxyItemize}
 \item Time and timer test code
 \end{DoxyItemize}
@@ -943,93 +812,92 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item printf
 \begin{DoxyItemize}
 \item Printf and math IO functions
-\item \hyperlink{mathio_8c}{printf/mathio.c}
+\item \hyperlink{mathio_8c}{printf/mathio.\+c}
 \begin{DoxyItemize}
 \item Number conversions
 \end{DoxyItemize}
-\item \hyperlink{mathio_8h}{printf/mathio.h}
+\item \hyperlink{mathio_8h}{printf/mathio.\+h}
 \begin{DoxyItemize}
 \item Number conversions
 \end{DoxyItemize}
-\item \hyperlink{n2a_8c}{printf/n2a.c}
+\item \hyperlink{n2a_8c}{printf/n2a.\+c}
 \begin{DoxyItemize}
-\item Binary to ASCII converter number size only limited by memory
+\item Binary to A\+S\+C\+II converter number size only limited by memory
 \end{DoxyItemize}
-\item \hyperlink{printf_8c}{printf/printf.c}
+\item \hyperlink{printf_8c}{printf/printf.\+c}
 \begin{DoxyItemize}
-\item My small printf code - includes floating point support and user defined low character level IO
+\item My small printf code -\/ includes floating point support and user defined low character level IO
 \end{DoxyItemize}
-\item \hyperlink{sscanf_8c}{printf/sscanf.c}
+\item \hyperlink{sscanf_8c}{printf/sscanf.\+c}
 \begin{DoxyItemize}
-\item My small scanf code - work in progress
+\item My small scanf code -\/ work in progress
 \end{DoxyItemize}
-\item \hyperlink{test__printf_8c}{printf/test\_printf.c}
+\item \hyperlink{test__printf_8c}{printf/test\+\_\+printf.\+c}
 \begin{DoxyItemize}
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item sdcard
 \begin{DoxyItemize}
-\item My HP85 AMIGO and SS80 disk images
+\item My H\+P85 A\+M\+I\+GO and S\+S80 disk images
 \begin{DoxyItemize}
-\item sdcard/hpdisk.cfg
+\item sdcard/hpdisk.\+cfg
 \begin{DoxyItemize}
-\item All Disk definitions, address, PPR, DEBUG leve for SS80 and AMIGO drives
-\item PRINTER address
+\item All Disk definitions, address, P\+PR, D\+E\+B\+UG leve for S\+S80 and A\+M\+I\+GO drives
+\item P\+R\+I\+N\+T\+ER address
 \end{DoxyItemize}
-\item sdcard/amigo.lif
+\item sdcard/amigo.\+lif
 \begin{DoxyItemize}
-\item AMIGO disk image file number 1
+\item A\+M\+I\+GO disk image file number 1
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/amigo-2.lif
+\item sdcard/amigo-\/2.\+lif
 \begin{DoxyItemize}
-\item AMIGO disk image file number 2
+\item A\+M\+I\+GO disk image file number 2
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/ss80.lif
+\item sdcard/ss80.\+lif
 \begin{DoxyItemize}
-\item SS80 hard drive disk image file number 1
+\item S\+S80 hard drive disk image file number 1
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/ss80-2.lif
+\item sdcard/ss80-\/2.\+lif
 \begin{DoxyItemize}
-\item SS80 hard drive disk image file number 2
+\item S\+S80 hard drive disk image file number 2
 \item Has some demo basic programs in it
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item My HP85 bus trace files
+\item My H\+P85 bus trace files
 \begin{DoxyItemize}
-\item sdcard/amigo\_trace.txt
+\item sdcard/amigo\+\_\+trace.\+txt
 \begin{DoxyItemize}
-\item AMIGO trace file when connected to HP85 showing odd out of order command issue
+\item A\+M\+I\+GO trace file when connected to H\+P85 showing odd out of order command issue
 \end{DoxyItemize}
-\item sdcard/gpib\_reset.txt
+\item sdcard/gpib\+\_\+reset.\+txt
 \begin{DoxyItemize}
-\item GPIB reset trace when connected to HP85
+\item G\+P\+IB reset trace when connected to H\+P85
 \end{DoxyItemize}
-\item sdcard/gpib\_trace.txt
+\item sdcard/gpib\+\_\+trace.\+txt
 \begin{DoxyItemize}
-\item GPIB transaction trace when connected to HP85
+\item G\+P\+IB transaction trace when connected to H\+P85
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item My HP85 plot capture files
+\item My H\+P85 plot capture files
 \begin{DoxyItemize}
-\item sdcard/plot1.plt
-\item sdcard/plot2.plt
+\item sdcard/plot1.\+plt
+\item sdcard/plot2.\+plt
 \end{DoxyItemize}
-\item TREK85/
+\item T\+R\+E\+K85/
 \begin{DoxyItemize}
-\item TREK85 by Martin Hepperle, December 2015
-\item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https://groups.io/g/hpseries80/topic/star\_trek\_game\_for\_hp\_85/4845241}
+\item T\+R\+E\+K85 by Martin Hepperle, December 2015
+\item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241}
 \begin{DoxyItemize}
-\item author.txt
-\item readme.txt
-\item Star Trek.pdf
-\item TREK85.BAS
-\item trek.lif
-
+\item author.\+txt
+\item readme.\+txt
+\item Star Trek.\+pdf
+\item T\+R\+E\+K85.\+B\+AS
+\item trek.\+lif 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\end{DoxyPre}
+\end{DoxyItemize}

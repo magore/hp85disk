@@ -8,6 +8,74 @@
 
  @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
+   * LIF command help
+     * lif add lifimage lifname from_ascii_file
+       * Add ASCII file converted to E010 format to existing LIF image on SD card
+         * lif add /amigo1.lif TEST1 /test.bas
+         * lif add /amigo1.lif TREK85 /TREK85/TREK85.BAS
+       * Notes:
+          * Strings must be no longer then sector size - 3
+          * Any trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file
+
+     * lif addbin lifimage lifname from_lif_image
+       * Adding a binary LIF image files to another LIF image
+       * Examples 
+         * lif addbin /amigo1.lif TEST /test.lif
+         * lif addbin /amigo1.lif TREK85 /TREK85/trek.lif
+       * Notes about TREK85 in the examples
+         * Author: TREK85 port was done by Martin Hepperle
+         * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+
+     * lif create lifimage liflabel directory_sectors total_sectors
+       * Create a new LIF image
+       * Example 
+         * lif create /amigo3.lif AMIGO3 15 1120
+           * This formats an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
+
+     * lif del lifimage lifname
+       * Delete a file from LIF image on SD card
+       * Example
+	     *lif del /amigo1.lif TREK85
+
+     * lif dir lifimage
+       * Directory listing of LIF image
+     * Example:
+      <pre>
+        lif dir /amigo1.lif
+        Volume: [AMIGO2]
+        NAME         TYPE   START SECTOR        SIZE    RECSIZE
+        HELLO       E020h            10h         323        256
+        CIRCLE      E020h            12h         156        256
+        GPIB-S      E020h            13h         338        256
+        GPIB-T      E020h            15h        1413        256
+        GPIB7       E020h            1Bh         197        256
+        AMIGO2      E020h            1Ch          51        256
+        HELLO2      E010h            1Dh         512        256
+        HELLO3      E010h            1Fh         512        256
+        TEST        E010h            21h         256        256
+        TREK85      E010h            22h       28160        256
+        
+              10 Files
+               0 Purged
+             128 Used sectors
+             976 Free sectors
+             144 First free sector (90h)
+      </pre>
+
+     * lif extract lifimage lifname to_ascii_file
+       * Extracts E010 file from LIF image converting to ASCII file on SD card
+       * Example
+         lif extract /amigo1.lif HELLO3 /HELLO3.BAS
+
+     * lif extractbin lifimage llifname to_lif_image
+       * Extracts LIF file from a LIF image and saves it as new LIF image 
+       * Example
+         * lif extractbin /amigo1.lif HELLO3 /hello3.lif
+
+     * lif rename lifimage oldlifname newlifname
+       * Renames file in LIF image
+       * Example
+         * lif rename /amigo1.lif HELLO3 HELLO4
 */
 
 #ifdef LIF_STAND_ALONE
@@ -134,90 +202,6 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
 
 
 
-/**
-   * Example lif sdcard commands
-      * lif add
-          * add ASCII file converted to E010 format to existing LIF image on SD card
-          * Strings must be no longer then sector size - 3
-          * Any trailing "\n" and/or "\r" are coverted to "\n" when stored in LIF file
-      <pre>
-         # Used to import files into the HP85 disk images
-         lif add /amigo1.lif TEST1 /test.bas
-         lif add /amigo1.lif TREK85 /TREK85/TREK85.BAS
-      </pre>
-
-      * lif addbin
-          * add LIF file to existing LIF image , any format, on SD card 
-      <pre>
-         # Used to import files into the HP85 disk images
-         lif addbin /amigo1.lif TEST /test.lif
-         lif addbin /amigo1.lif TREK85 /TREK85/trek.lif
-            # Notes about TREK85 in the examples
-            # Author: TREK85 port was done by Martin Hepperle
-            # https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
-
-      * lif create
-         * Create a LIF image  on SD card
-      <pre>
-         # Example: format an LIF image file with 15 directory sectors and a length of 1120 (16 * 2 * 35) sectors
-         lif create /amigo3.lif AMIGO3 15 1120
-         Formating LIF image:[/amigo3.lif], Label:[AMIGO3], Dir Sectors:[15], sectors:[1120]
-         Formating: wrote:[1120] sectors
-      </pre>
-
-      * lif del
-         * Delete a file from LIF image on SD card
-      <pre>
-		lif del /amigo1.lif TREK85
-      </pre>
-
-      * lif dir 
-      <pre>
-        lif dir /amigo1.lif
-        Volume: [AMIGO2]
-        NAME         TYPE   START SECTOR        SIZE    RECSIZE
-        HELLO       E020h            10h         323        256
-        CIRCLE      E020h            12h         156        256
-        GPIB-S      E020h            13h         338        256
-        GPIB-T      E020h            15h        1413        256
-        GPIB7       E020h            1Bh         197        256
-        AMIGO2      E020h            1Ch          51        256
-        HELLO2      E010h            1Dh         512        256
-        HELLO3      E010h            1Fh         512        256
-        TEST        E010h            21h         256        256
-        TREK85      E010h            22h       28160        256
-        
-              10 Files
-               0 Purged
-             128 Used sectors
-             976 Free sectors
-             144 First free sector (90h)
-      </pre>
-
-      * lif extract
-        * Notes:
-          * Extracts E010 file from LIF image converting to ASCII file on SD card
-      <pre>
-         # extracts an ASCII type E010 file from a LIF image and saves it on the SD card
-         lif extract /amigo1.lif HELLO3 /HELLO3.BAS
-         Extracting: /HELLO3.BAS
-         Wrote:      311
-      </pre>
-
-      * lif extractbin
-          * Extracts file from LIF image to new LIF image on SD card
-      <pre>
-         # extracts LIF from a LIF image and saves it as new LIF image on the SD card
-         lif extractbin /amigo1.lif HELLO3 /hello3.lif
-      </pre>
-
-      * lif rename
-          *Renames file in LIF image
-      <pre>
-         # Renames file in LIF image on the SD card
-         lif rename /amigo1.lif HELLO3 HELLO4
-      </pre>
-*/
 
 /// @brief
 ///  Help Menu for User invoked GPIB functions and tasks
@@ -227,14 +211,14 @@ void lif_help()
 {
     printf(
 		"lif help\n"
-        "lif add lifimage lifname file\n"
-        "lif addbin lifimage lifname file\n"
+        "lif add lifimage lifname from_ascii_file\n"
+        "lif addbin lifimage lifname from_lif_file\n"
         "lif create lifimage label directory_sectors sectors\n"
-        "lif del\n"
-        "lif dir\n"
-        "lif extract lifimage lifname file\n"
-        "lif extractbin lifimage lifname file\n"
-        "lif rename old new\n"
+        "lif del lifimage name\n"
+        "lif dir lifimage\n"
+        "lif extract lifimage lifname to_ascii_file\n"
+        "lif extractbin lifimage lifname to_lif_file\n"
+        "lif rename lifimage oldlifname newlifname\n"
         );
 }
 
