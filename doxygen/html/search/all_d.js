@@ -8,6 +8,7 @@ var searchData=
   ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
   ['ndac',['NDAC',['../gpib__hal_8h.html#a1ab54a10fda88683f0334ff44ed767b4',1,'gpib_hal.h']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],
+  ['needeof',['needEOF',['../structlif__space__t.html#abfeae53ab4c770b3a29cfb399243b24e',1,'lif_space_t']]],
   ['neg',['neg',['../unionf__t.html#a08d5e77f0fdb784ab1ef1425625e23f7',1,'f_t']]],
   ['new_5ffile_5fdescriptor',['new_file_descriptor',['../posix_8c.html#abab788c42cce343cde2f5b8f90015229',1,'new_file_descriptor(void):&#160;posix.c'],['../posix_8h.html#abab788c42cce343cde2f5b8f90015229',1,'new_file_descriptor(void):&#160;posix.c']]],
   ['nextspace',['nextspace',['../stringsup_8c.html#a205ab859e76086c5239a49effa3281dd',1,'nextspace(char *ptr):&#160;stringsup.c'],['../stringsup_8h.html#a205ab859e76086c5239a49effa3281dd',1,'nextspace(char *ptr):&#160;stringsup.c']]],

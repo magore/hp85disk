@@ -108,15 +108,14 @@ typedef struct
 } lifdir_t;
 
 
-///@brief Used by lif_findfree_index to a find free directory slot and file area 
-typedef struct
-{
-    uint32_t start;	// Start of record in sectors
-    uint32_t size;	// Free space of purged record - or if EOF then file size
-    int index;		// Index of directory entry 
-    int eof;		// Free space is at EOF
-    int purged;		// Was the record purged ?
-} lifspace_t;
+///@brief Used by lif_findfree_index() to a find free directory slot and file area 
+typedef struct {
+    int state;		// True if a purged record has been found big enough to reuse
+    int needEOF;	// Index of EOF record to write AFTER we add new record
+    int index;		// directory index of free record
+    uint32_t start;	// Where to save the new records data in sectors
+    uint32_t size;	// Size of new record in sectors
+} lif_space_t;
 
 
 ///@brief Master LIF data structure
@@ -136,7 +135,7 @@ typedef struct
 	uint32_t freesectors;	// Free sector count
 	lifvol_t VOL;			// LIF Volume header
 	lifdir_t DIR;			// LIF directory entry
-	lifspace_t space;		// Used for process free directory slots
+	lif_space_t  space;			// used by lif_findfree_dirindex()
 	int	   	files;			// File count
 	int	   	purged;			// Purged file count
     int    	dirindex;		// Directory index 0..N

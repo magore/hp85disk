@@ -191,7 +191,8 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
 
 
 
-#else
+#else 
+// NOT LIF_STAND_ALONE
 
 #include "user_config.h"
 #include "defines.h"
@@ -1561,7 +1562,15 @@ int lif_find_file(lif_t *LIF, char *liflabel)
 	return(index);
 }
 
+typedef struct {
+	int state;
+	int index;
+	uint32_t start;
+	uint32_t size;
+} purged_t;
+
 /// @brief Find free directory slot that can hold >= sectors in size
+/// We can fit in a purged record then we reuse that record, otherwise it is always the EOF record
 /// Unless a record is purged this will always be the last record
 /// @param[in] *LIF: LIF pointer
 /// @param[in] sectors: size of free space we need
@@ -1570,18 +1579,20 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 {
 	// Directory index
 	int index = 0;
-	int purged = 0;
+
+	// zero free space structure
+	memset(&LIF->space,0,sizeof(lif_space_t));
 
 	// Master start of file area
 	uint32_t start = LIF->filestart;
 
 	// Clear free structure
-	memset((void *)&LIF->space,0,sizeof(lifspace_t));
+	memset((void *)&LIF->space,0,sizeof(lif_space_t));
 
 	if(LIF == NULL)
 		return(-1);
 
-	// Volume free space
+	// Volume free space is recalculated by calling lif_opendir, lif_open_volume or lif_create_volume
 	if(sectors > LIF->freesectors)
 		return(-1);
 
@@ -1590,58 +1601,70 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 		if(!lif_readdirindex(LIF,index))
 			break;
 
-		// Purged Record, the specs say we can NOT use the file size or start
+
+		// EOF Record
+		if(LIF->DIR.FileType == 0xffff)
+		{
+			if(LIF->space.state)
+			{
+				// Previous purged records found 
+				LIF->space.needEOF = LIF->space.index + 1;		// If we add a new record this is wher to put the EOF record
+				lif_readdirindex(LIF,LIF->space.index);			// Reread the purged record
+				LIF->DIR.FileStartSector = start;						// Use start of free space
+				LIF->DIR.FileSectors = sectors;
+				LIF->dirindex = LIF->space.index;
+				return(LIF->dirindex);
+			}
+			// This current EOF record can become the new file record
+			// Update the file start and sectors
+			LIF->space.needEOF = index + 1;		// Where to add a EOF if this record space is used
+			LIF->DIR.FileStartSector = start;
+			LIF->DIR.FileSectors = sectors;
+			LIF->dirindex = index;
+			return(index);
+		}
+
+		// Purged Record, FileStartSector and FileSectors can not be trusted (so say the LIF specs)
 		if(LIF->DIR.FileType == 0)
 		{
- 			if(purged == 0)
+			// Note: We will not know the real free size until the next Valid record
+ 			if(LIF->space.state == 0)
 			{
 				// Start of possible free space is after last non-type 0 record - if we had a last record
 				LIF->space.start = start;
 				// INDEX of this record
 				LIF->space.index = index;
-				purged = 1;
+				LIF->space.state = 1;
 			}
 			++index;
 			continue;
 		}
 
-		// EOF Record
-		if(LIF->DIR.FileType == 0xffff)
-		{
-			// Start of free space is after last non-type 0 record - if we had a last record
-			LIF->space.start = start;
-			LIF->space.size = sectors;
-			LIF->space.eof = 1;
-			if(purged)
-			{
-				LIF->dirindex = LIF->space.index;
-				return(LIF->dirindex);
-			}
-			LIF->space.index = index;
-			LIF->dirindex = index;
-			return(index);
-		}
+		// Valid Records after here (resets purged state)
 
-		// Valid Records after here
-
-		// We had a previous purged record
-		// Is there enough free space between valid records to save a new file of sectors in size ?
-		if(purged)
+		// We had one or more previous purged records
+		// Was there enough free from the original purged record to the start of this record ?
+		LIF->space.size = LIF->DIR.FileStartSector - LIF->space.start;
+		if(LIF->space.state)
 		{
-			// Compute the gap between the last record, or start of free space, and this one
-			LIF->space.size = LIF->DIR.FileStartSector - LIF->space.start;
 			if(LIF->space.size >= sectors)
 			{
+				// The saved purged record was big enough 
+				// re-read the purged record and update the file start and sectors
+				// update the file start and sectors with saved values
+				lif_readdirindex(LIF,LIF->space.index);
+				LIF->DIR.FileStartSector = LIF->space.start;
+				LIF->DIR.FileSectors = sectors;
 				LIF->dirindex = LIF->space.index;
 				return(LIF->dirindex);
 			}
-			purged = 0;
+			// Was not enough room, reset state and wait for any purged records big enough
+			LIF->space.state = 0;
 		}
 
 		++index;
 		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
 	}
-
 	return(-1);
 }
 
@@ -1739,10 +1762,10 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 		rem = LIF_SECTOR_SIZE - pos;
 	}
 
-	// Note: IMPORTANT we ALWAYS have >= 6 bytes at this point because of size or padding
+	// Note: IMPORTANT we have >= 6 bytes!!!
 
 	// Do not have to split, there is enough room
-	if(rem > (3 + len)) 
+	if(rem >= (3 + len)) 
 	{
 
 		// Write string in new sector
@@ -1754,7 +1777,7 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 		while(*str)
 			wbuf[ind++] = *str++;
 	}
-	else 
+	else 	/* No enough room split string */
 	{
 		// Split strings need at least 6 header bytes
 		// We KNOW that there are at least 6 bytes in this sector
@@ -1984,7 +2007,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	}
 
 	// Write EOF if this is the last record
-	if(LIF->space.eof && !lif_writedirEOF(LIF,index+1))
+	if(LIF->space.needEOF && !lif_writedirEOF(LIF,LIF->space.needEOF))
 	{
 		lif_closedir(LIF);
 		return(-1);
@@ -2210,7 +2233,6 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 		return(0);
 	}
 
-	
 	sectors = LIF->DIR.FileSectors;
 
 	//Initialize the user file lif_t structure
@@ -2225,6 +2247,7 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 
 	// Copy directory record
 	ULIF->DIR = LIF->DIR;
+
 	ULIF->DIR.FileStartSector = 2;
 	ULIF->filesectors = LIF->DIR.FileSectors;
 
@@ -2343,7 +2366,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 	// Copy user image directory record to master image directory record
 	LIF->DIR = ULIF->DIR;
 
-	// Adjust starting sector to point here
+	// Adjust starting sector to point here, size does not change
 	LIF->DIR.FileStartSector = LIF->space.start;
 
 	// Master lif image file start in bytes
@@ -2383,7 +2406,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 		lif_closedir(LIF);
 		return(-1);
 	}
-	if(LIF->space.eof && !lif_writedirEOF(LIF,index+1))
+	if(LIF->space.needEOF && !lif_writedirEOF(LIF,LIF->space.needEOF))
 	{
 		lif_closedir(LIF);
 		return(-1);

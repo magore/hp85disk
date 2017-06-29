@@ -33,7 +33,7 @@ var searchData=
   ['enotty',['ENOTTY',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaf3dc036138d242739c3dbe36c5dfa095',1,'posix.h']]],
   ['enter_5fff',['ENTER_FF',['../ff_8c.html#a458e336ac53f8249ed02d844469b7076',1,'ff.c']]],
   ['enxio',['ENXIO',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb',1,'posix.h']]],
-  ['eof',['eof',['../structlifspace__t.html#ad676dc78af3d2cd07c729affab6ec27e',1,'lifspace_t::eof()'],['../ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;ff.h'],['../posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;posix.h']]],
+  ['eof',['EOF',['../ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;ff.h'],['../posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;posix.h']]],
   ['eoi',['EOI',['../gpib__hal_8h.html#a04c9015da7e7ea45f3b80793809e2d7b',1,'gpib_hal.h']]],
   ['eoi_5fflag',['EOI_FLAG',['../gpib_8h.html#ab6e601afadf8d274d9d341323a5c6a3e',1,'gpib.h']]],
   ['eok',['EOK',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669',1,'posix.h']]],
