@@ -128,7 +128,7 @@ typedef struct
     char *name; 			// LIF image file name
 	FILE *fp;				// LIF file handel
 	uint32_t sectors;		// LIF image size in sectors
-	uint32_t bytes;			// LIF image size in bytes
+	uint32_t imagebytes;		// LIF image size in bytes
 	uint32_t filestart;     // LIF file area start in sectors
 	uint32_t filesectors;	// LIF file area size in sectors
 	uint32_t usedsectors;	// Used sector count
@@ -139,6 +139,7 @@ typedef struct
 	int	   	files;			// File count
 	int	   	purged;			// Purged file count
     int    	dirindex;		// Directory index 0..N
+	int     EOFindex;		// Position of EOF directory record
 } lif_t;
 
 // =============================================

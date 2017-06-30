@@ -18,7 +18,7 @@ char $\ast$ \hyperlink{structlif__t_ae6b943f3c26005fc375169960e9049f7}{name}
 \item 
 uint32\+\_\+t \hyperlink{structlif__t_a262b14d8547abff49d9dd1b445faf6d5}{sectors}
 \item 
-uint32\+\_\+t \hyperlink{structlif__t_a46964ae5e810fad047ead39465e9514c}{bytes}
+uint32\+\_\+t \hyperlink{structlif__t_afabd64e66adb03eef2249b6c627faac7}{imagebytes}
 \item 
 uint32\+\_\+t \hyperlink{structlif__t_a3c1bcc66b694d07ebc304ef7cb66b4ef}{filestart}
 \item 
@@ -39,6 +39,8 @@ int \hyperlink{structlif__t_aceca398e2e3f6bcffe1593969544d546}{files}
 int \hyperlink{structlif__t_a1dfef3ca99d6ba9680bb9b6bf8fafc32}{purged}
 \item 
 int \hyperlink{structlif__t_a74f8af3dc203c3c6b9dea3829bb4b6fa}{dirindex}
+\item 
+int \hyperlink{structlif__t_a68c465a879c7d4bd2279682185b6250e}{E\+O\+Findex}
 \end{DoxyCompactItemize}
 
 
@@ -50,17 +52,6 @@ Definition at line 126 of file lifutils.\+h.
 
 
 \subsection{Field Documentation}
-\index{lif\+\_\+t@{lif\+\_\+t}!bytes@{bytes}}
-\index{bytes@{bytes}!lif\+\_\+t@{lif\+\_\+t}}
-\subsubsection[{\texorpdfstring{bytes}{bytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lif\+\_\+t\+::bytes}\hypertarget{structlif__t_a46964ae5e810fad047ead39465e9514c}{}\label{structlif__t_a46964ae5e810fad047ead39465e9514c}
-
-
-Definition at line 131 of file lifutils.\+h.
-
-
-
-Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+dump\+\_\+vol(), and lif\+\_\+open\+\_\+volume().
-
 \index{lif\+\_\+t@{lif\+\_\+t}!D\+IR@{D\+IR}}
 \index{D\+IR@{D\+IR}!lif\+\_\+t@{lif\+\_\+t}}
 \subsubsection[{\texorpdfstring{D\+IR}{DIR}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lifdir\+\_\+t} lif\+\_\+t\+::\+D\+IR}\hypertarget{structlif__t_aefeaa526c04a2b8715b0392feeec52a3}{}\label{structlif__t_aefeaa526c04a2b8715b0392feeec52a3}
@@ -70,7 +61,7 @@ Definition at line 137 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+check\+\_\+dir(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+dir2str(), lif\+\_\+dir\+\_\+clear(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), lif\+\_\+rename\+\_\+file(), lif\+\_\+str2dir(), and lif\+\_\+writedir\+E\+O\+F().
+Referenced by lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+check\+\_\+dir(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+dir2str(), lif\+\_\+dir\+\_\+clear(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), lif\+\_\+readdirindex(), lif\+\_\+rename\+\_\+file(), lif\+\_\+str2dir(), lif\+\_\+writedir\+E\+O\+F(), and lif\+\_\+writedirindex().
 
 \index{lif\+\_\+t@{lif\+\_\+t}!dirindex@{dirindex}}
 \index{dirindex@{dirindex}!lif\+\_\+t@{lif\+\_\+t}}
@@ -81,7 +72,18 @@ Definition at line 141 of file lifutils.\+h.
 
 
 
-Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+readdir(), and lif\+\_\+rewinddir().
+Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+findfree\+\_\+dirindex(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), and lif\+\_\+rewinddir().
+
+\index{lif\+\_\+t@{lif\+\_\+t}!E\+O\+Findex@{E\+O\+Findex}}
+\index{E\+O\+Findex@{E\+O\+Findex}!lif\+\_\+t@{lif\+\_\+t}}
+\subsubsection[{\texorpdfstring{E\+O\+Findex}{EOFindex}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+t\+::\+E\+O\+Findex}\hypertarget{structlif__t_a68c465a879c7d4bd2279682185b6250e}{}\label{structlif__t_a68c465a879c7d4bd2279682185b6250e}
+
+
+Definition at line 142 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdirindex(), lif\+\_\+writedir\+E\+O\+F(), and lif\+\_\+writedirindex().
 
 \index{lif\+\_\+t@{lif\+\_\+t}!files@{files}}
 \index{files@{files}!lif\+\_\+t@{lif\+\_\+t}}
@@ -137,6 +139,17 @@ Definition at line 135 of file lifutils.\+h.
 
 
 Referenced by lif\+\_\+check\+\_\+lif\+\_\+headers(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+findfree\+\_\+dirindex(), and lif\+\_\+open\+\_\+volume().
+
+\index{lif\+\_\+t@{lif\+\_\+t}!imagebytes@{imagebytes}}
+\index{imagebytes@{imagebytes}!lif\+\_\+t@{lif\+\_\+t}}
+\subsubsection[{\texorpdfstring{imagebytes}{imagebytes}}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lif\+\_\+t\+::imagebytes}\hypertarget{structlif__t_afabd64e66adb03eef2249b6c627faac7}{}\label{structlif__t_afabd64e66adb03eef2249b6c627faac7}
+
+
+Definition at line 131 of file lifutils.\+h.
+
+
+
+Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+dump\+\_\+vol(), and lif\+\_\+open\+\_\+volume().
 
 \index{lif\+\_\+t@{lif\+\_\+t}!name@{name}}
 \index{name@{name}!lif\+\_\+t@{lif\+\_\+t}}

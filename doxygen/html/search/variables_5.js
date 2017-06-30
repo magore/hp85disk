@@ -2,6 +2,7 @@ var searchData=
 [
   ['elapsed',['elapsed',['../struct__gpib__t.html#a99a38aef880eb075f625f33d7bac31dd',1,'_gpib_t']]],
   ['end',['end',['../structdst__t.html#a9a6e1d16a7057ad1206b9230b073f99f',1,'dst_t']]],
+  ['eofindex',['EOFindex',['../structlif__t.html#a68c465a879c7d4bd2279682185b6250e',1,'lif_t']]],
   ['epoch',['epoch',['../structdst__t.html#ae8b931e1a2731b688e1af1253787827c',1,'dst_t']]],
   ['err',['err',['../structFIL.html#aea440945db26de9c4a88065c0c887fda',1,'FIL']]],
   ['errno',['errno',['../posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf',1,'posix.c']]],

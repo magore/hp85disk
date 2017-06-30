@@ -90,7 +90,7 @@ var searchData=
   ['burst_5fsize',['BURST_SIZE',['../structSS80UnitType.html#a4bc66bc02c06dbfe279be6d2af808a04',1,'SS80UnitType']]],
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
   ['byte',['BYTE',['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'integer.h']]],
-  ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t::bytes()'],['../structlif__t.html#a46964ae5e810fad047ead39465e9514c',1,'lif_t::bytes()']]],
+  ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
   ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType']]],
   ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGemometryType.html#a38dc0b559f00c78f30fe0c43c53b582a',1,'AMIGOGemometryType']]]
 ];

@@ -801,7 +801,7 @@ void lif_dump_vol(lif_t *LIF)
 {
    printf("LIF name:             %s\n", LIF->name);
    printf("LIF sectors:          %8lXh\n", (long)LIF->sectors);
-   printf("LIF bytes:            %8lXh\n", (long)LIF->bytes);
+   printf("LIF bytes:            %8lXh\n", (long)LIF->imagebytes);
    printf("LIF filestart:        %8lXh\n", (long)LIF->filestart);
    printf("LIF file sectors:     %8lXh\n", (long)LIF->filesectors);
    printf("LIF used:             %8lXh\n", (long)LIF->usedsectors);
@@ -1077,12 +1077,13 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 	LIF->filestart = (dirstart+dirsectors);
 	LIF->filesectors = filesectors;
 	LIF->sectors = (LIF->filestart+LIF->filesectors);
-	LIF->bytes = LIF->sectors * LIF_SECTOR_SIZE;
+	LIF->imagebytes = LIF->sectors * LIF_SECTOR_SIZE;
 	LIF->freesectors = LIF->filesectors;
 	LIF->usedsectors = 0;
 	LIF->files = 0;
 	LIF->purged = 0;
 	LIF->dirindex = -1;
+	LIF->EOFindex = 0;
 
 	memset(buffer,0,LIF_SECTOR_SIZE);
 
@@ -1245,9 +1246,11 @@ int lif_readdirindex(lif_t *LIF, int index)
 	uint32_t offset;
 	uint8_t dir[LIF_DIR_SIZE];
 
+	// Verify that the records is withing directory limits
 	if( !lif_checkdirindex(LIF, index) )
 		return(0);
 
+	// Computer offset
 	offset = (index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
 
 	// read raw data
@@ -1256,6 +1259,10 @@ int lif_readdirindex(lif_t *LIF, int index)
 
 	// Convert into directory structure
 	lif_str2dir(dir, LIF);
+
+	// Update EOF index
+	if( LIF->DIR.FileType == 0xffffUL )
+		LIF->EOFindex = index;
 
 	if( !lif_check_dir(LIF))
 	{
@@ -1287,6 +1294,10 @@ int lif_writedirindex(lif_t *LIF, int index)
 	if( !lif_checkdirindex(LIF, index))
 		return(0);
 
+	// Update EOF index
+	if( LIF->DIR.FileType == 0xffffUL )
+		LIF->EOFindex = index;
+
 	offset = (index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
 
 	// store LIF->DIR settings into dir
@@ -1307,6 +1318,7 @@ int lif_writedirEOF(lif_t *LIF, int index)
 	// Create a director EOF
 	lif_dir_clear(LIF);
 	LIF->DIR.FileType = 0xffff;
+	LIF->EOFindex = index;
 	return( lif_writedirindex(LIF,index));
 }
 
@@ -1348,6 +1360,7 @@ lif_t *lif_open_volume(char *name, char *mode)
 	lif_t *LIF;
 	int index = 0;
 	stat_t sb, *sp;
+	int purgeindex;
 	uint8_t buffer[LIF_SECTOR_SIZE];
 
 
@@ -1377,15 +1390,18 @@ lif_t *lif_open_volume(char *name, char *mode)
 		return(NULL);
 	}
 		
-	LIF->bytes = sp->st_size;
+	LIF->imagebytes = sp->st_size;
 	LIF->sectors = lif_bytes2sectors(sp->st_size);
 
+	// Directory record number of EOF record
+	LIF->EOFindex = 0;
 	// Used sectors
 	LIF->usedsectors = 0;
 	// Purged files
 	LIF->purged= 0;
 	// Files
 	LIF->files = 0;
+	LIF->dirindex = 0;
 
 	LIF->fp = lif_open(LIF->name,mode);
 		
@@ -1416,6 +1432,7 @@ lif_t *lif_open_volume(char *name, char *mode)
 	}
 
 	index = 0;
+	purgeindex = -1;
 	/// Update free
 	while(1)
 	{
@@ -1426,14 +1443,29 @@ lif_t *lif_open_volume(char *name, char *mode)
 		}
 
 		if(LIF->DIR.FileType == 0xffff)
+		{
+			if(purgeindex != -1)
+			{
+				// update EOF
+				if(!lif_writedirEOF(LIF,purgeindex))		
+				{
+					lif_closedir(LIF);
+					return(NULL);
+				}
+			}	
 			break;
+		}
 
 		if(LIF->DIR.FileType == 0)
 		{
+			if(purgeindex == -1)
+				purgeindex = index;
 			LIF->purged++;
 			++index;
 			continue;
 		}
+
+		purgeindex = -1;
 		LIF->usedsectors += LIF->DIR.FileSectors;
 		LIF->freesectors -= LIF->DIR.FileSectors;
 		LIF->files++;
@@ -1458,7 +1490,7 @@ void lif_dir(char *lifimagename)
 
 
 
-	LIF = lif_open_volume(lifimagename,"r");
+	LIF = lif_open_volume(lifimagename,"r+");
 	if(LIF == NULL)
 		return;
 
@@ -1600,7 +1632,6 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 	{
 		if(!lif_readdirindex(LIF,index))
 			break;
-
 
 		// EOF Record
 		if(LIF->DIR.FileType == 0xffff)
@@ -2456,10 +2487,13 @@ int lif_del_file(char *lifimagename, char *lifname)
 		printf("LIF image:[%s] lif name:[%s] not found\n", lifimagename, lifname);
 		return(0);
 	}
-	LIF->DIR.FileType = 0;
 
-///FIXME if the the NEXT record is an EOF then write an EOF here
-/// OR if all the records after this are purged untill EOF  write EOF here
+
+// IF the next record is EOF then update EOF
+	if(index >= LIF->EOFindex-1)
+		LIF->DIR.FileType = 0xffff;
+	else
+		LIF->DIR.FileType = 0;
 
 	// re-Write directory record
 	if( !lif_writedirindex(LIF,index) )
