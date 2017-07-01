@@ -108,16 +108,6 @@ typedef struct
 } lifdir_t;
 
 
-///@brief Used by lif_findfree_index() to a find free directory slot and file area 
-typedef struct {
-    int state;		// True if a purged record has been found big enough to reuse
-    int needEOF;	// Index of EOF record to write AFTER we add new record
-    int index;		// directory index of free record
-    uint32_t start;	// Where to save the new records data in sectors
-    uint32_t size;	// Size of new record in sectors
-} lif_space_t;
-
-
 ///@brief Master LIF data structure
 /// Contains image file name
 /// Volume Structure
@@ -135,7 +125,6 @@ typedef struct
 	uint32_t freesectors;	// Free sector count
 	lifvol_t VOL;			// LIF Volume header
 	lifdir_t DIR;			// LIF directory entry
-	lif_space_t  space;			// used by lif_findfree_dirindex()
 	int	   	files;			// File count
 	int	   	purged;			// Purged file count
     int    	dirindex;		// Directory index 0..N
@@ -146,62 +135,69 @@ typedef struct
 
 
 /* lifutils.c */
+#ifdef LIF_STAND_ALONE
 void trim_tail ( char *str );
-void lif_help ( void );
-int lif_tests ( int argc , char *argv []);
-void *lif_calloc ( long size );
-void lif_free ( uint8_t *p );
-void *lif_stralloc ( char *str );
-FILE *lif_open ( char *name , char *mode );
-stat_t *lif_stat ( char *name , stat_t *p );
-int lif_seek_msg ( FILE *fp , long offset , char *msg );
-long lif_read ( lif_t *LIF , void *buf , long offset , int bytes );
-int lif_write ( lif_t *LIF , void *buf , long offset , int bytes );
-int lif_chars ( int c , int index );
-int lif_B2S ( uint8_t *B , uint8_t *name , int size );
-int lif_checkname ( char *name );
-void lif_S2B ( uint8_t *B , uint8_t *name , int size );
-int lif_fixname ( uint8_t *B , char *name , int size );
-void lif_vol2str ( lif_t *LIF , uint8_t *B );
-void lif_str2vol ( uint8_t *B , lif_t *LIF );
-void lif_dir2str ( lif_t *LIF , uint8_t *B );
-void lif_str2dir ( uint8_t *B , lif_t *LIF );
-uint8_t lif_BIN2BCD ( uint8_t data );
-int lif_BCD2BIN ( uint8_t bin );
-void lif_time2lifbcd ( time_t t , uint8_t *bcd );
-time_t lif_lifbcd2time ( uint8_t *bcd );
+void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
+void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
+uint32_t B2V_MSB ( uint8_t *B , int index , int size );
+uint32_t B2V_LSB ( uint8_t *B , int index , int size );
+#endif
+
+MEMSPACE void lif_help ( void );
+MEMSPACE int lif_tests ( int argc , char *argv []);
+MEMSPACE void *lif_calloc ( long size );
+MEMSPACE void lif_free ( uint8_t *p );
+MEMSPACE void *lif_stralloc ( char *str );
+MEMSPACE FILE *lif_open ( char *name , char *mode );
+MEMSPACE stat_t *lif_stat ( char *name , stat_t *p );
+MEMSPACE int lif_seek_msg ( FILE *fp , long offset , char *msg );
+MEMSPACE long lif_read ( lif_t *LIF , void *buf , long offset , int bytes );
+MEMSPACE int lif_write ( lif_t *LIF , void *buf , long offset , int bytes );
+MEMSPACE int lif_chars ( int c , int index );
+MEMSPACE int lif_B2S ( uint8_t *B , uint8_t *name , int size );
+MEMSPACE int lif_checkname ( char *name );
+MEMSPACE void lif_S2B ( uint8_t *B , uint8_t *name , int size );
+MEMSPACE int lif_fixname ( uint8_t *B , char *name , int size );
+MEMSPACE void lif_vol2str ( lif_t *LIF , uint8_t *B );
+MEMSPACE void lif_str2vol ( uint8_t *B , lif_t *LIF );
+MEMSPACE void lif_dir2str ( lif_t *LIF , uint8_t *B );
+MEMSPACE void lif_str2dir ( uint8_t *B , lif_t *LIF );
+MEMSPACE uint8_t lif_BIN2BCD ( uint8_t data );
+MEMSPACE int lif_BCD2BIN ( uint8_t bin );
+MEMSPACE void lif_time2lifbcd ( time_t t , uint8_t *bcd );
+MEMSPACE time_t lif_lifbcd2time ( uint8_t *bcd );
 MEMSPACE char *lif_ctime_gmt ( time_t *tp );
-char *lif_lifbcd2timestr ( uint8_t *bcd );
-void lif_image_clear ( lif_t *LIF );
-void lif_dir_clear ( lif_t *LIF );
-void lif_vol_clear ( lif_t *LIF );
-void lif_dump_vol ( lif_t *LIF );
-int lif_check_volume ( lif_t *LIF );
-int lif_check_lif_headers ( lif_t *LIF );
-int lif_check_dir ( lif_t *LIF );
-lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long filesectors );
-void lif_close_volume ( lif_t *LIF );
-uint32_t lif_bytes2sectors ( uint32_t bytes );
-void lif_rewinddir ( lif_t *LIF );
-void lif_closedir ( lif_t *LIF );
-int lif_checkdirindex ( lif_t *LIF , int index );
-int lif_readdirindex ( lif_t *LIF , int index );
-int lif_writedirindex ( lif_t *LIF , int index );
-int lif_writedirEOF ( lif_t *LIF , int index );
-lifdir_t *lif_readdir ( lif_t *LIF );
-lif_t *lif_open_volume ( char *name , char *mode );
-void lif_dir ( char *lifimagename );
-int lif_find_file ( lif_t *LIF , char *liflabel );
-int lif_findfree_dirindex ( lif_t *LIF , uint32_t sectors );
-int lif_e010_pad_sector ( long offset , uint8_t *wbuf );
-int lif_ascii_string_to_e010 ( char *str , long offset , uint8_t *wbuf );
-long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *username );
-long lif_add_ascii_file_as_e010 ( char *lifimagename , char *lifname , char *userfile );
-int lif_extract_e010_as_ascii ( char *lifimagename , char *lifname , char *username );
-int lif_extract_lif_as_lif ( char *lifimagename , char *lifname , char *username );
-long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
-int lif_del_file ( char *lifimagename , char *lifname );
-int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
-long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
+MEMSPACE char *lif_lifbcd2timestr ( uint8_t *bcd );
+MEMSPACE void lif_image_clear ( lif_t *LIF );
+MEMSPACE void lif_dir_clear ( lif_t *LIF );
+MEMSPACE void lif_vol_clear ( lif_t *LIF );
+MEMSPACE void lif_dump_vol ( lif_t *LIF, char *msg );
+MEMSPACE int lif_check_volume ( lif_t *LIF );
+MEMSPACE int lif_check_dir ( lif_t *LIF );
+MEMSPACE lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long filesectors );
+MEMSPACE void lif_close_volume ( lif_t *LIF );
+MEMSPACE uint32_t lif_bytes2sectors ( uint32_t bytes );
+MEMSPACE void lif_rewinddir ( lif_t *LIF );
+MEMSPACE void lif_closedir ( lif_t *LIF );
+MEMSPACE int lif_checkdirindex ( lif_t *LIF , int index );
+MEMSPACE int lif_readdirindex ( lif_t *LIF , int index );
+MEMSPACE int lif_writedirindex ( lif_t *LIF , int index );
+MEMSPACE int lif_writedirEOF ( lif_t *LIF , int index );
+MEMSPACE lifdir_t *lif_readdir ( lif_t *LIF );
+MEMSPACE lif_t *lif_updatefree ( lif_t *LIF );
+MEMSPACE int lif_newdir ( lif_t *LIF , long sectors );
+MEMSPACE lif_t *lif_open_volume ( char *name , char *mode );
+MEMSPACE void lif_dir ( char *lifimagename );
+MEMSPACE int lif_find_file ( lif_t *LIF , char *liflabel );
+MEMSPACE int lif_e010_pad_sector ( long offset , uint8_t *wbuf );
+MEMSPACE int lif_ascii_string_to_e010 ( char *str , long offset , uint8_t *wbuf );
+MEMSPACE long lif_add_ascii_file_as_e010_wrapper ( lif_t *LIF , uint32_t offset , char *username );
+MEMSPACE long lif_add_ascii_file_as_e010 ( char *lifimagename , char *lifname , char *userfile );
+MEMSPACE int lif_extract_e010_as_ascii ( char *lifimagename , char *lifname , char *username );
+MEMSPACE int lif_extract_lif_as_lif ( char *lifimagename , char *lifname , char *username );
+MEMSPACE long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
+MEMSPACE int lif_del_file ( char *lifimagename , char *lifname );
+MEMSPACE int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
+MEMSPACE long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
 
 #endif     // #ifndef _LIFUTILS_H

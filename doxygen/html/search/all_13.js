@@ -57,7 +57,7 @@ var searchData=
   ['tracks_5fper_5fside',['tracks_per_side',['../structlifvol__t.html#aae9e5135f98b80312eb785ac3747fc31',1,'lifvol_t']]],
   ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['transpose',['Transpose',['../matrix_8c.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c']]],
-  ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../lifutils_8h.html#a4ad12cb70b50ebf45467f22d22707acc',1,'trim_tail(char *str):&#160;stringsup.c']]],
+  ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c']]],
   ['true',['true',['../user__config_8h.html#af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b',1,'user_config.h']]],
   ['truncate',['truncate',['../posix_8c.html#a73a95c4a93875be906e573c00b30c5ea',1,'truncate(const char *path, off_t length):&#160;posix.c'],['../posix_8h.html#a73a95c4a93875be906e573c00b30c5ea',1,'truncate(const char *path, off_t length):&#160;posix.c']]],
   ['ts_5ft',['ts_t',['../time_8h.html#a062a82a85c72b4a3020130efc37a00cf',1,'time.h']]],

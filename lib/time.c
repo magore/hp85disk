@@ -367,14 +367,15 @@ char *asctime_r(tm_t *t, char *buf)
 	// normaize tm_t before output
 	(void) normalize(t,0);
 
+	memset(buf,0,32);
     snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
         __WDay[t->tm_wday],
         __Month[t->tm_mon],
-        t->tm_mday,
-        t->tm_hour,
-        t->tm_min,
-        t->tm_sec,
-        t->tm_year + 1900);
+        (int)t->tm_mday,
+        (int)t->tm_hour,
+        (int)t->tm_min,
+        (int)t->tm_sec,
+        (int)t->tm_year + 1900);
     return(buf);
 }
 

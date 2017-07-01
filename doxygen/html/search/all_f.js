@@ -81,7 +81,6 @@ var searchData=
   ['pte_5fstsec',['PTE_StSec',['../ff_8c.html#a3fd894243a30fe6253a78fb9221eb5f4',1,'ff.c']]],
   ['pte_5fsystem',['PTE_System',['../ff_8c.html#a71a2bd9498580394a97fe0b5246635d6',1,'ff.c']]],
   ['purged',['purged',['../structlif__t.html#a1dfef3ca99d6ba9680bb9b6bf8fafc32',1,'lif_t']]],
-  ['purged_5ft',['purged_t',['../structpurged__t.html',1,'']]],
   ['push_5fstate',['push_state',['../drives_8c.html#a21b219166399e8a1195b92d6a9872bbe',1,'push_state(int state):&#160;drives.c'],['../drives_8h.html#a21b219166399e8a1195b92d6a9872bbe',1,'push_state(int state):&#160;drives.c']]],
   ['put',['put',['../struct__printf__t.html#a3ef8eb0143b93d4446b04c6ce9313be7',1,'_printf_t::put()'],['../struct____file.html#a01c8b217e42cc11b6a7f8429114e9d46',1,'__file::put()']]],
   ['put_5ffat',['put_fat',['../ff_8c.html#a233bbf22750d863f2e9c805e34edda64',1,'ff.c']]],

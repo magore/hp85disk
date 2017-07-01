@@ -103,6 +103,7 @@ int debuglevel = 0x0001;
 #include "lifutils.h"
 
 
+MEMSPACE
 void trim_tail(char *str)
 {
     int len = strlen(str);
@@ -122,6 +123,7 @@ void trim_tail(char *str)
 ///@param size: number of bytes to process
 ///@param val: Value to convert
 ///@return void
+MEMSPACE
 void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
 {
     int i;
@@ -139,6 +141,7 @@ void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
 ///@param size: number of bytes to process
 ///@param val: Value to convert
 ///@return void
+MEMSPACE
 void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
 {
     int i;
@@ -157,6 +160,7 @@ void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@return value
+MEMSPACE
 uint32_t B2V_MSB(uint8_t *B, int index, int size)
 {
     int i;
@@ -176,6 +180,7 @@ uint32_t B2V_MSB(uint8_t *B, int index, int size)
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@return value
+MEMSPACE
 uint32_t B2V_LSB(uint8_t *B, int index, int size)
 {
     int i;
@@ -208,6 +213,7 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
 ///  Help Menu for User invoked GPIB functions and tasks
 ///  See: int gpib_tests(char *str)
 /// @return  void
+MEMSPACE
 void lif_help()
 {
     printf(
@@ -225,6 +231,7 @@ void lif_help()
 
 /// @brief LIF user tests
 /// @return  1 matched token, 0 if not
+MEMSPACE
 int lif_tests(int argc, char *argv[])
 {
 
@@ -319,6 +326,7 @@ int lif_tests(int argc, char *argv[])
 /// Displays message on errors
 /// @param[in] size: size of memory to allocate
 /// @return pointer to allocated memory
+MEMSPACE
 void *lif_calloc(long size)
 {
 	uint8_t *p = safecalloc(size,1);
@@ -331,6 +339,7 @@ void *lif_calloc(long size)
 /// Displays message on errors
 /// @param[in] p: pointer to memory to free
 /// @return pointer to allocated memory
+MEMSPACE
 void lif_free(uint8_t *p)
 {
 	if(!p)
@@ -343,6 +352,7 @@ void lif_free(uint8_t *p)
 /// Displays message on errors
 /// @param[in] str: String to allocate and copy
 /// @return pointer to allocated memory with string copy
+MEMSPACE
 void *lif_stralloc(char *str)
 {
 	int len = strlen(str);
@@ -358,6 +368,7 @@ void *lif_stralloc(char *str)
 /// @param[in] *name: file name of LIF image
 /// @param[in] *mode: open mode - see fopen
 /// @return FILE * pointer
+MEMSPACE
 FILE *lif_open(char *name, char *mode)
 {
     FILE *fp = fopen(name, mode);
@@ -374,6 +385,7 @@ FILE *lif_open(char *name, char *mode)
 /// @param[in] *name: file name of LIF image
 /// @param[in] *p: start_t structure pointer for result
 /// @return NULL on error or copy of p
+MEMSPACE
 stat_t *lif_stat(char *name, stat_t *p)
 {
 	if(stat(name, p) < 0)
@@ -389,6 +401,7 @@ stat_t *lif_stat(char *name, stat_t *p)
 /// @param[in] offset: file offset
 /// @param[in] mesg: user string as part of error message
 /// @return 1 on success, 0 on error
+MEMSPACE
 int lif_seek_msg(FILE *fp, long offset, char *msg)
 {
 	if(ftell(fp) != offset)
@@ -409,6 +422,7 @@ int lif_seek_msg(FILE *fp, long offset, char *msg)
 /// @param[in] offset: read offset
 /// @param[in] bytes: number of bytes to read
 /// @return bytes read or 0 on error
+MEMSPACE
 long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 {
 	long len;
@@ -434,6 +448,7 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 /// @param[in] offset: write offset
 /// @param[in] bytes: number of bytes to write
 /// @return bytes read or 0 on error
+MEMSPACE
 int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
 {
 	int len;
@@ -459,6 +474,7 @@ int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
 /// @param[in] c: character to test
 /// @param[in] index: index of character in volume or file name
 /// @retrun c (optionally upper cased) or 0 if no match
+MEMSPACE
 int lif_chars(int c, int index)
 {
 	if(c == ' ')
@@ -479,6 +495,7 @@ int lif_chars(int c, int index)
 /// @param[out] *name: string result with traling spaces removed
 /// @param[in] size: max size of name
 /// @retrun 1 if string i ok or 0 if bad characters were found
+MEMSPACE
 int lif_B2S(uint8_t *B, uint8_t *name, int size)
 {
     int i;
@@ -499,6 +516,7 @@ int lif_B2S(uint8_t *B, uint8_t *name, int size)
 /// @brief Check volume if name or directory name is valid
 /// @param[in] *name: name to test
 /// @retrun 1 if the string is ok or 0 if invalid LIF name characters on input string
+MEMSPACE
 int lif_checkname(char *name)
 {
 	int i;
@@ -516,6 +534,7 @@ int lif_checkname(char *name)
 /// @param[in] *name: string
 /// @param[in] size: max size of B
 /// @retrun 1 if the string is ok or 0 if invalid LIF name characters on input string
+MEMSPACE
 void lif_S2B(uint8_t *B, uint8_t *name, int size)
 {
     int i;
@@ -538,6 +557,7 @@ void lif_S2B(uint8_t *B, uint8_t *name, int size)
 ///@param[in] *name: input string
 ///@param[in] size: maximum size of output string
 ///@return length of result
+MEMSPACE
 int lif_fixname(uint8_t *B, char *name, int size)
 {
 	uint8_t c,ret;
@@ -574,6 +594,7 @@ int lif_fixname(uint8_t *B, char *name, int size)
 ///@param[in] *LIF: LIF image structure
 ///@param[out] B: byte vector to pack data into
 ///@return void
+MEMSPACE
 void lif_vol2str(lif_t *LIF, uint8_t *B)
 {
 	V2B_MSB(B,0,2,LIF->VOL.LIFid);
@@ -594,6 +615,7 @@ void lif_vol2str(lif_t *LIF, uint8_t *B)
 ///@param[in] B: byte vector 
 ///@param[out] *LIF: LIF image structure
 ///@return void
+MEMSPACE
 void lif_str2vol(uint8_t *B, lif_t *LIF)
 {
 
@@ -615,6 +637,7 @@ void lif_str2vol(uint8_t *B, lif_t *LIF)
 ///@param[int] *LIF: LIF image pointer
 ///@param[out] B: byte vector to pack data into
 ///@return void
+MEMSPACE
 void lif_dir2str(lif_t *LIF, uint8_t *B)
 {
 	lif_S2B(B,LIF->DIR.filename,10);				// 0
@@ -631,6 +654,7 @@ void lif_dir2str(lif_t *LIF, uint8_t *B)
 ///@param[in] B: byte vector to extract data from
 ///@param[int] LIF: lifdir_t structure pointer
 ///@return void
+MEMSPACE
 void lif_str2dir(uint8_t *B, lif_t *LIF)
 {
 	lif_B2S(B,LIF->DIR.filename,10);
@@ -648,6 +672,7 @@ void lif_str2dir(uint8_t *B, lif_t *LIF)
 ///  BCD format: each hex nibble has a digit 0 .. 9
 /// @param[in] data: number to convert.
 /// @return  BCD value
+MEMSPACE
 uint8_t lif_BIN2BCD(uint8_t data)
 {
     return(  ( (data/10U) << 4 ) | (data%10U) );
@@ -657,6 +682,7 @@ uint8_t lif_BIN2BCD(uint8_t data)
 /// @brief Convert BCD in the range 0 and <= 99 to BIN
 ///  BCD format: each hex nibble has a digit 0 .. 9
 /// @param[in] data: number to convert to binary
+MEMSPACE
 int lif_BCD2BIN(uint8_t bin)
 {
     return( ((bin>>4)*10U)+(bin & 0x0f) );
@@ -672,6 +698,7 @@ int lif_BCD2BIN(uint8_t bin)
 /// @param[out] *bcd: pcked 6 byte BCD LIF time YY MM DD HH MM SS
 /// @see time() in time.c
 /// @return void
+MEMSPACE
 void lif_time2lifbcd(time_t t, uint8_t *bcd)
 {
 	tm_t tm;
@@ -700,6 +727,7 @@ void lif_time2lifbcd(time_t t, uint8_t *bcd)
 /// If ALL BCD digits are 0 we return 0
 /// @param[in] *bcd: packed 6 byte BCD LIF time YY MM DD HH MM SS
 /// @return time_t result or 0 if all bcd digits were 0
+MEMSPACE
 time_t lif_lifbcd2time(uint8_t *bcd)
 {
 	int year,mon;
@@ -743,9 +771,13 @@ time_t lif_lifbcd2time(uint8_t *bcd)
 MEMSPACE
 char *lif_ctime_gmt(time_t *tp)
 {
-    static char buf[32];
     tm_t tm;
-    return( asctime_r( gmtime_r(tp,&tm), buf) );
+    static char _lif_ctime_buf[32];
+	char *ptr;
+	memset(_lif_ctime_buf,0,sizeof(_lif_ctime_buf));
+    ptr = asctime_r( gmtime_r(tp,&tm), _lif_ctime_buf);
+	trim_tail(ptr);
+	return(ptr);
 }
 
 ///@breif convert BCD time into a date string
@@ -755,9 +787,11 @@ char *lif_ctime_gmt(time_t *tp)
 /// If BCD string is all zero we return <EMPTY>
 ///@param[in] *bcd: pcked 6 byte BCD LIF time YY MM DD HH MM SS
 ///@return string result
+MEMSPACE
 char *lif_lifbcd2timestr(uint8_t *bcd)
 {
 	static char _timestr[32];
+	memset(_timestr,0,sizeof(_timestr));
    	time_t t = lif_lifbcd2time(bcd);
 
 	if(t)
@@ -772,6 +806,7 @@ char *lif_lifbcd2timestr(uint8_t *bcd)
 /// @brief Clear LIF structure 
 /// @param[in] *LIF: pointer to LIF structure
 /// @return void
+MEMSPACE
 void lif_image_clear(lif_t *LIF)
 {
 	memset((void *) LIF,0,sizeof(lif_t));
@@ -781,6 +816,7 @@ void lif_image_clear(lif_t *LIF)
 /// @brief Clear DIR part of LIF structure 
 /// @param[in] *LIF: pointer to LIF structure
 /// @return void
+MEMSPACE
 void lif_dir_clear(lif_t *LIF)
 {
 	memset((void *) &LIF->DIR,0,sizeof(lifdir_t));
@@ -789,6 +825,7 @@ void lif_dir_clear(lif_t *LIF)
 /// @brief Clear VOL part of LIF structure
 /// @param[in] *LIF: pointer to LIF structure
 /// @return void
+MEMSPACE
 void lif_vol_clear(lif_t *LIF)
 {
 	memset((void *) &LIF->VOL,0,sizeof(lifvol_t));
@@ -797,8 +834,10 @@ void lif_vol_clear(lif_t *LIF)
 /// @brief Dump LIF struture data for debugging
 /// @param[in] *LIF: pointer to LIF structure
 /// @return void
-void lif_dump_vol(lif_t *LIF)
+MEMSPACE
+void lif_dump_vol(lif_t *LIF,char *msg)
 {
+printf("\n%s\n",msg);
    printf("LIF name:             %s\n", LIF->name);
    printf("LIF sectors:          %8lXh\n", (long)LIF->sectors);
    printf("LIF bytes:            %8lXh\n", (long)LIF->imagebytes);
@@ -824,44 +863,37 @@ void lif_dump_vol(lif_t *LIF)
    printf("DIR File bytes:       %8lXh\n", (long)LIF->DIR.FileBytes);
    printf("DIR File sector size: %8Xh\n", (int)LIF->DIR.SectorSize);
    printf("DIR File Date:        %s\n", lif_lifbcd2timestr(LIF->DIR.date));
+printf("\n");
 }
 
 ///@brief Check Volume Table for values in range
 ///@param[in] *LIF: Image structure
 ///@return 1 of ok, 0 on eeror
+MEMSPACE
 int lif_check_volume(lif_t *LIF)
 {
 	int status = 1;
+	long filestart;
+
+
 	if( !lif_checkname((char *)LIF->VOL.Label) )
 	{
-		status = 0;
 		if(debuglevel & 1)
 			printf("LIF Volume invalid Volume Name");
-	}
-
-	if(LIF->VOL.DirStartSector < 1)
-	{
-		status = 0;
-		if(debuglevel & 1)
-			printf("LIF Volume invalid start sector:%ld\n", (long)LIF->VOL.DirStartSector);
-	}
-	if(LIF->VOL.DirSectors < 1)
-	{
-		if(debuglevel & 1)
-			printf("LIF Volume invalid Directory Sector Count < 1\n");
 		status = 0;
 	}
 
 	if(LIF->VOL.System3000LIFid != 0x1000)
 	{
-		status = 0;
 		if(debuglevel & 1)
 			printf("LIF Volume invalid System3000 ID (%04XH) expected 1000H\n", LIF->VOL.System3000LIFid);
+		status = 0;
 	}
-	if(LIF->VOL.LIFVersion != 0)
+
+	if(LIF->VOL.LIFVersion > 1)
 	{
 		if(debuglevel & 1)
-			printf("LIF Version: %04XH != 0\n", LIF->VOL.LIFVersion);
+			printf("LIF Version: %04XH > 1\n", LIF->VOL.LIFVersion);
 		status = 0;
 	}
 
@@ -871,6 +903,7 @@ int lif_check_volume(lif_t *LIF)
 			printf("LIF Volume invalid bytes at offset 14&15 should be zero\n");
 		status = 0;
 	}
+
 	if(LIF->VOL.zero2 != 0)
 	{
 		if(debuglevel & 1)
@@ -878,48 +911,29 @@ int lif_check_volume(lif_t *LIF)
 		status = 0;
 	}
 
-	return(status);
-}
 
-///@brief Check LIF base structure value (Not: VOL, DIR or space)
-///@param[in] *LIF: Image structure
-///@return 1 of ok, 0 on eeror
-int lif_check_lif_headers(lif_t *LIF)
-{
-	int status = 1;
-
-
-    // File start is after the directory area
-    if(LIF->filestart > LIF->sectors)
-    {
+	if(LIF->VOL.DirStartSector < 1)
+	{
 		if(debuglevel & 1)
-            printf("LIF Volume invalid file area start > image size\n");
-        status = 0;
-    }
+			printf("LIF Volume invalid start sector:%ld\n", (long)LIF->VOL.DirStartSector);
+		status = 0;
+	}
 
-    // File start is after the directory area
-    if(LIF->filestart < LIF->VOL.DirStartSector)
-    {
+	if(LIF->VOL.DirSectors < 1)
+	{
 		if(debuglevel & 1)
-            printf("LIF Volume invalid file area start < directory start\n");
-        status = 0;
-    }
+			printf("LIF Volume invalid Directory Sector Count < 1\n");
+		status = 0;
+	}
 
-    // Check Directory pointers
-    if(LIF->filesectors < 1)
-    {
+	// File area start and size
+    filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
+	if(filestart >= LIF->sectors)
+	{
 		if(debuglevel & 1)
-            printf("LIF Volume invalid file area size < 1\n");
-        status = 0;
-    }
-
-    // Check Directory pointers
-    if(LIF->freesectors < 1)
-    {
-		if(debuglevel & 1)
-            printf("LIF Volume invalid file area size < 1\n");
-        status = 0;
-    }
+			printf("LIF Volume invalid file start >= image size\n");
+		status = 0;
+	}
 
 	return(status);
 }
@@ -931,6 +945,7 @@ int lif_check_lif_headers(lif_t *LIF)
 ///@param[in] *LIF: Image structure
 ///@param[in] debug: dispaly diagostice messages
 ///@return 1 of ok, 0 on eeror
+MEMSPACE
 int lif_check_dir(lif_t *LIF)
 {
 	int status = 1;
@@ -1037,6 +1052,7 @@ int lif_check_dir(lif_t *LIF)
 /// @param[in] dirstart:   Directory start sector
 /// @param[in] dirsectors: Directory sectors
 /// @return pointer to LIF structure
+MEMSPACE
 lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long dirsectors, long filesectors)
 {
 	long size;
@@ -1074,15 +1090,16 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 		return(NULL);
 	}
 
-	LIF->filestart = (dirstart+dirsectors);
+	// Initilize all LIF headers
 	LIF->filesectors = filesectors;
+	LIF->filestart = dirstart + dirsectors;
 	LIF->sectors = (LIF->filestart+LIF->filesectors);
 	LIF->imagebytes = LIF->sectors * LIF_SECTOR_SIZE;
 	LIF->freesectors = LIF->filesectors;
 	LIF->usedsectors = 0;
 	LIF->files = 0;
 	LIF->purged = 0;
-	LIF->dirindex = -1;
+	LIF->dirindex = 0;
 	LIF->EOFindex = 0;
 
 	memset(buffer,0,LIF_SECTOR_SIZE);
@@ -1164,8 +1181,24 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 		++count;
 	}
 	if(debuglevel & 0x400)
-		lif_dump_vol(LIF);
+		lif_dump_vol(LIF,"lif_create_volume");
 	printf("Wrote: %ld\n", count);
+
+	lif_rewinddir(LIF);
+
+	// As a sanity check verify basic values
+	if( !lif_check_volume(LIF) )
+	{
+		lif_closedir(LIF);
+		return(NULL);
+	}
+
+	// Scan directory and verify values
+	if( !lif_updatefree(LIF))
+	{
+		lif_closedir(LIF);
+		return(NULL);
+	}
 
 	return(LIF);
 }
@@ -1173,6 +1206,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 /// @brief Free LIF structure and close any files
 /// @param[in] *LIF: pointer to LIF Volume/Directoy structure
 /// @return void
+MEMSPACE
 void lif_close_volume(lif_t *LIF)
 {
 	if(LIF)
@@ -1194,6 +1228,7 @@ void lif_close_volume(lif_t *LIF)
 /// @brief Convert bytes into used sectors
 /// @param[in] bytes: size in bytes
 /// @return sectors
+MEMSPACE
 uint32_t lif_bytes2sectors(uint32_t bytes)
 {
 	uint32_t sectors = (bytes/LIF_SECTOR_SIZE);
@@ -1206,6 +1241,7 @@ uint32_t lif_bytes2sectors(uint32_t bytes)
 /// Note readdir pre-increments the directory pointer index so we start at -1
 /// @param[in] *LIF: pointer to LIF Volume/Directoy structure
 /// @return void
+MEMSPACE
 void lif_rewinddir(lif_t *LIF)
 {
 	// Directory index
@@ -1216,6 +1252,7 @@ void lif_rewinddir(lif_t *LIF)
 /// clear and free lif_t structure
 /// @param[in] *LIF: pointer to LIF Volume/Directoy structure
 /// @return 0 on sucesss, -1 on error
+MEMSPACE
 void lif_closedir(lif_t *LIF)
 {
 	return( lif_close_volume(LIF) );
@@ -1225,13 +1262,14 @@ void lif_closedir(lif_t *LIF)
 /// @param[in] *LIF: LIF Volume/Diractoy structure 
 /// @param[in] index: directory index
 /// @return 1 inside, 0 outside
+MEMSPACE
 int lif_checkdirindex(lif_t * LIF, int index)
 {
 	if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) > LIF->VOL.DirSectors)
 	{
 		printf("lif_checkdirindex:[%s] direcory index:[%d] out of bounds\n",LIF->name, index);
 		if(debuglevel & 0x400)
-			lif_dump_vol(LIF);
+			lif_dump_vol(LIF,"lif_chckdirindex");
 		return(0);
 	}
 	return(1);
@@ -1241,6 +1279,7 @@ int lif_checkdirindex(lif_t * LIF, int index)
 /// @param[in] *LIF: to LIF Volume/Diractoy structure 
 /// @param[in] index: director record number
 /// @return 1 on success, 0 if error, bad directory record or outside of directory limits
+MEMSPACE
 int lif_readdirindex(lif_t *LIF, int index)
 {
 	uint32_t offset;
@@ -1251,7 +1290,7 @@ int lif_readdirindex(lif_t *LIF, int index)
 		return(0);
 
 	// Computer offset
-	offset = (index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
+	offset = ((long)index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
 
 	// read raw data
 	if( lif_read(LIF, dir, offset, sizeof(dir)) < (long)sizeof(dir) )
@@ -1267,7 +1306,7 @@ int lif_readdirindex(lif_t *LIF, int index)
 	if( !lif_check_dir(LIF))
 	{
 		if(debuglevel & 0x400)
-			lif_dump_vol(LIF);
+			lif_dump_vol(LIF,"lif_readdirindex");
 		return(0);
 	}
 	return(1);
@@ -1277,6 +1316,7 @@ int lif_readdirindex(lif_t *LIF, int index)
 /// @param[in] *LIF: LIF Volume/Diractoy structure 
 /// @param[in] index: director record number
 /// @return 1 on success, 0 if error, bad directory record or outside of directory limits
+MEMSPACE
 int lif_writedirindex(lif_t *LIF, int index)
 {
 	long offset;
@@ -1286,7 +1326,7 @@ int lif_writedirindex(lif_t *LIF, int index)
 	if(!lif_check_dir(LIF))
 	{
 		if(debuglevel & 0x400)
-			lif_dump_vol(LIF);
+			lif_dump_vol(LIF,"lif_writedirindex");
 		return(0);
 	}
 
@@ -1298,7 +1338,7 @@ int lif_writedirindex(lif_t *LIF, int index)
 	if( LIF->DIR.FileType == 0xffffUL )
 		LIF->EOFindex = index;
 
-	offset = (index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
+	offset = ((long)index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
 
 	// store LIF->DIR settings into dir
 	lif_dir2str(LIF, dir);
@@ -1313,6 +1353,7 @@ int lif_writedirindex(lif_t *LIF, int index)
 /// @param[in] *LIF: LIF Volume/Diractoy structure 
 /// @param[in] index: director record number
 /// @return 1 on success, 0 on error and outsize directory limits
+MEMSPACE
 int lif_writedirEOF(lif_t *LIF, int index)
 {
 	// Create a director EOF
@@ -1328,6 +1369,7 @@ int lif_writedirEOF(lif_t *LIF, int index)
 /// nOte: skip all purged LIF directory records
 /// @param[in] *LIF: to LIF Volume/Diractoy structure 
 /// @return directory structure or NULL 
+MEMSPACE
 lifdir_t *lif_readdir(lif_t *LIF)
 {
 	while(1)
@@ -1350,17 +1392,232 @@ lifdir_t *lif_readdir(lif_t *LIF)
 	return( NULL );
 }
 
+/// @brief Update free space
+/// @parameter[in] *LIF: LIF structure
+/// @return: LIF or NULL on error
+MEMSPACE
+lif_t *lif_updatefree(lif_t *LIF)
+{
+	int index = 0;
+	int purgeindex = -1;
+
+	// Start of free space
+	long start = LIF->filestart;
+	// Free sectors
+	LIF->freesectors = LIF->filesectors;
+	// Used sectors
+	LIF->usedsectors = 0;
+	// Purged files
+	LIF->purged= 0;
+	// Files
+	LIF->files = 0;
+	// Director pointer
+	LIF->dirindex = 0;
+	// Directory EOF record
+	LIF->EOFindex = 0;
+
+
+	/// Update free
+	while(1)
+	{
+		if( !lif_readdirindex(LIF,index) )
+		{
+			lif_closedir(LIF);
+			return(NULL);
+		}
+
+		if(LIF->DIR.FileType == 0xffff)
+		{
+			LIF->EOFindex = index;
+			if(purgeindex != -1)
+			{
+				LIF->EOFindex = purgeindex;
+
+				// Adjust purged file count
+				LIF->purged -= (index - purgeindex);
+				// update EOF
+				if(!lif_writedirEOF(LIF,purgeindex))		
+				{
+					lif_closedir(LIF);
+					return(NULL);
+				}
+			}	
+			break;
+		}
+		if(LIF->DIR.FileType == 0)
+		{
+			if(purgeindex == -1)
+				purgeindex = index;
+			LIF->purged++;
+			++index;
+			continue;
+		}
+		purgeindex = -1;
+		if(start > LIF->DIR.FileStartSector)
+		{
+			if(debuglevel & 1)
+				printf("lif_update_free:[%s] error previous record file area overlaps this one:[%s]\n", LIF->name, LIF->DIR.filename);
+
+		}
+		LIF->usedsectors += LIF->DIR.FileSectors;
+		LIF->freesectors -= LIF->DIR.FileSectors;
+		LIF->files++;
+		++index;
+		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
+	}
+	// rewind
+	lif_rewinddir(LIF);
+	return(LIF);
+}
+
+
+
+/// @brief Allocate index of free directory record
+/// @param[in] *LIF: LIF pointer
+/// @param[in] sectors: try to find specified free space
+/// @return index or free record or -1 on error
+MEMSPACE
+int lif_newdir(lif_t *LIF, long sectors)
+{
+	int index;
+	long start;
+
+	int freestate, freeindex;
+	long freestart;
+
+	// Directory index
+	index = 0;
+
+	// Start of free space
+	start = LIF->filestart;
+
+	// Update all file information
+	if(lif_updatefree(LIF) == NULL)
+	{
+		printf("lif_newdir: not enough free space:[%ld] for size:[%ld]\n", (long)LIF->freesectors, (long) sectors);
+		return(-1);
+	}
+
+	// Not enough room ?
+	if(sectors > LIF->freesectors)
+	{
+		printf("lif_newdir: not enough free space:[%ld]\n", (long)LIF->freesectors);
+		return(-1);
+	}
+
+	// 0 = reading valid records 
+	// 1 = found purged records
+	// 2 = found pured records with enough space to reuse
+	freestate = 0;
+
+	// Update free space and EOF pointers
+	while(1)
+	{
+		// Write new EOF after current one
+		if( !lif_readdirindex(LIF,index) )
+		{
+			printf("lif_newdir: index:[%d] failed read at:[%ld] of [%ld] sectors, free:[%ld]\n", 
+				(int) index, (long) start, (long)sectors, (long)LIF->freesectors);
+			break;
+		}
+
+		// We hit the EOF record
+		if(LIF->DIR.FileType == 0xffff)
+		{
+
+			// Was enough free space found in purged area ?
+			// Do NOT need to update EOF!
+			if(freestate == 2)
+			{
+				// Update free pace for new file
+				lif_dir_clear(LIF);
+				LIF->DIR.FileStartSector = freestart;
+				LIF->DIR.FileSectors = sectors;
+				LIF->usedsectors += sectors;
+				LIF->freesectors -= sectors;
+				LIF->files++;
+				LIF->purged--;
+				LIF->dirindex = freeindex;
+				// Write new record (FileType is still EOF until data is updated by user)
+				if( !lif_writedirindex(LIF,freeindex))
+				{
+					break;
+				}
+				return(freeindex);
+			}
+
+			printf("lif_newdir: index:[%d] adding at:[%ld]to purged space:[%ld] sectors, free:[%ld]\n", 
+				(int) index,(long)start,(long) sectors, (long)LIF->freesectors);
+
+			// Write new EOF after current one
+			if( !lif_writedirEOF(LIF,index+1) )
+			{
+				break;
+			}
+
+			lif_dir_clear(LIF);
+			LIF->DIR.FileStartSector = start;
+			LIF->DIR.FileSectors = sectors;
+			LIF->usedsectors += sectors;
+			LIF->freesectors -= sectors;
+			LIF->files++;
+			LIF->dirindex = index;
+			// Write new record (FileType is still EOF until data is updated by user )
+			if( !lif_writedirindex(LIF,index))
+			{
+				break;
+			}
+			return(index);
+		}
+
+
+		// PURGED records
+		if(LIF->DIR.FileType == 0)
+		{
+			if(freestate == 0)
+			{
+				freeindex = index;
+				freestart = start;
+				freestate = 1;
+			}
+			++index;
+			continue;
+		}
+		
+
+		// VALID record
+		if(freestate == 1)
+		{
+			long freesectors;
+			// Compute sectors of purged space between valid records
+			// Note: LIF specs prohibit using old purged file start and sectors!
+			freesectors = LIF->DIR.FileStartSector - start;
+			if(freesectors >= sectors )
+				freestate = 2;		// Found free space in purged record
+			else
+				freestate = 0;	// Try again
+		}
+		
+		// Computed start of next record
+		// Note: MUST be <= actual start of next VALID record or we have overlapping records!
+		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
+		++index;
+	}
+	// ERROR
+	return(-1);
+}
+
+
 
 /// @brief Open LIF directory for reading
 /// @param[in] *name: file name of LIF image
 /// @param[in] *mode: "r" = read, "r+" = rea/write
 /// @return LIF pointer on sucesses or NULL on error
+MEMSPACE
 lif_t *lif_open_volume(char *name, char *mode)
 {
 	lif_t *LIF;
-	int index = 0;
 	stat_t sb, *sp;
-	int purgeindex;
 	uint8_t buffer[LIF_SECTOR_SIZE];
 
 
@@ -1373,7 +1630,7 @@ lif_t *lif_open_volume(char *name, char *mode)
 	if(sp->st_size < LIF_SECTOR_SIZE*2)
 	{
 		if(debuglevel & 1)
-			printf("lif_openimage:[%s] invalid volume header area too small:[%ld]\n", name, (long)sp->st_size);
+			printf("lif_open_volume:[%s] error volume header area too small:[%ld]\n", name, (long)sp->st_size);
 		return(NULL);
 	}
 
@@ -1393,21 +1650,13 @@ lif_t *lif_open_volume(char *name, char *mode)
 	LIF->imagebytes = sp->st_size;
 	LIF->sectors = lif_bytes2sectors(sp->st_size);
 
-	// Directory record number of EOF record
-	LIF->EOFindex = 0;
-	// Used sectors
-	LIF->usedsectors = 0;
-	// Purged files
-	LIF->purged= 0;
-	// Files
-	LIF->files = 0;
-	LIF->dirindex = 0;
-
 	LIF->fp = lif_open(LIF->name,mode);
 		
 	// Volume header must be it least one sector
  	if( lif_read(LIF, buffer, 0, LIF_SECTOR_SIZE) < LIF_SECTOR_SIZE)
 	{
+		if(debuglevel & 1)
+			printf("lif_open_volume:[%s] error read volume header failed\n", name);
 		lif_closedir(LIF);
         return(NULL);
 	}
@@ -1415,70 +1664,41 @@ lif_t *lif_open_volume(char *name, char *mode)
 	// Unpack Volumes has the Directory start sector
 	lif_str2vol(buffer, LIF);
 
-	// File area start and size
-    LIF->filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
-    LIF->filesectors = LIF->sectors - LIF->filestart;
-	LIF->freesectors = LIF->filesectors;
 
-	// Validate Volume headers and internal LIF headers
-	if( !lif_check_volume(LIF) || !lif_check_lif_headers(LIF))
+	// Validate basic Volume headers 
+	if( !lif_check_volume(LIF) )
 	{
 		if(debuglevel & 1)
-			printf("lif_openimage:[%s] invalid volume header\n", LIF->name);
-		if(debuglevel & 0x400)
-			lif_dump_vol(LIF);
+			printf("lif_open_volume:[%s] error volume validate failed\n", LIF->name);
 		lif_closedir(LIF);
 		return(NULL);
 	}
 
-	index = 0;
-	purgeindex = -1;
-	/// Update free
-	while(1)
+	// Initialize remaining LIF headers
+    LIF->filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
+    LIF->filesectors = LIF->sectors - LIF->filestart;
+	LIF->freesectors = LIF->filesectors;
+	LIF->usedsectors = 0;
+	LIF->purged = 0;
+	LIF->files = 0;
+	LIF->dirindex = 0;
+	LIF->EOFindex = 0;
+
+	if( lif_updatefree(LIF) == NULL)
 	{
-		if( !lif_readdirindex(LIF,index) )
-		{
-			lif_closedir(LIF);
-			return(NULL);
-		}
-
-		if(LIF->DIR.FileType == 0xffff)
-		{
-			if(purgeindex != -1)
-			{
-				// update EOF
-				if(!lif_writedirEOF(LIF,purgeindex))		
-				{
-					lif_closedir(LIF);
-					return(NULL);
-				}
-			}	
-			break;
-		}
-
-		if(LIF->DIR.FileType == 0)
-		{
-			if(purgeindex == -1)
-				purgeindex = index;
-			LIF->purged++;
-			++index;
-			continue;
-		}
-
-		purgeindex = -1;
-		LIF->usedsectors += LIF->DIR.FileSectors;
-		LIF->freesectors -= LIF->DIR.FileSectors;
-		LIF->files++;
-		++index;
+		if(debuglevel & 1)
+			printf("lif_open_volume:[%s] error directory check failed\n", LIF->name);
+		lif_closedir(LIF);
+		return(NULL);
 	}
-	// rewind
-	lif_rewinddir(LIF);
-	return(LIF);
+
+	return( LIF );
 }
 
 /// @brief Display a LIF image file directory
 /// @param[in] lifimagename: LIF disk image name
 /// @return -1 on error or number of files found
+MEMSPACE
 void lif_dir(char *lifimagename)
 {
 	long bytes;
@@ -1558,6 +1778,7 @@ void lif_dir(char *lifimagename)
 /// @param[in] *LIF: directory pointer
 /// @param[in] liflabel: File name in LIF image
 /// @return Directory index of record
+MEMSPACE
 int lif_find_file(lif_t *LIF, char *liflabel)
 {
 	int index;
@@ -1594,111 +1815,6 @@ int lif_find_file(lif_t *LIF, char *liflabel)
 	return(index);
 }
 
-typedef struct {
-	int state;
-	int index;
-	uint32_t start;
-	uint32_t size;
-} purged_t;
-
-/// @brief Find free directory slot that can hold >= sectors in size
-/// We can fit in a purged record then we reuse that record, otherwise it is always the EOF record
-/// Unless a record is purged this will always be the last record
-/// @param[in] *LIF: LIF pointer
-/// @param[in] sectors: size of free space we need
-/// @return Directory index of matching record or -1 on error
-int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
-{
-	// Directory index
-	int index = 0;
-
-	// zero free space structure
-	memset(&LIF->space,0,sizeof(lif_space_t));
-
-	// Master start of file area
-	uint32_t start = LIF->filestart;
-
-	// Clear free structure
-	memset((void *)&LIF->space,0,sizeof(lif_space_t));
-
-	if(LIF == NULL)
-		return(-1);
-
-	// Volume free space is recalculated by calling lif_opendir, lif_open_volume or lif_create_volume
-	if(sectors > LIF->freesectors)
-		return(-1);
-
-	while(1)
-	{
-		if(!lif_readdirindex(LIF,index))
-			break;
-
-		// EOF Record
-		if(LIF->DIR.FileType == 0xffff)
-		{
-			if(LIF->space.state)
-			{
-				// Previous purged records found 
-				LIF->space.needEOF = LIF->space.index + 1;		// If we add a new record this is wher to put the EOF record
-				lif_readdirindex(LIF,LIF->space.index);			// Reread the purged record
-				LIF->DIR.FileStartSector = start;						// Use start of free space
-				LIF->DIR.FileSectors = sectors;
-				LIF->dirindex = LIF->space.index;
-				return(LIF->dirindex);
-			}
-			// This current EOF record can become the new file record
-			// Update the file start and sectors
-			LIF->space.needEOF = index + 1;		// Where to add a EOF if this record space is used
-			LIF->DIR.FileStartSector = start;
-			LIF->DIR.FileSectors = sectors;
-			LIF->dirindex = index;
-			return(index);
-		}
-
-		// Purged Record, FileStartSector and FileSectors can not be trusted (so say the LIF specs)
-		if(LIF->DIR.FileType == 0)
-		{
-			// Note: We will not know the real free size until the next Valid record
- 			if(LIF->space.state == 0)
-			{
-				// Start of possible free space is after last non-type 0 record - if we had a last record
-				LIF->space.start = start;
-				// INDEX of this record
-				LIF->space.index = index;
-				LIF->space.state = 1;
-			}
-			++index;
-			continue;
-		}
-
-		// Valid Records after here (resets purged state)
-
-		// We had one or more previous purged records
-		// Was there enough free from the original purged record to the start of this record ?
-		LIF->space.size = LIF->DIR.FileStartSector - LIF->space.start;
-		if(LIF->space.state)
-		{
-			if(LIF->space.size >= sectors)
-			{
-				// The saved purged record was big enough 
-				// re-read the purged record and update the file start and sectors
-				// update the file start and sectors with saved values
-				lif_readdirindex(LIF,LIF->space.index);
-				LIF->DIR.FileStartSector = LIF->space.start;
-				LIF->DIR.FileSectors = sectors;
-				LIF->dirindex = LIF->space.index;
-				return(LIF->dirindex);
-			}
-			// Was not enough room, reset state and wait for any purged records big enough
-			LIF->space.state = 0;
-		}
-
-		++index;
-		start = LIF->DIR.FileStartSector + LIF->DIR.FileSectors;
-	}
-	return(-1);
-}
-
 
 /** @brief  HP85 E010 ASCII LIF records 
 	ef [ff]* = no more data in this sector 
@@ -1723,6 +1839,7 @@ int lif_findfree_dirindex(lif_t *LIF, uint32_t sectors)
 /// @param[in] offset: sector offset
 /// @param[in] wbuf: E010 PAD data
 /// @return size of E010 PAD data
+MEMSPACE
 int lif_e010_pad_sector(long offset, uint8_t *wbuf)
 {
 	int ind;
@@ -1760,6 +1877,7 @@ int lif_e010_pad_sector(long offset, uint8_t *wbuf)
 /// @param[in] offset: E010 data sector offset, only used in formatting wbuf with headers
 /// @param[in] wbuf: E010 data result
 /// @return size of E010 data
+MEMSPACE
 int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 {
 	int ind;
@@ -1852,6 +1970,7 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 /// @param[in] userfile: User ASCII file source
 /// @param[in] *LIF: Where to write file if set (not NULL)
 /// @return size of formatted result
+MEMSPACE
 long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *username)
 {
 	long bytes;
@@ -1946,6 +2065,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
 /// @param[in] lifname: LIF file name
 /// @param[in] userfile: userfile name
 /// @return size of data written into to LIF image, or -1 on error
+MEMSPACE
 long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfile)
 {
 	long bytes;
@@ -1993,7 +2113,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 		return(-1);	
 
 	// Now find free record
-	index = lif_findfree_dirindex(LIF, sectors);
+	index = lif_newdir(LIF, sectors);
 	if(index == -1)
 	{
 		printf("LIF image:[%s], not enough free space for:[%s]\n", 
@@ -2005,18 +2125,15 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	// Initialize the free directory entry
 	lif_fixname(LIF->DIR.filename, lifname,10);
 	LIF->DIR.FileType = 0xe010;  			// 10
-	LIF->DIR.FileStartSector = LIF->space.start;	// 12
-	LIF->DIR.FileSectors = sectors;    		// 16
 	lif_time2lifbcd(sp->st_mtime, LIF->DIR.date);
 
 	LIF->DIR.VolNumber = 0x8001;			// 26
 	LIF->DIR.FileBytes = bytes;					// 28
 	LIF->DIR.SectorSize  = 0x100;			// 30
-
-	offset = LIF->space.start * LIF_SECTOR_SIZE;
+	offset = LIF->DIR.FileStartSector * LIF_SECTOR_SIZE;
 
 	if(debuglevel & 0x400)
-		lif_dump_vol(LIF);
+		lif_dump_vol(LIF,"lif_after lif_newdir");
 
 	// Write converted file into free space first
 	bytes = lif_add_ascii_file_as_e010_wrapper(LIF,offset,userfile);
@@ -2031,20 +2148,14 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 	}
 
 	// Write directory record
+	// Note: lif_newdir alrwady did the new EOF
 	if( !lif_writedirindex(LIF,index))
 	{
 		lif_closedir(LIF);
 		return(-1);
 	}
 
-	// Write EOF if this is the last record
-	if(LIF->space.needEOF && !lif_writedirEOF(LIF,LIF->space.needEOF))
-	{
-		lif_closedir(LIF);
-		return(-1);
-	}
 	lif_closedir(LIF);
-
 
 	printf("Wrote: %8ld\n", bytes);
 
@@ -2060,6 +2171,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 /// @param[in] lifname:  name of file in LIF image
 /// @param[in] username: name to call the extracted image
 /// @return 1 on sucess or 0 on error
+MEMSPACE
 int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 {
 	lif_t *LIF;
@@ -2236,6 +2348,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 /// @param[in] lifname:  name of file in LIF image we want to extract
 /// @param[in] username: new LIF file to create
 /// @return 1 on sucess or 0 on error
+MEMSPACE
 int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 {
 	// Master image lif_t structure
@@ -2334,13 +2447,14 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 /// @param[in] lifname: LIF file name to copy file to
 /// @param[in] userfile: LIF mage name copy file from 
 /// @return size of data written into to LIF image, or -1 on error
+MEMSPACE
 long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 {
 	// Master image lif_t structure
 	lif_t *LIF;
 	lif_t *ULIF;
 	int index = 0;
-	long offset, uoffset, bytes;
+	long offset, uoffset, start, bytes;
 	int i, size;
 
 	uint8_t buf[LIF_SECTOR_SIZE+4];
@@ -2366,7 +2480,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 			lifimagename, lifname, userfile);
 
 	// open  userfile as LIF image
-	ULIF = lif_open_volume(userfile,"r");
+	ULIF = lif_open_volume(userfile,"r+");
 	if(ULIF == NULL)
 		return(-1);	
 
@@ -2383,8 +2497,8 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 	if(LIF == NULL)
 		return(-1);	
 
-	// Now find a new free record
-	index = lif_findfree_dirindex(LIF, ULIF->DIR.FileSectors);
+	// Now find a new free record that is big enough
+	index = lif_newdir(LIF, ULIF->DIR.FileSectors);
 	if(index == -1)
 	{
 		printf("LIF image:[%s], not enough free space for:[%s]\n", 
@@ -2394,17 +2508,21 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 		return(-1);
 	}
 
+	// Save start sector
+	start = LIF->DIR.FileStartSector;
+
 	// Copy user image directory record to master image directory record
 	LIF->DIR = ULIF->DIR;
 
-	// Adjust starting sector to point here, size does not change
-	LIF->DIR.FileStartSector = LIF->space.start;
+	// Restore FileStartSector
+	LIF->DIR.FileStartSector = start;
 
 	// Master lif image file start in bytes
 	offset  = LIF->DIR.FileStartSector * LIF_SECTOR_SIZE;
 	// User lif image file start in bytes
 	uoffset = ULIF->DIR.FileStartSector * LIF_SECTOR_SIZE;
 	bytes = 0;
+	// Copy file data
 	for(i=0;i<(int)LIF->DIR.FileSectors;++i)
 	{
 		// Read
@@ -2437,11 +2555,6 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 		lif_closedir(LIF);
 		return(-1);
 	}
-	if(LIF->space.needEOF && !lif_writedirEOF(LIF,LIF->space.needEOF))
-	{
-		lif_closedir(LIF);
-		return(-1);
-	}
 	lif_closedir(LIF);
 	printf("Wrote: %8ld\n", bytes);
 	return(bytes);
@@ -2455,6 +2568,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 /// @param[in] lifimagename: LIF image name
 /// @param[in] lifname: LIF file name
 /// @return 1 if deleted, 0 if not found, -1 error
+MEMSPACE
 int lif_del_file(char *lifimagename, char *lifname)
 {
 	lif_t *LIF;
@@ -2501,9 +2615,11 @@ int lif_del_file(char *lifimagename, char *lifname)
 		lif_closedir(LIF);
 		return(-1);
 	}
+
+	lif_updatefree(LIF);
+
 	lif_closedir(LIF);
 	printf("Deleted: %10s\n", lifname);
-
 
 	return(1);
 }
@@ -2513,6 +2629,7 @@ int lif_del_file(char *lifimagename, char *lifname)
 /// @param[in] oldlifname: old LIF file name
 /// @param[in] newlifname: new LIF file name
 /// @return 1 if renamed, 0 if not found, -1 error
+MEMSPACE
 int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 {
 	int index;
@@ -2549,7 +2666,7 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 	index = lif_find_file(LIF, oldlifname);
 	if(index == -1)
 	{
-		printf("LIF image:[%s] lif name:[%s] not found\n", lifimagename, oldlifname);
+		printf("lif_rename:[%s] lif name:[%s] not found\n", lifimagename, oldlifname);
 		lif_closedir(LIF);
 		return(0);
 	}
@@ -2561,8 +2678,9 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 		lif_closedir(LIF);
 		return(-1);
 	}
-	lif_closedir(LIF);
 	printf("renamed: %10s to %10s\n", oldlifname,newlifname);
+
+	lif_closedir(LIF);
 
 	return(1);
 }
@@ -2576,6 +2694,7 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 /// @param[in] dirsectors: Number of LIF directory sectors
 /// @param[in] sectors: total disk image size in sectors
 ///@return bytes writting to disk image
+MEMSPACE
 long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, uint32_t sectors)
 {
 	uint32_t dirstart,filestart,filesectors,end;
