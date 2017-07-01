@@ -109,24 +109,24 @@ int fatfs_tests(int argc,char *argv[])
     ptr = argv[ind++];
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"attrib") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"attrib",(ind+3),argc))
     {
         put_rc( f_chmod(argv[ind],atol(argv[ind+1]),atol(argv[ind+2])) );
         return(1);
     }
 #endif
-    if (MATCH(ptr,"cat") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"cat", (ind + 1), argc))
     {
         fatfs_cat(argv[ind]);
         return(1);
     }
-    if (MATCH(ptr,"create") && (ind + 2) == argc)
+    if (MATCHARGS(ptr,"create", (ind + 2), argc))
     {
         fatfs_create(argv[ind],argv[ind+1]);
         return(1);
     }
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"copy") && (ind + 2) == argc)
+    if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
         fatfs_copy(argv[ind],argv[ind+1]);
         return(1);
@@ -134,13 +134,13 @@ int fatfs_tests(int argc,char *argv[])
 #endif
 
 #if _FS_RPATH
-    if (MATCH(ptr,"cd") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         fatfs_cd(argv[ind]);
         return(1);
     }
 #if _FS_RPATH >= 2
-    if (MATCH(ptr,"pwd") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
         fatfs_pwd();
         return(1);
@@ -148,14 +148,14 @@ int fatfs_tests(int argc,char *argv[])
 #endif // #if _FS_RPATH 
 #endif // #if _FS_RPATH >= 2
 
-    if ( MATCH(ptr,"fatfs_help") && (ind + 0) == argc )
+    if ( MATCHARGS(ptr,"fatfs_help", (ind + 0), argc ))
     {
         fatfs_help();
         return(1);
     }
 
 #ifdef POSIX_WRAPPERS
-    if (MATCH(ptr,"hexdump") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
     {
         hexdump(argv[ind]);
         return(1);
@@ -163,7 +163,7 @@ int fatfs_tests(int argc,char *argv[])
 #endif
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"mkfs") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"mkfs", (ind + 0), argc))
     {
         FATFS fs;
 		uint8_t *mem;
@@ -182,31 +182,31 @@ int fatfs_tests(int argc,char *argv[])
     }
 
 #endif
-    if (MATCH(ptr,"ls") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"ls", (ind + 0), argc))
 	{
 		fatfs_ls("");
         return(1);
     }
 
-    if (MATCH(ptr,"ls") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"ls", (ind + 1), argc))
 	{
 		fatfs_ls(argv[ind]);
         return(1);
 	}
 
-    if (MATCH(ptr,"mmc_test") )
+    if (MATCHARGS(ptr,"mmc_test",(ind+0),argc ))
 	{
         mmc_test();
         return(1);
     }
-    if (MATCH(ptr,"mmc_init") )
+    if (MATCHARGS(ptr,"mmc_init",(ind+0),argc))
     {
         mmc_init(1);
         return(1);
     }
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"mkdir") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
     {
         fatfs_mkdir(argv[ind]);
         return(1);
@@ -214,22 +214,22 @@ int fatfs_tests(int argc,char *argv[])
 #endif
 
 #ifdef POSIX_WRAPPERS
-    if (MATCH(ptr,"sum") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"sum", (ind + 1), argc))
     {
         sum(argv[ind]);
         return(1);
     }
-    if (MATCH(ptr,"uls") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"uls", (ind + 0), argc))
     {
         ls(".",1);
         return(1);
     }
-    if (MATCH(ptr,"uls") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"uls", (ind + 1), argc))
     {
         ls(argv[ind],1);
         return(1);
     }
-    if (MATCH(ptr,"ustat") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"ustat", (ind + 1), argc))
     {
 		struct stat p;	
 		stat(argv[ind], &p);                        // POSIX test
@@ -239,31 +239,31 @@ int fatfs_tests(int argc,char *argv[])
 #endif
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"rename") && (ind + 2) == argc)
+    if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
         fatfs_rename(argv[ind],argv[ind+1]);
         return(1);
     }
-    if (MATCH(ptr,"rm") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
         fatfs_rm(argv[ind]);
         return(1);
     }
-    if (MATCH(ptr,"rmdir") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
         fatfs_rmdir(argv[ind]);
         return(1);
     }
 #endif
 
-    if (MATCH(ptr,"status") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"status", (ind + 1), argc))
     {
         fatfs_status(argv[ind]);
         return(1);
     }
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCH(ptr,"stat") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"stat", (ind + 1), argc))
 	{
         fatfs_stat(argv[ind]);
         return(1);
@@ -272,7 +272,7 @@ int fatfs_tests(int argc,char *argv[])
 #endif // #ifdef FATFS_UTILS_FULL
 
 #ifdef POSIX_WRAPPERS
-    if (MATCH(ptr,"upload") && (ind + 1) == argc)
+    if (MATCHARGS(ptr,"upload", (ind + 1), argc))
     {
         upload_file(argv[ind]);
         return(1);

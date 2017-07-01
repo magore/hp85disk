@@ -175,6 +175,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a9fb9c5c9b25cdf504152f7610f0d118c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mmc__hal_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#a9fb9c5c9b25cdf504152f7610f0d118c">MATCH</a> (char *str, char *pat)</td></tr>
 <tr class="memdesc:a9fb9c5c9b25cdf504152f7610f0d118c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two strings.  <a href="#a9fb9c5c9b25cdf504152f7610f0d118c">More...</a><br /></td></tr>
 <tr class="separator:a9fb9c5c9b25cdf504152f7610f0d118c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae330bc7e8f9c442404f44ca0187b27d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mmc__hal_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a> (char *str, char *pat, int min, int argc)</td></tr>
+<tr class="memdesc:ae330bc7e8f9c442404f44ca0187b27d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match two strings and compare argument index Display message if the number of arguments is too few.  <a href="#ae330bc7e8f9c442404f44ca0187b27d3">More...</a><br /></td></tr>
+<tr class="separator:ae330bc7e8f9c442404f44ca0187b27d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a158b18efacfbaf45bf46e03f355cf101"><td class="memItemLeft" align="right" valign="top"><a class="el" href="mmc__hal_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stringsup_8h.html#a158b18efacfbaf45bf46e03f355cf101">MATCHI</a> (char *str, char *pat)</td></tr>
 <tr class="memdesc:a158b18efacfbaf45bf46e03f355cf101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two strings without case.  <a href="#a158b18efacfbaf45bf46e03f355cf101">More...</a><br /></td></tr>
 <tr class="separator:a158b18efacfbaf45bf46e03f355cf101"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,7 +294,7 @@ Functions</h2></td></tr>
 <dd>
 NULL if no token found </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00591">591</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00610">610</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -321,7 +324,7 @@ NULL if no token found </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00669">669</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00688">688</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 <p>Referenced by <a class="el" href="drives_8c_source.html#l00544">assign_value()</a>, and <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>.</p>
 
@@ -448,7 +451,7 @@ NULL if no token found </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00437">437</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00099">fatfs_tests()</a>, <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>, <a class="el" href="lifutils_8c_source.html#l00235">lif_tests()</a>, and <a class="el" href="main_8c_source.html#l00185">task()</a>.</p>
+<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00453">MATCHARGS()</a>.</p>
 
 </div>
 </div>
@@ -489,7 +492,61 @@ NULL if no token found </dd></dl>
 0 on no match. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Matches sub strings so be caeful. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00474">474</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00493">493</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae330bc7e8f9c442404f44ca0187b27d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="mmc__hal_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a> int MATCHARGS </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>pat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Match two strings and compare argument index Display message if the number of arguments is too few. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string to test </td></tr>
+    <tr><td class="paramname">pat</td><td>pattern to match </td></tr>
+    <tr><td class="paramname">min</td><td>minumum number or arguments </td></tr>
+    <tr><td class="paramname">argc</td><td>actual number of arguments </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on match, 0 on no match or too few arguments </dd></dl>
+
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00453">453</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00099">fatfs_tests()</a>, <a class="el" href="gpib__tests_8c_source.html#l00056">gpib_tests()</a>, <a class="el" href="lifutils_8c_source.html#l00259">lif_tests()</a>, and <a class="el" href="main_8c_source.html#l00185">task()</a>.</p>
 
 </div>
 </div>
@@ -529,7 +586,7 @@ NULL if no token found </dd></dl>
 <dd>
 0 on no match. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00456">456</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00475">475</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -570,9 +627,9 @@ NULL if no token found </dd></dl>
 0 on no match. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Matches sub strings so be caeful. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00500">500</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00519">519</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00669">get_value()</a>.</p>
+<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00688">get_value()</a>.</p>
 
 </div>
 </div>
@@ -761,7 +818,7 @@ NULL if no token found </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00271">271</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="drives_8c_source.html#l00544">assign_value()</a>, <a class="el" href="stringsup_8c_source.html#l00591">get_token()</a>, <a class="el" href="stringsup_8c_source.html#l00669">get_value()</a>, <a class="el" href="gpib__task_8c_source.html#l00188">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>, <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>, <a class="el" href="stringsup_8c_source.html#l00529">split_args()</a>, <a class="el" href="timetests_8c_source.html#l00099">timetests()</a>, and <a class="el" href="stringsup_8c_source.html#l00634">token()</a>.</p>
+<p>Referenced by <a class="el" href="drives_8c_source.html#l00544">assign_value()</a>, <a class="el" href="stringsup_8c_source.html#l00610">get_token()</a>, <a class="el" href="stringsup_8c_source.html#l00688">get_value()</a>, <a class="el" href="gpib__task_8c_source.html#l00188">gpib_trace_task()</a>, <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>, <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>, <a class="el" href="stringsup_8c_source.html#l00548">split_args()</a>, <a class="el" href="timetests_8c_source.html#l00099">timetests()</a>, and <a class="el" href="stringsup_8c_source.html#l00653">token()</a>.</p>
 
 </div>
 </div>
@@ -803,7 +860,7 @@ NULL if no token found </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00529">529</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00548">548</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 <p>Referenced by <a class="el" href="main_8c_source.html#l00185">task()</a>.</p>
 
@@ -875,7 +932,7 @@ NULL if no token found </dd></dl>
 <dd>
 NULL on out of memory. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00737">737</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00756">756</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -915,7 +972,7 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00392">392</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l01782">lif_find_file()</a>, and <a class="el" href="stringsup_8c_source.html#l00456">MATCHI()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l01806">lif_find_file()</a>, and <a class="el" href="stringsup_8c_source.html#l00475">MATCHI()</a>.</p>
 
 </div>
 </div>
@@ -995,7 +1052,7 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00160">160</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__sup_8c_source.html#l00190">fatfs_scan_files()</a>, <a class="el" href="lifutils_8c_source.html#l00791">lif_lifbcd2timestr()</a>, <a class="el" href="lifutils_8c_source.html#l00356">lif_stralloc()</a>, and <a class="el" href="stringsup_8c_source.html#l00737">stralloc()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__sup_8c_source.html#l00190">fatfs_scan_files()</a>, <a class="el" href="lifutils_8c_source.html#l00815">lif_lifbcd2timestr()</a>, <a class="el" href="lifutils_8c_source.html#l00380">lif_stralloc()</a>, and <a class="el" href="stringsup_8c_source.html#l00756">stralloc()</a>.</p>
 
 </div>
 </div>
@@ -1063,7 +1120,7 @@ NULL on out of memory. </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to alocated string. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00713">713</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00732">732</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 </div>
 </div>
@@ -1110,7 +1167,7 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00414">414</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00500">MATCHI_LEN()</a>.</p>
+<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00519">MATCHI_LEN()</a>.</p>
 
 </div>
 </div>
@@ -1157,7 +1214,7 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00368">368</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00474">MATCH_LEN()</a>, and <a class="el" href="stringsup_8c_source.html#l00634">token()</a>.</p>
+<p>Referenced by <a class="el" href="stringsup_8c_source.html#l00493">MATCH_LEN()</a>, and <a class="el" href="stringsup_8c_source.html#l00653">token()</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1261,7 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00177">177</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00471">fatfs_ls()</a>, <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>, <a class="el" href="posix_8c_source.html#l01741">readdir()</a>, <a class="el" href="posix_8c_source.html#l01843">strerror_r()</a>, and <a class="el" href="stringsup_8c_source.html#l00713">strnalloc()</a>.</p>
+<p>Referenced by <a class="el" href="fatfs__utils_8c_source.html#l00471">fatfs_ls()</a>, <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>, <a class="el" href="posix_8c_source.html#l01741">readdir()</a>, <a class="el" href="posix_8c_source.html#l01843">strerror_r()</a>, and <a class="el" href="stringsup_8c_source.html#l00732">strnalloc()</a>.</p>
 
 </div>
 </div>
@@ -1274,7 +1331,7 @@ NULL on out of memory. </dd></dl>
 <dd>
 0 on no match. </dd></dl>
 
-<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00634">634</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
+<p>Definition at line <a class="el" href="stringsup_8c_source.html#l00653">653</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
 <p>Referenced by <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>, <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>, and <a class="el" href="mmc_8c_source.html#l00224">rcvr_datablock()</a>.</p>
 
@@ -1362,14 +1419,14 @@ NULL on out of memory. </dd></dl>
 
 <p>Definition at line <a class="el" href="stringsup_8c_source.html#l00253">253</a> of file <a class="el" href="stringsup_8c_source.html">stringsup.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l01974">lif_add_ascii_file_as_e010_wrapper()</a>, <a class="el" href="lifutils_8c_source.html#l00499">lif_B2S()</a>, <a class="el" href="lifutils_8c_source.html#l00772">lif_ctime_gmt()</a>, and <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l01998">lif_add_ascii_file_as_e010_wrapper()</a>, <a class="el" href="lifutils_8c_source.html#l00523">lif_B2S()</a>, <a class="el" href="lifutils_8c_source.html#l00796">lif_ctime_gmt()</a>, and <a class="el" href="drives_8c_source.html#l00652">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 1 2017 17:01:55 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 1 2017 19:09:36 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

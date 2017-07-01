@@ -65,68 +65,68 @@ int gpib_tests(int argc, char * argv[])
 	ind = 1;
 	ptr = argv[ind++];
 
-    if (MATCH(ptr,"addresses") )
+    if (MATCHARGS(ptr,"addresses",(ind+0),argc))
     {
 		display_Addresses();
         return(1);
     }
-    else if (MATCH(ptr,"config") )
+    if (MATCHARGS(ptr,"config",(ind+0),argc))
     {
 		display_Config();
         return(1);
     }
-    else if (MATCH(ptr,"debug") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"debug", (ind+1) ,argc))
     {
 		debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
         return(1);
     }
-    else if (MATCH(ptr,"gpib_elapsed_reset") )
+    if (MATCHARGS(ptr,"gpib_elapsed_reset",(ind+0),argc))
     {
         gpib_timer_elapsed_begin();
         return(1);
     }
-    else if (MATCH(ptr,"gpib_elapsed") )
+    if (MATCHARGS(ptr,"gpib_elapsed",(ind+0),argc))
     {
         gpib_timer_elapsed_end("gpib elapsed:");
         return(1);
     }
-    else if (MATCH(ptr,"gpib_task") )
+    if (MATCHARGS(ptr,"gpib_task",(ind+0),argc))
     {
         gpib_task();
         return(1);
     }
-    else if (MATCH(ptr,"gpib_trace") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"gpib_trace", (ind+1) ,argc))
     {
         gpib_trace_task(argv[ind]);
         return(1);
     }
-    else if (MATCH(ptr,"plot_echo") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"plot_echo", (ind+1) ,argc))
     {
         plot_echo(atoi(argv[ind]) );
         return(1);
     }
-    else if (MATCH(ptr,"ppr_bit_clr") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"ppr_bit_clr", (ind+1) ,argc))
     {
         ppr_bit_clr(atoh(argv[ind] ));
         return(1);
     }
-    else if (MATCH(ptr,"ppr_bit_set") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"ppr_bit_set", (ind+1) ,argc))
     {
         ppr_bit_set(atoh(argv[ind]) );
         return(1);
     }
-    else if (MATCH(ptr,"ppr_set") && (ind+1) == argc)
+    if (MATCHARGS(ptr,"ppr_set", (ind+1) ,argc))
     {
         ppr_set(atoh(argv[ind]) );
         return(1);
     }
-    else if (MATCH(ptr,"ppr_init") )
+    if (MATCHARGS(ptr,"ppr_init",(ind+0),argc))
     {
         ppr_init();
         return(1);
     }
-    else if ( MATCH(ptr,"gpib_help") )
+    if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
     {
         gpib_help();
         return(1);

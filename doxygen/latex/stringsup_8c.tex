@@ -50,6 +50,8 @@
 \begin{DoxyCompactList}\small\item\em Compare two strings without case maximum len bytes in size. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_a9fb9c5c9b25cdf504152f7610f0d118c}{M\+A\+T\+CH} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Compare two strings. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_ae330bc7e8f9c442404f44ca0187b27d3}{M\+A\+T\+C\+H\+A\+R\+GS} (char $\ast$str, char $\ast$pat, int min, int argc)
+\begin{DoxyCompactList}\small\item\em Match two strings and compare argument index Display message if the number of arguments is too few. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_a158b18efacfbaf45bf46e03f355cf101}{M\+A\+T\+C\+HI} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Compare two strings without case. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8c_ac85ba7d5161939102f1daf99dcae85f0}{M\+A\+T\+C\+H\+\_\+\+L\+EN} (char $\ast$str, char $\ast$pat)
@@ -106,7 +108,7 @@ N\+U\+LL if no token found
 \end{DoxyReturn}
 
 
-Definition at line 591 of file stringsup.\+c.
+Definition at line 610 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!get\+\_\+value@{get\+\_\+value}}
 \index{get\+\_\+value@{get\+\_\+value}!stringsup.\+c@{stringsup.\+c}}
@@ -132,7 +134,7 @@ value
 
 \end{DoxyItemize}
 
-Definition at line 669 of file stringsup.\+c.
+Definition at line 688 of file stringsup.\+c.
 
 
 
@@ -245,7 +247,7 @@ Definition at line 437 of file stringsup.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), and task().
+Referenced by M\+A\+T\+C\+H\+A\+R\+G\+S().
 
 \index{stringsup.\+c@{stringsup.\+c}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}!stringsup.\+c@{stringsup.\+c}}
@@ -276,7 +278,43 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 474 of file stringsup.\+c.
+Definition at line 493 of file stringsup.\+c.
+
+\index{stringsup.\+c@{stringsup.\+c}!M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}}
+\index{M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}!stringsup.\+c@{stringsup.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+A\+R\+G\+S(char $\ast$str, char $\ast$pat, int min, int argc)}{MATCHARGS(char *str, char *pat, int min, int argc)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+A\+R\+GS (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat, }
+\item[{int}]{min, }
+\item[{int}]{argc}
+\end{DoxyParamCaption}
+)}\hypertarget{stringsup_8c_ae330bc7e8f9c442404f44ca0187b27d3}{}\label{stringsup_8c_ae330bc7e8f9c442404f44ca0187b27d3}
+
+
+Match two strings and compare argument index Display message if the number of arguments is too few. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & string to test \\
+\hline
+{\em pat} & pattern to match \\
+\hline
+{\em min} & minumum number or arguments \\
+\hline
+{\em argc} & actual number of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on match, 0 on no match or too few arguments 
+\end{DoxyReturn}
+
+
+Definition at line 453 of file stringsup.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), and task().
 
 \index{stringsup.\+c@{stringsup.\+c}!M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}}
 \index{M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}!stringsup.\+c@{stringsup.\+c}}
@@ -304,7 +342,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 456 of file stringsup.\+c.
+Definition at line 475 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}!stringsup.\+c@{stringsup.\+c}}
@@ -335,7 +373,7 @@ Matches sub strings so be caeful.
 \end{DoxyWarning}
 
 
-Definition at line 500 of file stringsup.\+c.
+Definition at line 519 of file stringsup.\+c.
 
 
 
@@ -508,7 +546,7 @@ Split string into arguments stored in argv\mbox{[}\mbox{]} We split source strin
 \end{DoxyParams}
 
 
-Definition at line 529 of file stringsup.\+c.
+Definition at line 548 of file stringsup.\+c.
 
 
 
@@ -568,7 +606,7 @@ N\+U\+LL on out of memory.
 \end{DoxyReturn}
 
 
-Definition at line 737 of file stringsup.\+c.
+Definition at line 756 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+c@{stringsup.\+c}}
@@ -716,7 +754,7 @@ pointer to alocated string.
 \end{DoxyReturn}
 
 
-Definition at line 713 of file stringsup.\+c.
+Definition at line 732 of file stringsup.\+c.
 
 \index{stringsup.\+c@{stringsup.\+c}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+c@{stringsup.\+c}}
@@ -871,7 +909,7 @@ string lenth on match.
 \end{DoxyReturn}
 
 
-Definition at line 634 of file stringsup.\+c.
+Definition at line 653 of file stringsup.\+c.
 
 
 

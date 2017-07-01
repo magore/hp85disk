@@ -102,6 +102,30 @@ int debuglevel = 0x0001;
 
 #include "lifutils.h"
 
+///@brief Match two strings and compare argument index
+/// Display  message if the number of arguments is too few
+///@param str: string to test
+///@param pat: pattern to match
+///@param min: minumum number or arguments
+///@param argc: actual number of arguments
+///@return 1 on match, 0 on no match or too few arguments
+int MATCHARGS(char *str, char *pat, int min, int argc)
+{
+    if(strcmp(str,pat) == 0)
+    {
+        if(argc >= min)
+            return(1);
+        else
+            printf("%s expected %d arguments only got %d\n", pat, min,argc);
+    }
+    return(0);
+}
+
+
+///@brief Remove white space at the end of lines
+///@param str: string
+///@return void
+MEMSPACE
 
 MEMSPACE
 void trim_tail(char *str)
@@ -252,13 +276,13 @@ int lif_tests(int argc, char *argv[])
 	ind = 1;
 	ptr = argv[ind++];
 
-    if (MATCH(ptr,"lifhelp") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"lifhelp", (ind + 0) ,argc))
 	{
 		lif_help();
 		return(1);
 	}
 
-    if(!MATCH(ptr,"lif") && (ind + 0) == argc)
+    if(!MATCHARGS(ptr,"lif", (ind + 0) ,argc))
 		return(0);
 
 	// We matched "lif" so skip the argument
@@ -267,53 +291,53 @@ int lif_tests(int argc, char *argv[])
 
 	// We are past the "lif" argument
 
-    if (MATCH(ptr,"help") && (ind + 0) == argc)
+    if (MATCHARGS(ptr,"help", (ind + 0) ,argc))
 	{
 		lif_help();
 		return(1);
 	}
 
-    if (MATCH(ptr,"addbin") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"addbin", (ind + 3) ,argc))
     {
 		lif_add_lif_file(argv[ind],argv[ind+1],argv[ind+2]);
 
         return(1);
     }
-    if (MATCH(ptr,"add") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"add", (ind + 3) ,argc))
     {
 		lif_add_ascii_file_as_e010(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
     }
-    if (MATCH(ptr,"del") && (ind + 2) == argc)
+    if (MATCHARGS(ptr,"del", (ind + 2) ,argc))
     {
 		lif_del_file(argv[ind],argv[ind+1]);
 
         return(1);
     }
-    if (MATCH(ptr,"create") && (ind + 4) == argc)
+    if (MATCHARGS(ptr,"create", (ind + 4) ,argc))
     {
         ///@brief format LIF image
         lif_create_image(argv[ind],argv[ind+1], atol(argv[ind+2]), atol(argv[ind+3]) );
         return(1);
     }
-    else if (MATCH(ptr,"dir") && (ind + 1) == argc)
+    else if (MATCHARGS(ptr,"dir", (ind + 1) ,argc))
     {
         lif_dir(argv[ind]);
         return(1);
     }
-    if (MATCH(ptr,"extractbin") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"extractbin", (ind + 3) ,argc))
 	{
 
 		lif_extract_lif_as_lif(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
 	}
-    if (MATCH(ptr,"extract") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"extract", (ind + 3) ,argc))
 	{
 
 		lif_extract_e010_as_ascii(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
 	}
-    if (MATCH(ptr,"rename") && (ind + 3) == argc)
+    if (MATCHARGS(ptr,"rename", (ind + 3) ,argc))
     {
 		lif_rename_file(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
@@ -873,7 +897,7 @@ MEMSPACE
 int lif_check_volume(lif_t *LIF)
 {
 	int status = 1;
-	long filestart;
+	uint32_t filestart;
 
 
 	if( !lif_checkname((char *)LIF->VOL.Label) )
@@ -1402,7 +1426,7 @@ lif_t *lif_updatefree(lif_t *LIF)
 	int purgeindex = -1;
 
 	// Start of free space
-	long start = LIF->filestart;
+	uint32_t start = LIF->filestart;
 	// Free sectors
 	LIF->freesectors = LIF->filesectors;
 	// Used sectors
@@ -1499,7 +1523,7 @@ int lif_newdir(lif_t *LIF, long sectors)
 	}
 
 	// Not enough room ?
-	if(sectors > LIF->freesectors)
+	if(sectors > (long)LIF->freesectors)
 	{
 		printf("lif_newdir: not enough free space:[%ld]\n", (long)LIF->freesectors);
 		return(-1);

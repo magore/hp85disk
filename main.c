@@ -223,36 +223,36 @@ void task(char *line, int max, uint8_t gpib)
     if(lif_tests(argc,argv))
         return;
 
-    if (MATCH(ptr,"delay_tests"))
+    if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
     {
         delay_tests();
         return;
 
     }
-    if ( MATCH(ptr,"time"))
+    if ( MATCHARGS(ptr,"time",(ind+0),argc))
     {
         display_time();
         return;
     }
-    if ( MATCH(ptr,"setdate") )
+    if ( MATCHARGS(ptr,"setdate",(ind+0),argc))
     {
         setdate();
         display_time();
         return;
     }
-    if ( MATCH(ptr,"mem") )
+    if ( MATCHARGS(ptr,"mem",(ind+0),argc))
     {
         PrintFree();
         return;
 
     }
-    if ( MATCH(ptr, "ifc") )
+    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
     {
         gpib_assert_ifc();
         return;
 
     }
-    if ( MATCH(ptr,"help") || MATCH(ptr,"?") )
+    if ( MATCHARGS(ptr,"help",(ind+0),argc) || MATCHARGS(ptr,"?",(ind+0),argc))
     {
         help();
         return;

@@ -442,6 +442,25 @@ int MATCH(char *str, char *pat)
         return(len);
     return(0);
 }
+///@brief Match two strings and compare argument index
+/// Display  message if the number of arguments is too few
+///@param str: string to test
+///@param pat: pattern to match
+///@param min: minumum number or arguments
+///@param argc: actual number of arguments
+///@return 1 on match, 0 on no match or too few arguments
+MEMSPACE
+int MATCHARGS(char *str, char *pat, int min, int argc)
+{
+    if(MATCH(str,pat))
+    {
+        if(argc >= min)
+            return(1);
+        else
+            printf("%s expected %d arguments only got %d\n", pat, min,argc);
+    }
+    return(0);
+}
 
 
 // =============================================
