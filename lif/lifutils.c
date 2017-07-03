@@ -1540,8 +1540,10 @@ int lif_newdir(lif_t *LIF, long sectors)
 		// Write new EOF after current one
 		if( !lif_readdirindex(LIF,index) )
 		{
+#if 0
 			printf("lif_newdir: index:[%d] failed read at:[%ld] of [%ld] sectors, free:[%ld]\n", 
 				(int) index, (long) start, (long)sectors, (long)LIF->freesectors);
+#endif
 			break;
 		}
 

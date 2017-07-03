@@ -2,6 +2,7 @@ var searchData=
 [
   ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'calloc():&#160;user_config.h'],['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;ram.h']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
+  ['cat',['cat',['../posix__tests_8c.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
   ['cfgfile',['cfgfile',['../gpib__task_8c.html#a8877b76be0ce372adf0ed7ff2a143573',1,'gpib_task.c']]],
   ['chdir',['chdir',['../posix_8c.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c'],['../posix_8h.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c']]],
@@ -62,6 +63,7 @@ var searchData=
   ['continous_5ftransfer_5frate',['CONTINOUS_TRANSFER_RATE',['../structSS80UnitType.html#a0486673977da185f2f69aaff378f81a2',1,'SS80UnitType']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
   ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
+  ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],

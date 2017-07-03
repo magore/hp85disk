@@ -10,7 +10,6 @@ var searchData=
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
   ['lifid',['LIFid',['../structlifvol__t.html#adb6a0c2fff5b765eb12c3eb5db6d5bad',1,'lifvol_t']]],
   ['lifversion',['LIFVersion',['../structlifvol__t.html#afffd824a7b0ce6aa8410fa243733475f',1,'lifvol_t']]],
-  ['line',['line',['../main_8c.html#a4381722bcf21e1580d2d3990afd4f580',1,'main.c']]],
   ['lines',['lines',['../drives_8c.html#a9921ae02cadccc99dd6c3a9b68be050a',1,'drives.c']]],
   ['listening',['listening',['../gpib_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8h.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../ss80_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c']]],
   ['listening_5flast',['listening_last',['../gpib_8c.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c'],['../gpib_8h.html#a049cdc383eed2f97e4384a5728c00123',1,'listening_last():&#160;gpib.c']]],

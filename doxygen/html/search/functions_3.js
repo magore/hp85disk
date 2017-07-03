@@ -1,6 +1,7 @@
 var searchData=
 [
   ['calloc',['calloc',['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'ram.h']]],
+  ['cat',['cat',['../posix__tests_8c.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c']]],
   ['chdir',['chdir',['../posix_8c.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c'],['../posix_8h.html#a9c74403d1a11692bcab2c9ab7de4b0d3',1,'chdir(const char *pathname):&#160;posix.c']]],
   ['check_5ffs',['check_fs',['../ff_8c.html#a5a0aaea328e942cf6f21bae6e19e911b',1,'ff.c']]],
   ['chip_5faddr',['chip_addr',['../hal_8c.html#abc9be250079b2b3fb01b888e431ec207',1,'chip_addr(int addr):&#160;hal.c'],['../hal_8h.html#abc9be250079b2b3fb01b888e431ec207',1,'chip_addr(int addr):&#160;hal.c']]],
@@ -27,6 +28,7 @@ var searchData=
   ['clust2sect',['clust2sect',['../ff_8c.html#a45bbeb9d5097317ba431e90e2a9c45f8',1,'ff.c']]],
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
+  ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
   ['create_5fname',['create_name',['../ff_8c.html#af119220c4aeabfeb316349e8279413ca',1,'ff.c']]],
   ['ctime',['ctime',['../time_8c.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c'],['../time_8h.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c']]],

@@ -26,7 +26,12 @@
 #include "gpib/printer.h"
 #include "gpib/amigo.h"
 #include "gpib/ss80.h"
+#ifdef POSIX_TESTS
+#include "posix/posix_tests.h"
+#endif
+#ifdef LIF_SUPPORT
 #include "lif/lifutils.h"
+#endif
 
 #include <math.h>
 
@@ -42,10 +47,16 @@ void help()
     printf("mem\n");
     printf("ifc\n");
     gpib_help();
+#ifdef FATFS_TESTS
     fatfs_help();
+#endif
+#ifdef POSIX_TESTS
+    posix_help();
+#endif
+#ifdef LIF_SUPPORT
     lif_help();
+#endif
 }
-
 
 /// @brief  perform tests on delay functions
 ///
@@ -103,7 +114,7 @@ void setup_clock()
     ts_t ts;
     tz_t tz;
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
     if(!rtc_init(0,0L))
     {
         printf("rtc uninitilized\n");
@@ -123,7 +134,7 @@ void setup_clock()
         seconds = DEFAULT_TIME;
         printf("rtc read errorafter init\n");
     }
-#endif
+#endif	// RTC_SUPPORT
     tz.tz_minuteswest = 300;
     tz.tz_dsttime = 0;
     settimezone( &tz );
@@ -145,7 +156,7 @@ void display_time()
     tm_t tc;
     ts_t ts;
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
     if(rtc_read(&tc))
     {
         seconds = timegm(&tc);
@@ -166,7 +177,7 @@ void display_time()
     {
         printf("RTC read failed\n");
     }
-#endif	// RTC
+#endif	// RTC_SUPPORT
 
     clock_gettime(0, (ts_t *) &ts);
     seconds = ts.tv_sec;
@@ -180,48 +191,40 @@ void display_time()
 /// If a keypress is detected read a line from the uart
 /// parse the result and call various user functions.
 /// ? will return a list of fuctions and paramters permitted
-/// @param[in] gpib
+/// @param[in] gpib - if non-zero run gpib while there are no user commands
 /// @return  void
-void task(char *line, int max, uint8_t gpib)
+void task(uint8_t gpib)
 {
     char *ptr;
 	int ind;
-
-	char *argv[10];
 	int argc;
+	char *argv[10];
+	char line[128];
 
 	if(gpib)
 		gpib_task();
 
-    if(!uart_keyhit(0))
+    if(!kbhit(0))
         return;
 
     printf("\n>");
-	fgets(line,max-1,stdin);
-
+	fgets(line,sizeof(line)-2,stdin);
 	argc = split_args(line,argv,10);
-
 #if 0
 	printf("Arguments:\n");
 	printf("   argc = %d\n", argc);
 	for(i=0;i<argc;++i)
 		printf("   [%s]\n", argv[i]);
 #endif
-
 	if(argc < 2)
 		return;
 
 	ind = 1;
 	ptr = argv[ind++];
 
-    if(fatfs_tests(argc,argv))
-        return;
-
     if(gpib_tests(argc,argv))
         return;
 
-    if(lif_tests(argc,argv))
-        return;
 
     if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
     {
@@ -246,23 +249,27 @@ void task(char *line, int max, uint8_t gpib)
         return;
 
     }
-    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
-    {
-        gpib_assert_ifc();
-        return;
-
-    }
     if ( MATCHARGS(ptr,"help",(ind+0),argc) || MATCHARGS(ptr,"?",(ind+0),argc))
     {
         help();
         return;
     }
+#ifdef POSIX_TESTS
+    if(posix_tests(argc,argv))
+        return;
+#endif
+#ifdef FATFS_TESTS
+    if(fatfs_tests(argc,argv))
+        return;
+#endif
+#ifdef LIF_SUPPORT
+    if(lif_tests(argc,argv))
+        return;
+#endif
     printf("Error:[%s]\n",ptr);
 }
 
 
-#define MAX_LINE 80
-char line[MAX_LINE+1];
 
 /// @brief  main() for gpib project
 /// @return  should never return!
@@ -359,6 +366,6 @@ int main(void)
 
     while (1)
     {
-        task(line, MAX_LINE-1, 1);
+        task(1);
     }
 }

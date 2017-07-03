@@ -20,6 +20,7 @@
 
 -------------------------------------------------------------------------*/
 #include "user_config.h"
+#include "posix.h"
 
 
 ///@brief defulats if not drives defined in sdcard config file

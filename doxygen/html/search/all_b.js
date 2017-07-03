@@ -86,7 +86,6 @@ var searchData=
   ['lifutils_2eh',['lifutils.h',['../lifutils_8h.html',1,'']]],
   ['lifversion',['LIFVersion',['../structlifvol__t.html#afffd824a7b0ce6aa8410fa243733475f',1,'lifvol_t']]],
   ['lifvol_5ft',['lifvol_t',['../structlifvol__t.html',1,'']]],
-  ['line',['line',['../main_8c.html#a4381722bcf21e1580d2d3990afd4f580',1,'main.c']]],
   ['lines',['lines',['../drives_8c.html#a9921ae02cadccc99dd6c3a9b68be050a',1,'drives.c']]],
   ['listen_5fcleanup',['listen_cleanup',['../gpib__task_8c.html#ab19aca8b48e6c56616ee29eac42130cc',1,'listen_cleanup():&#160;gpib_task.c'],['../gpib__task_8h.html#a61b7b85789f90b1cc0e6cb4f71f6797d',1,'listen_cleanup(void):&#160;gpib_task.c']]],
   ['listening',['listening',['../gpib_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8h.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../ss80_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c']]],
@@ -95,10 +94,11 @@ var searchData=
   ['llo',['LLO',['../amigo_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;amigo.h'],['../defines_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;defines.h']]],
   ['localtime',['localtime',['../time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c'],['../time_8h.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c']]],
   ['localtime_5fr',['localtime_r',['../time_8c.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c']]],
+  ['logfile',['logfile',['../posix__tests_8c.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c'],['../posix__tests_8h.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c']]],
   ['logical_5faddress',['logical_address',['../structAMIGOStateType.html#a924a685ad68765a91714aa6ad4b20d9f',1,'AMIGOStateType']]],
   ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]],
-  ['ls',['ls',['../fatfs__utils_8h.html#aa08b18a9357cb90672c19d5c420b2f12',1,'fatfs_utils.h']]],
-  ['ls_5finfo',['ls_info',['../fatfs__utils_8h.html#a573eb4f7de945139101e2cfb59111722',1,'fatfs_utils.h']]],
+  ['ls',['ls',['../posix__tests_8c.html#a0f9f4b93301cda7e7662c80952bd0a9b',1,'ls(char *path, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#a0f9f4b93301cda7e7662c80952bd0a9b',1,'ls(char *path, int verbose):&#160;posix_tests.c']]],
+  ['ls_5finfo',['ls_info',['../posix__tests_8c.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c']]],
   ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]],
   ['lstat',['lstat',['../posix_8h.html#ae730c85752284268b39560df693cb207',1,'posix.h']]]
 ];

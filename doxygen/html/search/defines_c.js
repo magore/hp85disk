@@ -10,7 +10,6 @@ var searchData=
   ['max_5ffat32',['MAX_FAT32',['../ff_8c.html#a40e7471b7ae3620a0419aa4d8d6dc684',1,'ff.c']]],
   ['max_5ffile_5fname_5flen',['MAX_FILE_NAME_LEN',['../drives_8h.html#a835262f9c26026aab5f91a528f57ad8f',1,'drives.h']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'posix.h']]],
-  ['max_5fline',['MAX_LINE',['../main_8c.html#a842ed03f27719bc87666bfd1f75415b8',1,'main.c']]],
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],
   ['max_5fstack',['MAX_STACK',['../drives_8c.html#af24298a5ce56647751e432673282c6e2',1,'drives.c']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],

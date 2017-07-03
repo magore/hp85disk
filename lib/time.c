@@ -36,9 +36,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "time.h"
 #include "timer.h"
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
 #include "rtc.h"
 #endif
+
+#include "posix.h"
 
 /// @brief  System Clock Time
 extern volatile ts_t __clock;
@@ -998,7 +1000,7 @@ int setdate_r (char *buf)
     ts.tv_nsec = 0L;
     clock_settime(0, (ts_t *) &ts);
 
-#ifdef RTC
+#ifdef RTC_SUPPORT
     if( !rtc_init(1, (time_t) seconds ) )
     {
         printf("rtc force init failed\n");

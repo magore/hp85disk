@@ -40,7 +40,7 @@ void gpib_help()
         "gpib_elapsed_reset\n"
         "gpib_task\n"
         "gpib_trace filename.txt\n"
-        "plot_echo address\n   Intruct device to send a plot\n"
+		"ifc\n"
         "plot filename.txt\n"
         "ppr_bit_on N\n"
         "ppr_bit_off N\n"
@@ -70,62 +70,81 @@ int gpib_tests(int argc, char * argv[])
 		display_Addresses();
         return(1);
     }
+
     if (MATCHARGS(ptr,"config",(ind+0),argc))
     {
 		display_Config();
         return(1);
     }
+
     if (MATCHARGS(ptr,"debug", (ind+1) ,argc))
     {
 		debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
         return(1);
     }
+
     if (MATCHARGS(ptr,"gpib_elapsed_reset",(ind+0),argc))
     {
         gpib_timer_elapsed_begin();
         return(1);
     }
+
     if (MATCHARGS(ptr,"gpib_elapsed",(ind+0),argc))
     {
         gpib_timer_elapsed_end("gpib elapsed:");
         return(1);
     }
+
     if (MATCHARGS(ptr,"gpib_task",(ind+0),argc))
     {
         gpib_task();
         return(1);
     }
+
     if (MATCHARGS(ptr,"gpib_trace", (ind+1) ,argc))
     {
         gpib_trace_task(argv[ind]);
         return(1);
     }
+
+    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
+    {
+        gpib_assert_ifc();
+        return;
+
+    }
+
     if (MATCHARGS(ptr,"plot_echo", (ind+1) ,argc))
     {
         plot_echo(atoi(argv[ind]) );
         return(1);
     }
+
     if (MATCHARGS(ptr,"ppr_bit_clr", (ind+1) ,argc))
     {
         ppr_bit_clr(atoh(argv[ind] ));
         return(1);
     }
+
     if (MATCHARGS(ptr,"ppr_bit_set", (ind+1) ,argc))
     {
         ppr_bit_set(atoh(argv[ind]) );
         return(1);
     }
+
     if (MATCHARGS(ptr,"ppr_set", (ind+1) ,argc))
     {
         ppr_set(atoh(argv[ind]) );
         return(1);
     }
+
     if (MATCHARGS(ptr,"ppr_init",(ind+0),argc))
     {
         ppr_init();
         return(1);
     }
+
     if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
     {
         gpib_help();

@@ -42,7 +42,7 @@ void uart_rx_flush(uint8_t uart)
 ///
 /// @return  uart_getchar(0);.
 /// @see fdevopen() from avr-libc.
-int uart0_getchar(FILE *f)
+int uart0_getchar(void *p)
 {
     return( uart_getchar(0) );
 }
@@ -55,7 +55,7 @@ int uart0_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 0);.
 /// @see fdevopen() from avr-libc.
-int uart0_putchar(int c, FILE *f)
+int uart0_putchar(int c, void *p)
 {
     uart_putchar(c, 0);
 	return(c);
@@ -69,7 +69,7 @@ int uart0_putchar(int c, FILE *f)
 ///
 /// @return  uart_getchar(1);.
 /// @see fdevopen() from avr-libc.
-int uart1_getchar(FILE *f)
+int uart1_getchar(void *p)
 {
     return( uart_getchar(1) );
 }
@@ -82,7 +82,7 @@ int uart1_getchar(FILE *f)
 ///
 /// @return  uart_putchar(c, 1);.
 /// @see fdevopen() from avr-libc.
-int uart1_putchar(int c, FILE *f)
+int uart1_putchar(int c, void *p)
 {
     uart_putchar(c, 1);
 	return(c);

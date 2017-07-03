@@ -19,73 +19,95 @@
 ### Project name (also used for output file name)
 PROJECT = gpib
 
-### Source files and search directory
-
-# Disable AMIGO support code
-# AMIGO=0
+### Target device
+DEVICE  = atmega1284p
 
 # Enable AMIGO support Code
 AMIGO=1
+# AMIGO=0
+# Disable AMIGO support code
 
+### Source files and search directory
 # Extended user interactive fatfs tests
-FATFS_TESTS=1
+FATFS_TESTS=0
+
+# Extended user interactive posix tests
+POSIX_TESTS=1
+
+#LIF support 
+
+LIF_SUPPORT=1
+
 
 #We have an RTC
-RTC=1
+RTC_SUPPORT=1
+
+
+HARDWARE = \
+	hardware/hal.c \
+	hardware/ram.c \
+	hardware/delay.c \
+	hardware/rs232.c \
+	hardware/spi.c \
+	hardware/TWI_AVR8.c 
+# We have an RTC
+ifeq ($(RTC_SUPPORT),1)
+	HARDWARE += hardware/rtc.c 
+endif
+
+LIB = \
+	lib/stringsup.c \
+	lib/timer_hal.c \
+	lib/timer.c \
+	lib/time.c \
+	lib/queue.c 
+
+PRINTF = \
+	printf/printf.c \
+	printf/mathio.c 
 
 FATFS = \
-fatfs/ff.c  \
-fatfs/option/syscall.c  \
-fatfs/option/unicode.c \
-fatfs.hal/diskio.c  \
-fatfs.hal/mmc.c  \
-fatfs.hal/mmc_hal.c  \
-fatfs.sup/fatfs_sup.c  \
-fatfs.sup/posix.c 
-
-
+	fatfs/ff.c  \
+	fatfs/option/syscall.c  \
+	fatfs/option/unicode.c \
+	fatfs.hal/diskio.c  \
+	fatfs.hal/mmc.c  \
+	fatfs.hal/mmc_hal.c  \
+	fatfs.sup/fatfs_sup.c  
 ifeq ($(FATFS_TESTS),1)
-	FATFS += fatfs.sup/fatfs_utils.c  
+	FATFS += fatfs.sup/fatfs_tests.c  
 endif
-
 
 GPIB   = \
-gpib/gpib_hal.c \
-gpib/gpib.c \
-gpib/gpib_task.c \
-gpib/gpib_tests.c \
-gpib/ss80.c \
-gpib/amigo.c \
-gpib/printer.c \
-gpib/drives.c \
+	gpib/gpib_hal.c \
+	gpib/gpib.c \
+	gpib/gpib_task.c \
+	gpib/gpib_tests.c \
+	gpib/ss80.c \
+	gpib/amigo.c \
+	gpib/printer.c \
+	gpib/drives.c 
 
-LIF = \
-	lif/lifutils.c
-
-CSRC    = \
-printf/printf.c \
-printf/mathio.c \
-hardware/hal.c \
-hardware/ram.c \
-hardware/delay.c \
-hardware/rs232.c \
-hardware/spi.c \
-hardware/TWI_AVR8.c \
-lib/stringsup.c \
-lib/timer_hal.c \
-lib/timer.c \
-lib/time.c \
-lib/queue.c \
-main.c \
- $(FATFS) \
- $(GPIB) \
- $(LIF)
-
-
-# We have an RTC
-ifeq ($(RTC),1)
-	CSRC += hardware/rtc.c 
+POSIX = 
+	POSIX += posix/posix.c
+ifeq ($(POSIX_TESTS),1)
+	POSIX += posix/posix_tests.c  
 endif
+
+LIF = 
+ifeq ($(LIF_SUPPORT),1)
+	LIF +=lif/lifutils.c
+endif
+
+CSRC = \
+	$(HARDWARE) \
+	$(LIB) \
+	$(PRINTF) \
+	$(FATFS) \
+	$(POSIX) \
+	$(GPIB) \
+	$(LIF) \
+	main.c 
 
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
@@ -93,42 +115,42 @@ endif
 GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
 LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
 
-CC = avr-gcc
-
-ASRC    = \
- # fatfs/xitoa.o
-VPATH   =
-
-### Target device
-DEVICE  = atmega1284p
+ASRC    = 
 
 ### Optimization level (0, 1, 2, 3, 4 or s)
 OPTIMIZE = s
 
+CC = avr-gcc
 ### C Standard level (c89, gnu89, c99 or gnu99)
 CSTD = gnu99
 
 ### Include dirs, library dirs and definitions
 LIBS    =
 LIBDIRS =
-INCDIRS =. hardware lib printf gpib lif fatfs fatfs.hal fatfs.sup
+INCDIRS =. hardware lib printf fatfs fatfs.hal fatfs.sup gpib posix lif
 
 DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	DEFINE_PRINTF \
-	FLOATIO \
-	FATFS_UTILS_FULL \
-	POSIX_WRAPPERS \
+	FLOATIO 
+
+ifeq ($(RTC_SUPPORT),1)
+	DEFS += RTC_SUPPORT
+endif
+
+ifeq ($(POSIX_TESTS),1)
+	DEFS += POSIX_TESTS
+endif
 
 ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
 
-ifeq ($(AMIGO),1)
-	DEFS += AMIGO 
+ifeq ($(LIF_SUPPORT),1)
+	DEFS += LIF_SUPPORT
 endif
 
-ifeq ($(RTC),1)
-	DEFS += RTC
+ifeq ($(AMIGO),1)
+	DEFS += AMIGO 
 endif
 
 ADEFS   =

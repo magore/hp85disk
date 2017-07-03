@@ -358,17 +358,11 @@ ___
     * fatfs.sup/fatfs.h
       * FAtFS header files
     * fatfs.sup/fatfs_sup.c
-      * FatFS file listing and display functions
     * fatfs.sup/fatfs_sup.h
       * FatFS file listing and display functions
-    * fatfs.sup/fatfs_utils.c
+    * fatfs.sup/fatfs_tests.c
+    * fatfs.sup/fatfs_tests.h
       * FatFS user test functions
-    * fatfs.sup/fatfs_utils.h
-      * FatFS user test functions
-    * fatfs.sup/posix.c
-      * POSIX rappers for fatfs - unix file IO function call wrappers
-    * fatfs.sup/posix.h
-      * POSIX rappers for fatfs - unix file IO function call wrappers
   * gpib
     * My GPIB code for AMIGO SS80 and PPRINTER support
     * gpib/amigo.c
@@ -487,6 +481,20 @@ ___
       * Timer task hardware abstraction layer
     * lib/timetests.c
       * Time and timer test code
+  * lif
+    * LIF disk image utilities 
+    * lif/lifutils.c
+    * lif/lifutils.c
+      * Functions that allow the emulator to import and export files from LIF images 
+    * Makefile
+      * Permits creating a stand alone Linux version of the LIF emulator tools
+  * posix
+    * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
+    * posix/posix.c
+    * posix/posix.h
+      * POSIX wrappers for fatfs - unix file IO function call wrappers
+    * posix/posix_testsc
+      * POSIX user tests
   * printf
     * Printf and math IO functions
     * printf/mathio.c

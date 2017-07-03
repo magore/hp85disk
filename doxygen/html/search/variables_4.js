@@ -9,7 +9,7 @@ var searchData=
   ['device',['device',['../gpib_8h.html#a2376f17d1e7367401184b2a3978bcd3a',1,'gpib.h']]],
   ['device_5fnumber',['DEVICE_NUMBER',['../structSS80UnitType.html#a69cad18aab93449fbd91445c4ba62928',1,'SS80UnitType']]],
   ['devices',['Devices',['../drives_8c.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c'],['../drives_8h.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c']]],
-  ['dir',['DIR',['../structlif__t.html#aefeaa526c04a2b8715b0392feeec52a3',1,'lif_t::DIR()'],['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()']]],
+  ['dir',['dir',['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()'],['../structlif__t.html#aefeaa526c04a2b8715b0392feeec52a3',1,'lif_t::DIR()']]],
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],
   ['dir_5fsect',['dir_sect',['../structFIL.html#ab203794f939ad4480e81dfa488770783',1,'FIL']]],
   ['dirbase',['dirbase',['../structFATFS.html#a3f72fd998dbcce4652a85a81fe944bc4',1,'FATFS']]],

@@ -60,5 +60,6 @@ var searchData=
   ['bs_5fvolid32',['BS_VolID32',['../ff_8c.html#abaa3aafdcf5e83f8cb7e2bb373b13525',1,'ff.c']]],
   ['bs_5fvollab',['BS_VolLab',['../ff_8c.html#a28498ba4b07ff90aaa9628e81fb89d32',1,'ff.c']]],
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
+  ['bufsize',['BUFSIZE',['../posix__tests_8c.html#aeca034f67218340ecb2261a22c2f3dcd',1,'posix_tests.c']]],
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]]
 ];

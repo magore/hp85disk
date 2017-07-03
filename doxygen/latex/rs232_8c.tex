@@ -12,9 +12,9 @@ R\+S232 Driver A\+V\+R8.
 \item 
 void \hyperlink{rs232_8c_ab823b4d83752db47c0852bfa36a59036}{uart\+\_\+rx\+\_\+flush} (uint8\+\_\+t uart)
 \begin{DoxyCompactList}\small\item\em Flush receive ring buffer for specified uart. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8c_a7cc27636375d3ac8475246e44f59a845}{uart0\+\_\+getchar} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8c_a22337a8e4811283fdba6ec7015f831bb}{uart0\+\_\+getchar} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8c_af3a596ad95e6425f623181b8fc746119}{uart0\+\_\+putchar} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8c_ad707ec3a12e8d1737c39c84f4a33c367}{uart0\+\_\+putchar} (int c, void $\ast$p)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{rs232_8c_acf0f1788a444afef4ccd7c614429df05}{uart\+\_\+ubr} (uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. \end{DoxyCompactList}\item 
@@ -118,11 +118,11 @@ Definition at line 212 of file rs232.\+c.
 
 \index{rs232.\+c@{rs232.\+c}!uart0\+\_\+getchar@{uart0\+\_\+getchar}}
 \index{uart0\+\_\+getchar@{uart0\+\_\+getchar}!rs232.\+c@{rs232.\+c}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+getchar(\+F\+I\+L\+E $\ast$f)}{uart0_getchar(FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+getchar (
+\subsubsection[{\texorpdfstring{uart0\+\_\+getchar(void $\ast$p)}{uart0_getchar(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+getchar (
 \begin{DoxyParamCaption}
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8c_a7cc27636375d3ac8475246e44f59a845}{}\label{rs232_8c_a7cc27636375d3ac8475246e44f59a845}
+)}\hypertarget{rs232_8c_a22337a8e4811283fdba6ec7015f831bb}{}\label{rs232_8c_a22337a8e4811283fdba6ec7015f831bb}
 
 
 U\+A\+RT receive character function using avr-\/libc. 
@@ -148,12 +148,12 @@ Referenced by uart\+\_\+get(), and uart\+\_\+init().
 
 \index{rs232.\+c@{rs232.\+c}!uart0\+\_\+putchar@{uart0\+\_\+putchar}}
 \index{uart0\+\_\+putchar@{uart0\+\_\+putchar}!rs232.\+c@{rs232.\+c}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(int c, F\+I\+L\+E $\ast$f)}{uart0_putchar(int c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+putchar (
+\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(int c, void $\ast$p)}{uart0_putchar(int c, void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+putchar (
 \begin{DoxyParamCaption}
 \item[{int}]{c, }
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8c_af3a596ad95e6425f623181b8fc746119}{}\label{rs232_8c_af3a596ad95e6425f623181b8fc746119}
+)}\hypertarget{rs232_8c_ad707ec3a12e8d1737c39c84f4a33c367}{}\label{rs232_8c_ad707ec3a12e8d1737c39c84f4a33c367}
 
 
 U\+A\+RT transmit character function using avr-\/libc. 
@@ -334,7 +334,7 @@ Definition at line 414 of file rs232.\+c.
 
 
 
-Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+byte(), plot\+\_\+echo(), and task().
+Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+byte(), and plot\+\_\+echo().
 
 \index{rs232.\+c@{rs232.\+c}!uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}}
 \index{uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}!rs232.\+c@{rs232.\+c}}

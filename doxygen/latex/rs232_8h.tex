@@ -34,20 +34,20 @@ struct \hyperlink{struct__uart}{\+\_\+uart}
 \item 
 \#define \hyperlink{rs232_8h_aeddebfcb46db9f5421188decb3e21edb}{kbhit}(uart)~\hyperlink{rs232_8h_a72746897c9285db2e3d50c9c38e8bb93}{uart\+\_\+rx\+\_\+count}( uart )
 \item 
-\#define \hyperlink{rs232_8h_a2be774878148befdb085b93380cba587}{uart\+\_\+putc}(a,  c)~\hyperlink{rs232_8h_af3a596ad95e6425f623181b8fc746119}{uart0\+\_\+putchar}(c,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL})
+\#define \hyperlink{rs232_8h_a2be774878148befdb085b93380cba587}{uart\+\_\+putc}(a,  c)~\hyperlink{rs232_8h_ad707ec3a12e8d1737c39c84f4a33c367}{uart0\+\_\+putchar}(c,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL})
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{rs232_8h_ab823b4d83752db47c0852bfa36a59036}{uart\+\_\+rx\+\_\+flush} (uint8\+\_\+t uart)
 \begin{DoxyCompactList}\small\item\em Flush receive ring buffer for specified uart. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8h_a7cc27636375d3ac8475246e44f59a845}{uart0\+\_\+getchar} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_a22337a8e4811283fdba6ec7015f831bb}{uart0\+\_\+getchar} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8h_af3a596ad95e6425f623181b8fc746119}{uart0\+\_\+putchar} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_ad707ec3a12e8d1737c39c84f4a33c367}{uart0\+\_\+putchar} (int c, void $\ast$p)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
-int \hyperlink{rs232_8h_a0fe59f883cf763d61db1192e9d5e5a77}{uart1\+\_\+getchar} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_ae1b2ea97a73c0e8e415295b2613bd726}{uart1\+\_\+getchar} (void $\ast$p)
 \item 
-int \hyperlink{rs232_8h_a37201a1a083614a9d94109b41c6a3098}{uart1\+\_\+putchar} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$f)
+int \hyperlink{rs232_8h_ab2aad07cb29ac536ba44369321a195c2}{uart1\+\_\+putchar} (int c, void $\ast$p)
 \item 
 uint16\+\_\+t \hyperlink{rs232_8h_acf0f1788a444afef4ccd7c614429df05}{uart\+\_\+ubr} (uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. \end{DoxyCompactList}\item 
@@ -105,6 +105,10 @@ R\+S232 Driver A\+V\+R8.
 
 Definition at line 45 of file rs232.\+h.
 
+
+
+Referenced by task(), and testpage().
+
 \index{rs232.\+h@{rs232.\+h}!R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE@{R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}}
 \index{R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE@{R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}!rs232.\+h@{rs232.\+h}}
 \subsubsection[{\texorpdfstring{R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}{RX_BUF_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE~80}\hypertarget{rs232_8h_a690f985c933da2ce6fe62b6c61dfa662}{}\label{rs232_8h_a690f985c933da2ce6fe62b6c61dfa662}
@@ -148,7 +152,7 @@ Definition at line 47 of file rs232.\+h.
 
 
 
-Referenced by fatfs\+\_\+cat().
+Referenced by mmc\+\_\+test().
 
 \index{rs232.\+h@{rs232.\+h}!U\+A\+R\+TS@{U\+A\+R\+TS}}
 \index{U\+A\+R\+TS@{U\+A\+R\+TS}!rs232.\+h@{rs232.\+h}}
@@ -227,11 +231,11 @@ Definition at line 440 of file rs232.\+c.
 
 \index{rs232.\+h@{rs232.\+h}!uart0\+\_\+getchar@{uart0\+\_\+getchar}}
 \index{uart0\+\_\+getchar@{uart0\+\_\+getchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+getchar(\+F\+I\+L\+E $\ast$f)}{uart0_getchar(FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+getchar (
+\subsubsection[{\texorpdfstring{uart0\+\_\+getchar(void $\ast$p)}{uart0_getchar(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+getchar (
 \begin{DoxyParamCaption}
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_a7cc27636375d3ac8475246e44f59a845}{}\label{rs232_8h_a7cc27636375d3ac8475246e44f59a845}
+)}\hypertarget{rs232_8h_a22337a8e4811283fdba6ec7015f831bb}{}\label{rs232_8h_a22337a8e4811283fdba6ec7015f831bb}
 
 
 U\+A\+RT receive character function using avr-\/libc. 
@@ -257,12 +261,12 @@ Referenced by uart\+\_\+get(), and uart\+\_\+init().
 
 \index{rs232.\+h@{rs232.\+h}!uart0\+\_\+putchar@{uart0\+\_\+putchar}}
 \index{uart0\+\_\+putchar@{uart0\+\_\+putchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(int c, F\+I\+L\+E $\ast$f)}{uart0_putchar(int c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+putchar (
+\subsubsection[{\texorpdfstring{uart0\+\_\+putchar(int c, void $\ast$p)}{uart0_putchar(int c, void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart0\+\_\+putchar (
 \begin{DoxyParamCaption}
 \item[{int}]{c, }
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_af3a596ad95e6425f623181b8fc746119}{}\label{rs232_8h_af3a596ad95e6425f623181b8fc746119}
+)}\hypertarget{rs232_8h_ad707ec3a12e8d1737c39c84f4a33c367}{}\label{rs232_8h_ad707ec3a12e8d1737c39c84f4a33c367}
 
 
 U\+A\+RT transmit character function using avr-\/libc. 
@@ -290,23 +294,23 @@ Referenced by uart\+\_\+init(), and uart\+\_\+put().
 
 \index{rs232.\+h@{rs232.\+h}!uart1\+\_\+getchar@{uart1\+\_\+getchar}}
 \index{uart1\+\_\+getchar@{uart1\+\_\+getchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart1\+\_\+getchar(\+F\+I\+L\+E $\ast$f)}{uart1_getchar(FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart1\+\_\+getchar (
+\subsubsection[{\texorpdfstring{uart1\+\_\+getchar(void $\ast$p)}{uart1_getchar(void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart1\+\_\+getchar (
 \begin{DoxyParamCaption}
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_a0fe59f883cf763d61db1192e9d5e5a77}{}\label{rs232_8h_a0fe59f883cf763d61db1192e9d5e5a77}
+)}\hypertarget{rs232_8h_ae1b2ea97a73c0e8e415295b2613bd726}{}\label{rs232_8h_ae1b2ea97a73c0e8e415295b2613bd726}
 
 
 Referenced by uart0\+\_\+putchar(), and uart\+\_\+init().
 
 \index{rs232.\+h@{rs232.\+h}!uart1\+\_\+putchar@{uart1\+\_\+putchar}}
 \index{uart1\+\_\+putchar@{uart1\+\_\+putchar}!rs232.\+h@{rs232.\+h}}
-\subsubsection[{\texorpdfstring{uart1\+\_\+putchar(int c, F\+I\+L\+E $\ast$f)}{uart1_putchar(int c, FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart1\+\_\+putchar (
+\subsubsection[{\texorpdfstring{uart1\+\_\+putchar(int c, void $\ast$p)}{uart1_putchar(int c, void *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int uart1\+\_\+putchar (
 \begin{DoxyParamCaption}
 \item[{int}]{c, }
-\item[{{\bf F\+I\+LE} $\ast$}]{f}
+\item[{void $\ast$}]{p}
 \end{DoxyParamCaption}
-)}\hypertarget{rs232_8h_a37201a1a083614a9d94109b41c6a3098}{}\label{rs232_8h_a37201a1a083614a9d94109b41c6a3098}
+)}\hypertarget{rs232_8h_ab2aad07cb29ac536ba44369321a195c2}{}\label{rs232_8h_ab2aad07cb29ac536ba44369321a195c2}
 
 
 Referenced by uart0\+\_\+putchar(), and uart\+\_\+init().
@@ -466,7 +470,7 @@ Definition at line 414 of file rs232.\+c.
 
 
 
-Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+byte(), plot\+\_\+echo(), and task().
+Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+byte(), and plot\+\_\+echo().
 
 \index{rs232.\+h@{rs232.\+h}!uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}}
 \index{uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}!rs232.\+h@{rs232.\+h}}

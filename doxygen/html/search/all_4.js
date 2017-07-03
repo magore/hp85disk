@@ -38,7 +38,7 @@ var searchData=
   ['device_5ftypes',['DEVICE_TYPES',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1a',1,'drives.h']]],
   ['devices',['Devices',['../drives_8c.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c'],['../drives_8h.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c']]],
   ['devicetype',['DeviceType',['../structDeviceType.html',1,'']]],
-  ['dir',['DIR',['../structDIR.html',1,'DIR'],['../structlif__t.html#aefeaa526c04a2b8715b0392feeec52a3',1,'lif_t::DIR()'],['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()']]],
+  ['dir',['DIR',['../structDIR.html',1,'DIR'],['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()'],['../structlif__t.html#aefeaa526c04a2b8715b0392feeec52a3',1,'lif_t::DIR()']]],
   ['dir_5falloc',['dir_alloc',['../ff_8c.html#a4d56c285f91e80d8b00c9e1af0ce6989',1,'ff.c']]],
   ['dir_5fattr',['DIR_Attr',['../ff_8c.html#ad3233e40118ed66095f3c9545b788f8a',1,'ff.c']]],
   ['dir_5fcrttime',['DIR_CrtTime',['../ff_8c.html#a47fb1881ea71d860db9b8280564cb4d5',1,'ff.c']]],
