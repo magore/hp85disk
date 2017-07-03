@@ -44,13 +44,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE 
 void posix_help()
 {
-	printf("\n"
+	printf(
+		"posix help\n"
+#ifdef POSIX_TESTS
+		"The remaining tests may optionally start with \"posix\" keyword\n"
+#endif
 		"chmod file NNN\n"
 		"cat file [-p]\n"
 		"cd dir\n"
 		"copy file1 file2\n"
-		"help\n"
-		"hexdump file\n"
+		"hexdump file [-p]\n"
 		"log str\n"
 		"ls dir [-l]\n"
 		"mkdir dir\n"
@@ -85,18 +88,15 @@ int posix_tests(int argc,char *argv[])
 	ind = 1;
     ptr = argv[ind++];
 
-// If we have FATFS_TESTS we need to prefix each test with "posix" keyword to avid name clashing
-#ifdef FATFS_TESTS
 	if( MATCH(ptr,"posix") )
 	{
-		if(ind >= argc)
+		ptr = argv[ind++];
+		if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
 		{
 			posix_help();
 			return(1);
 		}
-		ptr = argv[ind++];
 	}
-#endif
 
     if (MATCHARGS(ptr,"cat", (ind + 1), argc))
     {
@@ -134,11 +134,6 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
-    if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
-    {
-        posix_help();
-        return(1);
-    }
 
     if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
     {
@@ -178,10 +173,12 @@ int posix_tests(int argc,char *argv[])
 		for(i=ind;i<argc;++i)
 		{
 			if(!MATCH(argv[i],"-l") )
-				ls(argv[ind], verbose);
+				ls(argv[i], verbose);
 		}
 		if(!args)
-			ls(".",verbose);
+		{
+			ls("",verbose);
+		}
         return(1);
     }
 
@@ -485,7 +482,7 @@ int ls_info(char *name, int verbose)
 
 	if(!verbose)
 	{
-		printf("%s\n",name);
+		printf("%s\n",basename(name));
 		return(1);
 	}
 
@@ -520,35 +517,47 @@ int ls_info(char *name, int verbose)
 /// @param[in] option: -l for detail
 /// @return  number of files
 MEMSPACE
-int ls(char *path, int verbose)
+int ls(char *name, int verbose)
 {
 	struct stat st;
 	DIR *dirp;
 	int files = 0;
-	int len;
+	int len,len2;
 	dirent_t *de;
-	char name[MAX_NAME_LEN+1];
+	char fullpath[MAX_NAME_LEN+1];
 
-	if(!path)
-		path = ".";
-	if(!strlen(path) == 0)
-		path = ".";
+	fullpath[0] = 0;
+	if(!name || !*name || MATCH(name,".") )
+	{
+		if( !getcwd(fullpath, sizeof(fullpath)-2) )
+		{
+			printf("ls: Can't get current directory\n"); 
+			return(0); 
 
-    printf("Listing:[%s]\n",path);
+		}
+	}
+	else
+	{
+		strcpy(fullpath,name);
+	}
+	len = strlen(fullpath);
 
-	if (stat(path, &st)) 
+
+    printf("Listing:[%s]\n",fullpath);
+
+	if (stat(fullpath, &st)) 
 	{ 
-		printf("ls: cannot stat [%s]\n", path); 
+		printf("ls: cannot stat [%s]\n", fullpath); 
 		return(0); 
 	}
 
 	switch (st.st_mode & S_IFMT) 
 	{
 	case S_IFREG:
-		ls_info(path,verbose);
+		ls_info(fullpath,verbose);
 		break;
 	case S_IFDIR:
-		dirp = opendir(path);
+		dirp = opendir(fullpath);
 		if(!dirp)
 		{
 			printf("opendir failed\n");
@@ -559,15 +568,20 @@ int ls(char *path, int verbose)
 			if(de->d_name[0] == 0)
 				break;
 			// FIXME neeed beetter string length tests here
-			len = strlen(path);
-			if(len + strlen(name) > MAX_NAME_LEN)
+			len2 = strlen(de->d_name);
+			if(len + len2 >= MAX_NAME_LEN)
 			{
-				printf("name:[%s] too long with full path\n",name);
+				printf("name:[%s] too long with full path\n",de->d_name);
+				continue;
 			}
-			strncpy(name,path,MAX_NAME_LEN-2);
-			strcat(name,"/");
-			strcat(name,de->d_name);
-			files +=ls_info(name,verbose);
+			if(!MATCH(fullpath,"/") )
+			{
+				strcat(fullpath,"/");
+			}
+			strcat(fullpath,de->d_name);
+			files +=ls_info(fullpath,verbose);
+			// restore path
+			fullpath[len] = 0;
 #ifdef ESP8266
 			optimistic_yield(1000);
 			wdt_reset();

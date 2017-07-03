@@ -106,7 +106,11 @@ typedef struct \hyperlink{structtimespec}{timespec} \hyperlink{time_8h_a062a82a8
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8h_a4ad16382ead0709235ab5ea871c3d2be}{print\+\_\+dst} (void)
 \begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as localtime for this year \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8h_a3c227da686cc61a0543ffd12c673c895}{print\+\_\+dst\+\_\+gmt} (void)
-\begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as G\+MT for this year \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em print start/stop for D\+ST as G\+MT for this year \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8h_a0be4566aa9ed3f590570de0787f2cc12}{initialize\+\_\+clock} (int minwest)
+\begin{DoxyCompactList}\small\item\em initialize system time -\/ if we have an R\+TC use it \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{time_8h_abfb6a874f26825f5b1b82edcd614bc86}{display\+\_\+clock} (void)
+\begin{DoxyCompactList}\small\item\em Display system time and optionally R\+TC time. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -271,7 +275,7 @@ Definition at line 394 of file time.\+c.
 
 
 
-Referenced by display\+\_\+time().
+Referenced by display\+\_\+clock().
 
 \index{time.\+h@{time.\+h}!asctime\+\_\+r@{asctime\+\_\+r}}
 \index{asctime\+\_\+r@{asctime\+\_\+r}!time.\+h@{time.\+h}}
@@ -458,6 +462,35 @@ Definition at line 223 of file time.\+c.
 
 Referenced by normalize(), and tm2epoch().
 
+\index{time.\+h@{time.\+h}!display\+\_\+clock@{display\+\_\+clock}}
+\index{display\+\_\+clock@{display\+\_\+clock}!time.\+h@{time.\+h}}
+\subsubsection[{\texorpdfstring{display\+\_\+clock(void)}{display_clock(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void display\+\_\+clock (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{time_8h_abfb6a874f26825f5b1b82edcd614bc86}{}\label{time_8h_abfb6a874f26825f5b1b82edcd614bc86}
+
+
+Display system time and optionally R\+TC time. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}{rtc\+\_\+read} 
+
+\+: \hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()} 
+
+\+: ascitime() 
+\end{DoxySeeAlso}
+
+
+Definition at line 1227 of file time.\+c.
+
+
+
+Referenced by main(), and task().
+
 \index{time.\+h@{time.\+h}!find\+\_\+dst@{find\+\_\+dst}}
 \index{find\+\_\+dst@{find\+\_\+dst}!time.\+h@{time.\+h}}
 \subsubsection[{\texorpdfstring{find\+\_\+dst(int dst, time\+\_\+t epoch, int year, int month, int weekno, int dayno, int hour)}{find_dst(int dst, time_t epoch, int year, int month, int weekno, int dayno, int hour)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf time\+\_\+t} find\+\_\+dst (
@@ -611,7 +644,7 @@ Definition at line 471 of file time.\+c.
 
 
 
-Referenced by display\+\_\+time(), printer\+\_\+open(), rtc\+\_\+init(), and unix\+\_\+time\+\_\+to\+\_\+fat().
+Referenced by display\+\_\+clock(), printer\+\_\+open(), rtc\+\_\+init(), and unix\+\_\+time\+\_\+to\+\_\+fat().
 
 \index{time.\+h@{time.\+h}!gmtime\+\_\+r@{gmtime\+\_\+r}}
 \index{gmtime\+\_\+r@{gmtime\+\_\+r}!time.\+h@{time.\+h}}
@@ -642,6 +675,36 @@ Definition at line 456 of file time.\+c.
 
 
 Referenced by ctime\+\_\+gm(), gmtime(), lif\+\_\+ctime\+\_\+gmt(), and lif\+\_\+time2lifbcd().
+
+\index{time.\+h@{time.\+h}!initialize\+\_\+clock@{initialize\+\_\+clock}}
+\index{initialize\+\_\+clock@{initialize\+\_\+clock}!time.\+h@{time.\+h}}
+\subsubsection[{\texorpdfstring{initialize\+\_\+clock(int minwest)}{initialize_clock(int minwest)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void initialize\+\_\+clock (
+\begin{DoxyParamCaption}
+\item[{int}]{minwest}
+\end{DoxyParamCaption}
+)}\hypertarget{time_8h_a0be4566aa9ed3f590570de0787f2cc12}{}\label{time_8h_a0be4566aa9ed3f590570de0787f2cc12}
+
+
+initialize system time -\/ if we have an R\+TC use it 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em minwest} & your time zone as minute west \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\+\_\+settime()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 1178 of file time.\+c.
+
+
+
+Referenced by main().
 
 \index{time.\+h@{time.\+h}!is\+\_\+dst@{is\+\_\+dst}}
 \index{is\+\_\+dst@{is\+\_\+dst}!time.\+h@{time.\+h}}
@@ -948,7 +1011,7 @@ Definition at line 806 of file time.\+c.
 
 
 
-Referenced by settimeofday(), and setup\+\_\+clock().
+Referenced by initialize\+\_\+clock(), and settimeofday().
 
 \index{time.\+h@{time.\+h}!time@{time}}
 \index{time@{time}!time.\+h@{time.\+h}}
@@ -1070,7 +1133,7 @@ Definition at line 347 of file time.\+c.
 
 
 
-Referenced by display\+\_\+time(), fat\+\_\+time\+\_\+to\+\_\+unix(), find\+\_\+dst(), lif\+\_\+lifbcd2time(), setdate\+\_\+r(), and setup\+\_\+clock().
+Referenced by display\+\_\+clock(), fat\+\_\+time\+\_\+to\+\_\+unix(), find\+\_\+dst(), initialize\+\_\+clock(), lif\+\_\+lifbcd2time(), and setdate\+\_\+r().
 
 \index{time.\+h@{time.\+h}!tm\+\_\+mon\+\_\+to\+\_\+ascii@{tm\+\_\+mon\+\_\+to\+\_\+ascii}}
 \index{tm\+\_\+mon\+\_\+to\+\_\+ascii@{tm\+\_\+mon\+\_\+to\+\_\+ascii}!time.\+h@{time.\+h}}

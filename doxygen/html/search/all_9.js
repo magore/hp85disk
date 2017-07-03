@@ -12,6 +12,7 @@ var searchData=
   ['init_5fdevices',['init_Devices',['../drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f',1,'init_Devices():&#160;drives.c'],['../drives_8h.html#a31361bab0d441c06afb14a7af1d657c9',1,'init_Devices(void):&#160;drives.c']]],
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
+  ['initialize_5fclock',['initialize_clock',['../time_8c.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c'],['../time_8h.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c']]],
   ['ino_5ft',['ino_t',['../posix_8h.html#aed4e918b44240739869c4bdb1c4787a9',1,'posix.h']]],
   ['insert_5fsort',['insert_sort',['../sort_8c.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c'],['../sort_8h.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c']]],
   ['install_5ftimers_5fisr',['install_timers_isr',['../timer_8h.html#a49353e09a3623d95083574b87e9aadc5',1,'timer.h']]],
@@ -31,5 +32,5 @@ var searchData=
   ['isdio_5fwrite',['ISDIO_WRITE',['../diskio_8h.html#a9637dcd58e0f1f301edf0cccff9e3507',1,'diskio.h']]],
   ['islower',['IsLower',['../ff_8c.html#a4a9d454724926bd51a3aed589a97f08b',1,'IsLower():&#160;ff.c'],['../stringsup_8c.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a15c5aeb16e6527e860098b0e062168b5',1,'islower(int c):&#160;stringsup.c']]],
   ['isr',['ISR',['../rs232_8c.html#a084f0a9cf05b1877bd8a71a90dae7ff8',1,'rs232.c']]],
-  ['isupper',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
+  ['isupper',['isupper',['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
 ];

@@ -16,13 +16,6 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}gpib/amigo.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}gpib/ss80.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$math.\+h$>$}\\*
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME}~(1406357902\+L -\/ 3600\+L $\ast$ 4\+L)
-\begin{DoxyCompactList}\small\item\em Defines a default E\+P\+O\+CH time to set the R\+TC if not initialied. \end{DoxyCompactList}\item 
-\#define \hyperlink{main_8c_a77a4765d1e38b93e353315ca174c9959}{T\+I\+M\+E\+Z\+O\+NE}~300\+L                             /$\ast$ west $\ast$/
-\begin{DoxyCompactList}\small\item\em Timezone west in minutes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -30,10 +23,6 @@ void \hyperlink{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
 \begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a9926884643efcc16ac36662b381b6bde}{delay\+\_\+tests} ()
 \begin{DoxyCompactList}\small\item\em perform tests on delay functions \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}{setup\+\_\+clock} ()
-\begin{DoxyCompactList}\small\item\em Read R\+TC D\+S1307. \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}{display\+\_\+time} ()
-\begin{DoxyCompactList}\small\item\em Display current D\+S1307 R\+TC time. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a66ac220b8fb4c59823fdf116cecda862}{task} (uint8\+\_\+t gpib)
 \begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
 int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
@@ -54,35 +43,6 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 \end{DoxyParagraph}
 
 
-\subsection{Macro Definition Documentation}
-\index{main.\+c@{main.\+c}!D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME@{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME}}
-\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME@{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME}!main.\+c@{main.\+c}}
-\subsubsection[{\texorpdfstring{D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME}{DEFAULT_TIME}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+ME~(1406357902\+L -\/ 3600\+L $\ast$ 4\+L)}\hypertarget{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}{}\label{main_8c_a7b7a6b774a78bf2034b3b9ba5702da15}
-
-
-Defines a default E\+P\+O\+CH time to set the R\+TC if not initialied. 
-
-
-
-Definition at line 101 of file main.\+c.
-
-
-
-Referenced by setup\+\_\+clock().
-
-\index{main.\+c@{main.\+c}!T\+I\+M\+E\+Z\+O\+NE@{T\+I\+M\+E\+Z\+O\+NE}}
-\index{T\+I\+M\+E\+Z\+O\+NE@{T\+I\+M\+E\+Z\+O\+NE}!main.\+c@{main.\+c}}
-\subsubsection[{\texorpdfstring{T\+I\+M\+E\+Z\+O\+NE}{TIMEZONE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+E\+Z\+O\+NE~300\+L                             /$\ast$ west $\ast$/}\hypertarget{main_8c_a77a4765d1e38b93e353315ca174c9959}{}\label{main_8c_a77a4765d1e38b93e353315ca174c9959}
-
-
-Timezone west in minutes. 
-
-
-
-Definition at line 103 of file main.\+c.
-
-
-
 \subsection{Function Documentation}
 \index{main.\+c@{main.\+c}!delay\+\_\+tests@{delay\+\_\+tests}}
 \index{delay\+\_\+tests@{delay\+\_\+tests}!main.\+c@{main.\+c}}
@@ -100,40 +60,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 65 of file main.\+c.
+Definition at line 66 of file main.\+c.
 
 
 
 Referenced by task().
-
-\index{main.\+c@{main.\+c}!display\+\_\+time@{display\+\_\+time}}
-\index{display\+\_\+time@{display\+\_\+time}!main.\+c@{main.\+c}}
-\subsubsection[{\texorpdfstring{display\+\_\+time()}{display_time()}}]{\setlength{\rightskip}{0pt plus 5cm}void display\+\_\+time (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}{}\label{main_8c_a4eb8933c334d8d88e9ff0b0d1152951c}
-
-
-Display current D\+S1307 R\+TC time. 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\+: \hyperlink{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}{rtc\+\_\+read} 
-
-\+: \hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()} 
-
-\+: ascitime() 
-\end{DoxySeeAlso}
-
-
-Definition at line 153 of file main.\+c.
-
-
-
-Referenced by main(), and task().
 
 \index{main.\+c@{main.\+c}!help@{help}}
 \index{help@{help}!main.\+c@{main.\+c}}
@@ -194,36 +125,11 @@ Address Summary
 
 Display debug level 
 
-Definition at line 276 of file main.\+c.
+Definition at line 188 of file main.\+c.
 
 
 
 Referenced by lif\+\_\+create\+\_\+image(), and Mat\+Write().
-
-\index{main.\+c@{main.\+c}!setup\+\_\+clock@{setup\+\_\+clock}}
-\index{setup\+\_\+clock@{setup\+\_\+clock}!main.\+c@{main.\+c}}
-\subsubsection[{\texorpdfstring{setup\+\_\+clock()}{setup_clock()}}]{\setlength{\rightskip}{0pt plus 5cm}void setup\+\_\+clock (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}{}\label{main_8c_aaad9fc8eb63b077e9ad3d72a2092f27c}
-
-
-Read R\+TC D\+S1307. 
-
-If not initialized set default time \begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\+: \hyperlink{timer_8c_a4ebca9883466f2cc6fea0547e0e64e79}{clock\+\_\+settime()} 
-\end{DoxySeeAlso}
-
-
-Definition at line 110 of file main.\+c.
-
-
-
-Referenced by main().
 
 \index{main.\+c@{main.\+c}!task@{task}}
 \index{task@{task}!main.\+c@{main.\+c}}
@@ -246,7 +152,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 196 of file main.\+c.
+Definition at line 108 of file main.\+c.
 
 
 

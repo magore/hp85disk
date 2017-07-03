@@ -42,8 +42,12 @@ MEMSPACE
 void fatfs_help( void )
 {
 	printf("\n"
-		"fatfs_help\n"
-
+#ifdef POSIX_TESTS
+	"fatfs tests MUST start with \"fatfs\" keyword\n"
+#else
+	"fatfs tests may optionally start with \"fatfs\" keyword\n"
+#endif
+		"fatfs help\n"
 #ifdef FATFS_UTILS_FULL
 		"attrib file p1 p2\n"
 		"cat file\n"
@@ -68,8 +72,9 @@ void fatfs_help( void )
 		"rmdir dir\n"
 		"rename old new\n"
 #endif
-
+		"\n"
 	);
+	
 }
 
 /// @brief FatFs test parser
@@ -95,18 +100,21 @@ int fatfs_tests(int argc,char *argv[])
 	ind = 1;
     ptr = argv[ind++];
 
-// If we have POSIX_TESTS we need to prefix each test with "fatfs" keyword to avoid name clashing
+// If we have POSIX_TESTS we MUST prefix each test with "fatfs" keyword to avoid name clashing
 #ifdef POSIX_TESTS
-    if( MATCH(ptr,"fatfs") )
-    {
-        if(ind >= argc)
-        {
-            posix_help();
-            return(1);
-        }
-        ptr = argv[ind++];
-    }
+    if( !MATCH(ptr,"fatfs") )
+		return(0);
 #endif
+
+    if( MATCH(ptr,"fatfs") )
+	{
+		ptr = argv[ind++];
+		if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
+		{
+			fatfs_help();
+			return(1);
+		}
+    }
 
     if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
     {
@@ -114,9 +122,21 @@ int fatfs_tests(int argc,char *argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"ls", (ind + 1), argc))
+    if (MATCHARGS(ptr,"ls", (ind + 0), argc))
 	{
-		fatfs_ls(argv[ind]);
+        int i;
+        int args = 0;
+        for(i=ind;i<argc;++i)
+        {
+            if(!MATCH(argv[i],"-l") )
+			{
+                fatfs_ls(argv[i]);
+				++args;
+			}
+			
+        }
+        if(!args)
+            fatfs_ls("");
         return(1);
 	}
 
@@ -275,6 +295,58 @@ void mmc_test(void)
     printf("END MMC TEST\n");
 	printf("==============================\n");
 }
+
+///
+/// - Credit: part of FatFs avr example project (C)ChaN, 2013.
+///
+/// @param[in] ptr: pathname of directory to list
+///
+/// @see fatfs_filinfo_list().
+/// @return  void.
+MEMSPACE
+void fatfs_ls(char *ptr)
+{
+    long p1;
+    UINT s1, s2;
+    int res;
+    FILINFO fno;
+    DIR dirs;                                     /* Directory object */
+    FATFS *fs;
+
+	if(!ptr || !*ptr)
+		ptr = ".";
+
+    while(*ptr == ' ' || *ptr == '\t')
+        ++ptr;
+
+    printf("Listing:[%s]\n",ptr);
+
+    res = f_opendir(&dirs, ptr);
+    if (res) { put_rc(res); return; }
+    p1 = s1 = s2 = 0;
+    while(1)
+    {
+        res = f_readdir(&dirs, &fno);
+        if ((res != FR_OK) || !fno.fname[0]) break;
+        if (fno.fattrib & AM_DIR)
+        {
+            s2++;
+        }
+        else
+        {
+            s1++; p1 += fno.fsize;
+        }
+        fatfs_filinfo_list(&fno);
+#ifdef ESP8266
+		optimistic_yield(1000);
+		wdt_reset();
+#endif
+    }
+    printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
+    if (f_getfree(ptr, (DWORD*)&p1, &fs) == FR_OK)
+        printf(", %10luK bytes free\n", p1 * fs->csize / 2);
+}
+
 
 
 #ifdef FATFS_UTILS_FULL
@@ -476,57 +548,6 @@ void fatfs_cd(char *name)
 #endif
 
 
-
-///
-/// - Credit: part of FatFs avr example project (C)ChaN, 2013.
-///
-/// @param[in] ptr: pathname of directory to list
-///
-/// @see fatfs_filinfo_list().
-/// @return  void.
-MEMSPACE
-void fatfs_ls(char *ptr)
-{
-    long p1;
-    UINT s1, s2;
-    int res;
-    FILINFO fno;
-    DIR dirs;                                     /* Directory object */
-    FATFS *fs;
-
-	if(!ptr)
-		ptr = ".";
-
-    while(*ptr == ' ' || *ptr == '\t')
-        ++ptr;
-
-    printf("Listing:[%s]\n",ptr);
-
-    res = f_opendir(&dirs, ptr);
-    if (res) { put_rc(res); return; }
-    p1 = s1 = s2 = 0;
-    while(1)
-    {
-        res = f_readdir(&dirs, &fno);
-        if ((res != FR_OK) || !fno.fname[0]) break;
-        if (fno.fattrib & AM_DIR)
-        {
-            s2++;
-        }
-        else
-        {
-            s1++; p1 += fno.fsize;
-        }
-        fatfs_filinfo_list(&fno);
-#ifdef ESP8266
-		optimistic_yield(1000);
-		wdt_reset();
-#endif
-    }
-    printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
-    if (f_getfree(ptr, (DWORD*)&p1, &fs) == FR_OK)
-        printf(", %10luK bytes free\n", p1 * fs->csize / 2);
-}
 
 /// @brief  Make a directory.
 ///

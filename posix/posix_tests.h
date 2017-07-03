@@ -33,7 +33,7 @@ MEMSPACE int hexdump ( char *name , int dopage );
 MEMSPACE int setpage ( int count );
 MEMSPACE int testpage ( int count );
 MEMSPACE int ls_info ( char *name , int verbose );
-MEMSPACE int ls ( char *path , int verbose );
+MEMSPACE int ls ( char *name , int verbose );
 MEMSPACE long logfile ( char *name , char *str );
 MEMSPACE uint16_t sum ( char *name );
 MEMSPACE long upload ( char *name );

@@ -34,7 +34,7 @@ var searchData=
   ['timetests',['timetests',['../timetests_8c.html#ae7aeedba022f6bb6d51510e55c95c4fa',1,'timetests.c']]],
   ['timetests_2ec',['timetests.c',['../timetests_8c.html',1,'']]],
   ['timeval',['timeval',['../structtimeval.html',1,'']]],
-  ['timezone',['timezone',['../structtimezone.html',1,'timezone'],['../main_8c.html#a77a4765d1e38b93e353315ca174c9959',1,'TIMEZONE():&#160;main.c']]],
+  ['timezone',['timezone',['../structtimezone.html',1,'']]],
   ['tm',['tm',['../structtm.html',1,'']]],
   ['tm2epoch',['tm2epoch',['../time_8c.html#ab5470ed361255861f6db7f5154587ea0',1,'time.c']]],
   ['tm_5fgmtoff',['tm_gmtoff',['../structtm.html#a6b7d1fb16f21197ea027e364e2812c3d',1,'tm']]],

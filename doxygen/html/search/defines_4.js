@@ -6,7 +6,6 @@ var searchData=
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
   ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],
   ['def_5fnambuf',['DEF_NAMBUF',['../ff_8c.html#ad9aa172b1cf1d54aca234228a7ae8503',1,'ff.c']]],
-  ['default_5ftime',['DEFAULT_TIME',['../main_8c.html#a7b7a6b774a78bf2034b3b9ba5702da15',1,'main.c']]],
   ['dir_5fattr',['DIR_Attr',['../ff_8c.html#ad3233e40118ed66095f3c9545b788f8a',1,'ff.c']]],
   ['dir_5fcrttime',['DIR_CrtTime',['../ff_8c.html#a47fb1881ea71d860db9b8280564cb4d5',1,'ff.c']]],
   ['dir_5fcrttime10',['DIR_CrtTime10',['../ff_8c.html#af8ddb351ddcaaac5d52923ad442fd8cb',1,'ff.c']]],

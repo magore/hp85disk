@@ -220,7 +220,7 @@ Uiniversal and Decvice clear code.
 ///  6. Enter the reporting state.
 /// \end{DoxyVerb}
  \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000045}{Todo}]We do not have R\+PS or Burst settings yet so we do not clear them/ 
+\item[\hyperlink{todo__todo000044}{Todo}]We do not have R\+PS or Burst settings yet so we do not clear them/ 
 
 We do not have a diagnostic mode so bits A\+L\+W\+A\+YS get cleared. \end{DoxyRefDesc}
 
@@ -234,14 +234,14 @@ void T\+O\+DO We do not support multiple units yet T\+O\+DO We do not support mu
 
 \end{DoxyItemize}
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000046}{Todo}]F\+I\+X\+ME Normally the poweron value is -\/1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value B\+E\+F\+O\+RE a transfer. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000045}{Todo}]F\+I\+X\+ME Normally the poweron value is -\/1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value B\+E\+F\+O\+RE a transfer. \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000047}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000046}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1672 of file ss80.\+c.
+Definition at line 1670 of file ss80.\+c.
 
 
 
@@ -269,11 +269,11 @@ G\+P\+IB flags on send error.
 \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list. 
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000049}{Todo}]do something with Parity Check Bit ? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000048}{Todo}]do something with Parity Check Bit ? \end{DoxyRefDesc}
 
 \end{DoxyItemize}
 
-Definition at line 1769 of file ss80.\+c.
+Definition at line 1767 of file ss80.\+c.
 
 
 
@@ -344,14 +344,14 @@ Cancel transaction.
 \item State\+: T\+R\+A\+N\+S\+P\+A\+R\+E\+NT 0x72
 \begin{DoxyItemize}
 \item Phases\+: Command, Report \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000050}{Todo}]\end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000049}{Todo}]\end{DoxyRefDesc}
 
 \end{DoxyItemize}
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000051}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000050}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1803 of file ss80.\+c.
+Definition at line 1801 of file ss80.\+c.
 
 
 
@@ -390,7 +390,7 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1713 of file ss80.\+c.
+Definition at line 1711 of file ss80.\+c.
 
 
 
@@ -423,10 +423,10 @@ fatfs error on fail
 
 \item Fail will set\+: qstat = 1, Errors $\vert$= E\+R\+R\+\_\+\+S\+E\+EK. 
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000044}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000043}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1531 of file ss80.\+c.
+Definition at line 1529 of file ss80.\+c.
 
 
 
@@ -486,23 +486,19 @@ flags on fail.
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000017}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000017}{Todo}]F\+I\+X\+ME, In Execute state calls \hyperlink{ss80_8c_acad6de863f4566b55cb8860eb1ffd09c}{S\+S80\+\_\+locate\+\_\+and\+\_\+read()}; \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000018}{Todo}]F\+I\+X\+ME, In Execute state calls \hyperlink{ss80_8c_acad6de863f4566b55cb8860eb1ffd09c}{S\+S80\+\_\+locate\+\_\+and\+\_\+read()}; \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000018}{Todo}]F\+I\+X\+ME, \hyperlink{ss80_8c_a41ef37ec5419463815401485cfcb62b1}{S\+S80\+\_\+locate\+\_\+and\+\_\+write()}; \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000019}{Todo}]F\+I\+X\+ME, \hyperlink{ss80_8c_a41ef37ec5419463815401485cfcb62b1}{S\+S80\+\_\+locate\+\_\+and\+\_\+write()}; \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000019}{Todo}]F\+I\+X\+ME Important S\+S80 and C\+S80 differences regarding Complementary Commands! C\+S80 pg 2-\/1 1) In C\+S80 when only complementary commands appear in a message they will set the system defaults\+: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (R\+PS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are T\+E\+M\+P\+O\+R\+A\+RY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000020}{Todo}]F\+I\+X\+ME Important S\+S80 and C\+S80 differences regarding Complementary Commands! C\+S80 pg 2-\/1 1) In C\+S80 when only complementary commands appear in a message they will set the system defaults\+: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (R\+PS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are T\+E\+M\+P\+O\+R\+A\+RY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume \end{DoxyRefDesc}
-
-
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000021}{Todo}]Only handles 4-\/byte Addresses at the moment C\+S80 pg 4-\/11, 2-\/14 S\+S80 pg 4-\/67 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000020}{Todo}]Only handles 4-\/byte Addresses at the moment C\+S80 pg 4-\/11, 2-\/14 S\+S80 pg 4-\/67 \end{DoxyRefDesc}
 
 
 S\+S80 pg 4-\/73
@@ -514,42 +510,46 @@ T\+O\+DO We do not support multiple Volumes yet
 Set Return Addressing Type\+: C\+O\+M\+P\+L\+E\+M\+E\+N\+T\+A\+RY Phases\+: Command, Report S\+S80 pg 4-\/81 C\+S80 4-\/18,2-\/24
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000022}{Todo}]T\+O\+DO Skip Parameters \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000021}{Todo}]T\+O\+DO Skip Parameters \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000023}{Todo}]not implmented yet S\+S80 pg 4-\/43 C\+S80 pg 4-\/20, 2-\/28 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000022}{Todo}]not implmented yet S\+S80 pg 4-\/43 C\+S80 pg 4-\/20, 2-\/28 \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000024}{Todo}]T\+O\+DO \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000023}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000025}{Todo}]F\+I\+X\+ME Execute N\+OW \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000024}{Todo}]F\+I\+X\+ME Execute N\+OW \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000025}{Todo}]F\+I\+X\+ME The class G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE suggests yes \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000026}{Todo}]F\+I\+X\+ME The class G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE suggests yes \end{DoxyRefDesc}
 
 
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000027}{Todo}]F\+I\+X\+ME The class G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE suggests yes \end{DoxyRefDesc}
-
-
 Validate Key, Set Format Options, Download Type\+: G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE Phases\+: Command, Report Must be last command in sequence S\+S80 pg 4-\/91 C\+S80 N/A
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000028}{Todo}]T\+O\+DO Skip Parameters \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000027}{Todo}]T\+O\+DO Skip Parameters \end{DoxyRefDesc}
 
 
 Initialize Media Type\+: G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE Phases\+: Command, Report This command must be last and only one S\+S80 pg 4-\/33 C\+S80 4-\/19,2-\/26
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000029}{Todo}]T\+O\+DO \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000028}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000030}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000029}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
 Set Status Mask Type\+: G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE Phases\+: Command, Report Must be last command in sequence S\+S80 pg 4-\/81 C\+S80 4-\/15,2-\/20
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000030}{Todo}]T\+O\+DO \end{DoxyRefDesc}
+
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000031}{Todo}]T\+O\+DO \end{DoxyRefDesc}
@@ -559,14 +559,10 @@ Set Status Mask Type\+: G\+E\+N\+E\+R\+AL P\+U\+R\+P\+O\+SE Phases\+: Command, R
 \item[\hyperlink{todo__todo000032}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000033}{Todo}]T\+O\+DO \end{DoxyRefDesc}
-
-
 Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report Must be last command in sequence S\+S80 pg 4-\/35 C\+S80 N/A
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000034}{Todo}]T\+O\+DO \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000033}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
 Definition at line 999 of file ss80.\+c.
@@ -607,7 +603,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1867 of file ss80.\+c.
+Definition at line 1865 of file ss80.\+c.
 
 
 
@@ -694,7 +690,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1836 of file ss80.\+c.
+Definition at line 1834 of file ss80.\+c.
 
 
 
@@ -750,7 +746,7 @@ Increment position Addressy by one block.
 
 \end{DoxyItemize}
 
-Definition at line 1818 of file ss80.\+c.
+Definition at line 1816 of file ss80.\+c.
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+c@{ss80.\+c}}
@@ -892,7 +888,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1579 of file ss80.\+c.
+Definition at line 1577 of file ss80.\+c.
 
 
 
@@ -925,7 +921,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1749 of file ss80.\+c.
+Definition at line 1747 of file ss80.\+c.
 
 
 
@@ -1204,7 +1200,7 @@ flags on fail
 /// \end{DoxyVerb}
  
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000035}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000034}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
 work in progress, unit support
@@ -1212,42 +1208,42 @@ work in progress, unit support
 Note\+: Enabling Parallel Poll is up to each function Many transparent Commands require Parallel Poll disabled when done
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000036}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000035}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000037}{Todo}]T\+O\+DO Skip Paramter \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000036}{Todo}]T\+O\+DO Skip Paramter \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000038}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000037}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000039}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000038}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000040}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000039}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000041}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000040}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000042}{Todo}]F\+I\+X\+ME S\+S80 4-\/11 C\+S80 4-\/26, 3-\/2,3-\/5 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000041}{Todo}]F\+I\+X\+ME S\+S80 4-\/11 C\+S80 4-\/26, 3-\/2,3-\/5 \end{DoxyRefDesc}
 
 
 T\+O\+DO We do not support multiple units yet
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000043}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000042}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
 T\+O\+DO We do not support multiple units yet 
 
-Definition at line 1383 of file ss80.\+c.
+Definition at line 1381 of file ss80.\+c.
 
 
 
@@ -1280,10 +1276,10 @@ Universal Device C\+Lear.
 0 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000048}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000047}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1731 of file ss80.\+c.
+Definition at line 1729 of file ss80.\+c.
 
 
 

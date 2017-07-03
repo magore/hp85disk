@@ -58,6 +58,7 @@ void help()
 #endif
 }
 
+
 /// @brief  perform tests on delay functions
 ///
 /// This included measurement of avr-libc delays
@@ -94,95 +95,6 @@ void delay_tests()
     clock_elapsed_begin();
     delayms(1000);
     clock_elapsed_end("delayms(1100)");
-}
-
-
-///@brief Defines a default EPOCH time to set the RTC if not initialied
-#define DEFAULT_TIME (1406357902L - 3600L * 4L)
-///@brief Timezone west in minutes
-#define TIMEZONE 300L                             /* west */
-
-/// @brief  Read RTC DS1307
-///
-///  If not initialized set default time
-///@return  void
-///@see: clock_settime()
-void setup_clock()
-{
-    time_t seconds = 0;
-    tm_t tc;
-    ts_t ts;
-    tz_t tz;
-
-#ifdef RTC_SUPPORT
-    if(!rtc_init(0,0L))
-    {
-        printf("rtc uninitilized\n");
-        printf("attempting rtc init\n");
-        if( !rtc_init(1, (time_t) DEFAULT_TIME ) )
-        {
-            printf("rtc force init failed\n");
-        }
-    }
-
-    if(rtc_read(&tc))
-    {
-        seconds = timegm(&tc);
-    }
-    else
-    {
-        seconds = DEFAULT_TIME;
-        printf("rtc read errorafter init\n");
-    }
-#endif	// RTC_SUPPORT
-    tz.tz_minuteswest = 300;
-    tz.tz_dsttime = 0;
-    settimezone( &tz );
-
-    ts.tv_sec = seconds;
-    ts.tv_nsec = 0L;
-    clock_settime(0, (ts_t *) &ts);
-}
-
-/// @brief  Display current DS1307 RTC time
-///
-/// @return  void
-/// @see: rtc_read
-/// @see: timegm()
-/// @see: ascitime()
-void display_time()
-{
-    time_t seconds;
-    tm_t tc;
-    ts_t ts;
-
-#ifdef RTC_SUPPORT
-    if(rtc_read(&tc))
-    {
-        seconds = timegm(&tc);
-        printf("rtc seconds: %lu\n",seconds);
-        printf("rtc time:    %s\n",asctime(&tc));
-#if RTC_DEBUG
-        printf("rtc_read:%d, day:%d,mon:%d,hour:%d,min:%d,sec:%d, wday:%d\n",
-            (int) tc.tm_year + 1900,
-            (int) tc.tm_mday,
-            (int) tc.tm_mon,
-            (int) tc.tm_hour,
-            (int) tc.tm_min,
-            (int) tc.tm_sec,
-            (int) tc.tm_wday);
-#endif
-    }
-    else
-    {
-        printf("RTC read failed\n");
-    }
-#endif	// RTC_SUPPORT
-
-    clock_gettime(0, (ts_t *) &ts);
-    seconds = ts.tv_sec;
-    printf("clk seconds: %lu\n",seconds);
-    printf("clk time:    %s\n", asctime(gmtime(&seconds)));
 }
 
 
@@ -234,13 +146,13 @@ void task(uint8_t gpib)
     }
     if ( MATCHARGS(ptr,"time",(ind+0),argc))
     {
-        display_time();
+        display_clock();
         return;
     }
     if ( MATCHARGS(ptr,"setdate",(ind+0),argc))
     {
         setdate();
-        display_time();
+        display_clock();
         return;
     }
     if ( MATCHARGS(ptr,"mem",(ind+0),argc))
@@ -320,8 +232,8 @@ int main(void)
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
     printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
-    setup_clock();
-    display_time();
+    initialize_clock(300);
+    display_clock();
 
 	sep();
     mmc_init(1);

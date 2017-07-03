@@ -998,8 +998,6 @@ int SS80_describe( void )
 
 int SS80_Command_State( void )
 {
-/// @todo FIXME
-
     int ch;                                       // Current OP Code
     uint16_t status;                              // Current status
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
@@ -1168,7 +1166,7 @@ int SS80_Command_State( void )
 ///  Skip Parameters
             ind++;
 #if SDEBUG
-            if(debuglevel & (16 + 32))
+            if(debuglevel & (16+32))
                 printf("[SS80 Set Return Addressing - TODO]\n");
 #endif
             continue;
@@ -1184,7 +1182,7 @@ int SS80_Command_State( void )
 /// @todo FIXME
 ///  Execute NOW
 #if SDEBUG
-            if(debuglevel & (16 +32))
+            if(debuglevel & (16+32))
                 printf("[SS80 Locate and Verify - TODO]\n");
 #endif
             break;
@@ -1253,7 +1251,7 @@ int SS80_Command_State( void )
 /// @todo TODO
 /// @todo FIXME
 #if SDEBUG
-            if(debuglevel & (16 + 32))
+            if(debuglevel & (16+32))
                 printf("[SS80 Initialize Media TODO]\n");
 #endif
             break;
