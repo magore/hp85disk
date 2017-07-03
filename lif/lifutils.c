@@ -250,6 +250,7 @@ void lif_help()
         "lif extract lifimage lifname to_ascii_file\n"
         "lif extractbin lifimage lifname to_lif_file\n"
         "lif rename lifimage oldlifname newlifname\n"
+		"\n"
         );
 }
 

@@ -28,8 +28,11 @@ AMIGO=1
 # Disable AMIGO support code
 
 ### Source files and search directory
+FATFS_SUPPORT=1
+FATFS_TESTS=1
+
 # Extended user interactive fatfs tests
-FATFS_TESTS=0
+FATFS_UTILS_FULL=0
 
 # Extended user interactive posix tests
 POSIX_TESTS=1
@@ -139,6 +142,14 @@ endif
 
 ifeq ($(POSIX_TESTS),1)
 	DEFS += POSIX_TESTS
+endif
+
+ifeq ($(FATFS_SUPPORT),1)
+	DEFS += FATFS_SUPPORT
+endif
+
+ifeq ($(FATFS_UTILS_FULL),1)
+	DEFS += FATFS_UTILS_FULL
 endif
 
 ifeq ($(FATFS_TESTS),1)

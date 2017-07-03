@@ -33,19 +33,22 @@
 void gpib_help()
 {
     printf(
-		"addresses\n"
-		"config\n"
-		"debug N\n"
-        "gpib_elapsed\n"
-        "gpib_elapsed_reset\n"
-        "gpib_task\n"
-        "gpib_trace filename.txt\n"
-		"ifc\n"
-        "plot filename.txt\n"
-        "ppr_bit_on N\n"
-        "ppr_bit_off N\n"
-        "ppr_set XX\n"
-        "ppr_init\n"
+		"gpib help\n"
+		"gpib prefix is optional\n"
+		"gpib addresses\n"
+		"gpib config\n"
+		"gpib debug N\n"
+        "gpib elapsed\n"
+        "gpib elapsed_reset\n"
+        "gpib task\n"
+        "gpib trace filename.txt\n"
+		"gpib ifc\n"
+        "gpib plot filename.txt\n"
+        "gpib ppr_bit_on N\n"
+        "gpib ppr_bit_off N\n"
+        "gpib ppr_set XX\n"
+        "gpib ppr_init\n"
+		"\n"
 		);
 }
 
@@ -64,6 +67,16 @@ int gpib_tests(int argc, char * argv[])
 
 	ind = 1;
 	ptr = argv[ind++];
+
+	// skip optional gpib key word
+	if( MATCH(ptr,"gpib") )
+		ptr = argv[ind++];
+
+    if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
+    {
+        gpib_help();
+        return(1);
+    }
 
     if (MATCHARGS(ptr,"addresses",(ind+0),argc))
     {
@@ -84,25 +97,25 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"gpib_elapsed_reset",(ind+0),argc))
+    if (MATCHARGS(ptr,"elapsed_reset",(ind+0),argc))
     {
         gpib_timer_elapsed_begin();
         return(1);
     }
 
-    if (MATCHARGS(ptr,"gpib_elapsed",(ind+0),argc))
+    if (MATCHARGS(ptr,"elapsed",(ind+0),argc))
     {
         gpib_timer_elapsed_end("gpib elapsed:");
         return(1);
     }
 
-    if (MATCHARGS(ptr,"gpib_task",(ind+0),argc))
+    if (MATCHARGS(ptr,"task",(ind+0),argc))
     {
         gpib_task();
         return(1);
     }
 
-    if (MATCHARGS(ptr,"gpib_trace", (ind+1) ,argc))
+    if (MATCHARGS(ptr,"trace", (ind+1) ,argc))
     {
         gpib_trace_task(argv[ind]);
         return(1);
@@ -145,10 +158,5 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
-    {
-        gpib_help();
-        return(1);
-    }
     return(0);
 }

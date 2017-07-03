@@ -41,12 +41,6 @@
 /// @see fatfs_help()
 void help()
 {
-    printf("delay_tests\n");
-    printf("time\n");
-    printf("setdate\n");
-    printf("mem\n");
-    printf("ifc\n");
-    gpib_help();
 #ifdef FATFS_TESTS
     fatfs_help();
 #endif
@@ -56,7 +50,17 @@ void help()
 #ifdef LIF_SUPPORT
     lif_help();
 #endif
-}
+    gpib_help();
+
+    printf(
+		"delay_tests\n"
+		"time\n"
+		"setdate\n"
+		"mem\n"
+		"ifc\n"
+		"\n"
+		);
+	}
 
 
 /// @brief  perform tests on delay functions
