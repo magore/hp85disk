@@ -34,7 +34,7 @@ MEMSPACE void fatfs_cat ( char *name );
 MEMSPACE void fatfs_copy ( char *from , char *to );
 MEMSPACE void fatfs_create ( char *name , char *str );
 MEMSPACE void fatfs_cd ( char *name );
-MEMSPACE void fatfs_ls ( char *ptr );
+MEMSPACE void fatfs_ls ( char *name );
 MEMSPACE void fatfs_mkdir ( char *name );
 MEMSPACE void fatfs_pwd ( void );
 MEMSPACE void fatfs_rename ( const char *oldpath , const char *newpath );

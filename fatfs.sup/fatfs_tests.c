@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE
 void fatfs_help( void )
 {
-	printf("\n"
+		printf(
 #ifdef POSIX_TESTS
 	"fatfs tests MUST start with \"fatfs\" keyword\n"
 #else
@@ -126,17 +126,17 @@ int fatfs_tests(int argc,char *argv[])
 	{
         int i;
         int args = 0;
+		printf("ind:%d,argc:%d\n", ind, argc);
         for(i=ind;i<argc;++i)
         {
-            if(!MATCH(argv[i],"-l") )
-			{
-                fatfs_ls(argv[i]);
-				++args;
-			}
-			
+			//printf("%d:%s\n", i, argv[i]);
+			fatfs_ls(argv[i]);
+			++args;
         }
         if(!args)
+		{
             fatfs_ls("");
+		}
         return(1);
 	}
 
@@ -304,7 +304,7 @@ void mmc_test(void)
 /// @see fatfs_filinfo_list().
 /// @return  void.
 MEMSPACE
-void fatfs_ls(char *ptr)
+void fatfs_ls(char *name)
 {
     long p1;
     UINT s1, s2;
@@ -312,16 +312,19 @@ void fatfs_ls(char *ptr)
     FILINFO fno;
     DIR dirs;                                     /* Directory object */
     FATFS *fs;
+	char buff[256];	
 
-	if(!ptr || !*ptr)
-		ptr = ".";
+	if(!name || !*name)
+	{
+		strcpy(buff,".");
+	}
+	else
+	{
+		strcpy(buff,name);
+	}
+    printf("Listing:[%s]\n",buff);
 
-    while(*ptr == ' ' || *ptr == '\t')
-        ++ptr;
-
-    printf("Listing:[%s]\n",ptr);
-
-    res = f_opendir(&dirs, ptr);
+    res = f_opendir(&dirs, buff);
     if (res) { put_rc(res); return; }
     p1 = s1 = s2 = 0;
     while(1)
@@ -343,7 +346,7 @@ void fatfs_ls(char *ptr)
 #endif
     }
     printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
-    if (f_getfree(ptr, (DWORD*)&p1, &fs) == FR_OK)
+    if (f_getfree(buff, (DWORD*)&p1, &fs) == FR_OK)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
 
