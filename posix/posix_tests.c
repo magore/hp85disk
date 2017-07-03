@@ -445,7 +445,7 @@ int testpage(int count)
 	{
 		printf("More..");
 #ifdef ESP8266
-		while (!kbhit())
+		while (!kbhit(0))
 		{
 			optimistic_yield(1000);
 			wdt_reset();
