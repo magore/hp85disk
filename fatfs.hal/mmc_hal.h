@@ -24,13 +24,13 @@
 #endif
 
 #ifdef ESP8266
-	// FIXME
-	#define mmc_cli() /*< interrupt disable */
-	// FIXME
-	#define mmc_sei() /*< interrupt enable */
+    // FIXME
+    #define mmc_cli() /*< interrupt disable */
+    // FIXME
+    #define mmc_sei() /*< interrupt enable */
 #else
-	#define mmc_cli() cli() /*< interrupt disable */
-	#define mmc_sei() sei() /*< interrupt enable */
+    #define mmc_cli() cli() /*< interrupt disable */
+    #define mmc_sei() sei() /*< interrupt enable */
 #endif
 
 /* mmc_hal.c */

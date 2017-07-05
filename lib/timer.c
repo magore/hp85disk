@@ -236,7 +236,7 @@ void disable_timers()
 {
     if(timers_configured && timers_enabled)
     {
-		disable_system_task();
+        disable_system_task();
         timers_enabled = 0;
     }
 }
@@ -249,7 +249,7 @@ void enable_timers()
 {
     if(timers_configured && !timers_enabled)
     {
-		enable_system_task();
+        enable_system_task();
         timers_enabled = 1;
     }
 }
@@ -296,7 +296,7 @@ void init_timers()
 
     if(!timers_configured)
     {
-		install_timers_isr();
+        install_timers_isr();
         timers_configured = 1;
         timers_enabled = 0;
         printf("Timers configured\n");

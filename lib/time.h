@@ -103,9 +103,9 @@ extern tz_t __tzone;
 
 ///@brief  DST structure
 typedef struct {
-    time_t start;	///@brief Start of local DST in GMT
-    time_t end;		///@brief End of local DST in GMT
-    time_t epoch;	///@brief epoch used to determine the year of DST start and end caluclulation - for caching
+    time_t start;   ///@brief Start of local DST in GMT
+    time_t end;     ///@brief End of local DST in GMT
+    time_t epoch;   ///@brief epoch used to determine the year of DST start and end caluclulation - for caching
 } dst_t;
 
 /* time.c */

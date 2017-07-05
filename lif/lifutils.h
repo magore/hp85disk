@@ -58,17 +58,17 @@ typedef struct stat stat_t;
 ///@brief LIF disk label record
 typedef struct
 {
-    uint16_t LIFid;					// 0
-    uint8_t  Label[6+1];		    // 2
-    uint32_t DirStartSector;		// 8
-    uint16_t System3000LIFid;		// 12
-    uint16_t zero1;					// 14
-    uint32_t DirSectors;			// 16
-    uint16_t LIFVersion;			// 20
-    uint16_t zero2;					// 22
-	uint32_t tracks_per_side;		// 24
-	uint32_t sides;					// 28
-	uint32_t sectors_per_track;	    // 32
+    uint16_t LIFid;                 // 0
+    uint8_t  Label[6+1];            // 2
+    uint32_t DirStartSector;        // 8
+    uint16_t System3000LIFid;       // 12
+    uint16_t zero1;                 // 14
+    uint32_t DirSectors;            // 16
+    uint16_t LIFVersion;            // 20
+    uint16_t zero2;                 // 22
+    uint32_t tracks_per_side;       // 24
+    uint32_t sides;                 // 28
+    uint32_t sectors_per_track;     // 32
     uint8_t  date[6];               // 36 BCD (YY MM DD HH MM SS)
 } lifvol_t;
 
@@ -79,14 +79,14 @@ typedef struct
   Each DIRECTORY SECTORS held 8 32-byte directory entries.  
   Each entry contained these values:
 
-  BYTE	DESCRIPTION
-  ----	------------------------------------------------
-  0-9	10-character file name (blank filled)
-  10-11	File TYPE MSB first
-  12-15	Start of file in sectors MSB first
-  16-19	File length in sectors MSB first
-  20-25	file creation DATE YY,MM,DD,HH,MM,SS
-  26-27	always 0x8001 entire file is on volume MSB first
+  BYTE  DESCRIPTION
+  ----  ------------------------------------------------
+  0-9   10-character file name (blank filled)
+  10-11 File TYPE MSB first
+  12-15 Start of file in sectors MSB first
+  16-19 File length in sectors MSB first
+  20-25 file creation DATE YY,MM,DD,HH,MM,SS
+  26-27 always 0x8001 entire file is on volume MSB first
   28-29 size of file in bytes MSB first
         May be 0 use for some file types so use number of sectors instead
   30-31 bytes per record, typically 256
@@ -97,14 +97,14 @@ typedef struct
 ///@brief LIF directory entry
 typedef struct
 {
-    uint8_t  filename[10+1];	// 0
-    uint16_t FileType;			// 10
-    uint32_t FileStartSector;	// 12
-    uint32_t FileSectors;		// 16
+    uint8_t  filename[10+1];    // 0
+    uint16_t FileType;          // 10
+    uint32_t FileStartSector;   // 12
+    uint32_t FileSectors;       // 16
     uint8_t  date[6];           // 20 File date in BCD (YY MM DD HH MM SS)
-    uint16_t VolNumber;			// 26
-    uint16_t FileBytes;			// 30
-    uint16_t SectorSize;		// 28
+    uint16_t VolNumber;         // 26
+    uint16_t FileBytes;         // 30
+    uint16_t SectorSize;        // 28
 } lifdir_t;
 
 
@@ -115,20 +115,20 @@ typedef struct
 /// read/write flag
 typedef struct 
 {
-    char *name; 			// LIF image file name
-	FILE *fp;				// LIF file handel
-	uint32_t sectors;		// LIF image size in sectors
-	uint32_t imagebytes;		// LIF image size in bytes
-	uint32_t filestart;     // LIF file area start in sectors
-	uint32_t filesectors;	// LIF file area size in sectors
-	uint32_t usedsectors;	// Used sector count
-	uint32_t freesectors;	// Free sector count
-	lifvol_t VOL;			// LIF Volume header
-	lifdir_t DIR;			// LIF directory entry
-	int	   	files;			// File count
-	int	   	purged;			// Purged file count
-    int    	dirindex;		// Directory index 0..N
-	int     EOFindex;		// Position of EOF directory record
+    char *name;             // LIF image file name
+    FILE *fp;               // LIF file handel
+    uint32_t sectors;       // LIF image size in sectors
+    uint32_t imagebytes;        // LIF image size in bytes
+    uint32_t filestart;     // LIF file area start in sectors
+    uint32_t filesectors;   // LIF file area size in sectors
+    uint32_t usedsectors;   // Used sector count
+    uint32_t freesectors;   // Free sector count
+    lifvol_t VOL;           // LIF Volume header
+    lifdir_t DIR;           // LIF directory entry
+    int     files;          // File count
+    int     purged;         // Purged file count
+    int     dirindex;       // Directory index 0..N
+    int     EOFindex;       // Position of EOF directory record
 } lif_t;
 
 // =============================================

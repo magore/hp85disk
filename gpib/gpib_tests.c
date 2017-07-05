@@ -33,23 +33,23 @@
 void gpib_help()
 {
     printf(
-		"gpib help\n"
-		"gpib prefix is optional\n"
-		"gpib addresses\n"
-		"gpib config\n"
-		"gpib debug N\n"
+        "gpib help\n"
+        "gpib prefix is optional\n"
+        "gpib addresses\n"
+        "gpib config\n"
+        "gpib debug N\n"
         "gpib elapsed\n"
         "gpib elapsed_reset\n"
         "gpib task\n"
         "gpib trace filename.txt\n"
-		"gpib ifc\n"
+        "gpib ifc\n"
         "gpib plot filename.txt\n"
         "gpib ppr_bit_on N\n"
         "gpib ppr_bit_off N\n"
         "gpib ppr_set XX\n"
         "gpib ppr_init\n"
-		"\n"
-		);
+        "\n"
+        );
 }
 
 
@@ -60,17 +60,17 @@ int gpib_tests(int argc, char * argv[])
 {
 
     char *ptr;
-	int ind;
+    int ind;
 
-	if(argc < 2)
-		return(0);
+    if(argc < 2)
+        return(0);
 
-	ind = 1;
-	ptr = argv[ind++];
+    ind = 1;
+    ptr = argv[ind++];
 
-	// skip optional gpib key word
-	if( MATCH(ptr,"gpib") )
-		ptr = argv[ind++];
+    // skip optional gpib key word
+    if( MATCH(ptr,"gpib") )
+        ptr = argv[ind++];
 
     if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
     {
@@ -80,19 +80,19 @@ int gpib_tests(int argc, char * argv[])
 
     if (MATCHARGS(ptr,"addresses",(ind+0),argc))
     {
-		display_Addresses();
+        display_Addresses();
         return(1);
     }
 
     if (MATCHARGS(ptr,"config",(ind+0),argc))
     {
-		display_Config();
+        display_Config();
         return(1);
     }
 
     if (MATCHARGS(ptr,"debug", (ind+1) ,argc))
     {
-		debuglevel = get_value(argv[ind]);
+        debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
         return(1);
     }

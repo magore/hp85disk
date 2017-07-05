@@ -75,12 +75,12 @@ typedef struct stat stat_t;
 #define BASE_MTA     0x40   //<  Base talk address = 0 (0+0x40)
 #define BASE_MSA     0x60   //<  Base seconday address = 0 (0+0x60)
 
-#define ERR_READ   0b00000001 	//< Read Error
-#define ERR_WRITE  0b00000010	//< Write Error 
-#define ERR_SEEK   0b00000100	//< Seek Error
-#define ERR_WP     0b00001000	//< Write Protect Error
-#define ERR_DISK   0b00010000	//< Disk Error
-#define ERR_GPIB   0b00100000	//<GPIB Error
+#define ERR_READ   0b00000001   //< Read Error
+#define ERR_WRITE  0b00000010   //< Write Error 
+#define ERR_SEEK   0b00000100   //< Seek Error
+#define ERR_WP     0b00001000   //< Write Protect Error
+#define ERR_DISK   0b00010000   //< Disk Error
+#define ERR_GPIB   0b00100000   //<GPIB Error
 
 // =============================================
 ///@brief Fault bit and Message type

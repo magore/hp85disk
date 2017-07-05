@@ -53,14 +53,14 @@ void help()
     gpib_help();
 
     printf(
-		"delay_tests\n"
-		"time\n"
-		"setdate\n"
-		"mem\n"
-		"ifc\n"
-		"\n"
-		);
-	}
+        "delay_tests\n"
+        "time\n"
+        "setdate\n"
+        "mem\n"
+        "ifc\n"
+        "\n"
+        );
+    }
 
 
 /// @brief  perform tests on delay functions
@@ -112,31 +112,31 @@ void delay_tests()
 void task(uint8_t gpib)
 {
     char *ptr;
-	int ind;
-	int argc;
-	char *argv[10];
-	char line[128];
+    int ind;
+    int argc;
+    char *argv[10];
+    char line[128];
 
-	if(gpib)
-		gpib_task();
+    if(gpib)
+        gpib_task();
 
     if(!kbhit(0))
         return;
 
     printf("\n>");
-	fgets(line,sizeof(line)-2,stdin);
-	argc = split_args(line,argv,10);
+    fgets(line,sizeof(line)-2,stdin);
+    argc = split_args(line,argv,10);
 #if 0
-	printf("Arguments:\n");
-	printf("   argc = %d\n", argc);
-	for(i=0;i<argc;++i)
-		printf("   [%s]\n", argv[i]);
+    printf("Arguments:\n");
+    printf("   argc = %d\n", argc);
+    for(i=0;i<argc;++i)
+        printf("   [%s]\n", argv[i]);
 #endif
-	if(argc < 2)
-		return;
+    if(argc < 2)
+        return;
 
-	ind = 1;
-	ptr = argv[ind++];
+    ind = 1;
+    ptr = argv[ind++];
 
     if(gpib_tests(argc,argv))
         return;
@@ -192,22 +192,22 @@ void task(uint8_t gpib)
 int main(void)
 {
     ts_t ts;
-	uint32_t actual,baud;
+    uint32_t actual,baud;
 
     init_timers();
 
-	// returns actual baud rate which may differ slightly because of limited resolution of baud rate clock and devisors
-	baud = 115200UL;
+    // returns actual baud rate which may differ slightly because of limited resolution of baud rate clock and devisors
+    baud = 115200UL;
 
     actual = uart_init(0, baud); // Serial Port Initialize
     delayms(200); ///@brief Power up delay
 
-	sep();
+    sep();
     printf("Start\n");
     printf("CPU Clock = %lu\n", F_CPU);
     printf("Requested Baud Rate: %ld, Actual: %ld\n", (long)baud, (long)actual);
 
-	sep();
+    sep();
     printf("HP85 Disk and Device Emulator\n");
     printf(" (c) 2014-2017 by Mike Gore\n");
     printf(" GNU version 3\n");
@@ -215,23 +215,23 @@ int main(void)
     printf("   GIT last pushed:   %s\n", GIT_VERSION);
     printf("   Last updated file: %s\n", LOCAL_MOD);
 
-	sep();
+    sep();
     PrintFree();
 
-	sep();
+    sep();
     delayms(200); ///@brief Power up delay
-	///@ initialize bus state as soon as practical
+    ///@ initialize bus state as soon as practical
 
-	printf("initializing GPIB bus\n");
+    printf("initializing GPIB bus\n");
     gpib_bus_init(0);
 
-	printf("initializing SPI bus\n");
-	spi_init(MMC_SLOW,GPIO_B3);
+    printf("initializing SPI bus\n");
+    spi_init(MMC_SLOW,GPIO_B3);
 
-	printf("initializing I2C bus\n");
+    printf("initializing I2C bus\n");
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
 
-	sep();
+    sep();
     clock_clear();
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
@@ -239,45 +239,45 @@ int main(void)
     initialize_clock(300);
     display_clock();
 
-	sep();
+    sep();
     mmc_init(1);
 
-	sep();
+    sep();
     printer_init();
     printf("Printer Init done\n");
 
-	sep();
+    sep();
     printf("GPIB Setup\n");
 
     gpib_timer_init();
     printf("GPIB Timer init done\n");
 
-	///@brief process config file
+    ///@brief process config file
     gpib_file_init();
     printf("GPIB File init done\n");
 
-	///@brief GPIB talking/listening state variables 
-	///Must be done AFTER gpib_file_init() so we have a valid configuration
+    ///@brief GPIB talking/listening state variables 
+    ///Must be done AFTER gpib_file_init() so we have a valid configuration
     gpib_state_init();
     printf("GPIB State init done\n");
 
-	///@brief Display Config
-	sep();
-	display_Config();
+    ///@brief Display Config
+    sep();
+    display_Config();
 
-	///@format drives if they do not exist
-	format_drives();
+    ///@format drives if they do not exist
+    format_drives();
 
-	///@brief Address Summary
-	sep();
-	display_Addresses();
+    ///@brief Address Summary
+    sep();
+    display_Addresses();
 
-	sep();
-	///@brief Display debug level
+    sep();
+    ///@brief Display debug level
     printf("debuglevel   = %04xH\n",(int)debuglevel);
 
-	sep();
-	printf("Starting GPIB TASK\n");
+    sep();
+    printf("Starting GPIB TASK\n");
 
 
     while (1)

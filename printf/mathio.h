@@ -80,7 +80,7 @@ typedef struct _printf_t
     void (*put)(struct _printf_t *, char);
     void *buffer;
     int len;
-	int sent;
+    int sent;
 } printf_t;
 
 ///@brief format specifier flags
@@ -129,4 +129,4 @@ MEMSPACE int printf_P ( __memx const char *format , ...);
 /* sscanf.c */
 int sscanf ( const char *strp , const char *fmt , ...);
 
-#endif	// ifndef _MATHIO_H_
+#endif  // ifndef _MATHIO_H_

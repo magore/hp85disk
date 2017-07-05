@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 typedef struct _mat {
     float **data;
-	int cols;
-	int rows;
+    int cols;
+    int rows;
     int size;
 } mat_t;
 

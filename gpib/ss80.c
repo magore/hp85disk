@@ -31,7 +31,7 @@
 ///  Page: 3-17, Figure 3-8. Secondaries and Opcodes
 /// 
 ///  Address  Secondary  Opcode   # of other   Comment
-///  State	(without            Parameter
+///  State  (without            Parameter
 ///            parity)            bytes
 ///  -------  ---------  ------   ----------   -------
 ///  L major    65H      2XH      None        Set Unit
@@ -48,7 +48,7 @@
 ///  L major    65H      02H      None        Locate and Write
 ///  L major    65H      04H      None        Locate and Verif y
 ///  L major    65H      06H      1 byte      Spare Block
-///  L major    65H      00H	    None        Request Status
+///  L major    65H      00H        None        Request Status
 ///  L major    65H      0EH      None        Release (No Op
 ///  L major    65H      0FH      None        Release Denied (No Op)
 ///  L major    65H      31H      2 bytes     Validate Key
@@ -156,8 +156,8 @@ void SS80_Test(void)
 /// MSB ... LSB
 void V2B_MSB_Index1(uint8_t *B, int index,int size, uint32_t val)
 {
-	///@brief remove 1 bias
-	V2B_MSB(B, index-1,size, val);
+    ///@brief remove 1 bias
+    V2B_MSB(B, index-1,size, val);
 }
 
 ///@brief Pack Controller data into bytes
@@ -165,8 +165,8 @@ void V2B_MSB_Index1(uint8_t *B, int index,int size, uint32_t val)
 ///@return pointer to packer array
 uint8_t *SS80ControllerPack(int *size)
 {
-	static uint8_t B[5];
-	*size = 5;
+    static uint8_t B[5];
+    *size = 5;
     /*
         uint8_t C1;  //<  MSB units installed bit field
                      //< one bit per unit, Unit 15 always set
@@ -181,11 +181,11 @@ uint8_t *SS80ControllerPack(int *size)
                  //< 5 = SS/80 integrated multi-unit controller.
                  //< 6 = SS/80 integrated multi-port controller.
     */
-	V2B_MSB_Index1(B,1,2,SS80p->CONTROLLER.UNITS_INSTALLED);
-	V2B_MSB_Index1(B,2,2,SS80p->CONTROLLER.TRANSFER_RATE);
-	V2B_MSB_Index1(B,5,1,SS80p->CONTROLLER.TYPE);
+    V2B_MSB_Index1(B,1,2,SS80p->CONTROLLER.UNITS_INSTALLED);
+    V2B_MSB_Index1(B,2,2,SS80p->CONTROLLER.TRANSFER_RATE);
+    V2B_MSB_Index1(B,5,1,SS80p->CONTROLLER.TYPE);
 
-	return(B);
+    return(B);
 }
 
 ///@brief Pack Unit data into bytes
@@ -193,8 +193,8 @@ uint8_t *SS80ControllerPack(int *size)
 ///@return pointer to packer array
 uint8_t *SS80UnitPack(int *size)
 {
-	static uint8_t B[19];
-	*size = 19;
+    static uint8_t B[19];
+    *size = 19;
     /*
         uint8_t U1;  //<  Type 0-Fixed, 1-Flexible, 2-Tape
                      //< (+128-dumb, does not detect media change)
@@ -219,27 +219,27 @@ uint8_t *SS80UnitPack(int *size)
         uint8_t U19; //<  Removable volume byte, one bit per volume,
                      //< ie 00000111 = 3 volumes
     */
-	V2B_MSB_Index1(B,1,1,SS80p->UNIT.UNIT_TYPE);
-	V2B_MSB_Index1(B,2,3,SS80p->UNIT.DEVICE_NUMBER);
-	V2B_MSB_Index1(B,5,2,SS80p->UNIT.BYTES_PER_BLOCK);
-	V2B_MSB_Index1(B,7,1,SS80p->UNIT.BUFFERED_BLOCKS);
-	V2B_MSB_Index1(B,8,1,SS80p->UNIT.BURST_SIZE);
-	V2B_MSB_Index1(B,9,2,SS80p->UNIT.BLOCK_TIME);
-	V2B_MSB_Index1(B,11,2,SS80p->UNIT.CONTINOUS_TRANSFER_RATE);
-	V2B_MSB_Index1(B,13,2,SS80p->UNIT.OPTIMAL_RETRY_TIME);
-	V2B_MSB_Index1(B,15,2,SS80p->UNIT.ACCESS_TIME);
-	V2B_MSB_Index1(B,17,1,SS80p->UNIT.MAXIMUM_INTERLEAVE);
-	V2B_MSB_Index1(B,18,1,SS80p->UNIT.FIXED_VOLUMES);
-	V2B_MSB_Index1(B,19,1,SS80p->UNIT.REMOVABLE_VOLUMES);
-	return(B);
+    V2B_MSB_Index1(B,1,1,SS80p->UNIT.UNIT_TYPE);
+    V2B_MSB_Index1(B,2,3,SS80p->UNIT.DEVICE_NUMBER);
+    V2B_MSB_Index1(B,5,2,SS80p->UNIT.BYTES_PER_BLOCK);
+    V2B_MSB_Index1(B,7,1,SS80p->UNIT.BUFFERED_BLOCKS);
+    V2B_MSB_Index1(B,8,1,SS80p->UNIT.BURST_SIZE);
+    V2B_MSB_Index1(B,9,2,SS80p->UNIT.BLOCK_TIME);
+    V2B_MSB_Index1(B,11,2,SS80p->UNIT.CONTINOUS_TRANSFER_RATE);
+    V2B_MSB_Index1(B,13,2,SS80p->UNIT.OPTIMAL_RETRY_TIME);
+    V2B_MSB_Index1(B,15,2,SS80p->UNIT.ACCESS_TIME);
+    V2B_MSB_Index1(B,17,1,SS80p->UNIT.MAXIMUM_INTERLEAVE);
+    V2B_MSB_Index1(B,18,1,SS80p->UNIT.FIXED_VOLUMES);
+    V2B_MSB_Index1(B,19,1,SS80p->UNIT.REMOVABLE_VOLUMES);
+    return(B);
 }
 ///@brief Pack Voulme data into bytes
 ///@param[out] *size: number of bytes in result
 ///@return pointer to packer array
 uint8_t *SS80VolumePack(int *size)
 {
-	static uint8_t B[13];
-	*size = 13;
+    static uint8_t B[13];
+    *size = 13;
     /*
         uint8_t V1;  //<  MSB Max cylinder
         uint8_t V2;  //<
@@ -255,12 +255,12 @@ uint8_t *SS80VolumePack(int *size)
         uint8_t V12; //<     LSB
         uint8_t V13; //<  Interleave
     */
-	V2B_MSB_Index1(B,1,3,SS80p->VOLUME.MAX_CYLINDER);
-	V2B_MSB_Index1(B,4,1,SS80p->VOLUME.MAX_HEAD);
-	V2B_MSB_Index1(B,5,2,SS80p->VOLUME.MAX_SECTOR);
-	V2B_MSB_Index1(B,7,6,SS80p->VOLUME.MAX_BLOCK_NUMBER);
-	V2B_MSB_Index1(B,13,1,SS80p->VOLUME.INTERLEAVE);
-	return(B);
+    V2B_MSB_Index1(B,1,3,SS80p->VOLUME.MAX_CYLINDER);
+    V2B_MSB_Index1(B,4,1,SS80p->VOLUME.MAX_HEAD);
+    V2B_MSB_Index1(B,5,2,SS80p->VOLUME.MAX_SECTOR);
+    V2B_MSB_Index1(B,7,6,SS80p->VOLUME.MAX_BLOCK_NUMBER);
+    V2B_MSB_Index1(B,13,1,SS80p->VOLUME.INTERLEAVE);
+    return(B);
 }
 
 /// @brief  SS80 nitialize all devices
@@ -273,17 +273,17 @@ void SS80_init(void)
     {
         if(Devices[i].TYPE == SS80_TYPE)
         {
-			if(!set_active_device(i))
-				continue;
-			Clear_Common(15);
-			// Power On State
-			SS80s->qstat = 2;
+            if(!set_active_device(i))
+                continue;
+            Clear_Common(15);
+            // Power On State
+            SS80s->qstat = 2;
 #if SDEBUG
-			if(debuglevel & 32)
-				printf("[SS80 %02XH INIT]\n", Devices[i].ADDRESS);
+            if(debuglevel & 32)
+                printf("[SS80 %02XH INIT]\n", Devices[i].ADDRESS);
 #endif
-		/// @todo FIXME
-			DisablePPR(SS80p->HEADER.PPR);
+        /// @todo FIXME
+            DisablePPR(SS80p->HEADER.PPR);
         }
     }
 }
@@ -336,14 +336,14 @@ int SS80_Execute_State(void)
 /// @return Byte Address
 uint32_t SS80_Blocks_to_Bytes(uint32_t block)
 {
-	return(block * SS80p->UNIT.BYTES_PER_BLOCK);
-	
+    return(block * SS80p->UNIT.BYTES_PER_BLOCK);
+    
 }
 /// @brief  SS80 Return current block addresss from bytes
 /// @return Block Address
 uint32_t SS80_Bytes_to_Blocks(uint32_t bytes)
 {
-	return(bytes / SS80p->UNIT.BYTES_PER_BLOCK);
+    return(bytes / SS80p->UNIT.BYTES_PER_BLOCK);
 }
 
 /// @brief  SS80 Locate and Read COmmend
@@ -368,7 +368,7 @@ int SS80_locate_and_read( void )
     int chunk;
     int len;
     uint16_t status;
-	uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
+    uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
 
     SS80s->qstat = 0;
 
@@ -384,7 +384,7 @@ int SS80_locate_and_read( void )
 #if SDEBUG
     if(debuglevel & 32)
         printf("[SS80 Locate and Read at %08lXH(%lXH)]\n", 
-			(long) Address, (long) SS80s->Length);
+            (long) Address, (long) SS80s->Length);
 #endif
 
     if( SS80_cmd_seek() )
@@ -473,7 +473,7 @@ int SS80_locate_and_read( void )
 #endif
     }
 
-	SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
+    SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
     return (status & ERROR_MASK);
 }
 
@@ -498,7 +498,7 @@ int SS80_locate_and_write(void)
     int chunk, count, len;
     int io_skip;
     uint16_t status;
-	uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
+    uint32_t Address = SS80_Blocks_to_Bytes(SS80s->AddressBlocks);
 
     io_skip = 0;
 
@@ -621,7 +621,7 @@ int SS80_locate_and_write(void)
             printf("[SS80 Locate and Write Wrote Total(%lxH)]\n", total_bytes);
 #endif
     }
-	SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
+    SS80s->AddressBlocks = SS80_Bytes_to_Blocks(Address);
     return ( status & ERROR_MASK );
 }
 
@@ -658,7 +658,7 @@ fault_t faults[] =
     { 55,"Device has automatically spared a block." },
     { 57,"Too many recoverable data error status messages queued since last request" },
     { 59,"Recoverable Data latency was introduced because of retries" },
-	{ -1,NULL }
+    { -1,NULL }
 };
 
 /// @brief  SS80 test extendend status bits and display them
@@ -671,11 +671,11 @@ fault_t faults[] =
 /// @return 1 if set
 int SS80_test_extended_status(uint8_t *p, int bit)
 {
-	uint8_t mask;
-	int byte = bit >> 3;
-	bit &= 7;
-	mask = (0x80 >> bit);
-	return((p[byte] & mask) ? 1 : 0);
+    uint8_t mask;
+    int byte = bit >> 3;
+    bit &= 7;
+    mask = (0x80 >> bit);
+    return((p[byte] & mask) ? 1 : 0);
 }
 
 /// @brief  SS80 set extendend status bits 
@@ -687,11 +687,11 @@ int SS80_test_extended_status(uint8_t *p, int bit)
 /// @return void
 void SS80_set_extended_status(uint8_t *p, int bit)
 {
-	uint8_t mask;
-	int byte = bit >> 3;
-	bit &= 7;
-	mask = (0x80 >> bit);
-	p[byte] |= mask;
+    uint8_t mask;
+    int byte = bit >> 3;
+    bit &= 7;
+    mask = (0x80 >> bit);
+    p[byte] |= mask;
 }
 
 
@@ -702,28 +702,28 @@ void SS80_set_extended_status(uint8_t *p, int bit)
 void SS80_display_extended_status(uint8_t *p, char *message)
 {
 
-	int i,bit;
-	int status = 0;
+    int i,bit;
+    int status = 0;
 
-	// See if ANY bits are set
-	for(i=0;i<8;++i)
-	{
-		if(p[i])
-			status = 1;
-	}
-	// Display all of the messages
-	if(status)
-	{
-		printf("%s:\n",message);
-		for(i=0;faults[i].index != -1;++i)
-		{
-			bit = faults[i].index;
-			if(SS80_test_extended_status(p,bit))
-			{
-				printf("    %d:%s\n", faults[i].index, faults[i].msg);
-			}
-		}
-	}
+    // See if ANY bits are set
+    for(i=0;i<8;++i)
+    {
+        if(p[i])
+            status = 1;
+    }
+    // Display all of the messages
+    if(status)
+    {
+        printf("%s:\n",message);
+        for(i=0;faults[i].index != -1;++i)
+        {
+            bit = faults[i].index;
+            if(SS80_test_extended_status(p,bit))
+            {
+                printf("    %d:%s\n", faults[i].index, faults[i].msg);
+            }
+        }
+    }
 }
 
 /// @brief  SS80 send detailed status.
@@ -855,22 +855,22 @@ int SS80_send_status( void )
     tmp[1] = 0xff;
 
 
-	// Bit 7 Address Bounds
+    // Bit 7 Address Bounds
     if(SS80s->Errors & ERR_SEEK)
-		SS80_set_extended_status(tmp+2, 7);
+        SS80_set_extended_status(tmp+2, 7);
 
-	// Bit 22 Unit fault
+    // Bit 22 Unit fault
     if(SS80s->Errors & ERR_READ)
-		SS80_set_extended_status(tmp+2, 22);
+        SS80_set_extended_status(tmp+2, 22);
 
-	// Bit 22 Unit fault
+    // Bit 22 Unit fault
     if(SS80s->Errors & ERR_WRITE)
-		SS80_set_extended_status(tmp+2, 22);
+        SS80_set_extended_status(tmp+2, 22);
 
 /// @todo  add Diagnostic Result status (MSB of byte 5)
 
 
-	// Bit 36 Write Protect
+    // Bit 36 Write Protect
     if(SS80s->Errors & ERR_WP)
         tmp[6] = 0b00001000;
 
@@ -879,13 +879,13 @@ int SS80_send_status( void )
 
 ///  Note: Diagnostic Result bit is NOT set
 ///@see SET ADDRESS in blocks
-	if(!SS80s->Errors)
-	{
-		/* tmp[10] = SS80s->AddressBlocks.B[5] MSB unused */
-		/* tmp[11] = SS80s->AddressBlocks.B[4] unused */
-		/* index 0 offset */
-		V2B_MSB(tmp,10,6,SS80s->AddressBlocks);
-	}
+    if(!SS80s->Errors)
+    {
+        /* tmp[10] = SS80s->AddressBlocks.B[5] MSB unused */
+        /* tmp[11] = SS80s->AddressBlocks.B[4] unused */
+        /* index 0 offset */
+        V2B_MSB(tmp,10,6,SS80s->AddressBlocks);
+    }
 
 /// @todo Fixme
     if(SS80s->Errors)
@@ -915,10 +915,10 @@ int SS80_describe( void )
 {
     uint16_t status;
 
-	uint8_t *B;
-	int size;
+    uint8_t *B;
+    int size;
 
-		
+        
 
 #if SDEBUG
     if(debuglevel & 32)
@@ -927,7 +927,7 @@ int SS80_describe( void )
 
     status = 0;
 
-	B = SS80ControllerPack(&size);
+    B = SS80ControllerPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
         if(debuglevel & 1)
@@ -937,7 +937,7 @@ int SS80_describe( void )
 
     status = 0;
 
-	B = SS80UnitPack(&size);
+    B = SS80UnitPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
         if(debuglevel & 1)
@@ -946,7 +946,7 @@ int SS80_describe( void )
     }
 
     status = EOI_FLAG;
-	B = SS80VolumePack(&size);
+    B = SS80VolumePack(&size);
     if(gpib_write_str(B,size,&status) != size)
     {
         if(debuglevel & 1)
@@ -971,8 +971,8 @@ int SS80_describe( void )
 /// @verbatim
 ///  Notes:
 ///  We set DPPR on entry and EPPR on exit
-///  	DPPR = DisablePPR(SS80p->HEADER.PPR);
-///  	EPPR = EnablePPR(SS80p->HEADER.PPR);
+///     DPPR = DisablePPR(SS80p->HEADER.PPR);
+///     EPPR = EnablePPR(SS80p->HEADER.PPR);
 /// 
 ///  Valid OP Codes for Command State (0x65):
 ///     Real Time, General Purpose, Complementary, DIagnostic
@@ -1067,24 +1067,24 @@ int SS80_Command_State( void )
 /// @todo  Only handles 4-byte Addresses at the moment
 ///  CS80 pg 4-11, 2-14
 ///  SS80 pg 4-67
-		// Set address
+        // Set address
         if (ch == 0x10)
         {
-			/* upper two MSB unused */
-			/* gpib_iobuff[ind+0] MSB unused */
-			/* gpib_iobuff[ind+1] MSB unused */
-			SS80s->AddressBlocks = B2V_MSB(gpib_iobuff,ind,6);
+            /* upper two MSB unused */
+            /* gpib_iobuff[ind+0] MSB unused */
+            /* gpib_iobuff[ind+1] MSB unused */
+            SS80s->AddressBlocks = B2V_MSB(gpib_iobuff,ind,6);
             ind += 6;
 #if SDEBUG
             if(debuglevel & 32)
                 printf("[SS80 Set Address:(%08lXH)]\n", 
-					(long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+                    (long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
             continue;
         }
 
 ///  SS80 pg 4-73
-		// Set Length
+        // Set Length
         if(ch == 0x18)
         {
             /* gpib_iobuff[ind+0] MSB */
@@ -1097,8 +1097,8 @@ int SS80_Command_State( void )
             continue;
         }
 
-		///@brief set unit number
-		///TODO We do not support multiple units yet
+        ///@brief set unit number
+        ///TODO We do not support multiple units yet
         if(ch >= 0x20 && ch <= 0x2f)
         {
             SS80s->unitNO = ch - 0x20;
@@ -1110,7 +1110,7 @@ int SS80_Command_State( void )
         }
 
 // SS80 $S80 4-47
-		// NO OP
+        // NO OP
         if(ch == 0x34)
         {
 #if SDEBUG
@@ -1120,7 +1120,7 @@ int SS80_Command_State( void )
             continue;
         }
 // SS80 $S80 4-79
-		// Set RPS
+        // Set RPS
         if (ch == 0x39)
         {
             ind += 2;
@@ -1132,7 +1132,7 @@ int SS80_Command_State( void )
         }
 
 // SS80 $S80 4-75
-		// Set Release
+        // Set Release
         if (ch == 0x3B)
         {
             ind++;
@@ -1143,7 +1143,7 @@ int SS80_Command_State( void )
             continue;
         }
 
-		///TODO We do not support multiple Volumes yet
+        ///TODO We do not support multiple Volumes yet
         if(ch >= 0x40 && ch <= 0x4f)
         {
             SS80s->volNO = ch - 0x40;
@@ -1269,10 +1269,10 @@ int SS80_Command_State( void )
 /// @todo TODO
 #if SDEBUG
             if(debuglevel & (16+32))
-			{
+            {
                 printf("[SS80 Set Status Mask - TODO]\n");
-				SS80_display_extended_status(gpib_iobuff+ind, "TODO Mask these Status Bits");
-			}
+                SS80_display_extended_status(gpib_iobuff+ind, "TODO Mask these Status Bits");
+            }
 #endif
             ind += 8;
             break;
@@ -1336,7 +1336,7 @@ int SS80_Command_State( void )
     {
         if(debuglevel & 1)
             printf("[SS80 Execute Command, Error at (%d) of (%d) OP Codes]\n", 
-				ind, len);
+                ind, len);
     }
 
     EnablePPR(SS80p->HEADER.PPR);
@@ -1355,7 +1355,7 @@ int SS80_Command_State( void )
 /// 
 /// @verbatim
 ///  Notes:
-///  	DPPR DisablePPR(SS80p->HEADER.PPR) should already be set at the secondary
+///     DPPR DisablePPR(SS80p->HEADER.PPR) should already be set at the secondary
 ///   We do NOT reenable EPPR at any state
 /// 
 ///  Valid OP Codes for Transparent State (0x70 or 0x72):
@@ -1386,7 +1386,7 @@ int SS80_Transparent_State( void )
     uint16_t status;                              // Current status
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
     int ind;                                      // Buffer index
-	///@brief  work in progress, unit support
+    ///@brief  work in progress, unit support
     int cunit = 0;                                // Unit Complementary , optional
 
 
@@ -1473,7 +1473,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-11
 ///  CS80 4-26, 3-2,3-5
 
-		///TODO We do not support multiple units yet
+        ///TODO We do not support multiple units yet
         if(ch == 0x08)                            // 0x08 OP Code
         {
 #if SDEBUG
@@ -1487,7 +1487,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-9
 ///  CS80 4-26, 3-6
 
-		///TODO We do not support multiple units yet
+        ///TODO We do not support multiple units yet
         if(ch == 0x09)                            // 0x09 OP Code
         {
 #if SDEBUG
@@ -1508,7 +1508,7 @@ int SS80_Transparent_State( void )
     {
         if(debuglevel & 1)
             printf("[SS80 Transparent Command, Error at (%d) of (%d) OP Codes]\n", 
-				ind,len);
+                ind,len);
     }
 
 
@@ -1538,7 +1538,7 @@ int SS80_cmd_seek( void )
 
         if(debuglevel & 1)
             printf("[SS80 Seek OVERFLOW at %08lXH]\n", 
-				(long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+                (long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
         return(1);
     }
 
@@ -1819,7 +1819,7 @@ int SS80_increment( void )
 #if SDEBUG
     if(debuglevel & 32)
         printf("[SS80 Increment to (%lXH)]\n", 
-			(long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
+            (long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return(0);
 }

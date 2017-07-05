@@ -65,17 +65,17 @@ void printer_open(char *name)
         ptr = name;
     }
 
-	if(debuglevel & 32)
-		printf("Capturing plot to:%s\n", ptr);
+    if(debuglevel & 32)
+        printf("Capturing plot to:%s\n", ptr);
 
     plot.fp = fopen(ptr,"w");
     if(plot.fp == NULL)
     {
-		if(debuglevel & (1+32))
-		{
-			perror("open failed");
-			printf("exiting...\n");
-		}
+        if(debuglevel & (1+32))
+        {
+            perror("open failed");
+            printf("exiting...\n");
+        }
         return;
     }
 
@@ -115,22 +115,22 @@ void printer_close()
     if( receive_plot_flush() < 0 )
         plot.error = 1;
 
-	if(debuglevel & (1+32))
-	{
-		if(plot.error)
-			printf("ERROR durring write\n");
-	}
+    if(debuglevel & (1+32))
+    {
+        if(plot.error)
+            printf("ERROR durring write\n");
+    }
 
     if(plot.fp)
     {
         fclose(plot.fp);
-		if(debuglevel & 32)
-			printf("\nDONE: %08ld\n",plot.count);
+        if(debuglevel & 32)
+            printf("\nDONE: %08ld\n",plot.count);
     }
 
     if(plot.buf)
         safefree(plot.buf);
-	printer_init();
+    printer_init();
 }
 
 
@@ -154,18 +154,18 @@ int receive_plot_flush()
     ret  = fwrite(plot.buf, 1, plot.ind , plot.fp);
     if(ret != plot.ind)
     {
-		if(debuglevel & (1+32))
-		{
-			perror("receive_plot_flush");
-			printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
-		}
+        if(debuglevel & (1+32))
+        {
+            perror("receive_plot_flush");
+            printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
+        }
         return(-1);
     }
 
     fno = fileno( plot.fp );
     if(fno < 0)
         return(-1);
-	///@brief sync filesystem after every write 
+    ///@brief sync filesystem after every write 
     syncfs( fno );
     return (ret);
 }
@@ -183,16 +183,16 @@ void printer_buffer( uint16_t val )
 
     uint16_t ch;
 
-	if(debuglevel & (1+32))
-	{
-		if( ( plot.count & 255L ) == 0)
-			printf("%08ld\r",plot.count);
-	}
+    if(debuglevel & (1+32))
+    {
+        if( ( plot.count & 255L ) == 0)
+            printf("%08ld\r",plot.count);
+    }
 
     ch = val & 0xff;
     if(val & (0xff00 & ~REN_FLAG))
     {
-		char *ptr;
+        char *ptr;
         if( receive_plot_flush() )
             plot.error = 1;
         ptr = gpib_decode_str(ch);
@@ -224,12 +224,12 @@ void printer_buffer( uint16_t val )
 int PRINTER_COMMANDS(uint8_t ch)
 {
 
-	// We could, for example, use secondaries to set file names, etc
-	// We don not use them yet
+    // We could, for example, use secondaries to set file names, etc
+    // We don not use them yet
     if(PRINTER_is_MLA(listening))
     {
 #if SDEBUG
-		if(debuglevel & 32)
+        if(debuglevel & 32)
             printf("[SC PRINTER Listen: %02XH]\n",  0xff & ch );
 #endif
         return(0);
@@ -238,7 +238,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     if(PRINTER_is_MTA(talking))
     {
 #if SDEBUG
-		if(debuglevel & 32)
+        if(debuglevel & 32)
             printf("[SC PRINTER Talk: %02XH]\n",  0xff & ch );
 #endif
         return(0);

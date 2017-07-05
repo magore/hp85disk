@@ -37,21 +37,21 @@
 */
 queue_t *queue_new(size_t size)
 {
-	queue_t *q = safecalloc( sizeof(queue_t),1);
-	if(!q)
-		return(NULL);
-	q->buf = safecalloc(size+1,1);
-	if(!q->buf)
-	{
-		safefree(q);
-		return(NULL);
-	}
-	q->in = 0;
-	q->out = 0;
-	q->bytes = 0;
-	q->size = size;
-	q->flags = 0;
-	return(q);
+    queue_t *q = safecalloc( sizeof(queue_t),1);
+    if(!q)
+        return(NULL);
+    q->buf = safecalloc(size+1,1);
+    if(!q->buf)
+    {
+        safefree(q);
+        return(NULL);
+    }
+    q->in = 0;
+    q->out = 0;
+    q->bytes = 0;
+    q->size = size;
+    q->flags = 0;
+    return(q);
 }
 
 /**
@@ -61,21 +61,21 @@ queue_t *queue_new(size_t size)
 */
 void queue_del(queue_t *q)
 {
-	if(!q)
-		return;
-	if(q->buf)
-	{
-		safefree(q->buf);
-		// This clear help prevents a freed pointer from being used by mistake
-		// can be removed in production
-		q->buf = NULL;
-		q->in = 0;
-		q->out = 0;
-		q->bytes = 0;
-		q->size = 0;
-		q->flags = 0;
-	}
-	safefree(q);
+    if(!q)
+        return;
+    if(q->buf)
+    {
+        safefree(q->buf);
+        // This clear help prevents a freed pointer from being used by mistake
+        // can be removed in production
+        q->buf = NULL;
+        q->in = 0;
+        q->out = 0;
+        q->bytes = 0;
+        q->size = 0;
+        q->flags = 0;
+    }
+    safefree(q);
 }
 
 
@@ -86,12 +86,12 @@ void queue_del(queue_t *q)
 */
 void queue_flush(queue_t *q)
 {
-	if(!q)
-		return;
-	q->in = 0;
-	q->out = 0;
-	q->bytes = 0;
-	q->flags = 0;
+    if(!q)
+        return;
+    q->in = 0;
+    q->out = 0;
+    q->bytes = 0;
+    q->flags = 0;
 }
 
 /**
@@ -101,9 +101,9 @@ void queue_flush(queue_t *q)
 */
 size_t queue_used(queue_t *q)
 {
-	if(!q || !q->buf)
-		return(0);
-	return(q->bytes);
+    if(!q || !q->buf)
+        return(0);
+    return(q->bytes);
 }
 
 /**
@@ -113,11 +113,11 @@ size_t queue_used(queue_t *q)
 */
 size_t queue_empty(queue_t *q)
 {
-	if(!q || !q->buf)
-		return(1);
-	if(!q->bytes)
-		return(1);
-	return(0);
+    if(!q || !q->buf)
+        return(1);
+    if(!q->bytes)
+        return(1);
+    return(0);
 }
 
 /**
@@ -127,9 +127,9 @@ size_t queue_empty(queue_t *q)
 */
 size_t queue_space(queue_t *q)
 {
-	if(!q || !q->buf)
-		return(0);
-	return(q->size - q->bytes);
+    if(!q || !q->buf)
+        return(0);
+    return(q->size - q->bytes);
 }
 
 /**
@@ -139,16 +139,16 @@ size_t queue_space(queue_t *q)
 */
 size_t queue_full(queue_t *q)
 {
-	if(!q || !q->buf)
-		return(0);
-	return(queue_space(q) ? 0 : 1);
+    if(!q || !q->buf)
+        return(0);
+    return(queue_space(q) ? 0 : 1);
 }
 
 /**
   @brief Add a data buffer to the ring buffer
-	 Note: This function does not wait/block util there is enough free space 
-	 to meet the request.
-	 So you must check that the return value matches the size.
+     Note: This function does not wait/block util there is enough free space 
+     to meet the request.
+     So you must check that the return value matches the size.
   @param[in] *q: ring buffer pointer
   @param[in] *src: input buffer
   @param[in] size: size of input buffer
@@ -161,23 +161,23 @@ size_t queue_push_buffer(queue_t *q, uint8_t *src, size_t size)
     if(!q || !q->buf)
         return(0);
 
-	while(size && queue_space(q) )
-	{
-		if(q->in >= q->size)
-			q->in = 0;
-		q->buf[q->in++] = *src++;
-		++q->bytes;
-		--size;
-		++bytes;
-	}
-	return(bytes);
+    while(size && queue_space(q) )
+    {
+        if(q->in >= q->size)
+            q->in = 0;
+        q->buf[q->in++] = *src++;
+        ++q->bytes;
+        --size;
+        ++bytes;
+    }
+    return(bytes);
 }
 
 /**
   @brief Get a data buffer from the ring buffer.
-	 Note: This function does not wait/block until there is enough data
-	 to fill the request.
-	 So you must check that the return value matches the size.
+     Note: This function does not wait/block until there is enough data
+     to fill the request.
+     So you must check that the return value matches the size.
   @param[in] *q: ring buffer pointer
   @param[in] *dst: outout buffer
   @param[in] size: size of input buffer
@@ -185,77 +185,77 @@ size_t queue_push_buffer(queue_t *q, uint8_t *src, size_t size)
 */
 size_t queue_pop_buffer(queue_t *q, uint8_t *dst, size_t size)
 {
-	size_t bytes = 0;
+    size_t bytes = 0;
 
-	if(!q || !q->buf)
-		return(0);
+    if(!q || !q->buf)
+        return(0);
 
-	while(size && q->bytes)
-	{
-		*dst++ = q->buf[q->out++];
-		if(q->out >= q->size)
-			q->out = 0;
-		--q->bytes;
-		--size;
-		++bytes;
-	}
-	return(bytes);
+    while(size && q->bytes)
+    {
+        *dst++ = q->buf[q->out++];
+        if(q->out >= q->size)
+            q->out = 0;
+        --q->bytes;
+        --size;
+        ++bytes;
+    }
+    return(bytes);
 }
 
 
 /**
   @brief Add a byte to the ring buffer
-	 Note: This function does not wait/block util there is enough free space 
-	 to meet the request.
-	 We assume you check queue_full() before calling this function!
-	 Otherwise you must check that the return value matches 1
+     Note: This function does not wait/block util there is enough free space 
+     to meet the request.
+     We assume you check queue_full() before calling this function!
+     Otherwise you must check that the return value matches 1
   @param[in] *q: ring buffer pointer
   @param[in] c: vyte to add
   @return number of bytes actually added to the buffer - may not be 1!
 */
 int queue_pushc(queue_t *q, uint8_t c)
 {
-	if(!q || !q->buf)
-		return(0);
+    if(!q || !q->buf)
+        return(0);
 
-	if(q->bytes >= q->size)
-	{
-		q->flags |= QUEUE_OVERRUN;
-		return(0);
-	}
-	if(q->in >= q->size)
-		q->in = 0;
+    if(q->bytes >= q->size)
+    {
+        q->flags |= QUEUE_OVERRUN;
+        return(0);
+    }
+    if(q->in >= q->size)
+        q->in = 0;
 
-	if(c == '\n')			// st EOL flasg when we see one
-		q->flags |= QUEUE_EOL;
-	q->buf[q->in++] = c;
-	++q->bytes;
-	return(1);
+    if(c == '\n')           // st EOL flasg when we see one
+        q->flags |= QUEUE_EOL;
+    q->buf[q->in++] = c;
+    ++q->bytes;
+    return(1);
 }
 
 /**
   @brief Remove a byte from the ring buffer
-	Note: This function does not wait/block util there is data to 
-	meet the request.
-	We assume you check queue_empty() before calling this function!
+    Note: This function does not wait/block util there is data to 
+    meet the request.
+    We assume you check queue_empty() before calling this function!
   @param[in] *q: ring buffer pointer
   @return byte , or 0 if ring buffer was empty (user error)
 */
 int queue_popc(queue_t *q)
 {
-	uint8_t c;
-	if(!q || !q->buf)
-		return(0);
+    uint8_t c;
+    if(!q || !q->buf)
+        return(0);
 
-	if(q->bytes)
-	{
-		c = q->buf[q->out];
-		if(c == '\n')		// reset EOL flag after a read
-			q->flags &= ~QUEUE_EOL;
-		if(++q->out >= q->size)
-			q->out = 0;
-		q->bytes--;
-		return(c);
-	}
-	return(0);
+    if(q->bytes)
+    {
+        c = q->buf[q->out];
+        if(c == '\n')       // reset EOL flag after a read
+            q->flags &= ~QUEUE_EOL;
+        if(++q->out >= q->size)
+            q->out = 0;
+        q->bytes--;
+        return(c);
+    }
+    return(0);
 }

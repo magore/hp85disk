@@ -42,110 +42,110 @@
 
 /// @verbatim
 ///  Reference: Amigo Command Set Reference used in this document
-///  Short Form 		Title
-///  SS80 		"Subset 80 from Fixed and flexible disc drives" 5958-4129
-///  HP9123 		9123 disc drive manual addendum 5957-6584
-///  A 			Appendix A "HP 9895A Disc Memory Commends Set"
-/// 			See Receive Status A16
-///  L    Buffered Read           	0x05    2		A33		Y
-///  L    Request Physical Address 	0x14    2		A21		Y 0x68
-/// 			See Send Address A20
+///  Short Form         Title
+///  SS80       "Subset 80 from Fixed and flexible disc drives" 5958-4129
+///  HP9123         9123 disc drive manual addendum 5957-6584
+///  A          Appendix A "HP 9895A Disc Memory Commends Set"
+///             See Receive Status A16
+///  L    Buffered Read             0x05    2       A33     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///             See Send Address A20
 /// 
-///  0x6B Command Op Codes        	OP      bytes
-///  L    Buffered Read Verify    	0x05    2		A37		Y
-///  L    ID Triggered Read       	0x06    2		A41		Y
+///  0x6B Command Op Codes          OP      bytes
+///  L    Buffered Read Verify      0x05    2       A37     Y
+///  L    ID Triggered Read         0x06    2       A41     Y
 /// 
-///  0x6C Command Op Codes        	OP      bytes
-///  L    Unbuffered Read Verify  	0x05    2		A38		Y
-///  L    Request Physical Address	0x14	2		A21		Y 0x68
-///  L    Format Request           	0x18    2		A50		N
-///  L    Door Lock               	0x19    2		A30		N
-///  L    Door Unlock             	0x1A    2		A31		N
+///  0x6C Command Op Codes          OP      bytes
+///  L    Unbuffered Read Verify    0x05    2       A38     Y
+///  L    Request Physical Address  0x14    2       A21     Y 0x68
+///  L    Format Request            0x18    2       A50     N
+///  L    Door Lock                 0x19    2       A30     N
+///  L    Door Unlock               0x1A    2       A31     N
 /// 
-///  0x6F Command Op Codes        	OP      bytes
-///  L    Download Controller     	---     1..256	A26		N
+///  0x6F Command Op Codes          OP      bytes
+///  L    Download Controller       ---     1..256  A26     N
 /// 
-///  0x70 Command Op Codes        	OP      bytes
-///  L    HP-300 Clear            	---     1		A23		N
-///  T    DSJ                     	---     1		A11		N
+///  0x70 Command Op Codes          OP      bytes
+///  L    HP-300 Clear              ---     1       A23     N
+///  T    DSJ                       ---     1       A11     N
 /// 
-///  0x77 Command Op Codes        	OP      bytes
-///  T/L  HP-IB CRC               	---     ---		A30		N
+///  0x77 Command Op Codes          OP      bytes
+///  T/L  HP-IB CRC                 ---     ---     A30     N
 /// 
-///  0x7E Command Op Codes        	OP      bytes
-///  L    Write Loopback Record 	---     1..256	A25		N
-///  T    Read Loopback Record 		---     1..256	A14		N
+///  0x7E Command Op Codes          OP      bytes
+///  L    Write Loopback Record     ---     1..256  A25     N
+///  T    Read Loopback Record      ---     1..256  A14     N
 /// 
-///  0x7F Command Op Codes        	OP      bytes
-///  T    Read Self Test Results    ---     2		A13		N
-///  L    Initiat Self Test       	---     2		A24		N
+///  0x7F Command Op Codes          OP      bytes
+///  T    Read Self Test Results    ---     2       A13     N
+///  L    Initiat Self Test         ---     2       A24     N
 /// @endverbatim
 
 
 /// @verbatim
 /// Secondary_Commands and OP Code processing
 ///
-/// 0x60 Command Op Codes        	OP      bytes
-/// L    Receive Data            	---     ---
-///			Execute of most receive data requests
-///			All Disk Write
-/// T    Send Data               	---     ---
-///			Execute of most send data requests
-///			All Disk Read
+/// 0x60 Command Op Codes           OP      bytes
+/// L    Receive Data               ---     ---
+///         Execute of most receive data requests
+///         All Disk Write
+/// T    Send Data                  ---     ---
+///         Execute of most send data requests
+///         All Disk Read
 ///
-/// 0x68 Command Op Codes        	OP      bytes	Ref		Execute Phase
-/// L    Cold Load Read          	0x00    2		A40		Y
-/// L    Seek                    	0x02    6		A27		N
-/// L    Request Status buffered		0x03    2		A15		Y 0x68
-/// L    Unbuffered Read         	0x05    2		A35		Y
-/// L    Verify                  	0x07    4		A36		N
-/// L    Unbuffered Write Request	0x08   	2		A45		Y
-/// L    Initialize              	0x0B    2		A46		Y
-/// L    Initialize DBIT            	0x2B    2		A46		Y
-/// L    Request Logical Address 	0x14    2		A20		Y 0x68
-/// L	End							0x15	2		A29		N
-/// T    Send Status or Address 		----    4		A20		N
-///			Execute of all Address and Status Requests 
-///			(Y 0x68)
+/// 0x68 Command Op Codes           OP      bytes   Ref     Execute Phase
+/// L    Cold Load Read             0x00    2       A40     Y
+/// L    Seek                       0x02    6       A27     N
+/// L    Request Status buffered        0x03    2       A15     Y 0x68
+/// L    Unbuffered Read            0x05    2       A35     Y
+/// L    Verify                     0x07    4       A36     N
+/// L    Unbuffered Write Request   0x08    2       A45     Y
+/// L    Initialize                 0x0B    2       A46     Y
+/// L    Initialize DBIT                0x2B    2       A46     Y
+/// L    Request Logical Address    0x14    2       A20     Y 0x68
+/// L   End                         0x15    2       A29     N
+/// T    Send Status or Address         ----    4       A20     N
+///         Execute of all Address and Status Requests 
+///         (Y 0x68)
 ///
-/// 0x69 Command Op Codes        	OP      bytes
-/// L    Buffered Write Request  	0x08    2		A43		Y
+/// 0x69 Command Op Codes           OP      bytes
+/// L    Buffered Write Request     0x08    2       A43     Y
 ///
-/// 0x6A Command Op Codes        	OP      bytes
-/// L    Request Status Unbuffered   0x03    2		A15		Y 0x68
-///			See Receive Status A16
-/// L    Buffered Read           	0x05    2		A33		Y
-/// L    Request Physical Address 	0x14    2		A21		Y 0x68
-///			See Send Address A20
+/// 0x6A Command Op Codes           OP      bytes
+/// L    Request Status Unbuffered   0x03    2      A15     Y 0x68
+///         See Receive Status A16
+/// L    Buffered Read              0x05    2       A33     Y
+/// L    Request Physical Address   0x14    2       A21     Y 0x68
+///         See Send Address A20
 ///
-/// 0x6B Command Op Codes        	OP      bytes
-/// L    Buffered Read Verify    	0x05    2		A37		Y
-/// L    ID Triggered Read       	0x06    2		A41		Y
+/// 0x6B Command Op Codes           OP      bytes
+/// L    Buffered Read Verify       0x05    2       A37     Y
+/// L    ID Triggered Read          0x06    2       A41     Y
 ///
-/// 0x6C Command Op Codes        	OP      bytes
-/// L    Unbuffered Read Verify  	0x05    2		A38		Y
-/// L    Request Physical Address	0x14	2		A21		Y 0x68
-/// L    Format Request             	0x18    2		A50		N
-/// L    Door Lock               	0x19    2		A30		N
-/// L    Door Unlock             	0x1A    2		A31		N
+/// 0x6C Command Op Codes           OP      bytes
+/// L    Unbuffered Read Verify     0x05    2       A38     Y
+/// L    Request Physical Address   0x14    2       A21     Y 0x68
+/// L    Format Request                 0x18    2       A50     N
+/// L    Door Lock                  0x19    2       A30     N
+/// L    Door Unlock                0x1A    2       A31     N
 ///
-/// 0x6F Command Op Codes        	OP      bytes
-/// L    Download Controller     	---     1..256	A26		N
+/// 0x6F Command Op Codes           OP      bytes
+/// L    Download Controller        ---     1..256  A26     N
 ///
-/// 0x70 Command Op Codes        	OP      bytes
-/// L    HP-300 Clear            	---     1		A23		N
-/// T    DSJ                     	---     1		A11		N
+/// 0x70 Command Op Codes           OP      bytes
+/// L    HP-300 Clear               ---     1       A23     N
+/// T    DSJ                        ---     1       A11     N
 ///
-/// 0x77 Command Op Codes        	OP      bytes
-/// T/L  HP-IB CRC               	---     ---		A30		N
+/// 0x77 Command Op Codes           OP      bytes
+/// T/L  HP-IB CRC                  ---     ---     A30     N
 ///
-/// 0x7E Command Op Codes        	OP      bytes
-/// L    Write Loopback Record 		---     1..256	A25		N
-/// T    Read Loopback Record 		---     1..256	A14		N
+/// 0x7E Command Op Codes           OP      bytes
+/// L    Write Loopback Record      ---     1..256  A25     N
+/// T    Read Loopback Record       ---     1..256  A14     N
 ///
-/// 0x7F Command Op Codes        	OP      bytes
-/// T    Read Self Test Results     	---     2		A13		N
-/// L    Initiat Self Test       	---     2		A24		N
+/// 0x7F Command Op Codes           OP      bytes
+/// T    Read Self Test Results         ---     2       A13     N
+/// L    Initiat Self Test          ---     2       A24     N
 /// @endverbatim
 
 extern uint8_t talking;
@@ -178,25 +178,25 @@ void amigo_init()
         if(Devices[i].TYPE == AMIGO_TYPE)
         {
             set_active_device(i);
-			AMIGOs->state = AMIGO_IDLE;
+            AMIGOs->state = AMIGO_IDLE;
 
-			memset(AMIGOs->status,0,sizeof(AMIGOs->status));
-			memset(AMIGOs->logical_address,0,sizeof(AMIGOs->logical_address));
+            memset(AMIGOs->status,0,sizeof(AMIGOs->status));
+            memset(AMIGOs->logical_address,0,sizeof(AMIGOs->logical_address));
 
-			///TODO we don not support multiple units yet
-			AMIGOs->unitNO = 0;
+            ///TODO we don not support multiple units yet
+            AMIGOs->unitNO = 0;
 
-			AMIGOs->sector = 0;
-			AMIGOs->head = 0;
-			AMIGOs->cyl = 0;
+            AMIGOs->sector = 0;
+            AMIGOs->head = 0;
+            AMIGOs->cyl = 0;
 
-			AMIGOs->dsj = 2;
-			AMIGOs->Errors = 0;
+            AMIGOs->dsj = 2;
+            AMIGOs->Errors = 0;
 
-			/// @todo  verify that we always want PPR disabled
-			DisablePPR(AMIGOp->HEADER.PPR);
-		}
-	}
+            /// @todo  verify that we always want PPR disabled
+            DisablePPR(AMIGOp->HEADER.PPR);
+        }
+    }
 }
 
 
@@ -231,7 +231,7 @@ int amigo_request_status()
         printf("[AMIGO request status]\n");
 #endif
     AMIGOs->status[0] = 0x00;                       // Status 1
-	///TODO we don not support multiple units yet
+    ///TODO we don not support multiple units yet
     AMIGOs->status[1] = AMIGOs->unitNO;                 // Unit
     AMIGOs->status[2] = 0x0d;                       // Status 2 (0110 = hp format) << 1, 1=HP9121
     AMIGOs->status[3] = 0x00;                       //
@@ -524,8 +524,8 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
     memset((void *) gpib_iobuff, db, AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
 
 #if SDEBUG
-	if(debuglevel & 32)
-		printf("[AMIGO format]\n");
+    if(debuglevel & 32)
+        printf("[AMIGO format]\n");
     if(debuglevel & 64)
         gpib_timer_elapsed_begin();
 #endif
@@ -555,8 +555,8 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
 #if SDEBUG
     if(debuglevel & 64)
         gpib_timer_elapsed_end("Format");
-	if(debuglevel & 32)
-		printf("[AMIGO format done]\n");
+    if(debuglevel & 32)
+        printf("[AMIGO format done]\n");
 #endif
     EnablePPR(AMIGOp->HEADER.PPR);
     return(stat);
@@ -595,8 +595,8 @@ int amigo_buffered_read()
     }
 
 #if SDEBUG
-	if(debuglevel & 128)
-		gpib_timer_elapsed_begin();
+    if(debuglevel & 128)
+        gpib_timer_elapsed_begin();
 #endif
     status = EOI_FLAG;
     len = gpib_write_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
@@ -965,16 +965,16 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Cold Load Read Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0;
             AMIGOs->dsj = 0;
             AMIGOs->Errors = 0;
-			/// Fill in temparary address
+            /// Fill in temparary address
             tmp.cyl = 0;
             tmp.head = ( (0xff & *ptr) >> 6) & 0x03;
             tmp.sector = 0x3f & *ptr;
             ++ptr;
-			//update to real address on sucess
+            //update to real address on sucess
             amigo_seek((AMIGOStateType *) &tmp);
             AMIGOs->state = AMIGO_COLD_LOAD_READ;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -991,13 +991,13 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Seek len=5]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
-			/// Fill in temparary address
+            /// Fill in temparary address
             tmp.cyl = 0xff & *ptr++;
             tmp.head = 0xff & *ptr++;
             tmp.sector = 0xff & *ptr++;
-			//update to real address on sucess
+            //update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
             EnablePPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
@@ -1013,14 +1013,14 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Seek len=6]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
-			/// Fill in temparary address
+            /// Fill in temparary address
             tmp.cyl = (0xff & *ptr++) << 8;       // MSB
             tmp.cyl |= (0xff & *ptr++);           // LSB
             tmp.head = 0xff & *ptr++;
             tmp.sector = 0xff & *ptr++;
-			//update to real address on sucess
+            //update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
             EnablePPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
@@ -1032,7 +1032,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Request Status Buffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
             amigo_request_status();
             AMIGOs->state = AMIGO_REQUEST_STATUS_BUFFERED;
@@ -1045,7 +1045,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Read Unbuffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_UNBUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1058,7 +1058,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Verify]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             sectors = (0xff & *ptr++) << 8;
             sectors |= (0xff & *ptr++);
@@ -1070,7 +1070,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Write Unbuffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_UNBUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1082,7 +1082,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Initialize Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_INITIALIZE;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1109,7 +1109,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Write Buffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_BUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1124,7 +1124,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Request Status Unbuffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_REQUEST_STATUS_UNBUFFERED;
             amigo_request_status();
@@ -1136,7 +1136,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Read Buffered Command]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_BUFFERED;
             EnablePPR(AMIGOp->HEADER.PPR);
@@ -1156,7 +1156,7 @@ int Amigo_Command( int secondary )
             if(debuglevel & 32)
                 printf("[AMIGO Format]\n");
 #endif
-			///TODO we don not support multiple units yet
+            ///TODO we don not support multiple units yet
             AMIGOs->unitNO = 0xff & *ptr++;
             override = 0xff & *ptr++;
             interleave = 0xff & *ptr++;
@@ -1187,7 +1187,7 @@ int Amigo_Command( int secondary )
 int Amigo_Execute( int secondary )
 {
 #if SDEBUG
-	if(debuglevel & 32)
+    if(debuglevel & 32)
         printf("[AMIGO Execute(%02XH): listen:%02XH, talk:%02XH]\n",
             secondary, listening, talking);
 #endif
@@ -1211,7 +1211,7 @@ int Amigo_Execute( int secondary )
                 return(0);
             case AMIGO_COLD_LOAD_READ:
 #if SDEBUG
-				if(debuglevel & 32)
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Cold Load Read]\n");
 #endif
                 return ( amigo_buffered_read() );
@@ -1258,19 +1258,19 @@ int Amigo_Execute( int secondary )
                 return(0);
             case AMIGO_REQUEST_STATUS_BUFFERED:
 #if SDEBUG
-				if(debuglevel & 32)
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Request Status Buffered]\n");
 #endif
                 return ( amigo_send_status() );
             case AMIGO_REQUEST_STATUS_UNBUFFERED:
 #if SDEBUG
-				if(debuglevel & 32)
+                if(debuglevel & 32)
                     printf("[AMIGO Exicute Request Status Unbuffered]\n");
 #endif
                 return ( amigo_send_status() );
             case AMIGO_REQUEST_LOGICAL_ADDRESS:
 #if SDEBUG
-				if(debuglevel & 32)
+                if(debuglevel & 32)
                     printf("[AMIGO Execute Request Logical Address]\n");
 #endif
                 return ( amigo_send_logical_address() );
@@ -1348,7 +1348,7 @@ int AMIGO_COMMANDS(uint8_t ch)
         }
         if(ch == 0x70 && AMIGO_is_MLA(listening))
         {
-			// NOP
+            // NOP
         }
     }
     return(0);

@@ -37,7 +37,7 @@ static ETSTimer task_1ms;
 MEMSPACE
 void disable_system_task()
 {
-	os_timer_disarm(&task_1ms);
+    os_timer_disarm(&task_1ms);
 }
 
 /// @brief Enable interrupts
@@ -45,17 +45,17 @@ void disable_system_task()
 MEMSPACE
 void enable_system_task()
 {
-	os_timer_arm(&task_1ms, 1, 1);
+    os_timer_arm(&task_1ms, 1, 1);
 }
 
 /// @brief Setup main timers ISR - this ISR calls execute_timers() task.
 /// @return void.
 MEMSPACE void install_timers_isr()
 {
-	os_timer_disarm(&task_1ms);
-	os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
+    os_timer_disarm(&task_1ms);
+    os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
 }
-#endif	// ifdef ESP8266
+#endif  // ifdef ESP8266
 // =============================================
 
 // =============================================
@@ -90,7 +90,7 @@ MEMSPACE void install_timers_isr()
 MEMSPACE
 void disable_system_task()
 {
-	cli();
+    cli();
 }
 
 /// @brief Enable interrupts
@@ -98,7 +98,7 @@ void disable_system_task()
 MEMSPACE
 void enable_system_task()
 {
-	sei();
+    sei();
 }
 
 /// @brief Setup main timers ISR 
@@ -117,10 +117,10 @@ void enable_system_task()
 MEMSPACE void install_timers_isr()
 {
     cli();
-    TCCR1B=(1<<WGM12) | TIMER1_PRE_1; 	// No Prescale
+    TCCR1B=(1<<WGM12) | TIMER1_PRE_1;   // No Prescale
     TCCR1A=0;
-    OCR1A=(TIMER1_COUNTS_PER_TIC-1);	// 0 .. count
-    TIMSK1 |= (1<<OCIE1A);				//Enable the Output Compare A interrupt
+    OCR1A=(TIMER1_COUNTS_PER_TIC-1);    // 0 .. count
+    TIMSK1 |= (1<<OCIE1A);              //Enable the Output Compare A interrupt
     sei();
 }
 
@@ -138,8 +138,8 @@ ISR(TIMER1_COMPA_vect)
 ///
 ///  - Note: We ignore clk_id, and include low level counter offsets when available.
 ///
-/// @param[in] clk_id:	unused hardware clock index.
-/// @param[out] ts:		timespec result.
+/// @param[in] clk_id:  unused hardware clock index.
+/// @param[out] ts:     timespec result.
 ///
 /// @return 0 on success.
 /// @return -1 on error.
@@ -151,7 +151,7 @@ int clock_gettime(clockid_t clk_id, struct timespec *ts)
     uint8_t pendingf = 0;
     int errorf = 0;
 
-	// disable interrupts
+    // disable interrupts
     cli();
 
     count1 = TCNT1;
@@ -178,7 +178,7 @@ int clock_gettime(clockid_t clk_id, struct timespec *ts)
     }
     offset += count2;
 
-	// enable interrupts
+    // enable interrupts
     sei();
 
     offset *= TIMER1_COUNTER_RES;
@@ -192,8 +192,8 @@ int clock_gettime(clockid_t clk_id, struct timespec *ts)
     }
     return(errorf);
 }
-#endif	// ifdef HAVE_HIRES_TIMER
+#endif  // ifdef HAVE_HIRES_TIMER
 
-#endif	// ifdef AVR
+#endif  // ifdef AVR
 // =============================================
 

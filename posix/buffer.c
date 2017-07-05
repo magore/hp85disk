@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///@brief FatFS does not have a f_fgetc() function
 /// Using f_read() of just 1 byte is VERY VERY SLOW
 
-	
+    
 ///@brief buffered read open
 ///@param[in] name: file name
 ///@param[in] buf:  buffer to use when reading
@@ -39,28 +39,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///@return buffer_t pointer, or NULL on error
 buffer_t *buffer_read_open(char *name, uint8_t *buf, int size)
 {
-	static buffer_t _buff;
-	buffer_t *p = (buffer_t *) &_buff;
+    static buffer_t _buff;
+    buffer_t *p = (buffer_t *) &_buff;
 
-	memset(p,0,(int) sizeof(buffer_t));
+    memset(p,0,(int) sizeof(buffer_t));
 
-	p->buf  = buf;
+    p->buf  = buf;
 
-	///@brief Read and process into image file
-	p->fp = fopen(name,"r");
-	if(p->fp == NULL)
-	{
-		printf("buffer_read_open: Can not open:[%s]\n", name);
-		buffer_read_close(p);
-		return(0);
-	}
+    ///@brief Read and process into image file
+    p->fp = fopen(name,"r");
+    if(p->fp == NULL)
+    {
+        printf("buffer_read_open: Can not open:[%s]\n", name);
+        buffer_read_close(p);
+        return(0);
+    }
 
-	p->size = size;
-	p->ind = 0;
-	p->len = 0;
-	p->ungetf = 0;
-	p->ungetc = 0;
-	return(p);
+    p->size = size;
+    p->ind = 0;
+    p->len = 0;
+    p->ungetf = 0;
+    p->ungetc = 0;
+    return(p);
 }
 
 
@@ -70,13 +70,13 @@ buffer_t *buffer_read_open(char *name, uint8_t *buf, int size)
 ///@return void
 void buffer_read_close(buffer_t *p)
 {
-	if(p->fp)
-		fclose(p->fp);
-	p->size = 0;
-	p->len = 0;
-	p->ind = 0;
-	p->ungetf = 0;
-	p->ungetc = 0;
+    if(p->fp)
+        fclose(p->fp);
+    p->size = 0;
+    p->len = 0;
+    p->ind = 0;
+    p->ungetf = 0;
+    p->ungetc = 0;
 }
 
 ///@brief buffered ungetc
@@ -85,40 +85,40 @@ void buffer_read_close(buffer_t *p)
 ///@return void
 void buffer_ungetc(buffer_t *p, int c)
 {
-	p->ungetf = 1;
-	p->ungetc = c;
+    p->ungetf = 1;
+    p->ungetc = c;
 }
 
-	
+    
 ///@brief buffered getc
 ///@param[in] p: buffer structure ppointer
 ///@return character or EOF 
 int buffer_getc(buffer_t *p)
 {
-	int size;
-	int c;
+    int size;
+    int c;
 
-	if(p->ungetf)
-	{
-		p->ungetf = 0;
-		return(p->ungetc);
-	}
-	// Read a new block
-	if(p->len < 1)
-	{
-		p->ind = 0;
-		size = fread(p->buf, 1, p->size, p->fp);
-		if(size <= 0)
-		{
-			p->len = 0;
-			return(EOF);
-		}
-		p->len = size;
-	}
-	c = p->buf[p->ind];
-	p->len--;
-	p->ind++;
-	return( c );
+    if(p->ungetf)
+    {
+        p->ungetf = 0;
+        return(p->ungetc);
+    }
+    // Read a new block
+    if(p->len < 1)
+    {
+        p->ind = 0;
+        size = fread(p->buf, 1, p->size, p->fp);
+        if(size <= 0)
+        {
+            p->len = 0;
+            return(EOF);
+        }
+        p->len = size;
+    }
+    c = p->buf[p->ind];
+    p->len--;
+    p->ind++;
+    return( c );
 }
 
 
@@ -129,35 +129,35 @@ int buffer_getc(buffer_t *p)
 ///@return string or NULL on EOF
 uint8_t *buffer_gets(uint8_t *str, int size, buffer_t *p)
 {
-	int c;
-	int next;
-	int ind = 0;
+    int c;
+    int next;
+    int ind = 0;
 
-	// leave room for EOS
-	while(ind < size)
-	{
-		c = buffer_getc(p);
+    // leave room for EOS
+    while(ind < size)
+    {
+        c = buffer_getc(p);
         if(c == EOF)
-		{
-			if(ind == 0)
-			{
-				str[ind] = 0;
-				return(NULL);
-			}
-			break;
-		}
-		// CR NL is end of line
-		if(c == '\r')
-		{
-			next = buffer_getc(p);
-			if(next == '\n')
-				break;
-			buffer_ungetc(p,next);
-			break;
-		}
-		// NL is end of line
-		if(c == '\n')
-			break;
+        {
+            if(ind == 0)
+            {
+                str[ind] = 0;
+                return(NULL);
+            }
+            break;
+        }
+        // CR NL is end of line
+        if(c == '\r')
+        {
+            next = buffer_getc(p);
+            if(next == '\n')
+                break;
+            buffer_ungetc(p,next);
+            break;
+        }
+        // NL is end of line
+        if(c == '\n')
+            break;
         str[ind++] = c;
     }
     str[ind] = 0;

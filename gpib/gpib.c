@@ -232,7 +232,7 @@ void gpib_bus_init( int cold )
     {
 ///  References:
 ///   HP-IB Tutorial pg 12,13
-/// 	HP-IB pg 8-11
+///     HP-IB pg 8-11
         GPIB_IO_LOW(NDAC);
         GPIB_IO_LOW(NRFD);
     }
@@ -277,11 +277,11 @@ void gpib_state_init( void )
 /// @return  void
 void EnablePPR(int bit)
 {
-	if(bit < 0 || bit > 7)
-	{
-		printf("EnablePPR: bit %d out of range\n", (int) bit);
-		return;
-	}
+    if(bit < 0 || bit > 7)
+    {
+        printf("EnablePPR: bit %d out of range\n", (int) bit);
+        return;
+    }
     ppr_bit_set(bit);
 #if SDEBUG
     if(debuglevel & 2)
@@ -297,11 +297,11 @@ void EnablePPR(int bit)
 
 void DisablePPR(int bit)
 {
-	if(bit < 0 || bit > 7)
-	{
-		printf("DisablePPR: bit %d out of range\n", (int) bit);
-		return;
-	}
+    if(bit < 0 || bit > 7)
+    {
+        printf("DisablePPR: bit %d out of range\n", (int) bit);
+        return;
+    }
     ppr_bit_clr(bit);
 #if SDEBUG
     if(debuglevel & 2)
@@ -322,7 +322,7 @@ void DisablePPR(int bit)
 ///        1) Hardware will automatically hold DATA BUS lines low 
 ///  - ppr_reg() determines if we have PPR enabled.
 ///  - References:
-///  	- SS80 pg 3-4, section 3-3
+///     - SS80 pg 3-4, section 3-3
 /// @see EnablePPR()
 /// @see DisablePPR()
 /// @return  1 if we see a PPR, 0 if not
@@ -333,9 +333,9 @@ uint8_t Parallel_Poll()
 
     if(GPIB_IO_RD(ATN) == 0 && GPIB_IO_RD(EOI) == 0 )
     {
-		///@brief Bus pin states
+        ///@brief Bus pin states
         pins = GPIB_PPR_RD();
-		///@brief debugging - ddr bits should be 0xff
+        ///@brief debugging - ddr bits should be 0xff
         ddr = GPIB_PPR_DDR_RD();
 #if SDEBUG
         if(debuglevel & (2+512))
@@ -344,11 +344,11 @@ uint8_t Parallel_Poll()
 #endif
 //FIXME do we want to wait for this state to end ?
 #if 0
-		while(GPIB_IO_RD(ATN) == 0 && GPIB_IO_RD(EOI) == 0 )
-		{
-			if(GPIB_IO_RD(IFC) == 0)
-				break;
-		}
+        while(GPIB_IO_RD(ATN) == 0 && GPIB_IO_RD(EOI) == 0 )
+        {
+            if(GPIB_IO_RD(IFC) == 0)
+                break;
+        }
 #endif
         return(1);
     }
@@ -511,7 +511,7 @@ uint16_t gpib_write_byte(uint16_t ch)
 
 #if 0
 
-						if(debuglevel & (1+4))
+                        if(debuglevel & (1+4))
                             printf("<BUS NRFD=1,NDAV=1>\n");
                         ch |= BUS_ERROR_FLAG;
                         tx_state = GPIB_TX_ERROR;
@@ -660,7 +660,7 @@ uint16_t gpib_unread(uint16_t ch)
     }
     else
     {
-		if(debuglevel & (1+4))
+        if(debuglevel & (1+4))
             printf("gpib_unread: error, can only be called once!\n");
     }
     return(ch);
@@ -875,7 +875,7 @@ void gpib_decode_header( void )
 char *gpib_decode_str(uint16_t ch)
 {
     static char str[64];
-	char *tmp = str;
+    char *tmp = str;
     uint16_t status,val;
     uint16_t printable;
 
@@ -925,7 +925,7 @@ char *gpib_decode_str(uint16_t ch)
     else
         *tmp++ = '-';
     *tmp = 0;
-	return(str);
+    return(str);
 }
 
 
@@ -937,7 +937,7 @@ char *gpib_decode_str(uint16_t ch)
 
 void gpib_decode(uint16_t ch)
 {
-	char *ptr;
+    char *ptr;
     extern void gpib_log( char *str );
     ptr = gpib_decode_str(ch);
     gpib_log(ptr);
@@ -949,7 +949,7 @@ void gpib_decode(uint16_t ch)
 ///
 /// - Status flags used when reading
 ///   - If EOI is set then EOI detection will end reading when EOI is detected.
-///	  - If an early or unexpected EOI is detected a warning is displayed.
+///   - If an early or unexpected EOI is detected a warning is displayed.
 ///   - The state of ATN controls the type of data read.
 ///     - If ATN is set then parity is stripped.
 ///     - Only data matching the ATN flag state set by user is read.
@@ -1033,8 +1033,8 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
     }
     if ( ind != size )
     {
-		if(debuglevel & (1+4))
-			printf("[gpib_read_str read(%d) expected(%d)]\n", ind , size);
+        if(debuglevel & (1+4))
+            printf("[gpib_read_str read(%d) expected(%d)]\n", ind , size);
     }
     return(ind);
 }
@@ -1078,7 +1078,7 @@ int gpib_write_str(uint8_t *buf, int size, uint16_t *status)
 
     if(!size)
     {
-		if(debuglevel & (1+4))
+        if(debuglevel & (1+4))
             printf("gpib_write_str: size = 0\n");
     }
 
@@ -1111,7 +1111,7 @@ int gpib_write_str(uint8_t *buf, int size, uint16_t *status)
     }                                             // while(ind < size)
     if ( ind != size )
     {
-		if(debuglevel & (1+4))
+        if(debuglevel & (1+4))
             printf("[gpib_write_str sent(%d) expected(%d)]\n", ind,size);
     }
     return(ind);

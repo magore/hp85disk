@@ -32,7 +32,7 @@ void heapify(int *v, int size, int root)
     int largest = root;
     int left  = (root<<1) + 1;  
     int right = (root<<1) + 2; 
-	int tmp;
+    int tmp;
  
     // If left child is larger than root
     if (left < size && v[left] > v[largest])
@@ -46,9 +46,9 @@ void heapify(int *v, int size, int root)
     if (largest != root)
     {
         // swap
-		tmp = v[root];
-		v[root] = v[largest];
-		v[largest] = tmp;
+        tmp = v[root];
+        v[root] = v[largest];
+        v[largest] = tmp;
         heapify(v, size, largest);
     }
 }
@@ -56,21 +56,21 @@ void heapify(int *v, int size, int root)
 MEMSPACE
 void heapsort(int *v, int size)
 {
-	int root;
-	int tmp;
+    int root;
+    int tmp;
 
     for(root = size / 2 - 1; root >= 0; --root)
-	{
+    {
         heapify(v, size, root);
-	}
+    }
  
     // One by one extract an element from heap
     for (root=size-1; root>=0; --root)
     {
         // swap
-		tmp = v[0];
-		v[0] = v[root];
-		v[root] = tmp;
+        tmp = v[0];
+        v[0] = v[root];
+        v[root] = tmp;
         heapify(v, root, 0);
     }
 }

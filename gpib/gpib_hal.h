@@ -60,32 +60,32 @@ void gpib_clock_task( void );
 
 
 ///FIXME be AVR specific!!!
-#define EOI		GPIO_B0
-#define DAV 	GPIO_B1
-#define NRFD 	GPIO_D2
-#define NDAC 	GPIO_D3
-#define IFC  	GPIO_D4
-#define SRQ 	GPIO_D5
-#define ATN 	GPIO_D6
-#define REN 	GPIO_D7
+#define EOI     GPIO_B0
+#define DAV     GPIO_B1
+#define NRFD    GPIO_D2
+#define NDAC    GPIO_D3
+#define IFC     GPIO_D4
+#define SRQ     GPIO_D5
+#define ATN     GPIO_D6
+#define REN     GPIO_D7
 
 #ifndef SOFTWARE_PP
 #warning Hardware PP
-#define PPE 	GPIO_B2
+#define PPE     GPIO_B2
 #endif
 
-#define GPIB_IO_RD(a) 		GPIO_PIN_RD(a)
-#define GPIB_PIN_FLOAT(a) 	GPIO_PIN_FLOAT(a)
-#define GPIB_IO_LOW(a) 		GPIO_PIN_LOW(a)
-#define GPIB_IO_HI(a)  		GPIO_PIN_HI(a)
+#define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
+#define GPIB_PIN_FLOAT(a)   GPIO_PIN_FLOAT(a)
+#define GPIB_IO_LOW(a)      GPIO_PIN_LOW(a)
+#define GPIB_IO_HI(a)       GPIO_PIN_HI(a)
 
 #define GPIB_BUS_OUT()      GPIO_PORT_DIR_OUT(GPIO_A)
 #define GPIB_BUS_IN()       GPIO_PORT_DIR_IN(GPIO_A)
-#define GPIB_BUS_RD()		GPIO_PORT_RD(GPIO_A)
-#define GPIB_BUS_WR(val)	GPIO_PORT_WR(GPIO_A,val)
+#define GPIB_BUS_RD()       GPIO_PORT_RD(GPIO_A)
+#define GPIB_BUS_WR(val)    GPIO_PORT_WR(GPIO_A,val)
 
-#define GPIB_PPR_RD()     	GPIO_PORT_PINS_RD(GPIO_A)
-#define GPIB_PPR_DDR_RD()	GPIO_PORT_DDR_RD(GPIO_A)
+#define GPIB_PPR_RD()       GPIO_PORT_PINS_RD(GPIO_A)
+#define GPIB_PPR_DDR_RD()   GPIO_PORT_DDR_RD(GPIO_A)
 
 // OLD system
 #if 0
