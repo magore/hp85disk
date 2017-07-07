@@ -1,4 +1,4 @@
-\section README
+﻿\section README
 
 
 # Documentation
@@ -7,116 +7,116 @@
    * https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html
 
 ## HP85 Disk Emulator Copyright &copy; 2014-2017 Mike Gore
- * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
+ * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
    * Each drive can be fully defined in the hpdisk.cfg file on the SD CARD
-   * AMIGO drices work with HP85A 
+   * AMIGO drives work with HP85A 
    * SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)
-   * Printer emulater - can capture and save printer data to a timestamped file.
-   * You can connect with and control the emulater via its FTI usb serial interface 115200 buad, 8N1.
+   * Printer emulator - can capture and save printer data to a time stamped file.
+   * You can connect with and control the emulator via its FTI USB serial interface 115200 baud, 8N1.
      * There are many commands that you can use, type "help for a list"
-     * Any keypress halts the emulater and waits for a user command. 
+     * Any key press halts the emulator and waits for a user command. 
      * After finishing any user commend it returns to GPIB disk emulation.
-   * Each emulated disk image is a singe file on a FAT32 formatted sdcard.
-     * Internally these disk images are internally formated using the LIF standard.
+   * Each emulated disk image is a single file on a FAT32 formatted SDCARD.
+     * Internally these disk images are internally formatted using the LIF standard.
        * LIF format used is compatible with HP85A/B and many other computers
-     * LIF Tools are built into the emulater to create, rename,delete add and extract to/from other LIF images.
+     * LIF Tools are built into the emulator to create, rename, delete add and extract to/from other LIF images.
        * LIF tools can also create new LIF images with user specifications
-     * The emulater will autmatically create missing LIF images defined and named in hpdisk.cfg on the sdcard
-     * For the specific LIF E010..E013(hex) type images the emulater can translate to and from plain ASCII files.
-     * The emulater can add and extract as LIF image format
+     * The emulator will automatically create missing LIF images defined and named in hpdisk.cfg on the SDCARD
+     * For the specific LIF E010..E013(hex) type images the emulator can translate to and from plain ASCII files.
+     * The emulator can add and extract as LIF image format
        * You may add from another LIF image with multiple internal files.
        * You may extract a single file from a LIF image to a new LIF image.
        * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
-     * Type "lif help" in the emulater for a full list of commands
-       * See the top of lif/lifutils.c for full documenation and examples.
+     * Type "lif help" in the emulator for a full list of commands
+       * See the top of lif/lifutils.c for full documentation and examples.
 ___
-## Using the emulater with provider examples
-   * See sdcard.cfg for configuration settings and setting and documention.
+## Using the emulator with provider examples
+   * See sdcard.cfg for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
-       * The following example works for an HP85 attached to the emulater via GPIB bus.
+       * The following example works for an HP85 attached to the emulator via GPIB bus.
          * PRINTER IS 705
          * PLIST
-     * Disk images in sdcard folder drive and configuration settings
-       * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
-       * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
-       * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
-       * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
+     * Disk images in SDCARD folder drive and configuration settings
+       * First SS80 HP9134L disk at 700 for my HP85A (with 85A ROMs)
+       * First Amigo 9121D disk  at 710 for my HP85B (with 85B ROMs)
+       * Second SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)
+       * Second Amigo 9121D disk  at 730 for my HP85B (with 85B ROMs)
      * How to use the examples with your HP85
-       * Copy the files inside the project sdcard folder to the home folder of a fat32 formated drive
+       * Copy the files inside the project SDCARD folder to the home folder of a fat32 formatted drive
          * All image files and configuration must be in the home folder only - not in a subdirectory.
          * You may store other user files in sub folders of your choosing.
-       * Verify hpdisk.cfg configuratuon settings for your computer
-       * Insert card into emulater
-       * Attact GPIB cables
-       * Power on emulater
+       * Verify hpdisk.cfg configuration settings for your computer
+       * Insert card into emulator
+       * Attract GPIB cables
+       * Power on emulator
        * Power on your computer last!
-          * The emulater MUST be running and attached to your computer first!
+          * The emulator MUST be running and attached to your computer first!
           * The HP85 ONLY checks for drives at power up.
 ___
-## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B
-  * While GPIB devices can have address between 0 and 31 you can have no more then 8 disk drives.
+## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs. HP85B
+  * While GPIB devices can have address between 0 and 31 you can have no more than 8 disk drives.
   * ALL disk drives are required to respond to a PPR query by the (HP85) controller.
     * PPR query is done when the controller in charge (HP85) pulls ATN and EOI low.
-    * PPR response occures when a disk drive pulls one GPIB bus data line low in response.
+    * PPR response occurs when a disk drive pulls one GPIB bus data line low in response.
        * You can only have 8 of these because there are only 8 GPIB data bus lines.
          * GPIB data bus bits are numbered from 1 to 8
-         * PPR response bits are assiged in reverse order starting from 8, bit 8 for device 0
+         * PPR response bits are assigned in reverse order starting from 8, bit 8 for device 0
            * This is a GPIB specification - not my idea.
          * The HP85 uses these assumptions
             * PPR bits are assigned in reverse order from device numbers.
-  * IMPORTANT! On power up the HP85 issues a PPR query for disk drives drives 
-    * The emulater must be running BEFORE this happens.
+  * IMPORTANT! On power up the HP85 issues a PPR query for disk drives 
+    * The emulator must be running BEFORE this happens.
     * PPR query = both ATN and EOI being pulled low by the computer.
     * PPR response is when each drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.
        * *ONLY* those that are detected in this way are then next scanned
     * Next for all detected drives the HP85 issues "Request Identify" to each in turn.
       * This is done one drive at a time in order
-      * The PPR keywork in the hpdisk.cfg is the PPR bit the drive uses
+      * The PPR keyword in the hpdisk.cfg is the PPR bit the drive uses
         * PPR of 0 = PPR response on GPIB data bus 8 - as per GPIB BUS specifications.
       * The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"
-        * IMPORTANT! AMIGO drives can not be queried for detailed drive layout information
+        * IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information
           * The HP85A can only use its HARDCODED firmware tables to map ID to disk layout parameters
-          * This impiles that the HP85A can only use AMIGO disks it has defined in firmware.
+          * This implies that the HP85A can only use AMIGO disks it has defined in firmware.
         * The HP85B can query newer SS80 drives for detailed drive layout information instead.
-        * The HP85A can not use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.
-            * This can be done with the PRM-85 expansion board offered by by Bill Kotaska 
+        * The HP85A cannot use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.
+            * This can be done with the PRM-85 expansion board offered by Bill Kotaska 
               * (The PRM-85 is great product giving you access to all of the useful ROMS)
 ___
 ## Limitations
- * Multiple UNIT support is NOT yet implimented however multiple drive support is..
- * While most AMIGO and SS80 feature have been implmented my primary focus was on the HP85A and HP85B.
+ * Multiple UNIT support is NOT yet implemented however multiple drive support is..
+ * While most AMIGO and SS80 feature have been implemented my primary focus was on the HP85A and HP85B.
    * (I do not have access to other computers to test for full compatibility)
-   * This means that some AMIGO and SS80 GPIB commands are not yet implimented!
-   * Note: The HP85A can only use AMIGO drives - unless you have the HP85B EMS rom installed in your HPH9A
-      * This can be done with the PRM-85 expansion board offered by by Bill Kotaska (a great product!)
+   * This means that some AMIGO and SS80 GPIB commands are not yet implemented!
+   * Note: The HP85A can only use AMIGO drives - unless you have the HP85B EMS ROM installed in your HPH9A
+      * This can be done with the PRM-85 expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
    * The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.
-     * See ADDRESS, PPR and ID values in sdcard/hpdisk.cfg
+     * See ADDRESS, PPR and ID values in SDCARD/hpdisk.cfg
    * Older computers may only support AMIGO drives.
      * Such computers will have a hard coded in firmware list of drive its supports.
        * These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.
        * If these assumptions do NOT match in the hpdisk.cfg no drives will be detected.
-   * Newer computers with SS80 support can request fully detailed disk layout insead of the "request identify"
-   * My emulater supports both reporting methods - but your computer may not use them both!
+   * Newer computers with SS80 support can request fully detailed disk layout instead of the "request identify"
+   * My emulator supports both reporting methods - but your computer may not use them both!
      * For supported values consult your computer manuals or corresponding drive manual for your computer.
        * See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)
-     * In all cases the the hpdisk.cfg parameters MUST match these expectations.
-   * The hpdisk.cfg file tells the emulater how the emulated disk is defined.
+     * In all cases the hpdisk.cfg parameters MUST match these expectations.
+   * The hpdisk.cfg file tells the emulator how the emulated disk is defined.
      * GPIB BUS address, Parallel Poll Response bit number and AMIGO Request Identify response values.
      * Additional detail for SS80 drives that newer computers can use.
-     * In ALL cases the file informs the code what paramters to emulate and report.
-       * ALL of these value MUST match your computers expectations for drives it knows about.
+     * In ALL cases the file informs the code what parameters to emulate and report.
+       * ALL of these values MUST match your computers expectations for drives it knows about.
    * Debugging
-     * You can enable reporting of all unimplimentd GPIB commands
+     * You can enable reporting of all unimplemented GPIB commands
        * Useful if you are trying this on a non hP85 device
-       * See the sdcard/hpdisk.cfg for documentaion on the full list of bebgging options
-     * The emulater can passively log all transactions between real hardward on the GPIB bus 
+       * See the SDCARD/hpdisk.cfg for documentation on the full list of debugging options
+     * The emulator can passively log all transactions between real hardware on the GPIB bus 
        * Use the "gpib trace logfile" command - pressing any key exits - no emulation is done in this mode.
        * You can use this to help understand what is sent to and from you real disks.
-       * I use this feature to help prioritize which commands I first implimented.
+       * I use this feature to help prioritize which commands I first implemented.
 ___
 
 # Credits
@@ -126,26 +126,22 @@ ___
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
 
-<b> The HPDir project was vital as a documention source for this project
+<b> The HPDir project was vital as a documentation source for this project
    * <http://www.hp9845.net/9845/projects/hpdir>
 
  <b>Anders Gustafsson was extremely helpful in providing me his current 
  code and details of his project - which I am very thankful for.</b>
 
- As mainly a personal excercise in fully understanding the code I 
+ As mainly a personal exercise in fully understanding the code I 
  ended up rewriting much of the hpdisk project. I did this one part at a 
  time as I learned the protocols and specifications - NOT because of any 
  problems with his original work. 
 
- I Although mostly rewritten I have maintained the basic concept of using 
- state machines for GPIB read and write functions as well as for SS80 execute 
- state tracking. 
+ Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
 
 ___
 # Abbreviations
-Within this project I have attempted to provide detailed referces 
-to to manuals, listed below.  I have included short quotes and 
-section and page# reference to these works.
+Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
  * <b>SS80</b>
  * <b>CS80</b>
  * <b>A or Amigo</b>
@@ -183,7 +179,7 @@ section and page# reference to these works.
    * HP Part# 59401-90030
    * See Documents folder
 
-## Tutorial Description of The Hewllet Packard Interface Bus
+## Tutorial Description of the Hewlett Packard Interface Bus
    * ("HP-IB Tutorial" is the short form used in the project)
    * <http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf>
    * Printed January 1983
@@ -201,7 +197,7 @@ section and page# reference to these works.
    * Printed: APRIL 1985, Edition 2
    * See Documents folder
 
-## LIF Filesystem Format
+## LIF File system Format
    * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
    * See Documents folder
 
@@ -243,7 +239,7 @@ ___
   * ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header
   * Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor.
     * Micro SD interface has level shifters and internal 5V to 3.3V regulator
-    * PB3 /CS must have a 10K pullup up to VCC to prevent access durring ISP programming
+    * PB3 /CS must have a 10K pull-up up to VCC to prevent access during ISP programming
     * PB4 should have a 10K pull up help assure the SPI bus does not go into slave mode.
   * RS232 TTL: connect to FTDI232 USB  board which also provides 5V VCC power to all circuits..
   * I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up
@@ -259,7 +255,7 @@ ___
     SD     MOSI  PB5  6|       |35  PA5      D6 14 
     SD     MISO  PB6  7|       |34  PA6      D7 15 
     SD      SCK  PB7  8|       |33  PA7      D8 16 
-    10K pullup  /RST  9|       |32  AREF     0.1uf 
+    10K pull-up  /RST  9|       |32  AREF     0.1uf 
        +5        VCC 10|       |31  GND      GND   
        GND       GND 11|       |30  AVCC     +5    
     20MHZ      XTAL2 12|       |29  PC7      NC    
@@ -281,7 +277,7 @@ ___
 
 ## Parallel Poll Response circuit
   * Uses: Three chips 74HC05, 74HC32, 74HC595
-  * Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
+  * Parallel Poll Response must be less than 2 Microseconds therefore we use hardware to do it!
   * @see Documents/HP85Disk.pdf for a hand drawn diagram
 
 
@@ -309,13 +305,13 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
 ___ 
 
 ## Testing
-  * Testing was done with an HP85A (with extended EMS rom) 
+  * Testing was done with an HP85A (with extended EMS ROM) 
     * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
     * This makes my HP85A look like and HP85B 
-      * I can also use the normal mass storage rom if I limit to AMIGO drives.
+      * I can also use the normal mass storage ROM if I limit to AMIGO drives.
       * http://vintagecomputers.site90.net/hp85/prm85.htm
 
-  * Note: the EMS rom has extended INITIALIZE attributes
+  * Note: the EMS ROM has extended INITIALIZE attributes
 <pre>
   #Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
@@ -343,9 +339,9 @@ ___
 ___ 
 
 ## AVR Terminal Commands
- * Pressing any key will break out of the gpib task loop untill a command is entered
+ * Pressing any key will break out of the gpib task loop until a command is entered
    * help
-      Will list all avalable commands and options
+      Will list all available commands and options
 
    * For detail using LIF commands to add/extract LIF files from SD card see the top of lif/lifutil.c
 ___ 
@@ -361,7 +357,7 @@ ___
   * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
 
 
-## Building Doxygen documenation for the project - optional
+## Building Doxygen documentation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
   * *If you omit this you will have to update the Makefile to omit the steps*
 
@@ -375,15 +371,15 @@ ___
   * *make flash*
     * This will use *avrdude* with the new low cost Atmel ICE programmer.
       * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
-      * There is an example with the AVR mkii programer as well.
+      * There is an example with the AVR mkii programmer as well.
 
 ## Files
   * ./COPYRIGHT.md
     Project Copyrights 
   * ./main.c
-    Main startup code
+    Main start-up code
   * ./main.h
-    Main startup code
+    Main start-up code
   * ./notes.txt
     Note - working on converting compiled constants into run time configuration
   * ./README.md
@@ -416,7 +412,7 @@ ___
   * Documents/HP9133AB-09134-90032-Aug-1983.pdf
     * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
   * Documents/HP913x.pdf
-    * HP 9133A/B, 9134A/B, and 9135A Disc Mentory Users Manual
+    * HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual
   * Documents/hp-ib_tutorial_1980.pdf
     * Tutorial Description of the Hewlett-Packard Interface Bus
   * Documents/HPIB_tutorial_HP.pdf
@@ -424,7 +420,7 @@ ___
   * Documents/IEEE-488_Wikipedia_offline.pdf
     * Offline copy of Wikipedia GPIB article
   * Documents/README.md 
-    * Discription of file under the Documents folder
+    * Description of file under the Documents folder
   * fatfs
     * R0.12b FatFS code from (C)ChaN, 2016 - With very minimal changes 
     * fatfs/00history.txt
@@ -449,9 +445,9 @@ ___
     * fatfs.hal/mmc_hal.h
       * My Hardware abstraction layer code
   * fatfs.sup
-    * Support utility and POSIX rapper fuctions
+    * Support utility and POSIX rapper factions
     * fatfs.sup/fatfs.h
-      * FAtFS header files
+      * FatFS header files
     * fatfs.sup/fatfs_sup.c
     * fatfs.sup/fatfs_sup.h
       * FatFS file listing and display functions
@@ -541,7 +537,7 @@ ___
     * hardware/TWI_AVR8.h
       * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
     * hardware/user_config.h
-      * Main include file MMC SLOW and FATS frequency and CPU frequecy settings
+      * Main include file MMC SLOW and FATS frequency and CPU frequency settings
   * lib
     * Library functions
     * lib/bcpp.cfg
@@ -582,12 +578,12 @@ ___
     * lif/lifutils.c
       * Functions that allow the emulator to import and export files from LIF images 
     * Makefile
-      * Permits creating a stand alone Linux version of the LIF emulator tools
+      * Permits creating a standalone Linux version of the LIF emulator tools
   * posix
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * posix/posix.c
     * posix/posix.h
-      * POSIX wrappers for fatfs - unix file IO function call wrappers
+      * POSIX wrappers for fatfs - Unix file IO function call wrappers
     * posix/posix_testsc
       * POSIX user tests
   * printf
@@ -604,33 +600,33 @@ ___
       * My small scanf code - work in progress
     * printf/test_printf.c
       * Test my printf against glibs 1,000,000 tests per data type
-  * sdcard
+  * SDCARD
     * My HP85 AMIGO and SS80 disk images
-      * sdcard/hpdisk.cfg
-        * All Disk definitions, address, PPR, DEBUG leve for SS80 and AMIGO drives
+      * SDCARD/hpdisk.cfg
+        * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
         * PRINTER address
-      * sdcard/amigo.lif
+      * SDCARD/amigo.lif
         * AMIGO disk image file number 1
         * Has some demo basic programs in it
-      * sdcard/amigo-2.lif
+      * SDCARD/amigo-2.lif
         * AMIGO disk image file number 2
         * Has some demo basic programs in it
-      * sdcard/ss80.lif
+      * SDCARD/ss80.lif
         * SS80 hard drive disk image file number 1
         * Has some demo basic programs in it
-      * sdcard/ss80-2.lif
+      * SDCARD/ss80-2.lif
         * SS80 hard drive disk image file number 2
         * Has some demo basic programs in it
     * My HP85 bus trace files
-      * sdcard/amigo_trace.txt
+      * SDCARD/amigo_trace.txt
         * AMIGO trace file when connected to HP85 showing odd out of order command issue
-      * sdcard/gpib_reset.txt
+      * SDCARD/gpib_reset.txt
         * GPIB reset trace when connected to HP85
-      * sdcard/gpib_trace.txt
+      * SDCARD/gpib_trace.txt
         * GPIB transaction trace when connected to HP85
     * My HP85 plot capture files
-        * sdcard/plot1.plt
-        * sdcard/plot2.plt
+        * SDCARD/plot1.plt
+        * SDCARD/plot2.plt
     * TREK85/
 	  * TREK85 by Martin Hepperle, December 2015
 	  * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
@@ -639,3 +635,4 @@ ___
         * Star Trek.pdf  
         * TREK85.BAS  
         * trek.lif
+

@@ -13,7 +13,7 @@
 
 
 \begin{DoxyItemize}
-\item See \hyperlink{md_COPYRIGHT}{C\+O\+P\+Y\+R\+I\+G\+HT} for a full copywrite notice for the project
+\item See \hyperlink{md_COPYRIGHT}{C\+O\+P\+Y\+R\+I\+G\+HT} for a full copyright notice for the project
 \end{DoxyItemize}
 
 \subsection*{Features}
@@ -23,91 +23,91 @@
 \item This project emulates G\+P\+IB drives and H\+P\+GL printer for the H\+P85A and H\+P85B computers.
 \begin{DoxyItemize}
 \item Each drive can be fully defined in the hpdisk.\+cfg file on the SD C\+A\+RD
-\item A\+M\+I\+GO drices work with H\+P85A
+\item A\+M\+I\+GO drives work with H\+P85A
 \item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 add on board see links)
-\item Printer emulater -\/ can capture and save printer data to a timestamped file.
-\item You can connect with and control the emulater via its F\+TI usb serial interface 115200 buad, 8\+N1.
+\item Printer emulator -\/ can capture and save printer data to a time stamped file.
+\item You can connect with and control the emulator via its F\+TI U\+SB serial interface 115200 baud, 8\+N1.
 \begin{DoxyItemize}
 \item There are many commands that you can use, type \char`\"{}help for a list\char`\"{}
-\item Any keypress halts the emulater and waits for a user command.
+\item Any key press halts the emulator and waits for a user command.
 \item After finishing any user commend it returns to G\+P\+IB disk emulation.
 \end{DoxyItemize}
-\item Each emulated disk image is a singe file on a F\+A\+T32 formatted sdcard.
+\item Each emulated disk image is a single file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
 \begin{DoxyItemize}
-\item Internally these disk images are internally formated using the L\+IF standard.
+\item Internally these disk images are internally formatted using the L\+IF standard.
 \begin{DoxyItemize}
 \item L\+IF format used is compatible with H\+P85\+A/B and many other computers
 \end{DoxyItemize}
-\item L\+IF Tools are built into the emulater to create, rename,delete add and extract to/from other L\+IF images.
+\item L\+IF Tools are built into the emulator to create, rename, delete add and extract to/from other L\+IF images.
 \begin{DoxyItemize}
 \item L\+IF tools can also create new L\+IF images with user specifications
 \end{DoxyItemize}
-\item The emulater will autmatically create missing L\+IF images defined and named in hpdisk.\+cfg on the sdcard
-\item For the specific L\+IF E010..E013(hex) type images the emulater can translate to and from plain A\+S\+C\+II files.
-\item The emulater can add and extract as L\+IF image format
+\item The emulator will automatically create missing L\+IF images defined and named in hpdisk.\+cfg on the S\+D\+C\+A\+RD
+\item For the specific L\+IF E010..E013(hex) type images the emulator can translate to and from plain A\+S\+C\+II files.
+\item The emulator can add and extract as L\+IF image format
 \begin{DoxyItemize}
 \item You may add from another L\+IF image with multiple internal files.
 \item You may extract a single file from a L\+IF image to a new L\+IF image.
 \item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
 \end{DoxyItemize}
-\item Type \char`\"{}lif help\char`\"{} in the emulater for a full list of commands
+\item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
 \begin{DoxyItemize}
-\item See the top of \hyperlink{lifutils_8c}{lif/lifutils.\+c} for full documenation and examples. 
+\item See the top of \hyperlink{lifutils_8c}{lif/lifutils.\+c} for full documentation and examples. 
 
- \subsection*{Using the emulater with provider examples}
+ \subsection*{Using the emulator with provider examples}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item See sdcard.\+cfg for configuration settings and setting and documention.
+\item See sdcard.\+cfg for configuration settings and setting and documentation.
 \begin{DoxyItemize}
 \item Printer capture is configured currently for my H\+P54645D scope
 \begin{DoxyItemize}
-\item The following example works for an H\+P85 attached to the emulater via G\+P\+IB bus.
+\item The following example works for an H\+P85 attached to the emulator via G\+P\+IB bus.
 \begin{DoxyItemize}
 \item P\+R\+I\+N\+T\+ER IS 705
 \item P\+L\+I\+ST
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Disk images in sdcard folder drive and configuration settings
+\item Disk images in S\+D\+C\+A\+RD folder drive and configuration settings
 \begin{DoxyItemize}
-\item first S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A roms)
-\item first Amigo 9121D disk at 710 for my H\+P85B (with 85B roms)
-\item second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A roms)
-\item second Amigo 9121D disk at 730 for my H\+P85B (with 85B roms)
+\item First S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A R\+O\+Ms)
+\item First Amigo 9121D disk at 710 for my H\+P85B (with 85B R\+O\+Ms)
+\item Second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A R\+O\+Ms)
+\item Second Amigo 9121D disk at 730 for my H\+P85B (with 85B R\+O\+Ms)
 \end{DoxyItemize}
 \item How to use the examples with your H\+P85
 \begin{DoxyItemize}
-\item Copy the files inside the project sdcard folder to the home folder of a fat32 formated drive
+\item Copy the files inside the project S\+D\+C\+A\+RD folder to the home folder of a fat32 formatted drive
 \begin{DoxyItemize}
 \item All image files and configuration must be in the home folder only -\/ not in a subdirectory.
 \item You may store other user files in sub folders of your choosing.
 \end{DoxyItemize}
-\item Verify hpdisk.\+cfg configuratuon settings for your computer
-\item Insert card into emulater
-\item Attact G\+P\+IB cables
-\item Power on emulater
+\item Verify hpdisk.\+cfg configuration settings for your computer
+\item Insert card into emulator
+\item Attract G\+P\+IB cables
+\item Power on emulator
 \item Power on your computer last!
 \begin{DoxyItemize}
-\item The emulater M\+U\+ST be running and attached to your computer first!
+\item The emulator M\+U\+ST be running and attached to your computer first!
 \item The H\+P85 O\+N\+LY checks for drives at power up. 
 
- \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs H\+P85B}
+ \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs. H\+P85B}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-While G\+P\+IB devices can have address between 0 and 31 you can have no more then 8 disk drives.
+While G\+P\+IB devices can have address between 0 and 31 you can have no more than 8 disk drives.
 \begin{DoxyItemize}
 \item A\+LL disk drives are required to respond to a P\+PR query by the (H\+P85) controller.
 \begin{DoxyItemize}
 \item P\+PR query is done when the controller in charge (H\+P85) pulls A\+TN and E\+OI low.
-\item P\+PR response occures when a disk drive pulls one G\+P\+IB bus data line low in response.
+\item P\+PR response occurs when a disk drive pulls one G\+P\+IB bus data line low in response.
 \begin{DoxyItemize}
 \item You can only have 8 of these because there are only 8 G\+P\+IB data bus lines.
 \begin{DoxyItemize}
 \item G\+P\+IB data bus bits are numbered from 1 to 8
-\item P\+PR response bits are assiged in reverse order starting from 8, bit 8 for device 0
+\item P\+PR response bits are assigned in reverse order starting from 8, bit 8 for device 0
 \begin{DoxyItemize}
 \item This is a G\+P\+IB specification -\/ not my idea.
 \end{DoxyItemize}
@@ -118,9 +118,9 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item I\+M\+P\+O\+R\+T\+A\+N\+T! On power up the H\+P85 issues a P\+PR query for disk drives drives
+\item I\+M\+P\+O\+R\+T\+A\+N\+T! On power up the H\+P85 issues a P\+PR query for disk drives
 \begin{DoxyItemize}
-\item The emulater must be running B\+E\+F\+O\+RE this happens.
+\item The emulator must be running B\+E\+F\+O\+RE this happens.
 \item P\+PR query = both A\+TN and E\+OI being pulled low by the computer.
 \item P\+PR response is when each drive pulls a single G\+P\+IB bus bit L\+OW -\/ while A\+TN and E\+OI are low.
 \begin{DoxyItemize}
@@ -129,21 +129,21 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \item Next for all detected drives the H\+P85 issues \char`\"{}\+Request Identify\char`\"{} to each in turn.
 \begin{DoxyItemize}
 \item This is done one drive at a time in order
-\item The P\+PR keywork in the hpdisk.\+cfg is the P\+PR bit the drive uses
+\item The P\+PR keyword in the hpdisk.\+cfg is the P\+PR bit the drive uses
 \begin{DoxyItemize}
 \item P\+PR of 0 = P\+PR response on G\+P\+IB data bus 8 -\/ as per G\+P\+IB B\+US specifications.
 \end{DoxyItemize}
 \item The ID keyword in hpdisk.\+cfg is the 16 bit reply to \char`\"{}\+Request Identify Reply\char`\"{}
 \begin{DoxyItemize}
-\item I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives can not be queried for detailed drive layout information
+\item I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives cannot be queried for detailed drive layout information
 \begin{DoxyItemize}
 \item The H\+P85A can only use its H\+A\+R\+D\+C\+O\+D\+ED firmware tables to map ID to disk layout parameters
-\item This impiles that the H\+P85A can only use A\+M\+I\+GO disks it has defined in firmware.
+\item This implies that the H\+P85A can only use A\+M\+I\+GO disks it has defined in firmware.
 \end{DoxyItemize}
 \item The H\+P85B can query newer S\+S80 drives for detailed drive layout information instead.
-\item The H\+P85A can not use S\+S80 drives unless it uses copies of the H\+P85B E\+MS and E\+D\+I\+SK R\+O\+MS.
+\item The H\+P85A cannot use S\+S80 drives unless it uses copies of the H\+P85B E\+MS and E\+D\+I\+SK R\+O\+MS.
 \begin{DoxyItemize}
-\item This can be done with the P\+R\+M-\/85 expansion board offered by by Bill Kotaska
+\item This can be done with the P\+R\+M-\/85 expansion board offered by Bill Kotaska
 \begin{DoxyItemize}
 \item (The P\+R\+M-\/85 is great product giving you access to all of the useful R\+O\+MS) 
 
@@ -155,22 +155,22 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive support is..
+Multiple U\+N\+IT support is N\+OT yet implemented however multiple drive support is..
 \begin{DoxyItemize}
-\item While most A\+M\+I\+GO and S\+S80 feature have been implmented my primary focus was on the H\+P85A and H\+P85B.
+\item While most A\+M\+I\+GO and S\+S80 feature have been implemented my primary focus was on the H\+P85A and H\+P85B.
 \begin{DoxyItemize}
 \item (I do not have access to other computers to test for full compatibility)
-\item This means that some A\+M\+I\+GO and S\+S80 G\+P\+IB commands are not yet implimented!
-\item Note\+: The H\+P85A can only use A\+M\+I\+GO drives -\/ unless you have the H\+P85B E\+MS rom installed in your H\+P\+H9A
+\item This means that some A\+M\+I\+GO and S\+S80 G\+P\+IB commands are not yet implemented!
+\item Note\+: The H\+P85A can only use A\+M\+I\+GO drives -\/ unless you have the H\+P85B E\+MS R\+OM installed in your H\+P\+H9A
 \begin{DoxyItemize}
-\item This can be done with the P\+R\+M-\/85 expansion board offered by by Bill Kotaska (a great product!)
+\item This can be done with the P\+R\+M-\/85 expansion board offered by Bill Kotaska (a great product!)
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item To attach a drive to our computer, real or otherwise, you must know\+:
 \begin{DoxyItemize}
 \item The correct G\+P\+IB B\+US address and parallel pool response (P\+PR) bit number your computer expects.
 \begin{DoxyItemize}
-\item See A\+D\+D\+R\+E\+SS, P\+PR and ID values in sdcard/hpdisk.\+cfg
+\item See A\+D\+D\+R\+E\+SS, P\+PR and ID values in S\+D\+C\+A\+R\+D/hpdisk.\+cfg
 \end{DoxyItemize}
 \item Older computers may only support A\+M\+I\+GO drives.
 \begin{DoxyItemize}
@@ -180,36 +180,36 @@ Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive suppor
 \item If these assumptions do N\+OT match in the hpdisk.\+cfg no drives will be detected.
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Newer computers with S\+S80 support can request fully detailed disk layout insead of the \char`\"{}request identify\char`\"{}
-\item My emulater supports both reporting methods -\/ but your computer may not use them both!
+\item Newer computers with S\+S80 support can request fully detailed disk layout instead of the \char`\"{}request identify\char`\"{}
+\item My emulator supports both reporting methods -\/ but your computer may not use them both!
 \begin{DoxyItemize}
 \item For supported values consult your computer manuals or corresponding drive manual for your computer.
 \begin{DoxyItemize}
 \item See gpib/drives\+\_\+parameters.\+txt for a list on some known value (C\+R\+E\+D\+I\+TS; these are from the H\+P\+Dir project)
 \end{DoxyItemize}
-\item In all cases the the hpdisk.\+cfg parameters M\+U\+ST match these expectations.
+\item In all cases the hpdisk.\+cfg parameters M\+U\+ST match these expectations.
 \end{DoxyItemize}
-\item The hpdisk.\+cfg file tells the emulater how the emulated disk is defined.
+\item The hpdisk.\+cfg file tells the emulator how the emulated disk is defined.
 \begin{DoxyItemize}
 \item G\+P\+IB B\+US address, Parallel Poll Response bit number and A\+M\+I\+GO Request Identify response values.
 \item Additional detail for S\+S80 drives that newer computers can use.
-\item In A\+LL cases the file informs the code what paramters to emulate and report.
+\item In A\+LL cases the file informs the code what parameters to emulate and report.
 \begin{DoxyItemize}
-\item A\+LL of these value M\+U\+ST match your computers expectations for drives it knows about.
+\item A\+LL of these values M\+U\+ST match your computers expectations for drives it knows about.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Debugging
 \begin{DoxyItemize}
-\item You can enable reporting of all unimplimentd G\+P\+IB commands
+\item You can enable reporting of all unimplemented G\+P\+IB commands
 \begin{DoxyItemize}
 \item Useful if you are trying this on a non h\+P85 device
-\item See the sdcard/hpdisk.\+cfg for documentaion on the full list of bebgging options
+\item See the S\+D\+C\+A\+R\+D/hpdisk.\+cfg for documentation on the full list of debugging options
 \end{DoxyItemize}
-\item The emulater can passively log all transactions between real hardward on the G\+P\+IB bus
+\item The emulator can passively log all transactions between real hardware on the G\+P\+IB bus
 \begin{DoxyItemize}
 \item Use the \char`\"{}gpib trace logfile\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
 \item You can use this to help understand what is sent to and from you real disks.
-\item I use this feature to help prioritize which commands I first implimented. 
+\item I use this feature to help prioritize which commands I first implemented. 
 
 
 \end{DoxyItemize}
@@ -228,22 +228,22 @@ Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive suppor
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries  The H\+P\+Dir project was vital as a documention source for this project
+{\bfseries  The H\+P\+Dir project was vital as a documentation source for this project
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
 \end{DoxyItemize}}
 
 {\bfseries  {\bfseries Anders Gustafsson was extremely helpful in providing me his current code and details of his project -\/ which I am very thankful for.}}
 
-{\bfseries  As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.}
+{\bfseries  As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.}
 
-{\bfseries  I Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.}
+{\bfseries  Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.}
 
 {\bfseries 
 
  \section*{Abbreviations}}
 
-{\bfseries  Within this project I have attempted to provide detailed referces to to manuals, listed below. I have included short quotes and section and page\# reference to these works.
+{\bfseries  Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page\# reference to these works.
 \begin{DoxyItemize}
 \item {\bfseries S\+S80}
 \item {\bfseries C\+S80}
@@ -305,7 +305,7 @@ Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive suppor
 \item See Documents folder
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Tutorial Description of The Hewllet Packard Interface Bus}}
+{\bfseries \subsection*{Tutorial Description of the Hewlett Packard Interface Bus}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -336,7 +336,7 @@ Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive suppor
 \item See Documents folder
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{L\+IF Filesystem Format}}
+{\bfseries \subsection*{L\+IF File system Format}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -407,7 +407,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item Micro SD Interface\+: M\+O\+SI,M\+I\+SO,S\+CK attach to C\+PU function via a 1k series resistor.
 \begin{DoxyItemize}
 \item Micro SD interface has level shifters and internal 5V to 3.\+3V regulator
-\item P\+B3 /\+CS must have a 10K pullup up to V\+CC to prevent access durring I\+SP programming
+\item P\+B3 /\+CS must have a 10K pull-\/up up to V\+CC to prevent access during I\+SP programming
 \item P\+B4 should have a 10K pull up help assure the S\+PI bus does not go into slave mode.
 \end{DoxyItemize}
 \item R\+S232 T\+TL\+: connect to F\+T\+D\+I232 U\+SB board which also provides 5V V\+CC power to all circuits..
@@ -426,7 +426,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
     SD     MOSI  PB5  6|       |35  PA5      D6 14 
     SD     MISO  PB6  7|       |34  PA6      D7 15 
     SD      SCK  PB7  8|       |33  PA7      D8 16 
-    10K pullup  /RST  9|       |32  AREF     0.1uf 
+    10K pull-up  /RST  9|       |32  AREF     0.1uf 
        +5        VCC 10|       |31  GND      GND   
        GND       GND 11|       |30  AVCC     +5    
     20MHZ      XTAL2 12|       |29  PC7      NC    
@@ -452,7 +452,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 {\bfseries 
 \begin{DoxyItemize}
 \item Uses\+: Three chips 74\+H\+C05, 74\+H\+C32, 74\+H\+C595
-\item Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
+\item Parallel Poll Response must be less than 2 Microseconds therefore we use hardware to do it!
 \item \begin{DoxySeeAlso}{See also}
 Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxySeeAlso}
@@ -490,16 +490,16 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 
 {\bfseries 
 \begin{DoxyItemize}
-\item Testing was done with an H\+P85A (with extended E\+MS rom)
+\item Testing was done with an H\+P85A (with extended E\+MS R\+OM)
 \begin{DoxyItemize}
 \item Using the Hewlett-\/\+Packard Series 80 -\/ P\+R\+M-\/85 by Bill Kotaska
 \item This makes my H\+P85A look like and H\+P85B
 \begin{DoxyItemize}
-\item I can also use the normal mass storage rom if I limit to A\+M\+I\+GO drives.
+\item I can also use the normal mass storage R\+OM if I limit to A\+M\+I\+GO drives.
 \item \href{http://vintagecomputers.site90.net/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+site90.\+net/hp85/prm85.\+htm}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Note\+: the E\+MS rom has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
+\item Note\+: the E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
 \begin{DoxyPre}
   #Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
@@ -537,9 +537,9 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 
 {\bfseries 
 \begin{DoxyItemize}
-\item Pressing any key will break out of the gpib task loop untill a command is entered
+\item Pressing any key will break out of the gpib task loop until a command is entered
 \begin{DoxyItemize}
-\item help Will list all avalable commands and options
+\item help Will list all available commands and options
 \item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of lif/lifutil.\+c 
 
 
@@ -563,7 +563,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item {\itshape aptitude install --with-\/recommends avr-\/gcc avr-\/libc binutils-\/avr gdb-\/avr avrdude}
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Building Doxygen documenation for the project -\/ optional}}
+{\bfseries \subsection*{Building Doxygen documentation for the project -\/ optional}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -588,7 +588,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
 \begin{DoxyItemize}
 \item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
-\item There is an example with the A\+VR mkii programer as well.
+\item There is an example with the A\+VR mkii programmer as well.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}}
@@ -598,8 +598,8 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 {\bfseries 
 \begin{DoxyItemize}
 \item ./\+C\+O\+P\+Y\+R\+I\+G\+HT.md Project Copyrights
-\item ./main.c Main startup code
-\item ./main.h Main startup code
+\item ./main.c Main start-\/up code
+\item ./main.h Main start-\/up code
 \item ./notes.txt Note -\/ working on converting compiled constants into run time configuration
 \item ./\+R\+E\+A\+D\+ME.md This file
 \item Documents/59401-\/90030\+\_\+\+Condensed\+\_\+\+Description\+\_\+of\+\_\+the\+\_\+\+Hewlett-\/\+Packard\+\_\+\+Interface\+\_\+\+Bus\+\_\+\+Mar75-\/ocr.\+pdf
@@ -657,7 +657,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item Documents/\+H\+P913x.\+pdf
 \begin{DoxyItemize}
-\item HP 9133\+A/B, 9134\+A/B, and 9135A Disc Mentory Users Manual
+\item HP 9133\+A/B, 9134\+A/B, and 9135A Disc Memory Users Manual
 \end{DoxyItemize}
 \item Documents/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf
 \begin{DoxyItemize}
@@ -673,7 +673,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item Documents/\+R\+E\+A\+D\+M\+E.\+md
 \begin{DoxyItemize}
-\item Discription of file under the Documents folder
+\item Description of file under the Documents folder
 \end{DoxyItemize}
 \item fatfs
 \begin{DoxyItemize}
@@ -716,10 +716,10 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item fatfs.\+sup
 \begin{DoxyItemize}
-\item Support utility and P\+O\+S\+IX rapper fuctions
+\item Support utility and P\+O\+S\+IX rapper factions
 \item fatfs.\+sup/fatfs.h
 \begin{DoxyItemize}
-\item F\+At\+FS header files
+\item Fat\+FS header files
 \end{DoxyItemize}
 \item fatfs.\+sup/fatfs\+\_\+sup.c
 \item fatfs.\+sup/fatfs\+\_\+sup.h
@@ -897,7 +897,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item \hyperlink{user__config_8h}{hardware/user\+\_\+config.\+h}
 \begin{DoxyItemize}
-\item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequecy settings
+\item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequency settings
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item lib
@@ -978,7 +978,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item Makefile
 \begin{DoxyItemize}
-\item Permits creating a stand alone Linux version of the L\+IF emulator tools
+\item Permits creating a standalone Linux version of the L\+IF emulator tools
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item posix
@@ -987,7 +987,7 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item \hyperlink{posix_8c}{posix/posix.\+c}
 \item \hyperlink{posix_8h}{posix/posix.\+h}
 \begin{DoxyItemize}
-\item P\+O\+S\+IX wrappers for fatfs -\/ unix file IO function call wrappers
+\item P\+O\+S\+IX wrappers for fatfs -\/ Unix file IO function call wrappers
 \end{DoxyItemize}
 \item posix/posix\+\_\+testsc
 \begin{DoxyItemize}
@@ -1022,31 +1022,31 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item sdcard
+\item S\+D\+C\+A\+RD
 \begin{DoxyItemize}
 \item My H\+P85 A\+M\+I\+GO and S\+S80 disk images
 \begin{DoxyItemize}
-\item sdcard/hpdisk.\+cfg
+\item S\+D\+C\+A\+R\+D/hpdisk.\+cfg
 \begin{DoxyItemize}
-\item All Disk definitions, address, P\+PR, D\+E\+B\+UG leve for S\+S80 and A\+M\+I\+GO drives
+\item All Disk definitions, address, P\+PR, D\+E\+B\+UG level for S\+S80 and A\+M\+I\+GO drives
 \item P\+R\+I\+N\+T\+ER address
 \end{DoxyItemize}
-\item sdcard/amigo.\+lif
+\item S\+D\+C\+A\+R\+D/amigo.\+lif
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image file number 1
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/amigo-\/2.\+lif
+\item S\+D\+C\+A\+R\+D/amigo-\/2.\+lif
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image file number 2
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/ss80.\+lif
+\item S\+D\+C\+A\+R\+D/ss80.\+lif
 \begin{DoxyItemize}
 \item S\+S80 hard drive disk image file number 1
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item sdcard/ss80-\/2.\+lif
+\item S\+D\+C\+A\+R\+D/ss80-\/2.\+lif
 \begin{DoxyItemize}
 \item S\+S80 hard drive disk image file number 2
 \item Has some demo basic programs in it
@@ -1054,23 +1054,23 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \end{DoxyItemize}
 \item My H\+P85 bus trace files
 \begin{DoxyItemize}
-\item sdcard/amigo\+\_\+trace.\+txt
+\item S\+D\+C\+A\+R\+D/amigo\+\_\+trace.\+txt
 \begin{DoxyItemize}
 \item A\+M\+I\+GO trace file when connected to H\+P85 showing odd out of order command issue
 \end{DoxyItemize}
-\item sdcard/gpib\+\_\+reset.\+txt
+\item S\+D\+C\+A\+R\+D/gpib\+\_\+reset.\+txt
 \begin{DoxyItemize}
 \item G\+P\+IB reset trace when connected to H\+P85
 \end{DoxyItemize}
-\item sdcard/gpib\+\_\+trace.\+txt
+\item S\+D\+C\+A\+R\+D/gpib\+\_\+trace.\+txt
 \begin{DoxyItemize}
 \item G\+P\+IB transaction trace when connected to H\+P85
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item My H\+P85 plot capture files
 \begin{DoxyItemize}
-\item sdcard/plot1.\+plt
-\item sdcard/plot2.\+plt
+\item S\+D\+C\+A\+R\+D/plot1.\+plt
+\item S\+D\+C\+A\+R\+D/plot2.\+plt
 \end{DoxyItemize}
 \item T\+R\+E\+K85/
 \begin{DoxyItemize}
