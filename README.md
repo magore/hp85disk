@@ -20,14 +20,14 @@
      * Any key press halts the emulator and waits for a user command. 
      * After finishing any user commend it returns to GPIB disk emulation.
    * Each emulated disk image is a single file on a FAT32 formatted SDCARD.
-     * Internally these disk images are internally formatted using the LIF standard.
+     * Internally these disk images are formatted using the LIF standard.
        * LIF format used is compatible with HP85A/B and many other computers
      * LIF Tools are built into the emulator to create, rename, delete add and extract to/from other LIF images.
        * LIF tools can also create new LIF images with user specifications
      * The emulator will automatically create missing LIF images defined and named in hpdisk.cfg on the SDCARD
      * For the specific LIF E010..E013(hex) type images the emulator can translate to and from plain ASCII files.
      * The emulator can add and extract as LIF image format
-       * You may add from another LIF image with multiple internal files.
+       * You may add a single file from another LIF image with multiple internal files.
        * You may extract a single file from a LIF image to a new LIF image.
        * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
      * Type "lif help" in the emulator for a full list of commands
@@ -63,33 +63,34 @@ ___
     * PPR response occurs when a disk drive pulls one GPIB bus data line low in response.
        * You can only have 8 of these because there are only 8 GPIB data bus lines.
          * GPIB data bus bits are numbered from 1 to 8
-         * PPR response bits are assigned in reverse order starting from 8, bit 8 for device 0
+         * PPR response bits are *assigned in reverse order* starting from 8, bit 8 for device 0
            * This is a GPIB specification - not my idea.
          * The HP85 uses these assumptions
             * PPR bits are assigned in reverse order from device numbers.
   * IMPORTANT! On power up the HP85 issues a PPR query for disk drives 
     * The emulator must be running BEFORE this happens.
     * PPR query = both ATN and EOI being pulled low by the computer.
-    * PPR response is when each drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.
+    * PPR response is when each drive pulls a single GPIB data bus bit LOW - while ATN and EOI are low.
        * *ONLY* those that are detected in this way are then next scanned
     * Next for all detected drives the HP85 issues "Request Identify" to each in turn.
       * This is done one drive at a time in order
       * The PPR keyword in the hpdisk.cfg is the PPR bit the drive uses
-        * PPR of 0 = PPR response on GPIB data bus 8 - as per GPIB BUS specifications.
+        * PPR of 0 = PPR response on GPIB data bus bit number 8 - as per GPIB BUS specifications.
       * The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"
         * IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information
-          * The HP85A can only use its HARDCODED firmware tables to map ID to disk layout parameters
+          * The HP85A can only use its *hardcoded firmware tables* to map ID to disk layout parameters
           * This implies that the HP85A can only use AMIGO disks it has defined in firmware.
         * The HP85B can query newer SS80 drives for detailed drive layout information instead.
         * The HP85A cannot use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.
-            * This can be done with the PRM-85 expansion board offered by Bill Kotaska 
+            * One way this can be done with the PRM-85 expansion board offered by Bill Kotaska 
               * (The PRM-85 is great product giving you access to all of the useful ROMS)
 ___
 ## Limitations
  * Multiple UNIT support is NOT yet implemented however multiple drive support is..
  * While most AMIGO and SS80 feature have been implemented my primary focus was on the HP85A and HP85B.
    * (I do not have access to other computers to test for full compatibility)
-   * This means that some AMIGO and SS80 GPIB commands are not yet implemented!
+   * This means that a few AMIGO and SS80 GPIB commands are not yet implemented!
+     * Some of these are extended reporting modes - many of which are optional.
    * Note: The HP85A can only use AMIGO drives - unless you have the HP85B EMS ROM installed in your HPH9A
       * This can be done with the PRM-85 expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
@@ -98,7 +99,7 @@ ___
    * Older computers may only support AMIGO drives.
      * Such computers will have a hard coded in firmware list of drive its supports.
        * These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.
-       * If these assumptions do NOT match in the hpdisk.cfg no drives will be detected.
+       * *If these assumptions do NOT match the layout defined in the hpdisk.cfg no drives will be detected.*
    * Newer computers with SS80 support can request fully detailed disk layout instead of the "request identify"
    * My emulator supports both reporting methods - but your computer may not use them both!
      * For supported values consult your computer manuals or corresponding drive manual for your computer.
@@ -110,11 +111,11 @@ ___
      * In ALL cases the file informs the code what parameters to emulate and report.
        * ALL of these values MUST match your computers expectations for drives it knows about.
    * Debugging
-     * You can enable reporting of all unimplemented GPIB commands
-       * Useful if you are trying this on a non hP85 device
+     * You can enable reporting of all unimplemented GPIB commands (see *TODO* debug option in hpdisk.cfg)
+       * Useful if you are trying this on a non HP85 device
        * See the SDCARD/hpdisk.cfg for documentation on the full list of debugging options
      * The emulator can passively log all transactions between real hardware on the GPIB bus 
-       * Use the "gpib trace logfile" command - pressing any key exits - no emulation is done in this mode.
+       * Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.
        * You can use this to help understand what is sent to and from you real disks.
        * I use this feature to help prioritize which commands I first implemented.
 ___

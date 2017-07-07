@@ -34,7 +34,7 @@
 \end{DoxyItemize}
 \item Each emulated disk image is a single file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
 \begin{DoxyItemize}
-\item Internally these disk images are internally formatted using the L\+IF standard.
+\item Internally these disk images are formatted using the L\+IF standard.
 \begin{DoxyItemize}
 \item L\+IF format used is compatible with H\+P85\+A/B and many other computers
 \end{DoxyItemize}
@@ -46,7 +46,7 @@
 \item For the specific L\+IF E010..E013(hex) type images the emulator can translate to and from plain A\+S\+C\+II files.
 \item The emulator can add and extract as L\+IF image format
 \begin{DoxyItemize}
-\item You may add from another L\+IF image with multiple internal files.
+\item You may add a single file from another L\+IF image with multiple internal files.
 \item You may extract a single file from a L\+IF image to a new L\+IF image.
 \item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
 \end{DoxyItemize}
@@ -107,7 +107,7 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \item You can only have 8 of these because there are only 8 G\+P\+IB data bus lines.
 \begin{DoxyItemize}
 \item G\+P\+IB data bus bits are numbered from 1 to 8
-\item P\+PR response bits are assigned in reverse order starting from 8, bit 8 for device 0
+\item P\+PR response bits are {\itshape assigned in reverse order} starting from 8, bit 8 for device 0
 \begin{DoxyItemize}
 \item This is a G\+P\+IB specification -\/ not my idea.
 \end{DoxyItemize}
@@ -122,7 +122,7 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \begin{DoxyItemize}
 \item The emulator must be running B\+E\+F\+O\+RE this happens.
 \item P\+PR query = both A\+TN and E\+OI being pulled low by the computer.
-\item P\+PR response is when each drive pulls a single G\+P\+IB bus bit L\+OW -\/ while A\+TN and E\+OI are low.
+\item P\+PR response is when each drive pulls a single G\+P\+IB data bus bit L\+OW -\/ while A\+TN and E\+OI are low.
 \begin{DoxyItemize}
 \item {\itshape O\+N\+LY} those that are detected in this way are then next scanned
 \end{DoxyItemize}
@@ -131,19 +131,19 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \item This is done one drive at a time in order
 \item The P\+PR keyword in the hpdisk.\+cfg is the P\+PR bit the drive uses
 \begin{DoxyItemize}
-\item P\+PR of 0 = P\+PR response on G\+P\+IB data bus 8 -\/ as per G\+P\+IB B\+US specifications.
+\item P\+PR of 0 = P\+PR response on G\+P\+IB data bus bit number 8 -\/ as per G\+P\+IB B\+US specifications.
 \end{DoxyItemize}
 \item The ID keyword in hpdisk.\+cfg is the 16 bit reply to \char`\"{}\+Request Identify Reply\char`\"{}
 \begin{DoxyItemize}
 \item I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives cannot be queried for detailed drive layout information
 \begin{DoxyItemize}
-\item The H\+P85A can only use its H\+A\+R\+D\+C\+O\+D\+ED firmware tables to map ID to disk layout parameters
+\item The H\+P85A can only use its {\itshape hardcoded firmware tables} to map ID to disk layout parameters
 \item This implies that the H\+P85A can only use A\+M\+I\+GO disks it has defined in firmware.
 \end{DoxyItemize}
 \item The H\+P85B can query newer S\+S80 drives for detailed drive layout information instead.
 \item The H\+P85A cannot use S\+S80 drives unless it uses copies of the H\+P85B E\+MS and E\+D\+I\+SK R\+O\+MS.
 \begin{DoxyItemize}
-\item This can be done with the P\+R\+M-\/85 expansion board offered by Bill Kotaska
+\item One way this can be done with the P\+R\+M-\/85 expansion board offered by Bill Kotaska
 \begin{DoxyItemize}
 \item (The P\+R\+M-\/85 is great product giving you access to all of the useful R\+O\+MS) 
 
@@ -160,7 +160,10 @@ Multiple U\+N\+IT support is N\+OT yet implemented however multiple drive suppor
 \item While most A\+M\+I\+GO and S\+S80 feature have been implemented my primary focus was on the H\+P85A and H\+P85B.
 \begin{DoxyItemize}
 \item (I do not have access to other computers to test for full compatibility)
-\item This means that some A\+M\+I\+GO and S\+S80 G\+P\+IB commands are not yet implemented!
+\item This means that a few A\+M\+I\+GO and S\+S80 G\+P\+IB commands are not yet implemented!
+\begin{DoxyItemize}
+\item Some of these are extended reporting modes -\/ many of which are optional.
+\end{DoxyItemize}
 \item Note\+: The H\+P85A can only use A\+M\+I\+GO drives -\/ unless you have the H\+P85B E\+MS R\+OM installed in your H\+P\+H9A
 \begin{DoxyItemize}
 \item This can be done with the P\+R\+M-\/85 expansion board offered by Bill Kotaska (a great product!)
@@ -177,7 +180,7 @@ Multiple U\+N\+IT support is N\+OT yet implemented however multiple drive suppor
 \item Such computers will have a hard coded in firmware list of drive its supports.
 \begin{DoxyItemize}
 \item These computers will issue a G\+P\+IB B\+US \char`\"{}request identify\char`\"{} command and only detect those it knows about.
-\item If these assumptions do N\+OT match in the hpdisk.\+cfg no drives will be detected.
+\item {\itshape If these assumptions do N\+OT match the layout defined in the hpdisk.\+cfg no drives will be detected.}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Newer computers with S\+S80 support can request fully detailed disk layout instead of the \char`\"{}request identify\char`\"{}
@@ -200,14 +203,14 @@ Multiple U\+N\+IT support is N\+OT yet implemented however multiple drive suppor
 \end{DoxyItemize}
 \item Debugging
 \begin{DoxyItemize}
-\item You can enable reporting of all unimplemented G\+P\+IB commands
+\item You can enable reporting of all unimplemented G\+P\+IB commands (see {\itshape T\+O\+DO} debug option in hpdisk.\+cfg)
 \begin{DoxyItemize}
-\item Useful if you are trying this on a non h\+P85 device
+\item Useful if you are trying this on a non H\+P85 device
 \item See the S\+D\+C\+A\+R\+D/hpdisk.\+cfg for documentation on the full list of debugging options
 \end{DoxyItemize}
 \item The emulator can passively log all transactions between real hardware on the G\+P\+IB bus
 \begin{DoxyItemize}
-\item Use the \char`\"{}gpib trace logfile\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
+\item Use the \char`\"{}gpib trace $\ast$logfile$\ast$\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
 \item You can use this to help understand what is sent to and from you real disks.
 \item I use this feature to help prioritize which commands I first implemented. 
 
