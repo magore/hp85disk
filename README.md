@@ -67,11 +67,10 @@ ___
            * This is a GPIB specification - not my idea.
          * The HP85 uses these assumptions
             * PPR bits are assigned in reverse order from device numbers.
-         * (The numbering scheme was not my idea - GPIB bus specifications)
   * IMPORTANT! On power up the HP85 issues a PPR query for disk drives drives 
     * The emulater must be running BEFORE this happens.
     * PPR query = both ATN and EOI being pulled low by the computer.
-    * PPR response is when ech drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.
+    * PPR response is when each drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.
        * *ONLY* those that are detected in this way are then next scanned
     * Next for all detected drives the HP85 issues "Request Identify" to each in turn.
       * This is done one drive at a time in order
