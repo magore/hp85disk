@@ -56,6 +56,36 @@ ___
           * The emulater MUST be running and attached to your computer first!
           * The HP85 ONLY checks for drives at power up.
 ___
+## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B
+  * While GPIB devices can have address between 0 and 31 you can have no more then 8 disk drives.
+  * ALL disk drives are required to respond to a PPR query by the (HP85) controller.
+    * PPR query is done when the controller in charge (HP85) pulls ATN and EOI low.
+    * PPR response occures when a disk drive pulls one GPIB bus data line low in response.
+       * You can only have 8 of these because there are only 8 GPIB data bus lines.
+         * GPIB data bus bits are numbered from 1 to 8
+         * PPR response bits are assiged in reverse order starting from 8, bit 8 for device 0
+           * This is a GPIB specification - not my idea.
+         * The HP85 uses these assumptions
+            * PPR bits are assigned in reverse order from device numbers.
+         * (The numbering scheme was not my idea - GPIB bus specifications)
+  * IMPORTANT! On power up the HP85 issues a PPR query for disk drives drives 
+    * The emulater must be running BEFORE this happens.
+    * PPR query = both ATN and EOI being pulled low by the computer.
+    * PPR response is when ech drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.
+       * *ONLY* those that are detected in this way are then next scanned
+    * Next for all detected drives the HP85 issues "Request Identify" to each in turn.
+      * This is done one drive at a time in order
+      * The PPR keywork in the hpdisk.cfg is the PPR bit the drive uses
+        * PPR of 0 = PPR response on GPIB data bus 8 - as per GPIB BUS specifications.
+      * The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"
+        * IMPORTANT! AMIGO drives can not be queried for detailed drive layout information
+          * The HP85A can only use its HARDCODED firmware tables to map ID to disk layout parameters
+          * This impiles that the HP85A can only use AMIGO disks it has defined in firmware.
+        * The HP85B can query newer SS80 drives for detailed drive layout information instead.
+        * The HP85A can not use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.
+            * This can be done with the PRM-85 expansion board offered by by Bill Kotaska 
+              * (The PRM-85 is great product giving you access to all of the useful ROMS)
+___
 ## Limitations
  * Multiple UNIT support is NOT yet implimented however multiple drive support is..
  * While most AMIGO and SS80 feature have been implmented my primary focus was on the HP85A and HP85B.

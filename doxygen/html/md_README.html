@@ -162,6 +162,61 @@ README</h1>
 <li>Power on your computer last!<ul>
 <li>The emulater MUST be running and attached to your computer first!</li>
 <li>The HP85 ONLY checks for drives at power up. <hr/>
+ <h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>While GPIB devices can have address between 0 and 31 you can have no more then 8 disk drives.</p><ul>
+<li>ALL disk drives are required to respond to a PPR query by the (HP85) controller.<ul>
+<li>PPR query is done when the controller in charge (HP85) pulls ATN and EOI low.</li>
+<li>PPR response occures when a disk drive pulls one GPIB bus data line low in response.<ul>
+<li>You can only have 8 of these because there are only 8 GPIB data bus lines.<ul>
+<li>GPIB data bus bits are numbered from 1 to 8</li>
+<li>PPR response bits are assiged in reverse order starting from 8, bit 8 for device 0<ul>
+<li>This is a GPIB specification - not my idea.</li>
+</ul>
+</li>
+<li>The HP85 uses these assumptions<ul>
+<li>PPR bits are assigned in reverse order from device numbers.</li>
+</ul>
+</li>
+<li>(The numbering scheme was not my idea - GPIB bus specifications)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IMPORTANT! On power up the HP85 issues a PPR query for disk drives drives<ul>
+<li>The emulater must be running BEFORE this happens.</li>
+<li>PPR query = both ATN and EOI being pulled low by the computer.</li>
+<li>PPR response is when ech drive pulls a single GPIB bus bit LOW - while ATN and EOI are low.<ul>
+<li><em>ONLY</em> those that are detected in this way are then next scanned</li>
+</ul>
+</li>
+<li>Next for all detected drives the HP85 issues "Request Identify" to each in turn.<ul>
+<li>This is done one drive at a time in order</li>
+<li>The PPR keywork in the hpdisk.cfg is the PPR bit the drive uses<ul>
+<li>PPR of 0 = PPR response on GPIB data bus 8 - as per GPIB BUS specifications.</li>
+</ul>
+</li>
+<li>The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"<ul>
+<li>IMPORTANT! AMIGO drives can not be queried for detailed drive layout information<ul>
+<li>The HP85A can only use its HARDCODED firmware tables to map ID to disk layout parameters</li>
+<li>This impiles that the HP85A can only use AMIGO disks it has defined in firmware.</li>
+</ul>
+</li>
+<li>The HP85B can query newer SS80 drives for detailed drive layout information instead.</li>
+<li>The HP85A can not use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.<ul>
+<li>This can be done with the PRM-85 expansion board offered by by Bill Kotaska<ul>
+<li>(The PRM-85 is great product giving you access to all of the useful ROMS) <hr/>
  <h2>Limitations</h2>
 </li>
 </ul>
@@ -172,7 +227,10 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>Multiple UNIT support is NOT yet implimented however multiple drive support is..</li>
+</ul>
+</li>
+</ul>
+<p>Multiple UNIT support is NOT yet implimented however multiple drive support is..</p><ul>
 <li>While most AMIGO and SS80 feature have been implmented my primary focus was on the HP85A and HP85B.<ul>
 <li>(I do not have access to other computers to test for full compatibility)</li>
 <li>This means that some AMIGO and SS80 GPIB commands are not yet implimented!</li>
@@ -1039,7 +1097,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 6 2017 20:04:11 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 6 2017 22:11:56 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

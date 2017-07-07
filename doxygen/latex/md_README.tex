@@ -90,12 +90,74 @@
 \item The emulater M\+U\+ST be running and attached to your computer first!
 \item The H\+P85 O\+N\+LY checks for drives at power up. 
 
+ \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs H\+P85B}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+While G\+P\+IB devices can have address between 0 and 31 you can have no more then 8 disk drives.
+\begin{DoxyItemize}
+\item A\+LL disk drives are required to respond to a P\+PR query by the (H\+P85) controller.
+\begin{DoxyItemize}
+\item P\+PR query is done when the controller in charge (H\+P85) pulls A\+TN and E\+OI low.
+\item P\+PR response occures when a disk drive pulls one G\+P\+IB bus data line low in response.
+\begin{DoxyItemize}
+\item You can only have 8 of these because there are only 8 G\+P\+IB data bus lines.
+\begin{DoxyItemize}
+\item G\+P\+IB data bus bits are numbered from 1 to 8
+\item P\+PR response bits are assiged in reverse order starting from 8, bit 8 for device 0
+\begin{DoxyItemize}
+\item This is a G\+P\+IB specification -\/ not my idea.
+\end{DoxyItemize}
+\item The H\+P85 uses these assumptions
+\begin{DoxyItemize}
+\item P\+PR bits are assigned in reverse order from device numbers.
+\end{DoxyItemize}
+\item (The numbering scheme was not my idea -\/ G\+P\+IB bus specifications)
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item I\+M\+P\+O\+R\+T\+A\+N\+T! On power up the H\+P85 issues a P\+PR query for disk drives drives
+\begin{DoxyItemize}
+\item The emulater must be running B\+E\+F\+O\+RE this happens.
+\item P\+PR query = both A\+TN and E\+OI being pulled low by the computer.
+\item P\+PR response is when ech drive pulls a single G\+P\+IB bus bit L\+OW -\/ while A\+TN and E\+OI are low.
+\begin{DoxyItemize}
+\item {\itshape O\+N\+LY} those that are detected in this way are then next scanned
+\end{DoxyItemize}
+\item Next for all detected drives the H\+P85 issues \char`\"{}\+Request Identify\char`\"{} to each in turn.
+\begin{DoxyItemize}
+\item This is done one drive at a time in order
+\item The P\+PR keywork in the hpdisk.\+cfg is the P\+PR bit the drive uses
+\begin{DoxyItemize}
+\item P\+PR of 0 = P\+PR response on G\+P\+IB data bus 8 -\/ as per G\+P\+IB B\+US specifications.
+\end{DoxyItemize}
+\item The ID keyword in hpdisk.\+cfg is the 16 bit reply to \char`\"{}\+Request Identify Reply\char`\"{}
+\begin{DoxyItemize}
+\item I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives can not be queried for detailed drive layout information
+\begin{DoxyItemize}
+\item The H\+P85A can only use its H\+A\+R\+D\+C\+O\+D\+ED firmware tables to map ID to disk layout parameters
+\item This impiles that the H\+P85A can only use A\+M\+I\+GO disks it has defined in firmware.
+\end{DoxyItemize}
+\item The H\+P85B can query newer S\+S80 drives for detailed drive layout information instead.
+\item The H\+P85A can not use S\+S80 drives unless it uses copies of the H\+P85B E\+MS and E\+D\+I\+SK R\+O\+MS.
+\begin{DoxyItemize}
+\item This can be done with the P\+R\+M-\/85 expansion board offered by by Bill Kotaska
+\begin{DoxyItemize}
+\item (The P\+R\+M-\/85 is great product giving you access to all of the useful R\+O\+MS) 
+
  \subsection*{Limitations}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive support is..
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive support is..
+\begin{DoxyItemize}
 \item While most A\+M\+I\+GO and S\+S80 feature have been implmented my primary focus was on the H\+P85A and H\+P85B.
 \begin{DoxyItemize}
 \item (I do not have access to other computers to test for full compatibility)
