@@ -3,7 +3,7 @@
 
 
 \begin{DoxyItemize}
-\item Pleasse use this link for Documentation and this R\+E\+A\+D\+ME
+\item Please use this link for the Documentation and this R\+E\+A\+D\+ME
 \begin{DoxyItemize}
 \item \href{https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html}{\tt https\+://rawgit.\+com/magore/hp85disk/master/doxygen/html/index.\+html}
 \end{DoxyItemize}
@@ -20,28 +20,135 @@
 
 
 \begin{DoxyItemize}
-\item This project emulates G\+P\+IB drives and H\+P\+GL printer for H\+P85A and H\+P85B
+\item This project emulates G\+P\+IB drives and H\+P\+GL printer for the H\+P85A and H\+P85B computers.
 \begin{DoxyItemize}
+\item Each drive can be fully defined in the hpdisk.\+cfg file on the SD C\+A\+RD
 \item A\+M\+I\+GO drices work with H\+P85A
 \item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 add on board see links)
-\item Each drive can be fully defines in the hpdisk.\+cfg file on the SD C\+A\+RD
-\item Printer can capture data sent to G\+P\+IB printer to a file
+\item Printer emulater -\/ can capture and save printer data to a timestamped file.
+\item You can connect with and control the emulater via its F\+TI usb serial interface 115200 buad, 8\+N1.
 \begin{DoxyItemize}
-\item Can also capture programs from the H\+P85\+:
+\item There are many commands that you can use, type \char`\"{}help for a list\char`\"{}
+\item Any keypress halts the emulater and waits for a user command.
+\item After finishing any user commend it returns to G\+P\+IB disk emulation.
+\end{DoxyItemize}
+\item Each emulated disk image is a singe file on a F\+A\+T32 formatted sdcard.
+\begin{DoxyItemize}
+\item Internally these disk images are internally formated using the L\+IF standard.
+\begin{DoxyItemize}
+\item L\+IF format used is compatible with H\+P85\+A/B and many other computers
+\end{DoxyItemize}
+\item L\+IF Tools are built into the emulater to create, rename,delete add and extract to/from other L\+IF images.
+\begin{DoxyItemize}
+\item L\+IF tools can also create new L\+IF images with user specifications
+\end{DoxyItemize}
+\item The emulater will autmatically create missing L\+IF images defined and named in hpdisk.\+cfg on the sdcard
+\item For the specific L\+IF E010..E013(hex) type images the emulater can translate to and from plain A\+S\+C\+II files.
+\item The emulater can add and extract as L\+IF image format
+\begin{DoxyItemize}
+\item You may add from another L\+IF image with multiple internal files.
+\item You may extract a single file from a L\+IF image to a new L\+IF image.
+\item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
+\end{DoxyItemize}
+\item Type \char`\"{}lif help\char`\"{} in the emulater for a full list of commands
+\begin{DoxyItemize}
+\item See the top of \hyperlink{lifutils_8c}{lif/lifutils.\+c} for full documenation and examples. 
+
+ \subsection*{Using the emulater with provider examples}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item See sdcard.\+cfg for configuration settings and setting and documention.
+\begin{DoxyItemize}
+\item Printer capture is configured currently for my H\+P54645D scope
+\begin{DoxyItemize}
+\item The following example works for an H\+P85 attached to the emulater via G\+P\+IB bus.
 \begin{DoxyItemize}
 \item P\+R\+I\+N\+T\+ER IS 705
 \item P\+L\+I\+ST
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Working example sdcard files included
+\item Disk images in sdcard folder drive and configuration settings
 \begin{DoxyItemize}
 \item first S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A roms)
 \item first Amigo 9121D disk at 710 for my H\+P85B (with 85B roms)
 \item second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A roms)
 \item second Amigo 9121D disk at 730 for my H\+P85B (with 85B roms)
-\item Printer capture at 750 for my H\+P54645D scope
+\end{DoxyItemize}
+\item How to use the examples with your H\+P85
 \begin{DoxyItemize}
-\item Will capture plot data to sdcard with timestamp 
+\item Copy the files inside the project sdcard folder to the home folder of a fat32 formated drive
+\begin{DoxyItemize}
+\item All image files and configuration must be in the home folder only -\/ not in a subdirectory.
+\item You may store other user files in sub folders of your choosing.
+\end{DoxyItemize}
+\item Verify hpdisk.\+cfg configuratuon settings for your computer
+\item Insert card into emulater
+\item Attact G\+P\+IB cables
+\item Power on emulater
+\item Power on your computer last!
+\begin{DoxyItemize}
+\item The emulater M\+U\+ST be running and attached to your computer first!
+\item The H\+P85 O\+N\+LY checks for drives at power up. 
+
+ \subsection*{Limitations}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Multiple U\+N\+IT support is N\+OT yet implimented however multiple drive support is..
+\item While most A\+M\+I\+GO and S\+S80 feature have been implmented my primary focus was on the H\+P85A and H\+P85B.
+\begin{DoxyItemize}
+\item (I do not have access to other computers to test for full compatibility)
+\item This means that some A\+M\+I\+GO and S\+S80 G\+P\+IB commands are not yet implimented!
+\item Note\+: The H\+P85A can only use A\+M\+I\+GO drives -\/ unless you have the H\+P85B E\+MS rom installed in your H\+P\+H9A
+\begin{DoxyItemize}
+\item This can be done with the P\+R\+M-\/85 expansion board offered by by Bill Kotaska (a great product!)
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item To attach a drive to our computer, real or otherwise, you must know\+:
+\begin{DoxyItemize}
+\item The correct G\+P\+IB B\+US address and parallel pool response (P\+PR) bit number your computer expects.
+\begin{DoxyItemize}
+\item See A\+D\+D\+R\+E\+SS, P\+PR and ID values in sdcard/hpdisk.\+cfg
+\end{DoxyItemize}
+\item Older computers may only support A\+M\+I\+GO drives.
+\begin{DoxyItemize}
+\item Such computers will have a hard coded in firmware list of drive its supports.
+\begin{DoxyItemize}
+\item These computers will issue a G\+P\+IB B\+US \char`\"{}request identify\char`\"{} command and only detect those it knows about.
+\item If these assumptions do N\+OT match in the hpdisk.\+cfg no drives will be detected.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Newer computers with S\+S80 support can request fully detailed disk layout insead of the \char`\"{}request identify\char`\"{}
+\item My emulater supports both reporting methods -\/ but your computer may not use them both!
+\begin{DoxyItemize}
+\item For supported values consult your computer manuals or corresponding drive manual for your computer.
+\begin{DoxyItemize}
+\item See gpib/drives\+\_\+parameters.\+txt for a list on some known value (C\+R\+E\+D\+I\+TS; these are from the H\+P\+Dir project)
+\end{DoxyItemize}
+\item In all cases the the hpdisk.\+cfg parameters M\+U\+ST match these expectations.
+\end{DoxyItemize}
+\item The hpdisk.\+cfg file tells the emulater how the emulated disk is defined.
+\begin{DoxyItemize}
+\item G\+P\+IB B\+US address, Parallel Poll Response bit number and A\+M\+I\+GO Request Identify response values.
+\item Additional detail for S\+S80 drives that newer computers can use.
+\item In A\+LL cases the file informs the code what paramters to emulate and report.
+\begin{DoxyItemize}
+\item A\+LL of these value M\+U\+ST match your computers expectations for drives it knows about.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Debugging
+\begin{DoxyItemize}
+\item You can enable reporting of all unimplimentd G\+P\+IB commands
+\begin{DoxyItemize}
+\item Useful if you are trying this on a non h\+P85 device
+\item See the sdcard/hpdisk.\+cfg for documentaion on the full list of bebgging options
+\end{DoxyItemize}
+\item The emulater can passively log all transactions between real hardward on the G\+P\+IB bus
+\begin{DoxyItemize}
+\item Use the \char`\"{}gpib trace logfile\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
+\item You can use this to help understand what is sent to and from you real disks.
+\item I use this feature to help prioritize which commands I first implimented. 
 
 
 \end{DoxyItemize}
@@ -60,28 +167,33 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries Anders Gustafsson was extremely helpful in providing me his current code and details of his project -\/ which I am very thankful for.}
+{\bfseries  The H\+P\+Dir project was vital as a documention source for this project
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
+\end{DoxyItemize}}
 
-As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.
+{\bfseries  {\bfseries Anders Gustafsson was extremely helpful in providing me his current code and details of his project -\/ which I am very thankful for.}}
 
-I Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
+{\bfseries  As mainly a personal excercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.}
 
+{\bfseries  I Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.}
 
+{\bfseries 
 
- \section*{Abbreviations}
+ \section*{Abbreviations}}
 
-Within this project I have attempted to provide detailed referces to to manuals, listed below. I have included short quotes and section and page\# reference to these works.
+{\bfseries  Within this project I have attempted to provide detailed referces to to manuals, listed below. I have included short quotes and section and page\# reference to these works.
 \begin{DoxyItemize}
 \item {\bfseries S\+S80}
 \item {\bfseries C\+S80}
 \item {\bfseries A or Amigo}
 \item {\bfseries H\+P-\/\+IP}
 \item {\bfseries H\+P-\/\+IP Tutorial}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Documentation References and related sources of information}
+{\bfseries \subsection*{Documentation References and related sources of information}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item Web Resources
 \begin{DoxyItemize}
@@ -92,49 +204,49 @@ Within this project I have attempted to provide detailed referces to to manuals,
 \item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
 \item See Documents folder
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}
+{\bfseries \subsection*{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \href{https://github.com/bug400/lifutils}{\tt https\+://github.\+com/bug400/lifutils}
 \item Create/\+Modify L\+IF images
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}
+{\bfseries \subsection*{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
 \item Printed\+: A\+PR 1983
 \item HP Part\# 5955-\/3442
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{} is the short form used in the project)}
+{\bfseries \subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{} is the short form used in the project)}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
 \item HP Part\# 09895-\/90030
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{H\+P-\/\+IB}
+{\bfseries \subsection*{H\+P-\/\+IB}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item (\char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project)
 \item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
 \item Printed March 1975
 \item HP Part\# 59401-\/90030
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Tutorial Description of The Hewllet Packard Interface Bus}
+{\bfseries \subsection*{Tutorial Description of The Hewllet Packard Interface Bus}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item (\char`\"{}\+H\+P-\/\+I\+B Tutorial\char`\"{} is the short form used in the project)
 \item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
@@ -142,38 +254,38 @@ Within this project I have attempted to provide detailed referces to to manuals,
 \item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
 \item Printed 1987
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole}
+{\bfseries \subsection*{G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-See Documents folder
+{\bfseries See Documents folder}
 
-\subsection*{HP 9133/9134 D/\+H/L References}
+{\bfseries \subsection*{HP 9133/9134 D/\+H/L References}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \char`\"{}\+H\+P 9133/9134 D/\+H/\+L Service Manual\char`\"{}
 \item HP Part\# 5957-\/6560
 \item Printed\+: A\+P\+R\+IL 1985, Edition 2
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{L\+IF Filesystem Format}
+{\bfseries \subsection*{L\+IF Filesystem Format}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
 \item See Documents folder
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Useful Utilities}
+{\bfseries \subsection*{Useful Utilities}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item HP Drive (HP Drive Emulators for Windows Platform)
 \begin{DoxyItemize}
@@ -183,20 +295,20 @@ See Documents folder
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir/}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/}
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
+{\bfseries 
 
+}
 
+{\bfseries \subsection*{G\+P\+IB Connector pinout by Anders Gustafsson in his hpdisk project}}
 
-
-\subsection*{G\+P\+IB Connector pinout by Anders Gustafsson in his hpdisk project}
-
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \href{http://www.dalton.ax/hpdisk/}{\tt http\+://www.\+dalton.\+ax/hpdisk/}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-
+{\bfseries 
 \begin{DoxyPre}
     Pin Name   Signal Description       Pin Name   Signal Description 
     1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
@@ -212,15 +324,15 @@ See Documents folder
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
 \end{DoxyPre}
+}
 
+{\bfseries 
 
+}
 
+{\bfseries \subsection*{A\+VR A\+T\+M\+E\+G\+A1284P pin assignments for H\+P85 Disk}}
 
-
-
-\subsection*{A\+VR A\+T\+M\+E\+G\+A1284P pin assignments for H\+P85 Disk}
-
-
+{\bfseries 
 \begin{DoxyItemize}
 \item \begin{DoxySeeAlso}{See also}
 Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
@@ -268,15 +380,15 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
                        +-------+ 
 \end{DoxyPre}
 
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
+{\bfseries 
 
+}
 
+{\bfseries \subsection*{Parallel Poll Response circuit}}
 
-
-\subsection*{Parallel Poll Response circuit}
-
-
+{\bfseries 
 \begin{DoxyItemize}
 \item Uses\+: Three chips 74\+H\+C05, 74\+H\+C32, 74\+H\+C595
 \item Parallel Poll Response must be less then 2 Microseconds therefore we use hardware to do it!
@@ -301,21 +413,21 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
           +---+       +---------+ 
 \end{DoxyPre}
 
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
+{\bfseries Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \begin{DoxyItemize}
 \item If any H\+C595 output is high the G\+P\+IB bus bit will be pulled low
 \item I\+FC low resets the H\+C595 outputs low -\/ so the H\+C05 outputs will float.
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
+{\bfseries 
 
+}
 
+{\bfseries \subsection*{Testing}}
 
-
-\subsection*{Testing}
-
-
+{\bfseries 
 \begin{DoxyItemize}
 \item Testing was done with an H\+P85A (with extended E\+MS rom)
 \begin{DoxyItemize}
@@ -334,9 +446,9 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
   INITIALIZE "SS80-2",":D720",128,1
   INITIALIZE "AMIGO2",":D730",14,1\end{DoxyPre}
 
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-
+{\bfseries 
 \begin{DoxyPre}  #Listing files:
   #first SS80
   CAT ":D700"
@@ -346,9 +458,9 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
   CAT ":D720"
   #second AMIGO
   CAT ":D730"\end{DoxyPre}
+}
 
-
-
+{\bfseries 
 \begin{DoxyPre}  #Loading file from second SS80:
   LOAD "HELLO:D720"
   #Copying file between devices: fist AMIGO to second AMIGO
@@ -358,11 +470,11 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \end{DoxyPre}
  
 
+}
 
+{\bfseries \subsection*{A\+VR Terminal Commands}}
 
-\subsection*{A\+VR Terminal Commands}
-
-
+{\bfseries 
 \begin{DoxyItemize}
 \item Pressing any key will break out of the gpib task loop untill a command is entered
 \begin{DoxyItemize}
@@ -371,44 +483,44 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 
 
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{OS Requirements for software building}
+{\bfseries \subsection*{OS Requirements for software building}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item I use {\itshape Ubuntu 16.\+04 and 14.\+04} so these instruction will cover that version
 \item It should be easy to setup the same build with Windows gcc tools.
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS install and setup notes}
+{\bfseries \subsection*{Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS install and setup notes}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item {\itshape apt-\/get update}
 \item {\itshape apt-\/get install aptitude}
 \item {\itshape aptitude install --with-\/recommends avr-\/gcc avr-\/libc binutils-\/avr gdb-\/avr avrdude}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Building Doxygen documenation for the project -\/ optional}
+{\bfseries \subsection*{Building Doxygen documenation for the project -\/ optional}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
 \item {\itshape If you omit this you will have to update the Makefile to omit the steps}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Compiling the firmware}
+{\bfseries \subsection*{Compiling the firmware}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}
+{\bfseries \subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item {\itshape make flash}
 \begin{DoxyItemize}
@@ -418,11 +530,11 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item There is an example with the A\+VR mkii programer as well.
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}}
 
-\subsection*{Files}
+{\bfseries \subsection*{Files}}
 
-
+{\bfseries 
 \begin{DoxyItemize}
 \item ./\+C\+O\+P\+Y\+R\+I\+G\+HT.md Project Copyrights
 \item ./main.c Main startup code
@@ -912,4 +1024,4 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}}

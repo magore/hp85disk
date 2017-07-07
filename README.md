@@ -3,28 +3,91 @@
 
 # Documentation
 
- * Pleasse use this link for Documentation and this README
+ * Please use this link for the Documentation and this README
    * https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html
 
 ## HP85 Disk Emulator Copyright &copy; 2014-2017 Mike Gore
  * See [COPYRIGHT](COPYRIGHT.md) for a full copywrite notice for the project
 
 ## Features
- * This project emulates GPIB drives and HPGL printer for HP85A and HP85B
+ * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
+   * Each drive can be fully defined in the hpdisk.cfg file on the SD CARD
    * AMIGO drices work with HP85A 
    * SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)
-   * Each drive can be fully defines in the hpdisk.cfg file on the SD CARD
-   * Printer can capture data sent to GPIB printer to a file
-     * Can also capture programs from the HP85:
-       * PRINTER IS 705
-       * PLIST
-   * Working example sdcard files included
-     * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
-     * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
-     * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
-     * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
-     * Printer capture at 750 for my HP54645D scope
-       * Will capture plot data to sdcard with timestamp
+   * Printer emulater - can capture and save printer data to a timestamped file.
+   * You can connect with and control the emulater via its FTI usb serial interface 115200 buad, 8N1.
+     * There are many commands that you can use, type "help for a list"
+     * Any keypress halts the emulater and waits for a user command. 
+     * After finishing any user commend it returns to GPIB disk emulation.
+   * Each emulated disk image is a singe file on a FAT32 formatted sdcard.
+     * Internally these disk images are internally formated using the LIF standard.
+       * LIF format used is compatible with HP85A/B and many other computers
+     * LIF Tools are built into the emulater to create, rename,delete add and extract to/from other LIF images.
+       * LIF tools can also create new LIF images with user specifications
+     * The emulater will autmatically create missing LIF images defined and named in hpdisk.cfg on the sdcard
+     * For the specific LIF E010..E013(hex) type images the emulater can translate to and from plain ASCII files.
+     * The emulater can add and extract as LIF image format
+       * You may add from another LIF image with multiple internal files.
+       * You may extract a single file from a LIF image to a new LIF image.
+       * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
+     * Type "lif help" in the emulater for a full list of commands
+       * See the top of lif/lifutils.c for full documenation and examples.
+___
+## Using the emulater with provider examples
+   * See sdcard.cfg for configuration settings and setting and documention.
+     * Printer capture is configured currently for my HP54645D scope
+       * The following example works for an HP85 attached to the emulater via GPIB bus.
+         * PRINTER IS 705
+         * PLIST
+     * Disk images in sdcard folder drive and configuration settings
+       * first SS80 HP9134L disk at 700 for my HP85A (with 85A roms)
+       * first Amigo 9121D disk  at 710 for my HP85B (with 85B roms)
+       * second SS80 HP9134L disk at 720 for my HP85A (with 85A roms)
+       * second Amigo 9121D disk  at 730 for my HP85B (with 85B roms)
+     * How to use the examples with your HP85
+       * Copy the files inside the project sdcard folder to the home folder of a fat32 formated drive
+         * All image files and configuration must be in the home folder only - not in a subdirectory.
+         * You may store other user files in sub folders of your choosing.
+       * Verify hpdisk.cfg configuratuon settings for your computer
+       * Insert card into emulater
+       * Attact GPIB cables
+       * Power on emulater
+       * Power on your computer last!
+          * The emulater MUST be running and attached to your computer first!
+          * The HP85 ONLY checks for drives at power up.
+___
+## Limitations
+ * Multiple UNIT support is NOT yet implimented however multiple drive support is..
+ * While most AMIGO and SS80 feature have been implmented my primary focus was on the HP85A and HP85B.
+   * (I do not have access to other computers to test for full compatibility)
+   * This means that some AMIGO and SS80 GPIB commands are not yet implimented!
+   * Note: The HP85A can only use AMIGO drives - unless you have the HP85B EMS rom installed in your HPH9A
+      * This can be done with the PRM-85 expansion board offered by by Bill Kotaska (a great product!)
+ * To attach a drive to our computer, real or otherwise, you must know:
+   * The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.
+     * See ADDRESS, PPR and ID values in sdcard/hpdisk.cfg
+   * Older computers may only support AMIGO drives.
+     * Such computers will have a hard coded in firmware list of drive its supports.
+       * These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.
+       * If these assumptions do NOT match in the hpdisk.cfg no drives will be detected.
+   * Newer computers with SS80 support can request fully detailed disk layout insead of the "request identify"
+   * My emulater supports both reporting methods - but your computer may not use them both!
+     * For supported values consult your computer manuals or corresponding drive manual for your computer.
+       * See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)
+     * In all cases the the hpdisk.cfg parameters MUST match these expectations.
+   * The hpdisk.cfg file tells the emulater how the emulated disk is defined.
+     * GPIB BUS address, Parallel Poll Response bit number and AMIGO Request Identify response values.
+     * Additional detail for SS80 drives that newer computers can use.
+     * In ALL cases the file informs the code what paramters to emulate and report.
+       * ALL of these value MUST match your computers expectations for drives it knows about.
+   * Debugging
+     * You can enable reporting of all unimplimentd GPIB commands
+       * Useful if you are trying this on a non hP85 device
+       * See the sdcard/hpdisk.cfg for documentaion on the full list of bebgging options
+     * The emulater can passively log all transactions between real hardward on the GPIB bus 
+       * Use the "gpib trace logfile" command - pressing any key exits - no emulation is done in this mode.
+       * You can use this to help understand what is sent to and from you real disks.
+       * I use this feature to help prioritize which commands I first implimented.
 ___
 
 # Credits
@@ -33,6 +96,9 @@ ___
  * You can visit his project at this site:
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
+
+<b> The HPDir project was vital as a documention source for this project
+   * <http://www.hp9845.net/9845/projects/hpdir>
 
  <b>Anders Gustafsson was extremely helpful in providing me his current 
  code and details of his project - which I am very thankful for.</b>
