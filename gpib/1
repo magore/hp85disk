@@ -1,0 +1,149 @@
+/// @brief  read 1 byte and control line status from GPIB BUS
+///
+/// @return 
+uint16_t gpib_read_byte(int trace)
+{
+    uint8_t rx_state;
+    uint16_t ch;
+    uint16_t bus, control, control_last;
+    extern uint8_t gpib_unread_f;
+    extern uint16_t gpib_unread_data;
+
+    ch = 0;
+
+    GPIB_PIN_FLOAT(IFC);
+    GPIB_PIN_FLOAT(ATN);
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(DAV);                           // DAV should be HI already
+
+    GPIB_BUS_IN();
+
+    // If we have an unread state it has already been traced!
+    if(gpib_unread_f)
+    {
+        gpib_unread_f = 0;
+        return(gpib_unread_data);
+    }
+
+    GPIB_PIN_FLOAT(NRFD);
+    GPIB_BUS_SETTLE();                            // Let Data BUS settle
+    GPIB_IO_LOW(NDAC);
+
+    if(trace)
+    {
+        control_last = gpib_control_read();
+        control_last |= gpib_handshake_read();
+        gpib_trace_display(control_last, TRACE_BUS);
+    }
+
+    rx_state = GPIB_RX_START;
+    while(rx_state != GPIB_RX_DONE)
+    {
+        if(uart_keyhit(0))
+            break;
+        if(Parallel_Poll())
+            ch |= PP_FLAG;
+
+        if(uart_keyhit(0))
+            break;
+
+        if(GPIB_IO_RD(IFC) == 0)
+        {
+            ch |= IFC_FLAG;
+            break;
+        }
+
+
+        switch(rx_state)
+        {
+            case GPIB_RX_START:
+                GPIB_PIN_FLOAT(NRFD);
+                GPIB_BUS_SETTLE();                // Let Data BUS settle
+                rx_state = GPIB_RX_WAIT_FOR_DAV_LOW;
+                break;
+
+            case GPIB_RX_WAIT_FOR_DAV_LOW:
+                if ( GPIB_IO_RD(DAV) == 0 )
+                    rx_state = GPIB_RX_DAV_IS_LOW;
+                break;
+
+            case GPIB_RX_DAV_IS_LOW:
+
+                GPIB_IO_LOW(NRFD);                // BUSY
+
+                ///@brief gpib_bus_read strips command parity if ATN is low at read time
+                bus = gpib_bus_read();
+                ch |= bus;
+                control_last = gpib_control_read();
+                ch |= control_last;
+
+                if(trace)
+                {
+                    control_last |= gpib_handshake_read();
+                    gpib_trace_display(bus | control_last, TRACE_READ);
+                }
+
+                GPIB_PIN_FLOAT(NDAC);   
+                GPIB_BUS_SETTLE();                // Let Data BUS settle
+                gpib_timeout_set(HTIMEOUT);
+                rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
+                break;
+
+            case GPIB_RX_WAIT_FOR_DAV_HI:
+                if (GPIB_IO_RD(DAV) == 1)
+                    rx_state = GPIB_RX_DAV_IS_HI;
+                if (gpib_timeout_test())
+                {
+                    ch |= TIMEOUT_FLAG;
+                    rx_state = GPIB_RX_ERROR;
+                }
+                break;
+
+            case GPIB_RX_DAV_IS_HI:
+                GPIB_IO_LOW(NDAC);
+                rx_state = GPIB_RX_FINISH;        // DONE
+                break;
+
+            case GPIB_RX_FINISH:
+                GPIB_IO_LOW(NDAC);
+                rx_state = GPIB_RX_DONE;
+                break;
+
+            case GPIB_RX_ERROR:
+                GPIB_IO_LOW(NDAC);
+                GPIB_IO_LOW(NRFD);
+                rx_state = GPIB_RX_DONE;
+                break;
+
+            case GPIB_RX_DONE:
+                break;
+        }
+
+        if(trace)
+        {
+            control = gpib_control_read();
+            control |= gpib_handshake_read();
+            if(control_last != control)
+            {
+                gpib_trace_display(control, TRACE_BUS);
+                control_last = control;
+            }
+        }
+    }
+
+///  Note: see: HP-IB Tutorial pg 13
+///  - Remember that NDAC and NRFD are now both LOW!
+///  - The spec says to KEEP BOTH LOW when NOT ready to read otherwise
+///    we may miss a transfer and cause a controller timeout!
+///  - GPIB TX state expects NRFD LOW on entry or it is an ERROR!
+
+    lastcmd = current;
+
+    if(ch & ERROR_MASK || (ch & ATN_FLAG) == 0)
+        current = 0;
+    else
+        current = ch & CMD_MASK;
+
+    return (ch);
+}
+

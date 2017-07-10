@@ -16,12 +16,13 @@ G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}gpib\+\_\+task.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}amigo.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}ss80.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
-\subsection*{Macros}
+\subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{gpib_8c_a6dcb5fc551174cd685f0802f86329f3b}{H\+T\+I\+M\+E\+O\+UT}~(500000\+L / G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+U\+S)
-\begin{DoxyCompactList}\small\item\em This is the default B\+US timeout of 0.\+5 Seconds in Microseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \hyperlink{structgpib__token__t}{gpib\+\_\+token\+\_\+t}
+\begin{DoxyCompactList}\small\item\em G\+P\+IB command mapping to printable strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,14 +56,20 @@ uint16\+\_\+t \hyperlink{gpib_8c_ac3d50cc1d56705d107e2f8fb00692e68}{gpib\+\_\+wr
 \begin{DoxyCompactList}\small\item\em Send 1 byte and control line states to G\+P\+IB B\+US. \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread} (uint16\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em G\+P\+IB ungets one character and all status states. \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{gpib_8c_a8dd0928ed1cdc2319fd14c122b333cba}{gpib\+\_\+read\+\_\+byte} (void)
+uint8\+\_\+t \hyperlink{gpib_8c_a3ab903cc837f89eda3af567d071b5065}{gpib\+\_\+bus\+\_\+read} ()
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB data B\+US only. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8c_ac5551ae987247d486a9c18c3bd2a8ba7}{gpib\+\_\+control\+\_\+read} ()
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB control lines only. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8c_abc335c01842320605b4e62bceecb031c}{gpib\+\_\+handshake\+\_\+read} ()
+\item 
+uint16\+\_\+t \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte} (int trace)
 \begin{DoxyCompactList}\small\item\em read 1 byte and control line status from G\+P\+IB B\+US \end{DoxyCompactList}\item 
-void \hyperlink{gpib_8c_a65786186b6eceb91bf717888b03ca9f1}{gpib\+\_\+decode\+\_\+header} (void)
+void \hyperlink{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}{gpib\+\_\+decode\+\_\+header} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$fo)
 \begin{DoxyCompactList}\small\item\em Displays help for \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode()} function. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}{gpib\+\_\+decode\+\_\+str} (uint16\+\_\+t ch)
+void \hyperlink{gpib_8c_ae2e0e847432d7964a28c6faf9d3e1eee}{gpib\+\_\+trace\+\_\+display} (uint16\+\_\+t status, int trace\+\_\+state)
 \begin{DoxyCompactList}\small\item\em decode/display all control flags and data on the G\+P\+IB B\+US \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode} (uint16\+\_\+t ch)
-\begin{DoxyCompactList}\small\item\em Calls \hyperlink{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}{gpib\+\_\+decode\+\_\+str()} and dosplays the result. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Calls gpib\+\_\+decode\+\_\+str() and dosplays the result. \end{DoxyCompactList}\item 
 int \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str} (uint8\+\_\+t $\ast$buf, int size, uint16\+\_\+t $\ast$status)
 \begin{DoxyCompactList}\small\item\em Read string from G\+P\+IB B\+US -\/ controlled by status flags. \end{DoxyCompactList}\item 
 int \hyperlink{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str} (uint8\+\_\+t $\ast$buf, int size, uint16\+\_\+t $\ast$status)
@@ -91,7 +98,9 @@ uint16\+\_\+t \hyperlink{gpib_8c_ab8bc74192b6d8a3e352b03e724dac5b7}{lastcmd}
 uint16\+\_\+t \hyperlink{gpib_8c_aaad5615d233044464c3661481a6760cd}{current}
 \item 
 uint8\+\_\+t \hyperlink{gpib_8c_a25538708e408bbc21b380cb6f709f5d8}{secondary}
-\begin{DoxyCompactList}\small\item\em gpib secondary \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em gpib secondary \end{DoxyCompactList}\item 
+\hyperlink{structgpib__token__t}{gpib\+\_\+token\+\_\+t} \hyperlink{gpib_8c_a328e100f7097be6b8c513858327ce279}{gpib\+\_\+tokens} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -109,80 +118,6 @@ G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 \begin{DoxyParagraph}{Copyright \copyright{} 2014 Anders Gustafsson All rights reserved..}
 
 \end{DoxyParagraph}
-
-
-\subsection{Macro Definition Documentation}
-\index{gpib.\+c@{gpib.\+c}!H\+T\+I\+M\+E\+O\+UT@{H\+T\+I\+M\+E\+O\+UT}}
-\index{H\+T\+I\+M\+E\+O\+UT@{H\+T\+I\+M\+E\+O\+UT}!gpib.\+c@{gpib.\+c}}
-\subsubsection[{\texorpdfstring{H\+T\+I\+M\+E\+O\+UT}{HTIMEOUT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+T\+I\+M\+E\+O\+UT~(500000\+L / G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+U\+S)}\hypertarget{gpib_8c_a6dcb5fc551174cd685f0802f86329f3b}{}\label{gpib_8c_a6dcb5fc551174cd685f0802f86329f3b}
-
-
-This is the default B\+US timeout of 0.\+5 Seconds in Microseconds. 
-
-
-\begin{DoxyItemize}
-\item References\+: Documenation and related sources of information
-\begin{DoxyItemize}
-\item Web Resources\+:
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net}{\tt http\+://www.\+hp9845.\+net}
-\item \href{http://www.hpmuseum.net}{\tt http\+://www.\+hpmuseum.\+net}
-\item \href{http://www.hpmusuem.org}{\tt http\+://www.\+hpmusuem.\+org}
-\item \href{http://bitsavers.trailing-edge.com}{\tt http\+://bitsavers.\+trailing-\/edge.\+com}
-\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item S\+S80 References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+S\+S80\char`\"{} is the short form used in the project
-\item \char`\"{}\+Subset 80 from Fixed and flexible disc drives\char`\"{}
-\item Printed November, 1985
-\item HP Part\# 5958-\/4129
-\end{DoxyItemize}
-\item C\+S80 References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+C\+S80\char`\"{} is the short form used in the project
-\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
-\item Printed\+: A\+PR 1983
-\item HP Part\# 5955-\/3442
-\end{DoxyItemize}
-\item Amigo References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+Amigo\char`\"{} is the short form used in the project
-\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
-\item HP Part\# 09895-\/90030
-\end{DoxyItemize}
-\item H\+P-\/\+IB
-\begin{DoxyItemize}
-\item \char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project
-\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
-\item Printed March 1975
-\item HP Part\# 59401-\/90030
-\end{DoxyItemize}
-\item Tutorial Description of The Hewllet Packard Interface Bus\char`\"{}
-  -\/ \char`\"{}H\+P-\/\+IB Tutorial" is the short form used in the project
-\begin{DoxyItemize}
-\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
-\begin{DoxyItemize}
-\item Printed January 1983
-\end{DoxyItemize}
-\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
-\begin{DoxyItemize}
-\item Printed 1987
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole
-\begin{DoxyItemize}
-\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php} 
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-Definition at line 76 of file gpib.\+c.
-
-
-
-Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
-
 
 
 \subsection{Function Documentation}
@@ -205,7 +140,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 298 of file gpib.\+c.
+Definition at line 324 of file gpib.\+c.
 
 
 
@@ -226,7 +161,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 278 of file gpib.\+c.
+Definition at line 304 of file gpib.\+c.
 
 
 
@@ -252,7 +187,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 365 of file gpib.\+c.
+Definition at line 391 of file gpib.\+c.
 
 
 
@@ -278,7 +213,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 385 of file gpib.\+c.
+Definition at line 411 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+c@{gpib.\+c}}
@@ -296,7 +231,7 @@ Initialize G\+P\+IB Bus control lines for powerup or reset conditions.
 \item Set cold = 1 at powerup
 \item set cold = 0 in operation to reset bus state
 \begin{DoxyItemize}
-\item If cold = 0 N\+R\+F\+D/\+N\+D\+AC is setto 0 busy
+\item If cold = 0 N\+R\+F\+D/\+N\+D\+AC is set to 0 busy
 \end{DoxyItemize}
 \item References\+:
 \begin{DoxyItemize}
@@ -308,11 +243,55 @@ void
 \end{DoxyItemize}
 \end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
 
-Definition at line 212 of file gpib.\+c.
+Definition at line 237 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+init\+\_\+devices(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), main(), and plot\+\_\+echo().
+Referenced by gpib\+\_\+init\+\_\+devices(), and main().
+
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+read@{gpib\+\_\+bus\+\_\+read}}
+\index{gpib\+\_\+bus\+\_\+read@{gpib\+\_\+bus\+\_\+read}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+bus\+\_\+read()}{gpib_bus_read()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t gpib\+\_\+bus\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{gpib_8c_a3ab903cc837f89eda3af567d071b5065}{}\label{gpib_8c_a3ab903cc837f89eda3af567d071b5065}
+
+
+Read G\+P\+IB data B\+US only. 
+
+\begin{DoxyReturn}{Returns}
+bus (lower 8 bits) 
+\end{DoxyReturn}
+if a command byte (A\+TN low) then strip partity 
+
+Definition at line 712 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte().
+
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+control\+\_\+read@{gpib\+\_\+control\+\_\+read}}
+\index{gpib\+\_\+control\+\_\+read@{gpib\+\_\+control\+\_\+read}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+control\+\_\+read()}{gpib_control_read()}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t gpib\+\_\+control\+\_\+read (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{gpib_8c_ac5551ae987247d486a9c18c3bd2a8ba7}{}\label{gpib_8c_ac5551ae987247d486a9c18c3bd2a8ba7}
+
+
+Read G\+P\+IB control lines only. 
+
+\begin{DoxyReturn}{Returns}
+control lines (upper 8 bits) 
+\end{DoxyReturn}
+
+
+Definition at line 727 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and plot\+\_\+echo().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode@{gpib\+\_\+decode}}
 \index{gpib\+\_\+decode@{gpib\+\_\+decode}!gpib.\+c@{gpib.\+c}}
@@ -323,29 +302,29 @@ Referenced by gpib\+\_\+init\+\_\+devices(), gpib\+\_\+task(), gpib\+\_\+trace\+
 )}\hypertarget{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{}\label{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}
 
 
-Calls \hyperlink{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}{gpib\+\_\+decode\+\_\+str()} and dosplays the result. 
+Calls gpib\+\_\+decode\+\_\+str() and dosplays the result. 
 
 Display\+: decode/display all control flags and data on G\+P\+IB B\+US. \begin{DoxySeeAlso}{See also}
-\hyperlink{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}{gpib\+\_\+decode\+\_\+str()} 
+gpib\+\_\+decode\+\_\+str() 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 938 of file gpib.\+c.
+Definition at line 1243 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+read\+\_\+str(), and gpib\+\_\+write\+\_\+str().
+Referenced by gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+str(), and plot\+\_\+echo().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}}
 \index{gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}!gpib.\+c@{gpib.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+decode\+\_\+header(void)}{gpib_decode_header(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+decode\+\_\+header (
+\subsubsection[{\texorpdfstring{gpib\+\_\+decode\+\_\+header(\+F\+I\+L\+E $\ast$fo)}{gpib_decode_header(FILE *fo)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+decode\+\_\+header (
 \begin{DoxyParamCaption}
-\item[{void}]{}
+\item[{{\bf F\+I\+LE} $\ast$}]{fo}
 \end{DoxyParamCaption}
-)}\hypertarget{gpib_8c_a65786186b6eceb91bf717888b03ca9f1}{}\label{gpib_8c_a65786186b6eceb91bf717888b03ca9f1}
+)}\hypertarget{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}{}\label{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}
 
 
 Displays help for \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode()} function. 
@@ -359,94 +338,49 @@ You would call this once at the start of a trace for example. \begin{DoxySeeAlso
 void 
 \end{DoxyReturn}
 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fo} & F\+I\+LE pointer or \char`\"{}stdout\char`\"{} \\
+\hline
+\end{DoxyParams}
 
-Definition at line 834 of file gpib.\+c.
+
+Definition at line 1063 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+trace\+\_\+task(), and plot\+\_\+echo().
 
-\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode\+\_\+str@{gpib\+\_\+decode\+\_\+str}}
-\index{gpib\+\_\+decode\+\_\+str@{gpib\+\_\+decode\+\_\+str}!gpib.\+c@{gpib.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+decode\+\_\+str(uint16\+\_\+t ch)}{gpib_decode_str(uint16_t ch)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ gpib\+\_\+decode\+\_\+str (
-\begin{DoxyParamCaption}
-\item[{uint16\+\_\+t}]{ch}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}{}\label{gpib_8c_a702e73930b9d9909d1fd8fb26d716797}
-
-
-decode/display all control flags and data on the G\+P\+IB B\+US 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em ch} & 
-\begin{DoxyItemize}
-\item Lower 8 bits\+: Data or Command.
-\begin{DoxyItemize}
-\item If A\+TN is L\+OW then we strip parity from the byte.
-\end{DoxyItemize}
-\item Upper 8 bits\+: Status and Errors.
-\begin{DoxyItemize}
-\item 
-\end{DoxyItemize}
-\end{DoxyItemize}\\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
-\begin{DoxyItemize}
-\item An error implies the data byte can\textquotesingle{}t be trusted
-\item Control Line Flags.
-\begin{DoxyItemize}
-\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
-\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}
-\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}
-\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}
-\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}
-\end{DoxyItemize}
-\item Error Flags\+:
-\begin{DoxyItemize}
-\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} 
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxySeeAlso}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string pointer to store the decoded result in.\\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{See also}
-\+: \hyperlink{gpib_8c_a8dd0928ed1cdc2319fd14c122b333cba}{gpib\+\_\+read\+\_\+byte()} 
-
-\+: gpib\+\_\+write\+\_\+byte(int ch) 
-
-\+: \hyperlink{gpib_8c_a65786186b6eceb91bf717888b03ca9f1}{gpib\+\_\+decode\+\_\+header()}
-\end{DoxySeeAlso}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\begin{DoxyReturn}{Returns}
-return 
-\end{DoxyReturn}
-
-
-Definition at line 875 of file gpib.\+c.
-
-
-
-Referenced by gpib\+\_\+decode(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), plot\+\_\+echo(), and printer\+\_\+buffer().
-
-\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}}
-\index{gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}!gpib.\+c@{gpib.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+read\+\_\+byte(void)}{gpib_read_byte(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t gpib\+\_\+read\+\_\+byte (
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+handshake\+\_\+read@{gpib\+\_\+handshake\+\_\+read}}
+\index{gpib\+\_\+handshake\+\_\+read@{gpib\+\_\+handshake\+\_\+read}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+handshake\+\_\+read()}{gpib_handshake_read()}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t gpib\+\_\+handshake\+\_\+read (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{gpib_8c_a8dd0928ed1cdc2319fd14c122b333cba}{}\label{gpib_8c_a8dd0928ed1cdc2319fd14c122b333cba}
+)}\hypertarget{gpib_8c_abc335c01842320605b4e62bceecb031c}{}\label{gpib_8c_abc335c01842320605b4e62bceecb031c}
+for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
+
+Definition at line 744 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and plot\+\_\+echo().
+
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}}
+\index{gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+read\+\_\+byte(int trace)}{gpib_read_byte(int trace)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t gpib\+\_\+read\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{int}]{trace}
+\end{DoxyParamCaption}
+)}\hypertarget{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{}\label{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}
 
 
 read 1 byte and control line status from G\+P\+IB B\+US 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em trace} & if non-\/zero do full bus handshake trace of read\\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyItemize}
 \item References\+: H\+P-\/\+IB Tutorial pg 13, 14.
@@ -481,10 +415,15 @@ read 1 byte and control line status from G\+P\+IB B\+US
 \end{DoxyItemize}
 \item Error Flags\+:
 \begin{DoxyItemize}
-\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} 
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+(data bus, control and error status) 
+\end{DoxyReturn}
+gpib\+\_\+bus\+\_\+read strips command parity if A\+TN is low at read time
+
 Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \begin{DoxyItemize}
 \item Remember that N\+D\+AC and N\+R\+FD are now both L\+O\+W!
@@ -492,11 +431,11 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 697 of file gpib.\+c.
+Definition at line 789 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and plot\+\_\+echo().
+Referenced by gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and plot\+\_\+echo().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+str@{gpib\+\_\+read\+\_\+str}}
 \index{gpib\+\_\+read\+\_\+str@{gpib\+\_\+read\+\_\+str}!gpib.\+c@{gpib.\+c}}
@@ -530,7 +469,7 @@ Read string from G\+P\+IB B\+US -\/ controlled by status flags.
 \end{DoxyItemize}
 
 \begin{DoxySeeAlso}{See also}
-\+: \hyperlink{gpib_8c_a8dd0928ed1cdc2319fd14c122b333cba}{gpib\+\_\+read\+\_\+byte()} 
+\+: \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} 
 
 \+: \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread()}
 \end{DoxySeeAlso}
@@ -578,10 +517,10 @@ status
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000004}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000003}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 983 of file gpib.\+c.
+Definition at line 1283 of file gpib.\+c.
 
 
 
@@ -607,11 +546,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 253 of file gpib.\+c.
+Definition at line 279 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), main(), and plot\+\_\+echo().
+Referenced by gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and main().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+timeout\+\_\+set@{gpib\+\_\+timeout\+\_\+set}}
 \index{gpib\+\_\+timeout\+\_\+set@{gpib\+\_\+timeout\+\_\+set}!gpib.\+c@{gpib.\+c}}
@@ -632,7 +571,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 186 of file gpib.\+c.
+Definition at line 209 of file gpib.\+c.
 
 
 
@@ -657,7 +596,7 @@ Test G\+P\+IB timeout timer for timeout condition.
 \end{DoxyReturn}
 
 
-Definition at line 198 of file gpib.\+c.
+Definition at line 222 of file gpib.\+c.
 
 
 
@@ -679,7 +618,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 112 of file gpib.\+c.
+Definition at line 135 of file gpib.\+c.
 
 
 
@@ -701,7 +640,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 143 of file gpib.\+c.
+Definition at line 166 of file gpib.\+c.
 
 
 
@@ -723,7 +662,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 129 of file gpib.\+c.
+Definition at line 152 of file gpib.\+c.
 
 
 
@@ -749,11 +688,81 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 169 of file gpib.\+c.
+Definition at line 192 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+timer\+\_\+init().
+
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+trace\+\_\+display@{gpib\+\_\+trace\+\_\+display}}
+\index{gpib\+\_\+trace\+\_\+display@{gpib\+\_\+trace\+\_\+display}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+trace\+\_\+display(uint16\+\_\+t status, int trace\+\_\+state)}{gpib_trace_display(uint16_t status, int trace_state)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+trace\+\_\+display (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{status, }
+\item[{int}]{trace\+\_\+state}
+\end{DoxyParamCaption}
+)}\hypertarget{gpib_8c_ae2e0e847432d7964a28c6faf9d3e1eee}{}\label{gpib_8c_ae2e0e847432d7964a28c6faf9d3e1eee}
+
+
+decode/display all control flags and data on the G\+P\+IB B\+US 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em status} & data bus value (lower 8 bits) control bus (upper 8 bits) \\
+\hline
+\mbox{\tt in}  & {\em trace\+\_\+state} & level of trace detail T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE = normal bus and control status report from read state only T\+R\+A\+C\+E\+\_\+\+R\+E\+AD = trace bus and control reporting from read state only T\+R\+A\+C\+E\+\_\+\+B\+US = trace control reporting from all non-\/read states, data bus values are omiited Note\+: trace states add D\+AV,N\+R\+FD,N\+D\+AC and ommit P\+PR status, B\+US error and timeout given that \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} report these anyway
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\begin{DoxyItemize}
+\item An error implies the data byte can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string pointer to store the decoded result in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} 
+
+\+: gpib\+\_\+write\+\_\+byte(int ch) 
+
+\+: \hyperlink{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}{gpib\+\_\+decode\+\_\+header()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1112 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+decode(), gpib\+\_\+read\+\_\+byte(), and plot\+\_\+echo().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+unread@{gpib\+\_\+unread}}
 \index{gpib\+\_\+unread@{gpib\+\_\+unread}!gpib.\+c@{gpib.\+c}}
@@ -789,7 +798,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 654 of file gpib.\+c.
+Definition at line 696 of file gpib.\+c.
 
 
 
@@ -869,15 +878,11 @@ See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
 \item[\hyperlink{todo__todo000002}{Todo}]F\+I\+X\+ME If we test N\+R\+FD == 1 and N\+D\+AC == 1 and exit rather then waiting we frequently fail. Why does this happen ??? Disabling the test and waiting fixes the problem. Why ??? \end{DoxyRefDesc}
 
 
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000003}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
-
-
-Definition at line 442 of file gpib.\+c.
+Definition at line 468 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+write\+\_\+str().
+Referenced by gpib\+\_\+write\+\_\+str(), and plot\+\_\+echo().
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+write\+\_\+str@{gpib\+\_\+write\+\_\+str}}
 \index{gpib\+\_\+write\+\_\+str@{gpib\+\_\+write\+\_\+str}!gpib.\+c@{gpib.\+c}}
@@ -955,11 +960,11 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1072 of file gpib.\+c.
+Definition at line 1372 of file gpib.\+c.
 
 
 
-Referenced by plot\+\_\+echo(), Send\+\_\+\+Identify(), S\+S80\+\_\+describe(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+\+Report(), and S\+S80\+\_\+send\+\_\+status().
+Referenced by gpib\+\_\+ascii\+\_\+request(), plot\+\_\+echo(), Send\+\_\+\+Identify(), S\+S80\+\_\+describe(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+\+Report(), and S\+S80\+\_\+send\+\_\+status().
 
 \index{gpib.\+c@{gpib.\+c}!Parallel\+\_\+\+Poll@{Parallel\+\_\+\+Poll}}
 \index{Parallel\+\_\+\+Poll@{Parallel\+\_\+\+Poll}!gpib.\+c@{gpib.\+c}}
@@ -995,7 +1000,7 @@ Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ i
 
 debugging -\/ ddr bits should be 0xff 
 
-Definition at line 330 of file gpib.\+c.
+Definition at line 356 of file gpib.\+c.
 
 
 
@@ -1009,7 +1014,7 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 \subsubsection[{\texorpdfstring{current}{current}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t current}\hypertarget{gpib_8c_aaad5615d233044464c3661481a6760cd}{}\label{gpib_8c_aaad5615d233044464c3661481a6760cd}
 
 
-Definition at line 99 of file gpib.\+c.
+Definition at line 97 of file gpib.\+c.
 
 
 
@@ -1023,12 +1028,94 @@ Referenced by clock\+\_\+elapsed\+\_\+end(), gpib\+\_\+read\+\_\+byte(), and gpi
 common IO buffer for \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str()} and \hyperlink{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str()} 
 
 
+\begin{DoxyItemize}
+\item References\+: Documenation and related sources of information
+\begin{DoxyItemize}
+\item Web Resources\+:
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net}{\tt http\+://www.\+hp9845.\+net}
+\item \href{http://www.hpmuseum.net}{\tt http\+://www.\+hpmuseum.\+net}
+\item \href{http://www.hpmusuem.org}{\tt http\+://www.\+hpmusuem.\+org}
+\item \href{http://bitsavers.trailing-edge.com}{\tt http\+://bitsavers.\+trailing-\/edge.\+com}
+\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item S\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+S\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+Subset 80 from Fixed and flexible disc drives\char`\"{}
+\item Printed November, 1985
+\item HP Part\# 5958-\/4129
+\end{DoxyItemize}
+\item C\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+C\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
+\item Printed\+: A\+PR 1983
+\item HP Part\# 5955-\/3442
+\end{DoxyItemize}
+\item Amigo References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Amigo\char`\"{} is the short form used in the project
+\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
+\item HP Part\# 09895-\/90030
+\end{DoxyItemize}
+\item H\+P-\/\+IB
+\begin{DoxyItemize}
+\item \char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project
+\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
+\item Printed March 1975
+\item HP Part\# 59401-\/90030
+\end{DoxyItemize}
+\item Tutorial Description of The Hewllet Packard Interface Bus\char`\"{}
+  -\/ \char`\"{}H\+P-\/\+IB Tutorial" is the short form used in the project
+\begin{DoxyItemize}
+\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
+\begin{DoxyItemize}
+\item Printed January 1983
+\end{DoxyItemize}
+\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
+\begin{DoxyItemize}
+\item Printed 1987
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole
+\begin{DoxyItemize}
+\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php} 
+\end{DoxyItemize}
+\end{DoxyItemize}
 
-Definition at line 79 of file gpib.\+c.
+Definition at line 77 of file gpib.\+c.
 
 
 
 Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+tokens@{gpib\+\_\+tokens}}
+\index{gpib\+\_\+tokens@{gpib\+\_\+tokens}!gpib.\+c@{gpib.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+tokens}{gpib_tokens}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gpib\+\_\+token\+\_\+t} gpib\+\_\+tokens\mbox{[}$\,$\mbox{]}}\hypertarget{gpib_8c_a328e100f7097be6b8c513858327ce279}{}\label{gpib_8c_a328e100f7097be6b8c513858327ce279}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+=
+\{
+    \{0x01,\textcolor{stringliteral}{"GTL"} \},
+    \{0x04,\textcolor{stringliteral}{"SDC"} \},
+    \{0x05,\textcolor{stringliteral}{"PPC"} \},
+    \{0x08,\textcolor{stringliteral}{"GET"} \},
+    \{0x09,\textcolor{stringliteral}{"TCT"} \},
+    \{0x11,\textcolor{stringliteral}{"LLO"} \},
+    \{0x14,\textcolor{stringliteral}{"DCL"} \},
+    \{0x15,\textcolor{stringliteral}{"PPU"} \},
+    \{0x18,\textcolor{stringliteral}{"SPE"} \},
+    \{0x19,\textcolor{stringliteral}{"SPD"} \},
+    \{0x3F,\textcolor{stringliteral}{"UNL"} \},
+    \{0x5F,\textcolor{stringliteral}{"UNT"} \},
+    \{-1,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL} \}
+\}
+\end{DoxyCode}
+
+
+Definition at line 109 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+unread\+\_\+data@{gpib\+\_\+unread\+\_\+data}}
 \index{gpib\+\_\+unread\+\_\+data@{gpib\+\_\+unread\+\_\+data}!gpib.\+c@{gpib.\+c}}
@@ -1039,7 +1126,7 @@ Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\
 
 
 
-Definition at line 84 of file gpib.\+c.
+Definition at line 82 of file gpib.\+c.
 
 
 
@@ -1054,7 +1141,7 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+unread().
 
 
 
-Definition at line 82 of file gpib.\+c.
+Definition at line 80 of file gpib.\+c.
 
 
 
@@ -1069,7 +1156,7 @@ gpib current and last command
 
 
 
-Definition at line 99 of file gpib.\+c.
+Definition at line 97 of file gpib.\+c.
 
 
 
@@ -1084,7 +1171,7 @@ gpib listen address
 
 
 
-Definition at line 92 of file gpib.\+c.
+Definition at line 90 of file gpib.\+c.
 
 
 
@@ -1099,7 +1186,7 @@ gpib last listen address
 
 
 
-Definition at line 94 of file gpib.\+c.
+Definition at line 92 of file gpib.\+c.
 
 
 
@@ -1114,7 +1201,7 @@ gpib secondary
 
 
 
-Definition at line 102 of file gpib.\+c.
+Definition at line 100 of file gpib.\+c.
 
 
 
@@ -1129,7 +1216,7 @@ gpib serial poll status
 
 
 
-Definition at line 97 of file gpib.\+c.
+Definition at line 95 of file gpib.\+c.
 
 
 
@@ -1144,7 +1231,7 @@ gpib talk address
 
 G\+P\+IB B\+US states. 
 
-Definition at line 87 of file gpib.\+c.
+Definition at line 85 of file gpib.\+c.
 
 
 
@@ -1159,7 +1246,7 @@ gpib last talk address
 
 
 
-Definition at line 89 of file gpib.\+c.
+Definition at line 87 of file gpib.\+c.
 
 
 

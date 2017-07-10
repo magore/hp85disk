@@ -28,6 +28,7 @@
 #include "amigo.h"
 #include "ss80.h"
 
+#include "fatfs.h"
 #include "posix.h"
 
 
@@ -72,9 +73,6 @@
 /// - GPIB / IEEE 488 Tutorial by Ian Poole
 ///   - http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php
 
-/// @brief This is the default BUS timeout of 0.5 Seconds in Microseconds
-#define HTIMEOUT (500000L / GPIB_TASK_TIC_US)
-
 /// @brief common IO buffer for  gpib_read_str() and gpib_write_str()
 uint8_t gpib_iobuff[GPIB_IOBUFF_LEN];
 
@@ -100,6 +98,31 @@ uint16_t lastcmd,current;
 
 /// @brief gpib secondary
 uint8_t secondary;
+
+
+/// @brief GPIB command mapping to printable strings
+typedef struct {
+    int cmd;
+    char *name;
+} gpib_token_t;
+
+gpib_token_t gpib_tokens[] =
+{
+	{0x01,"GTL" },
+	{0x04,"SDC" },
+	{0x05,"PPC" },
+	{0x08,"GET" },
+	{0x09,"TCT" },
+	{0x11,"LLO" },
+	{0x14,"DCL" },
+	{0x15,"PPU" },
+	{0x18,"SPE" },
+	{0x19,"SPD" },
+	{0x3F,"UNL" },
+	{0x5F,"UNT" },
+	{-1,NULL }
+};
+
 
 ///  See gpib_hal.c for CPU specific code
 ///  Provide Elapsed timer and Timeout timer - both in Microseconds
@@ -185,6 +208,7 @@ void gpib_timer_task()
 /// @return  void
 void gpib_timeout_set(uint32_t time)
 {
+    // printf("\n%8ld\n", (long)time);
     cli();
     gpib_timer.down_counter = time;
     gpib_timer.down_counter_done = 0;
@@ -197,6 +221,7 @@ void gpib_timeout_set(uint32_t time)
 /// @return  1 if timeout, 0 if not
 uint8_t gpib_timeout_test()
 {
+    // printf("%8ld,%d\r", (long)gpib_timer.down_counter, (int)gpib_timer.down_counter_done);
     return(gpib_timer.down_counter_done);
 }
 
@@ -204,7 +229,7 @@ uint8_t gpib_timeout_test()
 /// @brief  Initialize GPIB Bus control lines for powerup or reset conditions
 /// - Set cold = 1 at powerup
 /// - set cold = 0 in operation to reset bus state
-///  - If cold = 0 NRFD/NDAC is setto 0 busy
+///  - If cold = 0 NRFD/NDAC is set to 0 busy
 /// - References:
 ///  - HP-IB Tutorial
 ///  -  HP-IB pg 8-11
@@ -213,6 +238,7 @@ void gpib_bus_init( int cold )
 {
     gpib_unread_f = 0;
 
+    // GPIB DATA BUS
     GPIB_BUS_IN();
 
     GPIB_PIN_FLOAT(EOI);
@@ -338,7 +364,7 @@ uint8_t Parallel_Poll()
         ///@brief debugging - ddr bits should be 0xff
         ddr = GPIB_PPR_DDR_RD();
 #if SDEBUG
-        if(debuglevel & (2+512))
+        if(debuglevel & (2+0x200))
             printf("[PPR:%02XH, PIN:%02XH, DDR:%02XH]\n",
                 ppr_reg(), 0xff & pins, 0xff & ddr );
 #endif
@@ -449,7 +475,6 @@ uint16_t gpib_write_byte(uint16_t ch)
 
     GPIB_PIN_FLOAT(IFC);
 
-
     GPIB_BUS_IN();
 
 ///  See HP-IB Tutorial pg 13 for the receive and send control line states
@@ -458,7 +483,6 @@ uint16_t gpib_write_byte(uint16_t ch)
     GPIB_PIN_FLOAT(NDAC);
 
     GPIB_BUS_SETTLE();                            // Let Data BUS settle
-
     tx_state = GPIB_TX_START;
 
     while(tx_state != GPIB_TX_DONE )
@@ -469,7 +493,7 @@ uint16_t gpib_write_byte(uint16_t ch)
         if(Parallel_Poll())
             ch |= PP_FLAG;
 
-        if(GPIB_IO_RD(IFC) == 0)
+        if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
             break;
@@ -478,7 +502,8 @@ uint16_t gpib_write_byte(uint16_t ch)
         switch(tx_state)
         {
             case GPIB_TX_START:
-                if(GPIB_IO_RD(DAV) == 1)
+                // wait for NDAC to be released in case other devices are busy
+                if(GPIB_PIN_TST(DAV) == 1)
                 {
                     gpib_timeout_set(HTIMEOUT);
                     tx_state = GPIB_TX_WAIT_READY;
@@ -496,9 +521,9 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_WAIT_READY:
-                if(GPIB_IO_RD(NRFD) == 1)
+                if(GPIB_PIN_TST(NRFD) == 1)
                 {
-                    if(GPIB_IO_RD(NDAC) == 0)
+                    if(GPIB_PIN_TST(NDAC) == 0)
                     {
                         tx_state = GPIB_TX_PUT_DATA;
                     }
@@ -517,10 +542,12 @@ uint16_t gpib_write_byte(uint16_t ch)
                         tx_state = GPIB_TX_ERROR;
 #endif
                     }
+// FIXME this break basicaly skip the timeout when NRFD is 1
                     break;
                 }
                 if (gpib_timeout_test())
                 {
+
 #if SDEBUG
                     if(debuglevel & (1+4))
                         printf("<BUS waiting for NRFD==1,NDAV==0>\n");
@@ -534,7 +561,6 @@ uint16_t gpib_write_byte(uint16_t ch)
 
             case GPIB_TX_PUT_DATA:
 
-/// @todo FIXME
                 if(ch & ATN_FLAG)
                 {
                     GPIB_IO_LOW(ATN);             // ATN LOW
@@ -553,7 +579,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_WAIT_FOR_NRFD_HI:
-                if (GPIB_IO_RD(NRFD) == 1)
+                if (GPIB_PIN_TST(NRFD) == 1)
                 {
                     gpib_timeout_set(HTIMEOUT);
                     tx_state = GPIB_TX_SET_DAV_LOW;
@@ -563,6 +589,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
+#if SDEBUG
+                    if(debuglevel & (1+4))
+                        printf("<BUS waiting for NRFD==1>\n");
+#endif
                     break;
                 }
                 break;
@@ -574,7 +604,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_WAIT_FOR_NDAC_HI:
-                if(GPIB_IO_RD(NDAC) == 1)         // Byte byte accepted
+                if(GPIB_PIN_TST(NDAC) == 1)         // Byte byte accepted
                 {
                     tx_state = GPIB_TX_SET_DAV_HI;
                     break;
@@ -583,6 +613,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
+#if SDEBUG
+                    if(debuglevel & (1+4))
+                        printf("<BUS waiting for NDAC==1>\n");
+#endif
                     break;
                 }
                 break;
@@ -599,7 +633,7 @@ uint16_t gpib_write_byte(uint16_t ch)
 
             case GPIB_TX_WAIT_FOR_NDAC_LOW:
 #if 1
-                if(GPIB_IO_RD(NDAC) == 0)         // Byte byte accepted
+                if(GPIB_PIN_TST(NDAC) == 0)         // Byte byte accepted
                 {
                     tx_state = GPIB_TX_FINISH;
                     break;
@@ -617,6 +651,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
+#if SDEBUG
+                    if(debuglevel & (1+4))
+                        printf("<BUS waiting for NDAC==0>\n");
+#endif
                 }
                 break;
 
@@ -625,6 +663,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_ERROR:
+#if SDEBUG
+                    if(debuglevel & (1+4))
+                        printf("<NRFD=%d,NDAV=%d>\n", GPIB_PIN_TST(NRFD),GPIB_PIN_TST(NDAC));
+#endif
                 GPIB_PIN_FLOAT(DAV);               // DAV FLOAT on error
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 GPIB_PIN_FLOAT(ATN );              // ATN FLOAT
@@ -665,9 +707,56 @@ uint16_t gpib_unread(uint16_t ch)
     }
     return(ch);
 }
+/// @brief Read GPIB data BUS only
+/// @return  bus (lower 8 bits)
+uint8_t gpib_bus_read()
+{
+    uint8_t bus = ~(GPIB_BUS_RD());
 
+    ///@brief if a command byte (ATN low) then strip partity
+    if(!GPIB_PIN_TST(ATN))
+        bus &= 0x7f;
+    else
+        bus &= 0xff;
+    return(bus);
+}
+
+
+/// @brief  Read GPIB control lines only
+/// @return  control lines (upper 8 bits)
+uint16_t gpib_control_read()
+{
+    uint16_t control = 0;
+    if(!GPIB_PIN_TST(ATN))
+        control |= ATN_FLAG;
+    if(!GPIB_PIN_TST(EOI))
+        control |= EOI_FLAG;
+    if(!GPIB_PIN_TST(SRQ))
+        control |= SRQ_FLAG;
+    if(!GPIB_PIN_TST(REN))
+        control |= REN_FLAG;
+    if(!GPIB_PIN_TST(IFC))
+        control |= IFC_FLAG;
+    return(control);
+}
+
+///@brief
+uint16_t gpib_handshake_read()
+{
+    uint16_t control = 0;
+    ///@brief for tracing we can reuse the error flag bit values for DAV,NRFD and NDAC
+    /// FYI: This has no impact on the gpib_read_byte() functions and return values
+    if(!GPIB_PIN_TST(DAV))
+        control |= DAV_FLAG;
+    if(!GPIB_PIN_TST(NRFD))
+        control |= NRFD_FLAG;
+    if(!GPIB_PIN_TST(NDAC))
+        control |= NDAC_FLAG;
+    return(control);
+}
 
 /// @brief  read 1 byte and control line status from GPIB BUS
+/// @param[in] trace: if non-zero do full bus handshake trace of read
 ///
 /// - References: HP-IB Tutorial pg 13, 14.
 /// - Notes: Their diagram is a bit misleading - they start in the BUS init phase.
@@ -694,19 +783,166 @@ uint16_t gpib_unread(uint16_t ch)
 ///       - PP_FLAG
 ///     - Error Flags:
 ///       - IFC_FLAG
-uint16_t gpib_read_byte( void )
+///
+/// @return (data bus, control and error status)
+#if 1
+uint16_t gpib_read_byte(int trace)
 {
-    uint16_t val,status,ch;
     uint8_t rx_state;
+    uint16_t ch;
+    uint16_t bus, control, control_last;
+    extern uint8_t gpib_unread_f;
+    extern uint16_t gpib_unread_data;
 
     ch = 0;
-    status = 0;
 
     GPIB_PIN_FLOAT(IFC);
     GPIB_PIN_FLOAT(ATN);
     GPIB_PIN_FLOAT(EOI);
     GPIB_PIN_FLOAT(DAV);                           // DAV should be HI already
 
+    GPIB_BUS_IN();
+
+    // If we have an unread state it has already been traced!
+    if(gpib_unread_f)
+    {
+        gpib_unread_f = 0;
+        return(gpib_unread_data);
+    }
+
+    GPIB_PIN_FLOAT(NRFD);
+    GPIB_BUS_SETTLE();                            // Let Data BUS settle
+    GPIB_IO_LOW(NDAC);
+
+    if(trace)
+    {
+        control_last = gpib_control_read();
+        control_last |= gpib_handshake_read();
+        gpib_trace_display(control_last, TRACE_BUS);
+    }
+
+    rx_state = GPIB_RX_START;
+    while(rx_state != GPIB_RX_DONE)
+    {
+        if(uart_keyhit(0))
+            break;
+        if(Parallel_Poll())
+            ch |= PP_FLAG;
+
+        if(uart_keyhit(0))
+            break;
+
+        if(GPIB_IO_RD(IFC) == 0)
+        {
+            ch |= IFC_FLAG;
+            break;
+        }
+
+
+        switch(rx_state)
+        {
+            case GPIB_RX_START:
+                GPIB_PIN_FLOAT(NRFD);
+                GPIB_BUS_SETTLE();                // Let Data BUS settle
+                rx_state = GPIB_RX_WAIT_FOR_DAV_LOW;
+                break;
+
+            case GPIB_RX_WAIT_FOR_DAV_LOW:
+                if ( GPIB_IO_RD(DAV) == 0 )
+                    rx_state = GPIB_RX_DAV_IS_LOW;
+                break;
+
+            case GPIB_RX_DAV_IS_LOW:
+
+                GPIB_IO_LOW(NRFD);                // BUSY
+
+                ///@brief gpib_bus_read strips command parity if ATN is low at read time
+                bus = gpib_bus_read();
+                ch |= bus;
+                control_last = gpib_control_read();
+                ch |= control_last;
+
+                if(trace)
+                {
+                    control_last |= gpib_handshake_read();
+                    gpib_trace_display(bus | control_last, TRACE_READ);
+                }
+
+                GPIB_PIN_FLOAT(NDAC);   
+                GPIB_BUS_SETTLE();                // Let Data BUS settle
+                gpib_timeout_set(HTIMEOUT);
+                rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
+                break;
+
+            case GPIB_RX_WAIT_FOR_DAV_HI:
+                if (GPIB_IO_RD(DAV) == 1)
+                    rx_state = GPIB_RX_DAV_IS_HI;
+                if (gpib_timeout_test())
+                {
+                    ch |= TIMEOUT_FLAG;
+                    rx_state = GPIB_RX_ERROR;
+                }
+                break;
+
+            case GPIB_RX_DAV_IS_HI:
+                GPIB_IO_LOW(NDAC);
+                rx_state = GPIB_RX_FINISH;        // DONE
+                break;
+
+            case GPIB_RX_FINISH:
+                GPIB_IO_LOW(NDAC);
+                rx_state = GPIB_RX_DONE;
+                break;
+
+            case GPIB_RX_ERROR:
+                GPIB_IO_LOW(NDAC);
+                GPIB_IO_LOW(NRFD);
+                rx_state = GPIB_RX_DONE;
+                break;
+
+            case GPIB_RX_DONE:
+                break;
+        }
+
+        if(trace)
+        {
+            control = gpib_control_read();
+            control |= gpib_handshake_read();
+            if(control_last != control)
+            {
+                gpib_trace_display(control, TRACE_BUS);
+                control_last = control;
+            }
+        }
+    }
+
+///  Note: see: HP-IB Tutorial pg 13
+///  - Remember that NDAC and NRFD are now both LOW!
+///  - The spec says to KEEP BOTH LOW when NOT ready to read otherwise
+///    we may miss a transfer and cause a controller timeout!
+///  - GPIB TX state expects NRFD LOW on entry or it is an ERROR!
+
+    lastcmd = current;
+
+    if(ch & ERROR_MASK || (ch & ATN_FLAG) == 0)
+        current = 0;
+    else
+        current = ch & CMD_MASK;
+
+    return (ch);
+}
+#else
+uint16_t gpib_read_byte( void )
+{
+    uint16_t control,ch;
+    uint8_t bus,rx_state;
+
+    ch = 0;
+
+    GPIB_PIN_FLOAT(IFC);
+    GPIB_PIN_FLOAT(ATN);
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(DAV);                           // DAV should be HI already
 
     GPIB_BUS_IN();
 
@@ -721,7 +957,6 @@ uint16_t gpib_read_byte( void )
     GPIB_IO_LOW(NDAC);
 
     rx_state = GPIB_RX_START;
-
     while(rx_state != GPIB_RX_DONE)
     {
         if(Parallel_Poll())
@@ -729,6 +964,7 @@ uint16_t gpib_read_byte( void )
 
         if(uart_keyhit(0))
             break;
+
         if(GPIB_IO_RD(IFC) == 0)
         {
             ch |= IFC_FLAG;
@@ -751,22 +987,15 @@ uint16_t gpib_read_byte( void )
             case GPIB_RX_DAV_IS_LOW:
                 GPIB_IO_LOW(NRFD);                // BUSY
 
-                val = ~(GPIB_BUS_RD());           // Accept databyte
-                val &= 0xff;
+                ///@brief gpib_bus_read strips command parity if ATN is low at read time
+                bus = gpib_bus_read();
 
-                status = 0;
-                status |= (GPIB_IO_RD(EOI)) ? 0 : EOI_FLAG;
-                status |= (GPIB_IO_RD(IFC)) ? 0 : IFC_FLAG;
-                status |= (GPIB_IO_RD(ATN)) ? 0 : ATN_FLAG;
-                status |= (GPIB_IO_RD(SRQ)) ? 0 : SRQ_FLAG;
-                status |= (GPIB_IO_RD(REN)) ? 0 : REN_FLAG;
+                control = gpib_control_read();
+                control &= (EOI_FLAG|ATN_FLAG|SRQ_FLAG|REN_FLAG|IFC_FLAG);
 
-                if(status & ATN_FLAG)
-                    val &= 0x7f;
-                else
-                    val &= 0xff;
-
-                ch |= (val | status);
+                ///@brief combine data read and status
+                ch |= bus;
+                ch |= control;
 
                 GPIB_PIN_FLOAT(NDAC);              // Acknowledge Read
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
@@ -822,7 +1051,7 @@ uint16_t gpib_read_byte( void )
 
     return (ch);
 }
-
+#endif
 
 /// @brief  Displays help for gpib_decode() function
 ///
@@ -830,28 +1059,36 @@ uint16_t gpib_read_byte( void )
 /// @see: gpib.h _FLAGS defines for a full list is control lines we track
 /// @see: gpib_trace()
 /// @return void
-
-void gpib_decode_header( void )
+///@param[in] fo: FILE pointer or "stdout"
+void gpib_decode_header( FILE *fo)
 {
-    sep();
-    printf("#GPIB flags\n");
-    printf("XX p AESRPITB\n");
-    printf("#   XX = Hex value of Command or Data\n");
-    printf("#   . = ASCII of XX only for 0x20 .. 0x7e\n");
-    printf("#   A = ATN\n");
-    printf("#   E = EOI\n");
-    printf("#   S = SRQ\n");
-    printf("#   R = REN\n");
-    printf("#   P = Parallel Poll seen\n");
-    printf("#   I = IFC\n");
-    printf("#   T = TIMEOUT\n");
-    printf("#   B = BUS_ERROR\n");
+    if(fo == NULL)
+        fo = stdout;
+        
+    fprintf(fo,"===========================================\n");
+    fprintf(fo,"GPIB bus state\n");
+    fprintf(fo,"HH . AESRPITB gpib\n");
+    fprintf(fo,"HH = Hex value of Command or Data\n");
+    fprintf(fo,"   . = ASCII of XX only for 0x20 .. 0x7e\n");
+    fprintf(fo,"     A = ATN\n");
+    fprintf(fo,"      E = EOI\n");
+    fprintf(fo,"       S = SRQ\n");
+    fprintf(fo,"        R = REN\n");
+    fprintf(fo,"         I = IFC\n");
+    fprintf(fo,"          P = Parallel Poll seen\n");
+    fprintf(fo,"           T = TIMEOUT\n");
+    fprintf(fo,"            B = BUS_ERROR\n");
+    fprintf(fo,"              GPIB commands\n");
 }
 
-
 /// @brief decode/display all control flags and data on the GPIB BUS
-/// 
-/// @param[in] ch
+/// @param[in] status: data bus value (lower 8 bits) control bus (upper 8 bits)
+/// @param[in] trace_state: level of trace detail
+/// TRACE_DISABLE = normal bus and control status report from read state only
+/// TRACE_READ    = trace  bus and control reporting from read state only
+/// TRACE_BUS     = trace  control reporting from all non-read states, data bus values are omiited
+/// Note: trace states add DAV,NRFD,NDAC and ommit PPR status, BUS error and timeout 
+///       given that gpib_read_byte() report these anyway
 ///   - Lower 8 bits: Data or Command.
 ///     - If ATN is LOW then we strip parity from the byte.
 ///   - Upper 8 bits: Status and Errors.
@@ -872,60 +1109,128 @@ void gpib_decode_header( void )
 /// @see: gpib_decode_header()
 ///
 /// @return  void
-char *gpib_decode_str(uint16_t ch)
+void gpib_trace_display(uint16_t status,int trace_state)
 {
-    static char str[64];
-    char *tmp = str;
-    uint16_t status,val;
-    uint16_t printable;
+    char str[128];
+    char *tmp= str;
+    uint8_t bus = status & 0xff;
+    extern FILE *gpib_log_fp;
 
-/// @return return
-    status = ch & STATUS_MASK;
-    val = (ch & ATN_FLAG) ? (ch & CMD_MASK) : (ch & DATA_MASK);
+    str[0] = 0;
 
-    if(status & ATN_FLAG)                         // Command
-        printable = ' ';                          // Data
-    else if (val >= 0x20 && val <= 0x7e)
-        printable = val;
-    else printable = ' ';
+    // Display data bus ???
+    if(trace_state == TRACE_DISABLE || trace_state == TRACE_READ)
+    {
+        uint8_t printable = ' ';                          // Data
+        if( !(status & ATN_FLAG) && (bus >= 0x20 && bus <= 0x7e) )
+            printable = bus;
+        sprintf(str, "%02X %c ", (int)bus & 0xff, (int)printable);
+    }
+    else
+    {
+        sprintf(str, "     ");
+    }
 
-    sprintf(str, "%02XH %c ", val & 0xff, printable & 0xff);
-    tmp = str + 6;
+    tmp = str + strlen(str);
 
     if(status & ATN_FLAG)
         *tmp++ = 'A';
     else
         *tmp++ = '-';
+
     if(status & EOI_FLAG)
         *tmp++ = 'E';
     else
         *tmp++ = '-';
+
     if(status & SRQ_FLAG)
         *tmp++ = 'S';
     else
         *tmp++ = '-';
+
     if(status & REN_FLAG)
         *tmp++ = 'R';
     else
         *tmp++ = '-';
-    if(status & PP_FLAG)
-        *tmp++ = 'P';
-    else
-        *tmp++ = '-';
+
     if(status & IFC_FLAG)
         *tmp++ = 'I';
     else
         *tmp++ = '-';
-    if(status & TIMEOUT_FLAG)
-        *tmp++ = 'T';
+
+    if(trace_state == TRACE_DISABLE)
+    {
+        if(status & PP_FLAG)
+            *tmp++ = 'P';
+        else
+            *tmp++ = '-';
+        if(status & TIMEOUT_FLAG)
+            *tmp++ = 'T';
+        else
+            *tmp++ = '-';
+        if(status & BUS_ERROR_FLAG)
+            *tmp++ = 'B';
+        else
+            *tmp++ = '-';
+    }
     else
+    {
+        // not used when tracing
         *tmp++ = '-';
-    if(status & BUS_ERROR_FLAG)
-        *tmp++ = 'B';
-    else
         *tmp++ = '-';
+        *tmp++ = '-';
+    }
     *tmp = 0;
-    return(str);
+
+    if(trace_state == TRACE_READ || trace_state == TRACE_BUS)
+    {
+        if(status & DAV_FLAG)
+            strcat(str,"  DAV");
+        else
+            strcat(str,"     ");
+        if(status & NRFD_FLAG)
+            strcat(str," NRFD");
+        else
+            strcat(str,"     ");
+        if(status & NDAC_FLAG)
+            strcat(str," NDAC");
+        else
+            strcat(str,"     ");
+    }
+
+    if( (status & ATN_FLAG) )
+    {
+        int i;
+        int cmd = status & CMD_MASK;
+        if(cmd >= 0x020 && cmd <= 0x3e)
+            sprintf(tmp," MLA %02Xh", cmd & 0x1f);
+        else if(cmd >= 0x040 && cmd <= 0x4e)
+            sprintf(tmp," MTA %02Xh", cmd & 0x1f);
+        else if(cmd >= 0x060 && cmd <= 0x6f)
+            sprintf(tmp," MSA %02Xh", cmd & 0x1f);
+        else
+        {
+            for(i=0;gpib_tokens[i].cmd != -1;++i)
+            {
+                if(cmd == gpib_tokens[i].cmd)
+                {
+                    strcat(tmp," ");
+                    strcat(tmp,gpib_tokens[i].name);
+                    break;
+                }
+            }
+        }
+    }
+
+    if(gpib_log_fp == NULL)
+        gpib_log_fp = stdout;
+
+    // Echo to console unless file is the console
+    if(gpib_log_fp != stdout)
+        puts(str);
+
+    // Save to file
+    fprintf(gpib_log_fp,"%s\n",str);
 }
 
 
@@ -937,13 +1242,8 @@ char *gpib_decode_str(uint16_t ch)
 
 void gpib_decode(uint16_t ch)
 {
-    char *ptr;
-    extern void gpib_log( char *str );
-    ptr = gpib_decode_str(ch);
-    gpib_log(ptr);
-    puts(ptr);
+    gpib_trace_display(ch,0);
 }
-
 
 /// @brief  Read string from GPIB BUS - controlled by status flags.
 ///
@@ -995,7 +1295,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
 
     while(ind < size)
     {
-        val = gpib_read_byte();
+        val = gpib_read_byte(NO_TRACE);
 #if SDEBUG
         if(debuglevel & 256)
             gpib_decode(val);

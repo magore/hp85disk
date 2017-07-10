@@ -83,6 +83,7 @@ typedef struct
 {
     uint32_t count;                               // total bytes
     int16_t ind;                                  // buffer cache index
+    int16_t size;                                 // buffer size
     uint8_t error;                                // error status
     FILE *fp;
     char *buf;

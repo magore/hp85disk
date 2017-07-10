@@ -20,26 +20,47 @@
 #include "user_config.h"
 #include "hal.h"
 #include "gpib_hal.h"
+#include "posix.h"
 
 #define GPIB_BUS_SETTLE_DELAY 2
+/// @brief This is the default BUS timeout of 0.5 Seconds in Microseconds
+#define HTIMEOUT (500000L / GPIB_TASK_TIC_US)
 
 
-#define EOI_FLAG 0x100
-#define SRQ_FLAG 0x200
-#define ATN_FLAG 0x400
-#define REN_FLAG 0x800
-#define PP_FLAG  0x1000
+///@brief bus flags
+#define EOI_FLAG 0x0100
+#define SRQ_FLAG 0x0200
+#define ATN_FLAG 0x0400
+#define REN_FLAG 0x0800
+#define IFC_FLAG 0x1000
 
-#define IFC_FLAG 0x2000
-#define TIMEOUT_FLAG 0x4000
-#define BUS_ERROR_FLAG 0x8000
+///@brief BUS state flags
+#define PP_FLAG         0x2000
+#define TIMEOUT_FLAG    0x4000
+#define BUS_ERROR_FLAG  0x8000
+
+///@brief handshake flasg used in tracing
+#define DAV_FLAG        0x2000
+#define NRFD_FLAG       0x4000
+#define NDAC_FLAG       0x8000
 
 #define ERROR_MASK (IFC_FLAG | TIMEOUT_FLAG | BUS_ERROR_FLAG)
 #define CONTROL_MASK (EOI_FLAG | SRQ_FLAG | ATN_FLAG | REN_FLAG)
 
-#define DATA_MASK 0x00ff
-#define CMD_MASK 0x007f
+#define DATA_MASK   0x00ff
+#define CMD_MASK    0x007f
 #define STATUS_MASK 0xff00
+
+///@brief GPIB read trace states
+enum {
+    TRACE_DISABLE,  // normal read
+    TRACE_READ,     // trace read
+    TRACE_BUS       // trace bus handshake
+};
+
+///@brief arguments to gpib_read_byte
+#define TRACE_ALL   1   /* trace all bus states durring a read */
+#define NO_TRACE    0   /* do not trace bus states durring a read */
 
 enum
 {
@@ -76,7 +97,7 @@ enum
     GPIB_PP_DETECTED
 };
 
-#define GPIB_IOBUFF_LEN     256                   /* Max length of RX/TX GPIB string */
+#define GPIB_IOBUFF_LEN     512 /* Max length of RX/TX GPIB string */
 extern uint8_t gpib_iobuff[GPIB_IOBUFF_LEN];
 
 extern int debuglevel;
@@ -107,9 +128,12 @@ void gpib_assert_ifc ( void );
 void gpib_assert_ren ( unsigned char state );
 uint16_t gpib_write_byte ( uint16_t ch );
 uint16_t gpib_unread ( uint16_t ch );
-uint16_t gpib_read_byte ( void );
-void gpib_decode_header ( void );
-char *gpib_decode_str ( uint16_t ch );
+uint8_t gpib_bus_read ( void );
+uint16_t gpib_control_read ( void );
+uint16_t gpib_handshake_read ( void );
+uint16_t gpib_read_byte ( int trace );
+void gpib_decode_header ( FILE *fo );
+void gpib_trace_display ( uint16_t status , int trace_state );
 void gpib_decode ( uint16_t ch );
 int gpib_read_str ( uint8_t *buf , int size , uint16_t *status );
 int gpib_write_str ( uint8_t *buf , int size , uint16_t *status );

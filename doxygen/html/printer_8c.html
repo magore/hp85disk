@@ -129,6 +129,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a72686fe9d4969430b6ef1f1fe68a6efe">PRINTER_COMMANDS</a> (uint8_t ch)</td></tr>
 <tr class="memdesc:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="mdescLeft">&#160;</td><td class="mdescRight">GPIB Secondary Command Printer commands.  <a href="#a72686fe9d4969430b6ef1f1fe68a6efe">More...</a><br /></td></tr>
 <tr class="separator:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a72ff91a224daa0d19005628621df6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a55a72ff91a224daa0d19005628621df6">gpib_ascii_request</a> (char *str, uint16_t *status)</td></tr>
+<tr class="separator:a55a72ff91a224daa0d19005628621df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#ab0733357c2cffe1aaf6dfcf9240f86fb">plot_echo</a> (int gpib_address)</td></tr>
 <tr class="memdesc:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruct Instrument to send Plot data.  <a href="#ab0733357c2cffe1aaf6dfcf9240f86fb">More...</a><br /></td></tr>
 <tr class="separator:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +154,36 @@ Variables</h2></td></tr>
 
 <p>Definition in file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a55a72ff91a224daa0d19005628621df6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gpib_ascii_request </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>status</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00248">248</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab0733357c2cffe1aaf6dfcf9240f86fb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +204,7 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00253">253</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00259">259</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00059">gpib_tests()</a>.</p>
 
@@ -201,9 +233,9 @@ Variables</h2></td></tr>
 <a class="el" href="posix_8h.html">posix.h</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00181">181</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00182">182</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -231,9 +263,9 @@ Variables</h2></td></tr>
 <a class="el" href="posix_8h.html">posix.h</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>void FYI: for the HP54645D plots end with: pd;pu;pu;sp0; This gets called </dd></dl>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00113">113</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00114">114</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00330">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00938">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00039">printer_open()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00328">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00931">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00039">printer_open()</a>.</p>
 
 </div>
 </div>
@@ -252,12 +284,12 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>GPIB Secondary Command Printer commands. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Fully emulated plotter response. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Fully emulated plotter response. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00224">224</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00223">223</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -281,9 +313,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00093">93</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00094">94</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="main_8c_source.html#l00192">main()</a>, and <a class="el" href="printer_8c_source.html#l00113">printer_close()</a>.</p>
+<p>Referenced by <a class="el" href="main_8c_source.html#l00196">main()</a>, and <a class="el" href="printer_8c_source.html#l00114">printer_close()</a>.</p>
 
 </div>
 </div>
@@ -312,7 +344,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00039">39</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, and <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, and <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>.</p>
 
 </div>
 </div>
@@ -342,9 +374,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>file handle </dd></dl>
 <p>sync filesystem after every write </p>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00146">146</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00147">147</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00181">printer_buffer()</a>, and <a class="el" href="printer_8c_source.html#l00113">printer_close()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00182">printer_buffer()</a>, and <a class="el" href="printer_8c_source.html#l00114">printer_close()</a>.</p>
 
 </div>
 </div>
@@ -379,14 +411,14 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00029">29</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00253">plot_echo()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 7 2017 17:52:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 10 2017 19:47:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

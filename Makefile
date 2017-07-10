@@ -22,6 +22,10 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
+
+#BAUD=105200UL
+BAUD=500000UL
+
 # Enable AMIGO support Code
 AMIGO=1
 # AMIGO=0
@@ -136,6 +140,8 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO 
 
+DEFS += BAUD=$(BAUD)
+
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
 endif
@@ -242,11 +248,16 @@ PROGS = hardware/baudrate
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
-all: version $(LIBS) build size $(PROGS) lif
+all: term version $(LIBS) build size $(PROGS) lif
 
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
+.PHONY: term
+term:   
+	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" term
+	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" miniterm
+	touch main.c
 
 flash:  all 
 #
@@ -283,6 +294,9 @@ lif:
 
 install:
 	make -C lif install
+
+warn:	clean
+	make 2>&1 | grep -i warn
 
 .PHONY: doxy
 doxy:	doxyfile.inc $(SRCS) 

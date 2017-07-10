@@ -28,6 +28,8 @@ void \hyperlink{printer_8c_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\+\_\+buffe
 \begin{DoxyCompactList}\small\item\em Buffer Plotter data and flush when buffer is full. \end{DoxyCompactList}\item 
 int \hyperlink{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary Command Printer commands. \end{DoxyCompactList}\item 
+int \hyperlink{printer_8c_a55a72ff91a224daa0d19005628621df6}{gpib\+\_\+ascii\+\_\+request} (char $\ast$str, uint16\+\_\+t $\ast$status)
+\item 
 void \hyperlink{printer_8c_ab0733357c2cffe1aaf6dfcf9240f86fb}{plot\+\_\+echo} (int gpib\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Instruct Instrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -54,6 +56,22 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+VR.
 
 
 \subsection{Function Documentation}
+\index{printer.\+c@{printer.\+c}!gpib\+\_\+ascii\+\_\+request@{gpib\+\_\+ascii\+\_\+request}}
+\index{gpib\+\_\+ascii\+\_\+request@{gpib\+\_\+ascii\+\_\+request}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+ascii\+\_\+request(char $\ast$str, uint16\+\_\+t $\ast$status)}{gpib_ascii_request(char *str, uint16_t *status)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpib\+\_\+ascii\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{uint16\+\_\+t $\ast$}]{status}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_a55a72ff91a224daa0d19005628621df6}{}\label{printer_8c_a55a72ff91a224daa0d19005628621df6}
+
+
+Definition at line 248 of file printer.\+c.
+
+
+
+Referenced by plot\+\_\+echo().
+
 \index{printer.\+c@{printer.\+c}!plot\+\_\+echo@{plot\+\_\+echo}}
 \index{plot\+\_\+echo@{plot\+\_\+echo}!printer.\+c@{printer.\+c}}
 \subsubsection[{\texorpdfstring{plot\+\_\+echo(int gpib\+\_\+address)}{plot_echo(int gpib_address)}}]{\setlength{\rightskip}{0pt plus 5cm}void plot\+\_\+echo (
@@ -73,7 +91,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 253 of file printer.\+c.
+Definition at line 259 of file printer.\+c.
 
 
 
@@ -105,7 +123,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 181 of file printer.\+c.
+Definition at line 182 of file printer.\+c.
 
 
 
@@ -138,7 +156,7 @@ void F\+YI\+: for the H\+P54645D plots end with\+: pd;pu;pu;sp0; This gets calle
 \end{DoxyReturn}
 
 
-Definition at line 113 of file printer.\+c.
+Definition at line 114 of file printer.\+c.
 
 
 
@@ -156,13 +174,13 @@ Referenced by G\+P\+I\+B(), gpib\+\_\+init\+\_\+devices(), listen\+\_\+cleanup()
 G\+P\+IB Secondary Command Printer commands. 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000009}{Todo}]Fully emulated plotter response. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000008}{Todo}]Fully emulated plotter response. \end{DoxyRefDesc}
 \begin{DoxyReturn}{Returns}
 0 
 \end{DoxyReturn}
 
 
-Definition at line 224 of file printer.\+c.
+Definition at line 223 of file printer.\+c.
 
 
 
@@ -187,7 +205,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 93 of file printer.\+c.
+Definition at line 94 of file printer.\+c.
 
 
 
@@ -253,7 +271,7 @@ file handle
 \end{DoxyReturn}
 sync filesystem after every write 
 
-Definition at line 146 of file printer.\+c.
+Definition at line 147 of file printer.\+c.
 
 
 

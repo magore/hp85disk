@@ -29,7 +29,8 @@ int AMIGO_is_MSA ( int address );
 int PRINTER_is_MLA ( int address );
 int PRINTER_is_MTA ( int address );
 int PRINTER_is_MSA ( int address );
-void gpib_trace_task ( char *name );
+uint16_t gpib_trace_read_byte ( void );
+void gpib_trace_task ( char *name , int detail );
 uint16_t gpib_error_test ( uint16_t val );
 void gpib_init_devices ( void );
 uint16_t GPIB_COMMANDS ( uint16_t val , uint8_t unread );
@@ -42,6 +43,5 @@ int GPIB_SECONDARY_ADDRESS ( uint8_t ch );
 void listen_cleanup ( void );
 void talk_cleanup ( void );
 void DumpData ( unsigned char *ptr , int length );
-
 
 #endif  // #ifndef _GPIB_TASK_H_

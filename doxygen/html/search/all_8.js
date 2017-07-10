@@ -13,5 +13,5 @@ var searchData=
   ['hexdump',['hexdump',['../posix__tests_8c.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c']]],
   ['hp9121d',['HP9121D',['../defines_8h.html#adc21759335a3d21784de3624a8dbdcde',1,'defines.h']]],
   ['hp9134l',['HP9134L',['../defines_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;defines.h'],['../drives_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;drives.h']]],
-  ['htimeout',['HTIMEOUT',['../gpib_8c.html#a6dcb5fc551174cd685f0802f86329f3b',1,'gpib.c']]]
+  ['htimeout',['HTIMEOUT',['../gpib_8h.html#a6dcb5fc551174cd685f0802f86329f3b',1,'gpib.h']]]
 ];

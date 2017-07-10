@@ -5,6 +5,7 @@ var searchData=
   ['cfgfile',['cfgfile',['../gpib__task_8c.html#a8877b76be0ce372adf0ed7ff2a143573',1,'gpib_task.c']]],
   ['cltbl',['cltbl',['../structFIL.html#a28a30613d48cefcf9efbd334cd861fc8',1,'FIL']]],
   ['clust',['clust',['../structFIL.html#aa41312aba551b9a6d1c9d3c8c7d2734b',1,'FIL::clust()'],['../structDIR.html#acfbb8ba2d6e73b6f999ceffd1857c190',1,'DIR::clust()']]],
+  ['cmd',['cmd',['../structgpib__token__t.html#a8bc698b3cba149e3abbf935e623775c0',1,'gpib_token_t']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
   ['config',['CONFIG',['../structAMIGODiskType.html#aae94c3403ceb917006591e7bd4109207',1,'AMIGODiskType::CONFIG()'],['../structSS80DiskType.html#aeff2b9e1dcd95310e9e8dee63a60ed95',1,'SS80DiskType::CONFIG()']]],
   ['continous_5ftransfer_5frate',['CONTINOUS_TRANSFER_RATE',['../structSS80UnitType.html#a0486673977da185f2f69aaff378f81a2',1,'SS80UnitType']]],

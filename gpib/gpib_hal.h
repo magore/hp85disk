@@ -59,7 +59,6 @@ void gpib_clock_task( void );
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
 
 
-///FIXME be AVR specific!!!
 #define EOI     GPIO_B0
 #define DAV     GPIO_B1
 #define NRFD    GPIO_D2
@@ -74,71 +73,30 @@ void gpib_clock_task( void );
 #define PPE     GPIO_B2
 #endif
 
+///@brief changes pin mode to read, then read
 #define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
+///@brief changes pin mode to read
 #define GPIB_PIN_FLOAT(a)   GPIO_PIN_FLOAT(a)
+///@brief changes pin mode to write then set low
 #define GPIB_IO_LOW(a)      GPIO_PIN_LOW(a)
+///@brief changes pin mode to write then set hi
 #define GPIB_IO_HI(a)       GPIO_PIN_HI(a)
-
+///@brief checks the pin state without changing read/write mode
+#define GPIB_PIN_TST(a)     GPIO_PIN_TST(a)
+///@brief changes to state of full 8bit port to out
 #define GPIB_BUS_OUT()      GPIO_PORT_DIR_OUT(GPIO_A)
+///@brief changes to state of full 8bit port to in
 #define GPIB_BUS_IN()       GPIO_PORT_DIR_IN(GPIO_A)
+///@brief changes to state of full 8bit port to in then read
 #define GPIB_BUS_RD()       GPIO_PORT_RD(GPIO_A)
+///@brief changes to state of full 8bit port to out then write
 #define GPIB_BUS_WR(val)    GPIO_PORT_WR(GPIO_A,val)
 
+///@brief the next two are only used to attempt to detect PPR states for logging only
+///@brief read full port pins
 #define GPIB_PPR_RD()       GPIO_PORT_PINS_RD(GPIO_A)
+///@brief read full port direction register state
 #define GPIB_PPR_DDR_RD()   GPIO_PORT_DDR_RD(GPIO_A)
-
-// OLD system
-#if 0
-#define EOI_PORT    PORTB
-#define EOI_DDR     DDRB
-#define EOI_PIN     PINB
-#define EOI_BIT     0
-
-#define DAV_PORT    PORTB
-#define DAV_DDR     DDRB
-#define DAV_PIN     PINB
-#define DAV_BIT     1
-
-#define NRFD_PORT   PORTD
-#define NRFD_DDR    DDRD
-#define NRFD_PIN    PIND
-#define NRFD_BIT    2
-
-#define NDAC_PORT   PORTD
-#define NDAC_DDR    DDRD
-#define NDAC_PIN    PIND
-#define NDAC_BIT    3
-
-#define IFC_PORT    PORTD
-#define IFC_DDR     DDRD
-#define IFC_PIN     PIND
-#define IFC_BIT     4
-
-#define SRQ_PORT    PORTD
-#define SRQ_DDR     DDRD
-#define SRQ_PIN     PIND
-#define SRQ_BIT     5
-
-#define ATN_PORT    PORTD
-#define ATN_DDR     DDRD
-#define ATN_PIN     PIND
-#define ATN_BIT     6
-
-#define REN_PORT    PORTD
-#define REN_DDR     DDRD
-#define REN_PIN     PIND
-#define REN_BIT     7
-
-#ifndef SOFTWARE_PP
-#warning Hardware PP
-#define PPE_DDR   DDRB
-#define PPE_PORT  PORTB
-#define PPE_PIN   PINB
-#define PPE_BIT   2
-#endif
-
-#endif  // #if 0
-
 
 #ifndef GPIB_BUS_RD
 #error GPIB_BUS_RD read macro is not defined

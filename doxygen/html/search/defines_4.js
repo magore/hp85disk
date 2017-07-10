@@ -2,6 +2,7 @@ var searchData=
 [
   ['data_5fmask',['DATA_MASK',['../gpib_8h.html#a9e6a597bbfd901b2259ad39de928d0c0',1,'gpib.h']]],
   ['dav',['DAV',['../gpib__hal_8h.html#a6d9a5bc64954c2ad62878e3d085ad195',1,'gpib_hal.h']]],
+  ['dav_5fflag',['DAV_FLAG',['../gpib_8h.html#a607e563762523269fbdac027224c44fe',1,'gpib.h']]],
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
   ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],

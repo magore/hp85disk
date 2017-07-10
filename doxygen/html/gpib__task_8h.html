@@ -108,6 +108,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a5859304d546fa05404d17db34c704906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Configuration File.  <a href="#a5859304d546fa05404d17db34c704906">More...</a><br /></td></tr>
 <tr class="separator:a5859304d546fa05404d17db34c704906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8351e69574a06b0f9184a877fee560c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a8351e69574a06b0f9184a877fee560c1">gpib_log</a> (char *str)</td></tr>
+<tr class="memdesc:a8351e69574a06b0f9184a877fee560c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log GPIB transactions.  <a href="#a8351e69574a06b0f9184a877fee560c1">More...</a><br /></td></tr>
 <tr class="separator:a8351e69574a06b0f9184a877fee560c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a727ee8639d6e3f33b9d1c5d00258ae4a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a727ee8639d6e3f33b9d1c5d00258ae4a">SS80_is_MLA</a> (int address)</td></tr>
 <tr class="memdesc:a727ee8639d6e3f33b9d1c5d00258ae4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SS80 listening address.  <a href="#a727ee8639d6e3f33b9d1c5d00258ae4a">More...</a><br /></td></tr>
@@ -133,9 +134,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a5da52fb36be595498e2ad9c4ced6a2ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a5da52fb36be595498e2ad9c4ced6a2ac">PRINTER_is_MSA</a> (int address)</td></tr>
 <tr class="memdesc:a5da52fb36be595498e2ad9c4ced6a2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if PRINTER secondary address.  <a href="#a5da52fb36be595498e2ad9c4ced6a2ac">More...</a><br /></td></tr>
 <tr class="separator:a5da52fb36be595498e2ad9c4ced6a2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8d743894347147b12ee9e29d01acd8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#ac8d743894347147b12ee9e29d01acd8a">gpib_trace_task</a> (char *name)</td></tr>
-<tr class="memdesc:ac8d743894347147b12ee9e29d01acd8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trace GPIB activity passively - saving to a log file.  <a href="#ac8d743894347147b12ee9e29d01acd8a">More...</a><br /></td></tr>
-<tr class="separator:ac8d743894347147b12ee9e29d01acd8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a314fbeb162cf0fb719ece3da4f2a8c52"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a314fbeb162cf0fb719ece3da4f2a8c52">gpib_trace_read_byte</a> (void)</td></tr>
+<tr class="separator:a314fbeb162cf0fb719ece3da4f2a8c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ef822f4a1b03c38d87854df9c618be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a63ef822f4a1b03c38d87854df9c618be">gpib_trace_task</a> (char *name, int detail)</td></tr>
+<tr class="memdesc:a63ef822f4a1b03c38d87854df9c618be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trace GPIB activity passively - saving to a log file.  <a href="#a63ef822f4a1b03c38d87854df9c618be">More...</a><br /></td></tr>
+<tr class="separator:a63ef822f4a1b03c38d87854df9c618be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a903eb44d83bf8f2db71e6f32a35fec62"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gpib__task_8h.html#a903eb44d83bf8f2db71e6f32a35fec62">gpib_error_test</a> (uint16_t val)</td></tr>
 <tr class="memdesc:a903eb44d83bf8f2db71e6f32a35fec62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check for GPIB errors and timeouts.  <a href="#a903eb44d83bf8f2db71e6f32a35fec62">More...</a><br /></td></tr>
 <tr class="separator:a903eb44d83bf8f2db71e6f32a35fec62"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,7 +200,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, and <a class="el" href="gpib__task_8c_source.html#l00096">SS80_is_MSA()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, and <a class="el" href="gpib__task_8c_source.html#l00095">SS80_is_MSA()</a>.</p>
 
 </div>
 </div>
@@ -215,7 +218,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00886">GPIB_SECONDARY_ADDRESS()</a>, and <a class="el" href="gpib__task_8c_source.html#l00096">SS80_is_MSA()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00879">GPIB_SECONDARY_ADDRESS()</a>, and <a class="el" href="gpib__task_8c_source.html#l00095">SS80_is_MSA()</a>.</p>
 
 </div>
 </div>
@@ -233,7 +236,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="gpib__task_8c_source.html#l00096">SS80_is_MSA()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>, and <a class="el" href="gpib__task_8c_source.html#l00095">SS80_is_MSA()</a>.</p>
 
 </div>
 </div>
@@ -274,7 +277,7 @@ Functions</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00975">975</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00968">968</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
 </div>
 </div>
@@ -310,16 +313,16 @@ GPIB error flags on fail </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> defines for a full list. </dd></dl>
 <p>Parallel Poll Configure TODO</p>
 <p>Parallel Poll Unconfigure TODO</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>Selected Device Clear</p>
 <p>Note: Suposed to be unsupported in SS80 - pg 4-2 CS80 3-4</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>(Universal) Device Clear</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Fixme </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Fixme </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00613">613</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00606">606</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -366,9 +369,9 @@ GPIB error flags on fail </dd></dl>
 <p>talking ?</p>
 <p>listening ? </p>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00360">360</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00358">358</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -411,11 +414,11 @@ GPIB error flags on fail </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> _FLAGS defines for a full list.<ul>
 <li>An error implies the data byte can't be trusted</li>
 <li>Control Line Flags.<ul>
-<li><a class="el" href="gpib_8h.html#ab6e601afadf8d274d9d341323a5c6a3e">EOI_FLAG</a></li>
+<li><a class="el" href="gpib_8h.html#ab6e601afadf8d274d9d341323a5c6a3e" title="bus flags ">EOI_FLAG</a></li>
 <li><a class="el" href="gpib_8h.html#aadec0e361e7d2ed6a82ef28bee7231f6">SRQ_FLAG</a></li>
 <li><a class="el" href="gpib_8h.html#abbe287946c2beaa1f76fe5be364c07ad">ATN_FLAG</a></li>
 <li><a class="el" href="gpib_8h.html#ac5ae85572f7432aaab806c29177eec8d">REN_FLAG</a></li>
-<li><a class="el" href="gpib_8h.html#a660f399a9ffcc5c666bcc726073338cb">PP_FLAG</a></li>
+<li><a class="el" href="gpib_8h.html#a660f399a9ffcc5c666bcc726073338cb" title="BUS state flags. ">PP_FLAG</a></li>
 </ul>
 </li>
 <li>Error Flags:<ul>
@@ -434,11 +437,11 @@ ABORT flag on user keypress </dd></dl>
 </ul>
 <p>IFC is and important state so display it for most messages</p>
 <p>Bus Clear, reseat all states, etc</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>do we want to always exit here ? low level GPIB functions are still useful even without a DISK </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>do we want to always exit here ? low level GPIB functions are still useful even without a DISK </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00268">268</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00266">266</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -461,7 +464,7 @@ ABORT flag on user keypress </dd></dl>
 
 <p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00039">39</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="main_8c_source.html#l00192">main()</a>.</p>
+<p>Referenced by <a class="el" href="main_8c_source.html#l00196">main()</a>.</p>
 
 </div>
 </div>
@@ -485,9 +488,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00330">330</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00328">328</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00268">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>, and <a class="el" href="gpib__task_8c_source.html#l00188">gpib_trace_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00266">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00190">gpib_trace_task()</a>, and <a class="el" href="main_8c_source.html#l00112">task()</a>.</p>
 
 </div>
 </div>
@@ -520,9 +523,9 @@ ABORT flag on user keypress </dd></dl>
 <p>Universal Unlisten</p>
 <p>NULL creates a file named based on date and time </p>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00732">732</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00725">725</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -540,9 +543,16 @@ ABORT flag on user keypress </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00061">61</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Log GPIB transactions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>message to log </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00938">gpib_decode()</a>, and <a class="el" href="gpib__task_8c_source.html#l00188">gpib_trace_task()</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00060">60</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
 </div>
 </div>
@@ -575,9 +585,9 @@ ABORT flag on user keypress </dd></dl>
 <p>note: any errors will reset lastcmd Universal Talk mode Treat this as a Secondary Address ? SS80 Ident 4-31 If we have our secondary address then send IDENT</p>
 <p>ch = secondary address </p>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00886">886</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00879">879</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -609,9 +619,9 @@ ABORT flag on user keypress </dd></dl>
 <p>NOTE: we must track the "addressed state" of each device so we can determine its state - ie: command vs Secondary states save talking state</p>
 <p>Universal Untalk </p>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00806">806</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00799">799</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>.</p>
 
 </div>
 </div>
@@ -644,13 +654,29 @@ ABORT flag on user keypress </dd></dl>
 <p>GPIB commands without ATN set (DATA)</p>
 <p>GPIB_COMMANDS does most of the work </p>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00445">445</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00443">443</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00059">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00112">task()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac8d743894347147b12ee9e29d01acd8a"></a>
+<a class="anchor" id="a314fbeb162cf0fb719ece3da4f2a8c52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t gpib_trace_read_byte </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a63ef822f4a1b03c38d87854df9c618be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -658,13 +684,30 @@ ABORT flag on user keypress </dd></dl>
           <td class="memname">void gpib_trace_task </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>detail</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Trace GPIB activity passively - saving to a log file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>file name to save to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">detail</td><td>if non-zero do full handshake trace</td></tr>
+  </table>
+  </dd>
+</dl>
 <ul>
 <li>We use the natural GPIB handshaking to slow GPIB talker/listeners so we can keep up</li>
 <li>A keypress will exit the trace and close the file</li>
@@ -677,7 +720,7 @@ ABORT flag on user keypress </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void Exit on Key Press </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00188">188</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00190">190</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00059">gpib_tests()</a>.</p>
 
@@ -704,9 +747,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00938">938</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00931">931</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, and <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, and <a class="el" href="gpib_8c_source.html#l00279">gpib_state_init()</a>.</p>
 
 </div>
 </div>
@@ -730,9 +773,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00146">146</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00145">145</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00445">gpib_task()</a>, and <a class="el" href="printer_8c_source.html#l00224">PRINTER_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00443">gpib_task()</a>, and <a class="el" href="printer_8c_source.html#l00223">PRINTER_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -756,7 +799,7 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00170">170</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00169">169</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
 </div>
 </div>
@@ -780,9 +823,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00158">158</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00157">157</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="printer_8c_source.html#l00224">PRINTER_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>, and <a class="el" href="printer_8c_source.html#l00223">PRINTER_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -829,9 +872,9 @@ ABORT flag on user keypress </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 on GPIB error returns error flags </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> for a full list. </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00580">580</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00573">573</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00886">GPIB_SECONDARY_ADDRESS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00879">GPIB_SECONDARY_ADDRESS()</a>.</p>
 
 </div>
 </div>
@@ -855,9 +898,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00072">72</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00071">71</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, and <a class="el" href="ss80_8c_source.html#l01865">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00725">GPIB_LISTEN()</a>, and <a class="el" href="ss80_8c_source.html#l01865">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -881,9 +924,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00096">96</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00095">95</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00886">GPIB_SECONDARY_ADDRESS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00879">GPIB_SECONDARY_ADDRESS()</a>.</p>
 
 </div>
 </div>
@@ -907,9 +950,9 @@ ABORT flag on user keypress </dd></dl>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00084">84</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00083">83</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00360">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, and <a class="el" href="ss80_8c_source.html#l01865">SS80_COMMANDS()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00358">GPIB_COMMANDS()</a>, <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>, and <a class="el" href="ss80_8c_source.html#l01865">SS80_COMMANDS()</a>.</p>
 
 </div>
 </div>
@@ -935,16 +978,16 @@ ABORT flag on user keypress </dd></dl>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00963">963</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
+<p>Definition at line <a class="el" href="gpib__task_8c_source.html#l00956">956</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib_8c_source.html#l00253">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>.</p>
+<p>Referenced by <a class="el" href="gpib_8c_source.html#l00279">gpib_state_init()</a>, and <a class="el" href="gpib__task_8c_source.html#l00799">GPIB_TALK()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 7 2017 17:52:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 10 2017 19:47:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -6,6 +6,7 @@ var searchData=
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['date',['date',['../structlifvol__t.html#a41f630e7211326270dc6e72a55f94516',1,'lifvol_t::date()'],['../structlifdir__t.html#afb6d03670642d3bf86f460ae246ceb0b',1,'lifdir_t::date()']]],
   ['dav',['DAV',['../gpib__hal_8h.html#a6d9a5bc64954c2ad62878e3d085ad195',1,'gpib_hal.h']]],
+  ['dav_5fflag',['DAV_FLAG',['../gpib_8h.html#a607e563762523269fbdac027224c44fe',1,'gpib.h']]],
   ['days_5fper_5fmonth',['Days_Per_Month',['../time_8c.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c'],['../time_8h.html#ac8aa3e3bf89628eb458ec88350b8033b',1,'Days_Per_Month(int month, int year):&#160;time.c']]],
   ['days_5fper_5fyear',['Days_Per_Year',['../time_8c.html#ad4f4473fe0527085b45e8c354faeee7b',1,'time.c']]],
   ['dbf_5fclose',['dbf_close',['../gpib__hal_8c.html#a827fbebac6fd202d102386e15b92b28b',1,'dbf_close(FIL *fp):&#160;gpib_hal.c'],['../gpib__hal_8h.html#a827fbebac6fd202d102386e15b92b28b',1,'dbf_close(FIL *fp):&#160;gpib_hal.c']]],

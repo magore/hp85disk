@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['headertype',['HeaderType',['../structHeaderType.html',1,'']]]
+  ['gpib_5ftoken_5ft',['gpib_token_t',['../structgpib__token__t.html',1,'']]]
 ];

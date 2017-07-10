@@ -139,7 +139,11 @@ void task(uint8_t gpib)
     ptr = argv[ind++];
 
     if(gpib_tests(argc,argv))
+    {
+        // Restore GPIB BUS states
+        gpib_init_devices();
         return;
+    }
 
 
     if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
@@ -197,7 +201,8 @@ int main(void)
     init_timers();
 
     // returns actual baud rate which may differ slightly because of limited resolution of baud rate clock and devisors
-    baud = 115200UL;
+    // BAUD setting moved to Makefile
+    baud = BAUD;
 
     actual = uart_init(0, baud); // Serial Port Initialize
     delayms(200); ///@brief Power up delay

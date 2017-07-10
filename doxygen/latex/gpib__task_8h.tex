@@ -13,7 +13,7 @@ High level G\+P\+IB command handler for H\+P85 disk emulator project for A\+VR.
 void \hyperlink{gpib__task_8h_a5859304d546fa05404d17db34c704906}{gpib\+\_\+file\+\_\+init} (void)
 \begin{DoxyCompactList}\small\item\em Read Configuration File. \end{DoxyCompactList}\item 
 void \hyperlink{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}{gpib\+\_\+log} (char $\ast$str)
-\item 
+\begin{DoxyCompactList}\small\item\em Log G\+P\+IB transactions. \end{DoxyCompactList}\item 
 int \hyperlink{gpib__task_8h_a727ee8639d6e3f33b9d1c5d00258ae4a}{S\+S80\+\_\+is\+\_\+\+M\+LA} (int address)
 \begin{DoxyCompactList}\small\item\em Check if S\+S80 listening address. \end{DoxyCompactList}\item 
 int \hyperlink{gpib__task_8h_a6029655f36ebeac8ad4289b50120edda}{S\+S80\+\_\+is\+\_\+\+M\+TA} (int address)
@@ -32,7 +32,9 @@ int \hyperlink{gpib__task_8h_ad3df30ddc50951831d3837e99c3624b0}{P\+R\+I\+N\+T\+E
 \begin{DoxyCompactList}\small\item\em Check if P\+R\+I\+N\+T\+ER talking address. \end{DoxyCompactList}\item 
 int \hyperlink{gpib__task_8h_a5da52fb36be595498e2ad9c4ced6a2ac}{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+SA} (int address)
 \begin{DoxyCompactList}\small\item\em Check if P\+R\+I\+N\+T\+ER secondary address. \end{DoxyCompactList}\item 
-void \hyperlink{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}{gpib\+\_\+trace\+\_\+task} (char $\ast$name)
+uint16\+\_\+t \hyperlink{gpib__task_8h_a314fbeb162cf0fb719ece3da4f2a8c52}{gpib\+\_\+trace\+\_\+read\+\_\+byte} (void)
+\item 
+void \hyperlink{gpib__task_8h_a63ef822f4a1b03c38d87854df9c618be}{gpib\+\_\+trace\+\_\+task} (char $\ast$name, int detail)
 \begin{DoxyCompactList}\small\item\em Trace G\+P\+IB activity passively -\/ saving to a log file. \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib__task_8h_a903eb44d83bf8f2db71e6f32a35fec62}{gpib\+\_\+error\+\_\+test} (uint16\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em Check for G\+P\+IB errors and timeouts. \end{DoxyCompactList}\item 
@@ -135,7 +137,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 975 of file gpib\+\_\+task.\+c.
+Definition at line 968 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!G\+P\+IB@{G\+P\+IB}}
 \index{G\+P\+IB@{G\+P\+IB}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -173,7 +175,7 @@ Parallel Poll Configure T\+O\+DO
 Parallel Poll Unconfigure T\+O\+DO
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000006}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000005}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
 Selected Device Clear
@@ -181,16 +183,16 @@ Selected Device Clear
 Note\+: Suposed to be unsupported in S\+S80 -\/ pg 4-\/2 C\+S80 3-\/4
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000007}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000006}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
 (Universal) Device Clear
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000008}{Todo}]Fixme \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000007}{Todo}]Fixme \end{DoxyRefDesc}
 
 
-Definition at line 613 of file gpib\+\_\+task.\+c.
+Definition at line 606 of file gpib\+\_\+task.\+c.
 
 
 
@@ -231,7 +233,7 @@ talking ?
 
 listening ? 
 
-Definition at line 360 of file gpib\+\_\+task.\+c.
+Definition at line 358 of file gpib\+\_\+task.\+c.
 
 
 
@@ -305,10 +307,10 @@ A\+B\+O\+RT flag on user keypress
 Bus Clear, reseat all states, etc
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000005}{Todo}]do we want to always exit here ? low level G\+P\+IB functions are still useful even without a D\+I\+SK \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000004}{Todo}]do we want to always exit here ? low level G\+P\+IB functions are still useful even without a D\+I\+SK \end{DoxyRefDesc}
 
 
-Definition at line 268 of file gpib\+\_\+task.\+c.
+Definition at line 266 of file gpib\+\_\+task.\+c.
 
 
 
@@ -352,11 +354,11 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 330 of file gpib\+\_\+task.\+c.
+Definition at line 328 of file gpib\+\_\+task.\+c.
 
 
 
-Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+task(), and gpib\+\_\+trace\+\_\+task().
+Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and task().
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+EN@{G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+EN}}
 \index{G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+EN@{G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+EN}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -388,7 +390,7 @@ Universal Unlisten
 
 N\+U\+LL creates a file named based on date and time 
 
-Definition at line 732 of file gpib\+\_\+task.\+c.
+Definition at line 725 of file gpib\+\_\+task.\+c.
 
 
 
@@ -403,11 +405,19 @@ Referenced by gpib\+\_\+task().
 )}\hypertarget{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}{}\label{gpib__task_8h_a8351e69574a06b0f9184a877fee560c1}
 
 
-Definition at line 61 of file gpib\+\_\+task.\+c.
+Log G\+P\+IB transactions. 
 
 
+\begin{DoxyParams}{Parameters}
+{\em str} & message to log \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
 
-Referenced by gpib\+\_\+decode(), and gpib\+\_\+trace\+\_\+task().
+
+Definition at line 60 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+SS@{G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+SS}}
 \index{G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+SS@{G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+SS}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -439,7 +449,7 @@ note\+: any errors will reset lastcmd Universal Talk mode Treat this as a Second
 
 ch = secondary address 
 
-Definition at line 886 of file gpib\+\_\+task.\+c.
+Definition at line 879 of file gpib\+\_\+task.\+c.
 
 
 
@@ -473,7 +483,7 @@ N\+O\+TE\+: we must track the \char`\"{}addressed state\char`\"{} of each device
 
 Universal Untalk 
 
-Definition at line 806 of file gpib\+\_\+task.\+c.
+Definition at line 799 of file gpib\+\_\+task.\+c.
 
 
 
@@ -513,23 +523,38 @@ G\+P\+IB commands without A\+TN set (D\+A\+TA)
 
 G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+DS does most of the work 
 
-Definition at line 445 of file gpib\+\_\+task.\+c.
+Definition at line 443 of file gpib\+\_\+task.\+c.
 
 
 
 Referenced by gpib\+\_\+tests(), and task().
 
+\index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!gpib\+\_\+trace\+\_\+read\+\_\+byte@{gpib\+\_\+trace\+\_\+read\+\_\+byte}}
+\index{gpib\+\_\+trace\+\_\+read\+\_\+byte@{gpib\+\_\+trace\+\_\+read\+\_\+byte}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
+\subsubsection[{\texorpdfstring{gpib\+\_\+trace\+\_\+read\+\_\+byte(void)}{gpib_trace_read_byte(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t gpib\+\_\+trace\+\_\+read\+\_\+byte (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{gpib__task_8h_a314fbeb162cf0fb719ece3da4f2a8c52}{}\label{gpib__task_8h_a314fbeb162cf0fb719ece3da4f2a8c52}
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!gpib\+\_\+trace\+\_\+task@{gpib\+\_\+trace\+\_\+task}}
 \index{gpib\+\_\+trace\+\_\+task@{gpib\+\_\+trace\+\_\+task}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+trace\+\_\+task(char $\ast$name)}{gpib_trace_task(char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+trace\+\_\+task (
+\subsubsection[{\texorpdfstring{gpib\+\_\+trace\+\_\+task(char $\ast$name, int detail)}{gpib_trace_task(char *name, int detail)}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+trace\+\_\+task (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{name}
+\item[{char $\ast$}]{name, }
+\item[{int}]{detail}
 \end{DoxyParamCaption}
-)}\hypertarget{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}{}\label{gpib__task_8h_ac8d743894347147b12ee9e29d01acd8a}
+)}\hypertarget{gpib__task_8h_a63ef822f4a1b03c38d87854df9c618be}{}\label{gpib__task_8h_a63ef822f4a1b03c38d87854df9c618be}
 
 
 Trace G\+P\+IB activity passively -\/ saving to a log file. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name to save to \\
+\hline
+\mbox{\tt in}  & {\em detail} & if non-\/zero do full handshake trace\\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyItemize}
 \item We use the natural G\+P\+IB handshaking to slow G\+P\+IB talker/listeners so we can keep up
@@ -546,7 +571,7 @@ void Exit on Key Press
 \end{DoxyReturn}
 
 
-Definition at line 188 of file gpib\+\_\+task.\+c.
+Definition at line 190 of file gpib\+\_\+task.\+c.
 
 
 
@@ -572,7 +597,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 938 of file gpib\+\_\+task.\+c.
+Definition at line 931 of file gpib\+\_\+task.\+c.
 
 
 
@@ -597,7 +622,7 @@ Check if P\+R\+I\+N\+T\+ER listening address.
 
 \end{DoxyItemize}
 
-Definition at line 146 of file gpib\+\_\+task.\+c.
+Definition at line 145 of file gpib\+\_\+task.\+c.
 
 
 
@@ -622,7 +647,7 @@ Check if P\+R\+I\+N\+T\+ER secondary address.
 
 \end{DoxyItemize}
 
-Definition at line 170 of file gpib\+\_\+task.\+c.
+Definition at line 169 of file gpib\+\_\+task.\+c.
 
 \index{gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA}}
 \index{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA@{P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+TA}!gpib\+\_\+task.\+h@{gpib\+\_\+task.\+h}}
@@ -643,7 +668,7 @@ Check if P\+R\+I\+N\+T\+ER talking address.
 
 \end{DoxyItemize}
 
-Definition at line 158 of file gpib\+\_\+task.\+c.
+Definition at line 157 of file gpib\+\_\+task.\+c.
 
 
 
@@ -685,7 +710,7 @@ Send drive identify-\/ 2 bytes.
 \end{DoxySeeAlso}
 
 
-Definition at line 580 of file gpib\+\_\+task.\+c.
+Definition at line 573 of file gpib\+\_\+task.\+c.
 
 
 
@@ -710,7 +735,7 @@ Check if S\+S80 listening address.
 
 \end{DoxyItemize}
 
-Definition at line 72 of file gpib\+\_\+task.\+c.
+Definition at line 71 of file gpib\+\_\+task.\+c.
 
 
 
@@ -735,7 +760,7 @@ Check if S\+S80 secondary address.
 
 \end{DoxyItemize}
 
-Definition at line 96 of file gpib\+\_\+task.\+c.
+Definition at line 95 of file gpib\+\_\+task.\+c.
 
 
 
@@ -760,7 +785,7 @@ Check if S\+S80 talking address.
 
 \end{DoxyItemize}
 
-Definition at line 84 of file gpib\+\_\+task.\+c.
+Definition at line 83 of file gpib\+\_\+task.\+c.
 
 
 
@@ -789,7 +814,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 963 of file gpib\+\_\+task.\+c.
+Definition at line 956 of file gpib\+\_\+task.\+c.
 
 
 

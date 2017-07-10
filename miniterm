@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 #miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200 
-miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200 
+BAUD=500000UL
+miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 $BAUD
 
 #usage: miniterm.py [-h] [--parity {N,E,O,S,M}] [--rtscts] [--xonxoff]
 #                   [--rts RTS] [--dtr DTR] [--ask] [-e] [--encoding CODEC]

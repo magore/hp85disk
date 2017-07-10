@@ -79,9 +79,10 @@ void printer_open(char *name)
         return;
     }
 
-    plot.buf = calloc(256+1,1);
+    plot.buf = calloc(512+1,1);
     if(plot.buf == NULL)
         printer_close();
+    plot.size = 512;
 }
 
 
@@ -192,13 +193,11 @@ void printer_buffer( uint16_t val )
     ch = val & 0xff;
     if(val & (0xff00 & ~REN_FLAG))
     {
-        char *ptr;
         if( receive_plot_flush() )
             plot.error = 1;
-        ptr = gpib_decode_str(ch);
-        puts(ptr);
-        fprintf(plot.fp,"%s\n", ptr);
-        plot.count += strlen(ptr);
+
+        //fprintf(plot.fp,"%s\n", ptr);
+        //plot.count += strlen(ptr);
     }
     else
     {
@@ -206,7 +205,7 @@ void printer_buffer( uint16_t val )
         plot.buf[plot.ind++] = ch;
         plot.count++;
 
-        if(plot.ind >= 256)
+        if(plot.ind >= plot.size)
         {
             if( receive_plot_flush() < 0 )
                 plot.error = 1;
@@ -246,27 +245,87 @@ int PRINTER_COMMANDS(uint8_t ch)
     return(0);
 }
 
+int gpib_ascii_request(char *str, uint16_t *status)
+{
+    int len = strlen(str);
+    return(gpib_write_str( (uint8_t *)str,len,status) );
+}
+    
+
 
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
 void plot_echo( int gpib_address)
 {
-#if 0
-    int ch;
-    long count;
-    char *ptr;
     int len;
-    uint16_t status;
-    char Line[40+2];
+    long count = 0;
+    int ind;
+    uint16_t status,ch;
+    char *ptr,line[128];
 
-    count = 0;
-
-    gpib_bus_init(1);
-    gpib_state_init();
+    uint8_t bus,buslast;
+    
     printer_close();
 
-    gpib_decode_header();
+    ind = find_type(PRINTER_TYPE);
+
+    if(ind == -1)
+    {
+        printf("printer not defined\n");
+        return;
+    }
+// DEBUGGING
+    gpib_decode_header(stdout);
+
+    //gpib_assert_ifc();
+    //printf("sent: ifc\n");
+    //GPIB_IO_LOW(REN);
+    //GPIB_IO_LOW(ATN);
+
+    buslast = gpib_control_read();
+    buslast |= gpib_handshake_read();
+    gpib_trace_display(buslast,TRACE_BUS);
+
+    while(GPIB_PIN_TST(NDAC) && GPIB_PIN_TST(NRFD) )
+    {
+        bus = gpib_control_read();
+        bus |= gpib_handshake_read();
+        if(bus != buslast)
+        {
+            gpib_trace_display(buslast,TRACE_BUS);
+            buslast = bus;
+        }
+        if(uart_keyhit(0))
+            return;
+    }
+    printf("ready to write\n");
+
+    gpib_write_byte(DCL | ATN_FLAG);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    printf("sent: untalk\n");
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    printf("sent: unlisten\n");
+
+    gpib_write_byte(0x20 | 8 | ATN_FLAG);   // SCOPE listen
+    printf("sent: SCOPE listen\n");
+    gpib_write_byte(0x40 | 5 | ATN_FLAG);   // PRINTER talk
+    printf("sent: PRINTER talk\n");
+
+    status = 0;
+    len = gpib_ascii_request(":HARDcopy:DEVice?",&status);
+    printf("sent: %d bytes\n",len);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+
+    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
+    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
+
+    //gpib_trace_task("plot.txt");
+    //return;
+
     while(1)                                      // Main loop, forever
     {
         if(uart_keyhit(0))
@@ -275,8 +334,8 @@ void plot_echo( int gpib_address)
             extern int get_line (char *buff, int len);
 
             uart_put('>');
-            get_line(Line,40);
-            ptr = skipspaces(Line);
+            get_line(line,40);
+            ptr = skipspaces(line);
             if ( (len = token(ptr,"exit")) )
             {
                 return;
@@ -293,25 +352,19 @@ void plot_echo( int gpib_address)
             if(gpib_write_str((uint8_t *) ptr, len, &status) != len)
                 printf("[write failed]\n");
         }
-        ch = gpib_read_byte();
+        ch = gpib_read_byte(NO_TRACE);
 
         if(( count & 255L ) == 0)
-            printf("%08ld\r",count);
-        if(echo)
+            printf("%8ld\r",count);
+        if(ch & (0xff00 & ~REN_FLAG))
         {
-            if(ch & (0xff00 & ~REN_FLAG))
-            {
-                char *ptr;
-                ptr = gpib_decode_str(ch);
-                puts(ptr);
-            }
-            else
-            {
-                putchar(ch & 0xff);
-            }
+            gpib_decode(ch);
+        }
+        else
+        {
+        putchar(ch & 0xff);
         }
         ++count;
     }
     printf("\nLogged %ld\n",count);
-#endif
 }

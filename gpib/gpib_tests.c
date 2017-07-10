@@ -41,7 +41,7 @@ void gpib_help()
         "gpib elapsed\n"
         "gpib elapsed_reset\n"
         "gpib task\n"
-        "gpib trace filename.txt\n"
+        "gpib trace filename.txt [BUS]\n"
         "gpib ifc\n"
         "gpib plot filename.txt\n"
         "gpib ppr_bit_on N\n"
@@ -117,14 +117,17 @@ int gpib_tests(int argc, char * argv[])
 
     if (MATCHARGS(ptr,"trace", (ind+1) ,argc))
     {
-        gpib_trace_task(argv[ind]);
+        int detail = 0;
+        if(argv[ind+1] && MATCH(argv[ind+1],"BUS"))
+            detail = 1;
+        gpib_trace_task(argv[ind], detail);
         return(1);
     }
 
     if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
     {
         gpib_assert_ifc();
-        return;
+        return(1);
 
     }
 

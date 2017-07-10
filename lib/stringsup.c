@@ -79,7 +79,7 @@ int
 WEAK_ATR
 islower(int c)
 {
-    if(c >= 'a' && c <= 'a')
+    if(c >= 'a' && c <= 'z')
         return(1);
     return(0);
 }
@@ -252,7 +252,6 @@ void
 WEAK_ATR
 strupper(char *str)
 {
-
     while(*str)
     {
         *str = toupper(*str);

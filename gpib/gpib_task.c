@@ -32,7 +32,7 @@ FIL  fp_file;
 int debuglevel = 1;
 
 /// @brief GPIB log file handel
-FILE *gpib_log_fp;
+FILE *gpib_log_fp = NULL;
 
 
 ///@brief Read Configuration File
@@ -57,7 +57,6 @@ void gpib_file_init()
 ///
 /// @param str: message to log
 /// @return  void
-FILE *gpib_log_fp;
 void gpib_log( char *str )
 {
     if(gpib_log_fp != NULL )
@@ -175,7 +174,10 @@ int PRINTER_is_MSA(int address)
     return(set_active_device(index));
 }
 
+
 /// @brief  Trace GPIB activity passively - saving to a log file
+/// @param[in] name: file name to save to
+/// @param[in] detail: if non-zero do full handshake trace
 ///
 /// - We use the natural GPIB handshaking to slow GPIB talker/listeners 
 /// so we can keep up
@@ -185,18 +187,17 @@ int PRINTER_is_MSA(int address)
 /// @return  void
 ///   Exit on Key Press
 
-void gpib_trace_task( char *name )
+void gpib_trace_task( char *name , int detail)
 {
     int ch;
-    long count;
-    char *ptr;
-
-    gpib_log_fp = NULL;
 
     if(name && *name)
     {
         name = skipspaces(name);
         printf("Capturing GPIB BUS to:%s\n", name);
+       if(detail)
+            printf("FULL GPIB BUS handshake logging requested\n");
+        printf("Press ANY key to exit\n");
 
         gpib_log_fp = fopen(name,"w");
         if(gpib_log_fp == NULL)
@@ -206,34 +207,31 @@ void gpib_trace_task( char *name )
             return;
         }
     }
+    else
+    {
+        gpib_log_fp = stdout;
+    }
 
-    gpib_bus_init(1);                             // Warm init float ALL lines
     gpib_state_init();                            // Init PPR talking and listening states
     gpib_init_devices();
 
-    gpib_decode_header();
-    count = 0;
+    gpib_decode_header(gpib_log_fp);
     while(1)                                      // Main loop, forever
     {
         if(uart_keyhit(0))
             break;
 
-        ch = gpib_read_byte();
-
-        ptr = gpib_decode_str(ch);
-        gpib_log(ptr);
-        puts(ptr);
-        if(( count & 255L ) == 0)
-            printf("%08ld\r",count);
-        ++count;
+        ch = gpib_read_byte(detail);
+        if(!detail)
+            gpib_decode(ch);
     }
 
-    printf("\nLogged %ld\n",count);
+    printf("Done\n");
     if(gpib_log_fp)
     {
         fclose(gpib_log_fp);
         printf("Capturing Closed\n");
-        gpib_log_fp = NULL;
+        gpib_log_fp = stdout;
     }
 }
 
@@ -447,25 +445,20 @@ void gpib_task(void)
     uint16_t val;
     uint8_t ch;
     uint16_t status;
-    char *ptr;
 
-    gpib_bus_init(1);                             // Warm init float ALL lines
     gpib_state_init();                            // Init PPR talking and listening states
-    gpib_init_devices();                          // Init defives
+    gpib_init_devices();                          // Init devices
 
     gpib_log_fp = NULL;
 
     while(1)
     {
 
-        val = gpib_read_byte();
+        val = gpib_read_byte(NO_TRACE);
 
 #if SDEBUG
         if(debuglevel & 8)
-        {
-            ptr = gpib_decode_str(val);
-            puts(ptr);
-        }
+            gpib_decode(val);
 #endif
         status = gpib_error_test(val);
         if(status & ABORT_FLAG)

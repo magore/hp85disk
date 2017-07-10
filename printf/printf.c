@@ -105,11 +105,10 @@ void
 WEAK_ATR
 strupper(char *str)
 {
-
     while(*str)
     {
         if(*str >= 'a' && *str <= 'z')
-            *str -= 0x20;
+            *str -= ( 'a' - 'A');
         ++str;
     }
 }
@@ -1015,15 +1014,11 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
         case 'b':
         case 'B':
             count = p_ntoa(nump, size, buff, sizeof(buff), 2, width, prec,f);
-            if(spec == 'X' || spec == 'P')
-                strupper(buff);
             _puts_pad(fn,buff, width, count, f.b.left);
             break;
         case 'o':
         case 'O':
             count = p_ntoa(nump, size, buff, sizeof(buff), 8, width, prec,f);
-            if(spec == 'X' || spec == 'P')
-                strupper(buff);
             _puts_pad(fn,buff, width, count, f.b.left);
             break;
         case 'x':
@@ -1039,8 +1034,6 @@ Since the prototype doesn’t specify types for optional arguments, in a call to
         case 'f':
         case 'F':
             count = p_ftoa(dnum, buff, sizeof(buff), width, prec, f);
-            if(spec == 'E')
-                strupper(buff);
             _puts_pad(fn,buff, width, count, f.b.left);
             break;
 
