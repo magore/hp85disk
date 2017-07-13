@@ -22,6 +22,6 @@ void printer_close ( void );
 int receive_plot_flush ( void );
 void printer_buffer ( uint16_t val );
 int PRINTER_COMMANDS ( uint8_t ch );
+int gpib_ascii_request ( char *str , uint16_t *status );
 void plot_echo ( int gpib_address );
-
 #endif  // #ifndef _PRINTER_H

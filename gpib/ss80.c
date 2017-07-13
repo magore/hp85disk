@@ -283,7 +283,7 @@ void SS80_init(void)
                 printf("[SS80 %02XH INIT]\n", Devices[i].ADDRESS);
 #endif
         /// @todo FIXME
-            DisablePPR(SS80p->HEADER.PPR);
+            gpib_disable_PPR(SS80p->HEADER.PPR);
         }
     }
 }
@@ -300,7 +300,7 @@ int SS80_Execute_State(void)
 {
     int ret = 0;
 
-    DisablePPR(SS80p->HEADER.PPR);
+    gpib_disable_PPR(SS80p->HEADER.PPR);
     switch(SS80s->estate)
     {
         case EXEC_IDLE:
@@ -327,7 +327,7 @@ int SS80_Execute_State(void)
             SS80s->estate = EXEC_IDLE;
             break;
     }
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(ret);
 }
 
@@ -971,8 +971,8 @@ int SS80_describe( void )
 /// @verbatim
 ///  Notes:
 ///  We set DPPR on entry and EPPR on exit
-///     DPPR = DisablePPR(SS80p->HEADER.PPR);
-///     EPPR = EnablePPR(SS80p->HEADER.PPR);
+///     DPPR = gpib_disable_PPR(SS80p->HEADER.PPR);
+///     EPPR = gpib_enable_PPR(SS80p->HEADER.PPR);
 /// 
 ///  Valid OP Codes for Command State (0x65):
 ///     Real Time, General Purpose, Complementary, DIagnostic
@@ -1003,7 +1003,7 @@ int SS80_Command_State( void )
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
     int ind;                                      // Buffer index
 
-    DisablePPR(SS80p->HEADER.PPR);
+    gpib_disable_PPR(SS80p->HEADER.PPR);
 
     status = EOI_FLAG;
     len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
@@ -1339,7 +1339,7 @@ int SS80_Command_State( void )
                 ind, len);
     }
 
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
 
     return(status & ERROR_MASK);
 }
@@ -1355,7 +1355,7 @@ int SS80_Command_State( void )
 /// 
 /// @verbatim
 ///  Notes:
-///     DPPR DisablePPR(SS80p->HEADER.PPR) should already be set at the secondary
+///     DPPR gpib_disable_PPR(SS80p->HEADER.PPR) should already be set at the secondary
 ///   We do NOT reenable EPPR at any state
 /// 
 ///  Valid OP Codes for Transparent State (0x70 or 0x72):
@@ -1390,7 +1390,7 @@ int SS80_Transparent_State( void )
     int cunit = 0;                                // Unit Complementary , optional
 
 
-    DisablePPR(SS80p->HEADER.PPR);
+    gpib_disable_PPR(SS80p->HEADER.PPR);
 
 ///  Note: Enabling Parallel Poll is up to each function
 ///  Many transparent Commands require Parallel Poll disabled when done
@@ -1429,7 +1429,7 @@ int SS80_Transparent_State( void )
             if(debuglevel & (16+32))
                 printf("[SS80 HP-IB Parity Checking - TODO]\n");
 #endif
-            EnablePPR(SS80p->HEADER.PPR);
+            gpib_enable_PPR(SS80p->HEADER.PPR);
             break;
         }
 /// @todo FIXME
@@ -1711,7 +1711,7 @@ void Clear_Common(int u)
 int SS80_Channel_Independent_Clear( int u )
 {
     Clear_Common( u );
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(0);
 }
 
@@ -1730,7 +1730,7 @@ int SS80_Universal_Device_Clear(void)
 {
     Clear_Common(15);
 /// @todo FIXME
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(0);
 }
 
@@ -1751,7 +1751,7 @@ int SS80_Selected_Device_Clear( int u )
         printf("[SS80 SDC]\n");
 #endif
     Clear_Common( u );
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(0);
 }
 
@@ -1784,7 +1784,7 @@ int SS80_Amigo_Clear( void )
 #endif
     }
     Clear_Common(15);
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(0);
 }
 
@@ -1803,7 +1803,7 @@ int SS80_Cancel( int u )
 /// @todo FIXME
 
     SS80s->estate = EXEC_IDLE;
-    EnablePPR(SS80p->HEADER.PPR);
+    gpib_enable_PPR(SS80p->HEADER.PPR);
     return(0);
 }
 
@@ -1908,7 +1908,7 @@ int SS80_COMMANDS(uint8_t ch)
                 if(debuglevel & 32)
                     printf("[Amigo Clear]\n");
 #endif
-                DisablePPR(SS80p->HEADER.PPR);
+                gpib_disable_PPR(SS80p->HEADER.PPR);
                 return( SS80_Amigo_Clear() );
             }
             return (0);

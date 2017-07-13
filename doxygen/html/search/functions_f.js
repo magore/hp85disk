@@ -3,7 +3,6 @@ var searchData=
   ['p_5fetoa',['p_etoa',['../mathio_8h.html#ae3e3ca7828e11c31adc999b44d2f2bb1',1,'mathio.h']]],
   ['p_5fftoa',['p_ftoa',['../mathio_8h.html#af35d59e537ce4cc2895dc4e00ada5977',1,'mathio.h']]],
   ['p_5fntoa',['p_ntoa',['../mathio_8h.html#ab538bcf34e0347b5c0329666ab58d0e2',1,'p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int width, int prec, f_t f):&#160;printf.c'],['../printf_8c.html#ab538bcf34e0347b5c0329666ab58d0e2',1,'p_ntoa(uint8_t *nump, int numsize, char *str, int strmax, int radix, int width, int prec, f_t f):&#160;printf.c']]],
-  ['parallel_5fpoll',['Parallel_Poll',['../gpib_8c.html#a42d306c338c639682d0d6f0434a5c88b',1,'Parallel_Poll():&#160;gpib.c'],['../gpib_8h.html#a330dd0b8391c15eeead4433afd10bddc',1,'Parallel_Poll(void):&#160;gpib.c']]],
   ['pattern_5fmatching',['pattern_matching',['../ff_8c.html#a0d7fa5cad355d8555eab672703d5a97f',1,'ff.c']]],
   ['pch',['pch',['../mathio_8h.html#ab454b0d961c8dc93406cc75379c8a1f5',1,'pch(char ch):&#160;printf.c'],['../printf_8c.html#ab454b0d961c8dc93406cc75379c8a1f5',1,'pch(char ch):&#160;printf.c']]],
   ['pch_5find',['pch_ind',['../mathio_8h.html#a569e22c563b1ffd2dd24e34362a7c28f',1,'pch_ind(void):&#160;printf.c'],['../printf_8c.html#a642ddbb02955bf5cb540f7a2f0f09aae',1,'pch_ind():&#160;printf.c']]],

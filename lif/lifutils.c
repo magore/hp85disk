@@ -1571,8 +1571,9 @@ int lif_newdir(lif_t *LIF, long sectors)
                 return(freeindex);
             }
 
-            printf("lif_newdir: index:[%d] adding at:[%ld]to purged space:[%ld] sectors, free:[%ld]\n", 
-                (int) index,(long)start,(long) sectors, (long)LIF->freesectors);
+            if(debuglevel & 0x400)
+                printf("lif_newdir: index:[%d] adding at:[%ld]to purged space:[%ld] sectors, free:[%ld]\n", 
+                    (int) index,(long)start,(long) sectors, (long)LIF->freesectors);
 
             // Write new EOF after current one
             if( !lif_writedirEOF(LIF,index+1) )

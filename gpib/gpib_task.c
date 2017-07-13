@@ -893,7 +893,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
             printf("[SA %02XH SS80]\n", 0xff & ch);
 #endif
         ///@brief ch = secondary address
-        DisablePPR(SS80p->HEADER.PPR);
+        gpib_disable_PPR(SS80p->HEADER.PPR);
         return(Send_Identify( ch, SS80p->CONFIG.ID) );
 
     }
@@ -908,7 +908,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
             printf("[SA %02XH AMIGO]\n", 0xff & ch);
 #endif
         ///@brief ch = secondary address
-        DisablePPR(AMIGOp->HEADER.PPR);
+        gpib_disable_PPR(AMIGOp->HEADER.PPR);
         return( Send_Identify( ch, AMIGOp->CONFIG.ID) );
     }
 #endif                      // #ifdef AMIGO

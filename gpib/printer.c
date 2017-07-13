@@ -21,6 +21,7 @@
 #include "gpib_task.h"
 #include "printer.h"
 #include "posix.h"
+#include "delay.h"
 
 ///@brief Plotter file data structure used for saving plot data.
 PRINTERStateType plot = { 0 };
@@ -252,7 +253,6 @@ int gpib_ascii_request(char *str, uint16_t *status)
 }
     
 
-
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
@@ -264,10 +264,13 @@ void plot_echo( int gpib_address)
     uint16_t status,ch;
     char *ptr,line[128];
 
-    uint8_t bus,buslast;
+    uint16_t bus,buslast;
     
     printer_close();
 
+    while(uart_keyhit(0) )
+        putchar( uart_rx_byte(0) );
+        
     ind = find_type(PRINTER_TYPE);
 
     if(ind == -1)
@@ -278,93 +281,33 @@ void plot_echo( int gpib_address)
 // DEBUGGING
     gpib_decode_header(stdout);
 
-    //gpib_assert_ifc();
-    //printf("sent: ifc\n");
-    //GPIB_IO_LOW(REN);
-    //GPIB_IO_LOW(ATN);
+    GPIB_IO_LOW(IFC);
+    delayms(200);
+    GPIB_PIN_FLOAT(IFC);
+    delayms(200);
 
-    buslast = gpib_control_read();
-    buslast |= gpib_handshake_read();
-    gpib_trace_display(buslast,TRACE_BUS);
-
-    while(GPIB_PIN_TST(NDAC) && GPIB_PIN_TST(NRFD) )
-    {
-        bus = gpib_control_read();
-        bus |= gpib_handshake_read();
-        if(bus != buslast)
-        {
-            gpib_trace_display(buslast,TRACE_BUS);
-            buslast = bus;
-        }
-        if(uart_keyhit(0))
-            return;
-    }
     printf("ready to write\n");
-
     gpib_write_byte(DCL | ATN_FLAG);
-
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    printf("sent: untalk\n");
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-    printf("sent: unlisten\n");
 
     gpib_write_byte(0x20 | 8 | ATN_FLAG);   // SCOPE listen
-    printf("sent: SCOPE listen\n");
     gpib_write_byte(0x40 | 5 | ATN_FLAG);   // PRINTER talk
-    printf("sent: PRINTER talk\n");
 
     status = 0;
-    len = gpib_ascii_request(":HARDcopy:DEVice?",&status);
+    len = gpib_ascii_request(":HARDcopy:DEVice?\n",&status);
     printf("sent: %d bytes\n",len);
-
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
 
     gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
     gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
 
-    //gpib_trace_task("plot.txt");
-    //return;
+    status = 0;
+    len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
+    printf("Recieved %d\n",(int)len);
+    printf("Reply:%s",gpib_iobuff);
 
-    while(1)                                      // Main loop, forever
-    {
-        if(uart_keyhit(0))
-        {
-            extern int uart_put(int c);
-            extern int get_line (char *buff, int len);
-
-            uart_put('>');
-            get_line(line,40);
-            ptr = skipspaces(line);
-            if ( (len = token(ptr,"exit")) )
-            {
-                return;
-            }
-            status = ATN_FLAG;
-            if(gpib_write_str(plot_str, sizeof(plot_str), &status) != sizeof(plot_str))
-                printf("[write failed]\n");
-
-            len = strlen(ptr);
-            ptr[len++] = '\r';
-            ptr[len++] = '\n';
-
-            status = 0;
-            if(gpib_write_str((uint8_t *) ptr, len, &status) != len)
-                printf("[write failed]\n");
-        }
-        ch = gpib_read_byte(NO_TRACE);
-
-        if(( count & 255L ) == 0)
-            printf("%8ld\r",count);
-        if(ch & (0xff00 & ~REN_FLAG))
-        {
-            gpib_decode(ch);
-        }
-        else
-        {
-        putchar(ch & 0xff);
-        }
-        ++count;
-    }
-    printf("\nLogged %ld\n",count);
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
 }

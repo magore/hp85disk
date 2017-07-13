@@ -420,6 +420,7 @@ clean:
 	@echo
 	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
 	make -C lif clean
+	make -C printf clean
 	
 
 # Include the dependency files.

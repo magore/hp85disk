@@ -194,7 +194,7 @@ void amigo_init()
             AMIGOs->Errors = 0;
 
             /// @todo  verify that we always want PPR disabled
-            DisablePPR(AMIGOp->HEADER.PPR);
+            gpib_disable_PPR(AMIGOp->HEADER.PPR);
         }
     }
 }
@@ -262,7 +262,7 @@ int amigo_request_status()
         AMIGOs->status[2] |= 0x80;                  // Bit 15
     }
 
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
 
@@ -294,10 +294,10 @@ int amigo_send_logical_address()
         AMIGOs->dsj = 1;
         if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(status & ERROR_MASK);
 }
 
@@ -329,12 +329,12 @@ int amigo_send_status()
         AMIGOs->dsj = 1;
         if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
     AMIGOs->Errors = 0;
     AMIGOs->dsj = 0;
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(status & ERROR_MASK);
 }
 
@@ -443,7 +443,7 @@ int amigo_seek( AMIGOStateType *p)
         AMIGOs->cyl = p->cyl;
     }
 
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(stat);
 }
 
@@ -495,7 +495,7 @@ int amigo_verify(uint16_t sectors)
             break;
         }
     }
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(stat);
 }
 
@@ -558,7 +558,7 @@ int amigo_format(uint8_t override, uint8_t interleave, uint8_t db)
     if(debuglevel & 32)
         printf("[AMIGO format done]\n");
 #endif
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(stat);
 }
 
@@ -610,7 +610,7 @@ int amigo_buffered_read()
         AMIGOs->Errors |= ERR_GPIB;
         if(debuglevel & 1)
             printf("[AMIGO GPIB write error]\n");
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
 
@@ -622,7 +622,7 @@ int amigo_buffered_read()
         AMIGOs->Errors |= ERR_SEEK;
     }
 
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
 
@@ -660,7 +660,7 @@ int amigo_buffered_write()
         AMIGOs->Errors |= ERR_GPIB;
         if(debuglevel & 1)
             printf("[AMIGO Write GPIB read error]\n");
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
 
@@ -686,7 +686,7 @@ int amigo_buffered_write()
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_SEEK;
     }
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(status & ERROR_MASK);
 }
 
@@ -760,7 +760,7 @@ int amigo_cmd_wakeup()
             printf("[AMIGO GPIB write error]\n");
     }
 /// @todo FIXME
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     AMIGOs->dsj = 0;
     return(status & ERROR_MASK);
 }
@@ -788,7 +788,7 @@ int amigo_cmd_clear()
     AMIGOs->dsj = 0;
     AMIGOs->Errors =0;
 
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
 
@@ -814,7 +814,7 @@ int amigo_todo_op(uint8_t secondary, uint8_t opcode, int len)
     else
         printf("[U Amigo TODO secondary: %02XH, state:%02XH, opcode:%02XH, len:%3d, listening:%02XH, talking:%02XH]\n",
             secondary, AMIGOs->state, opcode, len, listening, talking);
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
 
@@ -839,7 +839,7 @@ int amigo_todo(uint8_t secondary)
     else
         printf("[E   Amigo ERROR secondary: %02XH, state:%02XH, listening:%02XH, talking:%02XH]\n",
             secondary,AMIGOs->state,listening,talking);
-    EnablePPR(AMIGOp->HEADER.PPR);
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
 
@@ -881,10 +881,10 @@ int Amigo_Command( int secondary )
 ///  Reference: A14
     if (secondary == 0x7e && AMIGO_is_MTA(talking))
     {
-        DisablePPR(AMIGOp->HEADER.PPR);
+        gpib_disable_PPR(AMIGOp->HEADER.PPR);
         status = EOI_FLAG;
         len = gpib_write_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         if(status & ERROR_MASK)
         {
             AMIGOs->dsj = 1;
@@ -898,7 +898,7 @@ int Amigo_Command( int secondary )
 ///  Reference: A25
     if (secondary == 0x7f && AMIGO_is_MLA(listening))
     {
-        DisablePPR(AMIGOp->HEADER.PPR);
+        gpib_disable_PPR(AMIGOp->HEADER.PPR);
 #if SDEBUG
         if(debuglevel & 128)
             gpib_timer_elapsed_begin();
@@ -909,7 +909,7 @@ int Amigo_Command( int secondary )
         if(debuglevel & 128)
             gpib_timer_elapsed_end("GPIB read str");
 #endif
-        EnablePPR(AMIGOp->HEADER.PPR);
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         if(status & ERROR_MASK)
         {
             AMIGOs->dsj = 1;
@@ -923,7 +923,7 @@ int Amigo_Command( int secondary )
     if( !AMIGO_is_MLA(listening) || AMIGO_is_MTA(talking))
         return(0);
 
-    DisablePPR(AMIGOp->HEADER.PPR);
+    gpib_disable_PPR(AMIGOp->HEADER.PPR);
 
 
 ///  Note: the function will "unread" any commands and return
@@ -977,7 +977,7 @@ int Amigo_Command( int secondary )
             //update to real address on sucess
             amigo_seek((AMIGOStateType *) &tmp);
             AMIGOs->state = AMIGO_COLD_LOAD_READ;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if(op == 0x02 && len == 5)
@@ -999,7 +999,7 @@ int Amigo_Command( int secondary )
             tmp.sector = 0xff & *ptr++;
             //update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if(op == 0x02 && len == 6)
@@ -1022,7 +1022,7 @@ int Amigo_Command( int secondary )
             tmp.sector = 0xff & *ptr++;
             //update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if(op == 0x03 && len == 2)
@@ -1048,7 +1048,7 @@ int Amigo_Command( int secondary )
             ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_UNBUFFERED;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if(op == 0x07 && len == 4)
@@ -1073,7 +1073,7 @@ int Amigo_Command( int secondary )
             ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_UNBUFFERED;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if((op == 0x0B || op == 0x2b) && len == 2)
@@ -1085,7 +1085,7 @@ int Amigo_Command( int secondary )
             ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_INITIALIZE;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
         else if(op == 0x14 && len == 2)
@@ -1097,7 +1097,7 @@ int Amigo_Command( int secondary )
 /// @todo  unit ???
             amigo_request_logical_address();
             AMIGOs->state = AMIGO_REQUEST_LOGICAL_ADDRESS;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
     }
@@ -1112,7 +1112,7 @@ int Amigo_Command( int secondary )
             ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_WRITE_BUFFERED;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
     }
@@ -1139,7 +1139,7 @@ int Amigo_Command( int secondary )
             ///TODO we don not support multiple units yet
             AMIGOs->unitNO = *ptr++;
             AMIGOs->state = AMIGO_READ_BUFFERED;
-            EnablePPR(AMIGOp->HEADER.PPR);
+            gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
         }
     }
@@ -1201,7 +1201,7 @@ int Amigo_Execute( int secondary )
     if(secondary != 0x60 && secondary != 0x68)
         return(0);
 
-    DisablePPR(AMIGOp->HEADER.PPR);
+    gpib_disable_PPR(AMIGOp->HEADER.PPR);
 
     if(secondary == 0x60)
     {
@@ -1339,7 +1339,7 @@ int AMIGO_COMMANDS(uint8_t ch)
         }
         if(ch == 0x70 && AMIGO_is_MTA(talking))
         {
-            DisablePPR(AMIGOp->HEADER.PPR);
+            gpib_disable_PPR(AMIGOp->HEADER.PPR);
             return( amigo_cmd_dsj() );
         }
         if(ch == 0x7e && ch == 0x7f)

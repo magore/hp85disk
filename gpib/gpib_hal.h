@@ -75,27 +75,44 @@ void gpib_clock_task( void );
 
 ///@brief changes pin mode to read, then read
 #define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
+
 ///@brief changes pin mode to read
 #define GPIB_PIN_FLOAT(a)   GPIO_PIN_FLOAT(a)
+
 ///@brief changes pin mode to write then set low
 #define GPIB_IO_LOW(a)      GPIO_PIN_LOW(a)
+
 ///@brief changes pin mode to write then set hi
 #define GPIB_IO_HI(a)       GPIO_PIN_HI(a)
+
 ///@brief checks the pin state without changing read/write mode
 #define GPIB_PIN_TST(a)     GPIO_PIN_TST(a)
+
+///@brief checks the port latch state without changing read/write mode
+#define GPIB_LATCH_RD(a)     GPIO_PIN_LATCH_RD(a)
+
 ///@brief changes to state of full 8bit port to out
 #define GPIB_BUS_OUT()      GPIO_PORT_DIR_OUT(GPIO_A)
+
 ///@brief changes to state of full 8bit port to in
 #define GPIB_BUS_IN()       GPIO_PORT_DIR_IN(GPIO_A)
+
 ///@brief changes to state of full 8bit port to in then read
 #define GPIB_BUS_RD()       GPIO_PORT_RD(GPIO_A)
+
 ///@brief changes to state of full 8bit port to out then write
 #define GPIB_BUS_WR(val)    GPIO_PORT_WR(GPIO_A,val)
 
-///@brief the next two are only used to attempt to detect PPR states for logging only
+///@brief We attempt to detect PPR states for logging only
+/// PPR is handled in hardware - but useful if we can detect for logging
+/// Optional - see gpib_detect_PPR
+
 ///@brief read full port pins
+/// Optional - see gpib_detect_PPR
 #define GPIB_PPR_RD()       GPIO_PORT_PINS_RD(GPIO_A)
+
 ///@brief read full port direction register state
+/// Optional - see gpib_detect_PPR
 #define GPIB_PPR_DDR_RD()   GPIO_PORT_DDR_RD(GPIO_A)
 
 #ifndef GPIB_BUS_RD

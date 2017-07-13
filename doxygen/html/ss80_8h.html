@@ -275,7 +275,7 @@ Functions</h2></td></tr>
 ///     requested. Note: QSTAT will indicate any diagnostic results
 ///     in addition to the occurrence of an internal release request.
 ///  6. Enter the reporting state.
-/// </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd><p class="startdd">We do not have RPS or Burst settings yet so we do not clear them/ </p>
+/// </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd><p class="startdd">We do not have RPS or Burst settings yet so we do not clear them/ </p>
 <p class="enddd">We do not have a diagnostic mode so bits ALWAYS get cleared. </p>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -289,8 +289,8 @@ Functions</h2></td></tr>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>FIXME Normally the poweron value is -1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value BEFORE a transfer. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>FIXME If we have a Diagnostic Report bit then we do not clear the Status/Error bits SS80 4-12 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>FIXME Normally the poweron value is -1 (Full volume) However; Any read will try to read the whole volume. (This is Only used in disk copy functions) A setting of 0 will offer the best chance of the error being spotted by the Controller in Charge However; Typically systems will always set this value BEFORE a transfer. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>FIXME If we have a Diagnostic Report bit then we do not clear the Status/Error bits SS80 4-12 </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l01670">1670</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -318,7 +318,7 @@ Functions</h2></td></tr>
 <dd>
 GPIB flags on send error. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> _FLAGS defines for a full list. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd>do something with Parity Check Bit ? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>do something with Parity Check Bit ? </dd></dl>
 </li>
 </ul>
 
@@ -396,12 +396,12 @@ GPIB flags on send error. </dd></dl>
 </ul>
 </li>
 <li>State: TRANSPARENT 0x72<ul>
-<li>Phases: Command, Report <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd></dd></dl>
+<li>Phases: Command, Report <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd></dd></dl>
 </li>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000049">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l01801">1801</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -474,7 +474,7 @@ fatfs error on fail</dd></dl>
 </li>
 <li>Fail will set: qstat = 1, Errors |= ERR_SEEK. </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>Let f_lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>Let f_lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l01529">1529</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -505,8 +505,8 @@ flags on fail. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> defines for a full list.</dd></dl>
 <pre class="fragment">///  Notes:
 ///  We set DPPR on entry and EPPR on exit
-///     DPPR = DisablePPR(SS80p-&gt;HEADER.PPR);
-///     EPPR = EnablePPR(SS80p-&gt;HEADER.PPR);
+///     DPPR = gpib_disable_PPR(SS80p-&gt;HEADER.PPR);
+///     EPPR = gpib_enable_PPR(SS80p-&gt;HEADER.PPR);
 /// 
 ///  Valid OP Codes for Command State (0x65):
 ///     Real Time, General Purpose, Complementary, DIagnostic
@@ -530,32 +530,32 @@ flags on fail. </dd></dl>
 ///     Skip the remaining codes, Wait for Report Phase
 /// </pre> </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>FIXME, In Execute state calls <a class="el" href="ss80_8c.html#acad6de863f4566b55cb8860eb1ffd09c" title="SS80 Locate and Read COmmend. ">SS80_locate_and_read()</a>; </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>FIXME, <a class="el" href="ss80_8c.html#a41ef37ec5419463815401485cfcb62b1" title="SS80 Locate and Write Commend. ">SS80_locate_and_write()</a>; </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>FIXME Important SS80 and CS80 differences regarding Complementary Commands! CS80 pg 2-1 1) In CS80 when only complementary commands appear in a message they will set the system defaults: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (RPS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are TEMPORARY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Only handles 4-byte Addresses at the moment CS80 pg 4-11, 2-14 SS80 pg 4-67 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>FIXME, In Execute state calls <a class="el" href="ss80_8c.html#acad6de863f4566b55cb8860eb1ffd09c" title="SS80 Locate and Read COmmend. ">SS80_locate_and_read()</a>; </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>FIXME, <a class="el" href="ss80_8c.html#a41ef37ec5419463815401485cfcb62b1" title="SS80 Locate and Write Commend. ">SS80_locate_and_write()</a>; </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>FIXME Important SS80 and CS80 differences regarding Complementary Commands! CS80 pg 2-1 1) In CS80 when only complementary commands appear in a message they will set the system defaults: Unit, number, data transfer length, burst size, maximum retry time, and Rotational Position Sensing (RPS) window size and location. 2) If, in the same message, they proceed a Real Time, General Purpose or Diagnostic they are TEMPORARY and just for that single transaction! 3) The exeption to these rules are Set Unit, Set Volume </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Only handles 4-byte Addresses at the moment CS80 pg 4-11, 2-14 SS80 pg 4-67 </dd></dl>
 <p>SS80 pg 4-73</p>
 <p>set unit number TODO We do not support multiple units yet</p>
 <p>TODO We do not support multiple Volumes yet</p>
 <p>Set Return Addressing Type: COMPLEMENTARY Phases: Command, Report SS80 pg 4-81 CS80 4-18,2-24</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>not implmented yet SS80 pg 4-43 CS80 pg 4-20, 2-28 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>FIXME Execute NOW </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>not implmented yet SS80 pg 4-43 CS80 pg 4-20, 2-28 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>FIXME Execute NOW </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>FIXME The class GENERAL PURPOSE suggests yes </dd></dl>
 <p>Validate Key, Set Format Options, Download Type: GENERAL PURPOSE Phases: Command, Report Must be last command in sequence SS80 pg 4-91 CS80 N/A</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>TODO Skip Parameters </dd></dl>
 <p>Initialize Media Type: GENERAL PURPOSE Phases: Command, Report This command must be last and only one SS80 pg 4-33 CS80 4-19,2-26</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>Set Status Mask Type: GENERAL PURPOSE Phases: Command, Report Must be last command in sequence SS80 pg 4-81 CS80 4-15,2-20</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>TODO </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>TODO </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>TODO </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>TODO </dd></dl>
 <p>Initiate Diagnostic Type: DIAGNOSTIC Phases: Command, Report Must be last command in sequence SS80 pg 4-35 CS80 N/A</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>TODO </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>TODO </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00999">999</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -765,7 +765,7 @@ GPIB error flags on fail </dd></dl>
 </div><div class="memdoc">
 
 <p>SS80 nitialize all devices Initialize ALL SS80 devives. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00268">268</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -804,7 +804,7 @@ GPIB error flags on fail. </dd></dl>
 </ul>
 </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>FIXME SS80 4-39 For now we will assume the controller will never do this </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>FIXME SS80 4-39 For now we will assume the controller will never do this </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Return</dd></dl>
 <p>Note: this should not happen unless we exit on errors above </p>
 
@@ -1044,10 +1044,10 @@ GPIB error flags on fail. </dd></dl>
 ///  44 = End of Volume
 /// </pre> <pre class="fragment">@return 0.
 @return GPIB error flags on fail&gt;
-@see gpib.h ERROR_MASK defines for a full list.  </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>add Diagnostic Result status (MSB of byte 5) </dd></dl>
+@see gpib.h ERROR_MASK defines for a full list.  </pre> <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>add Diagnostic Result status (MSB of byte 5) </dd></dl>
 <p>4:63,64</p>
 <p>Note: Diagnostic Result bit is NOT set </p><dl class="section see"><dt>See also</dt><dd>SET ADDRESS in blocks</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Fixme </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Fixme </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00841">841</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -1114,7 +1114,7 @@ GPIB error flags on fail. </dd></dl>
 </div><div class="memdoc">
 
 <p>SS80 GPIB function. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>get this working </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>get this working </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l00121">121</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -1187,7 +1187,7 @@ GPIB error flags on fail. </dd></dl>
 flags on fail </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a> <a class="el" href="gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b">ERROR_MASK</a> defines for a full list or error flags.</dd></dl>
 <pre class="fragment">///  Notes:
-///     DPPR DisablePPR(SS80p-&gt;HEADER.PPR) should already be set at the secondary
+///     DPPR gpib_disable_PPR(SS80p-&gt;HEADER.PPR) should already be set at the secondary
 ///   We do NOT reenable EPPR at any state
 /// 
 ///  Valid OP Codes for Transparent State (0x70 or 0x72):
@@ -1210,18 +1210,18 @@ flags on fail </dd></dl>
 ///     Skip the remaining codes, Wait for Report Phase
 /// </pre> </li>
 </ul>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>FIXME </dd></dl>
 <p>work in progress, unit support</p>
 <p>Note: Enabling Parallel Poll is up to each function Many transparent Commands require Parallel Poll disabled when done</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>FIXME </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>TODO Skip Paramter </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>FIXME SS80 4-11 CS80 4-26, 3-2,3-5 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>TODO Skip Paramter </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000036">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000037">Todo:</a></b></dt><dd>FIXME SS80 4-49 CS80 4-27, 3-7 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>TODO DO NOT EPPR </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>FIXME SS80 4-11 CS80 4-26, 3-2,3-5 </dd></dl>
 <p>TODO We do not support multiple units yet</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>FIXME SS80 4-9 CS80 4-26, 3-6 </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>FIXME SS80 4-9 CS80 4-26, 3-6 </dd></dl>
 <p>TODO We do not support multiple units yet </p>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l01381">1381</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
@@ -1256,7 +1256,7 @@ flags on fail </dd></dl>
 </ul>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>FIXME </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>FIXME </dd></dl>
 
 <p>Definition at line <a class="el" href="ss80_8c_source.html#l01729">1729</a> of file <a class="el" href="ss80_8c_source.html">ss80.c</a>.</p>
 
@@ -1411,7 +1411,7 @@ flags on fail </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 10 2017 19:47:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 12 2017 21:07:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
