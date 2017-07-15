@@ -357,24 +357,30 @@ uint8_t gpib_detect_PP()
 {
     uint8_t ddr, pins;
 
-    if(GPIB_IO_RD(ATN) == 0 && GPIB_IO_RD(EOI) == 0 )
+    if(GPIB_PIN_TST(ATN) == 0 && GPIB_PIN_TST(EOI) == 0 )
     {
+#if SDEBUG
+        //gpib_timer_elapsed_begin();
         ///@brief Bus pin states
         pins = GPIB_PPR_RD();
         ///@brief debugging - ddr bits should be 0xff
         ddr = GPIB_PPR_DDR_RD();
-#if SDEBUG
-        if(debuglevel & (2+0x200))
+        if(debuglevel & (0x200))
             printf("[PPR:%02XH, PIN:%02XH, DDR:%02XH]\n",
                 ppr_reg(), 0xff & pins, 0xff & ddr );
 #endif
 //FIXME do we want to wait for this state to end ?
-#if 0
-        while(GPIB_IO_RD(ATN) == 0 && GPIB_IO_RD(EOI) == 0 )
+#if 1
+        while(GPIB_PIN_TST(ATN) == 0 && GPIB_PIN_TST(EOI) == 0 )
         {
-            if(GPIB_IO_RD(IFC) == 0)
+            if(uart_keyhit(0))
+                break;
+            if(GPIB_PIN_TST(IFC) == 0)
                 break;
         }
+#endif
+#if SDEBUG
+        //gpib_timer_elapsed_end("PP released");
 #endif
         return(1);
     }
@@ -673,14 +679,22 @@ uint16_t gpib_write_byte(uint16_t ch)
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
 
                 gpib_timeout_set(HTIMEOUT);
-                tx_state = GPIB_TX_WAIT_FOR_NRFD_HI;
+                tx_state = GPIB_TX_SET_DAV_LOW;
                 break;
 
-            case GPIB_TX_WAIT_FOR_NRFD_HI:
-                if (GPIB_PIN_TST(NRFD) == 1)
+
+            case GPIB_TX_SET_DAV_LOW:
+                GPIB_IO_LOW(DAV);
+                gpib_timeout_set(HTIMEOUT);
+                tx_state = GPIB_TX_WAIT_FOR_NRFD_LOW;
+                break;
+
+            ///@brief first device is ready
+            case GPIB_TX_WAIT_FOR_NRFD_LOW:
+                if (GPIB_PIN_TST(NRFD) == 0)
                 {
                     gpib_timeout_set(HTIMEOUT);
-                    tx_state = GPIB_TX_SET_DAV_LOW;
+                    tx_state = GPIB_TX_WAIT_FOR_NDAC_HI;
                     break;
                 }
                 if (gpib_timeout_test())
@@ -689,18 +703,13 @@ uint16_t gpib_write_byte(uint16_t ch)
                     tx_state = GPIB_TX_ERROR;
 #if SDEBUG
                     if(debuglevel & (1+4))
-                        printf("<BUS waiting for NRFD==1>\n");
+                        printf("<BUS waiting for NRFD==0>\n");
 #endif
                     break;
                 }
                 break;
 
-            case GPIB_TX_SET_DAV_LOW:
-                GPIB_IO_LOW(DAV);
-                gpib_timeout_set(HTIMEOUT);
-                tx_state = GPIB_TX_WAIT_FOR_NDAC_HI;
-                break;
-
+            ///@brief ALL devices are ready
             case GPIB_TX_WAIT_FOR_NDAC_HI:
                 if(GPIB_PIN_TST(NDAC) == 1)         // Byte byte accepted
                 {
@@ -719,16 +728,18 @@ uint16_t gpib_write_byte(uint16_t ch)
                 }
                 break;
 
+            ///@release BUS
             case GPIB_TX_SET_DAV_HI:
+                GPIB_BUS_IN();                    // Data FLOAT
                 GPIB_PIN_FLOAT(DAV);               // Float DAV
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 GPIB_PIN_FLOAT(ATN );              // ATN FLOAT
                 GPIB_PIN_FLOAT(EOI);               // EOI FLOAT
-                GPIB_BUS_IN();                    // Data FLOAT
                 gpib_timeout_set(HTIMEOUT);
                 tx_state = GPIB_TX_WAIT_FOR_DAV_HI;
                 break;
 
+            ///@wait for DAV to float HI
             case GPIB_TX_WAIT_FOR_DAV_HI:
                 if(GPIO_PIN_TST(DAV) == 1)
                 {
@@ -846,13 +857,11 @@ uint16_t gpib_read_byte(int trace)
     {
         if(uart_keyhit(0))
             break;
+
         if(gpib_detect_PP())
             ch |= PP_FLAG;
 
-        if(uart_keyhit(0))
-            break;
-
-        if(GPIB_IO_RD(IFC) == 0)
+        if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
             break;
@@ -862,12 +871,14 @@ uint16_t gpib_read_byte(int trace)
         switch(rx_state)
         {
             case GPIB_RX_START:
+                ///@brief Signal that we are ready to read
                 GPIB_PIN_FLOAT(NRFD);
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 rx_state = GPIB_RX_WAIT_FOR_DAV_LOW;
                 break;
 
             case GPIB_RX_WAIT_FOR_DAV_LOW:
+                ///@brief Wait for Data Ready acknowledge
                 if ( GPIB_IO_RD(DAV) == 0 )
                     rx_state = GPIB_RX_DAV_IS_LOW;
                 break;
@@ -888,13 +899,27 @@ uint16_t gpib_read_byte(int trace)
                     gpib_trace_display(bus | control_last, TRACE_READ);
                 }
 
-                GPIB_IO_HI(NDAC);   
-                //GPIB_PIN_FLOAT(NDAC);   
+                GPIB_PIN_FLOAT(NDAC);   
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 gpib_timeout_set(HTIMEOUT);
-                rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
+                rx_state = GPIB_RX_WAIT_FOR_NDAC_HI;
                 break;
 
+            ///@brief Wait for NDAC float HI
+            case GPIB_RX_WAIT_FOR_NDAC_HI:
+                if (GPIB_IO_RD(NDAC) == 1)
+                {
+                    gpib_timeout_set(HTIMEOUT);
+                    rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
+                }
+                if (gpib_timeout_test())
+                {
+                    ch |= TIMEOUT_FLAG;
+                    rx_state = GPIB_RX_ERROR;
+                }
+                break;
+
+            ///@brief Wait for DAV HI
             case GPIB_RX_WAIT_FOR_DAV_HI:
                 if (GPIB_IO_RD(DAV) == 1)
                     rx_state = GPIB_RX_DAV_IS_HI;
@@ -905,6 +930,7 @@ uint16_t gpib_read_byte(int trace)
                 }
                 break;
 
+            ///@brief Ready for next byte
             case GPIB_RX_DAV_IS_HI:
                 GPIB_IO_LOW(NDAC);
                 rx_state = GPIB_RX_FINISH;        // DONE

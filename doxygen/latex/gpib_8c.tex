@@ -145,7 +145,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 391 of file gpib.\+c.
+Definition at line 397 of file gpib.\+c.
 
 
 
@@ -171,7 +171,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 411 of file gpib.\+c.
+Definition at line 417 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+c@{gpib.\+c}}
@@ -223,7 +223,7 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity 
 
-Definition at line 458 of file gpib.\+c.
+Definition at line 464 of file gpib.\+c.
 
 
 
@@ -245,7 +245,7 @@ control lines (upper 8 bits)
 \end{DoxyReturn}
 
 
-Definition at line 473 of file gpib.\+c.
+Definition at line 479 of file gpib.\+c.
 
 
 
@@ -267,7 +267,7 @@ control lines (upper 8 bits)
 \end{DoxyReturn}
 
 
-Definition at line 508 of file gpib.\+c.
+Definition at line 514 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode@{gpib\+\_\+decode}}
 \index{gpib\+\_\+decode@{gpib\+\_\+decode}!gpib.\+c@{gpib.\+c}}
@@ -288,7 +288,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1560 of file gpib.\+c.
+Definition at line 1586 of file gpib.\+c.
 
 
 
@@ -322,7 +322,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1380 of file gpib.\+c.
+Definition at line 1406 of file gpib.\+c.
 
 
 
@@ -358,9 +358,7 @@ Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ i
 \end{DoxyReturn}
 
 \end{DoxyItemize}
-\end{DoxyItemize}Bus pin states
-
-debugging -\/ ddr bits should be 0xff 
+\end{DoxyItemize}
 
 Definition at line 356 of file gpib.\+c.
 
@@ -430,7 +428,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 492 of file gpib.\+c.
+Definition at line 498 of file gpib.\+c.
 
 
 
@@ -452,7 +450,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 527 of file gpib.\+c.
+Definition at line 533 of file gpib.\+c.
 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}}
 \index{gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}!gpib.\+c@{gpib.\+c}}
@@ -511,7 +509,17 @@ read 1 byte and control line status from G\+P\+IB B\+US
 \begin{DoxyReturn}{Returns}
 (data bus, control and error status) 
 \end{DoxyReturn}
+Signal that we are ready to read
+
+Wait for Data Ready acknowledge
+
 gpib\+\_\+bus\+\_\+read strips command parity if A\+TN is low at read time
+
+Wait for N\+D\+AC float HI
+
+Wait for D\+AV HI
+
+Ready for next byte
 
 Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \begin{DoxyItemize}
@@ -520,7 +528,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 808 of file gpib.\+c.
+Definition at line 819 of file gpib.\+c.
 
 
 
@@ -609,7 +617,7 @@ status
 \item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1600 of file gpib.\+c.
+Definition at line 1626 of file gpib.\+c.
 
 
 
@@ -847,7 +855,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1429 of file gpib.\+c.
+Definition at line 1455 of file gpib.\+c.
 
 
 
@@ -887,7 +895,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 440 of file gpib.\+c.
+Definition at line 446 of file gpib.\+c.
 
 
 
@@ -963,9 +971,17 @@ Send 1 byte and control line states to G\+P\+IB B\+US.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxySeeAlso}
-See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states 
+See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
 
-Definition at line 581 of file gpib.\+c.
+first device is ready
+
+A\+LL devices are ready
+
+B\+US
+
+for D\+AV to float HI 
+
+Definition at line 587 of file gpib.\+c.
 
 
 
@@ -1047,7 +1063,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1689 of file gpib.\+c.
+Definition at line 1715 of file gpib.\+c.
 
 
 
