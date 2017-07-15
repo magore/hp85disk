@@ -1403,10 +1403,14 @@ void format_drives()
                 //SS80p->VOLUME.MAX_SECTOR;
                 sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER;
                 sprintf(label,"SS80-%d", ss80);
+#ifdef LIF_SUPPORT
                 lif_create_image(SS80p->HEADER.NAME,
                     label,
                     128, 
                     sectors);
+#else
+                printf("please create a SS80 LIF image with %ld sectors and 128 directory sectors\n", sectors);
+#endif
 
             }
             ss80++;
@@ -1428,12 +1432,15 @@ void format_drives()
                  * AMIGOp->GEOMETRY.CYLINDERS;
 
                 sprintf(label,"AMIGO%d", amigo);
+#ifdef LIF_SUPPORT
                 lif_create_image(AMIGOp->HEADER.NAME,
                     label,
                     15, 
                     sectors);
+#else
+                printf("please create a AMIGO LIF image with %ld sectors and 15 directory sectors\n", sectors);
+#endif
             }
-            sprintf(label,"AMIGO%d", amigo);
             amigo++;
         } 
 #endif // #ifdef AMIGO

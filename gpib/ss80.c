@@ -854,6 +854,10 @@ int SS80_send_status( void )
 
     tmp[1] = 0xff;
 
+    // Bit 6 Module addressing
+    // TODO unit support
+    if(SS80s->Errors & ERR_UNIT)
+        SS80_set_extended_status(tmp+2, 6);
 
     // Bit 7 Address Bounds
     if(SS80s->Errors & ERR_SEEK)
@@ -957,13 +961,46 @@ int SS80_describe( void )
     return(0);
 }
 
+/// @brief  Check unit number and assign
+/// @param[in] unit: unit number to assign
+/// @return void
+void SS80_Check_Unit(uint8_t unit)
+{
+    if(unit != 0 && unit != 15)
+    {
+        SS80s->Errors |= ERR_UNIT;
+        if(debuglevel & 1)
+            printf("[SS80 UNIT:%d invalid]\n", (int) unit);
+    }
+    else 
+    {
+        SS80s->unitNO  = unit;
+    }
+}
 
+/// @brief  Check volume number and assign
+/// @param[in] volume: volume number to assign
+/// @return void
+void SS80_Check_Volume(uint8_t volume)
+{
+    if(volume != 0)
+    {
+        SS80s->Errors |= ERR_UNIT;
+        if(debuglevel & 1)
+            printf("[SS80 Volume:%d invalid]\n", (int) volume);
+    }
+    else 
+    {
+        SS80s->volNO  = volume;
+    }
+}
 
 
 /// @brief  Process OP Codes following 0x65 Command State.
 ///
-/// - References: CS80 pg 4-6.
-/// - State: COMMAND STATE.
+/// - References: SS80 pg 3-18, CS80 pg 4-6.
+/// - 3.8 COMPLEMENTARY COMMANDS
+/// - State: COMMAND STATE. 
 /// @return  0 on sucess.
 /// @return flags on fail.
 /// @see gpib.h ERROR_MASK defines for a full list.
@@ -1028,6 +1065,32 @@ int SS80_Command_State( void )
     while(ind < len)
     {
         ch = gpib_iobuff[ind++];
+
+        ///@brief set unit number
+        ///TODO We do not support multiple units yet - we DO track it
+        if(ch >= 0x20 && ch <= 0x2f)
+        {
+            SS80_Check_Unit(ch - 0x20);
+            // TODO unit support
+
+#if SDEBUG
+            if(debuglevel & 32)
+                printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
+#endif
+            continue;
+        }
+
+        ///@brief set volume number
+        ///TODO We do not support multiple Volumes yet - we DO track it
+        if(ch >= 0x40 && ch <= 0x4f)
+        {
+            SS80_Check_Volume(ch - 0x40);
+#if SDEBUG
+            if(debuglevel & 32)
+                printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
+#endif
+            continue;
+        }
 
         if(ch == 0x00)
         {
@@ -1097,17 +1160,6 @@ int SS80_Command_State( void )
             continue;
         }
 
-        ///@brief set unit number
-        ///TODO We do not support multiple units yet
-        if(ch >= 0x20 && ch <= 0x2f)
-        {
-            SS80s->unitNO = ch - 0x20;
-#if SDEBUG
-            if(debuglevel & 32)
-                printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
-#endif
-            continue;
-        }
 
 // SS80 $S80 4-47
         // NO OP
@@ -1143,16 +1195,6 @@ int SS80_Command_State( void )
             continue;
         }
 
-        ///TODO We do not support multiple Volumes yet
-        if(ch >= 0x40 && ch <= 0x4f)
-        {
-            SS80s->volNO = ch - 0x40;
-#if SDEBUG
-            if(debuglevel & 32)
-                printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
-#endif
-            continue;
-        }
 
 /// @brief  Set Return Addressing
 ///  Type: COMPLEMENTARY
@@ -1360,6 +1402,15 @@ int SS80_Command_State( void )
 /// 
 ///  Valid OP Codes for Transparent State (0x70 or 0x72):
 ///     [Unit Complementary] Transparent
+///
+///  UNIVERSAL DEVICE CLEAR
+///  AMIGO CLEAR
+///  CANCEL
+///  CHANNEL INDEPENDENT CLEAR
+///  IDENTIFY
+///  READ LOOPBACK
+///  WRITE LOOPBACK
+///  HP-IB PARITY CHECKING
 /// 
 ///  Transparent Commands done at HP-IB state, NOT here:
 ///    Universal Device Clear
@@ -1376,6 +1427,7 @@ int SS80_Command_State( void )
 /// 
 ///  Unknown OP Code processing rules
 ///     Skip the remaining codes, Wait for Report Phase
+
 /// @endverbatim
 
 int SS80_Transparent_State( void )
@@ -1387,7 +1439,6 @@ int SS80_Transparent_State( void )
     int len;                                      // Size of Data/Op Codes/Parameters read in bytes
     int ind;                                      // Buffer index
     ///@brief  work in progress, unit support
-    int cunit = 0;                                // Unit Complementary , optional
 
 
     gpib_disable_PPR(SS80p->HEADER.PPR);
@@ -1419,7 +1470,14 @@ int SS80_Transparent_State( void )
     while(ind < len)
     {
         ch = gpib_iobuff[ind++];
+        ///TODO We do not support multiple units yet - we DO track it
+        if(ch >= 0x20 && ch <= 0x2f)
+        {
+            SS80_Check_Unit(ch - 0x20);
+            continue;
+        }
 
+        ///@brief HP-IB PARITY CHECKING
         if(ch == 0x01)
         {
 /// @todo TODO
@@ -1436,6 +1494,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-49
 ///  CS80 4-27, 3-7
 
+        ///@breif READ LOOPBACK
         if(ch == 0x02)
         {
             ind += 4;
@@ -1451,6 +1510,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-49
 ///  CS80 4-27, 3-7
 
+        ///@breif WRITE LOOPBACK
         if(ch == 0x03)
         {
             ind += 4;
@@ -1463,17 +1523,14 @@ int SS80_Transparent_State( void )
             break;
         }
 
-        if(ch >= 0x20 && ch <= 0x2f)
-        {
-            cunit = ch - 0x20;
-            continue;
-        }
 
 /// @todo FIXME
 ///  SS80 4-11
 ///  CS80 4-26, 3-2,3-5
 
-        ///TODO We do not support multiple units yet
+        ///@brief CHANNEL INDEPENDENT CLEAR
+        ///TODO We do not support multiple UNITS yet - we DO track it
+        ///TODO The UNIT is optional and has already been set if specified
         if(ch == 0x08)                            // 0x08 OP Code
         {
 #if SDEBUG
@@ -1487,6 +1544,7 @@ int SS80_Transparent_State( void )
 ///  SS80 4-9
 ///  CS80 4-26, 3-6
 
+        ///@brief CANCEL
         ///TODO We do not support multiple units yet
         if(ch == 0x09)                            // 0x09 OP Code
         {
@@ -1494,7 +1552,7 @@ int SS80_Transparent_State( void )
             if(debuglevel & 32)
                 printf("[SS80 Cancel (%d)]\n", SS80s->unitNO);
 #endif
-            return(SS80_Cancel( SS80s->unitNO ));
+            return(SS80_Cancel( ) );
 
             break;
         }
@@ -1600,7 +1658,7 @@ int SS80_Report( void )
 }
 
 
-/// @brief Uiniversal and Decvice clear code
+/// @brief Universal and Decvice clear code
 ///
 /// - Clear Settings to poweron values.
 ///  - Clear Unit, Address, Length, Error Status, qstat
@@ -1798,7 +1856,7 @@ int SS80_Amigo_Clear( void )
 ///  - Phases: Command, Report
 /// @todo  - add code
 
-int SS80_Cancel( int u )
+int SS80_Cancel( )
 {
 /// @todo FIXME
 

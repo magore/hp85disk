@@ -1,0 +1,121 @@
+857,860d856
+<     // Bit 6 Module addressing
+<     // TODO unit support
+<     if(SS80s->Errors & ERR_UNIT)
+<         SS80_set_extended_status(tmp+2, 6);
+969,970c965
+< /// - References: SS80 pg 3-18, CS80 pg 4-6.
+< /// - 3.8 COMPLEMENTARY COMMANDS
+---
+> /// - References: CS80 pg 4-6.
+1037,1066d1031
+<         ///@brief set unit number
+<         ///TODO We do not support multiple units yet - we DO track it
+<         if(ch >= 0x20 && ch <= 0x2f)
+<         {
+<             SS80s->unitNO = ch - 0x20;
+<             // TODO unit support
+<             if(SS80s->unitNO != 0)
+<                 SS80s->Errors |= ERR_UNIT;
+< #if SDEBUG
+<             if(debuglevel & 32)
+<                 printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
+< #endif
+<             continue;
+<         }
+< 
+<         ///@brief set volume number
+<         ///TODO We do not support multiple Volumes yet - we DO track it
+<         if(ch >= 0x40 && ch <= 0x4f)
+<         {
+<             SS80s->volNO = ch - 0x40;
+<             // TODO Volume support
+<             if(SS80s->volNO != 0)
+<                 SS80s->Errors |= ERR_VOLUME;
+< #if SDEBUG
+<             if(debuglevel & 32)
+<                 printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
+< #endif
+<             continue;
+<         }
+< 
+1134a1100,1110
+>         ///@brief set unit number
+>         ///TODO We do not support multiple units yet
+>         if(ch >= 0x20 && ch <= 0x2f)
+>         {
+>             SS80s->unitNO = ch - 0x20;
+> #if SDEBUG
+>             if(debuglevel & 32)
+>                 printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
+> #endif
+>             continue;
+>         }
+1169a1146,1155
+>         ///TODO We do not support multiple Volumes yet
+>         if(ch >= 0x40 && ch <= 0x4f)
+>         {
+>             SS80s->volNO = ch - 0x40;
+> #if SDEBUG
+>             if(debuglevel & 32)
+>                 printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
+> #endif
+>             continue;
+>         }
+1378,1386d1363
+< ///  UNIVERSAL DEVICE CLEAR
+< ///  AMIGO CLEAR
+< ///  CANCEL
+< ///  CHANNEL INDEPENDENT CLEAR
+< ///  IDENTIFY
+< ///  READ LOOPBACK
+< ///  WRITE LOOPBACK
+< ///  HP-IB PARITY CHECKING
+< /// 
+1402d1378
+< 
+1413a1390
+>     int cunit = 0;                                // Unit Complementary , optional
+1445,1454d1421
+<         ///TODO We do not support multiple units yet - we DO track it
+<         if(ch >= 0x20 && ch <= 0x2f)
+<         {
+<             //TODO UNIT support
+<             SS80s->unitNO = ch - 0x20;
+<             // TODO unit support
+<             if(SS80s->unitNO != 0)
+<                 SS80s->Errors |= ERR_UNIT;
+<             continue;
+<         }
+1456d1422
+<         ///@brief HP-IB PARITY CHECKING
+1473d1438
+<         ///@breif READ LOOPBACK
+1489d1453
+<         ///@breif WRITE LOOPBACK
+1501a1466,1470
+>         if(ch >= 0x20 && ch <= 0x2f)
+>         {
+>             cunit = ch - 0x20;
+>             continue;
+>         }
+1507,1509c1476
+<         ///@brief CHANNEL INDEPENDENT CLEAR
+<         ///TODO We do not support multiple UNITS yet - we DO track it
+<         ///TODO The UNIT is optional and has already been set if specified
+---
+>         ///TODO We do not support multiple units yet
+1523d1489
+<         ///@brief CANCEL
+1531c1497
+<             return(SS80_Cancel( ) );
+---
+>             return(SS80_Cancel( SS80s->unitNO ));
+1637c1603
+< /// @brief Universal and Decvice clear code
+---
+> /// @brief Uiniversal and Decvice clear code
+1835c1801
+< int SS80_Cancel( )
+---
+> int SS80_Cancel( int u )

@@ -583,16 +583,9 @@ uint16_t gpib_write_byte(uint16_t ch)
     uint8_t tx_state;
 //printf("write start NRFD:%d, NDAC:%d\n", (int) GPIB_PIN_TST(NRFD),(int) GPIB_PIN_TST(NDAC));
 
-    //GPIB_PIN_FLOAT(DAV);
-    //GPIB_PIN_FLOAT(EOI);
-    GPIB_IO_HI(DAV);
-    GPIB_IO_HI(EOI);
+    GPIB_PIN_FLOAT(DAV);
+    GPIB_PIN_FLOAT(EOI);
     GPIB_BUS_SETTLE();                // Let Data BUS settle
-
-    if(ch & ATN_FLAG)
-        GPIB_IO_LOW(ATN);  // FYI: SS80 never sends ATN from a device
-    if(ch & EOI_FLAG)
-        GPIB_IO_LOW(EOI);  // EOI LOW
 
     GPIB_PIN_FLOAT(IFC);
 
@@ -605,6 +598,7 @@ uint16_t gpib_write_byte(uint16_t ch)
     GPIB_BUS_SETTLE();                            // Let Data BUS settle
 
     tx_state = GPIB_TX_START;
+    gpib_timeout_set(HTIMEOUT);
 //printf("write after init NRFD:%d, NDAC:%d\n", (int) GPIB_PIN_TST(NRFD),(int) GPIB_PIN_TST(NDAC));
 
     while(tx_state != GPIB_TX_DONE )
@@ -612,6 +606,7 @@ uint16_t gpib_write_byte(uint16_t ch)
         if(uart_keyhit(0))
             break;
 
+// breaks write
 #if 0
         if(gpib_detect_PP())
             ch |= PP_FLAG;
@@ -626,46 +621,54 @@ uint16_t gpib_write_byte(uint16_t ch)
         switch(tx_state)
         {
             case GPIB_TX_START:
-                gpib_timeout_set(HTIMEOUT);
-                tx_state = GPIB_TX_WAIT_READY;
+                // Wait for release of DAV and EOI before starting
+                if(GPIB_PIN_TST(DAV) == 1)
+                {
+                    // My testing with various GPIB devices shows that we MUST assert ATN EARLY!
+                    if(ch & ATN_FLAG)
+                        GPIB_IO_LOW(ATN);  // FYI: SS80 never sends ATN from a device
+                    else
+                        GPIB_IO_HI(ATN);
+                    gpib_timeout_set(HTIMEOUT);
+                    tx_state = GPIB_TX_WAIT_READY;
+                }
+                if (gpib_timeout_test())
+                {
+#if SDEBUG
+                    if(debuglevel & (1+4))
+                        printf("<BUS waiting for DAV==1>\n");
+#endif
+                    ch |= TIMEOUT_FLAG;
+                    tx_state = GPIB_TX_ERROR;
+                    break;
+                }
                 break;
 
             case GPIB_TX_WAIT_READY:
+                // Wait for ready condition
                 if(GPIB_PIN_TST(NRFD) == 1 && GPIB_PIN_TST(NDAC) == 0)
                 {
                     gpib_timeout_set(HTIMEOUT);
                     tx_state = GPIB_TX_PUT_DATA;
                 }
-                else
+                if (gpib_timeout_test())
                 {
-#if 0
-                    if (gpib_timeout_test())
-                    {
 #if SDEBUG
                     if(debuglevel & (1+4))
-                        printf("<BUS waiting for NRFD==1>\n");
+                        printf("<BUS waiting for NRFD==1 && NDAC == 0>\n");
 #endif
-                        ch |= TIMEOUT_FLAG;
-                        tx_state = GPIB_TX_ERROR;
-                        break;
-                    }
-#endif
+                    ch |= TIMEOUT_FLAG;
+                    tx_state = GPIB_TX_ERROR;
+                    break;
                 }
                 break;
 
             case GPIB_TX_PUT_DATA:
 
-#if 0
-                if(ch & ATN_FLAG)
-                {
-                    GPIB_IO_LOW(ATN);             // ATN LOW
-                }
-
                 if(ch & EOI_FLAG)
-                {
-                    GPIB_IO_LOW(EOI);             // EOI LOW
-                }
-#endif
+                    GPIB_IO_LOW(EOI);
+                else
+                    GPIB_IO_HI(EOI);
 
                 GPIB_BUS_WR((ch & 0xff) ^ 0xff);  // Write Data inverted
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
@@ -724,10 +727,10 @@ uint16_t gpib_write_byte(uint16_t ch)
                 GPIB_PIN_FLOAT(EOI);               // EOI FLOAT
                 GPIB_BUS_IN();                    // Data FLOAT
                 gpib_timeout_set(HTIMEOUT);
-                tx_state = GPIB_TX_WAIT_FOR_NDAC_LOW;
+                tx_state = GPIB_TX_WAIT_FOR_DAV_HI;
                 break;
 
-            case GPIB_TX_WAIT_FOR_NDAC_LOW:
+            case GPIB_TX_WAIT_FOR_DAV_HI:
                 if(GPIO_PIN_TST(DAV) == 1)
                 {
                     tx_state = GPIB_TX_FINISH;

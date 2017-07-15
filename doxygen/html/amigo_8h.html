@@ -148,8 +148,8 @@ Functions</h2></td></tr>
 <tr class="separator:a17be7a7fc76ab2dc6018801be855e1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab08912bf94dc6e8fbe87990ff41f46f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#ab08912bf94dc6e8fbe87990ff41f46f0">amigo_verify</a> (uint16_t sectors)</td></tr>
 <tr class="separator:ab08912bf94dc6e8fbe87990ff41f46f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85a3d11b8dd534100df603e4c3514c92"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a85a3d11b8dd534100df603e4c3514c92">amigo_format</a> (uint8_t override, uint8_t interleave, uint8_t db)</td></tr>
-<tr class="separator:a85a3d11b8dd534100df603e4c3514c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ba5abeae4d80042dd6c0c70ab3e11e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a7ba5abeae4d80042dd6c0c70ab3e11e2">amigo_format</a> (uint8_t db)</td></tr>
+<tr class="separator:a7ba5abeae4d80042dd6c0c70ab3e11e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4934ae332e168979dbb865a9948de88b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a4934ae332e168979dbb865a9948de88b">amigo_buffered_read</a> (void)</td></tr>
 <tr class="separator:a4934ae332e168979dbb865a9948de88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9c3505761b1afba4f47a6b593527583"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#ae9c3505761b1afba4f47a6b593527583">amigo_buffered_write</a> (void)</td></tr>
@@ -164,6 +164,8 @@ Functions</h2></td></tr>
 <tr class="separator:a6c99539773ae8be3bd4d3bd7493c16d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a437bef06e567b3f6728f2519b9065354"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a437bef06e567b3f6728f2519b9065354">amigo_todo</a> (uint8_t <a class="el" href="gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8">secondary</a>)</td></tr>
 <tr class="separator:a437bef06e567b3f6728f2519b9065354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ddec624752d4e4dfb4b339667d7033b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a4ddec624752d4e4dfb4b339667d7033b">amigo_check_unit</a> (uint8_t unit)</td></tr>
+<tr class="separator:a4ddec624752d4e4dfb4b339667d7033b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fc6f1413199d33d2b32e675dd45e181"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#a2fc6f1413199d33d2b32e675dd45e181">Amigo_Command</a> (int <a class="el" href="gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8">secondary</a>)</td></tr>
 <tr class="separator:a2fc6f1413199d33d2b32e675dd45e181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7271e45e6b3bb6edef42da4ad5bb25a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="amigo_8h.html#ad7271e45e6b3bb6edef42da4ad5bb25a">Amigo_Execute</a> (int <a class="el" href="gpib_8h.html#a25538708e408bbc21b380cb6f709f5d8">secondary</a>)</td></tr>
@@ -192,7 +194,7 @@ Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="amigo_8h_source.html#l00026">26</a> of file <a class="el" href="amigo_8h_source.html">amigo.h</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, and <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, and <a class="el" href="printer_8c_source.html#l00275">printer_read_str()</a>.</p>
 
 </div>
 </div>
@@ -397,6 +399,22 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a4ddec624752d4e4dfb4b339667d7033b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void amigo_check_unit </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae61925e6fb971862b8b0390c67bc164c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -497,7 +515,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a85a3d11b8dd534100df603e4c3514c92"></a>
+<a class="anchor" id="a7ba5abeae4d80042dd6c0c70ab3e11e2"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -505,24 +523,8 @@ Functions</h2></td></tr>
           <td class="memname">int amigo_format </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>override</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>db</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>interleave</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>db</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -710,7 +712,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 12 2017 21:07:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 14 2017 21:57:02 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

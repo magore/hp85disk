@@ -53,7 +53,7 @@ int \hyperlink{amigo_8h_a17be7a7fc76ab2dc6018801be855e1d5}{amigo\+\_\+seek} (\hy
 \item 
 int \hyperlink{amigo_8h_ab08912bf94dc6e8fbe87990ff41f46f0}{amigo\+\_\+verify} (uint16\+\_\+t sectors)
 \item 
-int \hyperlink{amigo_8h_a85a3d11b8dd534100df603e4c3514c92}{amigo\+\_\+format} (uint8\+\_\+t override, uint8\+\_\+t interleave, uint8\+\_\+t db)
+int \hyperlink{amigo_8h_a7ba5abeae4d80042dd6c0c70ab3e11e2}{amigo\+\_\+format} (uint8\+\_\+t db)
 \item 
 int \hyperlink{amigo_8h_a4934ae332e168979dbb865a9948de88b}{amigo\+\_\+buffered\+\_\+read} (void)
 \item 
@@ -68,6 +68,8 @@ int \hyperlink{amigo_8h_ae61925e6fb971862b8b0390c67bc164c}{amigo\+\_\+cmd\+\_\+c
 int \hyperlink{amigo_8h_a6c99539773ae8be3bd4d3bd7493c16d6}{amigo\+\_\+todo\+\_\+op} (uint8\+\_\+t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary}, uint8\+\_\+t opcode, int len)
 \item 
 int \hyperlink{amigo_8h_a437bef06e567b3f6728f2519b9065354}{amigo\+\_\+todo} (uint8\+\_\+t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
+\item 
+void \hyperlink{amigo_8h_a4ddec624752d4e4dfb4b339667d7033b}{amigo\+\_\+check\+\_\+unit} (uint8\+\_\+t unit)
 \item 
 int \hyperlink{amigo_8h_a2fc6f1413199d33d2b32e675dd45e181}{Amigo\+\_\+\+Command} (int \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary})
 \item 
@@ -104,7 +106,7 @@ Definition at line 26 of file amigo.\+h.
 
 
 
-Referenced by G\+P\+I\+B(), and plot\+\_\+echo().
+Referenced by G\+P\+I\+B(), and printer\+\_\+read\+\_\+str().
 
 \index{amigo.\+h@{amigo.\+h}!G\+ET@{G\+ET}}
 \index{G\+ET@{G\+ET}!amigo.\+h@{amigo.\+h}}
@@ -228,6 +230,13 @@ Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), G\+P\+I\+B\+\_\+\+L\+I
 \item[{void}]{}
 \end{DoxyParamCaption}
 )}\hypertarget{amigo_8h_ae9c3505761b1afba4f47a6b593527583}{}\label{amigo_8h_ae9c3505761b1afba4f47a6b593527583}
+\index{amigo.\+h@{amigo.\+h}!amigo\+\_\+check\+\_\+unit@{amigo\+\_\+check\+\_\+unit}}
+\index{amigo\+\_\+check\+\_\+unit@{amigo\+\_\+check\+\_\+unit}!amigo.\+h@{amigo.\+h}}
+\subsubsection[{\texorpdfstring{amigo\+\_\+check\+\_\+unit(uint8\+\_\+t unit)}{amigo_check_unit(uint8_t unit)}}]{\setlength{\rightskip}{0pt plus 5cm}void amigo\+\_\+check\+\_\+unit (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{unit}
+\end{DoxyParamCaption}
+)}\hypertarget{amigo_8h_a4ddec624752d4e4dfb4b339667d7033b}{}\label{amigo_8h_a4ddec624752d4e4dfb4b339667d7033b}
 \index{amigo.\+h@{amigo.\+h}!amigo\+\_\+cmd\+\_\+clear@{amigo\+\_\+cmd\+\_\+clear}}
 \index{amigo\+\_\+cmd\+\_\+clear@{amigo\+\_\+cmd\+\_\+clear}!amigo.\+h@{amigo.\+h}}
 \subsubsection[{\texorpdfstring{amigo\+\_\+cmd\+\_\+clear(void)}{amigo_cmd_clear(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+cmd\+\_\+clear (
@@ -280,13 +289,11 @@ Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S().
 )}\hypertarget{amigo_8h_ad7271e45e6b3bb6edef42da4ad5bb25a}{}\label{amigo_8h_ad7271e45e6b3bb6edef42da4ad5bb25a}
 \index{amigo.\+h@{amigo.\+h}!amigo\+\_\+format@{amigo\+\_\+format}}
 \index{amigo\+\_\+format@{amigo\+\_\+format}!amigo.\+h@{amigo.\+h}}
-\subsubsection[{\texorpdfstring{amigo\+\_\+format(uint8\+\_\+t override, uint8\+\_\+t interleave, uint8\+\_\+t db)}{amigo_format(uint8_t override, uint8_t interleave, uint8_t db)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+format (
+\subsubsection[{\texorpdfstring{amigo\+\_\+format(uint8\+\_\+t db)}{amigo_format(uint8_t db)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+format (
 \begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{override, }
-\item[{uint8\+\_\+t}]{interleave, }
 \item[{uint8\+\_\+t}]{db}
 \end{DoxyParamCaption}
-)}\hypertarget{amigo_8h_a85a3d11b8dd534100df603e4c3514c92}{}\label{amigo_8h_a85a3d11b8dd534100df603e4c3514c92}
+)}\hypertarget{amigo_8h_a7ba5abeae4d80042dd6c0c70ab3e11e2}{}\label{amigo_8h_a7ba5abeae4d80042dd6c0c70ab3e11e2}
 \index{amigo.\+h@{amigo.\+h}!amigo\+\_\+increment@{amigo\+\_\+increment}}
 \index{amigo\+\_\+increment@{amigo\+\_\+increment}!amigo.\+h@{amigo.\+h}}
 \subsubsection[{\texorpdfstring{amigo\+\_\+increment(char $\ast$msg)}{amigo_increment(char *msg)}}]{\setlength{\rightskip}{0pt plus 5cm}int amigo\+\_\+increment (

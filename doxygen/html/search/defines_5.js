@@ -12,6 +12,8 @@ var searchData=
   ['err_5fgpib',['ERR_GPIB',['../defines_8h.html#a42e8438d9e1706b0223fe65237be9fc1',1,'defines.h']]],
   ['err_5fread',['ERR_READ',['../defines_8h.html#a6b84d62f127a9e48e8a98f7c4f50f3ff',1,'defines.h']]],
   ['err_5fseek',['ERR_SEEK',['../defines_8h.html#a3b4ab922133fc255b6823a9f8434f5c1',1,'defines.h']]],
+  ['err_5funit',['ERR_UNIT',['../defines_8h.html#a2ca0cd6c6bbfa96d1615db0642c188cd',1,'defines.h']]],
+  ['err_5fvolume',['ERR_VOLUME',['../defines_8h.html#a20196cd6c3df02e071283c6ce5ceb2c1',1,'defines.h']]],
   ['err_5fwp',['ERR_WP',['../defines_8h.html#a3288f14d5ae8b9aa3ee273aca37970ba',1,'defines.h']]],
   ['err_5fwrite',['ERR_WRITE',['../defines_8h.html#abdfbdd5affe2e04429a4373950c83cd5',1,'defines.h']]],
   ['error_5fmask',['ERROR_MASK',['../gpib_8h.html#a10916ab21f8ba06e447e898790ef6a4b',1,'gpib.h']]]

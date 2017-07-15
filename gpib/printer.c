@@ -251,21 +251,88 @@ int gpib_ascii_request(char *str, uint16_t *status)
     int len = strlen(str);
     return(gpib_write_str( (uint8_t *)str,len,status) );
 }
-    
+   
+
+int printer_send(char *str)
+{
+    uint16_t status = 0;
+    int len;
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+
+    gpib_write_byte(0x20 | 8 | ATN_FLAG);   // SCOPE listen
+    gpib_write_byte(0x40 | 5 | ATN_FLAG);   // PRINTER talk
+    status = 0;
+    printf("sending: %s\n", str);
+    len = gpib_ascii_request((char *)str,&status);
+    printf("sent: %d bytes\n",len);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    return(len);
+}
+
+int printer_read_str(char *str, int len)
+{
+    uint16_t status = 0;
+
+    GPIB_IO_LOW(IFC);
+    delayms(200);
+    GPIB_PIN_FLOAT(IFC);
+    delayms(200);
+    gpib_write_byte(DCL | ATN_FLAG);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+
+    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
+    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
+
+    status = 0;
+    len = gpib_read_str((uint8_t *)str,len, &status);
+    printf("Recieved %d\n",(int)len);
+    printf("Reply:%s",str);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    return(len);
+}
+
+int printer_read()
+{
+    uint16_t ch;
+    long len =0;
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+
+    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
+    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
+
+    while(1)                                      // Main loop, forever
+    {
+        if(uart_keyhit(0))
+            break;
+
+        ch = gpib_read_byte(0);
+        gpib_decode(ch);
+       if(ch & EOI_FLAG)
+            break;
+        ++len;
+    }
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    return(len);
+}
 
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
 void plot_echo( int gpib_address)
 {
-    int len;
-    long count = 0;
-    int ind;
-    uint16_t status,ch;
-    char *ptr,line[128];
+    int ind,len;
 
-    uint16_t bus,buslast;
-    
     printer_close();
 
     while(uart_keyhit(0) )
@@ -281,33 +348,17 @@ void plot_echo( int gpib_address)
 // DEBUGGING
     gpib_decode_header(stdout);
 
-    GPIB_IO_LOW(IFC);
-    delayms(200);
-    GPIB_PIN_FLOAT(IFC);
-    delayms(200);
 
-    printf("ready to write\n");
-    gpib_write_byte(DCL | ATN_FLAG);
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    len = printer_send("*idn?\n");
+    len = printer_read();
+    printf("received:%d\n", len);
 
-    gpib_write_byte(0x20 | 8 | ATN_FLAG);   // SCOPE listen
-    gpib_write_byte(0x40 | 5 | ATN_FLAG);   // PRINTER talk
+    len = printer_send(":HARDcopy:DEVice?\n");
+    len = printer_read();
+    printf("received:%d\n", len);
 
-    status = 0;
-    len = gpib_ascii_request(":HARDcopy:DEVice?\n",&status);
-    printf("sent: %d bytes\n",len);
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-
-    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
-    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
-
-    status = 0;
-    len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
-    printf("Recieved %d\n",(int)len);
-    printf("Reply:%s",gpib_iobuff);
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+    //len = printer_send(":PRINt?\n");
+    len = printer_send(":wav:data?\n");
+    len = printer_read();
+    printf("received:%d\n", len);
 }

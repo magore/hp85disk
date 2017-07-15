@@ -110,6 +110,7 @@ var searchData=
   ['gpib_5ftx_5fset_5fdav_5fhi',['GPIB_TX_SET_DAV_HI',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04a2ae02c759462700c779c9e6e90383d91',1,'gpib.h']]],
   ['gpib_5ftx_5fset_5fdav_5flow',['GPIB_TX_SET_DAV_LOW',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04a83f293bb96f34b5360464e2f910d3074',1,'gpib.h']]],
   ['gpib_5ftx_5fstart',['GPIB_TX_START',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04a0f38fa38044e4624b4e740bb69000e96',1,'gpib.h']]],
+  ['gpib_5ftx_5fwait_5ffor_5fdav_5fhi',['GPIB_TX_WAIT_FOR_DAV_HI',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04aafa56cb5893e904ffd2f840391ae1857',1,'gpib.h']]],
   ['gpib_5ftx_5fwait_5ffor_5fndac_5fhi',['GPIB_TX_WAIT_FOR_NDAC_HI',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04a233783ae46cb8dba39f16378a6b0d1a1',1,'gpib.h']]],
   ['gpib_5ftx_5fwait_5ffor_5fndac_5flow',['GPIB_TX_WAIT_FOR_NDAC_LOW',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04a26f23608134585187e641461834982fb',1,'gpib.h']]],
   ['gpib_5ftx_5fwait_5ffor_5fnrfd_5fhi',['GPIB_TX_WAIT_FOR_NRFD_HI',['../gpib_8h.html#abc6126af1d45847bc59afa0aa3216b04ae1c1dc88b776b5c01b4b95a52b1c5ce9',1,'gpib.h']]],

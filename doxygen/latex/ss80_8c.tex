@@ -59,6 +59,10 @@ int \hyperlink{ss80_8c_ac4c1287b3b8b6a51f5b79522c62d4cea}{S\+S80\+\_\+send\+\_\+
 \begin{DoxyCompactList}\small\item\em S\+S80 send detailed status. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a0942f8e0b65e2fa73e2fca9c4d583050}{S\+S80\+\_\+describe} (void)
 \begin{DoxyCompactList}\small\item\em Send Controler,Unit and Volume description. \end{DoxyCompactList}\item 
+void \hyperlink{ss80_8c_a8376b09bf93bf51cd709348588a14b79}{S\+S80\+\_\+\+Check\+\_\+\+Unit} (uint8\+\_\+t unit)
+\begin{DoxyCompactList}\small\item\em Check unit number and assign. \end{DoxyCompactList}\item 
+void \hyperlink{ss80_8c_aceaf751581eef23e89079ca67043df23}{S\+S80\+\_\+\+Check\+\_\+\+Volume} (uint8\+\_\+t volume)
+\begin{DoxyCompactList}\small\item\em Check volume number and assign. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a98c1da720b6dbe5ee9f13b914a913e17}{S\+S80\+\_\+\+Command\+\_\+\+State} (void)
 \begin{DoxyCompactList}\small\item\em Process OP Codes following 0x65 Command State. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a00d10ca5d1cb70d035927df06e90d36c}{S\+S80\+\_\+\+Transparent\+\_\+\+State} (void)
@@ -68,7 +72,7 @@ int \hyperlink{ss80_8c_a0d2e3b28c642ea89fea6ff6f8ced5a3b}{S\+S80\+\_\+cmd\+\_\+s
 int \hyperlink{ss80_8c_ac79ec07ccb042fcc0419c75f83839beb}{S\+S80\+\_\+\+Report} (void)
 \begin{DoxyCompactList}\small\item\em send Q\+S\+T\+AT \end{DoxyCompactList}\item 
 void \hyperlink{ss80_8c_aa48ccb1479e226dacfaa1dac15631a9d}{Clear\+\_\+\+Common} (int u)
-\begin{DoxyCompactList}\small\item\em Uiniversal and Decvice clear code. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Universal and Decvice clear code. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a212c3034de417ebf080a7624ebe238fa}{S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear} (int u)
 \begin{DoxyCompactList}\small\item\em Channel Independent Clear. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_ac8a4c5dcd550e896c1e7cec68d2f70e5}{S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear} (void)
@@ -77,7 +81,7 @@ int \hyperlink{ss80_8c_a56b8b6028a65ff619ecaee6ea66fa720}{S\+S80\+\_\+\+Selected
 \begin{DoxyCompactList}\small\item\em Selected Device Clear. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_a9efbe3d75e86d4003a9fbf1c8cd69919}{S\+S80\+\_\+\+Amigo\+\_\+\+Clear} (void)
 \begin{DoxyCompactList}\small\item\em Amigo Clear. \end{DoxyCompactList}\item 
-int \hyperlink{ss80_8c_a21c26f6bd9041fecdeed562156b0ae92}{S\+S80\+\_\+\+Cancel} (int u)
+int \hyperlink{ss80_8c_a04c5d9234ffce43a340ca7d927eff062}{S\+S80\+\_\+\+Cancel} ()
 \begin{DoxyCompactList}\small\item\em Cancel transaction. \end{DoxyCompactList}\item 
 int \hyperlink{ss80_8c_aeca10a525f30100d58c856f41297a9ff}{S\+S80\+\_\+increment} (void)
 \begin{DoxyCompactList}\small\item\em Increment position Addressy by one block. \end{DoxyCompactList}\item 
@@ -155,7 +159,7 @@ Definition at line 93 of file ss80.\+c.
 )}\hypertarget{ss80_8c_aa48ccb1479e226dacfaa1dac15631a9d}{}\label{ss80_8c_aa48ccb1479e226dacfaa1dac15631a9d}
 
 
-Uiniversal and Decvice clear code. 
+Universal and Decvice clear code. 
 
 
 \begin{DoxyItemize}
@@ -241,7 +245,7 @@ void T\+O\+DO We do not support multiple units yet T\+O\+DO We do not support mu
 \item[\hyperlink{todo__todo000044}{Todo}]F\+I\+X\+ME If we have a Diagnostic Report bit then we do not clear the Status/\+Error bits S\+S80 4-\/12 \end{DoxyRefDesc}
 
 
-Definition at line 1670 of file ss80.\+c.
+Definition at line 1728 of file ss80.\+c.
 
 
 
@@ -273,7 +277,7 @@ G\+P\+IB flags on send error.
 
 \end{DoxyItemize}
 
-Definition at line 1767 of file ss80.\+c.
+Definition at line 1825 of file ss80.\+c.
 
 
 
@@ -325,11 +329,11 @@ Referenced by S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+locate\+\_\+and\+\_\+read
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+\+Cancel@{S\+S80\+\_\+\+Cancel}}
 \index{S\+S80\+\_\+\+Cancel@{S\+S80\+\_\+\+Cancel}!ss80.\+c@{ss80.\+c}}
-\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+Cancel(int u)}{SS80_Cancel(int u)}}]{\setlength{\rightskip}{0pt plus 5cm}int S\+S80\+\_\+\+Cancel (
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+Cancel()}{SS80_Cancel()}}]{\setlength{\rightskip}{0pt plus 5cm}int S\+S80\+\_\+\+Cancel (
 \begin{DoxyParamCaption}
-\item[{int}]{u}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{ss80_8c_a21c26f6bd9041fecdeed562156b0ae92}{}\label{ss80_8c_a21c26f6bd9041fecdeed562156b0ae92}
+)}\hypertarget{ss80_8c_a04c5d9234ffce43a340ca7d927eff062}{}\label{ss80_8c_a04c5d9234ffce43a340ca7d927eff062}
 
 
 Cancel transaction. 
@@ -351,7 +355,7 @@ Cancel transaction.
 \item[\hyperlink{todo__todo000048}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1801 of file ss80.\+c.
+Definition at line 1859 of file ss80.\+c.
 
 
 
@@ -390,11 +394,65 @@ Channel Independent Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1711 of file ss80.\+c.
+Definition at line 1769 of file ss80.\+c.
 
 
 
 Referenced by S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+\+Check\+\_\+\+Unit@{S\+S80\+\_\+\+Check\+\_\+\+Unit}}
+\index{S\+S80\+\_\+\+Check\+\_\+\+Unit@{S\+S80\+\_\+\+Check\+\_\+\+Unit}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+Check\+\_\+\+Unit(uint8\+\_\+t unit)}{SS80_Check_Unit(uint8_t unit)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+\+Check\+\_\+\+Unit (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{unit}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8c_a8376b09bf93bf51cd709348588a14b79}{}\label{ss80_8c_a8376b09bf93bf51cd709348588a14b79}
+
+
+Check unit number and assign. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em unit} & unit number to assign \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 967 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+\+Check\+\_\+\+Volume@{S\+S80\+\_\+\+Check\+\_\+\+Volume}}
+\index{S\+S80\+\_\+\+Check\+\_\+\+Volume@{S\+S80\+\_\+\+Check\+\_\+\+Volume}!ss80.\+c@{ss80.\+c}}
+\subsubsection[{\texorpdfstring{S\+S80\+\_\+\+Check\+\_\+\+Volume(uint8\+\_\+t volume)}{SS80_Check_Volume(uint8_t volume)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+S80\+\_\+\+Check\+\_\+\+Volume (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{volume}
+\end{DoxyParamCaption}
+)}\hypertarget{ss80_8c_aceaf751581eef23e89079ca67043df23}{}\label{ss80_8c_aceaf751581eef23e89079ca67043df23}
+
+
+Check volume number and assign. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em volume} & volume number to assign \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 984 of file ss80.\+c.
+
+
+
+Referenced by S\+S80\+\_\+\+Command\+\_\+\+State().
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+cmd\+\_\+seek@{S\+S80\+\_\+cmd\+\_\+seek}}
 \index{S\+S80\+\_\+cmd\+\_\+seek@{S\+S80\+\_\+cmd\+\_\+seek}!ss80.\+c@{ss80.\+c}}
@@ -426,7 +484,7 @@ fatfs error on fail
 \item[\hyperlink{todo__todo000041}{Todo}]Let f\+\_\+lseek do bounds checking instead ??? Will we read or write past the end of the disk ?? \end{DoxyRefDesc}
 
 
-Definition at line 1529 of file ss80.\+c.
+Definition at line 1587 of file ss80.\+c.
 
 
 
@@ -445,7 +503,8 @@ Process OP Codes following 0x65 Command State.
 
 
 \begin{DoxyItemize}
-\item References\+: C\+S80 pg 4-\/6.
+\item References\+: S\+S80 pg 3-\/18, C\+S80 pg 4-\/6.
+\item 3.\+8 C\+O\+M\+P\+L\+E\+M\+E\+N\+T\+A\+RY C\+O\+M\+M\+A\+N\+DS
 \item State\+: C\+O\+M\+M\+A\+ND S\+T\+A\+TE. \begin{DoxyReturn}{Returns}
 0 on sucess. 
 
@@ -485,6 +544,10 @@ flags on fail.
 \item[\hyperlink{todo__todo000014}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
+set unit number T\+O\+DO We do not support multiple units yet -\/ we DO track it
+
+set volume number T\+O\+DO We do not support multiple Volumes yet -\/ we DO track it
+
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000015}{Todo}]F\+I\+X\+ME, In Execute state calls \hyperlink{ss80_8c_acad6de863f4566b55cb8860eb1ffd09c}{S\+S80\+\_\+locate\+\_\+and\+\_\+read()}; \end{DoxyRefDesc}
 
@@ -502,10 +565,6 @@ flags on fail.
 
 
 S\+S80 pg 4-\/73
-
-set unit number T\+O\+DO We do not support multiple units yet
-
-T\+O\+DO We do not support multiple Volumes yet
 
 Set Return Addressing Type\+: C\+O\+M\+P\+L\+E\+M\+E\+N\+T\+A\+RY Phases\+: Command, Report S\+S80 pg 4-\/81 C\+S80 4-\/18,2-\/24
 
@@ -565,7 +624,7 @@ Initiate Diagnostic Type\+: D\+I\+A\+G\+N\+O\+S\+T\+IC Phases\+: Command, Report
 \item[\hyperlink{todo__todo000031}{Todo}]T\+O\+DO \end{DoxyRefDesc}
 
 
-Definition at line 999 of file ss80.\+c.
+Definition at line 1036 of file ss80.\+c.
 
 
 
@@ -603,7 +662,7 @@ S\+S80 C\+O\+M\+M\+A\+N\+DS States.
 
 \end{DoxyItemize}
 
-Definition at line 1865 of file ss80.\+c.
+Definition at line 1923 of file ss80.\+c.
 
 
 
@@ -633,7 +692,7 @@ flags on fail. @ \hyperlink{gpib_8h}{gpib.\+h} E\+R\+R\+O\+R\+\_\+\+M\+A\+SK def
 \end{DoxyReturn}
 
 
-Definition at line 914 of file ss80.\+c.
+Definition at line 918 of file ss80.\+c.
 
 
 
@@ -690,7 +749,7 @@ G\+P\+IB flags on send error
 \end{DoxySeeAlso}
 
 
-Definition at line 1834 of file ss80.\+c.
+Definition at line 1892 of file ss80.\+c.
 
 
 
@@ -746,7 +805,7 @@ Increment position Addressy by one block.
 
 \end{DoxyItemize}
 
-Definition at line 1816 of file ss80.\+c.
+Definition at line 1874 of file ss80.\+c.
 
 \index{ss80.\+c@{ss80.\+c}!S\+S80\+\_\+init@{S\+S80\+\_\+init}}
 \index{S\+S80\+\_\+init@{S\+S80\+\_\+init}!ss80.\+c@{ss80.\+c}}
@@ -888,7 +947,7 @@ send Q\+S\+T\+AT
 @see: gpib.h ERROR_MASK defines for a full list.  \end{DoxyVerb}
  
 
-Definition at line 1577 of file ss80.\+c.
+Definition at line 1635 of file ss80.\+c.
 
 
 
@@ -921,7 +980,7 @@ Selected Device Clear.
 \end{DoxyReturn}
 
 
-Definition at line 1747 of file ss80.\+c.
+Definition at line 1805 of file ss80.\+c.
 
 
 
@@ -1181,6 +1240,15 @@ flags on fail
 /// 
 ///  Valid OP Codes for Transparent State (0x70 or 0x72):
 ///     [Unit Complementary] Transparent
+///
+///  UNIVERSAL DEVICE CLEAR
+///  AMIGO CLEAR
+///  CANCEL
+///  CHANNEL INDEPENDENT CLEAR
+///  IDENTIFY
+///  READ LOOPBACK
+///  WRITE LOOPBACK
+///  HP-IB PARITY CHECKING
 /// 
 ///  Transparent Commands done at HP-IB state, NOT here:
 ///    Universal Device Clear
@@ -1197,6 +1265,7 @@ flags on fail
 /// 
 ///  Unknown OP Code processing rules
 ///     Skip the remaining codes, Wait for Report Phase
+
 /// \end{DoxyVerb}
  
 \end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
@@ -1211,6 +1280,10 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000033}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
+T\+O\+DO We do not support multiple units yet -\/ we DO track it
+
+H\+P-\/\+IB P\+A\+R\+I\+TY C\+H\+E\+C\+K\+I\+NG
+
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000034}{Todo}]T\+O\+DO Skip Paramter \end{DoxyRefDesc}
 
@@ -1218,6 +1291,8 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000035}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
 
+
+R\+E\+AD L\+O\+O\+P\+B\+A\+CK
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000036}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
@@ -1227,6 +1302,8 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000037}{Todo}]F\+I\+X\+ME S\+S80 4-\/49 C\+S80 4-\/27, 3-\/7 \end{DoxyRefDesc}
 
 
+W\+R\+I\+TE L\+O\+O\+P\+B\+A\+CK
+
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000038}{Todo}]T\+O\+DO DO N\+OT E\+P\+PR \end{DoxyRefDesc}
 
@@ -1235,15 +1312,15 @@ Note\+: Enabling Parallel Poll is up to each function Many transparent Commands 
 \item[\hyperlink{todo__todo000039}{Todo}]F\+I\+X\+ME S\+S80 4-\/11 C\+S80 4-\/26, 3-\/2,3-\/5 \end{DoxyRefDesc}
 
 
-T\+O\+DO We do not support multiple units yet
+C\+H\+A\+N\+N\+EL I\+N\+D\+E\+P\+E\+N\+D\+E\+NT C\+L\+E\+AR T\+O\+DO We do not support multiple U\+N\+I\+TS yet -\/ we DO track it T\+O\+DO The U\+N\+IT is optional and has already been set if specified
 
 \begin{DoxyRefDesc}{Todo}
 \item[\hyperlink{todo__todo000040}{Todo}]F\+I\+X\+ME S\+S80 4-\/9 C\+S80 4-\/26, 3-\/6 \end{DoxyRefDesc}
 
 
-T\+O\+DO We do not support multiple units yet 
+C\+A\+N\+C\+EL T\+O\+DO We do not support multiple units yet 
 
-Definition at line 1381 of file ss80.\+c.
+Definition at line 1433 of file ss80.\+c.
 
 
 
@@ -1279,7 +1356,7 @@ Universal Device C\+Lear.
 \item[\hyperlink{todo__todo000045}{Todo}]F\+I\+X\+ME \end{DoxyRefDesc}
 
 
-Definition at line 1729 of file ss80.\+c.
+Definition at line 1787 of file ss80.\+c.
 
 
 

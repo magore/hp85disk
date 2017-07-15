@@ -132,6 +132,12 @@ Functions</h2></td></tr>
 <tr class="separator:a72686fe9d4969430b6ef1f1fe68a6efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55a72ff91a224daa0d19005628621df6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a55a72ff91a224daa0d19005628621df6">gpib_ascii_request</a> (char *str, uint16_t *status)</td></tr>
 <tr class="separator:a55a72ff91a224daa0d19005628621df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0cf260d3ab4aaa927a133a916e98363"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#ac0cf260d3ab4aaa927a133a916e98363">printer_send</a> (char *str)</td></tr>
+<tr class="separator:ac0cf260d3ab4aaa927a133a916e98363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d8d79ddd7e5f32e1c57e40bfe7a6644"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a5d8d79ddd7e5f32e1c57e40bfe7a6644">printer_read_str</a> (char *str, int len)</td></tr>
+<tr class="separator:a5d8d79ddd7e5f32e1c57e40bfe7a6644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51f6c825cbc447f3c4b3cb893b471bce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#a51f6c825cbc447f3c4b3cb893b471bce">printer_read</a> ()</td></tr>
+<tr class="separator:a51f6c825cbc447f3c4b3cb893b471bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printer_8c.html#ab0733357c2cffe1aaf6dfcf9240f86fb">plot_echo</a> (int gpib_address)</td></tr>
 <tr class="memdesc:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruct Instrument to send Plot data.  <a href="#ab0733357c2cffe1aaf6dfcf9240f86fb">More...</a><br /></td></tr>
 <tr class="separator:ab0733357c2cffe1aaf6dfcf9240f86fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,7 +187,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00249">249</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>.</p>
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00256">printer_send()</a>.</p>
 
 </div>
 </div>
@@ -205,7 +211,7 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p>Definition at line <a class="el" href="printer_8c_source.html#l00259">259</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00332">332</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
 <p>Referenced by <a class="el" href="gpib__tests_8c_source.html#l00059">gpib_tests()</a>.</p>
 
@@ -266,7 +272,7 @@ Variables</h2></td></tr>
 
 <p>Definition at line <a class="el" href="printer_8c_source.html#l00115">115</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
 
-<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00328">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00931">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00259">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00040">printer_open()</a>.</p>
+<p>Referenced by <a class="el" href="gpib__task_8c_source.html#l00606">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00328">gpib_init_devices()</a>, <a class="el" href="gpib__task_8c_source.html#l00931">listen_cleanup()</a>, <a class="el" href="printer_8c_source.html#l00332">plot_echo()</a>, and <a class="el" href="printer_8c_source.html#l00040">printer_open()</a>.</p>
 
 </div>
 </div>
@@ -349,6 +355,73 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a51f6c825cbc447f3c4b3cb893b471bce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int printer_read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00301">301</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00332">plot_echo()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5d8d79ddd7e5f32e1c57e40bfe7a6644"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int printer_read_str </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00275">275</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0cf260d3ab4aaa927a133a916e98363"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int printer_send </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="printer_8c_source.html#l00256">256</a> of file <a class="el" href="printer_8c_source.html">printer.c</a>.</p>
+
+<p>Referenced by <a class="el" href="printer_8c_source.html#l00332">plot_echo()</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a49cd5ed3c7bfd27122f36ad0f9f16fac"></a>
 <div class="memitem">
 <div class="memproto">
@@ -417,7 +490,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 12 2017 21:07:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 14 2017 21:57:02 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

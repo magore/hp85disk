@@ -31,6 +31,12 @@ int \hyperlink{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{P\+R\+I\+N\+T\+E\+R
 \begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary Command Printer commands. \end{DoxyCompactList}\item 
 int \hyperlink{printer_8c_a55a72ff91a224daa0d19005628621df6}{gpib\+\_\+ascii\+\_\+request} (char $\ast$str, uint16\+\_\+t $\ast$status)
 \item 
+int \hyperlink{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}{printer\+\_\+send} (char $\ast$str)
+\item 
+int \hyperlink{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}{printer\+\_\+read\+\_\+str} (char $\ast$str, int len)
+\item 
+int \hyperlink{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}{printer\+\_\+read} ()
+\item 
 void \hyperlink{printer_8c_ab0733357c2cffe1aaf6dfcf9240f86fb}{plot\+\_\+echo} (int gpib\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Instruct Instrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -71,7 +77,7 @@ Definition at line 249 of file printer.\+c.
 
 
 
-Referenced by plot\+\_\+echo().
+Referenced by printer\+\_\+send().
 
 \index{printer.\+c@{printer.\+c}!plot\+\_\+echo@{plot\+\_\+echo}}
 \index{plot\+\_\+echo@{plot\+\_\+echo}!printer.\+c@{printer.\+c}}
@@ -92,7 +98,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 259 of file printer.\+c.
+Definition at line 332 of file printer.\+c.
 
 
 
@@ -243,6 +249,48 @@ Definition at line 40 of file printer.\+c.
 
 
 Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
+
+\index{printer.\+c@{printer.\+c}!printer\+\_\+read@{printer\+\_\+read}}
+\index{printer\+\_\+read@{printer\+\_\+read}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{printer\+\_\+read()}{printer_read()}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}{}\label{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}
+
+
+Definition at line 301 of file printer.\+c.
+
+
+
+Referenced by plot\+\_\+echo().
+
+\index{printer.\+c@{printer.\+c}!printer\+\_\+read\+\_\+str@{printer\+\_\+read\+\_\+str}}
+\index{printer\+\_\+read\+\_\+str@{printer\+\_\+read\+\_\+str}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{printer\+\_\+read\+\_\+str(char $\ast$str, int len)}{printer_read_str(char *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+read\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}{}\label{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}
+
+
+Definition at line 275 of file printer.\+c.
+
+\index{printer.\+c@{printer.\+c}!printer\+\_\+send@{printer\+\_\+send}}
+\index{printer\+\_\+send@{printer\+\_\+send}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{printer\+\_\+send(char $\ast$str)}{printer_send(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+send (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}{}\label{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}
+
+
+Definition at line 256 of file printer.\+c.
+
+
+
+Referenced by plot\+\_\+echo().
 
 \index{printer.\+c@{printer.\+c}!receive\+\_\+plot\+\_\+flush@{receive\+\_\+plot\+\_\+flush}}
 \index{receive\+\_\+plot\+\_\+flush@{receive\+\_\+plot\+\_\+flush}!printer.\+c@{printer.\+c}}

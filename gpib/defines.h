@@ -80,7 +80,9 @@ typedef struct stat stat_t;
 #define ERR_SEEK   0b00000100   //< Seek Error
 #define ERR_WP     0b00001000   //< Write Protect Error
 #define ERR_DISK   0b00010000   //< Disk Error
-#define ERR_GPIB   0b00100000   //<GPIB Error
+#define ERR_GPIB   0b00100000   //< GPIB Error
+#define ERR_UNIT   0b01000000   //< Unit number Error
+#define ERR_VOLUME 0b10000000   //< Volume number Error
 
 // =============================================
 ///@brief Fault bit and Message type
