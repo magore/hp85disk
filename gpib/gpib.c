@@ -581,7 +581,6 @@ uint16_t gpib_handshake_port_read()
 uint16_t gpib_write_byte(uint16_t ch)
 {
     uint8_t tx_state;
-//printf("write start NRFD:%d, NDAC:%d\n", (int) GPIB_PIN_TST(NRFD),(int) GPIB_PIN_TST(NDAC));
 
     GPIB_PIN_FLOAT(DAV);
     GPIB_PIN_FLOAT(EOI);
@@ -889,7 +888,8 @@ uint16_t gpib_read_byte(int trace)
                     gpib_trace_display(bus | control_last, TRACE_READ);
                 }
 
-                GPIB_PIN_FLOAT(NDAC);   
+                GPIB_IO_HI(NDAC);   
+                //GPIB_PIN_FLOAT(NDAC);   
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 gpib_timeout_set(HTIMEOUT);
                 rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
@@ -911,7 +911,6 @@ uint16_t gpib_read_byte(int trace)
                 break;
 
             case GPIB_RX_FINISH:
-                GPIB_IO_LOW(NDAC);
                 rx_state = GPIB_RX_DONE;
                 break;
 
