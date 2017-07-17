@@ -14,6 +14,7 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}printer.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}delay.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}controller.\+h\char`\"{}}\\*
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,14 +30,6 @@ void \hyperlink{printer_8c_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\+\_\+buffe
 \begin{DoxyCompactList}\small\item\em Buffer Plotter data and flush when buffer is full. \end{DoxyCompactList}\item 
 int \hyperlink{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary Command Printer commands. \end{DoxyCompactList}\item 
-int \hyperlink{printer_8c_aac124dc0290a643bf1e950485a8dfb81}{controller\+\_\+send\+\_\+str} (uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)
-\begin{DoxyCompactList}\small\item\em Controller Mode send A\+S\+C\+II string Stops sending with E\+OI. \end{DoxyCompactList}\item 
-int \hyperlink{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}{controller\+\_\+read\+\_\+str} (uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)
-\begin{DoxyCompactList}\small\item\em Controller Mode read A\+S\+C\+II string Stops reading at E\+OI. \end{DoxyCompactList}\item 
-int \hyperlink{printer_8c_af027c36d1fffacf39a7a691fa78695c1}{controller\+\_\+read\+\_\+trace} (uint8\+\_\+t from, uint8\+\_\+t to)
-\begin{DoxyCompactList}\small\item\em Controller Mode T\+R\+A\+CE read for debugging Stops reading at E\+OI. \end{DoxyCompactList}\item 
-void \hyperlink{printer_8c_a4132447e49c7066515471e30958151d0}{controller\+\_\+ifc} ()
-\item 
 void \hyperlink{printer_8c_ab0733357c2cffe1aaf6dfcf9240f86fb}{plot\+\_\+echo} (int gpib\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Instruct Instrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -63,119 +56,6 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+VR.
 
 
 \subsection{Function Documentation}
-\index{printer.\+c@{printer.\+c}!controller\+\_\+ifc@{controller\+\_\+ifc}}
-\index{controller\+\_\+ifc@{controller\+\_\+ifc}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{controller\+\_\+ifc()}{controller_ifc()}}]{\setlength{\rightskip}{0pt plus 5cm}void controller\+\_\+ifc (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_a4132447e49c7066515471e30958151d0}{}\label{printer_8c_a4132447e49c7066515471e30958151d0}
-
-
-Definition at line 340 of file printer.\+c.
-
-\index{printer.\+c@{printer.\+c}!controller\+\_\+read\+\_\+str@{controller\+\_\+read\+\_\+str}}
-\index{controller\+\_\+read\+\_\+str@{controller\+\_\+read\+\_\+str}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{controller\+\_\+read\+\_\+str(uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)}{controller_read_str(uint8_t from, uint8_t to, uint8_t *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+read\+\_\+str (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{from, }
-\item[{uint8\+\_\+t}]{to, }
-\item[{uint8\+\_\+t $\ast$}]{str, }
-\item[{int}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}{}\label{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}
-
-
-Controller Mode read A\+S\+C\+II string Stops reading at E\+OI. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
-\hline
-\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
-\hline
-\mbox{\tt in}  & {\em str} & string to read \\
-\hline
-\mbox{\tt in}  & {\em len} & maximum number of bytes to read \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-number of bytes read 
-\end{DoxyReturn}
-
-
-Definition at line 284 of file printer.\+c.
-
-
-
-Referenced by plot\+\_\+echo().
-
-\index{printer.\+c@{printer.\+c}!controller\+\_\+read\+\_\+trace@{controller\+\_\+read\+\_\+trace}}
-\index{controller\+\_\+read\+\_\+trace@{controller\+\_\+read\+\_\+trace}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{controller\+\_\+read\+\_\+trace(uint8\+\_\+t from, uint8\+\_\+t to)}{controller_read_trace(uint8_t from, uint8_t to)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+read\+\_\+trace (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{from, }
-\item[{uint8\+\_\+t}]{to}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_af027c36d1fffacf39a7a691fa78695c1}{}\label{printer_8c_af027c36d1fffacf39a7a691fa78695c1}
-
-
-Controller Mode T\+R\+A\+CE read for debugging Stops reading at E\+OI. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
-\hline
-\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-number of bytes read 
-\end{DoxyReturn}
-
-
-Definition at line 312 of file printer.\+c.
-
-
-
-Referenced by plot\+\_\+echo().
-
-\index{printer.\+c@{printer.\+c}!controller\+\_\+send\+\_\+str@{controller\+\_\+send\+\_\+str}}
-\index{controller\+\_\+send\+\_\+str@{controller\+\_\+send\+\_\+str}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{controller\+\_\+send\+\_\+str(uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)}{controller_send_str(uint8_t from, uint8_t to, uint8_t *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+send\+\_\+str (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{from, }
-\item[{uint8\+\_\+t}]{to, }
-\item[{uint8\+\_\+t $\ast$}]{str, }
-\item[{int}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_aac124dc0290a643bf1e950485a8dfb81}{}\label{printer_8c_aac124dc0290a643bf1e950485a8dfb81}
-
-
-Controller Mode send A\+S\+C\+II string Stops sending with E\+OI. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
-\hline
-\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
-\hline
-\mbox{\tt in}  & {\em str} & string to send \\
-\hline
-\mbox{\tt in}  & {\em len} & number of bytes to send (if 0 then length of string) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-number of bytes sent 
-\end{DoxyReturn}
-debugging 
-
-Definition at line 256 of file printer.\+c.
-
-
-
-Referenced by plot\+\_\+echo().
-
 \index{printer.\+c@{printer.\+c}!plot\+\_\+echo@{plot\+\_\+echo}}
 \index{plot\+\_\+echo@{plot\+\_\+echo}!printer.\+c@{printer.\+c}}
 \subsubsection[{\texorpdfstring{plot\+\_\+echo(int gpib\+\_\+address)}{plot_echo(int gpib_address)}}]{\setlength{\rightskip}{0pt plus 5cm}void plot\+\_\+echo (
@@ -195,7 +75,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 355 of file printer.\+c.
+Definition at line 253 of file printer.\+c.
 
 
 
@@ -227,7 +107,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 183 of file printer.\+c.
+Definition at line 184 of file printer.\+c.
 
 
 
@@ -260,7 +140,7 @@ void F\+YI\+: for the H\+P54645D plots end with\+: pd;pu;pu;sp0; This gets calle
 \end{DoxyReturn}
 
 
-Definition at line 115 of file printer.\+c.
+Definition at line 116 of file printer.\+c.
 
 
 
@@ -284,7 +164,7 @@ G\+P\+IB Secondary Command Printer commands.
 \end{DoxyReturn}
 
 
-Definition at line 224 of file printer.\+c.
+Definition at line 225 of file printer.\+c.
 
 
 
@@ -309,7 +189,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 95 of file printer.\+c.
+Definition at line 96 of file printer.\+c.
 
 
 
@@ -341,7 +221,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 40 of file printer.\+c.
+Definition at line 41 of file printer.\+c.
 
 
 
@@ -375,7 +255,7 @@ file handle
 \end{DoxyReturn}
 sync filesystem after every write 
 
-Definition at line 148 of file printer.\+c.
+Definition at line 149 of file printer.\+c.
 
 
 
@@ -393,7 +273,7 @@ Plotter file data structure used for saving plot data.
 
 
 
-Definition at line 27 of file printer.\+c.
+Definition at line 28 of file printer.\+c.
 
 \index{printer.\+c@{printer.\+c}!plot\+\_\+str@{plot\+\_\+str}}
 \index{plot\+\_\+str@{plot\+\_\+str}!printer.\+c@{printer.\+c}}
@@ -404,5 +284,5 @@ Plotter G\+P\+IB test vector.
 
 
 
-Definition at line 30 of file printer.\+c.
+Definition at line 31 of file printer.\+c.
 

@@ -22,6 +22,7 @@
 #include "printer.h"
 #include "posix.h"
 #include "delay.h"
+#include "controller.h"
 
 ///@brief Plotter file data structure used for saving plot data.
 PRINTERStateType plot = { 0 };
@@ -246,115 +247,12 @@ int PRINTER_COMMANDS(uint8_t ch)
     return(0);
 }
 
-/// @brief  Controller Mode send ASCII string
-/// Stops sending with EOI
-/// @param[in] from: GPIB talker
-/// @param[in] to: GPIB listener
-/// @param[in] str: string to send
-/// @param[in] len: number of bytes to send (if 0 then length of string)
-/// @return  number of bytes sent
-int controller_send_str(uint8_t from, uint8_t to, uint8_t *str, int len)
-{
-    uint16_t status = 0;
-    int size;
-    if(len == 0)
-        len = strlen(str);
-/// debugging
-    printf("Send: %s\n", str);
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-
-    gpib_write_byte(0x20 | to | ATN_FLAG);   // SCOPE listen
-    gpib_write_byte(0x40 | from | ATN_FLAG);   // PRINTER talk
-    status = EOI_FLAG;
-    size = gpib_write_str((char *)str, len, &status);
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-    return(len);
-}
-
-/// @brief  Controller Mode read ASCII string
-/// Stops reading at EOI
-/// @param[in] from: GPIB talker
-/// @param[in] to: GPIB listener
-/// @param[in] str: string to read
-/// @param[in] len: maximum number of bytes to read
-/// @return  number of bytes read
-int controller_read_str(uint8_t from, uint8_t to, uint8_t *str, int len)
-{
-    uint16_t status;
-    int size;
-
-    gpib_write_byte(0x40 | from | ATN_FLAG);   // SCOPE talk
-    gpib_write_byte(0x20 | to | ATN_FLAG);   // PRINTER listen
-
-    status = EOI_FLAG;
-    size = gpib_read_str((uint8_t *)str,len, &status);
-    if(size > 0)
-    {
-        if(size < len)
-            str[size] = 0;
-        else
-            str[len-1] = 0;
-    }
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-    return(size);
-}
-
-/// @brief  Controller Mode TRACE read for debugging
-/// Stops reading at EOI
-/// @param[in] from: GPIB talker
-/// @param[in] to: GPIB listener
-/// @return  number of bytes read
-int controller_read_trace(uint8_t from, uint8_t to)
-{
-    uint16_t ch;
-    long len =0;
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-
-    gpib_write_byte(0x40 | from | ATN_FLAG);   // SCOPE talk
-    gpib_write_byte(0x20 | to | ATN_FLAG);   // PRINTER listen
-
-    while(1)                                      // Main loop, forever
-    {
-        if(uart_keyhit(0))
-            break;
-
-        ch = gpib_read_byte(0);
-        gpib_decode(ch);
-       if(ch & EOI_FLAG)
-            break;
-        ++len;
-    }
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-    return(len);
-}
-
-void controller_ifc()
-{
-    GPIB_IO_LOW(IFC);
-    delayms(200);
-    GPIB_PIN_FLOAT(IFC);
-    delayms(200);
-    gpib_write_byte(DCL | ATN_FLAG);
-
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-}
-
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
 void plot_echo( int gpib_address)
 {
-    uint8_t line[256];
+    char line[256];
 
     int from = find_type(PRINTER_TYPE);
     int to = gpib_address;
@@ -370,6 +268,8 @@ void plot_echo( int gpib_address)
 
     while(uart_keyhit(0) )
         putchar( uart_rx_byte(0) );
+
+    //controller_ifc();
         
 // DEBUGGING
     gpib_decode_header(stdout);
@@ -382,7 +282,9 @@ void plot_echo( int gpib_address)
     len = controller_read_str(to, from, line, 256);
     printf("received:[%d] %s\n", len, line);
 
-    //len = controller_send_str(":PRINt?\n",0);
+    //len = controller_send_str(from,to,":PRINt?\n",0);
+    //len = controller_read_str(to, from, line, 256);
+
     len = controller_send_str(from,to,":wav:data?\n",0);
     len = controller_read_trace(to,from);
     printf("received:[%d] bytes\n", len);

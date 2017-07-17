@@ -1,33 +1,10 @@
-
-rm -f -r hardware/hal.o hardware/ram.o hardware/delay.o hardware/rs232.o hardware/spi.o hardware/TWI_AVR8.o hardware/rtc.o lib/stringsup.o lib/timer_hal.o lib/timer.o lib/time.o lib/queue.o printf/printf.o printf/mathio.o fatfs/ff.o fatfs/option/syscall.o fatfs/option/unicode.o fatfs.hal/diskio.o fatfs.hal/mmc.o fatfs.hal/mmc_hal.o fatfs.sup/fatfs_sup.o fatfs.sup/fatfs_tests.o posix/posix.o posix/posix_tests.o gpib/gpib_hal.o gpib/gpib.o gpib/gpib_task.o gpib/gpib_tests.o gpib/ss80.o gpib/amigo.o gpib/printer.o gpib/drives.o lif/lifutils.o main.o  hardware/baudrate gpib\.* dep/* | exit 0
-make -C lif clean
-make[1]: Entering directory '/share/embedded/GPIB/mike/hp85disk/lif'
-rm -f lif
-make[1]: Leaving directory '/share/embedded/GPIB/mike/hp85disk/lif'
-make -C printf clean
-make[1]: Entering directory '/share/embedded/GPIB/mike/hp85disk/printf'
-rm -f test_printf n2a
-make[1]: Leaving directory '/share/embedded/GPIB/mike/hp85disk/printf'
-make 2>&1 | grep -i warn
 hardware/hal.c:52:23: warning: unused parameter ‘pin’ [-Wunused-parameter]
 hardware/hal.c:271:20: warning: unused parameter ‘addr’ [-Wunused-parameter]
-hardware/rs232.c:45:25: warning: unused parameter ‘p’ [-Wunused-parameter]
-hardware/rs232.c:58:32: warning: unused parameter ‘p’ [-Wunused-parameter]
-hardware/rs232.c:177:9: warning: implicit declaration of function ‘fdevopen’ [-Wimplicit-function-declaration]
+hardware/rs232.c:45:26: warning: unused parameter ‘f’ [-Wunused-parameter]
+hardware/rs232.c:57:32: warning: unused parameter ‘f’ [-Wunused-parameter]
+hardware/rs232.c:149:9: warning: implicit declaration of function ‘fdevopen’ [-Wimplicit-function-declaration]
 lib/timer_hal.c:147:29: warning: unused parameter ‘clk_id’ [-Wunused-parameter]
 lib/timer.c:60:43: warning: unused parameter ‘timer’ [-Wunused-parameter]
 lib/timer.c:329:28: warning: unused parameter ‘clk_id’ [-Wunused-parameter]
 fatfs/ff.c:574:28: warning: unused variable ‘lfn’ [-Wunused-variable]
 fatfs.hal/mmc.c:97:6: warning: ‘power_on’ defined but not used [-Wunused-function]
-gpib/ss80.c:1390:9: warning: variable ‘cunit’ set but not used [-Wunused-but-set-variable]
-gpib/ss80.c:1801:22: warning: unused parameter ‘u’ [-Wunused-parameter]
-gpib/amigo.c:513:26: warning: unused parameter ‘override’ [-Wunused-parameter]
-gpib/amigo.c:513:44: warning: unused parameter ‘interleave’ [-Wunused-parameter]
-gpib/printer.c:267:18: warning: unused variable ‘buslast’ [-Wunused-variable]
-gpib/printer.c:267:14: warning: unused variable ‘bus’ [-Wunused-variable]
-gpib/printer.c:265:15: warning: unused variable ‘line’ [-Wunused-variable]
-gpib/printer.c:265:11: warning: unused variable ‘ptr’ [-Wunused-variable]
-gpib/printer.c:264:21: warning: unused variable ‘ch’ [-Wunused-variable]
-gpib/printer.c:262:10: warning: unused variable ‘count’ [-Wunused-variable]
-gpib/printer.c:259:21: warning: unused parameter ‘gpib_address’ [-Wunused-parameter]
-gpib/drives.c:1376:24: warning: unused variable ‘PRINTERp’ [-Wunused-variable]

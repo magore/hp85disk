@@ -93,7 +93,8 @@ GPIB   = \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
-	gpib/drives.c 
+	gpib/drives.c \
+    gpib/controller.c
 
 POSIX = 
 	POSIX += posix/posix.c
@@ -296,7 +297,8 @@ install:
 	make -C lif install
 
 warn:	clean
-	make 2>&1 | grep -i warn
+	make 2>&1 | grep -i warn >warnings.txt
+	@cat warnings.txt
 
 .PHONY: doxy
 doxy:	doxyfile.inc $(SRCS) 

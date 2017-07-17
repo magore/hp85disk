@@ -22,10 +22,6 @@ void printer_close ( void );
 int receive_plot_flush ( void );
 void printer_buffer ( uint16_t val );
 int PRINTER_COMMANDS ( uint8_t ch );
-int controller_send_str ( uint8_t from , uint8_t to , uint8_t *str , int len );
-int controller_read_str ( uint8_t from , uint8_t to , uint8_t *str , int len );
-int controller_read_trace ( uint8_t from , uint8_t to );
-void controller_ifc ( void );
 void plot_echo ( int gpib_address );
 
 #endif  // #ifndef _PRINTER_H

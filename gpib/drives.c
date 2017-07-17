@@ -1372,8 +1372,6 @@ void format_drives()
     int ss80 = 1;
     int amigo = 1;
 
-    ///@brief Active Printer Device
-    PRINTERDeviceType *PRINTERp = NULL;
     ///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
 

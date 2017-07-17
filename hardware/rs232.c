@@ -38,56 +38,28 @@ void uart_rx_flush(uint8_t uart)
 
 /// @brief  UART receive character function using avr-libc.
 ///
-/// @param[in] f: unused stream pointer.
+/// @param[in] f: unused FILE *stream pointer.
 ///
 /// @return  uart_getchar(0);.
 /// @see fdevopen() from avr-libc.
-int uart0_getchar(void *p)
+int uart0_getchar( void *f)
 {
     return( uart_getchar(0) );
 }
 
-
 /// @brief  UART transmit character function using avr-libc.
 ///
 /// @param[in] c: character to send.
-/// @param[in] f: unused stream pointer.
+/// @param[in] f: unused FILE *stream pointer.
 ///
 /// @return  uart_putchar(c, 0);.
 /// @see fdevopen() from avr-libc.
-int uart0_putchar(int c, void *p)
+int uart0_putchar(int c, void *f)
 {
     uart_putchar(c, 0);
 	return(c);
 }
 
-
-#if UARTS > 1
-/// @brief  UART receive character function using avr-libc.
-///
-/// @param[in] f: unused stream pointer.
-///
-/// @return  uart_getchar(1);.
-/// @see fdevopen() from avr-libc.
-int uart1_getchar(void *p)
-{
-    return( uart_getchar(1) );
-}
-
-
-/// @brief  UART transmit character function using avr-libc.
-///
-/// @param[in] c: character to send.
-/// @param[in] f: unused stream pointer.
-///
-/// @return  uart_putchar(c, 1);.
-/// @see fdevopen() from avr-libc.
-int uart1_putchar(int c, void *p)
-{
-    uart_putchar(c, 1);
-	return(c);
-}
-#endif
 
 /// @brief  UART baud rate caluculation
 /// We compute the best values of baud rate register and prescale
