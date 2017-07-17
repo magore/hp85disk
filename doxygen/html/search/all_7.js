@@ -24,7 +24,6 @@ var searchData=
   ['gpib',['GPIB',['../gpib__task_8c.html#ac63d4e431ab55dddfbf436d87135128e',1,'GPIB(uint8_t ch):&#160;gpib_task.c'],['../gpib__task_8h.html#ac63d4e431ab55dddfbf436d87135128e',1,'GPIB(uint8_t ch):&#160;gpib_task.c']]],
   ['gpib_2ec',['gpib.c',['../gpib_8c.html',1,'']]],
   ['gpib_2eh',['gpib.h',['../gpib_8h.html',1,'']]],
-  ['gpib_5fascii_5frequest',['gpib_ascii_request',['../printer_8c.html#a55a72ff91a224daa0d19005628621df6',1,'gpib_ascii_request(char *str, uint16_t *status):&#160;printer.c'],['../printer_8h.html#a55a72ff91a224daa0d19005628621df6',1,'gpib_ascii_request(char *str, uint16_t *status):&#160;printer.c']]],
   ['gpib_5fassert_5fifc',['gpib_assert_ifc',['../gpib_8c.html#a01eaf30370a0b43263d19ebaa2fa4a38',1,'gpib_assert_ifc(void):&#160;gpib.c'],['../gpib_8h.html#a01eaf30370a0b43263d19ebaa2fa4a38',1,'gpib_assert_ifc(void):&#160;gpib.c']]],
   ['gpib_5fassert_5fren',['gpib_assert_ren',['../gpib_8c.html#ae826d722b789698ce9217758fe55fdcb',1,'gpib_assert_ren(unsigned char state):&#160;gpib.c'],['../gpib_8h.html#ae826d722b789698ce9217758fe55fdcb',1,'gpib_assert_ren(unsigned char state):&#160;gpib.c']]],
   ['gpib_5fbus_5fin',['GPIB_BUS_IN',['../gpib__hal_8h.html#a6d56693f4cf584bd0f60e34bac99a846',1,'gpib_hal.h']]],

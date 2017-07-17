@@ -13,7 +13,8 @@
 
 #include "gpib_hal.h"
 #include "gpib.h"
-#include "fatfs.sup/fatfs.h"
+#include "fatfs.h"
+#include "posix.h"
 #include "defines.h"
 
 gpib_t gpib_timer;

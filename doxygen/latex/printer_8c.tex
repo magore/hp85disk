@@ -29,13 +29,13 @@ void \hyperlink{printer_8c_acc37d9e3a9cc3aec5e5986dbfff7da6b}{printer\+\_\+buffe
 \begin{DoxyCompactList}\small\item\em Buffer Plotter data and flush when buffer is full. \end{DoxyCompactList}\item 
 int \hyperlink{printer_8c_a72686fe9d4969430b6ef1f1fe68a6efe}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+DS} (uint8\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em G\+P\+IB Secondary Command Printer commands. \end{DoxyCompactList}\item 
-int \hyperlink{printer_8c_a55a72ff91a224daa0d19005628621df6}{gpib\+\_\+ascii\+\_\+request} (char $\ast$str, uint16\+\_\+t $\ast$status)
-\item 
-int \hyperlink{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}{printer\+\_\+send} (char $\ast$str)
-\item 
-int \hyperlink{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}{printer\+\_\+read\+\_\+str} (char $\ast$str, int len)
-\item 
-int \hyperlink{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}{printer\+\_\+read} ()
+int \hyperlink{printer_8c_aac124dc0290a643bf1e950485a8dfb81}{controller\+\_\+send\+\_\+str} (uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Controller Mode send A\+S\+C\+II string Stops sending with E\+OI. \end{DoxyCompactList}\item 
+int \hyperlink{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}{controller\+\_\+read\+\_\+str} (uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Controller Mode read A\+S\+C\+II string Stops reading at E\+OI. \end{DoxyCompactList}\item 
+int \hyperlink{printer_8c_af027c36d1fffacf39a7a691fa78695c1}{controller\+\_\+read\+\_\+trace} (uint8\+\_\+t from, uint8\+\_\+t to)
+\begin{DoxyCompactList}\small\item\em Controller Mode T\+R\+A\+CE read for debugging Stops reading at E\+OI. \end{DoxyCompactList}\item 
+void \hyperlink{printer_8c_a4132447e49c7066515471e30958151d0}{controller\+\_\+ifc} ()
 \item 
 void \hyperlink{printer_8c_ab0733357c2cffe1aaf6dfcf9240f86fb}{plot\+\_\+echo} (int gpib\+\_\+address)
 \begin{DoxyCompactList}\small\item\em Instruct Instrument to send Plot data. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -63,21 +63,118 @@ H\+P\+GL printer capture code for H\+P85 disk emulator project for A\+VR.
 
 
 \subsection{Function Documentation}
-\index{printer.\+c@{printer.\+c}!gpib\+\_\+ascii\+\_\+request@{gpib\+\_\+ascii\+\_\+request}}
-\index{gpib\+\_\+ascii\+\_\+request@{gpib\+\_\+ascii\+\_\+request}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+ascii\+\_\+request(char $\ast$str, uint16\+\_\+t $\ast$status)}{gpib_ascii_request(char *str, uint16_t *status)}}]{\setlength{\rightskip}{0pt plus 5cm}int gpib\+\_\+ascii\+\_\+request (
+\index{printer.\+c@{printer.\+c}!controller\+\_\+ifc@{controller\+\_\+ifc}}
+\index{controller\+\_\+ifc@{controller\+\_\+ifc}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{controller\+\_\+ifc()}{controller_ifc()}}]{\setlength{\rightskip}{0pt plus 5cm}void controller\+\_\+ifc (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{uint16\+\_\+t $\ast$}]{status}
+\item[{void}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{printer_8c_a55a72ff91a224daa0d19005628621df6}{}\label{printer_8c_a55a72ff91a224daa0d19005628621df6}
+)}\hypertarget{printer_8c_a4132447e49c7066515471e30958151d0}{}\label{printer_8c_a4132447e49c7066515471e30958151d0}
 
 
-Definition at line 249 of file printer.\+c.
+Definition at line 340 of file printer.\+c.
+
+\index{printer.\+c@{printer.\+c}!controller\+\_\+read\+\_\+str@{controller\+\_\+read\+\_\+str}}
+\index{controller\+\_\+read\+\_\+str@{controller\+\_\+read\+\_\+str}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{controller\+\_\+read\+\_\+str(uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)}{controller_read_str(uint8_t from, uint8_t to, uint8_t *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+read\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{from, }
+\item[{uint8\+\_\+t}]{to, }
+\item[{uint8\+\_\+t $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}{}\label{printer_8c_ad447a1f9fa3fbefd996c5839f42b9642}
+
+
+Controller Mode read A\+S\+C\+II string Stops reading at E\+OI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
+\hline
+\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
+\hline
+\mbox{\tt in}  & {\em str} & string to read \\
+\hline
+\mbox{\tt in}  & {\em len} & maximum number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes read 
+\end{DoxyReturn}
+
+
+Definition at line 284 of file printer.\+c.
 
 
 
-Referenced by printer\+\_\+send().
+Referenced by plot\+\_\+echo().
+
+\index{printer.\+c@{printer.\+c}!controller\+\_\+read\+\_\+trace@{controller\+\_\+read\+\_\+trace}}
+\index{controller\+\_\+read\+\_\+trace@{controller\+\_\+read\+\_\+trace}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{controller\+\_\+read\+\_\+trace(uint8\+\_\+t from, uint8\+\_\+t to)}{controller_read_trace(uint8_t from, uint8_t to)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+read\+\_\+trace (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{from, }
+\item[{uint8\+\_\+t}]{to}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_af027c36d1fffacf39a7a691fa78695c1}{}\label{printer_8c_af027c36d1fffacf39a7a691fa78695c1}
+
+
+Controller Mode T\+R\+A\+CE read for debugging Stops reading at E\+OI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
+\hline
+\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes read 
+\end{DoxyReturn}
+
+
+Definition at line 312 of file printer.\+c.
+
+
+
+Referenced by plot\+\_\+echo().
+
+\index{printer.\+c@{printer.\+c}!controller\+\_\+send\+\_\+str@{controller\+\_\+send\+\_\+str}}
+\index{controller\+\_\+send\+\_\+str@{controller\+\_\+send\+\_\+str}!printer.\+c@{printer.\+c}}
+\subsubsection[{\texorpdfstring{controller\+\_\+send\+\_\+str(uint8\+\_\+t from, uint8\+\_\+t to, uint8\+\_\+t $\ast$str, int len)}{controller_send_str(uint8_t from, uint8_t to, uint8_t *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int controller\+\_\+send\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{from, }
+\item[{uint8\+\_\+t}]{to, }
+\item[{uint8\+\_\+t $\ast$}]{str, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+)}\hypertarget{printer_8c_aac124dc0290a643bf1e950485a8dfb81}{}\label{printer_8c_aac124dc0290a643bf1e950485a8dfb81}
+
+
+Controller Mode send A\+S\+C\+II string Stops sending with E\+OI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em from} & G\+P\+IB talker \\
+\hline
+\mbox{\tt in}  & {\em to} & G\+P\+IB listener \\
+\hline
+\mbox{\tt in}  & {\em str} & string to send \\
+\hline
+\mbox{\tt in}  & {\em len} & number of bytes to send (if 0 then length of string) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes sent 
+\end{DoxyReturn}
+debugging 
+
+Definition at line 256 of file printer.\+c.
+
+
+
+Referenced by plot\+\_\+echo().
 
 \index{printer.\+c@{printer.\+c}!plot\+\_\+echo@{plot\+\_\+echo}}
 \index{plot\+\_\+echo@{plot\+\_\+echo}!printer.\+c@{printer.\+c}}
@@ -98,7 +195,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 332 of file printer.\+c.
+Definition at line 355 of file printer.\+c.
 
 
 
@@ -249,48 +346,6 @@ Definition at line 40 of file printer.\+c.
 
 
 Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
-
-\index{printer.\+c@{printer.\+c}!printer\+\_\+read@{printer\+\_\+read}}
-\index{printer\+\_\+read@{printer\+\_\+read}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{printer\+\_\+read()}{printer_read()}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+read (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}{}\label{printer_8c_a51f6c825cbc447f3c4b3cb893b471bce}
-
-
-Definition at line 301 of file printer.\+c.
-
-
-
-Referenced by plot\+\_\+echo().
-
-\index{printer.\+c@{printer.\+c}!printer\+\_\+read\+\_\+str@{printer\+\_\+read\+\_\+str}}
-\index{printer\+\_\+read\+\_\+str@{printer\+\_\+read\+\_\+str}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{printer\+\_\+read\+\_\+str(char $\ast$str, int len)}{printer_read_str(char *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+read\+\_\+str (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{int}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}{}\label{printer_8c_a5d8d79ddd7e5f32e1c57e40bfe7a6644}
-
-
-Definition at line 275 of file printer.\+c.
-
-\index{printer.\+c@{printer.\+c}!printer\+\_\+send@{printer\+\_\+send}}
-\index{printer\+\_\+send@{printer\+\_\+send}!printer.\+c@{printer.\+c}}
-\subsubsection[{\texorpdfstring{printer\+\_\+send(char $\ast$str)}{printer_send(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int printer\+\_\+send (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}{}\label{printer_8c_ac0cf260d3ab4aaa927a133a916e98363}
-
-
-Definition at line 256 of file printer.\+c.
-
-
-
-Referenced by plot\+\_\+echo().
 
 \index{printer.\+c@{printer.\+c}!receive\+\_\+plot\+\_\+flush@{receive\+\_\+plot\+\_\+flush}}
 \index{receive\+\_\+plot\+\_\+flush@{receive\+\_\+plot\+\_\+flush}!printer.\+c@{printer.\+c}}

@@ -246,59 +246,70 @@ int PRINTER_COMMANDS(uint8_t ch)
     return(0);
 }
 
-int gpib_ascii_request(char *str, uint16_t *status)
-{
-    int len = strlen(str);
-    return(gpib_write_str( (uint8_t *)str,len,status) );
-}
-   
-
-int printer_send(char *str)
+/// @brief  Controller Mode send ASCII string
+/// Stops sending with EOI
+/// @param[in] from: GPIB talker
+/// @param[in] to: GPIB listener
+/// @param[in] str: string to send
+/// @param[in] len: number of bytes to send (if 0 then length of string)
+/// @return  number of bytes sent
+int controller_send_str(uint8_t from, uint8_t to, uint8_t *str, int len)
 {
     uint16_t status = 0;
-    int len;
+    int size;
+    if(len == 0)
+        len = strlen(str);
+/// debugging
+    printf("Send: %s\n", str);
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
 
-    gpib_write_byte(0x20 | 8 | ATN_FLAG);   // SCOPE listen
-    gpib_write_byte(0x40 | 5 | ATN_FLAG);   // PRINTER talk
-    status = 0;
-    printf("sending: %s\n", str);
-    len = gpib_ascii_request((char *)str,&status);
-    printf("sent: %d bytes\n",len);
+    gpib_write_byte(0x20 | to | ATN_FLAG);   // SCOPE listen
+    gpib_write_byte(0x40 | from | ATN_FLAG);   // PRINTER talk
+    status = EOI_FLAG;
+    size = gpib_write_str((char *)str, len, &status);
 
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
     return(len);
 }
 
-int printer_read_str(char *str, int len)
+/// @brief  Controller Mode read ASCII string
+/// Stops reading at EOI
+/// @param[in] from: GPIB talker
+/// @param[in] to: GPIB listener
+/// @param[in] str: string to read
+/// @param[in] len: maximum number of bytes to read
+/// @return  number of bytes read
+int controller_read_str(uint8_t from, uint8_t to, uint8_t *str, int len)
 {
-    uint16_t status = 0;
+    uint16_t status;
+    int size;
 
-    GPIB_IO_LOW(IFC);
-    delayms(200);
-    GPIB_PIN_FLOAT(IFC);
-    delayms(200);
-    gpib_write_byte(DCL | ATN_FLAG);
+    gpib_write_byte(0x40 | from | ATN_FLAG);   // SCOPE talk
+    gpib_write_byte(0x20 | to | ATN_FLAG);   // PRINTER listen
 
-    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
-    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-
-    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
-    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
-
-    status = 0;
-    len = gpib_read_str((uint8_t *)str,len, &status);
-    printf("Recieved %d\n",(int)len);
-    printf("Reply:%s",str);
+    status = EOI_FLAG;
+    size = gpib_read_str((uint8_t *)str,len, &status);
+    if(size > 0)
+    {
+        if(size < len)
+            str[size] = 0;
+        else
+            str[len-1] = 0;
+    }
 
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
-    return(len);
+    return(size);
 }
 
-int printer_read()
+/// @brief  Controller Mode TRACE read for debugging
+/// Stops reading at EOI
+/// @param[in] from: GPIB talker
+/// @param[in] to: GPIB listener
+/// @return  number of bytes read
+int controller_read_trace(uint8_t from, uint8_t to)
 {
     uint16_t ch;
     long len =0;
@@ -306,8 +317,8 @@ int printer_read()
     gpib_write_byte(0x5f | ATN_FLAG);   // untalk
     gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
 
-    gpib_write_byte(0x40 | 8 | ATN_FLAG);   // SCOPE talk
-    gpib_write_byte(0x20 | 5 | ATN_FLAG);   // PRINTER listen
+    gpib_write_byte(0x40 | from | ATN_FLAG);   // SCOPE talk
+    gpib_write_byte(0x20 | to | ATN_FLAG);   // PRINTER listen
 
     while(1)                                      // Main loop, forever
     {
@@ -326,39 +337,53 @@ int printer_read()
     return(len);
 }
 
+void controller_ifc()
+{
+    GPIB_IO_LOW(IFC);
+    delayms(200);
+    GPIB_PIN_FLOAT(IFC);
+    delayms(200);
+    gpib_write_byte(DCL | ATN_FLAG);
+
+    gpib_write_byte(0x5f | ATN_FLAG);   // untalk
+    gpib_write_byte(0x3f | ATN_FLAG);   // unlisten
+}
+
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
 /// @return  void
 void plot_echo( int gpib_address)
 {
-    int ind,len;
+    uint8_t line[256];
+
+    int from = find_type(PRINTER_TYPE);
+    int to = gpib_address;
+    int len;
+
+    if(from == -1)
+    {
+        printf("printer not defined\n");
+        return;
+    }
 
     printer_close();
 
     while(uart_keyhit(0) )
         putchar( uart_rx_byte(0) );
         
-    ind = find_type(PRINTER_TYPE);
-
-    if(ind == -1)
-    {
-        printf("printer not defined\n");
-        return;
-    }
 // DEBUGGING
     gpib_decode_header(stdout);
 
+    len = controller_send_str(from,to,"*idn?\n",0);
+    len = controller_read_str(to,from, line, 256 );
+    printf("received:[%d] %s\n", len, line);
 
-    len = printer_send("*idn?\n");
-    len = printer_read();
-    printf("received:%d\n", len);
+    len = controller_send_str(from,to,":HARDcopy:DEVice?\n",0);
+    len = controller_read_str(to, from, line, 256);
+    printf("received:[%d] %s\n", len, line);
 
-    len = printer_send(":HARDcopy:DEVice?\n");
-    len = printer_read();
-    printf("received:%d\n", len);
-
-    //len = printer_send(":PRINt?\n");
-    len = printer_send(":wav:data?\n");
-    len = printer_read();
-    printf("received:%d\n", len);
+    //len = controller_send_str(":PRINt?\n",0);
+    len = controller_send_str(from,to,":wav:data?\n",0);
+    len = controller_read_trace(to,from);
+    printf("received:[%d] bytes\n", len);
 }

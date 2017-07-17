@@ -1580,8 +1580,8 @@ int SS80_Transparent_State( void )
 /// - We check for read/write past end of disk during the seek
 /// @see: SS80_locate_and_read( )
 /// @see: SS80_locate_and_write()
-/// @return  0 on sucess
-/// @return fatfs error on fail
+/// @return 0 on sucess
+/// @return 1 on fail
 /// - Fail will set: qstat = 1, Errors |= ERR_SEEK.
 
 int SS80_cmd_seek( void )
