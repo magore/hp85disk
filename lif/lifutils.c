@@ -1,12 +1,15 @@
 /**
- @file gpib/lifutils.c
+ @file lifutils.c
 
  @brief LIF file utilities
+
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
    * LIF command help
      * lif add lifimage lifname from_ascii_file
@@ -74,152 +77,22 @@
        * Renames file in LIF image
        * Example
          * lif rename /amigo1.lif HELLO3 HELLO4
+   * OPTIONAL - compile time add on
+     * lif td02lif image.td0 image.lif
+       * Convert TeleDIsk LIF encoded disk into pure LIF file
+       * Uses code from external HxCFloppyEmulator library to decode TELEDISK format
+       * The HxCFloppyEmulator library is Copyright (C) 2006-2014 Jean-Fran▒ois DEL NERO
+       * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+    
 */
 
 #ifdef LIF_STAND_ALONE
-#define MEMSPACE /**/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include <string.h>
-#include <strings.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <libgen.h>
-#include <sys/types.h>
-#include <utime.h>
-
-typedef struct tm tm_t;
-#define MATCH(a,b) (strcmp(a,b) == 0 ? 1: 0)
-#define safecalloc(a,b) calloc(a,b)
-#define safefree(a) free(a)
-#define sync() 
-
-int debuglevel = 0x0001;
-
+#include "lifsup.h"
 #include "lifutils.h"
-
-///@brief Match two strings and compare argument index
-/// Display  message if the number of arguments is too few
-///@param str: string to test
-///@param pat: pattern to match
-///@param min: minumum number or arguments
-///@param argc: actual number of arguments
-///@return 1 on match, 0 on no match or too few arguments
-int MATCHARGS(char *str, char *pat, int min, int argc)
-{
-    if(strcmp(str,pat) == 0)
-    {
-        if(argc >= min)
-            return(1);
-        else
-            printf("%s expected %d arguments only got %d\n", pat, min,argc);
-    }
-    return(0);
-}
-
-
-///@brief Remove white space at the end of lines
-///@param str: string
-///@return void
-MEMSPACE
-
-MEMSPACE
-void trim_tail(char *str)
-{
-    int len = strlen(str);
-    while(len--)
-    {
-        if(str[len] > ' ')
-            break;
-        str[len] = 0;
-    }
-}
-
-
-///@brief Convert Value into byte array
-/// bytes are MSB ... LSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@param val: Value to convert
-///@return void
-MEMSPACE
-void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
-{
-    int i;
-    for(i=size-1;i>=0;--i)
-    {
-        B[index+i] = val & 0xff;
-        val >>= 8;
-    }
-}
-// =============================================
-///@brief Convert Value into byte array
-/// bytes are LSB ... MSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@param val: Value to convert
-///@return void
-MEMSPACE
-void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
-{
-    int i;
-    for(i=0;i<size;++i)
-    {
-        B[index+i] = val & 0xff;
-        val >>= 8;
-    }
-}
-
-
-
-///@brief Convert a byte array into a value
-/// bytes are MSB ... LSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@return value
-MEMSPACE
-uint32_t B2V_MSB(uint8_t *B, int index, int size)
-{
-    int i;
-    uint32_t val = 0;
-
-    for(i=0;i<size;++i)
-    {
-        val <<= 8;
-        val |= (uint8_t) (B[i+index] & 0xff);
-    }
-        return(val);
-}
-
-///@brief Convert a byte array into a value
-/// bytes are LSB ... MSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@return value
-MEMSPACE
-uint32_t B2V_LSB(uint8_t *B, int index, int size)
-{
-    int i;
-    uint32_t val = 0;
-
-    for(i=size-1;i>=0;--i)
-    {
-        val <<= 8;
-        val |= (uint8_t) (B[i+index] & 0xff);
-    }
-        return(val);
-}
-
-
+extern MEMSPACE int lif_td02lif(char *telediskname, char *lifname);
 
 #else 
-// NOT LIF_STAND_ALONE
 
 #include "user_config.h"
 #include "defines.h"
@@ -227,8 +100,6 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
 #include <time.h>
 #include "lifutils.h"
 #endif
-
-
 
 
 /// @brief
@@ -248,6 +119,9 @@ void lif_help()
         "lif extract lifimage lifname to_ascii_file\n"
         "lif extractbin lifimage lifname to_lif_file\n"
         "lif rename lifimage oldlifname newlifname\n"
+#ifdef LIF_STAND_ALONE
+        "lif td02lif image.td0 image.lif\n"
+#endif
         "\n"
         );
 }
@@ -341,6 +215,13 @@ int lif_tests(int argc, char *argv[])
         lif_rename_file(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
     }
+#ifdef TELEDISK
+    if (MATCHARGS(ptr,"td02lif", (ind + 2) ,argc))
+    {
+        lif_td02lif(argv[ind],argv[ind+1]);
+        return(1);
+    }
+#endif
     return(0);
 }
 
@@ -657,7 +538,7 @@ void lif_str2vol(uint8_t *B, lif_t *LIF)
 }
 
 ///@brief Convert LIF directory records into byte vector 
-///@param[int] *LIF: LIF image pointer
+///@param[in] *LIF: LIF image pointer
 ///@param[out] B: byte vector to pack data into
 ///@return void
 MEMSPACE
@@ -675,7 +556,7 @@ void lif_dir2str(lif_t *LIF, uint8_t *B)
 
 ///@brief Convert byte vector into byte vector 
 ///@param[in] B: byte vector to extract data from
-///@param[int] LIF: lifdir_t structure pointer
+///@param[out] LIF: lifdir_t structure pointer
 ///@return void
 MEMSPACE
 void lif_str2dir(uint8_t *B, lif_t *LIF)
@@ -951,10 +832,10 @@ int lif_check_volume(lif_t *LIF)
 
     // File area start and size
     filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
-    if(filestart >= LIF->sectors)
+    if(filestart > LIF->sectors)
     {
         if(debuglevel & 1)
-            printf("LIF Volume invalid file start >= image size\n");
+            printf("LIF Volume invalid file start > image size\n");
         status = 0;
     }
 
@@ -2650,6 +2531,7 @@ int lif_del_file(char *lifimagename, char *lifname)
     return(1);
 }
 
+
 /// @brief Rename LIF file in LIF image
 /// @param[in] lifimagename: LIF image name
 /// @param[in] oldlifname: old LIF file name
@@ -2712,7 +2594,6 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
 }
 
 
-
 /// @brief Create/Format a LIF new disk image
 /// This can take a while to run, about 1 min for 10,000,000 bytes
 /// @param[in] lifimagename: LIF disk image name
@@ -2760,39 +2641,3 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
     printf("Formating: wrote:[%ld] sectors\n", (long)end);
     return(end);
 }
-
-#ifdef LIF_STAND_ALONE
-
-int main(int argc, char *argv[])
-{
-    char *myargv[10];
-    int i;
-    int myargc;
-    int ind = 0;
-
-    myargv[ind++] = argv[0];
-    // in stand alone mode we automatically set the 2nd argument to "lif"
-    myargv[ind++] = "lif";
-
-    // If we used no arguments the set default help
-    if(argc < 2)
-    {
-        myargv[ind++] = "help";
-        printf("Stand alone version of LIF utilities for linux\n");
-        printf("HP85 Disk and Device Emulator\n");
-        printf(" (c) 2014-2017 by Mike Gore\n");
-        printf(" GNU version 3\n");
-        printf("-> https://github.com/magore/hp85disk\n");
-        printf("   GIT last pushed:   %s\n", GIT_VERSION);
-        printf("   Last updated file: %s\n", LOCAL_MOD);
-    }
-
-    for(i=1;i<argc;++i)
-        myargv[ind++] = argv[i];
-    myargc = ind;
-    for(i=ind;i<10;++i)
-        myargv[i] = NULL;
-
-    lif_tests(myargc,myargv);
-}
-#endif

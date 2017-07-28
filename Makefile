@@ -104,6 +104,7 @@ endif
 
 LIF = 
 ifeq ($(LIF_SUPPORT),1)
+	LIF +=lif/lifsup.c
 	LIF +=lif/lifutils.c
 endif
 

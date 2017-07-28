@@ -1,0 +1,258 @@
+\hypertarget{lifsup_8h}{}\section{lif/lifsup.h File Reference}
+\label{lifsup_8h}\index{lif/lifsup.\+h@{lif/lifsup.\+h}}
+
+
+L\+IF file utilities -\/ utilities extracted from hp85disk project for stand alone use.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{lifsup_8h_a97822a0fe86d5958ba35031ea736be1e}{M\+A\+T\+C\+H\+A\+R\+GS} (char $\ast$str, char $\ast$pat, int min, int argc)
+\begin{DoxyCompactList}\small\item\em Match two strings and compare argument index Display message if the number of arguments is too few. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{lifsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}{trim\+\_\+tail} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Trim White space and control characters from end of string. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{lifsup_8h_a36569a115e5836dd6962979846e76075}{V2\+B\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{lifsup_8h_af2bdada54bc0ae110cf7e22e21e9c894}{V2\+B\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} uint32\+\_\+t \hyperlink{lifsup_8h_a517b10ac006494dd192709c19069e9c2}{B2\+V\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
+\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} uint32\+\_\+t \hyperlink{lifsup_8h_a5470a7c04921686f9fb1ab4c7f920461}{B2\+V\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
+\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{lifsup_8h_a2f747920e56341c79f83723a1d4c879b}{hexdump} (uint8\+\_\+t $\ast$data, int size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+IF file utilities -\/ utilities extracted from hp85disk project for stand alone use. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, All rights reserved. G\+PL}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file. 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\index{lifsup.\+h@{lifsup.\+h}!B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}}
+\index{B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{B2\+V\+\_\+\+L\+S\+B(uint8\+\_\+t $\ast$\+B, int index, int size)}{B2V_LSB(uint8_t *B, int index, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} uint32\+\_\+t B2\+V\+\_\+\+L\+SB (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a5470a7c04921686f9fb1ab4c7f920461}{}\label{lifsup_8h_a5470a7c04921686f9fb1ab4c7f920461}
+
+
+Convert a byte array into a value bytes are L\+SB ... M\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file drives.\+c.
+
+
+
+Referenced by lif\+\_\+str2dir().
+
+\index{lifsup.\+h@{lifsup.\+h}!B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}}
+\index{B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{B2\+V\+\_\+\+M\+S\+B(uint8\+\_\+t $\ast$\+B, int index, int size)}{B2V_MSB(uint8_t *B, int index, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} uint32\+\_\+t B2\+V\+\_\+\+M\+SB (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a517b10ac006494dd192709c19069e9c2}{}\label{lifsup_8h_a517b10ac006494dd192709c19069e9c2}
+
+
+Convert a byte array into a value bytes are M\+SB ... L\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file drives.\+c.
+
+
+
+Referenced by lif\+\_\+str2dir(), lif\+\_\+str2vol(), and S\+S80\+\_\+\+Command\+\_\+\+State().
+
+\index{lifsup.\+h@{lifsup.\+h}!hexdump@{hexdump}}
+\index{hexdump@{hexdump}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{hexdump(uint8\+\_\+t $\ast$data, int size)}{hexdump(uint8_t *data, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void hexdump (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a2f747920e56341c79f83723a1d4c879b}{}\label{lifsup_8h_a2f747920e56341c79f83723a1d4c879b}
+\index{lifsup.\+h@{lifsup.\+h}!M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}}
+\index{M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+A\+R\+G\+S(char $\ast$str, char $\ast$pat, int min, int argc)}{MATCHARGS(char *str, char *pat, int min, int argc)}}]{\setlength{\rightskip}{0pt plus 5cm}int M\+A\+T\+C\+H\+A\+R\+GS (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{char $\ast$}]{pat, }
+\item[{int}]{min, }
+\item[{int}]{argc}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a97822a0fe86d5958ba35031ea736be1e}{}\label{lifsup_8h_a97822a0fe86d5958ba35031ea736be1e}
+
+
+Match two strings and compare argument index Display message if the number of arguments is too few. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & string to test \\
+\hline
+{\em pat} & pattern to match \\
+\hline
+{\em min} & minumum number or arguments \\
+\hline
+{\em argc} & actual number of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on match, 0 on no match or too few arguments 
+\end{DoxyReturn}
+
+
+Definition at line 471 of file stringsup.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), posix\+\_\+tests(), and task().
+
+\index{lifsup.\+h@{lifsup.\+h}!trim\+\_\+tail@{trim\+\_\+tail}}
+\index{trim\+\_\+tail@{trim\+\_\+tail}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{trim\+\_\+tail(char $\ast$str)}{trim_tail(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void trim\+\_\+tail (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}{}\label{lifsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}
+
+
+Trim White space and control characters from end of string. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+Overwrites White space and control characters with E\+OS. 
+\end{DoxyWarning}
+
+
+Definition at line 271 of file stringsup.\+c.
+
+
+
+Referenced by cat(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+\+B2\+S(), lif\+\_\+ctime\+\_\+gmt(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+\index{lifsup.\+h@{lifsup.\+h}!V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}}
+\index{V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{V2\+B\+\_\+\+L\+S\+B(uint8\+\_\+t $\ast$\+B, int index, int size, uint32\+\_\+t val)}{V2B_LSB(uint8_t *B, int index, int size, uint32_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void V2\+B\+\_\+\+L\+SB (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{uint32\+\_\+t}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_af2bdada54bc0ae110cf7e22e21e9c894}{}\label{lifsup_8h_af2bdada54bc0ae110cf7e22e21e9c894}
+
+
+Convert Value into byte array bytes are L\+SB ... M\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+{\em val} & Value to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file drives.\+c.
+
+
+
+Referenced by lif\+\_\+dir2str().
+
+\index{lifsup.\+h@{lifsup.\+h}!V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}}
+\index{V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}!lifsup.\+h@{lifsup.\+h}}
+\subsubsection[{\texorpdfstring{V2\+B\+\_\+\+M\+S\+B(uint8\+\_\+t $\ast$\+B, int index, int size, uint32\+\_\+t val)}{V2B_MSB(uint8_t *B, int index, int size, uint32_t val)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void V2\+B\+\_\+\+M\+SB (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{B, }
+\item[{int}]{index, }
+\item[{int}]{size, }
+\item[{uint32\+\_\+t}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{lifsup_8h_a36569a115e5836dd6962979846e76075}{}\label{lifsup_8h_a36569a115e5836dd6962979846e76075}
+
+
+Convert Value into byte array bytes are M\+SB ... L\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+{\em val} & Value to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 219 of file drives.\+c.
+
+
+
+Referenced by lif\+\_\+dir2str(), lif\+\_\+vol2str(), Send\+\_\+\+Identify(), S\+S80\+\_\+send\+\_\+status(), and V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1().
+

@@ -2,6 +2,7 @@ var searchData=
 [
   ['talk_5fcleanup',['talk_cleanup',['../gpib__task_8c.html#af4bf5ed0317de478278afbb1d1bf8614',1,'talk_cleanup():&#160;gpib_task.c'],['../gpib__task_8h.html#a509eb3426def2f282b1a31c411e9cbb7',1,'talk_cleanup(void):&#160;gpib_task.c']]],
   ['task',['task',['../main_8c.html#a66ac220b8fb4c59823fdf116cecda862',1,'task(uint8_t gpib):&#160;main.c'],['../main_8h.html#acbfb668d7b4cfa39aa1a5a5dac3c0e7e',1,'task(void):&#160;main.h']]],
+  ['td02lif_5ftrack',['td02lif_track',['../td02lif_8c.html#a5cd41ba088c6ed1589122d2f0bb42ac5',1,'td02lif.c']]],
   ['testpage',['testpage',['../posix__tests_8c.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c'],['../posix__tests_8h.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c']]],
   ['testsquare',['TestSquare',['../matrix_8c.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a533fea51f46e772b14ec519a9f36aef9',1,'TestSquare(mat_t MatA):&#160;matrix.c']]],
   ['time',['time',['../time_8c.html#a32b1cbd925752f0cd61d202bbe204a69',1,'time(time_t *t):&#160;time.c'],['../time_8h.html#a32b1cbd925752f0cd61d202bbe204a69',1,'time(time_t *t):&#160;time.c']]],
@@ -17,7 +18,7 @@ var searchData=
   ['tolower',['tolower',['../stringsup_8c.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c'],['../stringsup_8h.html#a1825e0085bbbce998b39f9ff2682173c',1,'tolower(int c):&#160;stringsup.c']]],
   ['toupper',['toupper',['../stringsup_8c.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#a96a73ab9e374d97a249f39eb6875ba79',1,'toupper(int c):&#160;stringsup.c']]],
   ['transpose',['Transpose',['../matrix_8c.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c']]],
-  ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c']]],
+  ['trim_5ftail',['trim_tail',['../stringsup_8c.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c'],['../lifsup_8h.html#a2d7ec9dae4f58c027edbc22118714ba6',1,'trim_tail(char *str):&#160;stringsup.c']]],
   ['truncate',['truncate',['../posix_8c.html#a73a95c4a93875be906e573c00b30c5ea',1,'truncate(const char *path, off_t length):&#160;posix.c'],['../posix_8h.html#a73a95c4a93875be906e573c00b30c5ea',1,'truncate(const char *path, off_t length):&#160;posix.c']]],
   ['ts_5fto_5fstr',['ts_to_str',['../timer_8c.html#a41fb2edea84c2f17c7c6ad6ff87baeff',1,'ts_to_str(ts_t *val):&#160;timer.c'],['../timer_8h.html#a41fb2edea84c2f17c7c6ad6ff87baeff',1,'ts_to_str(ts_t *val):&#160;timer.c']]],
   ['twi_5fdisable',['TWI_Disable',['../TWI__AVR8_8c.html#a318b14612e67336a8fd6b71263d6e07a',1,'TWI_AVR8.c']]],

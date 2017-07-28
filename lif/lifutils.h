@@ -1,14 +1,17 @@
 /**
- @file gpib/defines.h
+ @file lifutils.h
 
- @brief GPIB, AMIGO, SS80 and device defines.
+ @brief LIF file utilities
 
- @par Edit History - [1.0]   [Mike Gore]  Initial revision of file.
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+ @par Edit History
+ - [1.0]   [Mike Gore]  Initial revision of file.
 
+ @see lifutils.c for detailed command list
 */
 
 #ifndef _LIFUTILS_H
@@ -133,16 +136,7 @@ typedef struct
 
 // =============================================
 
-
 /* lifutils.c */
-#ifdef LIF_STAND_ALONE
-void trim_tail ( char *str );
-void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
-void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
-uint32_t B2V_MSB ( uint8_t *B , int index , int size );
-uint32_t B2V_LSB ( uint8_t *B , int index , int size );
-#endif
-
 MEMSPACE void lif_help ( void );
 MEMSPACE int lif_tests ( int argc , char *argv []);
 MEMSPACE void *lif_calloc ( long size );
@@ -171,7 +165,7 @@ MEMSPACE char *lif_lifbcd2timestr ( uint8_t *bcd );
 MEMSPACE void lif_image_clear ( lif_t *LIF );
 MEMSPACE void lif_dir_clear ( lif_t *LIF );
 MEMSPACE void lif_vol_clear ( lif_t *LIF );
-MEMSPACE void lif_dump_vol ( lif_t *LIF, char *msg );
+MEMSPACE void lif_dump_vol ( lif_t *LIF , char *msg );
 MEMSPACE int lif_check_volume ( lif_t *LIF );
 MEMSPACE int lif_check_dir ( lif_t *LIF );
 MEMSPACE lif_t *lif_create_volume ( char *imagename , char *liflabel , long dirstart , long dirsectors , long filesectors );
@@ -199,5 +193,6 @@ MEMSPACE long lif_add_lif_file ( char *lifimagename , char *lifname , char *user
 MEMSPACE int lif_del_file ( char *lifimagename , char *lifname );
 MEMSPACE int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
 MEMSPACE long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
+MEMSPACE int lif_convert_file ( char *telediskname , char *lifname );
 
 #endif     // #ifndef _LIFUTILS_H

@@ -3,10 +3,12 @@
 
  @brief MMC Hardware Layer for FatFs.
 
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
-
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
 
 */
 

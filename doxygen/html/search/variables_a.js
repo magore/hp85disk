@@ -9,6 +9,7 @@ var searchData=
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
   ['lifid',['LIFid',['../structlifvol__t.html#adb6a0c2fff5b765eb12c3eb5db6d5bad',1,'lifvol_t']]],
+  ['liftel',['liftel',['../td02lif_8c.html#af2b2b3e4827acc662c88bb762e41106d',1,'td02lif.c']]],
   ['lifversion',['LIFVersion',['../structlifvol__t.html#afffd824a7b0ce6aa8410fa243733475f',1,'lifvol_t']]],
   ['lines',['lines',['../drives_8c.html#a9921ae02cadccc99dd6c3a9b68be050a',1,'drives.c']]],
   ['listening',['listening',['../gpib_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../gpib_8h.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c'],['../ss80_8c.html#a906eb6f6a81521d91f73f9ab2e03b02e',1,'listening():&#160;gpib.c']]],

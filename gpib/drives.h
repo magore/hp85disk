@@ -7,7 +7,9 @@
 
  @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
 */
 

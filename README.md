@@ -385,194 +385,203 @@ ___
     Note - working on converting compiled constants into run time configuration
   * ./README.md
     This file
-  * Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf
-    * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
-  * Documents/5955-3442_cs80-is-pm-ocr.pdf
-    * CS/80 INSTRUCTION SET
-  * Documents/5957-6560_9133_9134_D_H_L_Service_Apr88.pdf
-    * HP 9133/9134 D/H/L Service Manual
-  * Documents/5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf
-    * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030
-  * Documents/5958-4129_SS80_Nov-1985-ocr.pdf
-    * SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)
-  * Documents/amigo-command-set-ocr.pdf
-    * Appendix A HP 9895A Disc Memory Command Set
-  * Documents/CIB24SRA.pdf
-    * GPIB connector diagram of the part we used in this project form L-COM 
-  * Documents/CIB24SRA.step
-    * GPIB connector design file of the part we used in this project form L-COM 
-  * GPIB protocol.pdf
-    * Copy of GPIB commands and pinout from Linux GPIB project
-    * See: http://linux-gpib.sourceforge.net
-  * Documents/handshake.pdf
-    * Highlighted excerpt of just the 3 wire GPIB handshake
-  * Documents/HANDSHAKING.pdf
-    * Highlighted full version of 3 wire GPIB handshake by Ian Poole
-  * Documents/HP85Disk.pdf
-    * Detailed pinouts of this project and a schematic
-  * Documents/HP9133AB-09134-90032-Aug-1983.pdf
-    * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
-  * Documents/HP913x.pdf
-    * HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual
-  * Documents/hp-ib_tutorial_1980.pdf
-    * Tutorial Description of the Hewlett-Packard Interface Bus
-  * Documents/HPIB_tutorial_HP.pdf
-    * Tutorial Description of the Hewlett-Packard Interface Bus
-  * Documents/IEEE-488_Wikipedia_offline.pdf
-    * Offline copy of Wikipedia GPIB article
-  * Documents/README.md 
-    * Description of file under the Documents folder
+
+  * Documents
+    * 59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf
+      * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
+    * 5955-3442_cs80-is-pm-ocr.pdf
+      * CS/80 INSTRUCTION SET
+    * 5957-6560_9133_9134_D_H_L_Service_Apr88.pdf
+      * HP 9133/9134 D/H/L Service Manual
+    * 5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf
+      * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030
+    * 5958-4129_SS80_Nov-1985-ocr.pdf
+      * SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)
+    * amigo-command-set-ocr.pdf
+      * Appendix A HP 9895A Disc Memory Command Set
+    * CIB24SRA.pdf
+      * GPIB connector diagram of the part we used in this project form L-COM 
+    * CIB24SRA.step
+      * GPIB connector design file of the part we used in this project form L-COM 
+    * GPIB protocol.pdf
+      * Copy of GPIB commands and pinout from Linux GPIB project
+      * See: http://linux-gpib.sourceforge.net
+    * handshake.pdf
+      * Highlighted excerpt of just the 3 wire GPIB handshake
+    * HANDSHAKING.pdf
+      * Highlighted full version of 3 wire GPIB handshake by Ian Poole
+    * HP85Disk.pdf
+      * Detailed pinouts of this project and a schematic
+    * HP9133AB-09134-90032-Aug-1983.pdf
+      * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
+    * HP913x.pdf
+      * HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual
+    * hp-ib_tutorial_1980.pdf
+      * Tutorial Description of the Hewlett-Packard Interface Bus
+    * HPIB_tutorial_HP.pdf
+      * Tutorial Description of the Hewlett-Packard Interface Bus
+    * IEEE-488_Wikipedia_offline.pdf
+      * Offline copy of Wikipedia GPIB article
+    * README.md 
+      * Description of file under the Documents folder
+
   * fatfs
     * R0.12b FatFS code from (C)ChaN, 2016 - With very minimal changes 
-    * fatfs/00history.txt
-    * fatfs/00readme.txt
-    * fatfs/ff.c
-    * fatfs/ffconf.h
-    * fatfs/ff.h
-    * fatfs/integer.h
+    * 00history.txt
+    * 00readme.txt
+    * ff.c
+    * ffconf.h
+    * ff.h
+    * integer.h
+
   * fatfs.hal
     * R0.12b FatFS code from (C)ChaN, 2016 with changes
     * Hardware abstraction layer based on example AVR project
-    * fatfs.hal/diskio.c
+    * diskio.c
       * Low level disk I/O module glue functions (C)ChaN, 2016 
-    * fatfs.hal/diskio.h
+    * diskio.h
       * Low level disk I/O module glue functions (C)ChaN, 2016 
-    * fatfs.hal/mmc.c
+    * mmc.c
       * Low level MMC I/O by (C)ChaN, 2016 with modifications
-    * fatfs.hal/mmc.h
+    * mmc.h
       * Low level MMC I/O by (C)ChaN, 2016 with modifications
-    * fatfs.hal/mmc_hal.c
+    * mmc_hal.c
       * My Hardware abstraction layer code
-    * fatfs.hal/mmc_hal.h
+    * mmc_hal.h
       * My Hardware abstraction layer code
+
   * fatfs.sup
     * Support utility and POSIX rapper factions
-    * fatfs.sup/fatfs.h
+    * fatfs.h
       * FatFS header files
-    * fatfs.sup/fatfs_sup.c
-    * fatfs.sup/fatfs_sup.h
+    * fatfs_sup.c
+    * fatfs_sup.h
       * FatFS file listing and display functions
-    * fatfs.sup/fatfs_tests.c
-    * fatfs.sup/fatfs_tests.h
+    * fatfs_tests.c
+    * fatfs_tests.h
       * FatFS user test functions
+
   * gpib
     * My GPIB code for AMIGO SS80 and PPRINTER support
-    * gpib/amigo.c
+    * amigo.c
       * AMIGO parser
-    * gpib/amigo.h
+    * amigo.h
       * AMIGO parser
-    * gpib/defines.h
+    * defines.h
       * Main GPIB header and configuration options
-    * gpib/drives.c
+    * drives.c
       * Supported Drive Parameters 
-    * gpib/drive_references.txt
+    * drive_references.txt
       * General Drive Parameters Documentation for all known drive types
-    * gpib/format.c
+    * format.c
       * LIF format and file utilities
-    * gpib/gpib.c
+    * gpib.c
       * All low level GPIB bus code
-    * gpib/gpib.h
+    * gpib.h
       * GPIB I/O code
-    * gpib/gpib_hal.c
+    * gpib_hal.c
       * GPIB hardware abstraction code
-    * gpib/gpib_hal.h
+    * gpib_hal.h
       * GPIB hardware abstraction code
-    * gpib/gpib_task.c
+    * gpib_task.c
       * GPIB command handler , initialization and tracing code
-    * gpib/gpib_task.h
+    * gpib_task.h
       * GPIB command handler , initialization and tracing code
-    * gpib/gpib_tests.c
+    * gpib_tests.c
       * GPIB user tests
-    * gpib/gpib_tests.h
+    * gpib_tests.h
       * GPIB user tests
-    * gpib/printer.c
+    * printer.c
       * GPIB printer capture code
-    * gpib/printer.h
+    * printer.h
       * GPIB printer capture code
-    * gpib/references.txt
+    * references.txt
       * Main S80 SS80 AMIGO and GPIB references part numbers and web links
-    * gpib/ss80.c
+    * ss80.c
       * SS80 parser
-    * gpib/ss80.h
+    * ss80.h
       * SS80 parser
+
   * hardware
     * CPU hardware specific code
-    * hardware/baudrate.c
+    * baudrate.c
       * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
-    * hardware/bits.h
+    * bits.h
       * BIT set and clear functions
-    * hardware/cpu.h
+    * cpu.h
       * CPU specific include files
-    * hardware/delay.c
+    * delay.c
       * Delay code
-    * hardware/delay.h
+    * delay.h
       * Delay code
-    * hardware/hal.c
+    * hal.c
       * GPIO functions, spi hardware abstraction layer and chip select logic
-    * hardware/hal.h
+    * hal.h
       * GPIO functions, spi hardware abstraction layer and chip select logic
-    * hardware/iom1284p.h
+    * iom1284p.h
       * GPIO map for ATEMEGA 1284p
-    * hardware/mkdef.c
+    * mkdef.c
       * Not used
-    * hardware/pins.txt
+    * pins.txt
       * AVR function to GPIO pin map
-    * hardware/ram.c
+    * ram.c
       * Memory functions
-    * hardware/ram.h
+    * ram.h
       * Memory functions
-    * hardware/rs232.c
+    * rs232.c
       * RS232 IO
-    * hardware/rs232.h
+    * rs232.h
       * RS232 IO
-    * hardware/rtc.c
+    * rtc.c
       * DS1307 I2C RTC code
-    * hardware/rtc.h
+    * rtc.h
       * DS1307 I2C RTC code
-    * hardware/spi.c
+    * spi.c
       * SPI BUS code
-    * hardware/spi.h
+    * spi.h
       * SPI BUS code
-    * hardware/TWI_AVR8.c
+    * TWI_AVR8.c
       * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
-    * hardware/TWI_AVR8.h
+    * TWI_AVR8.h
       * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
-    * hardware/user_config.h
+    * user_config.h
       * Main include file MMC SLOW and FATS frequency and CPU frequency settings
+
   * lib
     * Library functions
-    * lib/bcpp.cfg
+    * bcpp.cfg
       * BCPP C code formatter config
-    * lib/matrix.c
+    * matrix.c
       * Matrix code - not used
-    * lib/matrix.h
+    * matrix.h
       * Matrix code - not used
-    * lib/matrix.txt
+    * matrix.txt
       *  A few notes about matrix operations
-    * lib/queue.c
+    * queue.c
       * Queue functions
-    * lib/queue.h
+    * queue.h
       * Queue functions
-    * lib/sort.c
+    * sort.c
       * Sort functions - not used
-    * lib/sort.h
+    * sort.h
       * Sort functions - not used
-    * lib/stringsup.c
+    * stringsup.c
       * Various string processing functions
-    * lib/stringsup.h
+    * stringsup.h
       * Various string processing functions
-    * lib/time.c
+    * time.c
       * POSIX time functions
-    * lib/time.h
+    * time.h
       * POSIX time functions
-    * lib/timer.c
+    * timer.c
       * Timer task functions
-    * lib/timer.h
+    * timer.h
       * Timer task functions
-    * lib/timer_hal.c
+    * timer_hal.c
       * Timer task hardware abstraction layer
-    * lib/timetests.c
+    * timetests.c
       * Time and timer test code
+
   * lif
     * LIF disk image utilities 
     * lif/lifutils.c
@@ -580,6 +589,52 @@ ___
       * Functions that allow the emulator to import and export files from LIF images 
     * Makefile
       * Permits creating a standalone Linux version of the LIF emulator tools
+    * Code by Mike Gore
+      * Makefile 
+        * Make stand alone Linux versions of LIF utility and optionaly TeleDisk to LIF converter
+      * lifsup.c
+      * lifsup.h
+        * Stand alone libraries for LIF utility - from various hp85disk libraries
+      * lifutils.c
+      * lifutils.h
+        *  LIF image functions, directory listing and file adding.extracting,renaming,deleting
+      * td02lif.c
+        * My TeleDisk decoder wrapper to convert Teledisk LIF images into pure LIF files
+      * lif-notes.txt       
+        * My notes on decoding E010 format LIF images for HP-85
+      * README.txt
+        * Notes on each file under lif and lif/teledisk
+      * 85-SS80.TD0 from hpmuseum.org
+        * Damaged SS80 Excersizer from HP Musium
+      * 85-SS80.LIF         
+        * My (hopefully) corrected LIF version (fixed two sectors addresses in TeleDisk image)
+          * My TeleDisk fix was to correct two sectors that had sector ID address of 116:
+          * I added the following to td02lif.c
+          <verbatim>
+            if(cyl == 11 && side == 0 && sector == 116)
+              sector = 8;
+            if(cyl == 13 && side == 0 && sector == 116)
+              sector = 11;
+          </verbatim>
+
+   * lif/teledisk       
+     * Teledisk LIF format to pure LIF support code
+     * Code by Mike Gore
+       * td02lif.h
+         * Headers to make teledisk_loader.c stand alone
+       * README.txt
+       * Makefile            
+         *Make library from teledisk_loader.c crc.c td0_lzss.c
+     * Code by Ashley Roll
+       * crc.c
+       * crc.h
+         * CRC16 code
+     * Code and Documenation by David Dunfield
+       * td0_lzss.h
+       * td0_lzss.c
+         * LZSS decoder
+       * td0notes.txt
+
   * posix
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * posix/posix.c
@@ -587,6 +642,7 @@ ___
       * POSIX wrappers for fatfs - Unix file IO function call wrappers
     * posix/posix_testsc
       * POSIX user tests
+
   * printf
     * Printf and math IO functions
     * printf/mathio.c
@@ -601,7 +657,8 @@ ___
       * My small scanf code - work in progress
     * printf/test_printf.c
       * Test my printf against glibs 1,000,000 tests per data type
-  * SDCARD
+
+  * sdcard
     * My HP85 AMIGO and SS80 disk images
       * SDCARD/hpdisk.cfg
         * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives

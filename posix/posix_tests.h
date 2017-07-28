@@ -1,11 +1,14 @@
 #ifndef _POSIX_TESTS_H_
 #define _POSIX_TESTS_H_
 /**
- @file fatfs/posix.h
+ @file posix_tests.h
 
  @brief POSIX wrapper for FatFS
 
- @par Copyright &copy; 2015 Mike Gore, GPL License
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+
  @par You are free to use this code under the terms of GPL
    please retain a copy of this notice in any code you use it in.
 

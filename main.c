@@ -3,11 +3,12 @@
 
  @brief Main for GPIB emulator for HP85 disk emulator project for AVR 
 
+ @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
-
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
-
 */
 
 #include <user_config.h>

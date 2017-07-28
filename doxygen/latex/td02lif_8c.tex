@@ -1,0 +1,161 @@
+\hypertarget{td02lif_8c}{}\section{lif/td02lif.c File Reference}
+\label{td02lif_8c}\index{lif/td02lif.\+c@{lif/td02lif.\+c}}
+
+
+Teledisk L\+IF extractor wrapper for Hx\+C\+Floppy\+Emulator project.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$inttypes.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}crc.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}lifsup.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}td02lif.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}teledisk\+\_\+loader.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}teledisk\+\_\+format.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}td0\+\_\+lzss.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{td02lif_8c_a5cd41ba088c6ed1589122d2f0bb42ac5}{td02lif\+\_\+track} (sector\+\_\+config\+\_\+t $\ast$sectorconfig, int track\+\_\+sectors, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Process all sectors on a track from teledisk\+\_\+loader.\+c. \end{DoxyCompactList}\item 
+int \hyperlink{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}{lif\+\_\+td02lif} (char $\ast$telediskname, char $\ast$lifname)
+\begin{DoxyCompactList}\small\item\em Convert a Teledisk L\+IF formatted disk image into a pure L\+IF image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+liftel\+\_\+t \hyperlink{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}{liftel}
+\begin{DoxyCompactList}\small\item\em Teledisk to L\+IF state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Teledisk L\+IF extractor wrapper for Hx\+C\+Floppy\+Emulator project. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, All rights reserved. G\+PL}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for Copyright details
+\end{DoxySeeAlso}
+We use the external Hx\+C\+Floppy\+Emulator library to decode T\+E\+L\+E\+D\+I\+SK format The Hx\+C\+Floppy\+Emulator library is Copyright (C) 2006-\/2014 Jean-\/\+Fran¿ois D\+EL N\+E\+RO See\+: \href{https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader}{\tt https\+://github.\+com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk\+\_\+loader}
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+
+L\+IF command help lif td02lif image.\+td0 image.\+lif Convert Tele\+Disk encoded L\+IF disk image into to pure L\+IF image 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\index{td02lif.\+c@{td02lif.\+c}!lif\+\_\+td02lif@{lif\+\_\+td02lif}}
+\index{lif\+\_\+td02lif@{lif\+\_\+td02lif}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection[{\texorpdfstring{lif\+\_\+td02lif(char $\ast$telediskname, char $\ast$lifname)}{lif_td02lif(char *telediskname, char *lifname)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+td02lif (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{telediskname, }
+\item[{char $\ast$}]{lifname}
+\end{DoxyParamCaption}
+)}\hypertarget{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}{}\label{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}
+
+
+Convert a Teledisk L\+IF formatted disk image into a pure L\+IF image. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em telediskname} & T\+E\+L\+E\+D\+I\+SK image name \\
+\hline
+\mbox{\tt in}  & {\em lifname} & L\+IF file name to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if renamed, 0 if not found, -\/1 error 
+\end{DoxyReturn}
+Write L\+IF file
+
+L\+IF summary
+
+Close L\+IF file 
+
+Definition at line 408 of file td02lif.\+c.
+
+
+
+Referenced by lif\+\_\+tests().
+
+\index{td02lif.\+c@{td02lif.\+c}!td02lif\+\_\+track@{td02lif\+\_\+track}}
+\index{td02lif\+\_\+track@{td02lif\+\_\+track}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection[{\texorpdfstring{td02lif\+\_\+track(sector\+\_\+config\+\_\+t $\ast$sectorconfig, int track\+\_\+sectors, void $\ast$data)}{td02lif_track(sector_config_t *sectorconfig, int track_sectors, void *data)}}]{\setlength{\rightskip}{0pt plus 5cm}int td02lif\+\_\+track (
+\begin{DoxyParamCaption}
+\item[{sector\+\_\+config\+\_\+t $\ast$}]{sectorconfig, }
+\item[{int}]{track\+\_\+sectors, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{td02lif_8c_a5cd41ba088c6ed1589122d2f0bb42ac5}{}\label{td02lif_8c_a5cd41ba088c6ed1589122d2f0bb42ac5}
+
+
+Process all sectors on a track from teledisk\+\_\+loader.\+c. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$sectorconfig} & Tele\+Disk track data structure \\
+\hline
+\mbox{\tt in}  & {\em track\+\_\+sectors} & sectors in this track  1 if OK, 0 on error \\
+\hline
+\end{DoxyParams}
+=========================================== \subsection*{Process S\+E\+C\+T\+OR 0 -\/ L\+IF header }
+
+
+
+ \subsection*{Done processing S\+E\+C\+T\+OR 0 -\/ L\+IF header }
+
+
+
+ C\+R\+E\+A\+TE S\+E\+C\+T\+OR M\+AP \subsection*{Sort sectors by creating a sector mapping table }
+
+sector map summary 
+
+ \subsection*{Done creating S\+E\+C\+T\+OR M\+AP }
+
+
+
+ Process L\+IF directory sectors \subsection*{We stop after the last valid directory entry }
+
+
+
+ \subsection*{Done Processing L\+IF directory sectors }
+
+only process sectors until the last file sector is copied 
+
+ \subsection*{Write sectors from Teledisk track }
+
+
+
+ \subsection*{Done writing sectors from Teledisk track }
+
+Definition at line 50 of file td02lif.\+c.
+
+
+
+\subsection{Variable Documentation}
+\index{td02lif.\+c@{td02lif.\+c}!liftel@{liftel}}
+\index{liftel@{liftel}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection[{\texorpdfstring{liftel}{liftel}}]{\setlength{\rightskip}{0pt plus 5cm}liftel\+\_\+t liftel}\hypertarget{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}{}\label{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}
+
+
+Teledisk to L\+IF state. 
+
+
+
+Definition at line 43 of file td02lif.\+c.
+
+
+
+Referenced by lif\+\_\+td02lif(), and td02lif\+\_\+track().
+
