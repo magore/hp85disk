@@ -33,6 +33,21 @@
      * Type "lif help" in the emulator for a full list of commands
        * See the top of lif/lifutils.c for full documentation and examples.
 ___
+## Compiling
+ @Note
+  * This code was developed under Ubuntu Linux 14.04 and 16.04 with avr
+    * These packages must be installed:
+       * avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr
+
+    * When Compiling you must update the Makefiles
+     * Comment out the lines
+       * GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
+       * LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
+     * Then find the lines with GIT_VERSION and LOCAL_MOD
+        CFLAGS += -DGIT_VERSION="my version"
+        CFLAGS += -DLOCAL_MOD="todays date"
+___
+
 ## Using the emulator with provider examples
    * See sdcard.cfg for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope

@@ -54,9 +54,35 @@
 \begin{DoxyItemize}
 \item See the top of \hyperlink{lifutils_8c}{lif/lifutils.\+c} for full documentation and examples. 
 
- \subsection*{Using the emulator with provider examples}
+ \subsection*{Compiling}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+This code was developed under Ubuntu Linux 14.\+04 and 16.\+04 with avr
+\begin{DoxyItemize}
+\item These packages must be installed\+:
+\begin{DoxyItemize}
+\item avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr
+\end{DoxyItemize}
+\item When Compiling you must update the Makefiles
+\begin{DoxyItemize}
+\item Comment out the lines
+\begin{DoxyItemize}
+\item G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON \+:= \$(shell stat -\/cx update.\+last 2$>$/dev/null)
+\item L\+O\+C\+A\+L\+\_\+\+M\+OD \+:= \$(shell ls -\/rt  $\vert$ tail -\/1 $\vert$ xargs stat -\/cx)
+\end{DoxyItemize}
+\item Then find the lines with G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON and L\+O\+C\+A\+L\+\_\+\+M\+OD C\+F\+L\+A\+GS += -\/\+D\+G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON=\char`\"{}my version\char`\"{} C\+F\+L\+A\+GS += -\/\+D\+L\+O\+C\+A\+L\+\_\+\+M\+OD=\char`\"{}todays date\char`\"{} 
+
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Using the emulator with provider examples}
+
+
+\begin{DoxyItemize}
 \item See sdcard.\+cfg for configuration settings and setting and documentation.
 \begin{DoxyItemize}
 \item Printer capture is configured currently for my H\+P54645D scope
@@ -91,7 +117,6 @@
 \item The H\+P85 O\+N\+LY checks for drives at power up. 
 
  \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs. H\+P85B}
-\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}

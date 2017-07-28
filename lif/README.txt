@@ -14,6 +14,19 @@
      * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
      * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
 
+ @Note
+  * Compiling
+  * This code was developed under Ubuntu Linux 14.04 and 16.04 with avr
+    * These packages must be installed:
+       * avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr
+
+    * When Compiling you must update the Makefiles
+     * Comment out the lines
+       * GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
+       * LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
+     * Then find the lines with GIT_VERSION and LOCAL_MOD
+        CFLAGS += -DGIT_VERSION="my version"
+        CFLAGS += -DLOCAL_MOD="todays date"
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
