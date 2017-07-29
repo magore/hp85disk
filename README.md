@@ -158,7 +158,7 @@ ___
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
 
-<b> The HPDir project was vital as a documentation source for this project
+<b> The HPDir project was vital as a documentation source for this project</b>
    * <http://www.hp9845.net/9845/projects/hpdir>
 
  <b>Anders Gustafsson was extremely helpful in providing me his current 
