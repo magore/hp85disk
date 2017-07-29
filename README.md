@@ -33,19 +33,35 @@
      * Type "lif help" in the emulator for a full list of commands
        * See the top of lif/lifutils.c for full documentation and examples.
 ___
-## Compiling
- @Note
-  * This code was developed under Ubuntu Linux 14.04 and 16.04 with avr
-    * These packages must be installed:
-       * avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr
+## OS Requirements for software building
+  * I used Ubuntu 16.04LTS and 14.04LTS when developing the code
+    * It should be easy to setup the same build with Windows gcc tools.
 
-    * When Compiling you must update the Makefiles
-     * Comment out the lines
-       * GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
-       * LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
-     * Then find the lines with GIT_VERSION and LOCAL_MOD
-        CFLAGS += -DGIT_VERSION="my version"
-        CFLAGS += -DLOCAL_MOD="todays date"
+## Install Ubuntu Packages required for Building
+  * sudo bash
+  * *apt-get update*
+  * *apt-get install aptitude make build-essential binutils gcc*
+  * *aptitude --with-recommends insatll avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+
+## Compiling AVR and standlone LIF tools
+  * *make clean*
+  * *make*
+
+## Flashing AVR Firmware 
+  * You will need and AVR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
+    * I am using atmelice_isp but the Makefile as example for:
+      * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
+  * make flash
+
+## Flashing the firmware to the AVR with avrdude and programmer
+  * *make flash*
+    * This will use *avrdude* with the new low cost Atmel ICE programmer.
+      * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
+      * There is an example with the AVR mkii programmer as well.
+
+## Building Doxygen documentation for the project - optional
+  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
+  * *If you omit this you will have to update the Makefile to omit the steps*
 ___
 
 ## Using the emulator with provider examples
@@ -154,6 +170,13 @@ ___
  problems with his original work. 
 
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
+
+<br>
+ * Teledisk Support code credits
+ * The HxCFloppyEmulator library is Copyright &copy; 2006-2014 *Jean-Franois DEL NERO*
+   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+ * LZSS and Teledisk Documention Copyright &copy; 2007-2008 *Dave Dunfield* All rights reserved.
+ * CRC code By *Ashley Roll* Digital Nemesis Pty Ltd www.digitalnemesis.com
 
 ___
 # Abbreviations
@@ -362,32 +385,6 @@ ___
    * For detail using LIF commands to add/extract LIF files from SD card see the top of lif/lifutil.c
 ___ 
 
-## OS Requirements for software building
-  * I use *Ubuntu 16.04 and 14.04* so these instruction will cover that version
-  * It should be easy to setup the same build with Windows gcc tools.
-
-
-## Ubuntu 16.04LTS and 14.04LTS install and setup notes
-  * *apt-get update*
-  * *apt-get install aptitude*
-  * *aptitude install --with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude*
-
-
-## Building Doxygen documentation for the project - optional
-  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
-  * *If you omit this you will have to update the Makefile to omit the steps*
-
-
-## Compiling the firmware
-  * *make clean*
-  * *make*
-
-
-## Flashing the firmware to the AVR with avrdude and programmer
-  * *make flash*
-    * This will use *avrdude* with the new low cost Atmel ICE programmer.
-      * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
-      * There is an example with the AVR mkii programmer as well.
 
 ## Files
   * ./COPYRIGHT.md

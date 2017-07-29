@@ -54,29 +54,71 @@
 \begin{DoxyItemize}
 \item See the top of \hyperlink{lifutils_8c}{lif/lifutils.\+c} for full documentation and examples. 
 
- \subsection*{Compiling}
+ \subsection*{OS Requirements for software building}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-This code was developed under Ubuntu Linux 14.\+04 and 16.\+04 with avr
+I used Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
-\item These packages must be installed\+:
-\begin{DoxyItemize}
-\item avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr
+\item It should be easy to setup the same build with Windows gcc tools.
 \end{DoxyItemize}
-\item When Compiling you must update the Makefiles
-\begin{DoxyItemize}
-\item Comment out the lines
-\begin{DoxyItemize}
-\item G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON \+:= \$(shell stat -\/cx update.\+last 2$>$/dev/null)
-\item L\+O\+C\+A\+L\+\_\+\+M\+OD \+:= \$(shell ls -\/rt  $\vert$ tail -\/1 $\vert$ xargs stat -\/cx)
-\end{DoxyItemize}
-\item Then find the lines with G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON and L\+O\+C\+A\+L\+\_\+\+M\+OD C\+F\+L\+A\+GS += -\/\+D\+G\+I\+T\+\_\+\+V\+E\+R\+S\+I\+ON=\char`\"{}my version\char`\"{} C\+F\+L\+A\+GS += -\/\+D\+L\+O\+C\+A\+L\+\_\+\+M\+OD=\char`\"{}todays date\char`\"{} 
+
+\subsection*{Install Ubuntu Packages required for Building}
 
 
+\begin{DoxyItemize}
+\item sudo bash
+\item {\itshape apt-\/get update}
+\item {\itshape apt-\/get install aptitude make build-\/essential binutils gcc}
+\item {\itshape aptitude --with-\/recommends insatll avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr}
 \end{DoxyItemize}
+
+\subsection*{Compiling A\+VR and standlone L\+IF tools}
+
+
+\begin{DoxyItemize}
+\item {\itshape make clean}
+\item {\itshape make}
+\end{DoxyItemize}
+
+\subsection*{Flashing A\+VR Firmware}
+
+
+\begin{DoxyItemize}
+\item You will need and A\+VR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
+\begin{DoxyItemize}
+\item I am using atmelice\+\_\+isp but the Makefile as example for\+:
+\begin{DoxyItemize}
+\item {\itshape avrispmk\+II atmelice atmelice\+\_\+dw atmelice\+\_\+isp atmelice\+\_\+pdi}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item make flash
+\end{DoxyItemize}
+
+\subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}
+
+
+\begin{DoxyItemize}
+\item {\itshape make flash}
+\begin{DoxyItemize}
+\item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
+\begin{DoxyItemize}
+\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
+\item There is an example with the A\+VR mkii programmer as well.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Building Doxygen documentation for the project -\/ optional}
+
+
+\begin{DoxyItemize}
+\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
+\item {\itshape If you omit this you will have to update the Makefile to omit the steps} 
+
+
 \end{DoxyItemize}
 
 \subsection*{Using the emulator with provider examples}
@@ -266,6 +308,18 @@ Multiple U\+N\+IT support is N\+OT yet implemented however multiple drive suppor
 {\bfseries  As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.}
 
 {\bfseries  Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.}
+
+{\bfseries ~\newline
+
+\begin{DoxyItemize}
+\item Teledisk Support code credits
+\item The Hx\+C\+Floppy\+Emulator library is Copyright \copyright{} 2006-\/2014 {\itshape Jean-\/\+Franois D\+EL N\+E\+RO}
+\begin{DoxyItemize}
+\item See\+: \href{https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader}{\tt https\+://github.\+com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk\+\_\+loader}
+\end{DoxyItemize}
+\item L\+Z\+SS and Teledisk Documention Copyright \copyright{} 2007-\/2008 {\itshape Dave Dunfield} All rights reserved.
+\item C\+RC code By {\itshape Ashley Roll} Digital Nemesis Pty Ltd www.\+digitalnemesis.\+com
+\end{DoxyItemize}}
 
 {\bfseries 
 
@@ -571,53 +625,6 @@ Documents/\+H\+P85\+Disk.\+pdf for a hand drawn diagram
 \item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of lif/lifutil.\+c 
 
 
-\end{DoxyItemize}
-\end{DoxyItemize}}
-
-{\bfseries \subsection*{OS Requirements for software building}}
-
-{\bfseries 
-\begin{DoxyItemize}
-\item I use {\itshape Ubuntu 16.\+04 and 14.\+04} so these instruction will cover that version
-\item It should be easy to setup the same build with Windows gcc tools.
-\end{DoxyItemize}}
-
-{\bfseries \subsection*{Ubuntu 16.\+04\+L\+TS and 14.\+04\+L\+TS install and setup notes}}
-
-{\bfseries 
-\begin{DoxyItemize}
-\item {\itshape apt-\/get update}
-\item {\itshape apt-\/get install aptitude}
-\item {\itshape aptitude install --with-\/recommends avr-\/gcc avr-\/libc binutils-\/avr gdb-\/avr avrdude}
-\end{DoxyItemize}}
-
-{\bfseries \subsection*{Building Doxygen documentation for the project -\/ optional}}
-
-{\bfseries 
-\begin{DoxyItemize}
-\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
-\item {\itshape If you omit this you will have to update the Makefile to omit the steps}
-\end{DoxyItemize}}
-
-{\bfseries \subsection*{Compiling the firmware}}
-
-{\bfseries 
-\begin{DoxyItemize}
-\item {\itshape make clean}
-\item {\itshape make}
-\end{DoxyItemize}}
-
-{\bfseries \subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}}
-
-{\bfseries 
-\begin{DoxyItemize}
-\item {\itshape make flash}
-\begin{DoxyItemize}
-\item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
-\begin{DoxyItemize}
-\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
-\item There is an example with the A\+VR mkii programmer as well.
-\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}}
 

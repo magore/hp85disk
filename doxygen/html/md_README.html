@@ -127,7 +127,7 @@ README</h1>
 </li>
 <li>Type "lif help" in the emulator for a full list of commands<ul>
 <li>See the top of <a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lif/lifutils.c</a> for full documentation and examples. <hr/>
- <h2>Compiling</h2>
+ <h2>OS Requirements for software building</h2>
 </li>
 </ul>
 </li>
@@ -136,20 +136,47 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>This code was developed under Ubuntu Linux 14.04 and 16.04 with avr</p><ul>
-<li>These packages must be installed:<ul>
-<li>avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr</li>
+<p>I used Ubuntu 16.04LTS and 14.04LTS when developing the code</p><ul>
+<li>It should be easy to setup the same build with Windows gcc tools.</li>
+</ul>
+<h2>Install Ubuntu Packages required for Building</h2>
+<ul>
+<li>sudo bash</li>
+<li><em>apt-get update</em></li>
+<li><em>apt-get install aptitude make build-essential binutils gcc</em></li>
+<li><em>aptitude &ndash;with-recommends insatll avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr</em></li>
+</ul>
+<h2>Compiling AVR and standlone LIF tools</h2>
+<ul>
+<li><em>make clean</em></li>
+<li><em>make</em></li>
+</ul>
+<h2>Flashing AVR Firmware</h2>
+<ul>
+<li>You will need and AVR programmer supported by avrdude (avrdude is part of avrtools installed in last step)<ul>
+<li>I am using atmelice_isp but the Makefile as example for:<ul>
+<li><em>avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi</em></li>
 </ul>
 </li>
-<li>When Compiling you must update the Makefiles<ul>
-<li>Comment out the lines<ul>
-<li>GIT_VERSION := $(shell stat -cx update.last 2&gt;/dev/null)</li>
-<li>LOCAL_MOD := $(shell ls -rt  | tail -1 | xargs stat -cx)</li>
 </ul>
 </li>
-<li>Then find the lines with GIT_VERSION and LOCAL_MOD CFLAGS += -DGIT_VERSION="my version" CFLAGS += -DLOCAL_MOD="todays date" <hr/>
+<li>make flash</li>
+</ul>
+<h2>Flashing the firmware to the AVR with avrdude and programmer</h2>
+<ul>
+<li><em>make flash</em><ul>
+<li>This will use <em>avrdude</em> with the new low cost Atmel ICE programmer.<ul>
+<li>If you wish to another programmer then update the "flash" avrdude command line in the Makefile.</li>
+<li>There is an example with the AVR mkii programmer as well.</li>
+</ul>
 </li>
 </ul>
+</li>
+</ul>
+<h2>Building Doxygen documentation for the project - optional</h2>
+<ul>
+<li><em>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</em></li>
+<li><em>If you omit this you will have to update the Makefile to omit the steps</em> <hr/>
 </li>
 </ul>
 <h2>Using the emulator with provider examples</h2>
@@ -325,6 +352,17 @@ README</h1>
 <p><b> <b>Anders Gustafsson was extremely helpful in providing me his current code and details of his project - which I am very thankful for.</b></b></p>
 <p><b> As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications - NOT because of any problems with his original work.</b></p>
 <p><b> Although mostly rewritten I have maintained the basic concept of using state machines for GPIB read and write functions as well as for SS80 execute state tracking.</b></p>
+<p><b><br />
+</p><ul>
+<li>Teledisk Support code credits</li>
+<li>The HxCFloppyEmulator library is Copyright &copy; 2006-2014 <em>Jean-Franois DEL NERO</em><ul>
+<li>See: <a href="https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader">https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader</a></li>
+</ul>
+</li>
+<li>LZSS and Teledisk Documention Copyright &copy; 2007-2008 <em>Dave Dunfield</em> All rights reserved.</li>
+<li>CRC code By <em>Ashley Roll</em> Digital Nemesis Pty Ltd www.digitalnemesis.com</li>
+</ul>
+<p></b></p>
 <p><b></p><hr/>
  <h1>Abbreviations</h1>
 <p></b></p>
@@ -575,48 +613,6 @@ README</h1>
 <li>Pressing any key will break out of the gpib task loop until a command is entered<ul>
 <li>help Will list all available commands and options</li>
 <li>For detail using LIF commands to add/extract LIF files from SD card see the top of lif/lifutil.c <hr/>
-</li>
-</ul>
-</li>
-</ul>
-<p></b></p>
-<p><b></p><h2>OS Requirements for software building</h2>
-<p></b></p>
-<p><b></p><ul>
-<li>I use <em>Ubuntu 16.04 and 14.04</em> so these instruction will cover that version</li>
-<li>It should be easy to setup the same build with Windows gcc tools.</li>
-</ul>
-<p></b></p>
-<p><b></p><h2>Ubuntu 16.04LTS and 14.04LTS install and setup notes</h2>
-<p></b></p>
-<p><b></p><ul>
-<li><em>apt-get update</em></li>
-<li><em>apt-get install aptitude</em></li>
-<li><em>aptitude install &ndash;with-recommends avr-gcc avr-libc binutils-avr gdb-avr avrdude</em></li>
-</ul>
-<p></b></p>
-<p><b></p><h2>Building Doxygen documentation for the project - optional</h2>
-<p></b></p>
-<p><b></p><ul>
-<li><em>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</em></li>
-<li><em>If you omit this you will have to update the Makefile to omit the steps</em></li>
-</ul>
-<p></b></p>
-<p><b></p><h2>Compiling the firmware</h2>
-<p></b></p>
-<p><b></p><ul>
-<li><em>make clean</em></li>
-<li><em>make</em></li>
-</ul>
-<p></b></p>
-<p><b></p><h2>Flashing the firmware to the AVR with avrdude and programmer</h2>
-<p></b></p>
-<p><b></p><ul>
-<li><em>make flash</em><ul>
-<li>This will use <em>avrdude</em> with the new low cost Atmel ICE programmer.<ul>
-<li>If you wish to another programmer then update the "flash" avrdude command line in the Makefile.</li>
-<li>There is an example with the AVR mkii programmer as well.</li>
-</ul>
 </li>
 </ul>
 </li>
@@ -1192,7 +1188,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 27 2017 22:01:38 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 29 2017 14:11:44 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

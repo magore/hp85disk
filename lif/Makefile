@@ -8,7 +8,7 @@
 # - [1.0]   [Mike Gore]  Initial revision of file.
 
 GIT_VERSION := $(shell stat -c%x ../update.last 2>/dev/null)
-LOCAL_MOD := $(shell ls lifutils.c | tail -1 | xargs stat -c%x)
+LOCAL_MOD := $(shell ls -rt teledisk/*.[ch] *.[ch] | tail -1 | xargs stat -c%x)
 
 DIR=$(shell pwd)
 
