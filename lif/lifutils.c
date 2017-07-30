@@ -87,7 +87,6 @@
 */
 
 #ifdef LIF_STAND_ALONE
-
 #include "lifsup.h"
 #include "lifutils.h"
 extern MEMSPACE int lif_td02lif(char *telediskname, char *lifname);
@@ -97,7 +96,6 @@ extern MEMSPACE int lif_td02lif(char *telediskname, char *lifname);
 #include "user_config.h"
 #include "defines.h"
 #include "drives.h"
-#include <time.h>
 #include "lifutils.h"
 #endif
 

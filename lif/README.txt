@@ -21,7 +21,8 @@ ___
   * sudo bash
   * *apt-get update*
   * *apt-get install aptitude make build-essential binutils gcc*
-  * *aptitude --with-recommends insatll avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+  * *aptitude --with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+
 
 ___
 ## Compiling Standlone LIF tools
