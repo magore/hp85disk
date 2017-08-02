@@ -35,10 +35,17 @@ typedef struct tm tm_t;
 #endif
 
 /* lifsup.c */
+#ifdef __MINGW32__
+struct tm *gmtime_r ( const time_t *timep , struct tm *result );
+char *asctime_r ( const struct tm *tm , char *buf );
+time_t timegm(struct tm * a_tm);
+#endif
 int MATCHARGS ( char *str , char *pat , int min , int argc );
 MEMSPACE void trim_tail ( char *str );
 MEMSPACE void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
 MEMSPACE void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
 MEMSPACE uint32_t B2V_MSB ( uint8_t *B , int index , int size );
 MEMSPACE uint32_t B2V_LSB ( uint8_t *B , int index , int size );
-MEMSPACE void hexdump(uint8_t *data, int size);
+MEMSPACE void hexdump ( uint8_t *data , int size );
+void td02lif_usage ( char *name );
+

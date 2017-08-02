@@ -36,14 +36,15 @@ endif
 
 
 BIN = lif
+LIB =
 
 # Optional teledisk support
 ifeq ($(TELEDISK),1)
-    BIN += lib 
+    LIB += lib 
     BIN += td02lif
 endif
 
-all:	$(BIN)
+all:	$(BIN) $(LIB)
 
 install:	all
 	install -s lif /usr/local/bin/lif
@@ -63,7 +64,9 @@ endif
 lif:	lib lifutils.c
 	gcc $(CFLAGS) ${SRC} -o lif ${LIBS}
 
+BIN_EXE := $(addsuffix .exe,${BIN})
+
 clean:
-	   make -C teledisk clean
-	rm -f ${BIN}
+	make -C teledisk clean
+	rm -f ${BIN} ${BIN_EXE} ${LIB}
 

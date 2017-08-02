@@ -255,10 +255,10 @@ void lif_free(uint8_t *p)
 /// @param[in] str: String to allocate and copy
 /// @return pointer to allocated memory with string copy
 MEMSPACE
-void *lif_stralloc(char *str)
+char *lif_stralloc(char *str)
 {
     int len = strlen(str);
-    char *p = (char *)lif_calloc(len+1);
+    char *p = (char *)lif_calloc(len+4);
     if(!p)
         return(NULL);
     strcpy(p,str);
@@ -329,6 +329,7 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
 {
     long len;
 
+
     if(!lif_seek_msg(LIF->fp,offset,LIF->name))
         return(0);
 
@@ -336,6 +337,7 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
     len = fread(buf, 1, bytes, LIF->fp);
     if( len != bytes)
     {
+
         if(debuglevel & 1)
             printf("lif_read: read:[%s] offset:[%ld] write:[%ld] expected:[%d]\n", 
                 LIF->name, (long)offset, (long)len, (int)bytes);
@@ -1009,7 +1011,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
     lif_vol2str(LIF,buffer);
 
     // Write Volume header
-    LIF->fp = lif_open(LIF->name,"w+");
+    LIF->fp = lif_open(LIF->name,"wb+");
     if(LIF->fp == NULL)
     {
         lif_close_volume(LIF);
@@ -1185,18 +1187,24 @@ MEMSPACE
 int lif_readdirindex(lif_t *LIF, int index)
 {
     uint32_t offset;
+    uint32_t size;
     uint8_t dir[LIF_DIR_SIZE];
 
     // Verify that the records is withing directory limits
     if( !lif_checkdirindex(LIF, index) )
+    {
         return(0);
+    }
 
     // Computer offset
     offset = ((long)index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * LIF_SECTOR_SIZE);
 
     // read raw data
-    if( lif_read(LIF, dir, offset, sizeof(dir)) < (long)sizeof(dir) )
+    size = lif_read(LIF, dir, offset, sizeof(dir));
+    if(size  < (long)sizeof(dir) )
+    {
         return(0);
+    }
 
     // Convert into directory structure
     lif_str2dir(dir, LIF);
@@ -1209,6 +1217,7 @@ int lif_readdirindex(lif_t *LIF, int index)
     {
         if(debuglevel & 0x400)
             lif_dump_vol(LIF,"lif_readdirindex");
+    printf("name:%s !lif_check_dir\n", LIF->name);
         return(0);
     }
     return(1);
@@ -1530,6 +1539,7 @@ lif_t *lif_open_volume(char *name, char *mode)
     if(sp == NULL)
         return(NULL);
 
+
     // To read LIF volume we must have at minimum two sectors
     // volume header a directory entry
     if(sp->st_size < LIF_SECTOR_SIZE*2)
@@ -1615,7 +1625,7 @@ void lif_dir(char *lifimagename)
 
 
 
-    LIF = lif_open_volume(lifimagename,"r+");
+    LIF = lif_open_volume(lifimagename,"rb+");
     if(LIF == NULL)
         return;
 
@@ -1889,7 +1899,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
     // output buffer must be larger then a single sectors because of either headers or padding
     uint8_t obuf[LIF_SECTOR_SIZE*2];
 
-    fi = lif_open(username, "r");
+    fi = lif_open(username, "rb");
     if(fi == NULL)
         return(-1);
 
@@ -2127,7 +2137,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 
     offset = start * LIF_SECTOR_SIZE;
 
-    fo = lif_open(username,"w");
+    fo = lif_open(username,"wb");
     if(fo == NULL)
     {
         lif_closedir(LIF);

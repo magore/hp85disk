@@ -19,6 +19,51 @@
 
 int debuglevel = 0x0001;
 
+#ifdef __MINGW32__
+struct tm *gmtime_r(const time_t *timep, struct tm *result)
+{
+
+    struct tm *g = gmtime (timep );
+    *result = *g;
+    return(result);
+}
+
+char *asctime_r(const struct tm *tm, char *buf)
+{
+  static char day_name[7][3] = {
+    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
+  };
+  static char mon_name[12][3] = {
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  };
+
+  sprintf (buf, "%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
+       day_name[tm->tm_wday], 
+       mon_name[tm->tm_mon],
+       tm->tm_mday, tm->tm_hour, tm->tm_min,
+       tm->tm_sec, 1900 + tm->tm_year);
+  return buf;
+}
+
+struct tm *_gmtime64 (const __time64_t *);
+
+time_t timegm(struct tm * a_tm)
+{
+    time_t ltime = mktime(a_tm);
+    struct tm *tm_val =_gmtime64 (&ltime);
+    int offset = (tm_val->tm_hour - a_tm->tm_hour);
+    if (offset > 12)
+    {
+        offset = 24 - offset;
+    }
+    time_t utc = mktime(a_tm) - offset * 3600;
+    return utc;
+}
+
+#endif
+
+
 ///@brief Match two strings and compare argument index
 /// Display  message if the number of arguments is too few
 ///@param str: string to test
@@ -174,6 +219,8 @@ void hexdump(uint8_t *data, int size)
     printf("\n");
 }
 
+
+
 void td02lif_usage(char *name)
 {
         printf("Stand alone version of LIF utilities for linux\n");
@@ -210,6 +257,9 @@ int main(int argc, char *argv[])
     else
     {
         if(MATCH(basename(argv[0]),"td02lif"))
+            myargv[ind++] = "td02lif";
+        //@brief MingW
+        if(MATCH(basename(argv[0]),"td02lif.exe"))
             myargv[ind++] = "td02lif";
     }
 
