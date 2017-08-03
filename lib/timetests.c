@@ -111,9 +111,9 @@ int timetests(char *str, int check)
     if(!*str)
         fp = stdout;
     else if(check)
-        fp = fopen(str,"r");
+        fp = fopen(str,"rb");
     else
-        fp = fopen(str,"w");
+        fp = fopen(str,"wb");
 
     if(fp == NULL)
         perror("timetest file open failed");

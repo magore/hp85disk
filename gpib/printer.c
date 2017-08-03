@@ -72,7 +72,7 @@ void printer_open(char *name)
     if(debuglevel & 32)
         printf("Capturing plot to:%s\n", ptr);
 
-    plot.fp = fopen(ptr,"w");
+    plot.fp = fopen(ptr,"wb");
     if(plot.fp == NULL)
     {
         if(debuglevel & (1+32))

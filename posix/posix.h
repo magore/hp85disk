@@ -324,7 +324,7 @@ MEMSPACE int fgetpos ( FILE *stream , size_t *pos );
 MEMSPACE int fseek ( FILE *stream , long offset , int whence );
 MEMSPACE int fsetpos ( FILE *stream , size_t *pos );
 MEMSPACE long ftell ( FILE *stream );
-MEMSPACE size_t lseek ( int fileno , size_t position , int whence );
+MEMSPACE off_t lseek ( int fileno , off_t position , int whence );
 MEMSPACE void rewind ( FILE *stream );
 MEMSPACE int close ( int fileno );
 MEMSPACE int fileno ( FILE *stream );

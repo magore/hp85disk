@@ -201,7 +201,7 @@ void gpib_trace_task( char *name , int detail)
             printf("FULL GPIB BUS handshake logging requested\n");
         printf("Press ANY key to exit\n");
 
-        gpib_log_fp = fopen(name,"w");
+        gpib_log_fp = fopen(name,"wb");
         if(gpib_log_fp == NULL)
         {
             perror("open failed");

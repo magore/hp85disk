@@ -614,7 +614,7 @@ long ftell(FILE *stream)
 /// @return file position on sucess.
 /// @return -1 on error.
 MEMSPACE
-size_t lseek(int fileno, size_t position, int whence)
+off_t lseek(int fileno, off_t position, int whence)
 {
     FRESULT res;
     FIL *fh;
@@ -646,6 +646,11 @@ size_t lseek(int fileno, size_t position, int whence)
     {
         errno = fatfs_to_errno(res);
         return -1;
+    }
+    if(position != f_tell(fh) )
+    {
+        printf("Seek failed");
+        return(-1L);
     }
     return (fh->fptr);
 }

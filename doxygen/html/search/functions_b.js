@@ -68,5 +68,5 @@ var searchData=
   ['logfile',['logfile',['../posix__tests_8c.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c'],['../posix__tests_8h.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c']]],
   ['ls',['ls',['../posix__tests_8c.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c']]],
   ['ls_5finfo',['ls_info',['../posix__tests_8c.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c']]],
-  ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]]
+  ['lseek',['lseek',['../posix_8c.html#abb875e56516d235a6aaf69951444cc63',1,'lseek(int fileno, off_t position, int whence):&#160;posix.c'],['../posix_8h.html#abb875e56516d235a6aaf69951444cc63',1,'lseek(int fileno, off_t position, int whence):&#160;posix.c']]]
 ];

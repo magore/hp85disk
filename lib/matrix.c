@@ -541,7 +541,7 @@ mat_t MatRead(char *name)
     MatR.cols = 0;
     MatR.data = NULL;
 
-    fp = fopen(name,"r");
+    fp = fopen(name,"rb");
     if(fp == NULL)
     {
         return(MatR);
@@ -608,7 +608,7 @@ int MatWrite(char *name, mat_t MatW)
     FILE *fp;
     int r,c;
 
-    fp = fopen(name,"w");
+    fp = fopen(name,"wb");
     if(fp == NULL)
     {
         return(0);

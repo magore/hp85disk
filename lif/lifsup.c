@@ -17,7 +17,7 @@
 #include "lifsup.h"
 #include "lifutils.h"
 
-int debuglevel = 0x0001;
+int debuglevel = 0x0401;
 
 #ifdef __MINGW32__
 struct tm *gmtime_r(const time_t *timep, struct tm *result)

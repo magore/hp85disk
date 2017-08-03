@@ -51,7 +51,7 @@ buffer_t *buffer_read_open(char *name, uint8_t *buf, int size)
     p->buf  = buf;
 
     ///@brief Read and process into image file
-    p->fp = fopen(name,"r");
+    p->fp = fopen(name,"rb");
     if(p->fp == NULL)
     {
         printf("buffer_read_open: Can not open:[%s]\n", name);

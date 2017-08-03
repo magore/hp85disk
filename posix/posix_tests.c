@@ -259,7 +259,7 @@ long cat(char *name, int dopage)
     int size = 0;
     char line[256];
 
-    fp = fopen(name,"r");
+    fp = fopen(name,"rb");
     if (!fp)
     {
         printf("Can't open: %s\n", name);
@@ -304,7 +304,7 @@ long copy(char *from,char *to)
 
     printf("Opening %s\n", from);
 
-    fi = fopen(from,"r");
+    fi = fopen(from,"rb");
     if (fi == NULL)
     {
         printf("Can't open: %s\n", from);
@@ -312,8 +312,8 @@ long copy(char *from,char *to)
     }
 
     printf("Creating %s\n", to);
-    fo = fopen(to,"w");
-    if (fo)
+    fo = fopen(to,"wb");
+    if (fo == NULL)
     {
         printf("Can't open: %s\n", to);
         fclose(fo);
@@ -364,7 +364,7 @@ int hexdump(char *name, int dopage)
     FILE *fi;
     char buf[0x20];
 
-    fi=fopen(name,"r");
+    fi=fopen(name,"rb");
     if(fi == NULL) 
     {
         printf("Can' open: %s\n", name);
@@ -598,7 +598,7 @@ long logfile(char *name, char *str)
     long size = 0;
     FILE *fo;
 
-    fo = fopen(name,"a");
+    fo = fopen(name,"ab");
     if (fo)
     {
         printf("Can't open: %s\n", name);
@@ -627,7 +627,7 @@ uint16_t sum(char *name)
     int i,len;
     uint8_t buffer[256];
 
-    fi=fopen(name,"r");
+    fi=fopen(name,"rb");
     if(fi == NULL) 
     {
         printf("Can' open: %s\n", name);
@@ -661,7 +661,7 @@ long upload(char *name)
     FILE *fp;
     char buffer[256];
 
-    fp = fopen(name, "w");
+    fp = fopen(name, "wb");
     if( fp == NULL)
     {
         printf("Can' open: %s\n", name);

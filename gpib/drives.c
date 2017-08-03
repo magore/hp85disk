@@ -678,7 +678,7 @@ int POSIX_Read_Config(char *name)
     lines = 0;
 
     printf("Reading: %s\n", name);
-    cfg = fopen(name, "r");
+    cfg = fopen(name, "rb");
     if(cfg == NULL)
     {
         ++errors;

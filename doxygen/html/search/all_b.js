@@ -104,6 +104,6 @@ var searchData=
   ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]],
   ['ls',['ls',['../posix__tests_8c.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c']]],
   ['ls_5finfo',['ls_info',['../posix__tests_8c.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#a573eb4f7de945139101e2cfb59111722',1,'ls_info(char *name, int verbose):&#160;posix_tests.c']]],
-  ['lseek',['lseek',['../posix_8c.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c'],['../posix_8h.html#ae4ea1b12797e3ba021a1af3cb4ba17bd',1,'lseek(int fileno, size_t position, int whence):&#160;posix.c']]],
+  ['lseek',['lseek',['../posix_8c.html#abb875e56516d235a6aaf69951444cc63',1,'lseek(int fileno, off_t position, int whence):&#160;posix.c'],['../posix_8h.html#abb875e56516d235a6aaf69951444cc63',1,'lseek(int fileno, off_t position, int whence):&#160;posix.c']]],
   ['lstat',['lstat',['../posix_8h.html#ae730c85752284268b39560df693cb207',1,'posix.h']]]
 ];
