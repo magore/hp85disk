@@ -2,6 +2,7 @@ var searchData=
 [
   ['talk_5fcleanup',['talk_cleanup',['../gpib__task_8c.html#af4bf5ed0317de478278afbb1d1bf8614',1,'talk_cleanup():&#160;gpib_task.c'],['../gpib__task_8h.html#a509eb3426def2f282b1a31c411e9cbb7',1,'talk_cleanup(void):&#160;gpib_task.c']]],
   ['task',['task',['../main_8c.html#a66ac220b8fb4c59823fdf116cecda862',1,'task(uint8_t gpib):&#160;main.c'],['../main_8h.html#acbfb668d7b4cfa39aa1a5a5dac3c0e7e',1,'task(void):&#160;main.h']]],
+  ['td02lif_5fsector_5finfo',['td02lif_sector_info',['../td02lif_8c.html#aeee9f409ecf8d00f5de54aa3e997bff3',1,'td02lif.c']]],
   ['td02lif_5ftrack',['td02lif_track',['../td02lif_8c.html#a5cd41ba088c6ed1589122d2f0bb42ac5',1,'td02lif.c']]],
   ['td02lif_5fusage',['td02lif_usage',['../lifsup_8h.html#a481983004278b25f9245d872e6e2df7e',1,'lifsup.h']]],
   ['testpage',['testpage',['../posix__tests_8c.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c'],['../posix__tests_8h.html#a568ac783ed7c976d2832966dcbce607c',1,'testpage(int count):&#160;posix_tests.c']]],

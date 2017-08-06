@@ -234,6 +234,7 @@ void *lif_calloc(long size)
     uint8_t *p = safecalloc(size,1);
     if(!p)
         printf("lif_calloc:[%ld] not enough free memory\n", size);
+
     return(p);
 }
 
@@ -242,7 +243,7 @@ void *lif_calloc(long size)
 /// @param[in] p: pointer to memory to free
 /// @return pointer to allocated memory
 MEMSPACE
-void lif_free(uint8_t *p)
+void lif_free(void *p)
 {
     if(!p)
         printf("lif_free: NULL pointer\n");
@@ -879,7 +880,10 @@ int lif_check_dir(lif_t *LIF)
         {
             status = 0;
             if(debuglevel & 1)
-                printf("LIF Directory:[%s] invalid start sector:%lXh\n", LIF->DIR.filename, (long)LIF->DIR.FileStartSector);
+                printf("LIF Directory:[%s] invalid start sector:%lXh < fie area start:%lXh\n", 
+                LIF->DIR.filename, 
+                (long)LIF->DIR.FileStartSector,
+                (long)LIF->filestart);
         }
     }
 
@@ -889,7 +893,12 @@ int lif_check_dir(lif_t *LIF)
         {
             status = 0;
             if(debuglevel & 1)
-                printf("LIF Directory:[%s] invalid end sector:%lXh\n", LIF->DIR.filename,(long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
+            {
+                printf("LIF Directory:[%s] invalid end sector:%lXh > total sectors:%lXh\n", 
+                    LIF->DIR.filename,
+                    (long)LIF->DIR.FileStartSector + LIF->DIR.FileSectors,
+                    (long)LIF->sectors);
+            }
         }
     }
 
@@ -1119,13 +1128,16 @@ void lif_close_volume(lif_t *LIF)
         {
             fseek(LIF->fp, 0, SEEK_END);
             fclose(LIF->fp);
+            LIF->fp = NULL;
             sync();
         }
+
         if(LIF->name)
-            safefree(LIF->name);
+            lif_free(LIF->name);
 
         lif_vol_clear(LIF);
-        safefree(LIF);
+
+        lif_free(LIF);
     }
 }
 
@@ -1169,7 +1181,7 @@ void lif_closedir(lif_t *LIF)
 MEMSPACE
 int lif_checkdirindex(lif_t * LIF, int index)
 {
-    if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) > LIF->VOL.DirSectors)
+    if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) >= LIF->VOL.DirSectors)
     {
         printf("lif_checkdirindex:[%s] direcory index:[%d] out of bounds\n",LIF->name, index);
         if(debuglevel & 0x400)
@@ -1215,9 +1227,11 @@ int lif_readdirindex(lif_t *LIF, int index)
 
     if( !lif_check_dir(LIF))
     {
+        printf("lif_check_dir: error, index:%d\n", (int)index);
         if(debuglevel & 0x400)
+        {
             lif_dump_vol(LIF,"lif_readdirindex");
-    printf("name:%s !lif_check_dir\n", LIF->name);
+        }
         return(0);
     }
     return(1);
@@ -1333,7 +1347,6 @@ lif_t *lif_updatefree(lif_t *LIF)
     {
         if( !lif_readdirindex(LIF,index) )
         {
-            lif_closedir(LIF);
             return(NULL);
         }
 
@@ -1349,7 +1362,6 @@ lif_t *lif_updatefree(lif_t *LIF)
                 // update EOF
                 if(!lif_writedirEOF(LIF,purgeindex))        
                 {
-                    lif_closedir(LIF);
                     return(NULL);
                 }
             }   
@@ -1550,7 +1562,7 @@ lif_t *lif_open_volume(char *name, char *mode)
     }
 
 
-    // Allocate LIF structur
+    // Allocate LIF structure
     LIF = lif_calloc(sizeof(lif_t)+4);
     if(!LIF)
         return(NULL);
@@ -1566,6 +1578,12 @@ lif_t *lif_open_volume(char *name, char *mode)
     LIF->sectors = lif_bytes2sectors(sp->st_size);
 
     LIF->fp = lif_open(LIF->name,mode);
+    if(!LIF->fp)
+    {
+        lif_closedir(LIF);
+        return(NULL);
+    }
+        
         
     // Volume header must be it least one sector
     if( lif_read(LIF, buffer, 0, LIF_SECTOR_SIZE) < LIF_SECTOR_SIZE)
@@ -1578,7 +1596,6 @@ lif_t *lif_open_volume(char *name, char *mode)
 
     // Unpack Volumes has the Directory start sector
     lif_str2vol(buffer, LIF);
-
 
     // Validate basic Volume headers 
     if( !lif_check_volume(LIF) )
@@ -1623,8 +1640,6 @@ void lif_dir(char *lifimagename)
 
     int warn = ' ';
 
-
-
     LIF = lif_open_volume(lifimagename,"rb+");
     if(LIF == NULL)
         return;
@@ -1638,8 +1653,10 @@ void lif_dir(char *lifimagename)
     printf("NAME         TYPE   START SECTOR        SIZE    RECSIZE   DATE\n");
     while(1)
     {
+
         if(!lif_readdirindex(LIF,index))
             break;
+
 
         if(LIF->DIR.FileType == 0xffff)
             break;
@@ -1665,6 +1682,7 @@ void lif_dir(char *lifimagename)
                 }
             }
         }
+
 
         // name type start size
         printf("%-10s  %04Xh      %8lXh   %9ld%c      %4d   %s\n", 

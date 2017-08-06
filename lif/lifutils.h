@@ -140,7 +140,7 @@ typedef struct
 MEMSPACE void lif_help ( void );
 MEMSPACE int lif_tests ( int argc , char *argv []);
 MEMSPACE void *lif_calloc ( long size );
-MEMSPACE void lif_free ( uint8_t *p );
+MEMSPACE void lif_free ( void *p );
 MEMSPACE char *lif_stralloc ( char *str );
 MEMSPACE FILE *lif_open ( char *name , char *mode );
 MEMSPACE stat_t *lif_stat ( char *name , stat_t *p );

@@ -59,12 +59,12 @@ typedef struct
 {
     int  done;
     int  error;
-    long sectorzeroprocessed;
-    long sectorspertrack;
+    int state;
+    int sectorspertrack;
+    int sectorsize;
+    int sectorlast;
     long sectorindex;
-    long sectorsize;
     long writeindex;
-    long dirprocessed;
 } liftel_t;
 
 typedef struct tm tm_t;

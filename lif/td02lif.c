@@ -43,6 +43,34 @@
 liftel_t liftel;
 
 
+enum 
+{
+    TD0_INIT,
+    TD0_VOLUME,
+    TD0_DIRECTORY,
+    TD0_FILE,
+    TD0_DONE
+};
+
+
+int td02lif_sector_info(sector_config_t *sectorconfig, int index)
+{
+    printf("cylinder:%02d, head:%02d, sector:%02d, size:%d, index:%d\n", 
+        (int) sectorconfig[index].cylinder,
+        (int) sectorconfig[index].head,
+        (int) sectorconfig[index].sector,
+        (int) sectorconfig[index].sectorsize,
+        (int) index);
+
+#if 0
+    printf("\t \ttrackencoding:%02d\n", (int) sectorconfig[index].trackencoding);
+    printf("\t \tuse_alternate_datamark:%04x\n", (int) (int) sectorconfig[index].use_alternate_datamark);
+    printf("\t \talternate_datamark:%04x\n", (int) sectorconfig[index].alternate_datamark);
+    printf("\t \tuse_alternate_data_crc:%04x\n", (int) sectorconfig[index].use_alternate_data_crc);
+    printf("\t \tmissingdataaddressmark:%04x\n", (int) sectorconfig[index].missingdataaddressmark);
+#endif
+}
+
 /// @brief Process all sectors on a track from teledisk_loader.c
 /// @param[in] *sectorconfig: TeleDisk track data structure
 /// @param[in] track_sectors: sectors in this track
@@ -50,173 +78,224 @@ liftel_t liftel;
 int td02lif_track(sector_config_t *sectorconfig, int track_sectors, void *data)
 {
     int i;
-    uint8_t *ptr;
-    long size;
-    uint32_t System3000LIFid;
-    uint16_t lifid;
-    uint16_t zero1,zero2;
-    lif_t *LIF = data;
+    int dir;
 
-    int labelstatus;
-    int status;
+
     int cyl;
-    int side;
+    int head;
+    int size;
     int sector;
     int count = 0;
 
-    int sectormap[MAXSECTOR];
+    uint8_t *ptr;
+    lif_t *LIF = data;
+
+    int sectormap[MAXSECTOR+1];
     char liflabel[6+1];
 
-    if(liftel.done == 1)
-        return(1);
+    // Save cylinder and head for comparision or remaining track sectors
+    cyl = sectorconfig[0].cylinder;
+    head = sectorconfig[0].head;
 
     if(liftel.error)
+    {
+        printf("Error: exit\n");
+        liftel.state = TD0_DONE;
         return(0);
+    }
+    if(liftel.state == TD0_DONE)
+        return(0);
+
 
     if(track_sectors >= MAXSECTOR)
     {
         printf("Sectors Per Track Exceeded sector map table!\n");
         liftel.error = 1;
+        liftel.state = TD0_DONE;
         return(0);
     }
 
-    // CLEAR sector number mapping table for this track
-    for(i=0;i<MAXSECTOR;++i)
-        sectormap[i] = -1;
-
-    /// ===========================================
-    /// @brief Process SECTOR 0 - LIF header
-    /// ===========================================
-    if(!liftel.sectorzeroprocessed)
-    {
-        // Process Sector 0 on TRack 0
-        // Find lif data on sector 0, cylinder 0, head 0
-        for (i=0;i < track_sectors;i++ )
-        {
-
-            if( sectorconfig[i].cylinder == 0 && sectorconfig[i].head == 0 && 
-                sectorconfig[i].sector == 0)
-            {
-                ptr = sectorconfig[i].input_data;
-
-                lif_str2vol(ptr, LIF);
-
-                LIF->filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
-                LIF->sectors = LIF->filestart;
-
-                if(!lif_check_volume(LIF))
-                {
-                    if(debuglevel & (0x400+1))
-                    {
-                        lif_dump_vol(LIF,"debug");
-                        printf("Not a LIF image!\n");
-                        hexdump(ptr, sectorconfig[i].sectorsize);
-                    }
-                    liftel.error = 1;
-                    return(0);
-                }
-
-                liftel.sectorsize = sectorconfig[i].sectorsize;
-                liftel.sectorindex = 0;
-                liftel.sectorzeroprocessed = 1;
-
-                break;
-            }
-        }
-
-
-        // Find maximum sectors per track  number using side 0 cylinder 0
-        for (i=0;i < track_sectors;i++ )
-        {
-            if( sectorconfig[i].cylinder == 0 && 
-                sectorconfig[i].head == 0 && 
-                sectorconfig[i].sectorsize == liftel.sectorsize )
-                    ++liftel.sectorspertrack;
-        }
-
-        if(debuglevel & 0x400)
-        {
-            printf("LIF Dir start:[%ld]\n", (long)LIF->VOL.DirStartSector);
-            printf("LIF Dir sectors:[%ld]\n", (long)LIF->VOL.DirSectors);
-            printf("LIF sectors per track:[%ld]\n", (long)liftel.sectorspertrack);
-            printf("LIF label:[%s]\n", LIF->VOL.Label);
-        }
-    }   
-
-    if(!liftel.sectorzeroprocessed || liftel.sectorsize == -1)
-    {
-        printf("Not a LIF image!\n");
-        liftel.error = 1;
-        liftel.done = 1;
-        return(0);
-    }
-
-    /// ===========================================
-    ///@brief Done processing SECTOR 0 - LIF header
-    /// ===========================================
-
-
+    // Save sector size from first physical sector in image
+    if(liftel.state == TD0_INIT)
+        liftel.sectorsize = sectorconfig[0].sectorsize;
 
     /// ===========================================
     /// @brief CREATE SECTOR MAP
     /// Sort sectors by creating a sector mapping table
     /// ===========================================
+
+    // CLEAR sector number mapping table for this track
+    for(i=0;i<MAXSECTOR;++i)
+        sectormap[i] = -1;
+
+
+    // Count valid sectors in this track
+    count = 0;
     for (i=0; i<track_sectors; i++ )
     {
-        cyl = sectorconfig[i].cylinder;
-        side = sectorconfig[i].head;
-        size = sectorconfig[i].sectorsize;
         sector = sectorconfig[i].sector;
+        size = sectorconfig[i].sectorsize;
 
         if(size != liftel.sectorsize)
-            continue;
-
-#if 1
-// HACK FIX for damaged 85-SS80.TD0 SS80 Diagnostics
-        if(cyl == 11 && side == 0 && sector == 116)
-            sector = 8;
-
-        if(cyl == 13 && side == 0 && sector == 116)
-            sector = 11;
-#endif
-
-        if(sector > track_sectors )
         {
-            printf("skipping: track:%02d, side:%d, sector:%02d, sectorsize:%d\n",
-                    (int)cyl,
-                    (int)side,
-                    (int)sector,
-                    (int)size);
-
+#if 0
+            if(debuglevel & 0x400)
+            {
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: size: %d != %d\n", (int) size, (int) liftel.sectorsize);
+            }
+#endif
             continue;
         }
+
+        if(cyl != sectorconfig[i].cylinder)
+        {
+            // fatal error
+            td02lif_sector_info(sectorconfig, i);
+            printf("\t Error: cylinder: %d != %d\n", (int) sectorconfig[i].cylinder, (int)cyl);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+        if( head != sectorconfig[i].head )
+        {
+            // fatal error
+            td02lif_sector_info(sectorconfig, i);
+            printf("\t Error: head: %d != %d\n", (int) sectorconfig[i].head, (int)head);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+        if(sector >= MAXSECTOR)
+        {
+            td02lif_sector_info(sectorconfig, i);
+            printf("\t Error: sector:%02d >= %02d (MAXSECTOR)\n", (int) sector, (int) MAXSECTOR);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+// HACK FIX for damaged 85-SS80.TD0 SS80 Diagnostics
+#if 0
+        if(cyl == 11 && head == 0 && sector == 116)
+        {
+            if(debuglevel & 0x400)
+            {
+                sector = 8;
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: mapping sector 116 to 8\n");
+            }
+        }
+        if(cyl == 13 && head == 0 && sector == 116)
+        {
+            if(debuglevel & 0x400)
+            {
+                sector = 11;
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: mapping sector 116 to 11\n");
+            }
+        }
+#endif
 
         if(sectormap[sector] != -1)
         {
-            printf("duplicate sector: track:%02d, side:%d, sector:%02d, sectorsize:%d\n",
-                    (int)cyl,
-                    (int)side,
-                    (int)sector,
-                    (int)size);
-            liftel.done = 1;
-            liftel.error = 1;
-            return(0);
+            if(debuglevel & 0x400)
+            {
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: skipping: duplicate sector: %d\n", sector);
+            }
+            continue;
         }
-        else
+
+#if 0
+        if(sector >= track_sectors)
         {
-            sectormap[sector] = i;
+            if(debuglevel & 0x400))
+            {
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: skipping: sector:%02d >= %02d (track_sectors)\n", (int) sector, (int) track_sectors);
+            }
+            continue;
+        }
+#endif
+
+        if(liftel.state == TD0_INIT)
+        {
+            if(sector > liftel.sectorlast)
+                liftel.sectorlast = sector;
+            liftel.sectorspertrack++;
+        }
+#if 0
+        else if(sector > liftel.sectorlast)
+        {
+            if(debuglevel & 0x400)
+            {
+                td02lif_sector_info(sectorconfig, i);
+                printf("\t Warning: skipping: sector:%02d > %02d (liftel.sectorlast)\n", (int) sector, (int) liftel.sectorlast);
+            }
+            continue;
+        }
+#endif
+        sectormap[sector] = i;
+        ++count;
+
+    }   // for (i=0; i<track_sectors; i++ )
+
+    if(count && count != liftel.sectorspertrack)
+    {
+        if(debuglevel & 0x400)
+        {
+            printf("cylinder:%02d, head:%02d\n", (int)cyl, (int)head);
+            printf("\t Warning: unexpected sector count:%d != %d\n", (int) count, liftel.sectorspertrack);
         }
     }
 
 
-    ///@brief sector map summary
+    // =======================================
+    // Decode Volume Header 
+    if(liftel.state == TD0_INIT && cyl == 0 && head == 0)
+    {
+        // Get sector 0
+        sector = sectormap[0];
+        if(sector == -1)
+        {
+            printf("Volume header not found!\n");
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+        ptr = sectorconfig[sector].input_data;
+        lif_str2vol(ptr, LIF);
+
+        LIF->filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
+        LIF->sectors = LIF->filestart;
+
+        if(lif_check_volume(LIF) == 0)
+        {
+            td02lif_sector_info(sectorconfig, sector);
+            printf("\t Error: Not a LIF image!\n");
+            lif_dump_vol(LIF,"debug");
+            hexdump(ptr, liftel.sectorsize);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+        liftel.state = TD0_VOLUME;
+        printf("LIF label:      [%s]\n", LIF->VOL.Label);
+        printf("LIF Dir start:  [%04lXh]\n", (long)LIF->VOL.DirStartSector);
+        printf("LIF Dir sectors:[%04lXh]\n", (long)LIF->VOL.DirSectors);
+        printf("LIF File start: [%04lXh]\n", (long)LIF->filestart);
+    }   // if(liftel.state == TD0_INIT && cyl == 0 && head == 0)
+
+    ///@brief Display sector map summary
     if(debuglevel & 0x400)
     {
-        int i;
-        int count = 0;
-        printf("cyl:%2d,hd:%d map: ", 
-            (int)sectorconfig[0].cylinder,
-            (int)sectorconfig[0].head);
+        count = 0;
+
         for(i=0;i<MAXSECTOR;++i)
         {
             if(sectormap[i] != -1)
@@ -224,181 +303,214 @@ int td02lif_track(sector_config_t *sectorconfig, int track_sectors, void *data)
         }
         if(count )
         {
+            printf("Map: ");
             for(i=0;i<MAXSECTOR;++i)
             {
                 if(sectormap[i] == -1)
                     continue;
-                printf("%2d ", (int) sectormap[i] );
+                printf("%3d ", (int) sectormap[i] );
             }
         }
         else
         {
-            printf("EMPTY");
+            printf("EMPTY\n");
+            return(0);
         }
         printf("\n");
     }
-    /// ===========================================
-    /// @brief Done creating SECTOR MAP
-    /// ===========================================
 
     /// ===========================================
-    /// @brief Process LIF directory sectors 
-    /// We stop after the last valid directory entry
+    /// @brief Process sectors 
     /// ===========================================
-    if(liftel.dirprocessed == 0)
+    for (i=0; i<MAXSECTOR; i++ )
     {
-        // Find LAST sector in LIF image directory
-        for (i=0;i < liftel.sectorspertrack; i++ )
+
+        sector = sectormap[i];
+        if(sector == -1)
+            continue;
+
+        // program error
+        if(sector >= track_sectors)
         {
-            int j;
-            uint8_t *ptr;
-            int sector = sectormap[i];
+            td02lif_sector_info(sectorconfig, 0);
+            printf("\t Error: sector:%02d >= %02d (track_sectors)\n", (int) sector, (int) track_sectors);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
 
-            if(liftel.sectorindex >= LIF->filestart)
-                liftel.dirprocessed = 1;
-
-            if(liftel.dirprocessed)
-                break;
-
-            if(sector == -1)
-                continue;
-
-            if(sector > liftel.sectorspertrack)
-                continue;
-
-            if( (liftel.sectorindex >= LIF->VOL.DirStartSector) 
-                && (liftel.sectorindex < LIF->filestart) )
+        if(sector > liftel.sectorlast)
+        {
+            if(debuglevel & 0x400)
             {
-                ptr = sectorconfig[sector].input_data;
-                if(debuglevel & 0x400)
+                td02lif_sector_info(sectorconfig, sector);
+                printf("\t Warning: sector:%02d > %02d (liftel.sectorlast)\n", (int) sector, (int) liftel.sectorlast);
+            }
+        }
+
+        ptr = sectorconfig[sector].input_data;
+
+
+        // Once the VOLUME has been processed we move on to Directory Sectors
+        if(liftel.state == TD0_VOLUME)
+        {
+            // Only process directory sectors
+            if( liftel.sectorindex >= LIF->VOL.DirStartSector && liftel.sectorindex < LIF->filestart )
+            {
+                // Process Directory entries
+                for(dir=0;dir<liftel.sectorsize;dir+=32)
                 {
-                    printf(": cyl:%2d, side:%d, sector:%2d\n",
-                        (int)sectorconfig[sector].cylinder,
-                        (int)sectorconfig[sector].head,
-                        (int)sectorconfig[sector].sector);
-                    printf("Sector: %ld\n", liftel.sectorindex);
-                    hexdump(ptr,256);
-                }
+                    lif_str2dir(ptr+dir, LIF);
 
-                for(j=0;j<liftel.sectorsize;j += 32)
-                {
-                    time_t t;
-
-
-                    lif_str2dir(ptr+j, LIF);
-
+                    // Directory EOF
                     if(LIF->DIR.FileType == 0xffff)
                     {
-                        liftel.dirprocessed = 1;
+                        td02lif_sector_info(sectorconfig, sector);
+                        printf("\t Directory EOF\n");
+                        liftel.state = TD0_DIRECTORY;
                         break;
                     }
 
-                    if( (LIF->DIR.FileStartSector+LIF->DIR.FileSectors) 
-                        > LIF->sectors )
+                    // Skip purged records - offical LIF specification says we must not use file size values
+                    if(LIF->DIR.FileType == 0)
+                        continue;
+
+                    // Adjust total sectors and used sectors
+                    if( (LIF->DIR.FileStartSector+LIF->DIR.FileSectors) > LIF->sectors )
                     {
-                        LIF->sectors = 
-                            (LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
-                        LIF->usedsectors = LIF->sectors;
+                        LIF->sectors = (LIF->DIR.FileStartSector + LIF->DIR.FileSectors);
                     }
                     else
                     {
-                        printf("LIF image directory entries out of order - or invalid image\n");
-                        lif_dump_vol(LIF,"debug");
-
-                        liftel.done = 1;
-                        liftel.error = 1;
-                        return(0);
+                        td02lif_sector_info(sectorconfig, sector);
+                        printf("\t Warning: directory file position/size is out of order - assume last record\n");
+                        liftel.state = TD0_DIRECTORY;
+                        hexdump(ptr, liftel.sectorsize);
+                        break;
                     }
 
+                    LIF->filesectors = LIF->sectors - LIF->filestart;
+                    LIF->usedsectors = LIF->filesectors;
+
                     if(!lif_check_dir(LIF))
+                    {
+                        td02lif_sector_info(sectorconfig, sector);
+                        printf("\t Warning: directory entry out of order - assume last record\n");
+                        liftel.state = TD0_DIRECTORY;
+                        hexdump(ptr, liftel.sectorsize);
                         break;
+                    }
 
                     if(debuglevel & 0x400)
                     {
-                        printf("LIF name: %-10s start:%6ld size:%6ld %s\n", 
+                        printf("LIF name: %-10s start:%6lXh size:%6lXh %s\n", 
                             LIF->DIR.filename, 
                             (long)LIF->DIR.FileStartSector, 
                             (long)LIF->DIR.FileSectors,
                             lif_lifbcd2timestr(LIF->DIR.date) );
                     }
-                }   // for(j=0)
-            }       // if(liftel.dirsectorindex)
-            liftel.sectorindex++;
-        }   // for (i=0)
-    }   // if(!liftel.dirprocessed)
 
-    if(liftel.dirprocessed == 1)
-    {
-        if(LIF->sectors == 0)
+                }   // Processing directory entries
+
+            }   // Processing directory sectors
+
+        }   // for (i=0;i < liftel.sectorspertrack; i++ )
+
+        liftel.sectorindex++;
+
+        // Once we are done processing directory sectors wait for FILE area
+        if( liftel.state != TD0_FILE && liftel.sectorindex >= LIF->filestart )
         {
-            printf("LIF image is empty!\n");
-            // Not really an error
-            liftel.done = 1;
-            return(0);
+            liftel.state = TD0_FILE;
+            LIF->filesectors = LIF->sectors - LIF->filestart;
+            printf("LIF image size in sectors:%lXh\n", (long) LIF->sectors);
+            printf("LIF image file sectors:%lXh\n", (long) LIF->filesectors);
         }
-        printf("LIF image size in sectors:%ld\n", (long) LIF->sectors);
-        liftel.dirprocessed = 2;
-    }
+    }   // Done processing sectors in this track
 
-    /// ===========================================
-    /// @brief Done Processing LIF directory sectors 
-    /// ===========================================
 
-    ///@brief only process sectors until the last file sector is copied
-    if( liftel.sectorindex > LIF->sectors)
+    /// ====================================================
+    /// @brief Write sectors from Teledisk track to LIF file
+    ///        We continue until the last last file sector 
+    /// ====================================================
+    count = 0;
+    for (i=0; i<MAXSECTOR; i++ )
     {
-        if(liftel.error)
-            return(0);
-        return(1);
-    }
-
-    /// ===========================================
-    /// @brief Write sectors from Teledisk track
-    /// ===========================================
-    // Write sectors from this TRACK to LIF file 
-    for ( i=0;i < MAXSECTOR;i++ )
-    {
-        int sector;
-
-        if(sectormap[i]  == -1)
+        sector = sectormap[i];
+        if(sector == -1)
             continue;
 
-        sector = sectormap[i];
-
-        if(debuglevel & 0x400)
-        {
-            if(sector > liftel.sectorspertrack)
-                printf("skipping: ");
-            printf(": cyl:%2d, side:%d, sector:%2d\n",
-                (int)sectorconfig[sector].cylinder,
-                (int)sectorconfig[sector].head,
-                (int)sectorconfig[sector].sector);
-            hexdump(sectorconfig[sector].input_data, sectorconfig[sector].sectorsize);
-        }
-
+        // Done writting file
         if( liftel.writeindex >= LIF->sectors)
         {
-            liftel.done = 1;
             printf("LIF IMAGE Done\n");
+            liftel.state = TD0_DONE;
             return(1);
         }
 
-        size=fwrite(sectorconfig[sector].input_data, 1, liftel.sectorsize, LIF->fp);
+        // program error
+        if(sector >= track_sectors)
+        {
+            printf("\t Error: sector:%02d >= %02d (track_sectors)\n", (int) sector, (int) track_sectors);
+            td02lif_sector_info(sectorconfig, 0);
+            liftel.error = 1;
+            liftel.state = TD0_DONE;
+            return(0);
+        }
+
+        // program error
+        if(sector > liftel.sectorlast)
+        {
+            if(debuglevel & 0x400)
+            {
+                td02lif_sector_info(sectorconfig, sector);
+                printf("\t Warning: sector:%02d > %02d (liftel.sectorlast)\n", (int) sector, (int) liftel.sectorlast);
+            }
+        }
+
+        ptr = sectorconfig[sector].input_data;
+        if(debuglevel & 0x400)
+        {
+            //td02lif_sector_info(sectorconfig, sector);
+            //hexdump(ptr, liftel.sectorsize);
+        }
+
+        size=fwrite(ptr, 1, liftel.sectorsize, LIF->fp);
         if(size != liftel.sectorsize)
         {
             printf("LIF: %s write error\n", LIF->name);
-            liftel.done = 1;
+            liftel.state = TD0_DONE;
             liftel.error = 1;
             return(0);
         }
-        ++liftel.writeindex;
-    }   
-    /// ===========================================
-    /// @brief Done writing sectors from Teledisk track
-    /// ===========================================
-    return(1); 
-}
 
+        liftel.writeindex++;
+        ++count;
+    }   // for (i=0; i<MAXSECTOR; i++ )
+
+    
+    if(count < liftel.sectorspertrack)
+    {
+        memset(ptr,0, liftel.sectorsize);
+        printf("\t Warning: adding blank sector at: %04lXh\n", liftel.writeindex);
+
+        while(count < liftel.sectorspertrack)
+        {
+            size=fwrite(ptr, 1, liftel.sectorsize, LIF->fp);
+            if(size != liftel.sectorsize)
+            {
+                printf("LIF: %s write error\n", LIF->name);
+                liftel.state = TD0_DONE;
+                liftel.error = 1;
+                return(0);
+            }
+            ++count;
+        }
+    }
+
+    // not done 
+    return(0); 
+}
 
 
 /// @brief Convert a Teledisk LIF formatted disk image into a pure LIF image
@@ -447,18 +559,18 @@ int lif_td02lif(char *telediskname, char *lifname)
     }
 
     liftel.error = 0;
-    liftel.done = 0;
-    liftel.sectorzeroprocessed = 0;
+    liftel.state = TD0_INIT;
     liftel.sectorspertrack = 0;
     liftel.sectorsize = -1;
-    liftel.dirprocessed = 0;
+    liftel.sectorlast = 0;
     liftel.sectorindex = 0;
     liftel.writeindex = 0;
 
     status = TeleDisk_libLoad_DiskFile((floppy_t *) &floppy, telediskname, LIF);
 
     ///@brief  LIF summary
-    printf("LIF image:[%s] wrote:[%ld] used sectors\n", LIF->name, (long)liftel.writeindex);
+    printf("LIF image:[%s] wrote:[%ld] sectors\n", LIF->name, (long)liftel.writeindex);
+    printf("Done\n\n");
 
     ///@brief  Close LIF file
     lif_close_volume(LIF);

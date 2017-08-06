@@ -93,7 +93,7 @@ int TeleDisk_libIsValidDiskFile(char * imgfile)
 
     if( fread( &td_header, sizeof(TELEDISK_HEADER), 1, f ) != sizeof(TELEDISK_HEADER) )
     {
-        printf("Teledisk bas header\n");
+        printf("Teledisk header read error\n");
         return(0);
     }
     if ( ((td_header.TXT[0]!='t') || (td_header.TXT[1]!='d')) && ((td_header.TXT[0]!='T') || (td_header.TXT[1]!='D')))
@@ -112,7 +112,7 @@ int TeleDisk_libIsValidDiskFile(char * imgfile)
 
     if(((td_header.CRC[1]<<8)|td_header.CRC[0]) != ((CRC16_High<<8)|CRC16_Low))
     {
-        printf("Teledisk bad header crc\n");
+        printf("Teledisk header crc error\n");
         fclose(f);
         return (0);
     }
@@ -311,7 +311,7 @@ int TeleDisk_libLoad_DiskFile(floppy_t *floppydisk, char * imgfile, void *data)
 
 	if(((td_header->CRC[1]<<8)|td_header->CRC[0])!=((CRC16_High<<8)|CRC16_Low))
 	{
-		printf("TeleDisk bad header crc\n");
+		printf("TeleDisk header crc error\n");
 		free(fileimage);
 		return (0);
 	}
@@ -475,7 +475,6 @@ int TeleDisk_libLoad_DiskFile(floppy_t *floppydisk, char * imgfile, void *data)
 		sectorconfig=(sector_config_t *)calloc(sizeof(sector_config_t)*td_track_header->SecPerTrk,1);
 		memset(sectorconfig,0,sizeof(sector_config_t)*td_track_header->SecPerTrk);
 
-
 		for ( i=0;i < td_track_header->SecPerTrk;i++ )
 		{
 			td_sector_header=(TELEDISK_SECTOR_HEADER  *)&fileimage[fileimage_buffer_offset];
@@ -536,9 +535,6 @@ int TeleDisk_libLoad_DiskFile(floppy_t *floppydisk, char * imgfile, void *data)
 
 		td_track_header=(TELEDISK_TRACK_HEADER  *)&fileimage[fileimage_buffer_offset];
 		fileimage_buffer_offset=fileimage_buffer_offset+sizeof(TELEDISK_TRACK_HEADER);
-        ///@brief Teledisk to LIF error exit
-        if(!status)
-            break;
 
 	}  // while(td_track_header->SecPerTrk!=0xFF)
 
