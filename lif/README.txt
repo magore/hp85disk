@@ -25,6 +25,8 @@ ___
            * wteledsk.htm
              * TeleDisk documenation
            * See his github project
+             * https://github.com/jfdelnero/libhxcfe
+
 
 ___
   
@@ -97,6 +99,7 @@ hp85disk/lif/teledisk       Teledisk LIF format to pure LIF support code
            * wteledsk.htm
              * TeleDisk documenation
            * See his github project
+             * https://github.com/jfdelnero/libhxcfe
 ___
 
 ## LIF HELP
