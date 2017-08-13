@@ -151,7 +151,7 @@ ___
        * I use this feature to help prioritize which commands I first implemented.
 ___
 
-# Credits
+## Credits
 
 <b>I really owe the very existence of this project to the original work done by Anders Gustafsson and his great "HP Disk Emulator" </b>
  * You can visit his project at this site:
@@ -171,23 +171,22 @@ ___
 
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
 
-<br>
-hp85disk/lif/teledisk  
-   * lif/teledisk
-     * My TELEDISK LIF extracter
-     * Important Contributions (My converted would not have been possible without these)
-       * Dave Dunfield, LZSS Code and TeleDisk documentation
-         * Copyright 2007-2008 Dave Dunfield All rights reserved.
-         * td0_lzss.h
-         * td0_lzss.c
-           * LZSS decoder
-         * td0notes.txt
-           * Teledisk Documentation
-       * Jean-Franois DEL NERO, TeleDisk Documentation
-         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-           * wteledsk.htm
-             * TeleDisk documenation
-           * See his github project
+<b>hp85disk/lif/teledisk </b>
+ * lif/teledisk
+   * My TELEDISK LIF extracter
+   * Important Contributions (My converted would not have been possible without these)
+     * Dave Dunfield, LZSS Code and TeleDisk documentation
+       * Copyright 2007-2008 Dave Dunfield All rights reserved.
+       * td0_lzss.h
+       * td0_lzss.c
+         * LZSS decoder
+       * td0notes.txt
+         * Teledisk Documentation
+     * Jean-Franois DEL NERO, TeleDisk Documentation
+       * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+         * wteledsk.htm
+           * TeleDisk documenation
+         * See his github project
              * https://github.com/jfdelnero/libhxcfe
 ___
 # Abbreviations
@@ -198,6 +197,7 @@ Within this project I have attempted to provide detailed references to manuals, 
  * <b>HP-IP</b>
  * <b>HP-IP Tutorial</b>
 
+___
 ## Documentation References and related sources of information
  * Web Resources
    * <http://www.hp9845.net>
@@ -207,21 +207,25 @@ Within this project I have attempted to provide detailed references to manuals, 
    * <http://en.wikipedia.org/wiki/IEEE-488>
    * See Documents folder
 
+___
 ## Enhanced version of Tony Duell's lif_utils by Joachim
    * <https://github.com/bug400/lifutils>
    * Create/Modify LIF images
 
+___
 ## CS80 References: ("CS80" is the short form used in the project)
    * "CS/80 Instruction Set Programming Manual"
    * Printed: APR 1983
    * HP Part# 5955-3442
    * See Documents folder
 
+___
 ## Amigo References: ("A" or "Amigo" is the short form used in the project)
    * "Appendix A of 9895A Flexible Disc Memory Service Manual"
    * HP Part# 09895-90030
    * See Documents folder
 
+___
 ## HP-IB
    * ("HP-IB" is the short form used in the project)
    * "Condensed Description of the Hewlett Packard Interface Bus"
@@ -229,6 +233,7 @@ Within this project I have attempted to provide detailed references to manuals, 
    * HP Part# 59401-90030
    * See Documents folder
 
+___
 ## Tutorial Description of the Hewlett Packard Interface Bus
    * ("HP-IB Tutorial" is the short form used in the project)
    * <http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf>
@@ -237,26 +242,29 @@ Within this project I have attempted to provide detailed references to manuals, 
    * Printed 1987
    * See Documents folder
 
+___
 ## GPIB / IEEE 488 Tutorial by Ian Poole
     * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
    * See Documents folder
 
+___
 ## HP 9133/9134 D/H/L References
    * "HP 9133/9134 D/H/L Service Manual"
    * HP Part# 5957-6560
    * Printed: APRIL 1985, Edition 2
    * See Documents folder
+___
 
 ## LIF File system Format
    * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
    * See Documents folder
+___
 
 ## Useful Utilities
    * HP Drive  (HP Drive Emulators for Windows Platform)
      * <http://www.hp9845.net/9845/projects/hpdrive/>
    * HP Dir    (HP Drive - Disk Image Manipulation)
      * <http://www.hp9845.net/9845/projects/hpdir/>
-
 ___
 
 ## GPIB Connector pinout by Anders Gustafsson in his hpdisk project
@@ -716,3 +724,4 @@ ___
         * TREK85.BAS  
         * trek.lif
 
+___
