@@ -172,12 +172,23 @@ ___
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
 
 <br>
- * Teledisk Support code credits
- * The HxCFloppyEmulator library is Copyright &copy; 2006-2014 *Jean-Franois DEL NERO*
-   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
- * LZSS and Teledisk Documention Copyright &copy; 2007-2008 *Dave Dunfield* All rights reserved.
- * CRC code By *Ashley Roll* Digital Nemesis Pty Ltd www.digitalnemesis.com
-
+hp85disk/lif/teledisk  
+   * lif/teledisk
+     * My TELEDISK LIF extracter
+     * Important Contributions (My converted would not have been possible without these)
+       * Dave Dunfield, LZSS Code and TeleDisk documentation
+         * Copyright 2007-2008 Dave Dunfield All rights reserved.
+         * td0_lzss.h
+         * td0_lzss.c
+           * LZSS decoder
+         * td0notes.txt
+           * Teledisk Documentation
+       * Jean-Franois DEL NERO, TeleDisk Documentation
+         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+           * wteledsk.htm
+             * TeleDisk documenation
+           * See his github project
+             * https://github.com/jfdelnero/libhxcfe
 ___
 # Abbreviations
 Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
