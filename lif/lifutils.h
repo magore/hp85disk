@@ -137,7 +137,7 @@ typedef struct
 // =============================================
 
 /* lifutils.c */
-MEMSPACE void lif_help ( void );
+MEMSPACE void lif_help ( int full );
 MEMSPACE int lif_tests ( int argc , char *argv []);
 MEMSPACE void *lif_calloc ( long size );
 MEMSPACE void lif_free ( void *p );

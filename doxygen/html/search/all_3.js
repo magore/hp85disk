@@ -72,7 +72,7 @@ var searchData=
   ['controller_5fread_5ftrace',['controller_read_trace',['../controller_8c.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c'],['../controller_8h.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c']]],
   ['controller_5fsend_5fstr',['controller_send_str',['../controller_8c.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c'],['../controller_8h.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c']]],
   ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
-  ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'main.c']]],
+  ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],

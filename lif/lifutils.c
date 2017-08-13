@@ -105,10 +105,13 @@ extern MEMSPACE int lif_td02lif(int argc, char *srgv[]);
 ///  See: int gpib_tests(char *str)
 /// @return  void
 MEMSPACE
-void lif_help()
+void lif_help(int full)
 {
-    printf(
-        "lif help\n"
+    printf( "lif help\n" );
+    
+    if(full)
+    {
+        printf(
         "lif add lifimage lifname from_ascii_file\n"
         "lif addbin lifimage lifname from_lif_file\n"
         "lif create lifimage label directory_sectors sectors\n"
@@ -122,6 +125,7 @@ void lif_help()
 #endif
         "\n"
         );
+    }
 }
 
 /// @brief LIF user tests
@@ -130,10 +134,8 @@ MEMSPACE
 int lif_tests(int argc, char *argv[])
 {
 
-    int i;
     int ind;
     char *ptr;
-
 
 #ifdef LIF_DEBUG
     for(i=0;i<argc;++i)
@@ -151,10 +153,9 @@ int lif_tests(int argc, char *argv[])
 
     if (!ptr || MATCH(ptr,"help") )
     {
-        copyright();
-        lif_help();
+        lif_help(1);
 #ifdef TELEDISK
-        td0_help();
+        td0_help(1);
 #endif
         return(1);
     }
@@ -208,7 +209,8 @@ int lif_tests(int argc, char *argv[])
 #ifdef TELEDISK
     if (MATCHARGS(ptr,"td02lif", (ind + 0) ,argc))
     {
-        // shif the arguments down
+        int i;
+        // shift the arguments down by 1
         for(i=1;i<argc;++i)
         {
             argv[i-1] = argv[i];

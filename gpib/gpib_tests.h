@@ -18,9 +18,8 @@
 
 
 /* gpib_tests.c */
-void gpib_help ( void );
+void gpib_help ( int full );
 int gpib_tests ( int argc , char *argv []);
-
 
 #endif // #ifndef _GPIB_TESTS_H_
 

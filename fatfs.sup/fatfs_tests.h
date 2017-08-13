@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _FATFS_TESTS_H
 
 /* fatfs_tests.c */
-MEMSPACE void fatfs_help ( void );
+MEMSPACE void fatfs_help ( int full );
 MEMSPACE int fatfs_tests ( int argc , char *argv []);
 MEMSPACE void mmc_test ( void );
 MEMSPACE void fatfs_cat ( char *name );

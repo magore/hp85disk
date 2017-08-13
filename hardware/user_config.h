@@ -55,6 +55,8 @@
 #define snprintf(s, size, format, args...) snprintf_P(s, size, PSTR(format), ##args)
 #define sprintf(s, format, args...) sprintf_P(s, PSTR(format), ##args)
 
+void copyright( void );
+
 #include "lib/time.h"
 #include "lib/timer.h"
 #include "lib/queue.h"

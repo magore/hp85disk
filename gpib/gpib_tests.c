@@ -32,26 +32,28 @@
 ///  See: int gpib_tests(char *str)
 /// @return  void
 
-void gpib_help()
+void gpib_help(int full)
 {
-    printf(
-        "gpib help\n"
-        "gpib prefix is optional\n"
-        "gpib addresses\n"
-        "gpib config\n"
-        "gpib debug N\n"
-        "gpib elapsed\n"
-        "gpib elapsed_reset\n"
-        "gpib task\n"
-        "gpib trace filename.txt [BUS]\n"
-        "gpib ifc\n"
-        "gpib plot filename.txt\n"
-        "gpib ppr_bit_on N\n"
-        "gpib ppr_bit_off N\n"
-        "gpib ppr_set XX\n"
-        "gpib ppr_init\n"
-        "\n"
-        );
+    printf("gpib help\n");
+    if(full)
+    {
+        printf("gpib prefix is optional\n"
+            "gpib addresses\n"
+            "gpib config\n"
+            "gpib debug N\n"
+            "gpib elapsed\n"
+            "gpib elapsed_reset\n"
+            "gpib task\n"
+            "gpib trace filename.txt [BUS]\n"
+            "gpib ifc\n"
+            "gpib plot filename.txt\n"
+            "gpib ppr_bit_on N\n"
+            "gpib ppr_bit_off N\n"
+            "gpib ppr_set XX\n"
+            "gpib ppr_init\n"
+            "\n"
+            );
+    }
 }
 
 
@@ -74,7 +76,7 @@ int gpib_tests(int argc, char * argv[])
     ptr = argv[ind++];
     if ( !ptr || MATCH(ptr,"help") )
     {
-        gpib_help();
+        gpib_help(1);
         return(1);
     }
 

@@ -36,7 +36,8 @@ typedef struct tm tm_t;
 
 #include "td02lif.h"
 
-/* lifsup.c */
+
+void copyright();
 
 /* lifsup.c */
 struct tm *gmtime_r ( const time_t *timep , struct tm *result );

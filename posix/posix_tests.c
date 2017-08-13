@@ -43,13 +43,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BUFSIZE 512
 #endif
 MEMSPACE 
-void posix_help()
+void posix_help(int full)
 {
-    printf(
+    printf("posix help\n");
+    if(full)
+    {
+        printf(
 #ifdef POSIX_TESTS
-        "posix prefix is optional\n"
+            "posix prefix is optional\n"
 #endif
-        "posix help\n"
         "posix chmod file NNN\n"
         "posix cat file [-p]\n"
         "posix cd dir\n"
@@ -68,6 +70,7 @@ void posix_help()
         "posix rename old new\n"
         "posix upload file\n"
         "\n" );
+    }
 }
 
 /// @brief POSIX tests
@@ -94,7 +97,7 @@ int posix_tests(int argc,char *argv[])
         ptr = argv[ind++];
         if ( !ptr || MATCH(ptr,"help") )
         {
-            posix_help();
+            posix_help(1);
             return(1);
         }
     }

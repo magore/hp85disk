@@ -98,19 +98,21 @@ void delay_tests()
 void help()
 {
 
+    copyright();
+
 #ifdef FATFS_TESTS
-    fatfs_help();
+    fatfs_help(0);
 #endif
 
 #ifdef POSIX_TESTS
-    posix_help();
+    posix_help(0);
 #endif
 
 #ifdef LIF_SUPPORT
-    lif_help();
+    lif_help(0);
 #endif
 
-    gpib_help();
+    gpib_help(0);
 
     printf(
         "delay_tests\n"
@@ -135,7 +137,7 @@ void task(uint8_t gpib)
     char *ptr;
     int ind;
     int argc;
-    char *argv[10];
+    char *argv[50];
     char line[128];
 
     if(gpib)
@@ -146,7 +148,7 @@ void task(uint8_t gpib)
 
     printf("\n>");
     fgets(line,sizeof(line)-2,stdin);
-    argc = split_args(line,argv,10);
+    argc = split_args(line,argv,50);
 
 #if 0
     printf("Arguments:\n");

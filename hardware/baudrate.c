@@ -26,19 +26,15 @@ int main(int argc, char *argv[])
 			if(*ptr == 'f')
 			{
 				++ptr;
-				if(*ptr)
+				if(*ptr || (ptr = argv[++i]) )
 					fosc = atol(ptr);
-				else
-					fosc = atol(argv[++i]);
 				foscf = 1;
 			}
 			if(*ptr == 'b')
 			{
 				++ptr;
-				if(*ptr)
+				if(*ptr || (ptr = argv[++i]) )
 					baud = atol(ptr);
-				else
-					baud = atol(argv[++i]);
 				baudf = 1;
 			}
 		}

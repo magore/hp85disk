@@ -223,7 +223,7 @@ void td0_sector ( td_sector_t *P );
 long td0_density2bitrate ( uint8_t density );
 int td0_read_image ( char *imgfile , lif_t *LIF );
 int td02lif_sector ( uint8_t *data , int size , lif_t *LIF );
-void td0_help ( );
+void td0_help ( int full );
 int td02lif ( int argc , char *argv []);
 
 

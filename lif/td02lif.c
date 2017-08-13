@@ -1130,9 +1130,24 @@ int td02lif_sector(uint8_t *data, int size, lif_t *LIF)
     return(1);
 }
 
-void td0_help()
+void td0_help(int full)
 {
-    printf("Usage: td02lif file.td0 file.lif\n");
+    printf("td02lif help\n");
+    if(full)
+    {
+        printf( 
+            "Usage: td02lif [options] file.td0 file.lif\n"
+            "       td02lif help\n"
+            "tdo2lif options:\n"
+            "Notes: for any option that is NOT specified it is automattically detected\n"
+            "\t -sNN | -s NN - force sectors per track\n"
+            "\t -fNN | -f NN - force first sector number\n"
+            "\t -zNN | -z NN - force sector size\n"
+            "\t -hNN | -h NN - force heads/serfaces\n"
+            "\t -tNN | -t NN - force tracks\n"
+            "\n"
+        );
+    }
 }
 
 
@@ -1173,8 +1188,7 @@ int td02lif(int argc, char *argv[])
 
     if(argc == 1)
     {
-        copyright(); 
-        td0_help();
+        td0_help(1);
         return(1);
     }
     
@@ -1186,8 +1200,7 @@ int td02lif(int argc, char *argv[])
 
         if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?"))
         {
-            copyright(); 
-            td0_help();
+            td0_help(1);
             return(0);
         }
 
@@ -1198,10 +1211,8 @@ int td02lif(int argc, char *argv[])
             if(*ptr == 's')
             {
                 ++ptr;
-                if(*ptr)
+                if(*ptr || (ptr = argv[++i]) )
                     liftel.u.sectorspertrack = atoi(ptr);
-                else
-                    liftel.u.sectorspertrack = atoi(argv[++i]);
                 continue;
             }
 
@@ -1209,10 +1220,8 @@ int td02lif(int argc, char *argv[])
             if(*ptr == 'f')
             {
                 ++ptr;
-                if(*ptr)
+                if(*ptr || (ptr = argv[++i]) )
                     liftel.u.sectorfirst = atoi(ptr);
-                else
-                    liftel.u.sectorfirst = atoi(argv[++i]);
                 continue;
             }
 
@@ -1220,10 +1229,8 @@ int td02lif(int argc, char *argv[])
             if(*ptr == 'z')
             {
                 ++ptr;
-                if(*ptr)
+                if(*ptr || (ptr = argv[++i]) )
                     liftel.u.sectorsize = atoi(ptr);
-                else
-                    liftel.u.sectorsize = atoi(argv[++i]);
                 continue;
             }
 
@@ -1231,10 +1238,8 @@ int td02lif(int argc, char *argv[])
             if(*ptr == 'h')
             {
                 ++ptr;
-                if(*ptr)
+                if(*ptr || (ptr = argv[++i]) )
                     liftel.u.sides = atoi(ptr);
-                else
-                    liftel.u.sides = atoi(argv[++i]);
                 continue;
             }
 
@@ -1242,10 +1247,8 @@ int td02lif(int argc, char *argv[])
             if(*ptr == 't')
             {
                 ++ptr;
-                if(*ptr)
+                if(*ptr || (ptr = argv[++i]) )
                     liftel.u.tracks = atoi(ptr);
-                else
-                    liftel.u.tracks = atoi(argv[++i]);
                 continue;
             }
 
@@ -1261,8 +1264,7 @@ int td02lif(int argc, char *argv[])
         }
         else
         {
-            copyright(); 
-            td0_help();
+            td0_help(1);
             return(1);
         }
     }

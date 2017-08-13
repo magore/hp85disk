@@ -43,13 +43,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief Display FatFs test diagnostics help menu.
 /// @return  void
 MEMSPACE
-void fatfs_help( void )
+void fatfs_help( int full)
 {
+    printf("fatfs help\n");
+    
+    if(full)
+    {
         printf(
 #ifdef POSIX_TESTS
-    "fatfs tests MUST start with \"fatfs\" keyword\n"
+        "Note: fatfs tests MUST start with \"fatfs\" keyword\n"
 #else
-    "fatfs prefix is optional\n"
+        "Note: fatfs prefix is optional\n"
 #endif
         "fatfs help\n"
 #ifdef FATFS_UTILS_FULL
@@ -77,8 +81,9 @@ void fatfs_help( void )
         "fatfs rename old new\n"
 #endif
         "\n"
-    );
-    
+        );
+    }
+        
 }
 
 /// @brief FatFs test parser
@@ -112,7 +117,7 @@ int fatfs_tests(int argc,char *argv[])
         ptr = argv[ind++];
         if ( !ptr || MATCH(ptr,"help") )
         {
-            fatfs_help();
+            fatfs_help(1);
             return(1);
         }
     }

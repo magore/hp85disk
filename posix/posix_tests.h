@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 /* posix_tests.c */
-MEMSPACE void posix_help ( void );
+MEMSPACE void posix_help ( int full );
 MEMSPACE int posix_tests ( int argc , char *argv []);
 MEMSPACE long cat ( char *name , int dopage );
 MEMSPACE long copy ( char *from , char *to );

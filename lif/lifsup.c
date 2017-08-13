@@ -329,31 +329,30 @@ void copyright()
 
 int main(int argc, char *argv[])
 {
-    char *myargv[10];
-    int myargc;
-    int i;
-
-    // in stand alone mode we automatically set the 2nd argument to "lif"
-    
-    for(i=0;i<10;++i)
-        myargv[i] = argv[i];
+    if(argv[1] && MATCH(argv[1],"help") )
+    {
+        copyright();
+    }
+    else 
+    {
+        copyright();
+        lif_help(1);
+        td0_help(1);
+    }
 
     if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
     {
-        myargv[0] = "lif";
-        return( lif_tests(argc, myargv) );
+        argv[0] = "lif";
+        return( lif_tests(argc, argv) );
     }
 #ifdef TELEDISK
     if( MATCH(basename(argv[0]),"td02lif") || MATCH(basename(argv[0]),"td02lif.exe") )
     {
-        myargv[0] = "td02lif";
-        return ( td02lif(argc, myargv) );
+        argv[0] = "td02lif";
+        return ( td02lif(argc, argv) );
     }
 #endif
 
-    copyright();
-    lif_help();
-    td0_help();
     return(0);
 }
 
