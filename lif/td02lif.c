@@ -1187,7 +1187,7 @@ int lif_td02lif(char *telediskname, char *lifname)
     status = td0_read_image(telediskname, LIF);
 
     ///@brief  LIF summary
-    printf("Done LIF image: [%s] wrote: [%ld] sectors\n\n", 
+    printf("Done LIF image: [%s] wrote: [%04lXh] sectors\n\n", 
             LIF->name, (long)liftel.writeindex);
     ///@brief  Close LIF file
     lif_close_volume(LIF);
