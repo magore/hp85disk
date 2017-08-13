@@ -606,12 +606,14 @@ ___
         * Make stand alone Linux versions of LIF utility and optionaly TeleDisk to LIF converter
       * lifsup.c
       * lifsup.h
-        * Stand alone libraries for LIF utility - from various hp85disk libraries
+        * Stand alone libraries for LIF and TELEDISK utility 
+          * These functions are also part of various hp85disk libraries
       * lifutils.c
       * lifutils.h
         *  LIF image functions, directory listing and file adding.extracting,renaming,deleting
       * td02lif.c
-        * My TeleDisk decoder wrapper to convert Teledisk LIF images into pure LIF files
+      * td02lif.h
+        * My TeleDisk to LIF translator
       * lif-notes.txt       
         * My notes on decoding E010 format LIF images for HP-85
       * README.txt
@@ -619,33 +621,30 @@ ___
       * 85-SS80.TD0 from hpmuseum.org
         * Damaged SS80 Excersizer from HP Musium
       * 85-SS80.LIF         
-        * My (hopefully) corrected LIF version (fixed two sectors addresses in TeleDisk image)
-          * My TeleDisk fix was to correct two sectors that had sector ID address of 116:
-          * I added the following to td02lif.c
-          <verbatim>
-            if(cyl == 11 && side == 0 && sector == 116)
-              sector = 8;
-            if(cyl == 13 && side == 0 && sector == 116)
-              sector = 11;
-          </verbatim>
+        * The current converter automaticcal did these repairs
+          *  cyl 11, side 0 sector 116 mapped to 8
+          *  cyl 13, side 0 sector 116 mapped to 11
+          *  cyl 15, side 0 sector 10  missing - zero filled
 
    * lif/teledisk       
-     * Teledisk LIF format to pure LIF support code
-     * Code by Mike Gore
-       * td02lif.h
-         * Headers to make teledisk_loader.c stand alone
-       * README.txt
-       * Makefile            
-         *Make library from teledisk_loader.c crc.c td0_lzss.c
-     * Code by Ashley Roll
-       * crc.c
-       * crc.h
-         * CRC16 code
-     * Code and Documenation by David Dunfield
-       * td0_lzss.h
-       * td0_lzss.c
-         * LZSS decoder
-       * td0notes.txt
+     * My TELEDISK LIF extracter 
+       * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
+     * README.txt
+       * Credits
+     * Important Contributions (My converted would not have been possible without these)
+       * Dave Dunfield, LZSS Code and TeleDisk documentation
+         * Copyright 2007-2008 Dave Dunfield All rights reserved.
+         * td0_lzss.h
+         * td0_lzss.c
+           * LZSS decoder
+         * td0notes.txt
+           * Teledisk Documentation
+       * Jean-Franois DEL NERO, TeleDisk Documentation 
+         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+           * wteledsk.htm
+             * TeleDisk documenation
+           * See his github project
+             * https://github.com/jfdelnero/libhxcfe
 
   * posix
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 

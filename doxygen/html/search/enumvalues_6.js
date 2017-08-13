@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['res_5ferror',['RES_ERROR',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba78011f5557679ec178fb40bd21e89840',1,'diskio.h']]],
-  ['res_5fnotrdy',['RES_NOTRDY',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d',1,'diskio.h']]],
-  ['res_5fok',['RES_OK',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737',1,'diskio.h']]],
-  ['res_5fparerr',['RES_PARERR',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3',1,'diskio.h']]],
-  ['res_5fwrprt',['RES_WRPRT',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322',1,'diskio.h']]]
+  ['printer_5fconfig',['PRINTER_CONFIG',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903',1,'drives.h']]],
+  ['printer_5fstate',['PRINTER_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760',1,'drives.h']]],
+  ['printer_5ftype',['PRINTER_TYPE',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca',1,'drives.h']]]
 ];

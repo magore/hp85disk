@@ -33,6 +33,7 @@ var searchData=
   ['controller_5fread_5ftrace',['controller_read_trace',['../controller_8c.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c'],['../controller_8h.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c']]],
   ['controller_5fsend_5fstr',['controller_send_str',['../controller_8c.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c'],['../controller_8h.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c']]],
   ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
+  ['crc16',['crc16',['../lifsup_8h.html#a622bf0b1f8a7ef2af7ce2868c2eeaa2e',1,'lifsup.h']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],
   ['create_5fname',['create_name',['../ff_8c.html#af119220c4aeabfeb316349e8279413ca',1,'ff.c']]],
   ['ctime',['ctime',['../time_8c.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c'],['../time_8h.html#a77d6bba12950028852621634ffaf4835',1,'ctime(time_t *tp):&#160;time.c']]],

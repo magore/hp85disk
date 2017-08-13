@@ -1,9 +1,11 @@
 var searchData=
 [
+  ['t',['t',['../structliftel__t.html#a19ad0aafb060bc0262c7946220f0c407',1,'liftel_t']]],
   ['talk31',['talk31',['../gpib_8h.html#ab80645c1c89c0842fa2e440cb2229c24',1,'gpib.h']]],
   ['talking',['talking',['../gpib_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../gpib_8h.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c'],['../ss80_8c.html#acef501d1e292f230efac5ed0cddf90e8',1,'talking():&#160;gpib.c']]],
   ['talking_5flast',['talking_last',['../gpib_8c.html#a8f34b1ce42fbf3391219cfedde825495',1,'talking_last():&#160;gpib.c'],['../gpib_8h.html#a8f34b1ce42fbf3391219cfedde825495',1,'talking_last():&#160;gpib.c']]],
   ['td',['TD',['../ss80_8c.html#a239f4cd0f1360dbfd90fa043d1323e67',1,'ss80.c']]],
+  ['tdversion',['TDVersion',['../structtd__header__t.html#ac63e3625279d7262e3d094c0c5e5753a',1,'td_header_t']]],
   ['timer',['timer',['../structTIMERS.html#a0b10fdb7b0e6b1d3ca49718f47c4514d',1,'TIMERS']]],
   ['timer1',['Timer1',['../mmc_8c.html#aac69c67bd452589205cafb4b54cfe3be',1,'mmc.c']]],
   ['timer2',['Timer2',['../mmc_8c.html#af010d7e43aa304973d38d164078ff6e1',1,'mmc.c']]],
@@ -20,6 +22,8 @@ var searchData=
   ['tm_5fwday',['tm_wday',['../structtm.html#afe81a8c46f1c693c43f259b288859f4f',1,'tm']]],
   ['tm_5fyday',['tm_yday',['../structtm.html#a93a0ba77cc23796df84405dcbcc57eb1',1,'tm']]],
   ['tm_5fyear',['tm_year',['../structtm.html#a33adf78fd6476b2120ce3b9c4a852053',1,'tm']]],
+  ['trackdata',['trackdata',['../td02lif_8c.html#a4f9ac71c0f95ded3735b782546f8a233',1,'td02lif.c']]],
+  ['trackdensity',['TrackDensity',['../structtd__header__t.html#a2d1461bb956665d519d33fca629477ab',1,'td_header_t']]],
   ['tracks_5fper_5fside',['tracks_per_side',['../structlifvol__t.html#aae9e5135f98b80312eb785ac3747fc31',1,'lifvol_t']]],
   ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['tv_5fnsec',['tv_nsec',['../structtimespec.html#ae3c7510dafa8cbcaede866ed13c99683',1,'timespec']]],

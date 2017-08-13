@@ -970,7 +970,10 @@ README</h1>
 </li>
 <li><a class="el" href="lifsup_8c.html" title="LIF file utilities - utilities extracted from hp85disk project for stand alone use. ">lifsup.c</a></li>
 <li><a class="el" href="lifsup_8h.html" title="LIF file utilities - utilities extracted from hp85disk project for stand alone use. ">lifsup.h</a><ul>
-<li>Stand alone libraries for LIF utility - from various hp85disk libraries</li>
+<li>Stand alone libraries for LIF and TELEDISK utility<ul>
+<li>These functions are also part of various hp85disk libraries</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lifutils.c</a></li>
@@ -978,8 +981,9 @@ README</h1>
 <li>LIF image functions, directory listing and file adding.extracting,renaming,deleting</li>
 </ul>
 </li>
-<li><a class="el" href="td02lif_8c.html" title="Teledisk LIF extractor wrapper for HxCFloppyEmulator project. ">td02lif.c</a><ul>
-<li>My TeleDisk decoder wrapper to convert Teledisk LIF images into pure LIF files</li>
+<li><a class="el" href="td02lif_8c.html" title="TeleDisk decoder library targetting LIF format images only. ">td02lif.c</a></li>
+<li><a class="el" href="td02lif_8h.html">td02lif.h</a><ul>
+<li>My TeleDisk to LIF translator</li>
 </ul>
 </li>
 <li>lif-notes.txt<ul>
@@ -995,9 +999,10 @@ README</h1>
 </ul>
 </li>
 <li>85-SS80.LIF<ul>
-<li>My (hopefully) corrected LIF version (fixed two sectors addresses in TeleDisk image)<ul>
-<li>My TeleDisk fix was to correct two sectors that had sector ID address of 116:</li>
-<li>I added the following to <a class="el" href="td02lif_8c.html" title="Teledisk LIF extractor wrapper for HxCFloppyEmulator project. ">td02lif.c</a> &lt;verbatim&gt; if(cyl == 11 &amp;&amp; side == 0 &amp;&amp; sector == 116) sector = 8; if(cyl == 13 &amp;&amp; side == 0 &amp;&amp; sector == 116) sector = 11; &lt;/verbatim&gt;</li>
+<li>The current converter automaticcal did these repairs<ul>
+<li>cyl 11, side 0 sector 116 mapped to 8</li>
+<li>cyl 13, side 0 sector 116 mapped to 11</li>
+<li>cyl 15, side 0 sector 10 missing - zero filled</li>
 </ul>
 </li>
 </ul>
@@ -1008,31 +1013,42 @@ README</h1>
 </li>
 </ul>
 <p>lif/teledisk</p><ul>
-<li>Teledisk LIF format to pure LIF support code</li>
-<li>Code by Mike Gore<ul>
-<li>td02lif.h<ul>
-<li>Headers to make teledisk_loader.c stand alone</li>
+<li>My TELEDISK LIF extracter<ul>
+<li>Note: The TeleDisk image MUST contain a LIF image - we do NOT translate it</li>
 </ul>
 </li>
-<li>README.txt</li>
-<li>Makefile *Make library from teledisk_loader.c crc.c td0_lzss.c</li>
+<li>README.txt<ul>
+<li>Credits</li>
 </ul>
 </li>
-<li>Code by Ashley Roll<ul>
-<li>crc.c</li>
-<li>crc.h<ul>
-<li>CRC16 code</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Code and Documenation by David Dunfield<ul>
+<li>Important Contributions (My converted would not have been possible without these)<ul>
+<li>Dave Dunfield, LZSS Code and TeleDisk documentation<ul>
+<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
 <li>td0_lzss.h</li>
 <li>td0_lzss.c<ul>
 <li>LZSS decoder</li>
 </ul>
 </li>
-<li>td0notes.txt</li>
+<li>td0notes.txt<ul>
+<li>Teledisk Documentation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Jean-Franois DEL NERO, TeleDisk Documentation<ul>
+<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO<ul>
+<li>wteledsk.htm<ul>
+<li>TeleDisk documenation</li>
+</ul>
+</li>
+<li>See his github project<ul>
+<li><a href="https://github.com/jfdelnero/libhxcfe">https://github.com/jfdelnero/libhxcfe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1140,7 +1156,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 6 2017 00:05:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Aug 12 2017 23:51:43 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -30,7 +30,6 @@
 
 #include <inttypes.h>
 
-#include "teledisk_format.h"
 #include "td0_lzss.h"
 
 // LZSS parameters
@@ -49,7 +48,7 @@ unsigned short
 	son[TSIZE],				// pointers to child nodes (son[], son[]+1)
 	freq[TSIZE+1],			// frequency table
 	Bits, Bitbuff,			// buffered bit count and left-aligned bit buffer
-	GBcheck,				// Getbyte check down-counter
+	GBcheck,				// lzss_Getbyte check down-counter
 	GBr,					// Ring buffer position
 	GBi,					// Decoder index
 	GBj,					// Decoder index
@@ -59,11 +58,6 @@ unsigned char
 	GBstate,				// Decoder state
 	Eof,					// End-of-file indicator
 	ring_buff[SBSIZE+LASIZE-1];	// text buffer for match strings
-
-int buffer_offset;
-int buffer_size;
-unsigned char * buffer_ptr;
-
 
 /*
  * LZSS decoder - based in part on Haruhiko Okumura's LZHUF.C
@@ -92,7 +86,7 @@ const unsigned char d_len_lzss[] = { 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6
 /*
  * Initialise the decompressor trees and state variables
  */
-void init_decompress()
+void init_decompress( )
 {
 	unsigned short i, j;
 
@@ -189,16 +183,19 @@ void lzss_update(int c)
 /*
  * Get a byte from the input file and flag Eof at end
  */
-unsigned short GetChar()
+unsigned short lzss_GetChar(FILE *fp)
 {
 	unsigned char c;
-	c=buffer_ptr[buffer_offset];
-	buffer_offset++;
-	if(buffer_offset>=buffer_size)
-	{
-		buffer_offset=buffer_size-1;
-		c = 0;
+
+    if(Eof == 255)
+    {
+        return(0);
+    }
+    c = fgetc(fp);
+    if(c == EOF)
+    {
 		Eof = 255;
+		return(0);
 	}
 	return (unsigned short)(c&0xFF);
 }
@@ -206,11 +203,11 @@ unsigned short GetChar()
 /*
  * Get a single bit from the input stream
  */
-unsigned short GetBit()
+unsigned short GetBit(FILE *fp)
 {
 	unsigned short t;
 	if(!Bits--) {
-		Bitbuff |= GetChar() << 8;
+		Bitbuff |= lzss_GetChar(fp) << 8;
 		Bits = 7; }
 
 	t = Bitbuff >> 15;
@@ -220,11 +217,11 @@ unsigned short GetBit()
 /*
  * Get a byte from the input stream - NOT bit-aligned
  */
-unsigned short GetByte()
+unsigned short lzss_GetByte(FILE *fp)
 {
 	unsigned short t;
 	if(Bits < 8)
-		Bitbuff |= GetChar() << (8-Bits);
+		Bitbuff |= lzss_GetChar(fp) << (8-Bits);
 	else
 		Bits -= 8;
 
@@ -236,7 +233,7 @@ unsigned short GetByte()
 /*
  * Decode a character value from table
  */
-unsigned short lzss_DecodeChar()
+unsigned short lzss_DecodeChar(FILE *fp)
 {
 	unsigned short c;
 
@@ -245,7 +242,7 @@ unsigned short lzss_DecodeChar()
 	// choose node #(son[]+1) if input bit == 1
 	c = ROOT;
 	while((c = son[c]) < TSIZE)
-		c += GetBit();
+		c += GetBit(fp);
 
 	lzss_update(c -= TSIZE);
 	return c;
@@ -254,18 +251,18 @@ unsigned short lzss_DecodeChar()
 /*
  * Decode a compressed string index from the table
  */
-unsigned short lzss_DecodePosition()
+unsigned short lzss_DecodePosition(FILE *fp)
 {
 	unsigned short i, j, c;
 
 	// Decode upper 6 bits from given table
-	i = GetByte();
+	i = lzss_GetByte(fp);
 	c = d_code_lzss[i] << 6;
 
 	// input lower 6 bits directly
 	j = d_len_lzss[i >> 4];
 	while(--j)
-		i = (i << 1) | GetBit();
+		i = (i << 1) | GetBit(fp);
 
 	return (i & 0x3F) | c;
 }
@@ -278,7 +275,7 @@ unsigned short lzss_DecodePosition()
  * allowing us to decompress the file "on the fly", without having to
  * have it all in memory.
  */
-int getbyte()
+int lzss_getbyte(FILE *fp)
 {
 	unsigned short c;
 
@@ -286,15 +283,15 @@ int getbyte()
 
 	for(;;) {				// Decompressor state machine
 		if(Eof)					// End of file has been flagged
-			return -1;
+			return (EOF);
 		if(!GBstate) {			// Not in the middle of a string
-			c = lzss_DecodeChar();
+			c = lzss_DecodeChar(fp);
 			if(c < 256) {		// Direct data extraction
 				ring_buff[GBr++] = (unsigned char)c;
 				GBr &= (SBSIZE-1);
 				return c; }
 			GBstate = 255;		// Begin extracting a compressed string
-			GBi = (GBr - lzss_DecodePosition() - 1) & (SBSIZE-1);
+			GBi = (GBr - lzss_DecodePosition(fp) - 1) & (SBSIZE-1);
 			GBj = c - 255 + THRESHOLD;
 			GBk = 0; }
 		if(GBk < GBj) {			// Extract a compressed string
@@ -306,68 +303,3 @@ int getbyte()
 		GBstate = 0; }			// Reset to non-string state
 }
 
-/*
- * Get a block from the input file via getbyte (for compression)
- */
-int getblock(unsigned char *p, unsigned short size, unsigned char *e)
-{
-	int c;
-	unsigned char eof;
-	eof = 0;
-	while(size) {
-		--size;
-		if((c = getbyte()) == -1) {
-			eof = (unsigned char)255;
-			//if(e)
-			//	error("EOF reading %s", e);
-			break; }
-		*p++ = c; }
-	return eof;
-}
-
-unsigned char * unpack(unsigned char *packeddata,unsigned int size)
-{
-
-	unsigned char * buffer,* finalbuffer;
-	int i,j;
-
-	init_decompress();
-
-	buffer_size=size;
-	buffer_offset=0;
-	buffer_ptr=packeddata+sizeof(TELEDISK_HEADER);
-
-
-	j=0;
-	buffer=0;
-	buffer=(unsigned char*)realloc(	buffer,512);
-	do
-	{
-
-		//getblock(buffer, 128, 0);
-		i=0;
-		do
-		{
-
-			buffer[j]=getbyte();
-			j++;
-			i++;
-		}while(i<512 && (Eof!=255));
-		buffer=(unsigned char*)realloc(	buffer,j+512);
-
-	}while(Eof!=255);
-
-	finalbuffer=0;
-	finalbuffer=malloc(j+sizeof(TELEDISK_HEADER));
-	if(finalbuffer)
-	{
-		memcpy(finalbuffer,packeddata,sizeof(TELEDISK_HEADER));
-		memcpy(&finalbuffer[sizeof(TELEDISK_HEADER)],buffer,j);
-
-	}
-
-	free(packeddata);
-	free(buffer);
-
-	return finalbuffer;
-}

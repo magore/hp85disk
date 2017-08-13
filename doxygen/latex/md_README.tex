@@ -1027,7 +1027,10 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item \hyperlink{lifsup_8c}{lifsup.\+c}
 \item \hyperlink{lifsup_8h}{lifsup.\+h}
 \begin{DoxyItemize}
-\item Stand alone libraries for L\+IF utility -\/ from various hp85disk libraries
+\item Stand alone libraries for L\+IF and T\+E\+L\+E\+D\+I\+SK utility
+\begin{DoxyItemize}
+\item These functions are also part of various hp85disk libraries
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item \hyperlink{lifutils_8c}{lifutils.\+c}
 \item \hyperlink{lifutils_8h}{lifutils.\+h}
@@ -1035,8 +1038,9 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \item L\+IF image functions, directory listing and file adding.\+extracting,renaming,deleting
 \end{DoxyItemize}
 \item \hyperlink{td02lif_8c}{td02lif.\+c}
+\item \hyperlink{td02lif_8h}{td02lif.\+h}
 \begin{DoxyItemize}
-\item My Tele\+Disk decoder wrapper to convert Teledisk L\+IF images into pure L\+IF files
+\item My Tele\+Disk to L\+IF translator
 \end{DoxyItemize}
 \item lif-\/notes.\+txt
 \begin{DoxyItemize}
@@ -1052,10 +1056,11 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 \end{DoxyItemize}
 \item 85-\/\+S\+S80.\+L\+IF
 \begin{DoxyItemize}
-\item My (hopefully) corrected L\+IF version (fixed two sectors addresses in Tele\+Disk image)
+\item The current converter automaticcal did these repairs
 \begin{DoxyItemize}
-\item My Tele\+Disk fix was to correct two sectors that had sector ID address of 116\+:
-\item I added the following to \hyperlink{td02lif_8c}{td02lif.\+c} $<$verbatim$>$ if(cyl == 11 \&\& side == 0 \&\& sector == 116) sector = 8; if(cyl == 13 \&\& side == 0 \&\& sector == 116) sector = 11; $<$/verbatim$>$
+\item cyl 11, side 0 sector 116 mapped to 8
+\item cyl 13, side 0 sector 116 mapped to 11
+\item cyl 15, side 0 sector 10 missing -\/ zero filled
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -1064,32 +1069,43 @@ Notes\+: When both E\+OI and A\+TN are low the H\+C32 enables H\+C595 outputs
 
 lif/teledisk
 \begin{DoxyItemize}
-\item Teledisk L\+IF format to pure L\+IF support code
-\item Code by Mike Gore
+\item My T\+E\+L\+E\+D\+I\+SK L\+IF extracter
 \begin{DoxyItemize}
-\item td02lif.\+h
-\begin{DoxyItemize}
-\item Headers to make teledisk\+\_\+loader.\+c stand alone
+\item Note\+: The Tele\+Disk image M\+U\+ST contain a L\+IF image -\/ we do N\+OT translate it
 \end{DoxyItemize}
 \item R\+E\+A\+D\+M\+E.\+txt
-\item Makefile $\ast$\+Make library from teledisk\+\_\+loader.\+c crc.\+c td0\+\_\+lzss.\+c
-\end{DoxyItemize}
-\item Code by Ashley Roll
 \begin{DoxyItemize}
-\item crc.\+c
-\item crc.\+h
-\begin{DoxyItemize}
-\item C\+R\+C16 code
+\item Credits
 \end{DoxyItemize}
-\end{DoxyItemize}
-\item Code and Documenation by David Dunfield
+\item Important Contributions (My converted would not have been possible without these)
 \begin{DoxyItemize}
+\item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
 \item td0\+\_\+lzss.\+h
 \item td0\+\_\+lzss.\+c
 \begin{DoxyItemize}
 \item L\+Z\+SS decoder
 \end{DoxyItemize}
 \item td0notes.\+txt
+\begin{DoxyItemize}
+\item Teledisk Documentation
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item wteledsk.\+htm
+\begin{DoxyItemize}
+\item Tele\+Disk documenation
+\end{DoxyItemize}
+\item See his github project
+\begin{DoxyItemize}
+\item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 

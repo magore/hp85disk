@@ -22,7 +22,7 @@ CFLAGS += -DLIF_STAND_ALONE
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
 CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
 
-SRC =  lifsup.c lifutils.c 
+SRC =  lifsup.c lifutils.c teledisk/td0_lzss.c
 LIBS = -lm
 
 ifeq ($(TELEDISK),1)
@@ -30,7 +30,6 @@ ifeq ($(TELEDISK),1)
 	CFLAGS += -I. -Iteledisk
 	CFLAGS += -DTELEDISK
 	CFLAGS += -L${DIR}/teledisk
-	LIBS += -ltd02lif
 	SRC += td02lif.c
 endif
 
@@ -40,7 +39,6 @@ LIB =
 
 # Optional teledisk support
 ifeq ($(TELEDISK),1)
-    LIB += lib 
     BIN += td02lif
 endif
 
@@ -50,23 +48,15 @@ install:	all
 	install -s lif /usr/local/bin/lif
 	install -s td02lif /usr/local/bin/lif
 
-# Optional teledisk support
-ifeq ($(TELEDISK),1)
-.PHONY: lib
-lib: 
-	make -C teledisk all
-
-td02lif:    lib ${SRC}
+td02lif:    ${SRC}
 	gcc ${CFLAGS} -o td02lif ${SRC} ${LIBS}
-endif
 
 # Create a stand alone test program called printf
-lif:	lib lifutils.c
+lif:	lifutils.c
 	gcc $(CFLAGS) ${SRC} -o lif ${LIBS}
 
 BIN_EXE := $(addsuffix .exe,${BIN})
 
 clean:
-	make -C teledisk clean
 	rm -f ${BIN} ${BIN_EXE} ${LIB}
 

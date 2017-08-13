@@ -13,6 +13,7 @@ var searchData=
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],
   ['max_5fstack',['MAX_STACK',['../drives_8c.html#af24298a5ce56647751e432673282c6e2',1,'drives.c']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],
+  ['maxsector',['MAXSECTOR',['../td02lif_8h.html#a88c30c1e70576397f9e74bce80cfa164',1,'td02lif.h']]],
   ['mbr_5ftable',['MBR_Table',['../ff_8c.html#ac3f187bf0ba891551f594af6b61f3188',1,'ff.c']]],
   ['media_5fflag',['MEDIA_FLAG',['../defines_8h.html#ab24e084972f8d90062d2a3fcec3d07eb',1,'defines.h']]],
   ['mem_5fclear',['Mem_Clear',['../user__config_8h.html#a027f5683e524693c2ba74dd55fb42d5a',1,'user_config.h']]],

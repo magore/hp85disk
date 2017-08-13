@@ -40,7 +40,7 @@ ___
  Elektor Labs project web site: http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html
 ___
 
-## HP85DIsk project documenation
+## HP85 Disk project documenation
  * HP85 Disk Project v1.0 by ©Mike Gore Feb 2015 Schematics and Pin-out information for HP85 Disk Project
    * HP85Disk.pdf
 ___
@@ -94,6 +94,27 @@ ___
 ___
 ## TREK85 Martin Hepperle, December 2015
  * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+___
+## TeleDisk Converter
+   * lif/teledisk
+     * My TELEDISK LIF extracter
+       * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
+     * README.txt
+       * Credits
+     * Important Contributions (My converted would not have been possible without these)
+       * Dave Dunfield, LZSS Code and TeleDisk documentation
+         * Copyright 2007-2008 Dave Dunfield All rights reserved.
+         * td0_lzss.h
+         * td0_lzss.c
+           * LZSS decoder
+         * td0notes.txt
+           * Teledisk Documentation
+       * Jean-Franois DEL NERO, TeleDisk Documentation
+         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+           * wteledsk.htm
+             * TeleDisk documenation
+           * See his github project
+             * https://github.com/jfdelnero/libhxcfe
 ___
 
 ## FatFs Copyright &copy; 2013, ChaN, all right reserved.

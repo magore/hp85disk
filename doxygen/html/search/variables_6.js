@@ -14,7 +14,7 @@ var searchData=
   ['filetype',['FileType',['../structlifdir__t.html#a7a93a706ac4bb88f65826619c9b02231',1,'lifdir_t']]],
   ['fixed_5fvolumes',['FIXED_VOLUMES',['../structSS80UnitType.html#ae1d52bfc5a9bdb8f6f26ba6dffd7c2f6',1,'SS80UnitType']]],
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
-  ['flags',['flags',['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
+  ['flags',['flags',['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()'],['../structtd__sector__t.html#ad30cfc0c6589ff25f8456ada5b352efa',1,'td_sector_t::Flags()']]],
   ['fn',['fn',['../structDIR.html#ad90d974c0e7640307598c586bf141b32',1,'DIR']]],
   ['fname',['fname',['../structFILINFO.html#a7c3ce2dd03dc9a9726967fc43116079f',1,'FILINFO']]],
   ['fp',['fp',['../structputbuff.html#a5c7baa85e569be17f4888f5d92f4453c',1,'putbuff::fp()'],['../structPRINTERStateType.html#a791c78d68d169f9d2e60d34b890e520a',1,'PRINTERStateType::fp()'],['../structbuffer__t.html#a00a55014e0827223c41b1b1d56e5be5d',1,'buffer_t::fp()'],['../structlif__t.html#ad679ba16ca21371a649981a4cca9e64c',1,'lif_t::fp()']]],

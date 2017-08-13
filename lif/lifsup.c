@@ -17,7 +17,7 @@
 #include "lifsup.h"
 #include "lifutils.h"
 
-int debuglevel = 0x0401;
+int debuglevel = 0x0001;
 
 #ifdef __MINGW32__
 struct tm *gmtime_r(const time_t *timep, struct tm *result)
@@ -28,22 +28,45 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result)
     return(result);
 }
 
-char *asctime_r(const struct tm *tm, char *buf)
-{
-  static char day_name[7][3] = {
-    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-  };
-  static char mon_name[12][3] = {
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  };
+///@brief Short Name of each Day in a week.
+///
+/// - Day 0 .. 6 to string.
+///
+///@see asctime_r()
+const char *__WDay[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat","BAD"};
 
-  sprintf (buf, "%.3s %.3s%3d %.2d:%.2d:%.2d %d\n",
-       day_name[tm->tm_wday], 
-       mon_name[tm->tm_mon],
-       tm->tm_mday, tm->tm_hour, tm->tm_min,
-       tm->tm_sec, 1900 + tm->tm_year);
-  return buf;
+/// @brief Short Name or each Month in a year.
+///
+/// - Month 0 .. 11 to string.
+///
+const char *__Month[]= \
+{ \
+    "Jan","Feb","Mar","Apr","May","Jun","Jul", \
+        "Aug","Sep","Oct","Nov","Dec","BAD"
+};
+
+/// @brief Convert tm_t *t structure into POSIX asctime() ASCII string *buf.
+///
+/// @param[in] t: tm_t structure pointer.
+/// @param[out] buf: user buffer for POSIX asctime() string result.
+/// - Example output: "Thu Dec  8 21:45:05 EST 2011".
+///
+/// @return buf string pointer.
+char *asctime_r(tm_t *t, char *buf)
+{
+    // normaize tm_t before output
+    (void) normalize(t,0);
+
+    memset(buf,0,32);
+    snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
+        __WDay[t->tm_wday % 7],
+        __Month[t->tm_mon % 12],
+        (int)t->tm_mday,
+        (int)t->tm_hour,
+        (int)t->tm_min,
+        (int)t->tm_sec,
+        (int)t->tm_year + 1900);
+    return(buf);
 }
 
 struct tm *_gmtime64 (const __time64_t *);
@@ -87,7 +110,6 @@ int MATCHARGS(char *str, char *pat, int min, int argc)
 ///@brief Remove white space at the end of lines
 ///@param str: string
 ///@return void
-MEMSPACE
 void trim_tail(char *str)
 {
     int len = strlen(str);
@@ -107,7 +129,6 @@ void trim_tail(char *str)
 ///@param size: number of bytes to process
 ///@param val: Value to convert
 ///@return void
-MEMSPACE
 void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
 {
     int i;
@@ -125,7 +146,6 @@ void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
 ///@param size: number of bytes to process
 ///@param val: Value to convert
 ///@return void
-MEMSPACE
 void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
 {
     int i;
@@ -144,7 +164,6 @@ void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@return value
-MEMSPACE
 uint32_t B2V_MSB(uint8_t *B, int index, int size)
 {
     int i;
@@ -164,7 +183,6 @@ uint32_t B2V_MSB(uint8_t *B, int index, int size)
 ///@param index: offset into byte array
 ///@param size: number of bytes to process
 ///@return value
-MEMSPACE
 uint32_t B2V_LSB(uint8_t *B, int index, int size)
 {
     int i;
@@ -178,11 +196,87 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
         return(val);
 }
 
+/// @brief Create a string from data that has no EOS but known size
+/// @param[in] *B: source
+/// @param[in] index: index offset into source data
+/// @param[out] *name: target string
+/// @param[in] size: size of string to write - not including EOS
+/// @return void
+void B2S(uint8_t *B, int index, uint8_t *name, int size)
+{
+    int i;
+    for(i=0;i<size;++i)
+        name[i] = B[index+i];
+    name[i] = 0;
+}
+
+
+///@brief Set bit in vector
+///@param[out] p: vector
+///@param[in] bit: bit number to set
+///@return void
+void BITSET_LSB(uint8_t *p, int bit)
+{
+    int index = bit >> 3;
+    bit &= 0x07;
+    p[index] |= (1 << bit);
+}
+
+///@brief Clear bit in vector
+///@param[out] p: vector
+///@param[in] bit: bit number to clear
+///@return void
+void BITCLR_LSB(uint8_t *p, int bit)
+{
+    int index = bit >> 3;
+    bit &= 0x07;
+    p[index] &= ~(1 << bit);
+}
+
+///@brief Test bit in vector
+///@param[out] p: vector
+///@param[in] bit: bit number to test
+///@return 1 if set, 0 if not
+int BITTST_LSB(uint8_t *p, int bit)
+{
+    int index = bit >> 3;
+    bit &= 0x07;
+    return( (p[index] & (1 << bit)) ? (int) 1 : (int) 0 );
+}
+    
+/// @brief Compute CRC16 of 8bit data
+/// @see https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+/// FYI normal CRC16 typically use 0x1021 for ploy
+/// Note: You can do a CRC16 of data in blocks by passing the result
+/// as the crc initial value for the next call
+/// @param[in] *B:      8 bit binary data
+/// @param[in] crc: initial crc value
+/// @param[out] poly:   ploynomial
+/// @param[in] size:    number of bytes
+/// @return crc16 of result
+uint16_t crc16(uint8_t *B, uint16_t crc, uint16_t poly, int size)
+{
+    int i,bit;
+    for(i=0; i<size; ++i)
+    {
+        crc ^= (0xff00 & ((uint16_t)B[i] << 8));
+        // Loop for 8 bits per byte
+        for (bit = 0; bit < 8; bit++)
+        {
+            if ((crc & 0x8000) != 0) 
+                crc = (uint16_t) ((crc << 1) ^ poly);
+            else
+                crc <<= 1;
+        }
+    }
+    return (crc);
+}
+
+
 /// @brief hex listing of data
 /// @param[in] *data: date to dump
 /// @param[in] size: size of data to dump
 /// @retrun void
-MEMSPACE
 void hexdump(uint8_t *data, int size)
 {
     long addr;
