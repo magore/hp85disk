@@ -138,6 +138,40 @@ ___
     lif rename lifimage oldlifname newlifname
     lif td02lif image.td0 image.lif
 </pre>
+
+## TELEDISK LIF conversion example
+<pre>
+./td02lif 85-SS80.TD0 85-SS80.LIF
+TeleDisk image file: 85-SS80.TD0
+        Normal compression
+        Version: 21
+        Date: Sun Apr  1 12:47:51 2008
+HP-85 S/W, SS/80 EXERCISER, 5010-0310/2537. DOES NOT INCLUDE THE SERVC F
+
+Warning alternate CRC flag not implemented
+        cylinder:00, head:00, sector:17, size:128, index:17
+Warning Sector:08 missing - found alternate sector:116
+        Location: cylinder:11, head:00, sector:08, size:256, index:8
+Warning Sector:11 missing - found alternate sector:116
+        Location: cylinder:13, head:00, sector:11, size:256, index:11
+Warning Sector:10 missing - zero filling
+        Location: Track: Cyl: 15, Side: 00
+Done LIF image: [85-SS80.LIF] wrote: [01DAh] sectors
+
+Volume:[<EMPTY>] Date:[<EMPTY>]
+NAME         TYPE   START SECTOR        SIZE    RECSIZE   DATE
+MANUAL      E020h            10h       26880        256   <EMPTY>
+RW-TES      E020h            79h       27648        256   <EMPTY>
+OPER        E020h            E5h       28672        256   <EMPTY>
+REVID       E020h           155h       27136        256   <EMPTY>
+Autost      E020h           1BFh        6912        256   <EMPTY>
+
+       5 Files
+       0 Purged
+     458 Used sectors
+       0 Free sectors
+
+</pre>
 ___
 
 ## LIF command help
