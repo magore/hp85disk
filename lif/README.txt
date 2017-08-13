@@ -12,22 +12,23 @@ ___
        * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
      * README.txt
        * Credits
-     * Important Contributions (My converted would not have been possible without these)
-       * Dave Dunfield, LZSS Code and TeleDisk documentation
-         * Copyright 2007-2008 Dave Dunfield All rights reserved.
-         * td0_lzss.h
-         * td0_lzss.c
-           * LZSS decoder
-         * td0notes.txt
-           * Teledisk Documentation
-       * Jean-Franois DEL NERO, TeleDisk Documentation
-         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-           * wteledsk.htm
-             * TeleDisk documenation
-           * See his github project
-             * https://github.com/jfdelnero/libhxcfe
 
-
+___
+## Credits
+ * Important Contributions (My converted would not have been possible without these)
+   * Dave Dunfield, LZSS Code and TeleDisk documentation
+     * Copyright 2007-2008 Dave Dunfield All rights reserved.
+     * td0_lzss.h
+     * td0_lzss.c
+       * LZSS decoder
+     * td0notes.txt
+       * Teledisk Documentation
+   * Jean-Franois DEL NERO, TeleDisk Documentation
+     * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+       * wteledsk.htm
+         * TeleDisk documenation
+       * See his github project
+         * https://github.com/jfdelnero/libhxcfe
 ___
   
 ## OS Requirements for software building
