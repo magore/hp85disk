@@ -32,6 +32,8 @@
        * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
      * Type "lif help" in the emulator for a full list of commands
        * See the top of lif/lifutils.c for full documentation and examples.
+     * TeleDisk to LIF extractor tool included - see lif directory README.md
+       * td02lif 85-SS80.TD0 85-SS80.LIF
 ___
 ## OS Requirements for software building
   * I used Ubuntu 16.04LTS and 14.04LTS when developing the code
