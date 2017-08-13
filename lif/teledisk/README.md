@@ -1,8 +1,8 @@
 ## Copyright
-  TeleDisk decoder library targetting LIF format images only
-  Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved. GPL
-  http://github.com/magore/hp85disk
-  http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+  * TeleDisk decoder library targetting LIF format images only
+  * Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved. GPL
+  * http://github.com/magore/hp85disk
+  * http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
 ## HELP
    * LIF command help
