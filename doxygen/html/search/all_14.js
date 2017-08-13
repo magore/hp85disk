@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['u',['u',['../structliftel__t.html#a3a8a41c9a51c6450ac562d525103902a',1,'liftel_t']]],
   ['uart0_5fgetchar',['uart0_getchar',['../rs232_8c.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c'],['../rs232_8h.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c']]],
   ['uart0_5fputchar',['uart0_putchar',['../rs232_8c.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c'],['../rs232_8h.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c']]],
   ['uart_5fdevice_5fcnt',['UART_DEVICE_CNT',['../user__config_8h.html#a5073c91ce37d806cbbfbd8131bc9c31c',1,'user_config.h']]],
@@ -37,6 +38,7 @@ var searchData=
   ['usedsectors',['usedsectors',['../structlif__t.html#ad81767a2f65b997d5abecba130b89814',1,'lif_t']]],
   ['user_5fconfig_2eh',['user_config.h',['../user__config_8h.html',1,'']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]],
+  ['usertel_5ft',['usertel_t',['../structusertel__t.html',1,'']]],
   ['utimbuf',['utimbuf',['../structutimbuf.html',1,'']]],
   ['utime',['utime',['../posix_8c.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c'],['../posix_8h.html#a732642e09075838bbbca28b3529f13db',1,'utime(const char *filename, const struct utimbuf *times):&#160;posix.c']]],
   ['utime_5ft',['utime_t',['../posix_8h.html#ab29c02d05027f32f3f17bee2e4839777',1,'posix.h']]]

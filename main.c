@@ -30,38 +30,27 @@
 #ifdef POSIX_TESTS
 #include "posix/posix_tests.h"
 #endif
+
 #ifdef LIF_SUPPORT
 #include "lif/lifutils.h"
 #endif
 
 #include <math.h>
 
-/// @brief  Display the main help menu - calls all other help menus
-/// @return  void
-/// @see gpib_help()
-/// @see fatfs_help()
-void help()
+///@brief Display Copyright
+///@return void
+void copyright()
 {
-#ifdef FATFS_TESTS
-    fatfs_help();
-#endif
-#ifdef POSIX_TESTS
-    posix_help();
-#endif
-#ifdef LIF_SUPPORT
-    lif_help();
-#endif
-    gpib_help();
+    printf("Stand alone version of LIF utilities for linux\n");
+    printf("HP85 Disk and Device Emulator\n");
+    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" GNU version 3\n");
+    printf("-> https://github.com/magore/hp85disk\n");
+    printf("   GIT last pushed:   %s\n", GIT_VERSION);
+    printf("   Last updated file: %s\n", LOCAL_MOD);
+    printf("\n");
+}
 
-    printf(
-        "delay_tests\n"
-        "time\n"
-        "setdate\n"
-        "mem\n"
-        "ifc\n"
-        "\n"
-        );
-    }
 
 
 /// @brief  perform tests on delay functions
@@ -102,6 +91,37 @@ void delay_tests()
     clock_elapsed_end("delayms(1100)");
 }
 
+/// @brief  Display the main help menu - calls all other help menus
+/// @return  void
+/// @see gpib_help()
+/// @see fatfs_help()
+void help()
+{
+
+#ifdef FATFS_TESTS
+    fatfs_help();
+#endif
+
+#ifdef POSIX_TESTS
+    posix_help();
+#endif
+
+#ifdef LIF_SUPPORT
+    lif_help();
+#endif
+
+    gpib_help();
+
+    printf(
+        "delay_tests\n"
+        "time\n"
+        "setdate\n"
+        "mem\n"
+        "\n"
+        );
+}
+
+
 
 /// @brief  User command handler - called as main task
 ///
@@ -127,24 +147,19 @@ void task(uint8_t gpib)
     printf("\n>");
     fgets(line,sizeof(line)-2,stdin);
     argc = split_args(line,argv,10);
+
 #if 0
     printf("Arguments:\n");
     printf("   argc = %d\n", argc);
     for(i=0;i<argc;++i)
         printf("   [%s]\n", argv[i]);
 #endif
-    if(argc < 2)
-        return;
-
-    ind = 1;
+    ind = 0;
     ptr = argv[ind++];
 
-    if(gpib_tests(argc,argv))
-    {
-        // Restore GPIB BUS states
-        gpib_init_devices();
+    if(!ptr)
         return;
-    }
+
 
 
     if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
@@ -175,14 +190,24 @@ void task(uint8_t gpib)
         help();
         return;
     }
+
+    if(gpib_tests(argc,argv))
+    {
+        // Restore GPIB BUS states
+        gpib_init_devices();
+        return;
+    }
+
 #ifdef POSIX_TESTS
     if(posix_tests(argc,argv))
         return;
 #endif
+
 #ifdef FATFS_TESTS
     if(fatfs_tests(argc,argv))
         return;
 #endif
+
 #ifdef LIF_SUPPORT
     if(lif_tests(argc,argv))
         return;

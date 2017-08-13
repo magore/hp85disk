@@ -1130,22 +1130,170 @@ int td02lif_sector(uint8_t *data, int size, lif_t *LIF)
     return(1);
 }
 
+void td0_help()
+{
+    printf("Usage: td02lif file.td0 file.lif\n");
+}
+
 
 /// @brief Convert a Teledisk LIF formatted disk image into a pure LIF image
 /// @param[in] telediskname: TELEDISK image name
 /// @param[in] lifname: LIF file name to write
 /// @return 1 on success, 0 on error
-int lif_td02lif(char *telediskname, char *lifname)
+int td02lif(int argc, char *argv[])
 {
     FILE *fo;
     int status;
     time_t t;
+    char *ptr;
+    char *telediskname = NULL;
+    char *lifname = 0;
+    int i;
+
+    // State Machine
+    liftel.error = 0;
+    liftel.state = TD0_INIT;
+    liftel.sectorspertrack = 0;
+    liftel.sectorsize = -1;
+    liftel.sectorlast = 0;
+    liftel.sectorindex = 0;
+    liftel.writeindex = 0;
+    liftel.t = time(0);
+
+    // User overrride
+    liftel.u.sectorfirst = -1;
+    liftel.u.sectorsize = -1;
+    liftel.u.sectorspertrack = -1;
+    liftel.u.sides = -1;
+    liftel.u.tracks = -1;
+
+    ptr = argv[0];
+    if(!ptr || !MATCH(ptr,"td02lif"))
+        return(0);
+
+    if(argc == 1)
+    {
+        copyright(); 
+        td0_help();
+        return(1);
+    }
+    
+    for(i=1;i<argc;++i)
+    {
+        ptr = argv[i];
+        if(!ptr)
+            break;
+
+        if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?"))
+        {
+            copyright(); 
+            td0_help();
+            return(0);
+        }
+
+        if(*ptr == '-')
+        {
+            ++ptr;
+            // Sectors per track
+            if(*ptr == 's')
+            {
+                ++ptr;
+                if(*ptr)
+                    liftel.u.sectorspertrack = atoi(ptr);
+                else
+                    liftel.u.sectorspertrack = atoi(argv[++i]);
+                continue;
+            }
+
+            // First sector 
+            if(*ptr == 'f')
+            {
+                ++ptr;
+                if(*ptr)
+                    liftel.u.sectorfirst = atoi(ptr);
+                else
+                    liftel.u.sectorfirst = atoi(argv[++i]);
+                continue;
+            }
+
+            // Sector size
+            if(*ptr == 'z')
+            {
+                ++ptr;
+                if(*ptr)
+                    liftel.u.sectorsize = atoi(ptr);
+                else
+                    liftel.u.sectorsize = atoi(argv[++i]);
+                continue;
+            }
+
+            // Heads
+            if(*ptr == 'h')
+            {
+                ++ptr;
+                if(*ptr)
+                    liftel.u.sides = atoi(ptr);
+                else
+                    liftel.u.sides = atoi(argv[++i]);
+                continue;
+            }
+
+            // Tracks
+            if(*ptr == 't')
+            {
+                ++ptr;
+                if(*ptr)
+                    liftel.u.tracks = atoi(ptr);
+                else
+                    liftel.u.tracks = atoi(argv[++i]);
+                continue;
+            }
+
+
+        }
+        else if(telediskname == NULL)
+        {
+            telediskname = ptr;
+        }
+        else if(lifname == NULL)
+        {
+            lifname = ptr;
+        }
+        else
+        {
+            copyright(); 
+            td0_help();
+            return(1);
+        }
+    }
+
+    if( liftel.u.sectorfirst != -1)
+        printf("Override: first sector = %d\n", liftel.u.sectorfirst );
+
+    if( liftel.u.sectorspertrack != -1)
+        printf("Override: sector size = %d\n", liftel.u.sectorspertrack);
+
+    if( liftel.u.sectorsize != -1)
+        printf("Override: sector size = %d\n", liftel.u.sectorsize);
+
+    if( liftel.u.sides != -1)
+        printf("Override: sides = %d\n", liftel.u.sides);
+
+    if( liftel.u.tracks != -1)
+        printf("Override: tracks = %d\n", liftel.u.tracks);
 
     if(!lifname|| !strlen(lifname))
     {
         printf("Expected LIF filename\n");
         return(0);
     }
+
+    if(!telediskname|| !strlen(telediskname))
+    {
+        printf("Expected TeleDisk filename\n");
+        return(0);
+    }
+
 
     if(strcasecmp(telediskname,lifname) == 0)
     {
@@ -1174,15 +1322,6 @@ int lif_td02lif(char *telediskname, char *lifname)
         lif_close_volume(LIF);
         return (0);
     }
-
-    liftel.error = 0;
-    liftel.state = TD0_INIT;
-    liftel.sectorspertrack = 0;
-    liftel.sectorsize = -1;
-    liftel.sectorlast = 0;
-    liftel.sectorindex = 0;
-    liftel.writeindex = 0;
-    liftel.t = time(0);
 
     status = td0_read_image(telediskname, LIF);
 

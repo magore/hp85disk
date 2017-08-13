@@ -173,6 +173,25 @@ typedef struct {
     uint8_t *data;          // Sector data
 } track_data_t;
 
+
+#define TD0_SECTORFIRST     1
+#define TD0_SECTORSIZE      2
+#define TD0_SECTORPERTRACK  4
+#define TD0_SIDE            8
+#define TD0_TRACKS          16
+#define TD0_OVERRIDE        128
+
+typedef struct
+{
+    int flags;
+    int sectorfirst;
+    int sectorsize;
+    int sectorspertrack;
+    int sides;
+    int tracks;
+} usertel_t;
+
+
 ///@brief td02lif state structure
 typedef struct
 {
@@ -184,6 +203,7 @@ typedef struct
     int sectorlast;
     long sectorindex;
     long writeindex;
+    usertel_t u;            // User override flags
     time_t  t;              // LIF image date in epoch format
 } liftel_t;
 
@@ -198,11 +218,13 @@ void td0_enable_decompress ( int flag );
 long td0_read ( void *p , int osize , int size , FILE *fp );
 void td0_init_trackdata ( int freemem );
 int td0_rle ( uint8_t *dst , uint8_t *src , int max );
-void td02lif_sector_info ( track_data_t *trackdata , int index );
+void td0_track ( int index );
+void td0_sector ( td_sector_t *P );
 long td0_density2bitrate ( uint8_t density );
 int td0_read_image ( char *imgfile , lif_t *LIF );
 int td02lif_sector ( uint8_t *data , int size , lif_t *LIF );
-int lif_td02lif ( char *telediskname , char *lifname );
+void td0_help ( );
+int td02lif ( int argc , char *argv []);
 
 
 #endif

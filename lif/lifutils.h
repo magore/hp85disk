@@ -193,6 +193,6 @@ MEMSPACE long lif_add_lif_file ( char *lifimagename , char *lifname , char *user
 MEMSPACE int lif_del_file ( char *lifimagename , char *lifname );
 MEMSPACE int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
 MEMSPACE long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
-MEMSPACE int lif_convert_file ( char *telediskname , char *lifname );
+
 
 #endif     // #ifndef _LIFUTILS_H

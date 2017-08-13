@@ -83,16 +83,16 @@ int posix_tests(int argc,char *argv[])
     char *ptr;
     int ind;
 
-    if(argc < 2)
-        return(0);
-
-    ind = 1;
+    ind = 0;
     ptr = argv[ind++];
+
+    if(!ptr)
+        return(0);
 
     if( MATCH(ptr,"posix") )
     {
         ptr = argv[ind++];
-        if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
+        if ( !ptr || MATCH(ptr,"help") )
         {
             posix_help();
             return(1);
@@ -167,6 +167,7 @@ int posix_tests(int argc,char *argv[])
         {
             if(!MATCH(argv[i],"-l"))
                 ls(argv[i],1);
+            ++args;
         }
         if(!args)
         {

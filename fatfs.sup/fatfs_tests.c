@@ -98,33 +98,30 @@ int fatfs_tests(int argc,char *argv[])
     char *ptr;
     int ind;
 
-    if(argc < 2)
-        return(0);
 
-    ind = 1;
+    ind = 0;
     ptr = argv[ind++];
 
-// If we have POSIX_TESTS we MUST prefix each test with "fatfs" keyword to avoid name clashing
-#ifdef POSIX_TESTS
-    if( !MATCH(ptr,"fatfs") )
+    if(!ptr)
         return(0);
-#endif
+
+// If we have POSIX_TESTS we MUST prefix each test with "fatfs" keyword to avoid name clashing
 
     if( MATCH(ptr,"fatfs") )
     {
         ptr = argv[ind++];
-        if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
+        if ( !ptr || MATCH(ptr,"help") )
         {
             fatfs_help();
             return(1);
         }
     }
-
-    if ( MATCHARGS(ptr,"help", (ind + 0), argc ))
+#ifdef POSIX_TESTS
+    else
     {
-        fatfs_help();
-        return(1);
+        return(0);
     }
+#endif
 
     if (MATCHARGS(ptr,"ls", (ind + 0), argc))
     {

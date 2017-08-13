@@ -10,7 +10,7 @@ var searchData=
   ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],
   ['heapsort',['heapsort',['../sort_8c.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c'],['../sort_8h.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c']]],
   ['help',['help',['../main_8c.html#a97ee70a8770dc30d06c744b24eb2fcfc',1,'help():&#160;main.c'],['../main_8h.html#a0bed8474bd33a912769360766f6b10d4',1,'help(void):&#160;main.c']]],
-  ['hexdump',['hexdump',['../posix__tests_8c.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c'],['../lifsup_8h.html#a2f747920e56341c79f83723a1d4c879b',1,'hexdump(uint8_t *data, int size):&#160;lifsup.h']]],
+  ['hexdump',['hexdump',['../posix__tests_8c.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#ad8b824040392b9b3a34fed57d72a1313',1,'hexdump(char *name, int dopage):&#160;posix_tests.c']]],
   ['hour',['Hour',['../structtd__comment__t.html#ae42f4895a24dadba8528e32d89d601c6',1,'td_comment_t']]],
   ['hp9121d',['HP9121D',['../defines_8h.html#adc21759335a3d21784de3624a8dbdcde',1,'defines.h']]],
   ['hp9134l',['HP9134L',['../defines_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;defines.h'],['../drives_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;drives.h']]],

@@ -52,10 +52,10 @@ const char *__Month[]= \
 /// - Example output: "Thu Dec  8 21:45:05 EST 2011".
 ///
 /// @return buf string pointer.
-char *asctime_r(tm_t *t, char *buf)
+char *asctime_r(const struct tm *t, char *buf)
 {
-    // normaize tm_t before output
-    (void) normalize(t,0);
+    // normaize t before output
+    //(void) normalize(t,0);
 
     memset(buf,0,32);
     snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
@@ -313,59 +313,48 @@ void hexdump(uint8_t *data, int size)
     printf("\n");
 }
 
-
-
-void td02lif_usage(char *name)
+///@brief Display Copyright
+///@return void
+void copyright()
 {
-        printf("Stand alone version of LIF utilities for linux\n");
-        printf("HP85 Disk and Device Emulator\n");
-        printf(" (c) 2014-2017 by Mike Gore\n");
-        printf(" GNU version 3\n");
-        printf("-> https://github.com/magore/hp85disk\n");
-        printf("   GIT last pushed:   %s\n", GIT_VERSION);
-        printf("   Last updated file: %s\n", LOCAL_MOD);
-        printf("\n");
-        printf("Usage: td02lif file.td0 file.lif\n");
+    printf("Stand alone version of LIF utilities for linux\n");
+    printf("HP85 Disk and Device Emulator\n");
+    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" GNU version 3\n");
+    printf("-> https://github.com/magore/hp85disk\n");
+    printf("   GIT last pushed:   %s\n", GIT_VERSION);
+    printf("   Last updated file: %s\n", LOCAL_MOD);
+    printf("\n");
 }
 
 int main(int argc, char *argv[])
 {
     char *myargv[10];
-    int i;
     int myargc;
-    int ind = 0;
+    int i;
 
-    myargv[ind++] = argv[0];
     // in stand alone mode we automatically set the 2nd argument to "lif"
     
-    myargv[ind++] = "lif";
+    for(i=0;i<10;++i)
+        myargv[i] = argv[i];
 
-    // If we used no arguments the set default help
-    if(argc < 2)
+    if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
     {
-        myargv[ind++] = "help";
-        td02lif_usage(argv[0]);
-        printf(" - OR -\n");
-        printf("\n");
+        myargv[0] = "lif";
+        return( lif_tests(argc, myargv) );
     }
-    else
+#ifdef TELEDISK
+    if( MATCH(basename(argv[0]),"td02lif") || MATCH(basename(argv[0]),"td02lif.exe") )
     {
-        if(MATCH(basename(argv[0]),"td02lif"))
-            myargv[ind++] = "td02lif";
-        //@brief MingW
-        if(MATCH(basename(argv[0]),"td02lif.exe"))
-            myargv[ind++] = "td02lif";
+        myargv[0] = "td02lif";
+        return ( td02lif(argc, myargv) );
     }
+#endif
 
-    for(i=1;i<argc;++i)
-        myargv[ind++] = argv[i];
-
-    myargc = ind;
-    for(i=ind;i<10;++i)
-        myargv[i] = NULL;
-
-    if(!lif_tests(myargc,myargv))
-        td02lif_usage(argv[0]);
+    copyright();
+    lif_help();
+    td0_help();
+    return(0);
 }
 
 #endif

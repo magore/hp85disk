@@ -89,7 +89,7 @@
 #ifdef LIF_STAND_ALONE
 #include "lifsup.h"
 #include "lifutils.h"
-extern MEMSPACE int lif_td02lif(char *telediskname, char *lifname);
+extern MEMSPACE int lif_td02lif(int argc, char *srgv[]);
 
 #else 
 
@@ -130,41 +130,32 @@ MEMSPACE
 int lif_tests(int argc, char *argv[])
 {
 
+    int i;
     int ind;
     char *ptr;
 
 
 #ifdef LIF_DEBUG
-    int i;
     for(i=0;i<argc;++i)
         printf("%02d:%s\n", i, argv[i]);
     printf("\n");
 #endif
 
-    if(argc < 2)
-        return(0);
-
-    ind = 1;
+    ind = 0;
     ptr = argv[ind++];
 
-    if (MATCHARGS(ptr,"lifhelp", (ind + 0) ,argc))
-    {
-        lif_help();
-        return(1);
-    }
-
-    if(!MATCHARGS(ptr,"lif", (ind + 0) ,argc))
+    if(!ptr || !MATCH(ptr,"lif") )
         return(0);
-
-    // We matched "lif" so skip the argument
 
     ptr = argv[ind++];
 
-    // We are past the "lif" argument
-
-    if (MATCHARGS(ptr,"help", (ind + 0) ,argc))
+    if (!ptr || MATCH(ptr,"help") )
     {
+        copyright();
         lif_help();
+#ifdef TELEDISK
+        td0_help();
+#endif
         return(1);
     }
 
@@ -213,10 +204,18 @@ int lif_tests(int argc, char *argv[])
         lif_rename_file(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
     }
+
 #ifdef TELEDISK
-    if (MATCHARGS(ptr,"td02lif", (ind + 2) ,argc))
+    if (MATCHARGS(ptr,"td02lif", (ind + 0) ,argc))
     {
-        lif_td02lif(argv[ind],argv[ind+1]);
+        // shif the arguments down
+        for(i=1;i<argc;++i)
+        {
+            argv[i-1] = argv[i];
+        }
+        argv[argc--] = NULL;
+
+        td02lif(argc,argv);
         return(1);
     }
 #endif

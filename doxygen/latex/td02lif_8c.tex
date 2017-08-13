@@ -43,7 +43,9 @@ int \hyperlink{td02lif_8c_a82346ed45d0b49999c4ef54b90a59b07}{td0\+\_\+read\+\_\+
 \begin{DoxyCompactList}\small\item\em Read Tele\+Disk image file and call L\+IF converter. \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8c_a0ab31664441afebf11648c13b65cfad5}{td02lif\+\_\+sector} (uint8\+\_\+t $\ast$data, int size, \hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF)
 \begin{DoxyCompactList}\small\item\em Process all sectors on a track from Tele\+Disk image. \end{DoxyCompactList}\item 
-int \hyperlink{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}{lif\+\_\+td02lif} (char $\ast$telediskname, char $\ast$lifname)
+void \hyperlink{td02lif_8c_a59634eaf30eed9f1363c21530a1a3021}{td0\+\_\+help} ()
+\item 
+int \hyperlink{td02lif_8c_a768caca68199c490335ee088781e7bba}{td02lif} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Convert a Teledisk L\+IF formatted disk image into a pure L\+IF image. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -78,14 +80,14 @@ L\+IF command help lif td02lif image.\+td0 image.\+lif Convert Tele\+Disk encode
 lif/teledisk My T\+E\+L\+E\+D\+I\+SK L\+IF extracter Note\+: The Tele\+Disk image M\+U\+ST contain a L\+IF image -\/ we do N\+OT translate it R\+E\+A\+D\+M\+E.\+txt Credits Important Contributions (My converted would not have been possible without these) Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation Copyright 2007-\/2008 Dave Dunfield All rights reserved. td0\+\_\+lzss.\+h td0\+\_\+lzss.\+c L\+Z\+SS decoder td0notes.\+txt Teledisk Documentation Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO wteledsk.\+htm Tele\+Disk documenation See his github project \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe} 
 
 \subsection{Function Documentation}
-\index{td02lif.\+c@{td02lif.\+c}!lif\+\_\+td02lif@{lif\+\_\+td02lif}}
-\index{lif\+\_\+td02lif@{lif\+\_\+td02lif}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{lif\+\_\+td02lif(char $\ast$telediskname, char $\ast$lifname)}{lif_td02lif(char *telediskname, char *lifname)}}]{\setlength{\rightskip}{0pt plus 5cm}int lif\+\_\+td02lif (
+\index{td02lif.\+c@{td02lif.\+c}!td02lif@{td02lif}}
+\index{td02lif@{td02lif}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection[{\texorpdfstring{td02lif(int argc, char $\ast$argv[])}{td02lif(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int td02lif (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{telediskname, }
-\item[{char $\ast$}]{lifname}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
 \end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}{}\label{td02lif_8c_a2d335b65fd4202c109f45487ce9f9472}
+)}\hypertarget{td02lif_8c_a768caca68199c490335ee088781e7bba}{}\label{td02lif_8c_a768caca68199c490335ee088781e7bba}
 
 
 Convert a Teledisk L\+IF formatted disk image into a pure L\+IF image. 
@@ -106,7 +108,7 @@ L\+IF summary
 
 Close L\+IF file 
 
-Definition at line 1138 of file td02lif.\+c.
+Definition at line 1143 of file td02lif.\+c.
 
 
 
@@ -195,6 +197,21 @@ Definition at line 161 of file td02lif.\+c.
 
 
 Referenced by td0\+\_\+read\+\_\+image().
+
+\index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+help@{td0\+\_\+help}}
+\index{td0\+\_\+help@{td0\+\_\+help}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection[{\texorpdfstring{td0\+\_\+help()}{td0_help()}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{td02lif_8c_a59634eaf30eed9f1363c21530a1a3021}{}\label{td02lif_8c_a59634eaf30eed9f1363c21530a1a3021}
+
+
+Definition at line 1133 of file td02lif.\+c.
+
+
+
+Referenced by lif\+\_\+tests(), and td02lif().
 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+init\+\_\+trackdata@{td0\+\_\+init\+\_\+trackdata}}
 \index{td0\+\_\+init\+\_\+trackdata@{td0\+\_\+init\+\_\+trackdata}!td02lif.\+c@{td02lif.\+c}}
@@ -325,7 +342,7 @@ Definition at line 421 of file td02lif.\+c.
 
 
 
-Referenced by lif\+\_\+td02lif().
+Referenced by td02lif().
 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+rle@{td0\+\_\+rle}}
 \index{td0\+\_\+rle@{td0\+\_\+rle}!td02lif.\+c@{td02lif.\+c}}

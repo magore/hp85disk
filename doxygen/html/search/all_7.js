@@ -20,7 +20,7 @@ var searchData=
   ['gettimezone',['gettimezone',['../time_8c.html#ac363b4a4a45a4431d3c3b56886f1bef1',1,'gettimezone(tz_t *tz):&#160;time.c'],['../time_8h.html#ac363b4a4a45a4431d3c3b56886f1bef1',1,'gettimezone(tz_t *tz):&#160;time.c']]],
   ['gid_5ft',['gid_t',['../posix_8h.html#a5569b17fdf47f9bb7e3b4b94aa083c39',1,'posix.h']]],
   ['gmtime',['gmtime',['../time_8c.html#a10fe08d03c4c3da23d1e1c059f4cf3a5',1,'gmtime(time_t *tp):&#160;time.c'],['../time_8h.html#a10fe08d03c4c3da23d1e1c059f4cf3a5',1,'gmtime(time_t *tp):&#160;time.c']]],
-  ['gmtime_5fr',['gmtime_r',['../time_8c.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c'],['../lifsup_8h.html#a6ef8fd14c34a80c3fee2ef2694491514',1,'gmtime_r(const time_t *timep, struct tm *result):&#160;lifsup.h']]],
+  ['gmtime_5fr',['gmtime_r',['../time_8c.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af391cf18b3fab0e588c6c3f354b7ca18',1,'gmtime_r(time_t *t, tm_t *result):&#160;time.c']]],
   ['gpib',['GPIB',['../gpib__task_8c.html#ac63d4e431ab55dddfbf436d87135128e',1,'GPIB(uint8_t ch):&#160;gpib_task.c'],['../gpib__task_8h.html#ac63d4e431ab55dddfbf436d87135128e',1,'GPIB(uint8_t ch):&#160;gpib_task.c']]],
   ['gpib_2ec',['gpib.c',['../gpib_8c.html',1,'']]],
   ['gpib_2eh',['gpib.h',['../gpib_8h.html',1,'']]],

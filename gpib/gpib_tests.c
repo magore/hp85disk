@@ -64,17 +64,15 @@ int gpib_tests(int argc, char * argv[])
     char *ptr;
     int ind;
 
-    if(argc < 2)
-        return(0);
-
-    ind = 1;
+    ind = 0;
     ptr = argv[ind++];
 
     // skip optional gpib key word
-    if( MATCH(ptr,"gpib") )
-        ptr = argv[ind++];
+    if( !ptr || !MATCH(ptr,"gpib") )
+        return(0);
 
-    if ( MATCHARGS(ptr,"gpib_help",(ind+0),argc))
+    ptr = argv[ind++];
+    if ( !ptr || MATCH(ptr,"help") )
     {
         gpib_help();
         return(1);

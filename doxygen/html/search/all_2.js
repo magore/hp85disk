@@ -1,9 +1,8 @@
 var searchData=
 [
   ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t']]],
-  ['b2s',['B2S',['../lifsup_8h.html#ad5b8a61a02a9789788b6bec058b4efcf',1,'lifsup.h']]],
-  ['b2v_5flsb',['B2V_LSB',['../drives_8c.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c'],['../lifsup_8h.html#a5470a7c04921686f9fb1ab4c7f920461',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c']]],
-  ['b2v_5fmsb',['B2V_MSB',['../drives_8c.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c'],['../lifsup_8h.html#a517b10ac006494dd192709c19069e9c2',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c']]],
+  ['b2v_5flsb',['B2V_LSB',['../drives_8c.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c']]],
+  ['b2v_5fmsb',['B2V_MSB',['../drives_8c.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c']]],
   ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
   ['base_5fmsa',['BASE_MSA',['../defines_8h.html#ac0b05d2eeae663c6ee42b7814be45181',1,'defines.h']]],
   ['base_5fmta',['BASE_MTA',['../defines_8h.html#a68b8e22957870863b8c5b2c58fed767b',1,'defines.h']]],
@@ -17,11 +16,8 @@ var searchData=
   ['bit_5fclr',['BIT_CLR',['../bits_8h.html#a4021778be6452ef56bfb20488d19bcdc',1,'bits.h']]],
   ['bit_5fset',['BIT_SET',['../bits_8h.html#a75a94310a1111452b9aae180c264dc5e',1,'bits.h']]],
   ['bit_5ftst',['BIT_TST',['../bits_8h.html#a49c0cc46bd6dee049981fca0036e7f86',1,'bits.h']]],
-  ['bitclr_5flsb',['BITCLR_LSB',['../lifsup_8h.html#a8a4e90946e967d103ec7198bdc015713',1,'lifsup.h']]],
   ['bitrate',['bitrate',['../structtrack__data__t.html#a21f9781ec400a28263ee9e3dd189215e',1,'track_data_t']]],
   ['bits_2eh',['bits.h',['../bits_8h.html',1,'']]],
-  ['bitset_5flsb',['BITSET_LSB',['../lifsup_8h.html#aa195dc46fdf0e3290c6a1f831b86d4e3',1,'lifsup.h']]],
-  ['bittst_5flsb',['BITTST_LSB',['../lifsup_8h.html#ac0e6422b7c0bdadd9acd226ebd083baa',1,'lifsup.h']]],
   ['blk_5fofs',['blk_ofs',['../structDIR.html#afdb5d6302a88eaf5d43da0352ca2cc91',1,'DIR']]],
   ['blkcnt_5ft',['blkcnt_t',['../posix_8h.html#a2706f994576080967d7633282dfcabbf',1,'posix.h']]],
   ['blksize_5ft',['blksize_t',['../posix_8h.html#a390f3028d0805a15c3d28ee27439c389',1,'posix.h']]],

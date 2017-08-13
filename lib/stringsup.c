@@ -569,11 +569,11 @@ int split_args(char *str, char *argv[], int max)
     int count = 0;
     // NULL ?
 
-    for(i=1;i<max;++i)
+    for(i=0;i<max;++i)
         argv[i] = NULL; 
 
     // You may replace argv[0]
-    argv[count++] = "main";
+    // argv[count++] = "main";
 
     if(!max)
         return(0);

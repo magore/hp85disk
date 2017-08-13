@@ -25,30 +25,39 @@
 #include <sys/types.h>
 #include <utime.h>
 
+
 #define MEMSPACE /**/
 typedef struct tm tm_t;
 #define MATCH(a,b) (strcmp(a,b) == 0 ? 1: 0)
 #define safecalloc(a,b) calloc(a,b)
 #define safefree(a) free(a)
 #define sync() 
+#include "lifutils.h"
 
-#endif
+#include "td02lif.h"
+
+/* lifsup.c */
 
 /* lifsup.c */
 struct tm *gmtime_r ( const time_t *timep , struct tm *result );
-char *asctime_r ( const struct tm *tm , char *buf );
+char *asctime_r ( const struct tm *t , char *buf );
 time_t timegm ( struct tm *a_tm );
 int MATCHARGS ( char *str , char *pat , int min , int argc );
-MEMSPACE void trim_tail ( char *str );
-MEMSPACE void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
-MEMSPACE void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
-MEMSPACE uint32_t B2V_MSB ( uint8_t *B , int index , int size );
-MEMSPACE uint32_t B2V_LSB ( uint8_t *B , int index , int size );
+void trim_tail ( char *str );
+void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
+void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
+uint32_t B2V_MSB ( uint8_t *B , int index , int size );
+uint32_t B2V_LSB ( uint8_t *B , int index , int size );
 void B2S ( uint8_t *B , int index , uint8_t *name , int size );
 void BITSET_LSB ( uint8_t *p , int bit );
 void BITCLR_LSB ( uint8_t *p , int bit );
 int BITTST_LSB ( uint8_t *p , int bit );
 uint16_t crc16 ( uint8_t *B , uint16_t crc , uint16_t poly , int size );
-MEMSPACE void hexdump ( uint8_t *data , int size );
-void td02lif_usage ( char *name );
+void hexdump ( uint8_t *data , int size );
+void copyright ( void );
+
+
+
+#endif
+
 
