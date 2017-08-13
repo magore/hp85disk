@@ -1,16 +1,13 @@
-## Files
-  @brief  TeleDisk decoder library targetting LIF format images only
-  @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved. GPL
-  @see http://github.com/magore/hp85disk
-  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+## Copyright
+  TeleDisk decoder library targetting LIF format images only
+  Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved. GPL
+  http://github.com/magore/hp85disk
+  http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
-  @help
+## HELP
    * LIF command help
      * lif td02lif image.td0 image.lif
        * Convert TeleDisk encoded LIF disk image into to pure LIF image
-
- @par Edit History
- - [1.0]   [Mike Gore]  Initial revision of file.
 
 ___
 ## Credits
