@@ -201,6 +201,8 @@ typedef struct
     int sectorsize;
     int sectorfirst;
     int sectorlast;
+    int sides;
+    int tracks;
     long sectorindex;
     long writeindex;
     usertel_t u;            // User override flags

@@ -121,7 +121,7 @@ void lif_help(int full)
         "lif extractbin lifimage lifname to_lif_file\n"
         "lif rename lifimage oldlifname newlifname\n"
 #ifdef LIF_STAND_ALONE
-        "lif td02lif image.td0 image.lif\n"
+        "lif td02lif [options] image.td0 image.lif\n"
 #endif
         "\n"
         );
@@ -143,21 +143,22 @@ int lif_tests(int argc, char *argv[])
     printf("\n");
 #endif
 
+    // NAME
     ind = 0;
     ptr = argv[ind++];
 
-    if(!ptr || !MATCH(ptr,"lif") )
+    if(!ptr )
         return(0);
 
     ptr = argv[ind++];
 
-    if (!ptr || MATCH(ptr,"help") )
+    if(argc <= 1 || !ptr || MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
     {
         lif_help(1);
 #ifdef TELEDISK
         td0_help(1);
 #endif
-        return(1);
+        return(0);
     }
 
     if (MATCHARGS(ptr,"addbin", (ind + 3) ,argc))

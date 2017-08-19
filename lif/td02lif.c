@@ -630,7 +630,7 @@ int td0_read_image(char * imgfile, lif_t *LIF)
                 continue;
             }
 
-            // We insert sectors using their dector ID as the index offset
+            // We insert sectors using their sector ID as the index offset
             // This "sorts" them in order
 			index = td_sector.Sector;
 
@@ -744,82 +744,188 @@ int td0_read_image(char * imgfile, lif_t *LIF)
         ///@brief Done processing track sectors
 
         // =========================================
-        // FYI we have already eliminated sectors that are duplicates, 
-        // or that do not match the track header cylinder, head values
+        // FYI 
+        //  We have already eliminated sectors that are duplicates, 
+        //  and sectors that do not match the track header cylinder, head values
         // =========================================
 
         // =========================================
         // Find attributes of first data sector in image
         if(liftel.state == TD0_INIT)
         {
-            // Find lowest numbered sector and its size
-            // FIXME add flag override for first and last sector
 
+            int tmp;
             liftel.sectorfirst = -1;
-            liftel.sectorlast = 0;
-
-            // Determine sectors per track from first track and side
-            // FIXME add flag override for sectorspertrack
+            liftel.sectorsize = -1;
             liftel.sectorspertrack = 0;
-            for ( i=0;i < MAXSECTOR;i++ )
+            liftel.sectorlast = 0;
+            liftel.sides = 1;
+            liftel.tracks = 0;
+
+            // ============================================
+            // The following settings only have to be tested ONCE at start of processing
+
+
+            // SIDES
+            if( liftel.u.sides != -1)
+                liftel.sides = liftel.u.sides;
+            else
+
+            // TRACKS
+            if( liftel.u.tracks != -1)
+                liftel.tracks = liftel.u.tracks;
+
+
+            // ============================================
+            // Detect first sector number on first track and side
+            liftel.sectorfirst = -1;
+            liftel.sectorsize = -1;
+            for ( i=0;i < MAXSECTOR ; i++ )
             {
-                if( trackdata[i].sector != -1)
+                if(trackdata[i].sector != -1)
                 {
-                    // Save size and sector number
-                    if( liftel.sectorfirst == -1)
-                    {
-                        ///@brief update first sector
-                        ///FYI sector trackdata[i].sector == i
-                        liftel.sectorfirst = i;
-                        ///@vrief update size
-                        liftel.sectorsize = trackdata[i].sectorsize;
-                    }
+                    // If SIZE is specified we can filter with it
+                    if(liftel.u.sectorsize != -1 && liftel.u.sectorsize != trackdata[i].sectorsize )
+                        continue;
+                    liftel.sectorfirst = i;
+                    liftel.sectorsize = trackdata[i].sectorsize;
+                    break;
                 }
             }
 
-            ///@brief Count all sectors that match first sector
-            for ( i=0; i < MAXSECTOR; i++ )
+            if(liftel.u.sectorfirst != -1)
+            {
+                if( liftel.u.sectorfirst != liftel.sectorfirst )
+                    printf("Warning: First sector NUMBER detected:[%02d] != specified:[%02d]\n", 
+                        (int)liftel.sectorfirst, (int) liftel.u.sectorfirst);
+                liftel.sectorfirst = liftel.u.sectorfirst;
+            }
+            else
+            {
+                // Fail if we do not have a FIRST sector number
+                if(liftel.sectorfirst == -1)
+                {
+                    printf("Error: First sector NUMBER NOT auto-detected on track 0!\n");
+                    printf("Giving up!\n");
+                    fclose(fi);
+                    liftel.error = 1;
+                    liftel.state = TD0_DONE;
+                    return(0);
+                }
+            }
+
+            // ============================================
+            // Detect first sector SIZE
+
+            if(liftel.u.sectorsize != -1)
+            {
+                if( liftel.u.sectorsize != liftel.sectorsize )
+                    printf("Warning: First sector SIZE detected:[%02d] != specified:[%02d]\n", 
+                        (int)liftel.sectorsize, (int) liftel.u.sectorsize);
+                liftel.sectorsize = liftel.u.sectorsize;
+            }
+            else
+            {
+                // Fail if we do not have a SIZE
+                if(liftel.sectorsize == -1)
+                {
+                    printf("Error: FIRST sector SIZE NOT auto-detected on track 0!\n");
+                    printf("Giving up!\n");
+                    fclose(fi);
+                    liftel.error = 1;
+                    liftel.state = TD0_DONE;
+                    return(0);
+                }
+            }
+
+            // ============================================
+
+            // FYI at this point FIRST sector and SIZE are set
+
+            // ============================================
+            // Detect SECTORS PER TRACK 
+
+            // FIXME we ASSUME that other sides have the same sector numbering
+
+            liftel.sectorspertrack = 0;
+            for (i=0; i < MAXSECTOR ; i++ )
             {
                 if( trackdata[i].sector == -1)
                     continue;
-
                 if( trackdata[i].sectorsize != liftel.sectorsize )
                     continue;
 
                 liftel.sectorspertrack++;
-                liftel.sectorlast = trackdata[i].sector;
+
+                // FIXME!!! Do NOT use special sectors
+                if(i < 100)
+                    liftel.sectorlast = i;
             }
+
+            if(liftel.u.sectorspertrack != -1)
+            {
+                if(liftel.sectorspertrack != liftel.u.sectorspertrack)
+                    printf("Warning: SECTORS PER TRACK detected:[%02d] != specified:[%02d]\n", 
+                        (int)liftel.sectorspertrack, (int) liftel.u.sectorspertrack);
+                liftel.sectorspertrack = liftel.u.sectorspertrack;
+            }
+            else
+            {
+                // Fail if we do not have a SIZE
+                if(liftel.sectorspertrack == 0)
+                {
+                    printf("Error: SECTORS PER TRACK NOT auto-detected on track 0!\n");
+                    printf("Giving up!\n");
+                    fclose(fi);
+                    liftel.error = 1;
+                    liftel.state = TD0_DONE;
+                    return(0);
+                }
+            }
+            // ============================================
+
+
+            // Compute LAST sector and compare it
+            tmp = liftel.sectorfirst + liftel.sectorspertrack - 1;
+            if( liftel.sectorlast  != tmp)
+            {
+                printf("Warning: LAST SECTOR detected:[%02d] != computed:[%02d]\n", 
+                    (int)liftel.sectorlast, (int)tmp);
+                liftel.sectorlast = tmp;
+            }
+
+            // ============================================
+
             liftel.state = TD0_START;
 
-            if(debuglevel & 0x400)
-                printf("TeleDisk sectors per track:%02d, First:%02d, Last:%02d\n",
-                    liftel.sectorspertrack, liftel.sectorfirst,liftel.sectorlast);
+            printf("TeleDisk First:[%02d], Last:[%02d] Sectors:[%02d], Size:[%3d]\n",
+                liftel.sectorfirst, liftel.sectorlast, liftel.sectorspertrack, liftel.sectorsize);
 
-            if(!liftel.sectorspertrack)
-            {
-
-                printf("TeleDisk 0 sectors on first track - aborting\n");
-                liftel.sectorlast = trackdata[i].sector;
-                liftel.error = 1;
-                liftel.state = TD0_DONE;
-                fclose(fi);
-                return(0);
-            }
 
         }       // if(liftel.state == TD0_INIT)
         // Done processing first sector
         /// =========================================
 
 
-        // Delete / Free ALL sectors with size mismatch
+        // Delete / Free ALL sectors with size mismatch or out of bounds
         // This simplifies the tests later on
+        // FYI - this test is already been done of head 0 track 0
         sectors = 0;
         for (i = 0; i < MAXSECTOR; i++ )
         {
             if( trackdata[i].sector != -1)
             {
+                int flag = 1;
                 if(trackdata[i].sectorsize != liftel.sectorsize)
+                    flag = 0;
+                if(trackdata[i].sector < liftel.sectorfirst)
+                    flag = 0;
+                if(trackdata[i].sector < 100 && trackdata[i].sector > liftel.sectorlast )
+                    flag = 0;
+                // FREE sector
+                if(!flag)
                 {
+
                     trackdata[i].cylinder = 0;
                     trackdata[i].side = 0;
                     trackdata[i].sector = -1;
@@ -841,6 +947,7 @@ int td0_read_image(char * imgfile, lif_t *LIF)
         }
 
 
+        // FIXME user override
         // Skip tracks with no sectors
         if(!sectors)
         {
@@ -864,12 +971,15 @@ int td0_read_image(char * imgfile, lif_t *LIF)
                 // See if we have an alternate
                 for(j=100;j<MAXSECTOR;++j)
                 {
-                    // Size MUST match if it does
 
+                    // MUST have VALID sector
                     if(trackdata[j].sector == -1)
                         continue;
 
-                    // Find alternate sector if we have one
+                    // MUST match SIZE
+                    if(trackdata[j].sectorsize != liftel.sectorsize)
+                        continue;
+
     
                     // Map this on to the missing one
                     trackdata[i].cylinder = trackdata[j].cylinder;
@@ -1171,6 +1281,8 @@ int td02lif(int argc, char *argv[])
     liftel.sectorspertrack = 0;
     liftel.sectorsize = -1;
     liftel.sectorlast = 0;
+    liftel.sides = 0;
+    liftel.tracks = 0;
     liftel.sectorindex = 0;
     liftel.writeindex = 0;
     liftel.t = time(0);
@@ -1183,10 +1295,10 @@ int td02lif(int argc, char *argv[])
     liftel.u.tracks = -1;
 
     ptr = argv[0];
-    if(!ptr || !MATCH(ptr,"td02lif"))
+    if(!ptr)
         return(0);
 
-    if(argc == 1)
+    if(argc <= 1)
     {
         td0_help(1);
         return(1);
@@ -1198,11 +1310,9 @@ int td02lif(int argc, char *argv[])
         if(!ptr)
             break;
 
-        if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?"))
-        {
-            td0_help(1);
-            return(0);
-        }
+        if(!*ptr)
+            continue;
+
 
         if(*ptr == '-')
         {
@@ -1252,7 +1362,13 @@ int td02lif(int argc, char *argv[])
                 continue;
             }
 
-
+            if(*ptr == '?' || MATCH(ptr,"help") )
+            {
+                td0_help(1);
+                return(0);
+            }
+            printf("ERROR: bad options:[%s]\n", ptr);
+            continue;
         }
         else if(telediskname == NULL)
         {
@@ -1262,27 +1378,32 @@ int td02lif(int argc, char *argv[])
         {
             lifname = ptr;
         }
-        else
+        else if(MATCH(ptr,"help") )
         {
             td0_help(1);
+            return(0);
+        }
+        else
+        {
+            printf("ERROR: bad options:[%s]\n", ptr);
             return(1);
         }
     }
 
     if( liftel.u.sectorfirst != -1)
-        printf("Override: first sector = %d\n", liftel.u.sectorfirst );
+        printf("\tUser Override: first sector = %d\n", liftel.u.sectorfirst );
 
     if( liftel.u.sectorspertrack != -1)
-        printf("Override: sector size = %d\n", liftel.u.sectorspertrack);
+        printf("\tUser Override: sectors per track = %d\n", liftel.u.sectorspertrack);
 
     if( liftel.u.sectorsize != -1)
-        printf("Override: sector size = %d\n", liftel.u.sectorsize);
+        printf("\tUser Override: sector size = %d\n", liftel.u.sectorsize);
 
     if( liftel.u.sides != -1)
-        printf("Override: sides = %d\n", liftel.u.sides);
+        printf("\tUser Override: sides = %d\n", liftel.u.sides);
 
     if( liftel.u.tracks != -1)
-        printf("Override: tracks = %d\n", liftel.u.tracks);
+        printf("\tUser Override: tracks = %d\n", liftel.u.tracks);
 
     if(!lifname|| !strlen(lifname))
     {

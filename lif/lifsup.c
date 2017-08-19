@@ -317,7 +317,7 @@ void hexdump(uint8_t *data, int size)
 ///@return void
 void copyright()
 {
-    printf("Stand alone version of LIF utilities for linux\n");
+    printf("Stand alone version of LIF/TELEDISK utilities for linux\n");
     printf("HP85 Disk and Device Emulator\n");
     printf(" (c) 2014-2017 by Mike Gore\n");
     printf(" GNU version 3\n");
@@ -329,15 +329,13 @@ void copyright()
 
 int main(int argc, char *argv[])
 {
-    if(argv[1] && MATCH(argv[1],"help") )
+
+    int i;
+    char *ptr;
+
+    if(argc <= 1)
     {
         copyright();
-    }
-    else 
-    {
-        copyright();
-        lif_help(1);
-        td0_help(1);
     }
 
     if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )

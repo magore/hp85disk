@@ -102,7 +102,7 @@ var searchData=
   ['track_5fdata_5ft',['track_data_t',['../structtrack__data__t.html',1,'']]],
   ['trackdata',['trackdata',['../td02lif_8c.html#a4f9ac71c0f95ded3735b782546f8a233',1,'td02lif.c']]],
   ['trackdensity',['TrackDensity',['../structtd__header__t.html#a2d1461bb956665d519d33fca629477ab',1,'td_header_t']]],
-  ['tracks',['tracks',['../structusertel__t.html#afed111258495fd9c166720335613252f',1,'usertel_t']]],
+  ['tracks',['tracks',['../structusertel__t.html#afed111258495fd9c166720335613252f',1,'usertel_t::tracks()'],['../structliftel__t.html#a24244c0ee111d3f46eedd7578eb1acf7',1,'liftel_t::tracks()']]],
   ['tracks_5fper_5fside',['tracks_per_side',['../structlifvol__t.html#aae9e5135f98b80312eb785ac3747fc31',1,'lifvol_t']]],
   ['transfer_5frate',['TRANSFER_RATE',['../structSS80ControllerType.html#a98a3f1a7de63398531426b5781cb0090',1,'SS80ControllerType']]],
   ['transpose',['Transpose',['../matrix_8c.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a69e8069902ef085b6c19b391f3379492',1,'Transpose(mat_t MatA):&#160;matrix.c']]],
