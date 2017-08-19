@@ -5,7 +5,7 @@
 
 ___
 
-## HP85 Disk Emulator Copyright (C); 2014-2017 Mike Gore
+## HP85 Disk Emulator Copyright (C) 2014-2017 Mike Gore
 
  HP85 Disk Emulator is a CS80, SS80 and AMIGO disk emulator that has been tested
  on the following devices (may work on other systems)
@@ -27,7 +27,7 @@ ___
 
 ___
 
-## hpdisk Copyright (C); 2014 Anders Gustafsson 
+## hpdisk Copyright (C) 2014 Anders Gustafsson 
 
  HPDisk - An SD-based disk emulator for GPIB instruments and computers.<br>
  Has been tested on the following devices.
@@ -117,7 +117,7 @@ ___
              * https://github.com/jfdelnero/libhxcfe
 ___
 
-## FatFs Copyright (C); 2013, ChaN, all right reserved.
+## FatFs Copyright (C) 2013, ChaN, all right reserved.
 
  FatFs module is a generic FAT file system module for small embedded
  systems. 

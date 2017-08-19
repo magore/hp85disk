@@ -3,7 +3,7 @@
  * TELEDISK to to convert TELEDISK LIF archives into pure LIF files
 ___
 ## Copyrights
- * Copyright (C); 2014-2017 *Mike Gore*, All rights reserved. GPL
+ * Copyright (C) 2014-2017 *Mike Gore*, All rights reserved. GPL
    * http://github.com/magore/hp85disk
    * http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
