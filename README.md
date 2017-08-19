@@ -185,7 +185,7 @@ ___
        * td0notes.txt
          * Teledisk Documentation
      * Jean-Franois DEL NERO, TeleDisk Documentation
-       * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+       * Copyright &copy 2006-2014 Jean-Franois DEL NERO
          * wteledsk.htm
            * TeleDisk documenation
          * See his github project
@@ -459,7 +459,7 @@ ___
       * Description of file under the Documents folder
 
   * fatfs
-    * R0.12b FatFS code from (C)ChaN, 2016 - With very minimal changes 
+    * R0.12b FatFS code from &copy ChaN, 2016 - With very minimal changes 
     * 00history.txt
     * 00readme.txt
     * ff.c
@@ -468,16 +468,16 @@ ___
     * integer.h
 
   * fatfs.hal
-    * R0.12b FatFS code from (C)ChaN, 2016 with changes
+    * R0.12b FatFS code from &copy ChaN, 2016 with changes
     * Hardware abstraction layer based on example AVR project
     * diskio.c
-      * Low level disk I/O module glue functions (C)ChaN, 2016 
+      * Low level disk I/O module glue functions &copyChaN, 2016 
     * diskio.h
-      * Low level disk I/O module glue functions (C)ChaN, 2016 
+      * Low level disk I/O module glue functions &copyChaN, 2016 
     * mmc.c
-      * Low level MMC I/O by (C)ChaN, 2016 with modifications
+      * Low level MMC I/O by &copyChaN, 2016 with modifications
     * mmc.h
-      * Low level MMC I/O by (C)ChaN, 2016 with modifications
+      * Low level MMC I/O by &copyChaN, 2016 with modifications
     * mmc_hal.c
       * My Hardware abstraction layer code
     * mmc_hal.h
@@ -574,9 +574,9 @@ ___
     * spi.h
       * SPI BUS code
     * TWI_AVR8.c
-      * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+      * I2C code LUFA Library Copyright &copy Dean Camera, 2011.
     * TWI_AVR8.h
-      * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
+      * I2C code LUFA Library Copyright &copy Dean Camera, 2011.
     * user_config.h
       * Main include file MMC SLOW and FATS frequency and CPU frequency settings
 
@@ -661,7 +661,7 @@ ___
          * td0notes.txt
            * Teledisk Documentation
        * Jean-Franois DEL NERO, TeleDisk Documentation 
-         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+         * Copyright &copy 2006-2014 Jean-Franois DEL NERO
            * wteledsk.htm
              * TeleDisk documenation
            * See his github project
