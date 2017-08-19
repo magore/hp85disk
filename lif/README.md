@@ -3,7 +3,7 @@
  * TELEDISK to to convert TELEDISK LIF archives into pure LIF files
 ___
 ## Copyrights
- * Copyright &copy; 2014-2017 *Mike Gore*, All rights reserved. GPL
+ * Copyright (C); 2014-2017 *Mike Gore*, All rights reserved. GPL
    * http://github.com/magore/hp85disk
    * http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -24,7 +24,7 @@ ___
      * td0notes.txt
        * Teledisk Documentation
    * Jean-Franois DEL NERO, TeleDisk Documentation
-     * Copyright &copy 2006-2014 Jean-Franois DEL NERO
+     * Copyright (C) 2006-2014 Jean-Franois DEL NERO
        * wteledsk.htm
          * TeleDisk documenation
        * See his github project
@@ -96,7 +96,7 @@ hp85disk/lif/teledisk       Teledisk LIF format to pure LIF support code
          * td0notes.txt
            * Teledisk Documentation
        * Jean-Franois DEL NERO, TeleDisk Documentation
-         * Copyright &copy 2006-2014 Jean-Franois DEL NERO
+         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
            * wteledsk.htm
              * TeleDisk documenation
            * See his github project

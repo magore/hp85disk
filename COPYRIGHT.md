@@ -5,7 +5,7 @@
 
 ___
 
-## HP85 Disk Emulator Copyright &copy; 2014-2017 Mike Gore
+## HP85 Disk Emulator Copyright (C); 2014-2017 Mike Gore
 
  HP85 Disk Emulator is a CS80, SS80 and AMIGO disk emulator that has been tested
  on the following devices (may work on other systems)
@@ -27,7 +27,7 @@ ___
 
 ___
 
-## hpdisk Copyright &copy; 2014 Anders Gustafsson 
+## hpdisk Copyright (C); 2014 Anders Gustafsson 
 
  HPDisk - An SD-based disk emulator for GPIB instruments and computers.<br>
  Has been tested on the following devices.
@@ -110,14 +110,14 @@ ___
          * td0notes.txt
            * Teledisk Documentation
        * Jean-Franois DEL NERO, TeleDisk Documentation
-         * Copyright &copy 2006-2014 Jean-Franois DEL NERO
+         * Copyright (C) 2006-2014 Jean-Franois DEL NERO
            * wteledsk.htm
              * TeleDisk documenation
            * See his github project
              * https://github.com/jfdelnero/libhxcfe
 ___
 
-## FatFs Copyright &copy; 2013, ChaN, all right reserved.
+## FatFs Copyright (C); 2013, ChaN, all right reserved.
 
  FatFs module is a generic FAT file system module for small embedded
  systems. 
@@ -136,7 +136,7 @@ ___
  @Credits
      * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
        * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
-       * Part of HxCFloppyEmulator project Copyright &copy 2006-2014 Jean-Franois DEL NERO
+       * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
      * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
      * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
 ___
