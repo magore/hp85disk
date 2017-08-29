@@ -16,7 +16,6 @@ var searchData=
   ['bit_5fclr',['BIT_CLR',['../bits_8h.html#a4021778be6452ef56bfb20488d19bcdc',1,'bits.h']]],
   ['bit_5fset',['BIT_SET',['../bits_8h.html#a75a94310a1111452b9aae180c264dc5e',1,'bits.h']]],
   ['bit_5ftst',['BIT_TST',['../bits_8h.html#a49c0cc46bd6dee049981fca0036e7f86',1,'bits.h']]],
-  ['bitrate',['bitrate',['../structtrack__data__t.html#a21f9781ec400a28263ee9e3dd189215e',1,'track_data_t']]],
   ['bits_2eh',['bits.h',['../bits_8h.html',1,'']]],
   ['blk_5fofs',['blk_ofs',['../structDIR.html#afdb5d6302a88eaf5d43da0352ca2cc91',1,'DIR']]],
   ['blkcnt_5ft',['blkcnt_t',['../posix_8h.html#a2706f994576080967d7633282dfcabbf',1,'posix.h']]],

@@ -264,26 +264,76 @@ To get help type\+: ./lif -\/ OR -\/ ./td02lif
 \end{DoxyPre}
 
 
-\#\# T\+E\+L\+E\+D\+I\+SK L\+IF conversion example 
+\subsection*{T\+E\+L\+E\+D\+I\+SK L\+IF conversion example}
+
+Read the notes inside \hyperlink{td02lif_8h}{td02lif.\+h} file for the \hyperlink{structliftel__t}{liftel\+\_\+t} structure for detail on how the analisis and conversion works 
 \begin{DoxyPre}
-./td02lif 85-SS80.TD0 85-SS80.LIF
-TeleDisk image file: 85-SS80.TD0
-        Normal compression
-        Version: 21
-        Date: Sun Apr  1 12:47:51 2008
-HP-85 S/W, SS/80 EXERCISER, 5010-0310/2537. DOES NOT INCLUDE THE SERVC F\end{DoxyPre}
+TeleDisk file:         85-SS80.TD0
+        Version:       21
+        Not Compressed
+        Density:       00h
+        DriveType:     04h
+        TrackDensity:  00h
+        DosMode:       00h
+        Sides:         02
+        Comment Size:  84
+        Comment Date:  Sun Apr  1 12:47:51 2008\end{DoxyPre}
 
 
 
-\begin{DoxyPre}Warning alternate CRC flag not implemented
+\begin{DoxyPre}HP-85 S/W, SS/80 EXERCISER, 5010-0310/2537. DOES NOT INCLUDE THE SERVC F\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Warning: alternate CRC flag not implemented
         cylinder:00, head:00, sector:17, size:128, index:17
-Warning Sector:08 missing - found alternate sector:116
-        Location: cylinder:11, head:00, sector:08, size:256, index:8
-Warning Sector:11 missing - found alternate sector:116
-        Location: cylinder:13, head:00, sector:11, size:256, index:11
-Warning Sector:10 missing - zero filling
-        Location: Track: Cyl: 15, Side: 00
-Done LIF image: [85-SS80.LIF] wrote: [01DAh] sectors\end{DoxyPre}
+Warning: Sector:08 missing - found alternate sector:116
+         Location: cylinder:11, head:00, sector:08, size:256, index:8
+Warning: Sector:11 missing - found alternate sector:116
+         Location: cylinder:13, head:00, sector:11, size:256, index:11
+Warning: Sector:10 missing - zero filling
+         Location: Track: Cyl: 15, Side: 00
+Warning: Sector:01 missing - zero filling
+         Location: Track: Cyl: 30, Side: 00
+Warning: Sector:09 missing - zero filling
+         Location: Track: Cyl: 41, Side: 00
+Warning: Sector:11 missing - zero filling
+         Location: Track: Cyl: 61, Side: 00
+Warning: Sector:01 missing - zero filling
+         Location: Track: Cyl: 62, Side: 00
+Warning: Sector:10 missing - zero filling
+         Location: Track: Cyl: 63, Side: 00\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Disk Layout
+         Sides:              1
+         Tracks:            70
+         Sectors Per Track: 16
+         Sector Size:      256
+Side: 0
+         Sector numbering:  0 to 15
+         Sector size:     256
+         Sector count:     16
+Side: 1
+         Sector numbering:  1 to  9
+         Sector size:     512
+         Sector count:      9\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Warning: rejecting side two
+         Warning: Sector size:  NOT the same on both sides
+         Warning: Sector count: NOT the same on both sides
+         Warning: Sector range: NOT a continuation of side 0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}LIF sectors processed: 1120\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Done LIF image: [1.LIF] wrote: [01DAh] sectors\end{DoxyPre}
 
 
 

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['elapsed',['elapsed',['../struct__gpib__t.html#a99a38aef880eb075f625f33d7bac31dd',1,'_gpib_t']]],
-  ['encoding',['encoding',['../structtrack__data__t.html#ab81a3c49248eaaf3f92d43d1ebd8a329',1,'track_data_t']]],
   ['end',['end',['../structdst__t.html#a9a6e1d16a7057ad1206b9230b073f99f',1,'dst_t']]],
   ['eofindex',['EOFindex',['../structlif__t.html#a68c465a879c7d4bd2279682185b6250e',1,'lif_t']]],
   ['epoch',['epoch',['../structdst__t.html#ae8b931e1a2731b688e1af1253787827c',1,'dst_t']]],

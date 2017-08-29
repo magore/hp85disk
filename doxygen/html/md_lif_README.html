@@ -299,21 +299,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     lif extractbin lifimage lifname to_lif_file
     lif rename lifimage oldlifname newlifname
     lif td02lif image.td0 image.lif
-</pre><p>## TELEDISK LIF conversion example </p><pre>
-./td02lif 85-SS80.TD0 85-SS80.LIF
-TeleDisk image file: 85-SS80.TD0
-        Normal compression
-        Version: 21
-        Date: Sun Apr  1 12:47:51 2008
-HP-85 S/W, SS/80 EXERCISER, 5010-0310/2537. DOES NOT INCLUDE THE SERVC F</pre><pre>Warning alternate CRC flag not implemented
+</pre><h2>TELEDISK LIF conversion example</h2>
+<p>Read the notes inside <a class="el" href="td02lif_8h.html">td02lif.h</a> file for the <a class="el" href="structliftel__t.html" title="Master TeleDisk Format Analisis structure We look for the specifications of LIF image stored inside t...">liftel_t</a> structure for detail on how the analisis and conversion works </p><pre>
+TeleDisk file:         85-SS80.TD0
+        Version:       21
+        Not Compressed
+        Density:       00h
+        DriveType:     04h
+        TrackDensity:  00h
+        DosMode:       00h
+        Sides:         02
+        Comment Size:  84
+        Comment Date:  Sun Apr  1 12:47:51 2008</pre><pre>HP-85 S/W, SS/80 EXERCISER, 5010-0310/2537. DOES NOT INCLUDE THE SERVC F</pre><pre>Warning: alternate CRC flag not implemented
         cylinder:00, head:00, sector:17, size:128, index:17
-Warning Sector:08 missing - found alternate sector:116
-        Location: cylinder:11, head:00, sector:08, size:256, index:8
-Warning Sector:11 missing - found alternate sector:116
-        Location: cylinder:13, head:00, sector:11, size:256, index:11
-Warning Sector:10 missing - zero filling
-        Location: Track: Cyl: 15, Side: 00
-Done LIF image: [85-SS80.LIF] wrote: [01DAh] sectors</pre><pre>Volume:[&lt;EMPTY&gt;] Date:[&lt;EMPTY&gt;]
+Warning: Sector:08 missing - found alternate sector:116
+         Location: cylinder:11, head:00, sector:08, size:256, index:8
+Warning: Sector:11 missing - found alternate sector:116
+         Location: cylinder:13, head:00, sector:11, size:256, index:11
+Warning: Sector:10 missing - zero filling
+         Location: Track: Cyl: 15, Side: 00
+Warning: Sector:01 missing - zero filling
+         Location: Track: Cyl: 30, Side: 00
+Warning: Sector:09 missing - zero filling
+         Location: Track: Cyl: 41, Side: 00
+Warning: Sector:11 missing - zero filling
+         Location: Track: Cyl: 61, Side: 00
+Warning: Sector:01 missing - zero filling
+         Location: Track: Cyl: 62, Side: 00
+Warning: Sector:10 missing - zero filling
+         Location: Track: Cyl: 63, Side: 00</pre><pre>Disk Layout
+         Sides:              1
+         Tracks:            70
+         Sectors Per Track: 16
+         Sector Size:      256
+Side: 0
+         Sector numbering:  0 to 15
+         Sector size:     256
+         Sector count:     16
+Side: 1
+         Sector numbering:  1 to  9
+         Sector size:     512
+         Sector count:      9</pre><pre>Warning: rejecting side two
+         Warning: Sector size:  NOT the same on both sides
+         Warning: Sector count: NOT the same on both sides
+         Warning: Sector range: NOT a continuation of side 0</pre><pre>LIF sectors processed: 1120</pre><pre>Done LIF image: [1.LIF] wrote: [01DAh] sectors</pre><pre>Volume:[&lt;EMPTY&gt;] Date:[&lt;EMPTY&gt;]
 NAME         TYPE   START SECTOR        SIZE    RECSIZE   DATE
 MANUAL      E020h            10h       26880        256   &lt;EMPTY&gt;
 RW-TES      E020h            79h       27648        256   &lt;EMPTY&gt;
@@ -420,7 +449,7 @@ Autost      E020h           1BFh        6912        256   &lt;EMPTY&gt;</pre><pr
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 18 2017 22:00:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 28 2017 20:16:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -89,7 +89,7 @@
 #ifdef LIF_STAND_ALONE
 #include "lifsup.h"
 #include "lifutils.h"
-extern MEMSPACE int lif_td02lif(int argc, char *srgv[]);
+extern MEMSPACE int td02lif(int argc, char *srgv[]);
 
 #else 
 

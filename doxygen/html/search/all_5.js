@@ -20,7 +20,6 @@ var searchData=
   ['emlink',['EMLINK',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aae8a4cdbd60a66eb9705bcb0a655e94fe',1,'posix.h']]],
   ['enable_5fsystem_5ftask',['enable_system_task',['../timer_8h.html#a9827e02881cff25ff30c35c7d8ed3ac4',1,'timer.h']]],
   ['enable_5ftimers',['enable_timers',['../timer_8c.html#ac97e80c15c73721fbc9f5071f6681fac',1,'enable_timers():&#160;timer.c'],['../timer_8h.html#a0e736ce66a2bc05cc14b7a282fa52b73',1,'enable_timers(void):&#160;timer.c']]],
-  ['encoding',['encoding',['../structtrack__data__t.html#ab81a3c49248eaaf3f92d43d1ebd8a329',1,'track_data_t']]],
   ['end',['end',['../structdst__t.html#a9a6e1d16a7057ad1206b9230b073f99f',1,'dst_t']]],
   ['enfile',['ENFILE',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8',1,'posix.h']]],
   ['enodev',['ENODEV',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aae350307a3417656c8cabc816ba8d07cd',1,'posix.h']]],

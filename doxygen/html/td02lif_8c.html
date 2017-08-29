@@ -124,50 +124,59 @@ Functions</h2></td></tr>
 <tr class="memitem:ac393151af482d511b246de534da58e6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#ac393151af482d511b246de534da58e6f">td0_unpack_sector_header</a> (uint8_t *B, <a class="el" href="structtd__sector__t.html">td_sector_t</a> *p)</td></tr>
 <tr class="memdesc:ac393151af482d511b246de534da58e6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract TeleDisk sector header data in architecture nutral way.  <a href="#ac393151af482d511b246de534da58e6f">More...</a><br /></td></tr>
 <tr class="separator:ac393151af482d511b246de534da58e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37a47298b833b16f03857809714f1d1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a37a47298b833b16f03857809714f1d1d">td0_enable_decompress</a> (int flag)</td></tr>
-<tr class="memdesc:a37a47298b833b16f03857809714f1d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable TeleDisk image decompression.  <a href="#a37a47298b833b16f03857809714f1d1d">More...</a><br /></td></tr>
-<tr class="separator:a37a47298b833b16f03857809714f1d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3adf37fc95dc0874606f364a4ce7e21"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#ad3adf37fc95dc0874606f364a4ce7e21">td0_read</a> (void *p, int osize, int size, <a class="el" href="posix_8h.html#aed4dabeb9f7c518ded42f930a04abce8">FILE</a> *fp)</td></tr>
-<tr class="memdesc:ad3adf37fc95dc0874606f364a4ce7e21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read TeleDisk image data block Optionally decompress the data if decompression is enabled.  <a href="#ad3adf37fc95dc0874606f364a4ce7e21">More...</a><br /></td></tr>
-<tr class="separator:ad3adf37fc95dc0874606f364a4ce7e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626504ce2f4e7747628f091fea9a81e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a626504ce2f4e7747628f091fea9a81e8">td0_init_trackdata</a> (int freemem)</td></tr>
-<tr class="memdesc:a626504ce2f4e7747628f091fea9a81e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize track sector information Optionally decompress the data if decompression is enabled.  <a href="#a626504ce2f4e7747628f091fea9a81e8">More...</a><br /></td></tr>
-<tr class="separator:a626504ce2f4e7747628f091fea9a81e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a786b280e1ac85ba19bcb2f4ca0d21ee3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a786b280e1ac85ba19bcb2f4ca0d21ee3">td0_compressed</a> (int flag)</td></tr>
+<tr class="memdesc:a786b280e1ac85ba19bcb2f4ca0d21ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable TeleDisk image compression mode.  <a href="#a786b280e1ac85ba19bcb2f4ca0d21ee3">More...</a><br /></td></tr>
+<tr class="separator:a786b280e1ac85ba19bcb2f4ca0d21ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f65dd34ac6cf2ee2ab6d5a913b0e457"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a3f65dd34ac6cf2ee2ab6d5a913b0e457">td0_read</a> (void *p, int osize, int size, <a class="el" href="posix_8h.html#aed4dabeb9f7c518ded42f930a04abce8">FILE</a> *fp)</td></tr>
+<tr class="memdesc:a3f65dd34ac6cf2ee2ab6d5a913b0e457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read TeleDisk image data block Optionally decompress the data if decompression is enabled.  <a href="#a3f65dd34ac6cf2ee2ab6d5a913b0e457">More...</a><br /></td></tr>
+<tr class="separator:a3f65dd34ac6cf2ee2ab6d5a913b0e457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f9b8f09a74778aafcef0ccfcf7e73e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a7f9b8f09a74778aafcef0ccfcf7e73e6">td0_rle</a> (uint8_t *<a class="el" href="time_8c.html#a5a388b2bb2a2a9914c7d68ed3d09f7e9">dst</a>, uint8_t *src, int max)</td></tr>
 <tr class="memdesc:a7f9b8f09a74778aafcef0ccfcf7e73e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand a Run Length encoded TeleDisk sector Notes: the source length is encoded in the source data Credits based on work (C) 2006-2014 Jean-François DEL NERO Part of the HxCFloppyEmulator library GNU GPL version 2 or later Rewitten for clarity,to enforce size limits, provide error reporting and to avoid word order dependent assumptions,.  <a href="#a7f9b8f09a74778aafcef0ccfcf7e73e6">More...</a><br /></td></tr>
 <tr class="separator:a7f9b8f09a74778aafcef0ccfcf7e73e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77bf211d16286c7ae97ecc75d0ddd50b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a77bf211d16286c7ae97ecc75d0ddd50b">td0_track</a> (int index)</td></tr>
-<tr class="memdesc:a77bf211d16286c7ae97ecc75d0ddd50b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display TeleDisk track sector values.  <a href="#a77bf211d16286c7ae97ecc75d0ddd50b">More...</a><br /></td></tr>
-<tr class="separator:a77bf211d16286c7ae97ecc75d0ddd50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba782c58c559984d2a456208edf9864b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#aba782c58c559984d2a456208edf9864b">td0_sector</a> (<a class="el" href="structtd__sector__t.html">td_sector_t</a> *P)</td></tr>
-<tr class="memdesc:aba782c58c559984d2a456208edf9864b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display TeleDisk sector data.  <a href="#aba782c58c559984d2a456208edf9864b">More...</a><br /></td></tr>
-<tr class="separator:aba782c58c559984d2a456208edf9864b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab14f2a074ca85e1b32cc26f3369c574f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#ab14f2a074ca85e1b32cc26f3369c574f">td0_trackinfo</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>, int trackind, int index)</td></tr>
+<tr class="memdesc:ab14f2a074ca85e1b32cc26f3369c574f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display TeleDisk track sector values.  <a href="#ab14f2a074ca85e1b32cc26f3369c574f">More...</a><br /></td></tr>
+<tr class="separator:ab14f2a074ca85e1b32cc26f3369c574f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff9adf4831cee8528e02b6456459435e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#aff9adf4831cee8528e02b6456459435e">td0_sectorinfo</a> (<a class="el" href="structtd__sector__t.html">td_sector_t</a> *P)</td></tr>
+<tr class="memdesc:aff9adf4831cee8528e02b6456459435e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display TeleDisk sector data.  <a href="#aff9adf4831cee8528e02b6456459435e">More...</a><br /></td></tr>
+<tr class="separator:aff9adf4831cee8528e02b6456459435e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48825de35a808127b9c304a764a48439"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a48825de35a808127b9c304a764a48439">td0_density2bitrate</a> (uint8_t density)</td></tr>
 <tr class="memdesc:a48825de35a808127b9c304a764a48439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert Denisity to bitrate  don't care about the density except as a possible filter.  <a href="#a48825de35a808127b9c304a764a48439">More...</a><br /></td></tr>
 <tr class="separator:a48825de35a808127b9c304a764a48439"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82346ed45d0b49999c4ef54b90a59b07"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a82346ed45d0b49999c4ef54b90a59b07">td0_read_image</a> (char *imgfile, <a class="el" href="structlif__t.html">lif_t</a> *LIF)</td></tr>
-<tr class="memdesc:a82346ed45d0b49999c4ef54b90a59b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read TeleDisk image file and call LIF converter.  <a href="#a82346ed45d0b49999c4ef54b90a59b07">More...</a><br /></td></tr>
-<tr class="separator:a82346ed45d0b49999c4ef54b90a59b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ab31664441afebf11648c13b65cfad5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a0ab31664441afebf11648c13b65cfad5">td02lif_sector</a> (uint8_t *data, int size, <a class="el" href="structlif__t.html">lif_t</a> *LIF)</td></tr>
-<tr class="memdesc:a0ab31664441afebf11648c13b65cfad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process all sectors on a track from TeleDisk image.  <a href="#a0ab31664441afebf11648c13b65cfad5">More...</a><br /></td></tr>
-<tr class="separator:a0ab31664441afebf11648c13b65cfad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49e4bf7cf89d5c6b90181a6bac46de6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#ab49e4bf7cf89d5c6b90181a6bac46de6">td0_open</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>, char *name)</td></tr>
+<tr class="memdesc:ab49e4bf7cf89d5c6b90181a6bac46de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opne TeleDisk image file process header and optional comment block.  <a href="#ab49e4bf7cf89d5c6b90181a6bac46de6">More...</a><br /></td></tr>
+<tr class="separator:ab49e4bf7cf89d5c6b90181a6bac46de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87120823fa3dd587214e6c70ebde151f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a87120823fa3dd587214e6c70ebde151f">td0_read_disk</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>)</td></tr>
+<tr class="memdesc:a87120823fa3dd587214e6c70ebde151f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read TeleDisk image file and save all sector data.  <a href="#a87120823fa3dd587214e6c70ebde151f">More...</a><br /></td></tr>
+<tr class="separator:a87120823fa3dd587214e6c70ebde151f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac777daf6e56deb920d24ac72f83f0624"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#ac777daf6e56deb920d24ac72f83f0624">td0_analize_format</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>)</td></tr>
+<tr class="memdesc:ac777daf6e56deb920d24ac72f83f0624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analize TeleDisk disk sector data Problem: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side.  <a href="#ac777daf6e56deb920d24ac72f83f0624">More...</a><br /></td></tr>
+<tr class="separator:ac777daf6e56deb920d24ac72f83f0624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b045f601a00f806f99e466e18109a08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a2b045f601a00f806f99e466e18109a08">td0_save_lif</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>, <a class="el" href="structlif__t.html">lif_t</a> *LIF)</td></tr>
+<tr class="memdesc:a2b045f601a00f806f99e466e18109a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">save remaining sectors as LIF data  <a href="#a2b045f601a00f806f99e466e18109a08">More...</a><br /></td></tr>
+<tr class="separator:a2b045f601a00f806f99e466e18109a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08cbf8c12076d3677df348da2dbf7ca2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a08cbf8c12076d3677df348da2dbf7ca2">td0_save_lif_sector</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>, uint8_t *data, int size, <a class="el" href="structlif__t.html">lif_t</a> *LIF)</td></tr>
+<tr class="memdesc:a08cbf8c12076d3677df348da2dbf7ca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process all sectors on a track from TeleDisk image.  <a href="#a08cbf8c12076d3677df348da2dbf7ca2">More...</a><br /></td></tr>
+<tr class="separator:a08cbf8c12076d3677df348da2dbf7ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26d4f0afc5df75f388d93a9510ab39ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a26d4f0afc5df75f388d93a9510ab39ee">td0_help</a> (int full)</td></tr>
 <tr class="separator:a26d4f0afc5df75f388d93a9510ab39ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8f1231cf42003200a45f8b6828f13c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#af8f1231cf42003200a45f8b6828f13c1">td0_init_liftel</a> ()</td></tr>
+<tr class="memdesc:af8f1231cf42003200a45f8b6828f13c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">TeleDisk image Analisis structure Find attributes of LIF image stored in TeleDisk image.  <a href="#af8f1231cf42003200a45f8b6828f13c1">More...</a><br /></td></tr>
+<tr class="separator:af8f1231cf42003200a45f8b6828f13c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a250c5e050c7c158c05611ba8dbf985a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a250c5e050c7c158c05611ba8dbf985a9">td0_init_sectors</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>)</td></tr>
+<tr class="memdesc:a250c5e050c7c158c05611ba8dbf985a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize track sector information Optionally decompress the data if decompression is enabled.  <a href="#a250c5e050c7c158c05611ba8dbf985a9">More...</a><br /></td></tr>
+<tr class="separator:a250c5e050c7c158c05611ba8dbf985a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a768caca68199c490335ee088781e7bba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a768caca68199c490335ee088781e7bba">td02lif</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:a768caca68199c490335ee088781e7bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Teledisk LIF formatted disk image into a pure LIF image.  <a href="#a768caca68199c490335ee088781e7bba">More...</a><br /></td></tr>
 <tr class="separator:a768caca68199c490335ee088781e7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a4f9ac71c0f95ded3735b782546f8a233"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtrack__data__t.html">track_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a4f9ac71c0f95ded3735b782546f8a233">trackdata</a> [<a class="el" href="td02lif_8h.html#a88c30c1e70576397f9e74bce80cfa164">MAXSECTOR</a>]</td></tr>
-<tr class="memdesc:a4f9ac71c0f95ded3735b782546f8a233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dave Dunfiled LZSS expander.  <a href="#a4f9ac71c0f95ded3735b782546f8a233">More...</a><br /></td></tr>
-<tr class="separator:a4f9ac71c0f95ded3735b782546f8a233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcceda12b139f26819f4929be705eb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdisk__t.html">disk_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a></td></tr>
+<tr class="memdesc:affcceda12b139f26819f4929be705eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dave Dunfiled LZSS expander.  <a href="#affcceda12b139f26819f4929be705eb1">More...</a><br /></td></tr>
+<tr class="separator:affcceda12b139f26819f4929be705eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2b2b3e4827acc662c88bb762e41106d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structliftel__t.html">liftel_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#af2b2b3e4827acc662c88bb762e41106d">liftel</a></td></tr>
-<tr class="memdesc:af2b2b3e4827acc662c88bb762e41106d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teledisk to LIF state.  <a href="#af2b2b3e4827acc662c88bb762e41106d">More...</a><br /></td></tr>
+<tr class="memdesc:af2b2b3e4827acc662c88bb762e41106d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teledisk liftel analisis and user overrides.  <a href="#af2b2b3e4827acc662c88bb762e41106d">More...</a><br /></td></tr>
 <tr class="separator:af2b2b3e4827acc662c88bb762e41106d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89975ebcdec4539e9562b6f25a33e7d9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8c.html#a89975ebcdec4539e9562b6f25a33e7d9">decompress</a> = 0</td></tr>
-<tr class="memdesc:a89975ebcdec4539e9562b6f25a33e7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teledisk LZSS decompression flag.  <a href="#a89975ebcdec4539e9562b6f25a33e7d9">More...</a><br /></td></tr>
-<tr class="separator:a89975ebcdec4539e9562b6f25a33e7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TeleDisk decoder library targetting LIF format images only. </p>
@@ -221,56 +230,68 @@ Variables</h2></td></tr>
 <p>LIF summary</p>
 <p>Close LIF file </p>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01268">1268</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01572">1572</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
 <p>Referenced by <a class="el" href="lifutils_8c_source.html#l00134">lif_tests()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ab31664441afebf11648c13b65cfad5"></a>
+<a class="anchor" id="ac777daf6e56deb920d24ac72f83f0624"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int td02lif_sector </td>
+          <td class="memname">int td0_analize_format </td>
           <td>(</td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structlif__t.html">lif_t</a> *&#160;</td>
-          <td class="paramname"><em>LIF</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Process all sectors on a track from TeleDisk image. </p>
+<p>Analize TeleDisk disk sector data Problem: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. </p>
+<p>What we do is examine the first 30 tracks (note: 30 is just a safe number less then 35) On side 1, on 30 tracks Find first sector and save its size Reject sectors that do not match size Find Last sector matching size Count sectors matching size On side 2, on 30 tracks Reject sectors that do not match size Find first sector and save its size Find Last sector matching size Count sectors matching size</p>
+<p>If the disk had two sides recorded in the header Reject second side if side sector counts do NOT match Reject second side if NO remaining sectors Reject second side if sector ranges do not match or continue in range</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>sector data </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>sector size </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">LIF</td><td>LIF structure  1 if OK, 0 on error </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dist</td><td>TD0 image data  1 if OK, 0 on error </td></tr>
   </table>
   </dd>
 </dl>
-<p>==================================================== Write sectors from Teledisk track to LIF file </p><h1>We continue until the last last file sector </h1>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01051">1051</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00808">808</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a786b280e1ac85ba19bcb2f4ca0d21ee3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void td0_compressed </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable TeleDisk image compression mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>compression anable/disable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00162">162</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00411">td0_open()</a>.</p>
 
 </div>
 </div>
@@ -297,38 +318,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bitrate </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00397">397</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
-
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a37a47298b833b16f03857809714f1d1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void td0_enable_decompress </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>flag</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enable TeleDisk image decompression. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">flag</td><td>decompression enable </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00161">161</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
-
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00378">378</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
 </div>
 </div>
@@ -346,21 +336,43 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01243">1243</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01478">1478</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00134">lif_tests()</a>, and <a class="el" href="td02lif_8c_source.html#l01268">td02lif()</a>.</p>
+<p>Referenced by <a class="el" href="lifutils_8c_source.html#l00134">lif_tests()</a>, and <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a626504ce2f4e7747628f091fea9a81e8"></a>
+<a class="anchor" id="af8f1231cf42003200a45f8b6828f13c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void td0_init_trackdata </td>
+          <td class="memname">void td0_init_liftel </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>freemem</em></td><td>)</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TeleDisk image Analisis structure Find attributes of LIF image stored in TeleDisk image. </p>
+
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01498">1498</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a250c5e050c7c158c05611ba8dbf985a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void td0_init_sectors </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -377,18 +389,62 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>size of dataactually read </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00206">206</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01534">1534</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad3adf37fc95dc0874606f364a4ce7e21"></a>
+<a class="anchor" id="ab49e4bf7cf89d5c6b90181a6bac46de6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long td0_read </td>
+          <td class="memname">int td0_open </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Opne TeleDisk image file process header and optional comment block. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">*disk</td><td>TeleDisk information structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*name</td><td>image file name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success 0 on error Note: on success disk-&gt;fi has the file handle disk-&gt;td0_name has the file name disk-&gt;compresssed if image is compressed disk-&gt;td_header has teledisk header disk-&gt;td_comment has optional teledisk comment header or zeroed If disk.td_comment.Size &gt; 0 disk-&gt;comment has optional comment string or empty string If disk.td_comment.Size &gt; 0 </dd></dl>
+<p>TeleDisk disk image header</p>
+<p>we expect "TD" (uncompressed) or "td" (compressed) format</p>
+<p>We only accept TeleDisk versions &gt;= 10 &amp;&amp; version &lt;= 21</p>
+<p>Time to Unix format </p>
+
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00411">411</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f65dd34ac6cf2ee2ab6d5a913b0e457"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int td0_read </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>p</em>, </td>
@@ -428,65 +484,47 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>size of dataactually read </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on success all bytes read, 0 on failure not all bytes read </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00174">174</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00175">175</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00411">td0_open()</a>, and <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a82346ed45d0b49999c4ef54b90a59b07"></a>
+<a class="anchor" id="a87120823fa3dd587214e6c70ebde151f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int td0_read_image </td>
+          <td class="memname">int td0_read_disk </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>imgfile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structlif__t.html">lif_t</a> *&#160;</td>
-          <td class="paramname"><em>LIF</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read TeleDisk image file and call LIF converter. </p>
+<p>Read TeleDisk image file and save all sector data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">imagefile</td><td>TD0 image file </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>LIF data structure pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dist</td><td>TD0 image data </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 on success 0 on error </dd></dl>
-<p>TeleDisk disk image header</p>
-<p>we expect "TD" (uncompressed) or "td" (compressed) format</p>
-<p>We only accept TeleDisk versions &gt;= 10 &amp;&amp; version &lt;= 21</p>
-<p>Do we have a Comment Block ? bit 7 of TrackDensity is set</p>
-<p>Time to Unix format</p>
 <p>Process all image Data</p>
 <p>EOF? TeleDisk specification says EOF is 255 sectors</p>
 <p>Process all track sectors</p>
 <p>Sector Header</p>
 <p>first test verifies sector &lt; 2K in size second test verifies no data or address mark errors</p>
 <p>Compute how much data to read</p>
-<p>td0_rle does not use len internal data in the buffer does this We limit the expansion to sector size</p>
-<p>Done processing track sectors </p><hr/>
-<hr/>
+<p>td0_rle does not use len internal data in the buffer does this We limit the expansion to sector size </p><hr/>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00421">421</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00550">550</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01268">td02lif()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
 
 </div>
 </div>
@@ -534,18 +572,110 @@ Variables</h2></td></tr>
 <p>block size</p>
 <p>repeat count </p>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00235">235</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00217">217</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aba782c58c559984d2a456208edf9864b"></a>
+<a class="anchor" id="a2b045f601a00f806f99e466e18109a08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void td0_sector </td>
+          <td class="memname">int td0_save_lif </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structlif__t.html">lif_t</a> *&#160;</td>
+          <td class="paramname"><em>LIF</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>save remaining sectors as LIF data </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>sector data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">LIF</td><td>LIF structure  1 if OK, 0 on error </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01221">1221</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01572">td02lif()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08cbf8c12076d3677df348da2dbf7ca2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int td0_save_lif_sector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structlif__t.html">lif_t</a> *&#160;</td>
+          <td class="paramname"><em>LIF</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process all sectors on a track from TeleDisk image. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>sector data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>sector size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">LIF</td><td>LIF structure  1 if OK, 0 on error </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>==================================================== Write sectors from Teledisk track to LIF file </p><h1>We continue until the last last file sector </h1>
+
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l01285">1285</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l01221">td0_save_lif()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aff9adf4831cee8528e02b6456459435e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void td0_sectorinfo </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structtd__sector__t.html">td_sector_t</a> *&#160;</td>
           <td class="paramname"><em>P</em></td><td>)</td>
@@ -563,22 +693,38 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00383">383</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00365">365</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a77bf211d16286c7ae97ecc75d0ddd50b"></a>
+<a class="anchor" id="ab14f2a074ca85e1b32cc26f3369c574f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void td0_track </td>
+          <td class="memname">void td0_trackinfo </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structdisk__t.html">disk_t</a> *&#160;</td>
+          <td class="paramname"><em>disk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>trackind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -586,16 +732,16 @@ Variables</h2></td></tr>
 <p>Display TeleDisk track sector values. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">trackdata</td><td>track sector structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sector</td><td>track sector structure </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>sector index (not sector number) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00370">370</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00352">352</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00808">td0_analize_format()</a>, and <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
@@ -633,9 +779,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TeleDisk comment header size (not structure size) </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00095">95</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00093">93</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00411">td0_open()</a>.</p>
 
 </div>
 </div>
@@ -673,9 +819,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TeleDisk image header size (not structure size) </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00069">69</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00067">67</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00411">td0_open()</a>.</p>
 
 </div>
 </div>
@@ -713,9 +859,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TeleDisk sector header size (not structure size) </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00144">144</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00145">145</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
@@ -753,36 +899,26 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TeleDisk track header size (not structure size) </dd></dl>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00117">117</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00115">115</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00421">td0_read_image()</a>.</p>
+<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00550">td0_read_disk()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a89975ebcdec4539e9562b6f25a33e7d9"></a>
+<a class="anchor" id="affcceda12b139f26819f4929be705eb1"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int decompress = 0</td>
+          <td class="memname"><a class="el" href="structdisk__t.html">disk_t</a> disk</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Teledisk LZSS decompression flag. </p>
+<p>Dave Dunfiled LZSS expander. </p>
 
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00063">63</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
-
-<p>Referenced by <a class="el" href="td02lif_8c_source.html#l00161">td0_enable_decompress()</a>, and <a class="el" href="td02lif_8c_source.html#l00174">td0_read()</a>.</p>
+<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00057">57</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
 </div>
 </div>
@@ -796,33 +932,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Teledisk to LIF state. </p>
+<p>Teledisk liftel analisis and user overrides. </p>
 
 <p>Definition at line <a class="el" href="td02lif_8c_source.html#l00060">60</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4f9ac71c0f95ded3735b782546f8a233"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structtrack__data__t.html">track_data_t</a> trackdata[<a class="el" href="td02lif_8h.html#a88c30c1e70576397f9e74bce80cfa164">MAXSECTOR</a>]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Dave Dunfiled LZSS expander. </p>
-<p>Sectors decoded in this current track </p>
-
-<p>Definition at line <a class="el" href="td02lif_8c_source.html#l00057">57</a> of file <a class="el" href="td02lif_8c_source.html">td02lif.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Aug 18 2017 22:00:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 28 2017 20:16:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

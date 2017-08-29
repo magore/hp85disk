@@ -9,5 +9,5 @@ var searchData=
   ['timeval',['timeval',['../structtimeval.html',1,'']]],
   ['timezone',['timezone',['../structtimezone.html',1,'']]],
   ['tm',['tm',['../structtm.html',1,'']]],
-  ['track_5fdata_5ft',['track_data_t',['../structtrack__data__t.html',1,'']]]
+  ['track_5ft',['track_t',['../structtrack__t.html',1,'']]]
 ];

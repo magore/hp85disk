@@ -60,6 +60,8 @@ var searchData=
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
+  ['comment',['comment',['../structdisk__t.html#abd7a6652f29f0059638dab7a88558783',1,'disk_t']]],
+  ['compressed',['compressed',['../structdisk__t.html#abe333f1a8b322fbed0d1c1178939016e',1,'disk_t']]],
   ['config',['CONFIG',['../structAMIGODiskType.html#aae94c3403ceb917006591e7bd4109207',1,'AMIGODiskType::CONFIG()'],['../structSS80DiskType.html#aeff2b9e1dcd95310e9e8dee63a60ed95',1,'SS80DiskType::CONFIG()']]],
   ['configtype',['ConfigType',['../structConfigType.html',1,'']]],
   ['continous_5ftransfer_5frate',['CONTINOUS_TRANSFER_RATE',['../structSS80UnitType.html#a0486673977da185f2f69aaff378f81a2',1,'SS80UnitType']]],
@@ -100,8 +102,8 @@ var searchData=
   ['ctrl_5ftrim',['CTRL_TRIM',['../diskio_8h.html#af09fd84bea8d4e889e272471f44d60d6',1,'diskio.h']]],
   ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]],
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
-  ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()']]],
-  ['cylinder',['cylinder',['../structtrack__data__t.html#a6639e83e4f30ca47f8501dfc570af1f0',1,'track_data_t']]],
-  ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType']]],
+  ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()'],['../structtrack__t.html#ab0489765c2499c501ce16426ec2b0c86',1,'track_t::Cyl()']]],
+  ['cylinder',['cylinder',['../structsector__t.html#abf5eb245097466ac9624e59a379a2409',1,'sector_t']]],
+  ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType::CYLINDERS()'],['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()']]],
   ['copyright',['COPYRIGHT',['../md_COPYRIGHT.html',1,'']]]
 ];

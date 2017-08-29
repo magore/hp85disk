@@ -54,7 +54,17 @@
 
 ///@brief Maximum number of sectors per track
 ///Used for sector data and sorting tables
-#define MAXSECTOR 256
+#define MAXSECTORS 256
+
+///@brief Maximum number of sides per cyinder
+///TeleDisk only trargetted floppies with 2 sides max!
+#define MAXSIDES 2
+
+///@brief Maximum number of tracks per disk
+#define MAXCYL 256
+
+#define MAXTRACKS (MAXCYL * MAXSIDES)
+
 
 typedef struct tm tm_t;
 extern int debuglevel;
@@ -162,52 +172,126 @@ typedef struct
 } td_sector_t;
 
 
-///@brief Track sector information and sector data
+///@brief Sector information and Sector "ID"
+///
+/// Disk Terminology: (From the original disk - not the TeleDisk encoding)
+///     A "Disk" includes "Formatting" overhead, "sectors" ("Data") grouped in a concentry circle ("Track") 
+///       on all surfaces ("Cylinder") as a "Disk" (all cylinders)
+///
+///     A "Sector" contains the "Data" - each "Sector" is preceeded by formatting overhead called the "ID" field.
+///     The "Formatting" - is the invisible overhead such as the sector "ID" preceeding every sector.
+///     The "ID" field contains Cylinder, Side, Sector number, Sector Size and a CRC checksum 
+///     The "Data" part of the sector follows after the "ID" field. The "Data has its own formatting CRC checksum
+///     A "Track" is a group of "Sectors" in one such circle on just one surface. 
+///     A "Cylinder" is this "Track" but now including all "Surfaces"
+///     A "Disk" is the collection of all "Cylinders"
+///
+///
+/// Note: The values Cylinder,Side and Sectors Number - these need NOT match Physical values!;
+///    The lowest sector number usually start with 0 or 1 on side 1 and side 2
+///    Many disks repeat the same sector numbering on each side, However;
+///    Some disks continue numbering sectors AFTER the last one on side 1
+///    Frequently Sectors numbering can be interleaved, like 0 4 8 1 5 9 ...
+///    The Side and Cylinder Number usually match physical values on "normal" disks.
+/// 
+
 typedef struct {
-    int cylinder;           // Cylinder
-    int side;               // Side
-    int sector;             // Sector number
-    int sectorsize;         // Sector size in bytes
-    long bitrate;           // Bit rate - not used
-    int encoding;           // Encoding flag = (td_track.PSide & 0x80)
-    uint8_t *data;          // Sector data
-} track_data_t;
+    int cylinder;           // Sectory ID Cylinder 
+    int side;               // Sector ID Side
+    int sector;             // Sector ID Sector Number 
+    int size;               // Sector ID Sector Size  converted to Bytes
+    uint8_t *data;          // Sector Data
+} sector_t;
+
+typedef struct {
+    int Cyl;        // From TeleDisk Track Header Cylinder Number
+    int Side;       // From TeleDisk Track Header Side Number
+    int Sectors;    // TeleDisk count of Sectors on this track
+    int First;
+    int Last;
+    int Size; // Size of first sector
+    sector_t sectors[MAXSECTORS];   // Disk Sectors
+} track_t;
 
 
-#define TD0_SECTORFIRST     1
-#define TD0_SECTORSIZE      2
-#define TD0_SECTORPERTRACK  4
-#define TD0_SIDE            8
-#define TD0_TRACKS          16
-#define TD0_OVERRIDE        128
+typedef struct {
+    FILE            *fi;                // TeleDisk image file handle
+    char            *td0_name;          // TeleDisk file name
+    int             compressed;         // TeleDIsk Image is compressed
+    time_t          t;                  // LIF image date in epoch format
+    td_header_t     td_header;          // TeleDisk Header
+    td_comment_t    td_comment;         // Comment Header
+    uint8_t         *comment;           // Optional comment string if td_comment.Size != 0
+    track_t         track[MAXTRACKS];   // Track and Sector Data
+} disk_t;
 
+
+
+///@brief Master TeleDisk Format Analisis structure
+/// We look for the specifications of LIF image stored inside the TeleDisk image
+/// We Examine the first 30 tracks (just some number less then 35)
 typedef struct
 {
-    int flags;
-    int sectorfirst;
-    int sectorsize;
-    int sectorspertrack;
-    int sides;
-    int tracks;
-} usertel_t;
+    // TD0 to LIF stae information
+    int error;              // TD0 to LIF error state
+    int state;              // TD0 to LIF process state machine
+    long sectorindex;       // Sector index reading LIF image inside TeleDisk image
+    long writeindex;        // Sector offset writting LIF image
 
+    /// Parameters of LIf image inside TeleDisk image - AFTER analisis
+    int             Sectors;            // LIF image Sectors
+    int             Size;               // LIF image Sector Size
+    int             Tracks;             // LIF image Tracks
+    int             Sides;              // LIF image Sides
+    int             Cylinders;          // LIF image Cylinders
 
-///@brief td02lif state structure
-typedef struct
-{
-    int error;
-    int state;
-    int sectorspertrack;
-    int sectorsize;
-    int sectorfirst;
-    int sectorlast;
-    int sides;
-    int tracks;
-    long sectorindex;
-    long writeindex;
-    usertel_t u;            // User override flags
-    time_t  t;              // LIF image date in epoch format
+/// Parameters of LIf image inside TeleDisk image - durring analisis
+/// FIRST, LAST sectors (with numbers < 100) on each side
+/// SIZE of fist sector on each side
+/// SECTOR count matching size on each side
+    struct 
+    {
+        int first[2];       // First - lowest sector number found in 30 tracks on each side
+        int size[2];        // Size - of First Sector on each side
+        int last[2];        // Last - highest sector number found (<100) in 30 tracks on each side
+        int sectors[2];     // Sectors - maximum number of sectors found per track in 30 tracks matching Size on each side
+    } s;
+
+/// User overrides to aid in format analisis
+/// Normally NOT needed bacause detailed format analisis from the first 30 cylinders 
+///   generally gets the correct values
+/// Note: Some overrides will be ignored if format analisis clearly rules them out
+///
+/// Number of Sides Override:
+///     Unfortunately we may have an image that was taking of a disk that was subject 
+///        to multiple formates prior to imaging
+///     Consider an 80 track, 2 sided disk with 9 512 bytes sectors that is reformatted 
+///        to 35 tracks single sided with 16 sectors
+///     Format analisis will always detect this and switch to single sided mode.
+///     However if we have a 80 track two sided disk that is reformatted to a 80 track 
+///        single sided analisis may not detect this.
+///     You CAN specify single sided override for two sided disks  
+///        (as defined in the TeleDisk headers)
+///     However you can NOT specify 2 sided mode if the TeleDisk image headers 
+///        have only 1 side defined.
+///
+/// Sector Size override:
+///     We normally use the size of the sectors found with the LOWEST number in 35 tracks
+///     If the format has mixed sector sizes this will help when this rule is not true
+///     Note: The LIF images types I support have FIXED sectors sizes 
+///           so using sector size override will likely not be that useful
+///
+/// Number of tracks overrides
+///     If you also want to save the blank data after the last file you can specify tracks
+///     The LIF decoder stops after the last sector of the last file so this option is not needed to save the LIF data
+    struct 
+    {
+        int size;           // User size override, ONLY use this option if sector with the LOWEST number is does NOT have default SIZE 
+        int sides;          // User sides overrride, you can specify LESS then found but not MORE then analise pass
+        int tracks;         // user Tracks override
+    } u;
 } liftel_t;
+
 
 extern liftel_t liftel;
 
@@ -216,16 +300,20 @@ int td0_unpack_disk_header ( uint8_t *B , td_header_t *p );
 int td0_unpack_comment_header ( uint8_t *B , td_comment_t *p );
 int td0_unpack_track_header ( uint8_t *B , td_track_t *p );
 int td0_unpack_sector_header ( uint8_t *B , td_sector_t *p );
-void td0_enable_decompress ( int flag );
-long td0_read ( void *p , int osize , int size , FILE *fp );
-void td0_init_trackdata ( int freemem );
+void td0_compressed ( int flag );
+int td0_read ( void *p , int osize , int size , FILE *fp );
 int td0_rle ( uint8_t *dst , uint8_t *src , int max );
-void td0_track ( int index );
-void td0_sector ( td_sector_t *P );
+void td0_trackinfo ( disk_t *disk , int trackind , int index );
+void td0_sectorinfo ( td_sector_t *P );
 long td0_density2bitrate ( uint8_t density );
-int td0_read_image ( char *imgfile , lif_t *LIF );
-int td02lif_sector ( uint8_t *data , int size , lif_t *LIF );
+int td0_open ( disk_t *disk , char *name );
+int td0_read_disk ( disk_t *disk );
+int td0_analize_format ( disk_t *disk );
+int td0_save_lif ( disk_t *disk , lif_t *LIF );
+int td0_save_lif_sector ( disk_t *disk , uint8_t *data , int size , lif_t *LIF );
 void td0_help ( int full );
+void td0_init_liftel ( void );
+void td0_init_sectors ( disk_t *disk );
 int td02lif ( int argc , char *argv []);
 
 
