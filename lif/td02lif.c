@@ -56,7 +56,7 @@
 
 disk_t disk;
    
-/// @brief Teledisk liftel analisis and user overrides
+/// @brief Teledisk liftel analysis and user overrides
 liftel_t liftel;
 
 

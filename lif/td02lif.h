@@ -238,14 +238,14 @@ typedef struct
     long sectorindex;       // Sector index reading LIF image inside TeleDisk image
     long writeindex;        // Sector offset writting LIF image
 
-    /// Parameters of LIf image inside TeleDisk image - AFTER analisis
+    /// Parameters of LIf image inside TeleDisk image - AFTER analysis
     int             Sectors;            // LIF image Sectors
     int             Size;               // LIF image Sector Size
     int             Tracks;             // LIF image Tracks
     int             Sides;              // LIF image Sides
     int             Cylinders;          // LIF image Cylinders
 
-/// Parameters of LIf image inside TeleDisk image - durring analisis
+/// Parameters of LIf image inside TeleDisk image - durring analysis
 /// FIRST, LAST sectors (with numbers < 100) on each side
 /// SIZE of fist sector on each side
 /// SECTOR count matching size on each side
@@ -257,19 +257,19 @@ typedef struct
         int sectors[2];     // Sectors - maximum number of sectors found per track in 30 tracks matching Size on each side
     } s;
 
-/// User overrides to aid in format analisis
-/// Normally NOT needed bacause detailed format analisis from the first 30 cylinders 
+/// User overrides to aid in format analysis
+/// Normally NOT needed bacause detailed format analysis from the first 30 cylinders 
 ///   generally gets the correct values.
-/// Note: Some overrides will be ignored if format analisis clearly rules them out
+/// Note: Some overrides will be ignored if format analysis clearly rules them out
 ///
 /// Number of Sides Override:
 ///     Unfortunately we may have an image that was taking of a disk that was subject 
 ///        to multiple formates prior to imaging
 ///     Consider an 80 track, 2 sided disk with 9 512 bytes sectors that is reformatted 
 ///        to 35 tracks single sided with 16 sectors
-///     Format analisis will always detect this and switch to single sided mode.
+///     Format analysis will always detect this and switch to single sided mode.
 ///     However if we have a 80 track two sided disk that is reformatted to a 80 track 
-///        single sided analisis may not detect this.
+///        single sided analysis may not detect this.
 ///     You CAN specify single sided override for two sided disks  
 ///        (as defined in the TeleDisk headers)
 ///     However you can NOT specify 2 sided mode if the TeleDisk image headers 
