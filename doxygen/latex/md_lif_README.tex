@@ -264,10 +264,85 @@ To get help type\+: ./lif -\/ OR -\/ ./td02lif
 \end{DoxyPre}
 
 
-\subsection*{T\+E\+L\+E\+D\+I\+SK L\+IF conversion example}
+\subsection*{T\+E\+L\+E\+D\+I\+SK conversion technical notes -\/ extracting L\+IF data}
 
-Read the notes inside \hyperlink{td02lif_8h}{td02lif.\+h} file for the \hyperlink{structliftel__t}{liftel\+\_\+t} structure for detail on how the analisis and conversion works 
+
+\begin{DoxyItemize}
+\item Unfortunately Tele\+Disk saves everything in on all sides and tracks.
+\begin{DoxyItemize}
+\item Question\+: what happens when we have a disk formatted multiple times with differing parameters ?
+\end{DoxyItemize}
+\item Example 1
+\begin{DoxyItemize}
+\item Say we start an image that was two sided 80 track disk, 9 sectors, 512 byte sectors
+\item Later on someone formats it single sides 35 track disk, 16 sectors, 256 bytes sectors
+\end{DoxyItemize}
+\item Analisis
+\begin{DoxyItemize}
+\item We examing the first 30 tracks on both sides looking for\+:
+\begin{DoxyItemize}
+\item F\+I\+R\+ST sector on both sides and its size
+\item L\+A\+ST sector on both size that matches the size
+\item C\+O\+U\+NT of sectors on each side that matches the size
+\end{DoxyItemize}
+\item We then compare sector C\+O\+U\+NT, compare sector S\+I\+ZE, and F\+I\+R\+S\+Td
+\begin{DoxyItemize}
+\item If S\+I\+ZE or C\+O\+U\+NT is not the same reject
+\item If only F\+I\+S\+RT mismatches we then check F\+I\+R\+ST for continuation of numbering on each side
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Conclusion
+\begin{DoxyItemize}
+\item We can reject side two by comparing the
+\begin{DoxyItemize}
+\item F\+I\+R\+ST sector number, Number of sectors and size
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Eample 2
+\begin{DoxyItemize}
+\item We have a double sided disk that is formated single sided with F\+I\+R\+ST,L\+A\+ST,C\+O\+U\+NT and S\+I\+ZE matching
+\end{DoxyItemize}
+\item Analisis
+\begin{DoxyItemize}
+\item We have no automated way to reject side two
+\end{DoxyItemize}
+\item Conclusion
+\begin{DoxyItemize}
+\item The user will have to override heads 
+
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{T\+E\+L\+E\+D\+I\+SK extracting L\+IF data user overrides}
+
+
+\begin{DoxyItemize}
+\item Number of Sides\+:
+\begin{DoxyItemize}
+\item You C\+AN specify single sided override for two sided disks
+\begin{DoxyItemize}
+\item (as defined in the Tele\+Disk headers)
+\end{DoxyItemize}
+\item However you can N\+OT specify 2 sided mode if the Tele\+Disk image headers say there is one side
+\end{DoxyItemize}
+\item Sector Size override
+\begin{DoxyItemize}
+\item Rather then using the S\+I\+ZE of the F\+I\+R\+ST sector as a filter the user can manually pick the size
+\end{DoxyItemize}
+\item Number of tracks overrides
+\begin{DoxyItemize}
+\item The L\+IF decoder stops after the last sector of the last file so this option is ignored 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\#\# T\+E\+L\+E\+D\+I\+SK L\+IF conversion example 
 \begin{DoxyPre}
+./td02lif 85-SS80.TD0 1.LIF
 TeleDisk file:         85-SS80.TD0
         Version:       21
         Not Compressed

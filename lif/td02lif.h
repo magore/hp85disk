@@ -259,7 +259,7 @@ typedef struct
 
 /// User overrides to aid in format analisis
 /// Normally NOT needed bacause detailed format analisis from the first 30 cylinders 
-///   generally gets the correct values
+///   generally gets the correct values.
 /// Note: Some overrides will be ignored if format analisis clearly rules them out
 ///
 /// Number of Sides Override:

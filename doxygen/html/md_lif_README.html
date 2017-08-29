@@ -299,8 +299,74 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     lif extractbin lifimage lifname to_lif_file
     lif rename lifimage oldlifname newlifname
     lif td02lif image.td0 image.lif
-</pre><h2>TELEDISK LIF conversion example</h2>
-<p>Read the notes inside <a class="el" href="td02lif_8h.html">td02lif.h</a> file for the <a class="el" href="structliftel__t.html" title="Master TeleDisk Format Analisis structure We look for the specifications of LIF image stored inside t...">liftel_t</a> structure for detail on how the analisis and conversion works </p><pre>
+</pre><h2>TELEDISK conversion technical notes - extracting LIF data</h2>
+<ul>
+<li>Unfortunately TeleDisk saves everything in on all sides and tracks.<ul>
+<li>Question: what happens when we have a disk formatted multiple times with differing parameters ?</li>
+</ul>
+</li>
+<li>Example 1<ul>
+<li>Say we start an image that was two sided 80 track disk, 9 sectors, 512 byte sectors</li>
+<li>Later on someone formats it single sides 35 track disk, 16 sectors, 256 bytes sectors</li>
+</ul>
+</li>
+<li>Analisis<ul>
+<li>We examing the first 30 tracks on both sides looking for:<ul>
+<li>FIRST sector on both sides and its size</li>
+<li>LAST sector on both size that matches the size</li>
+<li>COUNT of sectors on each side that matches the size</li>
+</ul>
+</li>
+<li>We then compare sector COUNT, compare sector SIZE, and FIRSTd<ul>
+<li>If SIZE or COUNT is not the same reject</li>
+<li>If only FISRT mismatches we then check FIRST for continuation of numbering on each side</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Conclusion<ul>
+<li>We can reject side two by comparing the<ul>
+<li>FIRST sector number, Number of sectors and size</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Eample 2<ul>
+<li>We have a double sided disk that is formated single sided with FIRST,LAST,COUNT and SIZE matching</li>
+</ul>
+</li>
+<li>Analisis<ul>
+<li>We have no automated way to reject side two</li>
+</ul>
+</li>
+<li>Conclusion<ul>
+<li>The user will have to override heads <hr/>
+</li>
+</ul>
+</li>
+</ul>
+<h2>TELEDISK extracting LIF data user overrides</h2>
+<ul>
+<li>Number of Sides:<ul>
+<li>You CAN specify single sided override for two sided disks<ul>
+<li>(as defined in the TeleDisk headers)</li>
+</ul>
+</li>
+<li>However you can NOT specify 2 sided mode if the TeleDisk image headers say there is one side</li>
+</ul>
+</li>
+<li>Sector Size override<ul>
+<li>Rather then using the SIZE of the FIRST sector as a filter the user can manually pick the size</li>
+</ul>
+</li>
+<li>Number of tracks overrides<ul>
+<li>The LIF decoder stops after the last sector of the last file so this option is ignored </li>
+</ul>
+</li>
+</ul>
+<hr/>
+<p>## TELEDISK LIF conversion example </p><pre>
+./td02lif 85-SS80.TD0 1.LIF
 TeleDisk file:         85-SS80.TD0
         Version:       21
         Not Compressed
@@ -449,7 +515,7 @@ Autost      E020h           1BFh        6912        256   &lt;EMPTY&gt;</pre><pr
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Aug 28 2017 20:16:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 29 2017 18:02:14 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

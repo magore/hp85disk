@@ -139,9 +139,51 @@ ___
     lif td02lif image.td0 image.lif
 </pre>
 
+## TELEDISK conversion technical notes - extracting LIF data
+  * Unfortunately TeleDisk saves everything in on all sides and tracks. 
+    * Question: what happens when we have a disk formatted multiple times with differing parameters ?
+    
+  * Example 1 
+    * Say we start an image that was two sided 80 track disk, 9 sectors, 512 byte sectors
+    * Later on someone formats it single sides 35 track disk, 16 sectors, 256 bytes sectors
+  * Analisis
+    * We examing the first 30 tracks on both sides looking for:
+      * FIRST sector on both sides and its size
+      * LAST sector on both size that matches the size
+      * COUNT of sectors on each side that matches the size
+    * We then compare sector COUNT, compare sector SIZE, and FIRSTd 
+      * If SIZE or COUNT is not the same reject
+      * If only FISRT mismatches we then check FIRST for continuation of numbering on each side
+  * Conclusion
+    * We can reject side two by comparing the
+      * FIRST sector number, Number of sectors and size
+
+  * Eample 2
+    * We have a double sided disk that is formated single sided with FIRST,LAST,COUNT and SIZE matching
+  * Analisis
+    * We have no automated way to reject side two
+  * Conclusion
+    * The user will have to override heads
+___
+
+## TELEDISK extracting LIF data user overrides
+  * Number of Sides:
+    * You CAN specify single sided override for two sided disks
+      * (as defined in the TeleDisk headers)
+    * However you can NOT specify 2 sided mode if the TeleDisk image headers say there is one side
+
+  * Sector Size override
+    *  Rather then using the SIZE of the FIRST sector as a filter the user can manually pick the size
+
+  * Number of tracks overrides
+    *  The LIF decoder stops after the last sector of the last file so this option is ignored
+</pre>
+
+___
+
 ## TELEDISK LIF conversion example
-  Read the notes inside td02lif.h file for the liftel_t structure for detail on how the analisis and conversion works
 <pre>
+./td02lif 85-SS80.TD0 1.LIF
 TeleDisk file:         85-SS80.TD0
         Version:       21
         Not Compressed
