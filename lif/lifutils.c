@@ -2270,7 +2270,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
         struct utimbuf times;
         times.modtime = t;
         times.actime = t;
-        utime(username, (const struct utimbuf *) &times);
+        utime(username, (struct utimbuf *) &times);
     }
     sync();
     printf("Wrote: %8ld\n", bytes);

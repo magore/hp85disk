@@ -73,8 +73,8 @@ struct tm *_gmtime64 (const __time64_t *);
 
 time_t timegm(struct tm * a_tm)
 {
-    time_t ltime = mktime(a_tm);
-    struct tm *tm_val =_gmtime64 (&ltime);
+    const __time64_t ltime = mktime(a_tm);
+    struct tm *tm_val =_gmtime64 ((const __time64_t *) &ltime);
     int offset = (tm_val->tm_hour - a_tm->tm_hour);
     if (offset > 12)
     {
