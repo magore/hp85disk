@@ -5,11 +5,11 @@
 G\+P\+IB emulator hardwware layer for H\+P85 disk emulator project for A\+VR.  
 
 
-{\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\newline
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -70,13 +70,12 @@ G\+P\+IB emulator hardwware layer for H\+P85 disk emulator project for A\+VR.
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{gpib__hal_8c_a827fbebac6fd202d102386e15b92b28b}\label{gpib__hal_8c_a827fbebac6fd202d102386e15b92b28b}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+close@{dbf\+\_\+close}}
 \index{dbf\+\_\+close@{dbf\+\_\+close}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+close(\+F\+I\+L $\ast$fp)}{dbf_close(FIL *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} dbf\+\_\+close (
-\begin{DoxyParamCaption}
-\item[{{\bf F\+IL} $\ast$}]{fp}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a827fbebac6fd202d102386e15b92b28b}{}\label{gpib__hal_8c_a827fbebac6fd202d102386e15b92b28b}
+\subsubsection{\texorpdfstring{dbf\+\_\+close()}{dbf\_close()}}
+{\footnotesize\ttfamily \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} dbf\+\_\+close (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fp }\end{DoxyParamCaption})}
+
 
 
 Wrapper of Fat\+Fs \hyperlink{ff_8c_adab02d5c0e368f7d131ef7d7d2676c7a}{f\+\_\+close()} that can display errors. 
@@ -100,14 +99,12 @@ Definition at line 263 of file gpib\+\_\+hal.\+c.
 
 Referenced by dbf\+\_\+open\+\_\+read(), and dbf\+\_\+open\+\_\+write().
 
+\mbox{\Hypertarget{gpib__hal_8c_afd7a928788776071dc461e7d99d9f506}\label{gpib__hal_8c_afd7a928788776071dc461e7d99d9f506}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+lseek@{dbf\+\_\+lseek}}
 \index{dbf\+\_\+lseek@{dbf\+\_\+lseek}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+lseek(\+F\+I\+L $\ast$fp, D\+W\+O\+R\+D ofs)}{dbf_lseek(FIL *fp, DWORD ofs)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} dbf\+\_\+lseek (
-\begin{DoxyParamCaption}
-\item[{{\bf F\+IL} $\ast$}]{fp, }
-\item[{{\bf D\+W\+O\+RD}}]{ofs}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_afd7a928788776071dc461e7d99d9f506}{}\label{gpib__hal_8c_afd7a928788776071dc461e7d99d9f506}
+\subsubsection{\texorpdfstring{dbf\+\_\+lseek()}{dbf\_lseek()}}
+{\footnotesize\ttfamily \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} dbf\+\_\+lseek (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fp,  }\item[{\hyperlink{integer_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}}]{ofs }\end{DoxyParamCaption})}
+
 
 
 Wrapper of Fat\+Fs f\+\_\+seek() that can display errors. 
@@ -133,15 +130,12 @@ Definition at line 242 of file gpib\+\_\+hal.\+c.
 
 Referenced by dbf\+\_\+open\+\_\+read(), and dbf\+\_\+open\+\_\+write().
 
+\mbox{\Hypertarget{gpib__hal_8c_a7d75cde9e0af3c75dce17919bdf7fe3e}\label{gpib__hal_8c_a7d75cde9e0af3c75dce17919bdf7fe3e}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+open@{dbf\+\_\+open}}
 \index{dbf\+\_\+open@{dbf\+\_\+open}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+open(\+F\+I\+L $\ast$fp, const T\+C\+H\+A\+R $\ast$path, B\+Y\+T\+E mode)}{dbf_open(FIL *fp, const TCHAR *path, BYTE mode)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} dbf\+\_\+open (
-\begin{DoxyParamCaption}
-\item[{{\bf F\+IL} $\ast$}]{fp, }
-\item[{const {\bf T\+C\+H\+AR} $\ast$}]{path, }
-\item[{{\bf B\+Y\+TE}}]{mode}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a7d75cde9e0af3c75dce17919bdf7fe3e}{}\label{gpib__hal_8c_a7d75cde9e0af3c75dce17919bdf7fe3e}
+\subsubsection{\texorpdfstring{dbf\+\_\+open()}{dbf\_open()}}
+{\footnotesize\ttfamily \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} dbf\+\_\+open (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fp,  }\item[{const \hyperlink{ff_8h_a03bdb8ce5895c7e261aadc2529637546}{T\+C\+H\+AR} $\ast$}]{path,  }\item[{\hyperlink{integer_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}}]{mode }\end{DoxyParamCaption})}
+
 
 
 Wrapper for Fat\+Fs \hyperlink{ff_8c_ab13b513f64fe29bc02dcba9581ab3bfa}{f\+\_\+open()} that can displays errors. 
@@ -169,17 +163,12 @@ Definition at line 171 of file gpib\+\_\+hal.\+c.
 
 Referenced by dbf\+\_\+open\+\_\+read(), and dbf\+\_\+open\+\_\+write().
 
+\mbox{\Hypertarget{gpib__hal_8c_af60274390be1b899ca94740dba5931df}\label{gpib__hal_8c_af60274390be1b899ca94740dba5931df}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+open\+\_\+read@{dbf\+\_\+open\+\_\+read}}
 \index{dbf\+\_\+open\+\_\+read@{dbf\+\_\+open\+\_\+read}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+open\+\_\+read(char $\ast$name, uint32\+\_\+t pos, void $\ast$buff, int size, int $\ast$errors)}{dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)}}]{\setlength{\rightskip}{0pt plus 5cm}int dbf\+\_\+open\+\_\+read (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name, }
-\item[{uint32\+\_\+t}]{pos, }
-\item[{void $\ast$}]{buff, }
-\item[{int}]{size, }
-\item[{int $\ast$}]{errors}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_af60274390be1b899ca94740dba5931df}{}\label{gpib__hal_8c_af60274390be1b899ca94740dba5931df}
+\subsubsection{\texorpdfstring{dbf\+\_\+open\+\_\+read()}{dbf\_open\_read()}}
+{\footnotesize\ttfamily int dbf\+\_\+open\+\_\+read (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{uint32\+\_\+t}]{pos,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size,  }\item[{int $\ast$}]{errors }\end{DoxyParamCaption})}
+
 
 
 Open, Seek, Read data and Close Fat\+Fs functions. 
@@ -216,17 +205,12 @@ Definition at line 290 of file gpib\+\_\+hal.\+c.
 
 Referenced by S\+S80\+\_\+locate\+\_\+and\+\_\+read().
 
+\mbox{\Hypertarget{gpib__hal_8c_a9a6e6853672fd6150839e79ee4e857af}\label{gpib__hal_8c_a9a6e6853672fd6150839e79ee4e857af}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+open\+\_\+write@{dbf\+\_\+open\+\_\+write}}
 \index{dbf\+\_\+open\+\_\+write@{dbf\+\_\+open\+\_\+write}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+open\+\_\+write(char $\ast$name, uint32\+\_\+t pos, void $\ast$buff, int size, int $\ast$errors)}{dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)}}]{\setlength{\rightskip}{0pt plus 5cm}int dbf\+\_\+open\+\_\+write (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name, }
-\item[{uint32\+\_\+t}]{pos, }
-\item[{void $\ast$}]{buff, }
-\item[{int}]{size, }
-\item[{int $\ast$}]{errors}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a9a6e6853672fd6150839e79ee4e857af}{}\label{gpib__hal_8c_a9a6e6853672fd6150839e79ee4e857af}
+\subsubsection{\texorpdfstring{dbf\+\_\+open\+\_\+write()}{dbf\_open\_write()}}
+{\footnotesize\ttfamily int dbf\+\_\+open\+\_\+write (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{uint32\+\_\+t}]{pos,  }\item[{void $\ast$}]{buff,  }\item[{int}]{size,  }\item[{int $\ast$}]{errors }\end{DoxyParamCaption})}
+
 
 
 Open, Seek, Write data and Close Fat\+Fs functions. 
@@ -263,16 +247,12 @@ Definition at line 348 of file gpib\+\_\+hal.\+c.
 
 Referenced by S\+S80\+\_\+locate\+\_\+and\+\_\+write().
 
+\mbox{\Hypertarget{gpib__hal_8c_a2303ee350c0d266ac87a2135936cb727}\label{gpib__hal_8c_a2303ee350c0d266ac87a2135936cb727}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+read@{dbf\+\_\+read}}
 \index{dbf\+\_\+read@{dbf\+\_\+read}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+read(\+F\+I\+L $\ast$fp, void $\ast$buff, U\+I\+N\+T btr, U\+I\+N\+T $\ast$br)}{dbf_read(FIL *fp, void *buff, UINT btr, UINT *br)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} dbf\+\_\+read (
-\begin{DoxyParamCaption}
-\item[{{\bf F\+IL} $\ast$}]{fp, }
-\item[{void $\ast$}]{buff, }
-\item[{{\bf U\+I\+NT}}]{btr, }
-\item[{{\bf U\+I\+NT} $\ast$}]{br}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a2303ee350c0d266ac87a2135936cb727}{}\label{gpib__hal_8c_a2303ee350c0d266ac87a2135936cb727}
+\subsubsection{\texorpdfstring{dbf\+\_\+read()}{dbf\_read()}}
+{\footnotesize\ttfamily \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} dbf\+\_\+read (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fp,  }\item[{void $\ast$}]{buff,  }\item[{\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{btr,  }\item[{\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} $\ast$}]{br }\end{DoxyParamCaption})}
+
 
 
 Wrapper for Fat\+Fs \hyperlink{ff_8c_ad55dbad62205065ba7e36ae5fc72dac6}{f\+\_\+read()} that can display errors. 
@@ -302,16 +282,12 @@ Definition at line 196 of file gpib\+\_\+hal.\+c.
 
 Referenced by dbf\+\_\+open\+\_\+read().
 
+\mbox{\Hypertarget{gpib__hal_8c_a14af877aeb5d346730aaabba033695bf}\label{gpib__hal_8c_a14af877aeb5d346730aaabba033695bf}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!dbf\+\_\+write@{dbf\+\_\+write}}
 \index{dbf\+\_\+write@{dbf\+\_\+write}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{dbf\+\_\+write(\+F\+I\+L $\ast$fp, const void $\ast$buff, U\+I\+N\+T btw, U\+I\+N\+T $\ast$bw)}{dbf_write(FIL *fp, const void *buff, UINT btw, UINT *bw)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf F\+R\+E\+S\+U\+LT} dbf\+\_\+write (
-\begin{DoxyParamCaption}
-\item[{{\bf F\+IL} $\ast$}]{fp, }
-\item[{const void $\ast$}]{buff, }
-\item[{{\bf U\+I\+NT}}]{btw, }
-\item[{{\bf U\+I\+NT} $\ast$}]{bw}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a14af877aeb5d346730aaabba033695bf}{}\label{gpib__hal_8c_a14af877aeb5d346730aaabba033695bf}
+\subsubsection{\texorpdfstring{dbf\+\_\+write()}{dbf\_write()}}
+{\footnotesize\ttfamily \hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} dbf\+\_\+write (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fp,  }\item[{const void $\ast$}]{buff,  }\item[{\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{btw,  }\item[{\hyperlink{integer_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} $\ast$}]{bw }\end{DoxyParamCaption})}
+
 
 
 wrapper for Fat\+Fs \hyperlink{ff_8c_abecaaa3eb194f786ab6042cf3b5e4ee7}{f\+\_\+write()} that can display errors. 
@@ -341,13 +317,12 @@ Definition at line 220 of file gpib\+\_\+hal.\+c.
 
 Referenced by dbf\+\_\+open\+\_\+write().
 
+\mbox{\Hypertarget{gpib__hal_8c_a4a0091ae7bb71269cff034e959d29efd}\label{gpib__hal_8c_a4a0091ae7bb71269cff034e959d29efd}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!gpib\+\_\+timer\+\_\+init@{gpib\+\_\+timer\+\_\+init}}
 \index{gpib\+\_\+timer\+\_\+init@{gpib\+\_\+timer\+\_\+init}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+timer\+\_\+init()}{gpib_timer_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void gpib\+\_\+timer\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a4a0091ae7bb71269cff034e959d29efd}{}\label{gpib__hal_8c_a4a0091ae7bb71269cff034e959d29efd}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer\+\_\+init()}{gpib\_timer\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+timer\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 Install G\+P\+IB timers, Elapsed time and Timeout tasks. 
@@ -366,13 +341,12 @@ Definition at line 29 of file gpib\+\_\+hal.\+c.
 
 Referenced by main().
 
+\mbox{\Hypertarget{gpib__hal_8c_af29c709ec1aeedc42ff180662636d8c6}\label{gpib__hal_8c_af29c709ec1aeedc42ff180662636d8c6}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!ppr\+\_\+bit\+\_\+clr@{ppr\+\_\+bit\+\_\+clr}}
 \index{ppr\+\_\+bit\+\_\+clr@{ppr\+\_\+bit\+\_\+clr}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{ppr\+\_\+bit\+\_\+clr(uint8\+\_\+t bit)}{ppr_bit_clr(uint8_t bit)}}]{\setlength{\rightskip}{0pt plus 5cm}void ppr\+\_\+bit\+\_\+clr (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{bit}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_af29c709ec1aeedc42ff180662636d8c6}{}\label{gpib__hal_8c_af29c709ec1aeedc42ff180662636d8c6}
+\subsubsection{\texorpdfstring{ppr\+\_\+bit\+\_\+clr()}{ppr\_bit\_clr()}}
+{\footnotesize\ttfamily void ppr\+\_\+bit\+\_\+clr (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bit }\end{DoxyParamCaption})}
+
 
 
 Disbale hardware P\+PR response for a given device. 
@@ -402,13 +376,12 @@ Definition at line 153 of file gpib\+\_\+hal.\+c.
 
 Referenced by gpib\+\_\+disable\+\_\+\+P\+P\+R(), and gpib\+\_\+tests().
 
+\mbox{\Hypertarget{gpib__hal_8c_a4ab95314499ea3d42ead5229bfbc2b27}\label{gpib__hal_8c_a4ab95314499ea3d42ead5229bfbc2b27}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!ppr\+\_\+bit\+\_\+set@{ppr\+\_\+bit\+\_\+set}}
 \index{ppr\+\_\+bit\+\_\+set@{ppr\+\_\+bit\+\_\+set}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{ppr\+\_\+bit\+\_\+set(uint8\+\_\+t bit)}{ppr_bit_set(uint8_t bit)}}]{\setlength{\rightskip}{0pt plus 5cm}void ppr\+\_\+bit\+\_\+set (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{bit}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a4ab95314499ea3d42ead5229bfbc2b27}{}\label{gpib__hal_8c_a4ab95314499ea3d42ead5229bfbc2b27}
+\subsubsection{\texorpdfstring{ppr\+\_\+bit\+\_\+set()}{ppr\_bit\_set()}}
+{\footnotesize\ttfamily void ppr\+\_\+bit\+\_\+set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{bit }\end{DoxyParamCaption})}
+
 
 
 Enable hardware P\+PR response for a given device. 
@@ -438,13 +411,12 @@ Definition at line 133 of file gpib\+\_\+hal.\+c.
 
 Referenced by gpib\+\_\+enable\+\_\+\+P\+P\+R(), and gpib\+\_\+tests().
 
+\mbox{\Hypertarget{gpib__hal_8c_a7178127038301c8430b9722c61be2d62}\label{gpib__hal_8c_a7178127038301c8430b9722c61be2d62}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!ppr\+\_\+init@{ppr\+\_\+init}}
 \index{ppr\+\_\+init@{ppr\+\_\+init}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{ppr\+\_\+init()}{ppr_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void ppr\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a7178127038301c8430b9722c61be2d62}{}\label{gpib__hal_8c_a7178127038301c8430b9722c61be2d62}
+\subsubsection{\texorpdfstring{ppr\+\_\+init()}{ppr\_init()}}
+{\footnotesize\ttfamily void ppr\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 Reset P\+PR enable register -\/ all disable.. 
@@ -463,13 +435,12 @@ Definition at line 110 of file gpib\+\_\+hal.\+c.
 
 Referenced by gpib\+\_\+state\+\_\+init(), and gpib\+\_\+tests().
 
+\mbox{\Hypertarget{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}\label{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!ppr\+\_\+reg@{ppr\+\_\+reg}}
 \index{ppr\+\_\+reg@{ppr\+\_\+reg}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{ppr\+\_\+reg()}{ppr_reg()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t ppr\+\_\+reg (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}{}\label{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}
+\subsubsection{\texorpdfstring{ppr\+\_\+reg()}{ppr\_reg()}}
+{\footnotesize\ttfamily uint8\+\_\+t ppr\+\_\+reg (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 Return P\+PR enable register. 
@@ -488,13 +459,12 @@ Definition at line 99 of file gpib\+\_\+hal.\+c.
 
 Referenced by gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+disable\+\_\+\+P\+P\+R(), and gpib\+\_\+enable\+\_\+\+P\+P\+R().
 
+\mbox{\Hypertarget{gpib__hal_8c_a62ab33e5f2d926916ee673ddcb8e9410}\label{gpib__hal_8c_a62ab33e5f2d926916ee673ddcb8e9410}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!ppr\+\_\+set@{ppr\+\_\+set}}
 \index{ppr\+\_\+set@{ppr\+\_\+set}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{ppr\+\_\+set(uint8\+\_\+t mask)}{ppr_set(uint8_t mask)}}]{\setlength{\rightskip}{0pt plus 5cm}void ppr\+\_\+set (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{mask}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_a62ab33e5f2d926916ee673ddcb8e9410}{}\label{gpib__hal_8c_a62ab33e5f2d926916ee673ddcb8e9410}
+\subsubsection{\texorpdfstring{ppr\+\_\+set()}{ppr\_set()}}
+{\footnotesize\ttfamily void ppr\+\_\+set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
 
 
 Enable or Disable Parallel Poll Response bits -\/ P\+PR. 
@@ -532,13 +502,12 @@ Definition at line 85 of file gpib\+\_\+hal.\+c.
 
 Referenced by gpib\+\_\+tests(), ppr\+\_\+bit\+\_\+clr(), ppr\+\_\+bit\+\_\+set(), and ppr\+\_\+init().
 
+\mbox{\Hypertarget{gpib__hal_8c_aaff7ca1ff8eb6c387fe41ce530fe0eb8}\label{gpib__hal_8c_aaff7ca1ff8eb6c387fe41ce530fe0eb8}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!reverse\+\_\+8bits@{reverse\+\_\+8bits}}
 \index{reverse\+\_\+8bits@{reverse\+\_\+8bits}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{reverse\+\_\+8bits(uint8\+\_\+t mask)}{reverse_8bits(uint8_t mask)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t reverse\+\_\+8bits (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{mask}
-\end{DoxyParamCaption}
-)}\hypertarget{gpib__hal_8c_aaff7ca1ff8eb6c387fe41ce530fe0eb8}{}\label{gpib__hal_8c_aaff7ca1ff8eb6c387fe41ce530fe0eb8}
+\subsubsection{\texorpdfstring{reverse\+\_\+8bits()}{reverse\_8bits()}}
+{\footnotesize\ttfamily uint8\+\_\+t reverse\+\_\+8bits (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
 
 
 Reverse the bits in an 8 bit value. 
@@ -565,9 +534,12 @@ Definition at line 51 of file gpib\+\_\+hal.\+c.
 
 
 \subsection{Variable Documentation}
+\mbox{\Hypertarget{gpib__hal_8c_a1dd7c6f7ad15314b697849542f85b4a3}\label{gpib__hal_8c_a1dd7c6f7ad15314b697849542f85b4a3}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!\+\_\+ppr\+\_\+reg@{\+\_\+ppr\+\_\+reg}}
 \index{\+\_\+ppr\+\_\+reg@{\+\_\+ppr\+\_\+reg}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{\+\_\+ppr\+\_\+reg}{_ppr_reg}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t \+\_\+ppr\+\_\+reg\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{gpib__hal_8c_a1dd7c6f7ad15314b697849542f85b4a3}{}\label{gpib__hal_8c_a1dd7c6f7ad15314b697849542f85b4a3}
+\subsubsection{\texorpdfstring{\+\_\+ppr\+\_\+reg}{\_ppr\_reg}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+ppr\+\_\+reg\hspace{0.3cm}{\ttfamily [static]}}
+
 
 
 Parallel Poll Response bit mask. 
@@ -580,9 +552,12 @@ Definition at line 41 of file gpib\+\_\+hal.\+c.
 
 Referenced by ppr\+\_\+bit\+\_\+clr(), ppr\+\_\+bit\+\_\+set(), ppr\+\_\+reg(), and ppr\+\_\+set().
 
+\mbox{\Hypertarget{gpib__hal_8c_aced56ceaa5d240d5554a33f88596f87a}\label{gpib__hal_8c_aced56ceaa5d240d5554a33f88596f87a}} 
 \index{gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}!gpib\+\_\+timer@{gpib\+\_\+timer}}
 \index{gpib\+\_\+timer@{gpib\+\_\+timer}!gpib\+\_\+hal.\+c@{gpib\+\_\+hal.\+c}}
-\subsubsection[{\texorpdfstring{gpib\+\_\+timer}{gpib_timer}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf gpib\+\_\+t} gpib\+\_\+timer}\hypertarget{gpib__hal_8c_aced56ceaa5d240d5554a33f88596f87a}{}\label{gpib__hal_8c_aced56ceaa5d240d5554a33f88596f87a}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer}{gpib\_timer}}
+{\footnotesize\ttfamily \hyperlink{gpib__hal_8h_a4791e72a1dc0caa0e23b3f4fb6aefc94}{gpib\+\_\+t} gpib\+\_\+timer}
+
 
 
 Definition at line 22 of file gpib\+\_\+hal.\+c.

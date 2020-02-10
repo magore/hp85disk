@@ -69,7 +69,7 @@ Various string and character functions.
 \begin{DoxyCompactList}\small\item\em Compare two strings limted to length of pattern. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8h_a84aa635d9cf4f3d41608b9e5639f71e9}{split\+\_\+args} (char $\ast$str, char $\ast$argv\mbox{[}$\,$\mbox{]}, int max)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{stringsup_8h_a51fff261f4f2a10feb3c0da11e6eee15}{split\+\_\+args} (char $\ast$str, char $\ast$argv \mbox{[}$\,$\mbox{]}, int max)
 \begin{DoxyCompactList}\small\item\em Split string into arguments stored in argv\mbox{[}\mbox{]} We split source string into arguments Warning\+: source string is modified! To save memory each gap in the source string is terminated with an E\+OS This becomes the end of string for each argument returned Warning\+: Do N\+OT modify the source string or argument contents while using them You can reassign new pointers to the arguments if you like. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{stringsup_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{get\+\_\+token} (char $\ast$str, char $\ast$\hyperlink{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
 \begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
@@ -99,16 +99,22 @@ This software is distributed in the hope that it will be useful, but W\+I\+T\+H\
 You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
 
 \subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{stringsup_8h_ad0fe97585b8891f5e4f2b9a6426330a4}\label{stringsup_8h_ad0fe97585b8891f5e4f2b9a6426330a4}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
 \index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+E\+M\+S\+P\+A\+CE}\hypertarget{stringsup_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{}\label{stringsup_8h_ad0fe97585b8891f5e4f2b9a6426330a4}
+\subsubsection{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}
+{\footnotesize\ttfamily \#define M\+E\+M\+S\+P\+A\+CE}
+
 
 
 Definition at line 28 of file stringsup.\+h.
 
+\mbox{\Hypertarget{stringsup_8h_a399da2caab82ec1bb3d5a8fbc5306768}\label{stringsup_8h_a399da2caab82ec1bb3d5a8fbc5306768}} 
 \index{stringsup.\+h@{stringsup.\+h}!W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}}
 \index{W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK_ATR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+E\+A\+K\+\_\+\+A\+TR~\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak))}\hypertarget{stringsup_8h_a399da2caab82ec1bb3d5a8fbc5306768}{}\label{stringsup_8h_a399da2caab82ec1bb3d5a8fbc5306768}
+\subsubsection{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK\_ATR}}
+{\footnotesize\ttfamily \#define W\+E\+A\+K\+\_\+\+A\+TR~\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak))}
+
 
 
 Definition at line 33 of file stringsup.\+h.
@@ -120,15 +126,12 @@ Referenced by isdigit(), islower(), isupper(), memchr(), reverse(), sep(), skipc
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{stringsup_8h_a9387f7db4933b1bafd14bddad8e8c9c8}\label{stringsup_8h_a9387f7db4933b1bafd14bddad8e8c9c8}} 
 \index{stringsup.\+h@{stringsup.\+h}!get\+\_\+token@{get\+\_\+token}}
 \index{get\+\_\+token@{get\+\_\+token}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{get\+\_\+token(char $\ast$str, char $\ast$token, int max)}{get_token(char *str, char *token, int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ get\+\_\+token (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{token, }
-\item[{int}]{max}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{}\label{stringsup_8h_a9387f7db4933b1bafd14bddad8e8c9c8}
+\subsubsection{\texorpdfstring{get\+\_\+token()}{get\_token()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ get\+\_\+token (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{token,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
 
 
 return next token 
@@ -157,13 +160,12 @@ N\+U\+LL if no token found
 
 Definition at line 628 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a9cc256e4952848245227600da2552e34}\label{stringsup_8h_a9cc256e4952848245227600da2552e34}} 
 \index{stringsup.\+h@{stringsup.\+h}!get\+\_\+value@{get\+\_\+value}}
 \index{get\+\_\+value@{get\+\_\+value}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{get\+\_\+value(char $\ast$str)}{get_value(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t get\+\_\+value (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a9cc256e4952848245227600da2552e34}{}\label{stringsup_8h_a9cc256e4952848245227600da2552e34}
+\subsubsection{\texorpdfstring{get\+\_\+value()}{get\_value()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int32\+\_\+t get\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 get a number 
@@ -187,13 +189,12 @@ Definition at line 706 of file stringsup.\+c.
 
 Referenced by assign\+\_\+value(), and gpib\+\_\+tests().
 
+\mbox{\Hypertarget{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}\label{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}} 
 \index{stringsup.\+h@{stringsup.\+h}!isdigit@{isdigit}}
 \index{isdigit@{isdigit}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{isdigit(int c)}{isdigit(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} isdigit (
-\begin{DoxyParamCaption}
-\item[{int}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{}\label{stringsup_8h_a8c33a3f5b4322e705d3403f63d55b0a1}
+\subsubsection{\texorpdfstring{isdigit()}{isdigit()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} isdigit (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
 
 
 test if a character is a digit 
@@ -210,13 +211,12 @@ true or false
 
 Definition at line 48 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a15c5aeb16e6527e860098b0e062168b5}\label{stringsup_8h_a15c5aeb16e6527e860098b0e062168b5}} 
 \index{stringsup.\+h@{stringsup.\+h}!islower@{islower}}
 \index{islower@{islower}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{islower(int c)}{islower(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} islower (
-\begin{DoxyParamCaption}
-\item[{int}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a15c5aeb16e6527e860098b0e062168b5}{}\label{stringsup_8h_a15c5aeb16e6527e860098b0e062168b5}
+\subsubsection{\texorpdfstring{islower()}{islower()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} islower (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\tt in}  & {\em c} & character.\\
@@ -233,13 +233,12 @@ Definition at line 80 of file stringsup.\+c.
 
 Referenced by toupper().
 
+\mbox{\Hypertarget{stringsup_8h_aa1caa55b6624cc08af06c04cbfe6c02a}\label{stringsup_8h_aa1caa55b6624cc08af06c04cbfe6c02a}} 
 \index{stringsup.\+h@{stringsup.\+h}!isupper@{isupper}}
 \index{isupper@{isupper}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{isupper(int c)}{isupper(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} isupper (
-\begin{DoxyParamCaption}
-\item[{int}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_aa1caa55b6624cc08af06c04cbfe6c02a}{}\label{stringsup_8h_aa1caa55b6624cc08af06c04cbfe6c02a}
+\subsubsection{\texorpdfstring{isupper()}{isupper()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} isupper (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
 
 
 Is a character upper case. 
@@ -260,14 +259,12 @@ Definition at line 64 of file stringsup.\+c.
 
 Referenced by tolower().
 
+\mbox{\Hypertarget{stringsup_8h_a9fb9c5c9b25cdf504152f7610f0d118c}\label{stringsup_8h_a9fb9c5c9b25cdf504152f7610f0d118c}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+CH@{M\+A\+T\+CH}}
 \index{M\+A\+T\+CH@{M\+A\+T\+CH}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H(char $\ast$str, char $\ast$pat)}{MATCH(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+CH (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a9fb9c5c9b25cdf504152f7610f0d118c}{}\label{stringsup_8h_a9fb9c5c9b25cdf504152f7610f0d118c}
+\subsubsection{\texorpdfstring{M\+A\+T\+C\+H()}{MATCH()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+CH (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings. 
@@ -292,14 +289,12 @@ Definition at line 455 of file stringsup.\+c.
 
 Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), ls(), M\+A\+T\+C\+H\+A\+R\+G\+S(), mkfs(), posix\+\_\+tests(), td02lif(), and td0\+\_\+open().
 
+\mbox{\Hypertarget{stringsup_8h_ac85ba7d5161939102f1daf99dcae85f0}\label{stringsup_8h_ac85ba7d5161939102f1daf99dcae85f0}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+\_\+\+L\+E\+N(char $\ast$str, char $\ast$pat)}{MATCH_LEN(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+\_\+\+L\+EN (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ac85ba7d5161939102f1daf99dcae85f0}{}\label{stringsup_8h_ac85ba7d5161939102f1daf99dcae85f0}
+\subsubsection{\texorpdfstring{M\+A\+T\+C\+H\+\_\+\+L\+E\+N()}{MATCH\_LEN()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+\_\+\+L\+EN (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings limted to length of pattern. 
@@ -323,16 +318,12 @@ Matches sub strings so be caeful.
 
 Definition at line 511 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_ae330bc7e8f9c442404f44ca0187b27d3}\label{stringsup_8h_ae330bc7e8f9c442404f44ca0187b27d3}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}}
 \index{M\+A\+T\+C\+H\+A\+R\+GS@{M\+A\+T\+C\+H\+A\+R\+GS}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+A\+R\+G\+S(char $\ast$str, char $\ast$pat, int min, int argc)}{MATCHARGS(char *str, char *pat, int min, int argc)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+A\+R\+GS (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat, }
-\item[{int}]{min, }
-\item[{int}]{argc}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ae330bc7e8f9c442404f44ca0187b27d3}{}\label{stringsup_8h_ae330bc7e8f9c442404f44ca0187b27d3}
+\subsubsection{\texorpdfstring{M\+A\+T\+C\+H\+A\+R\+G\+S()}{MATCHARGS()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+A\+R\+GS (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat,  }\item[{int}]{min,  }\item[{int}]{argc }\end{DoxyParamCaption})}
+
 
 
 Match two strings and compare argument index Display message if the number of arguments is too few. 
@@ -359,14 +350,12 @@ Definition at line 471 of file stringsup.\+c.
 
 Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), posix\+\_\+tests(), and task().
 
+\mbox{\Hypertarget{stringsup_8h_a158b18efacfbaf45bf46e03f355cf101}\label{stringsup_8h_a158b18efacfbaf45bf46e03f355cf101}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}}
 \index{M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+I(char $\ast$str, char $\ast$pat)}{MATCHI(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+HI (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a158b18efacfbaf45bf46e03f355cf101}{}\label{stringsup_8h_a158b18efacfbaf45bf46e03f355cf101}
+\subsubsection{\texorpdfstring{M\+A\+T\+C\+H\+I()}{MATCHI()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+HI (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings without case. 
@@ -387,14 +376,12 @@ string lenth on match.
 
 Definition at line 493 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_ab012fa46a47fa2430d6ebd25ed38c59e}\label{stringsup_8h_ab012fa46a47fa2430d6ebd25ed38c59e}} 
 \index{stringsup.\+h@{stringsup.\+h}!M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}}
 \index{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(char $\ast$str, char $\ast$pat)}{MATCHI_LEN(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+I\+\_\+\+L\+EN (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ab012fa46a47fa2430d6ebd25ed38c59e}{}\label{stringsup_8h_ab012fa46a47fa2430d6ebd25ed38c59e}
+\subsubsection{\texorpdfstring{M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N()}{MATCHI\_LEN()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int M\+A\+T\+C\+H\+I\+\_\+\+L\+EN (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings without case limted to length of pattern. 
@@ -422,15 +409,12 @@ Definition at line 537 of file stringsup.\+c.
 
 Referenced by get\+\_\+value().
 
+\mbox{\Hypertarget{stringsup_8h_a76693775d57cf00d7cdb2e793ffd73f1}\label{stringsup_8h_a76693775d57cf00d7cdb2e793ffd73f1}} 
 \index{stringsup.\+h@{stringsup.\+h}!memchr@{memchr}}
 \index{memchr@{memchr}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{memchr(const void $\ast$str, int c, size\+\_\+t size)}{memchr(const void *str, int c, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void$\ast$ memchr (
-\begin{DoxyParamCaption}
-\item[{const void $\ast$}]{str, }
-\item[{int}]{c, }
-\item[{{\bf size\+\_\+t}}]{size}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a76693775d57cf00d7cdb2e793ffd73f1}{}\label{stringsup_8h_a76693775d57cf00d7cdb2e793ffd73f1}
+\subsubsection{\texorpdfstring{memchr()}{memchr()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void$\ast$ memchr (\begin{DoxyParamCaption}\item[{const void $\ast$}]{str,  }\item[{int}]{c,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+
 
 
 find a character in a string of maximum size 
@@ -451,13 +435,12 @@ string length
 
 Definition at line 125 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a205ab859e76086c5239a49effa3281dd}\label{stringsup_8h_a205ab859e76086c5239a49effa3281dd}} 
 \index{stringsup.\+h@{stringsup.\+h}!nextspace@{nextspace}}
 \index{nextspace@{nextspace}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{nextspace(char $\ast$ptr)}{nextspace(char *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ nextspace (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{ptr}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a205ab859e76086c5239a49effa3281dd}{}\label{stringsup_8h_a205ab859e76086c5239a49effa3281dd}
+\subsubsection{\texorpdfstring{nextspace()}{nextspace()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ nextspace (\begin{DoxyParamCaption}\item[{char $\ast$}]{ptr }\end{DoxyParamCaption})}
+
 
 
 Skip to first white space in a string -\/ tabs and spaces. 
@@ -474,13 +457,12 @@ pointer to first white space character
 
 Definition at line 306 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}\label{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}} 
 \index{stringsup.\+h@{stringsup.\+h}!reverse@{reverse}}
 \index{reverse@{reverse}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{reverse(char $\ast$str)}{reverse(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void {\bf W\+E\+A\+K\+\_\+\+A\+TR} reverse (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}{}\label{stringsup_8h_a00b9d97be21e4f3f5df1019a803c05a6}
+\subsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} reverse (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 Reverse a string in place Example\+: abcdef -\/$>$ fedcba. 
@@ -497,13 +479,12 @@ string length
 
 Definition at line 231 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}\label{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}} 
 \index{stringsup.\+h@{stringsup.\+h}!sep@{sep}}
 \index{sep@{sep}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{sep(void)}{sep(void)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void sep (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}{}\label{stringsup_8h_afb71eee07aa9545ed2ec23f865eea315}
+\subsubsection{\texorpdfstring{sep()}{sep()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void sep (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 undo any existing macros 
@@ -516,14 +497,12 @@ Definition at line 32 of file stringsup.\+c.
 
 Referenced by main(), and S\+S80\+\_\+\+Test().
 
+\mbox{\Hypertarget{stringsup_8h_aae86b90fc6ccc0c432de5c492cdcbaba}\label{stringsup_8h_aae86b90fc6ccc0c432de5c492cdcbaba}} 
 \index{stringsup.\+h@{stringsup.\+h}!skipchars@{skipchars}}
 \index{skipchars@{skipchars}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{skipchars(char $\ast$str, char $\ast$pat)}{skipchars(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ skipchars (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_aae86b90fc6ccc0c432de5c492cdcbaba}{}\label{stringsup_8h_aae86b90fc6ccc0c432de5c492cdcbaba}
+\subsubsection{\texorpdfstring{skipchars()}{skipchars()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ skipchars (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Skip characters defined in user string. 
@@ -542,13 +521,12 @@ pointer to string after skipped characters.
 
 Definition at line 328 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a8cebaf955a9e3b5f1f2af105641dad40}\label{stringsup_8h_a8cebaf955a9e3b5f1f2af105641dad40}} 
 \index{stringsup.\+h@{stringsup.\+h}!skipspaces@{skipspaces}}
 \index{skipspaces@{skipspaces}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{skipspaces(char $\ast$ptr)}{skipspaces(char *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ skipspaces (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{ptr}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a8cebaf955a9e3b5f1f2af105641dad40}{}\label{stringsup_8h_a8cebaf955a9e3b5f1f2af105641dad40}
+\subsubsection{\texorpdfstring{skipspaces()}{skipspaces()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ skipspaces (\begin{DoxyParamCaption}\item[{char $\ast$}]{ptr }\end{DoxyParamCaption})}
+
 
 
 Skip white space in a string -\/ tabs and spaces. 
@@ -569,15 +547,12 @@ Definition at line 289 of file stringsup.\+c.
 
 Referenced by assign\+\_\+value(), get\+\_\+token(), get\+\_\+value(), gpib\+\_\+trace\+\_\+task(), P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), split\+\_\+args(), timetests(), and token().
 
+\mbox{\Hypertarget{stringsup_8h_a51fff261f4f2a10feb3c0da11e6eee15}\label{stringsup_8h_a51fff261f4f2a10feb3c0da11e6eee15}} 
 \index{stringsup.\+h@{stringsup.\+h}!split\+\_\+args@{split\+\_\+args}}
 \index{split\+\_\+args@{split\+\_\+args}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{split\+\_\+args(char $\ast$str, char $\ast$argv[], int max)}{split_args(char *str, char *argv[], int max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int split\+\_\+args (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}, }
-\item[{int}]{max}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a84aa635d9cf4f3d41608b9e5639f71e9}{}\label{stringsup_8h_a84aa635d9cf4f3d41608b9e5639f71e9}
+\subsubsection{\texorpdfstring{split\+\_\+args()}{split\_args()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int split\+\_\+args (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]},  }\item[{int}]{max }\end{DoxyParamCaption})}
+
 
 
 Split string into arguments stored in argv\mbox{[}\mbox{]} We split source string into arguments Warning\+: source string is modified! To save memory each gap in the source string is terminated with an E\+OS This becomes the end of string for each argument returned Warning\+: Do N\+OT modify the source string or argument contents while using them You can reassign new pointers to the arguments if you like. 
@@ -595,13 +570,12 @@ Definition at line 566 of file stringsup.\+c.
 
 Referenced by task().
 
+\mbox{\Hypertarget{stringsup_8h_a354472f280e9fe08820d6f32e0feddae}\label{stringsup_8h_a354472f280e9fe08820d6f32e0feddae}} 
 \index{stringsup.\+h@{stringsup.\+h}!stralloc@{stralloc}}
 \index{stralloc@{stralloc}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{stralloc(char $\ast$str)}{stralloc(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ stralloc (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a354472f280e9fe08820d6f32e0feddae}{}\label{stringsup_8h_a354472f280e9fe08820d6f32e0feddae}
+\subsubsection{\texorpdfstring{stralloc()}{stralloc()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ stralloc (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 Allocate space for string. 
@@ -625,14 +599,12 @@ N\+U\+LL on out of memory.
 
 Definition at line 774 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a5b20054fe279135f819d1c561f081649}\label{stringsup_8h_a5b20054fe279135f819d1c561f081649}} 
 \index{stringsup.\+h@{stringsup.\+h}!strcasecmp@{strcasecmp}}
 \index{strcasecmp@{strcasecmp}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strcasecmp(const char $\ast$str, const char $\ast$pat)}{strcasecmp(const char *str, const char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} strcasecmp (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{str, }
-\item[{const char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a5b20054fe279135f819d1c561f081649}{}\label{stringsup_8h_a5b20054fe279135f819d1c561f081649}
+\subsubsection{\texorpdfstring{strcasecmp()}{strcasecmp()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strcasecmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{const char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings without case. 
@@ -655,14 +627,12 @@ Definition at line 410 of file stringsup.\+c.
 
 Referenced by lif\+\_\+find\+\_\+file(), M\+A\+T\+C\+H\+I(), and td02lif().
 
+\mbox{\Hypertarget{stringsup_8h_a5c9fb6fae0723d90a3b652ad6d869eb4}\label{stringsup_8h_a5c9fb6fae0723d90a3b652ad6d869eb4}} 
 \index{stringsup.\+h@{stringsup.\+h}!strcat@{strcat}}
 \index{strcat@{strcat}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strcat(char $\ast$dest, const char $\ast$src)}{strcat(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strcat (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{dest, }
-\item[{const char $\ast$}]{src}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a5c9fb6fae0723d90a3b652ad6d869eb4}{}\label{stringsup_8h_a5c9fb6fae0723d90a3b652ad6d869eb4}
+\subsubsection{\texorpdfstring{strcat()}{strcat()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strcat (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{src }\end{DoxyParamCaption})}
+
 
 
 Append string. 
@@ -685,14 +655,12 @@ Definition at line 199 of file stringsup.\+c.
 
 Referenced by gpib\+\_\+trace\+\_\+display(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), ls(), and upload().
 
+\mbox{\Hypertarget{stringsup_8h_abee00aec80e542c31b536a531ffe761a}\label{stringsup_8h_abee00aec80e542c31b536a531ffe761a}} 
 \index{stringsup.\+h@{stringsup.\+h}!strcmp@{strcmp}}
 \index{strcmp@{strcmp}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strcmp(const char $\ast$str, const char $\ast$pat)}{strcmp(const char *str, const char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} strcmp (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{str, }
-\item[{const char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_abee00aec80e542c31b536a531ffe761a}{}\label{stringsup_8h_abee00aec80e542c31b536a531ffe761a}
+\subsubsection{\texorpdfstring{strcmp()}{strcmp()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strcmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{const char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Compare two strings. 
@@ -715,14 +683,12 @@ Definition at line 362 of file stringsup.\+c.
 
 Referenced by M\+A\+T\+C\+H(), and stat().
 
+\mbox{\Hypertarget{stringsup_8h_ad88a87f58b2b4a12f6644aa46ecc1baa}\label{stringsup_8h_ad88a87f58b2b4a12f6644aa46ecc1baa}} 
 \index{stringsup.\+h@{stringsup.\+h}!strcpy@{strcpy}}
 \index{strcpy@{strcpy}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strcpy(char $\ast$dest, const char $\ast$src)}{strcpy(char *dest, const char *src)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strcpy (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{dest, }
-\item[{const char $\ast$}]{src}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ad88a87f58b2b4a12f6644aa46ecc1baa}{}\label{stringsup_8h_ad88a87f58b2b4a12f6644aa46ecc1baa}
+\subsubsection{\texorpdfstring{strcpy()}{strcpy()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strcpy (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{src }\end{DoxyParamCaption})}
+
 
 
 copy a string 
@@ -745,13 +711,12 @@ Definition at line 161 of file stringsup.\+c.
 
 Referenced by fatfs\+\_\+ls(), fatfs\+\_\+scan\+\_\+files(), lif\+\_\+lifbcd2timestr(), lif\+\_\+stralloc(), ls(), stralloc(), and strcat().
 
+\mbox{\Hypertarget{stringsup_8h_a895ea3a2f9901e4c962806cc15271339}\label{stringsup_8h_a895ea3a2f9901e4c962806cc15271339}} 
 \index{stringsup.\+h@{stringsup.\+h}!strlen@{strlen}}
 \index{strlen@{strlen}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strlen(const char $\ast$str)}{strlen(const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf size\+\_\+t} {\bf W\+E\+A\+K\+\_\+\+A\+TR} strlen (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a895ea3a2f9901e4c962806cc15271339}{}\label{stringsup_8h_a895ea3a2f9901e4c962806cc15271339}
+\subsubsection{\texorpdfstring{strlen()}{strlen()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strlen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 String Length. 
@@ -768,14 +733,12 @@ string length
 
 Definition at line 146 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_a11f9265694fbed4de67d91c6959a0d18}\label{stringsup_8h_a11f9265694fbed4de67d91c6959a0d18}} 
 \index{stringsup.\+h@{stringsup.\+h}!strnalloc@{strnalloc}}
 \index{strnalloc@{strnalloc}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strnalloc(char $\ast$str, int len)}{strnalloc(char *str, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} char$\ast$ strnalloc (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{int}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a11f9265694fbed4de67d91c6959a0d18}{}\label{stringsup_8h_a11f9265694fbed4de67d91c6959a0d18}
+\subsubsection{\texorpdfstring{strnalloc()}{strnalloc()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ strnalloc (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
 
 
 Allocate space for string with maximum size. 
@@ -799,15 +762,12 @@ pointer to alocated string.
 
 Definition at line 750 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_af2fdec8b4be40840ac03df58d48bcc8d}\label{stringsup_8h_af2fdec8b4be40840ac03df58d48bcc8d}} 
 \index{stringsup.\+h@{stringsup.\+h}!strncasecmp@{strncasecmp}}
 \index{strncasecmp@{strncasecmp}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strncasecmp(const char $\ast$str, const char $\ast$pat, size\+\_\+t len)}{strncasecmp(const char *str, const char *pat, size_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} strncasecmp (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{str, }
-\item[{const char $\ast$}]{pat, }
-\item[{{\bf size\+\_\+t}}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_af2fdec8b4be40840ac03df58d48bcc8d}{}\label{stringsup_8h_af2fdec8b4be40840ac03df58d48bcc8d}
+\subsubsection{\texorpdfstring{strncasecmp()}{strncasecmp()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strncasecmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{const char $\ast$}]{pat,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{len }\end{DoxyParamCaption})}
+
 
 
 Compare two strings without case maximum len bytes in size. 
@@ -832,15 +792,12 @@ Definition at line 432 of file stringsup.\+c.
 
 Referenced by M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N().
 
+\mbox{\Hypertarget{stringsup_8h_af7f9d4db489856461ccf1c577b0035a5}\label{stringsup_8h_af7f9d4db489856461ccf1c577b0035a5}} 
 \index{stringsup.\+h@{stringsup.\+h}!strncat@{strncat}}
 \index{strncat@{strncat}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strncat(char $\ast$dest, const char $\ast$src, size\+\_\+t max)}{strncat(char *dest, const char *src, size_t max)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strncat (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{dest, }
-\item[{const char $\ast$}]{src, }
-\item[{{\bf size\+\_\+t}}]{max}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_af7f9d4db489856461ccf1c577b0035a5}{}\label{stringsup_8h_af7f9d4db489856461ccf1c577b0035a5}
+\subsubsection{\texorpdfstring{strncat()}{strncat()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strncat (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{src,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{max }\end{DoxyParamCaption})}
+
 
 
 Append string of at most N bytes from src. 
@@ -859,15 +816,12 @@ string length
 
 Definition at line 214 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_ac8c58d100b5e1ef176592486bb150bbc}\label{stringsup_8h_ac8c58d100b5e1ef176592486bb150bbc}} 
 \index{stringsup.\+h@{stringsup.\+h}!strncmp@{strncmp}}
 \index{strncmp@{strncmp}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strncmp(const char $\ast$str, const char $\ast$pat, size\+\_\+t len)}{strncmp(const char *str, const char *pat, size_t len)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} strncmp (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{str, }
-\item[{const char $\ast$}]{pat, }
-\item[{{\bf size\+\_\+t}}]{len}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ac8c58d100b5e1ef176592486bb150bbc}{}\label{stringsup_8h_ac8c58d100b5e1ef176592486bb150bbc}
+\subsubsection{\texorpdfstring{strncmp()}{strncmp()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strncmp (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{const char $\ast$}]{pat,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{len }\end{DoxyParamCaption})}
+
 
 
 Compare two strings maximum len bytes in size. 
@@ -892,15 +846,12 @@ Definition at line 386 of file stringsup.\+c.
 
 Referenced by M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), and token().
 
+\mbox{\Hypertarget{stringsup_8h_acdb13cf3724e976e98a6178baf0a3ac5}\label{stringsup_8h_acdb13cf3724e976e98a6178baf0a3ac5}} 
 \index{stringsup.\+h@{stringsup.\+h}!strncpy@{strncpy}}
 \index{strncpy@{strncpy}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strncpy(char $\ast$dest, const char $\ast$src, size\+\_\+t size)}{strncpy(char *dest, const char *src, size_t size)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} {\bf W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strncpy (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{dest, }
-\item[{const char $\ast$}]{src, }
-\item[{{\bf size\+\_\+t}}]{size}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_acdb13cf3724e976e98a6178baf0a3ac5}{}\label{stringsup_8h_acdb13cf3724e976e98a6178baf0a3ac5}
+\subsubsection{\texorpdfstring{strncpy()}{strncpy()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} char$\ast$ strncpy (\begin{DoxyParamCaption}\item[{char $\ast$}]{dest,  }\item[{const char $\ast$}]{src,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+
 
 
 copy a string of at most N characters 
@@ -925,13 +876,12 @@ Definition at line 179 of file stringsup.\+c.
 
 Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), readdir(), strerror\+\_\+r(), strnalloc(), and strncat().
 
+\mbox{\Hypertarget{stringsup_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}\label{stringsup_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}} 
 \index{stringsup.\+h@{stringsup.\+h}!strupper@{strupper}}
 \index{strupper@{strupper}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{strupper(char $\ast$str)}{strupper(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void {\bf W\+E\+A\+K\+\_\+\+A\+TR} strupper (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}{}\label{stringsup_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}
+\subsubsection{\texorpdfstring{strupper()}{strupper()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strupper (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 U\+P\+P\+E\+R\+C\+A\+SE a string. 
@@ -948,14 +898,12 @@ void
 
 Definition at line 253 of file stringsup.\+c.
 
+\mbox{\Hypertarget{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}\label{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}} 
 \index{stringsup.\+h@{stringsup.\+h}!token@{token}}
 \index{token@{token}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{token(char $\ast$str, char $\ast$pat)}{token(char *str, char *pat)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int token (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{char $\ast$}]{pat}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}{}\label{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}
+\subsubsection{\texorpdfstring{token()}{token()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int token (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{char $\ast$}]{pat }\end{DoxyParamCaption})}
+
 
 
 Search for token in a string matching user pattern. 
@@ -985,13 +933,12 @@ Definition at line 671 of file stringsup.\+c.
 
 Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config(), and rcvr\+\_\+datablock().
 
+\mbox{\Hypertarget{stringsup_8h_a1825e0085bbbce998b39f9ff2682173c}\label{stringsup_8h_a1825e0085bbbce998b39f9ff2682173c}} 
 \index{stringsup.\+h@{stringsup.\+h}!tolower@{tolower}}
 \index{tolower@{tolower}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{tolower(int c)}{tolower(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} tolower (
-\begin{DoxyParamCaption}
-\item[{int}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a1825e0085bbbce998b39f9ff2682173c}{}\label{stringsup_8h_a1825e0085bbbce998b39f9ff2682173c}
+\subsubsection{\texorpdfstring{tolower()}{tolower()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} tolower (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
 
 
 Convert character to lower case, only if it is upper case. 
@@ -1012,13 +959,12 @@ Definition at line 96 of file stringsup.\+c.
 
 Referenced by mkfs().
 
+\mbox{\Hypertarget{stringsup_8h_a96a73ab9e374d97a249f39eb6875ba79}\label{stringsup_8h_a96a73ab9e374d97a249f39eb6875ba79}} 
 \index{stringsup.\+h@{stringsup.\+h}!toupper@{toupper}}
 \index{toupper@{toupper}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{toupper(int c)}{toupper(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} int {\bf W\+E\+A\+K\+\_\+\+A\+TR} toupper (
-\begin{DoxyParamCaption}
-\item[{int}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a96a73ab9e374d97a249f39eb6875ba79}{}\label{stringsup_8h_a96a73ab9e374d97a249f39eb6875ba79}
+\subsubsection{\texorpdfstring{toupper()}{toupper()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} toupper (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
 
 
 Convert character to upper case, only if it is lower case. 
@@ -1039,13 +985,12 @@ Definition at line 112 of file stringsup.\+c.
 
 Referenced by strcasecmp(), strncasecmp(), and strupper().
 
+\mbox{\Hypertarget{stringsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}\label{stringsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}} 
 \index{stringsup.\+h@{stringsup.\+h}!trim\+\_\+tail@{trim\+\_\+tail}}
 \index{trim\+\_\+tail@{trim\+\_\+tail}!stringsup.\+h@{stringsup.\+h}}
-\subsubsection[{\texorpdfstring{trim\+\_\+tail(char $\ast$str)}{trim_tail(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf M\+E\+M\+S\+P\+A\+CE} void trim\+\_\+tail (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str}
-\end{DoxyParamCaption}
-)}\hypertarget{stringsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}{}\label{stringsup_8h_a2d7ec9dae4f58c027edbc22118714ba6}
+\subsubsection{\texorpdfstring{trim\+\_\+tail()}{trim\_tail()}}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void trim\+\_\+tail (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
 
 
 Trim White space and control characters from end of string. 

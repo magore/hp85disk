@@ -109,7 +109,7 @@ var searchData=
   ['spi_5ftxrx',['spi_TXRX',['../hal_8c.html#a9617412610d280bbb4886674790d7d3e',1,'spi_TXRX(uint8_t data):&#160;hal.c'],['../hal_8h.html#a9617412610d280bbb4886674790d7d3e',1,'spi_TXRX(uint8_t data):&#160;hal.c']]],
   ['spi_5ftxrx_5fbuffer',['spi_TXRX_buffer',['../hal_8c.html#a79519dd3475dcb68112f162379287e20',1,'spi_TXRX_buffer(const uint8_t *data, int count):&#160;hal.c'],['../hal_8h.html#a79519dd3475dcb68112f162379287e20',1,'spi_TXRX_buffer(const uint8_t *data, int count):&#160;hal.c']]],
   ['spi_5fwaitready',['spi_waitReady',['../hal_8c.html#a98abd8ed313db191648e1d7ae2720f83',1,'spi_waitReady():&#160;hal.c'],['../hal_8h.html#a8e9642c8a1ccfc666d717835a6fab2bb',1,'spi_waitReady(void):&#160;hal.c']]],
-  ['split_5fargs',['split_args',['../stringsup_8c.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c'],['../stringsup_8h.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c']]],
+  ['split_5fargs',['split_args',['../stringsup_8c.html#a84aa635d9cf4f3d41608b9e5639f71e9',1,'split_args(char *str, char *argv[], int max):&#160;stringsup.c'],['../stringsup_8h.html#a51fff261f4f2a10feb3c0da11e6eee15',1,'split_args(char *str, char *argv [], int max):&#160;stringsup.c']]],
   ['spoll',['spoll',['../gpib_8c.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c'],['../gpib_8h.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c'],['../ss80_8c.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c']]],
   ['sprintf',['sprintf',['../user__config_8h.html#ab99ed44389e722578695fa0065118fac',1,'user_config.h']]],
   ['srq',['SRQ',['../gpib__hal_8h.html#afb7e2b9da4a7821f2ef93bbcd5a06455',1,'gpib_hal.h']]],

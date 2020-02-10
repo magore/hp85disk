@@ -10,7 +10,7 @@ var searchData=
   ['tchar',['TCHAR',['../ff_8h.html#a03bdb8ce5895c7e261aadc2529637546',1,'ff.h']]],
   ['tct',['TCT',['../amigo_8h.html#a62d9d5d853e9cf2072dd811ce956ec56',1,'TCT():&#160;amigo.h'],['../defines_8h.html#a62d9d5d853e9cf2072dd811ce956ec56',1,'TCT():&#160;defines.h']]],
   ['td',['TD',['../ss80_8c.html#a239f4cd0f1360dbfd90fa043d1323e67',1,'ss80.c']]],
-  ['td02lif',['td02lif',['../td02lif_8c.html#a768caca68199c490335ee088781e7bba',1,'td02lif(int argc, char *argv[]):&#160;td02lif.c'],['../td02lif_8h.html#a768caca68199c490335ee088781e7bba',1,'td02lif(int argc, char *argv[]):&#160;td02lif.c']]],
+  ['td02lif',['td02lif',['../td02lif_8c.html#a768caca68199c490335ee088781e7bba',1,'td02lif(int argc, char *argv[]):&#160;td02lif.c'],['../td02lif_8h.html#a71ee40054c61de3b8c43bc2d52d99eca',1,'td02lif(int argc, char *argv []):&#160;td02lif.c']]],
   ['td02lif_2ec',['td02lif.c',['../td02lif_8c.html',1,'']]],
   ['td02lif_2eh',['td02lif.h',['../td02lif_8h.html',1,'']]],
   ['td0_5fanalize_5fformat',['td0_analize_format',['../td02lif_8c.html#ac777daf6e56deb920d24ac72f83f0624',1,'td0_analize_format(disk_t *disk):&#160;td02lif.c'],['../td02lif_8h.html#ac777daf6e56deb920d24ac72f83f0624',1,'td0_analize_format(disk_t *disk):&#160;td02lif.c']]],

@@ -5,15 +5,15 @@
 Tele\+Disk decoder library targetting L\+IF format images only.  
 
 
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include $<$stdio.\+h$>$}\\*
-{\ttfamily \#include $<$inttypes.\+h$>$}\\*
-{\ttfamily \#include $<$time.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}lifsup.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}td02lif.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}td0\+\_\+lzss.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lifsup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}td02lif.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}td0\+\_\+lzss.\+h\char`\"{}}\newline
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -86,14 +86,12 @@ L\+IF command help lif td02lif image.\+td0 image.\+lif Convert Tele\+Disk encode
 lif/teledisk My T\+E\+L\+E\+D\+I\+SK L\+IF extracter Note\+: The Tele\+Disk image M\+U\+ST contain a L\+IF image -\/ we do N\+OT translate it R\+E\+A\+D\+M\+E.\+txt Credits Important Contributions (My converted would not have been possible without these) Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation Copyright 2007-\/2008 Dave Dunfield All rights reserved. td0\+\_\+lzss.\+h td0\+\_\+lzss.\+c L\+Z\+SS decoder td0notes.\+txt Teledisk Documentation Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO wteledsk.\+htm Tele\+Disk documenation See his github project \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe} 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{td02lif_8c_a768caca68199c490335ee088781e7bba}\label{td02lif_8c_a768caca68199c490335ee088781e7bba}} 
 \index{td02lif.\+c@{td02lif.\+c}!td02lif@{td02lif}}
 \index{td02lif@{td02lif}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td02lif(int argc, char $\ast$argv[])}{td02lif(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int td02lif (
-\begin{DoxyParamCaption}
-\item[{int}]{argc, }
-\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a768caca68199c490335ee088781e7bba}{}\label{td02lif_8c_a768caca68199c490335ee088781e7bba}
+\subsubsection{\texorpdfstring{td02lif()}{td02lif()}}
+{\footnotesize\ttfamily int td02lif (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
 
 
 Convert a Teledisk L\+IF formatted disk image into a pure L\+IF image. 
@@ -120,13 +118,12 @@ Definition at line 1572 of file td02lif.\+c.
 
 Referenced by lif\+\_\+tests().
 
+\mbox{\Hypertarget{td02lif_8c_ac777daf6e56deb920d24ac72f83f0624}\label{td02lif_8c_ac777daf6e56deb920d24ac72f83f0624}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+analize\+\_\+format@{td0\+\_\+analize\+\_\+format}}
 \index{td0\+\_\+analize\+\_\+format@{td0\+\_\+analize\+\_\+format}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+analize\+\_\+format(disk\+\_\+t $\ast$disk)}{td0_analize_format(disk_t *disk)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+analize\+\_\+format (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_ac777daf6e56deb920d24ac72f83f0624}{}\label{td02lif_8c_ac777daf6e56deb920d24ac72f83f0624}
+\subsubsection{\texorpdfstring{td0\+\_\+analize\+\_\+format()}{td0\_analize\_format()}}
+{\footnotesize\ttfamily int td0\+\_\+analize\+\_\+format (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk }\end{DoxyParamCaption})}
+
 
 
 Analize Tele\+Disk disk sector data Problem\+: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example\+: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. 
@@ -148,13 +145,12 @@ Definition at line 808 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}\label{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+compressed@{td0\+\_\+compressed}}
 \index{td0\+\_\+compressed@{td0\+\_\+compressed}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+compressed(int flag)}{td0_compressed(int flag)}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+compressed (
-\begin{DoxyParamCaption}
-\item[{int}]{flag}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}{}\label{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}
+\subsubsection{\texorpdfstring{td0\+\_\+compressed()}{td0\_compressed()}}
+{\footnotesize\ttfamily void td0\+\_\+compressed (\begin{DoxyParamCaption}\item[{int}]{flag }\end{DoxyParamCaption})}
+
 
 
 Enable Tele\+Disk image compression mode. 
@@ -175,13 +171,12 @@ Definition at line 162 of file td02lif.\+c.
 
 Referenced by td0\+\_\+open().
 
+\mbox{\Hypertarget{td02lif_8c_a48825de35a808127b9c304a764a48439}\label{td02lif_8c_a48825de35a808127b9c304a764a48439}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+density2bitrate@{td0\+\_\+density2bitrate}}
 \index{td0\+\_\+density2bitrate@{td0\+\_\+density2bitrate}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+density2bitrate(uint8\+\_\+t density)}{td0_density2bitrate(uint8_t density)}}]{\setlength{\rightskip}{0pt plus 5cm}long td0\+\_\+density2bitrate (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{density}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a48825de35a808127b9c304a764a48439}{}\label{td02lif_8c_a48825de35a808127b9c304a764a48439}
+\subsubsection{\texorpdfstring{td0\+\_\+density2bitrate()}{td0\_density2bitrate()}}
+{\footnotesize\ttfamily long td0\+\_\+density2bitrate (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{density }\end{DoxyParamCaption})}
+
 
 
 Convert Denisity to bitrate  don\textquotesingle{}t care about the density except as a possible filter. 
@@ -198,13 +193,12 @@ bitrate
 
 Definition at line 378 of file td02lif.\+c.
 
+\mbox{\Hypertarget{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}\label{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+help@{td0\+\_\+help}}
 \index{td0\+\_\+help@{td0\+\_\+help}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+help(int full)}{td0_help(int full)}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+help (
-\begin{DoxyParamCaption}
-\item[{int}]{full}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}{}\label{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}
+\subsubsection{\texorpdfstring{td0\+\_\+help()}{td0\_help()}}
+{\footnotesize\ttfamily void td0\+\_\+help (\begin{DoxyParamCaption}\item[{int}]{full }\end{DoxyParamCaption})}
+
 
 
 Definition at line 1478 of file td02lif.\+c.
@@ -213,13 +207,12 @@ Definition at line 1478 of file td02lif.\+c.
 
 Referenced by lif\+\_\+tests(), and td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}\label{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+init\+\_\+liftel@{td0\+\_\+init\+\_\+liftel}}
 \index{td0\+\_\+init\+\_\+liftel@{td0\+\_\+init\+\_\+liftel}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+init\+\_\+liftel()}{td0_init_liftel()}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+init\+\_\+liftel (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}{}\label{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}
+\subsubsection{\texorpdfstring{td0\+\_\+init\+\_\+liftel()}{td0\_init\_liftel()}}
+{\footnotesize\ttfamily void td0\+\_\+init\+\_\+liftel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 Tele\+Disk image Analisis structure Find attributes of L\+IF image stored in Tele\+Disk image. 
@@ -232,13 +225,12 @@ Definition at line 1498 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_a250c5e050c7c158c05611ba8dbf985a9}\label{td02lif_8c_a250c5e050c7c158c05611ba8dbf985a9}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+init\+\_\+sectors@{td0\+\_\+init\+\_\+sectors}}
 \index{td0\+\_\+init\+\_\+sectors@{td0\+\_\+init\+\_\+sectors}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+init\+\_\+sectors(disk\+\_\+t $\ast$disk)}{td0_init_sectors(disk_t *disk)}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+init\+\_\+sectors (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a250c5e050c7c158c05611ba8dbf985a9}{}\label{td02lif_8c_a250c5e050c7c158c05611ba8dbf985a9}
+\subsubsection{\texorpdfstring{td0\+\_\+init\+\_\+sectors()}{td0\_init\_sectors()}}
+{\footnotesize\ttfamily void td0\+\_\+init\+\_\+sectors (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk }\end{DoxyParamCaption})}
+
 
 
 Initialize track sector information Optionally decompress the data if decompression is enabled. 
@@ -263,14 +255,12 @@ Definition at line 1534 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_ab49e4bf7cf89d5c6b90181a6bac46de6}\label{td02lif_8c_ab49e4bf7cf89d5c6b90181a6bac46de6}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+open@{td0\+\_\+open}}
 \index{td0\+\_\+open@{td0\+\_\+open}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+open(disk\+\_\+t $\ast$disk, char $\ast$name)}{td0_open(disk_t *disk, char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+open (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk, }
-\item[{char $\ast$}]{name}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_ab49e4bf7cf89d5c6b90181a6bac46de6}{}\label{td02lif_8c_ab49e4bf7cf89d5c6b90181a6bac46de6}
+\subsubsection{\texorpdfstring{td0\+\_\+open()}{td0\_open()}}
+{\footnotesize\ttfamily int td0\+\_\+open (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
 
 
 Opne Tele\+Disk image file process header and optional comment block. 
@@ -299,16 +289,12 @@ Definition at line 411 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_a3f65dd34ac6cf2ee2ab6d5a913b0e457}\label{td02lif_8c_a3f65dd34ac6cf2ee2ab6d5a913b0e457}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+read@{td0\+\_\+read}}
 \index{td0\+\_\+read@{td0\+\_\+read}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+read(void $\ast$p, int osize, int size, F\+I\+L\+E $\ast$fp)}{td0_read(void *p, int osize, int size, FILE *fp)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+read (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{p, }
-\item[{int}]{osize, }
-\item[{int}]{size, }
-\item[{{\bf F\+I\+LE} $\ast$}]{fp}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a3f65dd34ac6cf2ee2ab6d5a913b0e457}{}\label{td02lif_8c_a3f65dd34ac6cf2ee2ab6d5a913b0e457}
+\subsubsection{\texorpdfstring{td0\+\_\+read()}{td0\_read()}}
+{\footnotesize\ttfamily int td0\+\_\+read (\begin{DoxyParamCaption}\item[{void $\ast$}]{p,  }\item[{int}]{osize,  }\item[{int}]{size,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{fp }\end{DoxyParamCaption})}
+
 
 
 Read Tele\+Disk image data block Optionally decompress the data if decompression is enabled. 
@@ -333,13 +319,12 @@ Definition at line 175 of file td02lif.\+c.
 
 Referenced by td0\+\_\+open(), and td0\+\_\+read\+\_\+disk().
 
+\mbox{\Hypertarget{td02lif_8c_a87120823fa3dd587214e6c70ebde151f}\label{td02lif_8c_a87120823fa3dd587214e6c70ebde151f}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+read\+\_\+disk@{td0\+\_\+read\+\_\+disk}}
 \index{td0\+\_\+read\+\_\+disk@{td0\+\_\+read\+\_\+disk}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+read\+\_\+disk(disk\+\_\+t $\ast$disk)}{td0_read_disk(disk_t *disk)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+read\+\_\+disk (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a87120823fa3dd587214e6c70ebde151f}{}\label{td02lif_8c_a87120823fa3dd587214e6c70ebde151f}
+\subsubsection{\texorpdfstring{td0\+\_\+read\+\_\+disk()}{td0\_read\_disk()}}
+{\footnotesize\ttfamily int td0\+\_\+read\+\_\+disk (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk }\end{DoxyParamCaption})}
+
 
 
 Read Tele\+Disk image file and save all sector data. 
@@ -374,15 +359,12 @@ Definition at line 550 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_a7f9b8f09a74778aafcef0ccfcf7e73e6}\label{td02lif_8c_a7f9b8f09a74778aafcef0ccfcf7e73e6}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+rle@{td0\+\_\+rle}}
 \index{td0\+\_\+rle@{td0\+\_\+rle}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+rle(uint8\+\_\+t $\ast$dst, uint8\+\_\+t $\ast$src, int max)}{td0_rle(uint8_t *dst, uint8_t *src, int max)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+rle (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{dst, }
-\item[{uint8\+\_\+t $\ast$}]{src, }
-\item[{int}]{max}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a7f9b8f09a74778aafcef0ccfcf7e73e6}{}\label{td02lif_8c_a7f9b8f09a74778aafcef0ccfcf7e73e6}
+\subsubsection{\texorpdfstring{td0\+\_\+rle()}{td0\_rle()}}
+{\footnotesize\ttfamily int td0\+\_\+rle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{dst,  }\item[{uint8\+\_\+t $\ast$}]{src,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
 
 
 Expand a Run Length encoded Tele\+Disk sector Notes\+: the source length is encoded in the source data Credits based on work (C) 2006-\/2014 Jean-\/\+François D\+EL N\+E\+RO Part of the Hx\+C\+Floppy\+Emulator library G\+NU G\+PL version 2 or later Rewitten for clarity,to enforce size limits, provide error reporting and to avoid word order dependent assumptions,. 
@@ -411,14 +393,12 @@ Definition at line 217 of file td02lif.\+c.
 
 Referenced by td0\+\_\+read\+\_\+disk().
 
+\mbox{\Hypertarget{td02lif_8c_a2b045f601a00f806f99e466e18109a08}\label{td02lif_8c_a2b045f601a00f806f99e466e18109a08}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+save\+\_\+lif@{td0\+\_\+save\+\_\+lif}}
 \index{td0\+\_\+save\+\_\+lif@{td0\+\_\+save\+\_\+lif}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+save\+\_\+lif(disk\+\_\+t $\ast$disk, lif\+\_\+t $\ast$\+L\+I\+F)}{td0_save_lif(disk_t *disk, lif_t *LIF)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+save\+\_\+lif (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk, }
-\item[{{\bf lif\+\_\+t} $\ast$}]{L\+IF}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a2b045f601a00f806f99e466e18109a08}{}\label{td02lif_8c_a2b045f601a00f806f99e466e18109a08}
+\subsubsection{\texorpdfstring{td0\+\_\+save\+\_\+lif()}{td0\_save\_lif()}}
+{\footnotesize\ttfamily int td0\+\_\+save\+\_\+lif (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk,  }\item[{\hyperlink{structlif__t}{lif\+\_\+t} $\ast$}]{L\+IF }\end{DoxyParamCaption})}
+
 
 
 save remaining sectors as L\+IF data 
@@ -438,16 +418,12 @@ Definition at line 1221 of file td02lif.\+c.
 
 Referenced by td02lif().
 
+\mbox{\Hypertarget{td02lif_8c_a08cbf8c12076d3677df348da2dbf7ca2}\label{td02lif_8c_a08cbf8c12076d3677df348da2dbf7ca2}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+save\+\_\+lif\+\_\+sector@{td0\+\_\+save\+\_\+lif\+\_\+sector}}
 \index{td0\+\_\+save\+\_\+lif\+\_\+sector@{td0\+\_\+save\+\_\+lif\+\_\+sector}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+save\+\_\+lif\+\_\+sector(disk\+\_\+t $\ast$disk, uint8\+\_\+t $\ast$data, int size, lif\+\_\+t $\ast$\+L\+I\+F)}{td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+save\+\_\+lif\+\_\+sector (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk, }
-\item[{uint8\+\_\+t $\ast$}]{data, }
-\item[{int}]{size, }
-\item[{{\bf lif\+\_\+t} $\ast$}]{L\+IF}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a08cbf8c12076d3677df348da2dbf7ca2}{}\label{td02lif_8c_a08cbf8c12076d3677df348da2dbf7ca2}
+\subsubsection{\texorpdfstring{td0\+\_\+save\+\_\+lif\+\_\+sector()}{td0\_save\_lif\_sector()}}
+{\footnotesize\ttfamily int td0\+\_\+save\+\_\+lif\+\_\+sector (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk,  }\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{int}]{size,  }\item[{\hyperlink{structlif__t}{lif\+\_\+t} $\ast$}]{L\+IF }\end{DoxyParamCaption})}
+
 
 
 Process all sectors on a track from Tele\+Disk image. 
@@ -469,13 +445,12 @@ Definition at line 1285 of file td02lif.\+c.
 
 Referenced by td0\+\_\+save\+\_\+lif().
 
+\mbox{\Hypertarget{td02lif_8c_aff9adf4831cee8528e02b6456459435e}\label{td02lif_8c_aff9adf4831cee8528e02b6456459435e}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+sectorinfo@{td0\+\_\+sectorinfo}}
 \index{td0\+\_\+sectorinfo@{td0\+\_\+sectorinfo}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+sectorinfo(td\+\_\+sector\+\_\+t $\ast$\+P)}{td0_sectorinfo(td_sector_t *P)}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+sectorinfo (
-\begin{DoxyParamCaption}
-\item[{{\bf td\+\_\+sector\+\_\+t} $\ast$}]{P}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_aff9adf4831cee8528e02b6456459435e}{}\label{td02lif_8c_aff9adf4831cee8528e02b6456459435e}
+\subsubsection{\texorpdfstring{td0\+\_\+sectorinfo()}{td0\_sectorinfo()}}
+{\footnotesize\ttfamily void td0\+\_\+sectorinfo (\begin{DoxyParamCaption}\item[{\hyperlink{structtd__sector__t}{td\+\_\+sector\+\_\+t} $\ast$}]{P }\end{DoxyParamCaption})}
+
 
 
 Display Tele\+Disk sector data. 
@@ -496,15 +471,12 @@ Definition at line 365 of file td02lif.\+c.
 
 Referenced by td0\+\_\+read\+\_\+disk().
 
+\mbox{\Hypertarget{td02lif_8c_ab14f2a074ca85e1b32cc26f3369c574f}\label{td02lif_8c_ab14f2a074ca85e1b32cc26f3369c574f}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+trackinfo@{td0\+\_\+trackinfo}}
 \index{td0\+\_\+trackinfo@{td0\+\_\+trackinfo}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+trackinfo(disk\+\_\+t $\ast$disk, int trackind, int index)}{td0_trackinfo(disk_t *disk, int trackind, int index)}}]{\setlength{\rightskip}{0pt plus 5cm}void td0\+\_\+trackinfo (
-\begin{DoxyParamCaption}
-\item[{{\bf disk\+\_\+t} $\ast$}]{disk, }
-\item[{int}]{trackind, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_ab14f2a074ca85e1b32cc26f3369c574f}{}\label{td02lif_8c_ab14f2a074ca85e1b32cc26f3369c574f}
+\subsubsection{\texorpdfstring{td0\+\_\+trackinfo()}{td0\_trackinfo()}}
+{\footnotesize\ttfamily void td0\+\_\+trackinfo (\begin{DoxyParamCaption}\item[{\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$}]{disk,  }\item[{int}]{trackind,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
 
 
 Display Tele\+Disk track sector values. 
@@ -527,14 +499,12 @@ Definition at line 352 of file td02lif.\+c.
 
 Referenced by td0\+\_\+analize\+\_\+format(), and td0\+\_\+read\+\_\+disk().
 
+\mbox{\Hypertarget{td02lif_8c_aa2721b8d8bba4008a2b48d1b362b9850}\label{td02lif_8c_aa2721b8d8bba4008a2b48d1b362b9850}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+unpack\+\_\+comment\+\_\+header@{td0\+\_\+unpack\+\_\+comment\+\_\+header}}
 \index{td0\+\_\+unpack\+\_\+comment\+\_\+header@{td0\+\_\+unpack\+\_\+comment\+\_\+header}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+unpack\+\_\+comment\+\_\+header(uint8\+\_\+t $\ast$\+B, td\+\_\+comment\+\_\+t $\ast$p)}{td0_unpack_comment_header(uint8_t *B, td_comment_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+unpack\+\_\+comment\+\_\+header (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{{\bf td\+\_\+comment\+\_\+t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_aa2721b8d8bba4008a2b48d1b362b9850}{}\label{td02lif_8c_aa2721b8d8bba4008a2b48d1b362b9850}
+\subsubsection{\texorpdfstring{td0\+\_\+unpack\+\_\+comment\+\_\+header()}{td0\_unpack\_comment\_header()}}
+{\footnotesize\ttfamily int td0\+\_\+unpack\+\_\+comment\+\_\+header (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{\hyperlink{structtd__comment__t}{td\+\_\+comment\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+
 
 
 Extract Tele\+Disk comment header data in architecture nutral way. 
@@ -557,14 +527,12 @@ Definition at line 93 of file td02lif.\+c.
 
 Referenced by td0\+\_\+open().
 
+\mbox{\Hypertarget{td02lif_8c_a038d4e9f86f76569a97e443e376a8e11}\label{td02lif_8c_a038d4e9f86f76569a97e443e376a8e11}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+unpack\+\_\+disk\+\_\+header@{td0\+\_\+unpack\+\_\+disk\+\_\+header}}
 \index{td0\+\_\+unpack\+\_\+disk\+\_\+header@{td0\+\_\+unpack\+\_\+disk\+\_\+header}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+unpack\+\_\+disk\+\_\+header(uint8\+\_\+t $\ast$\+B, td\+\_\+header\+\_\+t $\ast$p)}{td0_unpack_disk_header(uint8_t *B, td_header_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+unpack\+\_\+disk\+\_\+header (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{{\bf td\+\_\+header\+\_\+t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_a038d4e9f86f76569a97e443e376a8e11}{}\label{td02lif_8c_a038d4e9f86f76569a97e443e376a8e11}
+\subsubsection{\texorpdfstring{td0\+\_\+unpack\+\_\+disk\+\_\+header()}{td0\_unpack\_disk\_header()}}
+{\footnotesize\ttfamily int td0\+\_\+unpack\+\_\+disk\+\_\+header (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{\hyperlink{structtd__header__t}{td\+\_\+header\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+
 
 
 Extract Tele\+Disk image header data in architecture nutral way. 
@@ -587,14 +555,12 @@ Definition at line 67 of file td02lif.\+c.
 
 Referenced by td0\+\_\+open().
 
+\mbox{\Hypertarget{td02lif_8c_ac393151af482d511b246de534da58e6f}\label{td02lif_8c_ac393151af482d511b246de534da58e6f}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+unpack\+\_\+sector\+\_\+header@{td0\+\_\+unpack\+\_\+sector\+\_\+header}}
 \index{td0\+\_\+unpack\+\_\+sector\+\_\+header@{td0\+\_\+unpack\+\_\+sector\+\_\+header}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+unpack\+\_\+sector\+\_\+header(uint8\+\_\+t $\ast$\+B, td\+\_\+sector\+\_\+t $\ast$p)}{td0_unpack_sector_header(uint8_t *B, td_sector_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+unpack\+\_\+sector\+\_\+header (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{{\bf td\+\_\+sector\+\_\+t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_ac393151af482d511b246de534da58e6f}{}\label{td02lif_8c_ac393151af482d511b246de534da58e6f}
+\subsubsection{\texorpdfstring{td0\+\_\+unpack\+\_\+sector\+\_\+header()}{td0\_unpack\_sector\_header()}}
+{\footnotesize\ttfamily int td0\+\_\+unpack\+\_\+sector\+\_\+header (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{\hyperlink{structtd__sector__t}{td\+\_\+sector\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+
 
 
 Extract Tele\+Disk sector header data in architecture nutral way. 
@@ -617,14 +583,12 @@ Definition at line 145 of file td02lif.\+c.
 
 Referenced by td0\+\_\+read\+\_\+disk().
 
+\mbox{\Hypertarget{td02lif_8c_ab9cc29346498d37ff85d3a3417d8fc11}\label{td02lif_8c_ab9cc29346498d37ff85d3a3417d8fc11}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+unpack\+\_\+track\+\_\+header@{td0\+\_\+unpack\+\_\+track\+\_\+header}}
 \index{td0\+\_\+unpack\+\_\+track\+\_\+header@{td0\+\_\+unpack\+\_\+track\+\_\+header}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{td0\+\_\+unpack\+\_\+track\+\_\+header(uint8\+\_\+t $\ast$\+B, td\+\_\+track\+\_\+t $\ast$p)}{td0_unpack_track_header(uint8_t *B, td_track_t *p)}}]{\setlength{\rightskip}{0pt plus 5cm}int td0\+\_\+unpack\+\_\+track\+\_\+header (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t $\ast$}]{B, }
-\item[{{\bf td\+\_\+track\+\_\+t} $\ast$}]{p}
-\end{DoxyParamCaption}
-)}\hypertarget{td02lif_8c_ab9cc29346498d37ff85d3a3417d8fc11}{}\label{td02lif_8c_ab9cc29346498d37ff85d3a3417d8fc11}
+\subsubsection{\texorpdfstring{td0\+\_\+unpack\+\_\+track\+\_\+header()}{td0\_unpack\_track\_header()}}
+{\footnotesize\ttfamily int td0\+\_\+unpack\+\_\+track\+\_\+header (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{\hyperlink{structtd__track__t}{td\+\_\+track\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+
 
 
 Extract Tele\+Disk track header data in architecture nutral way. 
@@ -650,9 +614,12 @@ Referenced by td0\+\_\+read\+\_\+disk().
 
 
 \subsection{Variable Documentation}
+\mbox{\Hypertarget{td02lif_8c_affcceda12b139f26819f4929be705eb1}\label{td02lif_8c_affcceda12b139f26819f4929be705eb1}} 
 \index{td02lif.\+c@{td02lif.\+c}!disk@{disk}}
 \index{disk@{disk}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{disk}{disk}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf disk\+\_\+t} disk}\hypertarget{td02lif_8c_affcceda12b139f26819f4929be705eb1}{}\label{td02lif_8c_affcceda12b139f26819f4929be705eb1}
+\subsubsection{\texorpdfstring{disk}{disk}}
+{\footnotesize\ttfamily \hyperlink{structdisk__t}{disk\+\_\+t} disk}
+
 
 
 Dave Dunfiled L\+Z\+SS expander. 
@@ -661,9 +628,12 @@ Dave Dunfiled L\+Z\+SS expander.
 
 Definition at line 57 of file td02lif.\+c.
 
+\mbox{\Hypertarget{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}\label{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}} 
 \index{td02lif.\+c@{td02lif.\+c}!liftel@{liftel}}
 \index{liftel@{liftel}!td02lif.\+c@{td02lif.\+c}}
-\subsubsection[{\texorpdfstring{liftel}{liftel}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf liftel\+\_\+t} liftel}\hypertarget{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}{}\label{td02lif_8c_af2b2b3e4827acc662c88bb762e41106d}
+\subsubsection{\texorpdfstring{liftel}{liftel}}
+{\footnotesize\ttfamily \hyperlink{structliftel__t}{liftel\+\_\+t} liftel}
+
 
 
 Teledisk liftel analysis and user overrides. 

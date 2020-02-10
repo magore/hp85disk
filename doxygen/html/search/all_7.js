@@ -85,7 +85,7 @@ var searchData=
   ['gpib_5ftask_2ec',['gpib_task.c',['../gpib__task_8c.html',1,'']]],
   ['gpib_5ftask_2eh',['gpib_task.h',['../gpib__task_8h.html',1,'']]],
   ['gpib_5ftask_5ftic_5fus',['GPIB_TASK_TIC_US',['../gpib__hal_8h.html#a4e9b50fcf601cb4f967d11668cd9e640',1,'gpib_hal.h']]],
-  ['gpib_5ftests',['gpib_tests',['../gpib__tests_8c.html#a32aa1c7ef02243d7f1298e76f7aa0afa',1,'gpib_tests(int argc, char *argv[]):&#160;gpib_tests.c'],['../gpib__tests_8h.html#a32aa1c7ef02243d7f1298e76f7aa0afa',1,'gpib_tests(int argc, char *argv[]):&#160;gpib_tests.c']]],
+  ['gpib_5ftests',['gpib_tests',['../gpib__tests_8c.html#a32aa1c7ef02243d7f1298e76f7aa0afa',1,'gpib_tests(int argc, char *argv[]):&#160;gpib_tests.c'],['../gpib__tests_8h.html#a75e1c7cef38cb652d33ff3469ab21ea0',1,'gpib_tests(int argc, char *argv []):&#160;gpib_tests.c']]],
   ['gpib_5ftests_2ec',['gpib_tests.c',['../gpib__tests_8c.html',1,'']]],
   ['gpib_5ftests_2eh',['gpib_tests.h',['../gpib__tests_8h.html',1,'']]],
   ['gpib_5ftimeout_5fset',['gpib_timeout_set',['../gpib_8c.html#a687395337dd5c6604a775e3ffd3f006f',1,'gpib_timeout_set(uint32_t time):&#160;gpib.c'],['../gpib_8h.html#a687395337dd5c6604a775e3ffd3f006f',1,'gpib_timeout_set(uint32_t time):&#160;gpib.c']]],
