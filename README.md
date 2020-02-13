@@ -11,7 +11,8 @@
  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
 ## HP85 emulator circuit board developed by Jay Hamlin
-## V2 notes - the V2 branch targets new hardware - the current code has NOT been updated yet
+## V2 notes - the V2 branch targets the new board by Jay Hamlin
+   * The current code has NOT been updated yet for the new board
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
