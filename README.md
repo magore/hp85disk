@@ -6,11 +6,12 @@
  * Please use this link for the Documentation and this README
    * https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html
 
-## HP85 Disk Emulator Copyright (C) 2014-2019 Mike Gore board design by Jay Hamlin 2018-2019
+## HP85 Disk Emulator Copyright (C) 2014-2019 Mike Gore 
+ * New Board design by Jay Hamlin (C) 2018-2019
  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
 ## HP85 emulator circuit board developed by Jay Hamlin
-## V2 notes - the V2 branch targes new hardware - the current code has NOT been updated yet
+## V2 notes - the V2 branch targets new hardware - the current code has NOT been updated yet
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
