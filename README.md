@@ -72,18 +72,18 @@ ___
 ___
 
 ## Using the emulator with provider examples
-   * See [sdcard.cfg](sdcard/sdcard.cfg] for configuration settings and setting and documentation.
+   * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
        * The following example works for an HP85 attached to the emulator via GPIB bus.
          * PRINTER IS 705
          * PLIST
-     * Disk images in SDCARD folder drive and configuration settings
+     * Disk images in [sdcard](sdcard) folder drive and configuration settings
        * First SS80 HP9134L disk at 700 for my HP85A (with 85A ROMs)
        * First Amigo 9121D disk  at 710 for my HP85B (with 85B ROMs)
        * Second SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)
        * Second Amigo 9121D disk  at 730 for my HP85B (with 85B ROMs)
      * How to use the examples with your HP85
-       * Copy the files inside the project SDCARD folder to the home folder of a fat32 formatted drive
+       * Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive
          * All image files and configuration must be in the home folder only - not in a subdirectory.
          * You may store other user files in sub folders of your choosing.
        * Verify [hpdisk.cfg](sdcard/hpdisk.cfg) configuration settings for your computer
@@ -112,9 +112,9 @@ ___
        * *ONLY* those that are detected in this way are then next scanned
     * Next for all detected drives the HP85 issues "Request Identify" to each in turn.
       * This is done one drive at a time in order
-      * The PPR keyword in the hpdisk.cfg is the PPR bit the drive uses
+      * The PPR keyword in the [hpdisk.cfg](sdcard/hpdisk.cfg) is the PPR bit the drive uses
         * PPR of 0 = PPR response on GPIB data bus bit number 8 - as per GPIB BUS specifications.
-      * The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"
+      * The ID keyword in [hpdisk.cfg](sdcard/hpdisk.cfg) is the 16 bit reply to "Request Identify Reply"
         * IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information
           * The HP85A can only use its *hardcoded firmware tables* to map ID to disk layout parameters
           * This implies that the HP85A can only use AMIGO disks it has defined in firmware.
@@ -133,25 +133,25 @@ ___
       * This can be done with the PRM-85 expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
    * The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.
-     * See ADDRESS, PPR and ID values in SDCARD/hpdisk.cfg
+     * See ADDRESS, PPR and ID values in [hpdisk.cfg](sdcard.cfg)
    * Older computers may only support AMIGO drives.
      * Such computers will have a hard coded in firmware list of drive its supports.
        * These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.
-       * *If these assumptions do NOT match the layout defined in the hpdisk.cfg no drives will be detected.*
+       * *If these assumptions do NOT match the layout defined in the [hpdisk.cfg](sdcard/sdcard.cfg) no drives will be detected.*
    * Newer computers with SS80 support can request fully detailed disk layout instead of the "request identify"
    * My emulator supports both reporting methods - but your computer may not use them both!
      * For supported values consult your computer manuals or corresponding drive manual for your computer.
        * See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)
-     * In all cases the hpdisk.cfg parameters MUST match these expectations.
-   * The hpdisk.cfg file tells the emulator how the emulated disk is defined.
+     * In all cases the [hpdisk.cfg](sdcard/hpdisk.cfg) parameters MUST match these expectations.
+   * The [hpdisk.cfg](sdcard/hpdisk.cfg) file tells the emulator how the emulated disk is defined.
      * GPIB BUS address, Parallel Poll Response bit number and AMIGO Request Identify response values.
      * Additional detail for SS80 drives that newer computers can use.
      * In ALL cases the file informs the code what parameters to emulate and report.
        * ALL of these values MUST match your computers expectations for drives it knows about.
    * Debugging
-     * You can enable reporting of all unimplemented GPIB commands (see *TODO* debug option in hpdisk.cfg)
+     * You can enable reporting of all unimplemented GPIB commands (see *TODO* debug option in [hpdisk.cfg](sdcard/hpdisk.cfg) )
        * Useful if you are trying this on a non HP85 device
-       * See the SDCARD/hpdisk.cfg for documentation on the full list of debugging options
+       * See the [hpdisk.cfg](sdcard/hpdisk.cfg) for documentation on the full list of debugging options
      * The emulator can passively log all transactions between real hardware on the GPIB bus 
        * Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.
        * You can use this to help understand what is sent to and from you real disks.
