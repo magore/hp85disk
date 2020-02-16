@@ -303,7 +303,7 @@ ___
 ___
 
 ## V1BOARD
-  * ./board/V1/README.md for documentation on the original design
+  * [Original board design without GPIB buffers](./board/V1/README.md)
   * Comment out V2BOARD directive in Makefile to use original board
   *
 ___ 
