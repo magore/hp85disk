@@ -36,12 +36,12 @@
        * You may extract a single file from a LIF image to a new LIF image.
        * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
      * Type "lif help" in the emulator for a full list of commands
-       * See the top of lif/lifutils.c for full documentation and examples.
-     * TeleDisk to LIF extractor tool included - see lif directory README.md
-       * td02lif 85-SS80.TD0 85-SS80.LIF
+       * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
+     * TeleDisk to LIF extractor tool included - see [lif README.md](lif/README.md)
+       * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
 ___
 ## OS Requirements for software building
-  * I used Ubuntu 16.04LTS and 14.04LTS when developing the code
+  * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
     * It should be easy to setup the same build with Windows gcc tools.
 
 ## Install Ubuntu Packages required for Building
@@ -124,7 +124,7 @@ ___
               * (The PRM-85 is great product giving you access to all of the useful ROMS)
 ___
 ## Limitations
- * Multiple UNIT support is NOT yet implemented however multiple drive support is..
+ * Multiple drive support is impliments but UNIT support is NOT
  * While most AMIGO and SS80 feature have been implemented my primary focus was on the HP85A and HP85B.
    * (I do not have access to other computers to test for full compatibility)
    * This means that a few AMIGO and SS80 GPIB commands are not yet implemented!
@@ -178,16 +178,16 @@ ___
 
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
 
-<b>hp85disk/lif/teledisk </b>
- * lif/teledisk
+[lif/teledisk](lif/teledisk)
+ * [lif/teledisk](lif/teledisk)
    * My TELEDISK LIF extracter
    * Important Contributions (My converted would not have been possible without these)
      * Dave Dunfield, LZSS Code and TeleDisk documentation
        * Copyright 2007-2008 Dave Dunfield All rights reserved.
-       * td0_lzss.h
-       * td0_lzss.c
+       * [td0_lzss.h](lif/teledisk/td0_lzss.h)
+       * td0_lzss.c](lif/teledisk/td0_lzss.c)
          * LZSS decoder
-       * td0notes.txt
+       * [td0notes.txt](lif/teledisk/td0notes.txt)
          * Teledisk Documentation
      * Jean-Franois DEL NERO, TeleDisk Documentation
        * Copyright (C) 2006-2014 Jean-Franois DEL NERO
@@ -295,17 +295,16 @@ ___
 </pre>
 
 
-
-## V2BOARD
-  * [New Board Design by Jay Hamlin](board/V2/releases)
-  * This board uses GPIB BUS drivers - code is currently untested
+## [V2 board by Jay Hamlin](board/V2/release)
+  * [Jay Hamlin designed this board](board/V2/releases)
+  * Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface
+  * <b>The code is work in progress - we will update this page when it is ready</b>
   * Use V2BOARD directive in Makefile to use this new board design
 ___
 
-## V1BOARD
-  * [Original board design without GPIB buffers](./board/V1/README.md)
+## [V1 board readme](board/V1/README.md)
+  * [My original board design without GPIB buffers](board/V1/README.md)
   * Comment out V2BOARD directive in Makefile to use original board
-  *
 ___ 
 
 ## Testing
@@ -317,28 +316,43 @@ ___
 
   * Note: the EMS ROM has extended INITIALIZE attributes
 <pre>
-  #Initializing: (already done on these images so you do not have to)
+  # Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
   INITIALIZE "AMIGO1",":D710",14,1
   INITIALIZE "SS80-2",":D720",128,1
   INITIALIZE "AMIGO2",":D730",14,1
   
-  #Listing files:
-  #first SS80
+  # Listing files:
+  # first SS80
   CAT ":D700"
-  #first AMIGO
+  # first AMIGO
   CAT ":D710"
-  #second SS80
+  # second SS80
   CAT ":D720"
-  #second AMIGO
+  # second AMIGO
   CAT ":D730"
   
-  #Loading file from second SS80:
+  # Loading file from second SS80:
   LOAD "HELLO:D720"
-  #Copying file between devices: fist AMIGO to second AMIGO
+  # Copying file between devices: fist AMIGO to second AMIGO
   COPY "HELLO:D710" TO "HELLO:D730"
-  #Copying ALL files between devices: FIRST SS80 to Second SS80
+  # Copying ALL files between devices: FIRST SS80 to Second SS80
   COPY ":D700" TO ":D720"
+
+  # Load BASIC program from a text file 
+  GET "HELLO":D730"
+  # Save a BASIC program as test file
+  SAVE "HELLO:D720"
+  # Delete a file
+  PURGE "HELLO:D730"
+  # Load a BASIC format program
+  LOAD "HELLO:D700"
+  # Save a BASIC format program
+  SAVE "HELLO:D710"
+  # Clear memory
+  SCRATCH
+  # List a BASIC program
+  LIST
 </pre>
 ___ 
 
@@ -363,44 +377,18 @@ ___
   * [README.md](README.md)
     This file
 
+  * [board](board)
+    * [V1](board/V1)
+       * V1 Board documentation and Release files
+       * [board design and pinouts of this project and a schematic PDF ](board/V1/HP85Disk.pdf)
+       * [board design and pinouts of this project and a schematic DOC ](board/V1//HP85Disk.doc)
+       * [board README.md](board/V1/HP85Disk.doc)
+    * [V2/releases](V2/releses)
+       * Jay Hamlin version 2 circuit board design using GPIB buffers
+
   * [Documents](Documents)
-    * [59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf](Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf)
-      * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
-    * [5955-3442_cs80-is-pm-ocr.pdf](Documents/5955-3442_cs80-is-pm-ocr.pdf)
-      * CS/80 INSTRUCTION SET
-    * [5957-6560_9133_9134_D_H_L_Service_Apr88.pdf](Documents/5957-6560_9133_9134_D_H_L_Service_Apr88.pdf)
-      * HP 9133/9134 D/H/L Service Manual
-    * [5957-6584_9123D_3.](Documents/5957-6584_9123D_3.)5_Flex_Disc_Nov85.pdf
-      * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (Documents/PART NUMBER 09121-90030
-    * [5958-4129_SS80_Nov-1985-ocr.pdf](Documents/5958-4129_SS80_Nov-1985-ocr.pdf)
-      * SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (Documents/HP-IB IMPLEMENTATION)
-    * [amigo-command-set-ocr.pdf](Documents/amigo-command-set-ocr.pdf)
-      * Appendix A HP 9895A Disc Memory Command Set
-    * [CIB24SRA.pdf](Documents/CIB24SRA.pdf)
-      * GPIB connector diagram of the part we used in this project form L-COM 
-    * [CIB24SRA.step](Documents/CIB24SRA.step)
-      * GPIB connector design file of the part we used in this project form L-COM 
-    * GPIB protocol.pdf
-      * Copy of GPIB commands and pinout from Linux GPIB project
-      * See: http://linux-gpib.sourceforge.net
-    * [handshake.pdf](Documents/handshake.pdf)
-      * Highlighted excerpt of just the 3 wire GPIB handshake
-    * [HANDSHAKING.pdf](Documents/HANDSHAKING.pdf)
-      * Highlighted full version of 3 wire GPIB handshake by Ian Poole
-    * [HP85Disk.pdf](Documents/HP85Disk.pdf)
-      * Detailed pinouts of this project and a schematic
-    * [HP9133AB-09134-90032-Aug-1983.pdf](Documents/HP9133AB-09134-90032-Aug-1983.pdf)
-      * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
-    * [HP913x.pdf](Documents/HP913x.pdf)
-      * HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual
-    * [hp-ib_tutorial_1980.pdf](Documents/hp-ib_tutorial_1980.pdf)
-      * Tutorial Description of the Hewlett-Packard Interface Bus
-    * [HPIB_tutorial_HP.pdf](Documents/HPIB_tutorial_HP.pdf)
-      * Tutorial Description of the Hewlett-Packard Interface Bus
-    * [IEEE-488_Wikipedia_offline.pdf](Documents/IEEE-488_Wikipedia_offline.pdf)
-      * Offline copy of Wikipedia GPIB article
-    * [README.md](Documents/README.md) 
-      * Description of file under the Documents folder
+  * GPIB BUS, HP device, LIF and chips documentation for this project
+    * [Documents/README.md](Documents/README.md) 
 
   * [fatfs](fatfs)
     * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
@@ -596,7 +584,7 @@ ___
        * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
      * [README.txt](lif/teledisk/README.txt)
        * Credits
-     * Important Contributions (lif/teledisk/My converted would not have been possible without these)
+     * Important Contributions (My converter would not have been possible without these)
        * Dave Dunfield, LZSS Code and TeleDisk documentation
          * Copyright 2007-2008 Dave Dunfield All rights reserved.
          * [td0_lzss.h](lif/teledisk/td0_lzss.h)
