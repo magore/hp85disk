@@ -297,7 +297,7 @@ ___
 
 
 ## V2BOARD
-  * [New Board Design by Jay Hamlin](board/V2/current)
+  * [New Board Design by Jay Hamlin](board/V2/releases)
   * This board uses GPIB BUS drivers - code is currently untested
   * Use V2BOARD directive in Makefile to use this new board design
 ___
