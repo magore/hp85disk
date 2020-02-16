@@ -72,7 +72,7 @@ ___
 ___
 
 ## Using the emulator with provider examples
-   * See sdcard.cfg for configuration settings and setting and documentation.
+   * See [sdcard.cfg](sdcard/sdcard.cfg] for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
        * The following example works for an HP85 attached to the emulator via GPIB bus.
          * PRINTER IS 705
@@ -86,7 +86,7 @@ ___
        * Copy the files inside the project SDCARD folder to the home folder of a fat32 formatted drive
          * All image files and configuration must be in the home folder only - not in a subdirectory.
          * You may store other user files in sub folders of your choosing.
-       * Verify hpdisk.cfg configuration settings for your computer
+       * Verify [hpdisk.cfg](sdcard/hpdisk.cfg) configuration settings for your computer
        * Insert card into emulator
        * Attract GPIB cables
        * Power on emulator
