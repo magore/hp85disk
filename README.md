@@ -297,13 +297,13 @@ ___
 
 
 ## V2BOARD
-  * @see ./board/V2/current for new board design by Jay Hamlin
+  * [New Board Design by Jay Hamlin](board/V2/current)
   * This board uses GPIB BUS drivers - code is currently untested
   * Use V2BOARD directive in Makefile to use this new board design
 ___
 
 ## V1BOARD
-  * @see ./board/V1/README.md for documentation on the original design
+  * ./board/V1/README.md for documentation on the original design
   * Comment out V2BOARD directive in Makefile to use original board
   *
 ___ 
