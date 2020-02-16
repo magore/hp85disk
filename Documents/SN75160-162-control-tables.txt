@@ -1,0 +1,85 @@
+Handshake
+=====
+GPIB Data Receive
+TE = 0
+	NRFD = 1 output float
+	NDAC = 1 output float
+	Read(DAV)
+        Read(BUS)
+PE = X 
+===============================
+GPIB data bus write
+TE = 1
+	Write(DAV) tristate
+	Read(NRFD)
+	Read(NDAC)
+
+Tristate GPIB DATA bus write
+	PE = 1
+	Write(DATA)
+
+Disable/Float GPIB data bus
+   	PE = 0
+	Write(DATA = 0xff) float
+
+init
+    	NRFD = 1    float
+    	NDAC = 1    float
+    	TE = 0
+	DC = 0      ATN IN, SRQ OUT
+	Read(DAV)
+    	TE = 1	
+	Write(DAV)
+	Read(NRFD)
+	Read(NDAC)
+    	PE = 0   	    open collector bus
+    	Write(DATA = 0xff)  open collector float
+write
+    	DATA = value tristate write
+    	PE = 1
+
+==========================
+Control lines
+DC = 0
+	ATN = OUT tristate ( only out during part of a GPIB write byte )
+	SRQ = IN
+
+DC = 1
+	ATN = IN
+	SRQ = OUT pullup
+(ATN is IN most of the time, if SRQ is high is is off the bus FLOAT)
+SC = 0
+	REN = IN
+	IFC = IN
+(alwasy low for this project)
+SC = 1
+	REN = OUT tristate
+	IFC = OUT tristate
+=====
+DC = 1
+TE = 1
+	ATN = IN 
+ATN = 1
+	EOI = OUT tristate
+ATN = 0
+	EOI = IN
+=====
+DC = 0
+TE = 0
+	ATN = OUT
+ATN = 1
+	EOI = IN
+ATN = 0
+	EOI = OUT tristate
+
+=====
+DC = 1
+TE = 0
+	EOI = IN
+=====
+DC = 0
+TE = 1
+	EOI = OUT tristate
+
+
+
