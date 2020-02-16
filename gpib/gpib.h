@@ -131,8 +131,6 @@ uint16_t gpib_unread ( uint16_t ch );
 uint8_t gpib_bus_read ( void );
 uint16_t gpib_control_pin_read ( void );
 uint16_t gpib_handshake_pin_read ( void );
-uint16_t gpib_control_port_read ( void );
-uint16_t gpib_handshake_port_read ( void );
 uint16_t gpib_write_byte ( uint16_t ch );
 uint16_t gpib_read_byte ( int trace );
 void gpib_decode_header ( FILE *fo );

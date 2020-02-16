@@ -22,6 +22,9 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
+### Board Version
+# comment out for original board version without drivers
+V2BOARD = 1   # tranceivers
 
 #BAUD=105200UL
 BAUD=500000UL
@@ -143,6 +146,10 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 	FLOATIO 
 
 DEFS += BAUD=$(BAUD)
+
+ifeq ($(V2BOARD),1)
+	DEFS += V2BOARD
+endif
 
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
@@ -279,7 +286,7 @@ flash:  all
 	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
-	avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
+	avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
 	./term
 	#./miniterm
 	# ===================================================

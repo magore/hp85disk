@@ -61,6 +61,7 @@ void gpib_clock_task( void );
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
 
 
+// control pins are the same on V1 and V2 hardware
 #define EOI     GPIO_B0
 #define DAV     GPIO_B1
 #define NRFD    GPIO_D2
@@ -70,10 +71,18 @@ void gpib_clock_task( void );
 #define ATN     GPIO_D6
 #define REN     GPIO_D7
 
+// V2 Hardware
+#define TE      GPIO_C2
+#define PE      GPIO_C3
+#define DC      GPIO_C4
+#define SC      GPIO_C5
+
+// No loger being used
 #ifndef SOFTWARE_PP
 #warning Hardware PP
 #define PPE     GPIO_B2
 #endif
+
 
 ///@brief changes pin mode to read, then read
 #define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
@@ -101,6 +110,9 @@ void gpib_clock_task( void );
 
 ///@brief changes to state of full 8bit port to in then read
 #define GPIB_BUS_RD()       GPIO_PORT_RD(GPIO_A)
+
+///@brief writes GPIB port latch without changing to write direction
+#define GPIB_BUS_LATCH_WR(val) GPIO_PORT_LATCH_WR(GPIO_A,val)
 
 ///@brief changes to state of full 8bit port to out then write
 #define GPIB_BUS_WR(val)    GPIO_PORT_WR(GPIO_A,val)
