@@ -364,7 +364,7 @@ ___
     This file
 
   * [Documents](Documents)
-    * [Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf](Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf)
+    * [59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf](Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf)
       * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
     * [Documents/5955-3442_cs80-is-pm-ocr.pdf](Documents/5955-3442_cs80-is-pm-ocr.pdf)
       * CS/80 INSTRUCTION SET
