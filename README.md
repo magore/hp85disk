@@ -352,322 +352,322 @@ ___
 
 
 ## Files
-  * ./COPYRIGHT.md
+  * [COPYRIGHT.md](COPYRIGHT.md)
     Project Copyrights 
-  * ./main.c
+  * [main.c](main.c)
     Main start-up code
-  * ./main.h
+  * [main.h](main.h)
     Main start-up code
-  * ./notes.txt
+  * [notes.txt](notes.txt)
     Note - working on converting compiled constants into run time configuration
-  * ./README.md
+  * [README.md](README.md)
     This file
 
-  * Documents
-    * 59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf
+  * (Documents)[Documents)
+    * [Documents/59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf](59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf)
       * CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS
-    * 5955-3442_cs80-is-pm-ocr.pdf
+    * [Documents/5955-3442_cs80-is-pm-ocr.pdf](5955-3442_cs80-is-pm-ocr.pdf)
       * CS/80 INSTRUCTION SET
-    * 5957-6560_9133_9134_D_H_L_Service_Apr88.pdf
+    * [Documents/5957-6560_9133_9134_D_H_L_Service_Apr88.pdf](5957-6560_9133_9134_D_H_L_Service_Apr88.pdf)
       * HP 9133/9134 D/H/L Service Manual
-    * 5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf
+    * [Documents/5957-6584_9123D_3.](5957-6584_9123D_3.)5_Flex_Disc_Nov85.pdf
       * UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030
-    * 5958-4129_SS80_Nov-1985-ocr.pdf
+    * [Documents/5958-4129_SS80_Nov-1985-ocr.pdf](5958-4129_SS80_Nov-1985-ocr.pdf)
       * SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)
-    * amigo-command-set-ocr.pdf
+    * [Documents/amigo-command-set-ocr.pdf](amigo-command-set-ocr.pdf)
       * Appendix A HP 9895A Disc Memory Command Set
-    * CIB24SRA.pdf
+    * [Documents/CIB24SRA.pdf](CIB24SRA.pdf)
       * GPIB connector diagram of the part we used in this project form L-COM 
-    * CIB24SRA.step
+    * [Documents/CIB24SRA.step](CIB24SRA.step)
       * GPIB connector design file of the part we used in this project form L-COM 
     * GPIB protocol.pdf
       * Copy of GPIB commands and pinout from Linux GPIB project
       * See: http://linux-gpib.sourceforge.net
-    * handshake.pdf
+    * [Documents/handshake.pdf](handshake.pdf)
       * Highlighted excerpt of just the 3 wire GPIB handshake
-    * HANDSHAKING.pdf
+    * [Documents/HANDSHAKING.pdf](HANDSHAKING.pdf)
       * Highlighted full version of 3 wire GPIB handshake by Ian Poole
-    * HP85Disk.pdf
+    * [Documents/HP85Disk.pdf](HP85Disk.pdf)
       * Detailed pinouts of this project and a schematic
-    * HP9133AB-09134-90032-Aug-1983.pdf
+    * [Documents/HP9133AB-09134-90032-Aug-1983.pdf](HP9133AB-09134-90032-Aug-1983.pdf)
       * HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A
-    * HP913x.pdf
+    * [Documents/HP913x.pdf](HP913x.pdf)
       * HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual
-    * hp-ib_tutorial_1980.pdf
+    * [Documents/hp-ib_tutorial_1980.pdf](hp-ib_tutorial_1980.pdf)
       * Tutorial Description of the Hewlett-Packard Interface Bus
-    * HPIB_tutorial_HP.pdf
+    * [Documents/HPIB_tutorial_HP.pdf](HPIB_tutorial_HP.pdf)
       * Tutorial Description of the Hewlett-Packard Interface Bus
-    * IEEE-488_Wikipedia_offline.pdf
+    * [Documents/IEEE-488_Wikipedia_offline.pdf](IEEE-488_Wikipedia_offline.pdf)
       * Offline copy of Wikipedia GPIB article
-    * README.md 
+    * [Documents/README.md](README.md) 
       * Description of file under the Documents folder
 
-  * fatfs
-    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
-    * 00history.txt
-    * 00readme.txt
-    * ff.c
-    * ffconf.h
-    * ff.h
-    * integer.h
+  * [fatfs](fatfs)
+    * [fatfs/R0.](R0.)12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
+    * [fatfs/00history.txt](00history.txt)
+    * [fatfs/00readme.txt](00readme.txt)
+    * [fatfs/ff.c](ff.c)
+    * [fatfs/ffconf.h](ffconf.h)
+    * [fatfs/ff.h](ff.h)
+    * [fatfs/integer.h](integer.h)
 
-  * fatfs.hal
-    * R0.12b FatFS code from (C) ChaN, 2016 with changes
+  * [fatfs.hal](fatfs.hal)
+    * [fatfs.hal/R0.](R0.)12b FatFS code from (C) ChaN, 2016 with changes
     * Hardware abstraction layer based on example AVR project
-    * diskio.c
+    * [fatfs.hal/diskio.c](diskio.c)
       * Low level disk I/O module glue functions (C)ChaN, 2016 
-    * diskio.h
+    * [fatfs.hal/diskio.h](diskio.h)
       * Low level disk I/O module glue functions (C)ChaN, 2016 
-    * mmc.c
+    * [fatfs.hal/mmc.c](mmc.c)
       * Low level MMC I/O by (C)ChaN, 2016 with modifications
-    * mmc.h
+    * [fatfs.hal/mmc.h](mmc.h)
       * Low level MMC I/O by (C)ChaN, 2016 with modifications
-    * mmc_hal.c
+    * [fatfs.hal/mmc_hal.c](mmc_hal.c)
       * My Hardware abstraction layer code
-    * mmc_hal.h
+    * [fatfs.hal/mmc_hal.h](mmc_hal.h)
       * My Hardware abstraction layer code
 
-  * fatfs.sup
+  * [fatfs.sup](fatfs.sup)
     * Support utility and POSIX rapper factions
-    * fatfs.h
+    * [fatfs.sup/fatfs.h](fatfs.h)
       * FatFS header files
-    * fatfs_sup.c
-    * fatfs_sup.h
+    * [fatfs.sup/fatfs_sup.c](fatfs_sup.c)
+    * [fatfs.sup/fatfs_sup.h](fatfs_sup.h)
       * FatFS file listing and display functions
-    * fatfs_tests.c
-    * fatfs_tests.h
+    * [fatfs.sup/fatfs_tests.c](fatfs_tests.c)
+    * [fatfs.sup/fatfs_tests.h](fatfs_tests.h)
       * FatFS user test functions
 
-  * gpib
+  * [gpib](gpib)
     * My GPIB code for AMIGO SS80 and PPRINTER support
-    * amigo.c
+    * [gpib/amigo.c](amigo.c)
       * AMIGO parser
-    * amigo.h
+    * [gpib/amigo.h](amigo.h)
       * AMIGO parser
-    * defines.h
+    * [gpib/defines.h](defines.h)
       * Main GPIB header and configuration options
-    * drives.c
+    * [gpib/drives.c](drives.c)
       * Supported Drive Parameters 
-    * drive_references.txt
+    * [gpib/drive_references.txt](drive_references.txt)
       * General Drive Parameters Documentation for all known drive types
-    * format.c
+    * [gpib/format.c](format.c)
       * LIF format and file utilities
-    * gpib.c
+    * [gpib/gpib.c](gpib.c)
       * All low level GPIB bus code
-    * gpib.h
+    * [gpib/gpib.h](gpib.h)
       * GPIB I/O code
-    * gpib_hal.c
+    * [gpib/gpib_hal.c](gpib_hal.c)
       * GPIB hardware abstraction code
-    * gpib_hal.h
+    * [gpib/gpib_hal.h](gpib_hal.h)
       * GPIB hardware abstraction code
-    * gpib_task.c
+    * [gpib/gpib_task.c](gpib_task.c)
       * GPIB command handler , initialization and tracing code
-    * gpib_task.h
+    * [gpib/gpib_task.h](gpib_task.h)
       * GPIB command handler , initialization and tracing code
-    * gpib_tests.c
+    * [gpib/gpib_tests.c](gpib_tests.c)
       * GPIB user tests
-    * gpib_tests.h
+    * [gpib/gpib_tests.h](gpib_tests.h)
       * GPIB user tests
-    * printer.c
+    * [gpib/printer.c](printer.c)
       * GPIB printer capture code
-    * printer.h
+    * [gpib/printer.h](printer.h)
       * GPIB printer capture code
-    * references.txt
+    * [gpib/references.txt](references.txt)
       * Main S80 SS80 AMIGO and GPIB references part numbers and web links
-    * ss80.c
+    * [gpib/ss80.c](ss80.c)
       * SS80 parser
-    * ss80.h
+    * [gpib/ss80.h](ss80.h)
       * SS80 parser
 
   * hardware
     * CPU hardware specific code
-    * baudrate.c
+    * [hardware/baudrate.c](baudrate.c)
       * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
-    * bits.h
+    * [hardware/bits.h](bits.h)
       * BIT set and clear functions
-    * cpu.h
+    * [hardware/cpu.h](cpu.h)
       * CPU specific include files
-    * delay.c
+    * [hardware/delay.c](delay.c)
       * Delay code
-    * delay.h
+    * [hardware/delay.h](delay.h)
       * Delay code
-    * hal.c
+    * [hardware/hal.c](hal.c)
       * GPIO functions, spi hardware abstraction layer and chip select logic
-    * hal.h
+    * [hardware/hal.h](hal.h)
       * GPIO functions, spi hardware abstraction layer and chip select logic
-    * iom1284p.h
+    * [hardware/iom1284p.h](iom1284p.h)
       * GPIO map for ATEMEGA 1284p
-    * mkdef.c
+    * [hardware/mkdef.c](mkdef.c)
       * Not used
-    * pins.txt
+    * [hardware/pins.txt](pins.txt)
       * AVR function to GPIO pin map
-    * ram.c
+    * [hardware/ram.c](ram.c)
       * Memory functions
-    * ram.h
+    * [hardware/ram.h](ram.h)
       * Memory functions
-    * rs232.c
+    * [hardware/rs232.c](rs232.c)
       * RS232 IO
-    * rs232.h
+    * [hardware/rs232.h](rs232.h)
       * RS232 IO
-    * rtc.c
+    * [hardware/rtc.c](rtc.c)
       * DS1307 I2C RTC code
-    * rtc.h
+    * [hardware/rtc.h](rtc.h)
       * DS1307 I2C RTC code
-    * spi.c
+    * [hardware/spi.c](spi.c)
       * SPI BUS code
-    * spi.h
+    * [hardware/spi.h](spi.h)
       * SPI BUS code
-    * TWI_AVR8.c
+    * [hardware/TWI_AVR8.c](TWI_AVR8.c)
       * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
-    * TWI_AVR8.h
+    * [hardware/TWI_AVR8.h](TWI_AVR8.h)
       * I2C code LUFA Library Copyright (C) Dean Camera, 2011.
-    * user_config.h
+    * [hardware/user_config.h](user_config.h)
       * Main include file MMC SLOW and FATS frequency and CPU frequency settings
 
   * lib
     * Library functions
-    * bcpp.cfg
+    * [lib/bcpp.cfg](bcpp.cfg)
       * BCPP C code formatter config
-    * matrix.c
+    * [lib/matrix.c](matrix.c)
       * Matrix code - not used
-    * matrix.h
+    * [lib/matrix.h](matrix.h)
       * Matrix code - not used
-    * matrix.txt
+    * [lib/matrix.txt](matrix.txt)
       *  A few notes about matrix operations
-    * queue.c
+    * [lib/queue.c](queue.c)
       * Queue functions
-    * queue.h
+    * [lib/queue.h](queue.h)
       * Queue functions
-    * sort.c
+    * [lib/sort.c](sort.c)
       * Sort functions - not used
-    * sort.h
+    * [lib/sort.h](sort.h)
       * Sort functions - not used
-    * stringsup.c
+    * [lib/stringsup.c](stringsup.c)
       * Various string processing functions
-    * stringsup.h
+    * [lib/stringsup.h](stringsup.h)
       * Various string processing functions
-    * time.c
+    * [lib/time.c](time.c)
       * POSIX time functions
-    * time.h
+    * [lib/time.h](time.h)
       * POSIX time functions
-    * timer.c
+    * [lib/timer.c](timer.c)
       * Timer task functions
-    * timer.h
+    * [lib/timer.h](timer.h)
       * Timer task functions
-    * timer_hal.c
+    * [lib/timer_hal.c](timer_hal.c)
       * Timer task hardware abstraction layer
-    * timetests.c
+    * [lib/timetests.c](timetests.c)
       * Time and timer test code
 
   * lif
     * LIF disk image utilities 
-    * lif/lifutils.c
-    * lif/lifutils.c
+    * [lif/lif/lifutils.c](lif/lifutils.c)
+    * [lif/lif/lifutils.c](lif/lifutils.c)
       * Functions that allow the emulator to import and export files from LIF images 
     * Makefile
       * Permits creating a standalone Linux version of the LIF emulator tools
     * Code by Mike Gore
       * Makefile 
         * Make stand alone Linux versions of LIF utility and optionaly TeleDisk to LIF converter
-      * lifsup.c
-      * lifsup.h
+      * [lif/lifsup.c](lifsup.c)
+      * [lif/lifsup.h](lifsup.h)
         * Stand alone libraries for LIF and TELEDISK utility 
           * These functions are also part of various hp85disk libraries
-      * lifutils.c
-      * lifutils.h
+      * [lif/lifutils.c](lifutils.c)
+      * [lif/lifutils.h](lifutils.h)
         *  LIF image functions, directory listing and file adding.extracting,renaming,deleting
-      * td02lif.c
-      * td02lif.h
+      * [lif/td02lif.c](td02lif.c)
+      * [lif/td02lif.h](td02lif.h)
         * My TeleDisk to LIF translator
-      * lif-notes.txt       
+      * [lif/lif-notes.txt](lif-notes.txt)       
         * My notes on decoding E010 format LIF images for HP-85
-      * README.txt
+      * [lif/README.txt](README.txt)
         * Notes on each file under lif and lif/teledisk
-      * 85-SS80.TD0 from hpmuseum.org
+      * [lif/85-SS80.](85-SS80.TD0) from hpmuseum.org
         * Damaged SS80 Excersizer from HP Musium
-      * 85-SS80.LIF         
+      * [lif/85-SS80.](85-SS80.LIF)LIF         
         * The current converter automaticcal did these repairs
           *  cyl 11, side 0 sector 116 mapped to 8
           *  cyl 13, side 0 sector 116 mapped to 11
           *  cyl 15, side 0 sector 10  missing - zero filled
 
-   * lif/teledisk       
+   * [lif/teledisk](lif/teledisk)
      * My TELEDISK LIF extracter 
        * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
-     * README.txt
+     * [lif/teledisk/README.txt](README.txt)
        * Credits
      * Important Contributions (My converted would not have been possible without these)
        * Dave Dunfield, LZSS Code and TeleDisk documentation
          * Copyright 2007-2008 Dave Dunfield All rights reserved.
-         * td0_lzss.h
-         * td0_lzss.c
+         * [lif/teledisk/td0_lzss.h](td0_lzss.h)
+         * [lif/teledisk/td0_lzss.c](td0_lzss.c)
            * LZSS decoder
-         * td0notes.txt
+         * [lif/teledisk/td0notes.txt](td0notes.txt)
            * Teledisk Documentation
        * Jean-Franois DEL NERO, TeleDisk Documentation 
          * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-           * wteledsk.htm
+           * [lif/teledisk/wteledsk.htm](wteledsk.htm)
              * TeleDisk documenation
            * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
-  * posix
+  * [posix](posix)
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
-    * posix/posix.c
-    * posix/posix.h
+    * [posix/posix.c](posix/posix.c)
+    * [posix/posix.h](posix/posix.h)
       * POSIX wrappers for fatfs - Unix file IO function call wrappers
-    * posix/posix_testsc
+    * [posix/posix_tests.c](posix/posix_tests.c)
       * POSIX user tests
 
-  * printf
+  * [printf](printf)
     * Printf and math IO functions
-    * printf/mathio.c
+    * [printf/mathio.c](printf/mathio.c)
       * Number conversions 
-    * printf/mathio.h
+    * [printf/mathio.h](printf/mathio.h)
       * Number conversions 
-    * printf/n2a.c
+    * [printf/n2a.c](printf/n2a.c)
       * Binary to ASCII converter number size only limited by memory
-    * printf/printf.c
+    * [printf/printf.c](printf/printf.c)
       * My small printf code - includes floating point support and user defined low character level IO
-    * printf/sscanf.c
+    * [printf/sscanf.c](printf/sscanf.c)
       * My small scanf code - work in progress
-    * printf/test_printf.c
+    * [printf/test_printf.c](printf/test_printf.c)
       * Test my printf against glibs 1,000,000 tests per data type
 
   * sdcard
     * My HP85 AMIGO and SS80 disk images
-      * SDCARD/hpdisk.cfg
+      * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
         * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
         * PRINTER address
-      * SDCARD/amigo.lif
+      * [sdcard/amigo.lif](sdcard/amigo.lif)
         * AMIGO disk image file number 1
         * Has some demo basic programs in it
-      * SDCARD/amigo-2.lif
+      * [sdcard/amigo-2.lif](sdcard/amigo-2.lif)
         * AMIGO disk image file number 2
         * Has some demo basic programs in it
-      * SDCARD/ss80.lif
+      * [sdcard/ss80.lif](sdcard/ss80.lif)
         * SS80 hard drive disk image file number 1
         * Has some demo basic programs in it
-      * SDCARD/ss80-2.lif
+      * [sdcard/ss80-2.lif](sdcard/ss80-2.lif)
         * SS80 hard drive disk image file number 2
         * Has some demo basic programs in it
     * My HP85 bus trace files
-      * SDCARD/amigo_trace.txt
+      * [sdcard/amigo_trace.txt](sdcard/amigo_trace.txt)
         * AMIGO trace file when connected to HP85 showing odd out of order command issue
-      * SDCARD/gpib_reset.txt
+      * [sdcard/gpib_reset.txt](sdcard/gpib_reset.txt)
         * GPIB reset trace when connected to HP85
-      * SDCARD/gpib_trace.txt
+      * [sdcard/gpib_trace.txt](sdcard/gpib_trace.txt)
         * GPIB transaction trace when connected to HP85
     * My HP85 plot capture files
-        * SDCARD/plot1.plt
-        * SDCARD/plot2.plt
-    * TREK85/
+        * [sdcard/plot1.plt](sdcard/plot1.plt)
+        * [sdcard/plot2.plt](sdcard/plot2.plt)
+    * [sdcard/TREK85](sdcard/TREK85)
 	  * TREK85 by Martin Hepperle, December 2015
 	  * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
-        * author.txt  
-        * readme.txt	
-        * Star Trek.pdf  
-        * TREK85.BAS  
-        * trek.lif
+        * [sdcard/TREK85/author.txt](sdcard/TREK85/author.txt)  
+        * [sdcard/TREK85/readme.txt](sdcrad/TREK85/readme.txt)	
+        * [sdcrad/TREK85/Star Trek.pdf](sdcard/TREK85/Start TRek.pdf)
+        * [sdcard/TREK85/TREK85.BAS](sdcrad/TREK85/TREK85.BAS)
+        * [sdcard/TREK85//trek.lif](sdcard/TREK85/trek.lif)
 
 ___
