@@ -7,8 +7,8 @@
    * https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html
    * [index](doxygen/html/index.html)
 
-## HP85 Disk Emulator Copyright (C) 2014-2019 Mike Gore 
- * New Board design by Jay Hamlin (C) 2018-2019
+## HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore 
+ * New Board design by Jay Hamlin (C) 2018-2020
  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
 ## HP85 emulator circuit board (C) 2019-2020 Jay Hamlin
