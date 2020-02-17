@@ -185,13 +185,13 @@ ___
      * Dave Dunfield, LZSS Code and TeleDisk documentation
        * Copyright 2007-2008 Dave Dunfield All rights reserved.
        * [td0_lzss.h](lif/teledisk/td0_lzss.h)
-       * td0_lzss.c](lif/teledisk/td0_lzss.c)
+       * [td0_lzss.c](lif/teledisk/td0_lzss.c)
          * LZSS decoder
        * [td0notes.txt](lif/teledisk/td0notes.txt)
          * Teledisk Documentation
      * Jean-Franois DEL NERO, TeleDisk Documentation
        * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-         * wteledsk.htm
+         * [wteledsk.htm](lif/teledisk/wteledsk.htm)
            * TeleDisk documenation
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
@@ -212,7 +212,7 @@ ___
    * <http://www.hpmusuem.org>
    * <http://bitsavers.trailing-edge.com>
    * <http://en.wikipedia.org/wiki/IEEE-488>
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## Enhanced version of Tony Duell's lif_utils by Joachim
@@ -224,13 +224,13 @@ ___
    * "CS/80 Instruction Set Programming Manual"
    * Printed: APR 1983
    * HP Part# 5955-3442
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## Amigo References: ("A" or "Amigo" is the short form used in the project)
    * "Appendix A of 9895A Flexible Disc Memory Service Manual"
    * HP Part# 09895-90030
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## HP-IB
@@ -238,7 +238,7 @@ ___
    * "Condensed Description of the Hewlett Packard Interface Bus"
    * Printed March 1975
    * HP Part# 59401-90030
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## Tutorial Description of the Hewlett Packard Interface Bus
@@ -247,24 +247,24 @@ ___
    * Printed January 1983
    * <http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf>
    * Printed 1987
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## GPIB / IEEE 488 Tutorial by Ian Poole
     * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
-   * See Documents folder
+   * See [Documents folder](documents)
 
 ___
 ## HP 9133/9134 D/H/L References
    * "HP 9133/9134 D/H/L Service Manual"
    * HP Part# 5957-6560
    * Printed: APRIL 1985, Edition 2
-   * See Documents folder
+   * See [Documents folder](documents)
 ___
 
 ## LIF File system Format
    * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
-   * See Documents folder
+   * See [Documents folder](documents)
 ___
 
 ## Useful Utilities
@@ -555,7 +555,7 @@ ___
     * Makefile
       * Permits creating a standalone Linux version of the LIF emulator tools
     * Code by Mike Gore
-      * Makefile 
+      * [Makefile](lif/Makefile)
         * Make stand alone Linux versions of LIF utility and optionaly TeleDisk to LIF converter
       * [lifsup.c](lif/lifsup.c)
       * [lifsup.h](lif/lifsup.h)
@@ -599,7 +599,7 @@ ___
            * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
-  * [(posix/posix)
+  * [posix](posix)
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * [posix.c](posix/posix.c)
     * [posix.h](posix/posix.h)
@@ -607,7 +607,7 @@ ___
     * [posix_tests.c](posix/posix_tests.c)
       * POSIX user tests
 
-  * [(printf)
+  * [printf](printf)
     * Printf and math IO functions
     * [mathio.c](printf/mathio.c)
       * Number conversions 
@@ -622,7 +622,7 @@ ___
     * [test_printf.c](printf/test_printf.c)
       * Test my printf against glibs 1,000,000 tests per data type
 
-  * sdcard
+  * [sdcard](sdcard)
     * My HP85 AMIGO and SS80 disk images
       * [hpdisk.cfg](sdcard/hpdisk.cfg)
         * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
@@ -654,7 +654,7 @@ ___
 	  * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
         * [author.txt](sdcard/TREK85/author.txt)  
         * [readme.txt](sdcrad/TREK85/readme.txt)	
-        * [Star Trek.pdf](sdcard/TREK85/Start TRek.pdf)
+        * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
         * [TREK85.BAS](sdcrad/TREK85/TREK85.BAS)
         * [trek.lif](sdcard/TREK85/trek.lif)
 
