@@ -61,15 +61,18 @@ ___
 ## GPIB ofline copy from WIKIPEDIA
  * IEEE-488 From Wikipedia, the free encyclopedia
 ___
+
 ## HPDIR project
  * LIF - or HP 9845 File System offline copy
    * http://www.hp9845.net/9845/projects/hpdir/
 ___
+
 ## HP Documentation - please note copyrights
  * Many files in the documents folder are Copyright by HP
    * they are only included here as a convenience.
  * See Documents/README.md
 ___
+
 ## TeleDisk Converter
  * See Documents/README.md
   * Important Contributions (My converted would not have been possible without these)
