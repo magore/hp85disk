@@ -17,6 +17,7 @@ var searchData=
   ['dbf_5fopen_5fwrite',['dbf_open_write',['../gpib__hal_8c.html#a9a6e6853672fd6150839e79ee4e857af',1,'dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors):&#160;gpib_hal.c'],['../gpib__hal_8h.html#a9a6e6853672fd6150839e79ee4e857af',1,'dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors):&#160;gpib_hal.c']]],
   ['dbf_5fread',['dbf_read',['../gpib__hal_8c.html#a2303ee350c0d266ac87a2135936cb727',1,'dbf_read(FIL *fp, void *buff, UINT btr, UINT *br):&#160;gpib_hal.c'],['../gpib__hal_8h.html#a2303ee350c0d266ac87a2135936cb727',1,'dbf_read(FIL *fp, void *buff, UINT btr, UINT *br):&#160;gpib_hal.c']]],
   ['dbf_5fwrite',['dbf_write',['../gpib__hal_8c.html#a14af877aeb5d346730aaabba033695bf',1,'dbf_write(FIL *fp, const void *buff, UINT btw, UINT *bw):&#160;gpib_hal.c'],['../gpib__hal_8h.html#a14af877aeb5d346730aaabba033695bf',1,'dbf_write(FIL *fp, const void *buff, UINT btw, UINT *bw):&#160;gpib_hal.c']]],
+  ['dc',['DC',['../gpib__hal_8h.html#a0caba21dab832e280875be65012b30fc',1,'gpib_hal.h']]],
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
   ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],

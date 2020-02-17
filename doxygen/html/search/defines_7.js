@@ -6,6 +6,7 @@ var searchData=
   ['get_5fsector_5fcount',['GET_SECTOR_COUNT',['../diskio_8h.html#a570216006f6a8fc4e1698b1bbb2d1dde',1,'diskio.h']]],
   ['get_5fsector_5fsize',['GET_SECTOR_SIZE',['../diskio_8h.html#ac73b5cf2135cbd459d109b96c9aa346a',1,'diskio.h']]],
   ['gpib_5fbus_5fin',['GPIB_BUS_IN',['../gpib__hal_8h.html#a6d56693f4cf584bd0f60e34bac99a846',1,'gpib_hal.h']]],
+  ['gpib_5fbus_5flatch_5fwr',['GPIB_BUS_LATCH_WR',['../gpib__hal_8h.html#a6b58c5851635d545d6e7e7f9baffec4c',1,'gpib_hal.h']]],
   ['gpib_5fbus_5fout',['GPIB_BUS_OUT',['../gpib__hal_8h.html#a0b2a1814bd9e6743b4389e0f9dce5e67',1,'gpib_hal.h']]],
   ['gpib_5fbus_5frd',['GPIB_BUS_RD',['../gpib__hal_8h.html#a360b506405be91c57d60724c5723e168',1,'gpib_hal.h']]],
   ['gpib_5fbus_5fsettle',['GPIB_BUS_SETTLE',['../gpib__hal_8h.html#a5f1e4767ce01d70700e03b6eb4965fce',1,'gpib_hal.h']]],

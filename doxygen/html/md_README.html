@@ -73,9 +73,15 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>HP85 Disk Emulator Copyright (C) 2014-2017 Mike Gore</h2>
+<h2>HP85 Disk Emulator Copyright (C) 2014-2019 Mike Gore</h2>
 <ul>
+<li>New Board design by Jay Hamlin (C) 2018-2019</li>
 <li>See <a class="el" href="COPYRIGHT_8md.html">COPYRIGHT</a> for a full copyright notice for the project</li>
+</ul>
+<h2>HP85 emulator circuit board developed by Jay Hamlin</h2>
+<h2>V2 notes - the V2 branch targets the new board by Jay Hamlin</h2>
+<ul>
+<li>The current code has NOT been tested on the new board yet</li>
 </ul>
 <h2>Features</h2>
 <ul>
@@ -108,11 +114,11 @@ README</h1>
 </ul>
 </li>
 <li>Type "lif help" in the emulator for a full list of commands<ul>
-<li>See the top of <a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lif/lifutils.c</a> for full documentation and examples.</li>
+<li>See the top of <a href="lif/lifutils.c">lifutils.c</a> for full documentation and examples.</li>
 </ul>
 </li>
-<li>TeleDisk to LIF extractor tool included - see lif directory README.md<ul>
-<li>td02lif 85-SS80.TD0 85-SS80.LIF <hr/>
+<li>TeleDisk to LIF extractor tool included - see <a class="el" href="md_lif_README.html">lif README.md</a><ul>
+<li><a href="lif/t202lif">td02lif</a> <a href="lif/85-SS80.TD0">85-SS80.TD0</a> <a href="lif/85-SS80.LIF">85-SS80.LIF</a> <hr/>
  <h2>OS Requirements for software building</h2>
 </li>
 </ul>
@@ -122,7 +128,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>I used Ubuntu 16.04LTS and 14.04LTS when developing the code</p><ul>
+<p>I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code</p><ul>
 <li>It should be easy to setup the same build with Windows gcc tools.</li>
 </ul>
 <h2>Install Ubuntu Packages required for Building</h2>
@@ -167,7 +173,7 @@ README</h1>
 </ul>
 <h2>Using the emulator with provider examples</h2>
 <ul>
-<li>See sdcard.cfg for configuration settings and setting and documentation.<ul>
+<li>See <a href="sdcard/sdcard.cfg">sdcard.cfg</a> for configuration settings and setting and documentation.<ul>
 <li>Printer capture is configured currently for my HP54645D scope<ul>
 <li>The following example works for an HP85 attached to the emulator via GPIB bus.<ul>
 <li>PRINTER IS 705</li>
@@ -176,7 +182,7 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>Disk images in SDCARD folder drive and configuration settings<ul>
+<li>Disk images in [sdcard](sdcard) folder drive and configuration settings<ul>
 <li>First SS80 HP9134L disk at 700 for my HP85A (with 85A ROMs)</li>
 <li>First Amigo 9121D disk at 710 for my HP85B (with 85B ROMs)</li>
 <li>Second SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)</li>
@@ -184,12 +190,12 @@ README</h1>
 </ul>
 </li>
 <li>How to use the examples with your HP85<ul>
-<li>Copy the files inside the project SDCARD folder to the home folder of a fat32 formatted drive<ul>
+<li>Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive<ul>
 <li>All image files and configuration must be in the home folder only - not in a subdirectory.</li>
 <li>You may store other user files in sub folders of your choosing.</li>
 </ul>
 </li>
-<li>Verify hpdisk.cfg configuration settings for your computer</li>
+<li>Verify <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> configuration settings for your computer</li>
 <li>Insert card into emulator</li>
 <li>Attract GPIB cables</li>
 <li>Power on emulator</li>
@@ -234,11 +240,11 @@ README</h1>
 </li>
 <li>Next for all detected drives the HP85 issues "Request Identify" to each in turn.<ul>
 <li>This is done one drive at a time in order</li>
-<li>The PPR keyword in the hpdisk.cfg is the PPR bit the drive uses<ul>
+<li>The PPR keyword in the <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> is the PPR bit the drive uses<ul>
 <li>PPR of 0 = PPR response on GPIB data bus bit number 8 - as per GPIB BUS specifications.</li>
 </ul>
 </li>
-<li>The ID keyword in hpdisk.cfg is the 16 bit reply to "Request Identify Reply"<ul>
+<li>The ID keyword in <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> is the 16 bit reply to "Request Identify Reply"<ul>
 <li>IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information<ul>
 <li>The HP85A can only use its <em>hardcoded firmware tables</em> to map ID to disk layout parameters</li>
 <li>This implies that the HP85A can only use AMIGO disks it has defined in firmware.</li>
@@ -261,7 +267,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>Multiple UNIT support is NOT yet implemented however multiple drive support is..</p><ul>
+<p>Multiple drive support is impliments but UNIT support is NOT</p><ul>
 <li>While most AMIGO and SS80 feature have been implemented my primary focus was on the HP85A and HP85B.<ul>
 <li>(I do not have access to other computers to test for full compatibility)</li>
 <li>This means that a few AMIGO and SS80 GPIB commands are not yet implemented!<ul>
@@ -276,13 +282,13 @@ README</h1>
 </li>
 <li>To attach a drive to our computer, real or otherwise, you must know:<ul>
 <li>The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.<ul>
-<li>See ADDRESS, PPR and ID values in SDCARD/hpdisk.cfg</li>
+<li>See ADDRESS, PPR and ID values in <a href="sdcard.cfg">hpdisk.cfg</a></li>
 </ul>
 </li>
 <li>Older computers may only support AMIGO drives.<ul>
 <li>Such computers will have a hard coded in firmware list of drive its supports.<ul>
 <li>These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.</li>
-<li><em>If these assumptions do NOT match the layout defined in the hpdisk.cfg no drives will be detected.</em></li>
+<li><em>If these assumptions do NOT match the layout defined in the <a href="sdcard/sdcard.cfg">hpdisk.cfg</a> no drives will be detected.</em></li>
 </ul>
 </li>
 </ul>
@@ -293,10 +299,10 @@ README</h1>
 <li>See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)</li>
 </ul>
 </li>
-<li>In all cases the hpdisk.cfg parameters MUST match these expectations.</li>
+<li>In all cases the <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> parameters MUST match these expectations.</li>
 </ul>
 </li>
-<li>The hpdisk.cfg file tells the emulator how the emulated disk is defined.<ul>
+<li>The <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> file tells the emulator how the emulated disk is defined.<ul>
 <li>GPIB BUS address, Parallel Poll Response bit number and AMIGO Request Identify response values.</li>
 <li>Additional detail for SS80 drives that newer computers can use.</li>
 <li>In ALL cases the file informs the code what parameters to emulate and report.<ul>
@@ -306,9 +312,9 @@ README</h1>
 </ul>
 </li>
 <li>Debugging<ul>
-<li>You can enable reporting of all unimplemented GPIB commands (see <em>TODO</em> debug option in hpdisk.cfg)<ul>
+<li>You can enable reporting of all unimplemented GPIB commands (see <em>TODO</em> debug option in <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> )<ul>
 <li>Useful if you are trying this on a non HP85 device</li>
-<li>See the SDCARD/hpdisk.cfg for documentation on the full list of debugging options</li>
+<li>See the <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> for documentation on the full list of debugging options</li>
 </ul>
 </li>
 <li>The emulator can passively log all transactions between real hardware on the GPIB bus<ul>
@@ -337,18 +343,18 @@ README</h1>
 <p><b>Anders Gustafsson was extremely helpful in providing me his current code and details of his project - which I am very thankful for.</b></p>
 <p>As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications - NOT because of any problems with his original work.</p>
 <p>Although mostly rewritten I have maintained the basic concept of using state machines for GPIB read and write functions as well as for SS80 execute state tracking.</p>
-<p><b>hp85disk/lif/teledisk </b></p><ul>
-<li>lif/teledisk<ul>
+<p><a href="lif/teledisk">lif/teledisk</a></p><ul>
+<li><a href="lif/teledisk">lif/teledisk</a><ul>
 <li>My TELEDISK LIF extracter</li>
 <li>Important Contributions (My converted would not have been possible without these)<ul>
 <li>Dave Dunfield, LZSS Code and TeleDisk documentation<ul>
 <li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
-<li>td0_lzss.h</li>
-<li>td0_lzss.c<ul>
+<li><a href="lif/teledisk/td0_lzss.h">td0_lzss.h</a></li>
+<li><a href="lif/teledisk/td0_lzss.c">td0_lzss.c</a><ul>
 <li>LZSS decoder</li>
 </ul>
 </li>
-<li>td0notes.txt<ul>
+<li><a href="lif/teledisk/td0notes.txt">td0notes.txt</a><ul>
 <li>Teledisk Documentation</li>
 </ul>
 </li>
@@ -356,7 +362,7 @@ README</h1>
 </li>
 <li>Jean-Franois DEL NERO, TeleDisk Documentation<ul>
 <li>Copyright (C) 2006-2014 Jean-Franois DEL NERO<ul>
-<li>wteledsk.htm<ul>
+<li><a href="lif/teledisk/wteledsk.htm">wteledsk.htm</a><ul>
 <li>TeleDisk documenation</li>
 </ul>
 </li>
@@ -390,7 +396,7 @@ README</h1>
 <li><a href="http://www.hpmusuem.org">http://www.hpmusuem.org</a></li>
 <li><a href="http://bitsavers.trailing-edge.com">http://bitsavers.trailing-edge.com</a></li>
 <li><a href="http://en.wikipedia.org/wiki/IEEE-488">http://en.wikipedia.org/wiki/IEEE-488</a></li>
-<li>See Documents folder</li>
+<li>See [Documents folder](documents)</li>
 </ul>
 </li>
 </ul>
@@ -406,14 +412,14 @@ README</h1>
 <li>"CS/80 Instruction Set Programming Manual"</li>
 <li>Printed: APR 1983</li>
 <li>HP Part# 5955-3442</li>
-<li>See Documents folder</li>
+<li>See [Documents folder](documents)</li>
 </ul>
 <hr/>
  <h2>Amigo References: ("A" or "Amigo" is the short form used in the project)</h2>
 <ul>
 <li>"Appendix A of 9895A Flexible Disc Memory Service Manual"</li>
 <li>HP Part# 09895-90030</li>
-<li>See Documents folder</li>
+<li>See [Documents folder](documents)</li>
 </ul>
 <hr/>
  <h2>HP-IB</h2>
@@ -422,7 +428,7 @@ README</h1>
 <li>"Condensed Description of the Hewlett Packard Interface Bus"</li>
 <li>Printed March 1975</li>
 <li>HP Part# 59401-90030</li>
-<li>See Documents folder</li>
+<li>See [Documents folder](documents)</li>
 </ul>
 <hr/>
  <h2>Tutorial Description of the Hewlett Packard Interface Bus</h2>
@@ -432,27 +438,27 @@ README</h1>
 <li>Printed January 1983</li>
 <li><a href="http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf">http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf</a></li>
 <li>Printed 1987</li>
-<li>See Documents folder</li>
+<li>See [Documents folder](documents)</li>
 </ul>
 <hr/>
  <h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
 <ul>
 <li><a href="http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php">http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php</a></li>
 </ul>
-<p>See Documents folder</p>
+<p>See [Documents folder](documents)</p>
 <hr/>
  <h2>HP 9133/9134 D/H/L References</h2>
 <ul>
 <li>"HP 9133/9134 D/H/L Service Manual"</li>
 <li>HP Part# 5957-6560</li>
 <li>Printed: APRIL 1985, Edition 2</li>
-<li>See Documents folder <hr/>
+<li>See [Documents folder](documents) <hr/>
 </li>
 </ul>
 <h2>LIF File system Format</h2>
 <ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
-<li>See Documents folder <hr/>
+<li>See [Documents folder](documents) <hr/>
 </li>
 </ul>
 <h2>Useful Utilities</h2>
@@ -485,76 +491,20 @@ README</h1>
     10  SRQ    Service Request          22  Shield Ground (SRQ) 
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
-</pre><hr/>
-<h2>AVR ATMEGA1284P pin assignments for HP85 Disk</h2>
+</pre><h2><a href="board/V2/release">V2 board by Jay Hamlin</a></h2>
 <ul>
-<li><dl class="section see"><dt>See also</dt><dd>Documents/HP85Disk.pdf for a hand drawn diagram</dd></dl>
+<li><a href="board/V2/releases">Jay Hamlin designed this board</a></li>
+<li>Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface</li>
+<li><b>The code is work in progress - we will update this page when it is ready</b></li>
+<li>Use V2BOARD directive in Makefile to use this new board design <hr/>
 </li>
-<li>GPIB: Each GPIB pin (8 data and 8 control lines ) attach to CPU via 120 ohm current limit resistor .<ul>
-<li>Each GPIB connector pin (8 data and 8 control lines) have a 10K pull-up resistor to VCC.</li>
 </ul>
-</li>
-<li>ISP header: MOSI,MISO,SCK,/Reset connects directly to ISP header</li>
-<li>Micro SD Interface: MOSI,MISO,SCK attach to CPU function via a 1k series resistor.<ul>
-<li>Micro SD interface has level shifters and internal 5V to 3.3V regulator</li>
-<li>PB3 /CS must have a 10K pull-up up to VCC to prevent access during ISP programming</li>
-<li>PB4 should have a 10K pull up help assure the SPI bus does not go into slave mode.</li>
-</ul>
-</li>
-<li>RS232 TTL: connect to FTDI232 USB board which also provides 5V VCC power to all circuits..</li>
-<li><p class="startli">I2C: SCL,SDA connect to optional DS1307 RTC board with each line having a 2k2 pull-up </p><pre></pre><pre>                       ATMEGA1284P (and ATMEGA644P) 
-                       +---V---+ 
-     5 EOI INT0  PB0  1|       |40  PA0      D1  1 
-     6 DAV INT1  PB1  2|       |39  PA1      D2  2 
-       PP  INT2  PB2  3|       |38  PA2      D3  3 
-    SD /CS  PWM  PB3  4|       |37  PA3      D4  4 
-       NC   PWM  PB4  5|       |36  PA4      D5 13 
-    SD     MOSI  PB5  6|       |35  PA5      D6 14 
-    SD     MISO  PB6  7|       |34  PA6      D7 15 
-    SD      SCK  PB7  8|       |33  PA7      D8 16 
-    10K pull-up  /RST  9|       |32  AREF     0.1uf 
-       +5        VCC 10|       |31  GND      GND   
-       GND       GND 11|       |30  AVCC     +5    
-    20MHZ      XTAL2 12|       |29  PC7      NC    
-    20MHZ      XTAL1 13|       |28  PC6      NC    
-       RX   RX0  PD0 14|       |27  PC5  TDI JTAG 
-       TX   TX0  PD1 15|       |26  PC4  TDO JTAG 
-     7 NRFD RX1  PD2 16|       |25  PC3  TMS JTAG 
-     8 NDAC TX1  PD3 17|       |24  PC2  TCK JTAG 
-     9 IFC  PWM  PD4 18|       |23  PC1  SDA I2C   
-    10 SRQ  PWM  PD5 19|       |22  PC0  SCL I2C  
-    11 ATN  PWM  PD6 20|       |21  PD7  PWM REN 17 
-                       +-------+ 
-</pre></li>
-</ul>
-<hr/>
-<h2>Parallel Poll Response circuit</h2>
+<h2>board/V1/README.md "V1 board readme"</h2>
 <ul>
-<li>Uses: Three chips 74HC05, 74HC32, 74HC595</li>
-<li>Parallel Poll Response must be less than 2 Microseconds therefore we use hardware to do it!</li>
-<li><dl class="section see"><dt>See also</dt><dd>Documents/HP85Disk.pdf for a hand drawn diagram</dd></dl>
-<pre>
-    ATMEGA               HC595             HC05 
-                      +----V----+          +-V-+  
-    3 PB2 -------- 12 |RCLK   Q0| 15 -x- 1 |   | 2 --- GPIB D8 
-    6 MOSI ------- 14 |SER    Q1| 1  -x- 3 |   | 4 --- GPIB D7 
-    8 SCK -------- 11 |SRCLK  Q2| 2  -x- 5 |   | 6 --- GPIB D6 
-    9 IFC -------- 10 |SRCLR  Q3| 3  -x- 9 |   | 8 --- GPIB D5 
-           HC32       |         |     |    |   | 7 GND 
-          +-V-+       |         |     |    |   |14 VCC 
-     EOI 2|   |       |         |     |    +---+ 
-     ATN 1|   |       |         |     --- each line has its own 
-          |   | 3--13 |/OE      |          10K resistor to GND 
-    VCC 14|   |       |         | 16 VCC 
-    GND  7|   |       |         |  8 GND 
-          +---+       +---------+ 
-</pre></li>
+<li>My original board design without GPIB buffers</li>
+<li>Comment out V2BOARD directive in Makefile to use original board <hr/>
+</li>
 </ul>
-<p>Notes: When both EOI and ATN are low the HC32 enables HC595 outputs</p><ul>
-<li>If any HC595 output is high the GPIB bus bit will be pulled low</li>
-<li>IFC low resets the HC595 outputs low - so the HC05 outputs will float.</li>
-</ul>
-<hr/>
 <h2>Testing</h2>
 <ul>
 <li>Testing was done with an HP85A (with extended EMS ROM)<ul>
@@ -567,26 +517,55 @@ README</h1>
 </ul>
 </li>
 <li>Note: the EMS ROM has extended INITIALIZE attributes <pre>
-  #Initializing: (already done on these images so you do not have to)
+<h1>Initializing: (already done on these images so you do not have to)</h1>
+</pre></li>
+</ul>
+<pre>
   INITIALIZE "SS80-1",":D700",128,1
   INITIALIZE "AMIGO1",":D710",14,1
   INITIALIZE "SS80-2",":D720",128,1
-  INITIALIZE "AMIGO2",":D730",14,1</pre></li>
-</ul>
-<pre>  #Listing files:
-  #first SS80
+  INITIALIZE "AMIGO2",":D730",14,1</pre><pre><h1>Listing files:</h1>
+</pre><pre>
+<h1>first SS80</h1>
+</pre><pre>
   CAT ":D700"
-  #first AMIGO
+<h1>first AMIGO</h1>
+</pre><pre>
   CAT ":D710"
-  #second SS80
+<h1>second SS80</h1>
+</pre><pre>
   CAT ":D720"
-  #second AMIGO
-  CAT ":D730"</pre><pre>  #Loading file from second SS80:
+<h1>second AMIGO</h1>
+</pre><pre>
+  CAT ":D730"</pre><pre><h1>Loading file from second SS80:</h1>
+</pre><pre>
   LOAD "HELLO:D720"
-  #Copying file between devices: fist AMIGO to second AMIGO
+<h1>Copying file between devices: fist AMIGO to second AMIGO</h1>
+</pre><pre>
   COPY "HELLO:D710" TO "HELLO:D730"
-  #Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D700" TO ":D720"
+<h1>Copying ALL files between devices: FIRST SS80 to Second SS80</h1>
+</pre><pre>
+  COPY ":D700" TO ":D720"</pre><pre><h1>Load BASIC program from a text file</h1>
+</pre><pre>
+  GET "HELLO":D730"
+<h1>Save a BASIC program as test file</h1>
+</pre><pre>
+  SAVE "HELLO:D720"
+<h1>Delete a file</h1>
+</pre><pre>
+  PURGE "HELLO:D730"
+<h1>Load a BASIC format program</h1>
+</pre><pre>
+  LOAD "HELLO:D700"
+<h1>Save a BASIC format program</h1>
+</pre><pre>
+  SAVE "HELLO:D710"
+<h1>Clear memory</h1>
+</pre><pre>
+  SCRATCH
+<h1>List a BASIC program</h1>
+</pre><pre>
+  LIST
 </pre> <hr/>
 <h2>AVR Terminal Commands</h2>
 <ul>
@@ -599,384 +578,327 @@ README</h1>
 </ul>
 <h2>Files</h2>
 <ul>
-<li>./COPYRIGHT.md Project Copyrights</li>
-<li>./main.c Main start-up code</li>
-<li>./main.h Main start-up code</li>
-<li>./notes.txt Note - working on converting compiled constants into run time configuration</li>
-<li>./README.md This file</li>
-<li>Documents<ul>
-<li>59401-90030_Condensed_Description_of_the_Hewlett-Packard_Interface_Bus_Mar75-ocr.pdf<ul>
-<li>CONDENSED DESCRIPTION OF THE HEWLETT·PACKARD INTERFACE BUS</li>
+<li><a class="el" href="COPYRIGHT_8md.html">COPYRIGHT.md</a> Project Copyrights</li>
+<li><a href="main.c">main.c</a> Main start-up code</li>
+<li><a href="main.h">main.h</a> Main start-up code</li>
+<li><a href="notes.txt">notes.txt</a> Note - working on converting compiled constants into run time configuration</li>
+<li><a class="el" href="md_README.html">README.md</a> This file</li>
+<li>[board](board)<ul>
+<li><a href="board/V1">V1</a><ul>
+<li>V1 Board documentation and Release files</li>
+<li><a href="board/V1/HP85Disk.pdf">board design and pinouts of this project and a schematic PDF</a></li>
+<li><a href="board/V1//HP85Disk.doc">board design and pinouts of this project and a schematic DOC</a></li>
+<li><a href="board/V1/HP85Disk.doc">board README.md</a></li>
 </ul>
 </li>
-<li>5955-3442_cs80-is-pm-ocr.pdf<ul>
-<li>CS/80 INSTRUCTION SET</li>
-</ul>
-</li>
-<li>5957-6560_9133_9134_D_H_L_Service_Apr88.pdf<ul>
-<li>HP 9133/9134 D/H/L Service Manual</li>
-</ul>
-</li>
-<li>5957-6584_9123D_3.5_Flex_Disc_Nov85.pdf<ul>
-<li>UPDATE FOR THE 3 1/2-INCH FLEXIBLE DISC DRIVE SERVICE MANUAL (PART NUMBER 09121-90030</li>
-</ul>
-</li>
-<li>5958-4129_SS80_Nov-1985-ocr.pdf<ul>
-<li>SUBSET 80 FOR FIXED AND FLEXIBLE DISC DRIVES (HP-IB IMPLEMENTATION)</li>
-</ul>
-</li>
-<li>amigo-command-set-ocr.pdf<ul>
-<li>Appendix A HP 9895A Disc Memory Command Set</li>
-</ul>
-</li>
-<li>CIB24SRA.pdf<ul>
-<li>GPIB connector diagram of the part we used in this project form L-COM</li>
-</ul>
-</li>
-<li>CIB24SRA.step<ul>
-<li>GPIB connector design file of the part we used in this project form L-COM</li>
-</ul>
-</li>
-<li>GPIB protocol.pdf<ul>
-<li>Copy of GPIB commands and pinout from Linux GPIB project</li>
-<li>See: <a href="http://linux-gpib.sourceforge.net">http://linux-gpib.sourceforge.net</a></li>
-</ul>
-</li>
-<li>handshake.pdf<ul>
-<li>Highlighted excerpt of just the 3 wire GPIB handshake</li>
-</ul>
-</li>
-<li>HANDSHAKING.pdf<ul>
-<li>Highlighted full version of 3 wire GPIB handshake by Ian Poole</li>
-</ul>
-</li>
-<li>HP85Disk.pdf<ul>
-<li>Detailed pinouts of this project and a schematic</li>
-</ul>
-</li>
-<li>HP9133AB-09134-90032-Aug-1983.pdf<ul>
-<li>HPs 5 1/4-Inch Winchester Disc Drive Service Documentation - HP 9133A/8, 9134A/B, and 9135A</li>
-</ul>
-</li>
-<li>HP913x.pdf<ul>
-<li>HP 9133A/B, 9134A/B, and 9135A Disc Memory Users Manual</li>
-</ul>
-</li>
-<li>hp-ib_tutorial_1980.pdf<ul>
-<li>Tutorial Description of the Hewlett-Packard Interface Bus</li>
-</ul>
-</li>
-<li>HPIB_tutorial_HP.pdf<ul>
-<li>Tutorial Description of the Hewlett-Packard Interface Bus</li>
-</ul>
-</li>
-<li>IEEE-488_Wikipedia_offline.pdf<ul>
-<li>Offline copy of Wikipedia GPIB article</li>
-</ul>
-</li>
-<li>README.md<ul>
-<li>Description of file under the Documents folder</li>
+<li><a href="V2/releses">V2/releases</a><ul>
+<li>Jay Hamlin version 2 circuit board design using GPIB buffers</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>fatfs<ul>
+<li>[Documents](Documents)</li>
+<li>GPIB BUS, HP device, LIF and chips documentation for this project<ul>
+<li>Documents/README.md</li>
+</ul>
+</li>
+<li>[fatfs](fatfs)<ul>
 <li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes</li>
-<li>00history.txt</li>
-<li>00readme.txt</li>
-<li><a class="el" href="ff_8c.html">ff.c</a></li>
-<li><a class="el" href="ffconf_8h.html">ffconf.h</a></li>
-<li><a class="el" href="ff_8h.html">ff.h</a></li>
-<li><a class="el" href="integer_8h.html">integer.h</a></li>
+<li><a href="fatfs/00history.txt">00history.txt</a></li>
+<li><a href="fatfs/00readme.txt">00readme.txt</a></li>
+<li><a href="fatfs/ff.c">ff.c</a></li>
+<li><a href="fatfs/ffconf.h">ffconf.h</a></li>
+<li><a href="fatfs/ff.h">ff.h</a></li>
+<li><a href="fatfs/integer.h">integer.h</a></li>
 </ul>
 </li>
-<li>fatfs.hal<ul>
+<li><a href="fatfs.hal/fatfs.hal">fatfs.hal</a><ul>
 <li>R0.12b FatFS code from (C) ChaN, 2016 with changes</li>
 <li>Hardware abstraction layer based on example AVR project</li>
-<li><a class="el" href="diskio_8c.html">diskio.c</a><ul>
-<li>Low level disk I/O module glue functions (C)ChaN, 2016</li>
+<li><a href="fatfs.hal/diskio.c">diskio.c</a><ul>
+<li>Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016</li>
 </ul>
 </li>
-<li><a class="el" href="diskio_8h.html">diskio.h</a><ul>
-<li>Low level disk I/O module glue functions (C)ChaN, 2016</li>
+<li><a href="fatfs.hal/diskio.h">diskio.h</a><ul>
+<li>Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016</li>
 </ul>
 </li>
-<li><a class="el" href="mmc_8c.html">mmc.c</a><ul>
-<li>Low level MMC I/O by (C)ChaN, 2016 with modifications</li>
+<li><a href="fatfs.hal/mmc.c">mmc.c</a><ul>
+<li>Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications</li>
 </ul>
 </li>
-<li><a class="el" href="mmc_8h.html">mmc.h</a><ul>
-<li>Low level MMC I/O by (C)ChaN, 2016 with modifications</li>
+<li><a href="fatfs.hal/mmc.h">mmc.h</a><ul>
+<li>Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications</li>
 </ul>
 </li>
-<li><a class="el" href="mmc__hal_8c.html">mmc_hal.c</a><ul>
+<li><a href="fatfs.hal/mmc_hal.c">mmc_hal.c</a><ul>
 <li>My Hardware abstraction layer code</li>
 </ul>
 </li>
-<li><a class="el" href="mmc__hal_8h.html">mmc_hal.h</a><ul>
+<li><a href="fatfs.hal/mmc_hal.h">mmc_hal.h</a><ul>
 <li>My Hardware abstraction layer code</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>fatfs.sup<ul>
+<li><a href="fatfs.sup/fatfs.sup">fatfs.sup</a><ul>
 <li>Support utility and POSIX rapper factions</li>
-<li><a class="el" href="fatfs_8h.html">fatfs.h</a><ul>
+<li><a href="fatfs.sup/fatfs.h">fatfs.h</a><ul>
 <li>FatFS header files</li>
 </ul>
 </li>
-<li><a class="el" href="fatfs__sup_8c.html">fatfs_sup.c</a></li>
-<li><a class="el" href="fatfs__sup_8h.html">fatfs_sup.h</a><ul>
+<li><a href="fatfs.sup/fatfs_sup.c">fatfs_sup.c</a></li>
+<li><a href="fatfs.sup/fatfs_sup.h">fatfs_sup.h</a><ul>
 <li>FatFS file listing and display functions</li>
 </ul>
 </li>
-<li><a class="el" href="fatfs__tests_8c.html">fatfs_tests.c</a></li>
-<li><a class="el" href="fatfs__tests_8h.html">fatfs_tests.h</a><ul>
+<li><a href="fatfs.sup/fatfs_tests.c">fatfs_tests.c</a></li>
+<li><a href="fatfs.sup/fatfs_tests.h">fatfs_tests.h</a><ul>
 <li>FatFS user test functions</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>gpib<ul>
+<li><a href="gpib/gpib">gpib</a><ul>
 <li>My GPIB code for AMIGO SS80 and PPRINTER support</li>
-<li><a class="el" href="amigo_8c.html" title="AMIGO disk emulator for HP85 disk emulator project for AVR. ">amigo.c</a><ul>
+<li><a href="gpib/amigo.c">amigo.c</a><ul>
 <li>AMIGO parser</li>
 </ul>
 </li>
-<li><a class="el" href="amigo_8h.html" title="AMIGO disk emulator for HP85 disk emulator project for AVR. ">amigo.h</a><ul>
+<li><a href="gpib/amigo.h">amigo.h</a><ul>
 <li>AMIGO parser</li>
 </ul>
 </li>
-<li><a class="el" href="defines_8h.html" title="GPIB, AMIGO, SS80 and device defines. ">defines.h</a><ul>
+<li><a href="gpib/defines.h">defines.h</a><ul>
 <li>Main GPIB header and configuration options</li>
 </ul>
 </li>
-<li><a class="el" href="drives_8c.html" title="drive definitions for HP85 disk emulator project for AVR. ">drives.c</a><ul>
+<li><a href="gpib/drives.c">drives.c</a><ul>
 <li>Supported Drive Parameters</li>
 </ul>
 </li>
-<li>drive_references.txt<ul>
+<li><a href="gpib/drive_references.txt">drive_references.txt</a><ul>
 <li>General Drive Parameters Documentation for all known drive types</li>
 </ul>
 </li>
-<li>format.c<ul>
+<li><a href="gpib/format.c">format.c</a><ul>
 <li>LIF format and file utilities</li>
 </ul>
 </li>
-<li><a class="el" href="gpib_8c.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.c</a><ul>
+<li><a href="gpib/gpib.c">gpib.c</a><ul>
 <li>All low level GPIB bus code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib_8h.html" title="GPIB emulator for HP85 disk emulator project for AVR. ">gpib.h</a><ul>
+<li><a href="gpib/gpib.h">gpib.h</a><ul>
 <li>GPIB I/O code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__hal_8c.html" title="GPIB emulator hardwware layer for HP85 disk emulator project for AVR. ">gpib_hal.c</a><ul>
+<li><a href="gpib/gpib_hal.c">gpib_hal.c</a><ul>
 <li>GPIB hardware abstraction code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__hal_8h.html" title="GPIB emulator hardwware layer for HP85 disk emulator project for AVR. ">gpib_hal.h</a><ul>
+<li><a href="gpib/gpib_hal.h">gpib_hal.h</a><ul>
 <li>GPIB hardware abstraction code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__task_8c.html" title="High level GPIB command handler for HP85 disk emulator project for AVR. ">gpib_task.c</a><ul>
+<li><a href="gpib/gpib_task.c">gpib_task.c</a><ul>
 <li>GPIB command handler , initialization and tracing code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__task_8h.html" title="High level GPIB command handler for HP85 disk emulator project for AVR. ">gpib_task.h</a><ul>
+<li><a href="gpib/gpib_task.h">gpib_task.h</a><ul>
 <li>GPIB command handler , initialization and tracing code</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__tests_8c.html" title="GPIB diagnostic tests for HP85 disk emulator project for AVR. ">gpib_tests.c</a><ul>
+<li><a href="gpib/gpib_tests.c">gpib_tests.c</a><ul>
 <li>GPIB user tests</li>
 </ul>
 </li>
-<li><a class="el" href="gpib__tests_8h.html" title="GPIB diagnostic tests for HP85 disk emulator project for AVR. ">gpib_tests.h</a><ul>
+<li><a href="gpib/gpib_tests.h">gpib_tests.h</a><ul>
 <li>GPIB user tests</li>
 </ul>
 </li>
-<li><a class="el" href="printer_8c.html" title="GPIB Controller Mode code HP85 disk emulator project for AVR. ">printer.c</a><ul>
+<li><a href="gpib/printer.c">printer.c</a><ul>
 <li>GPIB printer capture code</li>
 </ul>
 </li>
-<li><a class="el" href="printer_8h.html" title="GPIB Controller mode code for HP85 disk emulator project. ">printer.h</a><ul>
+<li><a href="gpib/printer.h">printer.h</a><ul>
 <li>GPIB printer capture code</li>
 </ul>
 </li>
-<li>references.txt<ul>
+<li><a href="gpib/references.txt">references.txt</a><ul>
 <li>Main S80 SS80 AMIGO and GPIB references part numbers and web links</li>
 </ul>
 </li>
-<li><a class="el" href="ss80_8c.html" title="SS80 disk emulator for HP85 disk emulator project for AVR. ">ss80.c</a><ul>
+<li><a href="gpib/ss80.c">ss80.c</a><ul>
 <li>SS80 parser</li>
 </ul>
 </li>
-<li><a class="el" href="ss80_8h.html" title="SS80 disk emulator for HP85 disk emulator project for AVR. ">ss80.h</a><ul>
+<li><a href="gpib/ss80.h">ss80.h</a><ul>
 <li>SS80 parser</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>hardware<ul>
+<li>[hardware](hardware)<ul>
 <li>CPU hardware specific code</li>
-<li><a class="el" href="baudrate_8c.html">baudrate.c</a><ul>
+<li><a href="hardware/baudrate.c">baudrate.c</a><ul>
 <li>Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers</li>
 </ul>
 </li>
-<li><a class="el" href="bits_8h.html" title="Bit manipulation macros. ">bits.h</a><ul>
+<li><a href="hardware/bits.h">bits.h</a><ul>
 <li>BIT set and clear functions</li>
 </ul>
 </li>
-<li><a class="el" href="cpu_8h.html" title="Common CPU specific includes for ATEMAGE1284p. ">cpu.h</a><ul>
+<li><a href="hardware/cpu.h">cpu.h</a><ul>
 <li>CPU specific include files</li>
 </ul>
 </li>
-<li><a class="el" href="delay_8c.html" title="Extended delay routines for AVR. ">delay.c</a><ul>
+<li><a href="hardware/delay.c">delay.c</a><ul>
 <li>Delay code</li>
 </ul>
 </li>
-<li><a class="el" href="delay_8h.html" title="Extended delay routines for AVR. ">delay.h</a><ul>
+<li><a href="hardware/delay.h">delay.h</a><ul>
 <li>Delay code</li>
 </ul>
 </li>
-<li><a class="el" href="hal_8c.html" title="HAL layer SPI, GPIO, address and chip select. ">hal.c</a><ul>
+<li><a href="hardware/hal.c">hal.c</a><ul>
 <li>GPIO functions, spi hardware abstraction layer and chip select logic</li>
 </ul>
 </li>
-<li><a class="el" href="hal_8h.html">hal.h</a><ul>
+<li><a href="hardware/hal.h">hal.h</a><ul>
 <li>GPIO functions, spi hardware abstraction layer and chip select logic</li>
 </ul>
 </li>
-<li><a class="el" href="iom1284p_8h.html">iom1284p.h</a><ul>
+<li><a href="hardware/iom1284p.h">iom1284p.h</a><ul>
 <li>GPIO map for ATEMEGA 1284p</li>
 </ul>
 </li>
-<li><a class="el" href="mkdef_8c.html">mkdef.c</a><ul>
+<li><a href="hardware/mkdef.c">mkdef.c</a><ul>
 <li>Not used</li>
 </ul>
 </li>
-<li>pins.txt<ul>
+<li><a href="hardware/pins.txt">pins.txt</a><ul>
 <li>AVR function to GPIO pin map</li>
 </ul>
 </li>
-<li><a class="el" href="ram_8c.html" title="Memory Utilities and safe free for AVR. ">ram.c</a><ul>
+<li><a href="hardware/ram.c">ram.c</a><ul>
 <li>Memory functions</li>
 </ul>
 </li>
-<li><a class="el" href="ram_8h.html" title="Memory Utilities and safe free for AVR. ">ram.h</a><ul>
+<li><a href="hardware/ram.h">ram.h</a><ul>
 <li>Memory functions</li>
 </ul>
 </li>
-<li><a class="el" href="rs232_8c.html" title="RS232 Driver AVR8. ">rs232.c</a><ul>
+<li><a href="hardware/rs232.c">rs232.c</a><ul>
 <li>RS232 IO</li>
 </ul>
 </li>
-<li><a class="el" href="rs232_8h.html" title="RS232 Driver AVR8. ">rs232.h</a><ul>
+<li><a href="hardware/rs232.h">rs232.h</a><ul>
 <li>RS232 IO</li>
 </ul>
 </li>
-<li><a class="el" href="rtc_8c.html" title="DS1307 RTC Driver AVR8. ">rtc.c</a><ul>
+<li><a href="hardware/rtc.c">rtc.c</a><ul>
 <li>DS1307 I2C RTC code</li>
 </ul>
 </li>
-<li><a class="el" href="rtc_8h.html" title="DS1307 RTC Driver AVR8. ">rtc.h</a><ul>
+<li><a href="hardware/rtc.h">rtc.h</a><ul>
 <li>DS1307 I2C RTC code</li>
 </ul>
 </li>
-<li><a class="el" href="spi_8c.html" title="SPI Driver AVR8. ">spi.c</a><ul>
+<li><a href="hardware/spi.c">spi.c</a><ul>
 <li>SPI BUS code</li>
 </ul>
 </li>
-<li><a class="el" href="spi_8h.html" title="SPI Driver AVR8. ">spi.h</a><ul>
+<li><a href="hardware/spi.h">spi.h</a><ul>
 <li>SPI BUS code</li>
 </ul>
 </li>
-<li><a class="el" href="TWI__AVR8_8c.html" title="TWI Peripheral Driver (AVR8) ">TWI_AVR8.c</a><ul>
-<li>I2C code LUFA Library Copyright (C) Dean Camera, 2011.</li>
+<li><a href="hardware/TWI_AVR8.c">TWI_AVR8.c</a><ul>
+<li>I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.</li>
 </ul>
 </li>
-<li><a class="el" href="TWI__AVR8_8h.html" title="TWI Peripheral Driver (AVR8) ">TWI_AVR8.h</a><ul>
-<li>I2C code LUFA Library Copyright (C) Dean Camera, 2011.</li>
+<li><a href="hardware/TWI_AVR8.h">TWI_AVR8.h</a><ul>
+<li>I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.</li>
 </ul>
 </li>
-<li><a class="el" href="user__config_8h.html" title="Master Include for FatFs, RTC, Timers AVR8 - Part of HP85 disk emulator. ">user_config.h</a><ul>
+<li><a href="hardware/user_config.h">user_config.h</a><ul>
 <li>Main include file MMC SLOW and FATS frequency and CPU frequency settings</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>lib<ul>
+<li>[lib](lib)<ul>
 <li>Library functions</li>
-<li>bcpp.cfg<ul>
+<li><a href="lib/bcpp.cfg">bcpp.cfg</a><ul>
 <li>BCPP C code formatter config</li>
 </ul>
 </li>
-<li><a class="el" href="matrix_8c.html" title="matrix functions ">matrix.c</a><ul>
+<li><a href="lib/matrix.c">matrix.c</a><ul>
 <li>Matrix code - not used</li>
 </ul>
 </li>
-<li><a class="el" href="matrix_8h.html" title="matrix functions ">matrix.h</a><ul>
+<li><a href="lib/matrix.h">matrix.h</a><ul>
 <li>Matrix code - not used</li>
 </ul>
 </li>
-<li>matrix.txt<ul>
+<li><a href="lib/matrix.txt">matrix.txt</a><ul>
 <li>A few notes about matrix operations</li>
 </ul>
 </li>
-<li><a class="el" href="queue_8c.html" title="Ring buffer code. ">queue.c</a><ul>
+<li><a href="lib/queue.c">queue.c</a><ul>
 <li>Queue functions</li>
 </ul>
 </li>
-<li><a class="el" href="queue_8h.html" title="Ring buffer code. ">queue.h</a><ul>
+<li><a href="lib/queue.h">queue.h</a><ul>
 <li>Queue functions</li>
 </ul>
 </li>
-<li><a class="el" href="sort_8c.html">sort.c</a><ul>
+<li><a href="lib/sort.c">sort.c</a><ul>
 <li>Sort functions - not used</li>
 </ul>
 </li>
-<li><a class="el" href="sort_8h.html" title="Integer sort. ">sort.h</a><ul>
+<li><a href="lib/sort.h">sort.h</a><ul>
 <li>Sort functions - not used</li>
 </ul>
 </li>
-<li><a class="el" href="stringsup_8c.html">stringsup.c</a><ul>
+<li><a href="lib/stringsup.c">stringsup.c</a><ul>
 <li>Various string processing functions</li>
 </ul>
 </li>
-<li><a class="el" href="stringsup_8h.html" title="Various string and character functions. ">stringsup.h</a><ul>
+<li><a href="lib/stringsup.h">stringsup.h</a><ul>
 <li>Various string processing functions</li>
 </ul>
 </li>
-<li><a class="el" href="time_8c.html" title="Common Linux/POSIX time functions. ">time.c</a><ul>
+<li><a href="lib/time.c">time.c</a><ul>
 <li>POSIX time functions</li>
 </ul>
 </li>
-<li><a class="el" href="time_8h.html" title="Common Linux/POSIX time functions. ">time.h</a><ul>
+<li><a href="lib/time.h">time.h</a><ul>
 <li>POSIX time functions</li>
 </ul>
 </li>
-<li><a class="el" href="timer_8c.html" title="timer functions ">timer.c</a><ul>
+<li><a href="lib/timer.c">timer.c</a><ul>
 <li>Timer task functions</li>
 </ul>
 </li>
-<li><a class="el" href="timer_8h.html" title="timer functions ">timer.h</a><ul>
+<li><a href="lib/timer.h">timer.h</a><ul>
 <li>Timer task functions</li>
 </ul>
 </li>
-<li><a class="el" href="timer__hal_8c.html" title="timer hardware abstartion layer functions ">timer_hal.c</a><ul>
+<li><a href="lib/timer_hal.c">timer_hal.c</a><ul>
 <li>Timer task hardware abstraction layer</li>
 </ul>
 </li>
-<li><a class="el" href="timetests_8c.html" title="Common Linux/POSIX time testing functions. ">timetests.c</a><ul>
+<li><a href="lib/timetests.c">timetests.c</a><ul>
 <li>Time and timer test code</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>lif<ul>
+<li>[lif](lif)<ul>
 <li>LIF disk image utilities</li>
-<li><a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lif/lifutils.c</a></li>
-<li><a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lif/lifutils.c</a><ul>
+<li><a href="lif/lifutils.c">lif/lifutils.c</a></li>
+<li><a href="lif/lifutils.c">lif/lifutils.c</a><ul>
 <li>Functions that allow the emulator to import and export files from LIF images</li>
 </ul>
 </li>
@@ -985,41 +907,41 @@ README</h1>
 </ul>
 </li>
 <li>Code by Mike Gore<ul>
-<li>Makefile<ul>
+<li><a href="lif/Makefile">Makefile</a><ul>
 <li>Make stand alone Linux versions of LIF utility and optionaly TeleDisk to LIF converter</li>
 </ul>
 </li>
-<li><a class="el" href="lifsup_8c.html" title="LIF file utilities - utilities extracted from hp85disk project for stand alone use. ">lifsup.c</a></li>
-<li><a class="el" href="lifsup_8h.html" title="LIF file utilities - utilities extracted from hp85disk project for stand alone use. ">lifsup.h</a><ul>
+<li><a href="lif/lifsup.c">lifsup.c</a></li>
+<li><a href="lif/lifsup.h">lifsup.h</a><ul>
 <li>Stand alone libraries for LIF and TELEDISK utility<ul>
 <li>These functions are also part of various hp85disk libraries</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="el" href="lifutils_8c.html" title="LIF file utilities. ">lifutils.c</a></li>
-<li><a class="el" href="lifutils_8h.html" title="LIF file utilities. ">lifutils.h</a><ul>
+<li><a href="lif/lifutils.c">lifutils.c</a></li>
+<li><a href="lif/lifutils.h">lifutils.h</a><ul>
 <li>LIF image functions, directory listing and file adding.extracting,renaming,deleting</li>
 </ul>
 </li>
-<li><a class="el" href="td02lif_8c.html" title="TeleDisk decoder library targetting LIF format images only. ">td02lif.c</a></li>
-<li><a class="el" href="td02lif_8h.html">td02lif.h</a><ul>
+<li><a href="lif/td02lif.c">td02lif.c</a></li>
+<li><a href="lif/td02lif.h">td02lif.h</a><ul>
 <li>My TeleDisk to LIF translator</li>
 </ul>
 </li>
-<li>lif-notes.txt<ul>
+<li><a href="lif/lif-notes.txt">lif-notes.txt</a><ul>
 <li>My notes on decoding E010 format LIF images for HP-85</li>
 </ul>
 </li>
-<li>README.txt<ul>
+<li><a href="lif/README.txt">README.txt</a><ul>
 <li>Notes on each file under lif and lif/teledisk</li>
 </ul>
 </li>
-<li>85-SS80.TD0 from hpmuseum.org<ul>
+<li><a href="lif/85-SS80.TD0">85-SS80.TD0</a> from hpmuseum.org<ul>
 <li>Damaged SS80 Excersizer from HP Musium</li>
 </ul>
 </li>
-<li>85-SS80.LIF<ul>
+<li><a href="lif/85-SS80.LIF">85-SS80.LIF</a><ul>
 <li>The current converter automaticcal did these repairs<ul>
 <li>cyl 11, side 0 sector 116 mapped to 8</li>
 <li>cyl 13, side 0 sector 116 mapped to 11</li>
@@ -1033,32 +955,32 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>lif/teledisk</p><ul>
+<p><a href="lif/teledisk">lif/teledisk</a></p><ul>
 <li>My TELEDISK LIF extracter<ul>
 <li>Note: The TeleDisk image MUST contain a LIF image - we do NOT translate it</li>
 </ul>
 </li>
-<li>README.txt<ul>
+<li><a href="lif/teledisk/README.txt">README.txt</a><ul>
 <li>Credits</li>
 </ul>
 </li>
-<li>Important Contributions (My converted would not have been possible without these)<ul>
+<li>Important Contributions (My converter would not have been possible without these)<ul>
 <li>Dave Dunfield, LZSS Code and TeleDisk documentation<ul>
 <li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
-<li>td0_lzss.h</li>
-<li>td0_lzss.c<ul>
+<li><a href="lif/teledisk/td0_lzss.h">td0_lzss.h</a></li>
+<li><a href="lif/teledisk/td0_lzss.c">td0_lzss.c</a><ul>
 <li>LZSS decoder</li>
 </ul>
 </li>
-<li>td0notes.txt<ul>
+<li><a href="lif/teledisk/td0notes.txt">td0notes.txt</a><ul>
 <li>Teledisk Documentation</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Jean-Franois DEL NERO, TeleDisk Documentation<ul>
-<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO<ul>
-<li>wteledsk.htm<ul>
+<li>Copyright (lif/teledisk/C) 2006-2014 Jean-Franois DEL NERO<ul>
+<li><a href="lif/teledisk/wteledsk.htm">wteledsk.htm</a><ul>
 <li>TeleDisk documenation</li>
 </ul>
 </li>
@@ -1073,68 +995,68 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>posix</p><ul>
+<p>[posix](posix)</p><ul>
 <li>POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
-<li><a class="el" href="posix_8c.html" title="POSIX wrapper for FatFS. ">posix/posix.c</a></li>
-<li><a class="el" href="posix_8h.html" title="POSIX wrapper for FatFS. ">posix/posix.h</a><ul>
+<li><a href="posix/posix.c">posix.c</a></li>
+<li><a href="posix/posix.h">posix.h</a><ul>
 <li>POSIX wrappers for fatfs - Unix file IO function call wrappers</li>
 </ul>
 </li>
-<li>posix/posix_testsc<ul>
+<li><a href="posix/posix_tests.c">posix_tests.c</a><ul>
 <li>POSIX user tests</li>
 </ul>
 </li>
 </ul>
-<p>printf</p><ul>
+<p>[printf](printf)</p><ul>
 <li>Printf and math IO functions</li>
-<li><a class="el" href="mathio_8c.html" title="String to number conversions with floating point support. ">printf/mathio.c</a><ul>
+<li><a href="printf/mathio.c">mathio.c</a><ul>
 <li>Number conversions</li>
 </ul>
 </li>
-<li><a class="el" href="mathio_8h.html" title="Math IO functions, and verious conversion code with floating point support. ">printf/mathio.h</a><ul>
+<li><a href="printf/mathio.h">mathio.h</a><ul>
 <li>Number conversions</li>
 </ul>
 </li>
-<li><a class="el" href="n2a_8c.html" title="Test 128bit String to number conversion. ">printf/n2a.c</a><ul>
+<li><a href="printf/n2a.c">n2a.c</a><ul>
 <li>Binary to ASCII converter number size only limited by memory</li>
 </ul>
 </li>
-<li><a class="el" href="printf_8c.html" title="Small printf, and verious conversion code with floating point support. ">printf/printf.c</a><ul>
+<li><a href="printf/printf.c">printf.c</a><ul>
 <li>My small printf code - includes floating point support and user defined low character level IO</li>
 </ul>
 </li>
-<li><a class="el" href="sscanf_8c.html">printf/sscanf.c</a><ul>
+<li><a href="printf/sscanf.c">sscanf.c</a><ul>
 <li>My small scanf code - work in progress</li>
 </ul>
 </li>
-<li><a class="el" href="test__printf_8c.html" title="Test routines for Small printf. ">printf/test_printf.c</a><ul>
+<li><a href="printf/test_printf.c">test_printf.c</a><ul>
 <li>Test my printf against glibs 1,000,000 tests per data type</li>
 </ul>
 </li>
 </ul>
-<p>sdcard</p><ul>
+<p>[sdcard](sdcard)</p><ul>
 <li>My HP85 AMIGO and SS80 disk images<ul>
-<li>SDCARD/hpdisk.cfg<ul>
+<li><a href="sdcard/hpdisk.cfg">hpdisk.cfg</a><ul>
 <li>All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives</li>
 <li>PRINTER address</li>
 </ul>
 </li>
-<li>SDCARD/amigo.lif<ul>
+<li><a href="sdcard/amigo.lif">amigo.lif</a><ul>
 <li>AMIGO disk image file number 1</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li>SDCARD/amigo-2.lif<ul>
+<li><a href="sdcard/amigo-2.lif">amigo-2.lif</a><ul>
 <li>AMIGO disk image file number 2</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li>SDCARD/ss80.lif<ul>
+<li><a href="sdcard/ss80.lif">ss80.lif</a><ul>
 <li>SS80 hard drive disk image file number 1</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li>SDCARD/ss80-2.lif<ul>
+<li><a href="sdcard/ss80-2.lif">ss80-2.lif</a><ul>
 <li>SS80 hard drive disk image file number 2</li>
 <li>Has some demo basic programs in it</li>
 </ul>
@@ -1142,33 +1064,33 @@ README</h1>
 </ul>
 </li>
 <li>My HP85 bus trace files<ul>
-<li>SDCARD/amigo_trace.txt<ul>
+<li><a href="sdcard/amigo_trace.txt">amigo_trace.txt</a><ul>
 <li>AMIGO trace file when connected to HP85 showing odd out of order command issue</li>
 </ul>
 </li>
-<li>SDCARD/gpib_reset.txt<ul>
+<li><a href="sdcard/gpib_reset.txt">gpib_reset.txt</a><ul>
 <li>GPIB reset trace when connected to HP85</li>
 </ul>
 </li>
-<li>SDCARD/gpib_trace.txt<ul>
+<li><a href="sdcard/gpib_trace.txt">gpib_trace.txt</a><ul>
 <li>GPIB transaction trace when connected to HP85</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>My HP85 plot capture files<ul>
-<li>SDCARD/plot1.plt</li>
-<li>SDCARD/plot2.plt</li>
+<li><a href="sdcard/plot1.plt">plot1.plt</a></li>
+<li><a href="sdcard/plot2.plt">plot2.plt</a></li>
 </ul>
 </li>
-<li>TREK85/<ul>
+<li><a href="sdcard/TREK85">sdcard/TREK85</a><ul>
 <li>TREK85 by Martin Hepperle, December 2015</li>
 <li><a href="https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241">https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241</a><ul>
-<li>author.txt</li>
-<li>readme.txt</li>
-<li>Star Trek.pdf</li>
-<li>TREK85.BAS</li>
-<li>trek.lif</li>
+<li><a href="sdcard/TREK85/author.txt">author.txt</a></li>
+<li><a href="sdcrad/TREK85/readme.txt">readme.txt</a></li>
+<li><a href="sdcard/TREK85/Start Trek.pdf">Star Trek.pdf</a></li>
+<li><a href="sdcrad/TREK85/TREK85.BAS">TREK85.BAS</a></li>
+<li><a href="sdcard/TREK85/trek.lif">trek.lif</a></li>
 </ul>
 </li>
 </ul>
@@ -1178,7 +1100,7 @@ README</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 9 2020 19:28:03 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 16 2020 19:05:02 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

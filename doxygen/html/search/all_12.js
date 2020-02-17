@@ -32,6 +32,7 @@ var searchData=
   ['safecalloc',['safecalloc',['../ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c'],['../ram_8h.html#a23863723b09c3a4f836a5c10e1ecaa82',1,'safecalloc(int size, int elements):&#160;ram.c']]],
   ['safefree',['safefree',['../ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c'],['../ram_8h.html#a9dc7d99df87239df4577b5b45ec6300c',1,'safefree(void *p):&#160;ram.c']]],
   ['safemalloc',['safemalloc',['../ram_8c.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c'],['../ram_8h.html#adefba2d5cc5425b0deeaaaee6d9a384e',1,'safemalloc(size_t size):&#160;ram.c']]],
+  ['sc',['SC',['../gpib__hal_8h.html#a6bb7a09d1931dfbdd6d373cfe6e23357',1,'gpib_hal.h']]],
   ['scale10',['scale10',['../mathio_8h.html#a52658cd34151fad98aa1294a2acafa02',1,'mathio.h']]],
   ['sclust',['sclust',['../struct__FDID.html#ae2fbaaa31b5d12b333cb6d1ded099412',1,'_FDID']]],
   ['sdc',['SDC',['../amigo_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;amigo.h'],['../defines_8h.html#a26ebbac1e849f9c61421e7279c597f2b',1,'SDC():&#160;defines.h']]],
