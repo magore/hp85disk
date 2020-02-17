@@ -44,7 +44,7 @@ ___
 ___
 
 ## HP85 Disk project documenation
- * [README.md](Documentation/README.md)
+ * Documentation/README.md
 ___
 
 ## GPIB Linux
@@ -67,10 +67,10 @@ ___
 ___
 ## HP Documentation - please note copyrights
  Many files in the documents folder are Copyright by HP - they are only included here as a convenience.
- * See [Documents](Documents)
+ * See Documents/README.md
 ___
 ## TeleDisk Converter
- * See [README.md](Documents/README.md)
+ * See Documents/README.md
   * Important Contributions (My converted would not have been possible without these)
     * Dave Dunfield, LZSS Code and TeleDisk documentation
       * Copyright 2007-2008 Dave Dunfield All rights reserved.
