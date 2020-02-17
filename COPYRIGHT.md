@@ -26,9 +26,12 @@ ___
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ___
+
 ## HP85 Disk Emulator Circuit Board (C) 2019-2020 Jay Hamlin
  * Jay Hamlin Circuit Board - see board/V2
+
 ___
+
 
 ## hpdisk Copyright (C) 2014 Anders Gustafsson 
 
@@ -41,36 +44,47 @@ ___
  Contact: anders.gustafsson\@pedago.fi<br>
  Anders project web site:  http://www.dalton.ax/hpdisk<br>
  Elektor Labs project web site: http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html
+L
 ___
+
 
 ## HP85 Disk project documenation
  * Documentation/README.md
+
 ___
 
 ## GPIB Linux
  * GPIB Linux Documenation from sourceforge
    * See: http://linux-gpib.sourceforge.net/doc_html
+
 ___
+
 
 ## GPIB Handshake documentation
  * GPIB HANDSHAKING by Bruce A. Bennett
    * See: http://www.idea2ic.com/File_Formats/gpib2.pdf
      *  Edited by Bruce A. Bennett
+
 ___
+
 
 ## GPIB ofline copy from WIKIPEDIA
  * IEEE-488 From Wikipedia, the free encyclopedia
+
 ___
+
 
 ## HPDIR project
  * LIF - or HP 9845 File System offline copy
    * http://www.hp9845.net/9845/projects/hpdir/
+
 ___
 
 ## HP Documentation - please note copyrights
  * Many files in the documents folder are Copyright by HP
    * they are only included here as a convenience.
  * See Documents/README.md
+
 ___
 
 ## TeleDisk Converter
@@ -82,6 +96,7 @@ ___
       * Copyright (C) 2006-2014 Jean-Franois DEL NERO
       * See his github project
         * https://github.com/jfdelnero/libhxcfe
+
 ___
 
 ## FatFs Copyright (C) 2013-, ChaN, all right reserved.
