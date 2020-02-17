@@ -27,7 +27,7 @@ ___
 
 ___
 ## HP85 Disk Emulator Circuit Board (C) 2019-2020 Jay Hamlin
- * [Jay Hamlin Circuit Board](board/V2)
+ * Jay Hamlin Circuit Board - see board/V2
 ___
 
 ## hpdisk Copyright (C) 2014 Anders Gustafsson 
@@ -66,7 +66,8 @@ ___
    * http://www.hp9845.net/9845/projects/hpdir/
 ___
 ## HP Documentation - please note copyrights
- Many files in the documents folder are Copyright by HP - they are only included here as a convenience.
+ * Many files in the documents folder are Copyright by HP
+   * they are only included here as a convenience.
  * See Documents/README.md
 ___
 ## TeleDisk Converter
@@ -97,9 +98,9 @@ ___
 
 ## Teledisk Code and Documentation
  @Credits
-     * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
-       * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
-       * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
+ * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
+   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+     * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
      * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
      * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
 ___
