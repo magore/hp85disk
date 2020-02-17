@@ -75,10 +75,11 @@ ___
 
 
 ## HPDIR project
- * LIF - or HP 9845 File System offline copy
-   * http://www.hp9845.net/9845/projects/hpdir/
+ * HP 9845 File System offline copy
+   * http://www.hp9845.net/9845/projects/hpdir
 
 ___
+
 
 ## HP Documentation - please note copyrights
  * Many files in the documents folder are Copyright by HP
@@ -86,6 +87,7 @@ ___
  * See Documents/README.md
 
 ___
+
 
 ## TeleDisk Converter
  * See Documents/README.md
