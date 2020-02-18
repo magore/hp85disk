@@ -370,29 +370,23 @@ ___
 ## Main project files for hp85disk Project 
   * [COPYRIGHT.md](COPYRIGHT.md)
     * Project CopyRights 
-
   * [Doxyfile](Doxyfile)
     * Doxygen Configuration files for project
   * [doxyinc](doxyinc)
     * Determins which files are included in the project Doxygen documents
   * [DoxygenLayout.xml](DoxygenLayout.xml)
     * Doxygen Layout file
-
   * [main.c](main.c)
   * [main.h](main.h)
     * Main start-up code
   * [Makefile](Makefile)
     * Project Makefile
-
   * [miniterm](miniterm)
     * wrapper for miniterm.py part of the python package pyserial
-
   * [notes.txt](notes.txt)
     * My notes for converting compiled constants into run time configuration
-
   * [README.md](README.md)
     * Project README 
-
   * [term](term)
     * Wrapper for minicom terminal emulator
 
