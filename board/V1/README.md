@@ -69,3 +69,9 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
   * IFC low resets the HC595 outputs low - so the HC05 outputs will float.
 
 ___ 
+
+## Pictures
+  * [HP85A with connected h85disk V1 board - wire wrapped](board/V1/Photos/HP85 with hp85disk.jpg)
+  * [hp85disk V1 board closeup - wire wrapped](board/V1/Photos/hp85disk-V1-board.jpg)
+
+___ 
