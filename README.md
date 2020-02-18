@@ -368,27 +368,30 @@ ___
 
 
 ## Main project files for hp85disk Project 
-  * [COPYRIGHT.md](COPYRIGHT.md)
-    * Project CopyRights 
-  * [Doxyfile](Doxyfile)
-    * Doxygen Configuration files for project
-  * [doxyinc](doxyinc)
-    * Determins which files are included in the project Doxygen documents
-  * [DoxygenLayout.xml](DoxygenLayout.xml)
-    * Doxygen Layout file
-  * [main.c](main.c)
-  * [main.h](main.h)
-    * Main start-up code
-  * [Makefile](Makefile)
-    * Project Makefile
-  * [miniterm](miniterm)
-    * wrapper for miniterm.py part of the python package pyserial
-  * [notes.txt](notes.txt)
-    * My notes for converting compiled constants into run time configuration
-  * [README.md](README.md)
-    * Project README 
-  * [term](term)
-    * Wrapper for minicom terminal emulator
+  * Project Main Home Directory
+    * [main.c](main.c)
+    * [main.h](main.h)
+      * Main start-up code
+    * [Makefile](Makefile)
+      * Main Project Makefile
+  * Terminal scripts
+    * [miniterm](miniterm)
+      * wrapper for miniterm.py part of the python package pyserial
+    * [term](term)
+     * Wrapper for minicom terminal emulator
+  * Doxygen files
+    * [Doxyfile](Doxyfile)
+      * Doxygen Configuration files for project
+    * [doxyinc](doxyinc)
+      * Determins which files are included in the project Doxygen documents
+    * [DoxygenLayout.xml](DoxygenLayout.xml)
+      * Doxygen Layout file
+  * Project Readme
+    * [README.md](README.md)
+      * Project README 
+  * Project Copyright
+    * [COPYRIGHT.md](COPYRIGHT.md)
+      * Project CopyRights 
 
 ## Board design file for version 1 and 2 hardware
   * [board](board)
@@ -485,6 +488,8 @@ ___
       * SS80 parser
     * [ss80.h](gpib/ss80.h)
       * SS80 parser
+    * [notes.txt](gpib/notes.txt)
+      * My notes on GPIB bus states as it relates to the project
 
 ## Hardware CPU specific 
   * [hardware](hardware)
