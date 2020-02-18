@@ -688,14 +688,17 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Files}
+\subsection*{Main project files for hp85disk Project}
 
 
 \begin{DoxyItemize}
-\item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+HT.md} Project Copyrights
+\item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+HT.md}
+\begin{DoxyItemize}
+\item Project Copy\+Rights
+\end{DoxyItemize}
 \item \mbox{[}Doxyfile\mbox{]}(Doxyfile)
 \begin{DoxyItemize}
-\item Doxygen Configuration file for project
+\item Doxygen Configuration files for project
 \end{DoxyItemize}
 \item \mbox{[}doxyinc\mbox{]}(doxyinc)
 \begin{DoxyItemize}
@@ -705,8 +708,11 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item Doxygen Layout file
 \end{DoxyItemize}
-\item \href{main.c}{\tt main.\+c} Main start-\/up code
-\item \href{main.h}{\tt main.\+h} Main start-\/up code
+\item \href{main.c}{\tt main.\+c}
+\item \href{main.h}{\tt main.\+h}
+\begin{DoxyItemize}
+\item Main start-\/up code
+\end{DoxyItemize}
 \item \mbox{[}Makefile\mbox{]}(Makefile)
 \begin{DoxyItemize}
 \item Project Makefile
@@ -727,6 +733,12 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item Wrapper for minicom terminal emulator
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Board design file for version 1 and 2 hardware}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}board\mbox{]}(board)
 \begin{DoxyItemize}
 \item \href{board/V1}{\tt V1}
@@ -741,11 +753,23 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Jay Hamlin version 2 circuit board design using G\+P\+IB buffers
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Documents}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}Documents\mbox{]}(Documents)
 \item G\+P\+IB B\+US, HP device, L\+IF and chips documentation for this project
 \begin{DoxyItemize}
 \item Documents/\+R\+E\+A\+D\+ME.md
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Fat\+Fs}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}fatfs\mbox{]}(fatfs)
 \begin{DoxyItemize}
 \item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
@@ -759,7 +783,10 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{fatfs.hal/fatfs.hal}{\tt fatfs.\+hal}
 \begin{DoxyItemize}
 \item R0.\+12b Fat\+FS code from (C) ChaN, 2016 with changes
+\begin{DoxyItemize}
 \item Hardware abstraction layer based on example A\+VR project
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item \href{fatfs.hal/diskio.c}{\tt diskio.\+c}
 \begin{DoxyItemize}
 \item Low level disk I/O module glue functions (fatfs.\+hal/C)ChaN, 2016
@@ -784,10 +811,10 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item My Hardware abstraction layer code
 \end{DoxyItemize}
-\end{DoxyItemize}
 \item \href{fatfs.sup/fatfs.sup}{\tt fatfs.\+sup}
 \begin{DoxyItemize}
 \item Support utility and P\+O\+S\+IX wrapper factions
+\end{DoxyItemize}
 \item \href{fatfs.sup/fatfs.h}{\tt fatfs.\+h}
 \begin{DoxyItemize}
 \item Fat\+FS header files
@@ -803,9 +830,15 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Fat\+FS user test functions
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+\subsection*{G\+P\+IB related}
+
+
+\begin{DoxyItemize}
 \item \href{gpib/gpib}{\tt gpib}
 \begin{DoxyItemize}
 \item My G\+P\+IB code for A\+M\+I\+GO S\+S80 and P\+P\+R\+I\+N\+T\+ER support
+\end{DoxyItemize}
 \item \href{gpib/amigo.c}{\tt amigo.\+c}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO parser
@@ -887,9 +920,15 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item S\+S80 parser
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+\subsection*{Hardware C\+PU specific}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}hardware\mbox{]}(hardware)
 \begin{DoxyItemize}
 \item C\+PU hardware specific code
+\end{DoxyItemize}
 \item \href{hardware/baudrate.c}{\tt baudrate.\+c}
 \begin{DoxyItemize}
 \item Baud rate calculation tool. Given C\+PU clock and desired baud rate, will list the actual baud rate and registers
@@ -903,17 +942,11 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item C\+PU specific include files
 \end{DoxyItemize}
 \item \href{hardware/delay.c}{\tt delay.\+c}
-\begin{DoxyItemize}
-\item Delay code
-\end{DoxyItemize}
 \item \href{hardware/delay.h}{\tt delay.\+h}
 \begin{DoxyItemize}
 \item Delay code
 \end{DoxyItemize}
 \item \href{hardware/hal.c}{\tt hal.\+c}
-\begin{DoxyItemize}
-\item G\+P\+IO functions, spi hardware abstraction layer and chip select logic
-\end{DoxyItemize}
 \item \href{hardware/hal.h}{\tt hal.\+h}
 \begin{DoxyItemize}
 \item G\+P\+IO functions, spi hardware abstraction layer and chip select logic
@@ -931,41 +964,26 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item A\+VR function to G\+P\+IO pin map
 \end{DoxyItemize}
 \item \href{hardware/ram.c}{\tt ram.\+c}
-\begin{DoxyItemize}
-\item Memory functions
-\end{DoxyItemize}
 \item \href{hardware/ram.h}{\tt ram.\+h}
 \begin{DoxyItemize}
 \item Memory functions
 \end{DoxyItemize}
 \item \href{hardware/rs232.c}{\tt rs232.\+c}
-\begin{DoxyItemize}
-\item R\+S232 IO
-\end{DoxyItemize}
 \item \href{hardware/rs232.h}{\tt rs232.\+h}
 \begin{DoxyItemize}
 \item R\+S232 IO
 \end{DoxyItemize}
 \item \href{hardware/rtc.c}{\tt rtc.\+c}
-\begin{DoxyItemize}
-\item D\+S1307 I2C R\+TC code
-\end{DoxyItemize}
 \item \href{hardware/rtc.h}{\tt rtc.\+h}
 \begin{DoxyItemize}
 \item D\+S1307 I2C R\+TC code
 \end{DoxyItemize}
 \item \href{hardware/spi.c}{\tt spi.\+c}
-\begin{DoxyItemize}
-\item S\+PI B\+US code
-\end{DoxyItemize}
 \item \href{hardware/spi.h}{\tt spi.\+h}
 \begin{DoxyItemize}
 \item S\+PI B\+US code
 \end{DoxyItemize}
 \item \href{hardware/TWI_AVR8.c}{\tt T\+W\+I\+\_\+\+A\+V\+R8.\+c}
-\begin{DoxyItemize}
-\item I2C code L\+U\+FA Library Copyright (hardware/C) Dean Camera, 2011.
-\end{DoxyItemize}
 \item \href{hardware/TWI_AVR8.h}{\tt T\+W\+I\+\_\+\+A\+V\+R8.\+h}
 \begin{DoxyItemize}
 \item I2C code L\+U\+FA Library Copyright (hardware/C) Dean Camera, 2011.
@@ -975,6 +993,11 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequency settings
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+\subsection*{Common libraries}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}lib\mbox{]}(lib)
 \begin{DoxyItemize}
 \item Library functions
@@ -983,9 +1006,6 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item B\+C\+PP C code formatter config
 \end{DoxyItemize}
 \item \href{lib/matrix.c}{\tt matrix.\+c}
-\begin{DoxyItemize}
-\item Matrix code -\/ not used
-\end{DoxyItemize}
 \item \href{lib/matrix.h}{\tt matrix.\+h}
 \begin{DoxyItemize}
 \item Matrix code -\/ not used
@@ -995,41 +1015,26 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item A few notes about matrix operations
 \end{DoxyItemize}
 \item \href{lib/queue.c}{\tt queue.\+c}
-\begin{DoxyItemize}
-\item Queue functions
-\end{DoxyItemize}
 \item \href{lib/queue.h}{\tt queue.\+h}
 \begin{DoxyItemize}
 \item Queue functions
 \end{DoxyItemize}
 \item \href{lib/sort.c}{\tt sort.\+c}
-\begin{DoxyItemize}
-\item Sort functions -\/ not used
-\end{DoxyItemize}
 \item \href{lib/sort.h}{\tt sort.\+h}
 \begin{DoxyItemize}
 \item Sort functions -\/ not used
 \end{DoxyItemize}
 \item \href{lib/stringsup.c}{\tt stringsup.\+c}
-\begin{DoxyItemize}
-\item Various string processing functions
-\end{DoxyItemize}
 \item \href{lib/stringsup.h}{\tt stringsup.\+h}
 \begin{DoxyItemize}
 \item Various string processing functions
 \end{DoxyItemize}
 \item \href{lib/time.c}{\tt time.\+c}
-\begin{DoxyItemize}
-\item P\+O\+S\+IX time functions
-\end{DoxyItemize}
 \item \href{lib/time.h}{\tt time.\+h}
 \begin{DoxyItemize}
 \item P\+O\+S\+IX time functions
 \end{DoxyItemize}
 \item \href{lib/timer.c}{\tt timer.\+c}
-\begin{DoxyItemize}
-\item Timer task functions
-\end{DoxyItemize}
 \item \href{lib/timer.h}{\tt timer.\+h}
 \begin{DoxyItemize}
 \item Timer task functions
@@ -1043,6 +1048,12 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Time and timer test code
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{L\+IF files}
+
+
+\begin{DoxyItemize}
 \item \mbox{[}lif\mbox{]}(lif)
 \begin{DoxyItemize}
 \item L\+IF disk image utilities
@@ -1104,7 +1115,11 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\href{lif/teledisk}{\tt lif/teledisk}
+\subsection*{L\+IF teledisk files}
+
+
+\begin{DoxyItemize}
+\item \href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
 \item My T\+E\+L\+E\+D\+I\+SK L\+IF extracter
 \begin{DoxyItemize}
@@ -1145,8 +1160,13 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
 
-\mbox{[}posix\mbox{]}(posix)
+\subsection*{Posix wrapper -\/ provides linux file IO functions for Fatfs}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}posix\mbox{]}(posix)
 \begin{DoxyItemize}
 \item P\+O\+S\+IX wrappers provide many U\+N\+IX P\+O\+S\+IX compatible functions by translating fatfs functions
 \item \href{buffer.c}{\tt buffer.\+c}
@@ -1165,8 +1185,13 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item P\+O\+S\+IX user tests
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
 
-\mbox{[}printf\mbox{]}(printf)
+\subsection*{Printf display functions}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}printf\mbox{]}(printf)
 \begin{DoxyItemize}
 \item Printf and math IO functions
 \item \href{printf/mathio.c}{\tt mathio.\+c}
@@ -1183,7 +1208,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item \href{printf/printf.c}{\tt printf.\+c}
 \begin{DoxyItemize}
-\item My small printf code -\/ includes floating point support and user defined low character level IO
+\item My small printf code -\/ with floating point support and user defined low character level IO
 \end{DoxyItemize}
 \item \href{printf/sscanf.c}{\tt sscanf.\+c}
 \begin{DoxyItemize}
@@ -1194,8 +1219,13 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
 
-\mbox{[}sdcard\mbox{]}(sdcard)
+\subsection*{SD Card files for project}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}sdcard\mbox{]}(sdcard)
 \begin{DoxyItemize}
 \item My H\+P85 A\+M\+I\+GO and S\+S80 disk images
 \begin{DoxyItemize}
@@ -1255,6 +1285,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{sdcard/TREK85/Start Trek.pdf}{\tt Star Trek.\+pdf}
 \item \href{sdcrad/TREK85/TREK85.BAS}{\tt T\+R\+E\+K85.\+B\+AS}
 \item \href{sdcard/TREK85/trek.lif}{\tt trek.\+lif}
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}

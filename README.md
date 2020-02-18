@@ -367,43 +367,51 @@ ___
 ___ 
 
 
-## Files
+## Main project files for hp85disk Project 
   * [COPYRIGHT.md](COPYRIGHT.md)
-    Project Copyrights 
+    * Project CopyRights 
+
   * [Doxyfile](Doxyfile)
-    * Doxygen Configuration file for project
+    * Doxygen Configuration files for project
   * [doxyinc](doxyinc)
     * Determins which files are included in the project Doxygen documents
   * [DoxygenLayout.xml](DoxygenLayout.xml)
     * Doxygen Layout file
+
   * [main.c](main.c)
-    Main start-up code
   * [main.h](main.h)
-    Main start-up code
+    * Main start-up code
   * [Makefile](Makefile)
-   * Project Makefile
+    * Project Makefile
+
   * [miniterm](miniterm)
     * wrapper for miniterm.py part of the python package pyserial
+
   * [notes.txt](notes.txt)
     * My notes for converting compiled constants into run time configuration
+
   * [README.md](README.md)
     * Project README 
+
   * [term](term)
     * Wrapper for minicom terminal emulator
 
+## Board design file for version 1 and 2 hardware
   * [board](board)
     * [V1](board/V1)
-       * V1 Board documentation and Release files
-       * [board design and pinouts of this project and a schematic PDF ](board/V1/HP85Disk.pdf)
-       * [board design and pinouts of this project and a schematic DOC ](board/V1//HP85Disk.doc)
-       * [board README.md](board/V1/HP85Disk.doc)
+      * V1 Board documentation and Release files
+      * [board design and pinouts of this project and a schematic PDF ](board/V1/HP85Disk.pdf)
+      * [board design and pinouts of this project and a schematic DOC ](board/V1//HP85Disk.doc)
+      * [board README.md](board/V1/HP85Disk.doc)
     * [V2/releases](V2/releses)
-       * Jay Hamlin version 2 circuit board design using GPIB buffers
+      * Jay Hamlin version 2 circuit board design using GPIB buffers
 
+## Documents
   * [Documents](Documents)
   * GPIB BUS, HP device, LIF and chips documentation for this project
     * [Documents/README.md](Documents/README.md) 
 
+## FatFs
   * [fatfs](fatfs)
     * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
     * [00history.txt](fatfs/00history.txt)
@@ -415,147 +423,137 @@ ___
 
   * [fatfs.hal](fatfs.hal/fatfs.hal)
     * R0.12b FatFS code from (C) ChaN, 2016 with changes
-    * Hardware abstraction layer based on example AVR project
-    * [diskio.c](fatfs.hal/diskio.c)
-      * Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016 
-    * [diskio.h](fatfs.hal/diskio.h)
-      * Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016 
-    * [mmc.c](fatfs.hal/mmc.c)
-      * Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications
-    * [mmc.h](fatfs.hal/mmc.h)
-      * Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications
-    * [mmc_hal.c](fatfs.hal/mmc_hal.c)
-      * My Hardware abstraction layer code
-    * [mmc_hal.h](fatfs.hal/mmc_hal.h)
-      * My Hardware abstraction layer code
+      * Hardware abstraction layer based on example AVR project
+  * [diskio.c](fatfs.hal/diskio.c)
+    * Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016 
+  * [diskio.h](fatfs.hal/diskio.h)
+    * Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016 
+  * [mmc.c](fatfs.hal/mmc.c)
+    * Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications
+  * [mmc.h](fatfs.hal/mmc.h)
+    * Low level MMC I/O by (fatfs.hal/C)ChaN, 2016 with modifications
+  * [mmc_hal.c](fatfs.hal/mmc_hal.c)
+    * My Hardware abstraction layer code
+  * [mmc_hal.h](fatfs.hal/mmc_hal.h)
+    * My Hardware abstraction layer code
 
   * [fatfs.sup](fatfs.sup/fatfs.sup)
     * Support utility and POSIX wrapper factions
-    * [fatfs.h](fatfs.sup/fatfs.h)
-      * FatFS header files
-    * [fatfs_sup.c](fatfs.sup/fatfs_sup.c)
-    * [fatfs_sup.h](fatfs.sup/fatfs_sup.h)
-      * FatFS file listing and display functions
-    * [fatfs_tests.c](fatfs.sup/fatfs_tests.c)
-    * [fatfs_tests.h](fatfs.sup/fatfs_tests.h)
-      * FatFS user test functions
+  * [fatfs.h](fatfs.sup/fatfs.h)
+    * FatFS header files
+  * [fatfs_sup.c](fatfs.sup/fatfs_sup.c)
+  * [fatfs_sup.h](fatfs.sup/fatfs_sup.h)
+    * FatFS file listing and display functions
+  * [fatfs_tests.c](fatfs.sup/fatfs_tests.c)
+  * [fatfs_tests.h](fatfs.sup/fatfs_tests.h)
+    * FatFS user test functions
 
+## GPIB related
   * [gpib](gpib/gpib)
     * My GPIB code for AMIGO SS80 and PPRINTER support
-    * [amigo.c](gpib/amigo.c)
-      * AMIGO parser
-    * [amigo.h](gpib/amigo.h)
-      * AMIGO parser
-    * [defines.h](gpib/defines.h)
-      * Main GPIB header and configuration options
-    * [debug.txt](debug.txt)
-      * List of debug flags
-    * [drives.c](gpib/drives.c)
-      * Supported Drive Parameters 
-    * [drive_references.txt](gpib/drive_references.txt)
-      * General Drive Parameters Documentation for all known drive types
-    * [format.c](gpib/format.c)
-      * LIF format and file utilities
-    * [gpib.c](gpib/gpib.c)
-      * All low level GPIB bus code
-    * [gpib.h](gpib/gpib.h)
-      * GPIB I/O code
-    * [gpib_hal.c](gpib/gpib_hal.c)
-      * GPIB hardware abstraction code
-    * [gpib_hal.h](gpib/gpib_hal.h)
-      * GPIB hardware abstraction code
-    * [gpib_task.c](gpib/gpib_task.c)
-      * GPIB command handler , initialization and tracing code
-    * [gpib_task.h](gpib/gpib_task.h)
-      * GPIB command handler , initialization and tracing code
-    * [gpib_tests.c](gpib/gpib_tests.c)
-      * GPIB user tests
-    * [gpib_tests.h](gpib/gpib_tests.h)
-      * GPIB user tests
-    * [printer.c](gpib/printer.c)
-      * GPIB printer capture code
-    * [printer.h](gpib/printer.h)
-      * GPIB printer capture code
-    * [references.txt](gpib/references.txt)
-      * Main S80 SS80 AMIGO and GPIB references part numbers and web links
-    * [ss80.c](gpib/ss80.c)
-      * SS80 parser
-    * [ss80.h](gpib/ss80.h)
-      * SS80 parser
+  * [amigo.c](gpib/amigo.c)
+    * AMIGO parser
+  * [amigo.h](gpib/amigo.h)
+    * AMIGO parser
+  * [defines.h](gpib/defines.h)
+    * Main GPIB header and configuration options
+  * [debug.txt](debug.txt)
+    * List of debug flags
+  * [drives.c](gpib/drives.c)
+    * Supported Drive Parameters 
+  * [drive_references.txt](gpib/drive_references.txt)
+    * General Drive Parameters Documentation for all known drive types
+  * [format.c](gpib/format.c)
+    * LIF format and file utilities
+  * [gpib.c](gpib/gpib.c)
+    * All low level GPIB bus code
+  * [gpib.h](gpib/gpib.h)
+    * GPIB I/O code
+  * [gpib_hal.c](gpib/gpib_hal.c)
+    * GPIB hardware abstraction code
+  * [gpib_hal.h](gpib/gpib_hal.h)
+    * GPIB hardware abstraction code
+  * [gpib_task.c](gpib/gpib_task.c)
+    * GPIB command handler , initialization and tracing code
+  * [gpib_task.h](gpib/gpib_task.h)
+    * GPIB command handler , initialization and tracing code
+  * [gpib_tests.c](gpib/gpib_tests.c)
+    * GPIB user tests
+  * [gpib_tests.h](gpib/gpib_tests.h)
+    * GPIB user tests
+  * [printer.c](gpib/printer.c)
+    * GPIB printer capture code
+  * [printer.h](gpib/printer.h)
+    * GPIB printer capture code
+  * [references.txt](gpib/references.txt)
+    * Main S80 SS80 AMIGO and GPIB references part numbers and web links
+  * [ss80.c](gpib/ss80.c)
+    * SS80 parser
+  * [ss80.h](gpib/ss80.h)
+    * SS80 parser
 
+## Hardware CPU specific 
   * [hardware](hardware)
     * CPU hardware specific code
-    * [baudrate.c](hardware/baudrate.c)
-      * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
-    * [bits.h](hardware/bits.h)
-      * BIT set and clear functions
-    * [cpu.h](hardware/cpu.h)
-      * CPU specific include files
-    * [delay.c](hardware/delay.c)
-      * Delay code
-    * [delay.h](hardware/delay.h)
-      * Delay code
-    * [hal.c](hardware/hal.c)
-      * GPIO functions, spi hardware abstraction layer and chip select logic
-    * [hal.h](hardware/hal.h)
-      * GPIO functions, spi hardware abstraction layer and chip select logic
-    * [iom1284p.h](hardware/iom1284p.h)
-      * GPIO map for ATEMEGA 1284p
-    * [mkdef.c](hardware/mkdef.c)
-      * Not used
-    * [pins.txt](hardware/pins.txt)
-      * AVR function to GPIO pin map
-    * [ram.c](hardware/ram.c)
-      * Memory functions
-    * [ram.h](hardware/ram.h)
-      * Memory functions
-    * [rs232.c](hardware/rs232.c)
-      * RS232 IO
-    * [rs232.h](hardware/rs232.h)
-      * RS232 IO
-    * [rtc.c](hardware/rtc.c)
-      * DS1307 I2C RTC code
-    * [rtc.h](hardware/rtc.h)
-      * DS1307 I2C RTC code
-    * [spi.c](hardware/spi.c)
-      * SPI BUS code
-    * [spi.h](hardware/spi.h)
-      * SPI BUS code
-    * [TWI_AVR8.c](hardware/TWI_AVR8.c)
-      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
-    * [TWI_AVR8.h](hardware/TWI_AVR8.h)
-      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
-    * [user_config.h](hardware/user_config.h)
-      * Main include file MMC SLOW and FATS frequency and CPU frequency settings
+  * [baudrate.c](hardware/baudrate.c)
+    * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
+  * [bits.h](hardware/bits.h)
+    * BIT set and clear functions
+  * [cpu.h](hardware/cpu.h)
+    * CPU specific include files
+  * [delay.c](hardware/delay.c)
+  * [delay.h](hardware/delay.h)
+    * Delay code
+  * [hal.c](hardware/hal.c)
+  * [hal.h](hardware/hal.h)
+    * GPIO functions, spi hardware abstraction layer and chip select logic
+  * [iom1284p.h](hardware/iom1284p.h)
+    * GPIO map for ATEMEGA 1284p
+  * [mkdef.c](hardware/mkdef.c)
+    * Not used
+  * [pins.txt](hardware/pins.txt)
+    * AVR function to GPIO pin map
+  * [ram.c](hardware/ram.c)
+  * [ram.h](hardware/ram.h)
+    * Memory functions
+  * [rs232.c](hardware/rs232.c)
+  * [rs232.h](hardware/rs232.h)
+    * RS232 IO
+  * [rtc.c](hardware/rtc.c)
+  * [rtc.h](hardware/rtc.h)
+    * DS1307 I2C RTC code
+  * [spi.c](hardware/spi.c)
+  * [spi.h](hardware/spi.h)
+    * SPI BUS code
+  * [TWI_AVR8.c](hardware/TWI_AVR8.c)
+  * [TWI_AVR8.h](hardware/TWI_AVR8.h)
+    * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
+  * [user_config.h](hardware/user_config.h)
+    * Main include file MMC SLOW and FATS frequency and CPU frequency settings
 
+## Common libraries
   * [lib](lib)
     * Library functions
     * [bcpp.cfg](lib/bcpp.cfg)
       * BCPP C code formatter config
     * [matrix.c](lib/matrix.c)
-      * Matrix code - not used
     * [matrix.h](lib/matrix.h)
       * Matrix code - not used
     * [matrix.txt](lib/matrix.txt)
       *  A few notes about matrix operations
     * [queue.c](lib/queue.c)
-      * Queue functions
     * [queue.h](lib/queue.h)
       * Queue functions
     * [sort.c](lib/sort.c)
-      * Sort functions - not used
     * [sort.h](lib/sort.h)
       * Sort functions - not used
     * [stringsup.c](lib/stringsup.c)
-      * Various string processing functions
     * [stringsup.h](lib/stringsup.h)
       * Various string processing functions
     * [time.c](lib/time.c)
-      * POSIX time functions
     * [time.h](lib/time.h)
       * POSIX time functions
     * [timer.c](lib/timer.c)
-      * Timer task functions
     * [timer.h](lib/timer.h)
       * Timer task functions
     * [timer_hal.c](lib/timer_hal.c)
@@ -563,6 +561,7 @@ ___
     * [timetests.c](lib/timetests.c)
       * Time and timer test code
 
+## LIF files
   * [lif](lif)
     * LIF disk image utilities 
     * [lif/lifutils.c](lif/lifutils.c)
@@ -595,6 +594,7 @@ ___
           *  cyl 13, side 0 sector 116 mapped to 11
           *  cyl 15, side 0 sector 10  missing - zero filled
 
+## LIF teledisk files
    * [lif/teledisk](lif/teledisk)
      * My TELEDISK LIF extracter 
        * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
@@ -615,6 +615,7 @@ ___
            * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
+## Posix wrapper - provides linux file IO functions for Fatfs
   * [posix](posix)
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * [buffer.c](buffer.c)
@@ -627,6 +628,7 @@ ___
     * [posix_tests.h](posix/posix_tests.h)
       * POSIX user tests
 
+## Printf display functions
   * [printf](printf)
     * Printf and math IO functions
     * [mathio.c](printf/mathio.c)
@@ -636,12 +638,13 @@ ___
     * [n2a.c](printf/n2a.c)
       * Binary to ASCII converter number size only limited by memory
     * [printf.c](printf/printf.c)
-      * My small printf code - includes floating point support and user defined low character level IO
+      * My small printf code - with floating point support and user defined low character level IO
     * [sscanf.c](printf/sscanf.c)
       * My small scanf code - work in progress
     * [test_printf.c](printf/test_printf.c)
       * Test my printf against glibs 1,000,000 tests per data type
 
+## SD Card files for project
   * [sdcard](sdcard)
     * My HP85 AMIGO and SS80 disk images
       * [hpdisk.cfg](sdcard/hpdisk.cfg)
