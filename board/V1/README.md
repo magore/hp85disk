@@ -71,7 +71,7 @@ Notes: When both EOI and ATN are low the HC32 enables HC595 outputs
 ___ 
 
 ## Pictures
-  * [HP85A with connected h85disk V1 board - wire wrapped](board/V1/Photos/HP85 with hp85disk.jpg)
-  * [hp85disk V1 board closeup - wire wrapped](board/V1/Photos/hp85disk-V1-board.jpg)
+  * [HP85A with connected h85disk V1 board - wire wrapped](Photos/HP85-with-hp85disk.jpg)
+  * [hp85disk V1 board closeup - wire wrapped](Photos/hp85disk-V1-board.jpg)
 
 ___ 
