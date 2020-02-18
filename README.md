@@ -50,6 +50,7 @@ ___
   * *apt-get update*
   * *apt-get install aptitude make build-essential binutils gcc*
   * *aptitude --with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+  * pip install pyserial
 
 ## Compiling AVR and standlone LIF tools
   * *make clean*
@@ -57,19 +58,19 @@ ___
 
 ## Flashing AVR Firmware 
   * You will need and AVR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
-    * I am using atmelice_isp but the Makefile as example for:
+    * I am using atmelice_isp but the [Makefile](Makefile) as example for:
       * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
   * make flash
 
 ## Flashing the firmware to the AVR with avrdude and programmer
   * *make flash*
     * This will use *avrdude* with the new low cost Atmel ICE programmer.
-      * If you wish to another programmer then update the "flash" avrdude command line in the Makefile.
+      * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
       * There is an example with the AVR mkii programmer as well.
 
 ## Building Doxygen documentation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
-  * *If you omit this you will have to update the Makefile to omit the steps*
+  * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
 ___
 
 ## Using the emulator with provider examples
@@ -155,7 +156,7 @@ ___
        * See the [hpdisk.cfg](sdcard/hpdisk.cfg) for documentation on the full list of debugging options
      * The emulator can passively log all transactions between real hardware on the GPIB bus 
        * Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.
-       * You can use this to help understand what is sent to and from you real disks.
+       * You can use this to help understand what is sent to and from your real disks.
        * I use this feature to help prioritize which commands I first implemented.
 ___
 
@@ -300,12 +301,12 @@ ___
   * [Jay Hamlin designed this board](board/V2/releases)
   * Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface
   * <b>The code is work in progress - we will update this page when it is ready</b>
-  * Use V2BOARD directive in Makefile to use this new board design
+  * Use V2BOARD directive in [Makefile](Makefile) to use this new board design
 ___
 
 ## [V1 board readme](board/V1/README.md)
   * [My original board design without GPIB buffers](board/V1/README.md)
-  * Comment out V2BOARD directive in Makefile to use original board
+  * Comment out V2BOARD directive in [Makefile](Makefile) to use original board
 ___ 
 
 ## Testing
@@ -369,14 +370,26 @@ ___
 ## Files
   * [COPYRIGHT.md](COPYRIGHT.md)
     Project Copyrights 
+  * [Doxyfile](Doxyfile)
+    * Doxygen Configuration file for project
+  * [doxyinc](doxyinc)
+    * Determins which files are included in the project Doxygen documents
+  * [DoxygenLayout.xml](DoxygenLayout.xml)
+    * Doxygen Layout file
   * [main.c](main.c)
     Main start-up code
   * [main.h](main.h)
     Main start-up code
+  * [Makefile](Makefile)
+   * Project Makefile
+  * [miniterm](miniterm)
+    * wrapper for miniterm.py part of the python package pyserial
   * [notes.txt](notes.txt)
-    Note - working on converting compiled constants into run time configuration
+    * My notes for converting compiled constants into run time configuration
   * [README.md](README.md)
-    This file
+    * Project README 
+  * [term](term)
+    * Wrapper for minicom terminal emulator
 
   * [board](board)
     * [V1](board/V1)
@@ -417,7 +430,7 @@ ___
       * My Hardware abstraction layer code
 
   * [fatfs.sup](fatfs.sup/fatfs.sup)
-    * Support utility and POSIX rapper factions
+    * Support utility and POSIX wrapper factions
     * [fatfs.h](fatfs.sup/fatfs.h)
       * FatFS header files
     * [fatfs_sup.c](fatfs.sup/fatfs_sup.c)
@@ -435,6 +448,8 @@ ___
       * AMIGO parser
     * [defines.h](gpib/defines.h)
       * Main GPIB header and configuration options
+    * [debug.txt](debug.txt)
+      * List of debug flags
     * [drives.c](gpib/drives.c)
       * Supported Drive Parameters 
     * [drive_references.txt](gpib/drive_references.txt)
@@ -553,7 +568,7 @@ ___
     * [lif/lifutils.c](lif/lifutils.c)
     * [lif/lifutils.c](lif/lifutils.c)
       * Functions that allow the emulator to import and export files from LIF images 
-    * Makefile
+    * [Makefile](lif/Makefile)
       * Permits creating a standalone Linux version of the LIF emulator tools
     * Code by Mike Gore
       * [Makefile](lif/Makefile)
@@ -602,10 +617,14 @@ ___
 
   * [posix](posix)
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
+    * [buffer.c](buffer.c)
+    * [buffer.h](buffer.h)
+      * Currently unused in this project
     * [posix.c](posix/posix.c)
     * [posix.h](posix/posix.h)
       * POSIX wrappers for fatfs - Unix file IO function call wrappers
     * [posix_tests.c](posix/posix_tests.c)
+    * [posix_tests.h](posix/posix_tests.h)
       * POSIX user tests
 
   * [printf](printf)

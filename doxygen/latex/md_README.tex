@@ -88,6 +88,7 @@ I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \item {\itshape apt-\/get update}
 \item {\itshape apt-\/get install aptitude make build-\/essential binutils gcc}
 \item {\itshape aptitude --with-\/recommends install minicom avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr}
+\item pip install pyserial
 \end{DoxyItemize}
 
 \subsection*{Compiling A\+VR and standlone L\+IF tools}
@@ -104,7 +105,7 @@ I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
 \item You will need and A\+VR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
 \begin{DoxyItemize}
-\item I am using atmelice\+\_\+isp but the Makefile as example for\+:
+\item I am using atmelice\+\_\+isp but the \mbox{[}Makefile\mbox{]}(Makefile) as example for\+:
 \begin{DoxyItemize}
 \item {\itshape avrispmk\+II atmelice atmelice\+\_\+dw atmelice\+\_\+isp atmelice\+\_\+pdi}
 \end{DoxyItemize}
@@ -120,7 +121,7 @@ I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
 \item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
 \begin{DoxyItemize}
-\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the Makefile.
+\item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the \mbox{[}Makefile\mbox{]}(Makefile).
 \item There is an example with the A\+VR mkii programmer as well.
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -131,7 +132,7 @@ I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 
 \begin{DoxyItemize}
 \item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
-\item {\itshape If you omit this you will have to update the Makefile to omit the steps} 
+\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps} 
 
 
 \end{DoxyItemize}
@@ -293,7 +294,7 @@ Multiple drive support is impliments but U\+N\+IT support is N\+OT
 \item The emulator can passively log all transactions between real hardware on the G\+P\+IB bus
 \begin{DoxyItemize}
 \item Use the \char`\"{}gpib trace $\ast$logfile$\ast$\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
-\item You can use this to help understand what is sent to and from you real disks.
+\item You can use this to help understand what is sent to and from your real disks.
 \item I use this feature to help prioritize which commands I first implemented. 
 
 
@@ -531,7 +532,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{board/V2/releases}{\tt Jay Hamlin designed this board}
 \item Added G\+P\+IB B\+US drivers, I2C level conveters, reset circuit, full SD card interface
 \item {\bfseries The code is work in progress -\/ we will update this page when it is ready}
-\item Use V2\+B\+O\+A\+RD directive in Makefile to use this new board design 
+\item Use V2\+B\+O\+A\+RD directive in \mbox{[}Makefile\mbox{]}(Makefile) to use this new board design 
 
 
 \end{DoxyItemize}
@@ -541,7 +542,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 \begin{DoxyItemize}
 \item My original board design without G\+P\+IB buffers
-\item Comment out V2\+B\+O\+A\+RD directive in Makefile to use original board 
+\item Comment out V2\+B\+O\+A\+RD directive in \mbox{[}Makefile\mbox{]}(Makefile) to use original board 
 
 
 \end{DoxyItemize}
@@ -692,10 +693,40 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 \begin{DoxyItemize}
 \item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+HT.md} Project Copyrights
+\item \mbox{[}Doxyfile\mbox{]}(Doxyfile)
+\begin{DoxyItemize}
+\item Doxygen Configuration file for project
+\end{DoxyItemize}
+\item \mbox{[}doxyinc\mbox{]}(doxyinc)
+\begin{DoxyItemize}
+\item Determins which files are included in the project Doxygen documents
+\end{DoxyItemize}
+\item \href{DoxygenLayout.xml}{\tt Doxygen\+Layout.\+xml}
+\begin{DoxyItemize}
+\item Doxygen Layout file
+\end{DoxyItemize}
 \item \href{main.c}{\tt main.\+c} Main start-\/up code
 \item \href{main.h}{\tt main.\+h} Main start-\/up code
-\item \href{notes.txt}{\tt notes.\+txt} Note -\/ working on converting compiled constants into run time configuration
-\item \hyperlink{md_README}{R\+E\+A\+D\+ME.md} This file
+\item \mbox{[}Makefile\mbox{]}(Makefile)
+\begin{DoxyItemize}
+\item Project Makefile
+\end{DoxyItemize}
+\item \mbox{[}miniterm\mbox{]}(miniterm)
+\begin{DoxyItemize}
+\item wrapper for miniterm.\+py part of the python package pyserial
+\end{DoxyItemize}
+\item \href{notes.txt}{\tt notes.\+txt}
+\begin{DoxyItemize}
+\item My notes for converting compiled constants into run time configuration
+\end{DoxyItemize}
+\item \hyperlink{md_README}{R\+E\+A\+D\+ME.md}
+\begin{DoxyItemize}
+\item Project R\+E\+A\+D\+ME
+\end{DoxyItemize}
+\item \mbox{[}term\mbox{]}(term)
+\begin{DoxyItemize}
+\item Wrapper for minicom terminal emulator
+\end{DoxyItemize}
 \item \mbox{[}board\mbox{]}(board)
 \begin{DoxyItemize}
 \item \href{board/V1}{\tt V1}
@@ -756,7 +787,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item \href{fatfs.sup/fatfs.sup}{\tt fatfs.\+sup}
 \begin{DoxyItemize}
-\item Support utility and P\+O\+S\+IX rapper factions
+\item Support utility and P\+O\+S\+IX wrapper factions
 \item \href{fatfs.sup/fatfs.h}{\tt fatfs.\+h}
 \begin{DoxyItemize}
 \item Fat\+FS header files
@@ -786,6 +817,10 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{gpib/defines.h}{\tt defines.\+h}
 \begin{DoxyItemize}
 \item Main G\+P\+IB header and configuration options
+\end{DoxyItemize}
+\item \href{debug.txt}{\tt debug.\+txt}
+\begin{DoxyItemize}
+\item List of debug flags
 \end{DoxyItemize}
 \item \href{gpib/drives.c}{\tt drives.\+c}
 \begin{DoxyItemize}
@@ -1016,7 +1051,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item Functions that allow the emulator to import and export files from L\+IF images
 \end{DoxyItemize}
-\item Makefile
+\item \href{lif/Makefile}{\tt Makefile}
 \begin{DoxyItemize}
 \item Permits creating a standalone Linux version of the L\+IF emulator tools
 \end{DoxyItemize}
@@ -1114,12 +1149,18 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \mbox{[}posix\mbox{]}(posix)
 \begin{DoxyItemize}
 \item P\+O\+S\+IX wrappers provide many U\+N\+IX P\+O\+S\+IX compatible functions by translating fatfs functions
+\item \href{buffer.c}{\tt buffer.\+c}
+\item \href{buffer.h}{\tt buffer.\+h}
+\begin{DoxyItemize}
+\item Currently unused in this project
+\end{DoxyItemize}
 \item \href{posix/posix.c}{\tt posix.\+c}
 \item \href{posix/posix.h}{\tt posix.\+h}
 \begin{DoxyItemize}
 \item P\+O\+S\+IX wrappers for fatfs -\/ Unix file IO function call wrappers
 \end{DoxyItemize}
 \item \href{posix/posix_tests.c}{\tt posix\+\_\+tests.\+c}
+\item \href{posix/posix_tests.h}{\tt posix\+\_\+tests.\+h}
 \begin{DoxyItemize}
 \item P\+O\+S\+IX user tests
 \end{DoxyItemize}

@@ -138,6 +138,7 @@ README</h1>
 <li><em>apt-get update</em></li>
 <li><em>apt-get install aptitude make build-essential binutils gcc</em></li>
 <li><em>aptitude &ndash;with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr</em></li>
+<li>pip install pyserial</li>
 </ul>
 <h2>Compiling AVR and standlone LIF tools</h2>
 <ul>
@@ -147,7 +148,7 @@ README</h1>
 <h2>Flashing AVR Firmware</h2>
 <ul>
 <li>You will need and AVR programmer supported by avrdude (avrdude is part of avrtools installed in last step)<ul>
-<li>I am using atmelice_isp but the Makefile as example for:<ul>
+<li>I am using atmelice_isp but the [Makefile](Makefile) as example for:<ul>
 <li><em>avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi</em></li>
 </ul>
 </li>
@@ -159,7 +160,7 @@ README</h1>
 <ul>
 <li><em>make flash</em><ul>
 <li>This will use <em>avrdude</em> with the new low cost Atmel ICE programmer.<ul>
-<li>If you wish to another programmer then update the "flash" avrdude command line in the Makefile.</li>
+<li>If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).</li>
 <li>There is an example with the AVR mkii programmer as well.</li>
 </ul>
 </li>
@@ -169,7 +170,7 @@ README</h1>
 <h2>Building Doxygen documentation for the project - optional</h2>
 <ul>
 <li><em>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</em></li>
-<li><em>If you omit this you will have to update the Makefile to omit the steps</em> <hr/>
+<li><em>If you omit this you will have to update the [Makefile](Makefile) to omit the steps</em> <hr/>
 </li>
 </ul>
 <h2>Using the emulator with provider examples</h2>
@@ -320,7 +321,7 @@ README</h1>
 </li>
 <li>The emulator can passively log all transactions between real hardware on the GPIB bus<ul>
 <li>Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.</li>
-<li>You can use this to help understand what is sent to and from you real disks.</li>
+<li>You can use this to help understand what is sent to and from your real disks.</li>
 <li>I use this feature to help prioritize which commands I first implemented. <hr/>
 </li>
 </ul>
@@ -497,13 +498,13 @@ README</h1>
 <li><a href="board/V2/releases">Jay Hamlin designed this board</a></li>
 <li>Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface</li>
 <li><b>The code is work in progress - we will update this page when it is ready</b></li>
-<li>Use V2BOARD directive in Makefile to use this new board design <hr/>
+<li>Use V2BOARD directive in [Makefile](Makefile) to use this new board design <hr/>
 </li>
 </ul>
 <h2>board/V1/README.md "V1 board readme"</h2>
 <ul>
 <li>My original board design without GPIB buffers</li>
-<li>Comment out V2BOARD directive in Makefile to use original board <hr/>
+<li>Comment out V2BOARD directive in [Makefile](Makefile) to use original board <hr/>
 </li>
 </ul>
 <h2>Testing</h2>
@@ -580,10 +581,40 @@ README</h1>
 <h2>Files</h2>
 <ul>
 <li><a class="el" href="COPYRIGHT_8md.html">COPYRIGHT.md</a> Project Copyrights</li>
+<li>[Doxyfile](Doxyfile)<ul>
+<li>Doxygen Configuration file for project</li>
+</ul>
+</li>
+<li>[doxyinc](doxyinc)<ul>
+<li>Determins which files are included in the project Doxygen documents</li>
+</ul>
+</li>
+<li><a href="DoxygenLayout.xml">DoxygenLayout.xml</a><ul>
+<li>Doxygen Layout file</li>
+</ul>
+</li>
 <li><a href="main.c">main.c</a> Main start-up code</li>
 <li><a href="main.h">main.h</a> Main start-up code</li>
-<li><a href="notes.txt">notes.txt</a> Note - working on converting compiled constants into run time configuration</li>
-<li><a class="el" href="md_README.html">README.md</a> This file</li>
+<li>[Makefile](Makefile)<ul>
+<li>Project Makefile</li>
+</ul>
+</li>
+<li>[miniterm](miniterm)<ul>
+<li>wrapper for miniterm.py part of the python package pyserial</li>
+</ul>
+</li>
+<li><a href="notes.txt">notes.txt</a><ul>
+<li>My notes for converting compiled constants into run time configuration</li>
+</ul>
+</li>
+<li><a class="el" href="md_README.html">README.md</a><ul>
+<li>Project README</li>
+</ul>
+</li>
+<li>[term](term)<ul>
+<li>Wrapper for minicom terminal emulator</li>
+</ul>
+</li>
 <li>[board](board)<ul>
 <li><a href="board/V1">V1</a><ul>
 <li>V1 Board documentation and Release files</li>
@@ -643,7 +674,7 @@ README</h1>
 </ul>
 </li>
 <li><a href="fatfs.sup/fatfs.sup">fatfs.sup</a><ul>
-<li>Support utility and POSIX rapper factions</li>
+<li>Support utility and POSIX wrapper factions</li>
 <li><a href="fatfs.sup/fatfs.h">fatfs.h</a><ul>
 <li>FatFS header files</li>
 </ul>
@@ -672,6 +703,10 @@ README</h1>
 </li>
 <li><a href="gpib/defines.h">defines.h</a><ul>
 <li>Main GPIB header and configuration options</li>
+</ul>
+</li>
+<li><a href="debug.txt">debug.txt</a><ul>
+<li>List of debug flags</li>
 </ul>
 </li>
 <li><a href="gpib/drives.c">drives.c</a><ul>
@@ -903,7 +938,7 @@ README</h1>
 <li>Functions that allow the emulator to import and export files from LIF images</li>
 </ul>
 </li>
-<li>Makefile<ul>
+<li><a href="lif/Makefile">Makefile</a><ul>
 <li>Permits creating a standalone Linux version of the LIF emulator tools</li>
 </ul>
 </li>
@@ -998,12 +1033,18 @@ README</h1>
 </ul>
 <p>[posix](posix)</p><ul>
 <li>POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
+<li><a href="buffer.c">buffer.c</a></li>
+<li><a href="buffer.h">buffer.h</a><ul>
+<li>Currently unused in this project</li>
+</ul>
+</li>
 <li><a href="posix/posix.c">posix.c</a></li>
 <li><a href="posix/posix.h">posix.h</a><ul>
 <li>POSIX wrappers for fatfs - Unix file IO function call wrappers</li>
 </ul>
 </li>
-<li><a href="posix/posix_tests.c">posix_tests.c</a><ul>
+<li><a href="posix/posix_tests.c">posix_tests.c</a></li>
+<li><a href="posix/posix_tests.h">posix_tests.h</a><ul>
 <li>POSIX user tests</li>
 </ul>
 </li>
@@ -1101,7 +1142,7 @@ README</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 16 2020 19:35:36 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 17 2020 20:27:27 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
