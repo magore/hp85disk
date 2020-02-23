@@ -8,6 +8,8 @@ var searchData=
   ['ldir_5ford',['LDIR_Ord',['../ff_8c.html#a6c97d545619e6586b02b5d4f39f7be25',1,'ff.c']]],
   ['ldir_5ftype',['LDIR_Type',['../ff_8c.html#acb98a052a9be81564b56854df35480a0',1,'ff.c']]],
   ['leave_5fff',['LEAVE_FF',['../ff_8c.html#a7e653d8ca0ae09faa49cd5b7335fea84',1,'ff.c']]],
+  ['led1',['LED1',['../gpib__hal_8h.html#a8aa85ae9867fabf70ec72cd3bf6fb6b9',1,'gpib_hal.h']]],
+  ['led2',['LED2',['../gpib__hal_8h.html#ad09fe5bf321b9a2de26bd5e5b9af6424',1,'gpib_hal.h']]],
   ['lif_5fdir_5frecords_5fper_5fsector',['LIF_DIR_RECORDS_PER_SECTOR',['../lifutils_8h.html#aa1750b32056b8fbaa729724402d587f2',1,'lifutils.h']]],
   ['lif_5fdir_5fsize',['LIF_DIR_SIZE',['../lifutils_8h.html#a99ad70dd3200a3ee46388bc2c36fe720',1,'lifutils.h']]],
   ['lif_5fsector_5fsize',['LIF_SECTOR_SIZE',['../lifutils_8h.html#a9f32d2537f4daba6a314185cf52b7e56',1,'lifutils.h']]],

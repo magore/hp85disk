@@ -329,7 +329,7 @@ uint16_t gpib_error_test(uint16_t val)
 /// @return  void
 void gpib_init_devices(void)
 {
-    gpib_bus_init(1);
+    gpib_bus_init(0);	// Not busy - we have to free all pins on the BUS
     // FIXME FIXME what does this break ???
     // Init PPR talking and listening states
     // gpib_state_init();   

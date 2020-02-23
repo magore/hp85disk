@@ -111,7 +111,9 @@ void \hyperlink{gpib_8h_a687395337dd5c6604a775e3ffd3f006f}{gpib\+\_\+timeout\+\_
 \begin{DoxyCompactList}\small\item\em Set G\+P\+IB timeout timer in units of G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8h_a2096a86f435acacb3165a9bdb0af076b}{gpib\+\_\+timeout\+\_\+test} (void)
 \begin{DoxyCompactList}\small\item\em Test G\+P\+IB timeout timer for timeout condition. \end{DoxyCompactList}\item 
-void \hyperlink{gpib_8h_a5576f7a1bab2c1beaab0c03bc62bb349}{gpib\+\_\+bus\+\_\+init} (int cold)
+void \hyperlink{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init} (int busy)
+\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for R\+E\+AD Dispite the name this is used in both read and write functions to clear the bus. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a555734ee11c1816823217a10caa30096}{gpib\+\_\+bus\+\_\+init} (int busy)
 \begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for powerup or reset conditions. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}{gpib\+\_\+state\+\_\+init} (void)
 \begin{DoxyCompactList}\small\item\em Reset G\+P\+IB states and related variables. \end{DoxyCompactList}\item 
@@ -673,7 +675,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 405 of file gpib.\+c.
+Definition at line 432 of file gpib.\+c.
 
 
 
@@ -698,13 +700,13 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 425 of file gpib.\+c.
+Definition at line 452 of file gpib.\+c.
 
-\mbox{\Hypertarget{gpib_8h_a5576f7a1bab2c1beaab0c03bc62bb349}\label{gpib_8h_a5576f7a1bab2c1beaab0c03bc62bb349}} 
+\mbox{\Hypertarget{gpib_8h_a555734ee11c1816823217a10caa30096}\label{gpib_8h_a555734ee11c1816823217a10caa30096}} 
 \index{gpib.\+h@{gpib.\+h}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+h@{gpib.\+h}}
 \subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+init()}{gpib\_bus\_init()}}
-{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{cold }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
 
 
 
@@ -712,10 +714,10 @@ Initialize G\+P\+IB Bus control lines for powerup or reset conditions.
 
 
 \begin{DoxyItemize}
-\item Set cold = 1 at powerup
-\item set cold = 0 in operation to reset bus state
+\item Set busy = 0 at powerup
+\item set busy = 1 in operation to reset bus state
 \begin{DoxyItemize}
-\item If cold = 0 N\+R\+F\+D/\+N\+D\+AC is set to 0 busy
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC is set to 0 busy
 \end{DoxyItemize}
 \item References\+:
 \begin{DoxyItemize}
@@ -725,9 +727,9 @@ void
 \end{DoxyReturn}
 
 \end{DoxyItemize}
-\end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
+\end{DoxyItemize}
 
-Definition at line 239 of file gpib.\+c.
+Definition at line 289 of file gpib.\+c.
 
 
 
@@ -748,11 +750,43 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity 
 
-Definition at line 472 of file gpib.\+c.
+Definition at line 499 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}\label{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}}
+\index{gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+read\+\_\+init()}{gpib\_bus\_read\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+read\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+P\+IB Bus control lines for R\+E\+AD Dispite the name this is used in both read and write functions to clear the bus. 
+
+
+\begin{DoxyItemize}
+\item Set busy = 0 after powerup everying floating or high
+\begin{DoxyItemize}
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC are set to busy low
+\end{DoxyItemize}
+\item References\+:
+\begin{DoxyItemize}
+\item H\+P-\/\+IB Tutorial
+\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
+
+Definition at line 238 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+bus\+\_\+init(), gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 
 \mbox{\Hypertarget{gpib_8h_ab39377861a160a9128cc759523d26b53}\label{gpib_8h_ab39377861a160a9128cc759523d26b53}} 
 \index{gpib.\+h@{gpib.\+h}!gpib\+\_\+control\+\_\+pin\+\_\+read@{gpib\+\_\+control\+\_\+pin\+\_\+read}}
@@ -765,11 +799,14 @@ Referenced by gpib\+\_\+read\+\_\+byte().
 Read G\+P\+IB control lines only. 
 
 \begin{DoxyReturn}{Returns}
-control lines (upper 8 bits) 
+control lines (upper 8 bits) V2 boards can N\+OT read all bits on the control bus at once 
 \end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init()} 
+\end{DoxySeeAlso}
 
 
-Definition at line 487 of file gpib.\+c.
+Definition at line 516 of file gpib.\+c.
 
 
 
@@ -793,7 +830,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1204 of file gpib.\+c.
+Definition at line 1187 of file gpib.\+c.
 
 
 
@@ -824,7 +861,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1024 of file gpib.\+c.
+Definition at line 1007 of file gpib.\+c.
 
 
 
@@ -861,7 +898,7 @@ Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ i
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 364 of file gpib.\+c.
+Definition at line 391 of file gpib.\+c.
 
 
 
@@ -885,7 +922,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 332 of file gpib.\+c.
+Definition at line 359 of file gpib.\+c.
 
 
 
@@ -905,7 +942,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 312 of file gpib.\+c.
+Definition at line 339 of file gpib.\+c.
 
 
 
@@ -926,7 +963,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 506 of file gpib.\+c.
+Definition at line 535 of file gpib.\+c.
 
 
 
@@ -988,19 +1025,29 @@ read 1 byte and control line status from G\+P\+IB B\+US
 \begin{DoxyReturn}{Returns}
 (data bus, control and error status) 
 \end{DoxyReturn}
-See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
+V2 boards can N\+OT read all bits on the control bus at once N\+R\+FD,N\+D\+AC S\+RQ are outputs
 
-Signal that we are ready to read
+Signal that we are ready to ready
 
-Wait for Data Ready acknowledge
+Wait for Ready acknowledge
 
 gpib\+\_\+bus\+\_\+read strips command parity if A\+TN is low at read time
+
+V2 boards can N\+OT read all bits on the control bus at once N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+V2 boards can N\+OT read all bits on the control bus at once N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+V1 boards can actually wait N\+D\+AC to go HI V2 boards we can\textquotesingle{}t -\/ not a big deal as the D\+AV test works anyway
 
 Wait for N\+D\+AC float HI
 
 Wait for D\+AV HI
 
 Ready for next byte
+
+F\+I\+X\+ME drppping N\+R\+FD now may be a mistake
+
+V2 boards can N\+OT read all bits on the control bus at once N\+R\+FD,N\+D\+AC S\+RQ are outputs
 
 Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \begin{DoxyItemize}
@@ -1009,7 +1056,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 828 of file gpib.\+c.
+Definition at line 818 of file gpib.\+c.
 
 
 
@@ -1095,7 +1142,7 @@ status
 \item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1244 of file gpib.\+c.
+Definition at line 1227 of file gpib.\+c.
 
 
 
@@ -1120,7 +1167,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 287 of file gpib.\+c.
+Definition at line 314 of file gpib.\+c.
 
 
 
@@ -1324,7 +1371,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1073 of file gpib.\+c.
+Definition at line 1056 of file gpib.\+c.
 
 
 
@@ -1363,7 +1410,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 454 of file gpib.\+c.
+Definition at line 481 of file gpib.\+c.
 
 
 
@@ -1436,17 +1483,15 @@ Send 1 byte and control line states to G\+P\+IB B\+US.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxySeeAlso}
-See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
-
 first device is ready
 
 A\+LL devices are ready
 
 B\+US
 
-for D\+AV to float HI 
+for D\+AV to finish float HI -\/ finishing floating HI 
 
-Definition at line 556 of file gpib.\+c.
+Definition at line 585 of file gpib.\+c.
 
 
 
@@ -1525,7 +1570,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1333 of file gpib.\+c.
+Definition at line 1316 of file gpib.\+c.
 
 
 

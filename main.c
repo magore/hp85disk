@@ -312,7 +312,6 @@ int main(void)
     sep();
     printf("Starting GPIB TASK\n");
 
-
     while (1)
     {
         task(1);

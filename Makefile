@@ -23,9 +23,8 @@ PROJECT = gpib
 DEVICE  = atmega1284p
 
 ### Board Version
-# comment out for original board version without drivers
-V2BOARD = 1   # tranceivers
-
+# VERSION=1
+V2BOARD=1
 #BAUD=105200UL
 BAUD=500000UL
 
@@ -147,9 +146,6 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 
 DEFS += BAUD=$(BAUD)
 
-ifeq ($(V2BOARD),1)
-	DEFS += V2BOARD
-endif
 
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
@@ -177,6 +173,10 @@ endif
 
 ifeq ($(AMIGO),1)
 	DEFS += AMIGO 
+endif
+
+ifeq ($(V2BOARD),1)
+	DEFS += V2BOARD 
 endif
 
 ADEFS   =
@@ -250,7 +250,9 @@ HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 # atmega1284p and atmega644 can use same fuses
-fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
+# fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
+# Disable JTAG
+fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 
 SRCS = $(CSRC)
 PROGS = hardware/baudrate

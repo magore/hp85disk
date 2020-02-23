@@ -1,43 +1,100 @@
-Handshake
+
+Working core configurations so far - other combinations of DC and TE are possible but the state of EOI is controlled by ATN
+GPIB data bus write:
+  TE = 1  BUS OUT, DAV OUT, NRFD IN, NDAC IN
+  DC = 0  ATN OUT, EOI OUT, SRQ IN
+  PE = 0  BUS OC mode
+  PE = 1  BUS TRISTATE mode
+
+GPIB data bus read
+  NRFD  pin floating high
+   NDAC  pin floating high
+  SRQ    pin floating high
+  TE = 0  BUS IN, DAV IN, NRFD OUT OC, NDAC OUT OC
+  DC = 1  ATN IN, EOI IN, SRQ OUT OC
+  PE = X unused
+==========================
+Init Bus - use read state above
 =====
-GPIB Data Receive
-TE = 0
-	NRFD = 1 output float
-	NDAC = 1 output float
-	Read(DAV)
-        Read(BUS)
-PE = X 
+SRQ and REN are not used by our Emulator
+
+Handshake modes
+BUS DATA = 0xff
+PE = 0  BUS OC
+TE = 0 BUS IN, DAV IN, NDAC OUT OC, NRFD OUT OC
+(NDAC and NRFD must be 1 to stay off the bus!)
+
+TE = 1, BUS OUT OC, DAV OUT, NDAC IN, NRFD IN
+
+SC = 0 REN IN, IFC IN  (always for a slave device)
+
+DC = 0 ATN OUT, SRQ IN
+DC = 1 ATN IN, SRQ out
+
+
+EOI and ATN IN always TE = 0, DC=1
+TE  = 0 BUS IN, DAV IN, NDAC = 1 OUT OC float, NRFD = 1 OUT OC float
+DC  = 1 ATN IN, EOI IN, SRQ = 1 OC float
+
+EOI and ATN OUT always TE = 1, DC = 0
+TE  = 1 BUS OUT, DAV OUT, NDAC IN, NRFD IN
+DC  = 0 ATN OUT, EOI OUT, SRQ IN
+
+
+IFC - input device reset, init bus
+SRQ - input NOT USED
+REN) - input NOT USED
+EOI input or output, flag end of multibyte transfer 
+EOI + ATN input low parallel poll request
+ATN  command mode (ATN active low), data mode (ATN inactive high)
+
 ===============================
-GPIB data bus write
-TE = 1
-	Write(DAV) tristate
-	Read(NRFD)
-	Read(NDAC)
 
-Tristate GPIB DATA bus write
-	PE = 1
-	Write(DATA)
 
-Disable/Float GPIB data bus
-   	PE = 0
-	Write(DATA = 0xff) float
+    GPIB_PIN_FLOAT(EOI);
+    GPIB_PIN_FLOAT(DAV);
+    GPIB_PIN_FLOAT(IFC);
+    GPIB_PIN_FLOAT(SRQ);
+    GPIB_PIN_FLOAT(ATN);
+    GPIB_PIN_FLOAT(REN);
 
-init
-    	NRFD = 1    float
-    	NDAC = 1    float
-    	TE = 0
-	DC = 0      ATN IN, SRQ OUT
-	Read(DAV)
-    	TE = 1	
-	Write(DAV)
-	Read(NRFD)
-	Read(NDAC)
-    	PE = 0   	    open collector bus
-    	Write(DATA = 0xff)  open collector float
-write
-    	DATA = value tristate write
-    	PE = 1
+    GPIB_BUS_LATCH_WR(0xff);// Float BUS when bus is out
+    GPIB_BUS_IN();
 
+#ifdef V2BOARD
+    // NOTE: GPIB bus drivers we will be limited on what pins can can be read at all times
+    // This will impact tracing function!
+
+    GPIB_IO_LOW(PE);        // OC BUS enable - lets us float DATA bus by writing 0xff
+
+    GPIB_BUS_LOW(SC);       // REN IN, IFC IN, SC = 0 ALWAYS unless we are a controller
+
+    GPIB_IO_HI(DC);         // ATN IN, SRQ OUT OC
+    GPIB_PIN_HI(SRQ);       // SRQ OC float when DC = 1
+
+    GPIB_IO_LOW(TE);        // BUS IN, DAV IN, NDAC OUT, NRFD OUT
+#endif
+    if(cold)
+    {
+#ifdef V2BOARD
+        // TE = 0
+        GPIB_PIN_HI(NRFD);  // OC float HI
+        GPIB_PIN_HI(NDAC);  // OC float HI
+#else
+        GPIB_PIN_FLOAT(NRFD);   // OC
+        GPIB_PIN_FLOAT(NDAC);   // OC
+#endif
+    }
+    else
+    {
+///  References:
+///   HP-IB Tutorial pg 12,13
+///     HP-IB pg 8-11
+        GPIB_IO_LOW(NDAC);
+        GPIB_IO_LOW(NRFD);
+    }
+
+    GPIB_BUS_SETTLE();                            // Let Data BUS settle  
 ==========================
 Control lines
 DC = 0
