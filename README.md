@@ -13,7 +13,7 @@
 
 ## HP85 emulator circuit board (C) 2019-2020 Jay Hamlin
 ## V2 notes - the V2 branch targets the new board by Jay Hamlin
-   * The current code has NOT been tested on the new board yet
+   * The current code is work in progress - NOT fully working yet
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
