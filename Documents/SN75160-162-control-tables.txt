@@ -49,52 +49,57 @@ EOI + ATN input low parallel poll request
 ATN  command mode (ATN active low), data mode (ATN inactive high)
 
 ===============================
-
-
-    GPIB_PIN_FLOAT(EOI);
-    GPIB_PIN_FLOAT(DAV);
-    GPIB_PIN_FLOAT(IFC);
-    GPIB_PIN_FLOAT(SRQ);
-    GPIB_PIN_FLOAT(ATN);
-    GPIB_PIN_FLOAT(REN);
-
+/// @brief  Initialize GPIB Bus control lines for READ
+/// - Set busy = 1 after powerup
+///  - If busy = 0 NRFD/NDAC are set to busy low
+/// - Set busy = 0 at powerup before we are using the bus
+/// - References:
+///  - HP-IB Tutorial
+///  -  HP-IB pg 8-11
+/// @return  void
+void gpib_bus_read_init(int busy)
+{
+    // CPU side GPIB BUS in
     GPIB_BUS_LATCH_WR(0xff);// Float BUS when bus is out
     GPIB_BUS_IN();
+    GPIB_BUS_SETTLE();      // Let Data BUS settle
+
+    GPIB_PIN_FLOAT_UP(IFC); // IFC FLOAT PULLUP
+    GPIB_PIN_FLOAT_UP(REN); // REN FLOAT PULLUP
 
 #ifdef V2BOARD
-    // NOTE: GPIB bus drivers we will be limited on what pins can can be read at all times
-    // This will impact tracing function!
-
-    GPIB_IO_LOW(PE);        // OC BUS enable - lets us float DATA bus by writing 0xff
-
     GPIB_BUS_LOW(SC);       // REN IN, IFC IN, SC = 0 ALWAYS unless we are a controller
-
-    GPIB_IO_HI(DC);         // ATN IN, SRQ OUT OC
-    GPIB_PIN_HI(SRQ);       // SRQ OC float when DC = 1
-
-    GPIB_IO_LOW(TE);        // BUS IN, DAV IN, NDAC OUT, NRFD OUT
+    GPIB_IO_LOW(PE);        // OC BUS float on write
 #endif
-    if(cold)
+
+    GPIB_PIN_FLOAT_UP(SRQ); // SRQ FLOAT PULLUP
+    GPIB_PIN_FLOAT_UP(EOI); // EOI FLOAT PULLUP
+    GPIB_PIN_FLOAT_UP(DAV); // DAV FLOAT PULLUP
+    GPIB_PIN_FLOAT_UP(ATN); // ATN FLOAT PULLUP
+
+    GPIB_BUS_SETTLE();      // Let Data BUS settle
+
+
+    if(busy)
     {
-#ifdef V2BOARD
-        // TE = 0
-        GPIB_PIN_HI(NRFD);  // OC float HI
-        GPIB_PIN_HI(NDAC);  // OC float HI
-#else
-        GPIB_PIN_FLOAT(NRFD);   // OC
-        GPIB_PIN_FLOAT(NDAC);   // OC
-#endif
+        GPIB_IO_LOW(NDAC);
+        GPIB_IO_LOW(NRFD);
     }
     else
     {
 ///  References:
 ///   HP-IB Tutorial pg 12,13
 ///     HP-IB pg 8-11
-        GPIB_IO_LOW(NDAC);
-        GPIB_IO_LOW(NRFD);
+        GPIB_PIN_FLOAT_UP(NRFD);    // OC PULLUP
+        GPIB_PIN_FLOAT_UP(NDAC);    // OC PULLUP
     }
+#ifdef V2BOARD
+    GPIB_IO_LOW(TE);        // BUS IN, DAV IN, NDAC OUT, NRFD OUT
+    GPIB_IO_HI(DC);         // ATN IN, EOI IN, SRQ OUT OC
+#endif
+    GPIB_BUS_SETTLE();      // Let Data BUS settle
+}
 
-    GPIB_BUS_SETTLE();                            // Let Data BUS settle  
 ==========================
 Control lines
 DC = 0
@@ -138,5 +143,7 @@ DC = 0
 TE = 1
 	EOI = OUT tristate
 
+
+====================================================
 
 

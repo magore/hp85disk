@@ -61,7 +61,7 @@ void posix_help(int full)
         "posix ls dir [-l]\n"
         "posix mkdir dir\n"
         "posix mkfs\n"
-        "posix page NN"
+        "posix page NN\n"
         "posix pwd\n"
         "posix stat file\n"
         "posix sum file\n"

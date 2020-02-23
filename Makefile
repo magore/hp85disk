@@ -24,7 +24,8 @@ DEVICE  = atmega1284p
 
 ### Board Version
 # VERSION=1
-V2BOARD=1
+#V2BOARD=1
+
 #BAUD=105200UL
 BAUD=500000UL
 
