@@ -226,6 +226,9 @@ int main(void)
     ts_t ts;
     uint32_t actual,baud;
 
+    ///@ initialize bus state as soon as practical
+    gpib_bus_init();
+
     init_timers();
 
     // BAUD setting moved to Makefile
@@ -246,7 +249,7 @@ int main(void)
     sep();
     printf("HP85 Disk and Device Emulator\n");
     printf(" (C) 2014-2020 by Mike Gore\n");
-    printf(" GNU version 3\n");
+	printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
     printf("   GIT last pushed:   %s\n", GIT_VERSION);
     printf("   Last updated file: %s\n", LOCAL_MOD);
@@ -257,9 +260,6 @@ int main(void)
     sep();
     delayms(200); ///@brief Power up delay
 
-    ///@ initialize bus state as soon as practical
-    printf("initializing GPIB bus\n");
-    gpib_bus_init();
 
     ///@ initialize SPI bus 
     printf("initializing SPI bus\n");
@@ -281,6 +281,10 @@ int main(void)
     ///@ initialize MMC bus
     sep();
     mmc_init(1);
+
+    ///@ initialize bus state as soon as practical
+    gpib_bus_init();
+    printf("initializing GPIB bus\n");
 
     ///@ initialize Printer Capture
     sep();
