@@ -66,7 +66,7 @@ ___
 ## SD Card requirments
    * The HP85 is sensitive to write delays so we need SD cards with fast random writes.
    * I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
-   * Why ?  Each block that is written reads, erases then rewrites a in new internal flash page (thgese can be over a megabyte and so take time). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K random write times. Some SD cards are so slow it will cause the HP85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks - specifically 4k random write - faster is better.
+   * Why ?  Each block that is written reads, erases then rewrites a new internal flash page (thgese can be over a megabyte and so take time). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K random write times. Some SD cards are so slow it will cause the HP85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks - specifically 4k random write - faster is better.
 
 ___ 
 
