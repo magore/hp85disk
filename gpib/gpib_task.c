@@ -312,6 +312,7 @@ uint16_t gpib_error_test(uint16_t val)
             return(ABORT_FLAG);
         }
 
+		// Wait for IFC free
         if(val & IFC_FLAG )
         {
             while(GPIB_IO_RD(IFC) == 0)
@@ -330,6 +331,7 @@ uint16_t gpib_error_test(uint16_t val)
 void gpib_init_devices(void)
 {
     gpib_bus_init();	// Not busy - we have to free all pins on the BUS
+
     // FIXME FIXME what does this break ???
     // Init PPR talking and listening states
     // gpib_state_init();   

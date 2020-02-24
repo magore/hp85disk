@@ -111,15 +111,33 @@ V1 original board Makefile options
 \begin{DoxyItemize}
 \item \href{lif/t202lif}{\tt td02lif} \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF} 
 
- \subsection*{OS Requirements for software building}
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
+\subsection*{SD Card requirments}
+
+
+\begin{DoxyItemize}
+\item The H\+P85 is sensitive to write delays so we need SD cards with fast random writes.
+\item I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
+\item Why ? Each block that is written reads,erases, modifies a in new internal flash page (can be over a megabyte). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K randowm write times. Some SD cards are so slow it will cause the H\+P85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks -\/ specifically 4k random write -\/ faster is better.
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{OS Requirements for software building}
+
+
+\begin{DoxyItemize}
+\item I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
 \item It should be easy to setup the same build with Windows gcc tools.
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsection*{Install Ubuntu Packages required for Building}

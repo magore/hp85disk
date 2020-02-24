@@ -433,7 +433,10 @@ uint8_t gpib_detect_PP()
             if(uart_keyhit(0))
                 break;
             if(GPIB_PIN_TST(IFC) == 0)
+			{
+				gpib_bus_init();
                 break;
+			}
         }
 #endif
 #if SDEBUG
@@ -634,6 +637,7 @@ uint16_t gpib_write_byte(uint16_t ch)
         if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
+			gpib_bus_init();
             break;
         }
 
@@ -760,7 +764,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 GPIB_PIN_FLOAT_UP(DAV);
 
 				GPIB_BUS_SETTLE();
-				gpib_bus_read_init(0);		// Free BUS
+				gpib_bus_read_init(0);		// Free BUS, NOT busy
 
                 gpib_timeout_set(HTIMEOUT);
                 tx_state = GPIB_TX_WAIT_FOR_DAV_HI;
@@ -786,7 +790,6 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_FINISH:
-				gpib_bus_read_init(1);		// Free BUS
                 tx_state = GPIB_TX_DONE;
                 break;
 
@@ -795,10 +798,11 @@ uint16_t gpib_write_byte(uint16_t ch)
                 if(debuglevel & (1+4))
                     printf("<NRFD=%d,NDAV=%d>\n", GPIB_PIN_TST(NRFD),GPIB_PIN_TST(NDAC));
 #endif
-				gpib_bus_read_init(1);		// Free BUS
+				gpib_bus_read_init(1);		// Free BUS, BUSY on error
                 tx_state = GPIB_TX_DONE;
                 break;
 
+			// FIXME do we want to be busy at this point
             case GPIB_TX_DONE:
                 break;
         }
@@ -856,7 +860,7 @@ uint16_t gpib_read_byte(int trace)
         return(gpib_unread_data);
     }
 
-	gpib_bus_read_init(1); // Busy
+	gpib_bus_read_init(1); // Busy until we are ready
 
 
 ///@brief V2 boards can NOT read all bits on the control bus at once
@@ -882,6 +886,7 @@ uint16_t gpib_read_byte(int trace)
         if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
+			gpib_bus_init();
             break;
         }
 
@@ -940,6 +945,7 @@ uint16_t gpib_read_byte(int trace)
 #endif
                 break;
 
+/// FIXME do we want to keep the next state ?
 ///@brief V1 boards can actually wait NDAC to go HI
 ///@brief V2 boards we can't - not a big deal as the DAV test works anyway
             ///@brief Wait for NDAC float HI
@@ -981,8 +987,6 @@ uint16_t gpib_read_byte(int trace)
                 break;
 
             case GPIB_RX_ERROR:
-                //GPIB_IO_LOW(NDAC);
-                //GPIB_IO_LOW(NRFD);
 				gpib_bus_read_init(1); // Busy
                 rx_state = GPIB_RX_DONE;
                 break;

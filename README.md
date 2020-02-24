@@ -62,6 +62,15 @@ ___
      * TeleDisk to LIF extractor tool included - see [lif README.md](lif/README.md)
        * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
 ___
+
+## SD Card requirments
+   * The HP85 is sensitive to write delays so we need SD cards with fast random writes.
+   * I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
+   * Why ?  Each block that is written reads,erases, modifies a in new internal flash page (can be over a megabyte). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K randowm write times. Some SD cards are so slow it will cause the HP85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks - specifically 4k random write - faster is better.
+
+___ 
+
+
 ## OS Requirements for software building
   * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
     * It should be easy to setup the same build with Windows gcc tools.
