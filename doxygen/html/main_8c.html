@@ -209,15 +209,24 @@ Functions</h2></td></tr>
 
 <p><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main() for gpib project ">main()</a> for gpib project </p>
 <dl class="section return"><dt>Returns</dt><dd>should never return! </dd></dl>
+<p>@ Initialize UART early Returns actual BAUD rate - possible with hardware - may differ slightly</p>
 <p>Power up delay</p>
 <p>Power up delay</p>
 <p>@ initialize bus state as soon as practical</p>
-<p>process config file</p>
+<p>@ initialize SPI bus</p>
+<p>@ initialize I2C bus</p>
+<p>@ initialize clock by RTC if we have it</p>
+<p>@ initialize MMC bus</p>
+<p>@ initialize Printer Capture</p>
+<p>@ initialize GPIB timer tasks</p>
+<p>Process hp85disk emulator config file</p>
 <p>GPIB talking/listening state variables Must be done AFTER <a class="el" href="gpib__task_8c.html#a29b89503cfbf214695082b16d6d40f52" title="Read Configuration File. ">gpib_file_init()</a> so we have a valid configuration</p>
-<p>Display Config</p>
-<p>drives if they do not exist</p>
-<p>Address Summary</p>
-<p>Display debug level </p>
+<p>Display Configuration</p>
+<p>Format any drives that do not yet exist</p>
+<p>Display Address Summary</p>
+<p>Display debug level</p>
+<p>Start main GPIB state machine</p>
+<p>Keep the task running - it exits after every user interaction, ie key press </p>
 
 <p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00224">224</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
@@ -259,7 +268,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 23 2020 15:56:09 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 24 2020 02:24:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

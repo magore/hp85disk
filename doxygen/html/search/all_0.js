@@ -87,5 +87,6 @@ var searchData=
   ['_5fuse_5ftrim',['_USE_TRIM',['../ffconf_8h.html#a1f93ee7e57bb9d1221f34bfe80e18a61',1,'ffconf.h']]],
   ['_5fuse_5fwrite',['_USE_WRITE',['../diskio_8h.html#a1dd0d2b46dce637878416d489d2ddde2',1,'diskio.h']]],
   ['_5fvolume_5fstrs',['_VOLUME_STRS',['../ffconf_8h.html#a75c97afb8b06935364e42e3ec3fdc6c4',1,'ffconf.h']]],
-  ['_5fvolumes',['_VOLUMES',['../ffconf_8h.html#a366da9a40c8ceb3103a6b72ca02b9969',1,'ffconf.h']]]
+  ['_5fvolumes',['_VOLUMES',['../ffconf_8h.html#a366da9a40c8ceb3103a6b72ca02b9969',1,'ffconf.h']]],
+  ['_5fyear_5f',['_YEAR_',['../date_8h.html#a65bf1acf49c40d1164fd6a684358d346',1,'date.h']]]
 ];

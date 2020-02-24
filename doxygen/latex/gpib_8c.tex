@@ -40,8 +40,8 @@ uint8\+\_\+t \hyperlink{gpib_8c_a3eb10b99d17dd69982b6bfc820fb29db}{gpib\+\_\+tim
 \begin{DoxyCompactList}\small\item\em Test G\+P\+IB timeout timer for timeout condition. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init} (int busy)
 \begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for R\+E\+AD Dispite the name this is used in both read and write functions to clear the bus. \end{DoxyCompactList}\item 
-void \hyperlink{gpib_8c_a555734ee11c1816823217a10caa30096}{gpib\+\_\+bus\+\_\+init} (int busy)
-\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for powerup or reset conditions. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}{gpib\+\_\+bus\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a32d2476eec2bbdf15e7db1b901c5a671}{gpib\+\_\+state\+\_\+init} (void)
 \begin{DoxyCompactList}\small\item\em Reset G\+P\+IB states and related variables. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\+\+P\+PR} (int bit)
@@ -147,7 +147,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 432 of file gpib.\+c.
+Definition at line 454 of file gpib.\+c.
 
 
 
@@ -172,36 +172,24 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 452 of file gpib.\+c.
+Definition at line 474 of file gpib.\+c.
 
-\mbox{\Hypertarget{gpib_8c_a555734ee11c1816823217a10caa30096}\label{gpib_8c_a555734ee11c1816823217a10caa30096}} 
+\mbox{\Hypertarget{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}\label{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+c@{gpib.\+c}}
 \subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+init()}{gpib\_bus\_init()}}
-{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Initialize G\+P\+IB Bus control lines for powerup or reset conditions. 
+Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. 
 
-
-\begin{DoxyItemize}
-\item Set busy = 0 at powerup
-\item set busy = 1 in operation to reset bus state
-\begin{DoxyItemize}
-\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC is set to 0 busy
-\end{DoxyItemize}
-\item References\+:
-\begin{DoxyItemize}
-\item H\+P-\/\+IB Tutorial
-\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
-\end{DoxyItemize}
-\end{DoxyItemize}
 
-Definition at line 289 of file gpib.\+c.
+Definition at line 296 of file gpib.\+c.
 
 
 
@@ -222,7 +210,7 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity 
 
-Definition at line 499 of file gpib.\+c.
+Definition at line 521 of file gpib.\+c.
 
 
 
@@ -252,13 +240,13 @@ void
 \end{DoxyReturn}
 
 \end{DoxyItemize}
-\end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
+\end{DoxyItemize}release handshake lines References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
 
 Definition at line 238 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+bus\+\_\+init(), gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 
 \mbox{\Hypertarget{gpib_8c_ae6b50a0c9391ae9bfb4ccff7227a22fb}\label{gpib_8c_ae6b50a0c9391ae9bfb4ccff7227a22fb}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+control\+\_\+pin\+\_\+read@{gpib\+\_\+control\+\_\+pin\+\_\+read}}
@@ -278,7 +266,7 @@ control lines (upper 8 bits) V2 boards can N\+OT read all bits on the control bu
 \end{DoxySeeAlso}
 
 
-Definition at line 516 of file gpib.\+c.
+Definition at line 538 of file gpib.\+c.
 
 
 
@@ -302,7 +290,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1187 of file gpib.\+c.
+Definition at line 1211 of file gpib.\+c.
 
 
 
@@ -333,7 +321,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1007 of file gpib.\+c.
+Definition at line 1031 of file gpib.\+c.
 
 
 
@@ -370,7 +358,7 @@ Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ i
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 391 of file gpib.\+c.
+Definition at line 413 of file gpib.\+c.
 
 
 
@@ -394,7 +382,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 359 of file gpib.\+c.
+Definition at line 381 of file gpib.\+c.
 
 
 
@@ -414,7 +402,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 339 of file gpib.\+c.
+Definition at line 361 of file gpib.\+c.
 
 
 
@@ -435,7 +423,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 535 of file gpib.\+c.
+Definition at line 557 of file gpib.\+c.
 
 
 
@@ -517,8 +505,6 @@ Wait for D\+AV HI
 
 Ready for next byte
 
-F\+I\+X\+ME drppping N\+R\+FD now may be a mistake
-
 V2 boards can N\+OT read all bits on the control bus at once N\+R\+FD,N\+D\+AC S\+RQ are outputs
 
 Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
@@ -528,7 +514,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 818 of file gpib.\+c.
+Definition at line 841 of file gpib.\+c.
 
 
 
@@ -614,7 +600,7 @@ status
 \item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1227 of file gpib.\+c.
+Definition at line 1251 of file gpib.\+c.
 
 
 
@@ -639,7 +625,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 314 of file gpib.\+c.
+Definition at line 336 of file gpib.\+c.
 
 
 
@@ -843,7 +829,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1056 of file gpib.\+c.
+Definition at line 1080 of file gpib.\+c.
 
 
 
@@ -882,7 +868,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 481 of file gpib.\+c.
+Definition at line 503 of file gpib.\+c.
 
 
 
@@ -963,7 +949,7 @@ B\+US
 
 for D\+AV to finish float HI -\/ finishing floating HI 
 
-Definition at line 585 of file gpib.\+c.
+Definition at line 607 of file gpib.\+c.
 
 
 
@@ -1042,7 +1028,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1316 of file gpib.\+c.
+Definition at line 1340 of file gpib.\+c.
 
 
 

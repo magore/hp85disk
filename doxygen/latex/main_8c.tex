@@ -132,23 +132,41 @@ Referenced by task().
 \begin{DoxyReturn}{Returns}
 should never return! 
 \end{DoxyReturn}
+@ Initialize U\+A\+RT early Returns actual B\+A\+UD rate -\/ possible with hardware -\/ may differ slightly
+
 Power up delay
 
 Power up delay
 
 @ initialize bus state as soon as practical
 
-process config file
+@ initialize S\+PI bus
+
+@ initialize I2C bus
+
+@ initialize clock by R\+TC if we have it
+
+@ initialize M\+MC bus
+
+@ initialize Printer Capture
+
+@ initialize G\+P\+IB timer tasks
+
+Process hp85disk emulator config file
 
 G\+P\+IB talking/listening state variables Must be done A\+F\+T\+ER \hyperlink{gpib__task_8c_a29b89503cfbf214695082b16d6d40f52}{gpib\+\_\+file\+\_\+init()} so we have a valid configuration
 
-Display Config
+Display Configuration
 
-drives if they do not exist
+Format any drives that do not yet exist
 
-Address Summary
+Display Address Summary
 
-Display debug level 
+Display debug level
+
+Start main G\+P\+IB state machine
+
+Keep the task running -\/ it exits after every user interaction, ie key press 
 
 Definition at line 224 of file main.\+c.
 

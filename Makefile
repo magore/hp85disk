@@ -22,9 +22,24 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
-### Board Version
-# VERSION=1
-#V2BOARD=1
+# ==============================================
+### Board Version Specific defines
+
+# My original V1 release from 2015 to 2019
+#VERSION=
+#
+# Jay Hamlin V2 circuit board design
+V2BOARD=1
+
+# Do the Parallel Poll Response (PPR) bits need to be reverse in software
+# The SPEC requires the disk 1 replies on by pulling BIT 8 low, disk 8 pulls BIT 1 low
+#
+# My original V1 release from 2015 to 2019
+# My V1 circuit design reversed bits in hardware so this was NOT needed
+#PPR_REVERSE_BITS=
+# Jay Hamlin V2 circuit board design
+PPR_REVERSE_BITS=1
+# ==============================================
 
 #BAUD=105200UL
 BAUD=500000UL
@@ -176,9 +191,18 @@ ifeq ($(AMIGO),1)
 	DEFS += AMIGO 
 endif
 
+# ==============================================
+# Version 2 Circuit Board by Jay Hamlin
 ifeq ($(V2BOARD),1)
 	DEFS += V2BOARD 
 endif
+
+# My V1 circuit design reverses PPR bits in hardware
+ifeq ($(PPR_REVERSE_BITS),1)
+	DEFS += PPR_REVERSE_BITS
+endif
+# ==============================================
+
 
 ADEFS   =
 
@@ -250,17 +274,34 @@ HEX_EEPROM_FLAGS = -j .eeprom
 HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
+# ==============================================
+# Fuse bits for ATMEGA1284P
+# See: http://www.engbedded.com/fusecalc/
+#
 # atmega1284p and atmega644 can use same fuses
 # fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
-# Disable JTAG
+
+# NOTE: We MUST disable JTAG so we can use all of Port C GPIO bits
+# FYI: randomly flash might fail when JTAG si disabled - just retry it
 fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
+# ==============================================
 
 SRCS = $(CSRC)
 PROGS = hardware/baudrate
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
-all: term version $(LIBS) build size $(PROGS) lif
+all: date term version $(LIBS) build size $(PROGS) lif
+
+
+#Example way of creating a current year string for  a #define
+DATE="$(shell date +%Y)"
+.PHONY: date
+date:
+	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
+
+
+main.c:	date
 
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm

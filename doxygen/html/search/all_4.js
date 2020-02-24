@@ -5,6 +5,7 @@ var searchData=
   ['data_5fmask',['DATA_MASK',['../gpib_8h.html#a9e6a597bbfd901b2259ad39de928d0c0',1,'gpib.h']]],
   ['database',['database',['../structFATFS.html#a5b6c0bc2e9fd2ae8ef714210a74a2d5d',1,'FATFS']]],
   ['date',['date',['../structlifvol__t.html#a41f630e7211326270dc6e72a55f94516',1,'lifvol_t::date()'],['../structlifdir__t.html#afb6d03670642d3bf86f460ae246ceb0b',1,'lifdir_t::date()']]],
+  ['date_2eh',['date.h',['../date_8h.html',1,'']]],
   ['dav',['DAV',['../gpib__hal_8h.html#a6d9a5bc64954c2ad62878e3d085ad195',1,'gpib_hal.h']]],
   ['dav_5fflag',['DAV_FLAG',['../gpib_8h.html#a607e563762523269fbdac027224c44fe',1,'gpib.h']]],
   ['day',['Day',['../structtd__comment__t.html#ab42475ed36aa4475f76336099fd53acc',1,'td_comment_t']]],

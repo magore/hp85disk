@@ -43,7 +43,7 @@ void copyright()
 {
     printf("Stand alone version of LIF utilities for linux\n");
     printf("HP85 Disk and Device Emulator\n");
-    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" (c) 2014-2020 by Mike Gore\n");
     printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
     printf("   GIT last pushed:   %s\n", GIT_VERSION);
@@ -228,12 +228,15 @@ int main(void)
 
     init_timers();
 
-    // returns actual baud rate which may differ slightly because of limited resolution of baud rate clock and devisors
     // BAUD setting moved to Makefile
     baud = BAUD;
 
+    ///@ Initialize UART early
+	/// Returns actual BAUD rate - possible with hardware - may differ slightly
     actual = uart_init(0, baud); // Serial Port Initialize
-    delayms(200); ///@brief Power up delay
+
+    ///@brief Power up delay
+    delayms(200); 
 
     sep();
     printf("Start\n");
@@ -242,7 +245,7 @@ int main(void)
 
     sep();
     printf("HP85 Disk and Device Emulator\n");
-    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" (C) 2014-2020 by Mike Gore\n");
     printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
     printf("   GIT last pushed:   %s\n", GIT_VERSION);
@@ -253,17 +256,20 @@ int main(void)
 
     sep();
     delayms(200); ///@brief Power up delay
+
     ///@ initialize bus state as soon as practical
-
     printf("initializing GPIB bus\n");
-    gpib_bus_init(0);
+    gpib_bus_init();
 
+    ///@ initialize SPI bus 
     printf("initializing SPI bus\n");
     spi_init(MMC_SLOW,GPIO_B3);
 
+    ///@ initialize I2C bus 
     printf("initializing I2C bus\n");
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
 
+    ///@ initialize clock by RTC if we have it
     sep();
     clock_clear();
     printf("Clock cleared\n");
@@ -272,20 +278,22 @@ int main(void)
     initialize_clock(300);
     display_clock();
 
+    ///@ initialize MMC bus
     sep();
     mmc_init(1);
 
+    ///@ initialize Printer Capture
     sep();
     printer_init();
     printf("Printer Init done\n");
 
+    ///@ initialize GPIB timer tasks
     sep();
-    printf("GPIB Setup\n");
-
+    printf("GPIB Timer Setup\n");
     gpib_timer_init();
     printf("GPIB Timer init done\n");
 
-    ///@brief process config file
+    ///@brief Process hp85disk emulator config file
     gpib_file_init();
     printf("GPIB File init done\n");
 
@@ -294,24 +302,26 @@ int main(void)
     gpib_state_init();
     printf("GPIB State init done\n");
 
-    ///@brief Display Config
+    ///@brief Display Configuration
     sep();
     display_Config();
 
-    ///@format drives if they do not exist
+    ///@brief Format any drives that do not yet exist
     format_drives();
 
-    ///@brief Address Summary
+    ///@brief Display Address Summary
     sep();
     display_Addresses();
 
-    sep();
     ///@brief Display debug level
+    sep();
     printf("debuglevel   = %04xH\n",(int)debuglevel);
 
+    ///@brief Start main GPIB state machine
     sep();
     printf("Starting GPIB TASK\n");
 
+    ///@brief Keep the task running - it exits after every user interaction, ie key press
     while (1)
     {
         task(1);

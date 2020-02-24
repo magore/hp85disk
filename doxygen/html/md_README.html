@@ -76,14 +76,44 @@ README</h1>
 </ul>
 <h2>HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore</h2>
 <ul>
-<li>New Board design by Jay Hamlin (C) 2018-2020</li>
+<li>New Board layout design by Jay Hamlin (C) 2018-2020</li>
 <li>See <a class="el" href="COPYRIGHT_8md.html">COPYRIGHT</a> for a full copyright notice for the project</li>
 </ul>
-<h2>HP85 emulator circuit board (C) 2019-2020 Jay Hamlin</h2>
-<h2>V2 notes - the V2 branch targets the new board by Jay Hamlin</h2>
+<h2>HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin</h2>
+<h2>V2 board design - use V2 branch targets the new board by Jay Hamlin</h2>
 <ul>
-<li>The current code is work in progress - NOT fully working yet</li>
+<li><a href="board/V2/releases">Jay Hamlin designed this board</a><ul>
+<li>GPIB BUS drivers</li>
+<li>I2C level conveters</li>
+<li>reset circuit</li>
+<li>full size SD card interface</li>
+<li>V2 code is now working</li>
 </ul>
+</li>
+</ul>
+<h2>HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore</h2>
+<h2>board/V1/README.md "V1 board readme"</h2>
+<ul>
+<li>My original board design without GPIB buffers</li>
+</ul>
+<h2>HP85 emulator board design Makefile configuration options V1 and V2 boards</h2>
+<h2>V1 Board version Makefile configuration</h2>
+<ul>
+<li>V2BOARD=1<ul>
+<li>Leave defined for all boards - now used only for debugging</li>
+</ul>
+</li>
+</ul>
+<p>V2 board Makefile configuration options</p><ul>
+<li>PPR_REVERSE_BITS=1</li>
+</ul>
+<p>V1 original board Makefile options</p><ul>
+<li># PPR_REVERSE_BITS=<ul>
+<li>Make sure this is commented out</li>
+</ul>
+</li>
+</ul>
+<hr/>
 <h2>Features</h2>
 <ul>
 <li>This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.<ul>
@@ -493,21 +523,7 @@ README</h1>
     10  SRQ    Service Request          22  Shield Ground (SRQ) 
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
-</pre><h2><a href="board/V2/release">V2 board by Jay Hamlin</a></h2>
-<ul>
-<li><a href="board/V2/releases">Jay Hamlin designed this board</a></li>
-<li>Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface</li>
-<li><b>The code is work in progress - we will update this page when it is ready</b></li>
-<li>Use V2BOARD directive in [Makefile](Makefile) to use this new board design <hr/>
-</li>
-</ul>
-<h2>board/V1/README.md "V1 board readme"</h2>
-<ul>
-<li>My original board design without GPIB buffers</li>
-<li>Comment out V2BOARD directive in [Makefile](Makefile) to use original board <hr/>
-</li>
-</ul>
-<h2>Testing</h2>
+</pre><h2>Testing</h2>
 <ul>
 <li>Testing was done with an HP85A (with extended EMS ROM)<ul>
 <li>Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska</li>
@@ -633,7 +649,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>Board design file for version 1 and 2 hardware</h2>
+<h2>Board design file for version 1 and 2 hardware information</h2>
 <ul>
 <li>[board](board)<ul>
 <li><a href="board/V1">V1</a><ul>
@@ -1163,7 +1179,7 @@ README</h1>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 23 2020 15:56:09 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Feb 24 2020 02:24:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -8,12 +8,34 @@
    * [index](doxygen/html/index.html)
 
 ## HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore 
- * New Board design by Jay Hamlin (C) 2018-2020
+ * New Board layout design by Jay Hamlin (C) 2018-2020
  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
-## HP85 emulator circuit board (C) 2019-2020 Jay Hamlin
-## V2 notes - the V2 branch targets the new board by Jay Hamlin
-   * The current code is work in progress - NOT fully working yet
+## HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
+## V2 board design - use V2 branch targets the new board by Jay Hamlin
+  * [Jay Hamlin designed this board](board/V2/releases)
+   * GPIB BUS drivers
+   * I2C level conveters
+   * reset circuit
+   * full size SD card interface
+   * V2 code is now working
+
+## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
+## [V1 board readme](board/V1/README.md)
+  * [My original board design without GPIB buffers](board/V1/README.md)
+
+## HP85 emulator board design Makefile configuration options V1 and V2 boards
+## V1 Board version Makefile configuration
+    * V2BOARD=1
+     * Leave defined for all boards - now used only for debugging
+  * V2 board Makefile configuration options 
+    * PPR_REVERSE_BITS=1
+  * V1 original board Makefile options
+    * # PPR_REVERSE_BITS=
+       * Make sure this is commented out
+
+___ 
+
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
@@ -297,17 +319,6 @@ ___
 </pre>
 
 
-## [V2 board by Jay Hamlin](board/V2/release)
-  * [Jay Hamlin designed this board](board/V2/releases)
-  * Added GPIB BUS drivers, I2C level conveters, reset circuit, full SD card interface
-  * <b>The code is work in progress - we will update this page when it is ready</b>
-  * Use V2BOARD directive in [Makefile](Makefile) to use this new board design
-___
-
-## [V1 board readme](board/V1/README.md)
-  * [My original board design without GPIB buffers](board/V1/README.md)
-  * Comment out V2BOARD directive in [Makefile](Makefile) to use original board
-___ 
 
 ## Testing
   * Testing was done with an HP85A (with extended EMS ROM) 
@@ -393,7 +404,7 @@ ___
     * [COPYRIGHT.md](COPYRIGHT.md)
       * Project CopyRights 
 
-## Board design file for version 1 and 2 hardware
+## Board design file for version 1 and 2 hardware information
   * [board](board)
     * [V1](board/V1)
       * V1 Board documentation and Release files
