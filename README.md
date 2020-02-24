@@ -32,7 +32,6 @@
     * PPR_REVERSE_BITS=1
   * V1 original board Makefile options
     * PPR_REVERSE_BITS=0
-       * Make sure this is commented out
 
 ___ 
 
