@@ -26,7 +26,7 @@ DEVICE  = atmega1284p
 ### Board Version Specific defines
 
 # My original V1 release from 2015 to 2019
-#VERSION=
+#VERSION=0
 #
 # Jay Hamlin V2 circuit board design
 V2BOARD=1
@@ -36,7 +36,7 @@ V2BOARD=1
 #
 # My original V1 release from 2015 to 2019
 # My V1 circuit design reversed bits in hardware so this was NOT needed
-#PPR_REVERSE_BITS=
+# PPR_REVERSE_BITS=0
 # Jay Hamlin V2 circuit board design
 PPR_REVERSE_BITS=1
 # ==============================================
