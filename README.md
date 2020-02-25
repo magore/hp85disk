@@ -103,7 +103,7 @@ ___
   * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
 ___
 
-## Using the emulator with provider examples
+## Using the emulator with examples
    * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
        * The following example works for an HP85 attached to the emulator via GPIB bus.
@@ -454,7 +454,7 @@ ___
       * My Hardware abstraction layer code
   
   * [fatfs.sup](fatfs.sup/fatfs.sup)
-    * Support utility and POSIX wrapper factions
+    * Support utility and POSIX wrapper functions
     * [fatfs.h](fatfs.sup/fatfs.h)
       * FatFS header files
     * [fatfs_sup.c](fatfs.sup/fatfs_sup.c)
