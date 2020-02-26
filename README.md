@@ -333,7 +333,8 @@ ___
     * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
     * This makes my HP85A look like and HP85B 
       * I can also use the normal mass storage ROM if I limit to AMIGO drives.
-      * http://vintagecomputers.site90.net/hp85/prm85.htm
+	  * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
+       * old site http://vintagecomputers.site90.net/hp85/prm85.htm
 
   * Note: the EMS ROM has extended INITIALIZE attributes
 <pre>
