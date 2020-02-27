@@ -120,6 +120,8 @@ ___
       * You have a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
         * This will time stamp plot files and add time stamps inside lif images
     * BAUD is the serial BAUD rate used to communicate with the emulator interface
+      * Note: I am using 500000 baud as default - your OS may not support that - linux does
+      * Try 105200 if it does not
     * PORT is the serial PORT device name used to communicate with the emulator interface
   * *make clean*
   * *make*
