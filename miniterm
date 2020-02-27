@@ -2,11 +2,12 @@
 #
 #example miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200 
 BAUD=$1
-if [ -z "$BAUD" ]
+if [ -z "$1" ]
 then
     echo expected baud rate
     exit 1
 fi
+BAUD=$(echo $1 | sed -e "s/UL//")
 PORT=$2
 if [ -z "$PORT" ]
 then
@@ -14,6 +15,7 @@ then
     exit 1
 fi
 
+echo miniterm.py --parity N -e --rts 0 --dtr 0 "$PORT" "$BAUD"
 miniterm.py --parity N -e --rts 0 --dtr 0 "$PORT" "$BAUD"
 
 #usage: miniterm.py [-h] [--parity {N,E,O,S,M}] [--rtscts] [--xonxoff]

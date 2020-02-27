@@ -22,8 +22,13 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
+# ==============================================
+# Debug serial port for firmware command interface
+BAUD=115200UL
+#BAUD=500000UL
 ### Serial Port for emulator user interface
 PORT=/dev/ttyUSB0
+# ==============================================
 
 # ==============================================
 ### Board Version Specific defines
@@ -45,11 +50,6 @@ PPR_REVERSE_BITS=1
 
 # Do we have an RTC - code currently assumes DS1307 or DS3231
 RTC_SUPPORT=1
-# ==============================================
-# Debug serial port for firmware command interface
-#BAUD=105200UL
-BAUD=500000UL
-PORT=/dev/ttyUSB0
 # ==============================================
 
 
@@ -291,7 +291,7 @@ PROGS = hardware/baudrate
 
 # Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
-all: date term version $(LIBS) build size $(PROGS) lif
+all: term version $(LIBS) build size $(PROGS) lif
 
 
 #Example way of creating a current year string for  a #define
@@ -329,8 +329,8 @@ flash:  all
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
 	avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	#./term $(BAUD) $(PORT)
+	./miniterm $(BAUD) $(PORT)
 	# ===================================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
