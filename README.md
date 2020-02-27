@@ -12,56 +12,81 @@
  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
 
 ## HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
-## V2 board design - use V2 branch targets the new board by Jay Hamlin
+## V2 board design - github V2 branch targets the new board by Jay Hamlin
+## V2 code is now working
   * [Jay Hamlin designed this board](board/V2/releases)
+  * V2 hardware adds
    * GPIB BUS drivers
-   * I2C level conveters
-   * reset circuit
-   * full size SD card interface
-   * V2 code is now working
+     * 48Mma drive required by the GPIB spec
+   * I2C level conveters and standard Qwiic Bus interface - 3.3V
+      * optional RTC chips like the DS3231 
+      * LCD displays - work in progress
+   * Advanced Hardware Reset circuit
+   * Full size SD card interface with Card detect
 
 ## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
 ## [V1 board readme](board/V1/README.md)
+  * Limited control and BUS drive power 
+    * About half of the 48Mma drive required by the GPIB spec
+    * However we can read any pin any time - useful for tracing/debugging
+  * RTC DS1307 for time stamping 
   * [My original board design without GPIB buffers](board/V1/README.md)
 
 ## HP85 emulator board design Makefile configuration options V1 and V2 boards
-## V1 Board version Makefile configuration
-    * V2BOARD=1
-     * Leave defined for all boards - now used only for debugging
-  * V2 board Makefile configuration options 
-    * PPR_REVERSE_BITS=1
-  * V1 original board Makefile options
-    * PPR_REVERSE_BITS=0
-
+## V2 design enables control of GPIB BUS drivers (drivers do not exist on V1 hardware)
+## V1 Board design Makefile configuration (github main branch)
+    * BOARD=1 (2 also works V2 because the GPIB drivers are not connected)
+    * PPR_REVERSE_BITS=0 (PPR bits reverse in hardware)
+## V2 Board design Makefile configuration (github V2 branch)
+    * BOARD=2
+    * PPR_REVERSE_BITS=1 (PPR bits reversed in software)
 ___ 
 
 
 ## Features
  * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
-   * Each drive can be fully defined in the hpdisk.cfg file on the SD CARD
    * AMIGO drives work with HP85A 
-   * SS80 drives work with HP85B (or HP85A with prm-85 add on board see links)
+   * SS80 drives work with HP85B (or HP85A with prm-85 wth modified EMS and Electronic disk rom add on board see links)
+     * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
    * Printer emulator - can capture and save printer data to a time stamped file.
-   * You can connect with and control the emulator via its FTI USB serial interface 115200 baud, 8N1.
+   * There is a USB serial interface that can take many commands - type help
+     * You can use a serial terminal program to acces it - See Makefile for Baud and terminal command
      * There are many commands that you can use, type "help for a list"
      * Any key press halts the emulator and waits for a user command. 
-     * After finishing any user commend it returns to GPIB disk emulation.
-   * Each emulated disk image is a single file on a FAT32 formatted SDCARD.
-     * Internally these disk images are formatted using the LIF standard.
-       * LIF format used is compatible with HP85A/B and many other computers
-     * LIF Tools are built into the emulator to create, rename, delete add and extract to/from other LIF images.
-       * LIF tools can also create new LIF images with user specifications
-     * The emulator will automatically create missing LIF images defined and named in hpdisk.cfg on the SDCARD
-     * For the specific LIF E010..E013(hex) type images the emulator can translate to and from plain ASCII files.
-     * The emulator can add and extract as LIF image format
-       * You may add a single file from another LIF image with multiple internal files.
-       * You may extract a single file from a LIF image to a new LIF image.
-       * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
-     * Type "lif help" in the emulator for a full list of commands
-       * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
-     * TeleDisk to LIF extractor tool included - see [lif README.md](lif/README.md)
-       * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
+       * After finishing any user commend it returns to GPIB disk emulation.
+   * Each emulated disk image is a file on a FAT32 formatted SDCARD.
+   * [hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
+     * Disk images are LIF encoded files that are compatible with HP85A/B and many other computers
+     * Missing disk image files are created automatically if 
+   * LIF manipulation tools are built into the emulator  - see next sections
+   * RTC can be used for time stamping plot files and files added into lif images
+
+## LIF tools are built into emulator firmware 
+## LIF tools are also created for your operating system 
+  * Type "lif help" in the emulator for a full list of commands
+    * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
+  * The emulator will automatically create missing LIF images defined in hpdisk.cfg on the SDCARD
+ * For the specific LIF E010..E013(hex) type records tools can translate to and from plain ASCII files.
+   * add ascii file to LIF image
+   * extract ascii files from LIF image
+   * Add correct timestamp if you have an RTC
+ * add binary file to LIF image
+ * extract binary file from LIF image
+   * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
+ * delete file in LIF image
+ * rename file in LIF image
+ * list directory
+   * Display time stamps if they were set
+ * create LIF image with options
+ * Can automaticcaly create missing images if defined in hpdisk.cfg
+   * Type "lif help" in the emulator for a full list of commands
+   * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
+
+## TeleDisk to LIF extractor tool (updated) included - see [LIF README.md](lif/README.md)
+ * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
+
 ___
+
 
 ## SD Card requirments
    * The HP85 is sensitive to write delays so we need SD cards with fast random writes.
@@ -82,26 +107,42 @@ ___
   * *aptitude --with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
   * pip install pyserial
 
-## Compiling AVR and standlone LIF tools
+## Compiling AVR code and stand alone LIF tools
+  * Please update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
+    * BOARD is the version of the hardware
+      * 1 = original github design
+        * also set PPR_REVERSE_BITS=0
+      * 2 = new hardware design with GPIB bus buffers
+    * PPR_REVERSE_BITS
+      * 0 = original github design
+      * 1 = cirrently needed for V2 hardware in development
+    * RTC_SUPPORT
+      * You have a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
+        * This will time stamp plot files and add time stamps inside lif images
+    * BAUD is the serial BAUD rate used to communicate with the emulator interface
+    * PORT is the serial PORT device name used to communicate with the emulator interface
   * *make clean*
   * *make*
 
-## Flashing AVR Firmware 
-  * You will need and AVR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
-    * I am using atmelice_isp but the [Makefile](Makefile) as example for:
-      * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
-  * make flash
-
 ## Flashing the firmware to the AVR with avrdude and programmer
+  * Note: JTAG is disabled so we can use port C bits to control the GPIB drivers
+  * You will need and AVR programmer supported by avrdude (part of avrtools)
+    * I am using atmelice_isp but the [Makefile](Makefile) as example for:
+    * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
+    * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
+    * There is an example with the AVR mkii programmer as well.
   * *make flash*
-    * This will use *avrdude* with the new low cost Atmel ICE programmer.
-      * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
-      * There is an example with the AVR mkii programmer as well.
+    * This will use *avrdude* to flash the firfmware
+    * NOTE: When finished *make* will call call shell script to launch a terminal program for debugging
+      * These scripts are called *miniterm* or *term* in the project folder
+      * They expect a baud rate and device name as an option. See: [Makefile](Makefile)
 
 ## Building Doxygen documentation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
   * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
+
 ___
+
 
 ## Using the emulator with examples
    * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
@@ -361,10 +402,12 @@ ___
   # Copying ALL files between devices: FIRST SS80 to Second SS80
   COPY ":D700" TO ":D720"
 
-  # Load BASIC program from a text file 
+  # Load BASIC program from a ascii text file 
+  #  Only available if you have advanced EMS and electronic disk roms
   GET "HELLO":D730"
-  # Save a BASIC program as test file
-  SAVE "HELLO:D720"
+  # Save a BASIC program as ascii text file
+  PUT "HELLO:D720"
+  #  Only available if you have advanced EMS and electronic disk roms
   # Delete a file
   PURGE "HELLO:D730"
   # Load a BASIC format program
@@ -381,9 +424,11 @@ ___
 ## AVR Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
    * help
-      Will list all available commands and options
+     * Will list all available commands and options
+     * Each main option has help. Example lif help
 
-   * For detail using LIF commands to add/extract LIF files from SD card see the top of lif/lifutil.c
+   * For detail using LIF commands to add/extract LIF files from SD card see the top of [lif/lifutil.c](lif/lifutil.c)
+
 ___ 
 
 
@@ -604,7 +649,7 @@ ___
       * [lif-notes.txt](lif/lif-notes.txt)       
         * My notes on decoding E010 format LIF images for HP-85
       * [README.txt](lif/README.txt)
-        * Notes on each file under lif and lif/teledisk
+        * Notes on each file under LIF and lif/teledisk
       * [85-SS80.TD0](lif/85-SS80.TD0) from hpmuseum.org
         * Damaged SS80 Excersizer from HP Musium
       * [85-SS80.LIF](lif/85-SS80.LIF)

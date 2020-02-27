@@ -22,27 +22,36 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
+### Serial Port for emulator user interface
+PORT=/dev/ttyUSB0
+
 # ==============================================
 ### Board Version Specific defines
 
 # My original V1 release from 2015 to 2019
-#VERSION=0
+# BOARD=1
 #
 # Jay Hamlin V2 circuit board design
-V2BOARD=1
+BOARD=2
 
-# Do the Parallel Poll Response (PPR) bits need to be reverse in software
-# The SPEC requires the disk 1 replies on by pulling BIT 8 low, disk 8 pulls BIT 1 low
-#
+# Do the Parallel Poll Response (PPR) bits need to be reverse in software?
+#   The SPEC requires the disk 1 replies on by pulling BIT 8 low, disk 8 pulls BIT 1 low
 # My original V1 release from 2015 to 2019
-# My V1 circuit design reversed bits in hardware so this was NOT needed
 # PPR_REVERSE_BITS=0
+#    My V1 circuit design reversed bits in hardware so this was NOT needed
+
 # Jay Hamlin V2 circuit board design
 PPR_REVERSE_BITS=1
-# ==============================================
 
+# Do we have an RTC - code currently assumes DS1307 or DS3231
+RTC_SUPPORT=1
+# ==============================================
+# Debug serial port for firmware command interface
 #BAUD=105200UL
 BAUD=500000UL
+PORT=/dev/ttyUSB0
+# ==============================================
+
 
 # Enable AMIGO support Code
 AMIGO=1
@@ -60,12 +69,7 @@ FATFS_UTILS_FULL=0
 POSIX_TESTS=1
 
 #LIF support 
-
 LIF_SUPPORT=1
-
-
-#We have an RTC
-RTC_SUPPORT=1
 
 
 HARDWARE = \
@@ -162,7 +166,6 @@ DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
 
 DEFS += BAUD=$(BAUD)
 
-
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
 endif
@@ -192,15 +195,12 @@ ifeq ($(AMIGO),1)
 endif
 
 # ==============================================
+# BOARD Specific Defines
 # Version 2 Circuit Board by Jay Hamlin
-ifeq ($(V2BOARD),1)
-	DEFS += V2BOARD 
-endif
-
-# My V1 circuit design reverses PPR bits in hardware
-ifeq ($(PPR_REVERSE_BITS),1)
-	DEFS += PPR_REVERSE_BITS
-endif
+DEFS += BOARD=$(BOARD)
+# V1 circuit design by Mike Gore reverses PPR bits in hardware
+# V2 Circuit Board by Jay Hamlin uses software
+DEFS += PPR_REVERSE_BITS=$(PPR_REVERSE_BITS)
 # ==============================================
 
 
@@ -295,21 +295,19 @@ all: date term version $(LIBS) build size $(PROGS) lif
 
 
 #Example way of creating a current year string for  a #define
-DATE="$(shell date +%Y)"
-.PHONY: date
-date:
-	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
+# DATE="$(shell date +%Y)"
+# .PHONY: date
+# date:
+#	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
 
 
-main.c:	date
+main.c:	
 
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
 .PHONY: term
 term:   
-	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" term
-	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" miniterm
 	touch main.c
 
 flash:  all 
@@ -331,8 +329,8 @@ flash:  all
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
 	avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
-	./term
-	#./miniterm
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
 	# ===================================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list

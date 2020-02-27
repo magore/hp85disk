@@ -1,8 +1,20 @@
 #!/bin/bash
 #
-#miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200 
-BAUD=500000UL
-miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 $BAUD
+#example miniterm.py --parity N -e --rts 0 --dtr 0 /dev/ttyUSB0 115200 
+BAUD=$1
+if [ -z "$BAUD" ]
+then
+    echo expected baud rate
+    exit 1
+fi
+PORT=$2
+if [ -z "$PORT" ]
+then
+    echo expected port
+    exit 1
+fi
+
+miniterm.py --parity N -e --rts 0 --dtr 0 "$PORT" "$BAUD"
 
 #usage: miniterm.py [-h] [--parity {N,E,O,S,M}] [--rtscts] [--xonxoff]
 #                   [--rts RTS] [--dtr DTR] [--ask] [-e] [--encoding CODEC]

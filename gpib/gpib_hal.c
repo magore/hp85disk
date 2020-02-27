@@ -86,7 +86,7 @@ void ppr_set(uint8_t mask)
 {
 ///@brief optionally reverse bit order in PPR mask
 /// Used only of PPR circuit board PPR bits are not reversed in hardware
-#ifdef PPR_REVERSE_BITS
+#if PPR_REVERSE_BITS == 1
     _ppr_reg = reverse_8bits(mask);
 #else
     _ppr_reg = mask;
@@ -107,7 +107,7 @@ uint8_t ppr_reg()
 {
 ///@brief optionally reverse bit order in PPR mask
 /// Used only of PPR circuit board PPR bits are not reversed in hardware
-#ifdef PPR_REVERSE_BITS
+#if PPR_REVERSE_BITS == 1
     return(reverse_8bits(_ppr_reg));
 #else
     return(_ppr_reg);

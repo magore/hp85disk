@@ -1,5 +1,16 @@
 #!/bin/bash
 #
-#minicom -o -b 115200 -D /dev/ttyUSB0
-BAUD=500000UL
-minicom -o -b $BAUD -D /dev/ttyUSB0
+# example minicom -o -b 115200 -D /dev/ttyUSB0
+BAUD=$1
+if [ -z "$BAUD" ]
+then
+    echo expected baud rate
+    exit 1
+fi
+PORT=$2
+if [ -z "$PORT" ]
+then
+    echo expected port
+    exit 1
+fi
+minicom -o -b "$BAUD" -D "$PORT"

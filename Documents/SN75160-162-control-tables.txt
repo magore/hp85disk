@@ -67,7 +67,7 @@ void gpib_bus_read_init(int busy)
     GPIB_PIN_FLOAT_UP(IFC); // IFC FLOAT PULLUP
     GPIB_PIN_FLOAT_UP(REN); // REN FLOAT PULLUP
 
-#ifdef V2BOARD
+#if BOARD=2
     GPIB_BUS_LOW(SC);       // REN IN, IFC IN, SC = 0 ALWAYS unless we are a controller
     GPIB_IO_LOW(PE);        // OC BUS float on write
 #endif
@@ -93,7 +93,7 @@ void gpib_bus_read_init(int busy)
         GPIB_PIN_FLOAT_UP(NRFD);    // OC PULLUP
         GPIB_PIN_FLOAT_UP(NDAC);    // OC PULLUP
     }
-#ifdef V2BOARD
+#if BOARD=2
     GPIB_IO_LOW(TE);        // BUS IN, DAV IN, NDAC OUT, NRFD OUT
     GPIB_IO_HI(DC);         // ATN IN, EOI IN, SRQ OUT OC
 #endif

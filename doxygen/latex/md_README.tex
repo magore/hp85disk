@@ -20,17 +20,26 @@
 
 \subsection*{H\+P85 disk emulator V2 circuit board layout design by (C) 2018-\/2020 Jay Hamlin}
 
-\subsection*{V2 board design -\/ use V2 branch targets the new board by Jay Hamlin}
+\subsection*{V2 board design -\/ github V2 branch targets the new board by Jay Hamlin}
+
+\subsection*{V2 code is now working}
 
 
 \begin{DoxyItemize}
 \item \href{board/V2/releases}{\tt Jay Hamlin designed this board}
+\item V2 hardware adds
 \begin{DoxyItemize}
 \item G\+P\+IB B\+US drivers
-\item I2C level conveters
-\item reset circuit
-\item full size SD card interface
-\item V2 code is now working
+\begin{DoxyItemize}
+\item 48\+Mma drive required by the G\+P\+IB spec
+\end{DoxyItemize}
+\item I2C level conveters and standard Qwiic Bus interface -\/ 3.\+3V
+\begin{DoxyItemize}
+\item optional R\+TC chips like the D\+S3231
+\item L\+CD displays -\/ work in progress
+\end{DoxyItemize}
+\item Advanced Hardware Reset circuit
+\item Full size SD card interface with Card detect
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -40,34 +49,34 @@
 
 
 \begin{DoxyItemize}
+\item Limited control and B\+US drive power
+\begin{DoxyItemize}
+\item About half of the 48\+Mma drive required by the G\+P\+IB spec
+\item However we can read any pin any time -\/ useful for tracing/debugging
+\end{DoxyItemize}
+\item R\+TC D\+S1307 for time stamping
 \item My original board design without G\+P\+IB buffers
 \end{DoxyItemize}
 
 \subsection*{H\+P85 emulator board design Makefile configuration options V1 and V2 boards}
 
-\subsection*{V1 Board version Makefile configuration}
+\subsection*{V2 design enables control of G\+P\+IB B\+US drivers (drivers do not exist on V1 hardware)}
+
+\subsection*{V1 Board design Makefile configuration (github main branch)}
 
 
 \begin{DoxyItemize}
-\item V2\+B\+O\+A\+RD=1
+\item B\+O\+A\+RD=1 (2 also works V2 because the G\+P\+IB drivers are not connected)
+\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=0 (P\+PR bits reverse in hardware) \subsection*{V2 Board design Makefile configuration (github V2 branch)}
+\end{DoxyItemize}
+
+
 \begin{DoxyItemize}
-\item Leave defined for all boards -\/ now used only for debugging
+\item B\+O\+A\+RD=2
+\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=1 (P\+PR bits reversed in software) 
+
+
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-V2 board Makefile configuration options
-\begin{DoxyItemize}
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=1
-\end{DoxyItemize}
-
-V1 original board Makefile options
-\begin{DoxyItemize}
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=0
-\end{DoxyItemize}
-
-
-
-
 
 \subsection*{Features}
 
@@ -75,47 +84,82 @@ V1 original board Makefile options
 \begin{DoxyItemize}
 \item This project emulates G\+P\+IB drives and H\+P\+GL printer for the H\+P85A and H\+P85B computers.
 \begin{DoxyItemize}
-\item Each drive can be fully defined in the hpdisk.\+cfg file on the SD C\+A\+RD
 \item A\+M\+I\+GO drives work with H\+P85A
-\item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 add on board see links)
-\item Printer emulator -\/ can capture and save printer data to a time stamped file.
-\item You can connect with and control the emulator via its F\+TI U\+SB serial interface 115200 baud, 8\+N1.
+\item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 wth modified E\+MS and Electronic disk rom add on board see links)
 \begin{DoxyItemize}
+\item You may have up to 4 disks with V1 hardware and 8 with V2 hardware
+\end{DoxyItemize}
+\item Printer emulator -\/ can capture and save printer data to a time stamped file.
+\item There is a U\+SB serial interface that can take many commands -\/ type help
+\begin{DoxyItemize}
+\item You can use a serial terminal program to acces it -\/ See Makefile for Baud and terminal command
 \item There are many commands that you can use, type \char`\"{}help for a list\char`\"{}
 \item Any key press halts the emulator and waits for a user command.
+\begin{DoxyItemize}
 \item After finishing any user commend it returns to G\+P\+IB disk emulation.
 \end{DoxyItemize}
-\item Each emulated disk image is a single file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
-\begin{DoxyItemize}
-\item Internally these disk images are formatted using the L\+IF standard.
-\begin{DoxyItemize}
-\item L\+IF format used is compatible with H\+P85\+A/B and many other computers
 \end{DoxyItemize}
-\item L\+IF Tools are built into the emulator to create, rename, delete add and extract to/from other L\+IF images.
+\item Each emulated disk image is a file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
+\item \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg} fully defines each disk image on SD Card
 \begin{DoxyItemize}
-\item L\+IF tools can also create new L\+IF images with user specifications
+\item Disk images are L\+IF encoded files that are compatible with H\+P85\+A/B and many other computers
+\item Missing disk image files are created automatically if
 \end{DoxyItemize}
-\item The emulator will automatically create missing L\+IF images defined and named in hpdisk.\+cfg on the S\+D\+C\+A\+RD
-\item For the specific L\+IF E010..E013(hex) type images the emulator can translate to and from plain A\+S\+C\+II files.
-\item The emulator can add and extract as L\+IF image format
+\item L\+IF manipulation tools are built into the emulator -\/ see next sections
+\item R\+TC can be used for time stamping plot files and files added into lif images
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{L\+IF tools are built into emulator firmware}
+
+\subsection*{L\+IF tools are also created for your operating system}
+
+
 \begin{DoxyItemize}
-\item You may add a single file from another L\+IF image with multiple internal files.
-\item You may extract a single file from a L\+IF image to a new L\+IF image.
-\item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
-\end{DoxyItemize}
 \item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
 \begin{DoxyItemize}
 \item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
 \end{DoxyItemize}
-\item Tele\+Disk to L\+IF extractor tool included -\/ see \hyperlink{md_lif_README}{lif R\+E\+A\+D\+ME.md}
+\item The emulator will automatically create missing L\+IF images defined in hpdisk.\+cfg on the S\+D\+C\+A\+RD
+\end{DoxyItemize}
+
+For the specific L\+IF E010..E013(hex) type records tools can translate to and from plain A\+S\+C\+II files.
 \begin{DoxyItemize}
-\item \href{lif/t202lif}{\tt td02lif} \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF} 
+\item add ascii file to L\+IF image
+\item extract ascii files from L\+IF image
+\item Add correct timestamp if you have an R\+TC
+\end{DoxyItemize}
+
+add binary file to L\+IF image
+\begin{DoxyItemize}
+\item extract binary file from L\+IF image
+\begin{DoxyItemize}
+\item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
+\end{DoxyItemize}
+\item delete file in L\+IF image
+\item rename file in L\+IF image
+\item list directory
+\begin{DoxyItemize}
+\item Display time stamps if they were set
+\end{DoxyItemize}
+\item create L\+IF image with options
+\item Can automaticcaly create missing images if defined in hpdisk.\+cfg
+\begin{DoxyItemize}
+\item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
+\item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Tele\+Disk to L\+IF extractor tool (updated) included -\/ see  \hyperlink{lif_2README_8md}{lif/\+R\+E\+A\+D\+M\+E.\+md} \char`\"{}\+L\+I\+F R\+E\+A\+D\+M\+E.\+md\char`\"{}}
 
 
+\begin{DoxyItemize}
+\item \href{lif/t202lif}{\tt td02lif} \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
+
+
 
 \subsection*{SD Card requirments}
 
@@ -151,38 +195,58 @@ V1 original board Makefile options
 \item pip install pyserial
 \end{DoxyItemize}
 
-\subsection*{Compiling A\+VR and standlone L\+IF tools}
+\subsection*{Compiling A\+VR code and stand alone L\+IF tools}
 
 
 \begin{DoxyItemize}
+\item Please update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
+\begin{DoxyItemize}
+\item B\+O\+A\+RD is the version of the hardware
+\begin{DoxyItemize}
+\item 1 = original github design
+\begin{DoxyItemize}
+\item also set P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=0
+\end{DoxyItemize}
+\item 2 = new hardware design with G\+P\+IB bus buffers
+\end{DoxyItemize}
+\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
+\begin{DoxyItemize}
+\item 0 = original github design
+\item 1 = cirrently needed for V2 hardware in development
+\end{DoxyItemize}
+\item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT
+\begin{DoxyItemize}
+\item You have a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
+\begin{DoxyItemize}
+\item This will time stamp plot files and add time stamps inside lif images
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item B\+A\+UD is the serial B\+A\+UD rate used to communicate with the emulator interface
+\item P\+O\+RT is the serial P\+O\+RT device name used to communicate with the emulator interface
+\end{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
-\end{DoxyItemize}
-
-\subsection*{Flashing A\+VR Firmware}
-
-
-\begin{DoxyItemize}
-\item You will need and A\+VR programmer supported by avrdude (avrdude is part of avrtools installed in last step)
-\begin{DoxyItemize}
-\item I am using atmelice\+\_\+isp but the \mbox{[}Makefile\mbox{]}(Makefile) as example for\+:
-\begin{DoxyItemize}
-\item {\itshape avrispmk\+II atmelice atmelice\+\_\+dw atmelice\+\_\+isp atmelice\+\_\+pdi}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item make flash
 \end{DoxyItemize}
 
 \subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}
 
 
 \begin{DoxyItemize}
-\item {\itshape make flash}
+\item Note\+: J\+T\+AG is disabled so we can use port C bits to control the G\+P\+IB drivers
+\item You will need and A\+VR programmer supported by avrdude (part of avrtools)
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} with the new low cost Atmel I\+CE programmer.
-\begin{DoxyItemize}
+\item I am using atmelice\+\_\+isp but the \mbox{[}Makefile\mbox{]}(Makefile) as example for\+:
+\item {\itshape avrispmk\+II atmelice atmelice\+\_\+dw atmelice\+\_\+isp atmelice\+\_\+pdi}
 \item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the \mbox{[}Makefile\mbox{]}(Makefile).
 \item There is an example with the A\+VR mkii programmer as well.
+\end{DoxyItemize}
+\item {\itshape make flash}
+\begin{DoxyItemize}
+\item This will use {\itshape avrdude} to flash the firfmware
+\item N\+O\+TE\+: When finished {\itshape make} will call call shell script to launch a terminal program for debugging
+\begin{DoxyItemize}
+\item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
+\item They expect a baud rate and device name as an option. See\+: \mbox{[}Makefile\mbox{]}(Makefile)
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -192,10 +256,12 @@ V1 original board Makefile options
 
 \begin{DoxyItemize}
 \item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
-\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps} 
-
-
+\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps}
 \end{DoxyItemize}
+
+
+
+
 
 \subsection*{Using the emulator with examples}
 
@@ -669,18 +735,28 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 
 
-\begin{DoxyPre}\section*{Load BASIC program from a text file}\end{DoxyPre}
+\begin{DoxyPre}\section*{Load BASIC program from a ascii text file}\end{DoxyPre}
+
+
+
+\begin{DoxyPre}
+\section*{Only available if you have advanced EMS and electronic disk roms}\end{DoxyPre}
 
 
 
 \begin{DoxyPre}
   GET "HELLO":D730"
-\section*{Save a BASIC program as test file}\end{DoxyPre}
+\section*{Save a BASIC program as ascii text file}\end{DoxyPre}
 
 
 
 \begin{DoxyPre}
-  SAVE "HELLO:D720"
+  PUT "HELLO:D720"
+\section*{Only available if you have advanced EMS and electronic disk roms}\end{DoxyPre}
+
+
+
+\begin{DoxyPre}
 \section*{Delete a file}\end{DoxyPre}
 
 
@@ -722,12 +798,18 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item Pressing any key will break out of the gpib task loop until a command is entered
 \begin{DoxyItemize}
-\item help Will list all available commands and options
-\item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of lif/lifutil.\+c 
-
-
+\item help
+\begin{DoxyItemize}
+\item Will list all available commands and options
+\item Each main option has help. Example lif help
+\end{DoxyItemize}
+\item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of \href{lif/lifutil.c}{\tt lif/lifutil.\+c}
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+
+
+
 
 \subsection*{Main project files for hp85disk Project}
 
@@ -1152,7 +1234,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item \href{lif/README.txt}{\tt R\+E\+A\+D\+M\+E.\+txt}
 \begin{DoxyItemize}
-\item Notes on each file under lif and lif/teledisk
+\item Notes on each file under L\+IF and lif/teledisk
 \end{DoxyItemize}
 \item \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} from hpmuseum.\+org
 \begin{DoxyItemize}
