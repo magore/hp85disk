@@ -27,8 +27,8 @@ DEVICE_AVRDUDE=m1284p
 
 # ==============================================
 # Debug serial port for firmware command interface
-#BAUD=115200UL
-BAUD=500000UL
+BAUD=115200UL
+# BAUD=500000UL
 ### Serial Port for emulator user interface
 PORT=/dev/ttyUSB0
 # ==============================================
