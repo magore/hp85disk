@@ -283,10 +283,10 @@ add binary file to L\+IF image
 \end{DoxyItemize}
 \item Disk images in \mbox{[}sdcard\mbox{]}(sdcard) folder drive and configuration settings
 \begin{DoxyItemize}
-\item First S\+S80 H\+P9134L disk at 700 for my H\+P85A (with 85A R\+O\+Ms)
 \item First Amigo 9121D disk at 710 for my H\+P85B (with 85B R\+O\+Ms)
-\item Second S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A R\+O\+Ms)
-\item Second Amigo 9121D disk at 730 for my H\+P85B (with 85B R\+O\+Ms)
+\item Second Amigo 9121D disk at 710 for my H\+P85B (with 85B R\+O\+Ms)
+\item First S\+S80 H\+P9134L disk at 720 for my H\+P85A (with 85A R\+O\+Ms)
+\item Second S\+S80 H\+P9134L disk at 730 for my H\+P85A (with 85A R\+O\+Ms)
 \end{DoxyItemize}
 \item How to use the examples with your H\+P85
 \begin{DoxyItemize}
@@ -673,123 +673,79 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item Note\+: the E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
 \begin{DoxyPre}
-\section*{Initializing: (already done on these images so you do not have to)}\end{DoxyPre}
-
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}
+  \# Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
   INITIALIZE "AMIGO1",":D710",14,1
   INITIALIZE "SS80-2",":D720",128,1
   INITIALIZE "AMIGO2",":D730",14,1\end{DoxyPre}
 
+\end{DoxyItemize}
 
 
-\begin{DoxyPre}\section*{Listing files:}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
-\section*{first SS80}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+\begin{DoxyPre}  \# Listing files:
+  \# first AMIGO
   CAT ":D700"
-\section*{first AMIGO}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# second AMIGO
   CAT ":D710"
-\section*{second SS80}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# first SS80
   CAT ":D720"
-\section*{second AMIGO}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# second SS*0
   CAT ":D730"\end{DoxyPre}
 
 
 
-\begin{DoxyPre}\section*{Loading file from second SS80:}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+\begin{DoxyPre}  \# Loading file from second SS80:
   LOAD "HELLO:D720"
-\section*{Copying file between devices: fist AMIGO to second AMIGO}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# Copying file between devices: fist AMIGO to second AMIGO
   COPY "HELLO:D710" TO "HELLO:D730"
-\section*{Copying ALL files between devices: FIRST SS80 to Second SS80}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# Copying ALL files between devices: FIRST SS80 to Second SS80
   COPY ":D700" TO ":D720"\end{DoxyPre}
 
 
 
-\begin{DoxyPre}\section*{Load BASIC program from a ascii text file}\end{DoxyPre}
+\begin{DoxyPre}  \# Working with plain text files and the HP85
+  \# How to import and export plain text, ascii, files 
+  \# My lif tools can read or write HP85 files that GETSAVE can then read and write
+  \# GETSAVE is included in all of my supplied disk images
+  \#   The lif tools are included in the firmwarei and you can use then from a terminal program
+  \#   1) My lif tools are built in the firmware
+  \#   2) GETSAVE is included in ALL emulator disk images under the [sdcard](sdcard) folder
+  \#      GETSAVE and read and write TYPE E010 files
+  \# Usesge:
+  LOADBIN "GETSAVE"
+  \# This program stays in memory until the HP85 is reset
+  \# How do we add an Ascii text file to a disk emulator image?
+    \# Connect the emulator to a serial terminal - see the [Makefile](Makefile) for the default baud rate
+    \# The baud rate is at the begining of the Makefile
+    \# Connect to the disk emulator with a serial terminal
+  \# Adding text file to the sdcard
+    \# Lets say we created a pain text file containing a basic program call test.txt
+    \# With the HP85 and emulator powerd off copy it to the sdcard
+    \# Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
+  \# Adding the text file to the emulator image - lets use emulator image amigo1.lif
+  lif add amigo1.lif MYTEST basic.txt
+  \# We just added the file to the image file called amigo1.lif and named it MYTEST
+  \# Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
+  GET "MYTEST:D700"
+  \# Save it 
+  PUT "MYTEST2:D700"
+  \# Lets store it as a program se we do not have to use the concersion tools
+  STORE "MYTESTB:D700"
+  \# In the future we can LOAD it without the conversion or GETSAVE program
+  LOAD "MYTESTB:D700"\end{DoxyPre}
 
 
 
-\begin{DoxyPre}
-\section*{Only available if you have advanced EMS and electronic disk roms}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
-  GET "HELLO":D730"
-\section*{Save a BASIC program as ascii text file}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
-  PUT "HELLO:D720"
-\section*{Only available if you have advanced EMS and electronic disk roms}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
-\section*{Delete a file}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+\begin{DoxyPre}  \# Only available if you have advanced EMS and electronic disk roms
+  \# How to Delete a file
   PURGE "HELLO:D730"
-\section*{Load a BASIC format program}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# Load a BASIC format program
   LOAD "HELLO:D700"
-\section*{Save a BASIC format program}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# Save a BASIC format program
   SAVE "HELLO:D710"
-\section*{Clear memory}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# Clear memory
   SCRATCH
-\section*{List a BASIC program}\end{DoxyPre}
-
-
-
-\begin{DoxyPre}
+  \# List a BASIC program
   LIST
 \end{DoxyPre}
  
@@ -1371,22 +1327,42 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item My H\+P85 A\+M\+I\+GO and S\+S80 disk images
 \begin{DoxyItemize}
+\item \href{create_images.sh}{\tt create\+\_\+iamges.\+sh}
+\begin{DoxyItemize}
+\item Linux bash script to build A\+LL the disk images
+\begin{DoxyItemize}
+\item Files from A\+S\+C\+I\+I-\/files, L\+I\+F-\/files are added to all of the created images
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg}
 \begin{DoxyItemize}
 \item All Disk definitions, address, P\+PR, D\+E\+B\+UG level for S\+S80 and A\+M\+I\+GO drives
+\begin{DoxyItemize}
 \item P\+R\+I\+N\+T\+ER address
 \end{DoxyItemize}
-\item \href{sdcard/amigo.lif}{\tt amigo.\+lif}
+\end{DoxyItemize}
+\item \href{sdcard/amigo.cfg}{\tt amigo.\+cfg}
+\begin{DoxyItemize}
+\item Alternate configuration for using only A\+M\+I\+GO drives
+\begin{DoxyItemize}
+\item Use this if your system does not support S\+S80 drives
+\begin{DoxyItemize}
+\item Copy this file over the hpdisk.\+cfg file after renaming the hpdisk.\+cfg file
+\end{DoxyItemize}
+\item P\+R\+I\+N\+T\+ER address
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item \href{sdcard/amigo1.lif}{\tt amigo1.\+lif}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image file number 1
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item \href{sdcard/amigo-2.lif}{\tt amigo-\/2.\+lif}
+\item \href{sdcard/amigo2.lif}{\tt amigo.\+lif}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image file number 2
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item \href{sdcard/ss80.lif}{\tt ss80.\+lif}
+\item \href{sdcard/ss80-1.lif}{\tt ss80-\/1.\+lif}
 \begin{DoxyItemize}
 \item S\+S80 hard drive disk image file number 1
 \item Has some demo basic programs in it
@@ -1394,34 +1370,60 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{sdcard/ss80-2.lif}{\tt ss80-\/2.\+lif}
 \begin{DoxyItemize}
 \item S\+S80 hard drive disk image file number 2
-\item Has some demo basic programs in it
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item \href{sdcard/configs}{\tt sdcard/configs}
+\begin{DoxyItemize}
+\item Copies of the hp85disk config files
+\end{DoxyItemize}
+\item \href{sdcard/scripts}{\tt sdcard/scripts}
+\begin{DoxyItemize}
+\item Scripts that help creating L\+IF images from multiple files
+\begin{DoxyItemize}
+\item Used by \href{create_images.sh}{\tt create\+\_\+iamges.\+sh}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item \href{sdcard/traces}{\tt sdcard/traces}
+\begin{DoxyItemize}
 \item My H\+P85 bus trace files
 \begin{DoxyItemize}
-\item \href{sdcard/amigo_trace.txt}{\tt amigo\+\_\+trace.\+txt}
+\item \href{sdcard/traces/amigo_trace.txt}{\tt amigo\+\_\+trace.\+txt}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO trace file when connected to H\+P85 showing odd out of order command issue
 \end{DoxyItemize}
-\item \href{sdcard/gpib_reset.txt}{\tt gpib\+\_\+reset.\+txt}
+\item \href{sdcard/traces/gpib_reset.txt}{\tt gpib\+\_\+reset.\+txt}
 \begin{DoxyItemize}
 \item G\+P\+IB reset trace when connected to H\+P85
 \end{DoxyItemize}
-\item \href{sdcard/gpib_trace.txt}{\tt gpib\+\_\+trace.\+txt}
+\item \href{sdcard/traces/gpib_trace.txt}{\tt gpib\+\_\+trace.\+txt}
 \begin{DoxyItemize}
 \item G\+P\+IB transaction trace when connected to H\+P85
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item \mbox{[}plots\mbox{]}(sdcard/plots\mbox{]}
+\begin{DoxyItemize}
 \item My H\+P85 plot capture files
 \begin{DoxyItemize}
-\item \href{sdcard/plot1.plt}{\tt plot1.\+plt}
-\item \href{sdcard/plot2.plt}{\tt plot2.\+plt}
+\item \href{sdcard/plots/plot1.plt}{\tt plot1.\+plt}
+\item \href{sdcard/plots/plot2.plt}{\tt plot2.\+plt}
 \end{DoxyItemize}
-\item \href{sdcard/TREK85}{\tt sdcard/\+T\+R\+E\+K85}
+\end{DoxyItemize}
+\item \href{sdcard/ASCII-files}{\tt A\+S\+C\+I\+I-\/files}
+\begin{DoxyItemize}
+\item A\+S\+C\+II Basic files -\/ in text format for easy editing
+\begin{DoxyItemize}
+\item \href{sdcard/ASCII-files/CIRCLE.TXT}{\tt C\+I\+R\+C\+L\+E.\+T\+XT}
+\item \href{sdcard/ASCII-files/DRIVES.TXT}{\tt D\+R\+I\+V\+E\+S.\+T\+XT}
+\item \href{sdcard/ASCII-files/GPIB-TA.txt}{\tt G\+P\+I\+B-\/\+T\+A.\+txt}
+\item \href{sdcard/ASCII-files/HELLO.TXT}{\tt H\+E\+L\+L\+O.\+T\+XT}
+\item \href{sdcard/ASCII-files/RWTEST.TXT}{\tt R\+W\+T\+E\+S\+T.\+T\+XT}
+\item \href{sdcard/ASCII-files/TREK85A.TXT}{\tt T\+R\+E\+K85\+A.\+T\+XT}
+\item \href{sdcard/ASCII-files/TREK85}{\tt A\+S\+C\+I\+I-\/files/\+T\+R\+E\+K85}
 \begin{DoxyItemize}
 \item T\+R\+E\+K85 by Martin Hepperle, December 2015
-\item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241}
 \begin{DoxyItemize}
+\item \href{https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241}{\tt https\+://groups.\+io/g/hpseries80/topic/star\+\_\+trek\+\_\+game\+\_\+for\+\_\+hp\+\_\+85/4845241}
+\end{DoxyItemize}
 \item \href{sdcard/TREK85/author.txt}{\tt author.\+txt}
 \item \href{sdcrad/TREK85/readme.txt}{\tt readme.\+txt}
 \item \href{sdcard/TREK85/Start Trek.pdf}{\tt Star Trek.\+pdf}
@@ -1430,8 +1432,37 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item \href{sdcard/LIF-files}{\tt L\+I\+F-\/files}
+\begin{DoxyItemize}
+\item L\+IF images with a single program in them
+\begin{DoxyItemize}
+\item Internal names are the same as the L\+IF name without extension
 \end{DoxyItemize}
-
-
+\item \href{sdcard/ASCII-files/GETSAVE.LIF}{\tt G\+E\+T\+S\+A\+V\+E.\+L\+IF}
+\item \href{sdcard/ASCII-files/GPIB-T.lif}{\tt G\+P\+I\+B-\/\+T.\+lif}
+\item \href{sdcard/ASCII-files/RWTESTB.lif}{\tt R\+W\+T\+E\+S\+T\+B.\+lif}
+\item \href{sdcard/ASCII-files/TREK85B.lif}{\tt T\+R\+E\+K85\+B.\+lif}
+\end{DoxyItemize}
+\item \href{sdcard/LIF-volumes}{\tt L\+I\+F-\/volumes}
+\begin{DoxyItemize}
+\item L\+IF images with multiple programs in them
+\begin{DoxyItemize}
+\item \href{sdcard/ASCII-files/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item \href{sdcard/notes}{\tt notes}
+\begin{DoxyItemize}
+\item G\+E\+T\+S\+AV documenations
+\begin{DoxyItemize}
+\item G\+E\+T\+S\+A\+VE can be loaded on an H\+P85 to G\+ET and S\+A\+VE Basic text files
+\begin{DoxyItemize}
+\item N\+O\+TE\+: my lif utilities can translate A\+S\+C\+II files to and from this format
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Various notes 
 
  
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}

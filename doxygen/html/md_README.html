@@ -283,10 +283,10 @@ README</h1>
 </ul>
 </li>
 <li>Disk images in [sdcard](sdcard) folder drive and configuration settings<ul>
-<li>First SS80 HP9134L disk at 700 for my HP85A (with 85A ROMs)</li>
 <li>First Amigo 9121D disk at 710 for my HP85B (with 85B ROMs)</li>
-<li>Second SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)</li>
-<li>Second Amigo 9121D disk at 730 for my HP85B (with 85B ROMs)</li>
+<li>Second Amigo 9121D disk at 710 for my HP85B (with 85B ROMs)</li>
+<li>First SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)</li>
+<li>Second SS80 HP9134L disk at 730 for my HP85A (with 85A ROMs)</li>
 </ul>
 </li>
 <li>How to use the examples with your HP85<ul>
@@ -606,58 +606,64 @@ README</h1>
 </ul>
 </li>
 <li>Note: the EMS ROM has extended INITIALIZE attributes <pre>
-<h1>Initializing: (already done on these images so you do not have to)</h1>
-</pre></li>
-</ul>
-<pre>
+  # Initializing: (already done on these images so you do not have to)
   INITIALIZE "SS80-1",":D700",128,1
   INITIALIZE "AMIGO1",":D710",14,1
   INITIALIZE "SS80-2",":D720",128,1
-  INITIALIZE "AMIGO2",":D730",14,1</pre><pre><h1>Listing files:</h1>
-</pre><pre>
-<h1>first SS80</h1>
-</pre><pre>
+  INITIALIZE "AMIGO2",":D730",14,1</pre></li>
+</ul>
+<pre>  # Listing files:
+  # first AMIGO
   CAT ":D700"
-<h1>first AMIGO</h1>
-</pre><pre>
+  # second AMIGO
   CAT ":D710"
-<h1>second SS80</h1>
-</pre><pre>
+  # first SS80
   CAT ":D720"
-<h1>second AMIGO</h1>
-</pre><pre>
-  CAT ":D730"</pre><pre><h1>Loading file from second SS80:</h1>
-</pre><pre>
+  # second SS*0
+  CAT ":D730"</pre><pre>  # Loading file from second SS80:
   LOAD "HELLO:D720"
-<h1>Copying file between devices: fist AMIGO to second AMIGO</h1>
-</pre><pre>
+  # Copying file between devices: fist AMIGO to second AMIGO
   COPY "HELLO:D710" TO "HELLO:D730"
-<h1>Copying ALL files between devices: FIRST SS80 to Second SS80</h1>
-</pre><pre>
-  COPY ":D700" TO ":D720"</pre><pre><h1>Load BASIC program from a ascii text file</h1>
-</pre><pre>
-<h1>Only available if you have advanced EMS and electronic disk roms</h1>
-</pre><pre>
-  GET "HELLO":D730"
-<h1>Save a BASIC program as ascii text file</h1>
-</pre><pre>
-  PUT "HELLO:D720"
-<h1>Only available if you have advanced EMS and electronic disk roms</h1>
-</pre><pre>
-<h1>Delete a file</h1>
-</pre><pre>
+  # Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D700" TO ":D720"</pre><pre>  # Working with plain text files and the HP85
+  # How to import and export plain text, ascii, files 
+  # My lif tools can read or write HP85 files that GETSAVE can then read and write
+  # GETSAVE is included in all of my supplied disk images
+  #   The lif tools are included in the firmwarei and you can use then from a terminal program
+  #   1) My lif tools are built in the firmware
+  #   2) GETSAVE is included in ALL emulator disk images under the [sdcard](sdcard) folder
+  #      GETSAVE and read and write TYPE E010 files
+  # Usesge:
+  LOADBIN "GETSAVE"
+  # This program stays in memory until the HP85 is reset
+  # How do we add an Ascii text file to a disk emulator image?
+    # Connect the emulator to a serial terminal - see the [Makefile](Makefile) for the default baud rate
+    # The baud rate is at the begining of the Makefile
+    # Connect to the disk emulator with a serial terminal
+  # Adding text file to the sdcard
+    # Lets say we created a pain text file containing a basic program call test.txt
+    # With the HP85 and emulator powerd off copy it to the sdcard
+    # Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
+  # Adding the text file to the emulator image - lets use emulator image amigo1.lif
+  lif add amigo1.lif MYTEST basic.txt
+  # We just added the file to the image file called amigo1.lif and named it MYTEST
+  # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
+  GET "MYTEST:D700"
+  # Save it 
+  PUT "MYTEST2:D700"
+  # Lets store it as a program se we do not have to use the concersion tools
+  STORE "MYTESTB:D700"
+  # In the future we can LOAD it without the conversion or GETSAVE program
+  LOAD "MYTESTB:D700"</pre><pre>  # Only available if you have advanced EMS and electronic disk roms
+  # How to Delete a file
   PURGE "HELLO:D730"
-<h1>Load a BASIC format program</h1>
-</pre><pre>
+  # Load a BASIC format program
   LOAD "HELLO:D700"
-<h1>Save a BASIC format program</h1>
-</pre><pre>
+  # Save a BASIC format program
   SAVE "HELLO:D710"
-<h1>Clear memory</h1>
-</pre><pre>
+  # Clear memory
   SCRATCH
-<h1>List a BASIC program</h1>
-</pre><pre>
+  # List a BASIC program
   LIST
 </pre> <hr/>
 <h2>AVR Terminal Commands</h2>
@@ -1192,56 +1198,100 @@ README</h1>
 <ul>
 <li>[sdcard](sdcard)<ul>
 <li>My HP85 AMIGO and SS80 disk images<ul>
+<li><a href="create_images.sh">create_iamges.sh</a><ul>
+<li>Linux bash script to build ALL the disk images<ul>
+<li>Files from ASCII-files, LIF-files are added to all of the created images</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="sdcard/hpdisk.cfg">hpdisk.cfg</a><ul>
-<li>All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives</li>
+<li>All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives<ul>
 <li>PRINTER address</li>
 </ul>
 </li>
-<li><a href="sdcard/amigo.lif">amigo.lif</a><ul>
+</ul>
+</li>
+<li><a href="sdcard/amigo.cfg">amigo.cfg</a><ul>
+<li>Alternate configuration for using only AMIGO drives<ul>
+<li>Use this if your system does not support SS80 drives<ul>
+<li>Copy this file over the hpdisk.cfg file after renaming the hpdisk.cfg file</li>
+</ul>
+</li>
+<li>PRINTER address</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="sdcard/amigo1.lif">amigo1.lif</a><ul>
 <li>AMIGO disk image file number 1</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li><a href="sdcard/amigo-2.lif">amigo-2.lif</a><ul>
+<li><a href="sdcard/amigo2.lif">amigo.lif</a><ul>
 <li>AMIGO disk image file number 2</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li><a href="sdcard/ss80.lif">ss80.lif</a><ul>
+<li><a href="sdcard/ss80-1.lif">ss80-1.lif</a><ul>
 <li>SS80 hard drive disk image file number 1</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
 <li><a href="sdcard/ss80-2.lif">ss80-2.lif</a><ul>
 <li>SS80 hard drive disk image file number 2</li>
-<li>Has some demo basic programs in it</li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="sdcard/configs">sdcard/configs</a><ul>
+<li>Copies of the hp85disk config files</li>
+</ul>
+</li>
+<li><a href="sdcard/scripts">sdcard/scripts</a><ul>
+<li>Scripts that help creating LIF images from multiple files<ul>
+<li>Used by <a href="create_images.sh">create_iamges.sh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="sdcard/traces">sdcard/traces</a><ul>
 <li>My HP85 bus trace files<ul>
-<li><a href="sdcard/amigo_trace.txt">amigo_trace.txt</a><ul>
+<li><a href="sdcard/traces/amigo_trace.txt">amigo_trace.txt</a><ul>
 <li>AMIGO trace file when connected to HP85 showing odd out of order command issue</li>
 </ul>
 </li>
-<li><a href="sdcard/gpib_reset.txt">gpib_reset.txt</a><ul>
+<li><a href="sdcard/traces/gpib_reset.txt">gpib_reset.txt</a><ul>
 <li>GPIB reset trace when connected to HP85</li>
 </ul>
 </li>
-<li><a href="sdcard/gpib_trace.txt">gpib_trace.txt</a><ul>
+<li><a href="sdcard/traces/gpib_trace.txt">gpib_trace.txt</a><ul>
 <li>GPIB transaction trace when connected to HP85</li>
 </ul>
 </li>
 </ul>
 </li>
+<li>[plots](sdcard/plots]<ul>
 <li>My HP85 plot capture files<ul>
-<li><a href="sdcard/plot1.plt">plot1.plt</a></li>
-<li><a href="sdcard/plot2.plt">plot2.plt</a></li>
+<li><a href="sdcard/plots/plot1.plt">plot1.plt</a></li>
+<li><a href="sdcard/plots/plot2.plt">plot2.plt</a></li>
 </ul>
 </li>
-<li><a href="sdcard/TREK85">sdcard/TREK85</a><ul>
-<li>TREK85 by Martin Hepperle, December 2015</li>
-<li><a href="https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241">https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241</a><ul>
+</ul>
+</li>
+<li><a href="sdcard/ASCII-files">ASCII-files</a><ul>
+<li>ASCII Basic files - in text format for easy editing<ul>
+<li><a href="sdcard/ASCII-files/CIRCLE.TXT">CIRCLE.TXT</a></li>
+<li><a href="sdcard/ASCII-files/DRIVES.TXT">DRIVES.TXT</a></li>
+<li><a href="sdcard/ASCII-files/GPIB-TA.txt">GPIB-TA.txt</a></li>
+<li><a href="sdcard/ASCII-files/HELLO.TXT">HELLO.TXT</a></li>
+<li><a href="sdcard/ASCII-files/RWTEST.TXT">RWTEST.TXT</a></li>
+<li><a href="sdcard/ASCII-files/TREK85A.TXT">TREK85A.TXT</a></li>
+<li><a href="sdcard/ASCII-files/TREK85">ASCII-files/TREK85</a><ul>
+<li>TREK85 by Martin Hepperle, December 2015<ul>
+<li><a href="https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241">https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241</a></li>
+</ul>
+</li>
 <li><a href="sdcard/TREK85/author.txt">author.txt</a></li>
 <li><a href="sdcrad/TREK85/readme.txt">readme.txt</a></li>
 <li><a href="sdcard/TREK85/Start Trek.pdf">Star Trek.pdf</a></li>
@@ -1253,12 +1303,45 @@ README</h1>
 </li>
 </ul>
 </li>
+<li><a href="sdcard/LIF-files">LIF-files</a><ul>
+<li>LIF images with a single program in them<ul>
+<li>Internal names are the same as the LIF name without extension</li>
 </ul>
-<hr/>
- </div></div><!-- contents -->
+</li>
+<li><a href="sdcard/ASCII-files/GETSAVE.LIF">GETSAVE.LIF</a></li>
+<li><a href="sdcard/ASCII-files/GPIB-T.lif">GPIB-T.lif</a></li>
+<li><a href="sdcard/ASCII-files/RWTESTB.lif">RWTESTB.lif</a></li>
+<li><a href="sdcard/ASCII-files/TREK85B.lif">TREK85B.lif</a></li>
+</ul>
+</li>
+<li><a href="sdcard/LIF-volumes">LIF-volumes</a><ul>
+<li>LIF images with multiple programs in them<ul>
+<li><a href="sdcard/ASCII-files/85-SS80.LIF">85-SS80.LIF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="sdcard/notes">notes</a><ul>
+<li>GETSAV documenations<ul>
+<li>GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files<ul>
+<li>NOTE: my lif utilities can translate ASCII files to and from this format</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Various notes <hr/>
+ </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 1 2020 21:16:08 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 1 2020 23:02:21 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
