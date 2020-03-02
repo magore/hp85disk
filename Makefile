@@ -22,10 +22,13 @@ PROJECT = gpib
 ### Target device
 DEVICE  = atmega1284p
 
+# AVRDUDE device name
+DEVICE_AVRDUDE=m1284p
+
 # ==============================================
 # Debug serial port for firmware command interface
-BAUD=115200UL
-#BAUD=500000UL
+#BAUD=115200UL
+BAUD=500000UL
 ### Serial Port for emulator user interface
 PORT=/dev/ttyUSB0
 # ==============================================
@@ -313,13 +316,13 @@ term:
 flash:  all 
 #
 	# Program with avrdude using atmelice_isp
-	# avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using avrispmkii 
-	# avrdude -P usb -p m1284p -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using dragon_isp
-	# avrdude -P usb -p m1284p -c dragon_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c dragon_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# ===================================================
 	# atmelice_isp
@@ -328,9 +331,9 @@ flash:  all
 	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
-	avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
-	#./term $(BAUD) $(PORT)
-	./miniterm $(BAUD) $(PORT)
+	avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
 	# ===================================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list

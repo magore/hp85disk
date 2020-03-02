@@ -68,7 +68,7 @@
        * Example
          lif extract /amigo1.lif HELLO3 /HELLO3.BAS
 
-     * lif extractbin lifimage llifname to_lif_image
+     * lif extractbin lifimage lifname to_lif_image
        * Extracts LIF file from a LIF image and saves it as new LIF image 
        * Example
          * lif extractbin /amigo1.lif HELLO3 /hello3.lif
@@ -119,10 +119,12 @@ void lif_help(int full)
         "lif dir lifimage\n"
         "lif extract lifimage lifname to_ascii_file\n"
         "lif extractbin lifimage lifname to_lif_file\n"
+        "    extracts a file into a sigle file LIF image\n"
         "lif rename lifimage oldlifname newlifname\n"
 #ifdef LIF_STAND_ALONE
         "lif td02lif [options] image.td0 image.lif\n"
 #endif
+        "Use -d after first keyword 'lif' above for LIF filesystem debugging\n"
         "\n"
         );
     }
@@ -145,12 +147,16 @@ int lif_tests(int argc, char *argv[])
 
     // NAME
     ind = 0;
+	// Skip program name
     ptr = argv[ind++];
 
     if(!ptr )
         return(0);
 
+	// Next Argument after program name
     ptr = argv[ind++];
+
+
 
     if(argc <= 1 || !ptr || MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
     {
@@ -159,6 +165,14 @@ int lif_tests(int argc, char *argv[])
         td0_help(1);
 #endif
         return(0);
+    }
+
+	// Turn one debugging
+	// in the future we can add tests for specific messages
+    if (MATCHARGS(ptr,"-d", (ind + 0) ,argc))
+    {
+		debuglevel = 0xffff;
+		ptr = argv[ind++];
     }
 
     if (MATCHARGS(ptr,"addbin", (ind + 3) ,argc))
@@ -1183,7 +1197,7 @@ void lif_closedir(lif_t *LIF)
 MEMSPACE
 int lif_checkdirindex(lif_t * LIF, int index)
 {
-    if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) >= LIF->VOL.DirSectors)
+    if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) > LIF->VOL.DirSectors)
     {
         printf("lif_checkdirindex:[%s] direcory index:[%d] out of bounds\n",LIF->name, index);
         if(debuglevel & 0x400)
