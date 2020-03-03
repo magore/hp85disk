@@ -382,10 +382,10 @@ ___
   * Note: the EMS ROM has extended INITIALIZE attributes
 <pre>
   # Initializing: (already done on these images so you do not have to)
-  INITIALIZE "SS80-1",":D700",128,1
-  INITIALIZE "AMIGO1",":D710",14,1
-  INITIALIZE "SS80-2",":D720",128,1
-  INITIALIZE "AMIGO2",":D730",14,1
+  INITIALIZE "AMIGO1",":D700",14,1
+  INITIALIZE "AMIGO2",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D730",128,1
   
   # Listing files:
   # first AMIGO
@@ -394,15 +394,15 @@ ___
   CAT ":D710"
   # first SS80
   CAT ":D720"
-  # second SS*0
+  # second SS80
   CAT ":D730"
   
-  # Loading file from second SS80:
+  # Loading file from first SS80:
   LOAD "HELLO:D720"
   # Copying file between devices: fist AMIGO to second AMIGO
-  COPY "HELLO:D710" TO "HELLO:D730"
+  COPY "HELLO:D700" TO "HELLO:D710"
   # Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D700" TO ":D720"
+  COPY ":D720" TO ":D730"
 
   # Working with plain text files and the HP85
   # How to import and export plain text, ascii, files 
@@ -424,7 +424,7 @@ ___
     # With the HP85 and emulator powerd off copy it to the sdcard
     # Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
   # Adding the text file to the emulator image - lets use emulator image amigo1.lif
-  lif add amigo1.lif MYTEST basic.txt
+  lif add amigo1.lif MYTEST test.txt
   # We just added the file to the image file called amigo1.lif and named it MYTEST
   # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
   GET "MYTEST:D700"
@@ -435,9 +435,8 @@ ___
   # In the future we can LOAD it without the conversion or GETSAVE program
   LOAD "MYTESTB:D700"
 
-  # Only available if you have advanced EMS and electronic disk roms
   # How to Delete a file
-  PURGE "HELLO:D730"
+  PURGE "HELLO:D710"
   # Load a BASIC format program
   LOAD "HELLO:D700"
   # Save a BASIC format program
@@ -757,25 +756,28 @@ ___
         * [amigo2.lif](sdcard/amigo2.lif)
           * AMIGO disk image
           * Has some demo basic programs in it
-        * [amigo3.lif](sdcard/amigo2.lif)
+        * [amigo3.lif](sdcard/amigo3.lif)
           * AMIGO disk image 
           * Has some demo basic programs in it
-        * [amigo4.lif](sdcard/amigo3.lif)
+        * [amigo4.lif](sdcard/amigo4.lif)
           * AMIGO disk image 
           * Has some demo basic programs in it
       * SS80 disk images
         * [ss80-1.lif](sdcard/ss80-1.lif)
-          * SS80 hard drive disk image file number 1
           * SS80 disk image 
+          * Has some demo basic programs in it
         * [ss80-2.lif](sdcard/ss80-2.lif)
           * SS80 disk image 
+          * Has some demo basic programs in it
         * [ss80-3.lif](sdcard/ss80-3.lif)
           * SS80 disk image 
+          * Has some demo basic programs in it
         * [ss80-4.lif](sdcard/ss80-4.lif)
-          * SS80 hard drive disk image file number 2
+          * SS80 disk image 
+          * Has some demo basic programs in it
       * SD Card emulator configuration file backups
         * [sdcard/configs](sdcard/configs)
-          * Copies of the hp85disk config files
+          * Backup copies of the hp85disk config files
       * BUILD SCRIPTS
         * [sdcard/scripts](sdcard/scripts)
           * Scripts that help creating LIF images from multiple files

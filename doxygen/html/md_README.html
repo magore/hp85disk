@@ -607,10 +607,10 @@ README</h1>
 </li>
 <li>Note: the EMS ROM has extended INITIALIZE attributes <pre>
   # Initializing: (already done on these images so you do not have to)
-  INITIALIZE "SS80-1",":D700",128,1
-  INITIALIZE "AMIGO1",":D710",14,1
-  INITIALIZE "SS80-2",":D720",128,1
-  INITIALIZE "AMIGO2",":D730",14,1</pre></li>
+  INITIALIZE "AMIGO1",":D700",14,1
+  INITIALIZE "AMIGO2",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D730",128,1</pre></li>
 </ul>
 <pre>  # Listing files:
   # first AMIGO
@@ -619,13 +619,13 @@ README</h1>
   CAT ":D710"
   # first SS80
   CAT ":D720"
-  # second SS*0
-  CAT ":D730"</pre><pre>  # Loading file from second SS80:
+  # second SS80
+  CAT ":D730"</pre><pre>  # Loading file from first SS80:
   LOAD "HELLO:D720"
   # Copying file between devices: fist AMIGO to second AMIGO
-  COPY "HELLO:D710" TO "HELLO:D730"
+  COPY "HELLO:D700" TO "HELLO:D710"
   # Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D700" TO ":D720"</pre><pre>  # Working with plain text files and the HP85
+  COPY ":D720" TO ":D730"</pre><pre>  # Working with plain text files and the HP85
   # How to import and export plain text, ascii, files 
   # My lif tools can read or write HP85 files that GETSAVE can then read and write
   # GETSAVE is included in all of my supplied disk images
@@ -645,7 +645,7 @@ README</h1>
     # With the HP85 and emulator powerd off copy it to the sdcard
     # Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
   # Adding the text file to the emulator image - lets use emulator image amigo1.lif
-  lif add amigo1.lif MYTEST basic.txt
+  lif add amigo1.lif MYTEST test.txt
   # We just added the file to the image file called amigo1.lif and named it MYTEST
   # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
   GET "MYTEST:D700"
@@ -654,9 +654,8 @@ README</h1>
   # Lets store it as a program se we do not have to use the concersion tools
   STORE "MYTESTB:D700"
   # In the future we can LOAD it without the conversion or GETSAVE program
-  LOAD "MYTESTB:D700"</pre><pre>  # Only available if you have advanced EMS and electronic disk roms
-  # How to Delete a file
-  PURGE "HELLO:D730"
+  LOAD "MYTESTB:D700"</pre><pre>  # How to Delete a file
+  PURGE "HELLO:D710"
   # Load a BASIC format program
   LOAD "HELLO:D700"
   # Save a BASIC format program
@@ -1234,12 +1233,12 @@ README</h1>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li><a href="sdcard/amigo2.lif">amigo3.lif</a><ul>
+<li><a href="sdcard/amigo3.lif">amigo3.lif</a><ul>
 <li>AMIGO disk image</li>
 <li>Has some demo basic programs in it</li>
 </ul>
 </li>
-<li><a href="sdcard/amigo3.lif">amigo4.lif</a><ul>
+<li><a href="sdcard/amigo4.lif">amigo4.lif</a><ul>
 <li>AMIGO disk image</li>
 <li>Has some demo basic programs in it</li>
 </ul>
@@ -1248,27 +1247,30 @@ README</h1>
 </li>
 <li>SS80 disk images<ul>
 <li><a href="sdcard/ss80-1.lif">ss80-1.lif</a><ul>
-<li>SS80 hard drive disk image file number 1</li>
 <li>SS80 disk image</li>
+<li>Has some demo basic programs in it</li>
 </ul>
 </li>
 <li><a href="sdcard/ss80-2.lif">ss80-2.lif</a><ul>
 <li>SS80 disk image</li>
+<li>Has some demo basic programs in it</li>
 </ul>
 </li>
 <li><a href="sdcard/ss80-3.lif">ss80-3.lif</a><ul>
 <li>SS80 disk image</li>
+<li>Has some demo basic programs in it</li>
 </ul>
 </li>
 <li><a href="sdcard/ss80-4.lif">ss80-4.lif</a><ul>
-<li>SS80 hard drive disk image file number 2</li>
+<li>SS80 disk image</li>
+<li>Has some demo basic programs in it</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>SD Card emulator configuration file backups<ul>
 <li><a href="sdcard/configs">sdcard/configs</a><ul>
-<li>Copies of the hp85disk config files</li>
+<li>Backup copies of the hp85disk config files</li>
 </ul>
 </li>
 </ul>
@@ -1367,7 +1369,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 2 2020 14:12:14 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 2 2020 21:51:41 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

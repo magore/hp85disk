@@ -674,10 +674,10 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Note\+: the E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
 \begin{DoxyPre}
   \# Initializing: (already done on these images so you do not have to)
-  INITIALIZE "SS80-1",":D700",128,1
-  INITIALIZE "AMIGO1",":D710",14,1
-  INITIALIZE "SS80-2",":D720",128,1
-  INITIALIZE "AMIGO2",":D730",14,1\end{DoxyPre}
+  INITIALIZE "AMIGO1",":D700",14,1
+  INITIALIZE "AMIGO2",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D730",128,1\end{DoxyPre}
 
 \end{DoxyItemize}
 
@@ -689,17 +689,17 @@ See \mbox{[}Documents folder\mbox{]}(documents)
   CAT ":D710"
   \# first SS80
   CAT ":D720"
-  \# second SS*0
+  \# second SS80
   CAT ":D730"\end{DoxyPre}
 
 
 
-\begin{DoxyPre}  \# Loading file from second SS80:
+\begin{DoxyPre}  \# Loading file from first SS80:
   LOAD "HELLO:D720"
   \# Copying file between devices: fist AMIGO to second AMIGO
-  COPY "HELLO:D710" TO "HELLO:D730"
+  COPY "HELLO:D700" TO "HELLO:D710"
   \# Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D700" TO ":D720"\end{DoxyPre}
+  COPY ":D720" TO ":D730"\end{DoxyPre}
 
 
 
@@ -723,7 +723,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
     \# With the HP85 and emulator powerd off copy it to the sdcard
     \# Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
   \# Adding the text file to the emulator image - lets use emulator image amigo1.lif
-  lif add amigo1.lif MYTEST basic.txt
+  lif add amigo1.lif MYTEST test.txt
   \# We just added the file to the image file called amigo1.lif and named it MYTEST
   \# Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
   GET "MYTEST:D700"
@@ -736,9 +736,8 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 
 
-\begin{DoxyPre}  \# Only available if you have advanced EMS and electronic disk roms
-  \# How to Delete a file
-  PURGE "HELLO:D730"
+\begin{DoxyPre}  \# How to Delete a file
+  PURGE "HELLO:D710"
   \# Load a BASIC format program
   LOAD "HELLO:D700"
   \# Save a BASIC format program
@@ -1364,12 +1363,12 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item A\+M\+I\+GO disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item \href{sdcard/amigo2.lif}{\tt amigo3.\+lif}
+\item \href{sdcard/amigo3.lif}{\tt amigo3.\+lif}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\item \href{sdcard/amigo3.lif}{\tt amigo4.\+lif}
+\item \href{sdcard/amigo4.lif}{\tt amigo4.\+lif}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO disk image
 \item Has some demo basic programs in it
@@ -1379,27 +1378,30 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item \href{sdcard/ss80-1.lif}{\tt ss80-\/1.\+lif}
 \begin{DoxyItemize}
-\item S\+S80 hard drive disk image file number 1
 \item S\+S80 disk image
+\item Has some demo basic programs in it
 \end{DoxyItemize}
 \item \href{sdcard/ss80-2.lif}{\tt ss80-\/2.\+lif}
 \begin{DoxyItemize}
 \item S\+S80 disk image
+\item Has some demo basic programs in it
 \end{DoxyItemize}
 \item \href{sdcard/ss80-3.lif}{\tt ss80-\/3.\+lif}
 \begin{DoxyItemize}
 \item S\+S80 disk image
+\item Has some demo basic programs in it
 \end{DoxyItemize}
 \item \href{sdcard/ss80-4.lif}{\tt ss80-\/4.\+lif}
 \begin{DoxyItemize}
-\item S\+S80 hard drive disk image file number 2
+\item S\+S80 disk image
+\item Has some demo basic programs in it
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item SD Card emulator configuration file backups
 \begin{DoxyItemize}
 \item \href{sdcard/configs}{\tt sdcard/configs}
 \begin{DoxyItemize}
-\item Copies of the hp85disk config files
+\item Backup copies of the hp85disk config files
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item B\+U\+I\+LD S\+C\+R\+I\+P\+TS
