@@ -589,12 +589,12 @@ README</h1>
 <hr/>
 <h2>Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU</h2>
 <ul>
-<li>The github project includes precompiled files under the [build](build) directory<ul>
+<li>The github project includes precompiled files under the [release](release) directory<ul>
 <li>If you wish to compile yourself please see the next section "Requirements for building..."</li>
 </ul>
 </li>
 <li>NOTE: Most any system with an AVR Programmer that works with the atmega1284p will work<ul>
-<li>If you can set the fuses and read at least one encoded binary format of the firmware in the project build directory<ul>
+<li>If you can set the fuses and read at least one encoded binary format of the firmware in the project [release](release) directory<ul>
 <li>You can find the current fuses in the Makefile - look for the statement wth fuses= and no preceding '#' comment</li>
 <li>Extract just the fuse settings - for example: lfuse=0xd6 hfuse:=0xd9 efuse=0xff</li>
 </ul>
@@ -608,7 +608,7 @@ README</h1>
 </li>
 <li>I used the ATMELICE ISP programmer<ul>
 <li>NOTE: avrdude supports many AVR programmers not just the one I am using</li>
-<li>avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:build/gpib.hex<ul>
+<li>avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex<ul>
 <li>You should not get any errors <hr/>
 </li>
 </ul>
@@ -621,7 +621,7 @@ README</h1>
 <h2>Requirements for building the hp85 disk project</h2>
 <ul>
 <li>PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CHANGES</li>
-<li>[I have provided compiled files under the folder build](build)<ul>
+<li>[I have provided compiled files under the folder release](release)<ul>
 <li>You just need to flash the files</li>
 </ul>
 </li>
@@ -1156,6 +1156,10 @@ README</h1>
 </li>
 </ul>
 </li>
+</ul>
+<h2>Compiled firmware release files</h2>
+<ul>
+<li>[release](release)</li>
 </ul>
 <h2>Board design file for version 1 and 2 hardware information</h2>
 <ul>
@@ -1793,7 +1797,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2020 04:22:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 4 2020 04:31:41 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

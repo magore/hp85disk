@@ -296,8 +296,8 @@ PROGS = hardware/baudrate
 all: term version $(LIBS) build size $(PROGS) lif
 
 save_release: all 
-	# Save the results under build
-	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym build
+	# Save the results under release
+	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym release
 
 # Default target.
 #Example way of creating a current year string for  a #define

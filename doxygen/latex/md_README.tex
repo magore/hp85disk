@@ -626,13 +626,13 @@ On the H\+P85 type
 
 
 \begin{DoxyItemize}
-\item The github project includes precompiled files under the \mbox{[}build\mbox{]}(build) directory
+\item The github project includes precompiled files under the \mbox{[}release\mbox{]}(release) directory
 \begin{DoxyItemize}
 \item If you wish to compile yourself please see the next section \char`\"{}\+Requirements for building...\char`\"{}
 \end{DoxyItemize}
 \item N\+O\+TE\+: Most any system with an A\+VR Programmer that works with the atmega1284p will work
 \begin{DoxyItemize}
-\item If you can set the fuses and read at least one encoded binary format of the firmware in the project build directory
+\item If you can set the fuses and read at least one encoded binary format of the firmware in the project \mbox{[}release\mbox{]}(release) directory
 \begin{DoxyItemize}
 \item You can find the current fuses in the Makefile -\/ look for the statement wth fuses= and no preceding \textquotesingle{}\#\textquotesingle{} comment
 \item Extract just the fuse settings -\/ for example\+: lfuse=0xd6 hfuse\+:=0xd9 efuse=0xff
@@ -647,7 +647,7 @@ On the H\+P85 type
 \item I used the A\+T\+M\+E\+L\+I\+CE I\+SP programmer
 \begin{DoxyItemize}
 \item N\+O\+TE\+: avrdude supports many A\+VR programmers not just the one I am using
-\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 1 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:build/gpib.\+hex
+\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 1 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:release/gpib.\+hex
 \begin{DoxyItemize}
 \item You should not get any errors 
 
@@ -662,7 +662,7 @@ On the H\+P85 type
 
 \begin{DoxyItemize}
 \item P\+L\+E\+A\+SE R\+E\+A\+D! All steps below are intended O\+N\+LY R\+E\+Q\+U\+I\+R\+ED IF Y\+OU P\+L\+AN TO M\+A\+KE C\+H\+A\+N\+G\+ES
-\item \mbox{[}I have provided compiled files under the folder build\mbox{]}(build)
+\item \mbox{[}I have provided compiled files under the folder release\mbox{]}(release)
 \begin{DoxyItemize}
 \item You just need to flash the files
 \end{DoxyItemize}
@@ -1326,6 +1326,13 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Project Copyrights
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Compiled firmware release files}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}release\mbox{]}(release)
 \end{DoxyItemize}
 
 \subsection*{Board design file for version 1 and 2 hardware information}

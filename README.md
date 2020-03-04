@@ -310,10 +310,10 @@ ___
 
 
 ## Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU 
-  * The github project includes precompiled files under the [build](build) directory
+  * The github project includes precompiled files under the [release](release) directory
     * If you wish to compile yourself please see the next section "Requirements for building..." 
   * NOTE: Most any system with an AVR Programmer that works with the atmega1284p will work
-    * If you can set the fuses and read at least one encoded binary format of the firmware in the project build directory
+    * If you can set the fuses and read at least one encoded binary format of the firmware in the project [release](release) directory
       * You can find the current fuses in the Makefile - look for the statement wth fuses= and no preceding '#' comment
       * Extract just the fuse settings - for example: lfuse=0xd6 hfuse:=0xd9 efuse=0xff 
   * Ubuntu Linux Specific Example 
@@ -321,14 +321,14 @@ ___
       * apt-get install avrdude
     * I used the ATMELICE ISP programmer
       * NOTE: avrdude supports many AVR programmers not just the one I am using
-      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:build/gpib.hex
+      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex
         * You should not get any errors
 ___ 
 
 
 ## Requirements for building the hp85 disk project
   * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CHANGES
-  * [I have provided compiled files under the folder build](build)
+  * [I have provided compiled files under the folder release](release)
     * You just need to flash the files
 
 ## Operating systems
@@ -711,6 +711,9 @@ ___
   * Project Copyright
     * [COPYRIGHT.md](COPYRIGHT.md)
       * Project Copyrights 
+
+## Compiled firmware release files
+  * [release](release)
 
 ## Board design file for version 1 and 2 hardware information
   * [board](board)
