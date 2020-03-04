@@ -1,22 +1,97 @@
 \hypertarget{md_README_README}{}\section{R\+E\+A\+D\+ME}\label{md_README_README}
 \section*{Documentation}
 
-
-\begin{DoxyItemize}
-\item Please use this link for the Documentation and this R\+E\+A\+D\+ME
-\begin{DoxyItemize}
-\item \href{https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html}{\tt https\+://rawgit.\+com/magore/hp85disk/\+V2/doxygen/html/index.\+html}
-\item \href{doxygen/html/index.html}{\tt index}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
 \subsection*{H\+P85 Disk Emulator Copyright (C) 2014-\/2020 Mike Gore}
 
 
 \begin{DoxyItemize}
-\item New Board layout design by Jay Hamlin (C) 2018-\/2020
+\item This Project Emulates A\+M\+I\+GO and S\+S80 disk drives used by the H\+P85 series computers.
+\item The images are stored in L\+IF format used by the H\+P85 series computers
 \item See \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+HT} for a full copyright notice for the project
+\item Documentation created using Doxygen available at
+\begin{DoxyItemize}
+\item \href{https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html}{\tt https\+://rawgit.\+com/magore/hp85disk/\+V2/doxygen/html/index.\+html}
+\item All emulated disk images are just regular files stored on a standard F\+A\+T32 formatted SD Card
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Other resources for disk image manipulation}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive project has very useful references an tools for creating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Dir project has very useful references an tools for manipulating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt See L\+IF Documentation -\/ part of the H\+P\+Dir project for details}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Features for the H\+P85 in brief}
+
+
+\begin{DoxyItemize}
+\item N\+O\+TE\+: Later sections go into more detail
+\item This project emulates G\+P\+IB drives and H\+P\+GL printer
+\begin{DoxyItemize}
+\item Each emulated disk image is a L\+IF encoded file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg} fully defines each disk image on SD Card
+\begin{DoxyItemize}
+\item Disk images are L\+IF encoded files that are compatible with H\+P85\+A/B and many other computers
+\item Missing disk image files are created automatically if
+\end{DoxyItemize}
+
+The emulator will automatically create missing L\+IF images defined in hpdisk.\+cfg on the S\+D\+C\+A\+RD
+\begin{DoxyItemize}
+\item There are disk images for A\+M\+I\+GO and S\+S80 disks
+\begin{DoxyItemize}
+\item A\+M\+I\+GO drives work with H\+P85A
+\item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 wth modified E\+MS and Electronic disk rom add on board see links)
+\begin{DoxyItemize}
+\item You may have up to 4 disks with V1 hardware and 8 with V2 hardware
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item There is a Printer emulator that can capture and save printer data to a time stamped file.
+\item Built in command processor with lots of useful features
+\begin{DoxyItemize}
+\item Want to translate between plain text B\+A\+S\+IC files and H\+P85 B\+A\+S\+IC programs? You Can!
+\begin{DoxyItemize}
+\item See full details later in this document
+\end{DoxyItemize}
+\item Access the hp85disk command processor via its U\+SB interface and your computer with a serial terminal program
+\begin{DoxyItemize}
+\item See full details later in this document for serial terminal configuration and finding the device port name
+\end{DoxyItemize}
+\item Any key press halts the emulator and waits for a user command
+\begin{DoxyItemize}
+\item After finishing any user commend and options press the Enter/\+Return key to return to disk emulation
+\end{DoxyItemize}
+\item Type \char`\"{}help\char`\"{} for a list of top level commands
+\begin{DoxyItemize}
+\item Each help item has its own help
+\item Example\+: lif help
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+L\+IF manipulation tools are built in see later sections for details
+\begin{DoxyItemize}
+\item Convert Tele\+Disk images into L\+IF
+\item The emulator R\+TC can be used for time stamping plot files and files added into lif images
+\end{DoxyItemize}
+
+
+
+
 
 \subsection*{H\+P85 disk emulator V2 circuit board layout design by (C) 2018-\/2020 Jay Hamlin}
 
@@ -33,7 +108,7 @@
 \begin{DoxyItemize}
 \item 48\+Mma drive required by the G\+P\+IB spec
 \end{DoxyItemize}
-\item I2C level conveters and standard Qwiic Bus interface -\/ 3.\+3V
+\item I2C level converters and standard Qwiic Bus interface -\/ 3.\+3V
 \begin{DoxyItemize}
 \item optional R\+TC chips like the D\+S3231
 \item L\+CD displays -\/ work in progress
@@ -58,133 +133,558 @@
 \item My original board design without G\+P\+IB buffers
 \end{DoxyItemize}
 
-\subsection*{H\+P85 emulator board design Makefile configuration options V1 and V2 boards}
-
-\subsection*{V2 design enables control of G\+P\+IB B\+US drivers (drivers do not exist on V1 hardware)}
-
-\subsection*{V1 Board design Makefile configuration (github main branch)}
 
 
-\begin{DoxyItemize}
-\item B\+O\+A\+RD=1 (2 also works V2 because the G\+P\+IB drivers are not connected)
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=0 (P\+PR bits reverse in hardware) \subsection*{V2 Board design Makefile configuration (github V2 branch)}
-\end{DoxyItemize}
+
+
+\subsection*{H\+P85 emulator Makefile configuration options for original V1 and new V2 boards}
+
+\subsection*{Makefile Configuration options for building}
 
 
 \begin{DoxyItemize}
-\item B\+O\+A\+RD=2
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=1 (P\+PR bits reversed in software) 
+\item Update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
+\begin{DoxyItemize}
+\item B\+O\+A\+RD is the version of the hardware
+\begin{DoxyItemize}
+\item 1 = V1 hardware without G\+P\+IB B\+US transceivers
+\item 2 = V2 hardware with G\+P\+IB B\+US transceivers
+\end{DoxyItemize}
+\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
+\begin{DoxyItemize}
+\item 0 = V1 hardware without the G\+P\+IB buffers
+\end{DoxyItemize}
+\item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for Real Time Clock
+\begin{DoxyItemize}
+\item 1 = R\+TC support for a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
+\begin{DoxyItemize}
+\item This will time stamp plot files and add time stamps inside lif images
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item P\+O\+RT is the emulator serial P\+O\+RT name as detected by your operating system
+\begin{DoxyItemize}
+\item /dev/tty\+U\+S\+B0 on my system
+\end{DoxyItemize}
+\item B\+A\+UD is the data rate when connecting to the hp85disk emulator with a serial port
+\begin{DoxyItemize}
+\item 115200 = a safe default that most systems can manage
+\begin{DoxyItemize}
+\item N\+O\+TE\+: My development environment works with 500000 baud but 115200 should work on all systems
+\item N\+O\+TE\+: Faster is better when enabling more debug messages
+\begin{DoxyItemize}
+\item Too many messages can cause the H\+P85 to timeout waiting for IO 
 
 
 \end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 
-\subsection*{Features}
+\subsection*{Detailed information about tools and features}
+
+\subsection*{Built in command processor with many tools}
+
+\subsection*{Accessing the hp85disk command interface with a serial terminal}
 
 
 \begin{DoxyItemize}
-\item This project emulates G\+P\+IB drives and H\+P\+GL printer for the H\+P85A and H\+P85B computers.
+\item Used to access the hp85disk command interface
+\item Access it via the U\+SB cable attached to your computer using a serial terminal program
+\end{DoxyItemize}
+
+\subsection*{Finding the emulator serial port device name on you Linux system}
+
+
 \begin{DoxyItemize}
-\item A\+M\+I\+GO drives work with H\+P85A
-\item S\+S80 drives work with H\+P85B (or H\+P85A with prm-\/85 wth modified E\+MS and Electronic disk rom add on board see links)
+\item Make sure the H\+P85disk is initially N\+OT attached via the U\+SB cable to the desktop
+\item Open a Linux terminal window -\/ not serial terminal
+\item In this terminal windows type
 \begin{DoxyItemize}
-\item You may have up to 4 disks with V1 hardware and 8 with V2 hardware
-\end{DoxyItemize}
-\item Printer emulator -\/ can capture and save printer data to a time stamped file.
-\item There is a U\+SB serial interface that can take many commands -\/ type help
+\item ls -\/lart /dev $\vert$ tail -\/1
 \begin{DoxyItemize}
-\item You can use a serial terminal program to acces it -\/ See Makefile for Baud and terminal command
-\item There are many commands that you can use, type \char`\"{}help for a list\char`\"{}
-\item Any key press halts the emulator and waits for a user command.
+\item The \textquotesingle{}$\vert$\textquotesingle{} symbol means \char`\"{}pipe\char`\"{} the output of one Linux command to another
 \begin{DoxyItemize}
-\item After finishing any user commend it returns to G\+P\+IB disk emulation.
+\item This \textquotesingle{}$\vert$\textquotesingle{} symbol is found on US keyboards just above the enter key
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Each emulated disk image is a file on a F\+A\+T32 formatted S\+D\+C\+A\+RD.
-\item \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg} fully defines each disk image on SD Card
+\end{DoxyItemize}
+\item Attach the emulator U\+SB port to your Linux Desktop
 \begin{DoxyItemize}
-\item Disk images are L\+IF encoded files that are compatible with H\+P85\+A/B and many other computers
-\item Missing disk image files are created automatically if
+\item Again type
+\begin{DoxyItemize}
+\item ls -\/lart /dev $\vert$ tail -\/1
+\begin{DoxyItemize}
+\item If the result changes between the two commands the last line has the device name
+\begin{DoxyItemize}
+\item On my system its is typically /dev/tty\+U\+S\+B0 -\/ it all depends on how many U\+SB serial devices you have attached
 \end{DoxyItemize}
-\item L\+IF manipulation tools are built into the emulator -\/ see next sections
-\item R\+TC can be used for time stamping plot files and files added into lif images
 \end{DoxyItemize}
 \end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Configuring the serial communication program}
+
+
+\begin{DoxyItemize}
+\item With the hp85disk attached via U\+SB cable to your desktop
+\item Open you favourite serial terminal emulator
+\begin{DoxyItemize}
+\item Set B\+A\+UD rate to 115200
+\item Set 8 Data bits NO parity
+\item Set flow control to N\+O\+NE
+\item Set the P\+O\+RT to the device name of the emulator U\+SB port
+\begin{DoxyItemize}
+\item Example\+: /dev/tty\+U\+S\+B0 see next section
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
 
 \subsection*{L\+IF tools are built into emulator firmware}
 
-\subsection*{L\+IF tools are also created for your operating system}
-
 
 \begin{DoxyItemize}
-\item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
+\item Built in help
 \begin{DoxyItemize}
-\item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
+\item lif help
+\begin{DoxyItemize}
+\item Gives lif commands
 \end{DoxyItemize}
-\item The emulator will automatically create missing L\+IF images defined in hpdisk.\+cfg on the S\+D\+C\+A\+RD
 \end{DoxyItemize}
-
-For the specific L\+IF E010..E013(hex) type records tools can translate to and from plain A\+S\+C\+II files.
+\item N\+O\+TE\+: Each disk image is a single file, encoded in L\+IF format,saved on the SD Card
 \begin{DoxyItemize}
-\item add ascii file to L\+IF image
+\item L\+IF format is a common the filesystem on series 80 computers.
+\item L\+IF format is also a vary common file interchange format for series 80 computers
+\begin{DoxyItemize}
+\item L\+IF format includes file date,size permissions and other important meta data
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item You can work with L\+IF images
+\begin{DoxyItemize}
+\item Directory listing of L\+IF images and S\+SD Card files
+\begin{DoxyItemize}
+\item If you have an R\+TC the listing can display file and L\+IF volume date and time
+\begin{DoxyItemize}
+\item Display time stamps if they were set
+\begin{DoxyItemize}
+\item But only if they were created or added with the built in tools
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item add an ascii file to L\+IF image
+\begin{DoxyItemize}
+\item This function permits renaming of the translated file
+\item They get translated between H\+P85 D\+T\+A8x (type E010) format and plain text files!!!
+\end{DoxyItemize}
 \item extract ascii files from L\+IF image
-\item Add correct timestamp if you have an R\+TC
+\begin{DoxyItemize}
+\item This function permits renaming of the translated file
+\item They get translated between H\+P85 D\+T\+A8x (type E010) format and plain text files!!!
 \end{DoxyItemize}
-
-add binary file to L\+IF image
+\item add binary programs from one L\+IF image to another L\+IF image
 \begin{DoxyItemize}
-\item extract binary file from L\+IF image
+\item This function permits renaming of the translated file
+\end{DoxyItemize}
+\item extract a single binary file or program into a new L\+IF image
 \begin{DoxyItemize}
-\item Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
+\item This function permits renaming of the translated file
+\item Extracted L\+IF images contain a single file a 256 byte volume header, 256 byte directory followed by a file.
 \end{DoxyItemize}
 \item delete file in L\+IF image
 \item rename file in L\+IF image
-\item list directory
+\item Create, import, export copy, rename, delete, etc
 \begin{DoxyItemize}
-\item Display time stamps if they were set
+\item You can add a plain text file, and translate it, into a L\+IF image with file format D\+T\+A8x (type E010)
+\item You can extract an translate D\+T\+A8x (type E010) into a plain text files
 \end{DoxyItemize}
-\item create L\+IF image with options
-\item Can automaticcaly create missing images if defined in hpdisk.\+cfg
-\begin{DoxyItemize}
-\item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
-\item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
+\item \hyperlink{md_lif_README}{For more L\+IF documentation}
+\item Also see the Other Resources section above
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Tele\+Disk to L\+IF extractor tool (updated) included -\/ see  \hyperlink{lif_2README_8md}{lif/\+R\+E\+A\+D\+M\+E.\+md} \char`\"{}\+L\+I\+F R\+E\+A\+D\+M\+E.\+md\char`\"{}}
+\subsection*{Tele\+Disk to L\+IF conversion tool (updated) -\/ see  \hyperlink{lif_2README_8md}{lif/\+R\+E\+A\+D\+M\+E.\+md} \char`\"{}\+L\+I\+F R\+E\+A\+D\+M\+E.\+md\char`\"{}}
 
 
 \begin{DoxyItemize}
 \item \href{lif/t202lif}{\tt td02lif} \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
+\item N\+O\+TE\+: There are a stand alone version of the tool that run on Linux -\/ making it work on Windows should be easy
+\begin{DoxyItemize}
+\item You can extract a D\+T\+A8x (type E010) file from a L\+IF image and translate it into plain text
+\end{DoxyItemize}
+\item Tele\+Disk to L\+IF image conversion -\/ a very common disk interchange format
+\begin{DoxyItemize}
+\item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
+\item create L\+IF image with options
+\item N\+O\+TE\+: the emulator automatically creates missing images if defined in hpdisk.\+cfg
+\begin{DoxyItemize}
+\item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
+\item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
 
 
 
-\subsection*{SD Card requirments}
+\subsection*{Specific details for Translating between plain text and H\+P85 B\+A\+S\+IC programs using hp85disk}
 
 
 \begin{DoxyItemize}
-\item The H\+P85 is sensitive to write delays so we need SD cards with fast random writes.
-\item I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
-\item Why ? Each block that is written reads, erases then rewrites a new internal flash page (these can be over a megabyte and so take time). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K random write times. Some SD cards are so slow it will cause the H\+P85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks -\/ specifically 4k random write -\/ faster is better.
+\item Requirements
+\begin{DoxyItemize}
+\item hp85disk emulator
+\begin{DoxyItemize}
+\item There is a solution documented below in you do not have the hp85emulator
+\end{DoxyItemize}
+\item A HP utility commonly called \char`\"{}\+G\+E\+T\+S\+A\+V\char`\"{} translates between H\+P85 B\+A\+S\+IC and D\+T\+A8x (type E010 ) files
+\begin{DoxyItemize}
+\item The utility adds functions \char`\"{}\+G\+E\+T\char`\"{} and \char`\"{}\+S\+A\+V\+E\char`\"{} to your H\+P85 computer
+\begin{DoxyItemize}
+\item This HP utility was part of a larger software package from HP for the H\+P85
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{G\+E\+T\+S\+AV is called G\+E\+T\+S\+A\+VE inside my L\+IF disk images}
+
+
+\begin{DoxyItemize}
+\item \href{sdcard/LIF-files/GETSAVE.LIF}{\tt Here is a direct link to G\+E\+T\+S\+A\+V\+E.\+L\+IF encoded as a L\+IF file -\/ sdcard/\+L\+I\+F-\/files/\+G\+E\+T\+S\+A\+V\+E.\+L\+IF}
+\item My hp85disk tools built in the firmware can tools translate between D\+T8x (type E010 ) and plain text A\+S\+C\+II files
+\begin{DoxyItemize}
+\item I provide stand alone L\+IF tools in the lif subfolder of the github project that do the same thing
+\end{DoxyItemize}
+\item Used together with the H\+P85 these tools can translate between A\+S\+C\+II plain text and H\+P85 B\+A\+S\+IC programs!!!
+\begin{DoxyItemize}
+\item Specific details steps are documented later in the R\+E\+A\+D\+ME
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Translating between plain text and H\+P85 B\+A\+S\+IC programs W\+I\+T\+H\+O\+UT hp85disk}
+
+
+\begin{DoxyItemize}
+\item You must compile and install the stand alone lif tools found under the project \mbox{[}lif\mbox{]}(lif) folder
+\item You will also need a way of transfer binary files to/from your H\+P85
+\begin{DoxyItemize}
+\item You need to copy the G\+E\+T\+S\+A\+VE program to your H\+P85 some how
+\end{DoxyItemize}
+\item Specific details steps are documented later in the R\+E\+A\+D\+ME
+\end{DoxyItemize}
+
+\subsection*{Initial setup of the hp85disk A\+S\+S\+U\+M\+P\+T\+I\+O\+NS and Requirements}
+
+
+\begin{DoxyItemize}
+\item You have the hp85disk emulator attached to your H\+P85 with a G\+P\+IB cable
+\begin{DoxyItemize}
+\item Strongly advise having no other devices attached just durring setup/testing
+\begin{DoxyItemize}
+\item This is to avoid other G\+P\+IB bus address conflicts initially -\/ you can update addresses later
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item You have a Ubuntu Linux desktop -\/ used for all my examples
+\item All Text and configuration files used with the emulator M\+U\+ST plain text format only (8 bit ascii)
+\begin{DoxyItemize}
+\item Please NO Unicode -\/ both file names and file formats!
+\end{DoxyItemize}
+\item You have a serial terminal program installed -\/ for example minicom
+\item You need a F\+A\+T32 format blank SD Card
+\begin{DoxyItemize}
+\item Copy of the hp85disk, github V2 branch, sdcard folder contents onto the SD Card
+\begin{DoxyItemize}
+\item Make sure you only copy the contents and N\+OT folder A\+ND contents
+\begin{DoxyItemize}
+\item The emulator assumes the SD card home directory contains the images and configuration files
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
 
 
 
-\subsection*{OS Requirements for software building}
+\subsection*{F\+U\+LL example step by step translating bewteen plain text files and H\+P86 B\+A\+S\+IC programs}
+
+
+\begin{DoxyItemize}
+\item You can do these examples without out my emulator but requires an extra tools and steps
+\end{DoxyItemize}
+
+\subsection*{Importing A\+S\+C\+II and plain text as H\+P85 B\+A\+S\+IC programs}
+
+
+\begin{DoxyItemize}
+\item Lets import a text file with B\+A\+S\+IC statements into one of the emulator images amigo1.\+lif
+\item Turn off both the H\+P85 and emulator -\/ if it is attached
+\begin{DoxyItemize}
+\item Remove the SD Card
+\end{DoxyItemize}
+\item Create a plain text file with B\+A\+S\+IC statements in it on your desktop -\/ N\+OT on H\+P85
+\begin{DoxyItemize}
+\item 10 D\+I\+SP \+:H\+E\+L\+LO W\+O\+R\+LD"
+\item 20 E\+ND
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Save this file as T\+E\+S\+T.\+txt onto the SD Card and exit your editor
+\begin{DoxyItemize}
+\item Unmount the SD Card \char`\"{}eject it\char`\"{} in windows jargon
+\item Reinstall the SD Card in the emulator
+\end{DoxyItemize}
+
+Turn on the hp85disk emulator F\+I\+R\+ST -\/ T\+H\+EN turn on the H\+P85
+\begin{DoxyItemize}
+\item Trivia -\/ the H\+P85 only detects disk at power on or after a R\+E\+S\+ET -\/ therefore the emulator M\+U\+ST be running first
+\begin{DoxyItemize}
+\item Open your serial program with the documented settings
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Lets add T\+E\+S\+T.\+txt from the SD Card into the amigo1.\+lif emulator disk image
+\begin{DoxyItemize}
+\item Type\+:
+\begin{DoxyItemize}
+\item lif add amigo1.\+lif T\+E\+ST T\+E\+S\+T.\+txt
+\begin{DoxyItemize}
+\item T\+E\+ST is the internal L\+IF name, T\+E\+S\+T.\+txt is you source file
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+On your H\+P85 we will load a binary program called G\+E\+T\+S\+A\+VE
+\begin{DoxyItemize}
+\item L\+O\+A\+D\+B\+IN \char`\"{}\+G\+E\+T\+S\+A\+V\+E\char`\"{}
+\begin{DoxyItemize}
+\item Note\+: quotes are always required on H\+P85 B\+A\+S\+IC file names
+\item This installs G\+E\+T\+S\+A\+VE into program memory on your H\+P85 until reset or power cycle
+\begin{DoxyItemize}
+\item G\+E\+T\+S\+A\+VE adds new functions \char`\"{}\+G\+E\+T\char`\"{} and \char`\"{}\+S\+A\+V\+E\char`\"{} to your H\+P85 computer
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+On the H\+P85 type
+\begin{DoxyItemize}
+\item G\+ET \char`\"{}\+T\+E\+S\+T\char`\"{}
+\begin{DoxyItemize}
+\item Wait until you see D\+O\+NE
+\begin{DoxyItemize}
+\item On B\+IG programs G\+ET can take a very long time
+\begin{DoxyItemize}
+\item The slow speed is a G\+E\+T\+S\+A\+VE limitation and not due to my emulator speed
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Lets save it as a normal H\+P85 basic program
+\begin{DoxyItemize}
+\item S\+T\+O\+RE \char`\"{}\+T\+E\+S\+T\+B\char`\"{}
+\begin{DoxyItemize}
+\item Saving in this format makes a totally H\+U\+GE difference in speed for B\+IG programs
+\item In the future you can use L\+O\+AD \char`\"{}\+T\+E\+S\+T\+B\char`\"{}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Exporting H\+P85 B\+A\+S\+IC programs to A\+S\+C\+II plain text}
+
+
+\begin{DoxyItemize}
+\item You must have the hp85disk emulator power ON and atteched to you H\+P85
+\begin{DoxyItemize}
+\item Turn on the H\+P85
+\end{DoxyItemize}
+\item On your H\+P85 we will load a binary program called G\+E\+T\+S\+A\+VE
+\begin{DoxyItemize}
+\item L\+O\+A\+D\+B\+IN \char`\"{}\+G\+E\+T\+S\+A\+V\+E\char`\"{}
+\begin{DoxyItemize}
+\item Note\+: quotes are always required on H\+P85 B\+A\+S\+IC file names
+\item This installs G\+E\+T\+S\+A\+VE into program memory on your H\+P85 until reset or power cycle
+\begin{DoxyItemize}
+\item G\+E\+T\+S\+A\+VE adds new functions \char`\"{}\+G\+E\+T\char`\"{} and \char`\"{}\+S\+A\+V\+E\char`\"{} to your H\+P85 computer
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Lets load a normal H\+P85 B\+A\+S\+IC program
+\begin{DoxyItemize}
+\item L\+O\+AD \char`\"{}\+R\+W\+T\+E\+S\+T\+B\char`\"{}
+\end{DoxyItemize}
+\item First stage conversions
+\begin{DoxyItemize}
+\item S\+A\+VE \char`\"{}\+R\+W\+T\+E\+S\+T\+A\char`\"{}
+\begin{DoxyItemize}
+\item Wait until you see D\+O\+NE
+\begin{DoxyItemize}
+\item On B\+IG programs S\+A\+VE can take a very long time
+\begin{DoxyItemize}
+\item The slow speed is a G\+E\+T\+S\+A\+VE limitation and not due to my emulator speed
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Lets export and convert \char`\"{}\+R\+W\+T\+E\+S\+T\+A\char`\"{} to plain text using the emulator command prompts
+\begin{DoxyItemize}
+\item Type\+:
+\begin{DoxyItemize}
+\item lif extract amigo1.\+lif R\+W\+T\+E\+S\+TA R\+W\+T\+E\+S\+T.\+txt
+\begin{DoxyItemize}
+\item T\+E\+ST is the internal L\+IF name, T\+E\+S\+T.\+txt is you source file
+\end{DoxyItemize}
+\item This saves the file R\+W\+T\+E\+S\+T.\+txt to the SD Card and plain text A\+S\+C\+II
+\end{DoxyItemize}
+\item Later you can copy the R\+W\+T\+E\+S\+T.\+txt file to your desktop
+\begin{DoxyItemize}
+\item Turn off the H\+P85 and the emulator
+\item Remove the SD Card
+\item Attache to your desktop and copy it off
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Important notes about SD Card requirments for the emulator}
+
+
+\begin{DoxyItemize}
+\item Must be formatted F\+A\+T32
+\item The H\+P85 is sensitive to long read/write delays that some cards can cause problems with
+\begin{DoxyItemize}
+\item You want SD Cards with fast random writes
+\item I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
+\begin{DoxyItemize}
+\item There is a huge difference in various cards on the market.
+\item Look for the cards with the best 4K random write times
+\item A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
+\begin{DoxyItemize}
+\item Specifically look at best 4k random write -\/ faster is better.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Why slow SD Cards are a problem?
+\begin{DoxyItemize}
+\item Summary\+: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page -\/ this can take too long
+\item Details\+:
+\begin{DoxyItemize}
+\item First step\+: hp85disk emulator writes to the SD Card
+\item Internally the SD card finds an internal page where our data will go
+\item Next the SD Card reads the page into internal R\+AM (recall it can be much over a megabyte)
+\item Next the SD Card modifies the internal R\+AM with our data
+\item Next the SD Card erases the page
+\item Lastly the page is written to the SD Card and this takes time
+\begin{DoxyItemize}
+\item Trivia -\/ SD cards must to erase a page before updating because of the flash memory cell design
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Why is this delay critical to the hp85disk emulator?
+\begin{DoxyItemize}
+\item Too long of a delay can cause a timeout when writing to disk
+\item SD cards internal hardware is mostly optimized for sequential writing
+\begin{DoxyItemize}
+\item Their buffers and timing are designed primarily for writing consecutive blocks one after another
+\begin{DoxyItemize}
+\item When writing in consecutive order they can queue up many requests and combine them into one operation -\/ a huge savings in time -\/ done all in hardware
+\item Writing to blocks in random locations break this optimization very badly
+\begin{DoxyItemize}
+\item Therefore some SD Cards can take so long the H\+P85 can timeout
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item The hp85disk emulator does not have enough memory to work around this issue
+\begin{DoxyItemize}
+\item If we could load the entire disk image into ram A\+ND we had more for many write buffers
+\begin{DoxyItemize}
+\item Then we optimize the SD Card writing process to avoid the problems
+\end{DoxyItemize}
+\item The A\+VR we use has only 20K of ram for everything
+\begin{DoxyItemize}
+\item Perhaps some day we will port this project to a Raspberry PI with add on hardware
+\begin{DoxyItemize}
+\item The protocol is already solved for the emulator so this would not be that hard -\/ only a battle with the time I have free
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Flashing hp85disk emulator binary files to the A\+T\+M\+EL atmega1284p C\+PU}
+
+
+\begin{DoxyItemize}
+\item The github project includes precompiled files under the \mbox{[}build\mbox{]}(build) directory
+\begin{DoxyItemize}
+\item If you wish to compile yourself please see the next section \char`\"{}\+Requirements for building...\char`\"{}
+\end{DoxyItemize}
+\item N\+O\+TE\+: Most any system with an A\+VR Programmer that works with the atmega1284p will work
+\begin{DoxyItemize}
+\item If you can set the fuses and read at least one encoded binary format of the firmware in the project build directory
+\begin{DoxyItemize}
+\item You can find the current fuses in the Makefile -\/ look for the statement wth fuses= and no preceding \textquotesingle{}\#\textquotesingle{} comment
+\item Extract just the fuse settings -\/ for example\+: lfuse=0xd6 hfuse\+:=0xd9 efuse=0xff
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Ubuntu Linux Specific Example
+\begin{DoxyItemize}
+\item I am using the avrdude software package to talk to my A\+T\+M\+EL I\+CE in circuit programmer, lets install it
+\begin{DoxyItemize}
+\item apt-\/get install avrdude
+\end{DoxyItemize}
+\item I used the A\+T\+M\+E\+L\+I\+CE I\+SP programmer
+\begin{DoxyItemize}
+\item N\+O\+TE\+: avrdude supports many A\+VR programmers not just the one I am using
+\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 1 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:build/gpib.\+hex
+\begin{DoxyItemize}
+\item You should not get any errors 
+
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Requirements for building the hp85 disk project}
+
+
+\begin{DoxyItemize}
+\item P\+L\+E\+A\+SE R\+E\+A\+D! All steps below are intended O\+N\+LY R\+E\+Q\+U\+I\+R\+ED IF Y\+OU P\+L\+AN TO M\+A\+KE C\+H\+A\+N\+G\+ES
+\item \mbox{[}I have provided compiled files under the folder build\mbox{]}(build)
+\begin{DoxyItemize}
+\item You just need to flash the files
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Operating systems}
 
 
 \begin{DoxyItemize}
 \item I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
-\item It should be easy to setup the same build with Windows gcc tools.
+\item N\+O\+TE\+: It should be possible to setup the same build with Windows
+\begin{DoxyItemize}
+\item There are a number of build environments for Windows that will work
+\begin{DoxyItemize}
+\item I hope to provide instructions soon
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Install Ubuntu Packages required for Building}
+\subsection*{Install programs to build this project -\/ Ubuntu instructions}
 
 
 \begin{DoxyItemize}
@@ -195,39 +695,18 @@ add binary file to L\+IF image
 \item pip install pyserial
 \end{DoxyItemize}
 
-\subsection*{Compiling A\+VR code and stand alone L\+IF tools}
+\subsection*{Clone my github project to your computer}
 
 
 \begin{DoxyItemize}
-\item Please update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
-\begin{DoxyItemize}
-\item B\+O\+A\+RD is the version of the hardware
-\begin{DoxyItemize}
-\item 1 = original github design
-\begin{DoxyItemize}
-\item also set P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS=0
+\item git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
+\item cd hpdisk
 \end{DoxyItemize}
-\item 2 = new hardware design with G\+P\+IB bus buffers
-\end{DoxyItemize}
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
+
+\subsection*{Compiling}
+
+
 \begin{DoxyItemize}
-\item 0 = original github design
-\item 1 = cirrently needed for V2 hardware in development
-\end{DoxyItemize}
-\item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT
-\begin{DoxyItemize}
-\item You have a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
-\begin{DoxyItemize}
-\item This will time stamp plot files and add time stamps inside lif images
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item B\+A\+UD is the serial B\+A\+UD rate used to communicate with the emulator interface
-\begin{DoxyItemize}
-\item Note\+: I am using 500000 baud as default -\/ your OS may not support that -\/ linux does
-\item Try 115200 if it does not
-\end{DoxyItemize}
-\item P\+O\+RT is the serial P\+O\+RT device name used to communicate with the emulator interface
-\end{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
 \end{DoxyItemize}
@@ -246,7 +725,7 @@ add binary file to L\+IF image
 \end{DoxyItemize}
 \item {\itshape make flash}
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} to flash the firfmware
+\item This will use {\itshape avrdude} to flash the firmware
 \item N\+O\+TE\+: When finished {\itshape make} will call call shell script to launch a terminal program for debugging
 \begin{DoxyItemize}
 \item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
@@ -267,10 +746,11 @@ add binary file to L\+IF image
 
 
 
-\subsection*{Using the emulator with examples}
+\subsection*{Notes concerning using the H\+P85 with the hp85disk emulator}
 
 
 \begin{DoxyItemize}
+\item Here we focus just on H\+P85 B\+A\+S\+IC command
 \item See \href{sdcard/sdcard.cfg}{\tt sdcard.\+cfg} for configuration settings and setting and documentation.
 \begin{DoxyItemize}
 \item Printer capture is configured currently for my H\+P54645D scope
@@ -302,16 +782,127 @@ add binary file to L\+IF image
 \item Power on your computer last!
 \begin{DoxyItemize}
 \item The emulator M\+U\+ST be running and attached to your computer first!
-\item The H\+P85 O\+N\+LY checks for drives at power up. 
-
- \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs. H\+P85B}
+\item The H\+P85 O\+N\+LY checks for drives at P\+O\+W\+ER UP or R\+E\+S\+ET
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-While G\+P\+IB devices can have address between 0 and 31 you can have no more than 8 disk drives.
+\subsection*{Testing examples on your H\+P85}
+
+
 \begin{DoxyItemize}
+\item Testing was done with an H\+P85A (with extended E\+MS R\+OM)
+\begin{DoxyItemize}
+\item Using the Hewlett-\/\+Packard Series 80 -\/ P\+R\+M-\/85 by Bill Kotaska
+\item This makes my H\+P85A look like and H\+P85B
+\begin{DoxyItemize}
+\item I can also use the normal mass storage R\+OM if I limit to A\+M\+I\+GO drives.
+\item \href{http://vintagecomputers.sdfeu.org/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+sdfeu.\+org/hp85/prm85.\+htm}
+\begin{DoxyItemize}
+\item old site \href{http://vintagecomputers.site90.net/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+site90.\+net/hp85/prm85.\+htm}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Initializing a disk images}
+
+\subsection*{H\+P85B only feature or H\+P84A with P\+R\+M-\/85 board}
+
+
+\begin{DoxyItemize}
+\item The H\+P85 and E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes
+\item I\+M\+P\+O\+R\+T\+A\+NT N\+O\+TE\+: this is already done for you with the hp85disk emulator
+\begin{DoxyItemize}
+\item If you do it it this erases everything on the emulated image
+\item You can however backup up copy existing L\+IF images to another folder on the SD Card for safe keeping
+\begin{DoxyItemize}
+\item There is a built in copy command for this 
+\begin{DoxyPre}
+  INITIALIZE "AMIGO1",":D700",14,1
+  INITIALIZE "AMIGO2",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D730",128,1
+\end{DoxyPre}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{H\+P85A and H\+P85B feature}
+
+
+\begin{DoxyItemize}
+\item Note lines with a "\#\textquotesingle{} as the first non blank character are just my comments
+\begin{DoxyItemize}
+\item A bad habit from writing too many bash scripts
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyPre}
+  \# Listing files:
+  \# first AMIGO
+  CAT ":D700"
+  \# second AMIGO
+  CAT ":D710"
+  \# first SS80
+  CAT ":D720"
+  \# second SS80
+  CAT ":D730"\end{DoxyPre}
+
+
+
+\begin{DoxyPre}  \# Loading file from first SS80:
+  LOAD "HELLO:D720"
+  \# Copying file between devices: fist AMIGO to second AMIGO
+  COPY "HELLO:D700" TO "HELLO:D710"
+  \# Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D720" TO ":D730"
+  \# LOAD the GETSAVE binary program very short example
+  LOADBIN "GETSAVE"
+  \# This program stays in memory until the HP85 is reset
+  \# See all of the detailed notes earlier in the README 
+\end{DoxyPre}
+
+\begin{DoxyItemize}
+\item Now on the emulator itself type
+\item lif add amigo1.\+lif M\+Y\+T\+E\+ST test.\+txt
+\begin{DoxyItemize}
+\item See all of the detailed notes earlier in the R\+E\+A\+D\+ME
+\end{DoxyItemize}
+\item We just added the T\+E\+S\+T.\+txt file to the image file called amigo1.\+lif and named it M\+Y\+T\+E\+ST 
+\begin{DoxyPre}
+  \# Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
+  GET "HELLO:D700"
+  \# Save as a HP85 BASIC file in DTA8x (type E010) file
+  PUT "HELLOA:D700"
+  \# Store it as as HP85 BASIC BAS8x (type E020) file
+  STORE "HELLO2B:D700"
+  \# Now in the future we can LOAD it 
+  LOAD "HELLO2B:D700"
+  \# How to Delete the file 
+  PURGE "HELLO2B:D700"
+  \# List the BASIC file
+  LIST
+  \# Clear memory
+  SCRATCH
+\end{DoxyPre}
+
+\end{DoxyItemize}
+
+
+
+ 
+
+
+
+\subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs. H\+P85B}
+
+
+\begin{DoxyItemize}
+\item While G\+P\+IB devices can have address between 0 and 31 you can have no more than 8 disk drives.
 \item A\+LL disk drives are required to respond to a P\+PR query by the (H\+P85) controller.
 \begin{DoxyItemize}
 \item P\+PR query is done when the controller in charge (H\+P85) pulls A\+TN and E\+OI low.
@@ -350,7 +941,7 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \begin{DoxyItemize}
 \item I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives cannot be queried for detailed drive layout information
 \begin{DoxyItemize}
-\item The H\+P85A can only use its {\itshape hardcoded firmware tables} to map ID to disk layout parameters
+\item The H\+P85A can only use its {\itshape hard-\/coded firmware tables} to map ID to disk layout parameters
 \item This implies that the H\+P85A can only use A\+M\+I\+GO disks it has defined in firmware.
 \end{DoxyItemize}
 \item The H\+P85B can query newer S\+S80 drives for detailed drive layout information instead.
@@ -360,7 +951,7 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \begin{DoxyItemize}
 \item (The P\+R\+M-\/85 is great product giving you access to all of the useful R\+O\+MS) 
 
- \subsection*{Limitations}
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -368,8 +959,11 @@ While G\+P\+IB devices can have address between 0 and 31 you can have no more th
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Multiple drive support is impliments but U\+N\+IT support is N\+OT
+\subsection*{Technical Limitations}
+
+
 \begin{DoxyItemize}
+\item Multiple drive support is implements but U\+N\+IT support is N\+OT
 \item While most A\+M\+I\+GO and S\+S80 feature have been implemented my primary focus was on the H\+P85A and H\+P85B.
 \begin{DoxyItemize}
 \item (I do not have access to other computers to test for full compatibility)
@@ -435,6 +1029,8 @@ Multiple drive support is impliments but U\+N\+IT support is N\+OT
 
 \subsection*{Credits}
 
+\subsection*{Main inspiration}
+
 {\bfseries I really owe the very existence of this project to the original work done by Anders Gustafsson and his great \char`\"{}\+H\+P Disk Emulator\char`\"{} }
 \begin{DoxyItemize}
 \item You can visit his project at this site\+:
@@ -449,17 +1045,15 @@ Multiple drive support is impliments but U\+N\+IT support is N\+OT
 \item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
 \end{DoxyItemize}
 
-{\bfseries Anders Gustafsson was extremely helpful in providing me his current code and details of his project -\/ which I am very thankful for.}
+{\bfseries  Anders Gustafsson was extremely helpful} He providing me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
 
-As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications -\/ N\+OT because of any problems with his original work.
-
-Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
+\subsection*{L\+IF utility support Credits}
 
 \href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
 \item \href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
-\item My T\+E\+L\+E\+D\+I\+SK L\+IF extracter
+\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
 \item Important Contributions (My converted would not have been possible without these)
 \begin{DoxyItemize}
 \item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
@@ -481,20 +1075,24 @@ Although mostly rewritten I have maintained the basic concept of using state mac
 \begin{DoxyItemize}
 \item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
 \begin{DoxyItemize}
-\item Tele\+Disk documenation
+\item Tele\+Disk documentation
 \end{DoxyItemize}
 \item See his github project
 \begin{DoxyItemize}
 \item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe} 
 
- \section*{Abbreviations}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
+\section*{Abbreviations}
+
 Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page\# reference to these works.
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+\begin{DoxyItemize}
 \item {\bfseries S\+S80}
 \item {\bfseries C\+S80}
 \item {\bfseries A or Amigo}
@@ -618,15 +1216,13 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 
 \begin{DoxyItemize}
-\item HP Drive (HP Drive Emulators for Windows Platform)
+\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt H\+P\+Dir HP Drive -\/ Disk Image Manipulation}
 \begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive/}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdrive/}
+\item Copyright © 2010 A. Kückes
 \end{DoxyItemize}
-\item HP Dir (HP Drive -\/ Disk Image Manipulation)
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive Drive Emulators for Windows Platform}
 \begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir/}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/} 
-
-
+\item Copyright © 2010 A. Kückes
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -653,102 +1249,6 @@ See \mbox{[}Documents folder\mbox{]}(documents)
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
 \end{DoxyPre}
-
-
-\subsection*{Testing}
-
-
-\begin{DoxyItemize}
-\item Testing was done with an H\+P85A (with extended E\+MS R\+OM)
-\begin{DoxyItemize}
-\item Using the Hewlett-\/\+Packard Series 80 -\/ P\+R\+M-\/85 by Bill Kotaska
-\item This makes my H\+P85A look like and H\+P85B
-\begin{DoxyItemize}
-\item I can also use the normal mass storage R\+OM if I limit to A\+M\+I\+GO drives.
-\item \href{http://vintagecomputers.sdfeu.org/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+sdfeu.\+org/hp85/prm85.\+htm}
-\begin{DoxyItemize}
-\item old site \href{http://vintagecomputers.site90.net/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+site90.\+net/hp85/prm85.\+htm}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Note\+: the E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes 
-\begin{DoxyPre}
-  \# Initializing: (already done on these images so you do not have to)
-  INITIALIZE "AMIGO1",":D700",14,1
-  INITIALIZE "AMIGO2",":D710",14,1
-  INITIALIZE "SS80-1",":D720",128,1
-  INITIALIZE "SS80-2",":D730",128,1\end{DoxyPre}
-
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}  \# Listing files:
-  \# first AMIGO
-  CAT ":D700"
-  \# second AMIGO
-  CAT ":D710"
-  \# first SS80
-  CAT ":D720"
-  \# second SS80
-  CAT ":D730"\end{DoxyPre}
-
-
-
-\begin{DoxyPre}  \# Loading file from first SS80:
-  LOAD "HELLO:D720"
-  \# Copying file between devices: fist AMIGO to second AMIGO
-  COPY "HELLO:D700" TO "HELLO:D710"
-  \# Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D720" TO ":D730"\end{DoxyPre}
-
-
-
-\begin{DoxyPre}  \# Working with plain text files and the HP85
-  \# How to import and export plain text, ascii, files 
-  \# My lif tools can read or write HP85 files that GETSAVE can then read and write
-  \# GETSAVE is included in all of my supplied disk images
-  \#   The lif tools are included in the firmwarei and you can use then from a terminal program
-  \#   1) My lif tools are built in the firmware
-  \#   2) GETSAVE is included in ALL emulator disk images under the [sdcard](sdcard) folder
-  \#      GETSAVE and read and write TYPE E010 files
-  \# Usesge:
-  LOADBIN "GETSAVE"
-  \# This program stays in memory until the HP85 is reset
-  \# How do we add an Ascii text file to a disk emulator image?
-    \# Connect the emulator to a serial terminal - see the [Makefile](Makefile) for the default baud rate
-    \# The baud rate is at the begining of the Makefile
-    \# Connect to the disk emulator with a serial terminal
-  \# Adding text file to the sdcard
-    \# Lets say we created a pain text file containing a basic program call test.txt
-    \# With the HP85 and emulator powerd off copy it to the sdcard
-    \# Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
-  \# Adding the text file to the emulator image - lets use emulator image amigo1.lif
-  lif add amigo1.lif MYTEST test.txt
-  \# We just added the file to the image file called amigo1.lif and named it MYTEST
-  \# Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
-  GET "MYTEST:D700"
-  \# Save it 
-  PUT "MYTEST2:D700"
-  \# Lets store it as a program se we do not have to use the concersion tools
-  STORE "MYTESTB:D700"
-  \# In the future we can LOAD it without the conversion or GETSAVE program
-  LOAD "MYTESTB:D700"\end{DoxyPre}
-
-
-
-\begin{DoxyPre}  \# How to Delete a file
-  PURGE "HELLO:D710"
-  \# Load a BASIC format program
-  LOAD "HELLO:D700"
-  \# Save a BASIC format program
-  SAVE "HELLO:D710"
-  \# Clear memory
-  SCRATCH
-  \# List a BASIC program
-  LIST
-\end{DoxyPre}
- 
-
 
 
 \subsection*{A\+VR Terminal Commands}
@@ -805,7 +1305,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item \mbox{[}doxyinc\mbox{]}(doxyinc)
 \begin{DoxyItemize}
-\item Determins which files are included in the project Doxygen documents
+\item Determines which files are included in the project Doxygen documents
 \end{DoxyItemize}
 \item \href{DoxygenLayout.xml}{\tt Doxygen\+Layout.\+xml}
 \begin{DoxyItemize}
@@ -823,7 +1323,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item \hyperlink{COPYRIGHT_8md}{C\+O\+P\+Y\+R\+I\+G\+HT.md}
 \begin{DoxyItemize}
-\item Project Copy\+Rights
+\item Project Copyrights
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -841,7 +1341,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{board/V1//HP85Disk.doc}{\tt board design and pinouts of this project and a schematic D\+OC}
 \item \href{board/V1/HP85Disk.doc}{\tt board R\+E\+A\+D\+M\+E.\+md}
 \end{DoxyItemize}
-\item \href{V2/releses}{\tt V2/releases}
+\item \href{V2/releases}{\tt V2/releases}
 \begin{DoxyItemize}
 \item Jay Hamlin version 2 circuit board design using G\+P\+IB buffers
 \end{DoxyItemize}
@@ -930,7 +1430,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item \href{gpib/gpib}{\tt gpib}
 \begin{DoxyItemize}
-\item My G\+P\+IB code for A\+M\+I\+GO S\+S80 and P\+P\+R\+I\+N\+T\+ER support
+\item My G\+P\+IB code for A\+M\+I\+GO S\+S80 and P\+R\+I\+N\+T\+ER support
 \item \href{gpib/amigo.c}{\tt amigo.\+c}
 \begin{DoxyItemize}
 \item A\+M\+I\+GO parser
@@ -1100,7 +1600,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Library functions
 \item \href{lib/bcpp.cfg}{\tt bcpp.\+cfg}
 \begin{DoxyItemize}
-\item B\+C\+PP C code formatter config
+\item B\+C\+PP C code formatting tool config
 \end{DoxyItemize}
 \item \href{lib/matrix.c}{\tt matrix.\+c}
 \item \href{lib/matrix.h}{\tt matrix.\+h}
@@ -1180,7 +1680,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{lif/lifutils.c}{\tt lifutils.\+c}
 \item \href{lif/lifutils.h}{\tt lifutils.\+h}
 \begin{DoxyItemize}
-\item L\+IF image functions, directory listing and file adding.\+extracting,renaming,deleting
+\item L\+IF image functions, directory listing and file adding. extracting,renaming,deleting
 \end{DoxyItemize}
 \item \href{lif/td02lif.c}{\tt td02lif.\+c}
 \item \href{lif/td02lif.h}{\tt td02lif.\+h}
@@ -1197,11 +1697,11 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} from hpmuseum.\+org
 \begin{DoxyItemize}
-\item Damaged S\+S80 Excersizer from HP Musium
+\item Damaged S\+S80 Exerciser from HP Museum
 \end{DoxyItemize}
 \item \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
 \begin{DoxyItemize}
-\item The current converter automaticcal did these repairs
+\item The current converter automatically did these repairs
 \begin{DoxyItemize}
 \item cyl 11, side 0 sector 116 mapped to 8
 \item cyl 13, side 0 sector 116 mapped to 11
@@ -1218,7 +1718,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item \href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
-\item My T\+E\+L\+E\+D\+I\+SK L\+IF extracter
+\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
 \begin{DoxyItemize}
 \item Note\+: The Tele\+Disk image M\+U\+ST contain a L\+IF image -\/ we do N\+OT translate it
 \end{DoxyItemize}
@@ -1247,7 +1747,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \begin{DoxyItemize}
 \item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
 \begin{DoxyItemize}
-\item Tele\+Disk documenation
+\item Tele\+Disk documentation
 \end{DoxyItemize}
 \item See his github project
 \begin{DoxyItemize}
@@ -1259,7 +1759,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Posix wrapper -\/ provides linux file IO functions for Fatfs}
+\subsection*{Posix wrapper -\/ provides Linux file IO functions for Fatfs}
 
 
 \begin{DoxyItemize}
@@ -1409,7 +1909,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{sdcard/scripts}{\tt sdcard/scripts}
 \begin{DoxyItemize}
 \item Scripts that help creating L\+IF images from multiple files
-\item Used by \href{create_images.sh}{\tt create\+\_\+iamges.\+sh}
+\item Used by \href{create_images.sh}{\tt create\+\_\+images.\+sh}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item My H\+P85 bus trace files
@@ -1455,7 +1955,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{sdcard/TREK85/author.txt}{\tt author.\+txt}
 \item \href{sdcrad/TREK85/readme.txt}{\tt readme.\+txt}
 \item \href{sdcard/TREK85/Start Trek.pdf}{\tt Star Trek.\+pdf}
-\item \href{sdcrad/TREK85/TREK85.BAS}{\tt T\+R\+E\+K85.\+B\+AS}
+\item \href{sdcard/TREK85/TREK85.BAS}{\tt T\+R\+E\+K85.\+B\+AS}
 \item \href{sdcard/TREK85/trek.lif}{\tt trek.\+lif}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -1478,7 +1978,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item \href{sdcard/ASCII-files/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item G\+E\+T\+S\+AV documenations
+\item G\+E\+T\+S\+AV documentation
 \begin{DoxyItemize}
 \item \href{sdcard/notes}{\tt notes}
 \begin{DoxyItemize}

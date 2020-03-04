@@ -292,17 +292,19 @@ fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 SRCS = $(CSRC)
 PROGS = hardware/baudrate
 
-# Default target.
 #all: doxy version $(LIBS) build size $(PROGS)
 all: term version $(LIBS) build size $(PROGS) lif
 
+save_release: all 
+	# Save the results under build
+	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym build
 
+# Default target.
 #Example way of creating a current year string for  a #define
 # DATE="$(shell date +%Y)"
 # .PHONY: date
 # date:
 #	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
-
 
 main.c:	
 
@@ -313,7 +315,11 @@ hardware/baudrate:  hardware/baudrate.c
 term:   
 	touch main.c
 
-flash:  all 
+makebuild: all
+	# Save the results under build
+	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym build
+
+flash: all 
 #
 	# Program with avrdude using atmelice_isp
 	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
@@ -331,6 +337,7 @@ flash:  all
 	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
+    # Fuses are defined above like this: fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 	avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)

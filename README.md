@@ -1,15 +1,51 @@
 ﻿\section README
 
-
 # Documentation
-
- * Please use this link for the Documentation and this README
-   * https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html
-   * [index](doxygen/html/index.html)
-
 ## HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore 
- * New Board layout design by Jay Hamlin (C) 2018-2020
- * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
+  * This Project Emulates AMIGO and SS80 disk drives used by the HP85 series computers.
+  * The images are stored in LIF format used by the HP85 series computers
+  * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
+  * Documentation created using Doxygen available at
+    * https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html
+    * All emulated disk images are just regular files stored on a standard FAT32 formatted SD Card
+
+## Other resources for disk image manipulation
+  * [HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
+    * Copyright © 2010 A. Kückes
+  * [HPDir project has very useful references an tools for manipulating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
+    * Copyright © 2010 A. Kückes
+  * [ See LIF Documentation - part of the HPDir project for details](http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem)
+    * Copyright © 2010 A. Kückes
+
+## Features for the HP85 in brief
+  * NOTE: Later sections go into more detail
+  * This project emulates GPIB drives and HPGL printer 
+    * Each emulated disk image is a LIF encoded file on a FAT32 formatted SDCARD.
+   * [hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
+     * Disk images are LIF encoded files that are compatible with HP85A/B and many other computers
+     * Missing disk image files are created automatically if 
+  * The emulator will automatically create missing LIF images defined in hpdisk.cfg on the SDCARD
+  * There are disk images for AMIGO and SS80 disks
+    * AMIGO drives work with HP85A 
+    * SS80 drives work with HP85B (or HP85A with prm-85 wth modified EMS and Electronic disk rom add on board see links)
+      * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
+  * There is a Printer emulator that can capture and save printer data to a time stamped file.
+  * Built in command processor with lots of useful features
+    * Want to translate between plain text BASIC files and HP85 BASIC programs? You Can!
+      * See full details later in this document
+    * Access the hp85disk command processor via its USB interface and your computer with a serial terminal program
+      * See full details later in this document for serial terminal configuration and finding the device port name
+    * Any key press halts the emulator and waits for a user command
+      * After finishing any user commend and options press the Enter/Return key to return to disk emulation
+    * Type "help" for a list of top level commands
+      * Each help item has its own help
+      * Example: lif help
+   * LIF manipulation tools are built in see later sections for details
+   * Convert TeleDisk images into LIF
+   * The emulator RTC can be used for time stamping plot files and files added into lif images
+
+___ 
+
 
 ## HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
 ## V2 board design - github V2 branch targets the new board by Jay Hamlin
@@ -18,7 +54,7 @@
   * V2 hardware adds
    * GPIB BUS drivers
      * 48Mma drive required by the GPIB spec
-   * I2C level conveters and standard Qwiic Bus interface - 3.3V
+   * I2C level converters and standard Qwiic Bus interface - 3.3V
       * optional RTC chips like the DS3231 
       * LCD displays - work in progress
    * Advanced Hardware Reset circuit
@@ -32,97 +68,287 @@
   * RTC DS1307 for time stamping 
   * [My original board design without GPIB buffers](board/V1/README.md)
 
-## HP85 emulator board design Makefile configuration options V1 and V2 boards
-## V2 design enables control of GPIB BUS drivers (drivers do not exist on V1 hardware)
-## V1 Board design Makefile configuration (github main branch)
-    * BOARD=1 (2 also works V2 because the GPIB drivers are not connected)
-    * PPR_REVERSE_BITS=0 (PPR bits reverse in hardware)
-## V2 Board design Makefile configuration (github V2 branch)
-    * BOARD=2
-    * PPR_REVERSE_BITS=1 (PPR bits reversed in software)
+
 ___ 
 
+## HP85 emulator Makefile configuration options for original V1 and new V2 boards
+## Makefile Configuration options for building
+  * Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
+    * BOARD is the version of the hardware
+      * 1 = V1 hardware without GPIB BUS transceivers
+      * 2 = V2 hardware with GPIB BUS transceivers
+    * PPR_REVERSE_BITS
+      * 0 = V1 hardware without the GPIB buffers 
+    * RTC_SUPPORT for Real Time Clock
+	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
+        * This will time stamp plot files and add time stamps inside lif images
+    * PORT is the emulator serial PORT name as detected by your operating system
+      * /dev/ttyUSB0 on my system
+    * BAUD  is the data rate when connecting to the hp85disk emulator with a serial port
+      * 115200 = a safe default that most systems can manage
+        * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
+        * NOTE: Faster is better when enabling more debug messages 
+          * Too many messages can cause the HP85 to timeout waiting for IO
+___ 
 
-## Features
- * This project emulates GPIB drives and HPGL printer for the HP85A and HP85B computers.
-   * AMIGO drives work with HP85A 
-   * SS80 drives work with HP85B (or HP85A with prm-85 wth modified EMS and Electronic disk rom add on board see links)
-     * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
-   * Printer emulator - can capture and save printer data to a time stamped file.
-   * There is a USB serial interface that can take many commands - type help
-     * You can use a serial terminal program to acces it - See Makefile for Baud and terminal command
-     * There are many commands that you can use, type "help for a list"
-     * Any key press halts the emulator and waits for a user command. 
-       * After finishing any user commend it returns to GPIB disk emulation.
-   * Each emulated disk image is a file on a FAT32 formatted SDCARD.
-   * [hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
-     * Disk images are LIF encoded files that are compatible with HP85A/B and many other computers
-     * Missing disk image files are created automatically if 
-   * LIF manipulation tools are built into the emulator  - see next sections
-   * RTC can be used for time stamping plot files and files added into lif images
+## Detailed information about tools and features 
+
+## Built in command processor with many tools
+## Accessing the hp85disk command interface with a serial terminal
+  * Used to access the hp85disk command interface
+  * Access it via the USB cable attached to your computer using a serial terminal program
+
+## Finding the emulator serial port device name on you Linux system
+  * Make sure the HP85disk is initially NOT attached via the USB cable to the desktop
+  * Open a Linux terminal window - not serial terminal
+  * In this terminal windows type
+      * ls -lart /dev | tail -1
+        * The '|' symbol means "pipe" the output of one Linux command to another
+          * This '|' symbol is found on US keyboards just above the enter key
+  * Attach the emulator USB port to your Linux Desktop
+    * Again type 
+      * ls -lart /dev | tail -1
+        * If the result changes between the two commands the last line has the device name
+          * On my system its is typically /dev/ttyUSB0  - it all depends on how many USB serial devices you have attached
+
+## Configuring the serial communication program 
+  * With the hp85disk attached via USB cable to your desktop
+  * Open you favourite serial terminal emulator
+    * Set BAUD rate to 115200 
+    * Set 8 Data bits NO parity
+    * Set flow control to NONE
+    * Set the PORT to the device name of the emulator USB port
+      * Example: /dev/ttyUSB0 see next section
+
+___ 
+
 
 ## LIF tools are built into emulator firmware 
-## LIF tools are also created for your operating system 
-  * Type "lif help" in the emulator for a full list of commands
+  * Built in help
+    * lif help
+      * Gives lif commands
+  * NOTE: Each disk image is a single file, encoded in LIF format,saved on the SD Card
+    * LIF format is a common the filesystem on series 80 computers.
+    * LIF format is also a vary common file interchange format for series 80 computers
+      * LIF format includes file date,size permissions and other important meta data
+  * You can work with LIF images 
+    * Directory listing of LIF images and SSD Card files
+      * If you have an RTC the listing can display file and LIF volume date and time
+        * Display time stamps if they were set
+          * But only if they were created or added with the built in tools
+    * add an ascii file to LIF image
+      * This function permits renaming of the translated file
+      * They get translated between HP85 DTA8x (type E010) format and plain text files!!!
+    * extract ascii files from LIF image
+      * This function permits renaming of the translated file
+      * They get translated between HP85 DTA8x (type E010) format and plain text files!!!
+    * add binary programs from one LIF image to another LIF image
+      * This function permits renaming of the translated file
+    * extract a single binary file or program into a new LIF image
+      * This function permits renaming of the translated file
+      * Extracted LIF images contain a single file a 256 byte volume header, 256 byte directory followed by a file.
+    * delete file in LIF image
+    * rename file in LIF image
+    * Create, import, export copy, rename, delete, etc
+      * You can add a plain text file, and translate it, into a LIF image with file format DTA8x (type E010)
+      * You can extract an translate DTA8x (type E010) into a plain text files
+    * [For more LIF documentation](lif/README.md)
+    * Also see the Other Resources section above
+
+## TeleDisk to LIF conversion tool (updated) - see [LIF README.md](lif/README.md)
+  * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
+  * NOTE: There are a stand alone version of the tool that run on Linux - making it work on Windows should be easy
+      * You can extract a DTA8x (type E010) file from a LIF image and translate it into plain text
+  * TeleDisk to LIF image conversion - a very common disk interchange format
     * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
-  * The emulator will automatically create missing LIF images defined in hpdisk.cfg on the SDCARD
- * For the specific LIF E010..E013(hex) type records tools can translate to and from plain ASCII files.
-   * add ascii file to LIF image
-   * extract ascii files from LIF image
-   * Add correct timestamp if you have an RTC
- * add binary file to LIF image
- * extract binary file from LIF image
-   * Extracted images have a 256 byte volume header, 256 byte directory followed by a file.
- * delete file in LIF image
- * rename file in LIF image
- * list directory
-   * Display time stamps if they were set
- * create LIF image with options
- * Can automaticcaly create missing images if defined in hpdisk.cfg
-   * Type "lif help" in the emulator for a full list of commands
-   * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
-
-## TeleDisk to LIF extractor tool (updated) included - see [LIF README.md](lif/README.md)
- * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
-
-___
-
-
-## SD Card requirments
-   * The HP85 is sensitive to write delays so we need SD cards with fast random writes.
-   * I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
-   * Why ?  Each block that is written reads, erases then rewrites a new internal flash page (these can be over a megabyte and so take time). Most SD cards are optimized for sequencial writting and do not do well with random writes. There is a huge difference in various cards on the market. Look for the cards with the best 4K random write times. Some SD cards are so slow it will cause the HP85 to timeout waiting for the card. Best source of benchmark information is looking for recent Raspberry Pi SD card benchmarks - specifically 4k random write - faster is better.
+    * create LIF image with options
+    * NOTE: the emulator automatically creates missing images if defined in hpdisk.cfg
+      * Type "lif help" in the emulator for a full list of commands
+      * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
 
 ___ 
 
 
-## OS Requirements for software building
-  * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
-    * It should be easy to setup the same build with Windows gcc tools.
+## Specific details for Translating between plain text and HP85 BASIC programs using hp85disk
+  * Requirements
+    * hp85disk emulator 
+      * There is a solution documented below in you do not have the hp85emulator
+    * A HP utility commonly called "GETSAV" translates between HP85 BASIC and DTA8x (type E010 ) files
+      * The utility adds functions "GET" and "SAVE" to your HP85 computer
+        * This HP utility was part of a larger software package from HP for the HP85
 
-## Install Ubuntu Packages required for Building
+## GETSAV is called GETSAVE inside my LIF disk images
+  * [Here is a direct link to GETSAVE.LIF encoded as a LIF file - sdcard/LIF-files/GETSAVE.LIF](sdcard/LIF-files/GETSAVE.LIF)
+  * My hp85disk tools built in the firmware can tools translate between DT8x (type E010 ) and plain text ASCII files
+    * I provide stand alone LIF tools in the lif subfolder of the github project that do the same thing
+  * Used together with the HP85 these tools can translate between ASCII plain text and HP85 BASIC programs!!!
+    * Specific details steps are documented later in the README
+
+## Translating between plain text and HP85 BASIC programs WITHOUT hp85disk
+  * You must compile and install the stand alone lif tools found under the project [lif](lif) folder
+  * You will also need a way of transfer binary files to/from your HP85 
+    * You need to copy the GETSAVE program to your HP85 some how
+  * Specific details steps are documented later in the README
+
+## Initial setup of the hp85disk ASSUMPTIONS and Requirements 
+  * You have the hp85disk emulator attached to your HP85 with a GPIB cable
+    * Strongly advise having no other devices attached just durring setup/testing
+      * This is to avoid other GPIB bus address conflicts initially - you can update addresses later
+  * You have a Ubuntu Linux desktop - used for all my examples
+  * All Text and configuration files used with the emulator MUST plain text format only (8 bit ascii) 
+     * Please NO Unicode - both file names and file formats!
+  * You have a serial terminal program installed - for example minicom 
+  * You need a FAT32 format blank SD Card
+    * Copy of the hp85disk, github V2 branch, sdcard folder contents onto the SD Card
+      * Make sure you only copy the contents and NOT folder AND contents
+        * The emulator assumes the SD card home directory contains the images and configuration files
+
+___ 
+
+
+
+## FULL example step by step translating bewteen plain text files and HP86 BASIC programs
+  * You can do these examples without out my emulator but requires an extra tools and steps
+
+## Importing ASCII and plain text as HP85 BASIC programs
+  * Lets import a text file with BASIC statements into one of the emulator images amigo1.lif 
+  * Turn off both the HP85 and emulator - if it is attached
+    * Remove the SD Card
+  * Create a plain text file with BASIC statements in it on your desktop - NOT on HP85
+      * 10 DISP :HELLO WORLD"
+      * 20 END
+    * Save this file as TEST.txt onto the SD Card and exit your editor 
+      * Unmount the SD Card "eject it" in windows jargon
+      * Reinstall the SD Card in the emulator
+  * Turn on the hp85disk emulator FIRST - THEN turn on the HP85
+    * Trivia - the HP85 only detects disk at power on or after a RESET - therefore the emulator MUST be running first
+      * Open your serial program with the documented settings
+
+  * Lets add TEST.txt from the SD Card into the amigo1.lif emulator disk image
+    * Type:
+      * lif add amigo1.lif TEST TEST.txt
+        * TEST is the internal LIF name, TEST.txt is you source file
+
+  * On your HP85 we will load a binary program called GETSAVE
+    * LOADBIN "GETSAVE"
+      * Note: quotes are always required on HP85 BASIC file names
+      * This installs GETSAVE into program memory on your HP85 until reset or power cycle
+        * GETSAVE adds new functions "GET" and "SAVE" to your HP85 computer
+  * On the HP85 type
+    * GET "TEST"
+      * Wait until you see DONE 
+        * On BIG programs GET can take a very long time 
+          * The slow speed is a GETSAVE limitation and not due to my emulator speed
+    * Lets save it as a normal HP85 basic program
+      * STORE "TESTB"
+        * Saving in this format makes a totally HUGE difference in speed for BIG programs
+        * In the future you can use LOAD "TESTB"
+
+## Exporting HP85 BASIC programs to ASCII plain text
+  * You must have the hp85disk emulator power ON and atteched to you HP85
+    * Turn on the HP85
+  * On your HP85 we will load a binary program called GETSAVE
+    * LOADBIN "GETSAVE"
+      * Note: quotes are always required on HP85 BASIC file names
+      * This installs GETSAVE into program memory on your HP85 until reset or power cycle
+        * GETSAVE adds new functions "GET" and "SAVE" to your HP85 computer
+  * Lets load a normal HP85 BASIC program
+    * LOAD "RWTESTB"
+  * First stage conversions
+    * SAVE "RWTESTA"
+      * Wait until you see DONE 
+        * On BIG programs SAVE can take a very long time 
+          * The slow speed is a GETSAVE limitation and not due to my emulator speed
+  * Lets export and convert "RWTESTA" to plain text using the emulator command prompts
+    * Type:
+      * lif extract amigo1.lif RWTESTA RWTEST.txt
+        * TEST is the internal LIF name, TEST.txt is you source file
+      * This saves the file RWTEST.txt to the SD Card and plain text ASCII
+    * Later you can copy the RWTEST.txt file to your desktop
+      * Turn off the HP85 and the emulator
+      * Remove the SD Card
+      * Attache to your desktop and copy it off
+
+___ 
+
+
+
+## Important notes about SD Card requirments for the emulator
+  * Must be formatted FAT32
+  * The HP85 is sensitive to long read/write delays that some cards can cause problems with
+    * You want SD Cards with fast random writes
+    * I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
+      * There is a huge difference in various cards on the market. 
+      * Look for the cards with the best 4K random write times
+      * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
+        * Specifically look at best 4k random write - faster is better.
+    * Why slow SD Cards are a problem?
+      * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
+      * Details:
+        * First step: hp85disk emulator writes to the SD Card
+        * Internally the SD card finds an internal page where our data will go
+        * Next the SD Card reads the page into internal RAM (recall it can be much over a megabyte)
+        * Next the SD Card modifies the internal RAM with our data
+        * Next the SD Card erases the page
+        * Lastly the page is written to the SD Card and this takes time
+          * Trivia - SD cards must to erase a page before updating because of the flash memory cell design
+      * Why is this delay critical to the hp85disk emulator?
+        * Too long of a delay can cause a timeout when writing to disk
+        * SD cards internal hardware is mostly optimized for sequential writing 
+          * Their buffers and timing are designed primarily for writing consecutive blocks one after another
+            * When writing in consecutive order they can queue up many requests and combine them into one operation - a huge savings in time - done all in hardware
+            * Writing to blocks in random locations break this optimization very badly
+              * Therefore some SD Cards can take so long the HP85 can timeout
+          * The hp85disk emulator does not have enough memory to work around this issue
+            * If we could load the entire disk image into ram AND we had more for many write buffers
+              * Then we optimize the SD Card writing process to avoid the problems
+            * The AVR we use has only 20K of ram for everything
+              * Perhaps some day we will port this project to a Raspberry PI with add on hardware
+                * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
+
+___ 
+
+
+## Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU 
+  * The github project includes precompiled files under the [build](build) directory
+    * If you wish to compile yourself please see the next section "Requirements for building..." 
+  * NOTE: Most any system with an AVR Programmer that works with the atmega1284p will work
+    * If you can set the fuses and read at least one encoded binary format of the firmware in the project build directory
+      * You can find the current fuses in the Makefile - look for the statement wth fuses= and no preceding '#' comment
+      * Extract just the fuse settings - for example: lfuse=0xd6 hfuse:=0xd9 efuse=0xff 
+  * Ubuntu Linux Specific Example 
+    * I am using the avrdude software package to talk to my ATMEL ICE in circuit programmer, lets install it
+      * apt-get install avrdude
+    * I used the ATMELICE ISP programmer
+      * NOTE: avrdude supports many AVR programmers not just the one I am using
+      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:build/gpib.hex
+        * You should not get any errors
+___ 
+
+
+## Requirements for building the hp85 disk project
+  * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CHANGES
+  * [I have provided compiled files under the folder build](build)
+    * You just need to flash the files
+
+## Operating systems
+  * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
+    * NOTE: It should be possible to setup the same build with Windows
+      * There are a number of build environments for Windows that will work 
+        * I hope to provide instructions soon
+
+## Install programs to build this project - Ubuntu instructions
   * sudo bash
   * *apt-get update*
   * *apt-get install aptitude make build-essential binutils gcc*
   * *aptitude --with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
   * pip install pyserial
 
-## Compiling AVR code and stand alone LIF tools
-  * Please update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
-    * BOARD is the version of the hardware
-      * 1 = original github design
-        * also set PPR_REVERSE_BITS=0
-      * 2 = new hardware design with GPIB bus buffers
-    * PPR_REVERSE_BITS
-      * 0 = original github design
-      * 1 = cirrently needed for V2 hardware in development
-    * RTC_SUPPORT
-      * You have a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
-        * This will time stamp plot files and add time stamps inside lif images
-    * BAUD is the serial BAUD rate used to communicate with the emulator interface
-      * Note: I am using 500000 baud as default - your OS may not support that - linux does
-      * Try 115200 if it does not
-    * PORT is the serial PORT device name used to communicate with the emulator interface
+## Clone my github project to your computer
+  * git clone --branch V2 https://github.com/magore/hp85disk
+  * cd hpdisk
+
+## Compiling
   * *make clean*
   * *make*
 
@@ -134,7 +360,7 @@ ___
     * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
     * There is an example with the AVR mkii programmer as well.
   * *make flash*
-    * This will use *avrdude* to flash the firfmware
+    * This will use *avrdude* to flash the firmware
     * NOTE: When finished *make* will call call shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder
       * They expect a baud rate and device name as an option. See: [Makefile](Makefile)
@@ -146,8 +372,9 @@ ___
 ___
 
 
-## Using the emulator with examples
-   * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
+## Notes concerning using the HP85 with the hp85disk emulator
+  * Here we focus just on HP85 BASIC command
+  * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
        * The following example works for an HP85 attached to the emulator via GPIB bus.
          * PRINTER IS 705
@@ -157,6 +384,7 @@ ___
        * Second Amigo 9121D disk  at 710 for my HP85B (with 85B ROMs)
        * First SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)
        * Second SS80 HP9134L disk at 730 for my HP85A (with 85A ROMs)
+
      * How to use the examples with your HP85
        * Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive
          * All image files and configuration must be in the home folder only - not in a subdirectory.
@@ -167,8 +395,80 @@ ___
        * Power on emulator
        * Power on your computer last!
           * The emulator MUST be running and attached to your computer first!
-          * The HP85 ONLY checks for drives at power up.
-___
+          * The HP85 ONLY checks for drives at POWER UP or RESET
+
+## Testing examples on your HP85
+  * Testing was done with an HP85A (with extended EMS ROM) 
+    * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
+    * This makes my HP85A look like and HP85B 
+      * I can also use the normal mass storage ROM if I limit to AMIGO drives.
+	  * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
+       * old site http://vintagecomputers.site90.net/hp85/prm85.htm
+
+## Initializing a disk images
+## HP85B only feature or HP84A with PRM-85 board
+  * The HP85 and EMS ROM has extended INITIALIZE attributes
+  * IMPORTANT NOTE: this is already done for you with the hp85disk emulator
+    * If you do it it this erases everything on the emulated image
+    * You can however backup up copy existing LIF images to another folder on the SD Card for safe keeping
+      * There is a built in copy command for this 
+<pre>
+  INITIALIZE "AMIGO1",":D700",14,1
+  INITIALIZE "AMIGO2",":D710",14,1
+  INITIALIZE "SS80-1",":D720",128,1
+  INITIALIZE "SS80-2",":D730",128,1
+</pre>
+  
+## HP85A and HP85B feature 
+  * Note lines with a "#' as the first non blank character are just my comments 
+    * A bad habit from writing too many bash scripts 
+
+<pre>
+  # Listing files:
+  # first AMIGO
+  CAT ":D700"
+  # second AMIGO
+  CAT ":D710"
+  # first SS80
+  CAT ":D720"
+  # second SS80
+  CAT ":D730"
+  
+  # Loading file from first SS80:
+  LOAD "HELLO:D720"
+  # Copying file between devices: fist AMIGO to second AMIGO
+  COPY "HELLO:D700" TO "HELLO:D710"
+  # Copying ALL files between devices: FIRST SS80 to Second SS80
+  COPY ":D720" TO ":D730"
+  # LOAD the GETSAVE binary program very short example
+  LOADBIN "GETSAVE"
+  # This program stays in memory until the HP85 is reset
+  # See all of the detailed notes earlier in the README 
+</pre>
+  * Now on the emulator itself type
+  * lif add amigo1.lif MYTEST test.txt
+     * See all of the detailed notes earlier in the README 
+  * We just added the TEST.txt file to the image file called amigo1.lif and named it MYTEST
+<pre>
+  # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
+  GET "HELLO:D700"
+  # Save as a HP85 BASIC file in DTA8x (type E010) file
+  PUT "HELLOA:D700"
+  # Store it as as HP85 BASIC BAS8x (type E020) file
+  STORE "HELLO2B:D700"
+  # Now in the future we can LOAD it 
+  LOAD "HELLO2B:D700"
+  # How to Delete the file 
+  PURGE "HELLO2B:D700"
+  # List the BASIC file
+  LIST
+  # Clear memory
+  SCRATCH
+</pre>
+
+___ 
+___ 
+
 ## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs. HP85B
   * While GPIB devices can have address between 0 and 31 you can have no more than 8 disk drives.
   * ALL disk drives are required to respond to a PPR query by the (HP85) controller.
@@ -191,15 +491,16 @@ ___
         * PPR of 0 = PPR response on GPIB data bus bit number 8 - as per GPIB BUS specifications.
       * The ID keyword in [hpdisk.cfg](sdcard/hpdisk.cfg) is the 16 bit reply to "Request Identify Reply"
         * IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information
-          * The HP85A can only use its *hardcoded firmware tables* to map ID to disk layout parameters
+          * The HP85A can only use its *hard-coded firmware tables* to map ID to disk layout parameters
           * This implies that the HP85A can only use AMIGO disks it has defined in firmware.
         * The HP85B can query newer SS80 drives for detailed drive layout information instead.
         * The HP85A cannot use SS80 drives unless it uses copies of the HP85B EMS and EDISK ROMS.
             * One way this can be done with the PRM-85 expansion board offered by Bill Kotaska 
               * (The PRM-85 is great product giving you access to all of the useful ROMS)
 ___
-## Limitations
- * Multiple drive support is impliments but UNIT support is NOT
+
+## Technical Limitations
+ * Multiple drive support is implements but UNIT support is NOT
  * While most AMIGO and SS80 feature have been implemented my primary focus was on the HP85A and HP85B.
    * (I do not have access to other computers to test for full compatibility)
    * This means that a few AMIGO and SS80 GPIB commands are not yet implemented!
@@ -233,8 +534,9 @@ ___
        * I use this feature to help prioritize which commands I first implemented.
 ___
 
-## Credits
 
+## Credits
+## Main inspiration
 <b>I really owe the very existence of this project to the original work done by Anders Gustafsson and his great "HP Disk Emulator" </b>
  * You can visit his project at this site:
    * <http://www.dalton.ax/hpdisk>
@@ -243,19 +545,19 @@ ___
 <b> The HPDir project was vital as a documentation source for this project</b>
    * <http://www.hp9845.net/9845/projects/hpdir>
 
- <b>Anders Gustafsson was extremely helpful in providing me his current 
- code and details of his project - which I am very thankful for.</b>
-
- As mainly a personal exercise in fully understanding the code I 
- ended up rewriting much of the hpdisk project. I did this one part at a 
- time as I learned the protocols and specifications - NOT because of any 
- problems with his original work. 
-
+<b> Anders Gustafsson was extremely helpful</b>
+He providing me his current source code code and mainy details of his project 
+<b>which I am very thankful for.</b>
+NOTE: 
+ As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
+ I did this one part at a time as I learned the protocols and specifications.
+ NOT because of any problems with his original work. 
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
 
+## LIF utility support Credits
 [lif/teledisk](lif/teledisk)
  * [lif/teledisk](lif/teledisk)
-   * My TELEDISK LIF extracter
+   * My TELEDISK LIF extractor
    * Important Contributions (My converted would not have been possible without these)
      * Dave Dunfield, LZSS Code and TeleDisk documentation
        * Copyright 2007-2008 Dave Dunfield All rights reserved.
@@ -267,10 +569,11 @@ ___
      * Jean-Franois DEL NERO, TeleDisk Documentation
        * Copyright (C) 2006-2014 Jean-Franois DEL NERO
          * [wteledsk.htm](lif/teledisk/wteledsk.htm)
-           * TeleDisk documenation
+           * TeleDisk documentation
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
 ___
+
 # Abbreviations
 Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
  * <b>SS80</b>
@@ -343,11 +646,11 @@ ___
 ___
 
 ## Useful Utilities
-   * HP Drive  (HP Drive Emulators for Windows Platform)
-     * <http://www.hp9845.net/9845/projects/hpdrive/>
-   * HP Dir    (HP Drive - Disk Image Manipulation)
-     * <http://www.hp9845.net/9845/projects/hpdir/>
-___
+   * [HPDir HP Drive - Disk Image Manipulation](http://www.hp9845.net/9845/projects/hpdir)
+     * Copyright © 2010 A. Kückes
+   * [HPDrive Drive Emulators for Windows Platform](http://www.hp9845.net/9845/projects/hpdrive)
+     * Copyright © 2010 A. Kückes
+
 
 ## GPIB Connector pinout by Anders Gustafsson in his hpdisk project
   * http://www.dalton.ax/hpdisk/
@@ -371,82 +674,6 @@ ___
 
 
 
-## Testing
-  * Testing was done with an HP85A (with extended EMS ROM) 
-    * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
-    * This makes my HP85A look like and HP85B 
-      * I can also use the normal mass storage ROM if I limit to AMIGO drives.
-	  * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
-       * old site http://vintagecomputers.site90.net/hp85/prm85.htm
-
-  * Note: the EMS ROM has extended INITIALIZE attributes
-<pre>
-  # Initializing: (already done on these images so you do not have to)
-  INITIALIZE "AMIGO1",":D700",14,1
-  INITIALIZE "AMIGO2",":D710",14,1
-  INITIALIZE "SS80-1",":D720",128,1
-  INITIALIZE "SS80-2",":D730",128,1
-  
-  # Listing files:
-  # first AMIGO
-  CAT ":D700"
-  # second AMIGO
-  CAT ":D710"
-  # first SS80
-  CAT ":D720"
-  # second SS80
-  CAT ":D730"
-  
-  # Loading file from first SS80:
-  LOAD "HELLO:D720"
-  # Copying file between devices: fist AMIGO to second AMIGO
-  COPY "HELLO:D700" TO "HELLO:D710"
-  # Copying ALL files between devices: FIRST SS80 to Second SS80
-  COPY ":D720" TO ":D730"
-
-  # Working with plain text files and the HP85
-  # How to import and export plain text, ascii, files 
-  # My lif tools can read or write HP85 files that GETSAVE can then read and write
-  # GETSAVE is included in all of my supplied disk images
-  #   The lif tools are included in the firmwarei and you can use then from a terminal program
-  #   1) My lif tools are built in the firmware
-  #   2) GETSAVE is included in ALL emulator disk images under the [sdcard](sdcard) folder
-  #      GETSAVE and read and write TYPE E010 files
-  # Usesge:
-  LOADBIN "GETSAVE"
-  # This program stays in memory until the HP85 is reset
-  # How do we add an Ascii text file to a disk emulator image?
-    # Connect the emulator to a serial terminal - see the [Makefile](Makefile) for the default baud rate
-    # The baud rate is at the begining of the Makefile
-    # Connect to the disk emulator with a serial terminal
-  # Adding text file to the sdcard
-    # Lets say we created a pain text file containing a basic program call test.txt
-    # With the HP85 and emulator powerd off copy it to the sdcard
-    # Now put the sdcard back in the emulator and power it on - then turn on your HP85 last
-  # Adding the text file to the emulator image - lets use emulator image amigo1.lif
-  lif add amigo1.lif MYTEST test.txt
-  # We just added the file to the image file called amigo1.lif and named it MYTEST
-  # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
-  GET "MYTEST:D700"
-  # Save it 
-  PUT "MYTEST2:D700"
-  # Lets store it as a program se we do not have to use the concersion tools
-  STORE "MYTESTB:D700"
-  # In the future we can LOAD it without the conversion or GETSAVE program
-  LOAD "MYTESTB:D700"
-
-  # How to Delete a file
-  PURGE "HELLO:D710"
-  # Load a BASIC format program
-  LOAD "HELLO:D700"
-  # Save a BASIC format program
-  SAVE "HELLO:D710"
-  # Clear memory
-  SCRATCH
-  # List a BASIC program
-  LIST
-</pre>
-___ 
 
 ## AVR Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
@@ -475,7 +702,7 @@ ___
     * [Doxyfile](Doxyfile)
       * Doxygen Configuration files for project
     * [doxyinc](doxyinc)
-      * Determins which files are included in the project Doxygen documents
+      * Determines which files are included in the project Doxygen documents
     * [DoxygenLayout.xml](DoxygenLayout.xml)
       * Doxygen Layout file
   * Project Readme
@@ -483,7 +710,7 @@ ___
       * Project README 
   * Project Copyright
     * [COPYRIGHT.md](COPYRIGHT.md)
-      * Project CopyRights 
+      * Project Copyrights 
 
 ## Board design file for version 1 and 2 hardware information
   * [board](board)
@@ -492,7 +719,7 @@ ___
       * [board design and pinouts of this project and a schematic PDF ](board/V1/HP85Disk.pdf)
       * [board design and pinouts of this project and a schematic DOC ](board/V1//HP85Disk.doc)
       * [board README.md](board/V1/HP85Disk.doc)
-    * [V2/releases](V2/releses)
+    * [V2/releases](V2/releases)
       * Jay Hamlin version 2 circuit board design using GPIB buffers
 
 ## Documents
@@ -539,7 +766,7 @@ ___
 
 ## GPIB related
   * [gpib](gpib/gpib)
-    * My GPIB code for AMIGO SS80 and PPRINTER support
+    * My GPIB code for AMIGO SS80 and PRINTER support
     * [amigo.c](gpib/amigo.c)
       * AMIGO parser
     * [amigo.h](gpib/amigo.h)
@@ -626,7 +853,7 @@ ___
   * [lib](lib)
     * Library functions
     * [bcpp.cfg](lib/bcpp.cfg)
-      * BCPP C code formatter config
+      * BCPP C code formatting tool config
     * [matrix.c](lib/matrix.c)
     * [matrix.h](lib/matrix.h)
       * Matrix code - not used
@@ -669,7 +896,7 @@ ___
           * These functions are also part of various hp85disk libraries
       * [lifutils.c](lif/lifutils.c)
       * [lifutils.h](lif/lifutils.h)
-        *  LIF image functions, directory listing and file adding.extracting,renaming,deleting
+        *  LIF image functions, directory listing and file adding. extracting,renaming,deleting
       * [td02lif.c](lif/td02lif.c)
       * [td02lif.h](lif/td02lif.h)
         * My TeleDisk to LIF translator
@@ -678,16 +905,16 @@ ___
       * [README.txt](lif/README.txt)
         * Notes on each file under LIF and lif/teledisk
       * [85-SS80.TD0](lif/85-SS80.TD0) from hpmuseum.org
-        * Damaged SS80 Excersizer from HP Musium
+        * Damaged SS80 Exerciser from HP Museum
       * [85-SS80.LIF](lif/85-SS80.LIF)
-        * The current converter automaticcal did these repairs
+        * The current converter automatically did these repairs
           *  cyl 11, side 0 sector 116 mapped to 8
           *  cyl 13, side 0 sector 116 mapped to 11
           *  cyl 15, side 0 sector 10  missing - zero filled
 
 ## LIF teledisk files
    * [lif/teledisk](lif/teledisk)
-     * My TELEDISK LIF extracter 
+     * My TELEDISK LIF extractor 
        * Note: The TeleDisk image MUST contain a LIF image  - we do NOT translate it
      * [README.txt](lif/teledisk/README.txt)
        * Credits
@@ -702,11 +929,11 @@ ___
        * Jean-Franois DEL NERO, TeleDisk Documentation 
          * Copyright (lif/teledisk/C) 2006-2014 Jean-Franois DEL NERO
            * [wteledsk.htm](lif/teledisk/wteledsk.htm)
-             * TeleDisk documenation
+             * TeleDisk documentation
            * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
-## Posix wrapper - provides linux file IO functions for Fatfs
+## Posix wrapper - provides Linux file IO functions for Fatfs
   * [posix](posix)
     * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * [buffer.c](buffer.c)
@@ -781,7 +1008,7 @@ ___
       * BUILD SCRIPTS
         * [sdcard/scripts](sdcard/scripts)
           * Scripts that help creating LIF images from multiple files
-          * Used by [create_iamges.sh](create_images.sh)
+          * Used by [create_images.sh](create_images.sh)
       * My HP85 bus trace files
         * [sdcard/traces](sdcard/traces)
         * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
@@ -808,7 +1035,7 @@ ___
             * [author.txt](sdcard/TREK85/author.txt)  
             * [readme.txt](sdcrad/TREK85/readme.txt)	
             * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
-            * [TREK85.BAS](sdcrad/TREK85/TREK85.BAS)
+            * [TREK85.BAS](sdcard/TREK85/TREK85.BAS)
             * [trek.lif](sdcard/TREK85/trek.lif)
       * LIF images with a single program in them
         * [LIF-files](sdcard/LIF-files)
@@ -820,7 +1047,7 @@ ___
       * LIF images with multiple programs in them
         * [LIF-volumes](sdcard/LIF-volumes)
           * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
-      * GETSAV documenations
+      * GETSAV documentation
         * [notes](sdcard/notes)
           * GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files
             * NOTE: my lif utilities can translate ASCII files to and from this format 
