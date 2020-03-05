@@ -295,9 +295,6 @@ PROGS = hardware/baudrate
 #all: doxy version $(LIBS) build size $(PROGS)
 all: term version $(LIBS) build size $(PROGS) lif
 
-save_release: all 
-	# Save the results under release
-	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym release
 
 # Default target.
 #Example way of creating a current year string for  a #define
@@ -315,9 +312,14 @@ hardware/baudrate:  hardware/baudrate.c
 term:   
 	touch main.c
 
-makebuild: all
-	# Save the results under build
-	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym build
+release: all
+	# Save the results under release
+	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym release
+	cp -p sdcard/*.cfg release
+
+flash_release:
+	avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B 1 $(fuses) -U flash:w:release/$(PROJECT).hex
+	./term $(BAUD) $(PORT)
 
 flash: all 
 #

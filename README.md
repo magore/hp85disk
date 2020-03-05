@@ -380,10 +380,10 @@ ___
          * PRINTER IS 705
          * PLIST
      * Disk images in [sdcard](sdcard) folder drive and configuration settings
-       * First Amigo 9121D disk  at 710 for my HP85B (with 85B ROMs)
-       * Second Amigo 9121D disk  at 710 for my HP85B (with 85B ROMs)
-       * First SS80 HP9134L disk at 720 for my HP85A (with 85A ROMs)
-       * Second SS80 HP9134L disk at 730 for my HP85A (with 85A ROMs)
+       * First Amigo 9121D disk  at 710 for my HP85A (with 85A ROMs)
+       * Second Amigo 9121D disk  at 710 for my HP85A (with 85A ROMs)
+       * First SS80 HP9134L disk at 720 for my HP85B (with 85B ROMs)
+       * Second SS80 HP9134L disk at 730 for my HP85B (with 85B ROMs)
 
      * How to use the examples with your HP85
        * Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive
