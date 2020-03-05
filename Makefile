@@ -20,17 +20,17 @@
 PROJECT = gpib
 
 ### Target device
-DEVICE  = atmega1284p
+DEVICE ?= atmega1284p
 
 # AVRDUDE device name
-DEVICE_AVRDUDE=m1284p
+DEVICE_AVRDUDE ?= m1284p
 
 # ==============================================
 # Debug serial port for firmware command interface
 BAUD=115200UL
-# BAUD=500000UL
+# BAUD ?= 500000UL
 ### Serial Port for emulator user interface
-PORT=/dev/ttyUSB0
+PORT ?= /dev/ttyUSB0
 # ==============================================
 
 # ==============================================
@@ -40,7 +40,7 @@ PORT=/dev/ttyUSB0
 # BOARD=1
 #
 # Jay Hamlin V2 circuit board design
-BOARD=2
+BOARD ?= 2
 
 # Do the Parallel Poll Response (PPR) bits need to be reverse in software?
 #   The SPEC requires the disk 1 replies on by pulling BIT 8 low, disk 8 pulls BIT 1 low
@@ -49,10 +49,10 @@ BOARD=2
 #    My V1 circuit design reversed bits in hardware so this was NOT needed
 
 # Jay Hamlin V2 circuit board design
-PPR_REVERSE_BITS=1
+PPR_REVERSE_BITS ?= 1
 
 # Do we have an RTC - code currently assumes DS1307 or DS3231
-RTC_SUPPORT=1
+RTC_SUPPORT := 1
 # ==============================================
 
 

@@ -43,6 +43,10 @@
 #define RX0      GPIO_D0
 #define TX0      GPIO_D1
 
+#define LED1     GPIO_C6
+#define LED2     GPIO_C7
+
+
 /// @brief GPIO MACRO notes
 ///   We do not use {} around the macro statements so they behave like functions.
 ///   Consider what would happen if you used breaces (should be obviious)

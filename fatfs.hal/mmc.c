@@ -226,6 +226,8 @@ BYTE *buff,     /*< Data buffer to store received data */
 UINT btr        /*< Byte count (must be multiple of 4) */
 )
 {
+	GPIO_PIN_HI(LED1);
+
     BYTE token;
 
     //Timer1 = 40; 
@@ -240,6 +242,8 @@ UINT btr        /*< Byte count (must be multiple of 4) */
     rcvr_spi_multi(buff, btr); /* Receive the data block into buffer */
     xchg_spi(0xFF);                           /* Discard CRC */
     xchg_spi(0xFF);
+
+	GPIO_PIN_LOW(LED1);
 
     return 1;                                     /* Return with success */
 }
@@ -260,6 +264,8 @@ BYTE token        /*< Data/Stop token */
 {
     BYTE resp;
 
+	GPIO_PIN_HI(LED2);
+
     if (!wait_ready(1000)) return 0;
 
     xchg_spi(token);                            /* Xmit data token */
@@ -273,6 +279,8 @@ BYTE token        /*< Data/Stop token */
         if ((resp & 0x1F) != 0x05)                /* If not accepted, return with error */
             return 0;
     }
+
+	GPIO_PIN_LOW(LED1);
 
     return 1;
 }
