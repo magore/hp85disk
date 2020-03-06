@@ -3,7 +3,7 @@
 
  @brief  LIF file utilities - utilities extracted from hp85disk project for stand alone use
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -319,7 +319,7 @@ void copyright()
 {
     printf("Stand alone version of LIF/TELEDISK utilities for linux\n");
     printf("HP85 Disk and Device Emulator\n");
-    printf(" (c) 2014-2017 by Mike Gore\n");
+    printf(" (c) 2014-2020 by Mike Gore\n");
     printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
     printf("   GIT last pushed:   %s\n", GIT_VERSION);

@@ -64,7 +64,7 @@
 #define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR((pin>>3),(base) )
 
 /// @brief program SFR to permit normal gpio input/output
-#define GPIO_PIN_MODE(pin)      gpio_pin_sfr_mode(pin) /* FIXME TODO */
+#define GPIO_PIN_MODE(pin)      /* FIXME TODO */
 
 /// @brief program input mode
 #define GPIO_PIN_DIR_IN(pin) 	BIT_CLR(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7)) 

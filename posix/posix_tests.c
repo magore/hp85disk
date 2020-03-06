@@ -3,7 +3,7 @@
 
  @brief fatfs test utilities with user interface
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
@@ -610,7 +610,7 @@ long logfile(char *name, char *str)
     }
 
     size = strlen(str);
-    if( fwrite(str,1,size,fo) < size)
+    if( fwrite(str, 1, size, fo) < size)
     {
         printf("Write error\n");
         return(0);

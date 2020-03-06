@@ -5,8 +5,8 @@
 
  @par Edit History - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
  @see http://github.com/magore/hp85disk
@@ -101,7 +101,7 @@
 /// 0x68 Command Op Codes           OP      bytes   Ref     Execute Phase
 /// L    Cold Load Read             0x00    2       A40     Y
 /// L    Seek                       0x02    6       A27     N
-/// L    Request Status buffered        0x03    2       A15     Y 0x68
+/// L    Request Status buffered    0x03    2       A15     Y 0x68
 /// L    Unbuffered Read            0x05    2       A35     Y
 /// L    Verify                     0x07    4       A36     N
 /// L    Unbuffered Write Request   0x08    2       A45     Y
@@ -117,7 +117,7 @@
 /// L    Buffered Write Request     0x08    2       A43     Y
 ///
 /// 0x6A Command Op Codes           OP      bytes
-/// L    Request Status Unbuffered   0x03    2      A15     Y 0x68
+/// L    Request Status Unbuffered  0x03    2      A15     Y 0x68
 ///         See Receive Status A16
 /// L    Buffered Read              0x05    2       A33     Y
 /// L    Request Physical Address   0x14    2       A21     Y 0x68
@@ -130,7 +130,7 @@
 /// 0x6C Command Op Codes           OP      bytes
 /// L    Unbuffered Read Verify     0x05    2       A38     Y
 /// L    Request Physical Address   0x14    2       A21     Y 0x68
-/// L    Format Request                 0x18    2       A50     N
+/// L    Format Request             0x18    2       A50     N
 /// L    Door Lock                  0x19    2       A30     N
 /// L    Door Unlock                0x1A    2       A31     N
 ///
@@ -149,7 +149,7 @@
 /// T    Read Loopback Record       ---     1..256  A14     N
 ///
 /// 0x7F Command Op Codes           OP      bytes
-/// T    Read Self Test Results         ---     2       A13     N
+/// T    Read Self Test Results     ---     2       A13     N
 /// L    Initiat Self Test          ---     2       A24     N
 /// @endverbatim
 

@@ -187,6 +187,6 @@ var searchData=
   ['gpio_5fg7',['GPIO_G7',['../iom1284p_8h.html#ae7679ecd9497c45e348093a909807ded',1,'iom1284p.h']]],
   ['gpio_5fpin_5fout',['gpio_pin_out',['../hal_8c.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c'],['../hal_8h.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c']]],
   ['gpio_5fpin_5frd',['gpio_pin_rd',['../hal_8c.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c'],['../hal_8h.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c']]],
-  ['gpio_5fpin_5fsfr_5fmode',['gpio_pin_sfr_mode',['../hal_8c.html#aae4c3f2e10c806143c255941be7aef16',1,'gpio_pin_sfr_mode(int pin):&#160;hal.c'],['../hal_8h.html#aae4c3f2e10c806143c255941be7aef16',1,'gpio_pin_sfr_mode(int pin):&#160;hal.c']]],
+  ['gpio_5fpin_5fsfr_5fmode',['gpio_pin_sfr_mode',['../hal_8h.html#aae4c3f2e10c806143c255941be7aef16',1,'hal.h']]],
   ['gtl',['GTL',['../amigo_8h.html#a4a5ce0eaf1fcd7131fba9ec08df9bc1e',1,'GTL():&#160;amigo.h'],['../defines_8h.html#a4a5ce0eaf1fcd7131fba9ec08df9bc1e',1,'GTL():&#160;defines.h']]]
 ];

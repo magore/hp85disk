@@ -4,7 +4,7 @@
 
  @brief String to number conversions with floating point support
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 

@@ -41,6 +41,7 @@
 #include "hardware/iom1284p.h"
 #endif
 
+#ifdef ESP8266
 // =============================================
 /// @brief GPIO HAL
 /** 
@@ -51,7 +52,6 @@
 void 
 gpio_pin_sfr_mode(int pin)
 {
-#ifdef ESP8266
 	switch(pin)
 	{
 
@@ -115,11 +115,8 @@ gpio_pin_sfr_mode(int pin)
 			   (READ_PERI_REG(RTC_GPIO_ENABLE) & (uint32)0xfffffffe) | (uint32)0x1);
 			break;
 	}
-#endif
-#ifdef AVR
-	//TODO
-#endif
 }
+#endif
 
 #ifdef ESP8266
 /** 
