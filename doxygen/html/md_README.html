@@ -593,7 +593,7 @@ README</h1>
 </li>
 <li>The hp85disk emulator does not have enough memory to work around this issue<ul>
 <li>If we could load the entire disk image into ram AND we had more for many write buffers<ul>
-<li>Then we optimize the SD Card writing process to avoid the problems</li>
+<li>Then we could optimize the SD Card writing process to avoid the problems</li>
 </ul>
 </li>
 <li>The AVR we use has only 20K of ram for everything<ul>
@@ -636,7 +636,7 @@ README</h1>
 </li>
 <li>I used the ATMELICE ISP programmer<ul>
 <li>NOTE: avrdude supports many AVR programmers not just the one I am using</li>
-<li>avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex<ul>
+<li>avrdude -P usb -p m1284p -c atmelice_isp -F -B 5 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex<ul>
 <li>You should not get any errors <hr/>
 </li>
 </ul>
@@ -648,7 +648,7 @@ README</h1>
 </ul>
 <h2>Requirements for building the hp85 disk project</h2>
 <ul>
-<li>PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CHANGES</li>
+<li>PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CODE CHANGES</li>
 <li>[I have provided compiled files under the folder release](release)<ul>
 <li>You just need to flash the files</li>
 </ul>
@@ -714,7 +714,7 @@ README</h1>
 <h2>Notes concerning using the HP85 with the hp85disk emulator</h2>
 <ul>
 <li>Here we focus just on HP85 BASIC command</li>
-<li>See <a href="sdcard/sdcard.cfg">sdcard.cfg</a> for configuration settings and setting and documentation.<ul>
+<li>See <a href="hpdisk/hpdisk.cfg">hpdisk.cfg</a> for configuration settings and setting and documentation.<ul>
 <li>Printer capture is configured currently for my HP54645D scope<ul>
 <li>The following example works for an HP85 attached to the emulator via GPIB bus.<ul>
 <li>PRINTER IS 705</li>
@@ -768,7 +768,7 @@ README</h1>
 <h2>Initializing a disk images</h2>
 <h2>HP85B only feature or HP84A with PRM-85 board</h2>
 <ul>
-<li>The HP85 and EMS ROM has extended INITIALIZE attributes</li>
+<li>The HP85B and EMS ROM has extended INITIALIZE attributes</li>
 <li>IMPORTANT NOTE: this is already done for you with the hp85disk emulator<ul>
 <li>If you do it it this erases everything on the emulated image</li>
 <li>You can however backup up copy existing LIF images to another folder on the SD Card for safe keeping<ul>
@@ -908,13 +908,13 @@ README</h1>
 </li>
 <li>To attach a drive to our computer, real or otherwise, you must know:<ul>
 <li>The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.<ul>
-<li>See ADDRESS, PPR and ID values in <a href="sdcard.cfg">hpdisk.cfg</a></li>
+<li>See ADDRESS, PPR and ID values in <a href="hpdisk.cfg">hpdisk.cfg</a></li>
 </ul>
 </li>
 <li>Older computers may only support AMIGO drives.<ul>
 <li>Such computers will have a hard coded in firmware list of drive its supports.<ul>
 <li>These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.</li>
-<li><em>If these assumptions do NOT match the layout defined in the <a href="sdcard/sdcard.cfg">hpdisk.cfg</a> no drives will be detected.</em></li>
+<li><em>If these assumptions do NOT match the layout defined in the <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> no drives will be detected.</em></li>
 </ul>
 </li>
 </ul>
@@ -956,20 +956,29 @@ README</h1>
 </li>
 </ul>
 <h2>Credits</h2>
-<h2>Main inspiration</h2>
-<p><b>I really owe the very existence of this project to the original work done by Anders Gustafsson and his great "HP Disk Emulator" </b></p><ul>
+<h2>HP Disk Emulator by Anders Gustafsson</h2>
+<p><b>Anders Gustafsson was extremely helpful in getting my project started.</b> <b>In fact I really owe the very existence of this project to his original project</b></p><ul>
 <li>You can visit his project at this site:<ul>
 <li><a href="http://www.dalton.ax/hpdisk">http://www.dalton.ax/hpdisk</a></li>
 <li><a href="http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html">http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html</a></li>
 </ul>
 </li>
 </ul>
-<p><b> The HPDir project was vital as a documentation source for this project</b></p><ul>
+<p>He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b> NOTE: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. NOT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for GPIB ,AMIGO and SS80 state trackings.</p>
+<h2>The HPDir project was a vital documentation source for this project</h2>
+<ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">http://www.hp9845.net/9845/projects/hpdir</a></li>
 </ul>
-<p><b> Anders Gustafsson was extremely helpful</b> He providing me his current source code code and mainy details of his project <b>which I am very thankful for.</b> NOTE: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. NOT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for GPIB read and write functions as well as for SS80 execute state tracking.</p>
-<h2>LIF utility support Credits</h2>
-<p><a href="lif/teledisk">lif/teledisk</a></p><ul>
+<h2>My TeleDisk to LIF conversion utility</h2>
+<ul>
+<li>I used the lzss libraries and documenation by Dave Dunfield<ul>
+<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
+</ul>
+</li>
+<li>Documenation from Jean-Franois DEL NERO<ul>
+<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO <a href="lif/teledisk">lif/teledisk</a></li>
+</ul>
+</li>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
 <li>My TELEDISK LIF extractor</li>
 <li>Important Contributions (My converted would not have been possible without these)<ul>
@@ -1825,7 +1834,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2020 14:08:38 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 6 2020 14:38:30 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

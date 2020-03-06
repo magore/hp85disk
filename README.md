@@ -319,7 +319,7 @@ ___
               * Therefore some SD Cards can take so long the HP85 can timeout
           * The hp85disk emulator does not have enough memory to work around this issue
             * If we could load the entire disk image into ram AND we had more for many write buffers
-              * Then we optimize the SD Card writing process to avoid the problems
+              * Then we could optimize the SD Card writing process to avoid the problems
             * The AVR we use has only 20K of ram for everything
               * Perhaps some day we will port this project to a Raspberry PI with add on hardware
                 * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
@@ -339,13 +339,13 @@ ___
       * apt-get install avrdude
     * I used the ATMELICE ISP programmer
       * NOTE: avrdude supports many AVR programmers not just the one I am using
-      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 1 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex
+      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 5 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex
         * You should not get any errors
 ___ 
 
 
 ## Requirements for building the hp85 disk project
-  * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CHANGES
+  * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CODE CHANGES
   * [I have provided compiled files under the folder release](release)
     * You just need to flash the files
 
@@ -392,7 +392,7 @@ ___
 
 ## Notes concerning using the HP85 with the hp85disk emulator
   * Here we focus just on HP85 BASIC command
-  * See [sdcard.cfg](sdcard/sdcard.cfg) for configuration settings and setting and documentation.
+  * See [hpdisk.cfg](hpdisk/hpdisk.cfg) for configuration settings and setting and documentation.
      * Printer capture is configured currently for my HP54645D scope
        * The following example works for an HP85 attached to the emulator via GPIB bus.
          * PRINTER IS 705
@@ -425,7 +425,7 @@ ___
 
 ## Initializing a disk images
 ## HP85B only feature or HP84A with PRM-85 board
-  * The HP85 and EMS ROM has extended INITIALIZE attributes
+  * The HP85B and EMS ROM has extended INITIALIZE attributes
   * IMPORTANT NOTE: this is already done for you with the hp85disk emulator
     * If you do it it this erases everything on the emulated image
     * You can however backup up copy existing LIF images to another folder on the SD Card for safe keeping
@@ -527,11 +527,11 @@ ___
       * This can be done with the PRM-85 expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
    * The correct GPIB BUS address and parallel pool response (PPR) bit number your computer expects.
-     * See ADDRESS, PPR and ID values in [hpdisk.cfg](sdcard.cfg)
+     * See ADDRESS, PPR and ID values in [hpdisk.cfg](hpdisk.cfg)
    * Older computers may only support AMIGO drives.
      * Such computers will have a hard coded in firmware list of drive its supports.
        * These computers will issue a GPIB BUS "request identify" command and only detect those it knows about.
-       * *If these assumptions do NOT match the layout defined in the [hpdisk.cfg](sdcard/sdcard.cfg) no drives will be detected.*
+       * *If these assumptions do NOT match the layout defined in the [hpdisk.cfg](sdcard/hpdisk.cfg) no drives will be detected.*
    * Newer computers with SS80 support can request fully detailed disk layout instead of the "request identify"
    * My emulator supports both reporting methods - but your computer may not use them both!
      * For supported values consult your computer manuals or corresponding drive manual for your computer.
@@ -554,25 +554,29 @@ ___
 
 
 ## Credits
-## Main inspiration
-<b>I really owe the very existence of this project to the original work done by Anders Gustafsson and his great "HP Disk Emulator" </b>
+## HP Disk Emulator by Anders Gustafsson
+<b>Anders Gustafsson was extremely helpful in getting my project started.</b>
+<b>In fact I really owe the very existence of this project to his original project</b>
  * You can visit his project at this site:
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
 
-<b> The HPDir project was vital as a documentation source for this project</b>
-   * <http://www.hp9845.net/9845/projects/hpdir>
-
-<b> Anders Gustafsson was extremely helpful</b>
-He providing me his current source code code and mainy details of his project 
-<b>which I am very thankful for.</b>
+He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b>
 NOTE: 
  As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
  I did this one part at a time as I learned the protocols and specifications.
  NOT because of any problems with his original work. 
- Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB read and write functions as well as for SS80 execute state tracking. 
+ Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state trackings.
 
-## LIF utility support Credits
+## The HPDir project was a vital documentation source for this project</b>
+   * <http://www.hp9845.net/9845/projects/hpdir>
+
+
+## My TeleDisk to LIF conversion utility
+ * I used the lzss libraries and documenation by Dave Dunfield
+   * Copyright 2007-2008 Dave Dunfield All rights reserved.
+ * Documenation from Jean-Franois DEL NERO
+   * Copyright (C) 2006-2014 Jean-Franois DEL NERO
 [lif/teledisk](lif/teledisk)
  * [lif/teledisk](lif/teledisk)
    * My TELEDISK LIF extractor

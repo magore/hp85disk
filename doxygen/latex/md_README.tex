@@ -638,7 +638,7 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item If we could load the entire disk image into ram A\+ND we had more for many write buffers
 \begin{DoxyItemize}
-\item Then we optimize the SD Card writing process to avoid the problems
+\item Then we could optimize the SD Card writing process to avoid the problems
 \end{DoxyItemize}
 \item The A\+VR we use has only 20K of ram for everything
 \begin{DoxyItemize}
@@ -683,7 +683,7 @@ On the H\+P85 type
 \item I used the A\+T\+M\+E\+L\+I\+CE I\+SP programmer
 \begin{DoxyItemize}
 \item N\+O\+TE\+: avrdude supports many A\+VR programmers not just the one I am using
-\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 1 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:release/gpib.\+hex
+\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 5 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:release/gpib.\+hex
 \begin{DoxyItemize}
 \item You should not get any errors 
 
@@ -697,7 +697,7 @@ On the H\+P85 type
 
 
 \begin{DoxyItemize}
-\item P\+L\+E\+A\+SE R\+E\+A\+D! All steps below are intended O\+N\+LY R\+E\+Q\+U\+I\+R\+ED IF Y\+OU P\+L\+AN TO M\+A\+KE C\+H\+A\+N\+G\+ES
+\item P\+L\+E\+A\+SE R\+E\+A\+D! All steps below are intended O\+N\+LY R\+E\+Q\+U\+I\+R\+ED IF Y\+OU P\+L\+AN TO M\+A\+KE C\+O\+DE C\+H\+A\+N\+G\+ES
 \item \mbox{[}I have provided compiled files under the folder release\mbox{]}(release)
 \begin{DoxyItemize}
 \item You just need to flash the files
@@ -787,7 +787,7 @@ On the H\+P85 type
 
 \begin{DoxyItemize}
 \item Here we focus just on H\+P85 B\+A\+S\+IC command
-\item See \href{sdcard/sdcard.cfg}{\tt sdcard.\+cfg} for configuration settings and setting and documentation.
+\item See \href{hpdisk/hpdisk.cfg}{\tt hpdisk.\+cfg} for configuration settings and setting and documentation.
 \begin{DoxyItemize}
 \item Printer capture is configured currently for my H\+P54645D scope
 \begin{DoxyItemize}
@@ -848,7 +848,7 @@ On the H\+P85 type
 
 
 \begin{DoxyItemize}
-\item The H\+P85 and E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes
+\item The H\+P85B and E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes
 \item I\+M\+P\+O\+R\+T\+A\+NT N\+O\+TE\+: this is already done for you with the hp85disk emulator
 \begin{DoxyItemize}
 \item If you do it it this erases everything on the emulated image
@@ -1016,14 +1016,14 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item The correct G\+P\+IB B\+US address and parallel pool response (P\+PR) bit number your computer expects.
 \begin{DoxyItemize}
-\item See A\+D\+D\+R\+E\+SS, P\+PR and ID values in \href{sdcard.cfg}{\tt hpdisk.\+cfg}
+\item See A\+D\+D\+R\+E\+SS, P\+PR and ID values in \href{hpdisk.cfg}{\tt hpdisk.\+cfg}
 \end{DoxyItemize}
 \item Older computers may only support A\+M\+I\+GO drives.
 \begin{DoxyItemize}
 \item Such computers will have a hard coded in firmware list of drive its supports.
 \begin{DoxyItemize}
 \item These computers will issue a G\+P\+IB B\+US \char`\"{}request identify\char`\"{} command and only detect those it knows about.
-\item {\itshape If these assumptions do N\+OT match the layout defined in the \href{sdcard/sdcard.cfg}{\tt hpdisk.\+cfg} no drives will be detected.}
+\item {\itshape If these assumptions do N\+OT match the layout defined in the \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg} no drives will be detected.}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Newer computers with S\+S80 support can request fully detailed disk layout instead of the \char`\"{}request identify\char`\"{}
@@ -1065,9 +1065,9 @@ On the H\+P85 type
 
 \subsection*{Credits}
 
-\subsection*{Main inspiration}
+\subsection*{HP Disk Emulator by Anders Gustafsson}
 
-{\bfseries I really owe the very existence of this project to the original work done by Anders Gustafsson and his great \char`\"{}\+H\+P Disk Emulator\char`\"{} }
+{\bfseries Anders Gustafsson was extremely helpful in getting my project started.} {\bfseries In fact I really owe the very existence of this project to his original project}
 \begin{DoxyItemize}
 \item You can visit his project at this site\+:
 \begin{DoxyItemize}
@@ -1076,17 +1076,27 @@ On the H\+P85 type
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries  The H\+P\+Dir project was vital as a documentation source for this project}
+He provided me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state trackings.
+
+\subsection*{The H\+P\+Dir project was a vital documentation source for this project}
+
+
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
 \end{DoxyItemize}
 
-{\bfseries  Anders Gustafsson was extremely helpful} He providing me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB read and write functions as well as for S\+S80 execute state tracking.
+\subsection*{My Tele\+Disk to L\+IF conversion utility}
 
-\subsection*{L\+IF utility support Credits}
 
-\href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
+\item I used the lzss libraries and documenation by Dave Dunfield
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
+\end{DoxyItemize}
+\item Documenation from Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO \href{lif/teledisk}{\tt lif/teledisk}
+\end{DoxyItemize}
 \item \href{lif/teledisk}{\tt lif/teledisk}
 \begin{DoxyItemize}
 \item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
