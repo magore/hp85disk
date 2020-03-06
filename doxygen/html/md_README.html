@@ -201,17 +201,45 @@ README</h1>
 <li>115200 = a safe default that most systems can manage<ul>
 <li>NOTE: My development environment works with 500000 baud but 115200 should work on all systems</li>
 <li>NOTE: Faster is better when enabling more debug messages<ul>
-<li>Too many messages can cause the HP85 to timeout waiting for IO <hr/>
-</li>
+<li>Too many messages can cause the HP85 to timeout waiting for IO</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li>AVRDUDE_DEVICE is the name of AVR as it is known by avrdude<ul>
+<li>m1284p</li>
+</ul>
+</li>
+<li>AVRDUDE_SPEED is the programming clock speed used by avrdude<ul>
+<li>5</li>
+</ul>
+</li>
+<li>AVRDUDE_ISP<ul>
+<li>atmelice_isp</li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h2>Example building</h2>
+<ul>
+<li>make clean</li>
+<li>make</li>
+<li>make flash</li>
+</ul>
+<h2>Example building with Makefile overrides</h2>
+<ul>
+<li>( export BAUD=500000UL; export AVRDUDE_SPEED=1; make flash)<ul>
+<li>Make sure you add the '(' and ')' around the commands<ul>
+<li>This prevents settings variables in your current shell</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr/>
 <h2>Detailed information about tools and features</h2>
 <h2>Built in command processor with many tools</h2>
 <h2>Accessing the hp85disk command interface with a serial terminal</h2>
@@ -1797,7 +1825,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 4 2020 20:32:25 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 5 2020 19:58:27 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

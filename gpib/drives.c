@@ -42,6 +42,7 @@ AMIGODiskType *AMIGOp = NULL;
 AMIGOStateType *AMIGOs = NULL;
 #endif
 
+#if defined (SET_DEFAULTS)
 // =============================================
 PRINTERDeviceType PRINTERDeviceDefault =
 {
@@ -54,6 +55,7 @@ PRINTERDeviceType PRINTERDeviceDefault =
 
 // =============================================
 ///@brief SS80 Disk Definitions
+
 
 #if defined(HP9122D)
 ///@brief SS80 HP9122D Disk Definitions
@@ -203,6 +205,8 @@ AMIGODiskType AMIGODiskDefault =
 #endif // #if defined(HP9134A)
 
 #endif // ifdef AMIGO
+
+#endif // SET_DEFAULTS
 
 
 
@@ -585,11 +589,13 @@ uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val
     return(1);
 }
 
+
 ///@brief Set Defaults for any missing disk or printer devices
 /// These are only used if the Config file omits them or is empty
 /// @return  void
 void set_Config_Defaults()
 {
+#if defined(SET_DEFAULTS)
     int index;
 
     ///@brief Add optional hard coded devices for any that are missing
@@ -643,6 +649,7 @@ void set_Config_Defaults()
             Devices[index].state = NULL;
         }
     }
+#endif // SET_DEFAULTS
 }
 
 

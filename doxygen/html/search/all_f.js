@@ -66,7 +66,6 @@ var searchData=
   ['printer_5fopen',['printer_open',['../printer_8c.html#a040866641093811ade9ff0231e1ff7af',1,'printer_open(char *name):&#160;printer.c'],['../printer_8h.html#a040866641093811ade9ff0231e1ff7af',1,'printer_open(char *name):&#160;printer.c']]],
   ['printer_5fstate',['PRINTER_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760',1,'drives.h']]],
   ['printer_5ftype',['PRINTER_TYPE',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca',1,'drives.h']]],
-  ['printerdevicedefault',['PRINTERDeviceDefault',['../drives_8c.html#ae5c3a0a9ab88737f26d6554d34a35030',1,'drives.c']]],
   ['printerdevicetype',['PRINTERDeviceType',['../structPRINTERDeviceType.html',1,'']]],
   ['printerp',['PRINTERp',['../drives_8c.html#abe5ffe9f7c96ad748b695ed5b45d6e52',1,'PRINTERp():&#160;drives.c'],['../drives_8h.html#abe5ffe9f7c96ad748b695ed5b45d6e52',1,'PRINTERp():&#160;drives.c']]],
   ['printerstatetype',['PRINTERStateType',['../structPRINTERStateType.html',1,'']]],

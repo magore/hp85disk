@@ -89,7 +89,25 @@ ___
         * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
         * NOTE: Faster is better when enabling more debug messages 
           * Too many messages can cause the HP85 to timeout waiting for IO
+    * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
+      * m1284p
+    * AVRDUDE_SPEED  is the programming clock speed used by avrdude
+     * 5
+    * AVRDUDE_ISP
+      * atmelice_isp
+
+## Example building
+  * make clean
+  * make
+  * make flash
+
+## Example building with Makefile overrides
+  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash)
+    * Make sure you add the '(' and ')' around the commands
+      * This prevents settings variables in your current shell
+
 ___ 
+
 
 ## Detailed information about tools and features 
 

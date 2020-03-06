@@ -19,15 +19,27 @@
 ### Project name (also used for output file name)
 PROJECT = gpib
 
-### Target device
+### Target AVR device for this project
 DEVICE ?= atmega1284p
 
-# AVRDUDE device name
-DEVICE_AVRDUDE ?= m1284p
+# avrdude programmer name
+# Example ATMEL AVR Incircuit programmer names as known by avrdude
+	# atmelice_isp
+	# avrispmkII
+	# dragon_isp
+# avrdude programmer name
+AVRDUDE_ISP ?= atmelice_isp
+
+# avrdude device name
+AVRDUDE_DEVICE ?= m1284p
+
+# avrdude programming speed
+AVRDUDE_SPEED ?= 5
+
 
 # ==============================================
 # Debug serial port for firmware command interface
-BAUD=115200UL
+BAUD ?= 115200UL
 # BAUD ?= 500000UL
 ### Serial Port for emulator user interface
 PORT ?= /dev/ttyUSB0
@@ -318,19 +330,19 @@ release: all
 	cp -p sdcard/*.cfg release
 
 flash_release:
-	avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B 1 $(fuses) -U flash:w:release/$(PROJECT).hex
+	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 
 flash: all 
 #
 	# Program with avrdude using atmelice_isp
-	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using avrispmkii 
-	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# Program with avrdude using dragon_isp
-	# avrdude -P usb -p $(DEVICE_AVRDUDE) -c dragon_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
+	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
 	#
 	# ===================================================
 	# atmelice_isp
@@ -340,7 +352,7 @@ flash: all
 	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
 	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
     # Fuses are defined above like this: fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
-	avrdude -P usb -p $(DEVICE_AVRDUDE) -c atmelice_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
+	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED)  $(fuses) -U flash:w:$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)
 	# ===================================================

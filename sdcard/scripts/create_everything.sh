@@ -24,7 +24,7 @@ echo "Creating AMIGO and SS80 disks"
 declare D
 for D in 1 2 3 4
 do
-	runlog lif create "amigo"$D.lif "$AMIGO"$D 14 1120
+	runlog lif create "amigo"$D.lif "AMIGO"$D 14 1120
 	runlog lif create "ss80-"$D.lif "SS80-"$D 123 58176
 
 	declare S

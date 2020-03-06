@@ -172,14 +172,50 @@ L\+IF manipulation tools are built in see later sections for details
 \item N\+O\+TE\+: My development environment works with 500000 baud but 115200 should work on all systems
 \item N\+O\+TE\+: Faster is better when enabling more debug messages
 \begin{DoxyItemize}
-\item Too many messages can cause the H\+P85 to timeout waiting for IO 
+\item Too many messages can cause the H\+P85 to timeout waiting for IO
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE is the name of A\+VR as it is known by avrdude
+\begin{DoxyItemize}
+\item m1284p
+\end{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED is the programming clock speed used by avrdude
+\begin{DoxyItemize}
+\item 5
+\end{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP
+\begin{DoxyItemize}
+\item atmelice\+\_\+isp
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Example building}
 
 
+\begin{DoxyItemize}
+\item make clean
+\item make
+\item make flash
+\end{DoxyItemize}
+
+\subsection*{Example building with Makefile overrides}
+
+
+\begin{DoxyItemize}
+\item ( export B\+A\+UD=500000\+UL; export A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED=1; make flash)
+\begin{DoxyItemize}
+\item Make sure you add the \textquotesingle{}(\textquotesingle{} and \textquotesingle{})\textquotesingle{} around the commands
+\begin{DoxyItemize}
+\item This prevents settings variables in your current shell
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
+
+
 
 \subsection*{Detailed information about tools and features}
 
