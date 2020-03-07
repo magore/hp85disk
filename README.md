@@ -594,6 +594,10 @@ NOTE:
            * TeleDisk documentation
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
+
+## FatFS
+  * [fatfs](fatfs)
+    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
 ___
 
 # Abbreviations
@@ -752,6 +756,9 @@ ___
   * GPIB BUS, HP device, LIF and chips documentation for this project
     * [Documents/README.md](Documents/README.md) 
 
+## hp85disk software files
+  * Most of the software in the project was written by me except where notes
+  
 ## FatFs
   * [fatfs](fatfs)
     * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
@@ -779,7 +786,7 @@ ___
       * My Hardware abstraction layer code
   
   * [fatfs.sup](fatfs.sup/fatfs.sup)
-    * Support utility and POSIX wrapper functions
+    * My fatfs support utility and POSIX wrapper test functions
     * [fatfs.h](fatfs.sup/fatfs.h)
       * FatFS header files
     * [fatfs_sup.c](fatfs.sup/fatfs_sup.c)
@@ -837,7 +844,7 @@ ___
 
 ## Hardware CPU specific 
   * [hardware](hardware)
-    * CPU hardware specific code
+    * My CPU hardware specific code
     * [baudrate.c](hardware/baudrate.c)
       * Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers
     * [bits.h](hardware/bits.h)
@@ -876,7 +883,7 @@ ___
 
 ## Common libraries
   * [lib](lib)
-    * Library functions
+    * My Library functions
     * [bcpp.cfg](lib/bcpp.cfg)
       * BCPP C code formatting tool config
     * [matrix.c](lib/matrix.c)
@@ -906,7 +913,7 @@ ___
 
 ## LIF files
   * [lif](lif)
-    * LIF disk image utilities 
+    * My LIF disk image utilities 
     * [lif/lifutils.c](lif/lifutils.c)
     * [lif/lifutils.c](lif/lifutils.c)
       * Functions that allow the emulator to import and export files from LIF images 
@@ -960,7 +967,7 @@ ___
 
 ## Posix wrapper - provides Linux file IO functions for Fatfs
   * [posix](posix)
-    * POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
+    * My POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions 
     * [buffer.c](buffer.c)
     * [buffer.h](buffer.h)
       * Currently unused in this project
@@ -973,7 +980,7 @@ ___
 
 ## Printf display functions
   * [printf](printf)
-    * Printf and math IO functions
+    * My Printf and math IO functions
     * [mathio.c](printf/mathio.c)
       * Number conversions 
     * [mathio.h](printf/mathio.h)
@@ -1066,15 +1073,20 @@ ___
         * [LIF-files](sdcard/LIF-files)
           * Internal names are the same as the LIF name without extension
         * [GETSAVE.LIF](sdcard/ASCII-files/GETSAVE.LIF)
+          * Adds GET and SAVE commands to an HP85
         * [GPIB-T.lif](sdcard/ASCII-files/GPIB-T.lif)
+          * Simple GPIB test
         * [RWTESTB.lif](sdcard/ASCII-files/RWTESTB.lif)
+          * Reads,Writes and Purge tests
         * [TREK85B.lif](sdcard/ASCII-files/TREK85B.lif)
+	      * TREK85 by Martin Hepperle, December 2015
+	        * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
       * LIF images with multiple programs in them
         * [LIF-volumes](sdcard/LIF-volumes)
           * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
       * GETSAV documentation
         * [notes](sdcard/notes)
           * GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files
-            * NOTE: my lif utilities can translate ASCII files to and from this format 
+            * NOTE: my lif utilities can translate between ASCII files and files in GET/SAVE format 
         * Various notes 
 ___

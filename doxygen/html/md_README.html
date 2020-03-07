@@ -1002,8 +1002,7 @@ README</h1>
 </ul>
 </li>
 <li>See his github project<ul>
-<li><a href="https://github.com/jfdelnero/libhxcfe">https://github.com/jfdelnero/libhxcfe</a> <hr/>
-</li>
+<li><a href="https://github.com/jfdelnero/libhxcfe">https://github.com/jfdelnero/libhxcfe</a></li>
 </ul>
 </li>
 </ul>
@@ -1011,6 +1010,14 @@ README</h1>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>FatFS</h2>
+<ul>
+<li>[fatfs](fatfs)<ul>
+<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes <hr/>
 </li>
 </ul>
 </li>
@@ -1223,6 +1230,10 @@ README</h1>
 </ul>
 </li>
 </ul>
+<h2>hp85disk software files</h2>
+<ul>
+<li>Most of the software in the project was written by me except where notes</li>
+</ul>
 <h2>FatFs</h2>
 <ul>
 <li>[fatfs](fatfs)<ul>
@@ -1267,7 +1278,7 @@ README</h1>
 </ul>
 </li>
 <li><a href="fatfs.sup/fatfs.sup">fatfs.sup</a><ul>
-<li>Support utility and POSIX wrapper functions</li>
+<li>My fatfs support utility and POSIX wrapper test functions</li>
 <li><a href="fatfs.sup/fatfs.h">fatfs.h</a><ul>
 <li>FatFS header files</li>
 </ul>
@@ -1379,7 +1390,7 @@ README</h1>
 <h2>Hardware CPU specific</h2>
 <ul>
 <li>[hardware](hardware)<ul>
-<li>CPU hardware specific code</li>
+<li>My CPU hardware specific code</li>
 <li><a href="hardware/baudrate.c">baudrate.c</a><ul>
 <li>Baud rate calculation tool. Given CPU clock and desired baud rate, will list the actual baud rate and registers</li>
 </ul>
@@ -1449,7 +1460,7 @@ README</h1>
 <h2>Common libraries</h2>
 <ul>
 <li>[lib](lib)<ul>
-<li>Library functions</li>
+<li>My Library functions</li>
 <li><a href="lib/bcpp.cfg">bcpp.cfg</a><ul>
 <li>BCPP C code formatting tool config</li>
 </ul>
@@ -1502,7 +1513,7 @@ README</h1>
 <h2>LIF files</h2>
 <ul>
 <li>[lif](lif)<ul>
-<li>LIF disk image utilities</li>
+<li>My LIF disk image utilities</li>
 <li><a href="lif/lifutils.c">lif/lifutils.c</a></li>
 <li><a href="lif/lifutils.c">lif/lifutils.c</a><ul>
 <li>Functions that allow the emulator to import and export files from LIF images</li>
@@ -1608,7 +1619,7 @@ README</h1>
 <h2>Posix wrapper - provides Linux file IO functions for Fatfs</h2>
 <ul>
 <li>[posix](posix)<ul>
-<li>POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
+<li>My POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
 <li><a href="buffer.c">buffer.c</a></li>
 <li><a href="buffer.h">buffer.h</a><ul>
 <li>Currently unused in this project</li>
@@ -1630,7 +1641,7 @@ README</h1>
 <h2>Printf display functions</h2>
 <ul>
 <li>[printf](printf)<ul>
-<li>Printf and math IO functions</li>
+<li>My Printf and math IO functions</li>
 <li><a href="printf/mathio.c">mathio.c</a><ul>
 <li>Number conversions</li>
 </ul>
@@ -1801,10 +1812,25 @@ README</h1>
 <li>Internal names are the same as the LIF name without extension</li>
 </ul>
 </li>
-<li><a href="sdcard/ASCII-files/GETSAVE.LIF">GETSAVE.LIF</a></li>
-<li><a href="sdcard/ASCII-files/GPIB-T.lif">GPIB-T.lif</a></li>
-<li><a href="sdcard/ASCII-files/RWTESTB.lif">RWTESTB.lif</a></li>
-<li><a href="sdcard/ASCII-files/TREK85B.lif">TREK85B.lif</a></li>
+<li><a href="sdcard/ASCII-files/GETSAVE.LIF">GETSAVE.LIF</a><ul>
+<li>Adds GET and SAVE commands to an HP85</li>
+</ul>
+</li>
+<li><a href="sdcard/ASCII-files/GPIB-T.lif">GPIB-T.lif</a><ul>
+<li>Simple GPIB test</li>
+</ul>
+</li>
+<li><a href="sdcard/ASCII-files/RWTESTB.lif">RWTESTB.lif</a><ul>
+<li>Reads,Writes and Purge tests</li>
+</ul>
+</li>
+<li><a href="sdcard/ASCII-files/TREK85B.lif">TREK85B.lif</a><ul>
+<li>TREK85 by Martin Hepperle, December 2015<ul>
+<li><a href="https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241">https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>LIF images with multiple programs in them<ul>
@@ -1817,7 +1843,7 @@ README</h1>
 <li>GETSAV documentation<ul>
 <li><a href="sdcard/notes">notes</a><ul>
 <li>GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files<ul>
-<li>NOTE: my lif utilities can translate ASCII files to and from this format</li>
+<li>NOTE: my lif utilities can translate between ASCII files and files in GET/SAVE format</li>
 </ul>
 </li>
 </ul>
@@ -1834,7 +1860,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 6 2020 14:38:30 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 7 2020 16:42:42 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
