@@ -85,8 +85,8 @@ Functions</h2></td></tr>
 <tr class="separator:adfa8b0c32a3cfe30e0bc748d77fb6e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeee590beb1dbc63a4e51dbe1c670831b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#aeee590beb1dbc63a4e51dbe1c670831b">i2c_End</a> ()</td></tr>
 <tr class="separator:aeee590beb1dbc63a4e51dbe1c670831b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0742e25c23ca1096ceba081b98fd58ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#a0742e25c23ca1096ceba081b98fd58ba">LCD_init</a> ()</td></tr>
-<tr class="separator:a0742e25c23ca1096ceba081b98fd58ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f15ef39453aa0ce5add8081ab8ed99"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#a30f15ef39453aa0ce5add8081ab8ed99">LCD_init</a> ()</td></tr>
+<tr class="separator:a30f15ef39453aa0ce5add8081ab8ed99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45d63328c8a1e7f8821fbeda2970c4e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#a45d63328c8a1e7f8821fbeda2970c4e5">LCD_command</a> (<a class="el" href="LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94">byte</a> command)</td></tr>
 <tr class="separator:a45d63328c8a1e7f8821fbeda2970c4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa43b0d311d97a4408e2bceec288df899"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#aa43b0d311d97a4408e2bceec288df899">LCD_specialCommand</a> (<a class="el" href="LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94">byte</a> command)</td></tr>
@@ -170,6 +170,8 @@ Variables</h2></td></tr>
 <tr class="separator:ac908adc08775bcf420d90d00566787c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab51de6346b73e694586c34c73ff8b2f2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#ab51de6346b73e694586c34c73ff8b2f2">_displayMode</a> = <a class="el" href="LCD_8h.html#ae7c6309fce6200bd7526d090a4a84dd0">LCD_ENTRYLEFT</a> | <a class="el" href="LCD_8h.html#a049ee97e98d04788c1da9a55590fbe42">LCD_ENTRYSHIFTDECREMENT</a></td></tr>
 <tr class="separator:ab51de6346b73e694586c34c73ff8b2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace97268580fc8e8204946f79825331ee"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LCD_8c.html#ace97268580fc8e8204946f79825331ee">LCD_error</a> = 0</td></tr>
+<tr class="separator:ace97268580fc8e8204946f79825331ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aeee590beb1dbc63a4e51dbe1c670831b"></a>
@@ -188,9 +190,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00116">116</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00122">122</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00148">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00242">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00497">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00477">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00487">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00466">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00128">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00272">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00507">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00581">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00561">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00441">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00163">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00180">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00285">LCD_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00158">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00252">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00509">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00489">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00499">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00478">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00282">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00519">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00593">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00573">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00453">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00173">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00190">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00295">LCD_write()</a>.</p>
 
 </div>
 </div>
@@ -212,9 +214,9 @@ Variables</h2></td></tr>
 
 <p>I2C HAL Interface with the project TWI code. </p>
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00097">97</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00099">99</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00148">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00242">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00497">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00477">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00487">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00466">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00128">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00272">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00507">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00581">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00561">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00441">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00163">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00180">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00285">LCD_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00158">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00252">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00509">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00489">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00499">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00478">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00282">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00519">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00593">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00573">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00453">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00173">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00190">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00295">LCD_write()</a>.</p>
 
 </div>
 </div>
@@ -234,9 +236,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00108">108</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00112">112</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00148">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00242">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00497">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00477">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00487">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00466">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00128">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00272">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00507">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00581">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00561">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00441">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00163">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00180">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00285">LCD_write()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00158">LCD_command()</a>, <a class="el" href="LCD_8c_source.html#l00252">LCD_createChar()</a>, <a class="el" href="LCD_8c_source.html#l00509">LCD_disableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00489">LCD_disableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00499">LCD_enableSplash()</a>, <a class="el" href="LCD_8c_source.html#l00478">LCD_enableSystemMessages()</a>, <a class="el" href="LCD_8c_source.html#l00282">LCD_putb()</a>, <a class="el" href="LCD_8c_source.html#l00519">LCD_saveSplash()</a>, <a class="el" href="LCD_8c_source.html#l00593">LCD_setAddress()</a>, <a class="el" href="LCD_8c_source.html#l00573">LCD_setContrast()</a>, <a class="el" href="LCD_8c_source.html#l00453">LCD_setFastBacklightRGB()</a>, <a class="el" href="LCD_8c_source.html#l00173">LCD_specialCommand()</a>, <a class="el" href="LCD_8c_source.html#l00190">LCD_specialCommandCount()</a>, and <a class="el" href="LCD_8c_source.html#l00295">LCD_write()</a>.</p>
 
 </div>
 </div>
@@ -256,7 +258,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00541">541</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00553">553</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -276,7 +278,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00356">356</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00368">368</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -296,7 +298,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00199">199</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00209">209</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -316,9 +318,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00148">148</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00158">158</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00199">LCD_clear()</a>, and <a class="el" href="LCD_8c_source.html#l00262">LCD_writeChar()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00209">LCD_clear()</a>, and <a class="el" href="LCD_8c_source.html#l00272">LCD_writeChar()</a>.</p>
 
 </div>
 </div>
@@ -348,7 +350,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00242">242</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00252">252</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -368,7 +370,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00338">338</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00350">350</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -388,7 +390,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00497">497</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00509">509</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -408,7 +410,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00477">477</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00489">489</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -428,7 +430,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00320">320</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00332">332</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -448,7 +450,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00487">487</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00499">499</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -468,7 +470,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00466">466</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00478">478</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -488,18 +490,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00210">210</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00220">220</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
-<a id="a0742e25c23ca1096ceba081b98fd58ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0742e25c23ca1096ceba081b98fd58ba">&#9670;&nbsp;</a></span>LCD_init()</h2>
+<a id="a30f15ef39453aa0ce5add8081ab8ed99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f15ef39453aa0ce5add8081ab8ed99">&#9670;&nbsp;</a></span>LCD_init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LCD_init </td>
+          <td class="memname">int LCD_init </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -508,7 +510,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00128">128</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00132">132</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -530,7 +532,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00522">522</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00534">534</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -550,7 +552,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00416">416</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00428">428</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -570,9 +572,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00407">407</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00419">419</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00416">LCD_moveCursorLeft()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00428">LCD_moveCursorLeft()</a>.</p>
 
 </div>
 </div>
@@ -592,7 +594,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00434">434</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00446">446</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -612,9 +614,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00426">426</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00438">438</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00434">LCD_moveCursorRight()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00446">LCD_moveCursorRight()</a>.</p>
 
 </div>
 </div>
@@ -634,7 +636,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00550">550</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00562">562</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -654,7 +656,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00347">347</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00359">359</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -674,7 +676,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00329">329</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00341">341</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -694,7 +696,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00311">311</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00323">323</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -714,7 +716,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00272">272</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00282">282</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -734,7 +736,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00303">303</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00315">315</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -756,7 +758,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00531">531</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00543">543</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -776,7 +778,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00507">507</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00519">519</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -796,7 +798,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00377">377</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00389">389</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -816,9 +818,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00368">368</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00380">380</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00377">LCD_scrollDisplayLeft()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00389">LCD_scrollDisplayLeft()</a>.</p>
 
 </div>
 </div>
@@ -838,7 +840,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00397">397</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00409">409</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -858,9 +860,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00388">388</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00400">400</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00397">LCD_scrollDisplayRight()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00409">LCD_scrollDisplayRight()</a>.</p>
 
 </div>
 </div>
@@ -880,7 +882,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00581">581</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00593">593</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -900,7 +902,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00561">561</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00573">573</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -930,7 +932,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00224">224</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00234">234</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -950,7 +952,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00455">455</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00467">467</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -986,9 +988,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00441">441</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00453">453</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00455">LCD_setFastBacklight()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00467">LCD_setFastBacklight()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
 </div>
 </div>
@@ -1008,9 +1010,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00163">163</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00173">173</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00541">LCD_autoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00356">LCD_blink()</a>, <a class="el" href="LCD_8c_source.html#l00338">LCD_cursor()</a>, <a class="el" href="LCD_8c_source.html#l00320">LCD_display()</a>, <a class="el" href="LCD_8c_source.html#l00210">LCD_home()</a>, <a class="el" href="LCD_8c_source.html#l00522">LCD_leftToRight()</a>, <a class="el" href="LCD_8c_source.html#l00550">LCD_noAutoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00347">LCD_noBlink()</a>, <a class="el" href="LCD_8c_source.html#l00329">LCD_noCursor()</a>, <a class="el" href="LCD_8c_source.html#l00311">LCD_noDisplay()</a>, <a class="el" href="LCD_8c_source.html#l00531">LCD_rightToLeft()</a>, and <a class="el" href="LCD_8c_source.html#l00224">LCD_setCursor()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00553">LCD_autoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00368">LCD_blink()</a>, <a class="el" href="LCD_8c_source.html#l00350">LCD_cursor()</a>, <a class="el" href="LCD_8c_source.html#l00332">LCD_display()</a>, <a class="el" href="LCD_8c_source.html#l00220">LCD_home()</a>, <a class="el" href="LCD_8c_source.html#l00534">LCD_leftToRight()</a>, <a class="el" href="LCD_8c_source.html#l00562">LCD_noAutoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00359">LCD_noBlink()</a>, <a class="el" href="LCD_8c_source.html#l00341">LCD_noCursor()</a>, <a class="el" href="LCD_8c_source.html#l00323">LCD_noDisplay()</a>, <a class="el" href="LCD_8c_source.html#l00543">LCD_rightToLeft()</a>, and <a class="el" href="LCD_8c_source.html#l00234">LCD_setCursor()</a>.</p>
 
 </div>
 </div>
@@ -1040,9 +1042,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00180">180</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00190">190</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00407">LCD_moveCursorLeftCount()</a>, <a class="el" href="LCD_8c_source.html#l00426">LCD_moveCursorRightCount()</a>, <a class="el" href="LCD_8c_source.html#l00368">LCD_scrollDisplayLeftCount()</a>, and <a class="el" href="LCD_8c_source.html#l00388">LCD_scrollDisplayRightCOunt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00419">LCD_moveCursorLeftCount()</a>, <a class="el" href="LCD_8c_source.html#l00438">LCD_moveCursorRightCount()</a>, <a class="el" href="LCD_8c_source.html#l00380">LCD_scrollDisplayLeftCount()</a>, and <a class="el" href="LCD_8c_source.html#l00400">LCD_scrollDisplayRightCOunt()</a>.</p>
 
 </div>
 </div>
@@ -1072,9 +1074,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00285">285</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00295">295</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00303">LCD_puts()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00315">LCD_puts()</a>.</p>
 
 </div>
 </div>
@@ -1094,7 +1096,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00262">262</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00272">272</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1123,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00091">91</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00356">LCD_blink()</a>, <a class="el" href="LCD_8c_source.html#l00338">LCD_cursor()</a>, <a class="el" href="LCD_8c_source.html#l00320">LCD_display()</a>, <a class="el" href="LCD_8c_source.html#l00128">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00347">LCD_noBlink()</a>, <a class="el" href="LCD_8c_source.html#l00329">LCD_noCursor()</a>, and <a class="el" href="LCD_8c_source.html#l00311">LCD_noDisplay()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00368">LCD_blink()</a>, <a class="el" href="LCD_8c_source.html#l00350">LCD_cursor()</a>, <a class="el" href="LCD_8c_source.html#l00332">LCD_display()</a>, <a class="el" href="LCD_8c_source.html#l00132">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00359">LCD_noBlink()</a>, <a class="el" href="LCD_8c_source.html#l00341">LCD_noCursor()</a>, and <a class="el" href="LCD_8c_source.html#l00323">LCD_noDisplay()</a>.</p>
 
 </div>
 </div>
@@ -1147,14 +1149,40 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00092">92</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00541">LCD_autoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00128">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00522">LCD_leftToRight()</a>, <a class="el" href="LCD_8c_source.html#l00550">LCD_noAutoscroll()</a>, and <a class="el" href="LCD_8c_source.html#l00531">LCD_rightToLeft()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00553">LCD_autoscroll()</a>, <a class="el" href="LCD_8c_source.html#l00132">LCD_init()</a>, <a class="el" href="LCD_8c_source.html#l00534">LCD_leftToRight()</a>, <a class="el" href="LCD_8c_source.html#l00562">LCD_noAutoscroll()</a>, and <a class="el" href="LCD_8c_source.html#l00543">LCD_rightToLeft()</a>.</p>
+
+</div>
+</div>
+<a id="ace97268580fc8e8204946f79825331ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace97268580fc8e8204946f79825331ee">&#9670;&nbsp;</a></span>LCD_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94">byte</a> LCD_error = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="LCD_8c_source.html#l00094">94</a> of file <a class="el" href="LCD_8c_source.html">LCD.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00099">i2c_Start()</a>, <a class="el" href="LCD_8c_source.html#l00112">i2c_Transmit()</a>, <a class="el" href="LCD_8c_source.html#l00132">LCD_init()</a>, and <a class="el" href="LCD_8c_source.html#l00295">LCD_write()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 7 2020 22:00:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 7 2020 22:38:28 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

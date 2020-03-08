@@ -91,12 +91,16 @@
 static byte _displayControl = LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF;
 static byte _displayMode = LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT;
 
+static byte LCD_error = 0;
+
 // ===============================================
 ///@brief I2C HAL
 /// Interface with the project TWI code
 void i2c_Start()
 {
-    TWI_StartTransmission(DISPLAY_ADDRESS1<<1, 20);
+	if(LCD_error)
+		return;
+    LCD_error = TWI_StartTransmission(DISPLAY_ADDRESS1<<1, 20);
 	delayms(10); //wait a bit for display to enable
 } //i2c_Start
 
@@ -107,6 +111,8 @@ void i2c_Start()
  */
 void i2c_Transmit(uint8_t data)
 {
+	if(LCD_error)
+		return;
 	TWI_SendByte(data);
 } //i2c_Transmit
 
@@ -119,25 +125,29 @@ void i2c_End()
 	delayms(10); //wait a bit for display to disable
 } //i2c_Start
 // ===============================================
-                                                   
-// ===============================================
 /*
  * Initialize the display
  *
  */
-void LCD_init()
+int LCD_init()
 {
-  i2c_Start();
-  i2c_Transmit(SPECIAL_COMMAND);                      //Send special command character
-  i2c_Transmit(LCD_DISPLAYCONTROL | _displayControl); //Send the display command
-  i2c_Transmit(SPECIAL_COMMAND);                      //Send special command character
-  i2c_Transmit(LCD_ENTRYMODESET | _displayMode);      //Send the entry mode command
-  i2c_Transmit(SETTING_COMMAND);                      //Put LCD into setting mode
-  i2c_Transmit(CLEAR_COMMAND);                        //Send clear display command
-  i2c_End();                              //Stop transmission
+  
+  LCD_error = TWI_StartTransmission(DISPLAY_ADDRESS1<<1, 20);
+  if(LCD_error)
+	return(LCD_error);
+
+  TWI_SendByte(SPECIAL_COMMAND);                      //Send special command character
+  TWI_SendByte(LCD_DISPLAYCONTROL | _displayControl); //Send the display command
+  TWI_SendByte(SPECIAL_COMMAND);                      //Send special command character
+  TWI_SendByte(LCD_ENTRYMODESET | _displayMode);      //Send the entry mode command
+  TWI_SendByte(SETTING_COMMAND);                      //Put LCD into setting mode
+  TWI_SendByte(CLEAR_COMMAND);                        //Send clear display command
+  TWI_StopTransmission();
 
   delayms(50);                                      //let things settle a bit
 } //init
+                                                   
+// ===============================================
 
 /*
   * Send a command to the display.
@@ -285,6 +295,8 @@ uint8_t LCD_putb(uint8_t b)
 size_t LCD_write(const uint8_t *buffer, size_t size)
 {
   size_t n = 0;
+  if(LCD_error)
+	return;
   i2c_Start(); // i2c_Transmit to device
   while (size--)
   {

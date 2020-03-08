@@ -277,32 +277,43 @@ int main(void)
     printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
     initialize_clock(300);
     display_clock();
+    sep();
 
 	///@ initialize Optional I2C LCD
 #ifdef LCD_SUPPORT
-	LCD_init();
-    LCD_setFastBacklightRGB ( 0x80, 0x80, 0x80 );
-    LCD_puts("HP85DISK");
+	if ( !LCD_init() )
+	{
+		printf("I2C LCD initialization start\n");
+		LCD_setFastBacklightRGB ( 0x80, 0x80, 0x80 );
+		LCD_puts("HP85DISK");
+		printf("I2C LCD initialized\n");
+	}
+	else
+	{
+		printf("I2C LCD NOT attached\n");
+	}
+    sep();
 #endif
 
     ///@ initialize MMC bus
-    sep();
+    printf("MMC initializing start\n");
     mmc_init(1);
+    printf("MMC initialized\n");
+    sep();
 
     ///@ initialize bus state as soon as practical
     gpib_bus_init();
-    printf("initializing GPIB bus\n");
+    printf("GPIB bus initialized\n");
 
     ///@ initialize Printer Capture
-    sep();
     printer_init();
-    printf("Printer Init done\n");
+    printf("Printer initialized\n");
 
     ///@ initialize GPIB timer tasks
     sep();
     printf("GPIB Timer Setup\n");
     gpib_timer_init();
-    printf("GPIB Timer init done\n");
+    printf("GPIB Timer initialized\n");
 
     ///@brief Process hp85disk emulator config file
     gpib_file_init();
@@ -312,9 +323,9 @@ int main(void)
     ///Must be done AFTER gpib_file_init() so we have a valid configuration
     gpib_state_init();
     printf("GPIB State init done\n");
+    sep();
 
     ///@brief Display Configuration
-    sep();
     display_Config();
 
     ///@brief Format any drives that do not yet exist

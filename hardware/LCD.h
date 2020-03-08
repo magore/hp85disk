@@ -54,7 +54,7 @@ typedef uint8_t byte;
 void i2c_Start ( void );
 void i2c_Transmit ( uint8_t data );
 void i2c_End ( void );
-void LCD_init ( void );
+int LCD_init ( void );
 void LCD_command ( byte command );
 void LCD_specialCommand ( byte command );
 void LCD_specialCommandCount ( byte command , byte count );
