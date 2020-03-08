@@ -72,7 +72,7 @@ static inline void TWI_Disable(void)
 
 
 /** @brief Sends a TWI STOP onto the TWI bus, terminating communication with the currently addressed device. */
-static inline void TWI_StopTransmission(void)
+inline void TWI_StopTransmission(void)
 {
     TWCR = ((1 << TWINT) | (1 << TWSTO) | (1 << TWEN));
 }

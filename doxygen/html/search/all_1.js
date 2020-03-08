@@ -12,6 +12,7 @@ var searchData=
   ['actime',['actime',['../structutimbuf.html#aa39cf0bad7eff4df6239528506a557df',1,'utimbuf']]],
   ['addr',['addr',['../structSDIO__CTRL.html#a15025848d3f3733f366504d30a1d9bb2',1,'SDIO_CTRL']]],
   ['address',['ADDRESS',['../structHeaderType.html#a70edfd477c537b2fa51c1aa63fcc7bee',1,'HeaderType::ADDRESS()'],['../structDeviceType.html#a62529b7435785e39e8e7c5019303c2dd',1,'DeviceType::ADDRESS()']]],
+  ['address_5fcommand',['ADDRESS_COMMAND',['../LCD_8h.html#acd2a62a5b755ee770ac11c711e4c8c68',1,'LCD.h']]],
   ['addressblocks',['AddressBlocks',['../structSS80StateType.html#a6cffa1e36a57bce4188ede4bd9dbd7ad',1,'SS80StateType']]],
   ['adjugate',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['all',['all',['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t']]],

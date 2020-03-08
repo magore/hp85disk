@@ -18,6 +18,8 @@ var searchData=
   ['elapsed',['elapsed',['../struct__gpib__t.html#a99a38aef880eb075f625f33d7bac31dd',1,'_gpib_t']]],
   ['emfile',['EMFILE',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf',1,'posix.h']]],
   ['emlink',['EMLINK',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aae8a4cdbd60a66eb9705bcb0a655e94fe',1,'posix.h']]],
+  ['enable_5fsplash_5fdisplay',['ENABLE_SPLASH_DISPLAY',['../LCD_8h.html#a9c8923f50f5f3807acca803f7f38945d',1,'LCD.h']]],
+  ['enable_5fsystem_5fmessage_5fdisplay',['ENABLE_SYSTEM_MESSAGE_DISPLAY',['../LCD_8h.html#a6c1c841cf7cf37d9d82fc79e9d46d25b',1,'LCD.h']]],
   ['enable_5fsystem_5ftask',['enable_system_task',['../timer_8h.html#a9827e02881cff25ff30c35c7d8ed3ac4',1,'timer.h']]],
   ['enable_5ftimers',['enable_timers',['../timer_8c.html#ac97e80c15c73721fbc9f5071f6681fac',1,'enable_timers():&#160;timer.c'],['../timer_8h.html#a0e736ce66a2bc05cc14b7a282fa52b73',1,'enable_timers(void):&#160;timer.c']]],
   ['end',['end',['../structdst__t.html#a9a6e1d16a7057ad1206b9230b073f99f',1,'dst_t']]],

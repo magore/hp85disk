@@ -65,6 +65,9 @@ PPR_REVERSE_BITS ?= 1
 
 # Do we have an RTC - code currently assumes DS1307 or DS3231
 RTC_SUPPORT := 1
+
+# Do we have an I2C LCD
+LCD_SUPPORT := 1
 # ==============================================
 
 
@@ -87,6 +90,7 @@ POSIX_TESTS=1
 LIF_SUPPORT=1
 
 
+# ==============================================
 HARDWARE = \
 	hardware/hal.c \
 	hardware/ram.c \
@@ -97,6 +101,10 @@ HARDWARE = \
 # We have an RTC
 ifeq ($(RTC_SUPPORT),1)
 	HARDWARE += hardware/rtc.c 
+endif
+# We have an I2C LCD
+ifeq ($(LCD_SUPPORT),1)
+	HARDWARE += hardware/LCD.c 
 endif
 
 LIB = \
@@ -183,6 +191,11 @@ DEFS += BAUD=$(BAUD)
 
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
+endif
+
+# We have an I2C LCD
+ifeq ($(LCD_SUPPORT),1)
+	DEFS += LCD_SUPPORT
 endif
 
 ifeq ($(POSIX_TESTS),1)

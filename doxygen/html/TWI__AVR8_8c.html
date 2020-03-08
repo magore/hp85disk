@@ -85,9 +85,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a318b14612e67336a8fd6b71263d6e07a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWI__AVR8_8c.html#a318b14612e67336a8fd6b71263d6e07a">TWI_Disable</a> (void)</td></tr>
 <tr class="memdesc:a318b14612e67336a8fd6b71263d6e07a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable I2C.  <a href="#a318b14612e67336a8fd6b71263d6e07a">More...</a><br /></td></tr>
 <tr class="separator:a318b14612e67336a8fd6b71263d6e07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2949f6e420bec4caf6b005a4e7bdf0a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWI__AVR8_8c.html#af2949f6e420bec4caf6b005a4e7bdf0a">TWI_StopTransmission</a> (void)</td></tr>
-<tr class="memdesc:af2949f6e420bec4caf6b005a4e7bdf0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a TWI STOP onto the TWI bus, terminating communication with the currently addressed device.  <a href="#af2949f6e420bec4caf6b005a4e7bdf0a">More...</a><br /></td></tr>
-<tr class="separator:af2949f6e420bec4caf6b005a4e7bdf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053f3f8c0c05407d204375de911dcbbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWI__AVR8_8c.html#a053f3f8c0c05407d204375de911dcbbb">TWI_StopTransmission</a> (void)</td></tr>
+<tr class="memdesc:a053f3f8c0c05407d204375de911dcbbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a TWI STOP onto the TWI bus, terminating communication with the currently addressed device.  <a href="#a053f3f8c0c05407d204375de911dcbbb">More...</a><br /></td></tr>
+<tr class="separator:a053f3f8c0c05407d204375de911dcbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e9fac0280a2414490f628071c0073c2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TWI__AVR8_8c.html#a5e9fac0280a2414490f628071c0073c2">TWI_StartTransmission</a> (const uint8_t SlaveAddress, const uint8_t TimeoutMS)</td></tr>
 <tr class="memdesc:a5e9fac0280a2414490f628071c0073c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start I2C transmission.  <a href="#a5e9fac0280a2414490f628071c0073c2">More...</a><br /></td></tr>
 <tr class="separator:a5e9fac0280a2414490f628071c0073c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -309,7 +309,7 @@ Error code on fail. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="TWI__AVR8_8c_source.html#l00158">158</a> of file <a class="el" href="TWI__AVR8_8c_source.html">TWI_AVR8.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00108">i2c_Transmit()</a>, <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
 
 </div>
 </div>
@@ -353,12 +353,12 @@ TWI error value on fail. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="TWI__AVR8_8c_source.html#l00088">88</a> of file <a class="el" href="TWI__AVR8_8c_source.html">TWI_AVR8.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00097">i2c_Start()</a>, <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
 
 </div>
 </div>
-<a id="af2949f6e420bec4caf6b005a4e7bdf0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2949f6e420bec4caf6b005a4e7bdf0a">&#9670;&nbsp;</a></span>TWI_StopTransmission()</h2>
+<a id="a053f3f8c0c05407d204375de911dcbbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a053f3f8c0c05407d204375de911dcbbb">&#9670;&nbsp;</a></span>TWI_StopTransmission()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +367,7 @@ TWI error value on fail. </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void TWI_StopTransmission </td>
+          <td class="memname">void TWI_StopTransmission </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -376,7 +376,7 @@ TWI error value on fail. </dd></dl>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -385,7 +385,7 @@ TWI error value on fail. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="TWI__AVR8_8c_source.html#l00075">75</a> of file <a class="el" href="TWI__AVR8_8c_source.html">TWI_AVR8.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="LCD_8c_source.html#l00116">i2c_End()</a>, <a class="el" href="TWI__AVR8_8c_source.html#l00200">TWI_ReadPacket()</a>, and <a class="el" href="TWI__AVR8_8c_source.html#l00252">TWI_WritePacket()</a>.</p>
 
 </div>
 </div>
@@ -464,7 +464,7 @@ Error code on fail. </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 7 2020 16:42:42 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 7 2020 22:00:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

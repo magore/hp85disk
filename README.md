@@ -859,6 +859,11 @@ ___
       * GPIO functions, spi hardware abstraction layer and chip select logic
     * [iom1284p.h](hardware/iom1284p.h)
       * GPIO map for ATEMEGA 1284p
+    * [LCD.c](hardware/LCD.c)
+    * [LCD.h](hardware/LCD.h)
+      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
+      * https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
+        * Modified for this project
     * [mkdef.c](hardware/mkdef.c)
       * Not used
     * [pins.txt](hardware/pins.txt)

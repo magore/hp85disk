@@ -87,6 +87,7 @@ typedef unsigned long int size_t;
 #include "spi.h"
 #include "rtc.h"
 #include "TWI_AVR8.h"
+#include "LCD.h"
 #include "posix/posix.h"
 
 // sys.c defines alternative safe functions

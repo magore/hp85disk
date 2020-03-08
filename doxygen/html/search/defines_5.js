@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['enable_5fsplash_5fdisplay',['ENABLE_SPLASH_DISPLAY',['../LCD_8h.html#a9c8923f50f5f3807acca803f7f38945d',1,'LCD.h']]],
+  ['enable_5fsystem_5fmessage_5fdisplay',['ENABLE_SYSTEM_MESSAGE_DISPLAY',['../LCD_8h.html#a6c1c841cf7cf37d9d82fc79e9d46d25b',1,'LCD.h']]],
   ['enter_5fff',['ENTER_FF',['../ff_8c.html#a458e336ac53f8249ed02d844469b7076',1,'ff.c']]],
   ['eof',['EOF',['../ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;ff.h'],['../posix_8h.html#a59adc4c82490d23754cd39c2fb99b0da',1,'EOF():&#160;posix.h']]],
   ['eoi',['EOI',['../gpib__hal_8h.html#a04c9015da7e7ea45f3b80793809e2d7b',1,'gpib_hal.h']]],

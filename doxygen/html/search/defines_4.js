@@ -18,6 +18,9 @@ var searchData=
   ['dir_5fmodtime',['DIR_ModTime',['../ff_8c.html#aa136ac8eaf0b3febba999e37b7d01803',1,'ff.c']]],
   ['dir_5fname',['DIR_Name',['../ff_8c.html#afa89348e9fc2de82ae9e12c661366b0e',1,'ff.c']]],
   ['dir_5fntres',['DIR_NTres',['../ff_8c.html#a87ee1f701c2ab941862e3ce00c1c1e9d',1,'ff.c']]],
+  ['disable_5fsplash_5fdisplay',['DISABLE_SPLASH_DISPLAY',['../LCD_8h.html#a88bf8ef5acd0c507a01bd5887e492f44',1,'LCD.h']]],
+  ['disable_5fsystem_5fmessage_5fdisplay',['DISABLE_SYSTEM_MESSAGE_DISPLAY',['../LCD_8h.html#a035fd1aafb0b58e9bd8d4a98b42c126c',1,'LCD.h']]],
+  ['display_5faddress1',['DISPLAY_ADDRESS1',['../LCD_8h.html#a855ec04b8fa71f0fc6488ca767aa1b20',1,'LCD.h']]],
   ['drv_5fmmc',['DRV_MMC',['../diskio_8c.html#a5eccf61399d126e38e5f2f7ec61bb29f',1,'diskio.c']]],
   ['ds1307_5fr',['DS1307_R',['../rtc_8h.html#a4281d4baba9be3ab3ed9156d89f72fc5',1,'rtc.h']]],
   ['ds1307_5fw',['DS1307_W',['../rtc_8h.html#aa7571989952421946d1ecd5575584100',1,'rtc.h']]]

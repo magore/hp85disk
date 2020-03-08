@@ -278,6 +278,13 @@ int main(void)
     initialize_clock(300);
     display_clock();
 
+	///@ initialize Optional I2C LCD
+#ifdef LCD_SUPPORT
+	LCD_init();
+    LCD_setFastBacklightRGB ( 0x80, 0x80, 0x80 );
+    LCD_puts("HP85DISK");
+#endif
+
     ///@ initialize MMC bus
     sep();
     mmc_init(1);

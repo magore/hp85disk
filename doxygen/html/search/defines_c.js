@@ -1,6 +1,7 @@
 var searchData=
 [
   ['malloc',['malloc',['../user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99',1,'user_config.h']]],
+  ['max_5fcolumns',['MAX_COLUMNS',['../LCD_8h.html#a2cc6f39fc4594f0e734b2588129fba03',1,'LCD.h']]],
   ['max_5fdevices',['MAX_DEVICES',['../drives_8c.html#a4e132cfaa78353e3af1474a86b2dd535',1,'MAX_DEVICES():&#160;drives.c'],['../drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535',1,'MAX_DEVICES():&#160;drives.h']]],
   ['max_5fdir',['MAX_DIR',['../ff_8c.html#a556a1452c85d74c908fe071754ce4a71',1,'ff.c']]],
   ['max_5fdir_5fex',['MAX_DIR_EX',['../ff_8c.html#aeac7903cb4fde8e45722fca3244257e7',1,'ff.c']]],
@@ -11,6 +12,7 @@ var searchData=
   ['max_5ffile_5fname_5flen',['MAX_FILE_NAME_LEN',['../drives_8h.html#a835262f9c26026aab5f91a528f57ad8f',1,'drives.h']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'posix.h']]],
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],
+  ['max_5frows',['MAX_ROWS',['../LCD_8h.html#a3b94af9dcb0358f28d175d80eed98330',1,'LCD.h']]],
   ['max_5fstack',['MAX_STACK',['../drives_8c.html#af24298a5ce56647751e432673282c6e2',1,'drives.c']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],
   ['maxcyl',['MAXCYL',['../td02lif_8h.html#aacffa7a6e218e2027e0702985d5177a7',1,'td02lif.h']]],

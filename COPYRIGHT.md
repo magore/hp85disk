@@ -101,6 +101,16 @@ ___
 
 ___
 
+## Teledisk Code and Documentation
+ @Credits
+ * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
+   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+     * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
+     * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
+     * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
+___
+
+
 ## FatFs Copyright (C) 2013-, ChaN, all right reserved.
 
  FatFs module is a generic FAT file system module for small embedded
@@ -116,14 +126,15 @@ ___
 
 ___
 
-## Teledisk Code and Documentation
- @Credits
- * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
-   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
-     * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
-     * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
-     * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
+
+## SParkFun I2C,SPI,Serial LCD
+    * [LCD.c](hardware/LCD.c)
+    * [LCD.h](hardware/LCD.h)
+      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
+      * Based on: https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
+
 ___
+
 
 
 # Notice
