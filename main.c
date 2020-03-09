@@ -293,7 +293,7 @@ int main(void)
 
 		LCD_pos(0,0);
 		lcd_printf("hp85disk V2.0\n");
-		lcd_printf("(C)Mike Gore\n");
+		lcd_printf("(C)Mike Gore ");
 		// SparkFun V1.1 firmware loses the last character when the LCD goes to sleep 
 
 		printf("I2C LCD initialization Done\n");
@@ -352,9 +352,9 @@ int main(void)
 #ifdef LCD_SUPPORT
 	LCD_pos(0,0);
 	lcd_printf("SS80  Dives:%d\n",(int) count_drive_types(SS80_TYPE));
-	lcd_printf("AMIGO Dives:%d\n",(int) count_drive_types(AMIGO_TYPE));
-	lcd_printf("Baud:%ld\n",baud);
-	lcd_printf("Debug: %04xH\n", (int)debuglevel);
+	lcd_printf("AMIGO Dives:%d ",(int) count_drive_types(AMIGO_TYPE));
+	// lcd_printf("Baud:%ld\n",baud);
+	//lcd_printf("Debug: %04xH\n", (int)debuglevel);
 #endif
 
 
