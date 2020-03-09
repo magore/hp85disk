@@ -20988,7 +20988,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="LED3" library="SparkFun-LED" deviceset="LED" device="1206" value="Green">
 <attribute name="PROD_ID" value="DIO-09910"/>
 </part>
-<part name="R24" library="SparkFun-Resistors" deviceset="4.7KOHM" device="-0603-1/10W-1%" value="240"/>
+<part name="R24" library="SparkFun-Resistors" deviceset="4.7KOHM" device="-0603-1/10W-1%" value="240R"/>
 <part name="GND25" library="SparkFun" deviceset="GND" device=""/>
 <part name="LED4" library="SparkFun-LED" deviceset="LED" device="1206" value="Green">
 <attribute name="PROD_ID" value="DIO-09910"/>
@@ -22645,20 +22645,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="233.68" y="27.94"/>
 <pinref part="R30" gate="G$1" pin="2"/>
 <wire x1="200.66" y1="43.18" x2="205.74" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="205.74" y1="43.18" x2="205.74" y2="37.084" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="43.18" x2="205.74" y2="36.83" width="0.1524" layer="91"/>
 <wire x1="205.74" y1="36.83" x2="205.74" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="205.74" y1="27.94" x2="220.98" y2="27.94" width="0.1524" layer="91"/>
 <junction x="220.98" y="27.94"/>
 <pinref part="R31" gate="G$1" pin="2"/>
 <wire x1="200.66" y1="36.83" x2="205.74" y2="36.83" width="0.1524" layer="91"/>
-<wire x1="205.74" y1="36.83" x2="205.74" y2="37.084" width="0.1524" layer="91"/>
-<junction x="205.74" y="37.084"/>
 <wire x1="246.38" y1="73.66" x2="254" y2="73.66" width="0.1524" layer="91"/>
 <junction x="246.38" y="73.66"/>
 <pinref part="C18" gate="G$1" pin="1"/>
 <wire x1="254" y1="73.66" x2="254" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="Q1" gate="A" pin="G1"/>
 <pinref part="Q1" gate="A" pin="G2"/>
+<junction x="205.74" y="36.83"/>
 </segment>
 </net>
 <net name="5V_SDA" class="0">
