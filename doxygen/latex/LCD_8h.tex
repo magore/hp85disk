@@ -68,6 +68,8 @@
 \#define \hyperlink{LCD_8h_acf5999180233790bb2c9902efde58f7f}{L\+C\+D\+\_\+\+M\+O\+V\+E\+R\+I\+G\+HT}~0x04
 \item 
 \#define \hyperlink{LCD_8h_aafb86adb0dfca1e65d65b2cd1946a009}{L\+C\+D\+\_\+\+M\+O\+V\+E\+L\+E\+FT}~0x00
+\item 
+\#define \hyperlink{LCD_8h_a6a90c49be18cd45434c04afd79b0bf9d}{L\+C\+D\+\_\+\+A\+D\+DR}~(\hyperlink{LCD_8h_a855ec04b8fa71f0fc6488ca767aa1b20}{D\+I\+S\+P\+L\+A\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S1}$<$$<$1)
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -77,14 +79,24 @@ typedef uint8\+\_\+t \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{LCD_8h_ab5c8e4d32c122ec2d629d46b0ca86c0a}{i2c\+\_\+\+Start} (void)
-\begin{DoxyCompactList}\small\item\em I2C H\+AL Interface with the project T\+WI code. \end{DoxyCompactList}\item 
-void \hyperlink{LCD_8h_adfa8b0c32a3cfe30e0bc748d77fb6e2f}{i2c\+\_\+\+Transmit} (uint8\+\_\+t data)
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_a55303cdfb3e4332e412f55b7c79d7937}{I2\+C\+\_\+\+Start} (uint8\+\_\+t addr)
 \item 
-void \hyperlink{LCD_8h_a9004eeefb1466b38c845b6d37fca5726}{i2c\+\_\+\+End} (void)
+void \hyperlink{LCD_8h_afce134e0a1b6a8bc503c97b37639c9e6}{I2\+C\+\_\+\+Stop} (void)
 \item 
-int \hyperlink{LCD_8h_ad47cbc13883394f70b2999a6f20cdbe3}{L\+C\+D\+\_\+init} (void)
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_a1ce873575071f7fdcce66de93b9d4076}{I2\+C\+\_\+\+Send} (uint8\+\_\+t data)
 \item 
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_a4d9a4fe974894c7ce765a0b51995a231}{I2\+C\+\_\+\+Send\+Message} (uint8\+\_\+t addr, const uint8\+\_\+t $\ast$buffer, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\item 
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_a265add3cad6e789a79c82307d9d25930}{L\+C\+D\+\_\+putb} (uint8\+\_\+t b)
+\item 
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_afd9728ff619a2e7202b070692faa50dc}{L\+C\+D\+\_\+write} (const uint8\+\_\+t $\ast$buffer, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\item 
+void \hyperlink{LCD_8h_a0220892786f95459e243858fff5c6317}{L\+C\+D\+\_\+puts} (const uint8\+\_\+t $\ast$buffer)
+\item 
+void \hyperlink{LCD_8h_a7844fae53385512ffbfc346efc6d4676}{L\+C\+D\+\_\+pos} (uint8\+\_\+t x, uint8\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em \subsection*{Character and String functions }\end{DoxyCompactList}\item 
+\hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{LCD_8h_a5e03b3c1a05e2c882b3547305d74d404}{L\+C\+D\+\_\+init} (uint8\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em end of I2C H\+AL for hp85disk \end{DoxyCompactList}\item 
 void \hyperlink{LCD_8h_a45d63328c8a1e7f8821fbeda2970c4e5}{L\+C\+D\+\_\+command} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} command)
 \item 
 void \hyperlink{LCD_8h_aa43b0d311d97a4408e2bceec288df899}{L\+C\+D\+\_\+special\+Command} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} command)
@@ -100,12 +112,6 @@ void \hyperlink{LCD_8h_ad736f8081602ea5cff910589d4ac93af}{L\+C\+D\+\_\+set\+Curs
 void \hyperlink{LCD_8h_afd4eea03266721a7062901f7148a7290}{L\+C\+D\+\_\+create\+Char} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} location, \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} charmap \mbox{[}$\,$\mbox{]})
 \item 
 void \hyperlink{LCD_8h_a77f34ea4b9d4fa6852a8ce08313b30be}{L\+C\+D\+\_\+write\+Char} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} location)
-\item 
-uint8\+\_\+t \hyperlink{LCD_8h_aeabb5c9b4899ca7a3508860dafa12bed}{L\+C\+D\+\_\+putb} (uint8\+\_\+t b)
-\item 
-\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{LCD_8h_a2c65a550dfb9db1714f749c17ba2f396}{L\+C\+D\+\_\+write} (const uint8\+\_\+t $\ast$buffer, \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
-\item 
-void \hyperlink{LCD_8h_a0220892786f95459e243858fff5c6317}{L\+C\+D\+\_\+puts} (const uint8\+\_\+t $\ast$buffer)
 \item 
 void \hyperlink{LCD_8h_ad7550cc50935b6e2ff95931dff779aaa}{L\+C\+D\+\_\+no\+Display} (void)
 \item 
@@ -134,10 +140,6 @@ void \hyperlink{LCD_8h_a1c938cd6c6af6a0cb52d4681261e3064}{L\+C\+D\+\_\+move\+Cur
 void \hyperlink{LCD_8h_ac84706899ac097472de6731ff498cb4f}{L\+C\+D\+\_\+move\+Cursor\+Right\+Count} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} count)
 \item 
 void \hyperlink{LCD_8h_a882f27ae02260227e908d77cefe5154e}{L\+C\+D\+\_\+move\+Cursor\+Right} (void)
-\item 
-void \hyperlink{LCD_8h_a825dff38e100da016098dca085d6bf1c}{L\+C\+D\+\_\+set\+Backlight\+R\+GB} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} r, \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} g, \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} b)
-\item 
-void \hyperlink{LCD_8h_a7fbd998551eef15e50eab9f1bedff60b}{L\+C\+D\+\_\+set\+Backlight} (unsigned long rgb)
 \item 
 void \hyperlink{LCD_8h_a6eaac92db5eac390588d8aa8dc9c77f9}{L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+GB} (\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} r, \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} g, \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} b)
 \item 
@@ -236,7 +238,7 @@ Definition at line 20 of file L\+C\+D.\+h.
 
 
 
-Referenced by L\+C\+D\+\_\+disable\+System\+Messages().
+Referenced by L\+C\+D\+\_\+disable\+System\+Messages(), and L\+C\+D\+\_\+init().
 
 \mbox{\Hypertarget{LCD_8h_a855ec04b8fa71f0fc6488ca767aa1b20}\label{LCD_8h_a855ec04b8fa71f0fc6488ca767aa1b20}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!D\+I\+S\+P\+L\+A\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S1@{D\+I\+S\+P\+L\+A\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S1}}
@@ -247,10 +249,6 @@ Referenced by L\+C\+D\+\_\+disable\+System\+Messages().
 
 
 Definition at line 6 of file L\+C\+D.\+h.
-
-
-
-Referenced by i2c\+\_\+\+Start(), and L\+C\+D\+\_\+init().
 
 \mbox{\Hypertarget{LCD_8h_a9c8923f50f5f3807acca803f7f38945d}\label{LCD_8h_a9c8923f50f5f3807acca803f7f38945d}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!E\+N\+A\+B\+L\+E\+\_\+\+S\+P\+L\+A\+S\+H\+\_\+\+D\+I\+S\+P\+L\+AY@{E\+N\+A\+B\+L\+E\+\_\+\+S\+P\+L\+A\+S\+H\+\_\+\+D\+I\+S\+P\+L\+AY}}
@@ -279,6 +277,16 @@ Definition at line 19 of file L\+C\+D.\+h.
 
 
 Referenced by L\+C\+D\+\_\+enable\+System\+Messages().
+
+\mbox{\Hypertarget{LCD_8h_a6a90c49be18cd45434c04afd79b0bf9d}\label{LCD_8h_a6a90c49be18cd45434c04afd79b0bf9d}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+\+A\+D\+DR@{L\+C\+D\+\_\+\+A\+D\+DR}}
+\index{L\+C\+D\+\_\+\+A\+D\+DR@{L\+C\+D\+\_\+\+A\+D\+DR}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{L\+C\+D\+\_\+\+A\+D\+DR}{LCD\_ADDR}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+A\+D\+DR~(\hyperlink{LCD_8h_a855ec04b8fa71f0fc6488ca767aa1b20}{D\+I\+S\+P\+L\+A\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S1}$<$$<$1)}
+
+
+
+Definition at line 54 of file L\+C\+D.\+h.
 
 \mbox{\Hypertarget{LCD_8h_a4b28243034cec656b0ed490ba6979752}\label{LCD_8h_a4b28243034cec656b0ed490ba6979752}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+\+B\+L\+I\+N\+K\+O\+FF@{L\+C\+D\+\_\+\+B\+L\+I\+N\+K\+O\+FF}}
@@ -524,7 +532,7 @@ Definition at line 30 of file L\+C\+D.\+h.
 
 
 
-Referenced by L\+C\+D\+\_\+set\+Cursor().
+Referenced by L\+C\+D\+\_\+init(), and L\+C\+D\+\_\+set\+Cursor().
 
 \mbox{\Hypertarget{LCD_8h_a2cc6f39fc4594f0e734b2588129fba03}\label{LCD_8h_a2cc6f39fc4594f0e734b2588129fba03}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!M\+A\+X\+\_\+\+C\+O\+L\+U\+M\+NS@{M\+A\+X\+\_\+\+C\+O\+L\+U\+M\+NS}}
@@ -622,51 +630,61 @@ Definition at line 4 of file L\+C\+D.\+h.
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{LCD_8h_a9004eeefb1466b38c845b6d37fca5726}\label{LCD_8h_a9004eeefb1466b38c845b6d37fca5726}} 
-\index{L\+C\+D.\+h@{L\+C\+D.\+h}!i2c\+\_\+\+End@{i2c\+\_\+\+End}}
-\index{i2c\+\_\+\+End@{i2c\+\_\+\+End}!L\+C\+D.\+h@{L\+C\+D.\+h}}
-\subsubsection{\texorpdfstring{i2c\+\_\+\+End()}{i2c\_End()}}
-{\footnotesize\ttfamily void i2c\+\_\+\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{LCD_8h_a1ce873575071f7fdcce66de93b9d4076}\label{LCD_8h_a1ce873575071f7fdcce66de93b9d4076}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!I2\+C\+\_\+\+Send@{I2\+C\+\_\+\+Send}}
+\index{I2\+C\+\_\+\+Send@{I2\+C\+\_\+\+Send}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+Send()}{I2C\_Send()}}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} I2\+C\+\_\+\+Send (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
 
 
 
-Definition at line 122 of file L\+C\+D.\+c.
+Definition at line 129 of file L\+C\+D.\+c.
 
 
 
-Referenced by L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), L\+C\+D\+\_\+special\+Command\+Count(), and L\+C\+D\+\_\+write().
+Referenced by L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+init(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), and L\+C\+D\+\_\+special\+Command\+Count().
 
-\mbox{\Hypertarget{LCD_8h_ab5c8e4d32c122ec2d629d46b0ca86c0a}\label{LCD_8h_ab5c8e4d32c122ec2d629d46b0ca86c0a}} 
-\index{L\+C\+D.\+h@{L\+C\+D.\+h}!i2c\+\_\+\+Start@{i2c\+\_\+\+Start}}
-\index{i2c\+\_\+\+Start@{i2c\+\_\+\+Start}!L\+C\+D.\+h@{L\+C\+D.\+h}}
-\subsubsection{\texorpdfstring{i2c\+\_\+\+Start()}{i2c\_Start()}}
-{\footnotesize\ttfamily void i2c\+\_\+\+Start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-
-
-I2C H\+AL Interface with the project T\+WI code. 
+\mbox{\Hypertarget{LCD_8h_a4d9a4fe974894c7ce765a0b51995a231}\label{LCD_8h_a4d9a4fe974894c7ce765a0b51995a231}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!I2\+C\+\_\+\+Send\+Message@{I2\+C\+\_\+\+Send\+Message}}
+\index{I2\+C\+\_\+\+Send\+Message@{I2\+C\+\_\+\+Send\+Message}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+Send\+Message()}{I2C\_SendMessage()}}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} I2\+C\+\_\+\+Send\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr,  }\item[{const uint8\+\_\+t $\ast$}]{buffer,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
 
 
 
-Definition at line 99 of file L\+C\+D.\+c.
+Definition at line 141 of file L\+C\+D.\+c.
 
 
 
-Referenced by L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), L\+C\+D\+\_\+special\+Command\+Count(), and L\+C\+D\+\_\+write().
+Referenced by L\+C\+D\+\_\+write().
 
-\mbox{\Hypertarget{LCD_8h_adfa8b0c32a3cfe30e0bc748d77fb6e2f}\label{LCD_8h_adfa8b0c32a3cfe30e0bc748d77fb6e2f}} 
-\index{L\+C\+D.\+h@{L\+C\+D.\+h}!i2c\+\_\+\+Transmit@{i2c\+\_\+\+Transmit}}
-\index{i2c\+\_\+\+Transmit@{i2c\+\_\+\+Transmit}!L\+C\+D.\+h@{L\+C\+D.\+h}}
-\subsubsection{\texorpdfstring{i2c\+\_\+\+Transmit()}{i2c\_Transmit()}}
-{\footnotesize\ttfamily void i2c\+\_\+\+Transmit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
-
-
-
-Definition at line 112 of file L\+C\+D.\+c.
+\mbox{\Hypertarget{LCD_8h_a55303cdfb3e4332e412f55b7c79d7937}\label{LCD_8h_a55303cdfb3e4332e412f55b7c79d7937}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!I2\+C\+\_\+\+Start@{I2\+C\+\_\+\+Start}}
+\index{I2\+C\+\_\+\+Start@{I2\+C\+\_\+\+Start}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+Start()}{I2C\_Start()}}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} I2\+C\+\_\+\+Start (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr }\end{DoxyParamCaption})}
 
 
 
-Referenced by L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), L\+C\+D\+\_\+special\+Command\+Count(), and L\+C\+D\+\_\+write().
+Definition at line 105 of file L\+C\+D.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Send\+Message(), L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+init(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), and L\+C\+D\+\_\+special\+Command\+Count().
+
+\mbox{\Hypertarget{LCD_8h_afce134e0a1b6a8bc503c97b37639c9e6}\label{LCD_8h_afce134e0a1b6a8bc503c97b37639c9e6}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!I2\+C\+\_\+\+Stop@{I2\+C\+\_\+\+Stop}}
+\index{I2\+C\+\_\+\+Stop@{I2\+C\+\_\+\+Stop}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+Stop()}{I2C\_Stop()}}
+{\footnotesize\ttfamily void I2\+C\+\_\+\+Stop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 117 of file L\+C\+D.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Send\+Message(), L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+init(), L\+C\+D\+\_\+putb(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), and L\+C\+D\+\_\+special\+Command\+Count().
 
 \mbox{\Hypertarget{LCD_8h_a551f46fb43c8323a68832cf8a0fa57e6}\label{LCD_8h_a551f46fb43c8323a68832cf8a0fa57e6}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+autoscroll@{L\+C\+D\+\_\+autoscroll}}
@@ -676,7 +694,7 @@ Referenced by L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+
 
 
 
-Definition at line 553 of file L\+C\+D.\+c.
+Definition at line 612 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a54fbc5807479ce4446f7ed77bf22159f}\label{LCD_8h_a54fbc5807479ce4446f7ed77bf22159f}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+blink@{L\+C\+D\+\_\+blink}}
@@ -686,7 +704,7 @@ Definition at line 553 of file L\+C\+D.\+c.
 
 
 
-Definition at line 368 of file L\+C\+D.\+c.
+Definition at line 421 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ab3d3c08a4027d3e918914c1562ced027}\label{LCD_8h_ab3d3c08a4027d3e918914c1562ced027}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+clear@{L\+C\+D\+\_\+clear}}
@@ -696,7 +714,7 @@ Definition at line 368 of file L\+C\+D.\+c.
 
 
 
-Definition at line 209 of file L\+C\+D.\+c.
+Definition at line 301 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a45d63328c8a1e7f8821fbeda2970c4e5}\label{LCD_8h_a45d63328c8a1e7f8821fbeda2970c4e5}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+command@{L\+C\+D\+\_\+command}}
@@ -706,7 +724,7 @@ Definition at line 209 of file L\+C\+D.\+c.
 
 
 
-Definition at line 158 of file L\+C\+D.\+c.
+Definition at line 247 of file L\+C\+D.\+c.
 
 
 
@@ -720,7 +738,7 @@ Referenced by L\+C\+D\+\_\+clear(), and L\+C\+D\+\_\+write\+Char().
 
 
 
-Definition at line 252 of file L\+C\+D.\+c.
+Definition at line 346 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a2cc73b1378ac046ae8296ac8341df424}\label{LCD_8h_a2cc73b1378ac046ae8296ac8341df424}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+cursor@{L\+C\+D\+\_\+cursor}}
@@ -730,7 +748,7 @@ Definition at line 252 of file L\+C\+D.\+c.
 
 
 
-Definition at line 350 of file L\+C\+D.\+c.
+Definition at line 403 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ad57b637d74530fd00d73d085c40fab24}\label{LCD_8h_ad57b637d74530fd00d73d085c40fab24}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+disable\+Splash@{L\+C\+D\+\_\+disable\+Splash}}
@@ -740,7 +758,7 @@ Definition at line 350 of file L\+C\+D.\+c.
 
 
 
-Definition at line 509 of file L\+C\+D.\+c.
+Definition at line 566 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a483bd215c4bfcea20a218ed1b896e2af}\label{LCD_8h_a483bd215c4bfcea20a218ed1b896e2af}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+disable\+System\+Messages@{L\+C\+D\+\_\+disable\+System\+Messages}}
@@ -750,7 +768,7 @@ Definition at line 509 of file L\+C\+D.\+c.
 
 
 
-Definition at line 489 of file L\+C\+D.\+c.
+Definition at line 544 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a87d40622bdcf1229b226da598d273dd4}\label{LCD_8h_a87d40622bdcf1229b226da598d273dd4}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+display@{L\+C\+D\+\_\+display}}
@@ -760,7 +778,7 @@ Definition at line 489 of file L\+C\+D.\+c.
 
 
 
-Definition at line 332 of file L\+C\+D.\+c.
+Definition at line 385 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a82071f3f2b44f16048c16dcfc5a61bb6}\label{LCD_8h_a82071f3f2b44f16048c16dcfc5a61bb6}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+enable\+Splash@{L\+C\+D\+\_\+enable\+Splash}}
@@ -770,7 +788,7 @@ Definition at line 332 of file L\+C\+D.\+c.
 
 
 
-Definition at line 499 of file L\+C\+D.\+c.
+Definition at line 555 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_afccece49a17a5c3c2459b4c69910d7da}\label{LCD_8h_afccece49a17a5c3c2459b4c69910d7da}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+enable\+System\+Messages@{L\+C\+D\+\_\+enable\+System\+Messages}}
@@ -780,7 +798,7 @@ Definition at line 499 of file L\+C\+D.\+c.
 
 
 
-Definition at line 478 of file L\+C\+D.\+c.
+Definition at line 532 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a55a6c94a28cf97f34a9e08bcc40255fd}\label{LCD_8h_a55a6c94a28cf97f34a9e08bcc40255fd}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+home@{L\+C\+D\+\_\+home}}
@@ -790,17 +808,21 @@ Definition at line 478 of file L\+C\+D.\+c.
 
 
 
-Definition at line 220 of file L\+C\+D.\+c.
+Definition at line 313 of file L\+C\+D.\+c.
 
-\mbox{\Hypertarget{LCD_8h_ad47cbc13883394f70b2999a6f20cdbe3}\label{LCD_8h_ad47cbc13883394f70b2999a6f20cdbe3}} 
+\mbox{\Hypertarget{LCD_8h_a5e03b3c1a05e2c882b3547305d74d404}\label{LCD_8h_a5e03b3c1a05e2c882b3547305d74d404}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+init@{L\+C\+D\+\_\+init}}
 \index{L\+C\+D\+\_\+init@{L\+C\+D\+\_\+init}!L\+C\+D.\+h@{L\+C\+D.\+h}}
 \subsubsection{\texorpdfstring{L\+C\+D\+\_\+init()}{LCD\_init()}}
-{\footnotesize\ttfamily int L\+C\+D\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} L\+C\+D\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr }\end{DoxyParamCaption})}
 
 
 
-Definition at line 132 of file L\+C\+D.\+c.
+end of I2C H\+AL for hp85disk 
+
+
+
+Definition at line 207 of file L\+C\+D.\+c.
 
 
 
@@ -814,7 +836,7 @@ Referenced by main().
 
 
 
-Definition at line 534 of file L\+C\+D.\+c.
+Definition at line 593 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a1c938cd6c6af6a0cb52d4681261e3064}\label{LCD_8h_a1c938cd6c6af6a0cb52d4681261e3064}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+move\+Cursor\+Left@{L\+C\+D\+\_\+move\+Cursor\+Left}}
@@ -824,7 +846,7 @@ Definition at line 534 of file L\+C\+D.\+c.
 
 
 
-Definition at line 428 of file L\+C\+D.\+c.
+Definition at line 481 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_aea636e78de1eb023df1ad97de2cec8aa}\label{LCD_8h_aea636e78de1eb023df1ad97de2cec8aa}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+move\+Cursor\+Left\+Count@{L\+C\+D\+\_\+move\+Cursor\+Left\+Count}}
@@ -834,7 +856,7 @@ Definition at line 428 of file L\+C\+D.\+c.
 
 
 
-Definition at line 419 of file L\+C\+D.\+c.
+Definition at line 472 of file L\+C\+D.\+c.
 
 
 
@@ -848,7 +870,7 @@ Referenced by L\+C\+D\+\_\+move\+Cursor\+Left().
 
 
 
-Definition at line 446 of file L\+C\+D.\+c.
+Definition at line 499 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ac84706899ac097472de6731ff498cb4f}\label{LCD_8h_ac84706899ac097472de6731ff498cb4f}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+move\+Cursor\+Right\+Count@{L\+C\+D\+\_\+move\+Cursor\+Right\+Count}}
@@ -858,7 +880,7 @@ Definition at line 446 of file L\+C\+D.\+c.
 
 
 
-Definition at line 438 of file L\+C\+D.\+c.
+Definition at line 491 of file L\+C\+D.\+c.
 
 
 
@@ -872,7 +894,7 @@ Referenced by L\+C\+D\+\_\+move\+Cursor\+Right().
 
 
 
-Definition at line 562 of file L\+C\+D.\+c.
+Definition at line 621 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ab89431c65621430bce6ba0ba5d993c98}\label{LCD_8h_ab89431c65621430bce6ba0ba5d993c98}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+no\+Blink@{L\+C\+D\+\_\+no\+Blink}}
@@ -882,7 +904,7 @@ Definition at line 562 of file L\+C\+D.\+c.
 
 
 
-Definition at line 359 of file L\+C\+D.\+c.
+Definition at line 412 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a005844226a74b8d5f4030a98cac0ad68}\label{LCD_8h_a005844226a74b8d5f4030a98cac0ad68}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+no\+Cursor@{L\+C\+D\+\_\+no\+Cursor}}
@@ -892,7 +914,7 @@ Definition at line 359 of file L\+C\+D.\+c.
 
 
 
-Definition at line 341 of file L\+C\+D.\+c.
+Definition at line 394 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ad7550cc50935b6e2ff95931dff779aaa}\label{LCD_8h_ad7550cc50935b6e2ff95931dff779aaa}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+no\+Display@{L\+C\+D\+\_\+no\+Display}}
@@ -902,17 +924,35 @@ Definition at line 341 of file L\+C\+D.\+c.
 
 
 
-Definition at line 323 of file L\+C\+D.\+c.
+Definition at line 376 of file L\+C\+D.\+c.
 
-\mbox{\Hypertarget{LCD_8h_aeabb5c9b4899ca7a3508860dafa12bed}\label{LCD_8h_aeabb5c9b4899ca7a3508860dafa12bed}} 
+\mbox{\Hypertarget{LCD_8h_a7844fae53385512ffbfc346efc6d4676}\label{LCD_8h_a7844fae53385512ffbfc346efc6d4676}} 
+\index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+pos@{L\+C\+D\+\_\+pos}}
+\index{L\+C\+D\+\_\+pos@{L\+C\+D\+\_\+pos}!L\+C\+D.\+h@{L\+C\+D.\+h}}
+\subsubsection{\texorpdfstring{L\+C\+D\+\_\+pos()}{LCD\_pos()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+pos (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x,  }\item[{uint8\+\_\+t}]{y }\end{DoxyParamCaption})}
+
+
+
+\subsection*{Character and String functions }
+
+==================================== 
+
+Definition at line 192 of file L\+C\+D.\+c.
+
+
+
+Referenced by L\+C\+D\+\_\+clear(), and main().
+
+\mbox{\Hypertarget{LCD_8h_a265add3cad6e789a79c82307d9d25930}\label{LCD_8h_a265add3cad6e789a79c82307d9d25930}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+putb@{L\+C\+D\+\_\+putb}}
 \index{L\+C\+D\+\_\+putb@{L\+C\+D\+\_\+putb}!L\+C\+D.\+h@{L\+C\+D.\+h}}
 \subsubsection{\texorpdfstring{L\+C\+D\+\_\+putb()}{LCD\_putb()}}
-{\footnotesize\ttfamily uint8\+\_\+t L\+C\+D\+\_\+putb (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} L\+C\+D\+\_\+putb (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{b }\end{DoxyParamCaption})}
 
 
 
-Definition at line 282 of file L\+C\+D.\+c.
+Definition at line 159 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a0220892786f95459e243858fff5c6317}\label{LCD_8h_a0220892786f95459e243858fff5c6317}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+puts@{L\+C\+D\+\_\+puts}}
@@ -922,11 +962,7 @@ Definition at line 282 of file L\+C\+D.\+c.
 
 
 
-Definition at line 315 of file L\+C\+D.\+c.
-
-
-
-Referenced by main().
+Definition at line 184 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a13ac926954d6ce310f23042c6cc40438}\label{LCD_8h_a13ac926954d6ce310f23042c6cc40438}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+right\+To\+Left@{L\+C\+D\+\_\+right\+To\+Left}}
@@ -936,7 +972,7 @@ Referenced by main().
 
 
 
-Definition at line 543 of file L\+C\+D.\+c.
+Definition at line 602 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a2edfd784b77ba79fb23d821c219a76c1}\label{LCD_8h_a2edfd784b77ba79fb23d821c219a76c1}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+save\+Splash@{L\+C\+D\+\_\+save\+Splash}}
@@ -946,7 +982,7 @@ Definition at line 543 of file L\+C\+D.\+c.
 
 
 
-Definition at line 519 of file L\+C\+D.\+c.
+Definition at line 577 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a3f74bc9031a168bb12380770001f8fcf}\label{LCD_8h_a3f74bc9031a168bb12380770001f8fcf}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+scroll\+Display\+Left@{L\+C\+D\+\_\+scroll\+Display\+Left}}
@@ -956,7 +992,7 @@ Definition at line 519 of file L\+C\+D.\+c.
 
 
 
-Definition at line 389 of file L\+C\+D.\+c.
+Definition at line 442 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_afc40ef690000a5ffa612f12e11343587}\label{LCD_8h_afc40ef690000a5ffa612f12e11343587}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+scroll\+Display\+Left\+Count@{L\+C\+D\+\_\+scroll\+Display\+Left\+Count}}
@@ -966,7 +1002,7 @@ Definition at line 389 of file L\+C\+D.\+c.
 
 
 
-Definition at line 380 of file L\+C\+D.\+c.
+Definition at line 433 of file L\+C\+D.\+c.
 
 
 
@@ -980,7 +1016,7 @@ Referenced by L\+C\+D\+\_\+scroll\+Display\+Left().
 
 
 
-Definition at line 409 of file L\+C\+D.\+c.
+Definition at line 462 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a8a784a593074aea8c42505a11e17785b}\label{LCD_8h_a8a784a593074aea8c42505a11e17785b}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+scroll\+Display\+Right\+C\+Ount@{L\+C\+D\+\_\+scroll\+Display\+Right\+C\+Ount}}
@@ -990,7 +1026,7 @@ Definition at line 409 of file L\+C\+D.\+c.
 
 
 
-Definition at line 400 of file L\+C\+D.\+c.
+Definition at line 453 of file L\+C\+D.\+c.
 
 
 
@@ -1004,19 +1040,7 @@ Referenced by L\+C\+D\+\_\+scroll\+Display\+Right().
 
 
 
-Definition at line 593 of file L\+C\+D.\+c.
-
-\mbox{\Hypertarget{LCD_8h_a7fbd998551eef15e50eab9f1bedff60b}\label{LCD_8h_a7fbd998551eef15e50eab9f1bedff60b}} 
-\index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Backlight@{L\+C\+D\+\_\+set\+Backlight}}
-\index{L\+C\+D\+\_\+set\+Backlight@{L\+C\+D\+\_\+set\+Backlight}!L\+C\+D.\+h@{L\+C\+D.\+h}}
-\subsubsection{\texorpdfstring{L\+C\+D\+\_\+set\+Backlight()}{LCD\_setBacklight()}}
-{\footnotesize\ttfamily void L\+C\+D\+\_\+set\+Backlight (\begin{DoxyParamCaption}\item[{unsigned long}]{rgb }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{LCD_8h_a825dff38e100da016098dca085d6bf1c}\label{LCD_8h_a825dff38e100da016098dca085d6bf1c}} 
-\index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Backlight\+R\+GB@{L\+C\+D\+\_\+set\+Backlight\+R\+GB}}
-\index{L\+C\+D\+\_\+set\+Backlight\+R\+GB@{L\+C\+D\+\_\+set\+Backlight\+R\+GB}!L\+C\+D.\+h@{L\+C\+D.\+h}}
-\subsubsection{\texorpdfstring{L\+C\+D\+\_\+set\+Backlight\+R\+G\+B()}{LCD\_setBacklightRGB()}}
-{\footnotesize\ttfamily void L\+C\+D\+\_\+set\+Backlight\+R\+GB (\begin{DoxyParamCaption}\item[{\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte}}]{r,  }\item[{\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte}}]{g,  }\item[{\hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte}}]{b }\end{DoxyParamCaption})}
+Definition at line 653 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a290a5ebc3afc2398f00ab39be71d6474}\label{LCD_8h_a290a5ebc3afc2398f00ab39be71d6474}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Contrast@{L\+C\+D\+\_\+set\+Contrast}}
@@ -1026,7 +1050,7 @@ Definition at line 593 of file L\+C\+D.\+c.
 
 
 
-Definition at line 573 of file L\+C\+D.\+c.
+Definition at line 632 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_ad736f8081602ea5cff910589d4ac93af}\label{LCD_8h_ad736f8081602ea5cff910589d4ac93af}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Cursor@{L\+C\+D\+\_\+set\+Cursor}}
@@ -1036,7 +1060,11 @@ Definition at line 573 of file L\+C\+D.\+c.
 
 
 
-Definition at line 234 of file L\+C\+D.\+c.
+Definition at line 327 of file L\+C\+D.\+c.
+
+
+
+Referenced by L\+C\+D\+\_\+pos().
 
 \mbox{\Hypertarget{LCD_8h_aa58035aa2d1e22939f19a45eb1503c2d}\label{LCD_8h_aa58035aa2d1e22939f19a45eb1503c2d}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Fast\+Backlight@{L\+C\+D\+\_\+set\+Fast\+Backlight}}
@@ -1046,7 +1074,7 @@ Definition at line 234 of file L\+C\+D.\+c.
 
 
 
-Definition at line 467 of file L\+C\+D.\+c.
+Definition at line 521 of file L\+C\+D.\+c.
 
 \mbox{\Hypertarget{LCD_8h_a6eaac92db5eac390588d8aa8dc9c77f9}\label{LCD_8h_a6eaac92db5eac390588d8aa8dc9c77f9}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+GB@{L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+GB}}
@@ -1056,11 +1084,11 @@ Definition at line 467 of file L\+C\+D.\+c.
 
 
 
-Definition at line 453 of file L\+C\+D.\+c.
+Definition at line 506 of file L\+C\+D.\+c.
 
 
 
-Referenced by L\+C\+D\+\_\+set\+Fast\+Backlight(), and main().
+Referenced by L\+C\+D\+\_\+init(), and L\+C\+D\+\_\+set\+Fast\+Backlight().
 
 \mbox{\Hypertarget{LCD_8h_aa43b0d311d97a4408e2bceec288df899}\label{LCD_8h_aa43b0d311d97a4408e2bceec288df899}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+special\+Command@{L\+C\+D\+\_\+special\+Command}}
@@ -1070,7 +1098,7 @@ Referenced by L\+C\+D\+\_\+set\+Fast\+Backlight(), and main().
 
 
 
-Definition at line 173 of file L\+C\+D.\+c.
+Definition at line 263 of file L\+C\+D.\+c.
 
 
 
@@ -1084,21 +1112,21 @@ Referenced by L\+C\+D\+\_\+autoscroll(), L\+C\+D\+\_\+blink(), L\+C\+D\+\_\+curs
 
 
 
-Definition at line 190 of file L\+C\+D.\+c.
+Definition at line 281 of file L\+C\+D.\+c.
 
 
 
 Referenced by L\+C\+D\+\_\+move\+Cursor\+Left\+Count(), L\+C\+D\+\_\+move\+Cursor\+Right\+Count(), L\+C\+D\+\_\+scroll\+Display\+Left\+Count(), and L\+C\+D\+\_\+scroll\+Display\+Right\+C\+Ount().
 
-\mbox{\Hypertarget{LCD_8h_a2c65a550dfb9db1714f749c17ba2f396}\label{LCD_8h_a2c65a550dfb9db1714f749c17ba2f396}} 
+\mbox{\Hypertarget{LCD_8h_afd9728ff619a2e7202b070692faa50dc}\label{LCD_8h_afd9728ff619a2e7202b070692faa50dc}} 
 \index{L\+C\+D.\+h@{L\+C\+D.\+h}!L\+C\+D\+\_\+write@{L\+C\+D\+\_\+write}}
 \index{L\+C\+D\+\_\+write@{L\+C\+D\+\_\+write}!L\+C\+D.\+h@{L\+C\+D.\+h}}
 \subsubsection{\texorpdfstring{L\+C\+D\+\_\+write()}{LCD\_write()}}
-{\footnotesize\ttfamily \hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} L\+C\+D\+\_\+write (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} L\+C\+D\+\_\+write (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer,  }\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
 
 
 
-Definition at line 295 of file L\+C\+D.\+c.
+Definition at line 173 of file L\+C\+D.\+c.
 
 
 
@@ -1112,5 +1140,5 @@ Referenced by L\+C\+D\+\_\+puts().
 
 
 
-Definition at line 272 of file L\+C\+D.\+c.
+Definition at line 367 of file L\+C\+D.\+c.
 

@@ -99,6 +99,8 @@ int \hyperlink{drives_8h_a779f57c67af69afdde92e28cb4ee9adb}{alloc\+\_\+device} (
 \begin{DoxyCompactList}\small\item\em Allocate a Device structure for a disk or printer. \end{DoxyCompactList}\item 
 void \hyperlink{drives_8h_a31361bab0d441c06afb14a7af1d657c9}{init\+\_\+\+Devices} (void)
 \begin{DoxyCompactList}\small\item\em Init Config Parser Stack Called only durring power up so we do not have to free memory. \end{DoxyCompactList}\item 
+int \hyperlink{drives_8h_a306684070b386e868ed1e647e5172ee0}{count\+\_\+drive\+\_\+types} (uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em Count number of devices of a sertain type. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8h_a21b219166399e8a1195b92d6a9872bbe}{push\+\_\+state} (int state)
 \begin{DoxyCompactList}\small\item\em Push Parser State. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8h_a8848ed41fc10bb2ac57676522df757f4}{pop\+\_\+state} (void)
@@ -333,7 +335,7 @@ Devices\mbox{[}\mbox{]} index on sucess or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 455 of file drives.\+c.
+Definition at line 469 of file drives.\+c.
 
 
 
@@ -368,7 +370,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 550 of file drives.\+c.
+Definition at line 566 of file drives.\+c.
 
 
 
@@ -454,7 +456,30 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 \end{DoxyReturn}
 
 
-Definition at line 321 of file drives.\+c.
+Definition at line 335 of file drives.\+c.
+
+\mbox{\Hypertarget{drives_8h_a306684070b386e868ed1e647e5172ee0}\label{drives_8h_a306684070b386e868ed1e647e5172ee0}} 
+\index{drives.\+h@{drives.\+h}!count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}}
+\index{count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}!drives.\+h@{drives.\+h}}
+\subsubsection{\texorpdfstring{count\+\_\+drive\+\_\+types()}{count\_drive\_types()}}
+{\footnotesize\ttfamily int count\+\_\+drive\+\_\+types (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+Count number of devices of a sertain type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & disk type like S\+S80\+\_\+\+T\+Y\+PE \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 305 of file drives.\+c.
+
+
+
+Referenced by main().
 
 \mbox{\Hypertarget{drives_8h_a26d11f3a4a3554e68b9768831f6a982f}\label{drives_8h_a26d11f3a4a3554e68b9768831f6a982f}} 
 \index{drives.\+h@{drives.\+h}!display\+\_\+\+Addresses@{display\+\_\+\+Addresses}}
@@ -471,7 +496,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1246 of file drives.\+c.
+Definition at line 1262 of file drives.\+c.
 
 
 
@@ -494,7 +519,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1283 of file drives.\+c.
+Definition at line 1299 of file drives.\+c.
 
 
 
@@ -534,7 +559,7 @@ convert to device address
 
 search for device address 
 
-Definition at line 344 of file drives.\+c.
+Definition at line 358 of file drives.\+c.
 
 
 
@@ -555,7 +580,7 @@ Devices\mbox{[}\mbox{]} index of free slot or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 334 of file drives.\+c.
+Definition at line 348 of file drives.\+c.
 
 
 
@@ -599,7 +624,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1375 of file drives.\+c.
+Definition at line 1391 of file drives.\+c.
 
 
 
@@ -617,7 +642,7 @@ Init Config Parser Stack Called only durring power up so we do not have to free 
 
 
 
-Definition at line 502 of file drives.\+c.
+Definition at line 516 of file drives.\+c.
 
 
 
@@ -638,7 +663,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 530 of file drives.\+c.
+Definition at line 546 of file drives.\+c.
 
 
 
@@ -666,7 +691,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 661 of file drives.\+c.
+Definition at line 677 of file drives.\+c.
 
 
 
@@ -694,7 +719,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1234 of file drives.\+c.
+Definition at line 1250 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8h_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+h@{drives.\+h}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -718,7 +743,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1219 of file drives.\+c.
+Definition at line 1235 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8h_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+h@{drives.\+h}!push\+\_\+state@{push\+\_\+state}}
@@ -740,7 +765,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 519 of file drives.\+c.
+Definition at line 535 of file drives.\+c.
 
 
 
@@ -766,7 +791,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \end{DoxyReturn}
 We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
 
-Definition at line 373 of file drives.\+c.
+Definition at line 387 of file drives.\+c.
 
 
 
@@ -787,7 +812,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 596 of file drives.\+c.
+Definition at line 612 of file drives.\+c.
 
 
 
@@ -813,7 +838,7 @@ string pointer
 \end{DoxyReturn}
 
 
-Definition at line 306 of file drives.\+c.
+Definition at line 320 of file drives.\+c.
 
 
 

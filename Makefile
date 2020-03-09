@@ -105,6 +105,7 @@ endif
 # We have an I2C LCD
 ifeq ($(LCD_SUPPORT),1)
 	HARDWARE += hardware/LCD.c 
+	HARDWARE += display/lcd_printf.c
 endif
 
 LIB = \
@@ -369,6 +370,10 @@ flash: all
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)
 	# ===================================================
+
+flash_fast: all 
+	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B 0.25 $(fuses) -U flash:w:$(PROJECT).hex
+	./term $(BAUD) $(PORT)
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc

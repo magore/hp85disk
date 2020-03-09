@@ -49,12 +49,21 @@ typedef uint8_t byte;
 #define LCD_MOVERIGHT 0x04
 #define LCD_MOVELEFT 0x00
 
+/* ../hardware/LCD.c */
 
-/* LCD.c */
-void i2c_Start ( void );
-void i2c_Transmit ( uint8_t data );
-void i2c_End ( void );
-int LCD_init ( void );
+#define LCD_ADDR (DISPLAY_ADDRESS1<<1)
+
+bool I2C_Start ( uint8_t addr );
+void I2C_Stop ( void );
+bool I2C_Send ( uint8_t data );
+bool I2C_SendMessage ( uint8_t addr , const uint8_t *buffer , size_t size );
+bool LCD_putb ( uint8_t b );
+bool LCD_write ( const uint8_t *buffer , size_t size );
+void LCD_puts ( const uint8_t *buffer );
+void LCD_pos ( uint8_t x , uint8_t y );
+bool LCD_init ( uint8_t addr );
+
+
 void LCD_command ( byte command );
 void LCD_specialCommand ( byte command );
 void LCD_specialCommandCount ( byte command , byte count );
@@ -63,9 +72,6 @@ void LCD_home ( void );
 void LCD_setCursor ( byte col , byte row );
 void LCD_createChar ( byte location , byte charmap []);
 void LCD_writeChar ( byte location );
-uint8_t LCD_putb ( uint8_t b );
-size_t LCD_write ( const uint8_t *buffer , size_t size );
-void LCD_puts( const uint8_t *buffer );
 void LCD_noDisplay ( void );
 void LCD_display ( void );
 void LCD_noCursor ( void );
@@ -80,8 +86,6 @@ void LCD_moveCursorLeftCount ( byte count );
 void LCD_moveCursorLeft ( void );
 void LCD_moveCursorRightCount ( byte count );
 void LCD_moveCursorRight ( void );
-void LCD_setBacklightRGB ( byte r , byte g , byte b );
-void LCD_setBacklight ( unsigned long rgb );
 void LCD_setFastBacklightRGB ( byte r , byte g , byte b );
 void LCD_setFastBacklight ( unsigned long rgb );
 void LCD_enableSystemMessages ( void );
@@ -95,6 +99,7 @@ void LCD_autoscroll ( void );
 void LCD_noAutoscroll ( void );
 void LCD_setContrast ( byte new_val );
 void LCD_setAddress ( byte new_addr );
+
 
 
 #endif

@@ -3,7 +3,7 @@
 
  @brief Main for GPIB emulator for HP85 disk emulator project for AVR 
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -267,30 +267,40 @@ int main(void)
 
     ///@ initialize I2C bus 
     printf("initializing I2C bus\n");
-    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
-
-    ///@ initialize clock by RTC if we have it
+    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 100000));
     sep();
+
+    printf("initializing RTC\n");
+    ///@ initialize clock by RTC if we have it
     clock_clear();
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
     printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
+
+	// Timezone offset
     initialize_clock(300);
     display_clock();
     sep();
 
 	///@ initialize Optional I2C LCD
 #ifdef LCD_SUPPORT
-	if ( !LCD_init() )
+	printf("I2C LCD initialization start\n");
+	if ( LCD_init(LCD_ADDR) )
 	{
-		printf("I2C LCD initialization start\n");
-		LCD_setFastBacklightRGB ( 0x80, 0x80, 0x80 );
-		LCD_puts("HP85DISK");
-		printf("I2C LCD initialized\n");
+		// Display LCD firmware version
+		// LCD_command(',');
+		// delayms(1000);
+
+		LCD_pos(0,0);
+		lcd_printf("hp85disk V2.0\n");
+		lcd_printf("(C)Mike Gore\n");
+		// SparkFun V1.1 firmware loses the last character when the LCD goes to sleep 
+
+		printf("I2C LCD initialization Done\n");
 	}
 	else
 	{
-		printf("I2C LCD NOT attached\n");
+		printf("I2C LCD is NOT attached!\n");
 	}
     sep();
 #endif
@@ -338,6 +348,15 @@ int main(void)
     ///@brief Display debug level
     sep();
     printf("debuglevel   = %04xH\n",(int)debuglevel);
+
+#ifdef LCD_SUPPORT
+	LCD_pos(0,0);
+	lcd_printf("SS80  Dives:%d\n",(int) count_drive_types(SS80_TYPE));
+	lcd_printf("AMIGO Dives:%d\n",(int) count_drive_types(AMIGO_TYPE));
+	lcd_printf("Baud:%ld\n",baud);
+	lcd_printf("Debug: %04xH\n", (int)debuglevel);
+#endif
+
 
     ///@brief Start main GPIB state machine
     sep();

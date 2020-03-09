@@ -79,6 +79,7 @@ var searchData=
   ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
+  ['count_5fdrive_5ftypes',['count_drive_types',['../drives_8c.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c'],['../drives_8h.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c']]],
   ['cpu_2eh',['cpu.h',['../cpu_8h.html',1,'']]],
   ['crc',['CRC',['../structtd__header__t.html#ae51197a200b65947359773f1aeea9c2d',1,'td_header_t::CRC()'],['../structtd__comment__t.html#a4bcc6435d5a4408627be9f50ef124211',1,'td_comment_t::CRC()'],['../structtd__track__t.html#a32523d00c555ab3bc766a585d06ce372',1,'td_track_t::CRC()'],['../structtd__sector__t.html#aaccfa1ee85151410b042457fc5b584e5',1,'td_sector_t::CRC()']]],
   ['create_5fchain',['create_chain',['../ff_8c.html#abebb32f5dee5e071e8f0916e25446dd9',1,'ff.c']]],

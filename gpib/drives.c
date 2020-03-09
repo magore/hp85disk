@@ -300,6 +300,20 @@ int find_type(int type)
     return(-1);
 }
 
+/// @brief Count number of devices of a sertain type
+///@param type: disk type like SS80_TYPE
+int count_drive_types(uint8_t type)
+{
+    int i;
+	int count = 0;
+    for(i=0;i<MAX_DEVICES;++i)
+    {
+        if( Devices[i].TYPE == type )
+			++count;
+    }
+	return(count);
+}
+
 ///@brief Convert a disk type into a string
 ///@param type: disk type like SS80_TYPE
 ///@return string pointer
@@ -512,6 +526,8 @@ void init_Devices()
         Devices[i].state = NULL;
     }
 }
+// =============================================
+
 
 /// @brief Push Parser State
 /// @param state: parser state

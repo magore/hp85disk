@@ -88,6 +88,9 @@ typedef unsigned long int size_t;
 #include "rtc.h"
 #include "TWI_AVR8.h"
 #include "LCD.h"
+#ifdef LCD_SUPPORT
+#include "display/lcd_printf.h"
+#endif
 #include "posix/posix.h"
 
 // sys.c defines alternative safe functions

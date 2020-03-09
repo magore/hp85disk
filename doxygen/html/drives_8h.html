@@ -203,6 +203,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a31361bab0d441c06afb14a7af1d657c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8h.html#a31361bab0d441c06afb14a7af1d657c9">init_Devices</a> (void)</td></tr>
 <tr class="memdesc:a31361bab0d441c06afb14a7af1d657c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init Config Parser Stack Called only durring power up so we do not have to free memory.  <a href="#a31361bab0d441c06afb14a7af1d657c9">More...</a><br /></td></tr>
 <tr class="separator:a31361bab0d441c06afb14a7af1d657c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a306684070b386e868ed1e647e5172ee0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8h.html#a306684070b386e868ed1e647e5172ee0">count_drive_types</a> (uint8_t type)</td></tr>
+<tr class="memdesc:a306684070b386e868ed1e647e5172ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count number of devices of a sertain type.  <a href="#a306684070b386e868ed1e647e5172ee0">More...</a><br /></td></tr>
+<tr class="separator:a306684070b386e868ed1e647e5172ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21b219166399e8a1195b92d6a9872bbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8h.html#a21b219166399e8a1195b92d6a9872bbe">push_state</a> (int state)</td></tr>
 <tr class="memdesc:a21b219166399e8a1195b92d6a9872bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push Parser State.  <a href="#a21b219166399e8a1195b92d6a9872bbe">More...</a><br /></td></tr>
 <tr class="separator:a21b219166399e8a1195b92d6a9872bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -300,7 +303,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8h_source.html#l00039">39</a> of file <a class="el" href="drives_8h_source.html">drives.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -334,7 +337,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8h_source.html#l00266">266</a> of file <a class="el" href="drives_8h_source.html">drives.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l01283">display_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l01299">display_Config()</a>.</p>
 
 </div>
 </div>
@@ -368,7 +371,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8h_source.html#l00264">264</a> of file <a class="el" href="drives_8h_source.html">drives.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l01283">display_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l01299">display_Config()</a>.</p>
 
 </div>
 </div>
@@ -452,9 +455,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Devices[] index on sucess or -1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00455">455</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00469">469</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -511,9 +514,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00550">550</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00566">566</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -640,7 +643,37 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string "MLA", "MTA", "MSA" or error string </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00321">321</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00335">335</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+</div>
+</div>
+<a id="a306684070b386e868ed1e647e5172ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a306684070b386e868ed1e647e5172ee0">&#9670;&nbsp;</a></span>count_drive_types()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int count_drive_types </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Count number of devices of a sertain type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>disk type like SS80_TYPE </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00305">305</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
 </div>
 </div>
@@ -663,7 +696,7 @@ Variables</h2></td></tr>
 <p>Display Configuration device address saummary. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01246">1246</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01262">1262</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__tests_8c_source.html#l00068">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -690,7 +723,7 @@ Variables</h2></td></tr>
 <p>Active Printer Device</p>
 <p>Active SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01283">1283</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01299">1299</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__tests_8c_source.html#l00068">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -743,7 +776,7 @@ Variables</h2></td></tr>
 <p>convert to device address</p>
 <p>search for device address </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00344">344</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00358">358</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00935">listen_cleanup()</a>, <a class="el" href="gpib__task_8c_source.html#l00147">PRINTER_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00171">PRINTER_is_MSA()</a>, <a class="el" href="gpib__task_8c_source.html#l00159">PRINTER_is_MTA()</a>, <a class="el" href="gpib__task_8c_source.html#l00073">SS80_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00097">SS80_is_MSA()</a>, and <a class="el" href="gpib__task_8c_source.html#l00085">SS80_is_MTA()</a>.</p>
 
@@ -768,9 +801,9 @@ Variables</h2></td></tr>
 <p>Find first free Devices[] slot. </p>
 <dl class="section return"><dt>Returns</dt><dd>Devices[] index of free slot or -1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00334">334</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00348">348</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00455">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00596">set_Config_Defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00469">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00612">set_Config_Defaults()</a>.</p>
 
 </div>
 </div>
@@ -800,7 +833,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00292">292</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00334">find_free()</a>, <a class="el" href="printer_8c_source.html#l00255">plot_echo()</a>, and <a class="el" href="drives_8c_source.html#l00596">set_Config_Defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00348">find_free()</a>, <a class="el" href="printer_8c_source.html#l00255">plot_echo()</a>, and <a class="el" href="drives_8c_source.html#l00612">set_Config_Defaults()</a>.</p>
 
 </div>
 </div>
@@ -824,7 +857,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 <p>Active SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01375">1375</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01391">1391</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -848,9 +881,9 @@ Variables</h2></td></tr>
 
 <p>Init Config Parser Stack Called only durring power up so we do not have to free memory. </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00502">502</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00516">516</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -873,9 +906,9 @@ Variables</h2></td></tr>
 <p>Pop Parser State. </p>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00530">530</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00546">546</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -906,7 +939,7 @@ Variables</h2></td></tr>
 <p>Printer Device</p>
 <p>SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00661">661</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00677">677</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>.</p>
 
@@ -948,7 +981,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01234">1234</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01250">1250</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -988,7 +1021,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01219">1219</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01235">1235</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -1017,9 +1050,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00519">519</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00535">535</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -1049,7 +1082,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>1 on success or 0 on fail </dd></dl>
 <p>We also check for -1 So the result of <a class="el" href="drives_8c.html#ab339aa60e0bd99e09f10d0732f10b26e" title="Find a device with matching type AND address. ">find_device()</a> can be used without additional tests </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00373">373</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00387">387</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00147">PRINTER_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00171">PRINTER_is_MSA()</a>, <a class="el" href="gpib__task_8c_source.html#l00159">PRINTER_is_MTA()</a>, <a class="el" href="ss80_8c_source.html#l00270">SS80_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00073">SS80_is_MLA()</a>, <a class="el" href="gpib__task_8c_source.html#l00097">SS80_is_MSA()</a>, and <a class="el" href="gpib__task_8c_source.html#l00085">SS80_is_MTA()</a>.</p>
 
@@ -1074,9 +1107,9 @@ Variables</h2></td></tr>
 <p>Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00596">596</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00612">612</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, and <a class="el" href="drives_8c_source.html#l00661">POSIX_Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, and <a class="el" href="drives_8c_source.html#l00677">POSIX_Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -1105,9 +1138,9 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string pointer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00306">306</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00320">320</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00455">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00373">set_active_device()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00469">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00387">set_active_device()</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1334,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 7 2020 22:38:28 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 8 2020 20:04:21 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

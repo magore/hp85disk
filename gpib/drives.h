@@ -289,6 +289,7 @@ int find_device ( int type , int address , int base );
 int set_active_device ( int index );
 int alloc_device ( int type );
 void init_Devices ( void );
+int count_drive_types ( uint8_t type );
 int push_state ( int state );
 int pop_state ( void );
 uint32_t assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
@@ -299,7 +300,6 @@ void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
 void display_Config ( void );
 void format_drives ( void );
-
 
 // =============================================
 #endif     // _DRIVES_H

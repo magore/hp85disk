@@ -4,6 +4,8 @@
  *
  * By: Gaston R. Williams
  * Date: August 22, 2018
+ * Updates for hp85disk project
+ * 2020 Mike Gore
  *
  * License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware license).
  *
@@ -30,7 +32,7 @@
  * Please Note: 0x72 is the 7-bit I2C address. If you are using a different language than Arduino you will probably
  * need to add the Read/Write bit to the end of the address. This means the default read address for the OpenLCD
  * is 0b.1110.0101 or 0xE5 and the write address is 0b.1110.0100 or 0xE4.
- * For more information see https://learn.sparkfun.com/tutorials/i2c_
+ * For more information see https://learn.sparkfun.com/tutorials/I2C_
  * Note: This code expects the display to be listening at the default I2C address. If your display is not at 0x72, you can
  * do a hardware reset. Tie the RX pin to ground and power up OpenLCD. You should see the splash screen
  * then "System reset Power cycle me" and the backlight will begin to blink. Now power down OpenLCD and remove
@@ -90,61 +92,148 @@
 
 static byte _displayControl = LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF;
 static byte _displayMode = LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT;
+static uint8_t lcd_address = LCD_ADDR;
 
-static byte LCD_error = 0;
-
+extern window lcd;
 // ===============================================
-///@brief I2C HAL
+///@brief I2C HAL for hp85disk
 /// Interface with the project TWI code
-void i2c_Start()
+
+bool LCD_ok = 1;
+#define LCD_ADDR (DISPLAY_ADDRESS1<<1)
+
+bool I2C_Start(uint8_t addr)
 {
-	if(LCD_error)
+    if ( TWI_StartTransmission(addr, 20) == 0 )
+		LCD_ok = 1;
+	else
+		LCD_ok = 0;
+	return(LCD_ok);
+} //I2C_Start
+
+/*
+ * Begin transmission to the device
+ */
+void I2C_Stop()
+{
+	if(!LCD_ok)
 		return;
-    LCD_error = TWI_StartTransmission(DISPLAY_ADDRESS1<<1, 20);
-	delayms(10); //wait a bit for display to enable
-} //i2c_Start
+	TWI_StopTransmission();
+} //I2C_Start
 
 /*
  * Send data to the device
  *
  * data - byte to send
  */
-void i2c_Transmit(uint8_t data)
+bool I2C_Send(uint8_t data)
 {
-	if(LCD_error)
-		return;
-	TWI_SendByte(data);
-} //i2c_Transmit
+	if(!LCD_ok)
+		return(0);
+	return( TWI_SendByte(data) == 0 ? 1 : 0 );
+} //I2C_Send
+
 
 /*
- * Begin transmission to the device
+ * Write a character buffer to the display.
+ * Required for Print.
  */
-void i2c_End()
+bool I2C_SendMessage(uint8_t addr, const uint8_t *buffer, size_t size)
 {
-	TWI_StopTransmission();
-	delayms(10); //wait a bit for display to disable
-} //i2c_Start
+  if( !I2C_Start(addr) )
+	return 0;
+  while (size--)
+  {
+	if(!TWI_SendByte(*buffer++) )
+		return 0;
+  }                  
+  I2C_Stop(); 			//Stop transmission
+  return (1);
+}
+
 // ===============================================
+/*
+ * Write a byte to the display.
+ * Required for Print.
+ */
+bool LCD_putb(uint8_t b)
+{
+  if( !I2C_Start(LCD_ADDR) )
+	return 0;
+  if(!I2C_Send(b))
+	return 0;
+  I2C_Stop(); //Stop transmission
+  return(1);
+} // write
+
+/*
+ * Write a character buffer to the display.
+ * Required for Print.
+ */
+bool LCD_write(const uint8_t *buffer, size_t size)
+{
+  bool status;
+  status = I2C_SendMessage(LCD_ADDR, buffer, size);
+  return (status);
+} //write
+
+/*
+ * Write a character buffer to the display.
+ * Required for Print.
+ */
+void LCD_puts(const uint8_t *buffer)
+{
+  LCD_write(buffer,strlen((const char *) buffer));
+}
+
+///  ====================================
+/// @brief Character and String functions
+///  ====================================
+void LCD_pos(uint8_t x, uint8_t y)
+{
+    lcd.xpos = x;
+    lcd.ypos = y;
+    LCD_setCursor(x,y);
+}
+
+// ===============================================
+///@brief end of I2C HAL for hp85disk
+// ===============================================
+
 /*
  * Initialize the display
  *
  */
-int LCD_init()
+bool LCD_init(uint8_t addr)
 {
   
-  LCD_error = TWI_StartTransmission(DISPLAY_ADDRESS1<<1, 20);
-  if(LCD_error)
-	return(LCD_error);
+  if( !I2C_Start(lcd_address = addr) )
+	return 0;
 
-  TWI_SendByte(SPECIAL_COMMAND);                      //Send special command character
-  TWI_SendByte(LCD_DISPLAYCONTROL | _displayControl); //Send the display command
-  TWI_SendByte(SPECIAL_COMMAND);                      //Send special command character
-  TWI_SendByte(LCD_ENTRYMODESET | _displayMode);      //Send the entry mode command
-  TWI_SendByte(SETTING_COMMAND);                      //Put LCD into setting mode
-  TWI_SendByte(CLEAR_COMMAND);                        //Send clear display command
-  TWI_StopTransmission();
+  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
+  I2C_Send(LCD_DISPLAYCONTROL | _displayControl); //Send the display command
 
+  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
+  I2C_Send(LCD_ENTRYMODESET | _displayMode);      //Send the entry mode command
+
+  I2C_Send(SETTING_COMMAND);                      //Put LCD into setting mode
+  I2C_Send(CLEAR_COMMAND);                        //Send clear display command
+
+  I2C_Send(SETTING_COMMAND);                      //Send special command character
+  I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY);       //Send the set '.' character
+
+  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
+  I2C_Send(LCD_SETDDRAMADDR | 0);				// HOME 0,0
+
+  I2C_Stop();
   delayms(50);                                      //let things settle a bit
+
+  LCD_setFastBacklightRGB ( 0xC0, 0xC0, 0xC0 );
+
+  lcd.xpos = 0;
+  lcd.ypos = 0;
+
+  return(1);
 } //init
                                                    
 // ===============================================
@@ -157,10 +246,11 @@ int LCD_init()
   */
 void LCD_command(byte command)
 {
-  i2c_Start();       // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND); //Put LCD into setting mode
-  i2c_Transmit(command);         //Send the command code
-  i2c_End();         //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND); //Put LCD into setting mode
+  I2C_Send(command);         //Send the command code
+  I2C_Stop();         //Stop transmission
 
   delayms(10); //Hang out for a bit
 }
@@ -172,10 +262,11 @@ void LCD_command(byte command)
  */
 void LCD_specialCommand(byte command)
 {
-  i2c_Start();       // i2c_Transmit to device
-  i2c_Transmit(SPECIAL_COMMAND); //Send special command character
-  i2c_Transmit(command);         //Send the command code
-  i2c_End();         //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SPECIAL_COMMAND); //Send special command character
+  I2C_Send(command);         //Send the command code
+  I2C_Stop();         //Stop transmission
 
   delayms(50); //Wait a bit longer for special display commands
 }
@@ -189,14 +280,15 @@ void LCD_specialCommand(byte command)
  */
 void LCD_specialCommandCount(byte command, byte count)
 {
-  i2c_Start(); // i2c_Transmit to device
+  if( !I2C_Start(lcd_address) )
+	return;
 
   for (int i = 0; i < count; i++)
   {
-    i2c_Transmit(SPECIAL_COMMAND); //Send special command character
-    i2c_Transmit(command);         //Send command code
+    I2C_Send(SPECIAL_COMMAND); //Send special command character
+    I2C_Send(command);         //Send command code
   }                            // for
-  i2c_End();           //Stop transmission
+  I2C_Stop();           //Stop transmission
 
   delayms(50); //Wait a bit longer for special display commands
 }
@@ -209,6 +301,7 @@ void LCD_specialCommandCount(byte command, byte count)
 void LCD_clear()
 {
   LCD_command(CLEAR_COMMAND);
+  LCD_pos(0,0);
   delayms(10); // a little extra delay after clear
 }
 
@@ -242,6 +335,7 @@ void LCD_setCursor(byte col, byte row)
 
   //send the command
   LCD_specialCommand(LCD_SETDDRAMADDR | (col + row_offsets[row]));
+
 } // setCursor
 
 /*
@@ -252,15 +346,16 @@ void LCD_setCursor(byte col, byte row)
 void LCD_createChar(byte location, byte charmap[])
 {
   location &= 0x7; // we only have 8 locations 0-7
-  i2c_Start();
+  if( !I2C_Start(lcd_address) )
+	return;
   //Send request to create a customer character
-  i2c_Transmit(SETTING_COMMAND); //Put LCD into setting mode
-  i2c_Transmit(27 + location);
+  I2C_Send(SETTING_COMMAND); //Put LCD into setting mode
+  I2C_Send(27 + location);
   for (int i = 0; i < 8; i++)
   {
-    i2c_Transmit(charmap[i]);
+    I2C_Send(charmap[i]);
   } // for
-  i2c_End();
+  I2C_Stop();
   delayms(50); //This takes a bit longer
 }
 
@@ -273,48 +368,6 @@ void LCD_writeChar(byte location)
 {
   location &= 0x7; // we only have 8 locations 0-7
   LCD_command(35 + location);
-}
-
-/*
- * Write a byte to the display.
- * Required for Print.
- */
-uint8_t LCD_putb(uint8_t b)
-{
-  i2c_Start(); // i2c_Transmit to device
-  i2c_Transmit(b);
-  i2c_End(); //Stop transmission
-  delayms(10);         // wait a bit
-  return(b);
-} // write
-
-/*
- * Write a character buffer to the display.
- * Required for Print.
- */
-size_t LCD_write(const uint8_t *buffer, size_t size)
-{
-  size_t n = 0;
-  if(LCD_error)
-	return;
-  i2c_Start(); // i2c_Transmit to device
-  while (size--)
-  {
-    i2c_Transmit(*buffer++);
-    n++;
-  }                  //while
-  i2c_End(); //Stop transmission
-  delayms(10);         //
-  return n;
-} //write
-
-/*
- * Write a character buffer to the display.
- * Required for Print.
- */
-void LCD_puts(const uint8_t *buffer)
-{
-  LCD_write(buffer,strlen(buffer));
 }
 
 /*
@@ -453,13 +506,14 @@ void LCD_moveCursorRight()
 void LCD_setFastBacklightRGB(byte r, byte g, byte b)
 {
   //send commands to the display to set backlights
-  i2c_Start();       // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND); //Send special command character
-  i2c_Transmit(SET_RGB_COMMAND); //Send the set RGB character '+' or plus
-  i2c_Transmit(r);               //Send the red value
-  i2c_Transmit(g);               //Send the green value
-  i2c_Transmit(b);               //Send the blue value
-  i2c_End();         //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND); //Send special command character
+  I2C_Send(SET_RGB_COMMAND); //Send the set RGB character '+' or plus
+  I2C_Send(r);               //Send the red value
+  I2C_Send(g);               //Send the green value
+  I2C_Send(b);               //Send the blue value
+  I2C_Stop();         //Stop transmission
   delayms(10);
 } // setFastBacklight
 
@@ -477,10 +531,11 @@ void LCD_setFastBacklight(unsigned long rgb)
 //This allows user to see printing messages like 'UART: 57600' and 'Contrast: 5'
 void LCD_enableSystemMessages()
 {
-  i2c_Start();                     // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);               //Send special command character
-  i2c_Transmit(ENABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
-  i2c_End();                       //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);               //Send special command character
+  I2C_Send(ENABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
+  I2C_Stop();                       //Stop transmission
   delayms(10);
 }
 
@@ -488,30 +543,33 @@ void LCD_enableSystemMessages()
 //This allows user to disable printing messages like 'UART: 57600' and 'Contrast: 5'
 void LCD_disableSystemMessages()
 {
-  i2c_Start();                      // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);                //Send special command character
-  i2c_Transmit(DISABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
-  i2c_End();                        //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);                //Send special command character
+  I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
+  I2C_Stop();                        //Stop transmission
   delayms(10);
 }
 
 //Enable splash screen at power on
 void LCD_enableSplash()
 {
-  i2c_Start();             // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);       //Send special command character
-  i2c_Transmit(ENABLE_SPLASH_DISPLAY); //Send the set '.' character
-  i2c_End();               //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);       //Send special command character
+  I2C_Send(ENABLE_SPLASH_DISPLAY); //Send the set '.' character
+  I2C_Stop();               //Stop transmission
   delayms(10);
 }
 
 //Disable splash screen at power on
 void LCD_disableSplash()
 {
-  i2c_Start();              // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);        //Send special command character
-  i2c_Transmit(DISABLE_SPLASH_DISPLAY); //Send the set '.' character
-  i2c_End();                //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);        //Send special command character
+  I2C_Send(DISABLE_SPLASH_DISPLAY); //Send the set '.' character
+  I2C_Stop();                //Stop transmission
   delayms(10);
 }
 
@@ -520,10 +578,11 @@ void LCD_saveSplash()
 {
   //Save whatever is currently being displayed into EEPROM
   //This will be displayed at next power on as the splash screen
-  i2c_Start();                      // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);                //Send special command character
-  i2c_Transmit(SAVE_CURRENT_DISPLAY_AS_SPLASH); //Send the set Ctrl+j character
-  i2c_End();                        //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);                //Send special command character
+  I2C_Send(SAVE_CURRENT_DISPLAY_AS_SPLASH); //Send the set Ctrl+j character
+  I2C_Stop();                        //Stop transmission
   delayms(10);
 }
 
@@ -573,11 +632,12 @@ void LCD_noAutoscroll()
 void LCD_setContrast(byte new_val)
 {
   //send commands to the display to set backlights
-  i2c_Start();        // i2c_Transmit to device
-  i2c_Transmit(SETTING_COMMAND);  //Send contrast command
-  i2c_Transmit(CONTRAST_COMMAND); //0x18
-  i2c_Transmit(new_val);          //Send new contrast value
-  i2c_End();          //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND);  //Send contrast command
+  I2C_Send(CONTRAST_COMMAND); //0x18
+  I2C_Send(new_val);          //Send new contrast value
+  I2C_Stop();          //Stop transmission
 
   delayms(10); //Wait a little bit
 } //setContrast
@@ -588,19 +648,20 @@ void LCD_setContrast(byte new_val)
  * goes wrong you may need to do a hardware reset
  * to unbrick the display.
  *
- * byte new_addr - new i2c_ address
+ * byte new_addr - new I2C_ address
  */
 void LCD_setAddress(byte new_addr)
 {
   //send commands to the display to set backlights
-  i2c_Start();       // i2c_Transmit to device on old address
-  i2c_Transmit(SETTING_COMMAND); //Send contrast command
-  i2c_Transmit(ADDRESS_COMMAND); //0x19
-  i2c_Transmit(new_addr);        //Send new contrast value
-  i2c_End();         //Stop transmission
+  if( !I2C_Start(lcd_address) )
+	return;
+  I2C_Send(SETTING_COMMAND); //Send contrast command
+  I2C_Send(ADDRESS_COMMAND); //0x19
+  I2C_Send(new_addr);        //Send new contrast value
+  I2C_Stop();         //Stop transmission
 
   //Update our own address so we can still talk to the display
-  // _i2c_Addr = new_addr;
+   lcd_address = new_addr;
 
   delayms(50); //This may take awhile
 } //setContrast

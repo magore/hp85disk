@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['i2c_5fend',['i2c_End',['../LCD_8c.html#aeee590beb1dbc63a4e51dbe1c670831b',1,'i2c_End():&#160;LCD.c'],['../LCD_8h.html#a9004eeefb1466b38c845b6d37fca5726',1,'i2c_End(void):&#160;LCD.c']]],
-  ['i2c_5fstart',['i2c_Start',['../LCD_8c.html#a0149d1d58669c0e96cdb3f54d2bc4ef1',1,'i2c_Start():&#160;LCD.c'],['../LCD_8h.html#ab5c8e4d32c122ec2d629d46b0ca86c0a',1,'i2c_Start(void):&#160;LCD.c']]],
-  ['i2c_5ftransmit',['i2c_Transmit',['../LCD_8c.html#adfa8b0c32a3cfe30e0bc748d77fb6e2f',1,'i2c_Transmit(uint8_t data):&#160;LCD.c'],['../LCD_8h.html#adfa8b0c32a3cfe30e0bc748d77fb6e2f',1,'i2c_Transmit(uint8_t data):&#160;LCD.c']]],
+  ['i2c_5fsend',['I2C_Send',['../LCD_8c.html#a1ce873575071f7fdcce66de93b9d4076',1,'I2C_Send(uint8_t data):&#160;LCD.c'],['../LCD_8h.html#a1ce873575071f7fdcce66de93b9d4076',1,'I2C_Send(uint8_t data):&#160;LCD.c']]],
+  ['i2c_5fsendmessage',['I2C_SendMessage',['../LCD_8c.html#a4d9a4fe974894c7ce765a0b51995a231',1,'I2C_SendMessage(uint8_t addr, const uint8_t *buffer, size_t size):&#160;LCD.c'],['../LCD_8h.html#a4d9a4fe974894c7ce765a0b51995a231',1,'I2C_SendMessage(uint8_t addr, const uint8_t *buffer, size_t size):&#160;LCD.c']]],
+  ['i2c_5fstart',['I2C_Start',['../LCD_8c.html#a55303cdfb3e4332e412f55b7c79d7937',1,'I2C_Start(uint8_t addr):&#160;LCD.c'],['../LCD_8h.html#a55303cdfb3e4332e412f55b7c79d7937',1,'I2C_Start(uint8_t addr):&#160;LCD.c']]],
+  ['i2c_5fstop',['I2C_Stop',['../LCD_8c.html#a80d6addfa2666f16452c9bdb7a5e0d32',1,'I2C_Stop():&#160;LCD.c'],['../LCD_8h.html#afce134e0a1b6a8bc503c97b37639c9e6',1,'I2C_Stop(void):&#160;LCD.c']]],
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['init_5fdevices',['init_Devices',['../drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f',1,'init_Devices():&#160;drives.c'],['../drives_8h.html#a31361bab0d441c06afb14a7af1d657c9',1,'init_Devices(void):&#160;drives.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
