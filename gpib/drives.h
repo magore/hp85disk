@@ -98,14 +98,14 @@ typedef struct
     int16_t SECTORS_PER_TRACK;
     int16_t HEADS;
     int16_t CYLINDERS;
-} AMIGOGemometryType;
+} AMIGOGeometryType;
 
 ///@brief AMIGO Disk structure - ID bytes and layout.
 typedef struct 
 {
     HeaderType HEADER;
     ConfigType CONFIG;
-    AMIGOGemometryType GEOMETRY;
+    AMIGOGeometryType GEOMETRY;
 } AMIGODiskType;
 
 

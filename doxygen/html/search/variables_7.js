@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['geometry',['GEOMETRY',['../structAMIGODiskType.html#aa75cfbfabf8081ff7bca08cf87af4da8',1,'AMIGODiskType']]],
+  ['geometry',['GEOMETRY',['../structAMIGODiskType.html#ade07402a60cc0e5824ca61f6a4ea88d9',1,'AMIGODiskType']]],
   ['get',['get',['../struct____file.html#a2d816b077c3af0425344fe4b283dad33',1,'__file']]],
   ['gpib_5fiobuff',['gpib_iobuff',['../gpib_8c.html#a00023217d54aa8bb6473583593942869',1,'gpib_iobuff():&#160;gpib.c'],['../gpib_8h.html#a00023217d54aa8bb6473583593942869',1,'gpib_iobuff():&#160;gpib.c']]],
   ['gpib_5flog_5ffp',['gpib_log_fp',['../gpib__task_8c.html#ac6417a577904ef1bca87edf37cac29fc',1,'gpib_task.c']]],

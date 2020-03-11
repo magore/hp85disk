@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gen_5fnumname',['gen_numname',['../ff_8c.html#a402f41aa1a2a5652bd4cbaa40b4603d3',1,'ff.c']]],
-  ['geometry',['GEOMETRY',['../structAMIGODiskType.html#aa75cfbfabf8081ff7bca08cf87af4da8',1,'AMIGODiskType']]],
+  ['geometry',['GEOMETRY',['../structAMIGODiskType.html#ade07402a60cc0e5824ca61f6a4ea88d9',1,'AMIGODiskType']]],
   ['get',['get',['../struct____file.html#a2d816b077c3af0425344fe4b283dad33',1,'__file::get()'],['../amigo_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;amigo.h'],['../defines_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;defines.h']]],
   ['get_5fachar',['get_achar',['../ff_8c.html#ac154a33b2d6207b0288c9cd002b5cba6',1,'ff.c']]],
   ['get_5fblock_5fsize',['GET_BLOCK_SIZE',['../diskio_8h.html#aec3bb4dfe075d0ba2f3b07b300a95500',1,'diskio.h']]],

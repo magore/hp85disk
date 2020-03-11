@@ -381,12 +381,17 @@ doxyfile.inc:
 	echo "INPUT         =  $(INCDIRS)" > doxyfile.inc
 	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
+.PHONY: mkcfg
+mkcfg:
+	make -C sdcard/mkcfg
+
 .PHONY: lif
 lif:   
 	make -C lif
 
 install:
 	make -C lif install
+	make -C sdcard/mkcfg install
 
 warn:	clean
 	make 2>&1 | grep -i warn >warnings.txt
@@ -515,6 +520,7 @@ clean:
 	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
 	make -C lif clean
 	make -C printf clean
+	make -C sdcard/mkcfg clean
 	
 
 # Include the dependency files.

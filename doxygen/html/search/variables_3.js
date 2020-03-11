@@ -19,5 +19,5 @@ var searchData=
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()'],['../structtrack__t.html#ab0489765c2499c501ce16426ec2b0c86',1,'track_t::Cyl()']]],
   ['cylinder',['cylinder',['../structsector__t.html#abf5eb245097466ac9624e59a379a2409',1,'sector_t']]],
-  ['cylinders',['CYLINDERS',['../structAMIGOGemometryType.html#a4282aeb6c4aac3b8cfc09e29402dcd3f',1,'AMIGOGemometryType::CYLINDERS()'],['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()']]]
+  ['cylinders',['CYLINDERS',['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()']]]
 ];

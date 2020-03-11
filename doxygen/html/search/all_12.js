@@ -45,7 +45,7 @@ var searchData=
   ['sector_5ft',['sector_t',['../structsector__t.html',1,'']]],
   ['sectorindex',['sectorindex',['../structliftel__t.html#a13e9f8b2e23d8f028f456d4465beb4d5',1,'liftel_t']]],
   ['sectors',['Sectors',['../structtrack__t.html#a9a073d98f27d50ffda7991ea8099f269',1,'track_t::Sectors()'],['../structliftel__t.html#aa20cc45cd196c86b7d6176914226eacf',1,'liftel_t::Sectors()'],['../structlif__t.html#a262b14d8547abff49d9dd1b445faf6d5',1,'lif_t::sectors()'],['../structtrack__t.html#af5a5bc7c09b032d06fe21a18f08772db',1,'track_t::sectors()'],['../structliftel__t.html#a04c852b0fdc7a7c04d558d9a201f3f0d',1,'liftel_t::sectors()']]],
-  ['sectors_5fper_5ftrack',['sectors_per_track',['../structlifvol__t.html#ad245f7419e180934262f53acd9b4349c',1,'lifvol_t::sectors_per_track()'],['../structAMIGOGemometryType.html#a9ac647c76bd331ab5b1fd22a4f5b9a4a',1,'AMIGOGemometryType::SECTORS_PER_TRACK()']]],
+  ['sectors_5fper_5ftrack',['sectors_per_track',['../structlifvol__t.html#ad245f7419e180934262f53acd9b4349c',1,'lifvol_t::sectors_per_track()'],['../structAMIGOGeometryType.html#ac19c5a32ffb2f05ebb00c64cac0903ee',1,'AMIGOGeometryType::SECTORS_PER_TRACK()']]],
   ['sectorsize',['SectorSize',['../structlifdir__t.html#adf3c38eecddce15925157383ff38ef2d',1,'lifdir_t']]],
   ['seek_5fcur',['SEEK_CUR',['../posix_8h.html#a4c8d0b76b470ba65a43ca46a88320f39',1,'posix.h']]],
   ['seek_5fend',['SEEK_END',['../posix_8h.html#ad2a2e6c114780c3071efd24f16c7f7d8',1,'posix.h']]],

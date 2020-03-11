@@ -6,7 +6,7 @@ var searchData=
   ['head',['head',['../structAMIGOStateType.html#a92b01a4e3912d2fcacebcc15a21c66c9',1,'AMIGOStateType']]],
   ['header',['Header',['../structtd__header__t.html#a41510629d6bb7852f4e1e43443c38edd',1,'td_header_t::Header()'],['../structPRINTERDeviceType.html#ac1ae5b29520f726e4aaab0232ecd6463',1,'PRINTERDeviceType::HEADER()'],['../structAMIGODiskType.html#a9814efe6f564b104fc7e0100231908a8',1,'AMIGODiskType::HEADER()'],['../structSS80DiskType.html#ae66c0130dee8c362743dfdfc41539c3b',1,'SS80DiskType::HEADER()']]],
   ['headertype',['HeaderType',['../structHeaderType.html',1,'']]],
-  ['heads',['HEADS',['../structAMIGOGemometryType.html#a33131d3948935e2064af9af151653033',1,'AMIGOGemometryType']]],
+  ['heads',['HEADS',['../structAMIGOGeometryType.html#a0c058525ff9c043708a0773eec513dbf',1,'AMIGOGeometryType']]],
   ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],
   ['heapsort',['heapsort',['../sort_8c.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c'],['../sort_8h.html#ad24ab1a5336a91ff3b9d9ab764cfc0b5',1,'heapsort(int *v, int size):&#160;sort.c']]],
   ['help',['help',['../main_8c.html#a97ee70a8770dc30d06c744b24eb2fcfc',1,'help():&#160;main.c'],['../main_8h.html#a0bed8474bd33a912769360766f6b10d4',1,'help(void):&#160;main.c']]],

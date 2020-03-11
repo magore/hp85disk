@@ -1014,34 +1014,47 @@ ___
              * Copy this file over the hpdisk.cfg file after renaming the hpdisk.cfg file
           * PRINTER address
       * AMIGO disk images
-        * [amigo1.lif](sdcard/amigo1.lif)
+        * [amigo1.lif](sdcard/amigo0.lif)
           * AMIGO disk image
           * Has some demo basic programs in it
-        * [amigo2.lif](sdcard/amigo2.lif)
+        * [amigo2.lif](sdcard/amigo1.lif)
           * AMIGO disk image
           * Has some demo basic programs in it
-        * [amigo3.lif](sdcard/amigo3.lif)
+        * [amigo3.lif](sdcard/amigo2.lif)
           * AMIGO disk image 
           * Has some demo basic programs in it
-        * [amigo4.lif](sdcard/amigo4.lif)
+        * [amigo4.lif](sdcard/amigo3.lif)
           * AMIGO disk image 
           * Has some demo basic programs in it
       * SS80 disk images
-        * [ss80-1.lif](sdcard/ss80-1.lif)
+        * [ss80-1.lif](sdcard/ss80-0.lif)
           * SS80 disk image 
           * Has some demo basic programs in it
-        * [ss80-2.lif](sdcard/ss80-2.lif)
+        * [ss80-2.lif](sdcard/ss80-1.lif)
           * SS80 disk image 
           * Has some demo basic programs in it
-        * [ss80-3.lif](sdcard/ss80-3.lif)
+        * [ss80-3.lif](sdcard/ss80-2.lif)
           * SS80 disk image 
           * Has some demo basic programs in it
-        * [ss80-4.lif](sdcard/ss80-4.lif)
+        * [ss80-4.lif](sdcard/ss80-3.lif)
           * SS80 disk image 
           * Has some demo basic programs in it
       * SD Card emulator configuration file backups
         * [sdcard/configs](sdcard/configs)
           * Backup copies of the hp85disk config files
+      * Build Drive Configuration
+        * [sdcard/mkcfg](sdcard/mkcfg)
+          * Build a [hpdisk.cfg](sdcard/hpdisk.cfg) disk record 
+            * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
+               * We can get a drive block count using: <b>mkcfg -m DRIVE -b</b>
+<pre>
+          mkcfg [-list]| [-m model [-b]] [-a address]
+             -list lists all of the drives in the hpdir.ini file
+             -a address is drive address and ppr bit
+             -m model lists hpdisk.cfg format disk configuration
+             -b lists the model block count
+</pre>
+
       * BUILD SCRIPTS
         * [sdcard/scripts](sdcard/scripts)
           * Scripts that help creating LIF images from multiple files

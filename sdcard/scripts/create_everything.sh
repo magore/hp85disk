@@ -22,9 +22,12 @@ source "$BINHOME"/lif-functions.sh
 
 echo "Creating AMIGO and SS80 disks"
 declare D
-for D in 1 2 3 4
+for D in 0 1 2 3 4 5 6
 do
+	# 1120 = $(mkcfg -m 9121 -b)
 	runlog lif create "amigo"$D.lif "AMIGO"$D 14 1120
+	# 58176 = $(mkcfg -m 9134L -b)
+    # not defined in hpdir.cfg yet
 	runlog lif create "ss80-"$D.lif "SS80-"$D 123 58176
 
 	declare S

@@ -58,7 +58,7 @@ var searchData=
   ['amigo_5ftype',['AMIGO_TYPE',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d',1,'drives.h']]],
   ['amigo_5fverify',['amigo_verify',['../amigo_8h.html#ab08912bf94dc6e8fbe87990ff41f46f0',1,'amigo.h']]],
   ['amigodisktype',['AMIGODiskType',['../structAMIGODiskType.html',1,'']]],
-  ['amigogemometrytype',['AMIGOGemometryType',['../structAMIGOGemometryType.html',1,'']]],
+  ['amigogeometrytype',['AMIGOGeometryType',['../structAMIGOGeometryType.html',1,'']]],
   ['amigostatetype',['AMIGOStateType',['../structAMIGOStateType.html',1,'']]],
   ['asctime',['asctime',['../time_8c.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c'],['../time_8h.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c']]],
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],

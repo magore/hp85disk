@@ -93,5 +93,5 @@ var searchData=
   ['byte',['byte',['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h'],['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;integer.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
   ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType']]],
-  ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGemometryType.html#a38dc0b559f00c78f30fe0c43c53b582a',1,'AMIGOGemometryType']]]
+  ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGeometryType.html#a446d9194981ebd7af3c1b11cdbdf0cfd',1,'AMIGOGeometryType']]]
 ];
