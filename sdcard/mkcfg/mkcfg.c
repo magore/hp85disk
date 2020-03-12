@@ -42,12 +42,19 @@ typedef struct {
 	int  id_stat2;			// 6
 	int  DEVICE_NUMBER;		// 7
 	int	 UNITS_INSTALLED; 	// 8	ALWAYS 1 , FIXED
-	int  MAX_CYLINDER;		// 9
-	int  MAX_HEAD;			// 10
-	int  MAX_SECTOR;		// 11
+	int  CYLINDERS;	    	// 9
+	int  HEADS;				// 10
+	int  SECTORS;			// 11
 	int  BYTES_PER_BLOCK;	// 12
 	int  INTERLEAVE;		// 13
     int  FIXED;				// 14 ALWAYS 1
+	// AMIGO
+	long BLOCKS;
+	// SS80 values
+	int	 MAX_CYLINDER;
+	int  MAX_HEAD;
+	int  MAX_SECTOR;
+	long MAX_BLOCK_NUMBER;
 } hpdir;
 
 hpdir disk;
@@ -62,13 +69,20 @@ void init_disk()
 	disk.id_stat2 = 0;					// 6
 	disk.DEVICE_NUMBER = 0;				// 7
 	disk.UNITS_INSTALLED = 0x8001;		// 8
-	disk.MAX_CYLINDER = 0;				// 9
-	disk.MAX_HEAD = 0;					// 10
-	disk.MAX_SECTOR = 0;				// 11
+	disk.CYLINDERS = 0;  				// 9
+	disk.HEADS= 0;	     				// 10
+	disk.SECTORS= 0;    				// 11
 	disk.BYTES_PER_BLOCK = 0;			// 12
 	disk.INTERLEAVE = 0;				// 13
     disk.FIXED = 1;						// 14 ALWAYS 1
-	// MAX_BLOCK_NUMBER=(MAX_CYLINDER+1)(MAX_HEAD+1)(MAX_SECTOR+1)-1;
+
+    disk.BLOCKS = 0;
+	// MAX_BLOCK_NUMBER = BLOCKS - 1
+	// MAX_BLOCK_NUMBER =(MAX_CYLINDER-1) * (MAX_HEAD-1) * (MAX_SECTOR-1) -1;
+	disk.MAX_CYLINDER = 0;
+	disk.MAX_HEAD = 0;
+	disk.MAX_SECTOR = 0;
+	disk.MAX_BLOCK_NUMBER = 0;
 }
 
 
@@ -317,6 +331,7 @@ void usage(char *ptr)
 	printf("   -a address is drive address and ppr bit\n");
 	printf("   -m model lists hpdisk.cfg format disk configuration\n");
 	printf("   -b lists the model block count\n");
+	printf("   -f NAME specifies the LIF image name for this drive\n");
 }
 
 /// @brief Read and parse a config file using POSIX functions
@@ -335,7 +350,6 @@ int main(int argc, char *argv[])
     int index = 0;
     int lines=0;
     int driveinfo=0;
-	unsigned int MAX_BLOCK_NUMBER = 0;
 	int i;
 	int list = 0;
 	int address = 0;
@@ -346,6 +360,7 @@ int main(int argc, char *argv[])
     char model[MAXLINE];	// 1
     char token[MAXLINE];	// 1
     char str[MAXLINE+2];
+    char LIFNAME[MAXLINE+2];
 
 
 	list = 0;
@@ -353,6 +368,7 @@ int main(int argc, char *argv[])
 	model[0] = 0;
 	path[0] = 0;
 	hpdir[0] = 0;
+	LIFNAME[0] = 0;
 
 	memset(hpdir,0,MAXLINE-1);
 	len = readlink("/proc/self/exe", hpdir, MAXLINE-2);
@@ -395,6 +411,16 @@ int main(int argc, char *argv[])
 
 			strncpy(model,ptr,MAXLINE-2);
 			// printf("#Model: %s\n", model );
+			continue;
+		}
+		if(MATCH(ptr,"-f"))
+		{
+			ptr = argv[++i];
+			if(!ptr)
+				break;
+
+			strncpy(LIFNAME,ptr,MAXLINE-2);
+			// printf("#LIF IMAGE NAME: %s\n", LIFNAME);
 			continue;
 		}
 
@@ -540,35 +566,56 @@ int main(int argc, char *argv[])
 			++errors;
 		disk.UNITS_INSTALLED = 1;				// 8
 
+// ====================================================
+// Heads,Cylinders,Sectors Calculation
 		// Maximum cylinder
 		ptr = get_token(ptr, token, 		MAXLINE-2);
 #ifdef XDEBUG
-		printf("disk.MAX_CYLINDER: %s\n",token);
+		printf("disk.CYLINDERS: %s\n",token);
 #endif
 
 		if (!assign_value(token, 0, 0x00ffffffUL, &val) )
 			++errors;
+
+		// Token is CYLINDERS, MAX_CYLINDER = CYLINDERS -1
+		disk.CYLINDERS = val;				// 9
+		if (val)
+			--val;
 		disk.MAX_CYLINDER = val;				// 9
 
 		// Maximum head
 		ptr = get_token(ptr, token, 		MAXLINE-2);
-#ifdef XDEBUG
-		printf("disk.MAX_HEAD: %s\n",token);
-#endif
 
+#ifdef XDEBUG
+		printf("disk.HEADS: %s\n",token);
+#endif
 		if (!assign_value(token, 0, 0xffffUL, &val) )
 			++errors;
+		// Token is HEADS, MAX_HEAD = HEADS -1
+		disk.HEADS = val;					// 10
+		if (val)
+			--val;
 		disk.MAX_HEAD = val;					// 10
 
 		// Maximum sector
 		ptr = get_token(ptr, token, 		MAXLINE-2);
 #ifdef XDEBUG
-		printf("disk.MAX_SECTOR: %s\n",token);
+		printf("disk.SECTORS: %s\n",token);
 #endif
 
 		if (!assign_value(token, 0, 0xffffUL, &val) )
 			++errors;
-		disk.MAX_SECTOR = val;				// 11
+		// Token is SECTORS, MAX_SECTOR = SECTORS -1
+		disk.SECTORS = val;				// 11
+		if (val)
+			--val;
+		disk.MAX_SECTOR = val;			// 11
+
+		// Total disk blocks
+		disk.BLOCKS = disk.CYLINDERS * disk.HEADS * disk.SECTORS;
+		// Lst block in SS80 drive
+		disk.MAX_BLOCK_NUMBER = disk.BLOCKS-1;
+// ====================================================
 
 		// Bytes per sector
 		ptr = get_token(ptr, token, 		MAXLINE-2);
@@ -597,153 +644,170 @@ int main(int argc, char *argv[])
 
 		if(MATCH(disk.TYPE,"SS80") || MATCH(disk.TYPE,"CS80") )
 		{
-			MAX_BLOCK_NUMBER = (disk.MAX_CYLINDER+1) * (disk.MAX_HEAD+1) * (disk.MAX_SECTOR+1) -1;
-		
-#ifdef XDEBUG
-			printf("disk.MAX_BLOCK_NUMBER: %d\n", MAX_BLOCK_NUMBER);
-#endif
 
 			if( block )
 			{
-				printf("%d\n", MAX_BLOCK_NUMBER);
+				printf("%ld\n", disk.BLOCKS);
 				continue;
 			}
+
+			if ( ! LIFNAME[0] )
+				sprintf(LIFNAME,"ss80-%d.lif",ppr);	
+		
+#ifdef XDEBUG
+			printf("disk.BLOCKS: %d\n", disk.BLOCKS);
+#endif
 
 			printf(\
 				"# %s\n"
                 "# HP85 BASIC ADDRESS :D7%d0\n"
 				"%s %s\n"
-				"  HEADER\n"
-				"        # GPIB Address\n"
-				"    ADDRESS                 = %d\n"
-				"        # Parallel Poll Reponse Bit\n"
-				"    PPR                     = %d\n"
-				"        # LIF image file name\n"
-				"    FILE                    = ss80-%d.lif\n"
-				"  END\n"
-				"  CONFIG\n"
-				"        # Request Identify ID\n"
-				"    ID                      = 0x%04x\n"
-				"  END\n"
-				"  CONTROLLER\n"
-				"        # Units Installed - we only do 1\n"
-				"    UNITS_INSTALLED         = 0x8001\n"
-				"        # Default Transfer Rate\n"
-				"    TRANSFER_RATE           = 744\n"
-				"        # Single Unit COntroller\n"
-				"    TYPE                    = 4\n"
-				"  END\n"
-				"  UNIT\n"
-	            "        # Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape\n"
-	            "        # OR with 128 implies dumb can not detect media change\n"
-				"    UNIT_TYPE               = 0\n"
-	            "        # BCD Device number XX XX XY, X=Unit, Y=option\n"
-				"    DEVICE_NUMBER           = 0x%08x\n"
-	            "        # Bytes Per Block\n"
-				"    BYTES_PER_BLOCK         = %d\n"
-	            "        # Bytes Per Block\n"
-				"    BUFFERED_BLOCKS         = 1\n"
-	            "        # Burst size = 0 for SS80\n"
-				"    BURST_SIZE              = 0\n"
-	            "        # Continuous average transfer rate for long transfers kB/s\n"
-				"    BLOCK_TIME              = 0x1F6\n"
-	            "         # Optimal retry time in 1O's of milliseconds\n"
-				"    CONTINOUS_TRANSFER_RATE = 140\n"
-	            "        # Optimal retry time in 1O's of milliseconds\n"
-				"    OPTIMAL_RETRY_TIME      = 10000\n"
-	            "        # Access time parameter in 1O's of milliseconds\n"
-				"    ACCESS_TIME             = 10000\n"
-	            "        # Maximum Interleave factor\n"
-				"    MAXIMUM_INTERLEAVE      = 31\n"
-	            "        # Fixed volume byte; one bit per volume (set if fixed)\n"
-				"    FIXED_VOLUMES           = 1\n"
-	            "        # Removable volume byte; one bit per volume (set if removable)\n"
-				"    REMOVABLE_VOLUMES       = 1\n"
-				"  END\n"
-				"  VOLUME\n"
-	            "        # Maximum Cylinder = %d - not used\n"
-				"    MAX_CYLINDER            = 0\n"
-	            "        # Maximum Head      = %d - not used\n"
-				"    MAX_HEAD                = 0\n"
-	            "        # Maximum Sector    = %d - not used\n"
-				"    MAX_SECTOR              = 0\n"
-	            "        # Maximum value of single vector address in blocks.\n"
-	            "        #   For devices that use both MAX_BLOCK_NUMBER and CYLINDER,HEAD,SECTOR\n"
-	            "        #   Then the following expression must be true\n"
-	            "        #   MAX_BLOCK_NUMBER  = (MAX_CYLINDER+1) * (MAX_HEAD+1) * (MAX_SECTOR+1) -1\n"
-				"    MAX_BLOCK_NUMBER        = %d\n"
-	            "        # Current Interleave Factor\n"
-				"    INTERLEAVE              = 31\n"
-				"  END\n"
+				"    HEADER\n"
+				"          # GPIB Address\n"
+				"        ADDRESS                 = %d\n"
+				"          # Parallel Poll Reponse Bit\n"
+				"        PPR                     = %d\n"
+				"          # LIF image file name\n"
+				"        FILE                    = %s\n"
+				"    END\n"
+                "\n"
+				"    CONFIG\n"
+				"          # Request Identify ID\n"
+				"        ID                      = 0x%04x\n"
+				"    END\n"
+                "\n"
+				"    CONTROLLER\n"
+				"          # Units Installed - we only do 1\n"
+				"        UNITS_INSTALLED         = 0x8001\n"
+				"          # Default Transfer Rate\n"
+				"        TRANSFER_RATE           = 744\n"
+				"          # Single Unit COntroller\n"
+				"        TYPE                    = 4\n"
+				"    END\n"
+                "\n"
+				"    UNIT\n"
+	            "            # Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape\n"
+	            "            # OR with 128 implies dumb can not detect media change\n"
+				"        UNIT_TYPE               = 0\n"
+	            "            # BCD Device number XX XX XY, X=Unit, Y=option\n"
+				"        DEVICE_NUMBER           = 0x08%x\n"
+	            "            # Bytes Per Block\n"
+				"        BYTES_PER_BLOCK         = %d\n"
+	            "            # Bytes Per Block\n"
+				"        BUFFERED_BLOCKS         = 1\n"
+	            "            # Burst size = 0 for SS80\n"
+				"        BURST_SIZE              = 0\n"
+	            "            # Continuous average transfer rate for long transfers kB/s\n"
+				"        BLOCK_TIME              = 0x1F6\n"
+	            "             # Optimal retry time in 1O's of milliseconds\n"
+				"        CONTINOUS_TRANSFER_RATE = 140\n"
+	            "            # Optimal retry time in 1O's of milliseconds\n"
+				"        OPTIMAL_RETRY_TIME      = 10000\n"
+	            "            # Access time parameter in 1O's of milliseconds\n"
+				"        ACCESS_TIME             = 10000\n"
+	            "            # Maximum Interleave factor\n"
+				"        MAXIMUM_INTERLEAVE      = 31\n"
+	            "            # Fixed volume byte; one bit per volume (set if fixed)\n"
+				"        FIXED_VOLUMES           = 1\n"
+	            "            # Removable volume byte; one bit per volume (set if removable)\n"
+				"        REMOVABLE_VOLUMES       = 1\n"
+				"    END\n"
+                "\n"
+				"    VOLUME\n"
+	            "            # Maximum Cylinder = %d = CYLINDERS-1 not used\n"
+				"        MAX_CYLINDER            = 0\n"
+	            "            # Maximum Head      = %d = HEADS-1 not used\n"
+				"        MAX_HEAD                = 0\n"
+	            "            # Maximum Sector    = %d = SECTORS-1 not used\n"
+				"        MAX_SECTOR              = 0\n"
+	            "            # Maximum value of single vector address in blocks.\n"
+                "            #   NOTE: For devices that use both MAX_BLOCK_NUMBER and CYLINDER,HEAD,SECTOR\n"
+	            "            #   Note: The follow expressions must be true if BOTH CHS and BLOCKS are used\n"
+	            "            #   MAX_BLOCK_NUMBER = (MAX_CYLINDERS+1) * (MAX_HEAD+1) * (MAX_SECTOR+1) -1;\n"
+	            "            #   BLOCKS = CYLINDERS * HEADS * SECTORS -1\n"
+	            "            #   MAX_BLOCK_NUMBER  = BLOCKS -1\n"
+	            "            #   BLOCKS = %ld\n"
+				"        MAX_BLOCK_NUMBER        = %ld\n"
+	            "            # Current Interleave Factor\n"
+				"        INTERLEAVE              = 31\n"
+				"    END\n"
+                "\n"
 				"END\n\n",
 					disk.comment,
 					address,
 					disk.TYPE, disk.model,
 					address,
 					ppr,
-					ppr,
+					LIFNAME,
 					disk.ID,
 					disk.DEVICE_NUMBER,
 					disk.BYTES_PER_BLOCK,
 					disk.MAX_CYLINDER,
 					disk.MAX_HEAD,
 					disk.MAX_SECTOR,
-					MAX_BLOCK_NUMBER );
+					disk.BLOCKS,
+					disk.MAX_BLOCK_NUMBER );
 		}	// SS80
 
 		if( MATCH(disk.TYPE,"AMIGO") )
 		{
-			MAX_BLOCK_NUMBER = disk.MAX_CYLINDER * disk.MAX_HEAD * disk.MAX_SECTOR;
+
+			if ( ! LIFNAME[0] )
+				sprintf(LIFNAME,"amigo%d.lif",ppr);	
 #ifdef XDEBUG
-			printf("disk.MAX_BLOCK_NUMBER: %d\n", MAX_BLOCK_NUMBER);
+			printf("disk.BLOCKS: %d\n", BLOCKS);
 #endif
 
 			if( block )
 			{
-				printf("%d\n", MAX_BLOCK_NUMBER);
+				printf("%ld\n", disk.BLOCKS);
 				continue;
 			}
+
 			printf(\
 				"# %s\n"
                 "# HP85 BASIC ADDRESS :D7%d0\n"
 				"%s %s\n"
-				"  HEADER\n"
-			    "        # GPIB Address\n"
-				"    ADDRESS                 = %d\n"
-				"        # Parallel Poll Reponse Bit\n"
-				"    PPR                     = %d\n"
-				"        # LIF image file name\n"
-				"    FILE                    = amigo%d.lif\n"
-				"  END\n"
-				"  CONFIG\n"
-				"        # Request Identify ID\n"
-				"    ID                      = 0x%04x\n"
-				"  END\n"
-				"  GEOMETRY\n"
-	            "        # Bytes Per Block\n"
-				"    BYTES_PER_SECTOR        = %d\n"
-	            "        # Sectors Per Track\n"
-				"    SECTOR_PER_TRACK        = %d\n"
-	            "        # Heads\n"
-				"    HEADS                   = %d\n"
-	            "        # Cylinders\n"
-				"    CYLINDERS               = %d\n"
-	            "        # MAX_BLOCK_NUMBER  = MAX_CYLINDER * MAX_HEAD * MAX_SECTOR\n"
-				"        # MAX_BLOCK_NUMBER  = %d\n"
-				"  END\n"
+				"    HEADER\n"
+			    "            # GPIB Address\n"
+				"        ADDRESS                 = %d\n"
+				"            # Parallel Poll Reponse Bit\n"
+				"        PPR                     = %d\n"
+				"            # LIF image file name\n"
+				"        FILE                    = %s\n"
+				"    END\n"
+                "\n"
+				"    CONFIG\n"
+				"            # Request Identify ID\n"
+				"        ID                      = 0x%04x\n"
+				"    END\n"
+                "\n"
+				"    GEOMETRY\n"
+	            "            # Bytes Per Block\n"
+				"        BYTES_PER_SECTOR        = %d\n"
+	            "            # Sectors Per Track\n"
+				"        SECTORS_PER_TRACK        = %d\n"
+	            "            # Heads\n"
+				"        HEADS                   = %d\n"
+	            "            # Cylinders\n"
+				"        CYLINDERS               = %d\n"
+	            "            # BLOCKS = CYLINDERS * HEADS * SECTORS\n"
+				"            # BLOCKS = %ld\n"
+				"    END\n"
+                "\n"
 				"END\n\n",
 					disk.comment,
 					address,
 					disk.TYPE, disk.model,
 					address,
 					ppr,
-					ppr,
+					LIFNAME,
 					disk.ID,
 					disk.BYTES_PER_BLOCK,
-					disk.MAX_SECTOR,
-					disk.MAX_HEAD,
-					disk.MAX_CYLINDER,
-					MAX_BLOCK_NUMBER );
+					disk.SECTORS,
+					disk.HEADS,
+					disk.CYLINDERS,
+					disk.BLOCKS);
 		} // AMIGO
 	}	// while
 
