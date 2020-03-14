@@ -1765,11 +1765,13 @@ README</h1>
 <li>Build a <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> disk record<ul>
 <li>Using <a href="sdcard/notes/hpdir.ini">hpdir.ini</a> database<ul>
 <li>We can get a drive block count using: <b>mkcfg -m DRIVE -b</b> <pre>
-          mkcfg [-list]| [-m model [-b]] [-a address]
-             -list lists all of the drives in the hpdir.ini file
-             -a address is drive address and ppr bit
-             -m model lists hpdisk.cfg format disk configuration
-             -b lists the model block count
+        mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+           -list lists all of the drives in the hpdir.ini file
+           -a disk address 0..7
+           -m model only, list hpdisk.cfg format disk configuration
+           -b only display block count, you can can use this with -m
+           -d only display computed directory block count, you can use this with -m
+           -f NAME specifies the LIF image name for this drive
 </pre> <pre class="fragment">  * BUILD SCRIPTS
     * [sdcard/scripts](sdcard/scripts)
       * Scripts that help creating LIF images from multiple files
@@ -1840,7 +1842,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 11 2020 20:53:56 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 13 2020 22:38:40 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

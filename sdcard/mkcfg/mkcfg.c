@@ -55,6 +55,7 @@ typedef struct {
 	int  MAX_HEAD;
 	int  MAX_SECTOR;
 	long MAX_BLOCK_NUMBER;
+	long LIF_DIR_BLOCKS;
 } hpdir;
 
 hpdir disk;
@@ -83,6 +84,7 @@ void init_disk()
 	disk.MAX_HEAD = 0;
 	disk.MAX_SECTOR = 0;
 	disk.MAX_BLOCK_NUMBER = 0;
+	disk.LIF_DIR_BLOCKS= 0;
 }
 
 
@@ -323,14 +325,36 @@ uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val
     return(1);
 }
 
+// LIF Directory blocks ~= sqrt(blocks);
+// We simplify 
+//  BITS = Bit position of MSB of block count 
+//  DIR Size = BITS / 2
+//  
+long lif_dir_count(long blocks)
+{
+	int scale = 0;
+	long num = 1;
+	while(blocks)
+	{
+		scale++;
+ 		blocks >>= 1;
+	}
+	scale>>=1;
+	while(scale--)
+		num <<=1;
+	return(num);
+}
+
+	
 
 void usage(char *ptr)
 {
-	printf("%s [-list]| [-m model [-b]] [-a address]\n", ptr);
+	printf("%s [-list]| [-m model [-b]|[-d]] [-a address]\n", ptr);
 	printf("   -list lists all of the drives in the hpdir.ini file\n");
-	printf("   -a address is drive address and ppr bit\n");
-	printf("   -m model lists hpdisk.cfg format disk configuration\n");
-	printf("   -b lists the model block count\n");
+	printf("   -a disk address 0..7\n");
+	printf("   -m model only, list hpdisk.cfg format disk configuration\n");
+	printf("   -b only display block count, you can can use this with -m\n");
+	printf("   -d only display computed directory block count, you can use this with -m\n");
 	printf("   -f NAME specifies the LIF image name for this drive\n");
 }
 
@@ -354,6 +378,7 @@ int main(int argc, char *argv[])
 	int list = 0;
 	int address = 0;
 	int block = 0;
+    int dir_size = 0;
 	int ppr = 0;
     char hpdir[MAXLINE];	// 1
     char path[MAXLINE];	// 1
@@ -387,22 +412,30 @@ int main(int argc, char *argv[])
 	for(i=1;i<argc; ++i)
 	{
 		ptr = argv[i];
-		if(MATCH(ptr,"-help") || MATCH(ptr,"-h" ) || MATCH(ptr,">")  )
+		if(MATCH(ptr,"-help") || MATCH(ptr,"-h" ) || MATCH(ptr,"?")  )
 		{
 			usage(argv[0]);
 			return(0);
 		}
 
-		if(MATCH(ptr,"-list"))
+		if(MATCH(ptr,"-list") || MATCH(ptr,"-l" ))
 		{
 			list = 1;
 			continue;
 		}
+
 		if(MATCH(ptr,"-b"))
 		{
 			block = 1;
 			continue;
 		}
+
+		if(MATCH(ptr,"-d"))
+		{
+			dir_size = 1;
+			continue;
+		}
+
 		if(MATCH(ptr,"-m"))
 		{
 			ptr = argv[++i];
@@ -613,6 +646,7 @@ int main(int argc, char *argv[])
 
 		// Total disk blocks
 		disk.BLOCKS = disk.CYLINDERS * disk.HEADS * disk.SECTORS;
+		disk.LIF_DIR_BLOCKS = lif_dir_count(disk.BLOCKS);
 		// Lst block in SS80 drive
 		disk.MAX_BLOCK_NUMBER = disk.BLOCKS-1;
 // ====================================================
@@ -648,6 +682,11 @@ int main(int argc, char *argv[])
 			if( block )
 			{
 				printf("%ld\n", disk.BLOCKS);
+				continue;
+			}
+			if( dir_size )
+			{
+				printf("%ld\n", disk.LIF_DIR_BLOCKS);
 				continue;
 			}
 
@@ -732,6 +771,7 @@ int main(int argc, char *argv[])
 				"        INTERLEAVE              = 31\n"
 				"    END\n"
                 "\n"
+	            "#   RESERVED DIRECTORY BLOCKS = %ld\n"
 				"END\n\n",
 					disk.comment,
 					address,
@@ -746,7 +786,8 @@ int main(int argc, char *argv[])
 					disk.MAX_HEAD,
 					disk.MAX_SECTOR,
 					disk.BLOCKS,
-					disk.MAX_BLOCK_NUMBER );
+					disk.MAX_BLOCK_NUMBER,
+					disk.LIF_DIR_BLOCKS );
 		}	// SS80
 
 		if( MATCH(disk.TYPE,"AMIGO") )
@@ -757,6 +798,11 @@ int main(int argc, char *argv[])
 #ifdef XDEBUG
 			printf("disk.BLOCKS: %d\n", BLOCKS);
 #endif
+			if( dir_size )
+			{
+				printf("%ld\n", disk.LIF_DIR_BLOCKS);
+				continue;
+			}
 
 			if( block )
 			{
@@ -795,6 +841,7 @@ int main(int argc, char *argv[])
 				"            # BLOCKS = %ld\n"
 				"    END\n"
                 "\n"
+	            "#   RESERVED DIRECTORY BLOCKS = %ld\n"
 				"END\n\n",
 					disk.comment,
 					address,
@@ -807,7 +854,8 @@ int main(int argc, char *argv[])
 					disk.SECTORS,
 					disk.HEADS,
 					disk.CYLINDERS,
-					disk.BLOCKS);
+					disk.BLOCKS,
+					disk.LIF_DIR_BLOCKS );
 		} // AMIGO
 	}	// while
 

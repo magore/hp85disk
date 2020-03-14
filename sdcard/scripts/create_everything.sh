@@ -34,10 +34,20 @@ declare D
 for D in 0 1 2 3
 do
 	# The generated file name below must match these LIF images 
-	SS80_BLOCKS=$(mkcfg -m 9134D -b)
-	runlog lif create "ss80-"$D.lif "SS80-"$D 123 $SS80_BLOCKS
-	AMIGO_BLOCKS=$(mkcfg -m 9121 -b)
-	runlog lif create "amigo"$D.lif "AMIGO"$D 14 $AMIGO_BLOCKS
+
+	BLOCKS=$(mkcfg -m 9134D -b)
+	DIRECTORY_SIZE=$(mkcfg -m 9134D -d)
+	echo "BLOCKS:[$BLOCKS]
+	echo "DIRECTORY_SIZE:[$DIRECTORY_SIZE]
+
+	runlog lif create "ss80-"$D.lif "SS80-"$D $DIRECTORY_SIZE $BLOCKS
+
+	BLOCKS=$(mkcfg -m 9121 -b)
+	DIRECTORY_SIZE=$(mkcfg -m 9121 -d)
+	echo "BLOCKS:[$BLOCKS]
+	echo "DIRECTORY_SIZE:[$DIRECTORY_SIZE]
+
+	runlog lif create "amigo"$D.lif "AMIGO"$D $DIRECTORY_SIZE $BLOCKS
 
 	declare S
 	for S in $@

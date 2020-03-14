@@ -1048,11 +1048,13 @@ ___
             * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
                * We can get a drive block count using: <b>mkcfg -m DRIVE -b</b>
 <pre>
-          mkcfg [-list]| [-m model [-b]] [-a address]
-             -list lists all of the drives in the hpdir.ini file
-             -a address is drive address and ppr bit
-             -m model lists hpdisk.cfg format disk configuration
-             -b lists the model block count
+		mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+		   -list lists all of the drives in the hpdir.ini file
+		   -a disk address 0..7
+		   -m model only, list hpdisk.cfg format disk configuration
+		   -b only display block count, you can can use this with -m
+		   -d only display computed directory block count, you can use this with -m
+		   -f NAME specifies the LIF image name for this drive
 </pre>
 
       * BUILD SCRIPTS
