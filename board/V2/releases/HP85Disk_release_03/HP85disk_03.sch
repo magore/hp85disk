@@ -18201,7 +18201,7 @@ package type TQ</description>
 <wire x1="179.07" y1="19.05" x2="179.07" y2="20.32" width="0.6096" layer="94"/>
 <wire x1="179.07" y1="20.32" x2="180.34" y2="20.32" width="0.6096" layer="94"/>
 <text x="181.61" y="11.43" size="2.54" layer="94" font="vector">HP85 Tape Drive Interface</text>
-<text x="181.61" y="6.35" size="2.286" layer="94" font="vector">03/09/2020</text>
+<text x="181.61" y="6.35" size="2.286" layer="94" font="vector">03/15/2020</text>
 <text x="195.58" y="1.27" size="2.54" layer="94" font="vector">&gt;SHEET</text>
 <text x="181.61" y="1.27" size="2.54" layer="94" font="vector">Sheet:</text>
 <text x="181.61" y="16.51" size="2.54" layer="94" font="vector">Mike Gore</text>
@@ -20951,7 +20951,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="C14" library="SparkFun-Capacitors" deviceset="47UF-POLAR" device="-PANASONIC_D-35V-20%" value="47uF"/>
 <part name="GND21" library="SparkFun" deviceset="GND" device=""/>
-<part name="U10" library="SparkFun-PowerIC" deviceset="MIC5205" device="3.3V" value="MIC5205"/>
+<part name="U10" library="SparkFun-PowerIC" deviceset="MIC5205" device="3.3V" value="LP5907MFX-3.3"/>
 <part name="GND22" library="SparkFun" deviceset="GND" device=""/>
 <part name="C15" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0603-16V-10%" value="1.0uF"/>
 <part name="GND23" library="SparkFun" deviceset="GND" device=""/>
@@ -21895,7 +21895,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <label x="53.34" y="142.24" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$3" class="0">
+<net name="XT1" class="0">
 <segment>
 <wire x1="58.42" y1="114.3" x2="40.894" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="40.894" y1="114.3" x2="40.894" y2="119.38" width="0.1524" layer="91"/>
@@ -21906,9 +21906,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="35.56" y1="116.84" x2="35.56" y2="119.38" width="0.1524" layer="91"/>
 <junction x="35.56" y="119.38"/>
 <pinref part="U1" gate="G$1" pin="XTAL1"/>
+<label x="45.72" y="114.3" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$4" class="0">
+<net name="XT2" class="0">
 <segment>
 <wire x1="58.42" y1="109.22" x2="35.56" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="2"/>
@@ -21917,6 +21918,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="35.56" y1="111.76" x2="35.56" y2="109.22" width="0.1524" layer="91"/>
 <junction x="35.56" y="109.22"/>
 <pinref part="U1" gate="G$1" pin="XTAL2"/>
+<label x="45.72" y="109.22" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GPIB_D1" class="0">
