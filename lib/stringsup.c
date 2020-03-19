@@ -627,6 +627,60 @@ int split_args(char *str, char *argv[], int max)
 MEMSPACE
 char *get_token(char *str, char *token, int max)
 {
+    if(!str)
+        return(str);
+
+    // Skip beginning spaces
+    str = skipspaces(str);
+    // Delete all trailing spaces
+    trim_tail(str);
+
+    while(*str > ' ' && max > 0) {
+
+        // String processing
+        // A token can be a quoted string
+        if(*str == '"')
+        {
+            ++str;
+            // We are pointing at the body of the quoted string now
+            while(*str && *str != '"' && max > 0)
+            {
+                *token++ = *str++;
+                --max;
+            }
+            if(*str == '"')
+            {
+                ++str;
+                *token++ = 0;
+                --max;
+                break;
+            }
+            break;
+        }
+
+        // If we have a comma, outside of a string, break
+        if(*str == ',' )
+            break;
+
+        // copy token
+        *token++ = *str++;
+        --max;
+    }
+
+    // Skip trailing spaces
+    str = skipspaces(str);
+    // If we had a trailing comma skip it
+    if(*str == ',' )
+        ++str;
+
+    *token = 0;
+    return(str);
+}
+
+
+#if 0
+char *get_token(char *str, char *token, int max)
+{
     int len;
 
     *token = 0;
@@ -654,6 +708,7 @@ char *get_token(char *str, char *token, int max)
         return(NULL);
     return(str);
 }
+#endif
 
 
 // =============================================

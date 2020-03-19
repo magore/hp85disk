@@ -319,7 +319,7 @@ SRCS = $(CSRC)
 PROGS = hardware/baudrate
 
 #all: doxy version $(LIBS) build size $(PROGS)
-all: term version $(LIBS) build size $(PROGS) lif
+all: version $(LIBS) build size $(PROGS) lif
 
 
 # Default target.
@@ -336,12 +336,18 @@ hardware/baudrate:  hardware/baudrate.c
 
 .PHONY: term
 term:   
-	touch main.c
+	./term $(BAUD) $(PORT)
 
+.PHONY: sdcard
+sdcard:
+	cd sdcard; ./create_images.sh
+
+.PHONY: release
 release: all
 	# Save the results under release
-	cp -p $(PROJECT).elf $(PROJECT).hex $(PROJECT).lss $(PROJECT).lst $(PROJECT).map $(PROJECT).sym release
+	cp -p $(PROJECT).* release
 	cp -p sdcard/*.cfg release
+	cp -p sdcard/*.ini release
 
 flash_release:
 	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/$(PROJECT).hex
@@ -371,7 +377,7 @@ flash: all
 	#./miniterm $(BAUD) $(PORT)
 	# ===================================================
 
-flash_fast: all 
+flash-fast: all 
 	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B 0.25 $(fuses) -U flash:w:$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 

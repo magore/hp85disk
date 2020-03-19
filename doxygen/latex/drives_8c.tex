@@ -48,6 +48,8 @@ int \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device} (i
 \begin{DoxyCompactList}\small\item\em Find a device with matching type A\+ND address. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_aece04902efa99dc0e1578dda79437a75}{set\+\_\+active\+\_\+device} (int index)
 \begin{DoxyCompactList}\small\item\em Set the Active disk or device pointers Since we can be called multiple times per single G\+P\+IB state we do not display state changes here. Other code displays the active state. \end{DoxyCompactList}\item 
+void \hyperlink{drives_8c_ab77aec3bccafd2e0309efe181ced7f18}{S\+S80\+\_\+\+Initial\+\_\+\+Defaults} (int index)
+\begin{DoxyCompactList}\small\item\em Initialize Default Values for a new S\+S80 Device Most values in the C\+O\+N\+T\+R\+O\+L\+ER and U\+N\+IT are defaults that should not need to be specified Note all of the values are zeroed on allocation including strings. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a779f57c67af69afdde92e28cb4ee9adb}{alloc\+\_\+device} (int type)
 \begin{DoxyCompactList}\small\item\em Allocate a Device structure for a disk or printer. \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}{init\+\_\+\+Devices} ()
@@ -87,6 +89,8 @@ static int \hyperlink{drives_8c_a7396cc31899052a2a171fbfe3f32b2d9}{stack\+\_\+p}
 \begin{DoxyCompactList}\small\item\em Active S\+S80 Device. \end{DoxyCompactList}\item 
 \hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \item 
+\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} \hyperlink{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}{S\+S80\+Disk\+Default}
+\begin{DoxyCompactList}\small\item\em S\+S80 initial defaults for A\+LL S\+S80 drives Mostly used for C\+O\+N\+T\+R\+O\+L\+L\+ER, U\+N\+IT defaults. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}{lines} = 0
 \begin{DoxyCompactList}\small\item\em Config file line number. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -166,7 +170,7 @@ Devices\mbox{[}\mbox{]} index on sucess or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 469 of file drives.\+c.
+Definition at line 548 of file drives.\+c.
 
 
 
@@ -201,7 +205,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 566 of file drives.\+c.
+Definition at line 646 of file drives.\+c.
 
 
 
@@ -231,7 +235,7 @@ value
 \end{DoxyReturn}
 
 
-Definition at line 275 of file drives.\+c.
+Definition at line 316 of file drives.\+c.
 
 
 
@@ -261,7 +265,7 @@ value
 \end{DoxyReturn}
 
 
-Definition at line 256 of file drives.\+c.
+Definition at line 297 of file drives.\+c.
 
 
 
@@ -287,7 +291,7 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 \end{DoxyReturn}
 
 
-Definition at line 335 of file drives.\+c.
+Definition at line 376 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a306684070b386e868ed1e647e5172ee0}\label{drives_8c_a306684070b386e868ed1e647e5172ee0}} 
 \index{drives.\+c@{drives.\+c}!count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}}
@@ -306,7 +310,7 @@ Count number of devices of a sertain type.
 \end{DoxyParams}
 
 
-Definition at line 305 of file drives.\+c.
+Definition at line 346 of file drives.\+c.
 
 
 
@@ -327,7 +331,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1262 of file drives.\+c.
+Definition at line 1347 of file drives.\+c.
 
 
 
@@ -350,7 +354,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1299 of file drives.\+c.
+Definition at line 1384 of file drives.\+c.
 
 
 
@@ -390,7 +394,7 @@ convert to device address
 
 search for device address 
 
-Definition at line 358 of file drives.\+c.
+Definition at line 399 of file drives.\+c.
 
 
 
@@ -411,7 +415,7 @@ Devices\mbox{[}\mbox{]} index of free slot or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 348 of file drives.\+c.
+Definition at line 389 of file drives.\+c.
 
 
 
@@ -434,7 +438,7 @@ Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type.
 \end{DoxyParams}
 
 
-Definition at line 292 of file drives.\+c.
+Definition at line 333 of file drives.\+c.
 
 
 
@@ -455,7 +459,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1391 of file drives.\+c.
+Definition at line 1476 of file drives.\+c.
 
 
 
@@ -473,7 +477,7 @@ Init Config Parser Stack Called only durring power up so we do not have to free 
 
 
 
-Definition at line 516 of file drives.\+c.
+Definition at line 596 of file drives.\+c.
 
 
 
@@ -494,7 +498,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 546 of file drives.\+c.
+Definition at line 626 of file drives.\+c.
 
 
 
@@ -522,7 +526,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 677 of file drives.\+c.
+Definition at line 757 of file drives.\+c.
 
 
 
@@ -550,7 +554,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1250 of file drives.\+c.
+Definition at line 1335 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8c_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -574,7 +578,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1235 of file drives.\+c.
+Definition at line 1320 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8c_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
@@ -596,7 +600,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 535 of file drives.\+c.
+Definition at line 615 of file drives.\+c.
 
 
 
@@ -622,7 +626,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \end{DoxyReturn}
 We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
 
-Definition at line 387 of file drives.\+c.
+Definition at line 428 of file drives.\+c.
 
 
 
@@ -643,11 +647,32 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 612 of file drives.\+c.
+Definition at line 692 of file drives.\+c.
 
 
 
 Referenced by gpib\+\_\+file\+\_\+init(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+\mbox{\Hypertarget{drives_8c_ab77aec3bccafd2e0309efe181ced7f18}\label{drives_8c_ab77aec3bccafd2e0309efe181ced7f18}} 
+\index{drives.\+c@{drives.\+c}!S\+S80\+\_\+\+Initial\+\_\+\+Defaults@{S\+S80\+\_\+\+Initial\+\_\+\+Defaults}}
+\index{S\+S80\+\_\+\+Initial\+\_\+\+Defaults@{S\+S80\+\_\+\+Initial\+\_\+\+Defaults}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{S\+S80\+\_\+\+Initial\+\_\+\+Defaults()}{SS80\_Initial\_Defaults()}}
+{\footnotesize\ttfamily void S\+S80\+\_\+\+Initial\+\_\+\+Defaults (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Initialize Default Values for a new S\+S80 Device Most values in the C\+O\+N\+T\+R\+O\+L\+ER and U\+N\+IT are defaults that should not need to be specified Note all of the values are zeroed on allocation including strings. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 512 of file drives.\+c.
+
+
+
+Referenced by alloc\+\_\+device().
 
 \mbox{\Hypertarget{drives_8c_aa43e282b0ff4a2e5b2ce59f0fce3fb68}\label{drives_8c_aa43e282b0ff4a2e5b2ce59f0fce3fb68}} 
 \index{drives.\+c@{drives.\+c}!type\+\_\+to\+\_\+str@{type\+\_\+to\+\_\+str}}
@@ -669,7 +694,7 @@ string pointer
 \end{DoxyReturn}
 
 
-Definition at line 320 of file drives.\+c.
+Definition at line 361 of file drives.\+c.
 
 
 
@@ -701,7 +726,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 240 of file drives.\+c.
+Definition at line 281 of file drives.\+c.
 
 
 
@@ -733,7 +758,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 223 of file drives.\+c.
+Definition at line 264 of file drives.\+c.
 
 
 
@@ -768,7 +793,7 @@ Config file line number.
 
 
 
-Definition at line 555 of file drives.\+c.
+Definition at line 635 of file drives.\+c.
 
 
 
@@ -788,6 +813,20 @@ Active Printer Device.
 
 Definition at line 33 of file drives.\+c.
 
+\mbox{\Hypertarget{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}\label{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}} 
+\index{drives.\+c@{drives.\+c}!S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}}
+\index{S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{S\+S80\+Disk\+Default}{SS80DiskDefault}}
+{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} S\+S80\+Disk\+Default}
+
+
+
+S\+S80 initial defaults for A\+LL S\+S80 drives Mostly used for C\+O\+N\+T\+R\+O\+L\+L\+ER, U\+N\+IT defaults. 
+
+
+
+Definition at line 47 of file drives.\+c.
+
 \mbox{\Hypertarget{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}\label{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}} 
 \index{drives.\+c@{drives.\+c}!S\+S80p@{S\+S80p}}
 \index{S\+S80p@{S\+S80p}!drives.\+c@{drives.\+c}}
@@ -804,7 +843,7 @@ Definition at line 36 of file drives.\+c.
 
 
 
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
+Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+\+Initial\+\_\+\+Defaults(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 
 \mbox{\Hypertarget{drives_8c_a26e0264b8581231a3a90fbb418f5812a}\label{drives_8c_a26e0264b8581231a3a90fbb418f5812a}} 
 \index{drives.\+c@{drives.\+c}!S\+S80s@{S\+S80s}}

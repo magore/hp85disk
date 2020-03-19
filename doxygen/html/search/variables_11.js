@@ -20,6 +20,7 @@ var searchData=
   ['spi0_5fmode_5fvalue',['SPI0_Mode_value',['../spi_8c.html#ae41154cf3f834c2d151bfa9e67cfc402',1,'spi.c']]],
   ['spi0_5fspeed_5fvalue',['SPI0_Speed_value',['../spi_8c.html#a27ad9c881de03a6b8defda1bde93566f',1,'spi.c']]],
   ['spoll',['spoll',['../gpib_8c.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c'],['../gpib_8h.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c'],['../ss80_8c.html#a0205f89c3878a7a6cb4ee1f75de35fb3',1,'spoll():&#160;gpib.c']]],
+  ['ss80diskdefault',['SS80DiskDefault',['../drives_8c.html#a21c7953c08107cdbf2d0c264f2b32eab',1,'drives.c']]],
   ['ss80p',['SS80p',['../drives_8c.html#ae2b90e5f9a8ae9e5df3fdee98a215939',1,'SS80p():&#160;drives.c'],['../drives_8h.html#ae2b90e5f9a8ae9e5df3fdee98a215939',1,'SS80p():&#160;drives.c']]],
   ['ss80s',['SS80s',['../drives_8c.html#a26e0264b8581231a3a90fbb418f5812a',1,'SS80s():&#160;drives.c'],['../drives_8h.html#a26e0264b8581231a3a90fbb418f5812a',1,'SS80s():&#160;drives.c']]],
   ['st_5fatime',['st_atime',['../structstat.html#ab74d1e7e345e88b9d0fb2688a97cba64',1,'stat']]],

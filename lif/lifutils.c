@@ -995,6 +995,12 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
     lif_t *LIF = lif_calloc(sizeof(lif_t)+4);
     if(LIF == NULL)
         return(NULL);
+
+	printf("Creating:%s, Label:%10s, Directory Start %ld, Directory Size: %ld, File Sectors:%ld\n",
+		imagename, liflabel, dirstart, dirsectors, filesectors );
+
+    if(debuglevel & 0x400)
+        lif_dump_vol(LIF,"lif_create_volume");
     
     lif_image_clear(LIF);
 
@@ -1109,8 +1115,6 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
             printf("Wrote: %ld\r", count);
         ++count;
     }
-    if(debuglevel & 0x400)
-        lif_dump_vol(LIF,"lif_create_volume");
     printf("Wrote: %ld\n", count);
 
     lif_rewinddir(LIF);
@@ -1640,6 +1644,8 @@ lif_t *lif_open_volume(char *name, char *mode)
         return(NULL);
     }
 
+	if(debuglevel &0x400)
+		lif_dump_vol(LIF, "Volume Listing");	
     return( LIF );
 }
 

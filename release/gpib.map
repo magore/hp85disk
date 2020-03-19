@@ -286,7 +286,7 @@ Discarded input sections
  .text.MATCH_LEN
                 0x0000000000000000       0x36 lib/stringsup.o
  .text.get_token
-                0x0000000000000000       0x56 lib/stringsup.o
+                0x0000000000000000       0x8c lib/stringsup.o
  .text.strnalloc
                 0x0000000000000000       0x40 lib/stringsup.o
  .text.stralloc
@@ -502,7 +502,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 gpib/printer.o
  .data          0x0000000000000000        0x4 gpib/printer.o
  .text          0x0000000000000000        0x0 gpib/drives.o
- .data          0x0000000000000000        0x0 gpib/drives.o
  .text.base_to_str
                 0x0000000000000000       0x2a gpib/drives.o
  .text          0x0000000000000000        0x0 gpib/controller.o
@@ -1124,7 +1123,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000    0x1e0d0
+.text           0x0000000000000000    0x1e302
  *(.vectors)
  .vectors       0x0000000000000000       0x8c /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
                 0x0000000000000000                __vectors
@@ -1175,38 +1174,37 @@ END GROUP
  .progmem.data  0x0000000000002051      0x839 gpib/amigo.o
  .progmem.data  0x000000000000288a      0x113 gpib/printer.o
  .progmem.data  0x000000000000299d      0x88f gpib/drives.o
- .progmem.data  0x000000000000322c     0x135c lif/lifutils.o
- .progmem.data  0x0000000000004588      0x399 main.o
-                0x0000000000004922                . = ALIGN (0x2)
- *fill*         0x0000000000004921        0x1 
+ .progmem.data  0x000000000000322c     0x13b1 lif/lifutils.o
+ .progmem.data  0x00000000000045dd      0x399 main.o
+                0x0000000000004976                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x0000000000004922                __ctors_start = .
+                0x0000000000004976                __ctors_start = .
  *(.ctors)
-                0x0000000000004922                __ctors_end = .
-                0x0000000000004922                __dtors_start = .
+                0x0000000000004976                __ctors_end = .
+                0x0000000000004976                __dtors_start = .
  *(.dtors)
-                0x0000000000004922                __dtors_end = .
+                0x0000000000004976                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x0000000000004922        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
-                0x0000000000004922                __init
+ .init0         0x0000000000004976        0x0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
+                0x0000000000004976                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x0000000000004922        0xc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
+ .init2         0x0000000000004976        0xc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000000000492e       0x1a /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_copy_data.o)
-                0x000000000000492e                __do_copy_data
- .init4         0x0000000000004948       0x10 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_clear_bss.o)
-                0x0000000000004948                __do_clear_bss
+ .init4         0x0000000000004982       0x1a /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_copy_data.o)
+                0x0000000000004982                __do_copy_data
+ .init4         0x000000000000499c       0x10 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_clear_bss.o)
+                0x000000000000499c                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -1217,1555 +1215,1558 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000004958        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
+ .init9         0x00000000000049ac        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  *(.init9)
  *(.text)
- .text          0x0000000000004960        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
-                0x0000000000004960                __vector_22
-                0x0000000000004960                __vector_28
-                0x0000000000004960                __vector_1
-                0x0000000000004960                __vector_32
-                0x0000000000004960                __vector_34
-                0x0000000000004960                __vector_24
-                0x0000000000004960                __vector_12
-                0x0000000000004960                __bad_interrupt
-                0x0000000000004960                __vector_6
-                0x0000000000004960                __vector_31
-                0x0000000000004960                __vector_3
-                0x0000000000004960                __vector_23
-                0x0000000000004960                __vector_30
-                0x0000000000004960                __vector_25
-                0x0000000000004960                __vector_11
-                0x0000000000004960                __vector_17
-                0x0000000000004960                __vector_19
-                0x0000000000004960                __vector_7
-                0x0000000000004960                __vector_27
-                0x0000000000004960                __vector_5
-                0x0000000000004960                __vector_33
-                0x0000000000004960                __vector_4
-                0x0000000000004960                __vector_9
-                0x0000000000004960                __vector_2
-                0x0000000000004960                __vector_21
-                0x0000000000004960                __vector_15
-                0x0000000000004960                __vector_29
-                0x0000000000004960                __vector_8
-                0x0000000000004960                __vector_26
-                0x0000000000004960                __vector_14
-                0x0000000000004960                __vector_10
-                0x0000000000004960                __vector_16
-                0x0000000000004960                __vector_18
-                0x0000000000004964                . = ALIGN (0x2)
+ .text          0x00000000000049b4        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
+                0x00000000000049b4                __vector_22
+                0x00000000000049b4                __vector_28
+                0x00000000000049b4                __vector_1
+                0x00000000000049b4                __vector_32
+                0x00000000000049b4                __vector_34
+                0x00000000000049b4                __vector_24
+                0x00000000000049b4                __vector_12
+                0x00000000000049b4                __bad_interrupt
+                0x00000000000049b4                __vector_6
+                0x00000000000049b4                __vector_31
+                0x00000000000049b4                __vector_3
+                0x00000000000049b4                __vector_23
+                0x00000000000049b4                __vector_30
+                0x00000000000049b4                __vector_25
+                0x00000000000049b4                __vector_11
+                0x00000000000049b4                __vector_17
+                0x00000000000049b4                __vector_19
+                0x00000000000049b4                __vector_7
+                0x00000000000049b4                __vector_27
+                0x00000000000049b4                __vector_5
+                0x00000000000049b4                __vector_33
+                0x00000000000049b4                __vector_4
+                0x00000000000049b4                __vector_9
+                0x00000000000049b4                __vector_2
+                0x00000000000049b4                __vector_21
+                0x00000000000049b4                __vector_15
+                0x00000000000049b4                __vector_29
+                0x00000000000049b4                __vector_8
+                0x00000000000049b4                __vector_26
+                0x00000000000049b4                __vector_14
+                0x00000000000049b4                __vector_10
+                0x00000000000049b4                __vector_16
+                0x00000000000049b4                __vector_18
+                0x00000000000049b8                . = ALIGN (0x2)
  *(.text.*)
  .text.avr-libc
-                0x0000000000004964      0x74c /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libprintf_flt.a(vfprintf_flt.o)
-                0x0000000000004964                vfprintf
+                0x00000000000049b8      0x74c /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libprintf_flt.a(vfprintf_flt.o)
+                0x00000000000049b8                vfprintf
  .text.chip_select
-                0x00000000000050b0       0x32 hardware/hal.o
-                0x00000000000050b0                chip_select
+                0x0000000000005104       0x32 hardware/hal.o
+                0x0000000000005104                chip_select
  .text.chip_deselect
-                0x00000000000050e2       0x30 hardware/hal.o
-                0x00000000000050e2                chip_deselect
+                0x0000000000005136       0x30 hardware/hal.o
+                0x0000000000005136                chip_deselect
  .text.chip_select_init
-                0x0000000000005112        0x4 hardware/hal.o
-                0x0000000000005112                chip_select_init
- .text.spi_end  0x0000000000005116       0x44 hardware/hal.o
-                0x0000000000005116                spi_end
+                0x0000000000005166        0x4 hardware/hal.o
+                0x0000000000005166                chip_select_init
+ .text.spi_end  0x000000000000516a       0x44 hardware/hal.o
+                0x000000000000516a                spi_end
  .text.spi_TX_buffer
-                0x000000000000515a        0x4 hardware/hal.o
-                0x000000000000515a                spi_TX_buffer
+                0x00000000000051ae        0x4 hardware/hal.o
+                0x00000000000051ae                spi_TX_buffer
  .text.spi_RX_buffer
-                0x000000000000515e        0x4 hardware/hal.o
-                0x000000000000515e                spi_RX_buffer
- .text.spi_TX   0x0000000000005162       0x20 hardware/hal.o
-                0x0000000000005162                spi_TX
+                0x00000000000051b2        0x4 hardware/hal.o
+                0x00000000000051b2                spi_RX_buffer
+ .text.spi_TX   0x00000000000051b6       0x20 hardware/hal.o
+                0x00000000000051b6                spi_TX
  .text.spi_init
-                0x0000000000005182       0x40 hardware/hal.o
-                0x0000000000005182                spi_init
+                0x00000000000051d6       0x40 hardware/hal.o
+                0x00000000000051d6                spi_init
  .text.spi_begin
-                0x00000000000051c2       0x78 hardware/hal.o
-                0x00000000000051c2                spi_begin
+                0x0000000000005216       0x78 hardware/hal.o
+                0x0000000000005216                spi_begin
  .text.spi_TXRX
-                0x000000000000523a       0x22 hardware/hal.o
-                0x000000000000523a                spi_TXRX
- .text.freeRam  0x000000000000525c       0x2e hardware/ram.o
-                0x000000000000525c                freeRam
+                0x000000000000528e       0x22 hardware/hal.o
+                0x000000000000528e                spi_TXRX
+ .text.freeRam  0x00000000000052b0       0x2e hardware/ram.o
+                0x00000000000052b0                freeRam
  .text.PrintFree
-                0x000000000000528a      0x106 hardware/ram.o
-                0x000000000000528a                PrintFree
+                0x00000000000052de      0x106 hardware/ram.o
+                0x00000000000052de                PrintFree
  .text.safecalloc
-                0x0000000000005390       0x50 hardware/ram.o
-                0x0000000000005390                safecalloc
+                0x00000000000053e4       0x50 hardware/ram.o
+                0x00000000000053e4                safecalloc
  .text.safemalloc
-                0x00000000000053e0       0x42 hardware/ram.o
-                0x00000000000053e0                safemalloc
+                0x0000000000005434       0x42 hardware/ram.o
+                0x0000000000005434                safemalloc
  .text.safefree
-                0x0000000000005422       0x54 hardware/ram.o
-                0x0000000000005422                safefree
- .text.delayus  0x0000000000005476       0x5a hardware/delay.o
-                0x0000000000005476                delayus
- .text.delayms  0x00000000000054d0       0x90 hardware/delay.o
-                0x00000000000054d0                delayms
+                0x0000000000005476       0x54 hardware/ram.o
+                0x0000000000005476                safefree
+ .text.delayus  0x00000000000054ca       0x5a hardware/delay.o
+                0x00000000000054ca                delayus
+ .text.delayms  0x0000000000005524       0x90 hardware/delay.o
+                0x0000000000005524                delayms
  .text.uart_ubr
-                0x0000000000005560      0x134 hardware/rs232.o
-                0x0000000000005560                uart_ubr
+                0x00000000000055b4      0x134 hardware/rs232.o
+                0x00000000000055b4                uart_ubr
  .text.uart_init
-                0x0000000000005694       0x8e hardware/rs232.o
-                0x0000000000005694                uart_init
+                0x00000000000056e8       0x8e hardware/rs232.o
+                0x00000000000056e8                uart_init
  .text.uart_rx_interrupt
-                0x0000000000005722       0x40 hardware/rs232.o
-                0x0000000000005722                uart_rx_interrupt
+                0x0000000000005776       0x40 hardware/rs232.o
+                0x0000000000005776                uart_rx_interrupt
  .text.__vector_20
-                0x0000000000005762       0x54 hardware/rs232.o
-                0x0000000000005762                __vector_20
+                0x00000000000057b6       0x54 hardware/rs232.o
+                0x00000000000057b6                __vector_20
  .text.uart_rx_count
-                0x00000000000057b6       0x18 hardware/rs232.o
-                0x00000000000057b6                uart_rx_count
+                0x000000000000580a       0x18 hardware/rs232.o
+                0x000000000000580a                uart_rx_count
  .text.uart_get_tail
-                0x00000000000057ce       0x4c hardware/rs232.o
-                0x00000000000057ce                uart_get_tail
+                0x0000000000005822       0x4c hardware/rs232.o
+                0x0000000000005822                uart_get_tail
  .text.uart_rx_byte
-                0x000000000000581a        0x6 hardware/rs232.o
-                0x000000000000581a                uart_rx_byte
+                0x000000000000586e        0x6 hardware/rs232.o
+                0x000000000000586e                uart_rx_byte
  .text.uart_tx_byte
-                0x0000000000005820       0x32 hardware/rs232.o
-                0x0000000000005820                uart_tx_byte
+                0x0000000000005874       0x32 hardware/rs232.o
+                0x0000000000005874                uart_tx_byte
  .text.uart_getchar
-                0x0000000000005852       0x2c hardware/rs232.o
-                0x0000000000005852                uart_getchar
+                0x00000000000058a6       0x2c hardware/rs232.o
+                0x00000000000058a6                uart_getchar
  .text.uart0_getchar
-                0x000000000000587e        0x6 hardware/rs232.o
-                0x000000000000587e                uart0_getchar
+                0x00000000000058d2        0x6 hardware/rs232.o
+                0x00000000000058d2                uart0_getchar
  .text.uart_putchar
-                0x0000000000005884       0x24 hardware/rs232.o
-                0x0000000000005884                uart_putchar
+                0x00000000000058d8       0x24 hardware/rs232.o
+                0x00000000000058d8                uart_putchar
  .text.uart0_putchar
-                0x00000000000058a8       0x14 hardware/rs232.o
-                0x00000000000058a8                uart0_putchar
+                0x00000000000058fc       0x14 hardware/rs232.o
+                0x00000000000058fc                uart0_putchar
  .text.uart_keyhit
-                0x00000000000058bc        0x4 hardware/rs232.o
-                0x00000000000058bc                uart_keyhit
+                0x0000000000005910        0x4 hardware/rs232.o
+                0x0000000000005910                uart_keyhit
  .text.SPI0_Speed
-                0x00000000000058c0       0xce hardware/spi.o
-                0x00000000000058c0                SPI0_Speed
+                0x0000000000005914       0xce hardware/spi.o
+                0x0000000000005914                SPI0_Speed
  .text.SPI0_Mode
-                0x000000000000598e       0x6c hardware/spi.o
-                0x000000000000598e                SPI0_Mode
+                0x00000000000059e2       0x6c hardware/spi.o
+                0x00000000000059e2                SPI0_Mode
  .text.SPI0_TXRX_Byte
-                0x00000000000059fa        0xc hardware/spi.o
-                0x00000000000059fa                SPI0_TXRX_Byte
+                0x0000000000005a4e        0xc hardware/spi.o
+                0x0000000000005a4e                SPI0_TXRX_Byte
  .text.SPI0_Init
-                0x0000000000005a06       0x4a hardware/spi.o
-                0x0000000000005a06                SPI0_Init
- .text.SPI0_TX  0x0000000000005a50       0x28 hardware/spi.o
-                0x0000000000005a50                SPI0_TX
+                0x0000000000005a5a       0x4a hardware/spi.o
+                0x0000000000005a5a                SPI0_Init
+ .text.SPI0_TX  0x0000000000005aa4       0x28 hardware/spi.o
+                0x0000000000005aa4                SPI0_TX
  .text.SPI0_TXRX
-                0x0000000000005a78       0x2c hardware/spi.o
-                0x0000000000005a78                SPI0_TXRX
- .text.SPI0_RX  0x0000000000005aa4       0x2a hardware/spi.o
-                0x0000000000005aa4                SPI0_RX
+                0x0000000000005acc       0x2c hardware/spi.o
+                0x0000000000005acc                SPI0_TXRX
+ .text.SPI0_RX  0x0000000000005af8       0x2a hardware/spi.o
+                0x0000000000005af8                SPI0_RX
  .text.TWI_Init
-                0x0000000000005ace       0x18 hardware/TWI_AVR8.o
-                0x0000000000005ace                TWI_Init
+                0x0000000000005b22       0x18 hardware/TWI_AVR8.o
+                0x0000000000005b22                TWI_Init
  .text.TWI_StopTransmission
-                0x0000000000005ae6        0x8 hardware/TWI_AVR8.o
-                0x0000000000005ae6                TWI_StopTransmission
+                0x0000000000005b3a        0x8 hardware/TWI_AVR8.o
+                0x0000000000005b3a                TWI_StopTransmission
  .text.TWI_StartTransmission
-                0x0000000000005aee       0xc0 hardware/TWI_AVR8.o
-                0x0000000000005aee                TWI_StartTransmission
+                0x0000000000005b42       0xc0 hardware/TWI_AVR8.o
+                0x0000000000005b42                TWI_StartTransmission
  .text.TWI_SendByte
-                0x0000000000005bae       0x28 hardware/TWI_AVR8.o
-                0x0000000000005bae                TWI_SendByte
+                0x0000000000005c02       0x28 hardware/TWI_AVR8.o
+                0x0000000000005c02                TWI_SendByte
  .text.TWI_ReceiveByte
-                0x0000000000005bd6       0x3c hardware/TWI_AVR8.o
-                0x0000000000005bd6                TWI_ReceiveByte
+                0x0000000000005c2a       0x3c hardware/TWI_AVR8.o
+                0x0000000000005c2a                TWI_ReceiveByte
  .text.TWI_ReadPacket
-                0x0000000000005c12       0x82 hardware/TWI_AVR8.o
-                0x0000000000005c12                TWI_ReadPacket
+                0x0000000000005c66       0x82 hardware/TWI_AVR8.o
+                0x0000000000005c66                TWI_ReadPacket
  .text.TWI_WritePacket
-                0x0000000000005c94       0x5c hardware/TWI_AVR8.o
-                0x0000000000005c94                TWI_WritePacket
+                0x0000000000005ce8       0x5c hardware/TWI_AVR8.o
+                0x0000000000005ce8                TWI_WritePacket
  .text.BINtoBCD
-                0x0000000000005cf0        0xe hardware/rtc.o
-                0x0000000000005cf0                BINtoBCD
+                0x0000000000005d44        0xe hardware/rtc.o
+                0x0000000000005d44                BINtoBCD
  .text.BCDtoBIN
-                0x0000000000005cfe       0x12 hardware/rtc.o
-                0x0000000000005cfe                BCDtoBIN
- .text.rtc_run  0x0000000000005d10       0xc0 hardware/rtc.o
-                0x0000000000005d10                rtc_run
+                0x0000000000005d52       0x12 hardware/rtc.o
+                0x0000000000005d52                BCDtoBIN
+ .text.rtc_run  0x0000000000005d64       0xc0 hardware/rtc.o
+                0x0000000000005d64                rtc_run
  .text.rtc_write
-                0x0000000000005dd0       0xb6 hardware/rtc.o
-                0x0000000000005dd0                rtc_write
+                0x0000000000005e24       0xb6 hardware/rtc.o
+                0x0000000000005e24                rtc_write
  .text.rtc_init
-                0x0000000000005e86       0xe8 hardware/rtc.o
-                0x0000000000005e86                rtc_init
+                0x0000000000005eda       0xe8 hardware/rtc.o
+                0x0000000000005eda                rtc_init
  .text.rtc_read
-                0x0000000000005f6e       0xd8 hardware/rtc.o
-                0x0000000000005f6e                rtc_read
+                0x0000000000005fc2       0xd8 hardware/rtc.o
+                0x0000000000005fc2                rtc_read
  .text.I2C_Start
-                0x0000000000006046       0x28 hardware/LCD.o
-                0x0000000000006046                I2C_Start
+                0x000000000000609a       0x28 hardware/LCD.o
+                0x000000000000609a                I2C_Start
  .text.I2C_Stop
-                0x000000000000606e       0x10 hardware/LCD.o
-                0x000000000000606e                I2C_Stop
+                0x00000000000060c2       0x10 hardware/LCD.o
+                0x00000000000060c2                I2C_Stop
  .text.I2C_Send
-                0x000000000000607e       0x22 hardware/LCD.o
-                0x000000000000607e                I2C_Send
+                0x00000000000060d2       0x22 hardware/LCD.o
+                0x00000000000060d2                I2C_Send
  .text.LCD_putb
-                0x00000000000060a0       0x24 hardware/LCD.o
-                0x00000000000060a0                LCD_putb
+                0x00000000000060f4       0x24 hardware/LCD.o
+                0x00000000000060f4                LCD_putb
  .text.LCD_command
-                0x00000000000060c4       0x26 hardware/LCD.o
-                0x00000000000060c4                LCD_command
+                0x0000000000006118       0x26 hardware/LCD.o
+                0x0000000000006118                LCD_command
  .text.LCD_specialCommand
-                0x00000000000060ea       0x26 hardware/LCD.o
-                0x00000000000060ea                LCD_specialCommand
+                0x000000000000613e       0x26 hardware/LCD.o
+                0x000000000000613e                LCD_specialCommand
  .text.LCD_setCursor
-                0x0000000000006110       0x40 hardware/LCD.o
-                0x0000000000006110                LCD_setCursor
- .text.LCD_pos  0x0000000000006150       0x18 hardware/LCD.o
-                0x0000000000006150                LCD_pos
+                0x0000000000006164       0x40 hardware/LCD.o
+                0x0000000000006164                LCD_setCursor
+ .text.LCD_pos  0x00000000000061a4       0x18 hardware/LCD.o
+                0x00000000000061a4                LCD_pos
  .text.LCD_clear
-                0x0000000000006168       0x16 hardware/LCD.o
-                0x0000000000006168                LCD_clear
+                0x00000000000061bc       0x16 hardware/LCD.o
+                0x00000000000061bc                LCD_clear
  .text.LCD_setFastBacklightRGB
-                0x000000000000617e       0x3e hardware/LCD.o
-                0x000000000000617e                LCD_setFastBacklightRGB
+                0x00000000000061d2       0x3e hardware/LCD.o
+                0x00000000000061d2                LCD_setFastBacklightRGB
  .text.LCD_init
-                0x00000000000061bc       0x64 hardware/LCD.o
-                0x00000000000061bc                LCD_init
+                0x0000000000006210       0x64 hardware/LCD.o
+                0x0000000000006210                LCD_init
  .text.lcd_cleareol
-                0x0000000000006220       0x46 display/lcd_printf.o
-                0x0000000000006220                lcd_cleareol
+                0x0000000000006274       0x46 display/lcd_printf.o
+                0x0000000000006274                lcd_cleareol
  .text.lcd_putch
-                0x0000000000006266       0xb2 display/lcd_printf.o
-                0x0000000000006266                lcd_putch
+                0x00000000000062ba       0xb2 display/lcd_printf.o
+                0x00000000000062ba                lcd_putch
  .text._putc_win
-                0x0000000000006318       0x16 display/lcd_printf.o
+                0x000000000000636c       0x16 display/lcd_printf.o
  .text.lcd_printf
-                0x000000000000632e       0x3c display/lcd_printf.o
-                0x000000000000632e                lcd_printf
- .text.sep      0x000000000000636a       0x16 lib/stringsup.o
-                0x000000000000636a                sep
- .text.isupper  0x0000000000006380       0x16 lib/stringsup.o
-                0x0000000000006380                isupper
- .text.islower  0x0000000000006396       0x16 lib/stringsup.o
-                0x0000000000006396                islower
- .text.tolower  0x00000000000063ac       0x1a lib/stringsup.o
-                0x00000000000063ac                tolower
- .text.toupper  0x00000000000063c6       0x1a lib/stringsup.o
-                0x00000000000063c6                toupper
- .text.strcpy   0x00000000000063e0       0x16 lib/stringsup.o
-                0x00000000000063e0                strcpy
- .text.strncpy  0x00000000000063f6       0x2c lib/stringsup.o
-                0x00000000000063f6                strncpy
- .text.strcat   0x0000000000006422       0x26 lib/stringsup.o
-                0x0000000000006422                strcat
- .text.reverse  0x0000000000006448       0x32 lib/stringsup.o
-                0x0000000000006448                reverse
+                0x0000000000006382       0x3c display/lcd_printf.o
+                0x0000000000006382                lcd_printf
+ .text.sep      0x00000000000063be       0x16 lib/stringsup.o
+                0x00000000000063be                sep
+ .text.isupper  0x00000000000063d4       0x16 lib/stringsup.o
+                0x00000000000063d4                isupper
+ .text.islower  0x00000000000063ea       0x16 lib/stringsup.o
+                0x00000000000063ea                islower
+ .text.tolower  0x0000000000006400       0x1a lib/stringsup.o
+                0x0000000000006400                tolower
+ .text.toupper  0x000000000000641a       0x1a lib/stringsup.o
+                0x000000000000641a                toupper
+ .text.strcpy   0x0000000000006434       0x16 lib/stringsup.o
+                0x0000000000006434                strcpy
+ .text.strncpy  0x000000000000644a       0x2c lib/stringsup.o
+                0x000000000000644a                strncpy
+ .text.strcat   0x0000000000006476       0x26 lib/stringsup.o
+                0x0000000000006476                strcat
+ .text.reverse  0x000000000000649c       0x32 lib/stringsup.o
+                0x000000000000649c                reverse
  .text.strupper
-                0x000000000000647a       0x1a lib/stringsup.o
-                0x000000000000647a                strupper
+                0x00000000000064ce       0x1a lib/stringsup.o
+                0x00000000000064ce                strupper
  .text.trim_tail
-                0x0000000000006494       0x1c lib/stringsup.o
-                0x0000000000006494                trim_tail
+                0x00000000000064e8       0x1c lib/stringsup.o
+                0x00000000000064e8                trim_tail
  .text.skipspaces
-                0x00000000000064b0       0x14 lib/stringsup.o
-                0x00000000000064b0                skipspaces
- .text.strcmp   0x00000000000064c4       0x1a lib/stringsup.o
-                0x00000000000064c4                strcmp
- .text.strncmp  0x00000000000064de       0x2a lib/stringsup.o
-                0x00000000000064de                strncmp
+                0x0000000000006504       0x14 lib/stringsup.o
+                0x0000000000006504                skipspaces
+ .text.strcmp   0x0000000000006518       0x1a lib/stringsup.o
+                0x0000000000006518                strcmp
+ .text.strncmp  0x0000000000006532       0x2a lib/stringsup.o
+                0x0000000000006532                strncmp
  .text.strcasecmp
-                0x0000000000006508       0x3e lib/stringsup.o
-                0x0000000000006508                strcasecmp
+                0x000000000000655c       0x3e lib/stringsup.o
+                0x000000000000655c                strcasecmp
  .text.strncasecmp
-                0x0000000000006546       0x50 lib/stringsup.o
-                0x0000000000006546                strncasecmp
- .text.MATCH    0x0000000000006596       0x28 lib/stringsup.o
-                0x0000000000006596                MATCH
+                0x000000000000659a       0x50 lib/stringsup.o
+                0x000000000000659a                strncasecmp
+ .text.MATCH    0x00000000000065ea       0x28 lib/stringsup.o
+                0x00000000000065ea                MATCH
  .text.MATCHARGS
-                0x00000000000065be       0x5e lib/stringsup.o
-                0x00000000000065be                MATCHARGS
- .text.MATCHI   0x000000000000661c       0x28 lib/stringsup.o
-                0x000000000000661c                MATCHI
+                0x0000000000006612       0x5e lib/stringsup.o
+                0x0000000000006612                MATCHARGS
+ .text.MATCHI   0x0000000000006670       0x28 lib/stringsup.o
+                0x0000000000006670                MATCHI
  .text.MATCHI_LEN
-                0x0000000000006644       0x34 lib/stringsup.o
-                0x0000000000006644                MATCHI_LEN
+                0x0000000000006698       0x34 lib/stringsup.o
+                0x0000000000006698                MATCHI_LEN
  .text.split_args
-                0x0000000000006678       0xb8 lib/stringsup.o
-                0x0000000000006678                split_args
- .text.token    0x0000000000006730       0x58 lib/stringsup.o
-                0x0000000000006730                token
+                0x00000000000066cc       0xb8 lib/stringsup.o
+                0x00000000000066cc                split_args
+ .text.token    0x0000000000006784       0x58 lib/stringsup.o
+                0x0000000000006784                token
  .text.get_value
-                0x0000000000006788       0x68 lib/stringsup.o
-                0x0000000000006788                get_value
+                0x00000000000067dc       0x68 lib/stringsup.o
+                0x00000000000067dc                get_value
  .text.enable_system_task
-                0x00000000000067f0        0x4 lib/timer_hal.o
-                0x00000000000067f0                enable_system_task
+                0x0000000000006844        0x4 lib/timer_hal.o
+                0x0000000000006844                enable_system_task
  .text.install_timers_isr
-                0x00000000000067f4       0x26 lib/timer_hal.o
-                0x00000000000067f4                install_timers_isr
+                0x0000000000006848       0x26 lib/timer_hal.o
+                0x0000000000006848                install_timers_isr
  .text.__vector_13
-                0x000000000000681a       0x4e lib/timer_hal.o
-                0x000000000000681a                __vector_13
+                0x000000000000686e       0x4e lib/timer_hal.o
+                0x000000000000686e                __vector_13
  .text.clock_gettime
-                0x0000000000006868       0xea lib/timer_hal.o
-                0x0000000000006868                clock_gettime
+                0x00000000000068bc       0xea lib/timer_hal.o
+                0x00000000000068bc                clock_gettime
  .text.clock_task
-                0x0000000000006952       0x7a lib/timer.o
-                0x0000000000006952                clock_task
+                0x00000000000069a6       0x7a lib/timer.o
+                0x00000000000069a6                clock_task
  .text.clock_settime.part.2
-                0x00000000000069cc       0x7c lib/timer.o
+                0x0000000000006a20       0x7c lib/timer.o
  .text.set_timers
-                0x0000000000006a48       0x6c lib/timer.o
-                0x0000000000006a48                set_timers
+                0x0000000000006a9c       0x6c lib/timer.o
+                0x0000000000006a9c                set_timers
  .text.delete_all_timers
-                0x0000000000006ab4       0x16 lib/timer.o
-                0x0000000000006ab4                delete_all_timers
+                0x0000000000006b08       0x16 lib/timer.o
+                0x0000000000006b08                delete_all_timers
  .text.subtract_timespec
-                0x0000000000006aca       0x82 lib/timer.o
-                0x0000000000006aca                subtract_timespec
+                0x0000000000006b1e       0x82 lib/timer.o
+                0x0000000000006b1e                subtract_timespec
  .text.ts_to_str
-                0x0000000000006b4c       0x54 lib/timer.o
-                0x0000000000006b4c                ts_to_str
+                0x0000000000006ba0       0x54 lib/timer.o
+                0x0000000000006ba0                ts_to_str
  .text.clock_elapsed_begin
-                0x0000000000006ba0        0xc lib/timer.o
-                0x0000000000006ba0                clock_elapsed_begin
+                0x0000000000006bf4        0xc lib/timer.o
+                0x0000000000006bf4                clock_elapsed_begin
  .text.clock_elapsed_end
-                0x0000000000006bac       0x84 lib/timer.o
-                0x0000000000006bac                clock_elapsed_end
+                0x0000000000006c00       0x84 lib/timer.o
+                0x0000000000006c00                clock_elapsed_end
  .text.clock_clear
-                0x0000000000006c30       0x36 lib/timer.o
-                0x0000000000006c30                clock_clear
+                0x0000000000006c84       0x36 lib/timer.o
+                0x0000000000006c84                clock_clear
  .text.enable_timers
-                0x0000000000006c66       0x28 lib/timer.o
-                0x0000000000006c66                enable_timers
+                0x0000000000006cba       0x28 lib/timer.o
+                0x0000000000006cba                enable_timers
  .text.execute_timers
-                0x0000000000006c8e       0x28 lib/timer.o
-                0x0000000000006c8e                execute_timers
+                0x0000000000006ce2       0x28 lib/timer.o
+                0x0000000000006ce2                execute_timers
  .text.init_timers
-                0x0000000000006cb6       0xb0 lib/timer.o
-                0x0000000000006cb6                init_timers
+                0x0000000000006d0a       0xb0 lib/timer.o
+                0x0000000000006d0a                init_timers
  .text.clock_getres
-                0x0000000000006d66       0x20 lib/timer.o
-                0x0000000000006d66                clock_getres
+                0x0000000000006dba       0x20 lib/timer.o
+                0x0000000000006dba                clock_getres
  .text.clock_settime
-                0x0000000000006d86       0x10 lib/timer.o
-                0x0000000000006d86                clock_settime
- .text.IS_Leap  0x0000000000006d96       0x2a lib/time.o
+                0x0000000000006dda       0x10 lib/timer.o
+                0x0000000000006dda                clock_settime
+ .text.IS_Leap  0x0000000000006dea       0x2a lib/time.o
  .text.tm_mon_to_ascii
-                0x0000000000006dc0       0x20 lib/time.o
-                0x0000000000006dc0                tm_mon_to_ascii
+                0x0000000000006e14       0x20 lib/time.o
+                0x0000000000006e14                tm_mon_to_ascii
  .text.Days_Per_Month
-                0x0000000000006de0       0x42 lib/time.o
-                0x0000000000006de0                Days_Per_Month
+                0x0000000000006e34       0x42 lib/time.o
+                0x0000000000006e34                Days_Per_Month
  .text.time_to_tm
-                0x0000000000006e22      0x1bc lib/time.o
-                0x0000000000006e22                time_to_tm
+                0x0000000000006e76      0x1bc lib/time.o
+                0x0000000000006e76                time_to_tm
  .text.gmtime_r
-                0x0000000000006fde       0x2a lib/time.o
-                0x0000000000006fde                gmtime_r
- .text.gmtime   0x0000000000007008       0x16 lib/time.o
-                0x0000000000007008                gmtime
+                0x0000000000007032       0x2a lib/time.o
+                0x0000000000007032                gmtime_r
+ .text.gmtime   0x000000000000705c       0x16 lib/time.o
+                0x000000000000705c                gmtime
  .text.gettimezone
-                0x000000000000701e       0x22 lib/time.o
-                0x000000000000701e                gettimezone
+                0x0000000000007072       0x22 lib/time.o
+                0x0000000000007072                gettimezone
  .text.settimezone
-                0x0000000000007040       0x22 lib/time.o
-                0x0000000000007040                settimezone
+                0x0000000000007094       0x22 lib/time.o
+                0x0000000000007094                settimezone
  .text.gettimeofday
-                0x0000000000007062       0x5c lib/time.o
-                0x0000000000007062                gettimeofday
- .text.time     0x00000000000070be       0x42 lib/time.o
-                0x00000000000070be                time
- .text.is_dst   0x0000000000007100       0x58 lib/time.o
-                0x0000000000007100                is_dst
+                0x00000000000070b6       0x5c lib/time.o
+                0x00000000000070b6                gettimeofday
+ .text.time     0x0000000000007112       0x42 lib/time.o
+                0x0000000000007112                time
+ .text.is_dst   0x0000000000007154       0x58 lib/time.o
+                0x0000000000007154                is_dst
  .text.localtime_r
-                0x0000000000007158       0x98 lib/time.o
-                0x0000000000007158                localtime_r
+                0x00000000000071ac       0x98 lib/time.o
+                0x00000000000071ac                localtime_r
  .text.localtime
-                0x00000000000071f0        0x8 lib/time.o
-                0x00000000000071f0                localtime
+                0x0000000000007244        0x8 lib/time.o
+                0x0000000000007244                localtime
  .text.normalize
-                0x00000000000071f8      0x390 lib/time.o
-                0x00000000000071f8                normalize
- .text.timegm   0x0000000000007588        0x8 lib/time.o
-                0x0000000000007588                timegm
+                0x000000000000724c      0x390 lib/time.o
+                0x000000000000724c                normalize
+ .text.timegm   0x00000000000075dc        0x8 lib/time.o
+                0x00000000000075dc                timegm
  .text.setdate_r
-                0x0000000000007590      0x22e lib/time.o
-                0x0000000000007590                setdate_r
- .text.setdate  0x00000000000077be       0x42 lib/time.o
-                0x00000000000077be                setdate
+                0x00000000000075e4      0x22e lib/time.o
+                0x00000000000075e4                setdate_r
+ .text.setdate  0x0000000000007812       0x42 lib/time.o
+                0x0000000000007812                setdate
  .text.find_dst
-                0x0000000000007800      0x10c lib/time.o
-                0x0000000000007800                find_dst
- .text.set_dst  0x000000000000790c      0x128 lib/time.o
-                0x000000000000790c                set_dst
+                0x0000000000007854      0x10c lib/time.o
+                0x0000000000007854                find_dst
+ .text.set_dst  0x0000000000007960      0x128 lib/time.o
+                0x0000000000007960                set_dst
  .text.asctime_r
-                0x0000000000007a34       0xa4 lib/time.o
-                0x0000000000007a34                asctime_r
- .text.asctime  0x0000000000007ad8        0x8 lib/time.o
-                0x0000000000007ad8                asctime
+                0x0000000000007a88       0xa4 lib/time.o
+                0x0000000000007a88                asctime_r
+ .text.asctime  0x0000000000007b2c        0x8 lib/time.o
+                0x0000000000007b2c                asctime
  .text.ctime_gm
-                0x0000000000007ae0       0x22 lib/time.o
-                0x0000000000007ae0                ctime_gm
+                0x0000000000007b34       0x22 lib/time.o
+                0x0000000000007b34                ctime_gm
  .text.initialize_clock
-                0x0000000000007b02       0xee lib/time.o
-                0x0000000000007b02                initialize_clock
+                0x0000000000007b56       0xee lib/time.o
+                0x0000000000007b56                initialize_clock
  .text.display_clock
-                0x0000000000007bf0       0xd4 lib/time.o
-                0x0000000000007bf0                display_clock
+                0x0000000000007c44       0xd4 lib/time.o
+                0x0000000000007c44                display_clock
  .text._putc_buffer_fn
-                0x0000000000007cc4       0x32 printf/printf.o
-                0x0000000000007cc4                _putc_buffer_fn
+                0x0000000000007d18       0x32 printf/printf.o
+                0x0000000000007d18                _putc_buffer_fn
  .text._putc_fn
-                0x0000000000007cf6       0x18 printf/printf.o
- .text.bin2num  0x0000000000007d0e      0x112 printf/printf.o
-                0x0000000000007d0e                bin2num
+                0x0000000000007d4a       0x18 printf/printf.o
+ .text.bin2num  0x0000000000007d62      0x112 printf/printf.o
+                0x0000000000007d62                bin2num
  .text.pch_init
-                0x0000000000007e20       0x1a printf/printf.o
-                0x0000000000007e20                pch_init
- .text.pch      0x0000000000007e3a       0x48 printf/printf.o
-                0x0000000000007e3a                pch
- .text.p_ntoa   0x0000000000007e82       0xaa printf/printf.o
-                0x0000000000007e82                p_ntoa
- .text.p_ftoa   0x0000000000007f2c      0x20e printf/printf.o
-                0x0000000000007f2c                p_ftoa
- .text.p_etoa   0x000000000000813a      0x2b8 printf/printf.o
-                0x000000000000813a                p_etoa
+                0x0000000000007e74       0x1a printf/printf.o
+                0x0000000000007e74                pch_init
+ .text.pch      0x0000000000007e8e       0x48 printf/printf.o
+                0x0000000000007e8e                pch
+ .text.p_ntoa   0x0000000000007ed6       0xaa printf/printf.o
+                0x0000000000007ed6                p_ntoa
+ .text.p_ftoa   0x0000000000007f80      0x20e printf/printf.o
+                0x0000000000007f80                p_ftoa
+ .text.p_etoa   0x000000000000818e      0x2b8 printf/printf.o
+                0x000000000000818e                p_etoa
  .text._puts_pad
-                0x00000000000083f2       0x84 printf/printf.o
-                0x00000000000083f2                _puts_pad
+                0x0000000000008446       0x84 printf/printf.o
+                0x0000000000008446                _puts_pad
  .text._printf_fn
-                0x0000000000008476      0x834 printf/printf.o
-                0x0000000000008476                _printf_fn
+                0x00000000000084ca      0x834 printf/printf.o
+                0x00000000000084ca                _printf_fn
  .text.vsnprintf_P
-                0x0000000000008caa       0x4c printf/printf.o
-                0x0000000000008caa                vsnprintf_P
+                0x0000000000008cfe       0x4c printf/printf.o
+                0x0000000000008cfe                vsnprintf_P
  .text.snprintf_P
-                0x0000000000008cf6       0x28 printf/printf.o
-                0x0000000000008cf6                snprintf_P
+                0x0000000000008d4a       0x28 printf/printf.o
+                0x0000000000008d4a                snprintf_P
  .text.sprintf_P
-                0x0000000000008d1e       0x28 printf/printf.o
-                0x0000000000008d1e                sprintf_P
+                0x0000000000008d72       0x28 printf/printf.o
+                0x0000000000008d72                sprintf_P
  .text.printf_P
-                0x0000000000008d46       0x3a printf/printf.o
-                0x0000000000008d46                printf_P
+                0x0000000000008d9a       0x3a printf/printf.o
+                0x0000000000008d9a                printf_P
  .text.atodigit
-                0x0000000000008d80       0x3c printf/mathio.o
-                0x0000000000008d80                atodigit
- .text.strtol   0x0000000000008dbc       0xbc printf/mathio.o
-                0x0000000000008dbc                strtol
- .text.atoh     0x0000000000008e78        0xc printf/mathio.o
-                0x0000000000008e78                atoh
- .text.atoi     0x0000000000008e84        0xe printf/mathio.o
-                0x0000000000008e84                atoi
- .text.atol     0x0000000000008e92        0xc printf/mathio.o
-                0x0000000000008e92                atol
+                0x0000000000008dd4       0x3c printf/mathio.o
+                0x0000000000008dd4                atodigit
+ .text.strtol   0x0000000000008e10       0xbc printf/mathio.o
+                0x0000000000008e10                strtol
+ .text.atoh     0x0000000000008ecc        0xc printf/mathio.o
+                0x0000000000008ecc                atoh
+ .text.atoi     0x0000000000008ed8        0xe printf/mathio.o
+                0x0000000000008ed8                atoi
+ .text.atol     0x0000000000008ee6        0xc printf/mathio.o
+                0x0000000000008ee6                atol
  .text.ld_dword
-                0x0000000000008e9e       0x2a fatfs/ff.o
+                0x0000000000008ef2       0x2a fatfs/ff.o
  .text.st_dword
-                0x0000000000008ec8        0xc fatfs/ff.o
- .text.mem_set  0x0000000000008ed4       0x12 fatfs/ff.o
+                0x0000000000008f1c        0xc fatfs/ff.o
+ .text.mem_set  0x0000000000008f28       0x12 fatfs/ff.o
  .text.clust2sect
-                0x0000000000008ee6       0x50 fatfs/ff.o
+                0x0000000000008f3a       0x50 fatfs/ff.o
  .text.clmt_clust
-                0x0000000000008f36       0x78 fatfs/ff.o
- .text.sum_sfn  0x0000000000008fae       0x1e fatfs/ff.o
+                0x0000000000008f8a       0x78 fatfs/ff.o
+ .text.sum_sfn  0x0000000000009002       0x1e fatfs/ff.o
  .text.get_ldnumber
-                0x0000000000008fcc       0x40 fatfs/ff.o
+                0x0000000000009020       0x40 fatfs/ff.o
  .text.validate
-                0x000000000000900c       0x5a fatfs/ff.o
+                0x0000000000009060       0x5a fatfs/ff.o
  .text.mem_cpy.part.0
-                0x0000000000009066       0x16 fatfs/ff.o
+                0x00000000000090ba       0x16 fatfs/ff.o
  .text.ld_clust.isra.1
-                0x000000000000907c       0x2a fatfs/ff.o
+                0x00000000000090d0       0x2a fatfs/ff.o
  .text.st_clust.isra.2
-                0x00000000000090a6       0x1a fatfs/ff.o
+                0x00000000000090fa       0x1a fatfs/ff.o
  .text.sync_window.part.3
-                0x00000000000090c0       0xa2 fatfs/ff.o
+                0x0000000000009114       0xa2 fatfs/ff.o
  .text.sync_window
-                0x0000000000009162       0x12 fatfs/ff.o
- .text.sync_fs  0x0000000000009174       0xd8 fatfs/ff.o
+                0x00000000000091b6       0x12 fatfs/ff.o
+ .text.sync_fs  0x00000000000091c8       0xd8 fatfs/ff.o
  .text.move_window
-                0x000000000000924c       0x82 fatfs/ff.o
+                0x00000000000092a0       0x82 fatfs/ff.o
  .text.check_fs
-                0x00000000000092ce       0x7e fatfs/ff.o
+                0x0000000000009322       0x7e fatfs/ff.o
  .text.find_volume
-                0x000000000000934c      0x552 fatfs/ff.o
- .text.put_fat  0x000000000000989e      0x1fa fatfs/ff.o
+                0x00000000000093a0      0x552 fatfs/ff.o
+ .text.put_fat  0x00000000000098f2      0x1fa fatfs/ff.o
  .text.get_fat.isra.7
-                0x0000000000009a98      0x166 fatfs/ff.o
- .text.dir_sdi  0x0000000000009bfe      0x180 fatfs/ff.o
+                0x0000000000009aec      0x166 fatfs/ff.o
+ .text.dir_sdi  0x0000000000009c52      0x180 fatfs/ff.o
  .text.create_chain
-                0x0000000000009d7e      0x1a2 fatfs/ff.o
+                0x0000000000009dd2      0x1a2 fatfs/ff.o
  .text.remove_chain
-                0x0000000000009f20      0x122 fatfs/ff.o
+                0x0000000000009f74      0x122 fatfs/ff.o
  .text.get_fileinfo
-                0x000000000000a042      0x1b0 fatfs/ff.o
+                0x000000000000a096      0x1b0 fatfs/ff.o
  .text.dir_next
-                0x000000000000a1f2      0x250 fatfs/ff.o
+                0x000000000000a246      0x250 fatfs/ff.o
  .text.dir_alloc
-                0x000000000000a442       0x74 fatfs/ff.o
+                0x000000000000a496       0x74 fatfs/ff.o
  .text.dir_read
-                0x000000000000a4b6      0x19c fatfs/ff.o
+                0x000000000000a50a      0x19c fatfs/ff.o
  .text.dir_remove
-                0x000000000000a652       0x90 fatfs/ff.o
+                0x000000000000a6a6       0x90 fatfs/ff.o
  .text.dir_find
-                0x000000000000a6e2      0x22e fatfs/ff.o
+                0x000000000000a736      0x22e fatfs/ff.o
  .text.dir_register
-                0x000000000000a910      0x348 fatfs/ff.o
+                0x000000000000a964      0x348 fatfs/ff.o
  .text.follow_path
-                0x000000000000ac58      0x442 fatfs/ff.o
- .text.f_mount  0x000000000000b09a       0x7c fatfs/ff.o
-                0x000000000000b09a                f_mount
- .text.f_open   0x000000000000b116      0x3f8 fatfs/ff.o
-                0x000000000000b116                f_open
- .text.f_read   0x000000000000b50e      0x296 fatfs/ff.o
-                0x000000000000b50e                f_read
- .text.f_write  0x000000000000b7a4      0x32e fatfs/ff.o
-                0x000000000000b7a4                f_write
- .text.f_sync   0x000000000000bad2      0x100 fatfs/ff.o
-                0x000000000000bad2                f_sync
- .text.f_close  0x000000000000bbd2       0x32 fatfs/ff.o
-                0x000000000000bbd2                f_close
- .text.f_chdir  0x000000000000bc04       0xb6 fatfs/ff.o
-                0x000000000000bc04                f_chdir
+                0x000000000000acac      0x442 fatfs/ff.o
+ .text.f_mount  0x000000000000b0ee       0x7c fatfs/ff.o
+                0x000000000000b0ee                f_mount
+ .text.f_open   0x000000000000b16a      0x3f8 fatfs/ff.o
+                0x000000000000b16a                f_open
+ .text.f_read   0x000000000000b562      0x296 fatfs/ff.o
+                0x000000000000b562                f_read
+ .text.f_write  0x000000000000b7f8      0x32e fatfs/ff.o
+                0x000000000000b7f8                f_write
+ .text.f_sync   0x000000000000bb26      0x100 fatfs/ff.o
+                0x000000000000bb26                f_sync
+ .text.f_close  0x000000000000bc26       0x32 fatfs/ff.o
+                0x000000000000bc26                f_close
+ .text.f_chdir  0x000000000000bc58       0xb6 fatfs/ff.o
+                0x000000000000bc58                f_chdir
  .text.f_getcwd
-                0x000000000000bcba      0x268 fatfs/ff.o
-                0x000000000000bcba                f_getcwd
- .text.f_lseek  0x000000000000bf22      0x5ba fatfs/ff.o
-                0x000000000000bf22                f_lseek
+                0x000000000000bd0e      0x268 fatfs/ff.o
+                0x000000000000bd0e                f_getcwd
+ .text.f_lseek  0x000000000000bf76      0x5ba fatfs/ff.o
+                0x000000000000bf76                f_lseek
  .text.f_opendir
-                0x000000000000c4dc       0xe6 fatfs/ff.o
-                0x000000000000c4dc                f_opendir
+                0x000000000000c530       0xe6 fatfs/ff.o
+                0x000000000000c530                f_opendir
  .text.f_closedir
-                0x000000000000c5c2       0x2a fatfs/ff.o
-                0x000000000000c5c2                f_closedir
+                0x000000000000c616       0x2a fatfs/ff.o
+                0x000000000000c616                f_closedir
  .text.f_readdir
-                0x000000000000c5ec       0x8c fatfs/ff.o
-                0x000000000000c5ec                f_readdir
- .text.f_stat   0x000000000000c678       0x80 fatfs/ff.o
-                0x000000000000c678                f_stat
+                0x000000000000c640       0x8c fatfs/ff.o
+                0x000000000000c640                f_readdir
+ .text.f_stat   0x000000000000c6cc       0x80 fatfs/ff.o
+                0x000000000000c6cc                f_stat
  .text.f_getfree
-                0x000000000000c6f8      0x1da fatfs/ff.o
-                0x000000000000c6f8                f_getfree
+                0x000000000000c74c      0x1da fatfs/ff.o
+                0x000000000000c74c                f_getfree
  .text.f_unlink
-                0x000000000000c8d2      0x152 fatfs/ff.o
-                0x000000000000c8d2                f_unlink
- .text.f_mkdir  0x000000000000ca24      0x28e fatfs/ff.o
-                0x000000000000ca24                f_mkdir
+                0x000000000000c926      0x152 fatfs/ff.o
+                0x000000000000c926                f_unlink
+ .text.f_mkdir  0x000000000000ca78      0x28e fatfs/ff.o
+                0x000000000000ca78                f_mkdir
  .text.f_rename
-                0x000000000000ccb2      0x21e fatfs/ff.o
-                0x000000000000ccb2                f_rename
- .text.f_chmod  0x000000000000ced0       0x9a fatfs/ff.o
-                0x000000000000ced0                f_chmod
- .text.f_utime  0x000000000000cf6a       0xb2 fatfs/ff.o
-                0x000000000000cf6a                f_utime
+                0x000000000000cd06      0x21e fatfs/ff.o
+                0x000000000000cd06                f_rename
+ .text.f_chmod  0x000000000000cf24       0x9a fatfs/ff.o
+                0x000000000000cf24                f_chmod
+ .text.f_utime  0x000000000000cfbe       0xb2 fatfs/ff.o
+                0x000000000000cfbe                f_utime
  .text.f_getlabel
-                0x000000000000d01c       0xf4 fatfs/ff.o
-                0x000000000000d01c                f_getlabel
- .text.f_mkfs   0x000000000000d110      0xad8 fatfs/ff.o
-                0x000000000000d110                f_mkfs
+                0x000000000000d070       0xf4 fatfs/ff.o
+                0x000000000000d070                f_getlabel
+ .text.f_mkfs   0x000000000000d164      0xad8 fatfs/ff.o
+                0x000000000000d164                f_mkfs
  .text.ff_memalloc
-                0x000000000000dbe8        0x6 fatfs/option/syscall.o
-                0x000000000000dbe8                ff_memalloc
+                0x000000000000dc3c        0x6 fatfs/option/syscall.o
+                0x000000000000dc3c                ff_memalloc
  .text.ff_memfree
-                0x000000000000dbee        0x6 fatfs/option/syscall.o
-                0x000000000000dbee                ff_memfree
+                0x000000000000dc42        0x6 fatfs/option/syscall.o
+                0x000000000000dc42                ff_memfree
  .text.ff_convert
-                0x000000000000dbf4       0x4e fatfs/option/unicode.o
-                0x000000000000dbf4                ff_convert
+                0x000000000000dc48       0x4e fatfs/option/unicode.o
+                0x000000000000dc48                ff_convert
  .text.ff_wtoupper
-                0x000000000000dc42       0xa8 fatfs/option/unicode.o
-                0x000000000000dc42                ff_wtoupper
+                0x000000000000dc96       0xa8 fatfs/option/unicode.o
+                0x000000000000dc96                ff_wtoupper
  .text.disk_status
-                0x000000000000dcea        0xc fatfs.hal/diskio.o
-                0x000000000000dcea                disk_status
+                0x000000000000dd3e        0xc fatfs.hal/diskio.o
+                0x000000000000dd3e                disk_status
  .text.disk_initialize
-                0x000000000000dcf6        0xc fatfs.hal/diskio.o
-                0x000000000000dcf6                disk_initialize
+                0x000000000000dd4a        0xc fatfs.hal/diskio.o
+                0x000000000000dd4a                disk_initialize
  .text.disk_read
-                0x000000000000dd02       0x20 fatfs.hal/diskio.o
-                0x000000000000dd02                disk_read
+                0x000000000000dd56       0x20 fatfs.hal/diskio.o
+                0x000000000000dd56                disk_read
  .text.disk_write
-                0x000000000000dd22       0x20 fatfs.hal/diskio.o
-                0x000000000000dd22                disk_write
+                0x000000000000dd76       0x20 fatfs.hal/diskio.o
+                0x000000000000dd76                disk_write
  .text.disk_ioctl
-                0x000000000000dd42       0x14 fatfs.hal/diskio.o
-                0x000000000000dd42                disk_ioctl
+                0x000000000000dd96       0x14 fatfs.hal/diskio.o
+                0x000000000000dd96                disk_ioctl
  .text.xchg_spi
-                0x000000000000dd56        0x4 fatfs.hal/mmc.o
+                0x000000000000ddaa        0x4 fatfs.hal/mmc.o
  .text.deselect
-                0x000000000000dd5a        0xc fatfs.hal/mmc.o
+                0x000000000000ddae        0xc fatfs.hal/mmc.o
  .text.rcvr_datablock
-                0x000000000000dd66       0x4e fatfs.hal/mmc.o
+                0x000000000000ddba       0x4e fatfs.hal/mmc.o
  .text.wait_ready
-                0x000000000000ddb4       0x24 fatfs.hal/mmc.o
-                0x000000000000ddb4                wait_ready
- .text.select   0x000000000000ddd8       0x3a fatfs.hal/mmc.o
+                0x000000000000de08       0x24 fatfs.hal/mmc.o
+                0x000000000000de08                wait_ready
+ .text.select   0x000000000000de2c       0x3a fatfs.hal/mmc.o
  .text.send_cmd
-                0x000000000000de12       0x86 fatfs.hal/mmc.o
+                0x000000000000de66       0x86 fatfs.hal/mmc.o
  .text.xmit_datablock
-                0x000000000000de98       0x54 fatfs.hal/mmc.o
+                0x000000000000deec       0x54 fatfs.hal/mmc.o
  .text.mmc_disk_initialize
-                0x000000000000deec      0x13a fatfs.hal/mmc.o
-                0x000000000000deec                mmc_disk_initialize
+                0x000000000000df40      0x13a fatfs.hal/mmc.o
+                0x000000000000df40                mmc_disk_initialize
  .text.mmc_disk_status
-                0x000000000000e026        0x6 fatfs.hal/mmc.o
-                0x000000000000e026                mmc_disk_status
+                0x000000000000e07a        0x6 fatfs.hal/mmc.o
+                0x000000000000e07a                mmc_disk_status
  .text.mmc_disk_read
-                0x000000000000e02c       0x8c fatfs.hal/mmc.o
-                0x000000000000e02c                mmc_disk_read
+                0x000000000000e080       0x8c fatfs.hal/mmc.o
+                0x000000000000e080                mmc_disk_read
  .text.mmc_disk_write
-                0x000000000000e0b8       0xca fatfs.hal/mmc.o
-                0x000000000000e0b8                mmc_disk_write
+                0x000000000000e10c       0xca fatfs.hal/mmc.o
+                0x000000000000e10c                mmc_disk_write
  .text.mmc_disk_ioctl
-                0x000000000000e182      0x510 fatfs.hal/mmc.o
-                0x000000000000e182                mmc_disk_ioctl
+                0x000000000000e1d6      0x510 fatfs.hal/mmc.o
+                0x000000000000e1d6                mmc_disk_ioctl
  .text.mmc_disk_timerproc
-                0x000000000000e692       0x1e fatfs.hal/mmc.o
-                0x000000000000e692                mmc_disk_timerproc
+                0x000000000000e6e6       0x1e fatfs.hal/mmc.o
+                0x000000000000e6e6                mmc_disk_timerproc
  .text.mmc_task
-                0x000000000000e6b0       0x3c fatfs.hal/mmc_hal.o
+                0x000000000000e704       0x3c fatfs.hal/mmc_hal.o
  .text.mmc_install_timer
-                0x000000000000e6ec       0x2e fatfs.hal/mmc_hal.o
-                0x000000000000e6ec                mmc_install_timer
+                0x000000000000e740       0x2e fatfs.hal/mmc_hal.o
+                0x000000000000e740                mmc_install_timer
  .text.mmc_spi_begin
-                0x000000000000e71a       0x1a fatfs.hal/mmc_hal.o
-                0x000000000000e71a                mmc_spi_begin
+                0x000000000000e76e       0x1a fatfs.hal/mmc_hal.o
+                0x000000000000e76e                mmc_spi_begin
  .text.mmc_spi_end
-                0x000000000000e734        0x8 fatfs.hal/mmc_hal.o
-                0x000000000000e734                mmc_spi_end
+                0x000000000000e788        0x8 fatfs.hal/mmc_hal.o
+                0x000000000000e788                mmc_spi_end
  .text.mmc_slow
-                0x000000000000e73c       0x1a fatfs.hal/mmc_hal.o
-                0x000000000000e73c                mmc_slow
+                0x000000000000e790       0x1a fatfs.hal/mmc_hal.o
+                0x000000000000e790                mmc_slow
  .text.mmc_spi_init
-                0x000000000000e756        0xa fatfs.hal/mmc_hal.o
-                0x000000000000e756                mmc_spi_init
+                0x000000000000e7aa        0xa fatfs.hal/mmc_hal.o
+                0x000000000000e7aa                mmc_spi_init
  .text.mmc_fast
-                0x000000000000e760       0x1a fatfs.hal/mmc_hal.o
-                0x000000000000e760                mmc_fast
+                0x000000000000e7b4       0x1a fatfs.hal/mmc_hal.o
+                0x000000000000e7b4                mmc_fast
  .text.mmc_spi_TX_buffer
-                0x000000000000e77a        0x6 fatfs.hal/mmc_hal.o
-                0x000000000000e77a                mmc_spi_TX_buffer
+                0x000000000000e7ce        0x6 fatfs.hal/mmc_hal.o
+                0x000000000000e7ce                mmc_spi_TX_buffer
  .text.mmc_spi_RX_buffer
-                0x000000000000e780        0x6 fatfs.hal/mmc_hal.o
-                0x000000000000e780                mmc_spi_RX_buffer
+                0x000000000000e7d4        0x6 fatfs.hal/mmc_hal.o
+                0x000000000000e7d4                mmc_spi_RX_buffer
  .text.mmc_spi_TXRX
-                0x000000000000e786        0x6 fatfs.hal/mmc_hal.o
-                0x000000000000e786                mmc_spi_TXRX
+                0x000000000000e7da        0x6 fatfs.hal/mmc_hal.o
+                0x000000000000e7da                mmc_spi_TXRX
  .text.mmc_set_ms_timeout
-                0x000000000000e78c        0xe fatfs.hal/mmc_hal.o
-                0x000000000000e78c                mmc_set_ms_timeout
+                0x000000000000e7e0        0xe fatfs.hal/mmc_hal.o
+                0x000000000000e7e0                mmc_set_ms_timeout
  .text.mmc_test_timeout
-                0x000000000000e79a       0x3e fatfs.hal/mmc_hal.o
-                0x000000000000e79a                mmc_test_timeout
+                0x000000000000e7ee       0x3e fatfs.hal/mmc_hal.o
+                0x000000000000e7ee                mmc_test_timeout
  .text.mmc_init
-                0x000000000000e7d8      0x14a fatfs.hal/mmc_hal.o
-                0x000000000000e7d8                mmc_init
+                0x000000000000e82c      0x14a fatfs.hal/mmc_hal.o
+                0x000000000000e82c                mmc_init
  .text.mmc_power_off
-                0x000000000000e922        0x2 fatfs.hal/mmc_hal.o
-                0x000000000000e922                mmc_power_off
+                0x000000000000e976        0x2 fatfs.hal/mmc_hal.o
+                0x000000000000e976                mmc_power_off
  .text.mmc_ins_status
-                0x000000000000e924        0x6 fatfs.hal/mmc_hal.o
-                0x000000000000e924                mmc_ins_status
+                0x000000000000e978        0x6 fatfs.hal/mmc_hal.o
+                0x000000000000e978                mmc_ins_status
  .text.mmc_wp_status
-                0x000000000000e92a        0x6 fatfs.hal/mmc_hal.o
-                0x000000000000e92a                mmc_wp_status
+                0x000000000000e97e        0x6 fatfs.hal/mmc_hal.o
+                0x000000000000e97e                mmc_wp_status
  .text.tm_to_fat
-                0x000000000000e930       0xd8 fatfs.sup/fatfs_sup.o
-                0x000000000000e930                tm_to_fat
+                0x000000000000e984       0xd8 fatfs.sup/fatfs_sup.o
+                0x000000000000e984                tm_to_fat
  .text.get_fattime
-                0x000000000000ea08       0x26 fatfs.sup/fatfs_sup.o
-                0x000000000000ea08                get_fattime
- .text.put_rc   0x000000000000ea2e       0x1e fatfs.sup/fatfs_sup.o
-                0x000000000000ea2e                put_rc
+                0x000000000000ea5c       0x26 fatfs.sup/fatfs_sup.o
+                0x000000000000ea5c                get_fattime
+ .text.put_rc   0x000000000000ea82       0x1e fatfs.sup/fatfs_sup.o
+                0x000000000000ea82                put_rc
  .text.fatfs_scan_files
-                0x000000000000ea4c       0xe0 fatfs.sup/fatfs_sup.o
-                0x000000000000ea4c                fatfs_scan_files
+                0x000000000000eaa0       0xe0 fatfs.sup/fatfs_sup.o
+                0x000000000000eaa0                fatfs_scan_files
  .text.fatfs_fstype
-                0x000000000000eb2c       0x1e fatfs.sup/fatfs_sup.o
-                0x000000000000eb2c                fatfs_fstype
+                0x000000000000eb80       0x1e fatfs.sup/fatfs_sup.o
+                0x000000000000eb80                fatfs_fstype
  .text.fatfs_status
-                0x000000000000eb4a      0x2d8 fatfs.sup/fatfs_sup.o
-                0x000000000000eb4a                fatfs_status
+                0x000000000000eb9e      0x2d8 fatfs.sup/fatfs_sup.o
+                0x000000000000eb9e                fatfs_status
  .text.fatfs_filinfo_list
-                0x000000000000ee22      0x10e fatfs.sup/fatfs_sup.o
-                0x000000000000ee22                fatfs_filinfo_list
+                0x000000000000ee76      0x10e fatfs.sup/fatfs_sup.o
+                0x000000000000ee76                fatfs_filinfo_list
  .text.fatfs_help
-                0x000000000000ef30       0x38 fatfs.sup/fatfs_tests.o
-                0x000000000000ef30                fatfs_help
+                0x000000000000ef84       0x38 fatfs.sup/fatfs_tests.o
+                0x000000000000ef84                fatfs_help
  .text.fatfs_ls
-                0x000000000000ef68      0x19a fatfs.sup/fatfs_tests.o
-                0x000000000000ef68                fatfs_ls
+                0x000000000000efbc      0x19a fatfs.sup/fatfs_tests.o
+                0x000000000000efbc                fatfs_ls
  .text.mmc_test
-                0x000000000000f102       0x64 fatfs.sup/fatfs_tests.o
-                0x000000000000f102                mmc_test
+                0x000000000000f156       0x64 fatfs.sup/fatfs_tests.o
+                0x000000000000f156                mmc_test
  .text.fatfs_tests
-                0x000000000000f166      0x116 fatfs.sup/fatfs_tests.o
-                0x000000000000f166                fatfs_tests
+                0x000000000000f1ba      0x116 fatfs.sup/fatfs_tests.o
+                0x000000000000f1ba                fatfs_tests
  .text.fatfs_getc
-                0x000000000000f27c      0x106 posix/posix.o
-                0x000000000000f27c                fatfs_getc
+                0x000000000000f2d0      0x106 posix/posix.o
+                0x000000000000f2d0                fatfs_getc
  .text.fatfs_putc
-                0x000000000000f382       0x96 posix/posix.o
-                0x000000000000f382                fatfs_putc
- .text.fgetc    0x000000000000f418       0xa2 posix/posix.o
-                0x000000000000f418                fgetc
- .text.fputc    0x000000000000f4ba       0x9a posix/posix.o
-                0x000000000000f4ba                fputc
+                0x000000000000f3d6       0x96 posix/posix.o
+                0x000000000000f3d6                fatfs_putc
+ .text.fgetc    0x000000000000f46c       0xa2 posix/posix.o
+                0x000000000000f46c                fgetc
+ .text.fputc    0x000000000000f50e       0x9a posix/posix.o
+                0x000000000000f50e                fputc
  .text._fprintf_putc
-                0x000000000000f554       0x1a posix/posix.o
- .text.getchar  0x000000000000f56e        0xc posix/posix.o
-                0x000000000000f56e                getchar
- .text.putchar  0x000000000000f57a        0xc posix/posix.o
-                0x000000000000f57a                putchar
- .text.fgets    0x000000000000f586       0x68 posix/posix.o
-                0x000000000000f586                fgets
- .text.fputs    0x000000000000f5ee       0x30 posix/posix.o
-                0x000000000000f5ee                fputs
- .text.puts     0x000000000000f61e       0x2e posix/posix.o
-                0x000000000000f61e                puts
- .text.fileno   0x000000000000f64c       0x38 posix/posix.o
-                0x000000000000f64c                fileno
+                0x000000000000f5a8       0x1a posix/posix.o
+ .text.getchar  0x000000000000f5c2        0xc posix/posix.o
+                0x000000000000f5c2                getchar
+ .text.putchar  0x000000000000f5ce        0xc posix/posix.o
+                0x000000000000f5ce                putchar
+ .text.fgets    0x000000000000f5da       0x68 posix/posix.o
+                0x000000000000f5da                fgets
+ .text.fputs    0x000000000000f642       0x30 posix/posix.o
+                0x000000000000f642                fputs
+ .text.puts     0x000000000000f672       0x2e posix/posix.o
+                0x000000000000f672                puts
+ .text.fileno   0x000000000000f6a0       0x38 posix/posix.o
+                0x000000000000f6a0                fileno
  .text.fileno_to_stream
-                0x000000000000f684       0x2a posix/posix.o
-                0x000000000000f684                fileno_to_stream
- .text.mctime   0x000000000000f6ae       0x4a posix/posix.o
-                0x000000000000f6ae                mctime
+                0x000000000000f6d8       0x2a posix/posix.o
+                0x000000000000f6d8                fileno_to_stream
+ .text.mctime   0x000000000000f702       0x4a posix/posix.o
+                0x000000000000f702                mctime
  .text.dump_stat
-                0x000000000000f6f8      0x15a posix/posix.o
-                0x000000000000f6f8                dump_stat
+                0x000000000000f74c      0x15a posix/posix.o
+                0x000000000000f74c                dump_stat
  .text.basename
-                0x000000000000f852       0x1c posix/posix.o
-                0x000000000000f852                basename
- .text.chdir    0x000000000000f86e       0x3e posix/posix.o
-                0x000000000000f86e                chdir
- .text.chmod    0x000000000000f8ac       0x52 posix/posix.o
-                0x000000000000f8ac                chmod
- .text.getcwd   0x000000000000f8fe       0x4a posix/posix.o
-                0x000000000000f8fe                getcwd
- .text.mkdir    0x000000000000f948       0x5c posix/posix.o
-                0x000000000000f948                mkdir
- .text.rename   0x000000000000f9a4       0x3e posix/posix.o
-                0x000000000000f9a4                rename
- .text.unlink   0x000000000000f9e2       0x3e posix/posix.o
-                0x000000000000f9e2                unlink
- .text.rmdir    0x000000000000fa20        0x4 posix/posix.o
-                0x000000000000fa20                rmdir
+                0x000000000000f8a6       0x1c posix/posix.o
+                0x000000000000f8a6                basename
+ .text.chdir    0x000000000000f8c2       0x3e posix/posix.o
+                0x000000000000f8c2                chdir
+ .text.chmod    0x000000000000f900       0x52 posix/posix.o
+                0x000000000000f900                chmod
+ .text.getcwd   0x000000000000f952       0x4a posix/posix.o
+                0x000000000000f952                getcwd
+ .text.mkdir    0x000000000000f99c       0x5c posix/posix.o
+                0x000000000000f99c                mkdir
+ .text.rename   0x000000000000f9f8       0x3e posix/posix.o
+                0x000000000000f9f8                rename
+ .text.unlink   0x000000000000fa36       0x3e posix/posix.o
+                0x000000000000fa36                unlink
+ .text.rmdir    0x000000000000fa74        0x4 posix/posix.o
+                0x000000000000fa74                rmdir
  .text.closedir
-                0x000000000000fa24       0x36 posix/posix.o
-                0x000000000000fa24                closedir
- .text.opendir  0x000000000000fa5a       0x3c posix/posix.o
-                0x000000000000fa5a                opendir
- .text.readdir  0x000000000000fa96       0x7c posix/posix.o
-                0x000000000000fa96                readdir
- .text.perror   0x000000000000fb12       0x76 posix/posix.o
-                0x000000000000fb12                perror
+                0x000000000000fa78       0x36 posix/posix.o
+                0x000000000000fa78                closedir
+ .text.opendir  0x000000000000faae       0x3c posix/posix.o
+                0x000000000000faae                opendir
+ .text.readdir  0x000000000000faea       0x7c posix/posix.o
+                0x000000000000faea                readdir
+ .text.perror   0x000000000000fb66       0x76 posix/posix.o
+                0x000000000000fb66                perror
  .text.fdevopen
-                0x000000000000fb88       0x96 posix/posix.o
-                0x000000000000fb88                fdevopen
- .text.mkfs     0x000000000000fc1e       0xe8 posix/posix.o
-                0x000000000000fc1e                mkfs
+                0x000000000000fbdc       0x96 posix/posix.o
+                0x000000000000fbdc                fdevopen
+ .text.mkfs     0x000000000000fc72       0xe8 posix/posix.o
+                0x000000000000fc72                mkfs
  .text.fat_time_to_unix
-                0x000000000000fd06       0x88 posix/posix.o
-                0x000000000000fd06                fat_time_to_unix
- .text.stat     0x000000000000fd8e      0x118 posix/posix.o
-                0x000000000000fd8e                stat
+                0x000000000000fd5a       0x88 posix/posix.o
+                0x000000000000fd5a                fat_time_to_unix
+ .text.stat     0x000000000000fde2      0x118 posix/posix.o
+                0x000000000000fde2                stat
  .text.unix_time_to_fat
-                0x000000000000fea6       0x90 posix/posix.o
-                0x000000000000fea6                unix_time_to_fat
- .text.utime    0x000000000000ff36       0x86 posix/posix.o
-                0x000000000000ff36                utime
+                0x000000000000fefa       0x90 posix/posix.o
+                0x000000000000fefa                unix_time_to_fat
+ .text.utime    0x000000000000ff8a       0x86 posix/posix.o
+                0x000000000000ff8a                utime
  .text.fileno_to_fatfs
-                0x000000000000ffbc       0x2a posix/posix.o
-                0x000000000000ffbc                fileno_to_fatfs
- .text.ftell    0x000000000000ffe6       0x36 posix/posix.o
-                0x000000000000ffe6                ftell
- .text.lseek    0x000000000001001c       0xce posix/posix.o
-                0x000000000001001c                lseek
- .text.fseek    0x00000000000100ea       0x4e posix/posix.o
-                0x00000000000100ea                fseek
- .text.read     0x0000000000010138       0xda posix/posix.o
-                0x0000000000010138                read
- .text.fread    0x0000000000010212       0x38 posix/posix.o
-                0x0000000000010212                fread
- .text.syncfs   0x000000000001024a       0x66 posix/posix.o
-                0x000000000001024a                syncfs
- .text.sync     0x00000000000102b0       0x2a posix/posix.o
-                0x00000000000102b0                sync
- .text.write    0x00000000000102da       0xdc posix/posix.o
-                0x00000000000102da                write
- .text.fwrite   0x00000000000103b6       0x38 posix/posix.o
-                0x00000000000103b6                fwrite
+                0x0000000000010010       0x2a posix/posix.o
+                0x0000000000010010                fileno_to_fatfs
+ .text.ftell    0x000000000001003a       0x36 posix/posix.o
+                0x000000000001003a                ftell
+ .text.lseek    0x0000000000010070       0xce posix/posix.o
+                0x0000000000010070                lseek
+ .text.fseek    0x000000000001013e       0x4e posix/posix.o
+                0x000000000001013e                fseek
+ .text.read     0x000000000001018c       0xda posix/posix.o
+                0x000000000001018c                read
+ .text.fread    0x0000000000010266       0x38 posix/posix.o
+                0x0000000000010266                fread
+ .text.syncfs   0x000000000001029e       0x66 posix/posix.o
+                0x000000000001029e                syncfs
+ .text.sync     0x0000000000010304       0x2a posix/posix.o
+                0x0000000000010304                sync
+ .text.write    0x000000000001032e       0xdc posix/posix.o
+                0x000000000001032e                write
+ .text.fwrite   0x000000000001040a       0x38 posix/posix.o
+                0x000000000001040a                fwrite
  .text.free_file_descriptor
-                0x00000000000103ee       0x6a posix/posix.o
-                0x00000000000103ee                free_file_descriptor
- .text.close    0x0000000000010458       0x62 posix/posix.o
-                0x0000000000010458                close
- .text.fclose   0x00000000000104ba       0x10 posix/posix.o
-                0x00000000000104ba                fclose
+                0x0000000000010442       0x6a posix/posix.o
+                0x0000000000010442                free_file_descriptor
+ .text.close    0x00000000000104ac       0x62 posix/posix.o
+                0x00000000000104ac                close
+ .text.fclose   0x000000000001050e       0x10 posix/posix.o
+                0x000000000001050e                fclose
  .text.new_file_descriptor
-                0x00000000000104ca       0x8a posix/posix.o
-                0x00000000000104ca                new_file_descriptor
- .text.open     0x0000000000010554      0x13e posix/posix.o
-                0x0000000000010554                open
+                0x000000000001051e       0x8a posix/posix.o
+                0x000000000001051e                new_file_descriptor
+ .text.open     0x00000000000105a8      0x13e posix/posix.o
+                0x00000000000105a8                open
  .text.posix_fopen_modes_to_open
-                0x0000000000010692       0xd4 posix/posix.o
-                0x0000000000010692                posix_fopen_modes_to_open
- .text.fopen    0x0000000000010766       0x1a posix/posix.o
-                0x0000000000010766                fopen
- .text.fprintf  0x0000000000010780       0x40 posix/posix.o
-                0x0000000000010780                fprintf
+                0x00000000000106e6       0xd4 posix/posix.o
+                0x00000000000106e6                posix_fopen_modes_to_open
+ .text.fopen    0x00000000000107ba       0x1a posix/posix.o
+                0x00000000000107ba                fopen
+ .text.fprintf  0x00000000000107d4       0x40 posix/posix.o
+                0x00000000000107d4                fprintf
  .text.posix_help
-                0x00000000000107c0       0x38 posix/posix_tests.o
-                0x00000000000107c0                posix_help
- .text.copy     0x00000000000107f8      0x1c0 posix/posix_tests.o
-                0x00000000000107f8                copy
+                0x0000000000010814       0x38 posix/posix_tests.o
+                0x0000000000010814                posix_help
+ .text.copy     0x000000000001084c      0x1c0 posix/posix_tests.o
+                0x000000000001084c                copy
  .text.testpage
-                0x00000000000109b8       0x66 posix/posix_tests.o
-                0x00000000000109b8                testpage
- .text.cat      0x0000000000010a1e       0xda posix/posix_tests.o
-                0x0000000000010a1e                cat
- .text.hexdump  0x0000000000010af8      0x228 posix/posix_tests.o
-                0x0000000000010af8                hexdump
- .text.ls_info  0x0000000000010d20      0x17a posix/posix_tests.o
-                0x0000000000010d20                ls_info
- .text.ls       0x0000000000010e9a      0x238 posix/posix_tests.o
-                0x0000000000010e9a                ls
- .text.logfile  0x00000000000110d2       0xa0 posix/posix_tests.o
-                0x00000000000110d2                logfile
- .text.sum      0x0000000000011172       0xa0 posix/posix_tests.o
-                0x0000000000011172                sum
- .text.upload   0x0000000000011212       0xcc posix/posix_tests.o
-                0x0000000000011212                upload
+                0x0000000000010a0c       0x66 posix/posix_tests.o
+                0x0000000000010a0c                testpage
+ .text.cat      0x0000000000010a72       0xda posix/posix_tests.o
+                0x0000000000010a72                cat
+ .text.hexdump  0x0000000000010b4c      0x228 posix/posix_tests.o
+                0x0000000000010b4c                hexdump
+ .text.ls_info  0x0000000000010d74      0x17a posix/posix_tests.o
+                0x0000000000010d74                ls_info
+ .text.ls       0x0000000000010eee      0x238 posix/posix_tests.o
+                0x0000000000010eee                ls
+ .text.logfile  0x0000000000011126       0xa0 posix/posix_tests.o
+                0x0000000000011126                logfile
+ .text.sum      0x00000000000111c6       0xa0 posix/posix_tests.o
+                0x00000000000111c6                sum
+ .text.upload   0x0000000000011266       0xcc posix/posix_tests.o
+                0x0000000000011266                upload
  .text.posix_tests
-                0x00000000000112de      0x480 posix/posix_tests.o
-                0x00000000000112de                posix_tests
+                0x0000000000011332      0x480 posix/posix_tests.o
+                0x0000000000011332                posix_tests
  .text.gpib_timer_init
-                0x000000000001175e       0x28 gpib/gpib_hal.o
-                0x000000000001175e                gpib_timer_init
+                0x00000000000117b2       0x28 gpib/gpib_hal.o
+                0x00000000000117b2                gpib_timer_init
  .text.reverse_8bits
-                0x0000000000011786       0x14 gpib/gpib_hal.o
-                0x0000000000011786                reverse_8bits
- .text.ppr_set  0x000000000001179a       0x14 gpib/gpib_hal.o
-                0x000000000001179a                ppr_set
- .text.ppr_reg  0x00000000000117ae        0x8 gpib/gpib_hal.o
-                0x00000000000117ae                ppr_reg
+                0x00000000000117da       0x14 gpib/gpib_hal.o
+                0x00000000000117da                reverse_8bits
+ .text.ppr_set  0x00000000000117ee       0x14 gpib/gpib_hal.o
+                0x00000000000117ee                ppr_set
+ .text.ppr_reg  0x0000000000011802        0x8 gpib/gpib_hal.o
+                0x0000000000011802                ppr_reg
  .text.ppr_init
-                0x00000000000117b6       0x22 gpib/gpib_hal.o
-                0x00000000000117b6                ppr_init
+                0x000000000001180a       0x22 gpib/gpib_hal.o
+                0x000000000001180a                ppr_init
  .text.ppr_bit_set
-                0x00000000000117d8       0x1a gpib/gpib_hal.o
-                0x00000000000117d8                ppr_bit_set
+                0x000000000001182c       0x1a gpib/gpib_hal.o
+                0x000000000001182c                ppr_bit_set
  .text.ppr_bit_clr
-                0x00000000000117f2       0x1c gpib/gpib_hal.o
-                0x00000000000117f2                ppr_bit_clr
+                0x0000000000011846       0x1c gpib/gpib_hal.o
+                0x0000000000011846                ppr_bit_clr
  .text.dbf_open
-                0x000000000001180e       0x44 gpib/gpib_hal.o
-                0x000000000001180e                dbf_open
+                0x0000000000011862       0x44 gpib/gpib_hal.o
+                0x0000000000011862                dbf_open
  .text.dbf_read
-                0x0000000000011852       0x30 gpib/gpib_hal.o
-                0x0000000000011852                dbf_read
+                0x00000000000118a6       0x30 gpib/gpib_hal.o
+                0x00000000000118a6                dbf_read
  .text.dbf_write
-                0x0000000000011882       0x30 gpib/gpib_hal.o
-                0x0000000000011882                dbf_write
+                0x00000000000118d6       0x30 gpib/gpib_hal.o
+                0x00000000000118d6                dbf_write
  .text.dbf_lseek
-                0x00000000000118b2       0x30 gpib/gpib_hal.o
-                0x00000000000118b2                dbf_lseek
+                0x0000000000011906       0x30 gpib/gpib_hal.o
+                0x0000000000011906                dbf_lseek
  .text.dbf_close
-                0x00000000000118e2       0x30 gpib/gpib_hal.o
-                0x00000000000118e2                dbf_close
+                0x0000000000011936       0x30 gpib/gpib_hal.o
+                0x0000000000011936                dbf_close
  .text.dbf_open_read
-                0x0000000000011912       0xae gpib/gpib_hal.o
-                0x0000000000011912                dbf_open_read
+                0x0000000000011966       0xae gpib/gpib_hal.o
+                0x0000000000011966                dbf_open_read
  .text.dbf_open_write
-                0x00000000000119c0       0xae gpib/gpib_hal.o
-                0x00000000000119c0                dbf_open_write
+                0x0000000000011a14       0xae gpib/gpib_hal.o
+                0x0000000000011a14                dbf_open_write
  .text.gpib_timer_elapsed_begin
-                0x0000000000011a6e        0x6 gpib/gpib.o
-                0x0000000000011a6e                gpib_timer_elapsed_begin
+                0x0000000000011ac2        0x6 gpib/gpib.o
+                0x0000000000011ac2                gpib_timer_elapsed_begin
  .text.gpib_timer_reset
-                0x0000000000011a74       0x1e gpib/gpib.o
-                0x0000000000011a74                gpib_timer_reset
+                0x0000000000011ac8       0x1e gpib/gpib.o
+                0x0000000000011ac8                gpib_timer_reset
  .text.gpib_timer_elapsed_end
-                0x0000000000011a92        0x6 gpib/gpib.o
-                0x0000000000011a92                gpib_timer_elapsed_end
+                0x0000000000011ae6        0x6 gpib/gpib.o
+                0x0000000000011ae6                gpib_timer_elapsed_end
  .text.gpib_timer_task
-                0x0000000000011a98       0x4c gpib/gpib.o
-                0x0000000000011a98                gpib_timer_task
+                0x0000000000011aec       0x4c gpib/gpib.o
+                0x0000000000011aec                gpib_timer_task
  .text.gpib_timeout_set
-                0x0000000000011ae4       0x14 gpib/gpib.o
-                0x0000000000011ae4                gpib_timeout_set
+                0x0000000000011b38       0x14 gpib/gpib.o
+                0x0000000000011b38                gpib_timeout_set
  .text.gpib_bus_read_init
-                0x0000000000011af8       0x46 gpib/gpib.o
-                0x0000000000011af8                gpib_bus_read_init
+                0x0000000000011b4c       0x46 gpib/gpib.o
+                0x0000000000011b4c                gpib_bus_read_init
  .text.gpib_bus_init
-                0x0000000000011b3e       0x50 gpib/gpib.o
-                0x0000000000011b3e                gpib_bus_init
+                0x0000000000011b92       0x50 gpib/gpib.o
+                0x0000000000011b92                gpib_bus_init
  .text.gpib_state_init
-                0x0000000000011b8e       0x50 gpib/gpib.o
-                0x0000000000011b8e                gpib_state_init
+                0x0000000000011be2       0x50 gpib/gpib.o
+                0x0000000000011be2                gpib_state_init
  .text.gpib_enable_PPR
-                0x0000000000011bde       0x62 gpib/gpib.o
-                0x0000000000011bde                gpib_enable_PPR
+                0x0000000000011c32       0x62 gpib/gpib.o
+                0x0000000000011c32                gpib_enable_PPR
  .text.gpib_disable_PPR
-                0x0000000000011c40       0x62 gpib/gpib.o
-                0x0000000000011c40                gpib_disable_PPR
+                0x0000000000011c94       0x62 gpib/gpib.o
+                0x0000000000011c94                gpib_disable_PPR
  .text.gpib_assert_ifc
-                0x0000000000011ca2       0x3c gpib/gpib.o
-                0x0000000000011ca2                gpib_assert_ifc
+                0x0000000000011cf6       0x3c gpib/gpib.o
+                0x0000000000011cf6                gpib_assert_ifc
  .text.gpib_unread
-                0x0000000000011cde       0x4a gpib/gpib.o
-                0x0000000000011cde                gpib_unread
+                0x0000000000011d32       0x4a gpib/gpib.o
+                0x0000000000011d32                gpib_unread
  .text.gpib_bus_read
-                0x0000000000011d28        0xc gpib/gpib.o
-                0x0000000000011d28                gpib_bus_read
+                0x0000000000011d7c        0xc gpib/gpib.o
+                0x0000000000011d7c                gpib_bus_read
  .text.gpib_control_pin_read
-                0x0000000000011d34       0x20 gpib/gpib.o
-                0x0000000000011d34                gpib_control_pin_read
+                0x0000000000011d88       0x20 gpib/gpib.o
+                0x0000000000011d88                gpib_control_pin_read
  .text.gpib_handshake_pin_read
-                0x0000000000011d54       0x18 gpib/gpib.o
-                0x0000000000011d54                gpib_handshake_pin_read
+                0x0000000000011da8       0x18 gpib/gpib.o
+                0x0000000000011da8                gpib_handshake_pin_read
  .text.gpib_write_byte
-                0x0000000000011d6c      0x2d0 gpib/gpib.o
-                0x0000000000011d6c                gpib_write_byte
+                0x0000000000011dc0      0x2d0 gpib/gpib.o
+                0x0000000000011dc0                gpib_write_byte
  .text.gpib_decode_header
-                0x000000000001203c       0xa4 gpib/gpib.o
-                0x000000000001203c                gpib_decode_header
+                0x0000000000012090       0xa4 gpib/gpib.o
+                0x0000000000012090                gpib_decode_header
  .text.gpib_trace_display
-                0x00000000000120e0      0x28e gpib/gpib.o
-                0x00000000000120e0                gpib_trace_display
+                0x0000000000012134      0x28e gpib/gpib.o
+                0x0000000000012134                gpib_trace_display
  .text.gpib_read_byte
-                0x000000000001236e      0x1ac gpib/gpib.o
-                0x000000000001236e                gpib_read_byte
+                0x00000000000123c2      0x1ac gpib/gpib.o
+                0x00000000000123c2                gpib_read_byte
  .text.gpib_decode
-                0x000000000001251a        0x8 gpib/gpib.o
-                0x000000000001251a                gpib_decode
+                0x000000000001256e        0x8 gpib/gpib.o
+                0x000000000001256e                gpib_decode
  .text.gpib_read_str
-                0x0000000000012522      0x15c gpib/gpib.o
-                0x0000000000012522                gpib_read_str
+                0x0000000000012576      0x15c gpib/gpib.o
+                0x0000000000012576                gpib_read_str
  .text.gpib_write_str
-                0x000000000001267e       0xf2 gpib/gpib.o
-                0x000000000001267e                gpib_write_str
+                0x00000000000126d2       0xf2 gpib/gpib.o
+                0x00000000000126d2                gpib_write_str
  .text.gpib_file_init
-                0x0000000000012770       0x5e gpib/gpib_task.o
-                0x0000000000012770                gpib_file_init
+                0x00000000000127c4       0x5e gpib/gpib_task.o
+                0x00000000000127c4                gpib_file_init
  .text.SS80_is_MLA
-                0x00000000000127ce       0x22 gpib/gpib_task.o
-                0x00000000000127ce                SS80_is_MLA
+                0x0000000000012822       0x22 gpib/gpib_task.o
+                0x0000000000012822                SS80_is_MLA
  .text.SS80_is_MTA
-                0x00000000000127f0       0x22 gpib/gpib_task.o
-                0x00000000000127f0                SS80_is_MTA
+                0x0000000000012844       0x22 gpib/gpib_task.o
+                0x0000000000012844                SS80_is_MTA
  .text.SS80_is_MSA
-                0x0000000000012812       0x22 gpib/gpib_task.o
-                0x0000000000012812                SS80_is_MSA
+                0x0000000000012866       0x22 gpib/gpib_task.o
+                0x0000000000012866                SS80_is_MSA
  .text.AMIGO_is_MLA
-                0x0000000000012834       0x22 gpib/gpib_task.o
-                0x0000000000012834                AMIGO_is_MLA
+                0x0000000000012888       0x22 gpib/gpib_task.o
+                0x0000000000012888                AMIGO_is_MLA
  .text.AMIGO_is_MTA
-                0x0000000000012856       0x22 gpib/gpib_task.o
-                0x0000000000012856                AMIGO_is_MTA
+                0x00000000000128aa       0x22 gpib/gpib_task.o
+                0x00000000000128aa                AMIGO_is_MTA
  .text.AMIGO_is_MSA
-                0x0000000000012878       0x22 gpib/gpib_task.o
-                0x0000000000012878                AMIGO_is_MSA
+                0x00000000000128cc       0x22 gpib/gpib_task.o
+                0x00000000000128cc                AMIGO_is_MSA
  .text.PRINTER_is_MLA
-                0x000000000001289a       0x22 gpib/gpib_task.o
-                0x000000000001289a                PRINTER_is_MLA
+                0x00000000000128ee       0x22 gpib/gpib_task.o
+                0x00000000000128ee                PRINTER_is_MLA
  .text.PRINTER_is_MTA
-                0x00000000000128bc       0x22 gpib/gpib_task.o
-                0x00000000000128bc                PRINTER_is_MTA
+                0x0000000000012910       0x22 gpib/gpib_task.o
+                0x0000000000012910                PRINTER_is_MTA
  .text.gpib_init_devices
-                0x00000000000128de       0x10 gpib/gpib_task.o
-                0x00000000000128de                gpib_init_devices
+                0x0000000000012932       0x10 gpib/gpib_task.o
+                0x0000000000012932                gpib_init_devices
  .text.gpib_trace_task
-                0x00000000000128ee      0x11a gpib/gpib_task.o
-                0x00000000000128ee                gpib_trace_task
+                0x0000000000012942      0x11a gpib/gpib_task.o
+                0x0000000000012942                gpib_trace_task
  .text.gpib_error_test
-                0x0000000000012a08      0x114 gpib/gpib_task.o
-                0x0000000000012a08                gpib_error_test
+                0x0000000000012a5c      0x114 gpib/gpib_task.o
+                0x0000000000012a5c                gpib_error_test
  .text.GPIB_COMMANDS
-                0x0000000000012b1c       0xa8 gpib/gpib_task.o
-                0x0000000000012b1c                GPIB_COMMANDS
+                0x0000000000012b70       0xa8 gpib/gpib_task.o
+                0x0000000000012b70                GPIB_COMMANDS
  .text.Send_Identify
-                0x0000000000012bc4       0x94 gpib/gpib_task.o
-                0x0000000000012bc4                Send_Identify
- .text.GPIB     0x0000000000012c58      0x16e gpib/gpib_task.o
-                0x0000000000012c58                GPIB
+                0x0000000000012c18       0x94 gpib/gpib_task.o
+                0x0000000000012c18                Send_Identify
+ .text.GPIB     0x0000000000012cac      0x16e gpib/gpib_task.o
+                0x0000000000012cac                GPIB
  .text.GPIB_TALK
-                0x0000000000012dc6      0x12a gpib/gpib_task.o
-                0x0000000000012dc6                GPIB_TALK
+                0x0000000000012e1a      0x12a gpib/gpib_task.o
+                0x0000000000012e1a                GPIB_TALK
  .text.GPIB_SECONDARY_ADDRESS
-                0x0000000000012ef0       0xfa gpib/gpib_task.o
-                0x0000000000012ef0                GPIB_SECONDARY_ADDRESS
+                0x0000000000012f44       0xfa gpib/gpib_task.o
+                0x0000000000012f44                GPIB_SECONDARY_ADDRESS
  .text.listen_cleanup
-                0x0000000000012fea       0x44 gpib/gpib_task.o
-                0x0000000000012fea                listen_cleanup
+                0x000000000001303e       0x44 gpib/gpib_task.o
+                0x000000000001303e                listen_cleanup
  .text.GPIB_LISTEN
-                0x000000000001302e      0x11c gpib/gpib_task.o
-                0x000000000001302e                GPIB_LISTEN
+                0x0000000000013082      0x11c gpib/gpib_task.o
+                0x0000000000013082                GPIB_LISTEN
  .text.gpib_task
-                0x000000000001314a       0xc2 gpib/gpib_task.o
-                0x000000000001314a                gpib_task
+                0x000000000001319e       0xc2 gpib/gpib_task.o
+                0x000000000001319e                gpib_task
  .text.talk_cleanup
-                0x000000000001320c        0x2 gpib/gpib_task.o
-                0x000000000001320c                talk_cleanup
+                0x0000000000013260        0x2 gpib/gpib_task.o
+                0x0000000000013260                talk_cleanup
  .text.gpib_help
-                0x000000000001320e       0x38 gpib/gpib_tests.o
-                0x000000000001320e                gpib_help
+                0x0000000000013262       0x38 gpib/gpib_tests.o
+                0x0000000000013262                gpib_help
  .text.gpib_tests
-                0x0000000000013246      0x5f2 gpib/gpib_tests.o
-                0x0000000000013246                gpib_tests
+                0x000000000001329a      0x5f2 gpib/gpib_tests.o
+                0x000000000001329a                gpib_tests
  .text.SS80ControllerPack
-                0x0000000000013838       0x78 gpib/ss80.o
-                0x0000000000013838                SS80ControllerPack
+                0x000000000001388c       0x78 gpib/ss80.o
+                0x000000000001388c                SS80ControllerPack
  .text.SS80UnitPack
-                0x00000000000138b0      0x198 gpib/ss80.o
-                0x00000000000138b0                SS80UnitPack
+                0x0000000000013904      0x198 gpib/ss80.o
+                0x0000000000013904                SS80UnitPack
  .text.SS80VolumePack
-                0x0000000000013a48       0xca gpib/ss80.o
-                0x0000000000013a48                SS80VolumePack
+                0x0000000000013a9c       0xca gpib/ss80.o
+                0x0000000000013a9c                SS80VolumePack
  .text.SS80_test_extended_status
-                0x0000000000013b12       0x34 gpib/ss80.o
-                0x0000000000013b12                SS80_test_extended_status
+                0x0000000000013b66       0x34 gpib/ss80.o
+                0x0000000000013b66                SS80_test_extended_status
  .text.SS80_display_extended_status
-                0x0000000000013b46       0xae gpib/ss80.o
-                0x0000000000013b46                SS80_display_extended_status
+                0x0000000000013b9a       0xae gpib/ss80.o
+                0x0000000000013b9a                SS80_display_extended_status
  .text.SS80_send_status
-                0x0000000000013bf4      0x102 gpib/ss80.o
-                0x0000000000013bf4                SS80_send_status
+                0x0000000000013c48      0x102 gpib/ss80.o
+                0x0000000000013c48                SS80_send_status
  .text.SS80_describe
-                0x0000000000013cf6       0xe0 gpib/ss80.o
-                0x0000000000013cf6                SS80_describe
+                0x0000000000013d4a       0xe0 gpib/ss80.o
+                0x0000000000013d4a                SS80_describe
  .text.SS80_Check_Unit
-                0x0000000000013dd6       0x44 gpib/ss80.o
-                0x0000000000013dd6                SS80_Check_Unit
+                0x0000000000013e2a       0x44 gpib/ss80.o
+                0x0000000000013e2a                SS80_Check_Unit
  .text.SS80_Check_Volume
-                0x0000000000013e1a       0x40 gpib/ss80.o
-                0x0000000000013e1a                SS80_Check_Volume
+                0x0000000000013e6e       0x40 gpib/ss80.o
+                0x0000000000013e6e                SS80_Check_Volume
  .text.SS80_Command_State
-                0x0000000000013e5a      0x4f0 gpib/ss80.o
-                0x0000000000013e5a                SS80_Command_State
+                0x0000000000013eae      0x4f0 gpib/ss80.o
+                0x0000000000013eae                SS80_Command_State
  .text.SS80_cmd_seek
-                0x000000000001434a      0x102 gpib/ss80.o
-                0x000000000001434a                SS80_cmd_seek
+                0x000000000001439e      0x102 gpib/ss80.o
+                0x000000000001439e                SS80_cmd_seek
  .text.SS80_locate_and_write
-                0x000000000001444c      0x32e gpib/ss80.o
-                0x000000000001444c                SS80_locate_and_write
+                0x00000000000144a0      0x32e gpib/ss80.o
+                0x00000000000144a0                SS80_locate_and_write
  .text.SS80_Report
-                0x000000000001477a       0x9c gpib/ss80.o
-                0x000000000001477a                SS80_Report
+                0x00000000000147ce       0x9c gpib/ss80.o
+                0x00000000000147ce                SS80_Report
  .text.Clear_Common
-                0x0000000000014816       0x3e gpib/ss80.o
-                0x0000000000014816                Clear_Common
+                0x000000000001486a       0x3e gpib/ss80.o
+                0x000000000001486a                Clear_Common
  .text.SS80_init
-                0x0000000000014854       0x8c gpib/ss80.o
-                0x0000000000014854                SS80_init
+                0x00000000000148a8       0x8c gpib/ss80.o
+                0x00000000000148a8                SS80_init
  .text.SS80_Channel_Independent_Clear
-                0x00000000000148e0       0x18 gpib/ss80.o
-                0x00000000000148e0                SS80_Channel_Independent_Clear
+                0x0000000000014934       0x18 gpib/ss80.o
+                0x0000000000014934                SS80_Channel_Independent_Clear
  .text.SS80_Universal_Device_Clear
-                0x00000000000148f8       0x1c gpib/ss80.o
-                0x00000000000148f8                SS80_Universal_Device_Clear
+                0x000000000001494c       0x1c gpib/ss80.o
+                0x000000000001494c                SS80_Universal_Device_Clear
  .text.SS80_Selected_Device_Clear
-                0x0000000000014914       0x40 gpib/ss80.o
-                0x0000000000014914                SS80_Selected_Device_Clear
+                0x0000000000014968       0x40 gpib/ss80.o
+                0x0000000000014968                SS80_Selected_Device_Clear
  .text.SS80_Amigo_Clear
-                0x0000000000014954       0x86 gpib/ss80.o
-                0x0000000000014954                SS80_Amigo_Clear
+                0x00000000000149a8       0x86 gpib/ss80.o
+                0x00000000000149a8                SS80_Amigo_Clear
  .text.SS80_Cancel
-                0x00000000000149da       0x22 gpib/ss80.o
-                0x00000000000149da                SS80_Cancel
+                0x0000000000014a2e       0x22 gpib/ss80.o
+                0x0000000000014a2e                SS80_Cancel
  .text.SS80_Transparent_State
-                0x00000000000149fc      0x224 gpib/ss80.o
-                0x00000000000149fc                SS80_Transparent_State
+                0x0000000000014a50      0x224 gpib/ss80.o
+                0x0000000000014a50                SS80_Transparent_State
  .text.SS80_error_return
-                0x0000000000014c20       0x74 gpib/ss80.o
-                0x0000000000014c20                SS80_error_return
+                0x0000000000014c74       0x74 gpib/ss80.o
+                0x0000000000014c74                SS80_error_return
  .text.SS80_locate_and_read
-                0x0000000000014c94      0x2d0 gpib/ss80.o
-                0x0000000000014c94                SS80_locate_and_read
+                0x0000000000014ce8      0x2d0 gpib/ss80.o
+                0x0000000000014ce8                SS80_locate_and_read
  .text.SS80_Execute_State
-                0x0000000000014f64       0xac gpib/ss80.o
-                0x0000000000014f64                SS80_Execute_State
+                0x0000000000014fb8       0xac gpib/ss80.o
+                0x0000000000014fb8                SS80_Execute_State
  .text.SS80_COMMANDS
-                0x0000000000015010      0x1ce gpib/ss80.o
-                0x0000000000015010                SS80_COMMANDS
+                0x0000000000015064      0x1ce gpib/ss80.o
+                0x0000000000015064                SS80_COMMANDS
  .text.amigo_overflow_check
-                0x00000000000151de       0xa0 gpib/amigo.o
+                0x0000000000015232       0xa0 gpib/amigo.o
  .text.amigo_chs_to_logical
-                0x000000000001527e       0xde gpib/amigo.o
+                0x00000000000152d2       0xde gpib/amigo.o
  .text.amigo_init
-                0x000000000001535c       0x8a gpib/amigo.o
-                0x000000000001535c                amigo_init
+                0x00000000000153b0       0x8a gpib/amigo.o
+                0x00000000000153b0                amigo_init
  .text.amigo_request_logical_address
-                0x00000000000153e6       0x1c gpib/amigo.o
-                0x00000000000153e6                amigo_request_logical_address
+                0x000000000001543a       0x1c gpib/amigo.o
+                0x000000000001543a                amigo_request_logical_address
  .text.amigo_request_status
-                0x0000000000015402       0xb0 gpib/amigo.o
-                0x0000000000015402                amigo_request_status
+                0x0000000000015456       0xb0 gpib/amigo.o
+                0x0000000000015456                amigo_request_status
  .text.amigo_send_logical_address
-                0x00000000000154b2       0xbc gpib/amigo.o
-                0x00000000000154b2                amigo_send_logical_address
+                0x0000000000015506       0xbc gpib/amigo.o
+                0x0000000000015506                amigo_send_logical_address
  .text.amigo_send_status
-                0x000000000001556e       0xbc gpib/amigo.o
-                0x000000000001556e                amigo_send_status
+                0x00000000000155c2       0xbc gpib/amigo.o
+                0x00000000000155c2                amigo_send_status
  .text.amigo_increment
-                0x000000000001562a       0x52 gpib/amigo.o
-                0x000000000001562a                amigo_increment
+                0x000000000001567e       0x52 gpib/amigo.o
+                0x000000000001567e                amigo_increment
  .text.amigo_seek
-                0x000000000001567c       0x56 gpib/amigo.o
-                0x000000000001567c                amigo_seek
+                0x00000000000156d0       0x56 gpib/amigo.o
+                0x00000000000156d0                amigo_seek
  .text.amigo_verify
-                0x00000000000156d2      0x122 gpib/amigo.o
-                0x00000000000156d2                amigo_verify
+                0x0000000000015726      0x122 gpib/amigo.o
+                0x0000000000015726                amigo_verify
  .text.amigo_format
-                0x00000000000157f4      0x124 gpib/amigo.o
-                0x00000000000157f4                amigo_format
+                0x0000000000015848      0x124 gpib/amigo.o
+                0x0000000000015848                amigo_format
  .text.amigo_buffered_read
-                0x0000000000015918      0x188 gpib/amigo.o
-                0x0000000000015918                amigo_buffered_read
+                0x000000000001596c      0x188 gpib/amigo.o
+                0x000000000001596c                amigo_buffered_read
  .text.amigo_buffered_write
-                0x0000000000015aa0      0x170 gpib/amigo.o
-                0x0000000000015aa0                amigo_buffered_write
+                0x0000000000015af4      0x170 gpib/amigo.o
+                0x0000000000015af4                amigo_buffered_write
  .text.amigo_cmd_dsj
-                0x0000000000015c10       0xc4 gpib/amigo.o
-                0x0000000000015c10                amigo_cmd_dsj
+                0x0000000000015c64       0xc4 gpib/amigo.o
+                0x0000000000015c64                amigo_cmd_dsj
  .text.amigo_cmd_clear
-                0x0000000000015cd4       0x46 gpib/amigo.o
-                0x0000000000015cd4                amigo_cmd_clear
+                0x0000000000015d28       0x46 gpib/amigo.o
+                0x0000000000015d28                amigo_cmd_clear
  .text.amigo_todo_op
-                0x0000000000015d1a      0x152 gpib/amigo.o
-                0x0000000000015d1a                amigo_todo_op
+                0x0000000000015d6e      0x152 gpib/amigo.o
+                0x0000000000015d6e                amigo_todo_op
  .text.amigo_todo
-                0x0000000000015e6c      0x120 gpib/amigo.o
-                0x0000000000015e6c                amigo_todo
+                0x0000000000015ec0      0x120 gpib/amigo.o
+                0x0000000000015ec0                amigo_todo
  .text.amigo_check_unit
-                0x0000000000015f8c       0x28 gpib/amigo.o
-                0x0000000000015f8c                amigo_check_unit
+                0x0000000000015fe0       0x28 gpib/amigo.o
+                0x0000000000015fe0                amigo_check_unit
  .text.Amigo_Command
-                0x0000000000015fb4      0x5cc gpib/amigo.o
-                0x0000000000015fb4                Amigo_Command
+                0x0000000000016008      0x5cc gpib/amigo.o
+                0x0000000000016008                Amigo_Command
  .text.Amigo_Execute
-                0x0000000000016580      0x1ae gpib/amigo.o
-                0x0000000000016580                Amigo_Execute
+                0x00000000000165d4      0x1ae gpib/amigo.o
+                0x00000000000165d4                Amigo_Execute
  .text.AMIGO_COMMANDS
-                0x000000000001672e      0x130 gpib/amigo.o
-                0x000000000001672e                AMIGO_COMMANDS
+                0x0000000000016782      0x130 gpib/amigo.o
+                0x0000000000016782                AMIGO_COMMANDS
  .text.printer_init
-                0x000000000001685e       0x1c gpib/printer.o
-                0x000000000001685e                printer_init
+                0x00000000000168b2       0x1c gpib/printer.o
+                0x00000000000168b2                printer_init
  .text.receive_plot_flush
-                0x000000000001687a       0xb2 gpib/printer.o
-                0x000000000001687a                receive_plot_flush
+                0x00000000000168ce       0xb2 gpib/printer.o
+                0x00000000000168ce                receive_plot_flush
  .text.printer_close
-                0x000000000001692c       0x9a gpib/printer.o
-                0x000000000001692c                printer_close
+                0x0000000000016980       0x9a gpib/printer.o
+                0x0000000000016980                printer_close
  .text.printer_open
-                0x00000000000169c6      0x142 gpib/printer.o
-                0x00000000000169c6                printer_open
+                0x0000000000016a1a      0x142 gpib/printer.o
+                0x0000000000016a1a                printer_open
  .text.printer_buffer
-                0x0000000000016b08       0xe6 gpib/printer.o
-                0x0000000000016b08                printer_buffer
+                0x0000000000016b5c       0xe6 gpib/printer.o
+                0x0000000000016b5c                printer_buffer
  .text.PRINTER_COMMANDS
-                0x0000000000016bee       0x5e gpib/printer.o
-                0x0000000000016bee                PRINTER_COMMANDS
+                0x0000000000016c42       0x5e gpib/printer.o
+                0x0000000000016c42                PRINTER_COMMANDS
  .text.plot_echo
-                0x0000000000016c4c      0x128 gpib/printer.o
-                0x0000000000016c4c                plot_echo
- .text.V2B_MSB  0x0000000000016d74       0x28 gpib/drives.o
-                0x0000000000016d74                V2B_MSB
- .text.V2B_LSB  0x0000000000016d9c       0x2a gpib/drives.o
-                0x0000000000016d9c                V2B_LSB
- .text.B2V_MSB  0x0000000000016dc6       0x3e gpib/drives.o
-                0x0000000000016dc6                B2V_MSB
- .text.B2V_LSB  0x0000000000016e04       0x40 gpib/drives.o
-                0x0000000000016e04                B2V_LSB
+                0x0000000000016ca0      0x128 gpib/printer.o
+                0x0000000000016ca0                plot_echo
+ .text.V2B_MSB  0x0000000000016dc8       0x28 gpib/drives.o
+                0x0000000000016dc8                V2B_MSB
+ .text.V2B_LSB  0x0000000000016df0       0x2a gpib/drives.o
+                0x0000000000016df0                V2B_LSB
+ .text.B2V_MSB  0x0000000000016e1a       0x3e gpib/drives.o
+                0x0000000000016e1a                B2V_MSB
+ .text.B2V_LSB  0x0000000000016e58       0x40 gpib/drives.o
+                0x0000000000016e58                B2V_LSB
  .text.find_type
-                0x0000000000016e44       0x28 gpib/drives.o
-                0x0000000000016e44                find_type
+                0x0000000000016e98       0x28 gpib/drives.o
+                0x0000000000016e98                find_type
  .text.count_drive_types
-                0x0000000000016e6c       0x1e gpib/drives.o
-                0x0000000000016e6c                count_drive_types
+                0x0000000000016ec0       0x1e gpib/drives.o
+                0x0000000000016ec0                count_drive_types
  .text.type_to_str
-                0x0000000000016e8a       0x32 gpib/drives.o
-                0x0000000000016e8a                type_to_str
+                0x0000000000016ede       0x32 gpib/drives.o
+                0x0000000000016ede                type_to_str
  .text.find_free
-                0x0000000000016ebc        0x8 gpib/drives.o
-                0x0000000000016ebc                find_free
+                0x0000000000016f10        0x8 gpib/drives.o
+                0x0000000000016f10                find_free
  .text.find_device
-                0x0000000000016ec4       0x54 gpib/drives.o
-                0x0000000000016ec4                find_device
+                0x0000000000016f18       0x54 gpib/drives.o
+                0x0000000000016f18                find_device
  .text.set_active_device
-                0x0000000000016f18      0x216 gpib/drives.o
-                0x0000000000016f18                set_active_device
+                0x0000000000016f6c      0x216 gpib/drives.o
+                0x0000000000016f6c                set_active_device
+ .text.SS80_Initial_Defaults
+                0x0000000000017182      0x108 gpib/drives.o
+                0x0000000000017182                SS80_Initial_Defaults
  .text.alloc_device
-                0x000000000001712e      0x120 gpib/drives.o
-                0x000000000001712e                alloc_device
+                0x000000000001728a      0x13e gpib/drives.o
+                0x000000000001728a                alloc_device
  .text.init_Devices
-                0x000000000001724e       0x28 gpib/drives.o
-                0x000000000001724e                init_Devices
+                0x00000000000173c8       0x28 gpib/drives.o
+                0x00000000000173c8                init_Devices
  .text.push_state
-                0x0000000000017276       0x32 gpib/drives.o
-                0x0000000000017276                push_state
+                0x00000000000173f0       0x32 gpib/drives.o
+                0x00000000000173f0                push_state
  .text.pop_state
-                0x00000000000172a8       0x2e gpib/drives.o
-                0x00000000000172a8                pop_state
+                0x0000000000017422       0x2e gpib/drives.o
+                0x0000000000017422                pop_state
  .text.assign_value
-                0x00000000000172d6      0x13e gpib/drives.o
-                0x00000000000172d6                assign_value
+                0x0000000000017450      0x13e gpib/drives.o
+                0x0000000000017450                assign_value
  .text.set_Config_Defaults
-                0x0000000000017414        0x2 gpib/drives.o
-                0x0000000000017414                set_Config_Defaults
+                0x000000000001758e        0x2 gpib/drives.o
+                0x000000000001758e                set_Config_Defaults
  .text.POSIX_Read_Config
-                0x0000000000017416     0x10e4 gpib/drives.o
-                0x0000000000017416                POSIX_Read_Config
+                0x0000000000017590     0x10e4 gpib/drives.o
+                0x0000000000017590                POSIX_Read_Config
  .text.print_var_P
-                0x00000000000184fa       0xa2 gpib/drives.o
-                0x00000000000184fa                print_var_P
+                0x0000000000018674       0xa2 gpib/drives.o
+                0x0000000000018674                print_var_P
  .text.print_str_P
-                0x000000000001859c       0x8e gpib/drives.o
-                0x000000000001859c                print_str_P
+                0x0000000000018716       0x8e gpib/drives.o
+                0x0000000000018716                print_str_P
  .text.display_Addresses
-                0x000000000001862a      0x1f6 gpib/drives.o
-                0x000000000001862a                display_Addresses
+                0x00000000000187a4      0x1f6 gpib/drives.o
+                0x00000000000187a4                display_Addresses
  .text.display_Config
-                0x0000000000018820      0x4b4 gpib/drives.o
-                0x0000000000018820                display_Config
+                0x000000000001899a      0x4b4 gpib/drives.o
+                0x000000000001899a                display_Config
  .text.format_drives
-                0x0000000000018cd4      0x272 gpib/drives.o
-                0x0000000000018cd4                format_drives
+                0x0000000000018e4e      0x272 gpib/drives.o
+                0x0000000000018e4e                format_drives
  .text.controller_send_str
-                0x0000000000018f46       0x86 gpib/controller.o
-                0x0000000000018f46                controller_send_str
+                0x00000000000190c0       0x86 gpib/controller.o
+                0x00000000000190c0                controller_send_str
  .text.controller_read_str
-                0x0000000000018fcc       0x8c gpib/controller.o
-                0x0000000000018fcc                controller_read_str
+                0x0000000000019146       0x8c gpib/controller.o
+                0x0000000000019146                controller_read_str
  .text.controller_read_trace
-                0x0000000000019058       0x86 gpib/controller.o
-                0x0000000000019058                controller_read_trace
+                0x00000000000191d2       0x86 gpib/controller.o
+                0x00000000000191d2                controller_read_trace
  .text.lif_help
-                0x00000000000190de       0x38 lif/lifutils.o
-                0x00000000000190de                lif_help
+                0x0000000000019258       0x38 lif/lifutils.o
+                0x0000000000019258                lif_help
  .text.lif_calloc
-                0x0000000000019116       0x58 lif/lifutils.o
-                0x0000000000019116                lif_calloc
+                0x0000000000019290       0x58 lif/lifutils.o
+                0x0000000000019290                lif_calloc
  .text.lif_free
-                0x000000000001916e       0x20 lif/lifutils.o
-                0x000000000001916e                lif_free
+                0x00000000000192e8       0x20 lif/lifutils.o
+                0x00000000000192e8                lif_free
  .text.lif_stralloc
-                0x000000000001918e       0x3e lif/lifutils.o
-                0x000000000001918e                lif_stralloc
+                0x0000000000019308       0x3e lif/lifutils.o
+                0x0000000000019308                lif_stralloc
  .text.lif_open
-                0x00000000000191cc       0x50 lif/lifutils.o
-                0x00000000000191cc                lif_open
+                0x0000000000019346       0x50 lif/lifutils.o
+                0x0000000000019346                lif_open
  .text.lif_stat
-                0x000000000001921c       0x48 lif/lifutils.o
-                0x000000000001921c                lif_stat
+                0x0000000000019396       0x48 lif/lifutils.o
+                0x0000000000019396                lif_stat
  .text.lif_seek_msg
-                0x0000000000019264       0x74 lif/lifutils.o
-                0x0000000000019264                lif_seek_msg
+                0x00000000000193de       0x74 lif/lifutils.o
+                0x00000000000193de                lif_seek_msg
  .text.lif_read
-                0x00000000000192d8       0xb2 lif/lifutils.o
-                0x00000000000192d8                lif_read
+                0x0000000000019452       0xb2 lif/lifutils.o
+                0x0000000000019452                lif_read
  .text.lif_write
-                0x000000000001938a       0x9c lif/lifutils.o
-                0x000000000001938a                lif_write
+                0x0000000000019504       0x9c lif/lifutils.o
+                0x0000000000019504                lif_write
  .text.lif_chars
-                0x0000000000019426       0x56 lif/lifutils.o
-                0x0000000000019426                lif_chars
- .text.lif_B2S  0x000000000001947c       0x74 lif/lifutils.o
-                0x000000000001947c                lif_B2S
+                0x00000000000195a0       0x56 lif/lifutils.o
+                0x00000000000195a0                lif_chars
+ .text.lif_B2S  0x00000000000195f6       0x74 lif/lifutils.o
+                0x00000000000195f6                lif_B2S
  .text.lif_checkname
-                0x00000000000194f0       0x3a lif/lifutils.o
-                0x00000000000194f0                lif_checkname
- .text.lif_S2B  0x000000000001952a       0x3a lif/lifutils.o
-                0x000000000001952a                lif_S2B
+                0x000000000001966a       0x3a lif/lifutils.o
+                0x000000000001966a                lif_checkname
+ .text.lif_S2B  0x00000000000196a4       0x3a lif/lifutils.o
+                0x00000000000196a4                lif_S2B
  .text.lif_fixname
-                0x0000000000019564       0x7a lif/lifutils.o
-                0x0000000000019564                lif_fixname
+                0x00000000000196de       0x7a lif/lifutils.o
+                0x00000000000196de                lif_fixname
  .text.lif_vol2str
-                0x00000000000195de      0x130 lif/lifutils.o
-                0x00000000000195de                lif_vol2str
+                0x0000000000019758      0x130 lif/lifutils.o
+                0x0000000000019758                lif_vol2str
  .text.lif_str2vol
-                0x000000000001970e      0x110 lif/lifutils.o
-                0x000000000001970e                lif_str2vol
+                0x0000000000019888      0x110 lif/lifutils.o
+                0x0000000000019888                lif_str2vol
  .text.lif_dir2str
-                0x000000000001981e       0xe2 lif/lifutils.o
-                0x000000000001981e                lif_dir2str
+                0x0000000000019998       0xe2 lif/lifutils.o
+                0x0000000000019998                lif_dir2str
  .text.lif_str2dir
-                0x0000000000019900       0xca lif/lifutils.o
-                0x0000000000019900                lif_str2dir
+                0x0000000000019a7a       0xca lif/lifutils.o
+                0x0000000000019a7a                lif_str2dir
  .text.lif_BIN2BCD
-                0x00000000000199ca        0xe lif/lifutils.o
-                0x00000000000199ca                lif_BIN2BCD
+                0x0000000000019b44        0xe lif/lifutils.o
+                0x0000000000019b44                lif_BIN2BCD
  .text.lif_BCD2BIN
-                0x00000000000199d8       0x16 lif/lifutils.o
-                0x00000000000199d8                lif_BCD2BIN
+                0x0000000000019b52       0x16 lif/lifutils.o
+                0x0000000000019b52                lif_BCD2BIN
  .text.lif_time2lifbcd
-                0x00000000000199ee       0x84 lif/lifutils.o
-                0x00000000000199ee                lif_time2lifbcd
+                0x0000000000019b68       0x84 lif/lifutils.o
+                0x0000000000019b68                lif_time2lifbcd
  .text.lif_lifbcd2time
-                0x0000000000019a72       0xa0 lif/lifutils.o
-                0x0000000000019a72                lif_lifbcd2time
+                0x0000000000019bec       0xa0 lif/lifutils.o
+                0x0000000000019bec                lif_lifbcd2time
  .text.lif_ctime_gmt
-                0x0000000000019b12       0x3c lif/lifutils.o
-                0x0000000000019b12                lif_ctime_gmt
+                0x0000000000019c8c       0x3c lif/lifutils.o
+                0x0000000000019c8c                lif_ctime_gmt
  .text.lif_lifbcd2timestr
-                0x0000000000019b4e       0x4e lif/lifutils.o
-                0x0000000000019b4e                lif_lifbcd2timestr
+                0x0000000000019cc8       0x4e lif/lifutils.o
+                0x0000000000019cc8                lif_lifbcd2timestr
  .text.lif_image_clear
-                0x0000000000019b9c        0xc lif/lifutils.o
-                0x0000000000019b9c                lif_image_clear
+                0x0000000000019d16        0xc lif/lifutils.o
+                0x0000000000019d16                lif_image_clear
  .text.lif_dir_clear
-                0x0000000000019ba8       0x10 lif/lifutils.o
-                0x0000000000019ba8                lif_dir_clear
+                0x0000000000019d22       0x10 lif/lifutils.o
+                0x0000000000019d22                lif_dir_clear
  .text.lif_vol_clear
-                0x0000000000019bb8        0xe lif/lifutils.o
-                0x0000000000019bb8                lif_vol_clear
+                0x0000000000019d32        0xe lif/lifutils.o
+                0x0000000000019d32                lif_vol_clear
  .text.lif_dump_vol
-                0x0000000000019bc6      0x326 lif/lifutils.o
-                0x0000000000019bc6                lif_dump_vol
+                0x0000000000019d40      0x326 lif/lifutils.o
+                0x0000000000019d40                lif_dump_vol
  .text.lif_check_volume
-                0x0000000000019eec      0x1b6 lif/lifutils.o
-                0x0000000000019eec                lif_check_volume
+                0x000000000001a066      0x1b6 lif/lifutils.o
+                0x000000000001a066                lif_check_volume
  .text.lif_check_dir
-                0x000000000001a0a2      0x366 lif/lifutils.o
-                0x000000000001a0a2                lif_check_dir
+                0x000000000001a21c      0x366 lif/lifutils.o
+                0x000000000001a21c                lif_check_dir
  .text.lif_close_volume
-                0x000000000001a408       0x4c lif/lifutils.o
-                0x000000000001a408                lif_close_volume
+                0x000000000001a582       0x4c lif/lifutils.o
+                0x000000000001a582                lif_close_volume
  .text.lif_checkdirindex
-                0x000000000001a454       0xb6 lif/lifutils.o
-                0x000000000001a454                lif_checkdirindex
+                0x000000000001a5ce       0xb6 lif/lifutils.o
+                0x000000000001a5ce                lif_checkdirindex
  .text.lif_readdirindex
-                0x000000000001a50a       0xd2 lif/lifutils.o
-                0x000000000001a50a                lif_readdirindex
+                0x000000000001a684       0xd2 lif/lifutils.o
+                0x000000000001a684                lif_readdirindex
  .text.lif_writedirindex
-                0x000000000001a5dc       0xb8 lif/lifutils.o
-                0x000000000001a5dc                lif_writedirindex
+                0x000000000001a756       0xb8 lif/lifutils.o
+                0x000000000001a756                lif_writedirindex
  .text.lif_writedirEOF
-                0x000000000001a694       0x30 lif/lifutils.o
-                0x000000000001a694                lif_writedirEOF
+                0x000000000001a80e       0x30 lif/lifutils.o
+                0x000000000001a80e                lif_writedirEOF
  .text.lif_updatefree
-                0x000000000001a6c4      0x210 lif/lifutils.o
-                0x000000000001a6c4                lif_updatefree
+                0x000000000001a83e      0x210 lif/lifutils.o
+                0x000000000001a83e                lif_updatefree
  .text.lif_create_volume
-                0x000000000001a8d4      0x5b2 lif/lifutils.o
-                0x000000000001a8d4                lif_create_volume
+                0x000000000001aa4e      0x65a lif/lifutils.o
+                0x000000000001aa4e                lif_create_volume
  .text.lif_newdir
-                0x000000000001ae86      0x2ca lif/lifutils.o
-                0x000000000001ae86                lif_newdir
+                0x000000000001b0a8      0x2ca lif/lifutils.o
+                0x000000000001b0a8                lif_newdir
  .text.lif_open_volume
-                0x000000000001b150      0x1f0 lif/lifutils.o
-                0x000000000001b150                lif_open_volume
- .text.lif_dir  0x000000000001b340      0x2da lif/lifutils.o
-                0x000000000001b340                lif_dir
+                0x000000000001b372      0x200 lif/lifutils.o
+                0x000000000001b372                lif_open_volume
+ .text.lif_dir  0x000000000001b572      0x2da lif/lifutils.o
+                0x000000000001b572                lif_dir
  .text.lif_find_file
-                0x000000000001b61a       0xc8 lif/lifutils.o
-                0x000000000001b61a                lif_find_file
+                0x000000000001b84c       0xc8 lif/lifutils.o
+                0x000000000001b84c                lif_find_file
  .text.lif_e010_pad_sector
-                0x000000000001b6e2       0xb4 lif/lifutils.o
-                0x000000000001b6e2                lif_e010_pad_sector
+                0x000000000001b914       0xb4 lif/lifutils.o
+                0x000000000001b914                lif_e010_pad_sector
  .text.lif_ascii_string_to_e010
-                0x000000000001b796      0x172 lif/lifutils.o
-                0x000000000001b796                lif_ascii_string_to_e010
+                0x000000000001b9c8      0x172 lif/lifutils.o
+                0x000000000001b9c8                lif_ascii_string_to_e010
  .text.lif_add_ascii_file_as_e010_wrapper
-                0x000000000001b908      0x21a lif/lifutils.o
-                0x000000000001b908                lif_add_ascii_file_as_e010_wrapper
+                0x000000000001bb3a      0x21a lif/lifutils.o
+                0x000000000001bb3a                lif_add_ascii_file_as_e010_wrapper
  .text.lif_add_ascii_file_as_e010
-                0x000000000001bb22      0x272 lif/lifutils.o
-                0x000000000001bb22                lif_add_ascii_file_as_e010
+                0x000000000001bd54      0x272 lif/lifutils.o
+                0x000000000001bd54                lif_add_ascii_file_as_e010
  .text.lif_extract_e010_as_ascii
-                0x000000000001bd94      0x5d8 lif/lifutils.o
-                0x000000000001bd94                lif_extract_e010_as_ascii
+                0x000000000001bfc6      0x5d8 lif/lifutils.o
+                0x000000000001bfc6                lif_extract_e010_as_ascii
  .text.lif_extract_lif_as_lif
-                0x000000000001c36c      0x28e lif/lifutils.o
-                0x000000000001c36c                lif_extract_lif_as_lif
+                0x000000000001c59e      0x28e lif/lifutils.o
+                0x000000000001c59e                lif_extract_lif_as_lif
  .text.lif_add_lif_file
-                0x000000000001c5fa      0x330 lif/lifutils.o
-                0x000000000001c5fa                lif_add_lif_file
+                0x000000000001c82c      0x330 lif/lifutils.o
+                0x000000000001c82c                lif_add_lif_file
  .text.lif_del_file
-                0x000000000001c92a      0x130 lif/lifutils.o
-                0x000000000001c92a                lif_del_file
+                0x000000000001cb5c      0x130 lif/lifutils.o
+                0x000000000001cb5c                lif_del_file
  .text.lif_rename_file
-                0x000000000001ca5a      0x10c lif/lifutils.o
-                0x000000000001ca5a                lif_rename_file
+                0x000000000001cc8c      0x10c lif/lifutils.o
+                0x000000000001cc8c                lif_rename_file
  .text.lif_create_image
-                0x000000000001cb66       0xf8 lif/lifutils.o
-                0x000000000001cb66                lif_create_image
+                0x000000000001cd98       0xf8 lif/lifutils.o
+                0x000000000001cd98                lif_create_image
  .text.lif_tests
-                0x000000000001cc5e      0x24c lif/lifutils.o
-                0x000000000001cc5e                lif_tests
+                0x000000000001ce90      0x24c lif/lifutils.o
+                0x000000000001ce90                lif_tests
  .text.copyright
-                0x000000000001ceaa       0x92 main.o
-                0x000000000001ceaa                copyright
+                0x000000000001d0dc       0x92 main.o
+                0x000000000001d0dc                copyright
  .text.delay_tests
-                0x000000000001cf3c       0xc6 main.o
-                0x000000000001cf3c                delay_tests
- .text.help     0x000000000001d002       0x38 main.o
-                0x000000000001d002                help
- .text.task     0x000000000001d03a      0x164 main.o
-                0x000000000001d03a                task
+                0x000000000001d16e       0xc6 main.o
+                0x000000000001d16e                delay_tests
+ .text.help     0x000000000001d234       0x38 main.o
+                0x000000000001d234                help
+ .text.task     0x000000000001d26c      0x164 main.o
+                0x000000000001d26c                task
  .text.startup.main
-                0x000000000001d19e      0x33a main.o
-                0x000000000001d19e                main
+                0x000000000001d3d0      0x33a main.o
+                0x000000000001d3d0                main
  .text.libgcc.mul
-                0x000000000001d4d8       0x1e /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulsi3.o)
-                0x000000000001d4d8                __mulsi3
+                0x000000000001d70a       0x1e /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulsi3.o)
+                0x000000000001d70a                __mulsi3
  .text.libgcc.div
-                0x000000000001d4f6       0x18 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodqi4.o)
-                0x000000000001d4f6                __udivmodqi4
+                0x000000000001d728       0x18 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodqi4.o)
+                0x000000000001d728                __udivmodqi4
  .text.libgcc.div
-                0x000000000001d50e       0x28 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodhi4.o)
-                0x000000000001d50e                __udivmodhi4
+                0x000000000001d740       0x28 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodhi4.o)
+                0x000000000001d740                __udivmodhi4
  .text.libgcc.div
-                0x000000000001d536       0x26 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_divmodhi4.o)
-                0x000000000001d536                __divmodhi4
-                0x000000000001d536                _div
+                0x000000000001d768       0x26 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_divmodhi4.o)
+                0x000000000001d768                __divmodhi4
+                0x000000000001d768                _div
  .text.libgcc.div
-                0x000000000001d55c       0x44 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodsi4.o)
-                0x000000000001d55c                __udivmodsi4
+                0x000000000001d78e       0x44 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_udivmodsi4.o)
+                0x000000000001d78e                __udivmodsi4
  .text.libgcc.div
-                0x000000000001d5a0       0x28 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_divmodsi4.o)
-                0x000000000001d5a0                __divmodsi4
+                0x000000000001d7d2       0x28 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_divmodsi4.o)
+                0x000000000001d7d2                __divmodsi4
  .text.libgcc.div
-                0x000000000001d5c8       0x10 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_negsi2.o)
-                0x000000000001d5c8                __negsi2
- .text.libgcc   0x000000000001d5d8       0x12 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_tablejump2.o)
-                0x000000000001d5d8                __tablejump2__
+                0x000000000001d7fa       0x10 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_negsi2.o)
+                0x000000000001d7fa                __negsi2
+ .text.libgcc   0x000000000001d80a       0x12 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_tablejump2.o)
+                0x000000000001d80a                __tablejump2__
  .text.libgcc.mul
-                0x000000000001d5ea        0xc /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_usmulhisi3.o)
-                0x000000000001d5ea                __usmulhisi3
-                0x000000000001d5ec                __usmulhisi3_tail
+                0x000000000001d81c        0xc /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_usmulhisi3.o)
+                0x000000000001d81c                __usmulhisi3
+                0x000000000001d81e                __usmulhisi3_tail
  .text.libgcc.mul
-                0x000000000001d5f6       0x14 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_muluhisi3.o)
-                0x000000000001d5f6                __muluhisi3
+                0x000000000001d828       0x14 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_muluhisi3.o)
+                0x000000000001d828                __muluhisi3
  .text.libgcc.mul
-                0x000000000001d60a        0xc /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulshisi3.o)
-                0x000000000001d60a                __mulshisi3
-                0x000000000001d60e                __mulohisi3
- .text.libgcc   0x000000000001d616       0x20 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_negdi2.o)
-                0x000000000001d616                __negdi2
+                0x000000000001d83c        0xc /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulshisi3.o)
+                0x000000000001d83c                __mulshisi3
+                0x000000000001d840                __mulohisi3
+ .text.libgcc   0x000000000001d848       0x20 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_negdi2.o)
+                0x000000000001d848                __negdi2
  .text.libgcc.prologue
-                0x000000000001d636       0x38 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_prologue.o)
-                0x000000000001d636                __prologue_saves__
+                0x000000000001d868       0x38 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_prologue.o)
+                0x000000000001d868                __prologue_saves__
  .text.libgcc.prologue
-                0x000000000001d66e       0x36 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_epilogue.o)
-                0x000000000001d66e                __epilogue_restores__
- .text.libgcc   0x000000000001d6a4        0xe /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_xload_1.o)
-                0x000000000001d6a4                __xload_1
- .text.libgcc   0x000000000001d6b2       0x18 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_cmpdi2_s8.o)
-                0x000000000001d6b2                __cmpdi2_s8
+                0x000000000001d8a0       0x36 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_epilogue.o)
+                0x000000000001d8a0                __epilogue_restores__
+ .text.libgcc   0x000000000001d8d6        0xe /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_xload_1.o)
+                0x000000000001d8d6                __xload_1
+ .text.libgcc   0x000000000001d8e4       0x18 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_cmpdi2_s8.o)
+                0x000000000001d8e4                __cmpdi2_s8
  .text.libgcc.mul
-                0x000000000001d6ca       0x1e /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_umulhisi3.o)
-                0x000000000001d6ca                __umulhisi3
+                0x000000000001d8fc       0x1e /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_umulhisi3.o)
+                0x000000000001d8fc                __umulhisi3
  .text.avr-libc.fplib
-                0x000000000001d6e8        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(addsf3.o)
-                0x000000000001d6e8                __subsf3
-                0x000000000001d6ea                __addsf3
+                0x000000000001d91a        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(addsf3.o)
+                0x000000000001d91a                __subsf3
+                0x000000000001d91c                __addsf3
  .text.avr-libc.fplib
-                0x000000000001d6f2       0xc0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(addsf3x.o)
-                0x000000000001d70c                __addsf3x
+                0x000000000001d924       0xc0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(addsf3x.o)
+                0x000000000001d93e                __addsf3x
  .text.avr-libc.fplib
-                0x000000000001d7b2        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(cmpsf2.o)
-                0x000000000001d7b2                __lesf2
-                0x000000000001d7b2                __nesf2
-                0x000000000001d7b2                __eqsf2
-                0x000000000001d7b2                __cmpsf2
-                0x000000000001d7b2                __ltsf2
+                0x000000000001d9e4        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(cmpsf2.o)
+                0x000000000001d9e4                __lesf2
+                0x000000000001d9e4                __nesf2
+                0x000000000001d9e4                __eqsf2
+                0x000000000001d9e4                __cmpsf2
+                0x000000000001d9e4                __ltsf2
  .text.avr-libc.fplib
-                0x000000000001d7ba        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(divsf3.o)
-                0x000000000001d7ba                __divsf3
+                0x000000000001d9ec        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(divsf3.o)
+                0x000000000001d9ec                __divsf3
  .text.avr-libc.fplib
-                0x000000000001d7be       0xcc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(divsf3x.o)
-                0x000000000001d7d4                __divsf3x
-                0x000000000001d7d8                __divsf3_pse
+                0x000000000001d9f0       0xcc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(divsf3x.o)
+                0x000000000001da06                __divsf3x
+                0x000000000001da0a                __divsf3_pse
  .text.avr-libc.fplib
-                0x000000000001d88a        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fixsfsi.o)
-                0x000000000001d88a                __fixsfsi
+                0x000000000001dabc        0xa /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fixsfsi.o)
+                0x000000000001dabc                __fixsfsi
  .text.avr-libc.fplib
-                0x000000000001d894       0x58 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fixunssfsi.o)
-                0x000000000001d894                __fixunssfsi
+                0x000000000001dac6       0x58 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fixunssfsi.o)
+                0x000000000001dac6                __fixunssfsi
  .text.avr-libc.fplib
-                0x000000000001d8ec       0x7a /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(floatsisf.o)
-                0x000000000001d8ec                __floatunsisf
-                0x000000000001d8f0                __floatsisf
+                0x000000000001db1e       0x7a /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(floatsisf.o)
+                0x000000000001db1e                __floatunsisf
+                0x000000000001db22                __floatsisf
  .text.avr-libc.fplib
-                0x000000000001d966       0x48 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_cmp.o)
-                0x000000000001d966                __fp_cmp
+                0x000000000001db98       0x48 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_cmp.o)
+                0x000000000001db98                __fp_cmp
  .text.avr-libc.fplib
-                0x000000000001d9ae        0xc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_inf.o)
-                0x000000000001d9ae                __fp_inf
+                0x000000000001dbe0        0xc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_inf.o)
+                0x000000000001dbe0                __fp_inf
  .text.avr-libc.fplib
-                0x000000000001d9ba        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_nan.o)
-                0x000000000001d9ba                __fp_nan
+                0x000000000001dbec        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_nan.o)
+                0x000000000001dbec                __fp_nan
  .text.avr-libc.fplib
-                0x000000000001d9c0        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_pscA.o)
-                0x000000000001d9c0                __fp_pscA
+                0x000000000001dbf2        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_pscA.o)
+                0x000000000001dbf2                __fp_pscA
  .text.avr-libc.fplib
-                0x000000000001d9ce        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_pscB.o)
-                0x000000000001d9ce                __fp_pscB
+                0x000000000001dc00        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_pscB.o)
+                0x000000000001dc00                __fp_pscB
  .text.avr-libc.fplib
-                0x000000000001d9dc       0x22 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_round.o)
-                0x000000000001d9dc                __fp_round
+                0x000000000001dc0e       0x22 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_round.o)
+                0x000000000001dc0e                __fp_round
  .text.avr-libc.fplib
-                0x000000000001d9fe       0x44 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_split3.o)
-                0x000000000001d9fe                __fp_split3
-                0x000000000001da0e                __fp_splitA
+                0x000000000001dc30       0x44 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_split3.o)
+                0x000000000001dc30                __fp_split3
+                0x000000000001dc40                __fp_splitA
  .text.avr-libc.fplib
-                0x000000000001da42        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_zero.o)
-                0x000000000001da42                __fp_zero
-                0x000000000001da44                __fp_szero
+                0x000000000001dc74        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_zero.o)
+                0x000000000001dc74                __fp_zero
+                0x000000000001dc76                __fp_szero
  .text.avr-libc.fplib
-                0x000000000001da50        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(gesf2.o)
-                0x000000000001da50                __gtsf2
-                0x000000000001da50                __gesf2
+                0x000000000001dc82        0x8 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(gesf2.o)
+                0x000000000001dc82                __gtsf2
+                0x000000000001dc82                __gesf2
  .text.avr-libc.fplib
-                0x000000000001da58        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(mulsf3.o)
-                0x000000000001da58                __mulsf3
+                0x000000000001dc8a        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(mulsf3.o)
+                0x000000000001dc8a                __mulsf3
  .text.avr-libc.fplib
-                0x000000000001da5c       0xc2 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(mulsf3x.o)
-                0x000000000001da70                __mulsf3x
-                0x000000000001da74                __mulsf3_pse
+                0x000000000001dc8e       0xc2 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(mulsf3x.o)
+                0x000000000001dca2                __mulsf3x
+                0x000000000001dca6                __mulsf3_pse
  .text.avr-libc.fplib
-                0x000000000001db1e       0x40 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(round.o)
-                0x000000000001db1e                round
+                0x000000000001dd50       0x40 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(round.o)
+                0x000000000001dd50                round
  .text.avr-libc.fplib
-                0x000000000001db5e       0x36 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_mintl.o)
-                0x000000000001db5e                __fp_mintl
+                0x000000000001dd90       0x36 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_mintl.o)
+                0x000000000001dd90                __fp_mintl
  .text.avr-libc.fplib
-                0x000000000001db94       0x1c /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_mpack.o)
-                0x000000000001db94                __fp_mpack
-                0x000000000001db98                __fp_mpack_finite
+                0x000000000001ddc6       0x1c /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libm.a(fp_mpack.o)
+                0x000000000001ddc6                __fp_mpack
+                0x000000000001ddca                __fp_mpack_finite
  .text.avr-libc
-                0x000000000001dbb0       0x34 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(calloc.o)
-                0x000000000001dbb0                calloc
+                0x000000000001dde2       0x34 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(calloc.o)
+                0x000000000001dde2                calloc
  .text.avr-libc
-                0x000000000001dbe4      0x242 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
-                0x000000000001dbe4                malloc
-                0x000000000001dd14                free
+                0x000000000001de16      0x242 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
+                0x000000000001de16                malloc
+                0x000000000001df46                free
  .text.avr-libc
-                0x000000000001de26      0x1b0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(ftoa_engine.o)
-                0x000000000001de26                __ftoa_engine
+                0x000000000001e058      0x1b0 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(ftoa_engine.o)
+                0x000000000001e058                __ftoa_engine
  .text.avr-libc
-                0x000000000001dfd6       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(strnlen_P.o)
-                0x000000000001dfd6                strnlen_P
+                0x000000000001e208       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(strnlen_P.o)
+                0x000000000001e208                strnlen_P
  .text.avr-libc
-                0x000000000001dfec        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(memset.o)
-                0x000000000001dfec                memset
+                0x000000000001e21e        0xe /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(memset.o)
+                0x000000000001e21e                memset
  .text.avr-libc
-                0x000000000001dffa       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(strnlen.o)
-                0x000000000001dffa                strnlen
+                0x000000000001e22c       0x16 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(strnlen.o)
+                0x000000000001e22c                strnlen
  .text.avr-libc
-                0x000000000001e010       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(ultoa_invert.o)
-                0x000000000001e010                __ultoa_invert
-                0x000000000001e0cc                . = ALIGN (0x2)
+                0x000000000001e242       0xbc /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(ultoa_invert.o)
+                0x000000000001e242                __ultoa_invert
+                0x000000000001e2fe                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000001e0cc        0x0 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_exit.o)
-                0x000000000001e0cc                exit
-                0x000000000001e0cc                _exit
+ .fini9         0x000000000001e2fe        0x0 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_exit.o)
+                0x000000000001e2fe                exit
+                0x000000000001e2fe                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -2784,11 +2785,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000001e0cc        0x4 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_exit.o)
+ .fini0         0x000000000001e2fe        0x4 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_exit.o)
  *(.fini0)
-                0x000000000001e0d0                _etext = .
+                0x000000000001e302                _etext = .
 
-.data           0x0000000000800100     0x1660 load address 0x000000000001e0d0
+.data           0x0000000000800100     0x16b8 load address 0x000000000001e302
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x5 hardware/hal.o
@@ -2814,151 +2815,152 @@ END GROUP
  .data          0x00000000008001cb       0x8a gpib/ss80.o
                 0x00000000008001cb                faults
                 0x000000000080023f                TD
- .data          0x0000000000800255        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
-                0x0000000000800255                __malloc_heap_end
-                0x0000000000800257                __malloc_heap_start
-                0x0000000000800259                __malloc_margin
+ .data          0x0000000000800255       0x4a gpib/drives.o
+                0x0000000000800255                SS80DiskDefault
+ .data          0x000000000080029f        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
+                0x000000000080029f                __malloc_heap_end
+                0x00000000008002a1                __malloc_heap_start
+                0x00000000008002a3                __malloc_margin
  *(.data*)
  *(.rodata)
- .rodata        0x000000000080025b        0x8 hardware/LCD.o
- .rodata        0x0000000000800263       0x32 lib/time.o
- .rodata        0x0000000000800295       0xb9 fatfs/ff.o
- .rodata        0x000000000080034e      0x3ae fatfs/option/unicode.o
- .rodata        0x00000000008006fc        0x8 fatfs.sup/fatfs_sup.o
- .rodata        0x0000000000800704       0x14 posix/posix.o
+ .rodata        0x00000000008002a5        0x8 hardware/LCD.o
+ .rodata        0x00000000008002ad       0x32 lib/time.o
+ .rodata        0x00000000008002df       0xb9 fatfs/ff.o
+ .rodata        0x0000000000800398      0x3ae fatfs/option/unicode.o
+ .rodata        0x0000000000800746        0x8 fatfs.sup/fatfs_sup.o
+ .rodata        0x000000000080074e       0x14 posix/posix.o
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000800718        0x9 lib/stringsup.o
+                0x0000000000800762        0x9 lib/stringsup.o
  .rodata.str1.1
-                0x0000000000800721       0x50 lib/time.o
+                0x000000000080076b       0x50 lib/time.o
  .rodata.str1.1
-                0x0000000000800771       0x67 printf/printf.o
+                0x00000000008007bb       0x67 printf/printf.o
  .rodata.str1.1
-                0x00000000008007d8       0x44 fatfs/ff.o
+                0x0000000000800822       0x44 fatfs/ff.o
  .rodata.str1.1
-                0x000000000080081c        0x2 fatfs.hal/mmc_hal.o
+                0x0000000000800866        0x2 fatfs.hal/mmc_hal.o
  .rodata.str1.1
-                0x000000000080081e       0x28 fatfs.sup/fatfs_sup.o
+                0x0000000000800868       0x28 fatfs.sup/fatfs_sup.o
  .rodata.str1.1
-                0x0000000000800846       0x22 fatfs.sup/fatfs_tests.o
+                0x0000000000800890       0x22 fatfs.sup/fatfs_tests.o
                                          0x2c (size before relaxing)
  .rodata.str1.1
-                0x0000000000800868      0x2b0 posix/posix.o
+                0x00000000008008b2      0x2b0 posix/posix.o
                                         0x2bb (size before relaxing)
  .rodata.str1.1
-                0x0000000000800b18       0x62 posix/posix_tests.o
+                0x0000000000800b62       0x62 posix/posix_tests.o
                                          0x7a (size before relaxing)
  .rodata.str1.1
-                0x0000000000800b7a      0x1b2 gpib/gpib.o
+                0x0000000000800bc4      0x1b2 gpib/gpib.o
                                         0x1ba (size before relaxing)
  .rodata.str1.1
-                0x0000000000800d2c        0xc gpib/gpib_task.o
+                0x0000000000800d76        0xc gpib/gpib_task.o
                                          0x13 (size before relaxing)
  .rodata.str1.1
-                0x0000000000800d38       0xa1 gpib/gpib_tests.o
+                0x0000000000800d82       0xa1 gpib/gpib_tests.o
                                          0xb2 (size before relaxing)
  .rodata.str1.1
-                0x0000000000800dd9      0x517 gpib/ss80.o
+                0x0000000000800e23      0x517 gpib/ss80.o
  .rodata.str1.1
-                0x00000000008012f0       0x5e gpib/amigo.o
+                0x000000000080133a       0x5e gpib/amigo.o
                                          0x73 (size before relaxing)
  .rodata.str1.1
-                0x000000000080134e       0x39 gpib/printer.o
+                0x0000000000801398       0x39 gpib/printer.o
                                          0x48 (size before relaxing)
  .rodata.str1.1
-                0x0000000000801387      0x221 gpib/drives.o
+                0x00000000008013d1      0x221 gpib/drives.o
                                         0x24a (size before relaxing)
  .rodata.str1.1
-                0x00000000008015a8       0xaa lif/lifutils.o
-                                         0xcd (size before relaxing)
+                0x00000000008015f2       0xb9 lif/lifutils.o
+                                         0xdc (size before relaxing)
  .rodata.str1.1
-                0x0000000000801652      0x10d main.o
+                0x00000000008016ab      0x10d main.o
                                         0x114 (size before relaxing)
  *(.gnu.linkonce.d*)
-                0x0000000000801760                . = ALIGN (0x2)
- *fill*         0x000000000080175f        0x1 
-                0x0000000000801760                _edata = .
-                0x0000000000801760                PROVIDE (__data_end, .)
+                0x00000000008017b8                . = ALIGN (0x2)
+                0x00000000008017b8                _edata = .
+                0x00000000008017b8                PROVIDE (__data_end, .)
 
-.bss            0x0000000000801760      0x7d3
-                0x0000000000801760                PROVIDE (__bss_start, .)
+.bss            0x00000000008017b8      0x7d3
+                0x00000000008017b8                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0000000000801760        0x6 hardware/spi.o
- .bss           0x0000000000801766       0x2c lib/timer.o
- .bss           0x0000000000801792       0x96 lib/time.o
- .bss           0x0000000000801828        0x4 fatfs/ff.o
- .bss           0x000000000080182c        0x3 fatfs.hal/mmc.o
- .bss           0x000000000080182f        0xa fatfs.hal/mmc_hal.o
-                0x000000000080182f                _mmc_pre
-                0x0000000000801831                _mmc_clock
-                0x0000000000801835                _mmc_timeout
- .bss           0x0000000000801839      0x12d posix/posix.o
- .bss           0x0000000000801966        0x1 gpib/gpib_hal.o
- .bss           0x0000000000801967        0x1 gpib/gpib.o
-                0x0000000000801967                gpib_unread_f
- .bss           0x0000000000801968        0x2 gpib/gpib_task.o
-                0x0000000000801968                gpib_log_fp
- .bss           0x000000000080196a       0x25 gpib/ss80.o
- .bss           0x000000000080198f        0xd gpib/printer.o
-                0x000000000080198f                plot
- .bss           0x000000000080199c       0x18 gpib/drives.o
-                0x000000000080199c                lines
-                0x000000000080199e                AMIGOs
-                0x00000000008019a0                AMIGOp
-                0x00000000008019a2                SS80s
-                0x00000000008019a4                SS80p
-                0x00000000008019a6                PRINTERp
- .bss           0x00000000008019b4       0x40 lif/lifutils.o
+ .bss           0x00000000008017b8        0x6 hardware/spi.o
+ .bss           0x00000000008017be       0x2c lib/timer.o
+ .bss           0x00000000008017ea       0x96 lib/time.o
+ .bss           0x0000000000801880        0x4 fatfs/ff.o
+ .bss           0x0000000000801884        0x3 fatfs.hal/mmc.o
+ .bss           0x0000000000801887        0xa fatfs.hal/mmc_hal.o
+                0x0000000000801887                _mmc_pre
+                0x0000000000801889                _mmc_clock
+                0x000000000080188d                _mmc_timeout
+ .bss           0x0000000000801891      0x12d posix/posix.o
+ .bss           0x00000000008019be        0x1 gpib/gpib_hal.o
+ .bss           0x00000000008019bf        0x1 gpib/gpib.o
+                0x00000000008019bf                gpib_unread_f
+ .bss           0x00000000008019c0        0x2 gpib/gpib_task.o
+                0x00000000008019c0                gpib_log_fp
+ .bss           0x00000000008019c2       0x25 gpib/ss80.o
+ .bss           0x00000000008019e7        0xd gpib/printer.o
+                0x00000000008019e7                plot
+ .bss           0x00000000008019f4       0x18 gpib/drives.o
+                0x00000000008019f4                lines
+                0x00000000008019f6                AMIGOs
+                0x00000000008019f8                AMIGOp
+                0x00000000008019fa                SS80s
+                0x00000000008019fc                SS80p
+                0x00000000008019fe                PRINTERp
+ .bss           0x0000000000801a0c       0x40 lif/lifutils.o
  *(.bss*)
  *(COMMON)
- COMMON         0x00000000008019f4        0x2 hardware/hal.o
-                0x00000000008019f4                rtc_ok
- COMMON         0x00000000008019f6       0x57 hardware/rs232.o
-                0x00000000008019f6                uarts
- COMMON         0x0000000000801a4d       0x24 lib/timer.o
-                0x0000000000801a4d                __clock
-                0x0000000000801a55                timer_irq
-                0x0000000000801a6d                __tzone
- COMMON         0x0000000000801a71        0xc lib/time.o
-                0x0000000000801a71                dst
- COMMON         0x0000000000801a7d        0x6 printf/printf.o
-                0x0000000000801a7d                _pch
- COMMON         0x0000000000801a83      0x23d fatfs.sup/fatfs_sup.o
-                0x0000000000801a83                Fatfs
-                0x0000000000801cb8                AccSize
-                0x0000000000801cbc                AccDirs
-                0x0000000000801cbe                AccFiles
- COMMON         0x0000000000801cc0       0x22 posix/posix.o
-                0x0000000000801cc0                errno
-                0x0000000000801cc2                __iob
- COMMON         0x0000000000801ce2        0x9 gpib/gpib_hal.o
-                0x0000000000801ce2                gpib_timer
- COMMON         0x0000000000801ceb      0x20c gpib/gpib.o
-                0x0000000000801ceb                lastcmd
-                0x0000000000801ced                gpib_iobuff
-                0x0000000000801eed                listening_last
-                0x0000000000801eee                spoll
-                0x0000000000801eef                current
-                0x0000000000801ef1                talking
-                0x0000000000801ef2                secondary
-                0x0000000000801ef3                listening
-                0x0000000000801ef4                talking_last
-                0x0000000000801ef5                gpib_unread_data
- COMMON         0x0000000000801ef7       0x38 gpib/drives.o
-                0x0000000000801ef7                Devices
- COMMON         0x0000000000801f2f        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
-                0x0000000000801f2f                __brkval
-                0x0000000000801f31                __flp
-                0x0000000000801f33                PROVIDE (__bss_end, .)
-                0x000000000001e0d0                __data_load_start = LOADADDR (.data)
-                0x000000000001f730                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000801a4c        0x2 hardware/hal.o
+                0x0000000000801a4c                rtc_ok
+ COMMON         0x0000000000801a4e       0x57 hardware/rs232.o
+                0x0000000000801a4e                uarts
+ COMMON         0x0000000000801aa5       0x24 lib/timer.o
+                0x0000000000801aa5                __clock
+                0x0000000000801aad                timer_irq
+                0x0000000000801ac5                __tzone
+ COMMON         0x0000000000801ac9        0xc lib/time.o
+                0x0000000000801ac9                dst
+ COMMON         0x0000000000801ad5        0x6 printf/printf.o
+                0x0000000000801ad5                _pch
+ COMMON         0x0000000000801adb      0x23d fatfs.sup/fatfs_sup.o
+                0x0000000000801adb                Fatfs
+                0x0000000000801d10                AccSize
+                0x0000000000801d14                AccDirs
+                0x0000000000801d16                AccFiles
+ COMMON         0x0000000000801d18       0x22 posix/posix.o
+                0x0000000000801d18                errno
+                0x0000000000801d1a                __iob
+ COMMON         0x0000000000801d3a        0x9 gpib/gpib_hal.o
+                0x0000000000801d3a                gpib_timer
+ COMMON         0x0000000000801d43      0x20c gpib/gpib.o
+                0x0000000000801d43                lastcmd
+                0x0000000000801d45                gpib_iobuff
+                0x0000000000801f45                listening_last
+                0x0000000000801f46                spoll
+                0x0000000000801f47                current
+                0x0000000000801f49                talking
+                0x0000000000801f4a                secondary
+                0x0000000000801f4b                listening
+                0x0000000000801f4c                talking_last
+                0x0000000000801f4d                gpib_unread_data
+ COMMON         0x0000000000801f4f       0x38 gpib/drives.o
+                0x0000000000801f4f                Devices
+ COMMON         0x0000000000801f87        0x4 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
+                0x0000000000801f87                __brkval
+                0x0000000000801f89                __flp
+                0x0000000000801f8b                PROVIDE (__bss_end, .)
+                0x000000000001e302                __data_load_start = LOADADDR (.data)
+                0x000000000001f9ba                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000801f33        0x0
+.noinit         0x0000000000801f8b        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000801f33                _end = .
-                0x0000000000801f33                PROVIDE (__heap_start, .)
+                0x0000000000801f8b                _end = .
+                0x0000000000801f8b                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -3060,7 +3062,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000     0x1778
+.debug_aranges  0x0000000000000000     0x1780
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x98 hardware/hal.o
@@ -3127,18 +3129,18 @@ END GROUP
  .debug_aranges
                 0x0000000000001408       0x50 gpib/printer.o
  .debug_aranges
-                0x0000000000001458       0xd0 gpib/drives.o
+                0x0000000000001458       0xd8 gpib/drives.o
  .debug_aranges
-                0x0000000000001528       0x38 gpib/controller.o
+                0x0000000000001530       0x38 gpib/controller.o
  .debug_aranges
-                0x0000000000001560      0x1d8 lif/lifutils.o
+                0x0000000000001568      0x1d8 lif/lifutils.o
  .debug_aranges
-                0x0000000000001738       0x40 main.o
+                0x0000000000001740       0x40 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000    0x27f70
+.debug_info     0x0000000000000000    0x28040
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x792 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  .debug_info    0x0000000000000792      0x538 hardware/hal.o
@@ -3150,35 +3152,35 @@ END GROUP
  .debug_info    0x0000000000002526      0x67e hardware/rtc.o
  .debug_info    0x0000000000002ba4     0x11e1 hardware/LCD.o
  .debug_info    0x0000000000003d85      0x3b4 display/lcd_printf.o
- .debug_info    0x0000000000004139      0xdd1 lib/stringsup.o
- .debug_info    0x0000000000004f0a      0x20a lib/timer_hal.o
- .debug_info    0x0000000000005114      0x76e lib/timer.o
- .debug_info    0x0000000000005882     0x19cc lib/time.o
- .debug_info    0x000000000000724e     0x134a printf/printf.o
- .debug_info    0x0000000000008598      0x6da printf/mathio.o
- .debug_info    0x0000000000008c72     0x65df fatfs/ff.o
- .debug_info    0x000000000000f251      0x13b fatfs/option/syscall.o
- .debug_info    0x000000000000f38c      0x1c2 fatfs/option/unicode.o
- .debug_info    0x000000000000f54e      0x36a fatfs.hal/diskio.o
- .debug_info    0x000000000000f8b8     0x11ce fatfs.hal/mmc.o
- .debug_info    0x0000000000010a86      0x860 fatfs.hal/mmc_hal.o
- .debug_info    0x00000000000112e6      0x9b3 fatfs.sup/fatfs_sup.o
- .debug_info    0x0000000000011c99      0x7f0 fatfs.sup/fatfs_tests.o
- .debug_info    0x0000000000012489     0x31ba posix/posix.o
- .debug_info    0x0000000000015643     0x1cfb posix/posix_tests.o
- .debug_info    0x000000000001733e      0xcc1 gpib/gpib_hal.o
- .debug_info    0x0000000000017fff     0x13fb gpib/gpib.o
- .debug_info    0x00000000000193fa     0x1b20 gpib/gpib_task.o
- .debug_info    0x000000000001af1a      0xb3f gpib/gpib_tests.o
- .debug_info    0x000000000001ba59     0x20ac gpib/ss80.o
- .debug_info    0x000000000001db05     0x14df gpib/amigo.o
- .debug_info    0x000000000001efe4      0x8c3 gpib/printer.o
- .debug_info    0x000000000001f8a7     0x26c6 gpib/drives.o
- .debug_info    0x0000000000021f6d      0x4e1 gpib/controller.o
- .debug_info    0x000000000002244e     0x4c82 lif/lifutils.o
- .debug_info    0x00000000000270d0      0xea0 main.o
+ .debug_info    0x0000000000004139      0xdf4 lib/stringsup.o
+ .debug_info    0x0000000000004f2d      0x20a lib/timer_hal.o
+ .debug_info    0x0000000000005137      0x76e lib/timer.o
+ .debug_info    0x00000000000058a5     0x19cc lib/time.o
+ .debug_info    0x0000000000007271     0x134a printf/printf.o
+ .debug_info    0x00000000000085bb      0x6da printf/mathio.o
+ .debug_info    0x0000000000008c95     0x65df fatfs/ff.o
+ .debug_info    0x000000000000f274      0x13b fatfs/option/syscall.o
+ .debug_info    0x000000000000f3af      0x1c2 fatfs/option/unicode.o
+ .debug_info    0x000000000000f571      0x36a fatfs.hal/diskio.o
+ .debug_info    0x000000000000f8db     0x11ce fatfs.hal/mmc.o
+ .debug_info    0x0000000000010aa9      0x860 fatfs.hal/mmc_hal.o
+ .debug_info    0x0000000000011309      0x9b3 fatfs.sup/fatfs_sup.o
+ .debug_info    0x0000000000011cbc      0x7f0 fatfs.sup/fatfs_tests.o
+ .debug_info    0x00000000000124ac     0x31ba posix/posix.o
+ .debug_info    0x0000000000015666     0x1cfb posix/posix_tests.o
+ .debug_info    0x0000000000017361      0xcc1 gpib/gpib_hal.o
+ .debug_info    0x0000000000018022     0x13fb gpib/gpib.o
+ .debug_info    0x000000000001941d     0x1b20 gpib/gpib_task.o
+ .debug_info    0x000000000001af3d      0xb3f gpib/gpib_tests.o
+ .debug_info    0x000000000001ba7c     0x20ac gpib/ss80.o
+ .debug_info    0x000000000001db28     0x14df gpib/amigo.o
+ .debug_info    0x000000000001f007      0x8c3 gpib/printer.o
+ .debug_info    0x000000000001f8ca     0x2750 gpib/drives.o
+ .debug_info    0x000000000002201a      0x4e1 gpib/controller.o
+ .debug_info    0x00000000000224fb     0x4ca5 lif/lifutils.o
+ .debug_info    0x00000000000271a0      0xea0 main.o
 
-.debug_abbrev   0x0000000000000000     0x61b2
+.debug_abbrev   0x0000000000000000     0x614d
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x729 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  .debug_abbrev  0x0000000000000729      0x1f0 hardware/hal.o
@@ -3213,12 +3215,12 @@ END GROUP
  .debug_abbrev  0x0000000000004c46      0x445 gpib/ss80.o
  .debug_abbrev  0x000000000000508b      0x376 gpib/amigo.o
  .debug_abbrev  0x0000000000005401      0x2a0 gpib/printer.o
- .debug_abbrev  0x00000000000056a1      0x391 gpib/drives.o
- .debug_abbrev  0x0000000000005a32      0x106 gpib/controller.o
- .debug_abbrev  0x0000000000005b38      0x40e lif/lifutils.o
- .debug_abbrev  0x0000000000005f46      0x26c main.o
+ .debug_abbrev  0x00000000000056a1      0x32c gpib/drives.o
+ .debug_abbrev  0x00000000000059cd      0x106 gpib/controller.o
+ .debug_abbrev  0x0000000000005ad3      0x40e lif/lifutils.o
+ .debug_abbrev  0x0000000000005ee1      0x26c main.o
 
-.debug_line     0x0000000000000000    0x12000
+.debug_line     0x0000000000000000    0x1210b
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000       0x1a /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  .debug_line    0x000000000000001a      0x26a hardware/hal.o
@@ -3230,35 +3232,35 @@ END GROUP
  .debug_line    0x0000000000000faf      0x2d0 hardware/rtc.o
  .debug_line    0x000000000000127f      0x793 hardware/LCD.o
  .debug_line    0x0000000000001a12      0x1ec display/lcd_printf.o
- .debug_line    0x0000000000001bfe      0x7b7 lib/stringsup.o
- .debug_line    0x00000000000023b5      0x18c lib/timer_hal.o
- .debug_line    0x0000000000002541      0x3d2 lib/timer.o
- .debug_line    0x0000000000002913      0xa7c lib/time.o
- .debug_line    0x000000000000338f      0xc74 printf/printf.o
- .debug_line    0x0000000000004003      0x483 printf/mathio.o
- .debug_line    0x0000000000004486     0x34fc fatfs/ff.o
- .debug_line    0x0000000000007982       0x98 fatfs/option/syscall.o
- .debug_line    0x0000000000007a1a      0x136 fatfs/option/unicode.o
- .debug_line    0x0000000000007b50      0x14e fatfs.hal/diskio.o
- .debug_line    0x0000000000007c9e      0x813 fatfs.hal/mmc.o
- .debug_line    0x00000000000084b1      0x388 fatfs.hal/mmc_hal.o
- .debug_line    0x0000000000008839      0x331 fatfs.sup/fatfs_sup.o
- .debug_line    0x0000000000008b6a      0x273 fatfs.sup/fatfs_tests.o
- .debug_line    0x0000000000008ddd     0x147f posix/posix.o
- .debug_line    0x000000000000a25c      0x84c posix/posix_tests.o
- .debug_line    0x000000000000aaa8      0x411 gpib/gpib_hal.o
- .debug_line    0x000000000000aeb9      0xcec gpib/gpib.o
- .debug_line    0x000000000000bba5      0x9ea gpib/gpib_task.o
- .debug_line    0x000000000000c58f      0x3a3 gpib/gpib_tests.o
- .debug_line    0x000000000000c932     0x1028 gpib/ss80.o
- .debug_line    0x000000000000d95a      0xe8d gpib/amigo.o
- .debug_line    0x000000000000e7e7      0x376 gpib/printer.o
- .debug_line    0x000000000000eb5d      0xfb0 gpib/drives.o
- .debug_line    0x000000000000fb0d      0x1de gpib/controller.o
- .debug_line    0x000000000000fceb     0x1d88 lif/lifutils.o
- .debug_line    0x0000000000011a73      0x58d main.o
+ .debug_line    0x0000000000001bfe      0x7f9 lib/stringsup.o
+ .debug_line    0x00000000000023f7      0x18c lib/timer_hal.o
+ .debug_line    0x0000000000002583      0x3d2 lib/timer.o
+ .debug_line    0x0000000000002955      0xa7c lib/time.o
+ .debug_line    0x00000000000033d1      0xc74 printf/printf.o
+ .debug_line    0x0000000000004045      0x483 printf/mathio.o
+ .debug_line    0x00000000000044c8     0x34fc fatfs/ff.o
+ .debug_line    0x00000000000079c4       0x98 fatfs/option/syscall.o
+ .debug_line    0x0000000000007a5c      0x136 fatfs/option/unicode.o
+ .debug_line    0x0000000000007b92      0x14e fatfs.hal/diskio.o
+ .debug_line    0x0000000000007ce0      0x813 fatfs.hal/mmc.o
+ .debug_line    0x00000000000084f3      0x388 fatfs.hal/mmc_hal.o
+ .debug_line    0x000000000000887b      0x331 fatfs.sup/fatfs_sup.o
+ .debug_line    0x0000000000008bac      0x273 fatfs.sup/fatfs_tests.o
+ .debug_line    0x0000000000008e1f     0x147f posix/posix.o
+ .debug_line    0x000000000000a29e      0x84c posix/posix_tests.o
+ .debug_line    0x000000000000aaea      0x411 gpib/gpib_hal.o
+ .debug_line    0x000000000000aefb      0xcec gpib/gpib.o
+ .debug_line    0x000000000000bbe7      0x9ea gpib/gpib_task.o
+ .debug_line    0x000000000000c5d1      0x3a3 gpib/gpib_tests.o
+ .debug_line    0x000000000000c974     0x1028 gpib/ss80.o
+ .debug_line    0x000000000000d99c      0xe8d gpib/amigo.o
+ .debug_line    0x000000000000e829      0x376 gpib/printer.o
+ .debug_line    0x000000000000eb9f     0x105d gpib/drives.o
+ .debug_line    0x000000000000fbfc      0x1de gpib/controller.o
+ .debug_line    0x000000000000fdda     0x1da4 lif/lifutils.o
+ .debug_line    0x0000000000011b7e      0x58d main.o
 
-.debug_frame    0x0000000000000000     0x61a8
+.debug_frame    0x0000000000000000     0x61d8
  *(.debug_frame)
  .debug_frame   0x0000000000000000      0x1b8 hardware/hal.o
  .debug_frame   0x00000000000001b8       0xec hardware/ram.o
@@ -3269,35 +3271,35 @@ END GROUP
  .debug_frame   0x00000000000006c4      0x130 hardware/rtc.o
  .debug_frame   0x00000000000007f4      0x370 hardware/LCD.o
  .debug_frame   0x0000000000000b64       0x90 display/lcd_printf.o
- .debug_frame   0x0000000000000bf4      0x394 lib/stringsup.o
- .debug_frame   0x0000000000000f88       0xc0 lib/timer_hal.o
- .debug_frame   0x0000000000001048      0x1f0 lib/timer.o
- .debug_frame   0x0000000000001238      0x4a4 lib/time.o
- .debug_frame   0x00000000000016dc      0x2f8 printf/printf.o
- .debug_frame   0x00000000000019d4      0x188 printf/mathio.o
- .debug_frame   0x0000000000001b5c      0xa7c fatfs/ff.o
- .debug_frame   0x00000000000025d8       0x34 fatfs/option/syscall.o
- .debug_frame   0x000000000000260c       0x34 fatfs/option/unicode.o
- .debug_frame   0x0000000000002640       0x8c fatfs.hal/diskio.o
- .debug_frame   0x00000000000026cc      0x19c fatfs.hal/mmc.o
- .debug_frame   0x0000000000002868      0x15c fatfs.hal/mmc_hal.o
- .debug_frame   0x00000000000029c4       0xdc fatfs.sup/fatfs_sup.o
- .debug_frame   0x0000000000002aa0       0xf8 fatfs.sup/fatfs_tests.o
- .debug_frame   0x0000000000002b98      0x814 posix/posix.o
- .debug_frame   0x00000000000033ac      0x3b4 posix/posix_tests.o
- .debug_frame   0x0000000000003760      0x1d4 gpib/gpib_hal.o
- .debug_frame   0x0000000000003934      0x3b8 gpib/gpib.o
- .debug_frame   0x0000000000003cec      0x494 gpib/gpib_task.o
- .debug_frame   0x0000000000004180       0xf8 gpib/gpib_tests.o
- .debug_frame   0x0000000000004278      0x50c gpib/ss80.o
- .debug_frame   0x0000000000004784      0x548 gpib/amigo.o
- .debug_frame   0x0000000000004ccc      0x158 gpib/printer.o
- .debug_frame   0x0000000000004e24      0x4a8 gpib/drives.o
- .debug_frame   0x00000000000052cc       0x9c gpib/controller.o
- .debug_frame   0x0000000000005368      0xd38 lif/lifutils.o
- .debug_frame   0x00000000000060a0      0x108 main.o
+ .debug_frame   0x0000000000000bf4      0x3a0 lib/stringsup.o
+ .debug_frame   0x0000000000000f94       0xc0 lib/timer_hal.o
+ .debug_frame   0x0000000000001054      0x1f0 lib/timer.o
+ .debug_frame   0x0000000000001244      0x4a4 lib/time.o
+ .debug_frame   0x00000000000016e8      0x2f8 printf/printf.o
+ .debug_frame   0x00000000000019e0      0x188 printf/mathio.o
+ .debug_frame   0x0000000000001b68      0xa7c fatfs/ff.o
+ .debug_frame   0x00000000000025e4       0x34 fatfs/option/syscall.o
+ .debug_frame   0x0000000000002618       0x34 fatfs/option/unicode.o
+ .debug_frame   0x000000000000264c       0x8c fatfs.hal/diskio.o
+ .debug_frame   0x00000000000026d8      0x19c fatfs.hal/mmc.o
+ .debug_frame   0x0000000000002874      0x15c fatfs.hal/mmc_hal.o
+ .debug_frame   0x00000000000029d0       0xdc fatfs.sup/fatfs_sup.o
+ .debug_frame   0x0000000000002aac       0xf8 fatfs.sup/fatfs_tests.o
+ .debug_frame   0x0000000000002ba4      0x814 posix/posix.o
+ .debug_frame   0x00000000000033b8      0x3b4 posix/posix_tests.o
+ .debug_frame   0x000000000000376c      0x1d4 gpib/gpib_hal.o
+ .debug_frame   0x0000000000003940      0x3b8 gpib/gpib.o
+ .debug_frame   0x0000000000003cf8      0x494 gpib/gpib_task.o
+ .debug_frame   0x000000000000418c       0xf8 gpib/gpib_tests.o
+ .debug_frame   0x0000000000004284      0x50c gpib/ss80.o
+ .debug_frame   0x0000000000004790      0x548 gpib/amigo.o
+ .debug_frame   0x0000000000004cd8      0x158 gpib/printer.o
+ .debug_frame   0x0000000000004e30      0x4cc gpib/drives.o
+ .debug_frame   0x00000000000052fc       0x9c gpib/controller.o
+ .debug_frame   0x0000000000005398      0xd38 lif/lifutils.o
+ .debug_frame   0x00000000000060d0      0x108 main.o
 
-.debug_str      0x0000000000000000     0x4717
+.debug_str      0x0000000000000000     0x473d
  *(.debug_str)
  .debug_str     0x0000000000000000      0x296 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/crtatmega1284p.o
  .debug_str     0x0000000000000296      0x1ee hardware/hal.o
@@ -3364,16 +3366,16 @@ END GROUP
                                         0x7f8 (size before relaxing)
  .debug_str     0x0000000000003a38       0xa3 gpib/printer.o
                                         0x419 (size before relaxing)
- .debug_str     0x0000000000003adb      0x1c5 gpib/drives.o
-                                        0x7f8 (size before relaxing)
- .debug_str     0x0000000000003ca0       0x21 gpib/controller.o
+ .debug_str     0x0000000000003adb      0x1eb gpib/drives.o
+                                        0x81e (size before relaxing)
+ .debug_str     0x0000000000003cc6       0x21 gpib/controller.o
                                         0x223 (size before relaxing)
- .debug_str     0x0000000000003cc1      0xa34 lif/lifutils.o
+ .debug_str     0x0000000000003ce7      0xa34 lif/lifutils.o
                                         0xe59 (size before relaxing)
- .debug_str     0x00000000000046f5       0x22 main.o
+ .debug_str     0x000000000000471b       0x22 main.o
                                         0x470 (size before relaxing)
 
-.debug_loc      0x0000000000000000    0x26a1f
+.debug_loc      0x0000000000000000    0x26bba
  *(.debug_loc)
  .debug_loc     0x0000000000000000      0x458 hardware/hal.o
  .debug_loc     0x0000000000000458      0x2a9 hardware/ram.o
@@ -3384,33 +3386,33 @@ END GROUP
  .debug_loc     0x0000000000001d1d      0x3c1 hardware/rtc.o
  .debug_loc     0x00000000000020de      0x9c3 hardware/LCD.o
  .debug_loc     0x0000000000002aa1      0x21d display/lcd_printf.o
- .debug_loc     0x0000000000002cbe     0x16c3 lib/stringsup.o
- .debug_loc     0x0000000000004381      0x27e lib/timer_hal.o
- .debug_loc     0x00000000000045ff      0x6ba lib/timer.o
- .debug_loc     0x0000000000004cb9     0x18a8 lib/time.o
- .debug_loc     0x0000000000006561     0x1c8b printf/printf.o
- .debug_loc     0x00000000000081ec      0xd41 printf/mathio.o
- .debug_loc     0x0000000000008f2d     0x8cdf fatfs/ff.o
- .debug_loc     0x0000000000011c0c       0x4c fatfs/option/syscall.o
- .debug_loc     0x0000000000011c58      0x1a0 fatfs/option/unicode.o
- .debug_loc     0x0000000000011df8      0x38d fatfs.hal/diskio.o
- .debug_loc     0x0000000000012185      0xfb4 fatfs.hal/mmc.o
- .debug_loc     0x0000000000013139      0x1ba fatfs.hal/mmc_hal.o
- .debug_loc     0x00000000000132f3      0x5d0 fatfs.sup/fatfs_sup.o
- .debug_loc     0x00000000000138c3      0x35d fatfs.sup/fatfs_tests.o
- .debug_loc     0x0000000000013c20     0x36cb posix/posix.o
- .debug_loc     0x00000000000172eb     0x122b posix/posix_tests.o
- .debug_loc     0x0000000000018516      0xa03 gpib/gpib_hal.o
- .debug_loc     0x0000000000018f19     0x11e4 gpib/gpib.o
- .debug_loc     0x000000000001a0fd     0x15d4 gpib/gpib_task.o
- .debug_loc     0x000000000001b6d1      0x4a7 gpib/gpib_tests.o
- .debug_loc     0x000000000001bb78     0x1c09 gpib/ss80.o
- .debug_loc     0x000000000001d781     0x1479 gpib/amigo.o
- .debug_loc     0x000000000001ebfa      0x4f9 gpib/printer.o
- .debug_loc     0x000000000001f0f3     0x2455 gpib/drives.o
- .debug_loc     0x0000000000021548      0x283 gpib/controller.o
- .debug_loc     0x00000000000217cb     0x4ed9 lif/lifutils.o
- .debug_loc     0x00000000000266a4      0x37b main.o
+ .debug_loc     0x0000000000002cbe     0x1767 lib/stringsup.o
+ .debug_loc     0x0000000000004425      0x27e lib/timer_hal.o
+ .debug_loc     0x00000000000046a3      0x6ba lib/timer.o
+ .debug_loc     0x0000000000004d5d     0x18a8 lib/time.o
+ .debug_loc     0x0000000000006605     0x1c8b printf/printf.o
+ .debug_loc     0x0000000000008290      0xd41 printf/mathio.o
+ .debug_loc     0x0000000000008fd1     0x8cdf fatfs/ff.o
+ .debug_loc     0x0000000000011cb0       0x4c fatfs/option/syscall.o
+ .debug_loc     0x0000000000011cfc      0x1a0 fatfs/option/unicode.o
+ .debug_loc     0x0000000000011e9c      0x38d fatfs.hal/diskio.o
+ .debug_loc     0x0000000000012229      0xfb4 fatfs.hal/mmc.o
+ .debug_loc     0x00000000000131dd      0x1ba fatfs.hal/mmc_hal.o
+ .debug_loc     0x0000000000013397      0x5d0 fatfs.sup/fatfs_sup.o
+ .debug_loc     0x0000000000013967      0x35d fatfs.sup/fatfs_tests.o
+ .debug_loc     0x0000000000013cc4     0x36cb posix/posix.o
+ .debug_loc     0x000000000001738f     0x122b posix/posix_tests.o
+ .debug_loc     0x00000000000185ba      0xa03 gpib/gpib_hal.o
+ .debug_loc     0x0000000000018fbd     0x11e4 gpib/gpib.o
+ .debug_loc     0x000000000001a1a1     0x15d4 gpib/gpib_task.o
+ .debug_loc     0x000000000001b775      0x4a7 gpib/gpib_tests.o
+ .debug_loc     0x000000000001bc1c     0x1c09 gpib/ss80.o
+ .debug_loc     0x000000000001d825     0x1479 gpib/amigo.o
+ .debug_loc     0x000000000001ec9e      0x4f9 gpib/printer.o
+ .debug_loc     0x000000000001f197     0x2508 gpib/drives.o
+ .debug_loc     0x000000000002169f      0x283 gpib/controller.o
+ .debug_loc     0x0000000000021922     0x4f1d lif/lifutils.o
+ .debug_loc     0x000000000002683f      0x37b main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -3430,7 +3432,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000     0x1718
+.debug_ranges   0x0000000000000000     0x1720
  *(.debug_ranges)
  .debug_ranges  0x0000000000000000       0x88 hardware/hal.o
  .debug_ranges  0x0000000000000088       0x30 hardware/ram.o
@@ -3464,10 +3466,10 @@ END GROUP
  .debug_ranges  0x0000000000001198      0x130 gpib/ss80.o
  .debug_ranges  0x00000000000012c8       0xb8 gpib/amigo.o
  .debug_ranges  0x0000000000001380       0x40 gpib/printer.o
- .debug_ranges  0x00000000000013c0       0xd8 gpib/drives.o
- .debug_ranges  0x0000000000001498       0x28 gpib/controller.o
- .debug_ranges  0x00000000000014c0      0x228 lif/lifutils.o
- .debug_ranges  0x00000000000016e8       0x30 main.o
+ .debug_ranges  0x00000000000013c0       0xe0 gpib/drives.o
+ .debug_ranges  0x00000000000014a0       0x28 gpib/controller.o
+ .debug_ranges  0x00000000000014c8      0x228 lif/lifutils.o
+ .debug_ranges  0x00000000000016f0       0x30 main.o
 
 .debug_macro
  *(.debug_macro)

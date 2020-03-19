@@ -42,6 +42,46 @@ AMIGODiskType *AMIGOp = NULL;
 AMIGOStateType *AMIGOs = NULL;
 #endif
 
+///@brief SS80 initial defaults for ALL SS80 drives
+/// Mostly used for CONTROLLER, UNIT defaults
+SS80DiskType SS80DiskDefault =
+{
+    {			// HEADER
+        0,          // GPIB Address
+        0,          // PPR
+        "ss80-undefined.lif"	// File name
+    },
+    {			// CONFIG
+        0	      	// ID
+    },
+    {			// CONTROLLER
+        0x8001,     // Installed Units 1 (15 is always on)
+        744,        // GPIB data transfer rate in kB/s on the bus
+        4,          // 5 = SS/80 integrated single-unit controller
+    },
+    {			// UNIT
+        0,          // Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape
+        0,    		// BCD Device number XX XX XY, X=Unit, Y=option
+        0x100,      // Bytes per block
+        1,          // Buffered Blocks
+        0,          // Burst size = 0 for SS80
+        0x1f6,      // Block time in microseconds
+        140,        // Continous transfer time in kB/s
+        10000,      // Retry time in 0.01 secods
+        10000,      // Access time in 0.01 seconds
+        31,         // Maximum interleave factor
+        1,          // Fixed volume byte, one bit per volume
+        1           // Removable volume byte, one bit per volume
+    },
+    {			// VOLUME
+        0,          // Maximum Cylinder  - not used
+        0,          // Maximum Head      - not used
+        0,          // Maximum Sector    - not used
+        0,          // Maximum Block Number
+        2           // Interleave
+    }
+};
+
 #if defined (SET_DEFAULTS)
 // =============================================
 PRINTERDeviceType PRINTERDeviceDefault =
@@ -61,61 +101,62 @@ PRINTERDeviceType PRINTERDeviceDefault =
 ///@brief SS80 HP9122D Disk Definitions
 SS80DiskType SS80DiskDefault =
 {
-    {
+    {			// HEADER
         0,          // GPIB Address
         0,          // PPR
-        "/ss80.lif" // FILE name
+        "/ss80.lif"			// File name
     },
-    {
-        0x222,      // ID
+    {			// CONFIG
+        0x222   	// ID
     },
-    {
+    {			// CONTROLLER
         0x8001,     // Installed Units 1 (15 is always on)
         744,        // GPIB data transfer rate in kB/s on the bus
-        5,          // 5 = SS/80 integrated multi-unit controller
+        4,          // 5 = SS/80 integrated single-unit controller
     },
-    {
-        0,          // Generic Unit Type, 0 = fixed
-        0x92200,    // BCD Device number XX XX XY, X=Unit, Y=option
+    {			// UNIT
+        0,          // Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape
+        0x00091220, // BCD Device number XX XX XY, X=Unit, Y=option
         0x100,      // Bytes per block
         1,          // Buffered Blocks
         0,          // Burst size = 0 for SS80
-        5888,       // Block time in microseconds
-        45,         // Continous transfer time in kB/s
-        4500,       // Retry time in 0.01 secods
-        4500,       // Access time in 0.01 seconds
-        15,         // Maximum interleave factor
-        0,          // Fixed volume byte, one bit per volume
+        0x1f6,      // Block time in microseconds
+        140,        // Continous transfer time in kB/s
+        10000,      // Retry time in 0.01 secods
+        10000,      // Access time in 0.01 seconds
+        31,         // Maximum interleave factor
+        1,          // Fixed volume byte, one bit per volume
         1           // Removable volume byte, one bit per volume
     },
-    {
+    {			// VOLUME
         0,          // Maximum Cylinder  - not used
         0,          // Maximum Head      - not used
         0,          // Maximum Sector    - not used
-        0x99f,      // Maximum Block Number
+        2463,       // Maximum Block Number
         2           // Interleave
     }
 };
+
 #endif // #if defined(HP9122D)
 
 #if defined(HP9134L)
 ///@brief SS80 HP9134L Disk Definitions
 SS80DiskType SS80DiskDefault =
 {
-    {
+    {			// HEADER
         0,          // GPIB Address
         0,          // PPR
         "/ss80.lif" // FILE name
     },
-    {
-        0x221,      // ID
+    {			// CONFIG
+        0x221      // ID
     },
-    {
+    {			// CONTROLLER
         0x8001,     // Installed Units 1 (15 is always on)
         744,        // GPIB data transfer rate in kB/s on the bus
         5,          // 5 = SS/80 integrated multi-unit controller
     },
-    {
+    {			// UNIT
         0,          // Generic Unit Type, 0 = fixed
         0x091340,   // BCD Device number XX XX XY, X=Unit, Y=option
         0x100,      // Bytes per block
@@ -129,12 +170,12 @@ SS80DiskType SS80DiskDefault =
         1,          // Fixed volume byte, one bit per volume
         0           // Removable volume byte, one bit per volume
     },
-    {
+    {			// VOLUME
         0,          // Maximum Cylinder  - not used
         0,          // Maximum Head      - not used
         0,          // Maximum Sector    - not used
         0xe340,     // Maximum Block Number
-        31          // Interleave
+        2			// Interleave
     }
 };
 #endif // #if defined(HP9134L)
@@ -145,15 +186,15 @@ SS80DiskType SS80DiskDefault =
 /// @brief  AMIGO D9121D ident Bytes per sector, sectors per track, heads, cylinders
 AMIGODiskType AMIGODiskDefault =
 {
-    {
+    {			// HEADER
         1,          // GPIB Address
         1,          // PPR
         "/amigo.lif"    // FILE name
     },
-    {
-        0x0104,     // ID
+    {			// CONFIG
+        0x0104     // ID
     },
-    {
+    {			// GEOMETRY
         256,        // Bytes Per Sector
         16,         // Sectors Per Track
         2,          // Sides
@@ -166,15 +207,15 @@ AMIGODiskType AMIGODiskDefault =
 /// @brief  AMIGO D9885A ident Bytes per sector, sectors per track, heads, cylinders
 AMIGODiskType AMIGODiskDefault =
 {
-    {
+    {			// HEADER
         1,          // GPIB Address
         1,          // PPR
         "/amigo.lif"    // FILE name
     },
-    {
-        0x0081,     // ID
+    {			// CONFIG
+        0x0081     // ID
     }
-    {
+    {			// GEOMETRY
         256,        // Bytes Per Sector
         30,         // Sectors Per Track
         2,          // Sides
@@ -187,15 +228,15 @@ AMIGODiskType AMIGODiskDefault =
 /// @brief  AMIGO D9134A ident Bytes per sector, sectors per track, heads, cylinders
 AMIGODiskType AMIGODiskDefault =
 {
-    {
+    {			// HEADER
         1,          // GPIB Address
         1,          // PPR
         "/amigo.lif"    // FILE name
     },
-    {
-        0x0106,     // ID
+    {			// CONFIG
+        0x0106     // ID
     },
-    {
+    {			// GEOMETRY
         256,        // Bytes Per Sector
         31,         // Sectors Per Track
         4,          // Sides
@@ -463,6 +504,44 @@ int set_active_device(int index)
     return(0);
 }
 
+
+///@brief Initialize Default Values for a new SS80 Device
+/// Most values in the CONTROLER and UNIT are defaults that should not need to be specified
+/// Note all of the values are zeroed on allocation including strings
+///@return void
+void SS80_Initial_Defaults(int index)
+{
+	SS80DiskType *SS80p;
+	SS80p = (SS80DiskType *) Devices[index].dev;
+	SS80p->HEADER.ADDRESS				= SS80DiskDefault.HEADER.ADDRESS;
+	SS80p->HEADER.PPR					= SS80DiskDefault.HEADER.PPR;
+	strncpy(SS80p->HEADER.NAME,SS80DiskDefault.HEADER.NAME,sizeof(SS80p->HEADER.NAME)-1);
+
+	SS80p->CONFIG.ID					= SS80DiskDefault.CONFIG.ID;
+	SS80p->CONTROLLER.UNITS_INSTALLED	= SS80DiskDefault.CONTROLLER.UNITS_INSTALLED;
+	SS80p->CONTROLLER.TRANSFER_RATE		= SS80DiskDefault.CONTROLLER.TRANSFER_RATE;
+	SS80p->CONTROLLER.TYPE				= SS80DiskDefault.CONTROLLER.TYPE;
+
+	SS80p->UNIT.UNIT_TYPE				= SS80DiskDefault.UNIT.UNIT_TYPE;
+	SS80p->UNIT.DEVICE_NUMBER			= SS80DiskDefault.UNIT.DEVICE_NUMBER;
+	SS80p->UNIT.BYTES_PER_BLOCK			= SS80DiskDefault.UNIT.BYTES_PER_BLOCK;
+	SS80p->UNIT.BUFFERED_BLOCKS			= SS80DiskDefault.UNIT.BUFFERED_BLOCKS;
+	SS80p->UNIT.BURST_SIZE				= SS80DiskDefault.UNIT.BURST_SIZE;
+	SS80p->UNIT.BLOCK_TIME				= SS80DiskDefault.UNIT.BLOCK_TIME;
+	SS80p->UNIT.CONTINOUS_TRANSFER_RATE	= SS80DiskDefault.UNIT.CONTINOUS_TRANSFER_RATE;
+	SS80p->UNIT.OPTIMAL_RETRY_TIME		= SS80DiskDefault.UNIT.OPTIMAL_RETRY_TIME;
+	SS80p->UNIT.ACCESS_TIME				= SS80DiskDefault.UNIT.ACCESS_TIME;
+	SS80p->UNIT.MAXIMUM_INTERLEAVE		= SS80DiskDefault.UNIT.MAXIMUM_INTERLEAVE;
+	SS80p->UNIT.FIXED_VOLUMES			= SS80DiskDefault.UNIT.FIXED_VOLUMES;
+
+	SS80p->VOLUME.MAX_CYLINDER			= SS80DiskDefault.VOLUME.MAX_CYLINDER;
+	SS80p->VOLUME.MAX_HEAD				= SS80DiskDefault.VOLUME.MAX_HEAD;
+	SS80p->VOLUME.MAX_SECTOR			= SS80DiskDefault.VOLUME.MAX_SECTOR;
+	SS80p->VOLUME.MAX_BLOCK_NUMBER		= SS80DiskDefault.VOLUME.MAX_BLOCK_NUMBER;
+	SS80p->VOLUME.INTERLEAVE			= SS80DiskDefault.VOLUME.INTERLEAVE;
+};
+
+
 ///@brief Allocate a Device structure for a disk or printer
 ///@param type: disk type
 ///@return Devices[] index on sucess or -1
@@ -487,6 +566,7 @@ int alloc_device(int type)
             Devices[ind].dev = safecalloc(sizeof(SS80DiskType)+7,1);
             Devices[ind].state = safecalloc(sizeof(SS80StateType)+7,1);
             index = ind;
+			SS80_Initial_Defaults(index);
             break;
 #ifdef AMIGO
         case AMIGO_TYPE:
@@ -688,6 +768,7 @@ int POSIX_Read_Config(char *name)
     PRINTERDeviceType *PRINTERp = NULL;
     ///@brief SS80 Device
     SS80DiskType *SS80p = NULL;
+
 #ifdef AMIGO
     ///@brief AMIGO Device
     AMIGODiskType *AMIGOp = NULL;
@@ -746,6 +827,7 @@ int POSIX_Read_Config(char *name)
                     state = START_STATE;
                 else
                     SS80p = (SS80DiskType *) Devices[index].dev;
+
             }
 #ifdef AMIGO
             else if(token(ptr,"AMIGO"))
@@ -858,6 +940,7 @@ int POSIX_Read_Config(char *name)
             }
             break;
 
+
         case SS80_HEADER:
             if( (ind = token(ptr,"ADDRESS")) )
             {
@@ -890,8 +973,8 @@ int POSIX_Read_Config(char *name)
                     ++ptr;
                     ptr = skipspaces(ptr);
                 }
-                strncpy(SS80p->HEADER.NAME,ptr, MAX_FILE_NAME_LEN-1);
-                SS80p->HEADER.NAME[MAX_FILE_NAME_LEN-1] = 0;
+                strncpy(SS80p->HEADER.NAME,ptr, sizeof(SS80p->HEADER.NAME)-1);
+                SS80p->HEADER.NAME[sizeof(SS80p->HEADER.NAME)-1] = 0;
             }
             else
             {
@@ -899,6 +982,7 @@ int POSIX_Read_Config(char *name)
                 ++errors;
             }
             break;
+
         case SS80_CONFIG:
             if( (ind = token(ptr,"ID")) )
             {
@@ -942,6 +1026,7 @@ int POSIX_Read_Config(char *name)
                 ++errors;
             }
             break;
+
 
         case SS80_UNIT:
             if( (ind = token(ptr,"UNIT_TYPE")) )
@@ -1140,8 +1225,8 @@ int POSIX_Read_Config(char *name)
                     ++ptr;
                     ptr = skipspaces(ptr);
                 }
-                strncpy(AMIGOp->HEADER.NAME,ptr, MAX_FILE_NAME_LEN-1);
-                AMIGOp->HEADER.NAME[MAX_FILE_NAME_LEN-1] = 0;
+                strncpy(AMIGOp->HEADER.NAME, ptr, sizeof(AMIGOp->HEADER.NAME)-1);
+                AMIGOp->HEADER.NAME[sizeof(AMIGOp->HEADER.NAME)-1] = 0;
             }
             else
             {
