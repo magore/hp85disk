@@ -2,6 +2,7 @@ var searchData=
 [
   ['gen_5fnumname',['gen_numname',['../ff_8c.html#a402f41aa1a2a5652bd4cbaa40b4603d3',1,'ff.c']]],
   ['get_5fachar',['get_achar',['../ff_8c.html#ac154a33b2d6207b0288c9cd002b5cba6',1,'ff.c']]],
+  ['get_5fdrive_5fparams',['get_drive_params',['../hpdir_8c.html#ab1d0010ffbaf27c670441ba7d11e4353',1,'hpdir.c']]],
   ['get_5ffat',['get_fat',['../ff_8c.html#ab1107a4b1792c8f9072165d6d0f170b5',1,'ff.c']]],
   ['get_5ffattime',['get_fattime',['../rtc_8h.html#a90d310b1f92cf36ef427b8d639e55405',1,'get_fattime(void):&#160;fatfs_sup.c'],['../ff_8h.html#af58b536abfd30f77213f4ecaf2ac52f5',1,'get_fattime(void):&#160;fatfs_sup.c'],['../fatfs__sup_8c.html#ae0f1746ad69d0d4b90cba250c6774ca8',1,'get_fattime(void):&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#ae0f1746ad69d0d4b90cba250c6774ca8',1,'get_fattime(void):&#160;fatfs_sup.c']]],
   ['get_5ffileinfo',['get_fileinfo',['../ff_8c.html#a375d42a0c21654f0224732e716d772e1',1,'ff.c']]],

@@ -194,7 +194,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a87120823fa3dd587214e6c70ebde151f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read TeleDisk image file and save all sector data.  <a href="#a87120823fa3dd587214e6c70ebde151f">More...</a><br /></td></tr>
 <tr class="separator:a87120823fa3dd587214e6c70ebde151f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac777daf6e56deb920d24ac72f83f0624"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8h.html#ac777daf6e56deb920d24ac72f83f0624">td0_analize_format</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>)</td></tr>
-<tr class="memdesc:ac777daf6e56deb920d24ac72f83f0624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analize TeleDisk disk sector data Problem: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side.  <a href="#ac777daf6e56deb920d24ac72f83f0624">More...</a><br /></td></tr>
+<tr class="memdesc:ac777daf6e56deb920d24ac72f83f0624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analize TeleDisk disk sector data Problem: We may have a disk that was reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side.  <a href="#ac777daf6e56deb920d24ac72f83f0624">More...</a><br /></td></tr>
 <tr class="separator:ac777daf6e56deb920d24ac72f83f0624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b045f601a00f806f99e466e18109a08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="td02lif_8h.html#a2b045f601a00f806f99e466e18109a08">td0_save_lif</a> (<a class="el" href="structdisk__t.html">disk_t</a> *<a class="el" href="td02lif_8c.html#affcceda12b139f26819f4929be705eb1">disk</a>, <a class="el" href="structlif__t.html">lif_t</a> *LIF)</td></tr>
 <tr class="memdesc:a2b045f601a00f806f99e466e18109a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">save remaining sectors as LIF data  <a href="#a2b045f601a00f806f99e466e18109a08">More...</a><br /></td></tr>
@@ -511,7 +511,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Analize TeleDisk disk sector data Problem: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. </p>
+<p>Analize TeleDisk disk sector data Problem: We may have a disk that was reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. </p>
 <p>What we do is examine the first 30 tracks (note: 30 is just a safe number less then 35) On side 1, on 30 tracks Find first sector and save its size Reject sectors that do not match size Find Last sector matching size Count sectors matching size On side 2, on 30 tracks Reject sectors that do not match size Find first sector and save its size Find Last sector matching size Count sectors matching size</p>
 <p>If the disk had two sides recorded in the header Reject second side if side sector counts do NOT match Reject second side if NO remaining sectors Reject second side if sector ranges do not match or continue in range</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1217,7 +1217,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="gpib__task_8c_source.html#l00034">34</a> of file <a class="el" href="gpib__task_8c_source.html">gpib_task.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00610">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00268">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00729">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00883">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00803">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00447">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00935">listen_cleanup()</a>, and <a class="el" href="gpib__task_8c_source.html#l00577">Send_Identify()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00613">GPIB()</a>, <a class="el" href="gpib__task_8c_source.html#l00271">gpib_error_test()</a>, <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, <a class="el" href="gpib__task_8c_source.html#l00732">GPIB_LISTEN()</a>, <a class="el" href="gpib__task_8c_source.html#l00886">GPIB_SECONDARY_ADDRESS()</a>, <a class="el" href="gpib__task_8c_source.html#l00806">GPIB_TALK()</a>, <a class="el" href="gpib__task_8c_source.html#l00450">gpib_task()</a>, <a class="el" href="gpib__task_8c_source.html#l00938">listen_cleanup()</a>, and <a class="el" href="gpib__task_8c_source.html#l00580">Send_Identify()</a>.</p>
 
 </div>
 </div>
@@ -1242,7 +1242,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 19 2020 01:39:38 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 19 2020 22:04:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

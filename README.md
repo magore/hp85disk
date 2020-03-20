@@ -328,7 +328,9 @@ ___
 
 
 ## Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU 
-  * The github project includes precompiled files under the [release](release) directory
+  * The github project includes disk images and precompiled firmeare
+    * Compiled Firmware [release/build](release/build) 
+    * Disk Images       [release/sdcard](release/sdcard)
     * If you wish to compile yourself please see the next section "Requirements for building..." 
   * NOTE: Most any system with an AVR Programmer that works with the atmega1284p will work
     * If you can set the fuses and read at least one encoded binary format of the firmware in the project [release](release) directory

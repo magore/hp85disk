@@ -12,6 +12,7 @@ var searchData=
   ['length',['Length',['../structSS80StateType.html#a507159f0a0a4f3127488081fd618e8f6',1,'SS80StateType']]],
   ['lfnbuf',['lfnbuf',['../structFATFS.html#ad1999aa771ae428c3abe14dbe585e981',1,'FATFS']]],
   ['lfnofs',['LfnOfs',['../ff_8c.html#a3b4d3baf920ca4a0ac8731e7b3e680c4',1,'ff.c']]],
+  ['lif_5fdir_5fblocks',['LIF_DIR_BLOCKS',['../structhpdir__t.html#a8b6c34460bb1c291860bbb82c56660a4',1,'hpdir_t::LIF_DIR_BLOCKS()'],['../structhpdir.html#ac66d8e5f5e632401c762a0698128dfdf',1,'hpdir::LIF_DIR_BLOCKS()']]],
   ['lifid',['LIFid',['../structlifvol__t.html#adb6a0c2fff5b765eb12c3eb5db6d5bad',1,'lifvol_t']]],
   ['liftel',['liftel',['../td02lif_8c.html#af2b2b3e4827acc662c88bb762e41106d',1,'liftel():&#160;td02lif.c'],['../td02lif_8h.html#af2b2b3e4827acc662c88bb762e41106d',1,'liftel():&#160;td02lif.c']]],
   ['lifversion',['LIFVersion',['../structlifvol__t.html#afffd824a7b0ce6aa8410fa243733475f',1,'lifvol_t']]],

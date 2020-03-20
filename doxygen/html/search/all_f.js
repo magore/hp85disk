@@ -28,7 +28,6 @@ var searchData=
   ['posix_5ferrno',['POSIX_errno',['../posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6a',1,'posix.h']]],
   ['posix_5ffopen_5fmodes_5fto_5fopen',['posix_fopen_modes_to_open',['../posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c'],['../posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c']]],
   ['posix_5fhelp',['posix_help',['../posix__tests_8c.html#ae59f48db88ed3bb8f9c549a7fbe9717d',1,'posix_help(int full):&#160;posix_tests.c'],['../posix__tests_8h.html#ae59f48db88ed3bb8f9c549a7fbe9717d',1,'posix_help(int full):&#160;posix_tests.c']]],
-  ['posix_5fread_5fconfig',['POSIX_Read_Config',['../drives_8c.html#a8f8d1205c8538831eb4196a29cf3f186',1,'POSIX_Read_Config(char *name):&#160;drives.c'],['../drives_8h.html#a8f8d1205c8538831eb4196a29cf3f186',1,'POSIX_Read_Config(char *name):&#160;drives.c']]],
   ['posix_5ftests',['posix_tests',['../posix__tests_8c.html#a36d7c93fa658c992f9a881b89bb7f0af',1,'posix_tests(int argc, char *argv[]):&#160;posix_tests.c'],['../posix__tests_8h.html#a17dd7f0bdee86a5149c37d18ec3305e1',1,'posix_tests(int argc, char *argv []):&#160;posix_tests.c']]],
   ['posix_5ftests_2ec',['posix_tests.c',['../posix__tests_8c.html',1,'']]],
   ['posix_5ftests_2eh',['posix_tests.h',['../posix__tests_8h.html',1,'']]],

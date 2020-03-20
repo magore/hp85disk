@@ -5,6 +5,7 @@ var searchData=
   ['get',['get',['../struct____file.html#a2d816b077c3af0425344fe4b283dad33',1,'__file::get()'],['../amigo_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;amigo.h'],['../defines_8h.html#a982a66f513611f7f83ebfa4b4ecf1df9',1,'GET():&#160;defines.h']]],
   ['get_5fachar',['get_achar',['../ff_8c.html#ac154a33b2d6207b0288c9cd002b5cba6',1,'ff.c']]],
   ['get_5fblock_5fsize',['GET_BLOCK_SIZE',['../diskio_8h.html#aec3bb4dfe075d0ba2f3b07b300a95500',1,'diskio.h']]],
+  ['get_5fdrive_5fparams',['get_drive_params',['../hpdir_8c.html#ab1d0010ffbaf27c670441ba7d11e4353',1,'hpdir.c']]],
   ['get_5ffat',['get_fat',['../ff_8c.html#ab1107a4b1792c8f9072165d6d0f170b5',1,'ff.c']]],
   ['get_5ffattime',['GET_FATTIME',['../ff_8c.html#a72589f5bbb514c0b222ab8b292764418',1,'GET_FATTIME():&#160;ff.c'],['../rtc_8h.html#a90d310b1f92cf36ef427b8d639e55405',1,'get_fattime(void):&#160;fatfs_sup.c'],['../ff_8h.html#af58b536abfd30f77213f4ecaf2ac52f5',1,'get_fattime(void):&#160;fatfs_sup.c'],['../fatfs__sup_8c.html#ae0f1746ad69d0d4b90cba250c6774ca8',1,'get_fattime(void):&#160;fatfs_sup.c'],['../fatfs__sup_8h.html#ae0f1746ad69d0d4b90cba250c6774ca8',1,'get_fattime(void):&#160;fatfs_sup.c']]],
   ['get_5ffileinfo',['get_fileinfo',['../ff_8c.html#a375d42a0c21654f0224732e716d772e1',1,'ff.c']]],

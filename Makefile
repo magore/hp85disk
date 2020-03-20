@@ -345,9 +345,10 @@ sdcard:
 .PHONY: release
 release: all
 	# Save the results under release
-	cp -p $(PROJECT).* release
-	cp -p sdcard/*.cfg release
-	cp -p sdcard/*.ini release
+	cp -p $(PROJECT).*   release/build
+	cp -p sdcard/*\.lif  release/sdcard
+	cp -p sdcard/*\.cfg  release/sdcard
+	cp -p sdcard/*\.ini  release/sdcard
 
 flash_release:
 	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/$(PROJECT).hex

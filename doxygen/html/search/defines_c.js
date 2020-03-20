@@ -2,7 +2,7 @@ var searchData=
 [
   ['malloc',['malloc',['../user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99',1,'user_config.h']]],
   ['max_5fcolumns',['MAX_COLUMNS',['../LCD_8h.html#a2cc6f39fc4594f0e734b2588129fba03',1,'LCD.h']]],
-  ['max_5fdevices',['MAX_DEVICES',['../drives_8c.html#a4e132cfaa78353e3af1474a86b2dd535',1,'MAX_DEVICES():&#160;drives.c'],['../drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535',1,'MAX_DEVICES():&#160;drives.h']]],
+  ['max_5fdevices',['MAX_DEVICES',['../drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535',1,'drives.h']]],
   ['max_5fdir',['MAX_DIR',['../ff_8c.html#a556a1452c85d74c908fe071754ce4a71',1,'ff.c']]],
   ['max_5fdir_5fex',['MAX_DIR_EX',['../ff_8c.html#aeac7903cb4fde8e45722fca3244257e7',1,'ff.c']]],
   ['max_5fexfat',['MAX_EXFAT',['../ff_8c.html#ad7bea1c4a86cb654807e6da0370cb694',1,'ff.c']]],

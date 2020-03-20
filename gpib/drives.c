@@ -26,7 +26,6 @@
 static int stack_ind = 0;
 static int stack_p[MAX_STACK];
 
-#define MAX_DEVICES 8
 DeviceType Devices[MAX_DEVICES];
 
 ///@brief Active Printer Device
@@ -42,45 +41,8 @@ AMIGODiskType *AMIGOp = NULL;
 AMIGOStateType *AMIGOs = NULL;
 #endif
 
-///@brief SS80 initial defaults for ALL SS80 drives
-/// Mostly used for CONTROLLER, UNIT defaults
-SS80DiskType SS80DiskDefault =
-{
-    {			// HEADER
-        0,          // GPIB Address
-        0,          // PPR
-        "ss80-undefined.lif"	// File name
-    },
-    {			// CONFIG
-        0	      	// ID
-    },
-    {			// CONTROLLER
-        0x8001,     // Installed Units 1 (15 is always on)
-        744,        // GPIB data transfer rate in kB/s on the bus
-        4,          // 5 = SS/80 integrated single-unit controller
-    },
-    {			// UNIT
-        0,          // Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape
-        0,    		// BCD Device number XX XX XY, X=Unit, Y=option
-        0x100,      // Bytes per block
-        1,          // Buffered Blocks
-        0,          // Burst size = 0 for SS80
-        0x1f6,      // Block time in microseconds
-        140,        // Continous transfer time in kB/s
-        10000,      // Retry time in 0.01 secods
-        10000,      // Access time in 0.01 seconds
-        31,         // Maximum interleave factor
-        1,          // Fixed volume byte, one bit per volume
-        1           // Removable volume byte, one bit per volume
-    },
-    {			// VOLUME
-        0,          // Maximum Cylinder  - not used
-        0,          // Maximum Head      - not used
-        0,          // Maximum Sector    - not used
-        0,          // Maximum Block Number
-        2           // Interleave
-    }
-};
+///@brief hpdir.ini file processing
+hpdir_t hpdir;
 
 #if defined (SET_DEFAULTS)
 // =============================================
@@ -505,40 +467,47 @@ int set_active_device(int index)
 }
 
 
-///@brief Initialize Default Values for a new SS80 Device
+///@brief Set Default Values for a new SS80 Device IF defaults have been defined
 /// Most values in the CONTROLER and UNIT are defaults that should not need to be specified
 /// Note all of the values are zeroed on allocation including strings
 ///@return void
-void SS80_Initial_Defaults(int index)
+void SS80_Set_Defaults(int index)
 {
-	SS80DiskType *SS80p;
-	SS80p = (SS80DiskType *) Devices[index].dev;
-	SS80p->HEADER.ADDRESS				= SS80DiskDefault.HEADER.ADDRESS;
-	SS80p->HEADER.PPR					= SS80DiskDefault.HEADER.PPR;
-	strncpy(SS80p->HEADER.NAME,SS80DiskDefault.HEADER.NAME,sizeof(SS80p->HEADER.NAME)-1);
+	int defindex = find_type(SS80_DEFAULT_TYPE);
+	SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
+	SS80DiskType *SS80DEFAULTp;
 
-	SS80p->CONFIG.ID					= SS80DiskDefault.CONFIG.ID;
-	SS80p->CONTROLLER.UNITS_INSTALLED	= SS80DiskDefault.CONTROLLER.UNITS_INSTALLED;
-	SS80p->CONTROLLER.TRANSFER_RATE		= SS80DiskDefault.CONTROLLER.TRANSFER_RATE;
-	SS80p->CONTROLLER.TYPE				= SS80DiskDefault.CONTROLLER.TYPE;
+	if(defindex < 0 )
+		return;
 
-	SS80p->UNIT.UNIT_TYPE				= SS80DiskDefault.UNIT.UNIT_TYPE;
-	SS80p->UNIT.DEVICE_NUMBER			= SS80DiskDefault.UNIT.DEVICE_NUMBER;
-	SS80p->UNIT.BYTES_PER_BLOCK			= SS80DiskDefault.UNIT.BYTES_PER_BLOCK;
-	SS80p->UNIT.BUFFERED_BLOCKS			= SS80DiskDefault.UNIT.BUFFERED_BLOCKS;
-	SS80p->UNIT.BURST_SIZE				= SS80DiskDefault.UNIT.BURST_SIZE;
-	SS80p->UNIT.BLOCK_TIME				= SS80DiskDefault.UNIT.BLOCK_TIME;
-	SS80p->UNIT.CONTINOUS_TRANSFER_RATE	= SS80DiskDefault.UNIT.CONTINOUS_TRANSFER_RATE;
-	SS80p->UNIT.OPTIMAL_RETRY_TIME		= SS80DiskDefault.UNIT.OPTIMAL_RETRY_TIME;
-	SS80p->UNIT.ACCESS_TIME				= SS80DiskDefault.UNIT.ACCESS_TIME;
-	SS80p->UNIT.MAXIMUM_INTERLEAVE		= SS80DiskDefault.UNIT.MAXIMUM_INTERLEAVE;
-	SS80p->UNIT.FIXED_VOLUMES			= SS80DiskDefault.UNIT.FIXED_VOLUMES;
+	SS80DEFAULTp = (SS80DiskType *) Devices[defindex].dev;
 
-	SS80p->VOLUME.MAX_CYLINDER			= SS80DiskDefault.VOLUME.MAX_CYLINDER;
-	SS80p->VOLUME.MAX_HEAD				= SS80DiskDefault.VOLUME.MAX_HEAD;
-	SS80p->VOLUME.MAX_SECTOR			= SS80DiskDefault.VOLUME.MAX_SECTOR;
-	SS80p->VOLUME.MAX_BLOCK_NUMBER		= SS80DiskDefault.VOLUME.MAX_BLOCK_NUMBER;
-	SS80p->VOLUME.INTERLEAVE			= SS80DiskDefault.VOLUME.INTERLEAVE;
+	SS80p->HEADER.ADDRESS				= SS80DEFAULTp->HEADER.ADDRESS;
+	SS80p->HEADER.PPR					= SS80DEFAULTp->HEADER.PPR;
+	strncpy(SS80p->HEADER.NAME,SS80DEFAULTp->HEADER.NAME,sizeof(SS80p->HEADER.NAME)-1);
+
+	SS80p->CONFIG.ID					= SS80DEFAULTp->CONFIG.ID;
+	SS80p->CONTROLLER.UNITS_INSTALLED	= SS80DEFAULTp->CONTROLLER.UNITS_INSTALLED;
+	SS80p->CONTROLLER.TRANSFER_RATE		= SS80DEFAULTp->CONTROLLER.TRANSFER_RATE;
+	SS80p->CONTROLLER.TYPE				= SS80DEFAULTp->CONTROLLER.TYPE;
+
+	SS80p->UNIT.UNIT_TYPE				= SS80DEFAULTp->UNIT.UNIT_TYPE;
+	SS80p->UNIT.DEVICE_NUMBER			= SS80DEFAULTp->UNIT.DEVICE_NUMBER;
+	SS80p->UNIT.BYTES_PER_BLOCK			= SS80DEFAULTp->UNIT.BYTES_PER_BLOCK;
+	SS80p->UNIT.BUFFERED_BLOCKS			= SS80DEFAULTp->UNIT.BUFFERED_BLOCKS;
+	SS80p->UNIT.BURST_SIZE				= SS80DEFAULTp->UNIT.BURST_SIZE;
+	SS80p->UNIT.BLOCK_TIME				= SS80DEFAULTp->UNIT.BLOCK_TIME;
+	SS80p->UNIT.CONTINOUS_TRANSFER_RATE	= SS80DEFAULTp->UNIT.CONTINOUS_TRANSFER_RATE;
+	SS80p->UNIT.OPTIMAL_RETRY_TIME		= SS80DEFAULTp->UNIT.OPTIMAL_RETRY_TIME;
+	SS80p->UNIT.ACCESS_TIME				= SS80DEFAULTp->UNIT.ACCESS_TIME;
+	SS80p->UNIT.MAXIMUM_INTERLEAVE		= SS80DEFAULTp->UNIT.MAXIMUM_INTERLEAVE;
+	SS80p->UNIT.FIXED_VOLUMES			= SS80DEFAULTp->UNIT.FIXED_VOLUMES;
+
+	SS80p->VOLUME.MAX_CYLINDER			= SS80DEFAULTp->VOLUME.MAX_CYLINDER;
+	SS80p->VOLUME.MAX_HEAD				= SS80DEFAULTp->VOLUME.MAX_HEAD;
+	SS80p->VOLUME.MAX_SECTOR			= SS80DEFAULTp->VOLUME.MAX_SECTOR;
+	SS80p->VOLUME.MAX_BLOCK_NUMBER		= SS80DEFAULTp->VOLUME.MAX_BLOCK_NUMBER;
+	SS80p->VOLUME.INTERLEAVE			= SS80DEFAULTp->VOLUME.INTERLEAVE;
 };
 
 
@@ -561,12 +530,19 @@ int alloc_device(int type)
 
     switch(type)
     {
+		// Same as SS80 type but sets initial defaults for any remaining SS80 drives
+        case SS80_DEFAULT_TYPE:
+            Devices[ind].TYPE = type;
+            Devices[ind].dev = safecalloc(sizeof(SS80DiskType)+7,1);
+            Devices[ind].state = safecalloc(sizeof(SS80StateType)+7,1);
+            index = ind;
+            break;
         case SS80_TYPE:
             Devices[ind].TYPE = type;
             Devices[ind].dev = safecalloc(sizeof(SS80DiskType)+7,1);
             Devices[ind].state = safecalloc(sizeof(SS80StateType)+7,1);
             index = ind;
-			SS80_Initial_Defaults(index);
+			SS80_Set_Defaults(index);	// Set any defaults we may have
             break;
 #ifdef AMIGO
         case AMIGO_TYPE:
@@ -749,12 +725,252 @@ void set_Config_Defaults()
 }
 
 
+/// ===========================================================
+///@brief hpdir.ini file processing
+
+///@brief Init Disk Parameter Structure
+///
+/// This structure will containes the parsed and computed
+/// disk parameters from a single hpdir disk entry
+///
+///@return void
+void hpdir_init()
+{
+    memset(hpdir.model,0,sizeof(hpdir.model) -1);		// 1
+    memset(hpdir.comment,0,sizeof(hpdir.comment) -1);	// 2
+    memset(hpdir.TYPE,0,sizeof(hpdir.TYPE) -1);		// 3
+    hpdir.ID = 0;						// 4
+	hpdir.mask_stat2 = 0;				// 5
+	hpdir.id_stat2 = 0;					// 6
+	hpdir.DEVICE_NUMBER = 0;			// 7
+	hpdir.UNITS_INSTALLED = 0x8001;		// 8
+	hpdir.CYLINDERS = 0;  				// 9
+	hpdir.HEADS= 0;	     				// 10
+	hpdir.SECTORS= 0;    				// 11
+	hpdir.BYTES_PER_BLOCK = 0;			// 12
+	hpdir.INTERLEAVE = 0;				// 13
+    hpdir.FIXED = 1;					// 14 ALWAYS 1
+
+	// Computed values
+    hpdir.BLOCKS = 0;
+	hpdir.LIF_DIR_BLOCKS= 0;
+
+#if 0
+	// BLOCKS  = CYLINDERS * HEADS * SECTOR -1;
+	// MAX_BLOCK_NUMBER = BLOCKS - 1
+	// MAX_BLOCK_NUMBER =(MAX_CYLINDER-1) * (MAX_HEAD-1) * (MAX_SECTOR-1) -1;
+	hpdir.MAX_CYLINDER = 0;
+	hpdir.MAX_HEAD = 0;
+	hpdir.MAX_SECTOR = 0;
+	hpdir.MAX_BLOCK_NUMBER = 0;
+#endif
+}
+
+
+// =============================================
+///@brief LIF Directory blocks ~= sqrt(blocks);
+///
+/// We simplify 
+///  BITS = MSB bit number of block count 
+///  Directory size = BITS / 2
+///@param[in] blocks: size of LIF image in total
+///
+///@return Size of LIF directory in blocks
+long lif_dir_count(long blocks)
+{
+	int scale = 0;
+	long num = 1;
+	while(blocks)
+	{
+		scale++;
+ 		blocks >>= 1;
+	}
+	scale>>=1;
+	while(scale--)
+		num <<=1;
+	return(num);
+}
+
+// =============================================
+///@brief Open hpdir.ini file
+///
+/// - Looks for hpdir.ini in current, root or program install directory 
+///
+///@param[in] cfg: FILE *
+///@param[in] model: model string
+///@param[in] list: list flag
+///
+///@return 1 on sucess or 0 on fail
+///@return NULL if no token found
+int hpdir_parameters(char *name, char *model)
+{
+    int len;
+	char *ptr;
+    uint32_t val;
+    int errors = 0;
+    int driveinfo=0;
+	FILE *cfg;
+    char str[256];
+    char token[64];
+
+	hpdir_init();
+
+	cfg = fopen(name,"rb");
+	if(cfg != NULL)
+		return(-1);
+
+    while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
+    {
+		errors = 0;
+
+        ptr = str;
+
+        trim_tail(ptr);
+        ptr = skipspaces(ptr);
+
+        len = strlen(ptr);
+        if(!len)
+            continue;
+
+        // Skip comments
+        if(*ptr == ';' || *ptr == '#' )
+            continue;
+
+		if(*ptr == '[' && driveinfo == 1 )
+                break;
+
+		// MODEL something else
+		ptr = get_token(ptr, token, 	sizeof(token)-2);
+
+        if(MATCHI(token,"[driveinfo]"))
+        {
+			driveinfo = 1;
+            continue;
+        }
+
+		if( driveinfo != 1)
+			continue;
+
+		if ( ! MATCHI(model,token) )
+			continue;
+
+		hpdir_init();
+
+		strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
+
+		// =
+		ptr = get_token(ptr, token, 	sizeof(token)-2);
+
+		// COMMENT
+		ptr = get_token(ptr, hpdir.comment, sizeof(hpdir.comment)-2);
+
+		// TYPE SS80/CS80/AMIGO
+		ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);
+		// Identify ID
+
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xFFFFUL, &val) )
+			++errors;
+		hpdir.ID = val;						// 4
+
+		// MASK STAT2
+		ptr = get_token(ptr, token, 		sizeof(token)-12);
+		if (!assign_value(token, 0, 0xFFUL, &val) )
+			++errors;
+		hpdir.mask_stat2 = val;				// 5
+
+		// STAT2
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xFFUL, &val) )
+			++errors;
+		hpdir.id_stat2 = val;				// 6
+
+		// BCD encoded device number
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xffffffffUL, &val) )
+			++errors;
+		hpdir.DEVICE_NUMBER = val;			// 7
+
+		// UNITS Installed
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 8, &val) )
+			++errors;
+		hpdir.UNITS_INSTALLED = val;		// 8
+
+		// Cylinders
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0x00ffffffUL, &val) )
+			++errors;
+		// Token is CYLINDERS, MAX_CYLINDER = CYLINDERS -1
+		hpdir.CYLINDERS = val;				// 9
+
+
+		// Heads
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xffffUL, &val) )
+			++errors;
+		// Token is HEADS, MAX_HEAD = HEADS -1
+		hpdir.HEADS = val;					// 10
+
+		// Sectors
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xffffUL, &val) )
+			++errors;
+		// Token is SECTORS, MAX_SECTOR = SECTORS -1
+		hpdir.SECTORS = val;				// 11
+
+
+		// Bytes per sector
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xffffUL, &val) )
+			++errors;
+		hpdir.BYTES_PER_BLOCK = val;			// 12
+
+		// Interleave
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
+		if (!assign_value(token, 0, 0xffffUL, &val) )
+			++errors;
+		hpdir.INTERLEAVE = val;				// 13
+
+		// Computed values
+		hpdir.BLOCKS = hpdir.CYLINDERS * hpdir.HEADS * hpdir.SECTORS;
+		hpdir.LIF_DIR_BLOCKS = lif_dir_count(hpdir.BLOCKS);
+
+/*
+ 		val = hpdir.CYLINDERS;			// 9
+ 		if (val)
+ 			--val;
+ 		hpdir.MAX_CYLINDER = val;
+ 
+ 		val = hpdir.HEADS;				// 10
+ 		if (val)
+ 			--val;
+ 		hpdir.MAX_HEAD = val;
+ 
+ 		hpdir.SECTORS = val;				// 11
+ 		if (val)
+ 			--val;
+ 		hpdir.MAX_SECTOR = val;
+ 		// Total disk blocks
+ 		// Lst block in SS80 drive
+ 		hpdir.MAX_BLOCK_NUMBER = hpdir.BLOCKS-1;
+*/
+
+		break;
+
+	}	// while
+
+	fclose(cfg);
+	return(errors);
+}
+
+/// ===============================================
 /// @brief Read and parse a config file using POSIX functions
 /// Set all drive parameters and debuglevel 
 ///
 /// @param name: config file name to process
 /// @return  number of parse errors
-int POSIX_Read_Config(char *name)
+int Read_Config(char *name)
 {
     int ind,ret,len;
     uint32_t tmp;
@@ -818,17 +1034,29 @@ int POSIX_Read_Config(char *name)
         switch(state)
         {
         case START_STATE:
-            if(token(ptr,"SS80"))
+
+            if( (ind = token(ptr,"SS80_DEFAULT") ))
             {
                 push_state(state);
-                state = SS80_STATE;
-                index = alloc_device(SS80_TYPE);
-                if(index == -1)
-                    state = START_STATE;
-                else
-                    SS80p = (SS80DiskType *) Devices[index].dev;
-
+				state = SS80_STATE;
+				index = alloc_device(SS80_DEFAULT_TYPE);
+				if(index == -1)
+					state = START_STATE;
+				else
+					SS80p = (SS80DiskType *) Devices[index].dev;
             }
+
+            else if( (ind = token(ptr,"SS80") ))
+            {
+                push_state(state);
+				state = SS80_STATE;
+				index = alloc_device(SS80_TYPE);
+				if(index == -1)
+					state = START_STATE;
+				else
+					SS80p = (SS80DiskType *) Devices[index].dev;
+            }
+
 #ifdef AMIGO
             else if(token(ptr,"AMIGO"))
             {
@@ -1405,6 +1633,7 @@ void display_Config()
             SS80p= (SS80DiskType *)Devices[i].dev;
 
             printf("SS80\n");
+			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) SS80p->HEADER.ADDRESS);
             printf("  CONFIG\n");
                 print_var("ADDRESS", (uint32_t) SS80p->HEADER.ADDRESS);
                 print_var("PPR", (uint32_t) SS80p->HEADER.PPR);
@@ -1434,6 +1663,7 @@ void display_Config()
                 print_var("MAX_SECTOR", (uint32_t)SS80p->VOLUME.MAX_SECTOR);
                 print_var("MAX_BLOCK_NUMBER", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
                 print_var("INTERLEAVE", (uint32_t)SS80p->VOLUME.INTERLEAVE);
+                print_var("# BLOCKS", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER+1);
         } // SS80_TYPE
 
 #ifdef AMIGO
@@ -1442,6 +1672,7 @@ void display_Config()
             AMIGOp= (AMIGODiskType *)Devices[i].dev;
 
             printf("AMIGO\n");
+			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) AMIGOp->HEADER.ADDRESS);
             printf("  HEADER\n");
                 print_var("ADDRESS", (uint32_t) AMIGOp->HEADER.ADDRESS);
                 print_var("PPR", (uint32_t) AMIGOp->HEADER.PPR);
@@ -1453,6 +1684,7 @@ void display_Config()
                 print_var("SECTORS_PER_TRACK", (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
                 print_var("HEADS", (uint32_t) AMIGOp->GEOMETRY.HEADS);
                 print_var("CYLINDERS", (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
+                print_var("# BLOCKS", (uint32_t)AMIGOp->GEOMETRY.CYLINDERS * AMIGOp->GEOMETRY.SECTORS_PER_TRACK * AMIGOp->GEOMETRY.HEADS );
         } 
 #endif // #ifdef AMIGO
 

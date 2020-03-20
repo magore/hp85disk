@@ -33,7 +33,7 @@
 
 // =============================================
 ///@brief Maximum number of emulated devices
-#define MAX_DEVICES 8
+#define MAX_DEVICES 12
 
 ///@brief Maximun lengh of device file name
 #define MAX_FILE_NAME_LEN 32
@@ -232,6 +232,9 @@ enum PARSE_STATES
     SS80_CONTROLLER,
     SS80_UNIT,
     SS80_VOLUME,
+    CONTROLLER_STATE,
+    CONTROLLER_CONTROLLER,
+    CONTROLLER_UNIT,
     AMIGO_STATE,
     AMIGO_HEADER,
     AMIGO_CONFIG,
@@ -246,6 +249,7 @@ enum DEVICE_TYPES
 {
     NO_TYPE,    
     AMIGO_TYPE,
+    SS80_DEFAULT_TYPE,
     SS80_TYPE,
     PRINTER_TYPE
 };
@@ -275,6 +279,65 @@ extern AMIGOStateType *AMIGOs;
 extern PRINTERDeviceType *PRINTERp;
 extern DeviceType Devices[MAX_DEVICES];
 
+/// =================================================
+///@brief Data structure for hpdir.ini HPDir project disk parameters 
+///
+/// This structure will containes the parsed and computed
+/// disk parameters from a single hpdir disk entry
+///
+///; AMIGIO/CS80/SS80 disk drives
+///; 1 - SS80 [HP9134L]            unique drive model identifier (should be identical to [fsinfo] section above)
+///; 2 - COMMENT                   descriptive string
+///; 3 - SS80/AMIGO:               drive protocol AMIGO, CS80 or SS80
+///; 4 - ID:                       ID returned by AMIGO identify
+///; 5 -                           mask for secondary ID returned by high byte of STAT2
+///; 6 -                           ID returned by high byte of STAT2
+///; 7 - DEVICE_NUMBER:            drive number returned by CS/80 describe command
+///; 8 - UNITS_INSTALLED(0x8001):  number of units installed
+///; 9 - MAX_CYLINDER:             number of cylinders
+///;10 - MAX_HEAD:                 number of heads or surfaces
+///;11 - MAX_SECTOR:               number of sectors per track
+///;12 - BYTES_PER_BLOCK:          number of bytes per block or sector
+///;13 - INTERLEAVE:               default interleave
+///;14 - media type 0=fixed media, 1=removable media
+///; # Removable volume byte; one bit per volume (set if removable)
+///; 1,                                           x,           3,      4,    5,    6,        7, 8,    9, 10, 11,  12,13,14
+/// Example entry
+///9895    = "HP9895A dual 1.15M AMIGO floppy disc",       AMIGO, 0x0081, 0x00, 0x00, 0x000000, 1,   77,  2, 30, 256, 7, 1
+///
+///@return void
+
+typedef struct {
+    char model[32];			// 1 HP Model number
+    char comment[64];  		// 2
+	char TYPE[32];     		// 3 SS80,CS80,AMIGO
+    int  ID;				// 4 Request Identify ID
+	int  mask_stat2;		// 5
+	int  id_stat2;			// 6
+	int  DEVICE_NUMBER;		// 7 BCD part of model number * 10
+	int	 UNITS_INSTALLED; 	// 8	ALWAYS 1 , FIXED
+	int  CYLINDERS;	    	// 9
+	int  HEADS;				// 10
+	int  SECTORS;			// 11
+	int  BYTES_PER_BLOCK;	// 12
+	int  INTERLEAVE;		// 13
+    int  FIXED;				// 14 ALWAYS 1
+
+	// Computed values
+	long BLOCKS;
+	long LIF_DIR_BLOCKS;
+#if 0
+	// Our parameters
+	// AMIGO
+	// SS80 values
+	int	 MAX_CYLINDER;
+	int  MAX_HEAD;
+	int  MAX_SECTOR;
+	long MAX_BLOCK_NUMBER;
+	// Compute the number of LIF directory blocks
+#endif
+} hpdir_t;
+// =============================================
 
 /* drives.c */
 void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
@@ -282,24 +345,29 @@ void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
 uint32_t B2V_MSB ( uint8_t *B , int index , int size );
 uint32_t B2V_LSB ( uint8_t *B , int index , int size );
 int find_type ( int type );
+int count_drive_types ( uint8_t type );
 char *type_to_str ( int type );
 char *base_to_str ( int base );
 int find_free ( void );
 int find_device ( int type , int address , int base );
 int set_active_device ( int index );
+void SS80_Set_Defaults ( int index );
 int alloc_device ( int type );
 void init_Devices ( void );
-int count_drive_types ( uint8_t type );
 int push_state ( int state );
 int pop_state ( void );
 uint32_t assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
 void set_Config_Defaults ( void );
-int POSIX_Read_Config ( char *name );
+void hpdir_init ( void );
+long lif_dir_count ( long blocks );
+int hpdir_parameters ( char *name , char *model );
+int Read_Config ( char *name );
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
 void display_Config ( void );
 void format_drives ( void );
+
 
 // =============================================
 #endif     // _DRIVES_H

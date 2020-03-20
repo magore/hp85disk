@@ -778,7 +778,7 @@ int td0_read_disk(disk_t *disk)
 
 
 /// @brief Analize TeleDisk disk sector data 
-/// Problem: We may a disk reformatted multiple times
+/// Problem: We may have a disk that was reformatted multiple times
 ///          Each format may have used differing sector sizes, number of tracks, sides
 /// For example:
 ///   First format 80 track disk, two sided, and 9 512 byte sectors per track

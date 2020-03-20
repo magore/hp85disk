@@ -14,7 +14,6 @@ var searchData=
   ['pop_5fstate',['pop_state',['../drives_8c.html#a45b0cf880b953984f9351f5d2bd9c77d',1,'pop_state():&#160;drives.c'],['../drives_8h.html#a8848ed41fc10bb2ac57676522df757f4',1,'pop_state(void):&#160;drives.c']]],
   ['posix_5ffopen_5fmodes_5fto_5fopen',['posix_fopen_modes_to_open',['../posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c'],['../posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc',1,'posix_fopen_modes_to_open(const char *mode):&#160;posix.c']]],
   ['posix_5fhelp',['posix_help',['../posix__tests_8c.html#ae59f48db88ed3bb8f9c549a7fbe9717d',1,'posix_help(int full):&#160;posix_tests.c'],['../posix__tests_8h.html#ae59f48db88ed3bb8f9c549a7fbe9717d',1,'posix_help(int full):&#160;posix_tests.c']]],
-  ['posix_5fread_5fconfig',['POSIX_Read_Config',['../drives_8c.html#a8f8d1205c8538831eb4196a29cf3f186',1,'POSIX_Read_Config(char *name):&#160;drives.c'],['../drives_8h.html#a8f8d1205c8538831eb4196a29cf3f186',1,'POSIX_Read_Config(char *name):&#160;drives.c']]],
   ['posix_5ftests',['posix_tests',['../posix__tests_8c.html#a36d7c93fa658c992f9a881b89bb7f0af',1,'posix_tests(int argc, char *argv[]):&#160;posix_tests.c'],['../posix__tests_8h.html#a17dd7f0bdee86a5149c37d18ec3305e1',1,'posix_tests(int argc, char *argv []):&#160;posix_tests.c']]],
   ['power_5foff',['power_off',['../mmc_8c.html#aeb5620f777b0f4aa1d4f0baed62998a9',1,'mmc.c']]],
   ['power_5fon',['power_on',['../mmc_8c.html#aa2280c6de741431ee6eaecc9a3254874',1,'mmc.c']]],

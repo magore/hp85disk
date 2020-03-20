@@ -61,7 +61,7 @@ var searchData=
   ['cmp_5flfn',['cmp_lfn',['../ff_8c.html#adcedde346219d87f91e412c1efa9a7b5',1,'ff.c']]],
   ['cofactor',['Cofactor',['../matrix_8c.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c'],['../matrix_8h.html#aa96a1963cc354fe2a055eae3c846227c',1,'Cofactor(mat_t MatA, int row, int col):&#160;matrix.c']]],
   ['cols',['cols',['../struct__mat.html#a5ee73c0c8484d47a000464681b298762',1,'_mat']]],
-  ['comment',['comment',['../structdisk__t.html#abd7a6652f29f0059638dab7a88558783',1,'disk_t']]],
+  ['comment',['comment',['../structhpdir__t.html#aa2ba4f9a627c74e84a515e8ac4893bfb',1,'hpdir_t::comment()'],['../structhpdir.html#a574c1602e6f78692be2ca81d26128e70',1,'hpdir::comment()'],['../structdisk__t.html#abd7a6652f29f0059638dab7a88558783',1,'disk_t::comment()']]],
   ['compressed',['compressed',['../structdisk__t.html#abe333f1a8b322fbed0d1c1178939016e',1,'disk_t']]],
   ['config',['CONFIG',['../structAMIGODiskType.html#aae94c3403ceb917006591e7bd4109207',1,'AMIGODiskType::CONFIG()'],['../structSS80DiskType.html#aeff2b9e1dcd95310e9e8dee63a60ed95',1,'SS80DiskType::CONFIG()']]],
   ['configtype',['ConfigType',['../structConfigType.html',1,'']]],
@@ -71,10 +71,13 @@ var searchData=
   ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
   ['controller_2ec',['controller.c',['../controller_8c.html',1,'']]],
   ['controller_2eh',['controller.h',['../controller_8h.html',1,'']]],
+  ['controller_5fcontroller',['CONTROLLER_CONTROLLER',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41',1,'drives.h']]],
   ['controller_5fifc',['controller_ifc',['../controller_8c.html#a4132447e49c7066515471e30958151d0',1,'controller_ifc():&#160;controller.c'],['../controller_8h.html#ae697f6dbf1676478adbe30ff1f945d55',1,'controller_ifc(void):&#160;controller.c']]],
   ['controller_5fread_5fstr',['controller_read_str',['../controller_8c.html#a23add31910ce106daebe6790a0575dcd',1,'controller_read_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c'],['../controller_8h.html#a23add31910ce106daebe6790a0575dcd',1,'controller_read_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c']]],
   ['controller_5fread_5ftrace',['controller_read_trace',['../controller_8c.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c'],['../controller_8h.html#af027c36d1fffacf39a7a691fa78695c1',1,'controller_read_trace(uint8_t from, uint8_t to):&#160;controller.c']]],
   ['controller_5fsend_5fstr',['controller_send_str',['../controller_8c.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c'],['../controller_8h.html#abbd136c3538a9c8f49c58bf0daf7008d',1,'controller_send_str(uint8_t from, uint8_t to, char *str, int len):&#160;controller.c']]],
+  ['controller_5fstate',['CONTROLLER_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2',1,'drives.h']]],
+  ['controller_5funit',['CONTROLLER_UNIT',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428',1,'drives.h']]],
   ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
   ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
@@ -107,5 +110,5 @@ var searchData=
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()'],['../structtrack__t.html#ab0489765c2499c501ce16426ec2b0c86',1,'track_t::Cyl()']]],
   ['cylinder',['cylinder',['../structsector__t.html#abf5eb245097466ac9624e59a379a2409',1,'sector_t']]],
-  ['cylinders',['CYLINDERS',['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()']]]
+  ['cylinders',['Cylinders',['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()'],['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structhpdir__t.html#afda568f3e8bf184e9e58c4048fda04e7',1,'hpdir_t::CYLINDERS()'],['../structhpdir.html#a9d9c55a2ea7b79f47eb319c58e603f7f',1,'hpdir::CYLINDERS()']]]
 ];

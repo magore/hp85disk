@@ -89,7 +89,7 @@ int \hyperlink{td02lif_8h_ab49e4bf7cf89d5c6b90181a6bac46de6}{td0\+\_\+open} (\hy
 int \hyperlink{td02lif_8h_a87120823fa3dd587214e6c70ebde151f}{td0\+\_\+read\+\_\+disk} (\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$\hyperlink{td02lif_8c_affcceda12b139f26819f4929be705eb1}{disk})
 \begin{DoxyCompactList}\small\item\em Read Tele\+Disk image file and save all sector data. \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8h_ac777daf6e56deb920d24ac72f83f0624}{td0\+\_\+analize\+\_\+format} (\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$\hyperlink{td02lif_8c_affcceda12b139f26819f4929be705eb1}{disk})
-\begin{DoxyCompactList}\small\item\em Analize Tele\+Disk disk sector data Problem\+: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example\+: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Analize Tele\+Disk disk sector data Problem\+: We may have a disk that was reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example\+: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8h_a2b045f601a00f806f99e466e18109a08}{td0\+\_\+save\+\_\+lif} (\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$\hyperlink{td02lif_8c_affcceda12b139f26819f4929be705eb1}{disk}, \hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF)
 \begin{DoxyCompactList}\small\item\em save remaining sectors as L\+IF data \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8h_a08cbf8c12076d3677df348da2dbf7ca2}{td0\+\_\+save\+\_\+lif\+\_\+sector} (\hyperlink{structdisk__t}{disk\+\_\+t} $\ast$\hyperlink{td02lif_8c_affcceda12b139f26819f4929be705eb1}{disk}, uint8\+\_\+t $\ast$data, int size, \hyperlink{structlif__t}{lif\+\_\+t} $\ast$L\+IF)
@@ -375,7 +375,7 @@ Referenced by lif\+\_\+tests().
 
 
 
-Analize Tele\+Disk disk sector data Problem\+: We may a disk reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example\+: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. 
+Analize Tele\+Disk disk sector data Problem\+: We may have a disk that was reformatted multiple times Each format may have used differing sector sizes, number of tracks, sides For example\+: First format 80 track disk, two sided, and 9 512 byte sectors per track Second format 35 tracks, single sided, 16 sectors 256 bytes size per track Clearly we only want the 35 tracks on the first side. 
 
 What we do is examine the first 30 tracks (note\+: 30 is just a safe number less then 35) On side 1, on 30 tracks Find first sector and save its size Reject sectors that do not match size Find Last sector matching size Count sectors matching size On side 2, on 30 tracks Reject sectors that do not match size Find first sector and save its size Find Last sector matching size Count sectors matching size
 

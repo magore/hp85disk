@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['mask_5fstat2',['mask_stat2',['../structhpdir__t.html#a0d1e30875c8f50d763e06933fc00f4c8',1,'hpdir_t::mask_stat2()'],['../structhpdir.html#ae5df4f2faefc4eafab4d4f8f76174c65',1,'hpdir::mask_stat2()']]],
   ['max',['max',['../structp__ch__t.html#a0dee9f28e498d427e53051b7e1846d34',1,'p_ch_t']]],
   ['max_5fblock_5fnumber',['MAX_BLOCK_NUMBER',['../structSS80VolumeType.html#afe3db69c9ec54fa6d9fd48f3e6e9097b',1,'SS80VolumeType']]],
   ['max_5fcylinder',['MAX_CYLINDER',['../structSS80VolumeType.html#a53b65739246cea4e0d9095c88b03be8e',1,'SS80VolumeType']]],
@@ -8,6 +9,7 @@ var searchData=
   ['maximum_5finterleave',['MAXIMUM_INTERLEAVE',['../structSS80UnitType.html#ab215c7a9a84d0d5003a2dcfbd18e4b7d',1,'SS80UnitType']]],
   ['minute',['Minute',['../structtd__comment__t.html#a40d01b0af51b4896e0d771e8a458ed87',1,'td_comment_t']]],
   ['mmc_5finit_5fflag',['mmc_init_flag',['../mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4',1,'mmc_hal.c']]],
+  ['model',['model',['../structhpdir__t.html#acf68613aa50c2bd1f14956167c021d88',1,'hpdir_t::model()'],['../structhpdir.html#ae561ebb76038ed1dfe4b2511d445ad55',1,'hpdir::model()']]],
   ['modtime',['modtime',['../structutimbuf.html#a7588ffe699a9eda52e94aa593bf7d6d8',1,'utimbuf']]],
   ['month',['Month',['../structtd__comment__t.html#ac926fbfad0e3544bb45bb05b7cd66c49',1,'td_comment_t']]],
   ['msg',['msg',['../structfault__t.html#a9037306efc26edf60b59bc1ee6843c69',1,'fault_t']]]

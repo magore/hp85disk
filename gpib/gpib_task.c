@@ -44,8 +44,11 @@ void gpib_file_init()
 
     debuglevel = 0;
 
-    errors = POSIX_Read_Config(cfgfile);
-    printf("%s had %d errors\n", cfgfile, errors);
+    errors = Read_Config(cfgfile);
+	if(errors > 0)
+		printf("%s had %d errors\n", cfgfile, errors);
+	if(errors < 0)
+		printf("%s open failure\n", cfgfile);
 
     ///@brief set any compile time defaults - but only those NOT already set by the config file
     set_Config_Defaults();
