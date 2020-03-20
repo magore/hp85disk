@@ -14,7 +14,7 @@ var searchData=
   ['filestartsector',['FileStartSector',['../structlifdir__t.html#ac17bb6f653b05078f5fc8112c21286f2',1,'lifdir_t']]],
   ['filetype',['FileType',['../structlifdir__t.html#a7a93a706ac4bb88f65826619c9b02231',1,'lifdir_t']]],
   ['first',['first',['../structliftel__t.html#a2269b4ce15afd4b98369c38752d31037',1,'liftel_t::first()'],['../structtrack__t.html#a1ffa3863c3fb622cb158e5275c99c55c',1,'track_t::First()']]],
-  ['fixed',['FIXED',['../structhpdir__t.html#aadd83c87e729700a5a688fed3efb2ca5',1,'hpdir_t::FIXED()'],['../structhpdir.html#ac3e0a6afce05a177e54f95b071924088',1,'hpdir::FIXED()']]],
+  ['fixed',['FIXED',['../structhpdir__t.html#aadd83c87e729700a5a688fed3efb2ca5',1,'hpdir_t']]],
   ['fixed_5fvolumes',['FIXED_VOLUMES',['../structSS80UnitType.html#ae1d52bfc5a9bdb8f6f26ba6dffd7c2f6',1,'SS80UnitType']]],
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
   ['flags',['flags',['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()'],['../structtd__sector__t.html#ad30cfc0c6589ff25f8456ada5b352efa',1,'td_sector_t::Flags()']]],

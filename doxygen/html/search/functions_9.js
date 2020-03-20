@@ -6,7 +6,6 @@ var searchData=
   ['i2c_5fstop',['I2C_Stop',['../LCD_8c.html#a80d6addfa2666f16452c9bdb7a5e0d32',1,'I2C_Stop():&#160;LCD.c'],['../LCD_8h.html#afce134e0a1b6a8bc503c97b37639c9e6',1,'I2C_Stop(void):&#160;LCD.c']]],
   ['iexp',['iexp',['../mathio_8h.html#a29526ba629435aeaee7e3201242a9234',1,'mathio.h']]],
   ['init_5fdevices',['init_Devices',['../drives_8c.html#a756aa4b7d6e1757b9465729dffe7ed7f',1,'init_Devices():&#160;drives.c'],['../drives_8h.html#a31361bab0d441c06afb14a7af1d657c9',1,'init_Devices(void):&#160;drives.c']]],
-  ['init_5fdisk',['init_disk',['../hpdir_8c.html#a11b45f71f1f175f9fc2388b697299e06',1,'hpdir.c']]],
   ['init_5ftimers',['init_timers',['../timer_8c.html#acb0c9c995c634465d7d1f534bd862f8e',1,'init_timers():&#160;timer.c'],['../timer_8h.html#a4a06b0b10204f441d18c79601b4ee13f',1,'init_timers(void):&#160;timer.c']]],
   ['initialize_5fclock',['initialize_clock',['../time_8c.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c'],['../time_8h.html#a0be4566aa9ed3f590570de0787f2cc12',1,'initialize_clock(int minwest):&#160;time.c']]],
   ['insert_5fsort',['insert_sort',['../sort_8c.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c'],['../sort_8h.html#aa20af8cced686b05ccdee0b9601f10bb',1,'insert_sort(uint16_t *v, int size):&#160;sort.c']]],

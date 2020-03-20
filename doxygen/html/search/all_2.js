@@ -21,7 +21,7 @@ var searchData=
   ['blkcnt_5ft',['blkcnt_t',['../posix_8h.html#a2706f994576080967d7633282dfcabbf',1,'posix.h']]],
   ['blksize_5ft',['blksize_t',['../posix_8h.html#a390f3028d0805a15c3d28ee27439c389',1,'posix.h']]],
   ['block_5ftime',['BLOCK_TIME',['../structSS80UnitType.html#ab94c4b75c74e08e128d4802f5dec0dd5',1,'SS80UnitType']]],
-  ['blocks',['BLOCKS',['../structhpdir__t.html#a4b4f32c9b9cfe558ce5fbd51d65b5db3',1,'hpdir_t::BLOCKS()'],['../structhpdir.html#acf23c02ae0b762bebc9bea81618c4454',1,'hpdir::BLOCKS()']]],
+  ['blocks',['BLOCKS',['../structhpdir__t.html#a4b4f32c9b9cfe558ce5fbd51d65b5db3',1,'hpdir_t']]],
   ['bool',['bool',['../user__config_8h.html#af6a258d8f3ee5206d682d799316314b1',1,'user_config.h']]],
   ['bpb_5factfatex',['BPB_ActFatEx',['../ff_8c.html#a44afd74528bc3b7208dee55c78505a0a',1,'ff.c']]],
   ['bpb_5fbkbootsec32',['BPB_BkBootSec32',['../ff_8c.html#a6fceac966c2f2b277e8f472c5a7de0c7',1,'ff.c']]],
@@ -93,6 +93,6 @@ var searchData=
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
   ['byte',['byte',['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h'],['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;integer.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
-  ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType::BYTES_PER_BLOCK()'],['../structhpdir__t.html#a5b24f184136dbc60d1c2a9f74dcb2956',1,'hpdir_t::BYTES_PER_BLOCK()'],['../structhpdir.html#a39c4462a29e33bb7c8712c3a4e4a2356',1,'hpdir::BYTES_PER_BLOCK()']]],
+  ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType::BYTES_PER_BLOCK()'],['../structhpdir__t.html#a5b24f184136dbc60d1c2a9f74dcb2956',1,'hpdir_t::BYTES_PER_BLOCK()']]],
   ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGeometryType.html#a446d9194981ebd7af3c1b11cdbdf0cfd',1,'AMIGOGeometryType']]]
 ];
