@@ -38,7 +38,7 @@
 #endif
 
 #ifdef AVR
-#include "hardware/iom1284p.h"
+#include "iom1284p.h"
 #endif
 
 #ifdef ESP8266

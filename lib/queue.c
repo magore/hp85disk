@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #endif
 
-#include "lib/queue.h"
+#include "queue.h"
 
 /**
   @brief Create a ring buffer of a given size

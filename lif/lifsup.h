@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <stdint.h>
 #include <string.h>
 #include <strings.h>
 #include <sys/stat.h>
@@ -28,14 +29,13 @@
 
 #define MEMSPACE /**/
 typedef struct tm tm_t;
-#define MATCH(a,b) (strcmp(a,b) == 0 ? 1: 0)
 #define safecalloc(a,b) calloc(a,b)
 #define safefree(a) free(a)
 #define sync() 
+
+#include "../lib/stringsup.h"
 #include "lifutils.h"
-
 #include "td02lif.h"
-
 
 void copyright();
 

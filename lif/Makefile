@@ -21,8 +21,9 @@ CFLAGS = -O -D_GNU_SOURCE -g -static
 CFLAGS += -DLIF_STAND_ALONE
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
 CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
+CFLAGS += 
 
-SRC =  lifsup.c lifutils.c teledisk/td0_lzss.c
+SRC =  lifsup.c lifutils.c teledisk/td0_lzss.c 
 LIBS = -lm
 
 ifeq ($(TELEDISK),1)

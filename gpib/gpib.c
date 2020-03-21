@@ -16,12 +16,8 @@
 
 */
 
-#include <avr/pgmspace.h>
-#include <avr/portpins.h>
-#include <avr/io.h>
-
 #include "user_config.h"
-#include "hardware/hal.h"
+#include "hal.h"
 #include "gpib_hal.h"
 
 #include "defines.h"

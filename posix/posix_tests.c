@@ -31,9 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#include <stdio.h>
 #include <stdlib.h>
 #endif
-#include "lib/time.h"
-#include "lib/stringsup.h"
-#include "printf/mathio.h"
+#include "time.h"
+#include "stringsup.h"
+#include "mathio.h"
 #include "posix.h"
 #include "posix_tests.h"
 
@@ -52,23 +52,33 @@ void posix_help(int full)
 #ifdef POSIX_TESTS
             "posix prefix is optional\n"
 #endif
+#ifdef POSIX_EXTENDED_TESTS
         "posix chmod file NNN\n"
+#endif
         "posix cat file [-p]\n"
         "posix cd dir\n"
         "posix copy file1 file2\n"
+#ifdef POSIX_EXTENDED_TESTS
         "posix hexdump file [-p]\n"
         "posix log str\n"
+#endif
         "posix ls dir [-l]\n"
         "posix mkdir dir\n"
+#ifdef POSIX_EXTENDED_TESTS
         "posix mkfs\n"
+#endif
         "posix page NN\n"
         "posix pwd\n"
+#ifdef POSIX_EXTENDED_TESTS
         "posix stat file\n"
         "posix sum file\n"
+#endif
         "posix rm file\n"
         "posix rmdir dir\n"
         "posix rename old new\n"
+#ifdef POSIX_EXTENDED_TESTS
         "posix upload file\n"
+#endif
         "\n" );
     }
 }
@@ -119,12 +129,13 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
+#ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"chmod",(ind+2),argc))
     {
         chmod( argv[ind],strtol(argv[ind+1],NULL,8));
         return(1);
     }
-
+#endif
 
     if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
@@ -139,6 +150,7 @@ int posix_tests(int argc,char *argv[])
     }
 
 
+#ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
     {
         int i;
@@ -161,6 +173,7 @@ int posix_tests(int argc,char *argv[])
         logfile(argv[ind],argv[ind+1]);
         return(1);
     }
+#endif
 
     if (MATCHARGS(ptr,"ls", (ind + 0), argc))
     {
@@ -179,12 +192,14 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
+#ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"mkfs", (ind + 1), argc))
     {
 
         mkfs(argv[ind++]);
         return(1);
     }
+#endif
 
     if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
     {
@@ -222,6 +237,7 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
+#ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"sum", (ind + 1), argc))
     {
         sum(argv[ind]);
@@ -235,6 +251,7 @@ int posix_tests(int argc,char *argv[])
         dump_stat(&p);
         return(1);
     }
+#endif
 
     if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
@@ -242,11 +259,13 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
+#ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"upload", (ind + 1), argc))
     {
         upload(argv[ind]);
         return(1);
     }
+#endif
 
     return(0);
 }
@@ -356,6 +375,7 @@ long copy(char *from,char *to)
 
 
 
+#ifdef POSIX_EXTENDED_TESTS
 /// @brief hex listing of file with paging, "q" exits
 /// @param[in] *name: file to hexdump
 /// @retrun void
@@ -415,6 +435,7 @@ int hexdump(char *name, int dopage)
     fclose(fi);
     return(1);
 }
+#endif
 
 /// @brief Used to page output of functions like cat, hexdump, etc
 /// @param[in] *name: file to hexdump
@@ -592,6 +613,7 @@ int ls(char *name, int verbose)
 }
 
 
+#ifdef POSIX_EXTENDED_TESTS
 /// @brief  Log string to a file
 /// @param[in] name: name of file to create.
 /// @param[in] str: string containing file contents.
@@ -618,7 +640,9 @@ long logfile(char *name, char *str)
     fclose(fo);
     return(size);
 }
+#endif
 
+#ifdef POSIX_EXTENDED_TESTS
 /// @brief sum of a file with 16bit hex and integer results
 /// @param[in] *name: file to sum
 /// @retrun void
@@ -651,6 +675,8 @@ uint16_t sum(char *name)
     printf("Sum: %04Xh, %5u\n", (int) sum, (unsigned int) sum);
     return(sum);
 }
+#endif
+#ifdef POSIX_EXTENDED_TESTS
 
 /// FIXME TODO
 /// @brief Capture an ASCII file to sdcard
@@ -691,3 +717,4 @@ long upload(char *name)
     sync();
     return(size);
 }
+#endif

@@ -56,7 +56,7 @@ int \hyperlink{drives_8c_a21b219166399e8a1195b92d6a9872bbe}{push\+\_\+state} (in
 \begin{DoxyCompactList}\small\item\em Push Parser State. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a45b0cf880b953984f9351f5d2bd9c77d}{pop\+\_\+state} ()
 \begin{DoxyCompactList}\small\item\em Pop Parser State. \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}{assign\+\_\+value} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}{assign\+\_\+value} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
 \begin{DoxyCompactList}\small\item\em assigned a value \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_af14d66761d39f4a2d5f7c3ac59439034}{set\+\_\+\+Config\+\_\+\+Defaults} ()
 \begin{DoxyCompactList}\small\item\em Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. \end{DoxyCompactList}\item 
@@ -64,7 +64,7 @@ void \hyperlink{drives_8c_a62325ad76bfc3f8644185f0579f07b1a}{hpdir\+\_\+init} ()
 \begin{DoxyCompactList}\small\item\em hpdir.\+ini file processing \end{DoxyCompactList}\item 
 long \hyperlink{drives_8c_a264e7130c0a912421d467a5924ff0fef}{lif\+\_\+dir\+\_\+count} (long blocks)
 \begin{DoxyCompactList}\small\item\em L\+IF Directory blocks $\sim$= sqrt(blocks);. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8c_a34e98db94dcf8c199e0596d8f7e74389}{hpdir\+\_\+parameters} (char $\ast$name, char $\ast$model)
+void \hyperlink{drives_8c_a1557e80f16394cd0aa243391d48cf5f5}{hpdir\+\_\+parameters} (int index, char $\ast$model)
 \begin{DoxyCompactList}\small\item\em Open hpdir.\+ini file. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}{Read\+\_\+\+Config} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Read and parse a config file using P\+O\+S\+IX functions Set all drive parameters and debuglevel. \end{DoxyCompactList}\item 
@@ -87,11 +87,11 @@ static int \hyperlink{drives_8c_a7396cc31899052a2a171fbfe3f32b2d9}{stack\+\_\+p}
 \item 
 \hyperlink{structDeviceType}{Device\+Type} \hyperlink{drives_8c_acfedc9290d5356e240da3373bb0ebdbd}{Devices} \mbox{[}\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}\mbox{]}
 \item 
-\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} $\ast$ \hyperlink{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} $\ast$ \hyperlink{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \begin{DoxyCompactList}\small\item\em Active Printer Device. \end{DoxyCompactList}\item 
-\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} $\ast$ \hyperlink{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} $\ast$ \hyperlink{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \begin{DoxyCompactList}\small\item\em Active S\+S80 Device. \end{DoxyCompactList}\item 
-\hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \item 
 \hyperlink{structhpdir__t}{hpdir\+\_\+t} \hyperlink{drives_8c_a6edb848661be578eca78845085870674}{hpdir}
 \begin{DoxyCompactList}\small\item\em hpdir.\+ini file processing \end{DoxyCompactList}\item 
@@ -166,11 +166,11 @@ Definition at line 517 of file drives.\+c.
 
 Referenced by Read\+\_\+\+Config().
 
-\mbox{\Hypertarget{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}\label{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}} 
+\mbox{\Hypertarget{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}\label{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}} 
 \index{drives.\+c@{drives.\+c}!assign\+\_\+value@{assign\+\_\+value}}
 \index{assign\+\_\+value@{assign\+\_\+value}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{assign\+\_\+value()}{assign\_value()}}
-{\footnotesize\ttfamily uint32\+\_\+t assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
 
 
 
@@ -195,7 +195,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 622 of file drives.\+c.
+Definition at line 624 of file drives.\+c.
 
 
 
@@ -321,7 +321,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1575 of file drives.\+c.
+Definition at line 1613 of file drives.\+c.
 
 
 
@@ -344,7 +344,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1612 of file drives.\+c.
+Definition at line 1650 of file drives.\+c.
 
 
 
@@ -449,7 +449,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1708 of file drives.\+c.
+Definition at line 1755 of file drives.\+c.
 
 
 
@@ -474,17 +474,17 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 737 of file drives.\+c.
+Definition at line 739 of file drives.\+c.
 
 
 
 Referenced by hpdir\+\_\+parameters().
 
-\mbox{\Hypertarget{drives_8c_a34e98db94dcf8c199e0596d8f7e74389}\label{drives_8c_a34e98db94dcf8c199e0596d8f7e74389}} 
+\mbox{\Hypertarget{drives_8c_a1557e80f16394cd0aa243391d48cf5f5}\label{drives_8c_a1557e80f16394cd0aa243391d48cf5f5}} 
 \index{drives.\+c@{drives.\+c}!hpdir\+\_\+parameters@{hpdir\+\_\+parameters}}
 \index{hpdir\+\_\+parameters@{hpdir\+\_\+parameters}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{hpdir\+\_\+parameters()}{hpdir\_parameters()}}
-{\footnotesize\ttfamily int hpdir\+\_\+parameters (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{model }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void hpdir\+\_\+parameters (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{char $\ast$}]{model }\end{DoxyParamCaption})}
 
 
 
@@ -506,12 +506,14 @@ Open hpdir.\+ini file.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 1 on sucess or 0 on fail 
-
-N\+U\+LL if no token found 
 \end{DoxyReturn}
 
 
-Definition at line 805 of file drives.\+c.
+Definition at line 796 of file drives.\+c.
+
+
+
+Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}\label{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}} 
 \index{drives.\+c@{drives.\+c}!init\+\_\+\+Devices@{init\+\_\+\+Devices}}
@@ -551,7 +553,7 @@ Size of L\+IF directory in blocks
 \end{DoxyReturn}
 
 
-Definition at line 779 of file drives.\+c.
+Definition at line 771 of file drives.\+c.
 
 
 
@@ -572,7 +574,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 602 of file drives.\+c.
+Definition at line 604 of file drives.\+c.
 
 
 
@@ -600,7 +602,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1563 of file drives.\+c.
+Definition at line 1601 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8c_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -624,7 +626,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1548 of file drives.\+c.
+Definition at line 1586 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8c_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
@@ -646,7 +648,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 591 of file drives.\+c.
+Definition at line 593 of file drives.\+c.
 
 
 
@@ -674,7 +676,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 973 of file drives.\+c.
+Definition at line 997 of file drives.\+c.
 
 
 
@@ -721,7 +723,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 668 of file drives.\+c.
+Definition at line 670 of file drives.\+c.
 
 
 
@@ -881,7 +883,7 @@ Config file line number.
 
 
 
-Definition at line 611 of file drives.\+c.
+Definition at line 613 of file drives.\+c.
 
 
 
@@ -891,7 +893,7 @@ Referenced by assign\+\_\+value(), Mat\+Read(), and Read\+\_\+\+Config().
 \index{drives.\+c@{drives.\+c}!P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}}
 \index{P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{P\+R\+I\+N\+T\+E\+Rp}{PRINTERp}}
-{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}$\ast$ P\+R\+I\+N\+T\+E\+Rp = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}$\ast$ P\+R\+I\+N\+T\+E\+Rp = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 
@@ -905,7 +907,7 @@ Definition at line 32 of file drives.\+c.
 \index{drives.\+c@{drives.\+c}!S\+S80p@{S\+S80p}}
 \index{S\+S80p@{S\+S80p}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{S\+S80p}{SS80p}}
-{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}$\ast$ S\+S80p = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}$\ast$ S\+S80p = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 
@@ -923,7 +925,7 @@ Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+
 \index{drives.\+c@{drives.\+c}!S\+S80s@{S\+S80s}}
 \index{S\+S80s@{S\+S80s}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{S\+S80s}{SS80s}}
-{\footnotesize\ttfamily \hyperlink{structSS80StateType}{S\+S80\+State\+Type}$\ast$ S\+S80s = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structSS80StateType}{S\+S80\+State\+Type}$\ast$ S\+S80s = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 

@@ -2,7 +2,7 @@ var searchData=
 [
   ['ndac',['NDAC',['../gpib__hal_8h.html#a1ab54a10fda88683f0334ff44ed767b4',1,'gpib_hal.h']]],
   ['ndac_5fflag',['NDAC_FLAG',['../gpib_8h.html#ad1653d0cd48b2a0c72d422ba4aff114f',1,'gpib.h']]],
-  ['no_5fscanf',['NO_SCANF',['../user__config_8h.html#a21b034d5f0cf6ffe22668e12816734ef',1,'user_config.h']]],
+  ['no_5fscanf',['NO_SCANF',['../hardware_2user__config_8h.html#a21b034d5f0cf6ffe22668e12816734ef',1,'user_config.h']]],
   ['no_5ftrace',['NO_TRACE',['../gpib_8h.html#ace2bb0d802a911ea5b057e58286641cc',1,'gpib.h']]],
   ['nrfd',['NRFD',['../gpib__hal_8h.html#a66d99cbdcb5eca1c98305670555c7fed',1,'gpib_hal.h']]],
   ['nrfd_5fflag',['NRFD_FLAG',['../gpib_8h.html#a1da25e2a8e12198ac9a381d09c566a8e',1,'gpib.h']]],
@@ -15,5 +15,5 @@ var searchData=
   ['ns_5fnolfn',['NS_NOLFN',['../ff_8c.html#a4355b699eba89ff8a3615ef62128caff',1,'ff.c']]],
   ['ns_5fnoname',['NS_NONAME',['../ff_8c.html#a03a711029b966a7fad4f01e546b5e034',1,'ff.c']]],
   ['nsflag',['NSFLAG',['../ff_8c.html#ad2306816015e67e72cfd0a20a880b227',1,'ff.c']]],
-  ['null',['NULL',['../user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4',1,'user_config.h']]]
+  ['null',['NULL',['../hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4',1,'user_config.h']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'calloc():&#160;user_config.h'],['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;ram.h']]],
+  ['calloc',['calloc',['../hardware_2user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'calloc():&#160;user_config.h'],['../ram_8h.html#ae148919146e88c7c40c7e2f781649b31',1,'calloc(size_t nmemb, size_t size):&#160;ram.h']]],
   ['cardtype',['CardType',['../mmc_8c.html#ae9edfbb60df250acb70f5f287eb1497a',1,'mmc.c']]],
   ['cat',['cat',['../posix__tests_8c.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c'],['../posix__tests_8h.html#aeff1a094f806e4de30ef181e9a09cbe4',1,'cat(char *name, int dopage):&#160;posix_tests.c']]],
   ['cdir',['cdir',['../structFATFS.html#a217d0ce0c8cec84aa7f0c142679412c6',1,'FATFS']]],
@@ -79,7 +79,7 @@ var searchData=
   ['controller_5fstate',['CONTROLLER_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2',1,'drives.h']]],
   ['controller_5funit',['CONTROLLER_UNIT',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428',1,'drives.h']]],
   ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
-  ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
+  ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../hardware_2user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['count_5fdrive_5ftypes',['count_drive_types',['../drives_8c.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c'],['../drives_8h.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c']]],
@@ -110,5 +110,5 @@ var searchData=
   ['current',['current',['../gpib_8c.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c'],['../gpib_8h.html#aaad5615d233044464c3661481a6760cd',1,'current():&#160;gpib.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()'],['../structtrack__t.html#ab0489765c2499c501ce16426ec2b0c86',1,'track_t::Cyl()']]],
   ['cylinder',['cylinder',['../structsector__t.html#abf5eb245097466ac9624e59a379a2409',1,'sector_t']]],
-  ['cylinders',['Cylinders',['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()'],['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structhpdir__t.html#afda568f3e8bf184e9e58c4048fda04e7',1,'hpdir_t::CYLINDERS()']]]
+  ['cylinders',['Cylinders',['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()'],['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structhpdir__t.html#ac153c658b4e5333b529826d125d40e1e',1,'hpdir_t::CYLINDERS()']]]
 ];

@@ -35,10 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #endif
 
-#include "lib/time.h"
-#include "lib/stringsup.h"
+#include "time.h"
+#include "stringsup.h"
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
 /// @brief Display FatFs test diagnostics help menu.
 /// @return  void

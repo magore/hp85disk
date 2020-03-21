@@ -16,6 +16,7 @@
 
 #include "lifsup.h"
 #include "lifutils.h"
+#include "../lib/stringsup.c"
 
 int debuglevel = 0x0001;
 
@@ -85,41 +86,6 @@ time_t timegm(struct tm * a_tm)
 }
 
 #endif
-
-
-///@brief Match two strings and compare argument index
-/// Display  message if the number of arguments is too few
-///@param str: string to test
-///@param pat: pattern to match
-///@param min: minumum number or arguments
-///@param argc: actual number of arguments
-///@return 1 on match, 0 on no match or too few arguments
-int MATCHARGS(char *str, char *pat, int min, int argc)
-{
-    if(strcmp(str,pat) == 0)
-    {
-        if(argc >= min)
-            return(1);
-        else
-            printf("%s expected %d arguments only got %d\n", pat, min,argc);
-    }
-    return(0);
-}
-
-
-///@brief Remove white space at the end of lines
-///@param str: string
-///@return void
-void trim_tail(char *str)
-{
-    int len = strlen(str);
-    while(len--)
-    {
-        if(str[len] > ' ')
-            break;
-        str[len] = 0;
-    }
-}
 
 
 ///@brief Convert Value into byte array
@@ -211,38 +177,6 @@ void B2S(uint8_t *B, int index, uint8_t *name, int size)
 }
 
 
-///@brief Set bit in vector
-///@param[out] p: vector
-///@param[in] bit: bit number to set
-///@return void
-void BITSET_LSB(uint8_t *p, int bit)
-{
-    int index = bit >> 3;
-    bit &= 0x07;
-    p[index] |= (1 << bit);
-}
-
-///@brief Clear bit in vector
-///@param[out] p: vector
-///@param[in] bit: bit number to clear
-///@return void
-void BITCLR_LSB(uint8_t *p, int bit)
-{
-    int index = bit >> 3;
-    bit &= 0x07;
-    p[index] &= ~(1 << bit);
-}
-
-///@brief Test bit in vector
-///@param[out] p: vector
-///@param[in] bit: bit number to test
-///@return 1 if set, 0 if not
-int BITTST_LSB(uint8_t *p, int bit)
-{
-    int index = bit >> 3;
-    bit &= 0x07;
-    return( (p[index] & (1 << bit)) ? (int) 1 : (int) 0 );
-}
     
 /// @brief Compute CRC16 of 8bit data
 /// @see https://en.wikipedia.org/wiki/Cyclic_redundancy_check
@@ -312,87 +246,7 @@ void hexdump(uint8_t *data, int size)
     }
     printf("\n");
 }
-// =============================================
-///@brief Skip white space in a string - tabs and spaces.
-///
-///@param[in] ptr: input string
-///
-///@return pointer to first non white space character
-MEMSPACE
-char *skipspaces(char *ptr)
-{
-    if(!ptr)
-        return(ptr);
 
-    while(*ptr == ' ' || *ptr == '\t')
-        ++ptr;
-    return(ptr);
-}
-
-
-// =============================================
-///@brief return next token
-///
-/// - Skips all non printable ASCII characters before token
-/// - Token returns only printable ASCII
-///
-///@param[in] str: string to search.
-///@param[out] token: token to return
-///@param[in] max: maximum token size
-///
-///@return pointer past token on success .
-///@return NULL if no token found
-char *get_token(char *str, char *token, int max)
-{
-    if(!str)
-        return(str);
-
-    // Skip beginning spaces
-    str = skipspaces(str);
-    // Delete all trailing spaces
-    trim_tail(str);
-
-    while(*str > ' ' && max > 0) {
-
-        // String processing
-        // A token can be a quoted string
-        if(*str == '"')
-        {
-            ++str;
-            // We are pointing at the body of the quoted string now
-            while(*str && *str != '"' && max > 0)
-            {
-                *token++ = *str++;
-                --max;
-            }
-            if(*str == '"')
-            {
-                ++str;
-                *token++ = 0;
-                --max;
-                break;
-            }
-            break;
-        }
-
-        // If we have a comma, break
-        if(*str == ',' )
-            break;
-
-        // copy token
-        *token++ = *str++;
-        --max;
-    }
-
-    // Skip trailing spaces
-    str = skipspaces(str);
-    // If we had a trailing comma skip it
-    if(*str == ',' )
-        ++str;
-
-    *token = 0;
-    return(str);
-}
 ///@brief Display Copyright
 ///@return void
 void copyright()

@@ -578,6 +578,8 @@ void init_Devices()
         Devices[i].TYPE = NO_TYPE;
         Devices[i].ADDRESS = 0;
         Devices[i].PPR = 0xff;
+        Devices[i].BLOCKS = 0;
+        memset(Devices[i].model, 0, sizeof(Devices[i].model) );
         Devices[i].dev = NULL;
         Devices[i].state = NULL;
     }
@@ -619,7 +621,7 @@ int lines = 0;
 /// @param[in] *val: value to set
 ///
 /// @return  1 is matched and value in range, 0 not matched or out of range
-uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
+bool assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
 {
     uint32_t tmp;
     int bad = 0;
@@ -754,16 +756,6 @@ void hpdir_init()
 	// Computed values
     hpdir.BLOCKS = 0;
 	hpdir.LIF_DIR_BLOCKS= 0;
-
-#if 0
-	// BLOCKS  = CYLINDERS * HEADS * SECTOR -1;
-	// MAX_BLOCK_NUMBER = BLOCKS - 1
-	// MAX_BLOCK_NUMBER =(MAX_CYLINDER-1) * (MAX_HEAD-1) * (MAX_SECTOR-1) -1;
-	hpdir.MAX_CYLINDER = 0;
-	hpdir.MAX_HEAD = 0;
-	hpdir.MAX_SECTOR = 0;
-	hpdir.MAX_BLOCK_NUMBER = 0;
-#endif
 }
 
 
@@ -801,8 +793,7 @@ long lif_dir_count(long blocks)
 ///@param[in] list: list flag
 ///
 ///@return 1 on sucess or 0 on fail
-///@return NULL if no token found
-int hpdir_parameters(char *name, char *model)
+void hpdir_parameters(int index, char *model)
 {
     int len;
 	char *ptr;
@@ -810,14 +801,34 @@ int hpdir_parameters(char *name, char *model)
     int errors = 0;
     int driveinfo=0;
 	FILE *cfg;
+    SS80DiskType *SS80p = NULL;
+    AMIGODiskType *AMIGOp = NULL;
     char str[256];
-    char token[64];
+    char token[128];
+
+	if(Devices[index].TYPE == SS80_TYPE)
+	{
+		SS80p = (SS80DiskType *) Devices[index].dev;
+	}
+	else if(Devices[index].TYPE == AMIGO_TYPE)
+	{
+		AMIGOp = (AMIGODiskType *) Devices[index].dev;
+	}
+	else
+	{
+		printf("hpdir_parameters invalid TYPE\n");
+		return;
+	}
 
 	hpdir_init();
 
-	cfg = fopen(name,"rb");
-	if(cfg != NULL)
-		return(-1);
+	cfg = fopen("/hpdir.ini","rb");
+	if(cfg == NULL)
+	{
+		printf("Error: /hpdir.ini not found!\n");
+		return;
+	}
+	//printf("Searching /hpdir.ini for model:%s\n", model);
 
     while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
     {
@@ -855,6 +866,7 @@ int hpdir_parameters(char *name, char *model)
 			continue;
 
 		hpdir_init();
+		printf("Found Model: %s\n", model);
 
 		strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
 
@@ -868,13 +880,14 @@ int hpdir_parameters(char *name, char *model)
 		ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);
 		// Identify ID
 
+
 		ptr = get_token(ptr, token, 		sizeof(token)-2);
 		if (!assign_value(token, 0, 0xFFFFUL, &val) )
 			++errors;
 		hpdir.ID = val;						// 4
 
 		// MASK STAT2
-		ptr = get_token(ptr, token, 		sizeof(token)-12);
+		ptr = get_token(ptr, token, 		sizeof(token)-2);
 		if (!assign_value(token, 0, 0xFFUL, &val) )
 			++errors;
 		hpdir.mask_stat2 = val;				// 5
@@ -897,13 +910,13 @@ int hpdir_parameters(char *name, char *model)
 			++errors;
 		hpdir.UNITS_INSTALLED = val;		// 8
 
+
 		// Cylinders
 		ptr = get_token(ptr, token, 		sizeof(token)-2);
 		if (!assign_value(token, 0, 0x00ffffffUL, &val) )
 			++errors;
 		// Token is CYLINDERS, MAX_CYLINDER = CYLINDERS -1
 		hpdir.CYLINDERS = val;				// 9
-
 
 		// Heads
 		ptr = get_token(ptr, token, 		sizeof(token)-2);
@@ -919,7 +932,6 @@ int hpdir_parameters(char *name, char *model)
 		// Token is SECTORS, MAX_SECTOR = SECTORS -1
 		hpdir.SECTORS = val;				// 11
 
-
 		// Bytes per sector
 		ptr = get_token(ptr, token, 		sizeof(token)-2);
 		if (!assign_value(token, 0, 0xffffUL, &val) )
@@ -932,37 +944,49 @@ int hpdir_parameters(char *name, char *model)
 			++errors;
 		hpdir.INTERLEAVE = val;				// 13
 
+
 		// Computed values
-		hpdir.BLOCKS = hpdir.CYLINDERS * hpdir.HEADS * hpdir.SECTORS;
+		hpdir.BLOCKS = ( hpdir.CYLINDERS * hpdir.HEADS * hpdir.SECTORS );
+
+
 		hpdir.LIF_DIR_BLOCKS = lif_dir_count(hpdir.BLOCKS);
 
-/*
- 		val = hpdir.CYLINDERS;			// 9
- 		if (val)
- 			--val;
- 		hpdir.MAX_CYLINDER = val;
- 
- 		val = hpdir.HEADS;				// 10
- 		if (val)
- 			--val;
- 		hpdir.MAX_HEAD = val;
- 
- 		hpdir.SECTORS = val;				// 11
- 		if (val)
- 			--val;
- 		hpdir.MAX_SECTOR = val;
- 		// Total disk blocks
- 		// Lst block in SS80 drive
- 		hpdir.MAX_BLOCK_NUMBER = hpdir.BLOCKS-1;
-*/
+		if(errors)
+		{
+			printf("Error /hpdir.ini parsing\n");
+			break;
+		}
+
+
+		if(Devices[index].TYPE == SS80_TYPE)
+		{
+			SS80p->CONFIG.ID = hpdir.ID;
+			SS80p->UNIT.DEVICE_NUMBER = hpdir.DEVICE_NUMBER;
+			SS80p->UNIT.BYTES_PER_BLOCK = hpdir.BYTES_PER_BLOCK;
+			SS80p->VOLUME.MAX_CYLINDER = hpdir.CYLINDERS-1;
+			SS80p->VOLUME.MAX_HEAD = hpdir.HEADS-1;
+			SS80p->VOLUME.MAX_SECTOR = hpdir.SECTORS-1;
+			SS80p->VOLUME.MAX_BLOCK_NUMBER = hpdir.BLOCKS-1;
+		}
+
+		if(Devices[index].TYPE == AMIGO_TYPE)
+		{
+			AMIGOp->CONFIG.ID = hpdir.ID;
+			AMIGOp->GEOMETRY.BYTES_PER_SECTOR = hpdir.BYTES_PER_BLOCK;
+			AMIGOp->GEOMETRY.SECTORS_PER_TRACK = hpdir.SECTORS;
+			AMIGOp->GEOMETRY.HEADS = hpdir.HEADS;
+			AMIGOp->GEOMETRY.CYLINDERS = hpdir.CYLINDERS;
+		}
+		Devices[index].BLOCKS = hpdir.BLOCKS;
+		strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -1);
 
 		break;
 
 	}	// while
-
 	fclose(cfg);
-	return(errors);
+	// printf("Done /hpdir.ini\n\n");
 }
+
 
 /// ===============================================
 /// @brief Read and parse a config file using POSIX functions
@@ -1052,23 +1076,36 @@ int Read_Config(char *name)
 				state = SS80_STATE;
 				index = alloc_device(SS80_TYPE);
 				if(index == -1)
+				{
 					state = START_STATE;
+				}
 				else
+				{
 					SS80p = (SS80DiskType *) Devices[index].dev;
-            }
+					ptr += ind;
+					ptr = skipspaces(ptr);
+					hpdir_parameters(index,ptr);
+				}
+			}
 
 #ifdef AMIGO
-            else if(token(ptr,"AMIGO"))
+            else if( (ind = token(ptr,"AMIGO")) )
             {
                 push_state(state);
                 state = AMIGO_STATE;
                 index = alloc_device(AMIGO_TYPE);
                 if(index == -1)
+				{
                     state = START_STATE;
+				}
                 else
+				{
                     AMIGOp = (AMIGODiskType *) Devices[index].dev;
-
-            }
+					ptr += ind;
+					ptr = skipspaces(ptr);
+					hpdir_parameters(index,ptr);
+				}
+			}
 #endif
             else if(token(ptr,"PRINTER"))
             {
@@ -1383,6 +1420,7 @@ int Read_Config(char *name)
                 if (!assign_value(ptr, 0, 0xFFUL, &val) )
                     ++errors;
                 SS80p->VOLUME.INTERLEAVE = val;
+
             }
             else
             {
@@ -1632,18 +1670,21 @@ void display_Config()
         {
             SS80p= (SS80DiskType *)Devices[i].dev;
 
-            printf("SS80\n");
+            printf("SS80 %s\n", Devices[i].model);
 			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) SS80p->HEADER.ADDRESS);
             printf("  CONFIG\n");
                 print_var("ADDRESS", (uint32_t) SS80p->HEADER.ADDRESS);
                 print_var("PPR", (uint32_t) SS80p->HEADER.PPR);
                 print_str("FILE", SS80p->HEADER.NAME);
+			printf("  END\n");
             printf("  HEADER\n");
                 print_var("ID", (uint32_t) SS80p->CONFIG.ID);
+			printf("  END\n");
             printf("  CONTROLLER\n");
                 print_var("UNITS_INSTALLED", (uint32_t) SS80p->CONTROLLER.UNITS_INSTALLED);
                 print_var("TRANSFER_RATE", (uint32_t)  SS80p->CONTROLLER.TRANSFER_RATE);
                 print_var("TYPE", (uint32_t)  SS80p->CONTROLLER.TYPE);
+			printf("  END\n");
             printf("  UNIT\n");
                 print_var("UNIT_TYPE", (uint32_t)SS80p->UNIT.UNIT_TYPE);
                 print_var("DEVICE_NUMBER", (uint32_t)SS80p->UNIT.DEVICE_NUMBER);
@@ -1657,6 +1698,7 @@ void display_Config()
                 print_var("MAXIMUM_INTERLEAVE", (uint32_t)SS80p->UNIT.MAXIMUM_INTERLEAVE);
                 print_var("FIXED_VOLUMES", (uint32_t)SS80p->UNIT.FIXED_VOLUMES);
                 print_var("REMOVABLE_VOLUMES", (uint32_t)SS80p->UNIT.REMOVABLE_VOLUMES);
+			printf("  END\n");
             printf("  VOLUME\n");
                 print_var("MAX_CYLINDER", (uint32_t)SS80p->VOLUME.MAX_CYLINDER);
                 print_var("MAX_HEAD", (uint32_t)SS80p->VOLUME.MAX_HEAD);
@@ -1664,6 +1706,7 @@ void display_Config()
                 print_var("MAX_BLOCK_NUMBER", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
                 print_var("INTERLEAVE", (uint32_t)SS80p->VOLUME.INTERLEAVE);
                 print_var("# BLOCKS", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER+1);
+			printf("  END\n");
         } // SS80_TYPE
 
 #ifdef AMIGO
@@ -1671,20 +1714,23 @@ void display_Config()
         {
             AMIGOp= (AMIGODiskType *)Devices[i].dev;
 
-            printf("AMIGO\n");
+            printf("AMIGO %s\n", Devices[i].model);
 			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) AMIGOp->HEADER.ADDRESS);
             printf("  HEADER\n");
                 print_var("ADDRESS", (uint32_t) AMIGOp->HEADER.ADDRESS);
                 print_var("PPR", (uint32_t) AMIGOp->HEADER.PPR);
                 print_str("FILE", AMIGOp->HEADER.NAME);
+			printf("  END\n");
             printf("  CONFIG\n");
                 print_var("ID", (uint32_t) AMIGOp->CONFIG.ID);
+			printf("  END\n");
             printf("  GEOMETRY\n");
                 print_var("BYTES_PER_SECTOR", (uint32_t) AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
                 print_var("SECTORS_PER_TRACK", (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
                 print_var("HEADS", (uint32_t) AMIGOp->GEOMETRY.HEADS);
                 print_var("CYLINDERS", (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
                 print_var("# BLOCKS", (uint32_t)AMIGOp->GEOMETRY.CYLINDERS * AMIGOp->GEOMETRY.SECTORS_PER_TRACK * AMIGOp->GEOMETRY.HEADS );
+			printf("  END\n");
         } 
 #endif // #ifdef AMIGO
 
@@ -1695,11 +1741,12 @@ void display_Config()
             printf("PRINTER\n");
             printf("  CONFIG\n");
                 print_var("ADDRESS", (uint32_t) PRINTERp->HEADER.ADDRESS);
+			printf("  END\n");
         }
-        printf("\n");
+		printf("END\n");
+		printf("\n");
     }
     printf("END\n");
-    printf("\n");
     printf("\n");
 }
 

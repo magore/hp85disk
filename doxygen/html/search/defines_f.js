@@ -11,7 +11,7 @@ var searchData=
   ['print_5fstr',['print_str',['../drives_8h.html#a39fe89f113f9ddf062c4bdc0bb5a781b',1,'drives.h']]],
   ['print_5fvar',['print_var',['../drives_8h.html#a78f400f61a9a345a22df811a5b3ddc63',1,'drives.h']]],
   ['printer_5fdefault_5faddress',['PRINTER_DEFAULT_ADDRESS',['../defines_8h.html#ae9f0ac7886649a3b31e17faad9956e4b',1,'defines.h']]],
-  ['printf',['printf',['../user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91',1,'user_config.h']]],
+  ['printf',['printf',['../hardware_2user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91',1,'user_config.h']]],
   ['pte_5fboot',['PTE_Boot',['../ff_8c.html#a74c1bb03f929236b18eb9c4a3df26a8c',1,'ff.c']]],
   ['pte_5fedcyl',['PTE_EdCyl',['../ff_8c.html#a0f96bb9d52c3a5bbd489b59772463cab',1,'ff.c']]],
   ['pte_5fedhead',['PTE_EdHead',['../ff_8c.html#a151137a5b01c29730bbf4ee63c773d12',1,'ff.c']]],

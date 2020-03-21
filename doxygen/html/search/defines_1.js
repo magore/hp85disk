@@ -20,5 +20,5 @@ var searchData=
   ['atmega1284p',['atmega1284p',['../cpu_8h.html#a1dde60a96d9d6917b0abc4d26ea0aa73',1,'cpu.h']]],
   ['atn',['ATN',['../gpib__hal_8h.html#aea909158791869e412489f94e406bf49',1,'gpib_hal.h']]],
   ['atn_5fflag',['ATN_FLAG',['../gpib_8h.html#abbe287946c2beaa1f76fe5be364c07ad',1,'gpib.h']]],
-  ['avr',['AVR',['../user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]]
+  ['avr',['AVR',['../hardware_2user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]]
 ];

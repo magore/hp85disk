@@ -30,16 +30,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #endif
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
-#include "lib/time.h"
-#include "lib/timer.h"
+#include "time.h"
+#include "timer.h"
 
 #ifdef ESP8266
-#include "esp8266/hspi.h"
+#include "hspi.h"
 #endif
 
-#include "fatfs.sup/fatfs.h"
+#include "fatfs.h"
 
 extern DSTATUS Stat;
 

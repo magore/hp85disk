@@ -71,7 +71,7 @@ declare D
 for D in 0 1 2 3 
 do
 	#               TYPE    FILE         PPR/ADDRESS
-	mkcfg -m 9121 -f /amigo$D.lif -a $D -p $D >>"$SDCARD/amigo.cfg"
+	mkcfg -s -m 9121 -f /amigo$D.lif -a $D -p $D >>"$SDCARD/amigo.cfg"
 done
 
 echo "Creating COMBINED Config hpdisk.cfg"
@@ -83,7 +83,7 @@ for D in 0 1
 do
 	# The generated file name must match the LIF images previously created above
 	#               TYPE    FILE         PPR/ADDRESS
-	mkcfg -m 9121 -f /amigo$D.lif -a $D -p $D >>"$SDCARD/hpdisk.cfg"
+	mkcfg -s -m 9121 -f /amigo$D.lif -a $D -p $D >>"$SDCARD/hpdisk.cfg"
 done
 
 echo "Creating SS80 records in hpdisk.cfg"
@@ -92,5 +92,5 @@ do
 	# The generated file name must match the LIF images previously created above
     S=$(($D+2))
 	#               TYPE    FILE         PPR/ADDRESS
-    mkcfg -m 9134D -f /ss80-$D.lif -p $S -a $S >>"$SDCARD/hpdisk.cfg"
+    mkcfg -s -m 9134D -f /ss80-$D.lif -p $S -a $S >>"$SDCARD/hpdisk.cfg"
 done

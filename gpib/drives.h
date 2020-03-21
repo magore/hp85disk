@@ -254,14 +254,18 @@ enum DEVICE_TYPES
     PRINTER_TYPE
 };
 
+#define MODEL_SIZE 32
+
 ///@brief Device Type 
 typedef struct
 {
-    uint8_t TYPE;   // TYPE SS80,AMIGO or PRINTER TYPE
-    uint8_t ADDRESS;// ADDRESS
-    uint8_t PPR;    // PPR
-    void *dev;      // Disk or Printer Structure
-    void *state;    // Disk or Printer State Structure
+    uint8_t  TYPE;   // TYPE SS80,AMIGO or PRINTER TYPE
+    uint8_t  ADDRESS;// ADDRESS
+    uint8_t  PPR;    // PPR
+	uint32_t BLOCKS;// Disk Blocks
+	char     model[MODEL_SIZE];
+    void     *dev;      // Disk or Printer Structure
+    void     *state;    // Disk or Printer State Structure
 } DeviceType;
 // =============================================
 ///@convert print_var strings into __memx space
@@ -307,35 +311,25 @@ extern DeviceType Devices[MAX_DEVICES];
 ///
 ///@return void
 
+
 typedef struct {
-    char model[32];			// 1 HP Model number
+    char model[MODEL_SIZE];	// 1 HP Model number
     char comment[64];  		// 2
 	char TYPE[32];     		// 3 SS80,CS80,AMIGO
-    int  ID;				// 4 Request Identify ID
-	int  mask_stat2;		// 5
-	int  id_stat2;			// 6
-	int  DEVICE_NUMBER;		// 7 BCD part of model number * 10
-	int	 UNITS_INSTALLED; 	// 8	ALWAYS 1 , FIXED
-	int  CYLINDERS;	    	// 9
-	int  HEADS;				// 10
-	int  SECTORS;			// 11
-	int  BYTES_PER_BLOCK;	// 12
-	int  INTERLEAVE;		// 13
-    int  FIXED;				// 14 ALWAYS 1
-
+    long ID;				// 4 Request Identify ID
+	long mask_stat2;		// 5
+	long id_stat2;			// 6
+	long DEVICE_NUMBER;		// 7 BCD part of model number * 10
+	long UNITS_INSTALLED; 	// 8	ALWAYS 1 , FIXED
+	long CYLINDERS;	    	// 9
+	long HEADS;				// 10
+	long SECTORS;			// 11
+	long BYTES_PER_BLOCK;	// 12
+	long INTERLEAVE;		// 13
+    long FIXED;				// 14 ALWAYS 1
 	// Computed values
 	long BLOCKS;
 	long LIF_DIR_BLOCKS;
-#if 0
-	// Our parameters
-	// AMIGO
-	// SS80 values
-	int	 MAX_CYLINDER;
-	int  MAX_HEAD;
-	int  MAX_SECTOR;
-	long MAX_BLOCK_NUMBER;
-	// Compute the number of LIF directory blocks
-#endif
 } hpdir_t;
 // =============================================
 
@@ -356,18 +350,17 @@ int alloc_device ( int type );
 void init_Devices ( void );
 int push_state ( int state );
 int pop_state ( void );
-uint32_t assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
+bool assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
 void set_Config_Defaults ( void );
 void hpdir_init ( void );
 long lif_dir_count ( long blocks );
-int hpdir_parameters ( char *name , char *model );
+void hpdir_parameters ( int index, char *model );
 int Read_Config ( char *name );
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
 void display_Config ( void );
 void format_drives ( void );
-
 
 // =============================================
 #endif     // _DRIVES_H

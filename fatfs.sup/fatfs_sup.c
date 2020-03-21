@@ -28,15 +28,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
-#include "fatfs.sup/fatfs.h"
+#include "fatfs.h"
 
 #ifdef AVR
 #include <stdlib.h>
 #endif
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
-#include "lib/time.h"
+#include "time.h"
 
 
 ///@brief FatFs Drive Volumes

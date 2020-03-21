@@ -11,7 +11,7 @@
 */
 
 #include "user_config.h"
-#include "lib/time.h"
+#include "time.h"
 
 /// @brief Convert number >= 0 and <= 99 to BCD.
 ///

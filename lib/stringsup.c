@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "user_config.h"
 
 #include <string.h>
-#include "lib/stringsup.h"
+#include "stringsup.h"
 
 // =============================================
 ///@brief print seperator
@@ -270,6 +270,8 @@ strupper(char *str)
 MEMSPACE
 void trim_tail(char *str)
 {
+	if(!str)
+		return;
     int len = strlen(str);
     while(len--)
     {
@@ -627,7 +629,10 @@ int split_args(char *str, char *argv[], int max)
 MEMSPACE
 char *get_token(char *str, char *token, int max)
 {
-    if(!str)
+
+	*token = 0;
+
+    if(!str || *str == 0)
         return(str);
 
     // Skip beginning spaces
@@ -651,7 +656,7 @@ char *get_token(char *str, char *token, int max)
             if(*str == '"')
             {
                 ++str;
-                *token++ = 0;
+                *token = 0;
                 --max;
                 break;
             }
@@ -678,39 +683,6 @@ char *get_token(char *str, char *token, int max)
 }
 
 
-#if 0
-char *get_token(char *str, char *token, int max)
-{
-    int len;
-
-    *token = 0;
-
-    // NULL ?
-    if(!str)
-        return(NULL);
-
-    str = skipspaces(str);
-
-    // Find size of token
-    len = 0;
-    while(*str > ' ' && *str <= 0x7e && len < max)
-    {
-        // clip token to max length
-        if(len < max)
-        {
-            *token++ = *str++;
-            ++len;
-        }
-    }
-    *token = 0;
-    // str points past the token
-    if(!len)
-        return(NULL);
-    return(str);
-}
-#endif
-
-
 // =============================================
 ///@brief Search for token in a string matching user pattern.
 ///
@@ -728,6 +700,9 @@ int token(char *str, char *pat)
     int patlen;
     int len;
     char *ptr;
+
+    if(!str || *str == 0)
+        return(0);
 
     ptr = skipspaces(str);
     len = 0;
@@ -765,6 +740,8 @@ int32_t get_value(char *str)
     char *ptr;
     char *endptr;
 
+    if(!str || *str == 0)
+        return(0);
 
     ptr = skipspaces(str);
     base = 10;

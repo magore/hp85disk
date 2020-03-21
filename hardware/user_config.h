@@ -36,10 +36,15 @@
 ///#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <ctype.h>
+
+#include <avr/pgmspace.h>
+#include <avr/portpins.h>
+#include <avr/io.h>
 
 #include "hardware/iom1284p.h"
 #include "hardware/hal.h"

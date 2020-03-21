@@ -168,7 +168,7 @@ var searchData=
   ['llo',['LLO',['../amigo_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;amigo.h'],['../defines_8h.html#af75952fda4dcd61b5fd81ecc2f764413',1,'LLO():&#160;defines.h']]],
   ['localtime',['localtime',['../time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c'],['../time_8h.html#a08eb1818fa59b3e6e1f1470ca0888572',1,'localtime(time_t *tp):&#160;time.c']]],
   ['localtime_5fr',['localtime_r',['../time_8c.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c'],['../time_8h.html#af05576742e2f8ad3924c02a6af70a86d',1,'localtime_r(time_t *t, tm_t *result):&#160;time.c']]],
-  ['logfile',['logfile',['../posix__tests_8c.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c'],['../posix__tests_8h.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'logfile(char *name, char *str):&#160;posix_tests.c']]],
+  ['logfile',['logfile',['../posix__tests_8h.html#a0e04c0a3e471dd3212246ad0e0f710ea',1,'posix_tests.h']]],
   ['logical_5faddress',['logical_address',['../structAMIGOStateType.html#a924a685ad68765a91714aa6ad4b20d9f',1,'AMIGOStateType']]],
   ['long',['LONG',['../integer_8h.html#a2a3e0cda5f1249bef6db47c5eb8e3813',1,'integer.h']]],
   ['ls',['ls',['../posix__tests_8c.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c'],['../posix__tests_8h.html#ad6e0550e9557209680b1640c814746d8',1,'ls(char *name, int verbose):&#160;posix_tests.c']]],

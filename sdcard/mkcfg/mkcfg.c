@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <libgen.h>
 
-#define MATCH(a,b) ( strcasecmp((a),(b)) == 0 ? 1 : 0 )
+#include "../../lib/stringsup.c"
 
 #define MAXLINE 256
 
@@ -106,139 +106,6 @@ void init_disk()
 	disk.LIF_DIR_BLOCKS= 0;
 }
 // =============================================
-#ifdef MKCFG_STANDALONE
-// =============================================
-
-// =============================================
-void trim_tail(char *str)
-{
-    int len = strlen(str);
-    while(len--)
-    {
-        if(str[len] > ' ')
-            break;
-        str[len] = 0;
-    }
-}
-
-// =============================================
-char *skipspaces(char *ptr)
-{
-    if(!ptr)
-        return(ptr);
-
-    while(*ptr == ' ' || *ptr == '\t')
-        ++ptr;
-    return(ptr);
-}
-
-
-// =============================================
-///@brief Compare two strings without case.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-int MATCHI(char *str, char *pat)
-{
-    int len;
-    len = strlen(pat);
-    if(strcasecmp(str,pat) == 0 )
-        return(len);
-    return(0);
-}
-// =============================================
-///@brief Compare two strings limted to length of pattern.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-///@warning Matches sub strings so be caeful.
-int MATCH_LEN(char *str, char *pat)
-{
-    int len;
-
-    if(!str || !pat)
-        return(0);
-    len = strlen(pat);
-
-    if( len )
-    {
-        if(strncmp(str,pat,len) == 0 )
-            return(len);
-    }
-    return(0);
-}
-
-// =============================================
-///@brief Compare two strings without case limted to length of pattern.
-///
-///@param[in] str: string to match.
-///@param[in] pat: pattern to compare.
-///
-///@return string lenth on match.
-///@return 0 on no match.
-///@warning Matches sub strings so be caeful.
-int MATCHI_LEN(char *str, char *pat)
-{
-    int len;
-
-    if(!str || !pat)
-        return(0);
-    len = strlen(pat);
-
-    if( len )
-    {
-        if(strncasecmp(str,pat,len) == 0 )
-            return(len);
-    }
-    return(0);
-}
-
-// =============================================
-/// @brief get a number
-///
-/// - Used only for debugging
-/// @param[in] str: string to examine
-///
-/// @return  value
-int32_t get_value(char *str)
-{
-    int base;
-    int ret;
-    char *ptr;
-    char *endptr;
-
-
-    ptr = skipspaces(str);
-    base = 10;
-
-    // convert number base 10, 16, 8 and 2
-    if( (ret = MATCHI_LEN(ptr,"0x")) )
-    {
-        base = 16;
-        ptr += ret;
-    }
-    else if( (ret = MATCHI_LEN(ptr,"0o")) )
-    {
-        base = 8;
-        ptr += ret;
-    }
-    else if( (ret = MATCHI_LEN(ptr,"0b")) )
-    {
-        base = 2;
-        ptr += ret;
-    }
-    return(strtol(ptr, (char **)&endptr, base));
-}
-
-
-
-// =============================================
 /// @brief assigned a value
 ///
 /// - Used only for debugging
@@ -248,7 +115,7 @@ int32_t get_value(char *str)
 /// @param[in] *val: value to set
 ///
 /// @return  1 is matched and value in range, 0 not matched or out of range
-uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
+int assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
 {
     uint32_t tmp;
     int bad = 0;
@@ -288,73 +155,6 @@ uint32_t assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val
         return(0);
     return(1);
 }
-
-// =============================================
-///@brief return next token
-///
-/// - Skips all non printable ASCII characters before token
-/// - Token returns only printable ASCII
-///
-///@param[in] str: string to search.
-///@param[out] token: token to return
-///@param[in] max: maximum token size
-///
-///@return pointer past token on success .
-///@return NULL if no token found
-char *get_token(char *str, char *token, int max)
-{
-    if(!str)
-        return(str);
-
-    // Skip beginning spaces
-    str = skipspaces(str);
-    // Delete all trailing spaces
-    trim_tail(str);
-
-    while(*str > ' ' && max > 0) {
-
-        // String processing
-        // A token can be a quoted string
-        if(*str == '"')
-        {
-            ++str;
-            // We are pointing at the body of the quoted string now
-            while(*str && *str != '"' && max > 0)
-            {
-                *token++ = *str++;
-                --max;
-            }
-            if(*str == '"')
-            {
-                ++str;
-                *token++ = 0;
-                --max;
-                break;
-            }
-            break;
-        }
-
-        // If we have a comma, break
-        if(*str == ',' )
-			break;
-
-        // copy token
-        *token++ = *str++;
-        --max;
-    }
-
-    // Skip trailing spaces
-    str = skipspaces(str);
-    // If we had a trailing comma skip it
-    if(*str == ',' )
-        ++str;
-
-    *token = 0;
-    return(str);
-}
-
-// =============================================
-#endif // ifdef MKCFG_STANDALONE
 // =============================================
 
 // =============================================
@@ -620,7 +420,7 @@ int get_drive_params(char *name,char *model, int list)
 ///@param[in] lifename: LIF file name to use for image
 ///
 ///@return void
-void config_list( int ppr, int address, char *lifname )
+void config_list( int ppr, int address, char *lifname, int detail)
 {
 
 	if(MATCH(disk.TYPE,"SS80") || MATCH(disk.TYPE,"CS80") )
@@ -646,53 +446,56 @@ void config_list( int ppr, int address, char *lifname )
 			"        PPR                     = %d\n"
 			"          # LIF image file name\n"
 			"        FILE                    = %s\n"
-			"    END\n"
-			"\n"
-			"    CONFIG\n"
-			"          # Request Identify ID\n"
-			"        ID                      = 0x%04x\n"
-			"    END\n"
-			"\n"
-			"\n"
-			"    UNIT\n"
-			"            # BCD Device number XX XX XY, X=Unit, Y=option\n"
-			"        DEVICE_NUMBER           = 0x%08x\n"
-			"    END\n"
-			"\n"
-			"    VOLUME\n"
-			"            # Maximum Cylinder = %d = CYLINDERS-1 not used\n"
-			"        MAX_CYLINDER            = 0\n"
-			"            # Maximum Head      = %d = HEADS-1 not used\n"
-			"        MAX_HEAD                = 0\n"
-			"            # Maximum Sector    = %d = SECTORS-1 not used\n"
-			"        MAX_SECTOR              = 0\n"
-			"            # Maximum value of single vector address in blocks.\n"
-			"            #   NOTE: For devices that use both MAX_BLOCK_NUMBER and CYLINDER,HEAD,SECTOR\n"
-			"            #   Note: The follow expressions must be true if BOTH CHS and BLOCKS are used\n"
-			"            #   MAX_BLOCK_NUMBER = (MAX_CYLINDERS+1) * (MAX_HEAD+1) * (MAX_SECTOR+1) -1;\n"
-			"            #   BLOCKS = CYLINDERS * HEADS * SECTORS -1\n"
-			"            #   MAX_BLOCK_NUMBER  = BLOCKS -1\n"
-			"            #   BLOCKS = %ld\n"
-			"        MAX_BLOCK_NUMBER        = %ld\n"
-			"            # Current Interleave Factor\n"
-			"    END\n"
-			"\n"
-			"#   RESERVED DIRECTORY BLOCKS = %ld\n"
-			"END\n\n",
+			"    END\n",
 				disk.comment,
 				address,
 				disk.TYPE, disk.model,
 				address,
 				ppr,
-				disk.lifname,
-				disk.ID,
-				disk.DEVICE_NUMBER,
-				disk.MAX_CYLINDER,
-				disk.MAX_HEAD,
-				disk.MAX_SECTOR,
-				disk.BLOCKS,
-				disk.MAX_BLOCK_NUMBER,
-				disk.LIF_DIR_BLOCKS );
+				disk.lifname );
+
+		if(detail)
+		{
+			printf(\
+				"    CONFIG\n"
+				"          # Request Identify ID\n"
+				"        ID                      = 0x%04x\n"
+				"    END\n"
+				"\n"
+				"\n"
+				"    UNIT\n"
+				"            # BCD Device number XX XX XY, X=Unit, Y=option\n"
+				"        DEVICE_NUMBER           = 0x%08x\n"
+				"    END\n"
+				"\n"
+				"    VOLUME\n"
+				"            # Maximum Cylinder = %d = CYLINDERS-1 not used\n"
+				"        MAX_CYLINDER            = 0\n"
+				"            # Maximum Head      = %d = HEADS-1 not used\n"
+				"        MAX_HEAD                = 0\n"
+				"            # Maximum Sector    = %d = SECTORS-1 not used\n"
+				"        MAX_SECTOR              = 0\n"
+				"            # Maximum value of single vector address in blocks.\n"
+				"            #   NOTE: For devices that use both MAX_BLOCK_NUMBER and CYLINDER,HEAD,SECTOR\n"
+				"            #   Note: The follow expressions must be true if BOTH CHS and BLOCKS are used\n"
+				"            #   MAX_BLOCK_NUMBER = (MAX_CYLINDERS+1) * (MAX_HEAD+1) * (MAX_SECTOR+1) -1;\n"
+				"            #   BLOCKS = CYLINDERS * HEADS * SECTORS -1\n"
+				"            #   MAX_BLOCK_NUMBER  = BLOCKS -1\n"
+				"            #   BLOCKS = %ld\n"
+				"        MAX_BLOCK_NUMBER        = %ld\n"
+				"            # Current Interleave Factor\n"
+				"    END\n"
+				"#   RESERVED DIRECTORY BLOCKS = %ld\n",
+					disk.ID,
+					disk.DEVICE_NUMBER,
+					disk.MAX_CYLINDER,
+					disk.MAX_HEAD,
+					disk.MAX_SECTOR,
+					disk.BLOCKS,
+					disk.MAX_BLOCK_NUMBER,
+					disk.LIF_DIR_BLOCKS );
+		}	
+		printf("END\n\n");
 	}	// SS80
 
 	if( MATCH(disk.TYPE,"AMIGO") )
@@ -717,41 +520,44 @@ void config_list( int ppr, int address, char *lifname )
 			"        PPR                     = %d\n"
 			"            # LIF image file name\n"
 			"        FILE                    = %s\n"
-			"    END\n"
-			"\n"
-			"    CONFIG\n"
-			"            # Request Identify ID\n"
-			"        ID                      = 0x%04x\n"
-			"    END\n"
-			"\n"
-			"    GEOMETRY\n"
-			"            # Bytes Per Block\n"
-			"        BYTES_PER_SECTOR        = %d\n"
-			"            # Sectors Per Track\n"
-			"        SECTORS_PER_TRACK        = %d\n"
-			"            # Heads\n"
-			"        HEADS                   = %d\n"
-			"            # Cylinders\n"
-			"        CYLINDERS               = %d\n"
-			"            # BLOCKS = CYLINDERS * HEADS * SECTORS\n"
-			"            # BLOCKS = %ld\n"
-			"    END\n"
-			"\n"
-			"#   RESERVED DIRECTORY BLOCKS = %ld\n"
-			"END\n\n",
+			"    END\n",
 				disk.comment,
 				address,
 				disk.TYPE, disk.model,
 				address,
 				ppr,
-				disk.lifname,
-				disk.ID,
-				disk.BYTES_PER_BLOCK,
-				disk.SECTORS,
-				disk.HEADS,
-				disk.CYLINDERS,
-				disk.BLOCKS,
-				disk.LIF_DIR_BLOCKS );
+				disk.lifname );
+		if(detail)
+		{
+				printf(\
+				"    CONFIG\n"
+				"            # Request Identify ID\n"
+				"        ID                      = 0x%04x\n"
+				"    END\n"
+				"\n"
+				"    GEOMETRY\n"
+				"            # Bytes Per Block\n"
+				"        BYTES_PER_SECTOR        = %d\n"
+				"            # Sectors Per Track\n"
+				"        SECTORS_PER_TRACK        = %d\n"
+				"            # Heads\n"
+				"        HEADS                   = %d\n"
+				"            # Cylinders\n"
+				"        CYLINDERS               = %d\n"
+				"            # BLOCKS = CYLINDERS * HEADS * SECTORS\n"
+				"            # BLOCKS = %ld\n"
+				"    END\n"
+				"\n"
+				"#   RESERVED DIRECTORY BLOCKS = %ld\n",
+					disk.ID,
+					disk.BYTES_PER_BLOCK,
+					disk.SECTORS,
+					disk.HEADS,
+					disk.CYLINDERS,
+					disk.BLOCKS,
+					disk.LIF_DIR_BLOCKS );
+		}
+		printf("END\n\n");
 	} // AMIGO
 
 }
@@ -769,6 +575,7 @@ void usage(char *ptr)
 	printf("   -list lists all of the drives in the hpdir.ini file\n");
 	printf("   -a disk address 0..7\n");
 	printf("   -m model only, list hpdisk.cfg format disk configuration\n");
+	printf("   -s short hpdisk.cfg format\n");
 	printf("   -b only display block count, you can can use this with -m\n");
 	printf("   -d only display computed directory block count, you can use this with -m\n");
 	printf("   -f NAME specifies the LIF image name for this drive\n");
@@ -785,6 +592,7 @@ int main(int argc, char *argv[])
 
 	int ppr = 0;
 	int address = 0;
+	int detail = 1;
 
 	int blocks = 0;
 	int dir_size = 0;
@@ -816,6 +624,11 @@ int main(int argc, char *argv[])
 		if(MATCH(ptr,"-list") || MATCH(ptr,"-l" ))
 		{
 			list = 1;
+			continue;
+		}
+		if(MATCH(ptr,"-s"))
+		{
+			detail = 0;
 			continue;
 		}
 
@@ -872,8 +685,6 @@ int main(int argc, char *argv[])
 
 	init_disk();
 
-
-
 	ret = get_drive_params("hpdir.ini", model, list);
 
 	// Success ?
@@ -884,7 +695,7 @@ int main(int argc, char *argv[])
 		else if(blocks)
 			printf("%ld\n",disk.BLOCKS);
 		else if(model[0] )
-			config_list(address,ppr, lifname);
+			config_list(address,ppr, lifname, detail);
 	}
 	return(0);
 }

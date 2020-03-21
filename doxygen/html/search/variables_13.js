@@ -9,7 +9,7 @@ var searchData=
   ['unit',['UNIT',['../structSS80DiskType.html#ac630da1440afd60d726c7c41eb7b990c',1,'SS80DiskType']]],
   ['unit_5ftype',['UNIT_TYPE',['../structSS80UnitType.html#ae00e42430682e849d83b1ca4c8f44013',1,'SS80UnitType']]],
   ['unitno',['unitNO',['../structAMIGOStateType.html#a3d0cc02f8822c817feddf93dd08a5034',1,'AMIGOStateType::unitNO()'],['../structSS80StateType.html#ad2b3cd5353f5650df931520a39b385e7',1,'SS80StateType::unitNO()']]],
-  ['units_5finstalled',['UNITS_INSTALLED',['../structSS80ControllerType.html#a0868c32b362ef2af2ac64fa16aee8aae',1,'SS80ControllerType::UNITS_INSTALLED()'],['../structhpdir__t.html#a4390cad586b742ba0cb4a479871c5a8c',1,'hpdir_t::UNITS_INSTALLED()']]],
+  ['units_5finstalled',['UNITS_INSTALLED',['../structSS80ControllerType.html#a0868c32b362ef2af2ac64fa16aee8aae',1,'SS80ControllerType::UNITS_INSTALLED()'],['../structhpdir__t.html#a748150d5e0351e2d827f2a4def385ca9',1,'hpdir_t::UNITS_INSTALLED()']]],
   ['usedsectors',['usedsectors',['../structlif__t.html#ad81767a2f65b997d5abecba130b89814',1,'lif_t']]],
   ['user_5ftimer_5fhandler',['user_timer_handler',['../structTIMERS.html#a4326e05ca52d80147efafd0d246ecb41',1,'TIMERS']]]
 ];

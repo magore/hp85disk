@@ -66,7 +66,7 @@ var searchData=
   ['_5fprintf_5ft',['_printf_t',['../struct__printf__t.html',1,'']]],
   ['_5fputc_5fbuffer_5ffn',['_putc_buffer_fn',['../mathio_8h.html#a9b6f7fa030ba96220b734d45d737805a',1,'_putc_buffer_fn(struct _printf_t *p, char ch):&#160;printf.c'],['../printf_8c.html#a9b6f7fa030ba96220b734d45d737805a',1,'_putc_buffer_fn(struct _printf_t *p, char ch):&#160;printf.c']]],
   ['_5fputs_5fpad',['_puts_pad',['../mathio_8h.html#ab713fa5c01f315bdf67d18a6dbcb4ff5',1,'_puts_pad(printf_t *fn, char *s, int width, int count, int left):&#160;printf.c'],['../printf_8c.html#ab713fa5c01f315bdf67d18a6dbcb4ff5',1,'_puts_pad(printf_t *fn, char *s, int width, int count, int left):&#160;printf.c']]],
-  ['_5fsize_5ft',['_SIZE_T',['../user__config_8h.html#a0ba95ba075f659fa991ee3df107aa3c3',1,'user_config.h']]],
+  ['_5fsize_5ft',['_SIZE_T',['../hardware_2user__config_8h.html#a0ba95ba075f659fa991ee3df107aa3c3',1,'user_config.h']]],
   ['_5fspi_5fclock',['_spi_clock',['../hal_8c.html#a3f4bc3feab2b705606ef696eceb93fba',1,'hal.c']]],
   ['_5fstr_5fvolume_5fid',['_STR_VOLUME_ID',['../ffconf_8h.html#ae89b13dba7638cb22b5587fcb335ffe3',1,'ffconf.h']]],
   ['_5fstrf_5fencode',['_STRF_ENCODE',['../ffconf_8h.html#a36a53af63e05351562e34f082eec3f33',1,'ffconf.h']]],

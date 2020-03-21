@@ -22,8 +22,8 @@
 #ifdef AVR
 #include <stdlib.h>
 #endif
-#include "fatfs/ff.h"                                   /* Declarations of FatFs API */
-#include "fatfs.hal/diskio.h"                               /* Declarations of disk I/O functions */
+#include "ff.h"                                   /* Declarations of FatFs API */
+#include "diskio.h"                               /* Declarations of disk I/O functions */
 
 /*--------------------------------------------------------------------------
 

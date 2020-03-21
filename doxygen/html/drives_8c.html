@@ -75,7 +75,7 @@ $(function() {
 
 <p>drive definitions for HP85 disk emulator project for AVR.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="user__config_8h_source.html">user_config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;user_config.h&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="defines_8h_source.html">defines.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="drives_8h_source.html">drives.h</a>&quot;</code><br />
@@ -145,9 +145,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a45b0cf880b953984f9351f5d2bd9c77d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a45b0cf880b953984f9351f5d2bd9c77d">pop_state</a> ()</td></tr>
 <tr class="memdesc:a45b0cf880b953984f9351f5d2bd9c77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop Parser State.  <a href="#a45b0cf880b953984f9351f5d2bd9c77d">More...</a><br /></td></tr>
 <tr class="separator:a45b0cf880b953984f9351f5d2bd9c77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27684090bd1a441b3cb0478d2f7fedc5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a27684090bd1a441b3cb0478d2f7fedc5">assign_value</a> (char *str, uint32_t minval, uint32_t maxval, uint32_t *val)</td></tr>
-<tr class="memdesc:a27684090bd1a441b3cb0478d2f7fedc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">assigned a value  <a href="#a27684090bd1a441b3cb0478d2f7fedc5">More...</a><br /></td></tr>
-<tr class="separator:a27684090bd1a441b3cb0478d2f7fedc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0e509b202f29cc333b28da6105f6c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1">assign_value</a> (char *str, uint32_t minval, uint32_t maxval, uint32_t *val)</td></tr>
+<tr class="memdesc:a8b0e509b202f29cc333b28da6105f6c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">assigned a value  <a href="#a8b0e509b202f29cc333b28da6105f6c1">More...</a><br /></td></tr>
+<tr class="separator:a8b0e509b202f29cc333b28da6105f6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af14d66761d39f4a2d5f7c3ac59439034"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#af14d66761d39f4a2d5f7c3ac59439034">set_Config_Defaults</a> ()</td></tr>
 <tr class="memdesc:af14d66761d39f4a2d5f7c3ac59439034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty.  <a href="#af14d66761d39f4a2d5f7c3ac59439034">More...</a><br /></td></tr>
 <tr class="separator:af14d66761d39f4a2d5f7c3ac59439034"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +157,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a264e7130c0a912421d467a5924ff0fef"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a264e7130c0a912421d467a5924ff0fef">lif_dir_count</a> (long blocks)</td></tr>
 <tr class="memdesc:a264e7130c0a912421d467a5924ff0fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">LIF Directory blocks ~= sqrt(blocks);.  <a href="#a264e7130c0a912421d467a5924ff0fef">More...</a><br /></td></tr>
 <tr class="separator:a264e7130c0a912421d467a5924ff0fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34e98db94dcf8c199e0596d8f7e74389"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a34e98db94dcf8c199e0596d8f7e74389">hpdir_parameters</a> (char *name, char *model)</td></tr>
-<tr class="memdesc:a34e98db94dcf8c199e0596d8f7e74389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open hpdir.ini file.  <a href="#a34e98db94dcf8c199e0596d8f7e74389">More...</a><br /></td></tr>
-<tr class="separator:a34e98db94dcf8c199e0596d8f7e74389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1557e80f16394cd0aa243391d48cf5f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a1557e80f16394cd0aa243391d48cf5f5">hpdir_parameters</a> (int index, char *model)</td></tr>
+<tr class="memdesc:a1557e80f16394cd0aa243391d48cf5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open hpdir.ini file.  <a href="#a1557e80f16394cd0aa243391d48cf5f5">More...</a><br /></td></tr>
+<tr class="separator:a1557e80f16394cd0aa243391d48cf5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0ea5b4d5a144a8ab1c1d2c9b08aa21f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ab0ea5b4d5a144a8ab1c1d2c9b08aa21f">Read_Config</a> (char *name)</td></tr>
 <tr class="memdesc:ab0ea5b4d5a144a8ab1c1d2c9b08aa21f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and parse a config file using POSIX functions Set all drive parameters and debuglevel.  <a href="#ab0ea5b4d5a144a8ab1c1d2c9b08aa21f">More...</a><br /></td></tr>
 <tr class="separator:ab0ea5b4d5a144a8ab1c1d2c9b08aa21f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,13 +187,13 @@ Variables</h2></td></tr>
 <tr class="separator:a7396cc31899052a2a171fbfe3f32b2d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfedc9290d5356e240da3373bb0ebdbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structDeviceType.html">DeviceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#acfedc9290d5356e240da3373bb0ebdbd">Devices</a> [<a class="el" href="drives_8h.html#a4e132cfaa78353e3af1474a86b2dd535">MAX_DEVICES</a>]</td></tr>
 <tr class="separator:acfedc9290d5356e240da3373bb0ebdbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#abe5ffe9f7c96ad748b695ed5b45d6e52">PRINTERp</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memitem:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#abe5ffe9f7c96ad748b695ed5b45d6e52">PRINTERp</a> = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
 <tr class="memdesc:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active Printer Device.  <a href="#abe5ffe9f7c96ad748b695ed5b45d6e52">More...</a><br /></td></tr>
 <tr class="separator:abe5ffe9f7c96ad748b695ed5b45d6e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80DiskType.html">SS80DiskType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ae2b90e5f9a8ae9e5df3fdee98a215939">SS80p</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memitem:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80DiskType.html">SS80DiskType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#ae2b90e5f9a8ae9e5df3fdee98a215939">SS80p</a> = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
 <tr class="memdesc:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active SS80 Device.  <a href="#ae2b90e5f9a8ae9e5df3fdee98a215939">More...</a><br /></td></tr>
 <tr class="separator:ae2b90e5f9a8ae9e5df3fdee98a215939"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26e0264b8581231a3a90fbb418f5812a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80StateType.html">SS80StateType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a26e0264b8581231a3a90fbb418f5812a">SS80s</a> = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="memitem:a26e0264b8581231a3a90fbb418f5812a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSS80StateType.html">SS80StateType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a26e0264b8581231a3a90fbb418f5812a">SS80s</a> = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
 <tr class="separator:a26e0264b8581231a3a90fbb418f5812a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6edb848661be578eca78845085870674"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhpdir__t.html">hpdir_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="drives_8c.html#a6edb848661be578eca78845085870674">hpdir</a></td></tr>
 <tr class="memdesc:a6edb848661be578eca78845085870674"><td class="mdescLeft">&#160;</td><td class="mdescRight">hpdir.ini file processing  <a href="#a6edb848661be578eca78845085870674">More...</a><br /></td></tr>
@@ -231,7 +231,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00025">25</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00591">push_state()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00593">push_state()</a>.</p>
 
 </div>
 </div>
@@ -263,18 +263,18 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00517">517</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
-<a id="a27684090bd1a441b3cb0478d2f7fedc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27684090bd1a441b3cb0478d2f7fedc5">&#9670;&nbsp;</a></span>assign_value()</h2>
+<a id="a8b0e509b202f29cc333b28da6105f6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0e509b202f29cc333b28da6105f6c1">&#9670;&nbsp;</a></span>assign_value()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t assign_value </td>
+          <td class="memname"><a class="el" href="hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a> assign_value </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
           <td class="paramname"><em>str</em>, </td>
@@ -320,9 +320,9 @@ Variables</h2></td></tr>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00622">622</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00624">624</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00805">hpdir_parameters()</a>, and <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00796">hpdir_parameters()</a>, and <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -502,7 +502,7 @@ Variables</h2></td></tr>
 <p>Display Configuration device address saummary. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01575">1575</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01613">1613</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__tests_8c_source.html#l00068">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -529,7 +529,7 @@ Variables</h2></td></tr>
 <p>Active Printer Device</p>
 <p>Active SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01612">1612</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01650">1650</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__tests_8c_source.html#l00068">gpib_tests()</a>, and <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -609,7 +609,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00351">351</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00517">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00668">set_Config_Defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00517">alloc_device()</a>, and <a class="el" href="drives_8c_source.html#l00670">set_Config_Defaults()</a>.</p>
 
 </div>
 </div>
@@ -639,7 +639,7 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00295">295</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00351">find_free()</a>, <a class="el" href="printer_8c_source.html#l00255">plot_echo()</a>, <a class="el" href="drives_8c_source.html#l00668">set_Config_Defaults()</a>, and <a class="el" href="drives_8c_source.html#l00474">SS80_Set_Defaults()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00351">find_free()</a>, <a class="el" href="printer_8c_source.html#l00255">plot_echo()</a>, <a class="el" href="drives_8c_source.html#l00670">set_Config_Defaults()</a>, and <a class="el" href="drives_8c_source.html#l00474">SS80_Set_Defaults()</a>.</p>
 
 </div>
 </div>
@@ -663,7 +663,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 <p>Active SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01708">1708</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01755">1755</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00224">main()</a>.</p>
 
@@ -690,23 +690,23 @@ Variables</h2></td></tr>
 <p>This structure will containes the parsed and computed disk parameters from a single hpdir disk entry</p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00737">737</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00739">739</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00805">hpdir_parameters()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00796">hpdir_parameters()</a>.</p>
 
 </div>
 </div>
-<a id="a34e98db94dcf8c199e0596d8f7e74389"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34e98db94dcf8c199e0596d8f7e74389">&#9670;&nbsp;</a></span>hpdir_parameters()</h2>
+<a id="a1557e80f16394cd0aa243391d48cf5f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1557e80f16394cd0aa243391d48cf5f5">&#9670;&nbsp;</a></span>hpdir_parameters()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int hpdir_parameters </td>
+          <td class="memname">void hpdir_parameters </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -734,11 +734,11 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 on sucess or 0 on fail </dd>
-<dd>
-NULL if no token found </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 on sucess or 0 on fail </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00805">805</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00796">796</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -762,7 +762,7 @@ NULL if no token found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00572">572</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -791,9 +791,9 @@ NULL if no token found </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Size of LIF directory in blocks </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00779">779</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00771">771</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00805">hpdir_parameters()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00796">hpdir_parameters()</a>.</p>
 
 </div>
 </div>
@@ -816,9 +816,9 @@ NULL if no token found </dd></dl>
 <p>Pop Parser State. </p>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00602">602</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00604">604</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -858,7 +858,7 @@ NULL if no token found </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01563">1563</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01601">1601</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -898,7 +898,7 @@ NULL if no token found </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01548">1548</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l01586">1586</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 </div>
 </div>
@@ -927,9 +927,9 @@ NULL if no token found </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>state </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00591">591</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00593">593</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -960,7 +960,7 @@ NULL if no token found </dd></dl>
 <p>Printer Device</p>
 <p>SS80 Device </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00973">973</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00997">997</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>.</p>
 
@@ -1017,9 +1017,9 @@ NULL if no token found </dd></dl>
 <p>Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00668">668</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00670">670</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, and <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gpib__task_8c_source.html#l00041">gpib_file_init()</a>, and <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -1242,9 +1242,9 @@ NULL if no token found </dd></dl>
 
 <p>Config file line number. </p>
 
-<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00611">611</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00613">613</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00622">assign_value()</a>, <a class="el" href="matrix_8c_source.html#l00527">MatRead()</a>, and <a class="el" href="drives_8c_source.html#l00973">Read_Config()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00624">assign_value()</a>, <a class="el" href="matrix_8c_source.html#l00527">MatRead()</a>, and <a class="el" href="drives_8c_source.html#l00997">Read_Config()</a>.</p>
 
 </div>
 </div>
@@ -1255,7 +1255,7 @@ NULL if no token found </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a>* PRINTERp = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+          <td class="memname"><a class="el" href="structPRINTERDeviceType.html">PRINTERDeviceType</a>* PRINTERp = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1273,7 +1273,7 @@ NULL if no token found </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSS80DiskType.html">SS80DiskType</a>* SS80p = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+          <td class="memname"><a class="el" href="structSS80DiskType.html">SS80DiskType</a>* SS80p = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1293,7 +1293,7 @@ NULL if no token found </dd></dl>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structSS80StateType.html">SS80StateType</a>* SS80s = <a class="el" href="user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+          <td class="memname"><a class="el" href="structSS80StateType.html">SS80StateType</a>* SS80s = <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1326,7 +1326,7 @@ NULL if no token found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00026">26</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00572">init_Devices()</a>, <a class="el" href="drives_8c_source.html#l00602">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00591">push_state()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00572">init_Devices()</a>, <a class="el" href="drives_8c_source.html#l00604">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00593">push_state()</a>.</p>
 
 </div>
 </div>
@@ -1352,14 +1352,14 @@ NULL if no token found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="drives_8c_source.html#l00027">27</a> of file <a class="el" href="drives_8c_source.html">drives.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00602">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00591">push_state()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="drives_8c_source.html#l00604">pop_state()</a>, and <a class="el" href="drives_8c_source.html#l00593">push_state()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 19 2020 22:19:57 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 21 2020 01:26:04 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

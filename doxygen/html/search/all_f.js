@@ -68,7 +68,7 @@ var searchData=
   ['printerdevicetype',['PRINTERDeviceType',['../structPRINTERDeviceType.html',1,'']]],
   ['printerp',['PRINTERp',['../drives_8c.html#abe5ffe9f7c96ad748b695ed5b45d6e52',1,'PRINTERp():&#160;drives.c'],['../drives_8h.html#abe5ffe9f7c96ad748b695ed5b45d6e52',1,'PRINTERp():&#160;drives.c']]],
   ['printerstatetype',['PRINTERStateType',['../structPRINTERStateType.html',1,'']]],
-  ['printf',['printf',['../user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91',1,'printf():&#160;user_config.h'],['../mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8',1,'printf(const char *format,...):&#160;mathio.h']]],
+  ['printf',['printf',['../hardware_2user__config_8h.html#a09cf97040f1ff2e7a6dd51e19339cf91',1,'printf():&#160;user_config.h'],['../mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8',1,'printf(const char *format,...):&#160;mathio.h']]],
   ['printf_2ec',['printf.c',['../printf_8c.html',1,'']]],
   ['printf_5ft',['printf_t',['../mathio_8h.html#a1efdee46bf8e5af45e76e461e8db9c09',1,'mathio.h']]],
   ['printfree',['PrintFree',['../ram_8c.html#ad8337628eb01b7f72887a582e9417800',1,'PrintFree():&#160;ram.c'],['../ram_8h.html#a90bd9d4d00f98de3df8c280e0da16189',1,'PrintFree(void):&#160;ram.c']]],

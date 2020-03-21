@@ -136,10 +136,10 @@ GPIB   = \
 	gpib/gpib.c \
 	gpib/gpib_task.c \
 	gpib/gpib_tests.c \
+	gpib/drives.c \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
-	gpib/drives.c \
     gpib/controller.c
 
 POSIX = 
@@ -337,6 +337,10 @@ hardware/baudrate:  hardware/baudrate.c
 .PHONY: term
 term:   
 	./term $(BAUD) $(PORT)
+
+.PHONE: hogs
+hogs:
+	nm -n -P -v gpib.elf | sort -k 4n | tail -40	
 
 .PHONY: sdcard
 sdcard:

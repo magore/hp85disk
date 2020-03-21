@@ -9,7 +9,7 @@ var searchData=
   ['density',['Density',['../structtd__header__t.html#a09c0c52ec99733db61dd6f3c7d052325',1,'td_header_t']]],
   ['dev',['dev',['../structDeviceType.html#a59fc3b3cb45f8ee0cd1016bd64804d3b',1,'DeviceType']]],
   ['device',['device',['../gpib_8h.html#a2376f17d1e7367401184b2a3978bcd3a',1,'gpib.h']]],
-  ['device_5fnumber',['DEVICE_NUMBER',['../structSS80UnitType.html#a69cad18aab93449fbd91445c4ba62928',1,'SS80UnitType::DEVICE_NUMBER()'],['../structhpdir__t.html#a74e34ba48c9b35e0551051ad67cd069a',1,'hpdir_t::DEVICE_NUMBER()']]],
+  ['device_5fnumber',['DEVICE_NUMBER',['../structSS80UnitType.html#a69cad18aab93449fbd91445c4ba62928',1,'SS80UnitType::DEVICE_NUMBER()'],['../structhpdir__t.html#a3e761e4a98a5fdbd789ebf89c50b805f',1,'hpdir_t::DEVICE_NUMBER()']]],
   ['devices',['Devices',['../drives_8c.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c'],['../drives_8h.html#acfedc9290d5356e240da3373bb0ebdbd',1,'Devices():&#160;drives.c']]],
   ['dir',['dir',['../structDIR.html#a6c2a8c0cf2d55ae99775e93a16593449',1,'DIR::dir()'],['../structlif__t.html#aefeaa526c04a2b8715b0392feeec52a3',1,'lif_t::DIR()']]],
   ['dir_5fptr',['dir_ptr',['../structFIL.html#a5af9e9fb312b629220eaf684dd28c4a9',1,'FIL']]],

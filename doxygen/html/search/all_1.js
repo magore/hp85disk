@@ -62,7 +62,7 @@ var searchData=
   ['amigostatetype',['AMIGOStateType',['../structAMIGOStateType.html',1,'']]],
   ['asctime',['asctime',['../time_8c.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c'],['../time_8h.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c']]],
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],
-  ['assign_5fvalue',['assign_value',['../drives_8c.html#a27684090bd1a441b3cb0478d2f7fedc5',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c'],['../drives_8h.html#a27684090bd1a441b3cb0478d2f7fedc5',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c']]],
+  ['assign_5fvalue',['assign_value',['../drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c'],['../drives_8h.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c']]],
   ['ata_5fget_5fmodel',['ATA_GET_MODEL',['../diskio_8h.html#a31f556ab98ab80c39058b38d9283865d',1,'diskio.h']]],
   ['ata_5fget_5frev',['ATA_GET_REV',['../diskio_8h.html#a23f5fff3341e98825ea1f7367fd09f1a',1,'diskio.h']]],
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],
@@ -76,5 +76,5 @@ var searchData=
   ['atol',['atol',['../mathio_8c.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b',1,'atol(const char *str):&#160;mathio.c'],['../mathio_8h.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b',1,'atol(const char *str):&#160;mathio.c']]],
   ['aton',['aton',['../mathio_8c.html#a5fb184d7bd50561c60bf64b7cda0eb62',1,'aton(char *str, int base):&#160;mathio.c'],['../mathio_8h.html#a5fb184d7bd50561c60bf64b7cda0eb62',1,'aton(char *str, int base):&#160;mathio.c']]],
   ['attr',['attr',['../struct__FDID.html#a6912cfc1ea914d7b68a18b846065d790',1,'_FDID']]],
-  ['avr',['AVR',['../user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]]
+  ['avr',['AVR',['../hardware_2user__config_8h.html#a1519396040c1c9c28f597ccfbae61843',1,'user_config.h']]]
 ];
