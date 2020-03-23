@@ -8,6 +8,10 @@ var searchData=
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
   ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],
   ['def_5fnambuf',['DEF_NAMBUF',['../ff_8c.html#ad9aa172b1cf1d54aca234228a7ae8503',1,'ff.c']]],
+  ['dev_5fcfc',['DEV_CFC',['../diskio_8c.html#a9dbcff3fadca324effc7cf1e2632b8c5',1,'DEV_CFC():&#160;diskio.c'],['../diskio_8h.html#a9dbcff3fadca324effc7cf1e2632b8c5',1,'DEV_CFC():&#160;diskio.h']]],
+  ['dev_5fmmc',['DEV_MMC',['../diskio_8c.html#afb573038812261a67140d1c63f57dd3e',1,'DEV_MMC():&#160;diskio.c'],['../diskio_8h.html#afb573038812261a67140d1c63f57dd3e',1,'DEV_MMC():&#160;diskio.h']]],
+  ['dev_5fram',['DEV_RAM',['../diskio_8c.html#a76fb0c5f09176e9b4a8d773e525fe628',1,'DEV_RAM():&#160;diskio.c'],['../diskio_8h.html#a76fb0c5f09176e9b4a8d773e525fe628',1,'DEV_RAM():&#160;diskio.h']]],
+  ['dev_5fusb',['DEV_USB',['../diskio_8c.html#a2e6996059106c1996a24d883954c43cd',1,'DEV_USB():&#160;diskio.c'],['../diskio_8h.html#a2e6996059106c1996a24d883954c43cd',1,'DEV_USB():&#160;diskio.h']]],
   ['dir_5fattr',['DIR_Attr',['../ff_8c.html#ad3233e40118ed66095f3c9545b788f8a',1,'ff.c']]],
   ['dir_5fcrttime',['DIR_CrtTime',['../ff_8c.html#a47fb1881ea71d860db9b8280564cb4d5',1,'ff.c']]],
   ['dir_5fcrttime10',['DIR_CrtTime10',['../ff_8c.html#af8ddb351ddcaaac5d52923ad442fd8cb',1,'ff.c']]],
@@ -18,10 +22,11 @@ var searchData=
   ['dir_5fmodtime',['DIR_ModTime',['../ff_8c.html#aa136ac8eaf0b3febba999e37b7d01803',1,'ff.c']]],
   ['dir_5fname',['DIR_Name',['../ff_8c.html#afa89348e9fc2de82ae9e12c661366b0e',1,'ff.c']]],
   ['dir_5fntres',['DIR_NTres',['../ff_8c.html#a87ee1f701c2ab941862e3ce00c1c1e9d',1,'ff.c']]],
+  ['dir_5fread_5ffile',['DIR_READ_FILE',['../ff_8c.html#a7dc00ac3fd99f0a14d6b7f3fc76b8778',1,'ff.c']]],
+  ['dir_5fread_5flabel',['DIR_READ_LABEL',['../ff_8c.html#afd5d25039aad72791c8fd0e911ba7e97',1,'ff.c']]],
   ['disable_5fsplash_5fdisplay',['DISABLE_SPLASH_DISPLAY',['../LCD_8h.html#a88bf8ef5acd0c507a01bd5887e492f44',1,'LCD.h']]],
   ['disable_5fsystem_5fmessage_5fdisplay',['DISABLE_SYSTEM_MESSAGE_DISPLAY',['../LCD_8h.html#a035fd1aafb0b58e9bd8d4a98b42c126c',1,'LCD.h']]],
   ['display_5faddress1',['DISPLAY_ADDRESS1',['../LCD_8h.html#a855ec04b8fa71f0fc6488ca767aa1b20',1,'LCD.h']]],
-  ['drv_5fmmc',['DRV_MMC',['../diskio_8c.html#a5eccf61399d126e38e5f2f7ec61bb29f',1,'diskio.c']]],
   ['ds1307_5fr',['DS1307_R',['../rtc_8h.html#a4281d4baba9be3ab3ed9156d89f72fc5',1,'rtc.h']]],
   ['ds1307_5fw',['DS1307_W',['../rtc_8h.html#aa7571989952421946d1ecd5575584100',1,'rtc.h']]]
 ];

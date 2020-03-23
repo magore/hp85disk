@@ -2,6 +2,7 @@ var searchData=
 [
   ['u',['u',['../structliftel__t.html#a039066f2594254d80396de7e4c1bf106',1,'liftel_t']]],
   ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'rs232.c']]],
+  ['uc437',['uc437',['../ffunicode_8c.html#a32a2076e8fcf6d797159acecc49fa5fd',1,'ffunicode.c']]],
   ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['unget',['unget',['../struct____file.html#a1d139ae3cb11a1fada469a49f7d3d3b6',1,'__file']]],
   ['ungetc',['ungetc',['../structbuffer__t.html#aa1fbbf42ce5d6278b21a93647bef3ff1',1,'buffer_t']]],

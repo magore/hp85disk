@@ -40,9 +40,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 ///@brief FatFs Drive Volumes
-FATFS Fatfs[_VOLUMES];                            /* File system object for each logical drive */
+FATFS Fatfs[FF_VOLUMES];  /* File system object for each logical drive */
 
-#if _MULTI_PARTITION != 0
+#if FF_MULTI_PARTITION != 0
 /// @brief FatFs multiple partition drives
 const PARTITION Drives[] =
 {
@@ -292,7 +292,7 @@ void fatfs_status(char *ptr)
     printf("DIR start (lba,clustor) = %lu\n", fs->dirbase);
     printf("Data start (lba)        = %lu\n", fs->database);
 
-#if _USE_LABEL
+#if FF_USE_LABEL
     res = f_getlabel(ptr, label, (DWORD*)&vsn);
     if (res)
     {

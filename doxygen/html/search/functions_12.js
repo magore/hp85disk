@@ -79,7 +79,7 @@ var searchData=
   ['ss80unitpack',['SS80UnitPack',['../ss80_8c.html#a0e29fe885b7dba5b589263460ec7cbe8',1,'SS80UnitPack(int *size):&#160;ss80.c'],['../ss80_8h.html#a0e29fe885b7dba5b589263460ec7cbe8',1,'SS80UnitPack(int *size):&#160;ss80.c']]],
   ['ss80volumepack',['SS80VolumePack',['../ss80_8c.html#a6ce1c3c53904ebbf9d2a1c57e9bc8407',1,'SS80VolumePack(int *size):&#160;ss80.c'],['../ss80_8h.html#a6ce1c3c53904ebbf9d2a1c57e9bc8407',1,'SS80VolumePack(int *size):&#160;ss80.c']]],
   ['sscanf',['sscanf',['../mathio_8h.html#a79c7a2e931845b0fb6b2fa6d63939de4',1,'mathio.h']]],
-  ['st_5fclust',['st_clust',['../ff_8c.html#af9229179c04736dc2052137f3f1aa1da',1,'ff.c']]],
+  ['st_5fclust',['st_clust',['../ff_8c.html#a37c48dd3839cb11a440883ae331b4b7d',1,'ff.c']]],
   ['st_5fdword',['st_dword',['../ff_8c.html#af413a4e38a1ca8b203e332163d086d88',1,'ff.c']]],
   ['st_5fword',['st_word',['../ff_8c.html#a2c55656b749270f0183938bc68f4e004',1,'ff.c']]],
   ['stat',['stat',['../posix_8c.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c'],['../posix_8h.html#abef70bf7a4af8a1f4998db0035c51781',1,'stat(char *name, struct stat *buf):&#160;posix.c']]],
@@ -102,9 +102,9 @@ var searchData=
   ['strupper',['strupper',['../stringsup_8c.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../mathio_8h.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;stringsup.c'],['../printf_8c.html#a25ac5a1dbdfa1d06d55448cd7b665d1d',1,'strupper(char *str):&#160;printf.c']]],
   ['subtract_5ftimespec',['subtract_timespec',['../timer_8c.html#ab92d687bae984bd62c3d741f2ba614ed',1,'subtract_timespec(ts_t *a, ts_t *b):&#160;timer.c'],['../timer_8h.html#ab92d687bae984bd62c3d741f2ba614ed',1,'subtract_timespec(ts_t *a, ts_t *b):&#160;timer.c']]],
   ['sum',['sum',['../posix__tests_8h.html#a8d4059ff64356316a5f13d16cdd90fb5',1,'posix_tests.h']]],
-  ['sum_5fsfn',['sum_sfn',['../ff_8c.html#a6777613d0fbb01b79be0e799017db7cf',1,'ff.c']]],
+  ['sum_5fsfn',['sum_sfn',['../ff_8c.html#a6d9c1b908dec282bedd5d1ee4b1f434e',1,'ff.c']]],
   ['sync',['sync',['../posix_8c.html#a8f7f00d4ec0d99440762b0a664aebf70',1,'sync(void):&#160;posix.c'],['../posix_8h.html#a8f7f00d4ec0d99440762b0a664aebf70',1,'sync(void):&#160;posix.c']]],
-  ['sync_5ffs',['sync_fs',['../ff_8c.html#ae8bea7f3ba458b7fafd40a72277c2c38',1,'ff.c']]],
-  ['sync_5fwindow',['sync_window',['../ff_8c.html#a763ac5ab16aef830e5510c70765b56cf',1,'ff.c']]],
+  ['sync_5ffs',['sync_fs',['../ff_8c.html#aec6b108298553219ebb2b960b528459d',1,'ff.c']]],
+  ['sync_5fwindow',['sync_window',['../ff_8c.html#a5e18753404354b210096f9af99e31bc1',1,'ff.c']]],
   ['syncfs',['syncfs',['../posix_8c.html#a521c33bdb3606c9f3546b9cbcd37b9ac',1,'syncfs(int fd):&#160;posix.c'],['../posix_8h.html#a521c33bdb3606c9f3546b9cbcd37b9ac',1,'syncfs(int fd):&#160;posix.c']]]
 ];

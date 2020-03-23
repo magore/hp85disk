@@ -8,8 +8,10 @@ var searchData=
   ['addr',['addr',['../structSDIO__CTRL.html#a15025848d3f3733f366504d30a1d9bb2',1,'SDIO_CTRL']]],
   ['address',['ADDRESS',['../structHeaderType.html#a70edfd477c537b2fa51c1aa63fcc7bee',1,'HeaderType::ADDRESS()'],['../structDeviceType.html#a62529b7435785e39e8e7c5019303c2dd',1,'DeviceType::ADDRESS()']]],
   ['addressblocks',['AddressBlocks',['../structSS80StateType.html#a6cffa1e36a57bce4188ede4bd9dbd7ad',1,'SS80StateType']]],
+  ['align',['align',['../structMKFS__PARM.html#af244e017c4cb2c821e5e819fff7db710',1,'MKFS_PARM']]],
   ['all',['all',['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t']]],
   ['alt',['alt',['../unionf__t.html#a907a8d8af4803c9a18bc0586d22d6881',1,'f_t']]],
-  ['altname',['altname',['../structFILINFO.html#a37243296fadacbde8500b5668d99682e',1,'FILINFO']]],
-  ['attr',['attr',['../struct__FDID.html#a6912cfc1ea914d7b68a18b846065d790',1,'_FDID']]]
+  ['altname',['altname',['../structFILINFO.html#ab2a4c2f1ec81c11897c37bf0da4f9856',1,'FILINFO']]],
+  ['attr',['attr',['../structFFOBJID.html#ae9b1e6f98dbad367cc00f92b87f8d279',1,'FFOBJID']]],
+  ['au_5fsize',['au_size',['../structMKFS__PARM.html#adb29b0af8e486fc53d8b629c3e49d567',1,'MKFS_PARM']]]
 ];

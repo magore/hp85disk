@@ -1927,6 +1927,9 @@ int mkfs(char *name)
     int len;
     int c;
     char dev[4];
+    static const MKFS_PARM defopt = {FM_FAT32, 0, 0, 2, 0};   /* Default parameter */
+    const MKFS_PARM *opt = &defopt;
+
 
     len = MATCH(name,"/dev/sd");
     if(!len)
@@ -1957,7 +1960,7 @@ int mkfs(char *name)
 
     // Create FAT volume on the logical drive 0
     // 2nd argument is ignored. */
-    res = f_mkfs(dev, FM_FAT32, 0, mem, 1024);
+    res = f_mkfs(dev, opt, mem, 1024);
     if(res)
     {
         put_rc(res);

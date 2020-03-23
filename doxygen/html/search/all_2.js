@@ -23,7 +23,6 @@ var searchData=
   ['block_5ftime',['BLOCK_TIME',['../structSS80UnitType.html#ab94c4b75c74e08e128d4802f5dec0dd5',1,'SS80UnitType']]],
   ['blocks',['BLOCKS',['../structDeviceType.html#a29cbf84a3e9c8d01c8c77023ebf9c1f5',1,'DeviceType::BLOCKS()'],['../structhpdir__t.html#a4b4f32c9b9cfe558ce5fbd51d65b5db3',1,'hpdir_t::BLOCKS()']]],
   ['bool',['bool',['../hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1',1,'user_config.h']]],
-  ['bpb_5factfatex',['BPB_ActFatEx',['../ff_8c.html#a44afd74528bc3b7208dee55c78505a0a',1,'ff.c']]],
   ['bpb_5fbkbootsec32',['BPB_BkBootSec32',['../ff_8c.html#a6fceac966c2f2b277e8f472c5a7de0c7',1,'ff.c']]],
   ['bpb_5fbytspersec',['BPB_BytsPerSec',['../ff_8c.html#a8551844b4eb4e15aecd8cc9aa3585fa2',1,'ff.c']]],
   ['bpb_5fbytspersecex',['BPB_BytsPerSecEx',['../ff_8c.html#a3d35e000a1033bb913d3fbc3aa5c68af',1,'ff.c']]],
@@ -77,7 +76,7 @@ var searchData=
   ['bs_5fvolid32',['BS_VolID32',['../ff_8c.html#abaa3aafdcf5e83f8cb7e2bb373b13525',1,'ff.c']]],
   ['bs_5fvollab',['BS_VolLab',['../ff_8c.html#a28498ba4b07ff90aaa9628e81fb89d32',1,'ff.c']]],
   ['bs_5fvollab32',['BS_VolLab32',['../ff_8c.html#a8241a49bce313184a58617ba1ad9e84c',1,'ff.c']]],
-  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structputbuff.html#ae623199e5d2851f95050670170f20329',1,'putbuff::buf()'],['../structFIL.html#a7a95fb86588663e48309b5cded7e207b',1,'FIL::buf()'],['../structPRINTERStateType.html#aa48220761aa3c77c954a55f09388c615',1,'PRINTERStateType::buf()'],['../structbuffer__t.html#ab98e4f2d4fe10a680089d291ef1907c7',1,'buffer_t::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
+  ['buf',['buf',['../structqueue__t.html#aaee81421d150a17123a2b858d5b1685d',1,'queue_t::buf()'],['../structFIL.html#ac2aa36f0fa61cd82f905173d51f719b0',1,'FIL::buf()'],['../structPRINTERStateType.html#aa48220761aa3c77c954a55f09388c615',1,'PRINTERStateType::buf()'],['../structbuffer__t.html#ab98e4f2d4fe10a680089d291ef1907c7',1,'buffer_t::buf()'],['../struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46',1,'__file::buf()']]],
   ['buffer',['buffer',['../struct__printf__t.html#ad35884151d0be6667caafad8caacc76f',1,'_printf_t']]],
   ['buffer_2ec',['buffer.c',['../buffer_8c.html',1,'']]],
   ['buffer_2eh',['buffer.h',['../buffer_8h.html',1,'']]],
@@ -91,8 +90,8 @@ var searchData=
   ['bufsize',['BUFSIZE',['../posix__tests_8c.html#aeca034f67218340ecb2261a22c2f3dcd',1,'posix_tests.c']]],
   ['burst_5fsize',['BURST_SIZE',['../structSS80UnitType.html#a4bc66bc02c06dbfe279be6d2af808a04',1,'SS80UnitType']]],
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
-  ['byte',['byte',['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h'],['../integer_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;integer.h']]],
+  ['byte',['byte',['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h'],['../ff_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;ff.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
-  ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType::BYTES_PER_BLOCK()'],['../structhpdir__t.html#acc3554bcff7efd7615ed958a1af6366a',1,'hpdir_t::BYTES_PER_BLOCK()']]],
-  ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGeometryType.html#a446d9194981ebd7af3c1b11cdbdf0cfd',1,'AMIGOGeometryType']]]
+  ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType']]],
+  ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGeometryType.html#a446d9194981ebd7af3c1b11cdbdf0cfd',1,'AMIGOGeometryType::BYTES_PER_SECTOR()'],['../structhpdir__t.html#a18355478edba37fb7b2b0bca2448d247',1,'hpdir_t::BYTES_PER_SECTOR()']]]
 ];

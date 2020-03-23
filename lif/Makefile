@@ -34,6 +34,8 @@ ifeq ($(TELEDISK),1)
 	SRC += td02lif.c
 endif
 
+CFLAGS += -DMKCFG_STANDALONE
+
 
 BIN = lif
 LIB =

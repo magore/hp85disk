@@ -14,9 +14,11 @@ var searchData=
   ['hour',['Hour',['../structtd__comment__t.html#ae42f4895a24dadba8528e32d89d601c6',1,'td_comment_t']]],
   ['hp9121d',['HP9121D',['../defines_8h.html#adc21759335a3d21784de3624a8dbdcde',1,'defines.h']]],
   ['hp9134l',['HP9134L',['../defines_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;defines.h'],['../drives_8h.html#acbb3c06e9315e4230f5097bd9e89faf0',1,'HP9134L():&#160;drives.h']]],
-  ['hpdir',['hpdir',['../drives_8c.html#a6edb848661be578eca78845085870674',1,'drives.c']]],
-  ['hpdir_5finit',['hpdir_init',['../drives_8c.html#a62325ad76bfc3f8644185f0579f07b1a',1,'hpdir_init():&#160;drives.c'],['../drives_8h.html#ad82a5b6b7404287bb16cf6c0cc35740c',1,'hpdir_init(void):&#160;drives.c']]],
-  ['hpdir_5fparameters',['hpdir_parameters',['../drives_8c.html#a1557e80f16394cd0aa243391d48cf5f5',1,'hpdir_parameters(int index, char *model):&#160;drives.c'],['../drives_8h.html#a1557e80f16394cd0aa243391d48cf5f5',1,'hpdir_parameters(int index, char *model):&#160;drives.c']]],
+  ['hpdir',['hpdir',['../drives_8c.html#a6edb848661be578eca78845085870674',1,'hpdir():&#160;drives.c'],['../drives__sup_8c.html#a6edb848661be578eca78845085870674',1,'hpdir():&#160;drives_sup.c'],['../lifutils_8c.html#a6edb848661be578eca78845085870674',1,'hpdir():&#160;drives_sup.c']]],
+  ['hpdir_5ffind_5fdrive',['hpdir_find_drive',['../drives__sup_8c.html#ad8337467346aa3569bbae92859e821c1',1,'hpdir_find_drive(char *model, int list, int verbose):&#160;drives_sup.c'],['../drives__sup_8h.html#ad8337467346aa3569bbae92859e821c1',1,'hpdir_find_drive(char *model, int list, int verbose):&#160;drives_sup.c']]],
+  ['hpdir_5finit',['hpdir_init',['../drives__sup_8c.html#a62325ad76bfc3f8644185f0579f07b1a',1,'hpdir_init():&#160;drives_sup.c'],['../drives__sup_8h.html#ad82a5b6b7404287bb16cf6c0cc35740c',1,'hpdir_init(void):&#160;drives_sup.c']]],
+  ['hpdir_5fset_5fdevice',['hpdir_set_device',['../drives_8c.html#a7cc2e9f068997d98d19e10ef305fe5bb',1,'hpdir_set_device(int index):&#160;drives.c'],['../drives_8h.html#a7cc2e9f068997d98d19e10ef305fe5bb',1,'hpdir_set_device(int index):&#160;drives.c']]],
+  ['hpdir_5fset_5fparameters',['hpdir_set_parameters',['../drives_8c.html#a899ab6043e756943a7f38022900ff998',1,'hpdir_set_parameters(int index, char *model):&#160;drives.c'],['../drives_8h.html#a899ab6043e756943a7f38022900ff998',1,'hpdir_set_parameters(int index, char *model):&#160;drives.c']]],
   ['hpdir_5ft',['hpdir_t',['../structhpdir__t.html',1,'']]],
   ['htimeout',['HTIMEOUT',['../gpib_8h.html#a6dcb5fc551174cd685f0802f86329f3b',1,'gpib.h']]]
 ];

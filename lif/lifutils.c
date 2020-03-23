@@ -86,19 +86,25 @@
     
 */
 
+
 #ifdef LIF_STAND_ALONE
+#include <unistd.h>
+#include "user_config.h"
 #include "lifsup.h"
 #include "lifutils.h"
+#include "../gpib/drives_sup.h"
+#include "../gpib/drives_sup.c"
 extern MEMSPACE int td02lif(int argc, char *srgv[]);
 
 #else 
-
 #include "user_config.h"
-#include "defines.h"
+//#include "defines.h"
 #include "drives.h"
 #include "lifutils.h"
 #endif
 
+extern int debuglevel;
+extern hpdir_t hpdir;
 
 /// @brief
 ///  Help Menu for User invoked GPIB functions and tasks
@@ -115,6 +121,7 @@ void lif_help(int full)
         "lif add lifimage lifname from_ascii_file\n"
         "lif addbin lifimage lifname from_lif_file\n"
         "lif create lifimage label directory_sectors sectors\n"
+        "lif createdisk lifimage label model\n"
         "lif del lifimage name\n"
         "lif dir lifimage\n"
         "lif extract lifimage lifname to_ascii_file\n"
@@ -186,10 +193,23 @@ int lif_tests(int argc, char *argv[])
         lif_add_ascii_file_as_e010(argv[ind],argv[ind+1],argv[ind+2]);
         return(1);
     }
-    if (MATCHARGS(ptr,"del", (ind + 2) ,argc))
+    if (MATCHARGS(ptr,"createdisk", (ind + 3) ,argc))
     {
-        lif_del_file(argv[ind],argv[ind+1]);
-
+		///@brief format LIF image
+		long dir,sectors;
+		char *name = argv[ind];
+		char *label = argv[ind+1];
+		char *model = argv[ind+2];
+		if( MATCHI_LEN(model,"hp"))
+			model +=2;
+		if(hpdir_find_drive(model,0, 0))
+		{
+			dir = lif_dir_count(hpdir.BLOCKS);
+			sectors = hpdir.BLOCKS;
+			lif_create_image(name, label, dir, sectors);
+			return(1);
+		}
+		printf("Disk: %s not found in hpdir.ini\n", model);
         return(1);
     }
     if (MATCHARGS(ptr,"create", (ind + 4) ,argc))
@@ -198,7 +218,12 @@ int lif_tests(int argc, char *argv[])
         lif_create_image(argv[ind],argv[ind+1], atol(argv[ind+2]), atol(argv[ind+3]) );
         return(1);
     }
-    else if (MATCHARGS(ptr,"dir", (ind + 1) ,argc))
+    if (MATCHARGS(ptr,"del", (ind + 2) ,argc))
+    {
+        lif_del_file(argv[ind],argv[ind+1]);
+        return(1);
+    }
+    if (MATCHARGS(ptr,"dir", (ind + 1) ,argc))
     {
         lif_dir(argv[ind]);
         return(1);
@@ -996,7 +1021,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
     if(LIF == NULL)
         return(NULL);
 
-	printf("Creating:%s, Label:%10s, Directory Start %ld, Directory Size: %ld, File Sectors:%ld\n",
+	printf("Creating:%s, Label:[%s], Directory Start %ld, Directory Size: %ld, File Sectors:%ld\n",
 		imagename, liflabel, dirstart, dirsectors, filesectors );
 
     if(debuglevel & 0x400)
@@ -1075,7 +1100,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
             return(NULL);
         }
         offset += size;
-            printf("Wrote: %ld\r", count);
+            printf("\tWrote: %ld\r", count);
         ++count;
     }
 
@@ -1096,7 +1121,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
         }
         offset += size;
         if((count % 100) == 0)
-            printf("Wrote: %ld\r", count);
+            printf("\tWrote: %ld\r", count);
         ++count;
     }
 
@@ -1112,10 +1137,10 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
         }
         offset += size;
         if((count % 100) == 0)
-            printf("Wrote: %ld\r", count);
+            printf("\tWrote: %ld\r", count);
         ++count;
     }
-    printf("Wrote: %ld\n", count);
+    printf("\tWrote: %ld\n", count);
 
     lif_rewinddir(LIF);
 
@@ -1722,6 +1747,8 @@ void lif_dir(char *lifimagename)
     printf("\n");
     printf("%8ld Files\n", (long)LIF->files);
     printf("%8ld Purged\n", (long)LIF->purged);
+    printf("%8ld Dir  start\n",   (long)LIF->VOL.DirStartSector);
+    printf("%8ld Dir  sectors\n", (long)LIF->VOL.DirSectors);
     printf("%8ld Used sectors\n", (long)LIF->usedsectors);
     printf("%8ld Free sectors\n", (long)LIF->freesectors);
 
@@ -1975,7 +2002,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
         {       
             count = 0;
             if(LIF)
-                printf("Wrote: %8ld\r", (long)bytes);
+                printf("\tWrote: %8ld\r", (long)bytes);
         }
     }
 
@@ -1989,7 +2016,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
 
     if(LIF)
     {
-        printf("Wrote: %8ld\r", (long)bytes);
+        printf("\tWrote: %8ld\r", (long)bytes);
         len = lif_write(LIF, obuf, offset, size);
         if(len < size)
             return(-1);
@@ -2009,7 +2036,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
     }
 
     if(LIF)
-        printf("Wrote: %8ld\r",(long)bytes);
+        printf("\tWrote: %8ld\r",(long)bytes);
 
     return(bytes);
 }
@@ -2112,7 +2139,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 
     lif_closedir(LIF);
 
-    printf("Wrote: %8ld\n", bytes);
+    printf("\tWrote: %8ld\n", bytes);
 
     // Return file size
     return(bytes);
@@ -2260,7 +2287,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
                         break;
                     }
                     bytes += size;
-                    printf("Wrote: %8ld\r", bytes);
+                    printf("\tWrote: %8ld\r", bytes);
                     wind = 0;
                 }
 
@@ -2293,7 +2320,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
         utime(username, (struct utimbuf *) &times);
     }
     sync();
-    printf("Wrote: %8ld\n", bytes);
+    printf("\tWrote: %8ld\n", bytes);
     return(status);
 }
 
@@ -2389,11 +2416,11 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
         bytes += size;
         offset += size;
         uoffset += size;
-        printf("Wrote: %8ld\r", bytes);
+        printf("\tWrote: %8ld\r", bytes);
     }
     lif_closedir(LIF);
     lif_closedir(ULIF);
-    printf("Wrote: %8ld\n", bytes);
+    printf("\tWrote: %8ld\n", bytes);
     return(1);
 }
     
@@ -2500,7 +2527,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
         offset += (long) LIF_SECTOR_SIZE;
         uoffset += (long) LIF_SECTOR_SIZE;
         bytes += (long) LIF_SECTOR_SIZE;
-        printf("Wrote: %8ld\r", bytes);
+        printf("\tWrote: %8ld\r", bytes);
     }
     lif_closedir(ULIF);
 
@@ -2511,7 +2538,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
         return(-1);
     }
     lif_closedir(LIF);
-    printf("Wrote: %8ld\n", bytes);
+    printf("\tWrote: %8ld\n", bytes);
     return(bytes);
 }
 
@@ -2686,6 +2713,6 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
         return(-1);
     lif_close_volume(LIF);
 
-    printf("Formating: wrote:[%ld] sectors\n", (long)end);
+    printf("\tFormating: wrote %ld sectors\n", (long)end);
     return(end);
 }

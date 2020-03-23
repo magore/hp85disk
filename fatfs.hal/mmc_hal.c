@@ -223,37 +223,31 @@ int mmc_init(int verbose)
 
     if( verbose)
     {
-#if defined (_USE_LFN)
+#if defined (FF_USE_LFN)
         printf("LFN Enabled");
 #else
         printf("LFN Disabled");
 #endif
-        printf(", Code page: %u\n", _CODE_PAGE);
+        printf(", Code page: %u\n", FF_CODE_PAGE);
     }
 
-    rc = disk_initialize(0);    // aliased to mmc_disk_initialize()
+    rc = disk_initialize(DEV_MMC);    // aliased to mmc_disk_initialize()
 
-    if( rc != RES_OK  || verbose )
-    {
+    if( rc != RES_OK  )
         put_rc(rc);
-    }
 
     if( rc == RES_OK)
-    {
         rc = f_mount(&Fatfs[0],"/", 0);
-    }
 
     if( rc != RES_OK || verbose)
-    {
         put_rc( rc );
-    }
 
     if (verbose )
     {
         DWORD blksize = 0;
         if(rc == RES_OK)
         {
-            rc = disk_ioctl ( 0, GET_BLOCK_SIZE, (void *) &blksize);
+            rc = disk_ioctl ( DEV_MMC, GET_BLOCK_SIZE, (void *) &blksize);
             if( rc != RES_OK)
             {
                 put_rc( rc );

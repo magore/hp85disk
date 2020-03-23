@@ -1,0 +1,81 @@
+Type
+AMIGO AMIGO_MLA AMIGO_MTA AMIGO_PPR
+SS80  SS80_MLA SS80_MTA SS80_PPR
+PRINTER PRINTER_MLA PRINTER_MTA
+
+
+IS_SS80_MSA(address)
+IS_SS80_MTA(address)
+IS_SS80_MTA(address)
+
+SS80_MSA_TO_PPR(address)
+
+IS_AMIGO_MSA(address)
+AMIGO_MSA_TO_PPR(address)
+
+IS_PRINTER_MLA(address)
+IS_PRINTER_MTA(address)
+ss80.c
+SS80_Command_State 		SS80_PPR
+SS80_Transparent_State 		SS80_PPR
+SS80_Channel_Independent_Clear 	SS80_PPR
+SS80_Universal_Device_Clear 	SS80_PPR
+SS80_Amigo_Clear 		SS80_PPR
+SS80_Cancel 			SS80_PPR
+SS80_Execute_State 		SS80_PPR
+SS80_COMMANDS 			SS80_MTA SS80_MLA
+SS80_describe
+	ControllerDescription
+        UnitDescription
+        VolumeDescription
+
+
+gpib_task.c
+GPIB_COMMANDS   
+SS80_MLA SS80_MTA AMIGO_MLA AMIGO_MTA PRINTER_MLA PRINTER_MTA
+GPIB_SECONDARY_ADDRESS
+   SS80ID1 SS80ID2
+
+
+
+#define SS80_MLA     0x20   //<  My listen address = 0 (0+0x20)
+#define SS80_MTA     0x40   //<  My talk address = 0 (0+0x40)
+#define SS80_MSA     0x60   //<  My seconday address = 0 (0+0x60)
+#define SS80_PPR     0      //<  PPR Address
+
+#define AMIGO_MLA    0x21   //<  My listen address = 0 (0+0x20)
+#define AMIGO_MTA    0x41   //<  My talk address = 0 (0+0x40)
+#define AMIGO_MSA    0x61   //<  My seconday address = 0 (0+0x60)
+#define AMIGO_PPR    1      //<  PPR Address
+
+#define PRINTER_MLA  0x22   //<  My listen address = 0 (0+0x20)
+#define PRINTER_MTA  0x42   //<  My talk address = 0 (0+0x40)
+#define PRINTER_MSA  0x62   //<  My seconday address = 0 (0+0x60)
+
+
+#define SS80ID1 0x02
+#define SS80ID2 0x21
+#define AMIGOID1 0x01 /*< AMIGO device ID byte 1 */
+#define AMIGOID2 0x04 /*< AMIGO device ID byte 2 */
+
+
+
+disk_parm  (AMIGO)   D9121D
+DiskType   (AMIGO)
+
+ControllerDescription
+UnitDescription
+VolumeDescription
+
+ControllerDescriptionType    SS80
+UnitDescriptionType          SS80
+VolumeDescriptionType        SS80
+LengthType                   SS80
+
+VolumeLabelType AMIGO format
+DirEntryType    AMIGO format
+
+
+
+
+

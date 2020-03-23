@@ -20,10 +20,9 @@
 
 #ifndef LIF_STAND_ALONE
 #include "user_config.h"
-#include "defines.h"
 #endif
+//#include "defines.h"
 
-extern int debuglevel;
 typedef struct stat stat_t;
 
 ///Depends on how much free ram we have

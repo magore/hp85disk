@@ -107,7 +107,11 @@ lif_add_files()
 
 	# Convert ascii text files in to HP85 ASCII BASIC plain text files E010 DTA8x format
 	declare TXT=$(ls  "$DIR" | egrep -E -i '\.txt$' | tr '\n' ' ' | sed -e "s/ $//")
-	echo "TXT:[$TXT]"
+
+	if [ -n "$TXT" ]
+	then
+		echo "Files:[$TXT]"
+	fi
 	# We can convert TXT format to E010 DTA8x ASCII BASIC LIF file
 	for i in $TXT
 	do
@@ -115,18 +119,28 @@ lif_add_files()
 		declare NAME=$(basename $i | sed -s "s/\..*$//")
 		runlog lif add "$LIF" $NAME "$DIR/$i"
 	done
+	if [ -n "$TXT" ]
+	then
+		echo 
+	fi
 
 	# Copy single file LIF image source files into new LIF image
 	# We assume that you are adding HP85 programs 
 	declare LIFS=$(ls "$DIR" | egrep -E -i '\.lif$' | tr '\n' ' ' | sed -e "s/ $//")
 
-	# echo "LIFS:[$LIFS]"
-
+	if [ -n "$LIFS" ]
+	then
+		echo "Files:[$LIFS]"
+	fi
 	for i in $LIFS
 	do
 		declare NAME=$(basename $i | sed -s "s/\..*$//")
 		runlog lif addbin "$LIF" "$NAME" "$DIR"/"$i"
 	done
+	if [ -n "$LIFS" ]
+	then
+		echo 
+	fi
 }
 
 
@@ -150,8 +164,10 @@ lif_extract_all()
 	declare FILES=$(lif dir "$LIF" | egrep -E -i '[0-9A-F][0-9A-F][0-9A-F][0-9A-F]h' | \
 		cut -d ' ' -f1 | sed -e "s/\..*$//" | tr '\n' ' ' | sed -e "s/ $//")
 
-	# echo "FILES:[$FILES]"
-
+	if [ -n "$FILES" ]
+	then
+		echo "Files:[$FILES]"
+	fi
 	for i in $FILES
 	do
 		declare TYPE=$(lif_filetype $LIF $i | egrep -E -i 'E01[0123]h')
@@ -162,4 +178,8 @@ lif_extract_all()
 			lif extractbin "$LIF" $i $DIR/$i.lif
 		fi
 	done
+	if [ -n "$FILES" ]
+	then
+		echo 
+	fi
 }

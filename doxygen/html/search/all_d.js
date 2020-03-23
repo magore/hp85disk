@@ -1,11 +1,13 @@
 var searchData=
 [
   ['n2a_2ec',['n2a.c',['../n2a_8c.html',1,'']]],
+  ['n_5ffat',['n_fat',['../structMKFS__PARM.html#a0ff8e4728bddfe0636c50367af399e25',1,'MKFS_PARM']]],
   ['n_5ffatent',['n_fatent',['../structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c',1,'FATFS']]],
   ['n_5ffats',['n_fats',['../structFATFS.html#a56716c7e7ac10cf46e73ffb2a2e9b545',1,'FATFS']]],
+  ['n_5froot',['n_root',['../structMKFS__PARM.html#a2b8a26b614381e0c2e0ff26f138feea6',1,'MKFS_PARM']]],
   ['n_5frootdir',['n_rootdir',['../structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1',1,'FATFS']]],
+  ['n_5fsec_5ftrack',['N_SEC_TRACK',['../ff_8c.html#aa7655ed8fbdcfec3965be1d6f412d0f6',1,'ff.c']]],
   ['name',['name',['../structgpib__token__t.html#aa47fb36b52bd83dc60e67a54f6e36e09',1,'gpib_token_t::name()'],['../structlif__t.html#ae6b943f3c26005fc375169960e9049f7',1,'lif_t::name()'],['../structHeaderType.html#aac997fd2dc536b10072137ecaf1fd0b4',1,'HeaderType::NAME()']]],
-  ['nchr',['nchr',['../structputbuff.html#a125366bfe48077e6f562f95e30b4604a',1,'putbuff']]],
   ['ndac',['NDAC',['../gpib__hal_8h.html#a1ab54a10fda88683f0334ff44ed767b4',1,'gpib_hal.h']]],
   ['ndac_5fflag',['NDAC_FLAG',['../gpib_8h.html#ad1653d0cd48b2a0c72d422ba4aff114f',1,'gpib.h']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],

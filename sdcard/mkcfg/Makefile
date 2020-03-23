@@ -14,10 +14,9 @@ DIR=$(shell pwd)
 # HPDir to hpdisk configuration generator
 
 CFLAGS = -O -D_GNU_SOURCE -g -static
-CFLAGS += -DMKCFG_STAND_ALONE
+CFLAGS += -DLIF_STAND_ALONE
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
 CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
-CFLAGS += -DMKCFG_STANDALONE
 CFLAGS += -I.
 
 SRC =  mkcfg.c
@@ -34,7 +33,7 @@ install:        all
 	install -p hpdir.ini /usr/local/bin/hpdir.ini
 
 mkcfg:    ${SRC}
-	gcc ${CFLAGS} -o mkcfg ${SRC} ${LIBS}
+	gcc ${CFLAGS} -g -o mkcfg ${SRC} ${LIBS}
 
 
 BIN_EXE := $(addsuffix .exe,${BIN})

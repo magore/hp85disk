@@ -265,27 +265,25 @@ int main(int argc, char *argv[])
 {
 
     int i;
+	int verbose = 0;
     char *ptr;
 
     if(argc <= 1)
     {
         copyright();
     }
-
     if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
     {
         argv[0] = "lif";
-        return( lif_tests(argc, argv) );
+        return( !lif_tests(argc, argv) );
     }
 #ifdef TELEDISK
     if( MATCH(basename(argv[0]),"td02lif") || MATCH(basename(argv[0]),"td02lif.exe") )
     {
         argv[0] = "td02lif";
-        return ( td02lif(argc, argv) );
+        return ( !td02lif(argc, argv) );
     }
 #endif
-
-    return(0);
 }
 
 #endif

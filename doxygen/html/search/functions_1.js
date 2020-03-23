@@ -27,7 +27,7 @@ var searchData=
   ['amigo_5fverify',['amigo_verify',['../amigo_8h.html#ab08912bf94dc6e8fbe87990ff41f46f0',1,'amigo.h']]],
   ['asctime',['asctime',['../time_8c.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c'],['../time_8h.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c']]],
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],
-  ['assign_5fvalue',['assign_value',['../drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c'],['../drives_8h.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c']]],
+  ['assign_5fvalue',['assign_value',['../drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1',1,'drives.c']]],
   ['atodigit',['atodigit',['../mathio_8c.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;mathio.c'],['../mathio_8h.html#a8c0b521d598596dde4e31d56f672ad76',1,'atodigit(int c, int radix):&#160;mathio.c']]],
   ['atof',['atof',['../mathio_8h.html#a7e733f84057711222341263fe2f0bd15',1,'mathio.h']]],
   ['atoh',['atoh',['../mathio_8c.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;mathio.c'],['../mathio_8h.html#a65e529a87a8bcaf0b2cb9b6edc3a8fde',1,'atoh(const char *p):&#160;mathio.c']]],

@@ -83,8 +83,12 @@ FATFS_TESTS=1
 # Extended user interactive fatfs tests
 FATFS_UTILS_FULL=0
 
+#GPIB Extended tests
+GPIB_EXTENDED_TESTS=0
+
 # Extended user interactive posix tests
 POSIX_TESTS=1
+POSIX_EXTENDED_TESTS=0
 
 #LIF support 
 LIF_SUPPORT=1
@@ -121,8 +125,8 @@ PRINTF = \
 
 FATFS = \
 	fatfs/ff.c  \
-	fatfs/option/syscall.c  \
-	fatfs/option/unicode.c \
+	fatfs/ffsystem.c  \
+	fatfs/ffunicode.c \
 	fatfs.hal/diskio.c  \
 	fatfs.hal/mmc.c  \
 	fatfs.hal/mmc_hal.c  \
@@ -130,6 +134,9 @@ FATFS = \
 ifeq ($(FATFS_TESTS),1)
 	FATFS += fatfs.sup/fatfs_tests.c  
 endif
+# OLD FATFS
+	# fatfs/option/syscall.c  
+	# fatfs/option/unicode.c 
 
 GPIB   = \
 	gpib/gpib_hal.c \
@@ -137,6 +144,7 @@ GPIB   = \
 	gpib/gpib_task.c \
 	gpib/gpib_tests.c \
 	gpib/drives.c \
+	gpib/drives_sup.c \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
@@ -184,9 +192,15 @@ LIBS    =
 LIBDIRS =
 INCDIRS =. hardware lib printf fatfs fatfs.hal fatfs.sup gpib posix lif
 
-DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
+DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO 
+
+DEFS += HP9134D
+
+ifeq ($(AMIGO),1)
+	DEFS += AMIGO 
+endif
 
 DEFS += BAUD=$(BAUD)
 
@@ -194,17 +208,9 @@ ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
 endif
 
-# We have an I2C LCD
-ifeq ($(LCD_SUPPORT),1)
-	DEFS += LCD_SUPPORT
-endif
-
-ifeq ($(POSIX_TESTS),1)
-	DEFS += POSIX_TESTS
-endif
-
 ifeq ($(FATFS_SUPPORT),1)
 	DEFS += FATFS_SUPPORT
+	DEFS += DRV_MMC=0
 endif
 
 ifeq ($(FATFS_UTILS_FULL),1)
@@ -215,12 +221,21 @@ ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
 
+# We have an I2C LCD
+ifeq ($(LCD_SUPPORT),1)
+	DEFS += LCD_SUPPORT
+endif
+
 ifeq ($(LIF_SUPPORT),1)
 	DEFS += LIF_SUPPORT
 endif
 
-ifeq ($(AMIGO),1)
-	DEFS += AMIGO 
+ifeq ($(POSIX_TESTS),1)
+	DEFS += POSIX_TESTS
+endif
+
+ifeq ($(POSIX_EXTENDED_TESTS),1)
+	DEFS += POSIX_TESTS
 endif
 
 # ==============================================
@@ -319,7 +334,7 @@ SRCS = $(CSRC)
 PROGS = hardware/baudrate
 
 #all: doxy version $(LIBS) build size $(PROGS)
-all: version $(LIBS) build size $(PROGS) lif
+all: version $(LIBS) build size $(PROGS) lif mkcfg
 
 
 # Default target.
@@ -343,11 +358,12 @@ hogs:
 	nm -n -P -v gpib.elf | sort -k 4n | tail -40	
 
 .PHONY: sdcard
-sdcard:
+sdcard: install
+	-rm -f sdcard/*\.lif
 	cd sdcard; ./create_images.sh
 
 .PHONY: release
-release: all
+release: all install
 	# Save the results under release
 	cp -p $(PROJECT).*   release/build
 	cp -p sdcard/*\.lif  release/sdcard

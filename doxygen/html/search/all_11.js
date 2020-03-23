@@ -12,7 +12,7 @@ var searchData=
   ['readme_2emd',['README.md',['../README_8md.html',1,'(Global Namespace)'],['../lif_2README_8md.html',1,'(Global Namespace)']]],
   ['receive_5fplot_5fflush',['receive_plot_flush',['../printer_8c.html#a49cd5ed3c7bfd27122f36ad0f9f16fac',1,'receive_plot_flush():&#160;printer.c'],['../printer_8h.html#a06cc5819c3a956913f41114deb55a113',1,'receive_plot_flush(void):&#160;printer.c']]],
   ['removable_5fvolumes',['REMOVABLE_VOLUMES',['../structSS80UnitType.html#a6dcef2939bd0a19951ad1592b1ec8c31',1,'SS80UnitType']]],
-  ['remove_5fchain',['remove_chain',['../ff_8c.html#a9d9d4fa5f45110afd3b5d784c5f8a819',1,'ff.c']]],
+  ['remove_5fchain',['remove_chain',['../ff_8c.html#af7e31794d8bbe9eeb098f9383ea0d448',1,'ff.c']]],
   ['ren',['REN',['../gpib__hal_8h.html#aa2fb3f18026b5d00ec5ef71cf8d4b11a',1,'gpib_hal.h']]],
   ['ren_5fflag',['REN_FLAG',['../gpib_8h.html#ac5ae85572f7432aaab806c29177eec8d',1,'gpib.h']]],
   ['rename',['rename',['../posix_8c.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c'],['../posix_8h.html#ada8cc8f9394cf54db8f338838a9fa7ce',1,'rename(const char *oldpath, const char *newpath):&#160;posix.c']]],

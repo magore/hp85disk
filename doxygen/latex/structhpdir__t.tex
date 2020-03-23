@@ -2,17 +2,12 @@
 \label{structhpdir__t}\index{hpdir\+\_\+t@{hpdir\+\_\+t}}
 
 
-Data structure for hpdir.\+ini H\+P\+Dir project disk parameters.  
-
-
-
-
-{\ttfamily \#include $<$drives.\+h$>$}
+{\ttfamily \#include $<$drives\+\_\+sup.\+h$>$}
 
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-char \hyperlink{structhpdir__t_a3855aafd93d84611573376653f9cd2c0}{model} \mbox{[}\hyperlink{drives_8h_a3f11d81c1e6d925611a9bdd5115064a0}{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}\mbox{]}
+char \hyperlink{structhpdir__t_a3855aafd93d84611573376653f9cd2c0}{model} \mbox{[}\hyperlink{drives__sup_8h_a3f11d81c1e6d925611a9bdd5115064a0}{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}\mbox{]}
 \item 
 char \hyperlink{structhpdir__t_aa2ba4f9a627c74e84a515e8ac4893bfb}{comment} \mbox{[}64\mbox{]}
 \item 
@@ -34,7 +29,7 @@ long \hyperlink{structhpdir__t_a0b636f508776a07e2aaba4704dc124f2}{H\+E\+A\+DS}
 \item 
 long \hyperlink{structhpdir__t_a6ee950a83086b3872cfd8fab8d809bf2}{S\+E\+C\+T\+O\+RS}
 \item 
-long \hyperlink{structhpdir__t_acc3554bcff7efd7615ed958a1af6366a}{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}
+long \hyperlink{structhpdir__t_a18355478edba37fb7b2b0bca2448d247}{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}
 \item 
 long \hyperlink{structhpdir__t_ade75ac3fc0b7d605383ca3203ba140bf}{I\+N\+T\+E\+R\+L\+E\+A\+VE}
 \item 
@@ -47,18 +42,9 @@ long \hyperlink{structhpdir__t_a8b6c34460bb1c291860bbb82c56660a4}{L\+I\+F\+\_\+\
 
 
 \subsection{Detailed Description}
-Data structure for hpdir.\+ini H\+P\+Dir project disk parameters. 
-
-================================================= This structure will containes the parsed and computed disk parameters from a single hpdir disk entry
-
-; A\+M\+I\+G\+I\+O/\+C\+S80/\+S\+S80 disk drives ; 1 -\/ S\+S80 \mbox{[}H\+P9134L\mbox{]} unique drive model identifier (should be identical to \mbox{[}fsinfo\mbox{]} section above) ; 2 -\/ C\+O\+M\+M\+E\+NT descriptive string ; 3 -\/ S\+S80/\+A\+M\+I\+GO\+: drive protocol A\+M\+I\+GO, C\+S80 or S\+S80 ; 4 -\/ ID\+: ID returned by A\+M\+I\+GO identify ; 5 -\/ mask for secondary ID returned by high byte of S\+T\+A\+T2 ; 6 -\/ ID returned by high byte of S\+T\+A\+T2 ; 7 -\/ D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER\+: drive number returned by C\+S/80 describe command ; 8 -\/ U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+E\+D(0x8001)\+: number of units installed ; 9 -\/ M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER\+: number of cylinders ;10 -\/ M\+A\+X\+\_\+\+H\+E\+AD\+: number of heads or surfaces ;11 -\/ M\+A\+X\+\_\+\+S\+E\+C\+T\+OR\+: number of sectors per track ;12 -\/ B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK\+: number of bytes per block or sector ;13 -\/ I\+N\+T\+E\+R\+L\+E\+A\+VE\+: default interleave ;14 -\/ media type 0=fixed media, 1=removable media ; \# Removable volume byte; one bit per volume (set if removable) ; 1, x, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14 Example entry 9895 = \char`\"{}\+H\+P9895\+A dual 1.\+15\+M A\+M\+I\+G\+O floppy disc\char`\"{}, A\+M\+I\+GO, 0x0081, 0x00, 0x00, 0x000000, 1, 77, 2, 30, 256, 7, 1
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
 
 
-Definition at line 315 of file drives.\+h.
+Definition at line 33 of file drives\+\_\+sup.\+h.
 
 
 
@@ -71,25 +57,25 @@ Definition at line 315 of file drives.\+h.
 
 
 
-Definition at line 331 of file drives.\+h.
+Definition at line 49 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), hpdir\+\_\+set\+\_\+device(), and lif\+\_\+tests().
 
-\mbox{\Hypertarget{structhpdir__t_acc3554bcff7efd7615ed958a1af6366a}\label{structhpdir__t_acc3554bcff7efd7615ed958a1af6366a}} 
-\index{hpdir\+\_\+t@{hpdir\+\_\+t}!B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK@{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}}
-\index{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK@{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}!hpdir\+\_\+t@{hpdir\+\_\+t}}
-\subsubsection{\texorpdfstring{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}{BYTES\_PER\_BLOCK}}
-{\footnotesize\ttfamily long hpdir\+\_\+t\+::\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}
-
-
-
-Definition at line 327 of file drives.\+h.
+\mbox{\Hypertarget{structhpdir__t_a18355478edba37fb7b2b0bca2448d247}\label{structhpdir__t_a18355478edba37fb7b2b0bca2448d247}} 
+\index{hpdir\+\_\+t@{hpdir\+\_\+t}!B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR@{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}}
+\index{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR@{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}!hpdir\+\_\+t@{hpdir\+\_\+t}}
+\subsubsection{\texorpdfstring{B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}{BYTES\_PER\_SECTOR}}
+{\footnotesize\ttfamily long hpdir\+\_\+t\+::\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Definition at line 45 of file drives\+\_\+sup.\+h.
+
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_aa2ba4f9a627c74e84a515e8ac4893bfb}\label{structhpdir__t_aa2ba4f9a627c74e84a515e8ac4893bfb}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!comment@{comment}}
@@ -99,11 +85,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 317 of file drives.\+h.
+Definition at line 35 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 \mbox{\Hypertarget{structhpdir__t_ac153c658b4e5333b529826d125d40e1e}\label{structhpdir__t_ac153c658b4e5333b529826d125d40e1e}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!C\+Y\+L\+I\+N\+D\+E\+RS@{C\+Y\+L\+I\+N\+D\+E\+RS}}
@@ -113,11 +99,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 324 of file drives.\+h.
+Definition at line 42 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_a3e761e4a98a5fdbd789ebf89c50b805f}\label{structhpdir__t_a3e761e4a98a5fdbd789ebf89c50b805f}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER@{D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER}}
@@ -127,11 +113,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 322 of file drives.\+h.
+Definition at line 40 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_a69855da74bcc15b10039a51e3680a994}\label{structhpdir__t_a69855da74bcc15b10039a51e3680a994}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!F\+I\+X\+ED@{F\+I\+X\+ED}}
@@ -141,7 +127,7 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 329 of file drives.\+h.
+Definition at line 47 of file drives\+\_\+sup.\+h.
 
 
 
@@ -155,11 +141,11 @@ Referenced by hpdir\+\_\+init().
 
 
 
-Definition at line 325 of file drives.\+h.
+Definition at line 43 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_aae1a879f64c0ee2dc353d3581e8deec9}\label{structhpdir__t_aae1a879f64c0ee2dc353d3581e8deec9}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!ID@{ID}}
@@ -169,11 +155,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 319 of file drives.\+h.
+Definition at line 37 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_a1e3ef48d576fa036c6147ec0c5ec3aed}\label{structhpdir__t_a1e3ef48d576fa036c6147ec0c5ec3aed}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!id\+\_\+stat2@{id\+\_\+stat2}}
@@ -183,11 +169,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 321 of file drives.\+h.
+Definition at line 39 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 \mbox{\Hypertarget{structhpdir__t_ade75ac3fc0b7d605383ca3203ba140bf}\label{structhpdir__t_ade75ac3fc0b7d605383ca3203ba140bf}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!I\+N\+T\+E\+R\+L\+E\+A\+VE@{I\+N\+T\+E\+R\+L\+E\+A\+VE}}
@@ -197,11 +183,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 328 of file drives.\+h.
+Definition at line 46 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 \mbox{\Hypertarget{structhpdir__t_a8b6c34460bb1c291860bbb82c56660a4}\label{structhpdir__t_a8b6c34460bb1c291860bbb82c56660a4}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!L\+I\+F\+\_\+\+D\+I\+R\+\_\+\+B\+L\+O\+C\+KS@{L\+I\+F\+\_\+\+D\+I\+R\+\_\+\+B\+L\+O\+C\+KS}}
@@ -211,11 +197,7 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 332 of file drives.\+h.
-
-
-
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Definition at line 50 of file drives\+\_\+sup.\+h.
 
 \mbox{\Hypertarget{structhpdir__t_a788d1032b8ff695092f9e4ff4cf36adf}\label{structhpdir__t_a788d1032b8ff695092f9e4ff4cf36adf}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!mask\+\_\+stat2@{mask\+\_\+stat2}}
@@ -225,25 +207,25 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 320 of file drives.\+h.
+Definition at line 38 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 \mbox{\Hypertarget{structhpdir__t_a3855aafd93d84611573376653f9cd2c0}\label{structhpdir__t_a3855aafd93d84611573376653f9cd2c0}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!model@{model}}
 \index{model@{model}!hpdir\+\_\+t@{hpdir\+\_\+t}}
 \subsubsection{\texorpdfstring{model}{model}}
-{\footnotesize\ttfamily char hpdir\+\_\+t\+::model\mbox{[}\hyperlink{drives_8h_a3f11d81c1e6d925611a9bdd5115064a0}{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}\mbox{]}}
+{\footnotesize\ttfamily char hpdir\+\_\+t\+::model\mbox{[}\hyperlink{drives__sup_8h_a3f11d81c1e6d925611a9bdd5115064a0}{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}\mbox{]}}
 
 
 
-Definition at line 316 of file drives.\+h.
+Definition at line 34 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_a6ee950a83086b3872cfd8fab8d809bf2}\label{structhpdir__t_a6ee950a83086b3872cfd8fab8d809bf2}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!S\+E\+C\+T\+O\+RS@{S\+E\+C\+T\+O\+RS}}
@@ -253,11 +235,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 326 of file drives.\+h.
+Definition at line 44 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+init(), and hpdir\+\_\+set\+\_\+device().
 
 \mbox{\Hypertarget{structhpdir__t_ad2f925b088d4fd746c9ea789f34f9507}\label{structhpdir__t_ad2f925b088d4fd746c9ea789f34f9507}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!T\+Y\+PE@{T\+Y\+PE}}
@@ -267,11 +249,11 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 318 of file drives.\+h.
+Definition at line 36 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 \mbox{\Hypertarget{structhpdir__t_a748150d5e0351e2d827f2a4def385ca9}\label{structhpdir__t_a748150d5e0351e2d827f2a4def385ca9}} 
 \index{hpdir\+\_\+t@{hpdir\+\_\+t}!U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED@{U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED}}
@@ -281,14 +263,14 @@ Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
 
 
 
-Definition at line 323 of file drives.\+h.
+Definition at line 41 of file drives\+\_\+sup.\+h.
 
 
 
-Referenced by hpdir\+\_\+init(), and hpdir\+\_\+parameters().
+Referenced by hpdir\+\_\+find\+\_\+drive(), and hpdir\+\_\+init().
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-gpib/\hyperlink{drives_8h}{drives.\+h}\end{DoxyCompactItemize}
+gpib/\hyperlink{drives__sup_8h}{drives\+\_\+sup.\+h}\end{DoxyCompactItemize}

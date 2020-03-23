@@ -43,19 +43,23 @@ void gpib_help(int full)
             "gpib debug N\n"
             "gpib elapsed\n"
             "gpib elapsed_reset\n"
-            "gpib task\n"
-            "gpib trace filename.txt [BUS]\n"
             "gpib ifc\n"
             "gpib plot filename.txt\n"
-            "gpib ppr_bit_on N\n"
-            "gpib ppr_bit_off N\n"
-            "gpib ppr_set XX\n"
-            "gpib ppr_init\n"
+            "gpib plot_echo\n"
+            "gpib task\n"
+            "gpib trace filename.txt [BUS]\n"
+            "\n"
+#ifdef GPIB_EXTENDED_TESTS
 			"gpib port read pins   [A-D]\n"
 			"gpib port read latch  [A-D]\n"
 			"gpib port read ddr    [A-D]\n"
 			"gpib port write latch [A-D] val\n"
 			"gpib port write pins  [A-D] val\n"
+            "gpib ppr_init\n"
+            "gpib ppr_bit_on N\n"
+            "gpib ppr_bit_off N\n"
+            "gpib ppr_set XX\n"
+#endif
             "\n"
             );
     }
@@ -116,6 +120,13 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
+    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
+    {
+        gpib_assert_ifc();
+        return(1);
+
+    }
+
     if (MATCHARGS(ptr,"task",(ind+0),argc))
     {
         gpib_task();
@@ -131,11 +142,11 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
+#ifdef GPIB_EXTENDED_TESTS
+    if (MATCHARGS(ptr,"ppr_init",(ind+0),argc))
     {
-        gpib_assert_ifc();
+        ppr_init();
         return(1);
-
     }
 
     if (MATCHARGS(ptr,"plot_echo", (ind+1) ,argc))
@@ -161,13 +172,6 @@ int gpib_tests(int argc, char * argv[])
         ppr_set(atoh(argv[ind]) );
         return(1);
     }
-
-    if (MATCHARGS(ptr,"ppr_init",(ind+0),argc))
-    {
-        ppr_init();
-        return(1);
-    }
-
 
 	// port read
     if (MATCHARGS(ptr,"port",(ind+3),argc))
@@ -332,6 +336,7 @@ int gpib_tests(int argc, char * argv[])
 		}
 
 	} // port write 
+#endif  // #ifdef GPIB_EXTENDED_TESTS
 
     return(0);
 }

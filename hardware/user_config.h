@@ -15,14 +15,23 @@
 
 
 #define AVR 1
-
 #define MEMSPACE /**/
 
 #define SYSTEM_TASK_HZ 1000L
 #define HAVE_HIRES_TIMER 1
 
-#define MMC_SLOW 250000L
-#define MMC_FAST 2500000L
+// FATFS
+#ifdef AVR
+
+#ifndef MMC_SLOW
+  #define MMC_SLOW (500000UL)
+#endif
+
+#ifndef MMC_FAST
+  #define MMC_FAST (2500000UL)
+#endif
+
+#endif  // AVR
 
 #define NO_SCANF
 
@@ -41,6 +50,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <ctype.h>
+
 
 #include <avr/pgmspace.h>
 #include <avr/portpins.h>
@@ -74,8 +84,7 @@ void copyright( void );
 #define NULL        ((void *) 0)
 #endif
 
-typedef enum { false, true }
-bool;
+typedef enum { false, true } bool;
 
 #ifndef _SIZE_T
 #define _SIZE_T

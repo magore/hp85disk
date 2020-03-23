@@ -6,7 +6,6 @@ var searchData=
   ['bit_5fclr',['BIT_CLR',['../bits_8h.html#a4021778be6452ef56bfb20488d19bcdc',1,'bits.h']]],
   ['bit_5fset',['BIT_SET',['../bits_8h.html#a75a94310a1111452b9aae180c264dc5e',1,'bits.h']]],
   ['bit_5ftst',['BIT_TST',['../bits_8h.html#a49c0cc46bd6dee049981fca0036e7f86',1,'bits.h']]],
-  ['bpb_5factfatex',['BPB_ActFatEx',['../ff_8c.html#a44afd74528bc3b7208dee55c78505a0a',1,'ff.c']]],
   ['bpb_5fbkbootsec32',['BPB_BkBootSec32',['../ff_8c.html#a6fceac966c2f2b277e8f472c5a7de0c7',1,'ff.c']]],
   ['bpb_5fbytspersec',['BPB_BytsPerSec',['../ff_8c.html#a8551844b4eb4e15aecd8cc9aa3585fa2',1,'ff.c']]],
   ['bpb_5fbytspersecex',['BPB_BytsPerSecEx',['../ff_8c.html#a3d35e000a1033bb913d3fbc3aa5c68af',1,'ff.c']]],

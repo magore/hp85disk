@@ -116,9 +116,10 @@ void help()
 
     printf(
         "delay_tests\n"
-        "time\n"
-        "setdate\n"
+		"help\n"
         "mem\n"
+        "setdate\n"
+        "time\n"
         "\n"
         );
 }
@@ -161,8 +162,6 @@ void task(uint8_t gpib)
 
     if(!ptr)
         return;
-
-
 
     if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
     {

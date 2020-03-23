@@ -11,11 +11,13 @@ var searchData=
   ['max_5ffat32',['MAX_FAT32',['../ff_8c.html#a40e7471b7ae3620a0419aa4d8d6dc684',1,'ff.c']]],
   ['max_5ffile_5fname_5flen',['MAX_FILE_NAME_LEN',['../drives_8h.html#a835262f9c26026aab5f91a528f57ad8f',1,'drives.h']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'posix.h']]],
+  ['max_5fmalloc',['MAX_MALLOC',['../ff_8c.html#aaa791eb9a3f067c6a24c70626bddcc66',1,'ff.c']]],
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],
   ['max_5frows',['MAX_ROWS',['../LCD_8h.html#a3b94af9dcb0358f28d175d80eed98330',1,'LCD.h']]],
   ['max_5fstack',['MAX_STACK',['../drives_8c.html#af24298a5ce56647751e432673282c6e2',1,'drives.c']]],
   ['max_5ftimer_5fcnt',['MAX_TIMER_CNT',['../timer_8h.html#a492a379b00d0ec04be9cd0994e0b42ae',1,'timer.h']]],
   ['maxcyl',['MAXCYL',['../td02lif_8h.html#aacffa7a6e218e2027e0702985d5177a7',1,'td02lif.h']]],
+  ['maxdirb',['MAXDIRB',['../ff_8c.html#a01c7bbfbe635cd0d0ab3e59a3f44dc64',1,'ff.c']]],
   ['maxsectors',['MAXSECTORS',['../td02lif_8h.html#a39ad5a6dea9e9b9d5314d32f397fee7d',1,'td02lif.h']]],
   ['maxsides',['MAXSIDES',['../td02lif_8h.html#a6d1c996bff41748d6840c43bd803c103',1,'td02lif.h']]],
   ['maxtracks',['MAXTRACKS',['../td02lif_8h.html#ade239296a2facdacc8b64d0791e2d806',1,'td02lif.h']]],
@@ -24,6 +26,9 @@ var searchData=
   ['mem_5fclear',['Mem_Clear',['../hardware_2user__config_8h.html#a027f5683e524693c2ba74dd55fb42d5a',1,'user_config.h']]],
   ['mem_5fset',['Mem_Set',['../hardware_2user__config_8h.html#accba58d1237bfcb21e9f4bb040aebc4a',1,'user_config.h']]],
   ['memspace',['MEMSPACE',['../hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4',1,'MEMSPACE():&#160;user_config.h'],['../queue_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4',1,'MEMSPACE():&#160;queue.h'],['../stringsup_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4',1,'MEMSPACE():&#160;stringsup.h'],['../mathio_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4',1,'MEMSPACE():&#160;mathio.h'],['../mmc__hal_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4',1,'MEMSPACE():&#160;mmc_hal.h']]],
+  ['merge2',['MERGE2',['../ffunicode_8c.html#a373853218ab4794caaeb75972e228e2e',1,'ffunicode.c']]],
+  ['merge_5f2str',['MERGE_2STR',['../ff_8c.html#afd69eeee2e2b9f8359018dfe8d163fd4',1,'ff.c']]],
+  ['mkcvtbl',['MKCVTBL',['../ff_8c.html#ac4c5cba43a7d51edd75c267e6046756f',1,'ff.c']]],
   ['mmc_5fcd',['MMC_CD',['../mmc_8c.html#a3f7233f98c6f4abb0cdea809c39bcf68',1,'mmc.c']]],
   ['mmc_5fcli',['mmc_cli',['../mmc__hal_8h.html#ae150a8179a17d87a2a72bc2d5705d835',1,'mmc_hal.h']]],
   ['mmc_5ffast',['MMC_FAST',['../hardware_2user__config_8h.html#a1cf90afdd82046f772117bb46a9849e6',1,'user_config.h']]],
@@ -36,5 +41,5 @@ var searchData=
   ['mmc_5fslow',['MMC_SLOW',['../hardware_2user__config_8h.html#a0fc3621fbfd7c2ba408bcbd05b27fbf3',1,'user_config.h']]],
   ['mmc_5fwp',['MMC_WP',['../mmc_8c.html#a5736fa0032458e3579bccfc2b363e8ba',1,'mmc.c']]],
   ['modecmp',['modecmp',['../posix_8h.html#a28002092a0615e21c9943a426e81015f',1,'posix.h']]],
-  ['model_5fsize',['MODEL_SIZE',['../drives_8h.html#a3f11d81c1e6d925611a9bdd5115064a0',1,'drives.h']]]
+  ['model_5fsize',['MODEL_SIZE',['../drives__sup_8h.html#a3f11d81c1e6d925611a9bdd5115064a0',1,'drives_sup.h']]]
 ];

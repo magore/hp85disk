@@ -34,39 +34,42 @@ declare D
 for D in 0 1 2 3
 do
 	# The generated file name below must match these LIF images 
+	# runlog lif create "amigo"$D.lif "AMIGO"$D 14 1120
+	# runlog lif create "ss80-"$D.lif "SS80-"$D 256 58176
+	runlog lif createdisk "amigo"$D.lif "AMIGO"$D 9121
+	runlog lif createdisk "ss80-"$D.lif "SS80-"$D 9134d
+done
 
-	BLOCKS=$(mkcfg -m 9134D -b)
-	DIRECTORY_SIZE=$(mkcfg -m 9134D -d)
-	echo "BLOCKS:[$BLOCKS]
-	echo "DIRECTORY_SIZE:[$DIRECTORY_SIZE]
-
-	runlog lif create "ss80-"$D.lif "SS80-"$D $DIRECTORY_SIZE $BLOCKS
-
-	BLOCKS=$(mkcfg -m 9121 -b)
-	DIRECTORY_SIZE=$(mkcfg -m 9121 -d)
-	#DIRECTORY_SIZE=14
-	echo "BLOCKS:[$BLOCKS]
-	echo "DIRECTORY_SIZE:[$DIRECTORY_SIZE]
-
-	runlog lif create "amigo"$D.lif "AMIGO"$D $DIRECTORY_SIZE $BLOCKS
-
+echo "Adding files"
+for D in 0 1 2 3
+do
 	declare S
 	for S in $@
 	do
 		if [ -d "$S" ]
 		then
-			echo "Adding Directory:$S"
-			runlog lif_add_files "ss80-"$D.lif "$S"
-			runlog lif_add_files "amigo"$D.lif "$S"
+			echo "Adding Directory:[$S]"
+			lif_add_files "ss80-"$D.lif "$S"
+			echo "Adding Directory:[$S]"
+			lif_add_files "amigo"$D.lif "$S"
 		else
 			echo "Skipping file: $S"
 		fi
 	done
 done
 
+echo "Listing files"
+declare D
+for D in 0 1 2 3
+do
+	lif dir "ss80-"$D.lif
+	lif dir "amigo"$D.lif
+done
+
 
 echo "Creating AMIGO ONLY Config amigo.cfg"
-cat "$CONFIGS/header.cfg" >"$SDCARD/amigo.cfg"
+cat "$CONFIGS/debug_defaults.cfg" >"$SDCARD/amigo.cfg"
+cat "$CONFIGS/printer_defaults.cfg" >>"$SDCARD/amigo.cfg"
 declare D
 for D in 0 1 2 3 
 do
@@ -75,7 +78,9 @@ do
 done
 
 echo "Creating COMBINED Config hpdisk.cfg"
-cat "$CONFIGS/header.cfg" >"$SDCARD/hpdisk.cfg"
+cat "$CONFIGS/debug_defaults.cfg" >"$SDCARD/hpdisk.cfg"
+cat "$CONFIGS/printer_defaults.cfg" >>"$SDCARD/hpdisk.cfg"
+cat "$CONFIGS/ss80_defaults.cfg" >>"$SDCARD/hpdisk.cfg"
 
 echo "Creating AMIGO records in hpdisk.cfg"
 declare D
