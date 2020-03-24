@@ -188,7 +188,7 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-    GPIO_PIN_HI(SS);                                    // SS Output HI
+    // GPIO_PIN_HI(SS);  						// SS Output HI
 
     delayus(10);
 

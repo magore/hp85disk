@@ -33,7 +33,6 @@
 #define SCK      GPIO_B7
 #define MISO     GPIO_B6
 #define MOSI     GPIO_B5
-#define SS       GPIO_B4
 
 #define MMC_CS   GPIO_B3
 
@@ -44,7 +43,9 @@
 #define TX0      GPIO_D1
 
 #define LED1     GPIO_C6
-#define LED2     GPIO_C7
+#define LED2     GPIO_B4
+
+#define CD       GPIO_C7 /* Card Detect */
 
 
 /// @brief GPIO MACRO notes
