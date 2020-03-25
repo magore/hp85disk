@@ -199,12 +199,12 @@ void SPI0_Init(uint32_t speed)
     BIT_SET(SPCR, SPE);     // Enable SPI
     BIT_SET(SPCR, MSTR);    // Master Mode
 
-	// Now we can change the SS pin low - AFTRE MSTR is set
+	// Now we can change the SS pin low - AFTER MSTR is set
     GPIO_PIN_LOW(SS); 		// SS Output -prevents slave mode from input LOW
 
     SPI0_Mode(0);
     SPI0_Speed(speed);
-    SPI0_TXRX_Byte(0xff);	// This will hang if SS is low while MSTR was set
+    SPI0_TXRX_Byte(0xff);	// THIS WILL STILL HANG IF SS is forced or shorted low enough
 	SPI0_Init_state = 1;
 }
 

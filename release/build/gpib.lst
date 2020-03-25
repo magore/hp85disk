@@ -5373,7 +5373,7 @@ void SPI0_Init(uint32_t speed)
     59b4:	80 61       	ori	r24, 0x10	; 16
     59b6:	8c bd       	out	0x2c, r24	; 44
 
-	// Now we can change the SS pin low - AFTRE MSTR is set
+	// Now we can change the SS pin low - AFTER MSTR is set
     GPIO_PIN_LOW(SS); 		// SS Output -prevents slave mode from input LOW
     59b8:	2c 98       	cbi	0x05, 4	; 5
     59ba:	24 9a       	sbi	0x04, 4	; 4
@@ -5384,7 +5384,7 @@ void SPI0_Init(uint32_t speed)
     SPI0_Speed(speed);
     59c0:	a7 df       	rcall	.-178    	; 0x5910 <SPI0_Mode>
     59c2:	c7 01       	movw	r24, r14
-    SPI0_TXRX_Byte(0xff);	// This will hang if SS is low while MSTR was set
+    SPI0_TXRX_Byte(0xff);	// THIS WILL STILL HANG IF SS is forced or shorted low enough
     59c4:	b6 01       	movw	r22, r12
     59c6:	3d df       	rcall	.-390    	; 0x5842 <SPI0_Speed>
     59c8:	8f ef       	ldi	r24, 0xFF	; 255
