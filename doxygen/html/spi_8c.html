@@ -95,7 +95,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab93aed2163d123a27c97758c8cde0587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return saved SPI mode as set by <a class="el" href="spi_8c.html#a50834bfd8ff3e59840ef35d5283f5306" title="Set SPI clock mode. ">SPI0_Mode()</a>.  <a href="#ab93aed2163d123a27c97758c8cde0587">More...</a><br /></td></tr>
 <tr class="separator:ab93aed2163d123a27c97758c8cde0587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09a39e7befac69f184fd466e10730595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8c.html#a09a39e7befac69f184fd466e10730595">SPI0_Init</a> (uint32_t speed)</td></tr>
-<tr class="memdesc:a09a39e7befac69f184fd466e10730595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize SPI0 device.  <a href="#a09a39e7befac69f184fd466e10730595">More...</a><br /></td></tr>
+<tr class="memdesc:a09a39e7befac69f184fd466e10730595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize SPI0 device. See Atmel App Note AVR151 Set default speed, IO pins and mode.  <a href="#a09a39e7befac69f184fd466e10730595">More...</a><br /></td></tr>
 <tr class="separator:a09a39e7befac69f184fd466e10730595"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a795b3fa18e16d366d9a64e88f1cb18ab"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_8c.html#a795b3fa18e16d366d9a64e88f1cb18ab">SPI0_TXRX_Byte</a> (uint8_t Data)</td></tr>
 <tr class="memdesc:a795b3fa18e16d366d9a64e88f1cb18ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI read/Write byte.  <a href="#a795b3fa18e16d366d9a64e88f1cb18ab">More...</a><br /></td></tr>
@@ -197,10 +197,8 @@ GNU Public License.</dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize SPI0 device. </p>
-<ul>
-<li>Set default speed, IO pins and mode. </li>
-</ul>
+<p>Initialize SPI0 device. See Atmel App Note AVR151 Set default speed, IO pins and mode. </p>
+<p>Set SPI clock mode 0 SPI Mode CPOL CPHA Sample 0 0 0 Leading (Rising) Edge </p>
 
 <p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00188">188</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
 
@@ -280,7 +278,7 @@ GNU Public License.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00270">270</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00282">282</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="hal_8c_source.html#l00451">spi_RX()</a>, and <a class="el" href="hal_8c_source.html#l00425">spi_RX_buffer()</a>.</p>
 
@@ -367,7 +365,7 @@ GNU Public License.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00239">239</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00251">251</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="hal_8c_source.html#l00466">spi_TX()</a>, and <a class="el" href="hal_8c_source.html#l00411">spi_TX_buffer()</a>.</p>
 
@@ -409,7 +407,7 @@ GNU Public License.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00255">255</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00267">267</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="hal_8c_source.html#l00480">spi_TXRX()</a>, and <a class="el" href="hal_8c_source.html#l00439">spi_TXRX_buffer()</a>.</p>
 
@@ -444,9 +442,9 @@ GNU Public License.</dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Data received. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00220">220</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="spi_8c_source.html#l00232">232</a> of file <a class="el" href="spi_8c_source.html">spi.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gpib__hal_8c_source.html#l00085">ppr_set()</a>, <a class="el" href="spi_8c_source.html#l00188">SPI0_Init()</a>, <a class="el" href="spi_8c_source.html#l00270">SPI0_RX()</a>, <a class="el" href="spi_8c_source.html#l00239">SPI0_TX()</a>, and <a class="el" href="spi_8c_source.html#l00255">SPI0_TXRX()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gpib__hal_8c_source.html#l00085">ppr_set()</a>, <a class="el" href="spi_8c_source.html#l00188">SPI0_Init()</a>, <a class="el" href="spi_8c_source.html#l00282">SPI0_RX()</a>, <a class="el" href="spi_8c_source.html#l00251">SPI0_TX()</a>, and <a class="el" href="spi_8c_source.html#l00267">SPI0_TXRX()</a>.</p>
 
 </div>
 </div>
@@ -539,7 +537,7 @@ GNU Public License.</dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 24 2020 21:48:06 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 24 2020 23:51:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -183,28 +183,40 @@ int SPI0_Get_Mode( void )
 static int SPI0_Init_state = 0;
 
 ///@brief Initialize SPI0 device.
-///
-/// - Set default speed, IO pins and mode.
+/// See Atmel App Note AVR151
+/// Set default speed, IO pins and mode.
 void SPI0_Init(uint32_t speed)
 {
 
+	volatile uint8_t D;
 
-	GPIO_PIN_HI(SS); 		// SS Output prevent slave mode from getting set
-    delayus(10);
+	GPIO_PIN_HI(SS); 		// SS Output must be HI prevent slave mode from getting set while initializing
+    delayus(10);			// Debugging delay HI
 
     GPIO_PIN_HI(SCK);       // SCK Output
     GPIO_PIN_HI(MOSI);                                  // MOSI Output
     GPIO_PIN_FLOAT(MISO);   // MISO Input, no pull-up
 
+	SPCR = 0;				// Clear SPCR in case we are not called after RESET
     BIT_SET(SPCR, SPE);     // Enable SPI
     BIT_SET(SPCR, MSTR);    // Master Mode
 
-	// Now we can change the SS pin low - AFTER MSTR is set
+	// SPI Clear pending interrupt flags
+	D = SPSR;
+	D = SPDR;
+
+	/// Set SPI clock mode 0 
+    ///  SPI Mode     CPOL    CPHA            Sample
+    ///  0    0       0       Leading (Rising)   Edge
+    SPI0_Mode(0);
+
+	// Set SPI clock speed
+    SPI0_Speed(speed);
+
+	// Now we can change the SS pin low - - but only AFTER MSTR is established
     GPIO_PIN_LOW(SS); 		// SS Output -prevents slave mode from input LOW
 
-    SPI0_Mode(0);
-    SPI0_Speed(speed);
-    SPI0_TXRX_Byte(0xff);	// THIS WILL STILL HANG IF SS is forced or shorted low enough
+    SPI0_TXRX_Byte(0xff);	// Send dummy 0xFF
 	SPI0_Init_state = 1;
 }
 
