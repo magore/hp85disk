@@ -190,18 +190,30 @@ void SPI0_Init(uint32_t speed)
 
 	volatile uint8_t D;
 
-	GPIO_PIN_HI(SS); 		// SS Output must be HI prevent slave mode from getting set while initializing
-    delayus(10);			// Debugging delay HI
+#ifdef SPI_DEBUG
+	printf("SPI0_Init speed:%ld\n",speed);
+#endif
+
+
+#ifdef SPI_DEBUG
+	printf("SS HI\n");
+	printf("Port B DDR:   0x%02x\n", (int) GPIO_PORT_DDR_RD(GPIO_B));
+	printf("Port B LATCH: 0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+	printf("Port B PINS:  0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+#endif
+
+	SPCR = 0;				// Clear SPCR in case we are not called after RESET
 
     GPIO_PIN_HI(SCK);       // SCK Output
     GPIO_PIN_HI(MOSI);                                  // MOSI Output
     GPIO_PIN_FLOAT(MISO);   // MISO Input, no pull-up
 
-	SPCR = 0;				// Clear SPCR in case we are not called after RESET
-    BIT_SET(SPCR, SPE);     // Enable SPI
+	// Warning *** MSTR MUST be set BEFORE SPE!!!! *** otherwise SS will NOT behave as an output
+	GPIO_PIN_LOW(SS); 		// SS Output must be HI prevent slave mode from getting set while initializing
     BIT_SET(SPCR, MSTR);    // Master Mode
+    BIT_SET(SPCR, SPE);     // Enable SPI
 
-	// SPI Clear pending interrupt flags
+	// SPI Clear any pending interrupt flags
 	D = SPSR;
 	D = SPDR;
 
@@ -213,11 +225,9 @@ void SPI0_Init(uint32_t speed)
 	// Set SPI clock speed
     SPI0_Speed(speed);
 
-	// Now we can change the SS pin low - - but only AFTER MSTR is established
-    GPIO_PIN_LOW(SS); 		// SS Output -prevents slave mode from input LOW
-
     SPI0_TXRX_Byte(0xff);	// Send dummy 0xFF
 	SPI0_Init_state = 1;
+
 }
 
 

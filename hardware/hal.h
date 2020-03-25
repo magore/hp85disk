@@ -54,7 +54,7 @@
 
 /// @brief GPIO MACRO notes
 ///   We do not use {} around the macro statements so they behave like functions.
-///   Consider what would happen if you used breaces (should be obviious)
+///   Consider what would happen if you used braces (should be obviious)
 ///      if ( GPIB_PIN_RD(SENSOR) )
 ///      {
 ///       printf"SENSOR");
@@ -66,7 +66,7 @@
 /// @brief program SFR to permit normal GPIO mode
 
 #define GPIO_PORT2SFR(port,base) _SFR_IO8( (((port) * 3) + (base)) )
-#define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR((pin>>3),(base) )
+#define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR(((pin)>>3),(base) )
 
 /// @brief program SFR to permit normal gpio input/output
 #define GPIO_PIN_MODE(pin)      /* FIXME TODO */
