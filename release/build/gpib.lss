@@ -7049,16 +7049,16 @@ void SPI0_Init(uint32_t speed)
     5990:	6b 01       	movw	r12, r22
     5992:	7c 01       	movw	r14, r24
 
-    delayus(10);
-    5994:	6a e0       	ldi	r22, 0x0A	; 10
-    5996:	70 e0       	ldi	r23, 0x00	; 0
-    5998:	80 e0       	ldi	r24, 0x00	; 0
-    599a:	90 e0       	ldi	r25, 0x00	; 0
-    599c:	2d dd       	rcall	.-1446   	; 0x53f8 <delayus>
 
 	GPIO_PIN_HI(SS); 		// SS Output prevent slave mode from getting set
-    599e:	2c 9a       	sbi	0x05, 4	; 5
-    59a0:	24 9a       	sbi	0x04, 4	; 4
+    5994:	2c 9a       	sbi	0x05, 4	; 5
+    5996:	24 9a       	sbi	0x04, 4	; 4
+    delayus(10);
+    5998:	6a e0       	ldi	r22, 0x0A	; 10
+    599a:	70 e0       	ldi	r23, 0x00	; 0
+    599c:	80 e0       	ldi	r24, 0x00	; 0
+    599e:	90 e0       	ldi	r25, 0x00	; 0
+    59a0:	2b dd       	rcall	.-1450   	; 0x53f8 <delayus>
 
     GPIO_PIN_HI(SCK);       // SCK Output
     59a2:	2f 9a       	sbi	0x05, 7	; 5
@@ -7089,7 +7089,7 @@ void SPI0_Init(uint32_t speed)
     SPI0_Speed(speed);
     59c0:	a7 df       	rcall	.-178    	; 0x5910 <SPI0_Mode>
     59c2:	c7 01       	movw	r24, r14
-    SPI0_TXRX_Byte(0xff);
+    SPI0_TXRX_Byte(0xff);	// This will hang if SS is low while MSTR was set
     59c4:	b6 01       	movw	r22, r12
     59c6:	3d df       	rcall	.-390    	; 0x5842 <SPI0_Speed>
     59c8:	8f ef       	ldi	r24, 0xFF	; 255

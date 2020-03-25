@@ -188,9 +188,9 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-    delayus(10);
 
 	GPIO_PIN_HI(SS); 		// SS Output prevent slave mode from getting set
+    delayus(10);
 
     GPIO_PIN_HI(SCK);       // SCK Output
     GPIO_PIN_HI(MOSI);                                  // MOSI Output
@@ -204,7 +204,7 @@ void SPI0_Init(uint32_t speed)
 
     SPI0_Mode(0);
     SPI0_Speed(speed);
-    SPI0_TXRX_Byte(0xff);
+    SPI0_TXRX_Byte(0xff);	// This will hang if SS is low while MSTR was set
 	SPI0_Init_state = 1;
 }
 
