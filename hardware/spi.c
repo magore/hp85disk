@@ -188,16 +188,19 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-    GPIO_PIN_HI(GPIO_B4);  							// SS Output HI
-
     delayus(10);
 
-    GPIO_PIN_HI(SCK);                                   // SCK Output
-    GPIO_PIN_HI(MOSI);                                  // MOSI Output
-    GPIO_PIN_FLOAT(MISO);                               // MISO Input, no pull-up
+	GPIO_PIN_HI(SS); 		// SS Output prevent slave mode from getting set
 
-    BIT_SET(SPCR, SPE);                           // Enable SPI
-    BIT_SET(SPCR, MSTR);                          // Master Mode
+    GPIO_PIN_HI(SCK);       // SCK Output
+    GPIO_PIN_HI(MOSI);                                  // MOSI Output
+    GPIO_PIN_FLOAT(MISO);   // MISO Input, no pull-up
+
+    BIT_SET(SPCR, SPE);     // Enable SPI
+    BIT_SET(SPCR, MSTR);    // Master Mode
+
+	// Now we can change the SS pin low - AFTRE MSTR is set
+    GPIO_PIN_LOW(SS); 		// SS Output -prevents slave mode from input LOW
 
     SPI0_Mode(0);
     SPI0_Speed(speed);

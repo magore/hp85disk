@@ -43,6 +43,10 @@
 #define TX0      GPIO_D1
 
 #define LED1     GPIO_C6
+///@brief SS MUST be an output in prevent SPI slave mode when the pin is low
+/// SS is set as an output in SPI_init() 
+#define SS       GPIO_B4
+
 #define LED2     GPIO_B4
 
 #define CD       GPIO_C7 /* Card Detect */
