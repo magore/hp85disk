@@ -63,6 +63,9 @@ BOARD ?= 2
 # Jay Hamlin V2 circuit board design
 PPR_REVERSE_BITS ?= 1
 
+# Evaluate interrupt driven I2C code - not being used yet
+I2C_SUPPORT := 1
+
 # Do we have an RTC - code currently assumes DS1307 or DS3231
 RTC_SUPPORT := 1
 
@@ -79,7 +82,6 @@ AMIGO=1
 ### Source files and search directory
 FATFS_SUPPORT=1
 FATFS_TESTS=1
-
 # Extended user interactive fatfs tests
 FATFS_UTILS_FULL=0
 
@@ -93,7 +95,6 @@ POSIX_EXTENDED_TESTS=0
 #LIF support 
 LIF_SUPPORT=1
 
-
 # ==============================================
 HARDWARE = \
 	hardware/hal.c \
@@ -102,6 +103,9 @@ HARDWARE = \
 	hardware/rs232.c \
 	hardware/spi.c \
 	hardware/TWI_AVR8.c 
+ifeq ($(I2C_SUPPORT),1)
+	HARDWARE += hardware/i2c.c 
+endif
 # We have an RTC
 ifeq ($(RTC_SUPPORT),1)
 	HARDWARE += hardware/rtc.c 
@@ -176,7 +180,8 @@ CSRC = \
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
 # update.last is safer to use, the file is touched by my git commit script
 GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
-LOCAL_MOD := $(shell ls -t $(CSRC) | tail -1 | xargs stat -c%x)
+#LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
+LOCAL_MOD := $(shell ls -rt */*[ch] | tail -1 | xargs stat -c%x)
 
 ASRC    = 
 
@@ -203,6 +208,10 @@ ifeq ($(AMIGO),1)
 endif
 
 DEFS += BAUD=$(BAUD)
+
+ifeq ($(I2C_SUPPORT),1)
+	DEFS += I2C_SUPPORT
+endif
 
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT

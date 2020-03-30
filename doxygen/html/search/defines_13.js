@@ -28,5 +28,8 @@ var searchData=
   ['td_5ftrack_5fsize',['TD_TRACK_SIZE',['../td02lif_8h.html#a073452932b78187f2195a7e780e39c77',1,'td02lif.h']]],
   ['te',['TE',['../gpib__hal_8h.html#a91c0a910ad7ea895ed9093c9286df2f2',1,'gpib_hal.h']]],
   ['timeout_5fflag',['TIMEOUT_FLAG',['../gpib_8h.html#abc15e280bc4f374b8813d358059a121e',1,'gpib.h']]],
-  ['trace_5fall',['TRACE_ALL',['../gpib_8h.html#ae4811a3fa9574a7836b8aaa99f553800',1,'gpib.h']]]
+  ['trace_5fall',['TRACE_ALL',['../gpib_8h.html#ae4811a3fa9574a7836b8aaa99f553800',1,'gpib.h']]],
+  ['twcr_5fack',['TWCR_ACK',['../i2c_8c.html#a45cc456d02fbaa42f67aa37d9c781440',1,'i2c.c']]],
+  ['twcr_5fdefault',['TWCR_DEFAULT',['../i2c_8c.html#abdadca107006b76760250a99ebec6b0d',1,'i2c.c']]],
+  ['twcr_5fnot_5fack',['TWCR_NOT_ACK',['../i2c_8c.html#afbc9cda27f9fca0c6c1f52ce97c56e38',1,'i2c.c']]]
 ];

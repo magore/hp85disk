@@ -28,7 +28,7 @@
 ///@brief AVR GPIO MACROs
 #ifdef AVR
 
-#include "iom1284p.h"
+#include "gpio-1284p.h"
 
 #define SCK      GPIO_B7
 #define MISO     GPIO_B6

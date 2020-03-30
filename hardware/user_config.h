@@ -55,13 +55,18 @@
 #include <avr/pgmspace.h>
 #include <avr/portpins.h>
 #include <avr/io.h>
+#include <assert.h>
+#include <avr/interrupt.h>
 
-#include "hardware/iom1284p.h"
+
+#include "hardware/gpio-1284p.h"
 #include "hardware/hal.h"
 
 #include "hardware/bits.h"
 #include "hardware/delay.h"
 #include "hardware/ram.h"
+
+#include <util/twi.h>
 
 #include "lib/stringsup.h"
 #include "printf/mathio.h"
@@ -101,8 +106,11 @@ typedef unsigned long int size_t;
 #include "spi.h"
 #include "rtc.h"
 #include "TWI_AVR8.h"
-#include "LCD.h"
+#ifdef I2C_SUPPORT
+#include "i2c.h"
+#endif
 #ifdef LCD_SUPPORT
+#include "LCD.h"
 #include "display/lcd_printf.h"
 #endif
 #include "posix/posix.h"

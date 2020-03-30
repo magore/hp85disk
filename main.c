@@ -13,7 +13,6 @@
 
 #include <user_config.h>
 
-#include "hardware/iom1284p.h"
 
 #ifndef _IOM1284P_H_
 #error _IOM1284P_H_
@@ -228,8 +227,6 @@ int main(void)
     ///@ initialize bus state as soon as practical
     gpib_bus_init();
 
-    init_timers();
-
     // BAUD setting moved to Makefile
     baud = BAUD;
 
@@ -244,6 +241,8 @@ int main(void)
     printf("Start\n");
     printf("CPU Clock = %lu\n", F_CPU);
     printf("Requested Baud Rate: %ld, Actual: %ld\n", (long)baud, (long)actual);
+
+    init_timers();
 
     sep();
     printf("HP85 Disk and Device Emulator\n");

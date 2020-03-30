@@ -4,7 +4,7 @@ var searchData=
   ['hal_2eh',['hal.h',['../hal_8h.html',1,'']]],
   ['have_5fhires_5ftimer',['HAVE_HIRES_TIMER',['../hardware_2user__config_8h.html#ace7ce1901bf0c350e7704eb37b07ad74',1,'user_config.h']]],
   ['head',['head',['../structAMIGOStateType.html#a92b01a4e3912d2fcacebcc15a21c66c9',1,'AMIGOStateType']]],
-  ['header',['Header',['../structtd__header__t.html#a41510629d6bb7852f4e1e43443c38edd',1,'td_header_t::Header()'],['../structPRINTERDeviceType.html#ac1ae5b29520f726e4aaab0232ecd6463',1,'PRINTERDeviceType::HEADER()'],['../structAMIGODiskType.html#a9814efe6f564b104fc7e0100231908a8',1,'AMIGODiskType::HEADER()'],['../structSS80DiskType.html#ae66c0130dee8c362743dfdfc41539c3b',1,'SS80DiskType::HEADER()']]],
+  ['header',['HEADER',['../structPRINTERDeviceType.html#ac1ae5b29520f726e4aaab0232ecd6463',1,'PRINTERDeviceType::HEADER()'],['../structAMIGODiskType.html#a9814efe6f564b104fc7e0100231908a8',1,'AMIGODiskType::HEADER()'],['../structSS80DiskType.html#ae66c0130dee8c362743dfdfc41539c3b',1,'SS80DiskType::HEADER()'],['../structtd__header__t.html#a41510629d6bb7852f4e1e43443c38edd',1,'td_header_t::Header()']]],
   ['headertype',['HeaderType',['../structHeaderType.html',1,'']]],
   ['heads',['HEADS',['../structAMIGOGeometryType.html#a0c058525ff9c043708a0773eec513dbf',1,'AMIGOGeometryType::HEADS()'],['../structhpdir__t.html#a0b636f508776a07e2aaba4704dc124f2',1,'hpdir_t::HEADS()']]],
   ['heapify',['heapify',['../sort_8c.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c'],['../sort_8h.html#ae25e2660ac46bcd007951b361b4ab227',1,'heapify(int *v, int size, int root):&#160;sort.c']]],

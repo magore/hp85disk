@@ -11,11 +11,14 @@
 {\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
 {\ttfamily \#include $<$avr/portpins.\+h$>$}\newline
 {\ttfamily \#include $<$avr/io.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}hardware/iom1284p.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hardware/gpio-\/1284p.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}hardware/hal.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}hardware/bits.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}hardware/delay.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}hardware/ram.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$util/twi.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}lib/stringsup.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}lib/time.\+h\char`\"{}}\newline
@@ -26,7 +29,6 @@
 {\ttfamily \#include \char`\"{}rs232.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}spi.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}T\+W\+I\+\_\+\+A\+V\+R8.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}L\+C\+D.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}posix/posix.\+h\char`\"{}}\newline
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
@@ -95,7 +97,7 @@ void \hyperlink{hardware_2user__config_8h_ae4c83013e72a2a5ed2f205b36a40583a}{cop
 
 
 
-Definition at line 90 of file user\+\_\+config.\+h.
+Definition at line 95 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_a1519396040c1c9c28f597ccfbae61843}\label{hardware_2user__config_8h_a1519396040c1c9c28f597ccfbae61843}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!A\+VR@{A\+VR}}
@@ -115,7 +117,7 @@ Definition at line 17 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 115 of file user\+\_\+config.\+h.
+Definition at line 123 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}\label{hardware_2user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!free@{free}}
@@ -125,7 +127,7 @@ Definition at line 115 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 112 of file user\+\_\+config.\+h.
+Definition at line 120 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}\label{hardware_2user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER@{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER}}
@@ -145,7 +147,7 @@ Definition at line 21 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 118 of file user\+\_\+config.\+h.
+Definition at line 126 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}\label{hardware_2user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}}
@@ -155,7 +157,7 @@ Definition at line 118 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 94 of file user\+\_\+config.\+h.
+Definition at line 99 of file user\+\_\+config.\+h.
 
 
 
@@ -169,7 +171,7 @@ Referenced by S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+send\+\_
 
 
 
-Definition at line 95 of file user\+\_\+config.\+h.
+Definition at line 100 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}\label{hardware_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
@@ -231,11 +233,11 @@ Definition at line 36 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 84 of file user\+\_\+config.\+h.
+Definition at line 89 of file user\+\_\+config.\+h.
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), alloc\+\_\+device(), atoh(), atoi(), atol(), buffer\+\_\+gets(), buffer\+\_\+read\+\_\+open(), cat(), close(), copy(), display\+\_\+\+Config(), execute\+\_\+timers(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), ff\+\_\+memfree(), fgetc(), fgets(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), format\+\_\+drives(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), gpib\+\_\+decode\+\_\+header(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+log(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+set\+\_\+device(), init\+\_\+\+Devices(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+close\+\_\+volume(), lif\+\_\+create\+\_\+image(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), lif\+\_\+rename\+\_\+file(), lif\+\_\+stat(), lif\+\_\+stralloc(), lif\+\_\+tests(), lif\+\_\+updatefree(), ls(), lseek(), Mat\+Alloc(), Mat\+Free(), Mat\+Read(), Mat\+Write(), memchr(), new\+\_\+file\+\_\+descriptor(), open(), opendir(), perror(), posix\+\_\+tests(), Post\+\_\+\+Config(), printer\+\_\+init(), printer\+\_\+open(), queue\+\_\+del(), queue\+\_\+new(), read(), Read\+\_\+\+Config(), readdir(), receive\+\_\+plot\+\_\+flush(), safefree(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), split\+\_\+args(), strnalloc(), sync(), syncfs(), td02lif(), td0\+\_\+analize\+\_\+format(), td0\+\_\+init\+\_\+sectors(), time(), timetests(), and write().
+Referenced by \+\_\+printf\+\_\+fn(), alloc\+\_\+device(), atoh(), atoi(), atol(), buffer\+\_\+gets(), buffer\+\_\+read\+\_\+open(), cat(), close(), copy(), display\+\_\+\+Config(), execute\+\_\+timers(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), ff\+\_\+memfree(), fgetc(), fgets(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), format\+\_\+drives(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), gpib\+\_\+decode\+\_\+header(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+log(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+set\+\_\+device(), i2c\+\_\+post(), i2c\+\_\+txn\+\_\+init(), init\+\_\+\+Devices(), I\+S\+R(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+close\+\_\+volume(), lif\+\_\+create\+\_\+image(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), lif\+\_\+rename\+\_\+file(), lif\+\_\+stat(), lif\+\_\+stralloc(), lif\+\_\+tests(), lif\+\_\+updatefree(), ls(), lseek(), Mat\+Alloc(), Mat\+Free(), Mat\+Read(), Mat\+Write(), memchr(), new\+\_\+file\+\_\+descriptor(), open(), opendir(), perror(), posix\+\_\+tests(), Post\+\_\+\+Config(), printer\+\_\+init(), printer\+\_\+open(), queue\+\_\+del(), queue\+\_\+new(), read(), Read\+\_\+\+Config(), readdir(), receive\+\_\+plot\+\_\+flush(), safefree(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), split\+\_\+args(), strnalloc(), sync(), syncfs(), td02lif(), td0\+\_\+analize\+\_\+format(), td0\+\_\+init\+\_\+sectors(), time(), timetests(), and write().
 
 \mbox{\Hypertarget{hardware_2user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}\label{hardware_2user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!printf@{printf}}
@@ -245,7 +247,7 @@ Referenced by \+\_\+printf\+\_\+fn(), alloc\+\_\+device(), atoh(), atoi(), atol(
 
 standard includes include $<$stdio.\+h$>$ 
 
-Definition at line 69 of file user\+\_\+config.\+h.
+Definition at line 74 of file user\+\_\+config.\+h.
 
 \mbox{\Hypertarget{hardware_2user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}\label{hardware_2user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}} 
 \index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!snprintf@{snprintf}}
@@ -255,7 +257,7 @@ Definition at line 69 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 70 of file user\+\_\+config.\+h.
+Definition at line 75 of file user\+\_\+config.\+h.
 
 
 
@@ -269,7 +271,7 @@ Referenced by asctime\+\_\+r(), and ts\+\_\+to\+\_\+str().
 
 
 
-Definition at line 71 of file user\+\_\+config.\+h.
+Definition at line 76 of file user\+\_\+config.\+h.
 
 
 
@@ -293,7 +295,7 @@ Definition at line 20 of file user\+\_\+config.\+h.
 
 U\+A\+RT device number 
 
-Definition at line 97 of file user\+\_\+config.\+h.
+Definition at line 102 of file user\+\_\+config.\+h.
 
 
 
@@ -306,7 +308,7 @@ Definition at line 97 of file user\+\_\+config.\+h.
 
 
 
-Definition at line 91 of file user\+\_\+config.\+h.
+Definition at line 96 of file user\+\_\+config.\+h.
 
 
 
@@ -329,7 +331,7 @@ true&\\
 \end{DoxyEnumFields}
 
 
-Definition at line 87 of file user\+\_\+config.\+h.
+Definition at line 92 of file user\+\_\+config.\+h.
 
 
 
@@ -349,7 +351,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 42 of file main.\+c.
+Definition at line 41 of file main.\+c.
 
 
 

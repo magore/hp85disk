@@ -35,6 +35,7 @@ var searchData=
   ['rtc_5fread',['rtc_read',['../rtc_8c.html#a3794738edaf3a42409aa1d9e12be60c3',1,'rtc_read(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a13dd224642e709b435d15f4ea2c58a3e',1,'rtc_read(struct tm *t):&#160;rtc.c']]],
   ['rtc_5frun',['rtc_run',['../rtc_8c.html#a18a3db53342227574822a9b6b9c0386b',1,'rtc.c']]],
   ['rtc_5frun_5ftest',['rtc_run_test',['../rtc_8c.html#a4cc3a3f4decdc4ef7cfb28227e10c36d',1,'rtc.c']]],
+  ['rtc_5ftimeout',['RTC_TIMEOUT',['../rtc_8h.html#aa6c9d6b88ad3cfce15282812d6ac9a0b',1,'rtc.h']]],
   ['rtc_5fwrite',['rtc_write',['../rtc_8c.html#a9ba6382e802fb431c0460599c191763f',1,'rtc_write(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a27a133715802f5a78c9dfac7d987b35d',1,'rtc_write(struct tm *t):&#160;rtc.c']]],
   ['rx_5fbuf',['rx_buf',['../struct__uart.html#a68a8939d4be8a563157c98b5baa50ae0',1,'_uart']]],
   ['rx_5fbuf_5fsize',['RX_BUF_SIZE',['../rs232_8h.html#a690f985c933da2ce6fe62b6c61dfa662',1,'rs232.h']]],

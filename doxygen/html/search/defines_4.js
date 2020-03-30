@@ -6,7 +6,7 @@ var searchData=
   ['dc',['DC',['../gpib__hal_8h.html#a0caba21dab832e280875be65012b30fc',1,'gpib_hal.h']]],
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
-  ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],
+  ['ddr_5fbase',['DDR_BASE',['../gpio-1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'gpio-1284p.h']]],
   ['def_5fnambuf',['DEF_NAMBUF',['../ff_8c.html#ad9aa172b1cf1d54aca234228a7ae8503',1,'ff.c']]],
   ['dev_5fcfc',['DEV_CFC',['../diskio_8c.html#a9dbcff3fadca324effc7cf1e2632b8c5',1,'DEV_CFC():&#160;diskio.c'],['../diskio_8h.html#a9dbcff3fadca324effc7cf1e2632b8c5',1,'DEV_CFC():&#160;diskio.h']]],
   ['dev_5fmmc',['DEV_MMC',['../diskio_8c.html#afb573038812261a67140d1c63f57dd3e',1,'DEV_MMC():&#160;diskio.c'],['../diskio_8h.html#afb573038812261a67140d1c63f57dd3e',1,'DEV_MMC():&#160;diskio.h']]],

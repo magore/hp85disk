@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['i2c_5ffreq',['I2C_FREQ',['../i2c_8h.html#a8b7500a141450a9df212017430c0df9e',1,'i2c.h']]],
+  ['i2c_5ftxn_5fdone',['I2C_TXN_DONE',['../i2c_8h.html#aa6f6332e93ae8bc0db1035cb98e87ff7',1,'i2c.h']]],
+  ['i2c_5ftxn_5ferr',['I2C_TXN_ERR',['../i2c_8h.html#a46707467515b5027e334894b4852d432',1,'i2c.h']]],
   ['ifc',['IFC',['../gpib__hal_8h.html#a98c8976d9563bbcf85c8584e18da38fe',1,'gpib_hal.h']]],
   ['ifc_5fflag',['IFC_FLAG',['../gpib_8h.html#a0202c6cc39130a2c251235ef2336cd13',1,'gpib.h']]],
   ['init_5fnambuf',['INIT_NAMBUF',['../ff_8c.html#a9880dce2d33fe7708f982b5f80a31142',1,'ff.c']]],

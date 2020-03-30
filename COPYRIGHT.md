@@ -127,6 +127,13 @@ ___
 ___
 
 
+##  I2C code in testing 
+  * Not beeing used yet
+  * Copyright (c) 2014 Pieter Noordhuis https://github.com/pietern/avr-i2c
+
+___
+
+
 ## SParkFun I2C,SPI,Serial LCD
     * [LCD.c](hardware/LCD.c)
     * [LCD.h](hardware/LCD.h)
@@ -134,7 +141,6 @@ ___
       * Based on: https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
 
 ___
-
 
 
 # Notice

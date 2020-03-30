@@ -22,7 +22,7 @@ var searchData=
   ['dc',['DC',['../gpib__hal_8h.html#a0caba21dab832e280875be65012b30fc',1,'gpib_hal.h']]],
   ['dcl',['DCL',['../amigo_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;amigo.h'],['../defines_8h.html#a865c763cb20dd8d8d1bbe2df29f6a50d',1,'DCL():&#160;defines.h']]],
   ['ddem',['DDEM',['../ff_8c.html#a0f2455f7318e6d56318c62f5e4048e1e',1,'ff.c']]],
-  ['ddr_5fbase',['DDR_BASE',['../iom1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'iom1284p.h']]],
+  ['ddr_5fbase',['DDR_BASE',['../gpio-1284p_8h.html#a0c234917347c5bfd7cea239572a370d7',1,'gpio-1284p.h']]],
   ['debuglevel',['debuglevel',['../defines_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../gpib__task_8c.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../lifutils_8c.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c'],['../td02lif_8h.html#af219299ebad47daa6631415a8b41345a',1,'debuglevel():&#160;gpib_task.c']]],
   ['def_5fnambuf',['DEF_NAMBUF',['../ff_8c.html#ad9aa172b1cf1d54aca234228a7ae8503',1,'ff.c']]],
   ['defines_2eh',['defines.h',['../defines_8h.html',1,'']]],
