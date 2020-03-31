@@ -33,7 +33,7 @@ ___
 ___
 
 
-## hpdisk Copyright (C) 2014 Anders Gustafsson 
+## hpdisk Copyright (C) 2014- Anders Gustafsson 
 
  HPDisk - An SD-based disk emulator for GPIB instruments and computers.<br>
  Has been tested on the following devices.
@@ -52,6 +52,7 @@ ___
  * Documentation/README.md
 
 ___
+
 
 ## GPIB Linux
  * GPIB Linux Documenation from sourceforge
@@ -127,7 +128,19 @@ ___
 ___
 
 
+## Optiboot
+  * [optiboot](optiboot)
+    * Optiboot Bootloader for Arduino and Atmel AVR
+    * See: https://github.com/Optiboot/optiboot
+       * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
+       * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
+
+___
+
+
 ##  I2C code in testing 
+    * [i2c.c](hardware/i2c.c)
+    * [i2c.h](hardware/i2c.h)
   * Not beeing used yet
   * Copyright (c) 2014 Pieter Noordhuis https://github.com/pietern/avr-i2c
 

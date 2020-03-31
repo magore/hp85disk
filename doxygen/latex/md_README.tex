@@ -195,27 +195,41 @@ L\+IF manipulation tools are built in see later sections for details
 
 
 \begin{DoxyItemize}
+\item make help
+\begin{DoxyItemize}
+\item List the common commands to compile/install/flash the code $<$verbatim$>$ Building Commands make install -\/ builds and installs all command line utilities make sdcard -\/ builds all sdcard images and creats default hpdisk.\+cfg and amigo.\+cfg files make release -\/ builds all code and copies files to the release folder make clean -\/ cleans all generated files make -\/ builds all code
+
+Programming using an 6 wire I\+SP -\/ installs optiboot make install\+\_\+optiboot -\/ install optiboot boot loaded using an I\+SP make flash-\/isp -\/ build and flash the code using an I\+SP make flash-\/isp-\/release -\/ flash the release code using an I\+SP make verify-\/isp -\/ verify code using an I\+SP make verify-\/isp-\/release-\/ verify release code using an I\+SP
+
+Programming using the built in optiboot programmer I\+M\+P\+O\+R\+T\+A\+NT -\/ you M\+U\+ST press R\+E\+S\+ET on the hp85disk board J\+U\+ST B\+E\+F\+O\+RE issuing these commands On your computer type in the make command without pressing Enter afterwards Then press R\+E\+S\+ET the button and next press Enter quickly afterwards make flash -\/ build and flash the code using built in optiboot programmer make flash-\/release -\/ flash the release code using built in optiboot programmer make verify -\/ verify code using built in optiboot programmer make verify-\/release -\/ verify release code using built in optiboot programmer
+
+Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M\+P\+O\+R\+T\+A\+NT -\/ you will not be able to use non isp flashing modes later on Makes booting and flashing process slightly faster make flash-\/isp-\/noboot -\/ build and flash the code using an I\+SP make flash-\/isp-\/noboot-\/release -\/ flash the release code using an I\+SP $<$/verbatim$>$
+\end{DoxyItemize}
 \item make clean
 \item make
-\item make flash
+\item make flash \# uses built in programmer to flash the code
+\begin{DoxyItemize}
+\item OR
+\begin{DoxyItemize}
+\item make flash-\/isp \# uses a 6 wire I\+SP to flash the code
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsection*{Example building with Makefile overrides}
 
 
 \begin{DoxyItemize}
-\item ( export B\+A\+UD=500000\+UL; export A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED=1; make flash)
+\item ( export B\+A\+UD=500000\+UL; export A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED=1; make flash-\/isp)
 \begin{DoxyItemize}
 \item Make sure you add the \textquotesingle{}(\textquotesingle{} and \textquotesingle{})\textquotesingle{} around the commands
 \begin{DoxyItemize}
-\item This prevents settings variables in your current shell
+\item This prevents settings variables in your current shell 
+
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-
-
-
 
 \subsection*{Detailed information about tools and features}
 
@@ -1141,11 +1155,28 @@ He provided me his current source code code and mainy details of his project {\b
 \begin{DoxyItemize}
 \item \mbox{[}fatfs\mbox{]}(fatfs)
 \begin{DoxyItemize}
-\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes 
-
-
+\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+\subsection*{optiboot}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}optiboot\mbox{]}(optiboot)
+\begin{DoxyItemize}
+\item Optiboot Bootloader for Arduino and Atmel A\+VR
+\item See\+: \href{https://github.com/Optiboot/optiboot}{\tt https\+://github.\+com/\+Optiboot/optiboot}
+\begin{DoxyItemize}
+\item \href{https://github.com/Optiboot/optiboot/blob/master/LICENSE}{\tt G\+P\+Lv2 W\+RT}
+\item https\+://github.com/\+Optiboot/optiboot/blob/master/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+R\+E\+A\+D\+M\+E\char`\"{}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
 
 \section*{Abbreviations}
 

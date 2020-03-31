@@ -1,0 +1,173 @@
+#
+# Makefile for "other" implemented platforms.
+#
+# * Copyright 2013-2015 by Bill Westfield.  Part of Optiboot.
+# * This software is licensed under version 2 of the Gnu Public Licence.
+# * See optiboot.c for details.
+#
+
+#
+# Extra chips (maybe) supported by optiboot
+# Note that these are usually only minimally tested.
+#
+
+#
+# ATmega88
+#
+HELPTEXT += "target atmega88      - ATmega88 or ATmega88p (28pin, 8k)\n"
+atmega88: TARGET = atmega88
+atmega88: MCU_TARGET = atmega88
+atmega88: CFLAGS += $(COMMON_OPTIONS)
+atmega88: AVR_FREQ ?= 16000000L 
+atmega88: LDSECTIONS  = -Wl,--section-start=.text=0x1e00 -Wl,--section-start=.version=0x1ffe -Wl,--gc-sections -Wl,--undefined=optiboot_version
+atmega88: $(PROGRAM)_atmega88.hex
+atmega88: $(PROGRAM)_atmega88.lst
+
+atmega88_isp: atmega88
+atmega88_isp: TARGET = atmega88
+atmega88_isp: MCU_TARGET = atmega88
+# 2.7V brownout
+atmega88_isp: HFUSE ?= DD
+# Low power xtal (16MHz) 16KCK/14CK+65ms
+atmega88_isp: LFUSE ?= FF
+# 512 byte boot
+atmega88_isp: EFUSE ?= 04
+atmega88_isp: isp
+
+atmega88p_isp: atmega88
+atmega88p_isp: TARGET = atmega88
+atmega88p_isp: MCU_TARGET = atmega88p
+# 2.7V brownout
+atmega88p_isp: HFUSE ?= DD
+# Low power xtal (16MHz) 16KCK/14CK+65ms
+atmega88p_isp: LFUSE ?= FF
+# 512 byte boot
+atmega88p_isp: EFUSE ?= 04
+atmega88p_isp: isp
+
+#
+# ATmega168p [QFN32]
+#
+HELPTEXT += "target atmega168p    - ATmega168p\n"
+atmega168p: TARGET = atmega168p
+atmega168p: MCU_TARGET = atmega168p
+atmega168p: CFLAGS += $(COMMON_OPTIONS)
+atmega168p: AVR_FREQ ?= 16000000L 
+atmega168p: $(PROGRAM)_atmega168p_16MHz.hex
+atmega168p: $(PROGRAM)_atmega168p_16MHz.lst
+
+atmega168p_isp: atmega168p
+atmega168p_isp: TARGET = atmega168p
+# 2.7V brownout
+atmega168p_isp: HFUSE ?= DD
+# Low power xtal (16MHz) 16KCK/14CK+65ms
+atmega168p_isp: LFUSE ?= FF
+# 512 byte boot
+atmega168p_isp: EFUSE ?= 04
+atmega168p_isp: isp
+
+HELPTEXT += "target atmega16      - ATmega16 (40pin, 16k)\n"
+atmega16: TARGET = atmega16
+atmega16: MCU_TARGET = atmega16
+atmega16: CFLAGS += $(COMMON_OPTIONS)
+atmega16: AVR_FREQ ?= 16000000L 
+atmega16: $(PROGRAM)_atmega16.hex
+atmega16: $(PROGRAM)_atmega16.lst
+
+#
+# ATmega32
+#
+HELPTEXT += "target atmega32      - ATmega32 (40pin, 32k)\n"
+atmega32: TARGET = atmega32
+atmega32: MCU_TARGET = atmega32
+atmega32: CFLAGS += $(COMMON_OPTIONS)
+atmega32: AVR_FREQ ?= 11059200L
+atmega32: LDSECTIONS  = -Wl,--section-start=.text=0x7e00 -Wl,--section-start=.version=0x7ffe
+atmega32: $(PROGRAM)_atmega32.hex
+atmega32: $(PROGRAM)_atmega32.lst
+
+atmega32_isp: atmega32
+atmega32_isp: TARGET = atmega32
+atmega32_isp: MCU_TARGET = atmega32
+# No OCD or JTAG, SPIEN, CKOPT (for full swing xtal), Bootsize=512B
+atmega32_isp: HFUSE ?= CE
+# 2.7V brownout, 16MHz Xtal, 16KCK/14CK+65ms
+atmega32_isp: LFUSE ?= BF
+atmega32_isp: isp
+
+
+
+#
+# ATtiny84
+#
+attiny84: TARGET = attiny84
+attiny84: MCU_TARGET = attiny84
+attiny84: LED_CMD ?= -DLED_START_FLASHES=0
+attiny84: AVR_FREQ ?= 8000000L
+attiny84: CFLAGS += $(COMMON_OPTIONS) -DSOFT_UART -DVIRTUAL_BOOT_PARTITION -Dsave_vect_num=4
+attiny84: LDSECTIONS = -Wl,--section-start=.text=0x1d00 -Wl,--section-start=.version=0x1ffe -Wl,--gc-sections -Wl,--undefined=optiboot_version
+attiny84: $(PROGRAM)_attiny84.hex
+attiny84: $(PROGRAM)_attiny84.lst
+
+
+
+# 1MHz clocked platforms/boards
+#
+# These are capable of 9600 baud
+#
+
+luminet: TARGET = $@
+luminet: CHIP = attiny84
+luminet:
+	"$(MAKE)" $(CHIP) AVR_FREQ=1000000L LED_START_FLASHES=0 BAUD_RATE=9600
+	mv $(PROGRAM)_$(CHIP).hex $(PROGRAM)_$(TARGET).hex
+	mv $(PROGRAM)_$(CHIP).lst $(PROGRAM)_$(TARGET).lst
+
+luminet_isp: luminet
+luminet_isp: TARGET = luminet
+luminet_isp: MCU_TARGET = attiny84
+# Brownout disabled
+luminet_isp: HFUSE ?= DF
+# 1MHz internal oscillator, slowly rising power
+luminet_isp: LFUSE ?= 62
+# Self-programming enable
+luminet_isp: EFUSE ?= FE
+luminet_isp: isp
+
+
+HELPTEXT += "target atmega4809    - ATmega4809\n"
+atmega4809: TARGET = atmega4809
+atmega4809: PROGRAM = optiboot_x
+atmega4809: MCU_TARGET = atmega4809
+atmega4809: CFLAGS += $(COMMON_OPTIONS) -DLED=A7 $(UART_CMD) -DRSTPIN=1 -DTIMEOUT=1
+atmega4809: AVR_FREQ ?= 20000000L
+atmega4809: LDSECTIONS  = -Wl,--section-start=.text=0 -Wl,--section-start=.version=0x1fe -Wl,--section-start=.postapp=0x200
+atmega4809: $(PROGRAM)_atmega4809.hex
+ifndef PRODUCTION
+atmega4809: $(PROGRAM)_atmega4809.lst
+endif
+
+HELPTEXT += "target Xplained416    - ATtiny416 Xplained Nano\n"
+xplained416: TARGET = attiny416
+xplained416: PROGRAM = optiboot_x
+xplained416: MCU_TARGET = attiny416
+xplained416: CFLAGS += $(COMMON_OPTIONS) $(UART_CMD) -DLED_INVERT=1 -DTIMEOUT=8
+xplained416: AVR_FREQ ?= 20000000L
+xplained416: LDSECTIONS  = -Wl,--section-start=.text=0 -Wl,--section-start=.version=0x1fe -Wl,--section-start=.postapp=0x200
+xplained416: $(PROGRAM)_attiny416.hex
+ifndef PRODUCTION
+xplained416: $(PROGRAM)_attiny416.lst
+endif
+
+HELPTEXT += "target attiny412    - ATtiny4x2 boards by DrAzzy\n"
+attiny412: TARGET = attiny412
+attiny412: PROGRAM = optiboot_x
+attiny412: MCU_TARGET = attiny412
+attiny412: CFLAGS += $(COMMON_OPTIONS) $(UART_CMD) -DTIMEOUT=8
+attiny412: AVR_FREQ ?= 20000000L
+attiny412: LDSECTIONS  = -Wl,--section-start=.text=0 -Wl,--section-start=.version=0x1fe -Wl,--section-start=.postapp=0x200
+attiny412: $(PROGRAM)_attiny412.hex
+ifndef PRODUCTION
+attiny412: $(PROGRAM)_attiny412.lst
+endif
+

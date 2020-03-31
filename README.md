@@ -97,15 +97,48 @@ ___
       * atmelice_isp
 
 ## Example building
+  * make help
+    * List the common commands to compile/install/flash the code
+      <verbatim>
+        Building Commands
+            make install           - builds and installs all command line utilities
+            make sdcard            - builds all sdcard images and creats default hpdisk.cfg and amigo.cfg files
+            make release           - builds all code and copies files to the release folder
+            make clean             - cleans all generated files
+            make                   - builds all code
+        
+        Programming using an 6 wire ISP - installs optiboot
+            make install_optiboot  - install optiboot boot loaded using an ISP
+            make flash-isp         - build and flash the code using an ISP
+            make flash-isp-release - flash the release code using an ISP
+            make verify-isp        - verify code using an ISP
+            make verify-isp-release- verify release code using an ISP
+        
+        Programming using the built in optiboot programmer
+            IMPORTANT - you MUST press RESET on the hp85disk board JUST BEFORE issuing these commands
+                On your computer type in the make command without pressing Enter afterwards
+                Then press RESET the button and next press Enter quickly afterwards
+            make flash             - build and flash the code using built in optiboot programmer
+            make flash-release     - flash the release code using built in optiboot programmer
+            make verify            - verify code using built in optiboot programmer
+            make verify-release    - verify release code using built in optiboot programmer
+        
+        Programming using an 6 wire ISP - WITHOUT installing optiboot
+            IMPORTANT - you will not be able to use non isp flashing modes later on
+               Makes booting and flashing process slightly faster
+            make flash-isp-noboot         - build and flash the code using an ISP
+            make flash-isp-noboot-release - flash the release code using an ISP
+      </verbatim>
   * make clean
   * make
-  * make flash
+  * make flash    # uses built in programmer to flash the code
+    * OR 
+      * make flash-isp  # uses a 6 wire ISP to flash the code
 
 ## Example building with Makefile overrides
-  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash)
+  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
     * Make sure you add the '(' and ')' around the commands
       * This prevents settings variables in your current shell
-
 ___ 
 
 
@@ -600,7 +633,16 @@ NOTE:
 ## FatFS
   * [fatfs](fatfs)
     * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
+
+## optiboot
+  * [optiboot](optiboot)
+    * Optiboot Bootloader for Arduino and Atmel AVR
+    * See: https://github.com/Optiboot/optiboot
+       * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
+       * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
+
 ___
+
 
 # Abbreviations
 Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.

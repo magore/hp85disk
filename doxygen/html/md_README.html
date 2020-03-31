@@ -225,21 +225,35 @@ README</h1>
 </ul>
 <h2>Example building</h2>
 <ul>
+<li>make help<ul>
+<li><p class="startli">List the common commands to compile/install/flash the code &lt;verbatim&gt; Building Commands make install - builds and installs all command line utilities make sdcard - builds all sdcard images and creats default hpdisk.cfg and amigo.cfg files make release - builds all code and copies files to the release folder make clean - cleans all generated files make - builds all code</p>
+<p class="startli">Programming using an 6 wire ISP - installs optiboot make install_optiboot - install optiboot boot loaded using an ISP make flash-isp - build and flash the code using an ISP make flash-isp-release - flash the release code using an ISP make verify-isp - verify code using an ISP make verify-isp-release- verify release code using an ISP</p>
+<p class="startli">Programming using the built in optiboot programmer IMPORTANT - you MUST press RESET on the hp85disk board JUST BEFORE issuing these commands On your computer type in the make command without pressing Enter afterwards Then press RESET the button and next press Enter quickly afterwards make flash - build and flash the code using built in optiboot programmer make flash-release - flash the release code using built in optiboot programmer make verify - verify code using built in optiboot programmer make verify-release - verify release code using built in optiboot programmer</p>
+<p class="startli">Programming using an 6 wire ISP - WITHOUT installing optiboot IMPORTANT - you will not be able to use non isp flashing modes later on Makes booting and flashing process slightly faster make flash-isp-noboot - build and flash the code using an ISP make flash-isp-noboot-release - flash the release code using an ISP &lt;/verbatim&gt;</p>
+</li>
+</ul>
+</li>
 <li>make clean</li>
 <li>make</li>
-<li>make flash</li>
+<li>make flash # uses built in programmer to flash the code<ul>
+<li>OR<ul>
+<li>make flash-isp # uses a 6 wire ISP to flash the code</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2>Example building with Makefile overrides</h2>
 <ul>
-<li>( export BAUD=500000UL; export AVRDUDE_SPEED=1; make flash)<ul>
+<li>( export BAUD=500000UL; export AVRDUDE_SPEED=1; make flash-isp)<ul>
 <li>Make sure you add the '(' and ')' around the commands<ul>
-<li>This prevents settings variables in your current shell</li>
-</ul>
+<li>This prevents settings variables in your current shell <hr/>
 </li>
 </ul>
 </li>
 </ul>
-<hr/>
+</li>
+</ul>
 <h2>Detailed information about tools and features</h2>
 <h2>Built in command processor with many tools</h2>
 <h2>Accessing the hp85disk command interface with a serial terminal</h2>
@@ -1019,11 +1033,23 @@ README</h1>
 <h2>FatFS</h2>
 <ul>
 <li>[fatfs](fatfs)<ul>
-<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes <hr/>
-</li>
+<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes</li>
 </ul>
 </li>
 </ul>
+<h2>optiboot</h2>
+<ul>
+<li>[optiboot](optiboot)<ul>
+<li>Optiboot Bootloader for Arduino and Atmel AVR</li>
+<li>See: <a href="https://github.com/Optiboot/optiboot">https://github.com/Optiboot/optiboot</a><ul>
+<li><a href="https://github.com/Optiboot/optiboot/blob/master/LICENSE">GPLv2 WRT</a></li>
+<li>https://github.com/Optiboot/optiboot/blob/master/README.md "README"</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr/>
 <h1>Abbreviations</h1>
 <p>Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
 <li><b>SS80</b></li>
@@ -1850,7 +1876,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 30 2020 18:42:41 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 31 2020 17:23:43 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

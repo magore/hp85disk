@@ -19,83 +19,109 @@
 ### Project name (also used for output file name)
 PROJECT = gpib
 
-### Target AVR device for this project
-DEVICE ?= atmega1284p
-
-# avrdude programmer name
-# Example ATMEL AVR Incircuit programmer names as known by avrdude
-	# atmelice_isp
-	# avrispmkII
-	# dragon_isp
-# avrdude programmer name
-AVRDUDE_ISP ?= atmelice_isp
-
-# avrdude device name
-AVRDUDE_DEVICE ?= m1284p
-
-# avrdude programming speed
-AVRDUDE_SPEED ?= 5
-
-
 # ==============================================
 # Debug serial port for firmware command interface
-BAUD ?= 115200UL
+export BAUD ?= 115200UL
 # BAUD ?= 500000UL
+
 ### Serial Port for emulator user interface
-PORT ?= /dev/ttyUSB0
+export PORT ?= /dev/ttyUSB0
 # ==============================================
 
-# ==============================================
-### Board Version Specific defines
+### Target AVR device used by GCC for this project
+export DEVICE ?= atmega1284p
+export F_CPU  ?= 20000000 
 
-# My original V1 release from 2015 to 2019
-# BOARD=1
+# avrdude device programmer name as known by avrdude
+#     Note: avrdude -c list 
+#        Will display all of ALL supported pogrammers
+# I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
+export AVRDUDE_ISP ?= atmelice_isp
+
+# AVRDUDE ISP PORT
+export AVRDUDE_PORT ?= usb
+
+# avrdude device name
+export AVRDUDE_DEVICE ?= m1284
+
+# avrdude programming speed
+export AVRDUDE_SPEED ?= 5
+
+# ==============================================
+# AVR programming FUSES
+# Fuse bits for ATMEGA1284P
+# See: http://www.engbedded.com/fusecalc/
 #
-# Jay Hamlin V2 circuit board design
-BOARD ?= 2
+# NOTE: We MUST disable JTAG so we can use all of Port C GPIO bits
+# FYI: flash might randomly fail when JTAG is disabled - so just retry it
+export fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 
-# Do the Parallel Poll Response (PPR) bits need to be reverse in software?
-#   The SPEC requires the disk 1 replies on by pulling BIT 8 low, disk 8 pulls BIT 1 low
+
+# ==============================================
+# Project HARDWARE OPTIONS
+### Board Version Specific defines
+#
 # My original V1 release from 2015 to 2019
-# PPR_REVERSE_BITS=0
-#    My V1 circuit design reversed bits in hardware so this was NOT needed
+# 1 for original hardware release 2015 to 2019
+#
+# 2 for Jay Hamlin V2 circuit board design
+BOARD 					?= 2
 
-# Jay Hamlin V2 circuit board design
-PPR_REVERSE_BITS ?= 1
+# Parallel Poll Response (PPR) bit order
+#   The bus SPEC's require the disk 1 replies on by pulling BIT 8 low .. disk 8 pulls BIT 1 low
+#   So the bit order is reversed!
+#
+# Jay Hamlin V2 circuit board design 
+#   For this version we decided to do the PPR bit order swap in software 
+#   I now have documentation, in the new PPR functions, to help remind me why I did it 8-)
+PPR_REVERSE_BITS		?= 1
 
-# Evaluate interrupt driven I2C code - not being used yet
-I2C_SUPPORT := 1
+# My original V1 release from 2015 to 2019 did the PPR reversal in hardware 
+ifeq ($(BOARD),1)
+    PPR_REVERSE_BITS=0
+endif
 
-# Do we have an RTC - code currently assumes DS1307 or DS3231
-RTC_SUPPORT := 1
+# ==============================================
+# Hardware Addon Options 
+# Evaluate interrupt driven I2C code - compiled bit it is not being used yet
+I2C_SUPPORT 			?= 1
+
+# Do we have an RTC attachaed - code currently assumes DS1307 or DS3231
+RTC_SUPPORT 			?= 1
 
 # Do we have an I2C LCD
-LCD_SUPPORT := 1
+LCD_SUPPORT 			?= 1
 # ==============================================
-
 
 # Enable AMIGO support Code
-AMIGO=1
-# AMIGO=0
-# Disable AMIGO support code
+# 0 Disables 
+AMIGO 					?= 1
 
 ### Source files and search directory
-FATFS_SUPPORT=1
-FATFS_TESTS=1
+# 0 Disables 
+FATFS_SUPPORT			?= 1
+FATFS_TESTS				?= 1
+
 # Extended user interactive fatfs tests
-FATFS_UTILS_FULL=0
+# 0 Disables 
+FATFS_UTILS_FULL		?= 0
 
 #GPIB Extended tests
-GPIB_EXTENDED_TESTS=0
+# 0 Disables 
+GPIB_EXTENDED_TESTS		?= 0
 
 # Extended user interactive posix tests
+# 0 Disables 
 POSIX_TESTS=1
-POSIX_EXTENDED_TESTS=0
+POSIX_EXTENDED_TESTS 	?= 0
 
-#LIF support 
-LIF_SUPPORT=1
+#LIF support for modifying LIF disik images used by the emulator
+# 0 Disables 
+LIF_SUPPORT 			?= 1
 
 # ==============================================
+# Source filess to build the project 
+
 HARDWARE = \
 	hardware/hal.c \
 	hardware/ram.c \
@@ -103,14 +129,18 @@ HARDWARE = \
 	hardware/rs232.c \
 	hardware/spi.c \
 	hardware/TWI_AVR8.c 
+
+# Evaluate interrupt driven I2C code - compiled bit it is not being used yet
 ifeq ($(I2C_SUPPORT),1)
 	HARDWARE += hardware/i2c.c 
 endif
-# We have an RTC
+
+# Do we have an RTC attached
 ifeq ($(RTC_SUPPORT),1)
 	HARDWARE += hardware/rtc.c 
 endif
-# We have an I2C LCD
+
+# Do we have an I2C LCD
 ifeq ($(LCD_SUPPORT),1)
 	HARDWARE += hardware/LCD.c 
 	HARDWARE += display/lcd_printf.c
@@ -135,12 +165,10 @@ FATFS = \
 	fatfs.hal/mmc.c  \
 	fatfs.hal/mmc_hal.c  \
 	fatfs.sup/fatfs_sup.c  
+
 ifeq ($(FATFS_TESTS),1)
 	FATFS += fatfs.sup/fatfs_tests.c  
 endif
-# OLD FATFS
-	# fatfs/option/syscall.c  
-	# fatfs/option/unicode.c 
 
 GPIB   = \
 	gpib/gpib_hal.c \
@@ -156,6 +184,7 @@ GPIB   = \
 
 POSIX = 
 	POSIX += posix/posix.c
+
 ifeq ($(POSIX_TESTS),1)
 	POSIX += posix/posix_tests.c  
 endif
@@ -166,6 +195,7 @@ ifeq ($(LIF_SUPPORT),1)
 	LIF +=lif/lifutils.c
 endif
 
+# Define ALL of the source files
 CSRC = \
 	$(HARDWARE) \
 	$(LIB) \
@@ -183,9 +213,11 @@ GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
 #LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
 LOCAL_MOD := $(shell ls -rt */*[ch] | tail -1 | xargs stat -c%x)
 
+# Assembler sources
 ASRC    = 
 
 ### Optimization level (0, 1, 2, 3, 4 or s)
+# We MUST use s for this project - otherwise it is too big
 OPTIMIZE = s
 
 CC = avr-gcc
@@ -197,10 +229,11 @@ LIBS    =
 LIBDIRS =
 INCDIRS =. hardware lib printf fatfs fatfs.hal fatfs.sup gpib posix lif
 
-DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 $(DEVICE) \
+DEFS    = AVR F_CPU=$(F_CPU) SDEBUG=0x11 SPOLL=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO 
 
+# Default Controller values
 DEFS += HP9134D
 
 ifeq ($(AMIGO),1)
@@ -327,25 +360,32 @@ HEX_EEPROM_FLAGS = -j .eeprom
 HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
-# ==============================================
-# Fuse bits for ATMEGA1284P
-# See: http://www.engbedded.com/fusecalc/
-#
-# atmega1284p and atmega644 can use same fuses
-# fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
-
-# NOTE: We MUST disable JTAG so we can use all of Port C GPIO bits
-# FYI: randomly flash might fail when JTAG si disabled - just retry it
-fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
-# ==============================================
 
 SRCS = $(CSRC)
-PROGS = hardware/baudrate
+PROGS = lif mkcfg hardware/baudrate
 
-#all: doxy version $(LIBS) build size $(PROGS)
-all: version $(LIBS) build size $(PROGS) lif mkcfg
+all: version $(LIBS) build size $(PROGS) 
 
+# =======================================
+.PHONY: isp
+isp:
+	export fuses
 
+.PHONY: arduino
+arduino:
+	export fuses=""
+# =======================================
+.PHONY: optiboot
+optiboot:
+	export OPTIBOOT=1
+	make -C optiboot optiboot
+
+.PHONY: optiboot
+install_optiboot:
+	export OPTIBOOT=1
+	make -C optiboot install_optiboot
+
+# =======================================
 # Default target.
 #Example way of creating a current year string for  a #define
 # DATE="$(shell date +%Y)"
@@ -355,22 +395,27 @@ all: version $(LIBS) build size $(PROGS) lif mkcfg
 
 main.c:	
 
+# =======================================
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
+# =======================================
 .PHONY: term
 term:   
 	./term $(BAUD) $(PORT)
 
+# =======================================
 .PHONE: hogs
 hogs:
 	nm -n -P -v gpib.elf | sort -k 4n | tail -40	
 
+# =======================================
 .PHONY: sdcard
 sdcard: install
 	-rm -f sdcard/*\.lif
 	cd sdcard; ./create_images.sh
 
+# =======================================
 .PHONY: release
 release: all install
 	# Save the results under release
@@ -379,37 +424,113 @@ release: all install
 	cp -p sdcard/*\.cfg  release/sdcard
 	cp -p sdcard/*\.ini  release/sdcard
 
-flash_release:
-	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/$(PROJECT).hex
-	./term $(BAUD) $(PORT)
+# =======================================
+.PHONY: help
+help:
+	@echo
+	@echo 'Building Commands'
+	@echo "    make install           - builds and installs all command line utilities"
+	@echo "    make sdcard            - builds all sdcard images and creats default hpdisk.cfg and amigo.cfg files"
+	@echo "    make release           - builds all code and copies files to the release folder"
+	@echo "    make clean             - cleans all generated files"
+	@echo "    make                   - builds all code"
+	@echo
+	@echo 'Programming using an 6 wire ISP - installs optiboot'
+	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
+	@echo "    make flash-isp         - build and flash the code using an ISP"
+	@echo "    make flash-isp-release - flash the release code using an ISP"
+	@echo "    make verify-isp        - verify code using an ISP"
+	@echo "    make verify-isp-release- verify release code using an ISP"
+	@echo
+	@echo 'Programming using the built in optiboot programmer'
+	@echo '    IMPORTANT - you MUST press RESET on the hp85disk board JUST BEFORE issuing these commands'
+	@echo '        On your computer type in the make command without pressing Enter afterwards'
+	@echo '        Then press RESET the button and next press Enter quickly afterwards'
+	@echo "    make flash             - build and flash the code using built in optiboot programmer"
+	@echo "    make flash-release     - flash the release code using built in optiboot programmer"
+	@echo "    make verify            - verify code using built in optiboot programmer"
+	@echo "    make verify-release    - verify release code using built in optiboot programmer"
+	@echo
+	@echo 'Programming using an 6 wire ISP - WITHOUT installing optiboot'
+	@echo '    IMPORTANT - you will not be able to use non isp flashing modes later on'
+	@echo '       Makes booting and flashing process slightly faster'
+	@echo "    make flash-isp-noboot         - build and flash the code using an ISP"
+	@echo "    make flash-isp-noboot-release - flash the release code using an ISP"
+	@echo
 
-flash: all 
-#
-	# Program with avrdude using atmelice_isp
-	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# Program with avrdude using avrispmkii 
-	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# Program with avrdude using dragon_isp
-	# avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# ===================================================
-	# atmelice_isp
-	# avrdude -c list 2>&1 | grep -ie atmelice
-	#  atmelice         = Atmel-ICE (ARM/AVR) in JTAG mode
-	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
-	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
-	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
-    # Fuses are defined above like this: fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
-	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED)  $(fuses) -U flash:w:$(PROJECT).hex
+# =======================================
+# ISP flashing - NOTE: WE ALWAYS INSTALL optiboot
+# We do NOT erase before flashing
+# install_optiboot erases the chip
+# install_optiboot sets our fuses!
+flash-isp: isp all install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)
-	# ===================================================
 
-flash-fast: all 
-	avrdude -P usb -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B 0.25 $(fuses) -U flash:w:$(PROJECT).hex
+flash-isp-fast: isp all install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+flash-isp-release: isp install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+verify-isp:
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
+
+verify-isp-fast: 
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -U flash:v:$(PROJECT).hex:i
+
+# =======================================
+# OPTIBOOT flashing using built in boot loader - arduino protocol
+#    We Always disable eraseing
+# You MUST press RESET and issue these commands very quickly afterwards
+#    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
+# 
+flash: arduino all
+	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+flash-release:	arduino 
+	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+verify: 
+	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:v:$(PROJECT).hex:i
+
+verify-release:	
+	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:v:release/build/$(PROJECT).hex:i
+
+# =======================================
+# ISP flashing - NO optiboot!
+# We ALWAYS erase the CHIP before flashing
+flash-isp-noboot: isp all 
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+flash-isp-noboot-fast: isp all 
+	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+
+flash-isp-noboot-release:  isp all
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+
+
+# =======================================
+# Testing
+flash-arduino: arduino all 
+	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F $(fuses) -U flash:w:$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
+	#./miniterm $(BAUD) $(PORT)
+# =======================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc
@@ -425,9 +546,11 @@ mkcfg:
 lif:   
 	make -C lif
 
-install:
+install: $(PROGS) optiboot 
 	make -C lif install
 	make -C sdcard/mkcfg install
+	make -C optiboot optiboot
+	install -s hardware/baudrate /usr/local/bin
 
 warn:	clean
 	make 2>&1 | grep -i warn >warnings.txt
@@ -553,10 +676,12 @@ $(AOBJ) : %.o : %.S
 # Target: clean project.
 clean:
 	@echo
-	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
+	rm -f -r $(COBJ) $(PROJECT)\.* dep/* | exit 0
 	make -C lif clean
 	make -C printf clean
 	make -C sdcard/mkcfg clean
+	make -C optiboot clean
+	rm -f hardware/baudrate
 	
 
 # Include the dependency files.
@@ -565,3 +690,4 @@ clean:
 -include $(shell mkdir dep 2>/dev/null) $(wildcard dep/*)
 
 .PHONY: all clean distclean doxy
+
