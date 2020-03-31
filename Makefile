@@ -430,7 +430,7 @@ help:
 	@echo
 	@echo 'Building Commands'
 	@echo "    make install           - builds and installs all command line utilities"
-	@echo "    make sdcard            - builds all sdcard images and creats default hpdisk.cfg and amigo.cfg files"
+	@echo "    make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files"
 	@echo "    make release           - builds all code and copies files to the release folder"
 	@echo "    make clean             - cleans all generated files"
 	@echo "    make                   - builds all code"

@@ -102,7 +102,7 @@ ___
       <verbatim>
         Building Commands
             make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creats default hpdisk.cfg and amigo.cfg files
+            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
             make release           - builds all code and copies files to the release folder
             make clean             - cleans all generated files
             make                   - builds all code
