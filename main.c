@@ -349,8 +349,8 @@ int main(void)
 
 #ifdef LCD_SUPPORT
 	LCD_pos(0,0);
-	lcd_printf("SS80  Dives:%d\n",(int) count_drive_types(SS80_TYPE));
-	lcd_printf("AMIGO Dives:%d ",(int) count_drive_types(AMIGO_TYPE));
+	lcd_printf("SS80  Drives:%d\n",(int) count_drive_types(SS80_TYPE));
+	lcd_printf("AMIGO Drives:%d ",(int) count_drive_types(AMIGO_TYPE));
 	// lcd_printf("Baud:%ld\n",baud);
 	//lcd_printf("Debug: %04xH\n", (int)debuglevel);
 #endif
