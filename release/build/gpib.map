@@ -558,7 +558,7 @@ Discarded input sections
  .text.lif_readdir
                 0x0000000000000000       0x4e lif/lifutils.o
  .text          0x0000000000000000        0x0 main.o
- .data          0x0000000000000000        0x0 main.o
+ .bss           0x0000000000000000        0x0 main.o
  .text          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulsi3.o)
  .data          0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulsi3.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/avr/5.4.0/avr51/libgcc.a(_mulsi3.o)
@@ -2844,7 +2844,7 @@ END GROUP
  *(.fini0)
                 0x000000000001d66a                _etext = .
 
-.data           0x0000000000800100     0x1648 load address 0x000000000001d66a
+.data           0x0000000000800100     0x164a load address 0x000000000001d66a
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x5 hardware/hal.o
@@ -2870,108 +2870,108 @@ END GROUP
  .data          0x00000000008001cb       0x8a gpib/ss80.o
                 0x00000000008001cb                faults
                 0x000000000080023f                TD
- .data          0x0000000000800255        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
-                0x0000000000800255                __malloc_heap_end
-                0x0000000000800257                __malloc_heap_start
-                0x0000000000800259                __malloc_margin
+ .data          0x0000000000800255        0x2 main.o
+                0x0000000000800255                RESET
+ .data          0x0000000000800257        0x6 /usr/lib/gcc/avr/5.4.0/../../../avr/lib/avr51/libc.a(malloc.o)
+                0x0000000000800257                __malloc_heap_end
+                0x0000000000800259                __malloc_heap_start
+                0x000000000080025b                __malloc_margin
  *(.data*)
  *(.rodata)
- .rodata        0x000000000080025b        0x8 hardware/LCD.o
- .rodata        0x0000000000800263       0x32 lib/time.o
- .rodata        0x0000000000800295       0xc5 fatfs/ff.o
- .rodata        0x000000000080035a      0x3ae fatfs/ffunicode.o
- .rodata        0x0000000000800708        0x8 fatfs.sup/fatfs_sup.o
- .rodata        0x0000000000800710       0x1e posix/posix.o
+ .rodata        0x000000000080025d        0x8 hardware/LCD.o
+ .rodata        0x0000000000800265       0x32 lib/time.o
+ .rodata        0x0000000000800297       0xc5 fatfs/ff.o
+ .rodata        0x000000000080035c      0x3ae fatfs/ffunicode.o
+ .rodata        0x000000000080070a        0x8 fatfs.sup/fatfs_sup.o
+ .rodata        0x0000000000800712       0x1e posix/posix.o
  *(.rodata*)
  .rodata.str1.1
-                0x000000000080072e        0x9 lib/stringsup.o
+                0x0000000000800730        0x9 lib/stringsup.o
  .rodata.str1.1
-                0x0000000000800737       0x50 lib/time.o
+                0x0000000000800739       0x50 lib/time.o
  .rodata.str1.1
-                0x0000000000800787       0x67 printf/printf.o
+                0x0000000000800789       0x67 printf/printf.o
  .rodata.str1.1
-                0x00000000008007ee       0x4a fatfs/ff.o
+                0x00000000008007f0       0x4a fatfs/ff.o
                                          0x4e (size before relaxing)
  .rodata.str1.1
-                0x0000000000800838        0x2 fatfs.hal/mmc_hal.o
+                0x000000000080083a        0x2 fatfs.hal/mmc_hal.o
  .rodata.str1.1
-                0x000000000080083a       0x22 fatfs.sup/fatfs_sup.o
+                0x000000000080083c       0x22 fatfs.sup/fatfs_sup.o
                                          0x28 (size before relaxing)
  .rodata.str1.1
-                0x000000000080085c       0x22 fatfs.sup/fatfs_tests.o
+                0x000000000080085e       0x22 fatfs.sup/fatfs_tests.o
                                          0x2c (size before relaxing)
  .rodata.str1.1
-                0x000000000080087e      0x2b0 posix/posix.o
+                0x0000000000800880      0x2b0 posix/posix.o
                                         0x2bb (size before relaxing)
  .rodata.str1.1
-                0x0000000000800b2e       0x3b posix/posix_tests.o
+                0x0000000000800b30       0x3b posix/posix_tests.o
                                          0x4e (size before relaxing)
  .rodata.str1.1
-                0x0000000000800b69      0x1b2 gpib/gpib.o
+                0x0000000000800b6b      0x1b2 gpib/gpib.o
                                         0x1ba (size before relaxing)
  .rodata.str1.1
-                0x0000000000800d1b        0xc gpib/gpib_task.o
+                0x0000000000800d1d        0xc gpib/gpib_task.o
                                          0x13 (size before relaxing)
  .rodata.str1.1
-                0x0000000000800d27       0x53 gpib/gpib_tests.o
+                0x0000000000800d29       0x53 gpib/gpib_tests.o
                                          0x58 (size before relaxing)
  .rodata.str1.1
-                0x0000000000800d7a      0x233 gpib/drives.o
+                0x0000000000800d7c      0x233 gpib/drives.o
                                         0x25c (size before relaxing)
  .rodata.str1.1
-                0x0000000000800fad       0x17 gpib/drives_sup.o
+                0x0000000000800faf       0x17 gpib/drives_sup.o
                                          0x24 (size before relaxing)
  .rodata.str1.1
-                0x0000000000800fc4      0x517 gpib/ss80.o
+                0x0000000000800fc6      0x517 gpib/ss80.o
  .rodata.str1.1
-                0x00000000008014db       0x5e gpib/amigo.o
+                0x00000000008014dd       0x5e gpib/amigo.o
                                          0x73 (size before relaxing)
  .rodata.str1.1
-                0x0000000000801539       0x39 gpib/printer.o
+                0x000000000080153b       0x39 gpib/printer.o
                                          0x48 (size before relaxing)
  .rodata.str1.1
-                0x0000000000801572       0xc7 lif/lifutils.o
+                0x0000000000801574       0xc7 lif/lifutils.o
                                          0xea (size before relaxing)
  .rodata.str1.1
-                0x0000000000801639      0x10f main.o
+                0x000000000080163b      0x10f main.o
                                         0x11c (size before relaxing)
  *(.gnu.linkonce.d*)
-                0x0000000000801748                . = ALIGN (0x2)
-                0x0000000000801748                _edata = .
-                0x0000000000801748                PROVIDE (__data_end, .)
+                0x000000000080174a                . = ALIGN (0x2)
+                0x000000000080174a                _edata = .
+                0x000000000080174a                PROVIDE (__data_end, .)
 
-.bss            0x0000000000801748      0x968
-                0x0000000000801748                PROVIDE (__bss_start, .)
+.bss            0x000000000080174a      0x966
+                0x000000000080174a                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0000000000801748        0x6 hardware/spi.o
- .bss           0x000000000080174e        0x4 hardware/i2c.o
- .bss           0x0000000000801752       0x2c lib/timer.o
- .bss           0x000000000080177e       0x96 lib/time.o
- .bss           0x0000000000801814        0x5 fatfs/ff.o
- .bss           0x0000000000801819        0x3 fatfs.hal/mmc.o
- .bss           0x000000000080181c        0xa fatfs.hal/mmc_hal.o
-                0x000000000080181c                _mmc_pre
-                0x000000000080181e                _mmc_clock
-                0x0000000000801822                _mmc_timeout
- .bss           0x0000000000801826       0x3b posix/posix.o
- .bss           0x0000000000801861        0x1 gpib/gpib_hal.o
- .bss           0x0000000000801862        0x1 gpib/gpib.o
-                0x0000000000801862                gpib_unread_f
- .bss           0x0000000000801863        0x2 gpib/gpib_task.o
-                0x0000000000801863                gpib_log_fp
- .bss           0x0000000000801865       0x18 gpib/drives.o
-                0x0000000000801865                lines
-                0x0000000000801867                AMIGOs
-                0x0000000000801869                AMIGOp
-                0x000000000080186b                SS80s
-                0x000000000080186d                SS80p
-                0x000000000080186f                PRINTERp
- .bss           0x000000000080187d       0x25 gpib/ss80.o
- .bss           0x00000000008018a2        0xd gpib/printer.o
-                0x00000000008018a2                plot
- .bss           0x00000000008018af       0x40 lif/lifutils.o
- .bss           0x00000000008018ef        0x2 main.o
-                0x00000000008018ef                RESET
+ .bss           0x000000000080174a        0x6 hardware/spi.o
+ .bss           0x0000000000801750        0x4 hardware/i2c.o
+ .bss           0x0000000000801754       0x2c lib/timer.o
+ .bss           0x0000000000801780       0x96 lib/time.o
+ .bss           0x0000000000801816        0x5 fatfs/ff.o
+ .bss           0x000000000080181b        0x3 fatfs.hal/mmc.o
+ .bss           0x000000000080181e        0xa fatfs.hal/mmc_hal.o
+                0x000000000080181e                _mmc_pre
+                0x0000000000801820                _mmc_clock
+                0x0000000000801824                _mmc_timeout
+ .bss           0x0000000000801828       0x3b posix/posix.o
+ .bss           0x0000000000801863        0x1 gpib/gpib_hal.o
+ .bss           0x0000000000801864        0x1 gpib/gpib.o
+                0x0000000000801864                gpib_unread_f
+ .bss           0x0000000000801865        0x2 gpib/gpib_task.o
+                0x0000000000801865                gpib_log_fp
+ .bss           0x0000000000801867       0x18 gpib/drives.o
+                0x0000000000801867                lines
+                0x0000000000801869                AMIGOs
+                0x000000000080186b                AMIGOp
+                0x000000000080186d                SS80s
+                0x000000000080186f                SS80p
+                0x0000000000801871                PRINTERp
+ .bss           0x000000000080187f       0x25 gpib/ss80.o
+ .bss           0x00000000008018a4        0xd gpib/printer.o
+                0x00000000008018a4                plot
+ .bss           0x00000000008018b1       0x40 lif/lifutils.o
  *(.bss*)
  *(COMMON)
  COMMON         0x00000000008018f1        0x2 hardware/hal.o
@@ -3015,7 +3015,7 @@ END GROUP
                 0x00000000008020ae                __flp
                 0x00000000008020b0                PROVIDE (__bss_end, .)
                 0x000000000001d66a                __data_load_start = LOADADDR (.data)
-                0x000000000001ecb2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000000001ecb4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00000000008020b0        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)

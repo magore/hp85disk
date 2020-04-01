@@ -137,9 +137,6 @@ ___
             make verify-isp-release- verify release code using an ISP
         
         Programming using the built in optiboot programmer
-            IMPORTANT - you MUST press RESET on the hp85disk board JUST BEFORE issuing these commands
-                On your computer type in the make command without pressing Enter afterwards
-                Then press RESET the button and next press Enter quickly afterwards
             make flash             - build and flash the code using built in optiboot programmer
             make flash-release     - flash the release code using built in optiboot programmer
             make verify            - verify code using built in optiboot programmer
@@ -446,7 +443,6 @@ ___
   * *make flash-release* # do not press Enter yet!
     * OR
   * *make flash*         # do not press Enter yet!
-  * Press RESET and quickly press Enter
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
@@ -461,7 +457,6 @@ ___
   * *make flash-release* # do not press Enter yet!
     * OR
   * *make flash*         # do not press Enter yet!
-  * Press RESET and quickly press Enter
     * This will use *avrdude* and your ISP to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder

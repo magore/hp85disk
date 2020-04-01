@@ -47,6 +47,9 @@ export AVRDUDE_DEVICE ?= m1284
 # avrdude programming speed
 export AVRDUDE_SPEED ?= 5
 
+# optiboot support
+export OPTIBOOT      ?= 1
+
 # ==============================================
 # AVR programming FUSES
 # Fuse bits for ATMEGA1284P
@@ -233,8 +236,14 @@ DEFS    = AVR F_CPU=$(F_CPU) SDEBUG=0x11 SPOLL=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO 
 
+ifeq ($(OPTIBOOT),1)
+	DEFS += OPTIBOOT
+endif
+
 # Default Controller values
 DEFS += HP9134D
+
+
 
 ifeq ($(AMIGO),1)
 	DEFS += AMIGO 
@@ -491,19 +500,23 @@ verify-isp-fast:
 #    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
 # 
 flash: arduino all
+	./reset $(BAUD) $(PORT)
 	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)
 
 flash-release:	arduino 
+	./reset $(BAUD) $(PORT)
 	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
 	#./miniterm $(BAUD) $(PORT)
 
 verify: 
+	./reset $(BAUD) $(PORT)
 	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:v:$(PROJECT).hex:i
 
 verify-release:	
+	./reset $(BAUD) $(PORT)
 	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:v:release/build/$(PROJECT).hex:i
 
 # =======================================
@@ -524,12 +537,6 @@ flash-isp-noboot-release:  isp all
 	./term $(BAUD) $(PORT)
 
 
-# =======================================
-# Testing
-flash-arduino: arduino all 
-	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F $(fuses) -U flash:w:$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
 # =======================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
