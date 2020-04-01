@@ -78,25 +78,47 @@ ___
       * 1 = V1 hardware without GPIB BUS transceivers
       * 2 = V2 hardware with GPIB BUS transceivers
     * PPR_REVERSE_BITS
+      * Is now set by board revision
       * 0 = V1 hardware without the GPIB buffers 
+      * 1 = V2 hardware with GPIB buffers 
     * RTC_SUPPORT for Real Time Clock
 	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
         * This will time stamp plot files and add time stamps inside lif images
     * PORT is the emulator serial PORT name as detected by your operating system
       * /dev/ttyUSB0 on my system
-    * BAUD  is the data rate when connecting to the hp85disk emulator with a serial port
+    * BAUD  is the emulator serial baud rate 
       * 115200 = a safe default that most systems can manage
         * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
         * NOTE: Faster is better when enabling more debug messages 
           * Too many messages can cause the HP85 to timeout waiting for IO
+    * DEVICE
+      * Target AVR device used by GCC for this project
+      * atmega1284p
+        * DO NOT CHANGE THIS - there are too main dependencies
+    * F_CPU  
+      * CPU frequency
+        * 20000000
     * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
-      * m1284p
+      * m1284
     * AVRDUDE_SPEED  is the programming clock speed used by avrdude
-     * 5
+      * 5
+        * My device works with 0.25 but 5 is safe
+     * AVRDUDE ISP PORT
+      * usb
+        * Set = to the PORT definition above IF using self programmin
     * AVRDUDE_ISP
-      * atmelice_isp
+      * avrdude device programmer name as known by avrdude
+        * avrdude -c list  # for a list of devices
+      * I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
 
 ## Example building
+  * make clean
+  * make
+  * make flash    # uses built in programmer to flash the code
+    * OR 
+      * make flash-isp  # uses a 6 wire ISP to flash the code
+
+## make help documentation
   * make help
     * List the common commands to compile/install/flash the code
       <verbatim>
@@ -129,11 +151,6 @@ ___
             make flash-isp-noboot         - build and flash the code using an ISP
             make flash-isp-noboot-release - flash the release code using an ISP
       </verbatim>
-  * make clean
-  * make
-  * make flash    # uses built in programmer to flash the code
-    * OR 
-      * make flash-isp  # uses a 6 wire ISP to flash the code
 
 ## Example building with Makefile overrides
   * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
@@ -216,6 +233,24 @@ ___
     * NOTE: the emulator automatically creates missing images if defined in hpdisk.cfg
       * Type "lif help" in the emulator for a full list of commands
       * See the top of [lifutils.c](lif/lifutils.c) for full documentation and examples.
+
+## Disk images and default configuration file for the hp85disk project
+  * [sdcard folder has premade LIF disk images](sdcard)
+    * [sdcard/create_images.sh creates the default LIF images and creates a matching default configuration files](sdcard/create_images)
+  * [sdcard/hpdisk.cfg contains the default disk definitions that correspond to the LIF images - disk hardware definition](sdcard/hpdisk.cfg)
+    * [sdcard/create_images.sh creates the default configuration and LIF images](sdcard/create_images)
+
+## Note about LIF images and hpdisk.cfg disk definitions
+  * To create/modify or update LIF images see the section on the lif utilities supplied with teh emulator
+  * It is important that the LIF image size match the disk definitions
+    * The emulator gets the hard limits for  disk using [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
+      * The attached computer requests these disk details from the emulator 
+    * Then the attached computer reads the disk LIF headers for the LIF layout infomation. 
+      * So as long as the LIF headers and hardware information match things should work fine.
+        * IF the do not match you may get errors when
+          * The LIF image is BIGGER then specified disk AND if the computer attempts to read outside the defined limits.
+  * The emulator does not look at the LIF data when serving and image - that is up to the attached computer.
+   * The computer also gets the disk description from the emulator when it scans for disks
 
 ___ 
 
@@ -394,29 +429,43 @@ ___
   * sudo bash
   * *apt-get update*
   * *apt-get install aptitude make build-essential binutils gcc*
-  * *aptitude --with-recommends install minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
-  * pip install pyserial
+  * *aptitude --with-recommends install python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
 
 ## Clone my github project to your computer
   * git clone --branch V2 https://github.com/magore/hp85disk
-  * cd hpdisk
+  * cd hp85disk
 
 ## Compiling
+*This is not needed if you wish to just program the release image*
   * *make clean*
   * *make*
+  * *make install*
+    * Installs lif and mkcfg tools
 
-## Flashing the firmware to the AVR with avrdude and programmer
+## Flashing the firmware with built in bootloader
+  * *make flash-release* # do not press Enter yet!
+    * OR
+  * *make flash*         # do not press Enter yet!
+  * Press RESET and quickly press Enter
+    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
+      * These scripts are called *miniterm* or *term* in the project folder
+        * The baud rate is the [Makefile](Makefile) BAUD option
+
+## Flashing the firmware with an ISP programmer
   * Note: JTAG is disabled so we can use port C bits to control the GPIB drivers
   * You will need and AVR programmer supported by avrdude (part of avrtools)
     * I am using atmelice_isp but the [Makefile](Makefile) as example for:
     * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
     * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
     * There is an example with the AVR mkii programmer as well.
-  * *make flash*
-    * This will use *avrdude* to flash the firmware
-    * NOTE: When finished *make* will call call shell script to launch a terminal program for debugging
+  * *make flash-release* # do not press Enter yet!
+    * OR
+  * *make flash*         # do not press Enter yet!
+  * Press RESET and quickly press Enter
+    * This will use *avrdude* and your ISP to flash the firmware
+    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder
-      * They expect a baud rate and device name as an option. See: [Makefile](Makefile)
+        * The baud rate is the [Makefile](Makefile) BAUD option
 
 ## Building Doxygen documentation for the project - optional
   * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*

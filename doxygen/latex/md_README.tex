@@ -152,7 +152,9 @@ L\+IF manipulation tools are built in see later sections for details
 \end{DoxyItemize}
 \item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
 \begin{DoxyItemize}
+\item Is now set by board revision
 \item 0 = V1 hardware without the G\+P\+IB buffers
+\item 1 = V2 hardware with G\+P\+IB buffers
 \end{DoxyItemize}
 \item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for Real Time Clock
 \begin{DoxyItemize}
@@ -165,7 +167,7 @@ L\+IF manipulation tools are built in see later sections for details
 \begin{DoxyItemize}
 \item /dev/tty\+U\+S\+B0 on my system
 \end{DoxyItemize}
-\item B\+A\+UD is the data rate when connecting to the hp85disk emulator with a serial port
+\item B\+A\+UD is the emulator serial baud rate
 \begin{DoxyItemize}
 \item 115200 = a safe default that most systems can manage
 \begin{DoxyItemize}
@@ -176,22 +178,68 @@ L\+IF manipulation tools are built in see later sections for details
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item D\+E\+V\+I\+CE
+\begin{DoxyItemize}
+\item Target A\+VR device used by G\+CC for this project
+\item atmega1284p
+\begin{DoxyItemize}
+\item DO N\+OT C\+H\+A\+N\+GE T\+H\+IS -\/ there are too main dependencies
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item F\+\_\+\+C\+PU
+\begin{DoxyItemize}
+\item C\+PU frequency
+\begin{DoxyItemize}
+\item 20000000
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE is the name of A\+VR as it is known by avrdude
 \begin{DoxyItemize}
-\item m1284p
+\item m1284
 \end{DoxyItemize}
 \item A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED is the programming clock speed used by avrdude
 \begin{DoxyItemize}
 \item 5
-\end{DoxyItemize}
-\item A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP
 \begin{DoxyItemize}
-\item atmelice\+\_\+isp
+\item My device works with 0.\+25 but 5 is safe
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
+A\+V\+R\+D\+U\+DE I\+SP P\+O\+RT
+\begin{DoxyItemize}
+\item usb
+\begin{DoxyItemize}
+\item Set = to the P\+O\+RT definition above IF using self programmin
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP
+\begin{DoxyItemize}
+\item avrdude device programmer name as known by avrdude
+\begin{DoxyItemize}
+\item avrdude -\/c list \# for a list of devices
+\end{DoxyItemize}
+\item I am using the atmelice\+\_\+isp Atmel-\/\+I\+CE (A\+R\+M/\+A\+VR) in I\+SP mode
+\end{DoxyItemize}
+
 \subsection*{Example building}
+
+
+\begin{DoxyItemize}
+\item make clean
+\item make
+\item make flash \# uses built in programmer to flash the code
+\begin{DoxyItemize}
+\item OR
+\begin{DoxyItemize}
+\item make flash-\/isp \# uses a 6 wire I\+SP to flash the code
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{make help documentation}
 
 
 \begin{DoxyItemize}
@@ -204,15 +252,6 @@ Programming using an 6 wire I\+SP -\/ installs optiboot make install\+\_\+optibo
 Programming using the built in optiboot programmer I\+M\+P\+O\+R\+T\+A\+NT -\/ you M\+U\+ST press R\+E\+S\+ET on the hp85disk board J\+U\+ST B\+E\+F\+O\+RE issuing these commands On your computer type in the make command without pressing Enter afterwards Then press R\+E\+S\+ET the button and next press Enter quickly afterwards make flash -\/ build and flash the code using built in optiboot programmer make flash-\/release -\/ flash the release code using built in optiboot programmer make verify -\/ verify code using built in optiboot programmer make verify-\/release -\/ verify release code using built in optiboot programmer
 
 Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M\+P\+O\+R\+T\+A\+NT -\/ you will not be able to use non isp flashing modes later on Makes booting and flashing process slightly faster make flash-\/isp-\/noboot -\/ build and flash the code using an I\+SP make flash-\/isp-\/noboot-\/release -\/ flash the release code using an I\+SP $<$/verbatim$>$
-\end{DoxyItemize}
-\item make clean
-\item make
-\item make flash \# uses built in programmer to flash the code
-\begin{DoxyItemize}
-\item OR
-\begin{DoxyItemize}
-\item make flash-\/isp \# uses a 6 wire I\+SP to flash the code
-\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -375,6 +414,48 @@ Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M
 \item Type \char`\"{}lif help\char`\"{} in the emulator for a full list of commands
 \item See the top of \href{lif/lifutils.c}{\tt lifutils.\+c} for full documentation and examples.
 \end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Disk images and default configuration file for the hp85disk project}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}sdcard folder has premade L\+IF disk images\mbox{]}(sdcard)
+\begin{DoxyItemize}
+\item \href{sdcard/create_images}{\tt sdcard/create\+\_\+images.\+sh creates the default L\+IF images and creates a matching default configuration files}
+\end{DoxyItemize}
+\item \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg contains the default disk definitions that correspond to the L\+IF images -\/ disk hardware definition}
+\begin{DoxyItemize}
+\item \href{sdcard/create_images}{\tt sdcard/create\+\_\+images.\+sh creates the default configuration and L\+IF images}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Note about L\+IF images and hpdisk.\+cfg disk definitions}
+
+
+\begin{DoxyItemize}
+\item To create/modify or update L\+IF images see the section on the lif utilities supplied with teh emulator
+\item It is important that the L\+IF image size match the disk definitions
+\begin{DoxyItemize}
+\item The emulator gets the hard limits for disk using \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg}
+\begin{DoxyItemize}
+\item The attached computer requests these disk details from the emulator
+\end{DoxyItemize}
+\item Then the attached computer reads the disk L\+IF headers for the L\+IF layout infomation.
+\begin{DoxyItemize}
+\item So as long as the L\+IF headers and hardware information match things should work fine.
+\begin{DoxyItemize}
+\item IF the do not match you may get errors when
+\begin{DoxyItemize}
+\item The L\+IF image is B\+I\+G\+G\+ER then specified disk A\+ND if the computer attempts to read outside the defined limits.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item The emulator does not look at the L\+IF data when serving and image -\/ that is up to the attached computer.
+\begin{DoxyItemize}
+\item The computer also gets the disk description from the emulator when it scans for disks
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -743,8 +824,7 @@ On the H\+P85 type
 \item sudo bash
 \item {\itshape apt-\/get update}
 \item {\itshape apt-\/get install aptitude make build-\/essential binutils gcc}
-\item {\itshape aptitude --with-\/recommends install minicom avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr}
-\item pip install pyserial
+\item {\itshape aptitude --with-\/recommends install python-\/serial minicom avr-\/libc avra avrdude avrdude-\/doc avrp binutils-\/avr gcc-\/avr gdb-\/avr}
 \end{DoxyItemize}
 
 \subsection*{Clone my github project to your computer}
@@ -752,18 +832,43 @@ On the H\+P85 type
 
 \begin{DoxyItemize}
 \item git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
-\item cd hpdisk
+\item cd hp85disk
 \end{DoxyItemize}
 
 \subsection*{Compiling}
 
-
+{\itshape This is not needed if you wish to just program the release image}
 \begin{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
+\item {\itshape make install}
+\begin{DoxyItemize}
+\item Installs lif and mkcfg tools
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Flashing the firmware to the A\+VR with avrdude and programmer}
+\subsection*{Flashing the firmware with built in bootloader}
+
+
+\begin{DoxyItemize}
+\item {\itshape make flash-\/release} \# do not press Enter yet!
+\begin{DoxyItemize}
+\item OR
+\end{DoxyItemize}
+\item {\itshape make flash} \# do not press Enter yet!
+\item Press R\+E\+S\+ET and quickly press Enter
+\begin{DoxyItemize}
+\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
+\begin{DoxyItemize}
+\item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
+\begin{DoxyItemize}
+\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Flashing the firmware with an I\+SP programmer}
 
 
 \begin{DoxyItemize}
@@ -775,13 +880,20 @@ On the H\+P85 type
 \item If you wish to another programmer then update the \char`\"{}flash\char`\"{} avrdude command line in the \mbox{[}Makefile\mbox{]}(Makefile).
 \item There is an example with the A\+VR mkii programmer as well.
 \end{DoxyItemize}
-\item {\itshape make flash}
+\item {\itshape make flash-\/release} \# do not press Enter yet!
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} to flash the firmware
-\item N\+O\+TE\+: When finished {\itshape make} will call call shell script to launch a terminal program for debugging
+\item OR
+\end{DoxyItemize}
+\item {\itshape make flash} \# do not press Enter yet!
+\item Press R\+E\+S\+ET and quickly press Enter
+\begin{DoxyItemize}
+\item This will use {\itshape avrdude} and your I\+SP to flash the firmware
+\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
 \begin{DoxyItemize}
 \item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
-\item They expect a baud rate and device name as an option. See\+: \mbox{[}Makefile\mbox{]}(Makefile)
+\begin{DoxyItemize}
+\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
