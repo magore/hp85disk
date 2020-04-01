@@ -21,6 +21,7 @@ var searchData=
   ['res_5fok',['RES_OK',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737',1,'diskio.h']]],
   ['res_5fparerr',['RES_PARERR',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baf4dcc07fd46310b5495fa8025c89a9f3',1,'diskio.h']]],
   ['res_5fwrprt',['RES_WRPRT',['../diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba442a6d4393dc404827067bc4e981b322',1,'diskio.h']]],
+  ['reset',['RESET',['../main_8c.html#a438e8d406e17d032b87f58cac4e6616d',1,'main.c']]],
   ['reverse',['reverse',['../stringsup_8c.html#a00b9d97be21e4f3f5df1019a803c05a6',1,'reverse(char *str):&#160;stringsup.c'],['../stringsup_8h.html#a00b9d97be21e4f3f5df1019a803c05a6',1,'reverse(char *str):&#160;stringsup.c'],['../mathio_8h.html#a00b9d97be21e4f3f5df1019a803c05a6',1,'reverse(char *str):&#160;stringsup.c'],['../printf_8c.html#a00b9d97be21e4f3f5df1019a803c05a6',1,'reverse(char *str):&#160;printf.c']]],
   ['reverse_5f8bits',['reverse_8bits',['../gpib__hal_8c.html#aaff7ca1ff8eb6c387fe41ce530fe0eb8',1,'reverse_8bits(uint8_t mask):&#160;gpib_hal.c'],['../gpib__hal_8h.html#aaff7ca1ff8eb6c387fe41ce530fe0eb8',1,'reverse_8bits(uint8_t mask):&#160;gpib_hal.c']]],
   ['rewind',['rewind',['../posix_8c.html#a35e6a58f44d4651951ecfeb97f369884',1,'rewind(FILE *stream):&#160;posix.c'],['../posix_8h.html#a35e6a58f44d4651951ecfeb97f369884',1,'rewind(FILE *stream):&#160;posix.c']]],

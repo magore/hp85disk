@@ -90,6 +90,13 @@ void delay_tests()
     clock_elapsed_end("delayms(1100)");
 }
 
+#ifdef OPTIBOOT
+void(*RESET) (void) = (0x10000-0x400);
+#else
+void(*RESET) (void) = 0;
+#endif
+
+
 /// @brief  Display the main help menu - calls all other help menus
 /// @return  void
 /// @see gpib_help()
@@ -119,6 +126,7 @@ void help()
         "mem\n"
         "setdate\n"
         "time\n"
+        "reset\n"
         "\n"
         );
 }
@@ -171,6 +179,12 @@ void task(uint8_t gpib)
     if ( MATCHARGS(ptr,"time",(ind+0),argc))
     {
         display_clock();
+        return;
+    }
+    if ( MATCHARGS(ptr,"reset",(ind+0),argc))
+    {
+        RESET();
+		// should not return!
         return;
     }
     if ( MATCHARGS(ptr,"setdate",(ind+0),argc))

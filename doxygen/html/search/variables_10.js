@@ -1,6 +1,7 @@
 var searchData=
 [
   ['removable_5fvolumes',['REMOVABLE_VOLUMES',['../structSS80UnitType.html#a6dcef2939bd0a19951ad1592b1ec8c31',1,'SS80UnitType']]],
+  ['reset',['RESET',['../main_8c.html#a438e8d406e17d032b87f58cac4e6616d',1,'main.c']]],
   ['rows',['rows',['../struct__mat.html#a5e6bcb8b0c0239ca9b782c48b0b3c98a',1,'_mat']]],
   ['rtc_5fok',['rtc_ok',['../rtc_8h.html#a8e105ca35123da90e3d4db81f8848c4a',1,'rtc.h']]],
   ['rx_5fbuf',['rx_buf',['../struct__uart.html#a68a8939d4be8a563157c98b5baa50ae0',1,'_uart']]],
