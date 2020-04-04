@@ -3,8 +3,9 @@
 # Source:      https://github.com/tito/sk500
 # References:  https://github.com/Optiboot/optiboot/wiki/HowOptibootWorks
 
-## Updated for hp85disk project by Mike Gore 2020
+## Updated for hp85disk project by Mike Gore 2020 and Jay Hamlin
    * Original Source: https://github.com/tito/stk500/raw/master/hexuploader.py
+   * Updated for Python3  by Jay Hamlin
    * Changed to support atmega1284p
    * Added Baudrate argument
    * Added code to send "reset" command to hp85disk firmware to force it into optiboot

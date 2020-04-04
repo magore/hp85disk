@@ -5,9 +5,10 @@
 # Source:      https://github.com/tito/sk500
 # References:  https://github.com/Optiboot/optiboot/wiki/HowOptibootWorks
 #
-# Updated for hp85disk project by Mike Gore 2020
+# Updated for hp85disk project by Mike Gore 2020 and Jay Hamlin
 #   * Original Source: https://github.com/tito/stk500/raw/master/hexuploader.py
 #   * Changed to support atmega1284p
+#   * Jay Hamlin updated support for Python 3
 #   * Added Baudrate argument
 #   * Added code to send "reset" command to hp85disk firmware to force it into optiboot
 #   * Fixed intel 02 segment record calculation, was off by a factor of 16
@@ -246,7 +247,7 @@ class Uploader(object):
                 rtscts=0)
             self.con.write(b'reset\n')
             self.con.flush()
-            # I reset would not work without a close first - tried number of obvious things
+            # The reset would not work without a close first - tried number of obvious things
             # So we close and reopen - which works for some reason
             self.con.close()
             sleep(1)

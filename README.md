@@ -686,7 +686,7 @@ NOTE:
        * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
 
 ## STK500v1 uploader for Optiboot
-  * [uploader](uploader)
+  * [uploader/flasher](uploader/flasher)
     * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
       * Original repository https://github.com/tito/stk500
         * Authors main github page https://github.com/tito/stk500
@@ -694,6 +694,7 @@ NOTE:
 
    * See: https://github.com/magore/hp85disk branch V2
    * Changed to atmega1284p
+   * Jay converted code to Python 3
    * Added Baudrate argument
    * Added code to send "reset" command to hp85disk firmware to drop into optiboot
    * Fixed intel 02 segment record calculation
