@@ -1,4 +1,4 @@
-ï»¿\section README
+\section README
 
 # Documentation
 ## HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore 
@@ -11,11 +11,11 @@
 
 ## Other resources for disk image manipulation
   * [HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright Â© 2010 A. KÃ¼ckes
-  * [HPDir project has very useful references an tools for manipulating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright Â© 2010 A. KÃ¼ckes
+    * Copyright © 2010 A. Kückes
+  * [HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
+    * Copyright © 2010 A. Kückes
   * [ See LIF Documentation - part of the HPDir project for details](http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem)
-    * Copyright Â© 2010 A. KÃ¼ckes
+    * Copyright © 2010 A. Kückes
 
 ## Features for the HP85 in brief
   * NOTE: Later sections go into more detail
@@ -27,7 +27,7 @@
   * The emulator will automatically create missing LIF images defined in hpdisk.cfg on the SDCARD
   * There are disk images for AMIGO and SS80 disks
     * AMIGO drives work with HP85A 
-    * SS80 drives work with HP85B (or HP85A with prm-85 wth modified EMS and Electronic disk rom add on board see links)
+    * SS80 drives work with HP85B (or HP85A with PRM-85 with modified EMS and Electronic disk ROM add on board see links)
       * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
   * There is a Printer emulator that can capture and save printer data to a time stamped file.
   * Built in command processor with lots of useful features
@@ -109,7 +109,7 @@ ___
     * AVRDUDE_ISP
       * avrdude device programmer name as known by avrdude
         * avrdude -c list  # for a list of devices
-      * I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
+      * I am using the atmelice_isp Atmel-ICE (ARM/AVR) in ISP mode
 
 ## Example building
   * make clean
@@ -178,7 +178,7 @@ ___
 
 ## Configuring the serial communication program 
   * With the hp85disk attached via USB cable to your desktop
-  * Open you favourite serial terminal emulator
+  * Open you favorite serial terminal emulator
     * Set BAUD rate to 115200 
     * Set 8 Data bits NO parity
     * Set flow control to NONE
@@ -204,7 +204,7 @@ ___
     * add an ascii file to LIF image
       * This function permits renaming of the translated file
       * They get translated between HP85 DTA8x (type E010) format and plain text files!!!
-    * extract ascii files from LIF image
+    * extract ASCII files from LIF image
       * This function permits renaming of the translated file
       * They get translated between HP85 DTA8x (type E010) format and plain text files!!!
     * add binary programs from one LIF image to another LIF image
@@ -216,7 +216,7 @@ ___
     * rename file in LIF image
     * Create, import, export copy, rename, delete, etc
       * You can add a plain text file, and translate it, into a LIF image with file format DTA8x (type E010)
-      * You can extract an translate DTA8x (type E010) into a plain text files
+      * You can extract and translate DTA8x (type E010) into a plain text files
     * [For more LIF documentation](lif/README.md)
     * Also see the Other Resources section above
 
@@ -242,7 +242,7 @@ ___
   * It is important that the LIF image size match the disk definitions
     * The emulator gets the hard limits for  disk using [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
       * The attached computer requests these disk details from the emulator 
-    * Then the attached computer reads the disk LIF headers for the LIF layout infomation. 
+    * Then the attached computer reads the disk LIF headers for the LIF layout information. 
       * So as long as the LIF headers and hardware information match things should work fine.
         * IF the do not match you may get errors when
           * The LIF image is BIGGER then specified disk AND if the computer attempts to read outside the defined limits.
@@ -277,8 +277,8 @@ ___
   * You have the hp85disk emulator attached to your HP85 with a GPIB cable
     * Strongly advise having no other devices attached just durring setup/testing
       * This is to avoid other GPIB bus address conflicts initially - you can update addresses later
-  * You have a Ubuntu Linux desktop - used for all my examples
-  * All Text and configuration files used with the emulator MUST plain text format only (8 bit ascii) 
+  * You have an Ubuntu Linux desktop - used for all my examples
+  * All Text and configuration files used with the emulator MUST plain text format only (8 bit ASCII) 
      * Please NO Unicode - both file names and file formats!
   * You have a serial terminal program installed - for example minicom 
   * You need a FAT32 format blank SD Card
@@ -360,7 +360,7 @@ ___
   * Must be formatted FAT32
   * The HP85 is sensitive to long read/write delays that some cards can cause problems with
     * You want SD Cards with fast random writes
-    * I have found that the Sandisk Extreme and Sandisk Extreme Pro cards work best.
+    * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
       * There is a huge difference in various cards on the market. 
       * Look for the cards with the best 4K random write times
       * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
@@ -477,10 +477,10 @@ ___
          * PRINTER IS 705
          * PLIST
      * Disk images in [sdcard](sdcard) folder drive and configuration settings
-       * First Amigo 9121D disk  at 710 for my HP85A (with 85A ROMs)
-       * Second Amigo 9121D disk  at 710 for my HP85A (with 85A ROMs)
-       * First SS80 HP9134L disk at 720 for my HP85B (with 85B ROMs)
-       * Second SS80 HP9134L disk at 730 for my HP85B (with 85B ROMs)
+       * First Amigo 9121D disk  at 710 for my HP85A (with 85A ROM's)
+       * Second Amigo 9121D disk  at 710 for my HP85A (with 85A ROM's)
+       * First SS80 HP9134L disk at 720 for my HP85B (with 85B ROM's)
+       * Second SS80 HP9134L disk at 730 for my HP85B (with 85B ROM's)
 
      * How to use the examples with your HP85
        * Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive
@@ -645,16 +645,16 @@ NOTE:
  As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
  I did this one part at a time as I learned the protocols and specifications.
  NOT because of any problems with his original work. 
- Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state trackings.
+ Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
 
 ## The HPDir project was a vital documentation source for this project</b>
    * <http://www.hp9845.net/9845/projects/hpdir>
 
 
 ## My TeleDisk to LIF conversion utility
- * I used the lzss libraries and documenation by Dave Dunfield
+ * I used the lzss libraries and documentation by Dave Dunfield
    * Copyright 2007-2008 Dave Dunfield All rights reserved.
- * Documenation from Jean-Franois DEL NERO
+ * Documentation from Jean-Franois DEL NERO
    * Copyright (C) 2006-2014 Jean-Franois DEL NERO
 [lif/teledisk](lif/teledisk)
  * [lif/teledisk](lif/teledisk)
@@ -686,7 +686,7 @@ NOTE:
        * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
 
 ## STK500v1 uploader for Optiboot
-  * [uploader/flasher](uploader/flasher)
+  * [uploader/flasher.py](uploader/flasher.py)
     * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
       * Original repository https://github.com/tito/stk500
         * Authors main github page https://github.com/tito/stk500
@@ -697,7 +697,23 @@ NOTE:
    * Jay converted code to Python 3
    * Added Baudrate argument
    * Added code to send "reset" command to hp85disk firmware to drop into optiboot
-   * Fixed intel 02 segment record calculation
+   * Fixed Intel 02 segment record calculation
+
+### Dependencies
+  * python 3
+  * pip3 install pySerial
+
+### Uploading firmware
+  * Example: python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+
+### Listing Serial ports
+  * Example: python3 listports.py
+
+### Flash failure during flashing
+  * Type in the following command, with your serial port, *without* pressing Enter
+    * *python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex*
+    * Hold down RESET on the hp85disk board - release RESET and press Enter quickly
+      * You have a short Window after releasing RESET to Press Enter
 
 ___
 
@@ -775,9 +791,9 @@ ___
 
 ## Useful Utilities
    * [HPDir HP Drive - Disk Image Manipulation](http://www.hp9845.net/9845/projects/hpdir)
-     * Copyright Â© 2010 A. KÃ¼ckes
+     * Copyright © 2010 A. Kückes
    * [HPDrive Drive Emulators for Windows Platform](http://www.hp9845.net/9845/projects/hpdrive)
-     * Copyright Â© 2010 A. KÃ¼ckes
+     * Copyright © 2010 A. Kückes
 
 
 ## GPIB Connector pinout by Anders Gustafsson in his hpdisk project
@@ -823,7 +839,7 @@ ___
       * Main Project Makefile
   * Terminal scripts
     * [miniterm](miniterm)
-      * wrapper for miniterm.py part of the python package pyserial
+      * wrapper for miniterm.py part of the python package pySerial
     * [term](term)
      * Wrapper for minicom terminal emulator
   * Doxygen files

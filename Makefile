@@ -21,8 +21,8 @@ PROJECT = gpib
 
 # ==============================================
 # Debug serial port for firmware command interface
-export BAUD ?= 115200UL
-# BAUD ?= 500000UL
+export BAUD ?= 115200
+# BAUD ?= 500000
 
 ### Serial Port for emulator user interface
 export PORT ?= /dev/ttyUSB0
@@ -503,14 +503,14 @@ flash: arduino all
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
 	# ./miniterm $(BAUD) $(PORT)
-	uploader/flasher $(BAUD) $(PORT) $(PROJECT).hex
+	python3 uploader/flasher.py $(BAUD) $(PORT) $(PROJECT).hex
 	./term $(BAUD) $(PORT)
 
 flash-release:	arduino 
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 	# ./miniterm $(BAUD) $(PORT)
-	uploader/flasher $(BAUD) $(PORT) release/build/$(PROJECT).hex
+	python3 uploader/flasher.py $(BAUD) $(PORT) release/build/$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 
 verify: 

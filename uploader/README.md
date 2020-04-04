@@ -11,6 +11,12 @@
    * Added code to send "reset" command to hp85disk firmware to force it into optiboot
    * Fixed intel 02 segment record calculation, was off by a factor of 16
 
-## Usage
-  hexuploader.py Baudrate port hex_file
-  Example: python flasher 115200 /dev/ttyUSB0 gpib.hex
+## Dependencies
+  * python 3
+  * pip3 install pySerial
+
+## Uploading firmware
+  Example: python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+
+## Listing Serial ports
+  Example: python3 listports.py
