@@ -701,13 +701,21 @@ NOTE:
 
 ### Dependencies
   * python 3
-  * pip3 install pySerial
-
-### Uploading firmware
-  * Example: python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+    * Linux has this
+      * pip3 install pySerial
+    * Windows - Install Python 3.7 from Windows App Store
+      * Open PowerSehll window - always use PowerShell under Windows for running Python3
+        * pip3 install pySerial
 
 ### Listing Serial ports
-  * Example: python3 listports.py
+  * python3 listports.py
+      * Under Windows do this in a PowerShell Window
+
+### Uploading firmware
+  * Examples:
+    * python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+    * python3 flasher.py 115200 COM3 gpib.hex
+      * Under Windows do this in a PowerShell Window
 
 ### Flash failure during flashing
   * Type in the following command, with your serial port, *without* pressing Enter

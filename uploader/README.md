@@ -11,12 +11,27 @@
    * Added code to send "reset" command to hp85disk firmware to force it into optiboot
    * Fixed intel 02 segment record calculation, was off by a factor of 16
 
-## Dependencies
+### Dependencies
   * python 3
-  * pip3 install pySerial
+    * Linux has this
+      * pip3 install pySerial
+    * Windows - Install Python 3.7 from Windows App Store
+      * Open PowerSehll window
+        * pip3 install pySerial
 
-## Uploading firmware
-  Example: python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+### Listing Serial ports
+  * python3 listports.py
+      * Under Windows use a PowerShell Window
 
-## Listing Serial ports
-  Example: python3 listports.py
+### Uploading firmware
+  * Examples:
+    * python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+    * python3 flasher.py 115200 COM3 gpib.hex
+      * Under Windows use a PowerShell Window
+
+### Flash failure during flashing
+  * Type in the following command, with your serial port, *without* pressing Enter
+    * *python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex*
+    * Hold down RESET on the hp85disk board - release RESET and press Enter quickly
+      * You have a short Window after releasing RESET to Press Enter
+
