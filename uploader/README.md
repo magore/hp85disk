@@ -28,6 +28,7 @@
     * python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
     * python3 flasher.py 115200 COM3 gpib.hex
       * Under Windows use a PowerShell Window
+    * python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex
 
 ### Flash failure during flashing
   * Type in the following command, with your serial port, *without* pressing Enter
