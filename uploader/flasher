@@ -45,7 +45,7 @@ then
    usage "File name $HEXFILE not found"
 fi
 
-cat <<EOF | python - "$BAUD" "$PORT" "$HEXFILE"
+cat <<EOF | python3 - "$BAUD" "$PORT" "$HEXFILE"
 #!/usr/bin/python
 #
 # -*- coding: utf-8 -*-
@@ -229,7 +229,7 @@ class Uploader(object):
 
         # check it's an hex file
         assert(len(data) >= 11)
-        assert(data[0] == ":")
+        assert(data[0] == 0x3A)
 
         # HP85DISK Send reset command
         # Notes: https://pyserial.readthedocs.io/en/latest/pyserial_api.html
@@ -308,7 +308,7 @@ class Uploader(object):
         nextaddr = 0
 
         for lineno, line in enumerate(data.splitlines()):
-            if not line.startswith(":"):
+            if not line[0] == (0x3A):
                 continue
             rec = self.ihex_readrec(line)
             if not rec:
@@ -368,19 +368,19 @@ class Uploader(object):
         cksum = 0
 
         # reclen
-        if offset + 2 > len:
+        if offset + 2 > rlen:
             return
         ihex["reclen"] = int(rec[offset:offset + 2], 16)
         offset += 2
 
         # load offset
-        if offset + 4 > len:
+        if offset + 4 > rlen:
             return
         ihex["loadofs"] = int(rec[offset:offset + 4], 16)
         offset += 4
 
         # record type
-        if offset + 2 > len:
+        if offset + 2 > rlen:
             return
         ihex["rectype"] = int(rec[offset:offset + 2], 16)
         offset += 2
@@ -394,14 +394,14 @@ class Uploader(object):
 
         # data
         for j in range(ihex["reclen"]):
-            if offset + 2 > len:
+            if offset + 2 > rlen:
                 return
             ihex["data"][j] = c = int(rec[offset:offset + 2], 16)
             cksum += c
             offset += 2
 
         # validate checksum
-        if offset + 2 > len:
+        if offset + 2 > rlen:
             return
         ihex["cksum"] = int(rec[offset:offset + 2], 16)
         rc = -cksum & 0x000000ff
@@ -415,7 +415,7 @@ class Uploader(object):
 
     def load_addr(self, addr):
         print("[STK500] Load address {:06x}".format(addr))
-        addr = addr / 2
+        addr = int(addr / 2)
         pkt = struct.pack(
             "BBBB",
             STK_LOAD_ADDRESS,
