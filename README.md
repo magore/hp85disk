@@ -678,12 +678,25 @@ NOTE:
   * [fatfs](fatfs)
     * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
 
-## optiboot
+## Optiboot
   * [optiboot](optiboot)
     * Optiboot Bootloader for Arduino and Atmel AVR
     * See: https://github.com/Optiboot/optiboot
        * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
        * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
+
+## STK500v1 uploader for Optiboot
+  * [uploader](uploader)
+    * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
+      * Original repository https://github.com/tito/stk500
+        * Authors main github page https://github.com/tito/stk500
+          * https://meltingrocks.com/
+
+   * See: https://github.com/magore/hp85disk branch V2
+   * Changed to atmega1284p
+   * Added Baudrate argument
+   * Added code to send "reset" command to hp85disk firmware to drop into optiboot
+   * Fixed intel 02 segment record calculation
 
 ___
 

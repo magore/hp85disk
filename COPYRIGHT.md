@@ -134,6 +134,15 @@ ___
     * See: https://github.com/Optiboot/optiboot
        * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
        * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
+___
+
+
+## STK500v1 uploader for Optiboot
+  * [uploader](uploader)
+    * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com>
+      * Original repository https://github.com/tito/stk500
+        * Authors main github page https://github.com/tito/stk500
+          * https://meltingrocks.com/
 
 ___
 

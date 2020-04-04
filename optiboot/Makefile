@@ -45,4 +45,4 @@ info:
 	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -v
 
 clean:	
-	rm -f optiboot_$(OPTIBOOT_DEVICE)\.*
+	rm -f optiboot optiboot_$(DEVICE)\.*

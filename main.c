@@ -183,6 +183,10 @@ void task(uint8_t gpib)
     }
     if ( MATCHARGS(ptr,"reset",(ind+0),argc))
     {
+		cli();	
+		uart_rx_flush(0);
+		cli();	
+		MCUSR = (1 << EXTRF);
         RESET();
 		// should not return!
         return;

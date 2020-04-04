@@ -500,16 +500,18 @@ verify-isp-fast:
 #    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
 # 
 flash: arduino all
-	./reset $(BAUD) $(PORT)
-	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
+	# ./reset $(BAUD) $(PORT)
+	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
+	# ./miniterm $(BAUD) $(PORT)
+	uploader/flasher $(BAUD) $(PORT) $(PROJECT).hex
 	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
 
 flash-release:	arduino 
-	./reset $(BAUD) $(PORT)
-	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	# ./reset $(BAUD) $(PORT)
+	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	# ./miniterm $(BAUD) $(PORT)
+	uploader/flasher $(BAUD) $(PORT) release/build/$(PROJECT).hex
 	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
 
 verify: 
 	./reset $(BAUD) $(PORT)
