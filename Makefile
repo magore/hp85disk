@@ -57,8 +57,15 @@ export OPTIBOOT      ?= 1
 #
 # NOTE: We MUST disable JTAG so we can use all of Port C GPIO bits
 # FYI: flash might randomly fail when JTAG is disabled - so just retry it
-export fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 
+fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
+optiboot_fuses ?= $(fuses)
+optiboot_lock  ?= -U lock:w:0xfd:m
+
+# Export all FUSES
+export fuses
+export optiboot_fuses
+export optiboot_lock
 
 # ==============================================
 # Project HARDWARE OPTIONS
