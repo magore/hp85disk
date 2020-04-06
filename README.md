@@ -291,11 +291,6 @@ ___
 ___ 
 
 
-## Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU 
-  * The github hp85disk V2 branch project includes disk images and precompiled firmeare
-    * Compiled Firmware [release/build](release/build) 
-    * Disk Images       [release/sdcard](release/sdcard)
-
 ## Requirements for building the hp85 disk project
   * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CODE CHANGES
   * [I have provided compiled files under the folder release](release)
@@ -377,8 +372,10 @@ Windows
 
 ___ 
 
-
 ### Flashing the firmware with built in bootloader
+  * The github hp85disk V2 branch project includes disk images and precompiled firmeare
+    * Compiled Firmware [release/build](release/build) 
+    * Disk Images       [release/sdcard](release/sdcard)
 Linux Example:
   * python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex
 Windows Example:
