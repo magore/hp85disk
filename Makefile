@@ -418,7 +418,8 @@ hardware/baudrate:  hardware/baudrate.c
 # =======================================
 .PHONY: term
 term:   
-	./term $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	# ./term $(BAUD) $(PORT)
 
 # =======================================
 .PHONE: hogs
@@ -489,18 +490,18 @@ code_usage:
 # install_optiboot sets our fuses!
 flash-isp: isp all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#./term $(BAUD) $(PORT)
 
 flash-isp-fast: isp all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	# ./term $(BAUD) $(PORT)
 
 flash-isp-release: isp install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	# ./term $(BAUD) $(PORT)
 
 verify-isp:
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
@@ -517,16 +518,16 @@ verify-isp-fast:
 flash: arduino all
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
-	# ./miniterm $(BAUD) $(PORT)
 	python3 uploader/flasher.py $(BAUD) $(PORT) $(PROJECT).hex
-	./term $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#./term $(BAUD) $(PORT)
 
 flash-release:	arduino 
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
-	# ./miniterm $(BAUD) $(PORT)
 	python3 uploader/flasher.py $(BAUD) $(PORT) release/build/$(PROJECT).hex
-	./term $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#./term $(BAUD) $(PORT)
 
 
 # =======================================
@@ -534,17 +535,18 @@ flash-release:	arduino
 # We ALWAYS erase the CHIP before flashing
 flash-isp-noboot: isp all 
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#./term $(BAUD) $(PORT)
 
 flash-isp-noboot-fast: isp all 
 	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
-	#./miniterm $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#./term $(BAUD) $(PORT)
 
 flash-isp-noboot-release:  isp all
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
-	./term $(BAUD) $(PORT)
+	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	# ./term $(BAUD) $(PORT)
 
 
 # =======================================

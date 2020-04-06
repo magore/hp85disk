@@ -71,86 +71,6 @@ ___
 
 ___ 
 
-## HP85 emulator Makefile configuration options for original V1 and new V2 boards
-## Makefile Configuration options for building
-  * Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
-    * BOARD is the version of the hardware
-      * 1 = V1 hardware without GPIB BUS transceivers
-      * 2 = V2 hardware with GPIB BUS transceivers
-    * PPR_REVERSE_BITS
-      * Note: This is now automatically set by board revision
-      * 0 = V1 hardware without the GPIB buffers 
-      * 1 = V2 hardware with GPIB buffers 
-    * RTC_SUPPORT for Real Time Clock
-	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
-        * This will time stamp plot files and add time stamps inside lif images
-    * PORT is the emulator serial PORT name as detected by your operating system
-      * /dev/ttyUSB0 on my system
-    * BAUD  is the emulator serial baud rate 
-      * 115200 = a safe default that most systems can manage
-        * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
-        * NOTE: Faster is better when enabling more debug messages 
-          * Too many messages can cause the HP85 to timeout waiting for IO
-    * DEVICE
-      * Target AVR device used by GCC for this project
-      * atmega1284p
-        * DO NOT CHANGE THIS - there are too main dependencies
-    * F_CPU  
-      * CPU frequency
-        * 20000000
-    * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
-      * m1284
-    * AVRDUDE_SPEED  is the programming clock speed used by avrdude
-      * 5
-        * My device works with 0.25 but 5 is safe
-     * AVRDUDE ISP PORT
-      * usb
-        * Set = to the PORT definition above IF using self programmin
-    * AVRDUDE_ISP
-      * avrdude device programmer name as known by avrdude
-        * avrdude -c list  # for a list of devices
-      * I am using the atmelice_isp Atmel-ICE (ARM/AVR) in ISP mode
-
-## Example building
-  * make clean
-  * make
-  * make flash    # uses built in programmer to flash the code
-    * OR 
-      * make flash-isp  # uses a 6 wire ISP to flash the code
-
-## make help documentation
-  * make help
-    * List the common commands to compile/install/flash the code
-      <verbatim>
-        Building Commands
-            make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-            make release           - builds all code and copies files to the release folder
-            make clean             - cleans all generated files
-            make                   - builds all code
-        
-        Programming using an 6 wire ISP - installs optiboot
-            make install_optiboot  - install optiboot boot loaded using an ISP
-            make flash-isp         - build and flash the code using an ISP
-            make flash-isp-release - flash the release code using an ISP
-            make verify-isp        - verify code using an ISP
-            make verify-isp-release- verify release code using an ISP
-        
-        Programming using the built in optiboot programmer
-            make flash             - build and flash the code using built in optiboot programmer
-            make flash-release     - flash the release code using built in optiboot programmer
-        
-        Programming using an 6 wire ISP - WITHOUT installing optiboot
-            IMPORTANT - you will not be able to use non isp flashing modes later on
-               Makes booting and flashing process slightly faster
-            make flash-isp-noboot         - build and flash the code using an ISP
-            make flash-isp-noboot-release - flash the release code using an ISP
-      </verbatim>
-
-## Example building with Makefile overrides
-  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
-    * Make sure you add the '(' and ')' around the commands
-      * This prevents settings variables in your current shell
 ___ 
 
 
@@ -174,14 +94,6 @@ ___
         * If the result changes between the two commands the last line has the device name
           * On my system its is typically /dev/ttyUSB0  - it all depends on how many USB serial devices you have attached
 
-## Configuring the serial communication program 
-  * With the hp85disk attached via USB cable to your desktop
-  * Open you favorite serial terminal emulator
-    * Set BAUD rate to 115200 
-    * Set 8 Data bits NO parity
-    * Set flow control to NONE
-    * Set the PORT to the device name of the emulator USB port
-      * Example: /dev/ttyUSB0 see next section
 
 ___ 
 
@@ -387,56 +299,74 @@ ___
               * Perhaps some day we will port this project to a Raspberry PI with add on hardware
                 * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
 
+
 ___ 
 
 
 ## Flashing hp85disk emulator binary files to the ATMEL atmega1284p CPU 
-  * The github project includes disk images and precompiled firmeare
+  * The github hp85disk V2 branch project includes disk images and precompiled firmeare
     * Compiled Firmware [release/build](release/build) 
     * Disk Images       [release/sdcard](release/sdcard)
-    * If you wish to compile yourself please see the next section "Requirements for building..." 
-  * NOTE: Most any system with an AVR Programmer that works with the atmega1284p will work
-    * If you can set the fuses and read at least one encoded binary format of the firmware in the project [release](release) directory
-      * You can find the current fuses in the Makefile - look for the statement wth fuses= and no preceding '#' comment
-      * Extract just the fuse settings - for example: lfuse=0xd6 hfuse:=0xd9 efuse=0xff 
-  * Ubuntu Linux Specific Example 
-    * I am using the avrdude software package to talk to my ATMEL ICE in circuit programmer, lets install it
-      * apt-get install avrdude
-    * I used the ATMELICE ISP programmer
-      * NOTE: avrdude supports many AVR programmers not just the one I am using
-      * avrdude -P usb -p m1284p -c atmelice_isp -F -B 5 -U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m -U flash:w:release/gpib.hex
-        * You should not get any errors
-___ 
-
 
 ## Requirements for building the hp85 disk project
   * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CODE CHANGES
   * [I have provided compiled files under the folder release](release)
     * You just need to flash the files
 
-## Operating systems
+## Building Doxygen documentation for the project - optional
+  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
+  * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
+
+___ 
+
+
+## Tested Operating systems
+LINUX
   * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
     * NOTE: It should be possible to setup the same build with Windows
       * There are a number of build environments for Windows that will work 
         * I hope to provide instructions soon
+  * I have instructions for flashing the firmware below
+#WINDOWS
+  * I have instructions for flashing the firmware below
+
+___ 
 
 
-## Clone my github project to your computer 
-  * git clone --branch V2 https://github.com/magore/hp85disk
-  * cd hp85disk
+## Clone hp85disk github project to your computer with a Web Browser
+  * Open a web browser to https://github.com/magore/hp85disk 
+    * Click on Branch and pick V2 in the drop down
+      * CLick on the Download Button
 
-## Firmware updatong
-### Dependencies for updating firmware on the hp85disk emulator
+## Clone hp85disk my github project to your computer using git
 Linux
-  * Most modorns Linux systems have Python3
-    * pip3 install pySerial
+  * Open a terminal window 
+  * Install git
+    * *apt-get install git*
+  * *git clone --branch V2 https://github.com/magore/hp85disk*
+  * *cd hp85disk*
 Windows
-    * Windows - Install Python 3.7 from Windows App Store
-      * Open PowerSehll window - always use PowerShell under Windows for running Python3
-        * pip3 install pySerial
+  * Install git
+      * https://git-scm.com/download/win
+  * Open a PowerShell Window
+  * *git clone --branch V2 https://github.com/magore/hp85disk*
+  * *cd hp85disk*
+
+## Updating hp85disk github project at any time using git
+Linux
+  * Open a terminal window 
+  * cd hp85disk
+  * git pull
+WIndows
+  * Open a PowerShell window 
+  * cd hp85disk
+  * git pull
+
+___ 
+
 
 ## Connecting a computer to the hp85disk emulator
-  * Follow the instructions in Dependencies installing Python and libraries
+  * Follow the instructions of firmware updating dependencies for installing Python and libraries
   * Make sure you have a miniusb cable handy
   * Make sure the emulator is not connected to your PC/Mac
 Linux
@@ -447,18 +377,53 @@ Windows
       * Run the following command *python3 uploader\listports.py*
   * Connect the emulator withthe miniusb cable to your computer and rerun the listports.py
     * The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
+## Firmware updating dependencies
+Linux
+  * *apt-get install python3*
+    * Most modern Linux systems have Python3
+  * *pip3 install pySerial*
+Windows
+    * Windows - Install Python 3.7 from Windows App Store
+      * Open PowerSehll window - always use PowerShell under Windows for running Python3
+    * pip3 install pySerial
+
+___ 
+
 
 ### Flashing the firmware with built in bootloader
+Linux Example:
   * python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex
+Windows Example:
+  * python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex
     * This is the port you discovered in the Connecting step above
     * This program flashes the release version of the firmware
+Mac
+    * python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex
 
-*make flash-release* # do not press Enter yet!
-    * OR
-  * *make flash*         # do not press Enter yet!
-    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-      * These scripts are called *miniterm* or *term* in the project folder
-        * The baud rate is the [Makefile](Makefile) BAUD option
+### Flash failure during flashing
+  * Type in the following command, with your serial port, *without* pressing Enter
+    * *python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex*
+    * Hold down RESET on the hp85disk board - release RESET and press Enter quickly
+      * You have a short Window after releasing RESET to Press Enter
+
+___ 
+
+
+## Configuring the serial communication program 
+  * Follow the instructions of firmware updating dependencies for installing Python and libraries
+  * Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use
+  * With the hp85disk attached via USB cable to your desktop
+    * python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 1152000
+  * - OR -
+    * Open you favorite serial terminal emulator
+    * Set BAUD rate to 115200 
+    * Set 8 Data bits NO parity
+    * Set flow control to NONE
+    * Set the PORT to the device name of the emulator USB port
+      * Example: /dev/ttyUSB0 see previous section on connecting to your computer
+
+___ 
+
 
 ## Compiling
 ### Dependencies to be able to compile and build this project - Ubuntu instructions
@@ -484,8 +449,10 @@ Note: If you only plan on updating firmware and would rather not compile skip to
   * *make flash*         # do not press Enter yet!
     * This will use *avrdude* and your ISP to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-      * These scripts are called *miniterm* or *term* in the project folder
+      * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
+___ 
+
 
 ### Flash with external programmer
 ## Flashing the firmware using an extrenal programmer
@@ -500,15 +467,91 @@ Note: If you only plan on updating firmware and would rather not compile skip to
   * *make install*
   * *make flash-isp-release* # do not press Enter yet!
     * OR
-  * *make flash-sip*         # do not press Enter yet!
+  * *make flash-isp*         # do not press Enter yet!
     * This will use *avrdude* and your ISP to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-      * These scripts are called *miniterm* or *term* in the project folder
+      * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
 
-## Building Doxygen documentation for the project - optional
-  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
-  * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
+___ 
+
+
+## HP85 emulator Makefile configuration options for original V1 and new V2 boards
+## Makefile Configuration options for building
+  * Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
+    * BOARD is the version of the hardware
+      * 1 = V1 hardware without GPIB BUS transceivers
+      * 2 = V2 hardware with GPIB BUS transceivers
+    * PPR_REVERSE_BITS
+      * Note: This is now automatically set by board revision
+      * 0 = V1 hardware without the GPIB buffers 
+      * 1 = V2 hardware with GPIB buffers 
+    * RTC_SUPPORT for Real Time Clock
+	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
+        * This will time stamp plot files and add time stamps inside lif images
+    * PORT is the emulator serial PORT name as detected by your operating system
+      * /dev/ttyUSB0 on my system
+    * BAUD  is the emulator serial baud rate 
+      * 115200 = a safe default that most systems can manage
+        * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
+        * NOTE: Faster is better when enabling more debug messages 
+          * Too many messages can cause the HP85 to timeout waiting for IO
+    * DEVICE
+      * Target AVR device used by GCC for this project
+      * atmega1284p
+        * DO NOT CHANGE THIS - there are too main dependencies
+    * F_CPU  
+      * CPU frequency
+        * 20000000
+    * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
+      * m1284
+    * AVRDUDE_SPEED  is the programming clock speed used by avrdude
+      * 5
+        * My device works with 0.25 but 5 is safe
+     * AVRDUDE ISP PORT
+      * usb
+        * Set = to the PORT definition above IF using self programmin
+    * AVRDUDE_ISP
+      * avrdude device programmer name as known by avrdude
+        * avrdude -c list  # for a list of devices
+      * I am using the atmelice_isp Atmel-ICE (ARM/AVR) in ISP mode
+
+___ 
+
+
+## make help documentation
+  * make help
+    * List the common commands to compile/install/flash the code
+      <verbatim>
+        Building Commands
+            make install           - builds and installs all command line utilities
+            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+            make release           - builds all code and copies files to the release folder
+            make clean             - cleans all generated files
+            make                   - builds all code
+        
+        Programming using an 6 wire ISP - installs optiboot
+            make install_optiboot  - install optiboot boot loaded using an ISP
+            make flash-isp         - build and flash the code using an ISP
+            make flash-isp-release - flash the release code using an ISP
+            make verify-isp        - verify code using an ISP
+            make verify-isp-release- verify release code using an ISP
+        
+        Programming using the built in optiboot programmer
+            make flash             - build and flash the code using built in optiboot programmer
+            make flash-release     - flash the release code using built in optiboot programmer
+        
+        Programming using an 6 wire ISP - WITHOUT installing optiboot
+            IMPORTANT - you will not be able to use non isp flashing modes later on
+               Makes booting and flashing process slightly faster
+            make flash-isp-noboot         - build and flash the code using an ISP
+            make flash-isp-noboot-release - flash the release code using an ISP
+      </verbatim>
+
+## Example building with Makefile overrides
+  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
+    * Make sure you add the '(' and ')' around the commands
+      * This prevents settings variables in your current shell
 
 ___
 
@@ -608,7 +651,7 @@ ___
 </pre>
 
 ___ 
-___ 
+
 
 ## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs. HP85B
   * While GPIB devices can have address between 0 and 31 you can have no more than 8 disk drives.
@@ -743,30 +786,7 @@ NOTE:
    * Added code to send "reset" command to hp85disk firmware to drop into optiboot
    * Fixed Intel 02 segment record calculation
 
-### Dependencies
-  * python 3
-    * Linux has this
-      * pip3 install pySerial
-    * Windows - Install Python 3.7 from Windows App Store
-      * Open PowerSehll window - always use PowerShell under Windows for running Python3
-        * pip3 install pySerial
 
-### Listing Serial ports
-  * python3 listports.py
-      * Under Windows do this in a PowerShell Window
-
-### Uploading firmware
-  * Examples:
-    * python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
-    * python3 flasher.py 115200 COM3 gpib.hex
-      * Under Windows do this in a PowerShell Window
-    * python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex
-
-### Flash failure during flashing
-  * Type in the following command, with your serial port, *without* pressing Enter
-    * *python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex*
-    * Hold down RESET on the hp85disk board - release RESET and press Enter quickly
-      * You have a short Window after releasing RESET to Press Enter
 
 ___
 
@@ -891,7 +911,7 @@ ___
     * [Makefile](Makefile)
       * Main Project Makefile
   * Terminal scripts
-    * [miniterm](miniterm)
+    * [miniterm.sh](miniterm.sh)
       * wrapper for miniterm.py part of the python package pySerial
     * [term](term)
      * Wrapper for minicom terminal emulator

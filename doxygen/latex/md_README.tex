@@ -137,138 +137,9 @@ L\+IF manipulation tools are built in see later sections for details
 
 
 
-\subsection*{H\+P85 emulator Makefile configuration options for original V1 and new V2 boards}
-
-\subsection*{Makefile Configuration options for building}
 
 
-\begin{DoxyItemize}
-\item Update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
-\begin{DoxyItemize}
-\item B\+O\+A\+RD is the version of the hardware
-\begin{DoxyItemize}
-\item 1 = V1 hardware without G\+P\+IB B\+US transceivers
-\item 2 = V2 hardware with G\+P\+IB B\+US transceivers
-\end{DoxyItemize}
-\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
-\begin{DoxyItemize}
-\item Note\+: This is now automatically set by board revision
-\item 0 = V1 hardware without the G\+P\+IB buffers
-\item 1 = V2 hardware with G\+P\+IB buffers
-\end{DoxyItemize}
-\item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for Real Time Clock
-\begin{DoxyItemize}
-\item 1 = R\+TC support for a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
-\begin{DoxyItemize}
-\item This will time stamp plot files and add time stamps inside lif images
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item P\+O\+RT is the emulator serial P\+O\+RT name as detected by your operating system
-\begin{DoxyItemize}
-\item /dev/tty\+U\+S\+B0 on my system
-\end{DoxyItemize}
-\item B\+A\+UD is the emulator serial baud rate
-\begin{DoxyItemize}
-\item 115200 = a safe default that most systems can manage
-\begin{DoxyItemize}
-\item N\+O\+TE\+: My development environment works with 500000 baud but 115200 should work on all systems
-\item N\+O\+TE\+: Faster is better when enabling more debug messages
-\begin{DoxyItemize}
-\item Too many messages can cause the H\+P85 to timeout waiting for IO
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item D\+E\+V\+I\+CE
-\begin{DoxyItemize}
-\item Target A\+VR device used by G\+CC for this project
-\item atmega1284p
-\begin{DoxyItemize}
-\item DO N\+OT C\+H\+A\+N\+GE T\+H\+IS -\/ there are too main dependencies
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item F\+\_\+\+C\+PU
-\begin{DoxyItemize}
-\item C\+PU frequency
-\begin{DoxyItemize}
-\item 20000000
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE is the name of A\+VR as it is known by avrdude
-\begin{DoxyItemize}
-\item m1284
-\end{DoxyItemize}
-\item A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED is the programming clock speed used by avrdude
-\begin{DoxyItemize}
-\item 5
-\begin{DoxyItemize}
-\item My device works with 0.\+25 but 5 is safe
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
 
-A\+V\+R\+D\+U\+DE I\+SP P\+O\+RT
-\begin{DoxyItemize}
-\item usb
-\begin{DoxyItemize}
-\item Set = to the P\+O\+RT definition above IF using self programmin
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP
-\begin{DoxyItemize}
-\item avrdude device programmer name as known by avrdude
-\begin{DoxyItemize}
-\item avrdude -\/c list \# for a list of devices
-\end{DoxyItemize}
-\item I am using the atmelice\+\_\+isp Atmel-\/\+I\+CE (A\+R\+M/\+A\+VR) in I\+SP mode
-\end{DoxyItemize}
-
-\subsection*{Example building}
-
-
-\begin{DoxyItemize}
-\item make clean
-\item make
-\item make flash \# uses built in programmer to flash the code
-\begin{DoxyItemize}
-\item OR
-\begin{DoxyItemize}
-\item make flash-\/isp \# uses a 6 wire I\+SP to flash the code
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{make help documentation}
-
-
-\begin{DoxyItemize}
-\item make help
-\begin{DoxyItemize}
-\item List the common commands to compile/install/flash the code $<$verbatim$>$ Building Commands make install -\/ builds and installs all command line utilities make sdcard -\/ builds all sdcard images and creates default hpdisk.\+cfg and amigo.\+cfg files make release -\/ builds all code and copies files to the release folder make clean -\/ cleans all generated files make -\/ builds all code
-
-Programming using an 6 wire I\+SP -\/ installs optiboot make install\+\_\+optiboot -\/ install optiboot boot loaded using an I\+SP make flash-\/isp -\/ build and flash the code using an I\+SP make flash-\/isp-\/release -\/ flash the release code using an I\+SP make verify-\/isp -\/ verify code using an I\+SP make verify-\/isp-\/release-\/ verify release code using an I\+SP
-
-Programming using the built in optiboot programmer make flash -\/ build and flash the code using built in optiboot programmer make flash-\/release -\/ flash the release code using built in optiboot programmer
-
-Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M\+P\+O\+R\+T\+A\+NT -\/ you will not be able to use non isp flashing modes later on Makes booting and flashing process slightly faster make flash-\/isp-\/noboot -\/ build and flash the code using an I\+SP make flash-\/isp-\/noboot-\/release -\/ flash the release code using an I\+SP $<$/verbatim$>$
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Example building with Makefile overrides}
-
-
-\begin{DoxyItemize}
-\item ( export B\+A\+UD=500000\+UL; export A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED=1; make flash-\/isp)
-\begin{DoxyItemize}
-\item Make sure you add the \textquotesingle{}(\textquotesingle{} and \textquotesingle{})\textquotesingle{} around the commands
-\begin{DoxyItemize}
-\item This prevents settings variables in your current shell 
-
-
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
 
 \subsection*{Detailed information about tools and features}
 
@@ -309,23 +180,6 @@ Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M
 \item On my system its is typically /dev/tty\+U\+S\+B0 -\/ it all depends on how many U\+SB serial devices you have attached
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Configuring the serial communication program}
-
-
-\begin{DoxyItemize}
-\item With the hp85disk attached via U\+SB cable to your desktop
-\item Open you favorite serial terminal emulator
-\begin{DoxyItemize}
-\item Set B\+A\+UD rate to 115200
-\item Set 8 Data bits NO parity
-\item Set flow control to N\+O\+NE
-\item Set the P\+O\+RT to the device name of the emulator U\+SB port
-\begin{DoxyItemize}
-\item Example\+: /dev/tty\+U\+S\+B0 see next section
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -757,36 +611,10 @@ On the H\+P85 type
 
 
 \begin{DoxyItemize}
-\item The github project includes disk images and precompiled firmeare
+\item The github hp85disk V2 branch project includes disk images and precompiled firmeare
 \begin{DoxyItemize}
 \item Compiled Firmware \href{release/build}{\tt release/build}
 \item Disk Images \href{release/sdcard}{\tt release/sdcard}
-\item If you wish to compile yourself please see the next section \char`\"{}\+Requirements for building...\char`\"{}
-\end{DoxyItemize}
-\item N\+O\+TE\+: Most any system with an A\+VR Programmer that works with the atmega1284p will work
-\begin{DoxyItemize}
-\item If you can set the fuses and read at least one encoded binary format of the firmware in the project \mbox{[}release\mbox{]}(release) directory
-\begin{DoxyItemize}
-\item You can find the current fuses in the Makefile -\/ look for the statement wth fuses= and no preceding \textquotesingle{}\#\textquotesingle{} comment
-\item Extract just the fuse settings -\/ for example\+: lfuse=0xd6 hfuse\+:=0xd9 efuse=0xff
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Ubuntu Linux Specific Example
-\begin{DoxyItemize}
-\item I am using the avrdude software package to talk to my A\+T\+M\+EL I\+CE in circuit programmer, lets install it
-\begin{DoxyItemize}
-\item apt-\/get install avrdude
-\end{DoxyItemize}
-\item I used the A\+T\+M\+E\+L\+I\+CE I\+SP programmer
-\begin{DoxyItemize}
-\item N\+O\+TE\+: avrdude supports many A\+VR programmers not just the one I am using
-\item avrdude -\/P usb -\/p m1284p -\/c atmelice\+\_\+isp -\/F -\/B 5 -\/U lfuse\+:w\+:0xd6\+:m -\/U hfuse\+:w\+:0xd9\+:m -\/U efuse\+:w\+:0xff\+:m -\/U flash\+:w\+:release/gpib.\+hex
-\begin{DoxyItemize}
-\item You should not get any errors 
-
-
-\end{DoxyItemize}
-\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -801,9 +629,21 @@ On the H\+P85 type
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Operating systems}
+\subsection*{Building Doxygen documentation for the project -\/ optional}
 
 
+\begin{DoxyItemize}
+\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
+\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Tested Operating systems}
+
+L\+I\+N\+UX
 \begin{DoxyItemize}
 \item I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
@@ -815,40 +655,68 @@ On the H\+P85 type
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item I have instructions for flashing the firmware below \#\+W\+I\+N\+D\+O\+WS
+\item I have instructions for flashing the firmware below
 \end{DoxyItemize}
 
-\subsection*{Clone my github project to your computer}
+
+
+
+
+\subsection*{Clone hp85disk github project to your computer with a Web Browser}
 
 
 \begin{DoxyItemize}
-\item git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
-\item cd hp85disk
+\item Open a web browser to \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
+\begin{DoxyItemize}
+\item Click on Branch and pick V2 in the drop down
+\begin{DoxyItemize}
+\item C\+Lick on the Download Button
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Firmware updatong}
-
-\subsubsection*{Dependencies for updating firmware on the hp85disk emulator}
+\subsection*{Clone hp85disk my github project to your computer using git}
 
 Linux
 \begin{DoxyItemize}
-\item Most modorns Linux systems have Python3
+\item Open a terminal window
+\item Install git
 \begin{DoxyItemize}
-\item pip3 install py\+Serial Windows
-\item Windows -\/ Install Python 3.\+7 from Windows App Store
+\item {\itshape apt-\/get install git}
+\end{DoxyItemize}
+\item {\itshape git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}}
+\item {\itshape cd hp85disk} Windows
+\item Install git
 \begin{DoxyItemize}
-\item Open Power\+Sehll window -\/ always use Power\+Shell under Windows for running Python3
+\item \href{https://git-scm.com/download/win}{\tt https\+://git-\/scm.\+com/download/win}
+\end{DoxyItemize}
+\item Open a Power\+Shell Window
+\item {\itshape git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}}
+\item {\itshape cd hp85disk}
+\end{DoxyItemize}
+
+\subsection*{Updating hp85disk github project at any time using git}
+
+Linux
 \begin{DoxyItemize}
-\item pip3 install py\+Serial
+\item Open a terminal window
+\item cd hp85disk
+\item git pull W\+Indows
+\item Open a Power\+Shell window
+\item cd hp85disk
+\item git pull
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
+
+
 
 \subsection*{Connecting a computer to the hp85disk emulator}
 
 
 \begin{DoxyItemize}
-\item Follow the instructions in Dependencies installing Python and libraries
+\item Follow the instructions of firmware updating dependencies for installing Python and libraries
 \item Make sure you have a miniusb cable handy
 \item Make sure the emulator is not connected to your P\+C/\+Mac Linux
 \begin{DoxyItemize}
@@ -863,36 +731,85 @@ Linux
 \end{DoxyItemize}
 \item Connect the emulator withthe miniusb cable to your computer and rerun the listports.\+py
 \begin{DoxyItemize}
-\item The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
+\item The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware \subsection*{Firmware updating dependencies}
+\end{DoxyItemize}
+
+Linux
+\item {\itshape apt-\/get install python3}
+\begin{DoxyItemize}
+\item Most modern Linux systems have Python3
+\end{DoxyItemize}
+\item {\itshape pip3 install py\+Serial} Windows
+\begin{DoxyItemize}
+\item Windows -\/ Install Python 3.\+7 from Windows App Store
+\begin{DoxyItemize}
+\item Open Power\+Sehll window -\/ always use Power\+Shell under Windows for running Python3
+\end{DoxyItemize}
+\item pip3 install py\+Serial
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+
+
+
 
 \subsubsection*{Flashing the firmware with built in bootloader}
 
-
+Linux Example\+:
 \begin{DoxyItemize}
-\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex
+\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex Windows Example\+:
+\item python3 uploader/flasher.\+py 1152000 C\+O\+M3 release/build/gpib.\+hex
 \begin{DoxyItemize}
 \item This is the port you discovered in the Connecting step above
-\item This program flashes the release version of the firmware
+\item This program flashes the release version of the firmware Mac
+\item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\itshape make flash-\/release} \# do not press Enter yet!
+\subsubsection*{Flash failure during flashing}
+
+
 \begin{DoxyItemize}
-\item OR
+\item Type in the following command, with your serial port, {\itshape without} pressing Enter
+\begin{DoxyItemize}
+\item {\itshape python3 flasher.\+py 115200 /dev/tty\+U\+S\+B0 gpib.\+hex}
+\item Hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
+\begin{DoxyItemize}
+\item You have a short Window after releasing R\+E\+S\+ET to Press Enter
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-{\itshape make flash} \# do not press Enter yet!
+
+
+
+
+\subsection*{Configuring the serial communication program}
+
+
 \begin{DoxyItemize}
-\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
+\item Follow the instructions of firmware updating dependencies for installing Python and libraries
+\item Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use
+\item With the hp85disk attached via U\+SB cable to your desktop
 \begin{DoxyItemize}
-\item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
+\item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
+\end{DoxyItemize}
+\item -\/ OR -\/
 \begin{DoxyItemize}
-\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
+\item Open you favorite serial terminal emulator
+\item Set B\+A\+UD rate to 115200
+\item Set 8 Data bits NO parity
+\item Set flow control to N\+O\+NE
+\item Set the P\+O\+RT to the device name of the emulator U\+SB port
+\begin{DoxyItemize}
+\item Example\+: /dev/tty\+U\+S\+B0 see previous section on connecting to your computer
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+
+
+
 
 \subsection*{Compiling}
 
@@ -936,9 +853,11 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \item This will use {\itshape avrdude} and your I\+SP to flash the firmware
 \item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
 \begin{DoxyItemize}
-\item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
+\item These scripts are called \href{miniterm.sh}{\tt miniterm.\+sh} or \mbox{[}term\mbox{]}(term) in the project folder
 \begin{DoxyItemize}
-\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
+\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option 
+
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -965,12 +884,12 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \begin{DoxyItemize}
 \item OR
 \end{DoxyItemize}
-\item {\itshape make flash-\/sip} \# do not press Enter yet!
+\item {\itshape make flash-\/isp} \# do not press Enter yet!
 \begin{DoxyItemize}
 \item This will use {\itshape avrdude} and your I\+SP to flash the firmware
 \item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
 \begin{DoxyItemize}
-\item These scripts are called {\itshape miniterm} or {\itshape term} in the project folder
+\item These scripts are called \href{miniterm.sh}{\tt miniterm.\+sh} or \mbox{[}term\mbox{]}(term) in the project folder
 \begin{DoxyItemize}
 \item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
 \end{DoxyItemize}
@@ -978,12 +897,128 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Building Doxygen documentation for the project -\/ optional}
+
+
+
+
+\subsection*{H\+P85 emulator Makefile configuration options for original V1 and new V2 boards}
+
+\subsection*{Makefile Configuration options for building}
 
 
 \begin{DoxyItemize}
-\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
-\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps}
+\item Update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
+\begin{DoxyItemize}
+\item B\+O\+A\+RD is the version of the hardware
+\begin{DoxyItemize}
+\item 1 = V1 hardware without G\+P\+IB B\+US transceivers
+\item 2 = V2 hardware with G\+P\+IB B\+US transceivers
+\end{DoxyItemize}
+\item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
+\begin{DoxyItemize}
+\item Note\+: This is now automatically set by board revision
+\item 0 = V1 hardware without the G\+P\+IB buffers
+\item 1 = V2 hardware with G\+P\+IB buffers
+\end{DoxyItemize}
+\item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for Real Time Clock
+\begin{DoxyItemize}
+\item 1 = R\+TC support for a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
+\begin{DoxyItemize}
+\item This will time stamp plot files and add time stamps inside lif images
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item P\+O\+RT is the emulator serial P\+O\+RT name as detected by your operating system
+\begin{DoxyItemize}
+\item /dev/tty\+U\+S\+B0 on my system
+\end{DoxyItemize}
+\item B\+A\+UD is the emulator serial baud rate
+\begin{DoxyItemize}
+\item 115200 = a safe default that most systems can manage
+\begin{DoxyItemize}
+\item N\+O\+TE\+: My development environment works with 500000 baud but 115200 should work on all systems
+\item N\+O\+TE\+: Faster is better when enabling more debug messages
+\begin{DoxyItemize}
+\item Too many messages can cause the H\+P85 to timeout waiting for IO
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item D\+E\+V\+I\+CE
+\begin{DoxyItemize}
+\item Target A\+VR device used by G\+CC for this project
+\item atmega1284p
+\begin{DoxyItemize}
+\item DO N\+OT C\+H\+A\+N\+GE T\+H\+IS -\/ there are too main dependencies
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item F\+\_\+\+C\+PU
+\begin{DoxyItemize}
+\item C\+PU frequency
+\begin{DoxyItemize}
+\item 20000000
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE is the name of A\+VR as it is known by avrdude
+\begin{DoxyItemize}
+\item m1284
+\end{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED is the programming clock speed used by avrdude
+\begin{DoxyItemize}
+\item 5
+\begin{DoxyItemize}
+\item My device works with 0.\+25 but 5 is safe
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+A\+V\+R\+D\+U\+DE I\+SP P\+O\+RT
+\begin{DoxyItemize}
+\item usb
+\begin{DoxyItemize}
+\item Set = to the P\+O\+RT definition above IF using self programmin
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP
+\begin{DoxyItemize}
+\item avrdude device programmer name as known by avrdude
+\begin{DoxyItemize}
+\item avrdude -\/c list \# for a list of devices
+\end{DoxyItemize}
+\item I am using the atmelice\+\_\+isp Atmel-\/\+I\+CE (A\+R\+M/\+A\+VR) in I\+SP mode
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{make help documentation}
+
+
+\begin{DoxyItemize}
+\item make help
+\begin{DoxyItemize}
+\item List the common commands to compile/install/flash the code $<$verbatim$>$ Building Commands make install -\/ builds and installs all command line utilities make sdcard -\/ builds all sdcard images and creates default hpdisk.\+cfg and amigo.\+cfg files make release -\/ builds all code and copies files to the release folder make clean -\/ cleans all generated files make -\/ builds all code
+
+Programming using an 6 wire I\+SP -\/ installs optiboot make install\+\_\+optiboot -\/ install optiboot boot loaded using an I\+SP make flash-\/isp -\/ build and flash the code using an I\+SP make flash-\/isp-\/release -\/ flash the release code using an I\+SP make verify-\/isp -\/ verify code using an I\+SP make verify-\/isp-\/release-\/ verify release code using an I\+SP
+
+Programming using the built in optiboot programmer make flash -\/ build and flash the code using built in optiboot programmer make flash-\/release -\/ flash the release code using built in optiboot programmer
+
+Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M\+P\+O\+R\+T\+A\+NT -\/ you will not be able to use non isp flashing modes later on Makes booting and flashing process slightly faster make flash-\/isp-\/noboot -\/ build and flash the code using an I\+SP make flash-\/isp-\/noboot-\/release -\/ flash the release code using an I\+SP $<$/verbatim$>$
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Example building with Makefile overrides}
+
+
+\begin{DoxyItemize}
+\item ( export B\+A\+UD=500000\+UL; export A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED=1; make flash-\/isp)
+\begin{DoxyItemize}
+\item Make sure you add the \textquotesingle{}(\textquotesingle{} and \textquotesingle{})\textquotesingle{} around the commands
+\begin{DoxyItemize}
+\item This prevents settings variables in your current shell
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
@@ -1137,8 +1172,6 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \end{DoxyItemize}
 
 
-
- 
 
 
 
@@ -1394,65 +1427,6 @@ See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/mago
 \item Fixed Intel 02 segment record calculation
 \end{DoxyItemize}
 
-\subsubsection*{Dependencies}
-
-
-\begin{DoxyItemize}
-\item python 3
-\begin{DoxyItemize}
-\item Linux has this
-\begin{DoxyItemize}
-\item pip3 install py\+Serial
-\end{DoxyItemize}
-\item Windows -\/ Install Python 3.\+7 from Windows App Store
-\begin{DoxyItemize}
-\item Open Power\+Sehll window -\/ always use Power\+Shell under Windows for running Python3
-\begin{DoxyItemize}
-\item pip3 install py\+Serial
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Listing Serial ports}
-
-
-\begin{DoxyItemize}
-\item python3 listports.\+py
-\begin{DoxyItemize}
-\item Under Windows do this in a Power\+Shell Window
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Uploading firmware}
-
-
-\begin{DoxyItemize}
-\item Examples\+:
-\begin{DoxyItemize}
-\item python3 flasher.\+py 115200 /dev/tty\+U\+S\+B0 gpib.\+hex
-\item python3 flasher.\+py 115200 C\+O\+M3 gpib.\+hex
-\begin{DoxyItemize}
-\item Under Windows do this in a Power\+Shell Window
-\end{DoxyItemize}
-\item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Flash failure during flashing}
-
-
-\begin{DoxyItemize}
-\item Type in the following command, with your serial port, {\itshape without} pressing Enter
-\begin{DoxyItemize}
-\item {\itshape python3 flasher.\+py 115200 /dev/tty\+U\+S\+B0 gpib.\+hex}
-\item Hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
-\begin{DoxyItemize}
-\item You have a short Window after releasing R\+E\+S\+ET to Press Enter
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
 
 
 
@@ -1656,7 +1630,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyItemize}
 \item Terminal scripts
 \begin{DoxyItemize}
-\item \mbox{[}miniterm\mbox{]}(miniterm)
+\item \href{miniterm.sh}{\tt miniterm.\+sh}
 \begin{DoxyItemize}
 \item wrapper for miniterm.\+py part of the python package py\+Serial
 \end{DoxyItemize}

@@ -17,8 +17,8 @@ fi
 
 
 
-echo miniterm.py --parity N -e --rts 0 --dtr 0 "$PORT" "$BAUD"
-miniterm.py --parity N -e --rts 0 --dtr 0 "$PORT" "$BAUD"
+echo miniterm.py --parity N --rts 0 --dtr 0 "$PORT" "$BAUD"
+miniterm.py --parity N --rts 0 --dtr 0 "$PORT" "$BAUD"
 
 #usage: miniterm.py [-h] [--parity {N,E,O,S,M}] [--rtscts] [--xonxoff]
 #                   [--rts RTS] [--dtr DTR] [--ask] [-e] [--encoding CODEC]
