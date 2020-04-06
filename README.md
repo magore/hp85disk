@@ -80,19 +80,7 @@ ___
 ## Accessing the hp85disk command interface with a serial terminal
   * Used to access the hp85disk command interface
   * Access it via the USB cable attached to your computer using a serial terminal program
-
-## Finding the emulator serial port device name on you Linux system
-  * Make sure the HP85disk is initially NOT attached via the USB cable to the desktop
-  * Open a Linux terminal window - not serial terminal
-  * In this terminal windows type
-      * ls -lart /dev | tail -1
-        * The '|' symbol means "pipe" the output of one Linux command to another
-          * This '|' symbol is found on US keyboards just above the enter key
-  * Attach the emulator USB port to your Linux Desktop
-    * Again type 
-      * ls -lart /dev | tail -1
-        * If the result changes between the two commands the last line has the device name
-          * On my system its is typically /dev/ttyUSB0  - it all depends on how many USB serial devices you have attached
+  * See section called Configuring the serial communication program 
 
 
 ___ 
