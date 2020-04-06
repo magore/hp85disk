@@ -503,7 +503,7 @@ ___
 ## make help documentation
   * make help
     * List the common commands to compile/install/flash the code
-      <verbatim>
+<verbatim>
         Building Commands
             make install           - builds and installs all command line utilities
             make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
@@ -527,7 +527,7 @@ ___
                Makes booting and flashing process slightly faster
             make flash-isp-noboot         - build and flash the code using an ISP
             make flash-isp-noboot-release - flash the release code using an ISP
-      </verbatim>
+</verbatim>
 
 ## Example building with Makefile overrides
   * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
