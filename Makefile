@@ -464,8 +464,6 @@ help:
 	@echo '        Then press RESET the button and next press Enter quickly afterwards'
 	@echo "    make flash             - build and flash the code using built in optiboot programmer"
 	@echo "    make flash-release     - flash the release code using built in optiboot programmer"
-	@echo "    make verify            - verify code using built in optiboot programmer"
-	@echo "    make verify-release    - verify release code using built in optiboot programmer"
 	@echo
 	@echo 'Programming using an 6 wire ISP - WITHOUT installing optiboot'
 	@echo '    IMPORTANT - you will not be able to use non isp flashing modes later on'
@@ -530,13 +528,6 @@ flash-release:	arduino
 	python3 uploader/flasher.py $(BAUD) $(PORT) release/build/$(PROJECT).hex
 	./term $(BAUD) $(PORT)
 
-verify: 
-	./reset $(BAUD) $(PORT)
-	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:v:$(PROJECT).hex:i
-
-verify-release:	
-	./reset $(BAUD) $(PORT)
-	avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:v:release/build/$(PROJECT).hex:i
 
 # =======================================
 # ISP flashing - NO optiboot!

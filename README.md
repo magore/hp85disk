@@ -78,7 +78,7 @@ ___
       * 1 = V1 hardware without GPIB BUS transceivers
       * 2 = V2 hardware with GPIB BUS transceivers
     * PPR_REVERSE_BITS
-      * Is now set by board revision
+      * Note: This is now automatically set by board revision
       * 0 = V1 hardware without the GPIB buffers 
       * 1 = V2 hardware with GPIB buffers 
     * RTC_SUPPORT for Real Time Clock
@@ -139,8 +139,6 @@ ___
         Programming using the built in optiboot programmer
             make flash             - build and flash the code using built in optiboot programmer
             make flash-release     - flash the release code using built in optiboot programmer
-            make verify            - verify code using built in optiboot programmer
-            make verify-release    - verify release code using built in optiboot programmer
         
         Programming using an 6 wire ISP - WITHOUT installing optiboot
             IMPORTANT - you will not be able to use non isp flashing modes later on
@@ -422,41 +420,87 @@ ___
       * There are a number of build environments for Windows that will work 
         * I hope to provide instructions soon
 
-## Install programs to build this project - Ubuntu instructions
-  * sudo bash
-  * *apt-get update*
-  * *apt-get install aptitude make build-essential binutils gcc*
-  * *aptitude --with-recommends install python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
 
-## Clone my github project to your computer
+## Clone my github project to your computer 
   * git clone --branch V2 https://github.com/magore/hp85disk
   * cd hp85disk
 
-## Compiling
-*This is not needed if you wish to just program the release image*
-  * *make clean*
-  * *make*
-  * *make install*
-    * Installs lif and mkcfg tools
+## Firmware updatong
+### Dependencies for updating firmware on the hp85disk emulator
+Linux
+  * Most modorns Linux systems have Python3
+    * pip3 install pySerial
+Windows
+    * Windows - Install Python 3.7 from Windows App Store
+      * Open PowerSehll window - always use PowerShell under Windows for running Python3
+        * pip3 install pySerial
 
-## Flashing the firmware with built in bootloader
-  * *make flash-release* # do not press Enter yet!
+## Connecting a computer to the hp85disk emulator
+  * Follow the instructions in Dependencies installing Python and libraries
+  * Make sure you have a miniusb cable handy
+  * Make sure the emulator is not connected to your PC/Mac
+Linux
+    * Open a terminal window
+      * Run the following command *python3 uploader/listports.py*
+Windows
+    * Open a PowerShell window
+      * Run the following command *python3 uploader\listports.py*
+  * Connect the emulator withthe miniusb cable to your computer and rerun the listports.py
+    * The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
+
+### Flashing the firmware with built in bootloader
+  * python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex
+    * This is the port you discovered in the Connecting step above
+    * This program flashes the release version of the firmware
+
+*make flash-release* # do not press Enter yet!
     * OR
   * *make flash*         # do not press Enter yet!
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
 
-## Flashing the firmware with an ISP programmer
+## Compiling
+### Dependencies to be able to compile and build this project - Ubuntu instructions
+Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below
+  * sudo bash
+  * *apt-get update*
+  * *apt-get install aptitude make build-essential binutils gcc*
+  * *aptitude --with-recommends install python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+
+### Compile
+  * *make clean*
+  * *make*
+  * *make install*
+    * Installs lif and mkcfg tools
+
+## Compile and Flashing - assumes you have compiletools installed
+### Flash with Internal optiboot
+  * *make clean*
+  * *make*
+  * *make install*
+  * *make flash-release* # do not press Enter yet!
+    * OR
+  * *make flash*         # do not press Enter yet!
+    * This will use *avrdude* and your ISP to flash the firmware
+    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
+      * These scripts are called *miniterm* or *term* in the project folder
+        * The baud rate is the [Makefile](Makefile) BAUD option
+
+### Flash with external programmer
+## Flashing the firmware using an extrenal programmer
   * Note: JTAG is disabled so we can use port C bits to control the GPIB drivers
   * You will need and AVR programmer supported by avrdude (part of avrtools)
     * I am using atmelice_isp but the [Makefile](Makefile) as example for:
     * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
     * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
     * There is an example with the AVR mkii programmer as well.
-  * *make flash-release* # do not press Enter yet!
+  * *make clean*
+  * *make*
+  * *make install*
+  * *make flash-isp-release* # do not press Enter yet!
     * OR
-  * *make flash*         # do not press Enter yet!
+  * *make flash-sip*         # do not press Enter yet!
     * This will use *avrdude* and your ISP to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called *miniterm* or *term* in the project folder
