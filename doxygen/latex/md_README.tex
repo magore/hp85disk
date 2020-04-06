@@ -602,7 +602,9 @@ On the H\+P85 type
 
 \subsection*{Tested Operating systems}
 
-L\+I\+N\+UX
+\subsubsection*{Linux}
+
+
 \begin{DoxyItemize}
 \item I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
 \begin{DoxyItemize}
@@ -614,7 +616,11 @@ L\+I\+N\+UX
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item I have instructions for flashing the firmware below \#\+W\+I\+N\+D\+O\+WS
+\item I have instructions for flashing the firmware below \subsubsection*{Windows}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
 \item I have instructions for flashing the firmware below
 \end{DoxyItemize}
 
@@ -637,31 +643,41 @@ L\+I\+N\+UX
 
 \subsection*{Clone hp85disk my github project to your computer using git}
 
-Linux
+\subsubsection*{Linux install git}
+
+
 \begin{DoxyItemize}
 \item Open a terminal window
 \item Install git
 \begin{DoxyItemize}
-\item {\itshape apt-\/get install git}
+\item {\itshape apt-\/get install git} \subsubsection*{Windows install git}
 \end{DoxyItemize}
-\item {\itshape git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}}
-\item {\itshape cd hp85disk} Windows
 \item Install git
 \begin{DoxyItemize}
 \item \href{https://git-scm.com/download/win}{\tt https\+://git-\/scm.\+com/download/win}
 \end{DoxyItemize}
-\item Open a Power\+Shell Window
+\item Open a Power\+Shell Window \subsubsection*{Clone git}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
 \item {\itshape git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}}
 \item {\itshape cd hp85disk}
 \end{DoxyItemize}
 
 \subsection*{Updating hp85disk github project at any time using git}
 
-Linux
+\subsubsection*{Linux}
+
+
 \begin{DoxyItemize}
 \item Open a terminal window
 \item cd hp85disk
-\item git pull W\+Indows
+\item git pull \subsubsection*{Windows}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
 \item Open a Power\+Shell window
 \item cd hp85disk
 \item git pull
@@ -677,35 +693,44 @@ Linux
 \begin{DoxyItemize}
 \item Follow the instructions of firmware updating dependencies for installing Python and libraries
 \item Make sure you have a miniusb cable handy
-\item Make sure the emulator is not connected to your P\+C/\+Mac Linux
+\item Make sure the emulator is not connected to your P\+C/\+Mac \subsubsection*{Linux}
+\end{DoxyItemize}
+
+
 \begin{DoxyItemize}
 \item Open a terminal window
 \begin{DoxyItemize}
-\item Run the following command {\itshape python3 uploader/listports.\+py} Windows
+\item Run the following command {\itshape python3 uploader/listports.\+py} \subsubsection*{Windows}
 \end{DoxyItemize}
 \item Open a Power\+Shell window
 \begin{DoxyItemize}
 \item Run the following command $\ast$python3 uploader\textbackslash{}listports.\+py$\ast$
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Connect the emulator withthe miniusb cable to your computer and rerun the listports.\+py
+
+Connect the emulator withthe miniusb cable to your computer and rerun the listports.\+py
 \begin{DoxyItemize}
 \item The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware \subsection*{Firmware updating dependencies}
 \end{DoxyItemize}
 
-Linux
+\subsubsection*{Linux}
+
+
+\begin{DoxyItemize}
 \item {\itshape apt-\/get install python3}
 \begin{DoxyItemize}
 \item Most modern Linux systems have Python3
 \end{DoxyItemize}
-\item {\itshape pip3 install py\+Serial} Windows
+\item {\itshape pip3 install py\+Serial} \subsubsection*{Windows}
+\end{DoxyItemize}
+
+
 \begin{DoxyItemize}
 \item Windows -\/ Install Python 3.\+7 from Windows App Store
 \begin{DoxyItemize}
 \item Open Power\+Sehll window -\/ always use Power\+Shell under Windows for running Python3
 \end{DoxyItemize}
 \item pip3 install py\+Serial
-\end{DoxyItemize}
 \end{DoxyItemize}
 
 
@@ -719,13 +744,21 @@ Linux
 \item The github hp85disk V2 branch project includes disk images and precompiled firmeare
 \begin{DoxyItemize}
 \item Compiled Firmware \href{release/build}{\tt release/build}
-\item Disk Images \href{release/sdcard}{\tt release/sdcard} Linux Example\+:
+\item Disk Images \href{release/sdcard}{\tt release/sdcard} \paragraph*{Linux Example}
 \end{DoxyItemize}
-\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex Windows Example\+:
+\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex \paragraph*{Windows Example}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
 \item python3 uploader/flasher.\+py 1152000 C\+O\+M3 release/build/gpib.\+hex
 \begin{DoxyItemize}
 \item This is the port you discovered in the Connecting step above
-\item This program flashes the release version of the firmware Mac
+\item This program flashes the release version of the firmware \paragraph*{Mac Example}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
 \item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -734,9 +767,8 @@ Linux
 
 
 \begin{DoxyItemize}
-\item Type in the following command, with your serial port, {\itshape without} pressing Enter
+\item Type in the flashing command -\/ see last section, {\itshape without} pressing Enter
 \begin{DoxyItemize}
-\item {\itshape python3 flasher.\+py 115200 /dev/tty\+U\+S\+B0 gpib.\+hex}
 \item Hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
 \begin{DoxyItemize}
 \item You have a short Window after releasing R\+E\+S\+ET to Press Enter
@@ -761,19 +793,16 @@ Linux
 \item -\/ OR -\/
 \begin{DoxyItemize}
 \item Open you favorite serial terminal emulator
+\begin{DoxyItemize}
 \item Set B\+A\+UD rate to 115200
 \item Set 8 Data bits NO parity
 \item Set flow control to N\+O\+NE
-\item Set the P\+O\+RT to the device name of the emulator U\+SB port
-\begin{DoxyItemize}
-\item Example\+: /dev/tty\+U\+S\+B0 see previous section on connecting to your computer
+\item Set the P\+O\+RT to the device name of the emulator U\+SB port 
+
+
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-
-
-
 
 \subsection*{Compiling}
 
@@ -865,7 +894,7 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 
 
 
-\subsection*{H\+P85 emulator Makefile configuration options for original V1 and new V2 boards}
+\subsection*{Makefile configuration for hp85disk emulator -\/ options for original V1 and new V2 boards}
 
 \subsection*{Makefile Configuration options for building}
 
@@ -880,7 +909,7 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \end{DoxyItemize}
 \item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
 \begin{DoxyItemize}
-\item Note\+: This is now automatically set by board revision
+\item Note\+: This is now automatically set by board revision so this is not normally needed
 \item 0 = V1 hardware without the G\+P\+IB buffers
 \item 1 = V2 hardware with G\+P\+IB buffers
 \end{DoxyItemize}

@@ -304,13 +304,13 @@ ___
 
 
 ## Tested Operating systems
-LINUX
+### Linux
   * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
     * NOTE: It should be possible to setup the same build with Windows
       * There are a number of build environments for Windows that will work 
         * I hope to provide instructions soon
   * I have instructions for flashing the firmware below
-#WINDOWS
+### Windows
   * I have instructions for flashing the firmware below
 
 ___ 
@@ -322,25 +322,24 @@ ___
       * CLick on the Download Button
 
 ## Clone hp85disk my github project to your computer using git
-Linux
+### Linux install git
   * Open a terminal window 
   * Install git
     * *apt-get install git*
-  * *git clone --branch V2 https://github.com/magore/hp85disk*
-  * *cd hp85disk*
-Windows
+### Windows install git
   * Install git
-      * https://git-scm.com/download/win
+    * https://git-scm.com/download/win
   * Open a PowerShell Window
+### Clone git
   * *git clone --branch V2 https://github.com/magore/hp85disk*
   * *cd hp85disk*
 
 ## Updating hp85disk github project at any time using git
-Linux
+### Linux
   * Open a terminal window 
   * cd hp85disk
   * git pull
-WIndows
+### Windows
   * Open a PowerShell window 
   * cd hp85disk
   * git pull
@@ -352,20 +351,20 @@ ___
   * Follow the instructions of firmware updating dependencies for installing Python and libraries
   * Make sure you have a miniusb cable handy
   * Make sure the emulator is not connected to your PC/Mac
-Linux
+### Linux
     * Open a terminal window
       * Run the following command *python3 uploader/listports.py*
-Windows
+### Windows
     * Open a PowerShell window
       * Run the following command *python3 uploader\listports.py*
   * Connect the emulator withthe miniusb cable to your computer and rerun the listports.py
     * The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
 ## Firmware updating dependencies
-Linux
+### Linux
   * *apt-get install python3*
     * Most modern Linux systems have Python3
   * *pip3 install pySerial*
-Windows
+### Windows
     * Windows - Install Python 3.7 from Windows App Store
       * Open PowerSehll window - always use PowerShell under Windows for running Python3
     * pip3 install pySerial
@@ -376,18 +375,17 @@ ___
   * The github hp85disk V2 branch project includes disk images and precompiled firmeare
     * Compiled Firmware [release/build](release/build) 
     * Disk Images       [release/sdcard](release/sdcard)
-Linux Example:
+#### Linux Example
   * python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex
-Windows Example:
+#### Windows Example
   * python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex
     * This is the port you discovered in the Connecting step above
     * This program flashes the release version of the firmware
-Mac
+#### Mac Example
     * python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex
 
 ### Flash failure during flashing
-  * Type in the following command, with your serial port, *without* pressing Enter
-    * *python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex*
+  * Type in the flashing command - see last section, *without* pressing Enter
     * Hold down RESET on the hp85disk board - release RESET and press Enter quickly
       * You have a short Window after releasing RESET to Press Enter
 
@@ -401,12 +399,10 @@ ___
     * python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 1152000
   * - OR -
     * Open you favorite serial terminal emulator
-    * Set BAUD rate to 115200 
-    * Set 8 Data bits NO parity
-    * Set flow control to NONE
-    * Set the PORT to the device name of the emulator USB port
-      * Example: /dev/ttyUSB0 see previous section on connecting to your computer
-
+     * Set BAUD rate to 115200 
+     * Set 8 Data bits NO parity
+     * Set flow control to NONE
+     * Set the PORT to the device name of the emulator USB port
 ___ 
 
 
@@ -461,14 +457,14 @@ ___
 ___ 
 
 
-## HP85 emulator Makefile configuration options for original V1 and new V2 boards
+## Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards
 ## Makefile Configuration options for building
   * Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
     * BOARD is the version of the hardware
       * 1 = V1 hardware without GPIB BUS transceivers
       * 2 = V2 hardware with GPIB BUS transceivers
     * PPR_REVERSE_BITS
-      * Note: This is now automatically set by board revision
+      * Note: This is now automatically set by board revision so this is not normally needed
       * 0 = V1 hardware without the GPIB buffers 
       * 1 = V2 hardware with GPIB buffers 
     * RTC_SUPPORT for Real Time Clock

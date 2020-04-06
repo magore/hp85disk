@@ -559,7 +559,8 @@ README</h1>
 </ul>
 <hr/>
 <h2>Tested Operating systems</h2>
-<p>LINUX</p><ul>
+<h3>Linux</h3>
+<ul>
 <li>I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code<ul>
 <li>NOTE: It should be possible to setup the same build with Windows<ul>
 <li>There are a number of build environments for Windows that will work<ul>
@@ -570,7 +571,10 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>I have instructions for flashing the firmware below #WINDOWS</li>
+<li>I have instructions for flashing the firmware below <h3>Windows</h3>
+</li>
+</ul>
+<ul>
 <li>I have instructions for flashing the firmware below</li>
 </ul>
 <hr/>
@@ -585,27 +589,34 @@ README</h1>
 </li>
 </ul>
 <h2>Clone hp85disk my github project to your computer using git</h2>
-<p>Linux</p><ul>
+<h3>Linux install git</h3>
+<ul>
 <li>Open a terminal window</li>
 <li>Install git<ul>
-<li><em>apt-get install git</em></li>
+<li><em>apt-get install git</em> <h3>Windows install git</h3>
+</li>
 </ul>
 </li>
-<li><em>git clone &ndash;branch V2 <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a></em></li>
-<li><em>cd hp85disk</em> Windows</li>
 <li>Install git<ul>
 <li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
 </ul>
 </li>
-<li>Open a PowerShell Window</li>
+<li>Open a PowerShell Window <h3>Clone git</h3>
+</li>
+</ul>
+<ul>
 <li><em>git clone &ndash;branch V2 <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a></em></li>
 <li><em>cd hp85disk</em></li>
 </ul>
 <h2>Updating hp85disk github project at any time using git</h2>
-<p>Linux</p><ul>
+<h3>Linux</h3>
+<ul>
 <li>Open a terminal window</li>
 <li>cd hp85disk</li>
-<li>git pull WIndows</li>
+<li>git pull <h3>Windows</h3>
+</li>
+</ul>
+<ul>
 <li>Open a PowerShell window</li>
 <li>cd hp85disk</li>
 <li>git pull</li>
@@ -615,9 +626,13 @@ README</h1>
 <ul>
 <li>Follow the instructions of firmware updating dependencies for installing Python and libraries</li>
 <li>Make sure you have a miniusb cable handy</li>
-<li>Make sure the emulator is not connected to your PC/Mac Linux<ul>
+<li>Make sure the emulator is not connected to your PC/Mac <h3>Linux</h3>
+</li>
+</ul>
+<ul>
 <li>Open a terminal window<ul>
-<li>Run the following command <em>python3 uploader/listports.py</em> Windows</li>
+<li>Run the following command <em>python3 uploader/listports.py</em> <h3>Windows</h3>
+</li>
 </ul>
 </li>
 <li>Open a PowerShell window<ul>
@@ -625,46 +640,52 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-<li><p class="startli">Connect the emulator withthe miniusb cable to your computer and rerun the listports.py</p><ul>
+<p>Connect the emulator withthe miniusb cable to your computer and rerun the listports.py</p><ul>
 <li>The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware <h2>Firmware updating dependencies</h2>
 </li>
 </ul>
-<p class="startli">Linux</p>
-</li>
+<h3>Linux</h3>
+<ul>
 <li><em>apt-get install python3</em><ul>
 <li>Most modern Linux systems have Python3</li>
 </ul>
 </li>
-<li><em>pip3 install pySerial</em> Windows<ul>
+<li><em>pip3 install pySerial</em> <h3>Windows</h3>
+</li>
+</ul>
+<ul>
 <li>Windows - Install Python 3.7 from Windows App Store<ul>
 <li>Open PowerSehll window - always use PowerShell under Windows for running Python3</li>
 </ul>
 </li>
 <li>pip3 install pySerial</li>
 </ul>
-</li>
-</ul>
 <hr/>
 <h3>Flashing the firmware with built in bootloader</h3>
 <ul>
 <li>The github hp85disk V2 branch project includes disk images and precompiled firmeare<ul>
 <li>Compiled Firmware <a href="release/build">release/build</a></li>
-<li>Disk Images <a href="release/sdcard">release/sdcard</a> Linux Example:</li>
+<li>Disk Images <a href="release/sdcard">release/sdcard</a> <h4>Linux Example</h4>
+</li>
 </ul>
 </li>
-<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex Windows Example:</li>
-<li>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex<ul>
+<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex <h4>Windows Example</h4>
+</li>
+</ul>
+<ul>
+<li><p class="startli">python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</p><ul>
 <li>This is the port you discovered in the Connecting step above</li>
-<li>This program flashes the release version of the firmware Mac</li>
+<li>This program flashes the release version of the firmware <h4>Mac Example</h4>
+</li>
+</ul>
+<ul>
 <li>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</li>
 </ul>
 </li>
 </ul>
 <h3>Flash failure during flashing</h3>
 <ul>
-<li>Type in the following command, with your serial port, <em>without</em> pressing Enter<ul>
-<li><em>python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex</em></li>
+<li>Type in the flashing command - see last section, <em>without</em> pressing Enter<ul>
 <li>Hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
 <li>You have a short Window after releasing RESET to Press Enter</li>
 </ul>
@@ -682,18 +703,17 @@ README</h1>
 </ul>
 </li>
 <li>- OR -<ul>
-<li>Open you favorite serial terminal emulator</li>
+<li>Open you favorite serial terminal emulator<ul>
 <li>Set BAUD rate to 115200</li>
 <li>Set 8 Data bits NO parity</li>
 <li>Set flow control to NONE</li>
-<li>Set the PORT to the device name of the emulator USB port<ul>
-<li>Example: /dev/ttyUSB0 see previous section on connecting to your computer</li>
-</ul>
+<li>Set the PORT to the device name of the emulator USB port <hr/>
 </li>
 </ul>
 </li>
 </ul>
-<hr/>
+</li>
+</ul>
 <h2>Compiling</h2>
 <h3>Dependencies to be able to compile and build this project - Ubuntu instructions</h3>
 <p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p><ul>
@@ -765,7 +785,7 @@ README</h1>
 </li>
 </ul>
 <hr/>
-<h2>HP85 emulator Makefile configuration options for original V1 and new V2 boards</h2>
+<h2>Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards</h2>
 <h2>Makefile Configuration options for building</h2>
 <ul>
 <li>Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform<ul>
@@ -775,7 +795,7 @@ README</h1>
 </ul>
 </li>
 <li>PPR_REVERSE_BITS<ul>
-<li>Note: This is now automatically set by board revision</li>
+<li>Note: This is now automatically set by board revision so this is not normally needed</li>
 <li>0 = V1 hardware without the GPIB buffers</li>
 <li>1 = V2 hardware with GPIB buffers</li>
 </ul>
@@ -2038,7 +2058,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 6 2020 18:07:08 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 6 2020 18:15:10 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
