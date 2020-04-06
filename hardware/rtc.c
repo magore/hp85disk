@@ -110,9 +110,6 @@ int rtc_run(int run)
 /// @return 0 on fail.
 uint8_t rtc_init (int force, time_t seconds)
 {
-    uint8_t buf[8];                               /* RTC R/W buffer */
-    uint8_t addr;
-    uint8_t  WriteAddress;
     int8_t    state;
 
     tm_t *tmp;
@@ -148,6 +145,9 @@ uint8_t rtc_init (int force, time_t seconds)
 
 // RAM init fails on non DS1307 chips 
 #if 0
+		uint8_t buf[8];                               /* RTC R/W buffer */
+		uint8_t addr;
+		uint8_t  WriteAddress;
         memset(buf, 0, 8);
         for (addr = 8; addr < 0x3f; addr += 8)
         {

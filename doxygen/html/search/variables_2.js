@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t']]],
+  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t::b()'],['../unionval__t.html#aa1beb825450163cb6c0f3bfeea7a8098',1,'val_t::b()']]],
   ['blk_5fofs',['blk_ofs',['../structDIR.html#afdb5d6302a88eaf5d43da0352ca2cc91',1,'DIR']]],
   ['block_5ftime',['BLOCK_TIME',['../structSS80UnitType.html#ab94c4b75c74e08e128d4802f5dec0dd5',1,'SS80UnitType']]],
   ['blocks',['BLOCKS',['../structDeviceType.html#a29cbf84a3e9c8d01c8c77023ebf9c1f5',1,'DeviceType::BLOCKS()'],['../structhpdir__t.html#a4b4f32c9b9cfe558ce5fbd51d65b5db3',1,'hpdir_t::BLOCKS()']]],

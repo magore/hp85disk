@@ -66,7 +66,7 @@ var searchData=
   ['compressed',['compressed',['../structdisk__t.html#abe333f1a8b322fbed0d1c1178939016e',1,'disk_t']]],
   ['config',['CONFIG',['../structAMIGODiskType.html#aae94c3403ceb917006591e7bd4109207',1,'AMIGODiskType::CONFIG()'],['../structSS80DiskType.html#aeff2b9e1dcd95310e9e8dee63a60ed95',1,'SS80DiskType::CONFIG()']]],
   ['configtype',['ConfigType',['../structConfigType.html',1,'']]],
-  ['continous_5ftransfer_5frate',['CONTINOUS_TRANSFER_RATE',['../structSS80UnitType.html#a0486673977da185f2f69aaff378f81a2',1,'SS80UnitType']]],
+  ['continuous_5ftransfer_5frate',['CONTINUOUS_TRANSFER_RATE',['../structSS80UnitType.html#a366858b222baf5ef0a864ea505d3fd82',1,'SS80UnitType']]],
   ['contrast_5fcommand',['CONTRAST_COMMAND',['../LCD_8h.html#acb58ae865f41b46042ec1005fe957951',1,'LCD.h']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
   ['controller',['CONTROLLER',['../structSS80DiskType.html#ae9da84cba5786cf755c388eba065c0cd',1,'SS80DiskType']]],
@@ -115,5 +115,5 @@ var searchData=
   ['cvtbl',['CVTBL',['../ffunicode_8c.html#afcbf86dfddc068d1df5155276ffc8ef8',1,'ffunicode.c']]],
   ['cyl',['cyl',['../structAMIGOStateType.html#a54b4a4f8221f9d38fb93f2d23a40e305',1,'AMIGOStateType::cyl()'],['../structtd__sector__t.html#afddd9f1e3a41cc6e3a9be2478cd3305b',1,'td_sector_t::Cyl()'],['../structtrack__t.html#ab0489765c2499c501ce16426ec2b0c86',1,'track_t::Cyl()']]],
   ['cylinder',['cylinder',['../structsector__t.html#abf5eb245097466ac9624e59a379a2409',1,'sector_t']]],
-  ['cylinders',['CYLINDERS',['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structhpdir__t.html#ac153c658b4e5333b529826d125d40e1e',1,'hpdir_t::CYLINDERS()'],['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()']]]
+  ['cylinders',['Cylinders',['../structliftel__t.html#aa7893691b509641459d8c1c0a8664aa5',1,'liftel_t::Cylinders()'],['../structAMIGOGeometryType.html#a5a0d5f6611aeb7db58ff4a851bde8fcf',1,'AMIGOGeometryType::CYLINDERS()'],['../structhpdir__t.html#ac153c658b4e5333b529826d125d40e1e',1,'hpdir_t::CYLINDERS()']]]
 ];

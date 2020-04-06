@@ -468,6 +468,16 @@ help:
 	@echo
 
 # =======================================
+# Display RAM memory use by function name
+data_usage:
+	avr-nm -Ctd --size-sort  $(PROJECT).elf | grep -i ' [dbv] '
+
+# Display Code use by function name
+code_usage:
+	avr-nm -Ctd --size-sort  gpib.elf | grep -v "^[0-9]* [Tt] __" | grep -i ' [Tt] '
+
+
+# =======================================
 # ISP flashing - NOTE: WE ALWAYS INSTALL optiboot
 # We do NOT erase before flashing
 # install_optiboot erases the chip

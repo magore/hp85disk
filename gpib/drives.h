@@ -37,15 +37,14 @@
 ///@brief Maximum number of emulated devices
 #define MAX_DEVICES 12
 
-///@brief Maximun lengh of device file name
-#define MAX_FILE_NAME_LEN 32
 
 //@brief Drive index, Address, PPR and file name for emulated drive
 typedef struct 
 {
     uint8_t ADDRESS;    //< GPIB Address
     uint8_t PPR;        //< Parallel Poll Response Bit
-    char     NAME[MAX_FILE_NAME_LEN+1]; // Filename of emulated image
+	///@brief Maximun lengh of device file name
+    char     *NAME;     // Filename of emulated image
 } HeaderType;
 
 //@brief Identify Bytes for Drives
@@ -163,7 +162,7 @@ typedef struct   //<  Unit description, 19 bytes
     uint8_t BUFFERED_BLOCKS;
     uint8_t BURST_SIZE;
     uint16_t BLOCK_TIME;
-    uint16_t CONTINOUS_TRANSFER_RATE;
+    uint16_t CONTINUOUS_TRANSFER_RATE;
     uint16_t OPTIMAL_RETRY_TIME;
     uint16_t ACCESS_TIME;
     uint8_t MAXIMUM_INTERLEAVE;

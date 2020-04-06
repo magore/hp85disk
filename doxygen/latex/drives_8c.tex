@@ -16,6 +16,11 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}ss80.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionval__t}{val\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -197,10 +202,6 @@ assigned a value
 
 Definition at line 581 of file drives.\+c.
 
-
-
-Referenced by Read\+\_\+\+Config().
-
 \mbox{\Hypertarget{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}\label{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}} 
 \index{drives.\+c@{drives.\+c}!B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}}
 \index{B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}!drives.\+c@{drives.\+c}}
@@ -321,7 +322,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1438 of file drives.\+c.
+Definition at line 1383 of file drives.\+c.
 
 
 
@@ -344,7 +345,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1476 of file drives.\+c.
+Definition at line 1421 of file drives.\+c.
 
 
 
@@ -449,7 +450,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1582 of file drives.\+c.
+Definition at line 1527 of file drives.\+c.
 
 
 
@@ -591,7 +592,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1425 of file drives.\+c.
+Definition at line 1370 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8c_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -615,7 +616,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1409 of file drives.\+c.
+Definition at line 1354 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8c_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
@@ -665,7 +666,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 816 of file drives.\+c.
+Definition at line 822 of file drives.\+c.
 
 
 
@@ -844,7 +845,7 @@ Definition at line 32 of file drives.\+c.
 
 
 
-Referenced by S\+S80\+\_\+init().
+Referenced by Read\+\_\+\+Config(), and S\+S80\+\_\+init().
 
 \mbox{\Hypertarget{drives_8c_a6edb848661be578eca78845085870674}\label{drives_8c_a6edb848661be578eca78845085870674}} 
 \index{drives.\+c@{drives.\+c}!hpdir@{hpdir}}
@@ -892,6 +893,10 @@ Active Printer Device.
 
 Definition at line 35 of file drives.\+c.
 
+
+
+Referenced by Read\+\_\+\+Config().
+
 \mbox{\Hypertarget{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}\label{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}} 
 \index{drives.\+c@{drives.\+c}!S\+S80p@{S\+S80p}}
 \index{S\+S80p@{S\+S80p}!drives.\+c@{drives.\+c}}
@@ -908,7 +913,7 @@ Definition at line 38 of file drives.\+c.
 
 
 
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
+Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), Read\+\_\+\+Config(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 
 \mbox{\Hypertarget{drives_8c_a26e0264b8581231a3a90fbb418f5812a}\label{drives_8c_a26e0264b8581231a3a90fbb418f5812a}} 
 \index{drives.\+c@{drives.\+c}!S\+S80s@{S\+S80s}}

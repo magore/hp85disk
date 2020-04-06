@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['u',['u',['../structliftel__t.html#a039066f2594254d80396de7e4c1bf106',1,'liftel_t']]],
+  ['u',['u',['../structliftel__t.html#a37ae10bb4198ae9ae00b734fe73a162f',1,'liftel_t']]],
   ['uart0_5fgetchar',['uart0_getchar',['../rs232_8c.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c'],['../rs232_8h.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c']]],
   ['uart0_5fputchar',['uart0_putchar',['../rs232_8c.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c'],['../rs232_8h.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c']]],
   ['uart_5fdevice_5fcnt',['UART_DEVICE_CNT',['../hardware_2user__config_8h.html#a5073c91ce37d806cbbfbd8131bc9c31c',1,'user_config.h']]],
@@ -19,7 +19,7 @@ var searchData=
   ['uart_5frx_5finterrupt',['uart_rx_interrupt',['../rs232_8c.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c'],['../rs232_8h.html#a382aa76e85fa3a1a2add5111578e954e',1,'uart_rx_interrupt(uint8_t uart, uint8_t data):&#160;rs232.c']]],
   ['uart_5ftx_5fbyte',['uart_tx_byte',['../rs232_8c.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a3c1200094b998cbb987f545257aaa355',1,'uart_tx_byte(int c, uint8_t uart):&#160;rs232.c']]],
   ['uart_5fubr',['uart_ubr',['../rs232_8c.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c'],['../rs232_8h.html#acf0f1788a444afef4ccd7c614429df05',1,'uart_ubr(uint32_t baud, int *u2x, uint32_t *actual):&#160;rs232.c']]],
-  ['uarts',['UARTS',['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h'],['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c']]],
+  ['uarts',['uarts',['../rs232_8c.html#a4174a66887247991f40c85ea4bb0c8a7',1,'uarts():&#160;rs232.c'],['../rs232_8h.html#a14061d90f6727665218418b15943af7f',1,'UARTS():&#160;rs232.h']]],
   ['uc437',['uc437',['../ffunicode_8c.html#a32a2076e8fcf6d797159acecc49fa5fd',1,'ffunicode.c']]],
   ['udata',['udata',['../struct____file.html#abe6f3bdb4df4119277132eb3e13a4628',1,'__file']]],
   ['uid_5ft',['uid_t',['../posix_8h.html#a0f43c63879b4ab6960f41e756392c77d',1,'posix.h']]],

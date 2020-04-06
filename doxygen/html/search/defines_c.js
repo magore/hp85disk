@@ -9,7 +9,6 @@ var searchData=
   ['max_5ffat12',['MAX_FAT12',['../ff_8c.html#a03962fce05a65b3e0ff6855d5436869f',1,'ff.c']]],
   ['max_5ffat16',['MAX_FAT16',['../ff_8c.html#a259e5a1973d5209304482a5bcd89372f',1,'ff.c']]],
   ['max_5ffat32',['MAX_FAT32',['../ff_8c.html#a40e7471b7ae3620a0419aa4d8d6dc684',1,'ff.c']]],
-  ['max_5ffile_5fname_5flen',['MAX_FILE_NAME_LEN',['../drives_8h.html#a835262f9c26026aab5f91a528f57ad8f',1,'drives.h']]],
   ['max_5ffiles',['MAX_FILES',['../posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54',1,'posix.h']]],
   ['max_5fmalloc',['MAX_MALLOC',['../ff_8c.html#aaa791eb9a3f067c6a24c70626bddcc66',1,'ff.c']]],
   ['max_5fname_5flen',['MAX_NAME_LEN',['../posix_8h.html#afd709f201d7643c3909621f620ea648a',1,'posix.h']]],

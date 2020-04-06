@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t']]],
+  ['b',['b',['../unionf__t.html#ab12d573627108be21a1ea9f5d5dae3c9',1,'f_t::b()'],['../unionval__t.html#aa1beb825450163cb6c0f3bfeea7a8098',1,'val_t::b()']]],
   ['b2v_5flsb',['B2V_LSB',['../drives_8c.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#ab11609290835b2ddc9396b5ed9a6da6e',1,'B2V_LSB(uint8_t *B, int index, int size):&#160;drives.c']]],
   ['b2v_5fmsb',['B2V_MSB',['../drives_8c.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c'],['../drives_8h.html#aa59f992a9a2b0281dbb4deca60b54a2d',1,'B2V_MSB(uint8_t *B, int index, int size):&#160;drives.c']]],
   ['base_5fmla',['BASE_MLA',['../defines_8h.html#a944275020270df551673379e7f726a88',1,'defines.h']]],
