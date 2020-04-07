@@ -622,7 +622,7 @@ README</h1>
 <li>git pull</li>
 </ul>
 <hr/>
-<h2>Connecting a computer to the hp85disk emulator</h2>
+<h2>Connecting a computer to the hp85disk emulator - finding the emulator serial port</h2>
 <ul>
 <li>Follow the instructions of firmware updating dependencies for installing Python and libraries</li>
 <li>Make sure you have a miniusb cable handy</li>
@@ -631,19 +631,23 @@ README</h1>
 </ul>
 <ul>
 <li>Open a terminal window<ul>
-<li>Run the following command <em>python3 uploader/listports.py</em> <h3>Windows</h3>
+<li>Run the following command<ul>
+<li><em>python3 uploader/listports.py</em> <h3>Windows</h3>
+</li>
+</ul>
 </li>
 </ul>
 </li>
 <li>Open a PowerShell window<ul>
-<li>Run the following command *python3 uploader\listports.py*</li>
-</ul>
+<li>Run the following command *python3 uploader\listports.py* <h3>Connect the emulator</h3>
 </li>
 </ul>
-<p>Connect the emulator withthe miniusb cable to your computer and rerun the listports.py</p><ul>
-<li>The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware <h2>Firmware updating dependencies</h2>
 </li>
+<li>Attach the miniusb cable to your computer and rerun the listports.py</li>
+<li>The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware</li>
 </ul>
+<hr/>
+<h2>Firmware updating dependencies</h2>
 <h3>Linux</h3>
 <ul>
 <li><em>apt-get install python3</em><ul>
@@ -702,18 +706,16 @@ README</h1>
 <li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000</li>
 </ul>
 </li>
-<li>- OR -<ul>
+<li>- OR -</li>
 <li>Open you favorite serial terminal emulator<ul>
 <li>Set BAUD rate to 115200</li>
 <li>Set 8 Data bits NO parity</li>
 <li>Set flow control to NONE</li>
-<li>Set the PORT to the device name of the emulator USB port <hr/>
-</li>
+<li>Set the PORT to the device name of the emulator USB port</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
+<hr/>
 <h2>Compiling</h2>
 <h3>Dependencies to be able to compile and build this project - Ubuntu instructions</h3>
 <p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p><ul>
@@ -745,8 +747,7 @@ README</h1>
 <li>This will use <em>avrdude</em> and your ISP to flash the firmware</li>
 <li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging<ul>
 <li>These scripts are called <a href="miniterm.sh">miniterm.sh</a> or [term](term) in the project folder<ul>
-<li>The baud rate is the [Makefile](Makefile) BAUD option <hr/>
-</li>
+<li>The baud rate is the [Makefile](Makefile) BAUD option</li>
 </ul>
 </li>
 </ul>
@@ -754,6 +755,7 @@ README</h1>
 </ul>
 </li>
 </ul>
+<hr/>
 <h3>Flash with external programmer</h3>
 <h2>Flashing the firmware using an extrenal programmer</h2>
 <ul>
@@ -2058,7 +2060,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 6 2020 18:17:19 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 6 2020 21:30:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

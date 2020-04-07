@@ -347,18 +347,24 @@ ___
 ___ 
 
 
-## Connecting a computer to the hp85disk emulator
+## Connecting a computer to the hp85disk emulator - finding the emulator serial port
   * Follow the instructions of firmware updating dependencies for installing Python and libraries
   * Make sure you have a miniusb cable handy
   * Make sure the emulator is not connected to your PC/Mac
 ### Linux
     * Open a terminal window
-      * Run the following command *python3 uploader/listports.py*
+      * Run the following command 
+        * *python3 uploader/listports.py*
 ### Windows
     * Open a PowerShell window
       * Run the following command *python3 uploader\listports.py*
-  * Connect the emulator withthe miniusb cable to your computer and rerun the listports.py
+### Connect the emulator 
+    * Attach the miniusb cable to your computer and rerun the listports.py
     * The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
+
+___ 
+
+
 ## Firmware updating dependencies
 ### Linux
   * *apt-get install python3*
@@ -370,6 +376,7 @@ ___
     * pip3 install pySerial
 
 ___ 
+
 
 ### Flashing the firmware with built in bootloader
   * The github hp85disk V2 branch project includes disk images and precompiled firmeare
@@ -398,11 +405,12 @@ ___
   * With the hp85disk attached via USB cable to your desktop
     * python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 1152000
   * - OR -
-    * Open you favorite serial terminal emulator
-     * Set BAUD rate to 115200 
-     * Set 8 Data bits NO parity
-     * Set flow control to NONE
-     * Set the PORT to the device name of the emulator USB port
+  * Open you favorite serial terminal emulator
+    * Set BAUD rate to 115200 
+    * Set 8 Data bits NO parity
+    * Set flow control to NONE
+    * Set the PORT to the device name of the emulator USB port
+
 ___ 
 
 
@@ -432,6 +440,7 @@ Note: If you only plan on updating firmware and would rather not compile skip to
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
+
 ___ 
 
 

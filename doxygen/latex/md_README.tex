@@ -687,7 +687,7 @@ On the H\+P85 type
 
 
 
-\subsection*{Connecting a computer to the hp85disk emulator}
+\subsection*{Connecting a computer to the hp85disk emulator -\/ finding the emulator serial port}
 
 
 \begin{DoxyItemize}
@@ -700,18 +700,24 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item Open a terminal window
 \begin{DoxyItemize}
-\item Run the following command {\itshape python3 uploader/listports.\+py} \subsubsection*{Windows}
+\item Run the following command
+\begin{DoxyItemize}
+\item {\itshape python3 uploader/listports.\+py} \subsubsection*{Windows}
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item Open a Power\+Shell window
 \begin{DoxyItemize}
-\item Run the following command $\ast$python3 uploader\textbackslash{}listports.\+py$\ast$
+\item Run the following command $\ast$python3 uploader\textbackslash{}listports.\+py$\ast$ \subsubsection*{Connect the emulator}
 \end{DoxyItemize}
+\item Attach the miniusb cable to your computer and rerun the listports.\+py
+\item The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
 \end{DoxyItemize}
 
-Connect the emulator withthe miniusb cable to your computer and rerun the listports.\+py
-\begin{DoxyItemize}
-\item The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware \subsection*{Firmware updating dependencies}
-\end{DoxyItemize}
+
+
+
+
+\subsection*{Firmware updating dependencies}
 
 \subsubsection*{Linux}
 
@@ -791,18 +797,18 @@ Connect the emulator withthe miniusb cable to your computer and rerun the listpo
 \item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
 \end{DoxyItemize}
 \item -\/ OR -\/
-\begin{DoxyItemize}
 \item Open you favorite serial terminal emulator
 \begin{DoxyItemize}
 \item Set B\+A\+UD rate to 115200
 \item Set 8 Data bits NO parity
 \item Set flow control to N\+O\+NE
-\item Set the P\+O\+RT to the device name of the emulator U\+SB port 
+\item Set the P\+O\+RT to the device name of the emulator U\+SB port
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
 
 \subsection*{Compiling}
 
@@ -848,13 +854,15 @@ Note\+: If you only plan on updating firmware and would rather not compile skip 
 \begin{DoxyItemize}
 \item These scripts are called \href{miniterm.sh}{\tt miniterm.\+sh} or \mbox{[}term\mbox{]}(term) in the project folder
 \begin{DoxyItemize}
-\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option 
+\item The baud rate is the \mbox{[}Makefile\mbox{]}(Makefile) B\+A\+UD option
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
 
 \subsubsection*{Flash with external programmer}
 
