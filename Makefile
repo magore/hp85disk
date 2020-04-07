@@ -378,6 +378,13 @@ CFLAGS += -ffunction-sections
 CFLAGS += -Wl,-gc-sections
 CFLAGS += -Waddr-space-convert
 
+# 9 April 2020 added a few more optimization flags
+CFLAGS += -maccumulate-args
+CFLAGS += -mstrict-X
+CFLAGS += -nodevicelib
+CFLAGS += -fdata-sections
+#CFLAGS += -mshort-calls
+
 # Assembler flags
 ASFLAGS += $(COMMON)
 ASFLAGS += $(addprefix -D,$(ADEFS)) -Wa,-gstabs,-g$(DEBUG)
