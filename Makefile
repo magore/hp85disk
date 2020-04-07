@@ -37,9 +37,27 @@ export F_CPU  ?= 20000000
 #        Will display all of ALL supported pogrammers
 # I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
 export AVRDUDE_ISP ?= atmelice_isp
+#export AVRDUDE_ISP ?= avrisp
 
 # AVRDUDE ISP PORT
 export AVRDUDE_PORT ?= usb
+
+ifeq ($(AVRDUDE_ISP),atmel_isp)
+export AVRDUDE_PORT ?= usb
+endif
+
+ifeq ($(AVRDUDE_ISP),avrisp)
+export AVRDUDE_PORT = $(PORT)
+endif
+
+ifeq ($(AVRDUDE_ISP),arduino)
+export AVRDUDE_PORT = $(PORT)
+endif
+
+# AVRDUDE ISP PORT
+ifeq ($(AVRDUDE_PORT),)
+export AVRDUDE_PORT ?= usb
+endif
 
 # avrdude device name
 export AVRDUDE_DEVICE ?= m1284
@@ -475,13 +493,15 @@ help:
 
 # =======================================
 # Display RAM memory use by function name
-data_usage:
+data-size:
 	avr-nm -Ctd --size-sort  $(PROJECT).elf | grep -i ' [dbv] '
 
 # Display Code use by function name
-code_usage:
+code-size:
 	avr-nm -Ctd --size-sort  gpib.elf | grep -v "^[0-9]* [Tt] __" | grep -i ' [Tt] '
 
+list-builtins:
+	avr-gcc -dM -E - < /dev/null | sort -u 
 
 # =======================================
 # ISP flashing - NOTE: WE ALWAYS INSTALL optiboot
@@ -528,7 +548,6 @@ flash-release:	arduino
 	python3 uploader/flasher.py $(BAUD) $(PORT) release/build/$(PROJECT).hex
 	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 	#./term $(BAUD) $(PORT)
-
 
 # =======================================
 # ISP flashing - NO optiboot!
@@ -607,7 +626,7 @@ lss: $(PROJECT).lss
 version :
 	@if [ ! -f "update.last" ]; then touch "update.last"; fi
 	@$(CC) --version
-	echo COBJ: $(COBJ)
+# @echo COBJ: $(COBJ)
 
 # Create final output file (.hex or .bin) from ELF output file.
 %.hex: %.elf
@@ -646,16 +665,21 @@ version :
 # Display size of file.
 .PHONY:	size
 size: 
-	@echo
-	-$(SIZE) -C --mcu=$(DEVICE) $(PROJECT).elf
-	-$(SIZE) -x -A --mcu=${DEVICE} $(PROJECT).elf
-	-$(SIZE) -x --common -C --mcu=${DEVICE} $(PROJECT).elf
-	-avr-nm -n -S $(PROJECT).elf | grep "__eeprom"
-	#-avr-nm -n -S $(PROJECT).elf | grep "__noinit"
-	-avr-nm -n -S $(PROJECT).elf | grep "__bss"
-	-avr-nm -n -S $(PROJECT).elf | grep "__data"
-	-avr-nm -n -S $(PROJECT).elf | grep "__heap"
-	-avr-nm -n -S $(PROJECT).elf | grep "__brkval"
+	@echo 
+	@echo Size 
+	-@$(SIZE) -B $(PROJECT).elf
+	@echo 
+	@echo Size HEX
+	-@$(SIZE) -x -B $(PROJECT).elf
+	@echo 
+	@echo Heap Symbols
+	-@avr-nm -n -S $(PROJECT).elf | grep "__eeprom"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__bss"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__data"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__heap"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__brkval"
+	@echo 
+#-@avr-nm -n -S $(PROJECT).elf | grep "__noinit"
 
 # Link: create ELF output file from object files.
 %.elf:  $(AOBJ) $(COBJ) $(LIBS)

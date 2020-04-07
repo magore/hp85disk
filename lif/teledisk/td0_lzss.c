@@ -185,7 +185,7 @@ void lzss_update(int c)
  */
 unsigned short lzss_GetChar(FILE *fp)
 {
-	unsigned char c;
+	unsigned int c;
 
     if(Eof == 255)
     {

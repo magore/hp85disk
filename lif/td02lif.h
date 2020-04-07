@@ -54,14 +54,14 @@
 
 ///@brief Maximum number of sectors per track
 ///Used for sector data and sorting tables
-#define MAXSECTORS 256
+#define MAXSECTORS 255
 
 ///@brief Maximum number of sides per cyinder
 ///TeleDisk only trargetted floppies with 2 sides max!
 #define MAXSIDES 2
 
 ///@brief Maximum number of tracks per disk
-#define MAXCYL 256
+#define MAXCYL 255
 
 #define MAXTRACKS (MAXCYL * MAXSIDES)
 

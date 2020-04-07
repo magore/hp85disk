@@ -436,7 +436,7 @@ Note: If you only plan on updating firmware and would rather not compile skip to
   * *make flash-release* # do not press Enter yet!
     * OR
   * *make flash*         # do not press Enter yet!
-    * This will use *avrdude* and your ISP to flash the firmware
+    * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
@@ -458,7 +458,7 @@ ___
   * *make flash-isp-release* # do not press Enter yet!
     * OR
   * *make flash-isp*         # do not press Enter yet!
-    * This will use *avrdude* and your ISP to flash the firmware
+    * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
     * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
         * The baud rate is the [Makefile](Makefile) BAUD option
@@ -500,7 +500,7 @@ ___
         * My device works with 0.25 but 5 is safe
      * AVRDUDE ISP PORT
       * usb
-        * Set = to the PORT definition above IF using self programmin
+      * Note: ISP = In System Programmer
     * AVRDUDE_ISP
       * avrdude device programmer name as known by avrdude
         * avrdude -c list  # for a list of devices
