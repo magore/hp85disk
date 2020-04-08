@@ -28,6 +28,7 @@
 
 
 #define MEMSPACE /**/
+#define WEAK_ATR /**/
 typedef struct tm tm_t;
 #define safecalloc(a,b) calloc(a,b)
 #define safefree(a) free(a)

@@ -152,7 +152,6 @@ strlen(const char *str)
     return(len);
 }
 
-#ifndef strcpy
 /// @brief copy a string 
 /// @param[in] dest: destination string
 /// @param[in] src: source string
@@ -169,9 +168,7 @@ strcpy(char *dest, const char *src)
     *ptr ++ = 0;
     return (ptr);
 }
-#endif
 
-#ifndef strncpy
 /// @brief copy a string of at most N characters
 /// @param[in] dest: destination string
 /// @param[in] src: source string
@@ -191,10 +188,8 @@ char * strncpy(char *dest, const char *src, size_t size)
         *ptr++ = 0;
     return (dest);
 }
-#endif
 
 
-#ifndef strcat
 /// @brief Append string 
 /// @param[in] dest: string
 /// @param[in] src: string
@@ -209,9 +204,7 @@ char * strcat(char *dest, const char *src)
     strcpy(ptr,src);
     return(dest);
 }
-#endif
 
-#ifndef strncat
 /// @brief Append string of at most N bytes from src
 /// @param[in] dest: string
 /// @param[in] src: string
@@ -226,7 +219,6 @@ char * strncat(char *dest, const char *src, size_t max)
     strncpy(ptr,src,max);
     return(dest);
 }
-#endif
 
 // =============================================
 /// @brief Reverse a string in place
