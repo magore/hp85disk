@@ -424,11 +424,12 @@ Note: I recommend this as the easiest way to compile and build hp85disk under Wi
   * Following these steps take less then 10 minutes incuding the software and hp85disk download
   * Install WSL - Windows SUbsystem for Linux
     * See: https://docs.microsoft.com/en-us/windows/wsl/install-win10
-    * Search PowerShell
-      * Run as Administrator
-    * Type in the following command into the PowerShell Window
-      * *Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux*
-      * Answer 'Y' to restart Windows
+    * See: https://wiki.ubuntu.com/WSL
+    * Using the GUI for enabling Windows features
+      * Open the Start Menu and search Turn Windows features on or off
+      * Select Windows Subsystem for Linux
+      * Click OK
+      * Restart your computer when prompted
     * Open Windows Store
       * Install Ubuntu App
     * Search Ubuntu
