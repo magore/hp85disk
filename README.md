@@ -450,8 +450,8 @@ Note: For Windows install the WSL and Ubuntu App - see previous section
     * Ubuntu App under Windows
 	* *sudo bash*
   * You can download a script to do this
-    *  https://raw.githubusercontent.com/magore/hp85disk/V2/sdcard/install_hp85disk.sh
-  * *./install_hp85disk.sh*
+    *  https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh
+  * *bash ./install_hp85disk.sh*
  
 ### Find the serial port device name for the hp85disk emulator
 Note: You need to find the serial port name when hp85disk emulator is attached to your computer.
