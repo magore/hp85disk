@@ -587,9 +587,8 @@ ___
 </verbatim>
 
 ## Example building with Makefile overrides
-  * ( export AVRDUDE_ISP=avrisp; export AVRDUDE_PORT=/dev/ttyUSB0; make flash-isp)
-    * Make SURE you add the '(' and ')' around the commands
-      * Forgetting '()' would set them for your shell until you exit and may cause unintended results
+  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0
+  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3
 
 ___
 
