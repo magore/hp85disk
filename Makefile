@@ -443,8 +443,8 @@ hardware/baudrate:  hardware/baudrate.c
 # =======================================
 .PHONY: term
 term:   
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	# ./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 # =======================================
 .PHONE: hogs
@@ -517,23 +517,23 @@ list-builtins:
 # install_optiboot sets our fuses!
 flash-isp: isp all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	#./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 flash-isp-fast: isp all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	# ./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 flash-isp-release: isp install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	# ./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
-verify-isp:
+verify-isp: isp
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
 
-verify-isp-fast: 
+verify-isp-fast: isp
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -U flash:v:$(PROJECT).hex:i
 
 # =======================================
@@ -542,37 +542,37 @@ verify-isp-fast:
 # You MUST press RESET and issue these commands very quickly afterwards
 #    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
 # 
-flash: arduino all
+flash: isp arduino all
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
 	python3 uploader/flasher.py $(BAUD) $(PORT) $(PROJECT).hex
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	#./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
-flash-release:	arduino 
+flash-release:	isp arduino 
 	# ./reset $(BAUD) $(PORT)
 	# avrdude -c arduino -P $(PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 	python3 uploader/flasher.py $(BAUD) $(PORT) release/build/$(PROJECT).hex
+	./term $(BAUD) $(PORT)
 	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	#./term $(BAUD) $(PORT)
 
 # =======================================
 # ISP flashing - NO optiboot!
 # We ALWAYS erase the CHIP before flashing
 flash-isp-noboot: isp all 
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
 	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	#./term $(BAUD) $(PORT)
 
 flash-isp-noboot-fast: isp all 
 	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	#./term $(BAUD) $(PORT)
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 flash-isp-noboot-release:  isp all
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
+	./term $(BAUD) $(PORT)
 	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
-	# ./term $(BAUD) $(PORT)
 
 
 # =======================================
