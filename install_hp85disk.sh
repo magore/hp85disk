@@ -16,8 +16,8 @@ sudo bash
 echo
 echo installing software
 apt-get update
-apt-get install git aptitude make build-essential binutils gcc
-aptitude --with-recommends install python3 python3-pip python-serial \
+apt-get install -y git aptitude make build-essential binutils gcc
+aptitude --with-recommends install -y python3 python3-pip python-serial \
 	minicom \
 	avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr
 
