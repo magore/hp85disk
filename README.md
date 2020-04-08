@@ -415,43 +415,81 @@ ___
 
 
 ## Compiling
-### Dependencies to be able to compile and build this project - Ubuntu instructions
+
+### Installation Ubuntu and Windows software for building hp85disk and building related applications
 Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below
-  * sudo bash
-  * *apt-get update*
-  * *apt-get install aptitude make build-essential binutils gcc*
-  * *aptitude --with-recommends install python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr*
+
+#### Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App
+Note: I recommend this as the easiest way to compile and build hp85disk under Windows</br>
+  * Following these steps take less then 10 minutes incuding the software and hp85disk download
+  * Install WSL - Windows SUbsystem for Linux
+    * See: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+    * Search PowerShell
+      * Run as Administrator
+    * Type in the following command into the PowerShell Window
+      * *Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux*
+      * Answer 'Y' to restart Windows
+    * Open Windows Store
+      * Install Ubuntu App
+    * Search Ubuntu
+      * Launch Ubuntu App
+        * This will take a few minutes the first time depending on your network speed 
+        * It will ask for a userid and password for a new user
+      * Right Click on the very top of the Ubuntu App window 
+        * Click on Properties -> Open the Options Tab
+          * Enable Ctrl+Shift+C/V Copy Paste
+
+#### Ubuntu 18.04 LTS or later
+Note: For Windows install the WSL and Ubuntu App - see previous section
+  * If you are installing Ubuntu on a new machine
+    * See https://ubuntu.com/download/desktop
+
+### Software install and download for Ubuntu and Windows 
+Note: For Windows install the WSL and Ubuntu App - see previous section
+  * Open a terminal Window
+    * Ubuntu App under Windows
+	* *sudo bash*
+  * You can download a script to do this
+    *  https://raw.githubusercontent.com/magore/hp85disk/V2/sdcard/install_hp85disk.sh
+  * *./install_hp85disk.sh*
+ 
+### Find the serial port device name for the hp85disk emulator
+Note: You need to find the serial port name when hp85disk emulator is attached to your computer.
+  * Make sure the emulator is not connected to your PC/Mac
+    * Open a terminal window on Ubuntu
+      * Ubuntu App under Windows
+    * Run 
+      * *python3 uploader/listports.py*
+  * Connect the hp85disk emulator with the miniusb to your computer
+    * Run 
+      * *python3 uploader/listports.py*
+  * The new port that appears in the last step is the Emulator Port name
+  * Edit the hp85disk/Makefile and change the PORT name near the start of the file to this name
 
 ### Compile
+Note: Change into the hp85disk folder created by the install.sh script
   * *make clean*
   * *make*
   * *make install*
     * Installs lif and mkcfg tools
 
 ## Compile and Flashing - assumes you have compiletools installed
+  * Attached the emulator miniusb port to your computer 
+    * Make sure you have installed the software in the previous steps
+
 ### Flash with Internal optiboot
   * *make clean*
   * *make*
   * *make install*
-  * *make flash-release* # do not press Enter yet!
-    * OR
-  * *make flash*         # do not press Enter yet!
-    * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
-    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-      * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
-        * The baud rate is the [Makefile](Makefile) BAUD option
-
-___ 
-
+  * *make flash*
+    * This will use a python program called flasher.py to upload the firmware
+  * Note: If You want to install the release firmware that I verified and uploaded to github
+    * *make flash-release*
 
 ### Flash with external programmer
 ## Flashing the firmware using an extrenal programmer
-  * Note: JTAG is disabled so we can use port C bits to control the GPIB drivers
   * You will need and AVR programmer supported by avrdude (part of avrtools)
-    * I am using atmelice_isp but the [Makefile](Makefile) as example for:
-    * *avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi*
-    * If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).
-    * There is an example with the AVR mkii programmer as well.
+    * See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT in next Makefile section
   * *make clean*
   * *make*
   * *make install*
@@ -459,9 +497,8 @@ ___
     * OR
   * *make flash-isp*         # do not press Enter yet!
     * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
-    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-      * These scripts are called [miniterm.sh](miniterm.sh) or [term](term) in the project folder
-        * The baud rate is the [Makefile](Makefile) BAUD option
+  * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
+    * Ctrl+] will exit the terminal program
 
 ___ 
 
@@ -469,6 +506,39 @@ ___
 ## Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards
 ## Makefile Configuration options for building
   * Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform
+    * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
+      * m1284
+    * AVRDUDE_SPEED  is the programming clock speed used by avrdude
+      * 5
+        * My device works with 0.25 but 5 is safe
+    * AVRDUDE_ISP
+      * You will need and AVR programmer supported by avrdude (part of avrtools)
+        * You can list all of the supported programmers using the command *avrdude -c list*
+          * Note: ISP = In System Programmer
+          * avrdude device programmer name as known by avrdude
+            * avrdude -c list  # for a list of devices
+          * See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT 
+            * This is the ISP programmer and port names
+            * FYI: I am using atmelice_isp [Makefile](Makefile) as the default
+          * The cheapest ISP is the Arduino as ISP 
+            * AVRDUDE_ISP = *avrisp*
+              * There are many sources that sell this low cost programmer - Amazon has them for about $10 
+              * FYI: Arduino includes the source in the Example Programs if you want to make one
+          * Note: JTAG is disabled for this project so you can not use a JTAG programmer
+    * AVRDUDE ISP PORT
+      * Same as PORT name, below, for avrisp and arduino
+      * usb for atmelice_isp
+    * PORT is the emulator serial PORT name as detected by your operating system
+      * /dev/ttyUSB0 on my system
+    * BAUD  is the emulator serial baud rate 
+      * 115200 = a safe default that most systems can manage
+        * NOTE: My development environment works with 500000 baud but I use 115200 for distribution and this project
+        * NOTE: Faster is better when enabling more debug messages 
+          * Too many messages can cause the HP85 to timeout waiting for IO
+    * DEVICE
+      * Target AVR device used by GCC for this project
+      * atmega1284p
+        * DO NOT CHANGE THIS - there are too main dependencies
     * BOARD is the version of the hardware
       * 1 = V1 hardware without GPIB BUS transceivers
       * 2 = V2 hardware with GPIB BUS transceivers
@@ -479,33 +549,9 @@ ___
     * RTC_SUPPORT for Real Time Clock
 	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
         * This will time stamp plot files and add time stamps inside lif images
-    * PORT is the emulator serial PORT name as detected by your operating system
-      * /dev/ttyUSB0 on my system
-    * BAUD  is the emulator serial baud rate 
-      * 115200 = a safe default that most systems can manage
-        * NOTE: My development environment works with 500000 baud but 115200 should work on all systems
-        * NOTE: Faster is better when enabling more debug messages 
-          * Too many messages can cause the HP85 to timeout waiting for IO
-    * DEVICE
-      * Target AVR device used by GCC for this project
-      * atmega1284p
-        * DO NOT CHANGE THIS - there are too main dependencies
     * F_CPU  
-      * CPU frequency
+      * CPU frequency - the firmware and V1/V2 boards use this so do not change it
         * 20000000
-    * AVRDUDE_DEVICE is the name of AVR as it is known by avrdude
-      * m1284
-    * AVRDUDE_SPEED  is the programming clock speed used by avrdude
-      * 5
-        * My device works with 0.25 but 5 is safe
-     * AVRDUDE ISP PORT
-      * usb
-      * Note: ISP = In System Programmer
-    * AVRDUDE_ISP
-      * avrdude device programmer name as known by avrdude
-        * avrdude -c list  # for a list of devices
-      * I am using the atmelice_isp Atmel-ICE (ARM/AVR) in ISP mode
-
 ___ 
 
 
@@ -539,9 +585,9 @@ ___
 </verbatim>
 
 ## Example building with Makefile overrides
-  * ( export BAUD=500000UL; export AVRDUDE_SPEED=1;  make flash-isp)
-    * Make sure you add the '(' and ')' around the commands
-      * This prevents settings variables in your current shell
+  * ( export AVRDUDE_ISP=avrisp; export AVRDUDE_PORT=/dev/ttyUSB0; make flash-isp)
+    * Make SURE you add the '(' and ')' around the commands
+      * Forgetting '()' would set them for your shell until you exit and may cause unintended results
 
 ___
 

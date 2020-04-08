@@ -717,15 +717,89 @@ README</h1>
 </ul>
 <hr/>
 <h2>Compiling</h2>
-<h3>Dependencies to be able to compile and build this project - Ubuntu instructions</h3>
-<p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p><ul>
-<li>sudo bash</li>
-<li><em>apt-get update</em></li>
-<li><em>apt-get install aptitude make build-essential binutils gcc</em></li>
-<li><em>aptitude &ndash;with-recommends install python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr</em></li>
+<h3>Installation Ubuntu and Windows software for building hp85disk and building related applications</h3>
+<p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p>
+<h4>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h4>
+<p>Note: I recommend this as the easiest way to compile and build hp85disk under Windows</p><ul>
+<li>Following these steps take less then 10 minutes incuding the software and hp85disk download</li>
+<li>Install WSL - Windows SUbsystem for Linux<ul>
+<li>See: <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></li>
+<li>Search PowerShell<ul>
+<li>Run as Administrator</li>
+</ul>
+</li>
+<li>Type in the following command into the PowerShell Window<ul>
+<li><em>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</em></li>
+<li>Answer 'Y' to restart Windows</li>
+</ul>
+</li>
+<li>Open Windows Store<ul>
+<li>Install Ubuntu App</li>
+</ul>
+</li>
+<li>Search Ubuntu<ul>
+<li>Launch Ubuntu App<ul>
+<li>This will take a few minutes the first time depending on your network speed</li>
+<li>It will ask for a userid and password for a new user</li>
+</ul>
+</li>
+<li>Right Click on the very top of the Ubuntu App window<ul>
+<li>Click on Properties -&gt; Open the Options Tab<ul>
+<li>Enable Ctrl+Shift+C/V Copy Paste</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Ubuntu 18.04 LTS or later</h4>
+<p>Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
+<li>If you are installing Ubuntu on a new machine<ul>
+<li>See <a href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></li>
+</ul>
+</li>
+</ul>
+<h3>Software install and download for Ubuntu and Windows</h3>
+<p>Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
+<li>Open a terminal Window<ul>
+<li>Ubuntu App under Windows</li>
+<li><em>sudo bash</em></li>
+</ul>
+</li>
+<li>You can download a script to do this<ul>
+<li><a href="https://raw.githubusercontent.com/magore/hp85disk/V2/sdcard/install_hp85disk.sh">https://raw.githubusercontent.com/magore/hp85disk/V2/sdcard/install_hp85disk.sh</a></li>
+</ul>
+</li>
+<li>*./install_hp85disk.sh*</li>
+</ul>
+<h3>Find the serial port device name for the hp85disk emulator</h3>
+<p>Note: You need to find the serial port name when hp85disk emulator is attached to your computer.</p><ul>
+<li>Make sure the emulator is not connected to your PC/Mac<ul>
+<li>Open a terminal window on Ubuntu<ul>
+<li>Ubuntu App under Windows</li>
+</ul>
+</li>
+<li>Run<ul>
+<li><em>python3 uploader/listports.py</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Connect the hp85disk emulator with the miniusb to your computer<ul>
+<li>Run<ul>
+<li><em>python3 uploader/listports.py</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The new port that appears in the last step is the Emulator Port name</li>
+<li>Edit the hp85disk/Makefile and change the PORT name near the start of the file to this name</li>
 </ul>
 <h3>Compile</h3>
-<ul>
+<p>Note: Change into the hp85disk folder created by the install.sh script</p><ul>
 <li><em>make clean</em></li>
 <li><em>make</em></li>
 <li><em>make install</em><ul>
@@ -734,37 +808,31 @@ README</h1>
 </li>
 </ul>
 <h2>Compile and Flashing - assumes you have compiletools installed</h2>
+<ul>
+<li>Attached the emulator miniusb port to your computer<ul>
+<li>Make sure you have installed the software in the previous steps</li>
+</ul>
+</li>
+</ul>
 <h3>Flash with Internal optiboot</h3>
 <ul>
 <li><em>make clean</em></li>
 <li><em>make</em></li>
 <li><em>make install</em></li>
-<li><em>make flash-release</em> # do not press Enter yet!<ul>
-<li>OR</li>
+<li><em>make flash</em><ul>
+<li>This will use a python program called flasher.py to upload the firmware</li>
 </ul>
 </li>
-<li><em>make flash</em> # do not press Enter yet!<ul>
-<li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware</li>
-<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging<ul>
-<li>These scripts are called <a href="miniterm.sh">miniterm.sh</a> or [term](term) in the project folder<ul>
-<li>The baud rate is the [Makefile](Makefile) BAUD option</li>
+<li>Note: If You want to install the release firmware that I verified and uploaded to github<ul>
+<li><em>make flash-release</em></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr/>
 <h3>Flash with external programmer</h3>
 <h2>Flashing the firmware using an extrenal programmer</h2>
 <ul>
-<li>Note: JTAG is disabled so we can use port C bits to control the GPIB drivers</li>
 <li>You will need and AVR programmer supported by avrdude (part of avrtools)<ul>
-<li>I am using atmelice_isp but the [Makefile](Makefile) as example for:</li>
-<li><em>avrispmkII atmelice atmelice_dw atmelice_isp atmelice_pdi</em></li>
-<li>If you wish to another programmer then update the "flash" avrdude command line in the [Makefile](Makefile).</li>
-<li>There is an example with the AVR mkii programmer as well.</li>
+<li>See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT in next Makefile section</li>
 </ul>
 </li>
 <li><em>make clean</em></li>
@@ -776,13 +844,10 @@ README</h1>
 </li>
 <li><em>make flash-isp</em> # do not press Enter yet!<ul>
 <li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware</li>
+</ul>
+</li>
 <li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging<ul>
-<li>These scripts are called <a href="miniterm.sh">miniterm.sh</a> or [term](term) in the project folder<ul>
-<li>The baud rate is the [Makefile](Makefile) BAUD option</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>Ctrl+] will exit the terminal program</li>
 </ul>
 </li>
 </ul>
@@ -791,6 +856,73 @@ README</h1>
 <h2>Makefile Configuration options for building</h2>
 <ul>
 <li>Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform<ul>
+<li>AVRDUDE_DEVICE is the name of AVR as it is known by avrdude<ul>
+<li>m1284</li>
+</ul>
+</li>
+<li>AVRDUDE_SPEED is the programming clock speed used by avrdude<ul>
+<li>5<ul>
+<li>My device works with 0.25 but 5 is safe</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AVRDUDE_ISP<ul>
+<li>You will need and AVR programmer supported by avrdude (part of avrtools)<ul>
+<li>You can list all of the supported programmers using the command <em>avrdude -c list</em><ul>
+<li>Note: ISP = In System Programmer</li>
+<li>avrdude device programmer name as known by avrdude<ul>
+<li>avrdude -c list # for a list of devices</li>
+</ul>
+</li>
+<li>See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT<ul>
+<li>This is the ISP programmer and port names</li>
+<li>FYI: I am using atmelice_isp [Makefile](Makefile) as the default</li>
+</ul>
+</li>
+<li>The cheapest ISP is the Arduino as ISP<ul>
+<li>AVRDUDE_ISP = <em>avrisp</em><ul>
+<li>There are many sources that sell this low cost programmer - Amazon has them for about $10</li>
+<li>FYI: Arduino includes the source in the Example Programs if you want to make one</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note: JTAG is disabled for this project so you can not use a JTAG programmer</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AVRDUDE ISP PORT<ul>
+<li>Same as PORT name, below, for avrisp and arduino</li>
+<li>usb for atmelice_isp</li>
+</ul>
+</li>
+<li>PORT is the emulator serial PORT name as detected by your operating system<ul>
+<li>/dev/ttyUSB0 on my system</li>
+</ul>
+</li>
+<li>BAUD is the emulator serial baud rate<ul>
+<li>115200 = a safe default that most systems can manage<ul>
+<li>NOTE: My development environment works with 500000 baud but I use 115200 for distribution and this project</li>
+<li>NOTE: Faster is better when enabling more debug messages<ul>
+<li>Too many messages can cause the HP85 to timeout waiting for IO</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DEVICE<ul>
+<li>Target AVR device used by GCC for this project</li>
+<li>atmega1284p<ul>
+<li>DO NOT CHANGE THIS - there are too main dependencies</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>BOARD is the version of the hardware<ul>
 <li>1 = V1 hardware without GPIB BUS transceivers</li>
 <li>2 = V2 hardware with GPIB BUS transceivers</li>
@@ -809,43 +941,10 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>PORT is the emulator serial PORT name as detected by your operating system<ul>
-<li>/dev/ttyUSB0 on my system</li>
-</ul>
-</li>
-<li>BAUD is the emulator serial baud rate<ul>
-<li>115200 = a safe default that most systems can manage<ul>
-<li>NOTE: My development environment works with 500000 baud but 115200 should work on all systems</li>
-<li>NOTE: Faster is better when enabling more debug messages<ul>
-<li>Too many messages can cause the HP85 to timeout waiting for IO</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>DEVICE<ul>
-<li>Target AVR device used by GCC for this project</li>
-<li>atmega1284p<ul>
-<li>DO NOT CHANGE THIS - there are too main dependencies</li>
-</ul>
-</li>
-</ul>
-</li>
 <li>F_CPU<ul>
-<li>CPU frequency<ul>
-<li>20000000</li>
-</ul>
+<li>CPU frequency - the firmware and V1/V2 boards use this so do not change it<ul>
+<li>20000000 <hr/>
 </li>
-</ul>
-</li>
-<li>AVRDUDE_DEVICE is the name of AVR as it is known by avrdude<ul>
-<li>m1284</li>
-</ul>
-</li>
-<li>AVRDUDE_SPEED is the programming clock speed used by avrdude<ul>
-<li>5<ul>
-<li>My device works with 0.25 but 5 is safe</li>
 </ul>
 </li>
 </ul>
@@ -853,18 +952,6 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>AVRDUDE ISP PORT</p><ul>
-<li>usb</li>
-<li>Note: ISP = In System Programmer</li>
-</ul>
-<p>AVRDUDE_ISP</p><ul>
-<li>avrdude device programmer name as known by avrdude<ul>
-<li>avrdude -c list # for a list of devices</li>
-</ul>
-</li>
-<li>I am using the atmelice_isp Atmel-ICE (ARM/AVR) in ISP mode</li>
-</ul>
-<hr/>
 <h2>make help documentation</h2>
 <ul>
 <li>make help<ul>
@@ -878,9 +965,9 @@ README</h1>
 </ul>
 <h2>Example building with Makefile overrides</h2>
 <ul>
-<li>( export BAUD=500000UL; export AVRDUDE_SPEED=1; make flash-isp)<ul>
-<li>Make sure you add the '(' and ')' around the commands<ul>
-<li>This prevents settings variables in your current shell</li>
+<li>( export AVRDUDE_ISP=avrisp; export AVRDUDE_PORT=/dev/ttyUSB0; make flash-isp)<ul>
+<li>Make SURE you add the '(' and ')' around the commands<ul>
+<li>Forgetting '()' would set them for your shell until you exit and may cause unintended results</li>
 </ul>
 </li>
 </ul>
@@ -2058,7 +2145,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 7 2020 20:35:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2020 23:48:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
