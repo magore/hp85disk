@@ -17,7 +17,8 @@ DIR=$(shell pwd)
 TELEDISK=1
 
 
-CFLAGS = -O -D_GNU_SOURCE -g -static
+CFLAGS = -O -D_GNU_SOURCE -g 
+#CFLAGS += -static
 CFLAGS += -DLIF_STAND_ALONE
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
 CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
