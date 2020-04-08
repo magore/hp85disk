@@ -402,9 +402,10 @@ ___
 ## Configuring the serial communication program 
   * Follow the instructions of firmware updating dependencies for installing Python and libraries
   * Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use
-  * With the hp85disk attached via USB cable to your desktop
+  * With the hp85disk attached via USB cable to your desktop - replace the port name with the correct one
     * python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 1152000
-  * - OR -
+      * Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script
+		* ./term 115200 /dev/ttyUSB0
   * Open you favorite serial terminal emulator
     * Set BAUD rate to 115200 
     * Set 8 Data bits NO parity

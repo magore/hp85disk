@@ -702,11 +702,16 @@ README</h1>
 <ul>
 <li>Follow the instructions of firmware updating dependencies for installing Python and libraries</li>
 <li>Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use</li>
-<li>With the hp85disk attached via USB cable to your desktop<ul>
-<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000</li>
+<li>With the hp85disk attached via USB cable to your desktop - replace the port name with the correct one<ul>
+<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000<ul>
+<li>Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script<ul>
+<li>./term 115200 /dev/ttyUSB0</li>
 </ul>
 </li>
-<li>- OR -</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Open you favorite serial terminal emulator<ul>
 <li>Set BAUD rate to 115200</li>
 <li>Set 8 Data bits NO parity</li>
@@ -2140,7 +2145,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 8 2020 14:10:31 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 8 2020 14:21:01 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

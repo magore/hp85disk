@@ -265,10 +265,10 @@ ifeq ($(OPTIBOOT),1)
 	DEFS += OPTIBOOT
 endif
 
-# Default Controller values
+# Default Controller values for an SS80 drive 
+#  - we just want the timing,transfer speeds etc, gemometry does not matter 
+# Do not change this - these time defaulst will be used for ALL SS80 drives
 DEFS += HP9134D
-
-
 
 ifeq ($(AMIGO),1)
 	DEFS += AMIGO 
@@ -418,12 +418,10 @@ arduino:
 # =======================================
 .PHONY: optiboot
 optiboot:
-	export OPTIBOOT=1
 	make -C optiboot optiboot
 
 .PHONY: optiboot
 install_optiboot:
-	export OPTIBOOT=1
 	make -C optiboot install_optiboot
 
 # =======================================

@@ -792,11 +792,16 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item Follow the instructions of firmware updating dependencies for installing Python and libraries
 \item Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use
-\item With the hp85disk attached via U\+SB cable to your desktop
+\item With the hp85disk attached via U\+SB cable to your desktop -\/ replace the port name with the correct one
 \begin{DoxyItemize}
 \item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
+\begin{DoxyItemize}
+\item Note\+: serial.\+tools.\+miniterm does N\+OT work on Windows W\+SL Ubuntu -\/ yet so use the term script
+\begin{DoxyItemize}
+\item ./term 115200 /dev/tty\+U\+S\+B0
 \end{DoxyItemize}
-\item -\/ OR -\/
+\end{DoxyItemize}
+\end{DoxyItemize}
 \item Open you favorite serial terminal emulator
 \begin{DoxyItemize}
 \item Set B\+A\+UD rate to 115200
