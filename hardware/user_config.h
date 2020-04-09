@@ -68,6 +68,7 @@
 
 #include <util/twi.h>
 
+#include "lib/parsing.h"
 #include "lib/stringsup.h"
 #include "printf/mathio.h"
 

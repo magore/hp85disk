@@ -34,7 +34,7 @@ typedef struct tm tm_t;
 #define safefree(a) free(a)
 #define sync() 
 
-#include "../lib/stringsup.h"
+#include "../lib/parsing.h"
 #include "lifutils.h"
 #include "td02lif.h"
 

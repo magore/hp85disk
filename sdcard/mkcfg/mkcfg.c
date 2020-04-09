@@ -13,7 +13,15 @@
 #define MAXLINE 256
 #define bool int
 
-#include "../../lib/stringsup.c"
+#define MEMSPACE /**/
+#define WEAK_ATR /**/
+typedef struct tm tm_t;
+#define safecalloc(a,b) calloc(a,b)
+#define safefree(a) free(a)
+#define sync()
+
+
+#include "../../lib/parsing.c"
 #include "../../gpib/drives_sup.c"
 
 

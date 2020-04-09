@@ -42,7 +42,7 @@ var searchData=
   ['is_5fdst',['is_dst',['../time_8c.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c'],['../time_8h.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c']]],
   ['is_5fleap',['IS_Leap',['../time_8c.html#a7a6b834817c8071e5e31d3693102a2b0',1,'time.c']]],
   ['isatty',['isatty',['../posix_8c.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c'],['../posix_8h.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c']]],
-  ['isdigit',['isdigit',['../stringsup_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../stringsup_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../mathio_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../printf_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c'],['../ff_8c.html#a65dee564f69f2ec27f25b67a348018b9',1,'IsDigit():&#160;ff.c']]],
+  ['isdigit',['IsDigit',['../ff_8c.html#a65dee564f69f2ec27f25b67a348018b9',1,'IsDigit():&#160;ff.c'],['../stringsup_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../stringsup_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../mathio_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../printf_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c']]],
   ['isdio_5fmrite',['ISDIO_MRITE',['../diskio_8h.html#aa79f4043470c49016d80558773e740a5',1,'diskio.h']]],
   ['isdio_5fread',['ISDIO_READ',['../diskio_8h.html#a9eb2d8ccc0b89299bc442396811f8723',1,'diskio.h']]],
   ['isdio_5fwrite',['ISDIO_WRITE',['../diskio_8h.html#a9637dcd58e0f1f301edf0cccff9e3507',1,'diskio.h']]],
@@ -51,5 +51,5 @@ var searchData=
   ['issurrogate',['IsSurrogate',['../ff_8c.html#a1678f40df73ed6cd30ed3e837b3558e7',1,'ff.c']]],
   ['issurrogateh',['IsSurrogateH',['../ff_8c.html#ad148073d4a74bdff0f86f2b18284b569',1,'ff.c']]],
   ['issurrogatel',['IsSurrogateL',['../ff_8c.html#a7a67adc6a71fa08dbbe481ad756849c4',1,'ff.c']]],
-  ['isupper',['isupper',['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
+  ['isupper',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
 ];

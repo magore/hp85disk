@@ -16,7 +16,7 @@
 
 #include "lifsup.h"
 #include "lifutils.h"
-#include "../lib/stringsup.c"
+#include "../lib/parsing.c"
 
 int debuglevel = 0x0001;
 

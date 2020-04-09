@@ -114,6 +114,7 @@ ifeq ($(BOARD),1)
     PPR_REVERSE_BITS=0
 endif
 
+
 # ==============================================
 # Hardware Addon Options 
 # Evaluate interrupt driven I2C code - compiled bit it is not being used yet
@@ -129,6 +130,7 @@ LCD_SUPPORT 			?= 1
 # Enable AMIGO support Code
 # 0 Disables 
 AMIGO 					?= 1
+
 
 ### Source files and search directory
 # 0 Disables 
@@ -181,6 +183,7 @@ endif
 
 LIB = \
 	lib/stringsup.c \
+	lib/parsing.c \
 	lib/timer_hal.c \
 	lib/timer.c \
 	lib/time.c \
@@ -472,6 +475,13 @@ help:
 	@echo "    make clean             - cleans all generated files"
 	@echo "    make                   - builds all code"
 	@echo
+	@echo 'Listing current cunfiguration settings'
+	@echo "    make config"
+	@echo
+	@echo 'Overriding any configuration settings'
+	@echo "    You can add configuration values at the end of your make commands like this"
+	@echo "    make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo
 	@echo 'Programming using an 6 wire ISP - installs optiboot'
 	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
 	@echo "    make flash-isp         - build and flash the code using an ISP"
@@ -480,11 +490,11 @@ help:
 	@echo "    make verify-isp-release- verify release code using an ISP"
 	@echo
 	@echo 'Programming using the built in optiboot programmer'
-	@echo '    IMPORTANT - you MUST press RESET on the hp85disk board JUST BEFORE issuing these commands'
-	@echo '        On your computer type in the make command without pressing Enter afterwards'
-	@echo '        Then press RESET the button and next press Enter quickly afterwards'
 	@echo "    make flash             - build and flash the code using built in optiboot programmer"
 	@echo "    make flash-release     - flash the release code using built in optiboot programmer"
+	@echo '    IMPORTANT - if flashing fails try these steps'
+	@echo '        On your computer type in the make command without pressing Enter afterwards'
+	@echo '        Then press RESET the button on the hp85disk board and next press Enter quickly afterwards'
 	@echo
 	@echo 'Programming using an 6 wire ISP - WITHOUT installing optiboot'
 	@echo '    IMPORTANT - you will not be able to use non isp flashing modes later on'
@@ -492,6 +502,39 @@ help:
 	@echo "    make flash-isp-noboot         - build and flash the code using an ISP"
 	@echo "    make flash-isp-noboot-release - flash the release code using an ISP"
 	@echo
+	@echo 'Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards'
+	@echo 
+	@echo 
+
+.PHONY: config
+config:
+	@echo 
+	@echo "Current Configuration Defaults"
+	@echo "    You can override settings by adding assignments at the end of any make command"
+	@echo "    Example:"
+	@echo "             make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo 
+	@echo "    DEVICE                 = $(DEVICE)"
+	@echo "    F_CPU                  = $(F_CPU)"
+	@echo "    BAUD                   = $(BAUD)"
+	@echo "    PORT                   = $(PORT)"
+	@echo "    AVRDUDE_DEVICE         = $(AVRDUDE_DEVICE)"
+	@echo "    AVRDUDE_SPEED          = $(AVRDUDE_SPEED)"
+	@echo "    OPTIBOOT               = $(OPTIBOOT)"
+	@echo "    BOARD                  = $(BOARD)"
+	@echo "    PPR_REVERSE_BITS       = $(PPR_REVERSE_BITS)"
+	@echo "    I2C_SUPPORT            = $(I2C_SUPPORT)"
+	@echo "    RTC_SUPPORT            = $(RTC_SUPPORT)"
+	@echo "    LCD_SUPPORT            = $(LCD_SUPPORT)"
+	@echo "    AMIGO                  = $(AMIGO)"
+	@echo "    FATFS_SUPPORT          = $(FATFS_SUPPORT)"
+	@echo "    FATFS_TESTS            = $(FATFS_TESTS)"
+	@echo "    GPIB_EXTENDED_TESTS    = $(GPIB_EXTENDED_TESTS)"
+	@echo "    POSIX_TESTS            = $(POSIX_TESTS)"
+	@echo "    POSIX_EXTENDED_TESTS   = $(POSIX_EXTENDED_TESTS)"
+	@echo "    LIF_SUPPORT            = $(LIF_SUPPORT)"
+	@echo 
+	@echo 
 
 # =======================================
 # Display RAM memory use by function name
