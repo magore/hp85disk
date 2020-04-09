@@ -1011,8 +1011,7 @@ ___
 </verbatim>
 
 ### For setting the time type *setdate* it will prompt for the date as shown below
-  * *setdate*
-	* This also sets the RTC
+  * This also sets the RTC
 <verbatim>
 	Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
 	rtc seconds: 1586451240
