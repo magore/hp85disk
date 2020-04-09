@@ -601,9 +601,9 @@ ___
 </verbatim>
 
 ## Example building with Makefile overrides
-  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 
-  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 
   * make flash      AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3 
+  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 
+  * make flash-isp  AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb
 
 ___
 
