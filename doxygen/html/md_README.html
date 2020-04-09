@@ -767,18 +767,19 @@ README</h1>
 </li>
 </ul>
 <h3>Software install and download for Ubuntu and Windows</h3>
-<p>Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
+<p>Note: For Windows install the WSL and Ubuntu App first - see previous section</p><ul>
 <li>Open a terminal Window<ul>
 <li>Ubuntu App under Windows</li>
-<li><em>sudo bash</em></li>
 </ul>
 </li>
 <li>You can download a script to do this<ul>
 <li><a href="https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh">https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh</a></li>
 </ul>
 </li>
-<li><em>sudo bash</em></li>
-<li><em>bash ./install_hp85disk.sh</em></li>
+<li><em>bash ./install_hp85disk.sh</em><ul>
+<li>The script will ask you once for your login password so the script can run the installation as root using sudo</li>
+</ul>
+</li>
 </ul>
 <h3>Find the serial port device name for the hp85disk emulator</h3>
 <p>Note: You need to find the serial port name when hp85disk emulator is attached to your computer.</p><ul>
@@ -814,22 +815,44 @@ README</h1>
 </ul>
 <h2>Compile and Flashing - assumes you have compiletools installed</h2>
 <ul>
-<li>Attached the emulator miniusb port to your computer<ul>
-<li>Make sure you have installed the software in the previous steps</li>
+<li>Note: you can override make built into programmer and port settings - see Makefile notes<ul>
+<li>You just tack on settings like this to the end of the make command line<ul>
+<li>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</li>
+<li>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Now attached the emulator miniusb port to your computer<ul>
+<li>Make sure you have installed the software in the previous steps and discovered the hp85disk serial port</li>
 </ul>
 </li>
 </ul>
 <h3>Flash with Internal optiboot</h3>
 <ul>
+<li>Note: in this example assume the hp85disk serial port is /dev/ttyS3<ul>
+<li>You can override the Makefile default without editing it</li>
+</ul>
+</li>
 <li><em>make clean</em></li>
 <li><em>make</em></li>
-<li><em>make install</em></li>
-<li><em>make flash</em><ul>
-<li>This will use a python program called flasher.py to upload the firmware</li>
+<li><em>make install</em><ul>
+<li>This installs utilities like lif and mkcfg</li>
+</ul>
+</li>
+<li><em>make flash PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</em><ul>
+<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging</li>
+<li>This overrides the two settings in the Makefile</li>
+<li>ALternatively you can edit the Makefile and change the two settings for your setup</li>
 </ul>
 </li>
 <li>Note: If You want to install the release firmware that I verified and uploaded to github<ul>
-<li><em>make flash-release</em></li>
+<li><em>make flash-release PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</em><ul>
+<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging</li>
+<li>This overrides the two settings in the Makefile</li>
+<li>Alternatively you can edit the Makefile and change the two settings for your setup</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -844,6 +867,7 @@ README</h1>
 <li><em>make</em></li>
 <li><em>make install</em></li>
 <li><em>make flash-isp-release</em> # do not press Enter yet!<ul>
+<li><em>make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</em></li>
 <li>OR</li>
 </ul>
 </li>
@@ -2145,7 +2169,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 8 2020 19:35:32 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 8 2020 20:35:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

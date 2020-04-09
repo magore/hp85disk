@@ -20,53 +20,58 @@
 PROJECT = gpib
 
 # ==============================================
-# Debug serial port for firmware command interface
-export BAUD ?= 115200
-# BAUD ?= 500000
-
-### Serial Port for emulator user interface
-export PORT ?= /dev/ttyUSB0
-# ==============================================
-
 ### Target AVR device used by GCC for this project
 export DEVICE ?= atmega1284p
 export F_CPU  ?= 20000000 
 
+# ==============================================
+# NOTE ALL of the variables below assigned with ?
+# Can me set on the make command line
+# Example: 
+#   make AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0
+# The hp85disk serial port is PORT and the Programmer is AVRDUDE_PORT
+# These can be the same if we are using the hp85disk boot loader for programmin
+#
+# ==============================================
+### Serial Port for hp85disk emulator user interface
+export PORT ?= /dev/ttyUSB0
+# export PORT      ?= /dev/ttyUSB0
+
+# Serial port speed default
+export BAUD ?= 115200
+
+# ==============================================
 # avrdude device programmer name as known by avrdude
-#     Note: avrdude -c list 
-#        Will display all of ALL supported pogrammers
-# I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
+# Note: avrdude -c list   Will display all of ALL supported pogrammers
+#   I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
+
+# AVRDUDE_ISP programmer default
 export AVRDUDE_ISP ?= atmelice_isp
-#export AVRDUDE_ISP ?= avrisp
+# Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
 
-# AVRDUDE ISP PORT
+# export AVRDUDE_ISP ?= avrisp
+#   avrisp is a low cost arduino bases ISP that costs around $10
+# export AVRDUDE_ISP ?= arduino
+#   hp85disk built in boot loader
+
+# AVRDUDE ISP PORT default
 export AVRDUDE_PORT ?= usb
+# Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
+#  *usb* only applies to Ubuntu Linux - not supported under Windows WSL
+# AVRDUDE_PORT      ?= /dev/ttyUSB1
+# AVRDUDE_PORT      ?= /dev/ttyS3
 
-ifeq ($(AVRDUDE_ISP),atmel_isp)
-export AVRDUDE_PORT ?= usb
-endif
-
-ifeq ($(AVRDUDE_ISP),avrisp)
-export AVRDUDE_PORT = $(PORT)
-endif
-
-ifeq ($(AVRDUDE_ISP),arduino)
-export AVRDUDE_PORT = $(PORT)
-endif
-
-# AVRDUDE ISP PORT
-ifeq ($(AVRDUDE_PORT),)
-export AVRDUDE_PORT ?= usb
-endif
-
-# avrdude device name
+# avrdude device name do NOT change
 export AVRDUDE_DEVICE ?= m1284
 
 # avrdude programming speed
 export AVRDUDE_SPEED ?= 5
 
-# optiboot support
+# ==============================================
+# optiboot bot loader support
 export OPTIBOOT      ?= 1
+# ==============================================
+
 
 # ==============================================
 # AVR programming FUSES
@@ -560,7 +565,7 @@ flash-release:	isp arduino
 flash-isp-noboot: isp all 
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	#python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 flash-isp-noboot-fast: isp all 
 	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
@@ -570,7 +575,7 @@ flash-isp-noboot-fast: isp all
 flash-isp-noboot-release:  isp all
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
 	./term $(BAUD) $(PORT)
-	python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
 
 # =======================================

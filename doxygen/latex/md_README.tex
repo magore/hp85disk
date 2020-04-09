@@ -871,19 +871,20 @@ Note\+: For Windows install the W\+SL and Ubuntu App -\/ see previous section
 
 \subsubsection*{Software install and download for Ubuntu and Windows}
 
-Note\+: For Windows install the W\+SL and Ubuntu App -\/ see previous section
+Note\+: For Windows install the W\+SL and Ubuntu App first -\/ see previous section
 \begin{DoxyItemize}
 \item Open a terminal Window
 \begin{DoxyItemize}
 \item Ubuntu App under Windows
-\item {\itshape sudo bash}
 \end{DoxyItemize}
 \item You can download a script to do this
 \begin{DoxyItemize}
 \item \href{https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh}{\tt https\+://raw.\+githubusercontent.\+com/magore/hp85disk/\+V2/install\+\_\+hp85disk.\+sh}
 \end{DoxyItemize}
-\item {\itshape sudo bash}
 \item {\itshape bash ./install\+\_\+hp85disk.sh}
+\begin{DoxyItemize}
+\item The script will ask you once for your login password so the script can run the installation as root using sudo
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsubsection*{Find the serial port device name for the hp85disk emulator}
@@ -928,9 +929,17 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 \begin{DoxyItemize}
-\item Attached the emulator miniusb port to your computer
+\item Note\+: you can override make built into programmer and port settings -\/ see Makefile notes
 \begin{DoxyItemize}
-\item Make sure you have installed the software in the previous steps
+\item You just tack on settings like this to the end of the make command line
+\begin{DoxyItemize}
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3 P\+O\+RT=/dev/tty\+S3
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3 P\+O\+RT=/dev/tty\+S3
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Now attached the emulator miniusb port to your computer
+\begin{DoxyItemize}
+\item Make sure you have installed the software in the previous steps and discovered the hp85disk serial port
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -938,16 +947,30 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 \begin{DoxyItemize}
+\item Note\+: in this example assume the hp85disk serial port is /dev/tty\+S3
+\begin{DoxyItemize}
+\item You can override the Makefile default without editing it
+\end{DoxyItemize}
 \item {\itshape make clean}
 \item {\itshape make}
 \item {\itshape make install}
-\item {\itshape make flash}
 \begin{DoxyItemize}
-\item This will use a python program called flasher.\+py to upload the firmware
+\item This installs utilities like lif and mkcfg
+\end{DoxyItemize}
+\item {\itshape make flash P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\begin{DoxyItemize}
+\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
+\item This overrides the two settings in the Makefile
+\item A\+Lternatively you can edit the Makefile and change the two settings for your setup
 \end{DoxyItemize}
 \item Note\+: If You want to install the release firmware that I verified and uploaded to github
 \begin{DoxyItemize}
-\item {\itshape make flash-\/release}
+\item {\itshape make flash-\/release P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\begin{DoxyItemize}
+\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
+\item This overrides the two settings in the Makefile
+\item Alternatively you can edit the Makefile and change the two settings for your setup
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -966,6 +989,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \item {\itshape make install}
 \item {\itshape make flash-\/isp-\/release} \# do not press Enter yet!
 \begin{DoxyItemize}
+\item {\itshape make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \item OR
 \end{DoxyItemize}
 \item {\itshape make flash-\/isp} \# do not press Enter yet!
