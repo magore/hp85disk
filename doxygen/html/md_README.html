@@ -603,14 +603,15 @@ README</h1>
 <li>The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware</li>
 </ul>
 <hr/>
-<h2>Firmware updating dependencies</h2>
-<h3>Linux</h3>
+<h2>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</h2>
+<h3>Software</h3>
+<h4>Linux</h4>
 <ul>
 <li><em>apt-get install python3</em><ul>
 <li>Most modern Linux systems have Python3</li>
 </ul>
 </li>
-<li><em>pip3 install pySerial</em> <h3>Windows</h3>
+<li><em>pip3 install pySerial</em> <h4>Windows</h4>
 </li>
 </ul>
 <ul>
@@ -620,33 +621,60 @@ README</h1>
 </li>
 <li>pip3 install pySerial</li>
 </ul>
-<hr/>
-<h3>Flashing the firmware with built in bootloader</h3>
+<h3>Discover your serial port name</h3>
 <ul>
-<li>The github hp85disk V2 branch project includes disk images and precompiled firmeare<ul>
-<li>Compiled Firmware <a href="release/build">release/build</a></li>
-<li>Disk Images <a href="release/sdcard">release/sdcard</a> <h4>Linux Example</h4>
-</li>
+<li>You must determine the name of the serial port when the hp85disk emulator is plugged in<ul>
+<li>Linux example: /dev/ttyUSB0</li>
+<li>Windows Example: COM3</li>
 </ul>
 </li>
-<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex <h4>Windows Example</h4>
+<li>Note: The emulator uses the following port settings<ul>
+<li>BAUD rate 115200</li>
+<li>Data bits: 8 Data bits NO parity</li>
+<li>Flow control NONE</li>
+</ul>
 </li>
 </ul>
+<h3>Connecting to hp85disk interactive serial port</h3>
 <ul>
-<li><p class="startli">python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</p><ul>
-<li>This is the port you discovered in the Connecting step above</li>
-<li>This program flashes the release version of the firmware <h4>Mac Example</h4>
+<li>Note: Use the same port name as with the flashing example</li>
+<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000<ul>
+<li>Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script</li>
+</ul>
+</li>
+<li>For a help menu type <em>help</em><ul>
+<li>Most of the commands listed by help also hale help of there own<ul>
+<li>Example: <em>lif help</em></li>
+</ul>
 </li>
 </ul>
+</li>
+</ul>
+<h3>Updating hp85disk firmware with built in bootloader</h3>
+<ul>
+<li>Only do this if recommended</li>
+<li>Note: The github hp85disk V2 branch project includes disk images and precompiled firmeare<ul>
+<li>Compiled Firmware hex file <a href="release/build">release/build</a></li>
+<li>SD Card Disk Images <a href="release/sdcard">release/sdcard</a></li>
+</ul>
+</li>
+</ul>
+<h4>Linux firmware update example</h4>
+<ul>
+<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex</li>
+</ul>
+<h4>Windows firmware update example</h4>
+<ul>
+<li>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</li>
+</ul>
+<h4>Mac firmware update example</h4>
 <ul>
 <li>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</li>
 </ul>
-</li>
-</ul>
-<h3>Flash failure during flashing</h3>
+<h4>Firmware update problems - if you get a failure during updating</h4>
 <ul>
-<li>Type in the flashing command - see last section, <em>without</em> pressing Enter<ul>
-<li>Hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
+<li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
+<li>Now hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
 <li>You have a short Window after releasing RESET to Press Enter</li>
 </ul>
 </li>
@@ -654,32 +682,9 @@ README</h1>
 </li>
 </ul>
 <hr/>
-<h2>Configuring the serial communication program</h2>
-<ul>
-<li>Follow the instructions of firmware updating dependencies for installing Python and libraries</li>
-<li>Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use</li>
-<li>With the hp85disk attached via USB cable to your desktop - replace the port name with the correct one<ul>
-<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000<ul>
-<li>Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script<ul>
-<li>./term 115200 /dev/ttyUSB0</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Open you favorite serial terminal emulator<ul>
-<li>Set BAUD rate to 115200</li>
-<li>Set 8 Data bits NO parity</li>
-<li>Set flow control to NONE</li>
-<li>Set the PORT to the device name of the emulator USB port</li>
-</ul>
-</li>
-</ul>
-<hr/>
-<h3>Installation Ubuntu and Windows software for building hp85disk and building related applications</h3>
+<h2>Full installation Ubuntu and Windows software for building hp85disk and building related applications</h2>
 <p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p>
-<h4>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h4>
+<h3>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h3>
 <p>Note: I recommend this as the easiest way to compile and build hp85disk under Windows</p><ul>
 <li>Following these steps take less then 10 minutes incuding the software and hp85disk download</li>
 <li>Install WSL - Windows SUbsystem for Linux<ul>
@@ -714,14 +719,14 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h4>Ubuntu 18.04 LTS or later</h4>
+<h3>Ubuntu 18.04 LTS or later</h3>
 <p>Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
 <li>If you are installing Ubuntu on a new machine<ul>
 <li>See <a href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></li>
 </ul>
 </li>
 </ul>
-<h3>Software install and download for Ubuntu and Windows</h3>
+<h3>Automated software install and hp85disk github project download</h3>
 <p>Note: For Windows install the WSL and Ubuntu App first - see previous section</p><ul>
 <li>Open a terminal Window<ul>
 <li>Ubuntu App under Windows</li>
@@ -736,7 +741,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>Updating hp85disk github project at any time using git</h2>
+<h3>Updating hp85disk github project at any time using git</h3>
 <h3>Linux</h3>
 <ul>
 <li>Open a terminal window</li>
@@ -777,7 +782,7 @@ README</h1>
 <li>*./term 115200 /dev/ttyS3*</li>
 </ul>
 <hr/>
-<h3>Compile</h3>
+<h2>Compile Firmware</h2>
 <p>Note: Change into the hp85disk folder created by the install.sh script</p><ul>
 <li><em>make clean</em></li>
 <li><em>make</em></li>
@@ -786,7 +791,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>Compile and Flashing - assumes you have compiletools installed</h2>
+<h3>Compile and updating Firmware - assumes you have compiletools installed</h3>
 <ul>
 <li>Note: you can override make built into programmer and port settings - see Makefile notes<ul>
 <li>You just tack on settings like this to the end of the make command line<ul>
@@ -831,8 +836,17 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h3>Flash with external programmer</h3>
-<h2>Flashing the firmware using an extrenal programmer</h2>
+<h4>If you have a firmware update problems - if you get a failure during updating</h4>
+<ul>
+<li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
+<li>Now hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
+<li>You have a short Window after releasing RESET to Press Enter</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Update Firmware with external programmer</h3>
 <ul>
 <li>You will need and AVR programmer supported by avrdude (part of avrtools)<ul>
 <li>See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT in next Makefile section</li>
@@ -847,13 +861,12 @@ README</h1>
 </ul>
 </li>
 <li><em>make flash-isp</em> # do not press Enter yet!<ul>
-<li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware <hr/>
-</li>
+<li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware</li>
 </ul>
 </li>
 </ul>
+<hr/>
 <h2>Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards</h2>
-<h2>Makefile Configuration options for building</h2>
 <ul>
 <li>Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform<ul>
 <li>AVRDUDE_DEVICE is the name of AVR as it is known by avrdude<ul>
@@ -895,16 +908,16 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>AVRDUDE ISP PORT<ul>
+<li>AVRDUDE_PORT<ul>
 <li>Same as PORT name, below, for avrisp and arduino</li>
 <li>usb for atmelice_isp</li>
 </ul>
 </li>
-<li>PORT is the emulator serial PORT name as detected by your operating system<ul>
+<li>PORT is the hp85disk emulator serial PORT name as detected by your operating system<ul>
 <li>/dev/ttyUSB0 on my system</li>
 </ul>
 </li>
-<li>BAUD is the emulator serial baud rate<ul>
+<li>BAUD is the hp85disk emulator serial baud rate<ul>
 <li>115200 = a safe default that most systems can manage<ul>
 <li>NOTE: My development environment works with 500000 baud but I use 115200 for distribution and this project</li>
 <li>NOTE: Faster is better when enabling more debug messages<ul>
@@ -923,20 +936,23 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>BOARD is the version of the hardware<ul>
+<li>BOARD is the version of the hardware currently V2<ul>
 <li>1 = V1 hardware without GPIB BUS transceivers</li>
 <li>2 = V2 hardware with GPIB BUS transceivers</li>
 </ul>
 </li>
 <li>PPR_REVERSE_BITS<ul>
-<li>Note: This is now automatically set by board revision so this is not normally needed</li>
+<li>Note: This is now automatically set by board revision so this is not normally needed<ul>
 <li>0 = V1 hardware without the GPIB buffers</li>
 <li>1 = V2 hardware with GPIB buffers</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>RTC_SUPPORT for Real Time Clock<ul>
 <li>1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version<ul>
 <li>This will time stamp plot files and add time stamps inside lif images</li>
+<li>The emulator will still work if this is set but not attache to an RTC</li>
 </ul>
 </li>
 </ul>
@@ -967,6 +983,7 @@ README</h1>
 <ul>
 <li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0</li>
 <li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3</li>
+<li>make flash AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3</li>
 </ul>
 <hr/>
 <h2>Notes concerning using the HP85 with the hp85disk emulator</h2>
@@ -2140,7 +2157,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 8 2020 20:57:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 8 2020 21:50:23 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

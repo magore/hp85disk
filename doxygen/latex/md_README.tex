@@ -658,9 +658,11 @@ On the H\+P85 type
 
 
 
-\subsection*{Firmware updating dependencies}
+\subsection*{Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}
 
-\subsubsection*{Linux}
+\subsubsection*{Software}
+
+\paragraph*{Linux}
 
 
 \begin{DoxyItemize}
@@ -668,7 +670,7 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item Most modern Linux systems have Python3
 \end{DoxyItemize}
-\item {\itshape pip3 install py\+Serial} \subsubsection*{Windows}
+\item {\itshape pip3 install py\+Serial} \paragraph*{Windows}
 \end{DoxyItemize}
 
 
@@ -680,43 +682,81 @@ On the H\+P85 type
 \item pip3 install py\+Serial
 \end{DoxyItemize}
 
-
-
-
-
-\subsubsection*{Flashing the firmware with built in bootloader}
+\subsubsection*{Discover your serial port name}
 
 
 \begin{DoxyItemize}
-\item The github hp85disk V2 branch project includes disk images and precompiled firmeare
+\item You must determine the name of the serial port when the hp85disk emulator is plugged in
 \begin{DoxyItemize}
-\item Compiled Firmware \href{release/build}{\tt release/build}
-\item Disk Images \href{release/sdcard}{\tt release/sdcard} \paragraph*{Linux Example}
+\item Linux example\+: /dev/tty\+U\+S\+B0
+\item Windows Example\+: C\+O\+M3
 \end{DoxyItemize}
-\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex \paragraph*{Windows Example}
+\item Note\+: The emulator uses the following port settings
+\begin{DoxyItemize}
+\item B\+A\+UD rate 115200
+\item Data bits\+: 8 Data bits NO parity
+\item Flow control N\+O\+NE
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Connecting to hp85disk interactive serial port}
+
+
+\begin{DoxyItemize}
+\item Note\+: Use the same port name as with the flashing example
+\item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
+\begin{DoxyItemize}
+\item Note\+: serial.\+tools.\+miniterm does N\+OT work on Windows W\+SL Ubuntu -\/ yet so use the term script
+\end{DoxyItemize}
+\item For a help menu type {\itshape help}
+\begin{DoxyItemize}
+\item Most of the commands listed by help also hale help of there own
+\begin{DoxyItemize}
+\item Example\+: {\itshape lif help}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Updating hp85disk firmware with built in bootloader}
+
+
+\begin{DoxyItemize}
+\item Only do this if recommended
+\item Note\+: The github hp85disk V2 branch project includes disk images and precompiled firmeare
+\begin{DoxyItemize}
+\item Compiled Firmware hex file \href{release/build}{\tt release/build}
+\item SD Card Disk Images \href{release/sdcard}{\tt release/sdcard}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\paragraph*{Linux firmware update example}
+
+
+\begin{DoxyItemize}
+\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex
+\end{DoxyItemize}
+
+\paragraph*{Windows firmware update example}
 
 
 \begin{DoxyItemize}
 \item python3 uploader/flasher.\+py 1152000 C\+O\+M3 release/build/gpib.\+hex
-\begin{DoxyItemize}
-\item This is the port you discovered in the Connecting step above
-\item This program flashes the release version of the firmware \paragraph*{Mac Example}
 \end{DoxyItemize}
+
+\paragraph*{Mac firmware update example}
 
 
 \begin{DoxyItemize}
 \item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
 \end{DoxyItemize}
-\end{DoxyItemize}
 
-\subsubsection*{Flash failure during flashing}
+\paragraph*{Firmware update problems -\/ if you get a failure during updating}
 
 
 \begin{DoxyItemize}
-\item Type in the flashing command -\/ see last section, {\itshape without} pressing Enter
+\item Type in the flashing command, see above, but {\itshape without} pressing Enter yet
 \begin{DoxyItemize}
-\item Hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
+\item Now hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
 \begin{DoxyItemize}
 \item You have a short Window after releasing R\+E\+S\+ET to Press Enter
 \end{DoxyItemize}
@@ -727,40 +767,11 @@ On the H\+P85 type
 
 
 
-\subsection*{Configuring the serial communication program}
-
-
-\begin{DoxyItemize}
-\item Follow the instructions of firmware updating dependencies for installing Python and libraries
-\item Follow the section on Connecting a computer to the hp85disk emulator to discover the serila port to use
-\item With the hp85disk attached via U\+SB cable to your desktop -\/ replace the port name with the correct one
-\begin{DoxyItemize}
-\item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
-\begin{DoxyItemize}
-\item Note\+: serial.\+tools.\+miniterm does N\+OT work on Windows W\+SL Ubuntu -\/ yet so use the term script
-\begin{DoxyItemize}
-\item ./term 115200 /dev/tty\+U\+S\+B0
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Open you favorite serial terminal emulator
-\begin{DoxyItemize}
-\item Set B\+A\+UD rate to 115200
-\item Set 8 Data bits NO parity
-\item Set flow control to N\+O\+NE
-\item Set the P\+O\+RT to the device name of the emulator U\+SB port
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-
-
-
-\subsubsection*{Installation Ubuntu and Windows software for building hp85disk and building related applications}
+\subsection*{Full installation Ubuntu and Windows software for building hp85disk and building related applications}
 
 Note\+: If you only plan on updating firmware and would rather not compile skip to Firmware updating below
 
-\paragraph*{Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App}
+\subsubsection*{Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App}
 
 Note\+: I recommend this as the easiest way to compile and build hp85disk under Windows
 \begin{DoxyItemize}
@@ -798,7 +809,7 @@ Note\+: I recommend this as the easiest way to compile and build hp85disk under 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\paragraph*{Ubuntu 18.\+04 L\+TS or later}
+\subsubsection*{Ubuntu 18.\+04 L\+TS or later}
 
 Note\+: For Windows install the W\+SL and Ubuntu App -\/ see previous section
 \begin{DoxyItemize}
@@ -808,7 +819,7 @@ Note\+: For Windows install the W\+SL and Ubuntu App -\/ see previous section
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsubsection*{Software install and download for Ubuntu and Windows}
+\subsubsection*{Automated software install and hp85disk github project download}
 
 Note\+: For Windows install the W\+SL and Ubuntu App first -\/ see previous section
 \begin{DoxyItemize}
@@ -826,7 +837,7 @@ Note\+: For Windows install the W\+SL and Ubuntu App first -\/ see previous sect
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Updating hp85disk github project at any time using git}
+\subsubsection*{Updating hp85disk github project at any time using git}
 
 \subsubsection*{Linux}
 
@@ -885,7 +896,7 @@ N\+O\+TE\+: Find the serial port name first -\/ lets assume it was /dev/tty\+S3
 
 
 
-\subsubsection*{Compile}
+\subsection*{Compile Firmware}
 
 Note\+: Change into the hp85disk folder created by the install.\+sh script
 \begin{DoxyItemize}
@@ -897,7 +908,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Compile and Flashing -\/ assumes you have compiletools installed}
+\subsubsection*{Compile and updating Firmware -\/ assumes you have compiletools installed}
 
 
 \begin{DoxyItemize}
@@ -948,9 +959,20 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsubsection*{Flash with external programmer}
+\paragraph*{If you have a firmware update problems -\/ if you get a failure during updating}
 
-\subsection*{Flashing the firmware using an extrenal programmer}
+
+\begin{DoxyItemize}
+\item Type in the flashing command, see above, but {\itshape without} pressing Enter yet
+\begin{DoxyItemize}
+\item Now hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
+\begin{DoxyItemize}
+\item You have a short Window after releasing R\+E\+S\+ET to Press Enter
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Update Firmware with external programmer}
 
 
 \begin{DoxyItemize}
@@ -968,15 +990,15 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \item {\itshape make flash-\/isp} \# do not press Enter yet!
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} and your I\+SP (In System Programmer) to flash the firmware 
-
-
+\item This will use {\itshape avrdude} and your I\+SP (In System Programmer) to flash the firmware
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+
+
+
 
 \subsection*{Makefile configuration for hp85disk emulator -\/ options for original V1 and new V2 boards}
-
-\subsection*{Makefile Configuration options for building}
 
 
 \begin{DoxyItemize}
@@ -1021,16 +1043,16 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item A\+V\+R\+D\+U\+DE I\+SP P\+O\+RT
+\item A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT
 \begin{DoxyItemize}
 \item Same as P\+O\+RT name, below, for avrisp and arduino
 \item usb for atmelice\+\_\+isp
 \end{DoxyItemize}
-\item P\+O\+RT is the emulator serial P\+O\+RT name as detected by your operating system
+\item P\+O\+RT is the hp85disk emulator serial P\+O\+RT name as detected by your operating system
 \begin{DoxyItemize}
 \item /dev/tty\+U\+S\+B0 on my system
 \end{DoxyItemize}
-\item B\+A\+UD is the emulator serial baud rate
+\item B\+A\+UD is the hp85disk emulator serial baud rate
 \begin{DoxyItemize}
 \item 115200 = a safe default that most systems can manage
 \begin{DoxyItemize}
@@ -1049,7 +1071,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \item DO N\+OT C\+H\+A\+N\+GE T\+H\+IS -\/ there are too main dependencies
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item B\+O\+A\+RD is the version of the hardware
+\item B\+O\+A\+RD is the version of the hardware currently V2
 \begin{DoxyItemize}
 \item 1 = V1 hardware without G\+P\+IB B\+US transceivers
 \item 2 = V2 hardware with G\+P\+IB B\+US transceivers
@@ -1057,14 +1079,17 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \item P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS
 \begin{DoxyItemize}
 \item Note\+: This is now automatically set by board revision so this is not normally needed
+\begin{DoxyItemize}
 \item 0 = V1 hardware without the G\+P\+IB buffers
 \item 1 = V2 hardware with G\+P\+IB buffers
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for Real Time Clock
 \begin{DoxyItemize}
 \item 1 = R\+TC support for a D\+S1307 command compatible R\+TC chip -\/ the D\+S3231 is the 3.\+3V version
 \begin{DoxyItemize}
 \item This will time stamp plot files and add time stamps inside lif images
+\item The emulator will still work if this is set but not attache to an R\+TC
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item F\+\_\+\+C\+PU
@@ -1101,6 +1126,7 @@ Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M
 \begin{DoxyItemize}
 \item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0
 \item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3
+\item make flash A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3
 \end{DoxyItemize}
 
 

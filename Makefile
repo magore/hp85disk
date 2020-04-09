@@ -413,14 +413,6 @@ PROGS = lif mkcfg hardware/baudrate
 all: version $(LIBS) build size $(PROGS) 
 
 # =======================================
-.PHONY: isp
-isp:
-	export fuses
-
-.PHONY: arduino
-arduino:
-	export fuses=""
-# =======================================
 .PHONY: optiboot
 optiboot:
 	make -C optiboot optiboot
@@ -518,16 +510,16 @@ list-builtins:
 # We do NOT erase before flashing
 # install_optiboot erases the chip
 # install_optiboot sets our fuses!
-flash-isp: isp all install_optiboot
+flash-isp: all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
 
-flash-isp-fast: isp all install_optiboot
+flash-isp-fast: all install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
 
-flash-isp-release: isp install_optiboot
+flash-isp-release: install_optiboot
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 
-verify-isp: isp
+verify-isp: 
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
 
 verify-isp-fast: isp
@@ -539,12 +531,12 @@ verify-isp-fast: isp
 # You MUST press RESET and issue these commands very quickly afterwards
 #    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
 # 
-flash: isp arduino all
+flash: all
 	# ./reset $(BAUD) $(AVRDUDE_PORT)
 	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
 	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) $(PROJECT).hex
 
-flash-release:	isp arduino 
+flash-release:
 	# ./reset $(BAUD) $(AVRDUDE_PORT)
 	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) release/build/$(PROJECT).hex
@@ -552,15 +544,14 @@ flash-release:	isp arduino
 # =======================================
 # ISP flashing - NO optiboot!
 # We ALWAYS erase the CHIP before flashing
-flash-isp-noboot: isp all 
+flash-isp-noboot: 
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
 
-flash-isp-noboot-fast: isp all 
+flash-isp-noboot-fast: 
 	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
 
-flash-isp-noboot-release:  isp all
+flash-isp-noboot-release:  
 	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
-
 
 # =======================================
 
