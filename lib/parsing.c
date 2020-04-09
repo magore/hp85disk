@@ -150,7 +150,7 @@ int MATCH(char *str, char *pat)
 MEMSPACE
 int MATCHARGS(char *str, char *pat, int min, int argc)
 {
-    if(MATCH(str,pat))
+    if(MATCHI(str,pat))
     {
         if(argc >= min)
             return(1);

@@ -89,6 +89,16 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
+    if (MATCHI(ptr,"debug") )
+    {
+        ptr = argv[ind];
+		if(*ptr == '=')
+			++ind;
+        debuglevel = get_value(argv[ind]);
+        printf("debug=%04XH\n", debuglevel);
+        return(1);
+    }
+
     if (MATCHARGS(ptr,"addresses",(ind+0),argc))
     {
         display_Addresses();
@@ -101,12 +111,6 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"debug", (ind+1) ,argc))
-    {
-        debuglevel = get_value(argv[ind]);
-        printf("debug=%04XH\n", debuglevel);
-        return(1);
-    }
 
     if (MATCHARGS(ptr,"elapsed_reset",(ind+0),argc))
     {

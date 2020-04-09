@@ -952,8 +952,9 @@ ___
 ## hp85disk Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
    * help
-     * Will list all available commands and options
-     * Each main option has help. Example lif help
+     * List all available commands 
+     * Some commands also have their own help like *lif help*
+     * Note: all command options must be seperated with spaces between each item
 
 ### For main help menu type *help*
  * Any word that has help after it will give help for that command
@@ -1034,11 +1035,11 @@ time
 </pre>
 
 ###  hp85disk setting debug options
-
+  * Debug level truth table
 <pre>
-Debug level truth table
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
+  Warning: Enabling too many debug messages can cause HP85 timeouts
 
 	  1 ERRORS - all GPIB and device related error message
 	    # Note: Will not suppress Startup and configuration errors
@@ -1054,25 +1055,33 @@ Debug level truth table
 	400 LIF utitilites debugging
 </pre>
 
-###  hp85disk setting debug options
+###  hp85disk setting debug examples
+  gpib debug = 0x11
 <pre>
-# Debug settings Examples:
-
-# Most usefull debuggging messages
-# (1+2+8+10+20)
-	DEBUG = 0x3D
-
-# Main device states and errors only
-# (1+2+10+20)
-	DEBUG = 0x33
-
-# Main device states and errors only
-# (1+2+10+20)
-	DEBUG = 0x33
-
-# Errors and TODO messages only
-# (1+10)
+    Errors and TODO messages only
+    (1+10)
 	DEBUG = 0x11
+</pre>
+
+  * gpib debug = 0x33
+<pre>
+    Main device states and errors only
+    (1+2+10+20)
+    DEBUG = 0x33
+</pre>
+
+  * gpib debug = 0x3D
+<pre>
+    Most usefull debuggging messages
+    (1+2+8+10+20)
+	DEBUG = 0x3D
+</pre>
+
+  * gpib debug = 0x51
+<pre>
+    Errors, TODO and SD Card Read/Write times
+    (1+10+40)
+	DEBUG = 0x51
 </pre>
 
 ___ 
