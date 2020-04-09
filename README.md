@@ -403,6 +403,8 @@ Note: I recommend this as the easiest way to compile and build hp85disk under Wi
       * Restart your computer when prompted
     * Open Windows Store
       * Install Ubuntu App
+        * Note: you DO NOT have to sign in to the Windows Store to install this
+         * If you just X out of the sign in prompt the software will still install
     * Search Ubuntu
       * Launch Ubuntu App
         * This will take a few minutes the first time depending on your network speed 
