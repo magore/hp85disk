@@ -508,6 +508,14 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
   * *make flash-isp*         # do not press Enter yet!
     * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
 
+### Flashing AND connecting to hp85disk emualtor terminal just after firmware update 
+  * Note: You can add *term* after *ANY* make flash commands
+  * Examples:
+    * *make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb
+    * *make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS5*
+  * *AVRDUDE_PORT* must be set to the programmer port name
+  * *PORT* must be set to the hp85disk emulator serial port name
+
 ___ 
 
 
