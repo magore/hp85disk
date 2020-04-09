@@ -1065,21 +1065,21 @@ time
 	DEBUG = 0x11
 </pre>
 
-  * gpib debug = 0x33
+  gpib debug = 0x33
 <pre>
     Main device states and errors only
     (1+2+10+20)
     DEBUG = 0x33
 </pre>
 
-  * gpib debug = 0x3D
+  gpib debug = 0x3D
 <pre>
     Most usefull debuggging messages
     (1+2+8+10+20)
 	DEBUG = 0x3D
 </pre>
 
-  * gpib debug = 0x51
+  gpib debug = 0x51
 <pre>
     Errors, TODO and SD Card Read/Write times
     (1+10+40)
