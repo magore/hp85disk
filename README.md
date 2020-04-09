@@ -1012,6 +1012,7 @@ ___
 
 ### For setting the time type *setdate* it will prompt for the date as shown below
   * This also sets the RTC
+
 <verbatim>
 	Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
 	rtc seconds: 1586451240
@@ -1021,8 +1022,8 @@ ___
 </verbatim>
 
 ### For displaying the time and the rtc time type *time*
+
 <verbatim>
-	time
 	rtc seconds: 1586451317
 	rtc time:    Thu Apr  9 16:55:17 2020
 	clk seconds: 1586451317
@@ -1030,6 +1031,7 @@ ___
 </verbatim>
 
 ###  hp85disk setting debug options
+
 <verbatim>
 Debug level truth table
   You can OR the following values together to add debug processing
