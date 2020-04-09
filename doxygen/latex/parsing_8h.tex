@@ -30,7 +30,7 @@ Various string and character functions.
 \begin{DoxyCompactList}\small\item\em Compare two strings without case limted to length of pattern. \end{DoxyCompactList}\item 
 \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{parsing_8h_a51fff261f4f2a10feb3c0da11e6eee15}{split\+\_\+args} (char $\ast$str, char $\ast$argv \mbox{[}$\,$\mbox{]}, int max)
 \begin{DoxyCompactList}\small\item\em Split string into arguments stored in argv\mbox{[}\mbox{]} We split source string into arguments Warning\+: source string is modified! To save memory each gap in the source string is terminated with an E\+OS This becomes the end of string for each argument returned Warning\+: Do N\+OT modify the source string or argument contents while using them You can reassign new pointers to the arguments if you like. \end{DoxyCompactList}\item 
-\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{parsing_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{get\+\_\+token} (char $\ast$str, char $\ast$\hyperlink{stringsup_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{parsing_8h_a9387f7db4933b1bafd14bddad8e8c9c8}{get\+\_\+token} (char $\ast$str, char $\ast$\hyperlink{parsing_8h_ae9142769a957bcb8c0fad1934576f576}{token}, int max)
 \begin{DoxyCompactList}\small\item\em return next token \end{DoxyCompactList}\item 
 \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{parsing_8h_ae9142769a957bcb8c0fad1934576f576}{token} (char $\ast$str, char $\ast$pat)
 \begin{DoxyCompactList}\small\item\em Search for token in a string matching user pattern. \end{DoxyCompactList}\item 
@@ -88,6 +88,10 @@ N\+U\+LL if no token found
 
 Definition at line 308 of file parsing.\+c.
 
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive(), and Read\+\_\+\+Config().
+
 \mbox{\Hypertarget{parsing_8h_a9cc256e4952848245227600da2552e34}\label{parsing_8h_a9cc256e4952848245227600da2552e34}} 
 \index{parsing.\+h@{parsing.\+h}!get\+\_\+value@{get\+\_\+value}}
 \index{get\+\_\+value@{get\+\_\+value}!parsing.\+h@{parsing.\+h}}
@@ -112,6 +116,10 @@ value
 \end{DoxyItemize}
 
 Definition at line 414 of file parsing.\+c.
+
+
+
+Referenced by assign\+\_\+value(), gpib\+\_\+tests(), hpdir\+\_\+find\+\_\+drive(), and Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{parsing_8h_a9fb9c5c9b25cdf504152f7610f0d118c}\label{parsing_8h_a9fb9c5c9b25cdf504152f7610f0d118c}} 
 \index{parsing.\+h@{parsing.\+h}!M\+A\+T\+CH@{M\+A\+T\+CH}}
@@ -138,6 +146,10 @@ string lenth on match.
 
 
 Definition at line 135 of file parsing.\+c.
+
+
+
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), ls(), M\+A\+T\+C\+H\+A\+R\+G\+S(), mkfs(), posix\+\_\+tests(), Read\+\_\+\+Config(), td02lif(), and td0\+\_\+open().
 
 \mbox{\Hypertarget{parsing_8h_ac85ba7d5161939102f1daf99dcae85f0}\label{parsing_8h_ac85ba7d5161939102f1daf99dcae85f0}} 
 \index{parsing.\+h@{parsing.\+h}!M\+A\+T\+C\+H\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+\_\+\+L\+EN}}
@@ -196,6 +208,10 @@ Match two strings and compare argument index Display message if the number of ar
 
 Definition at line 151 of file parsing.\+c.
 
+
+
+Referenced by fatfs\+\_\+tests(), gpib\+\_\+tests(), lif\+\_\+tests(), posix\+\_\+tests(), and task().
+
 \mbox{\Hypertarget{parsing_8h_a158b18efacfbaf45bf46e03f355cf101}\label{parsing_8h_a158b18efacfbaf45bf46e03f355cf101}} 
 \index{parsing.\+h@{parsing.\+h}!M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}}
 \index{M\+A\+T\+C\+HI@{M\+A\+T\+C\+HI}!parsing.\+h@{parsing.\+h}}
@@ -221,6 +237,10 @@ string lenth on match.
 
 
 Definition at line 173 of file parsing.\+c.
+
+
+
+Referenced by gpib\+\_\+tests(), hpdir\+\_\+find\+\_\+drive(), and Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{parsing_8h_ab012fa46a47fa2430d6ebd25ed38c59e}\label{parsing_8h_ab012fa46a47fa2430d6ebd25ed38c59e}} 
 \index{parsing.\+h@{parsing.\+h}!M\+A\+T\+C\+H\+I\+\_\+\+L\+EN@{M\+A\+T\+C\+H\+I\+\_\+\+L\+EN}}
@@ -250,6 +270,10 @@ Matches sub strings so be caeful.
 
 
 Definition at line 217 of file parsing.\+c.
+
+
+
+Referenced by get\+\_\+value(), and lif\+\_\+tests().
 
 \mbox{\Hypertarget{parsing_8h_a205ab859e76086c5239a49effa3281dd}\label{parsing_8h_a205ab859e76086c5239a49effa3281dd}} 
 \index{parsing.\+h@{parsing.\+h}!nextspace@{nextspace}}
@@ -286,6 +310,10 @@ print seperator
 
 
 Definition at line 32 of file parsing.\+c.
+
+
+
+Referenced by main(), and S\+S80\+\_\+\+Test().
 
 \mbox{\Hypertarget{parsing_8h_aae86b90fc6ccc0c432de5c492cdcbaba}\label{parsing_8h_aae86b90fc6ccc0c432de5c492cdcbaba}} 
 \index{parsing.\+h@{parsing.\+h}!skipchars@{skipchars}}
@@ -333,6 +361,10 @@ pointer to first non white space character
 
 Definition at line 65 of file parsing.\+c.
 
+
+
+Referenced by assign\+\_\+value(), get\+\_\+token(), get\+\_\+value(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), Read\+\_\+\+Config(), split\+\_\+args(), timetests(), and token().
+
 \mbox{\Hypertarget{parsing_8h_a51fff261f4f2a10feb3c0da11e6eee15}\label{parsing_8h_a51fff261f4f2a10feb3c0da11e6eee15}} 
 \index{parsing.\+h@{parsing.\+h}!split\+\_\+args@{split\+\_\+args}}
 \index{split\+\_\+args@{split\+\_\+args}!parsing.\+h@{parsing.\+h}}
@@ -351,6 +383,10 @@ Split string into arguments stored in argv\mbox{[}\mbox{]} We split source strin
 
 
 Definition at line 246 of file parsing.\+c.
+
+
+
+Referenced by task().
 
 \mbox{\Hypertarget{parsing_8h_ae9142769a957bcb8c0fad1934576f576}\label{parsing_8h_ae9142769a957bcb8c0fad1934576f576}} 
 \index{parsing.\+h@{parsing.\+h}!token@{token}}
@@ -383,6 +419,10 @@ string lenth on match.
 
 Definition at line 376 of file parsing.\+c.
 
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive(), rcvr\+\_\+datablock(), and Read\+\_\+\+Config().
+
 \mbox{\Hypertarget{parsing_8h_a2d7ec9dae4f58c027edbc22118714ba6}\label{parsing_8h_a2d7ec9dae4f58c027edbc22118714ba6}} 
 \index{parsing.\+h@{parsing.\+h}!trim\+\_\+tail@{trim\+\_\+tail}}
 \index{trim\+\_\+tail@{trim\+\_\+tail}!parsing.\+h@{parsing.\+h}}
@@ -407,4 +447,8 @@ Overwrites White space and control characters with E\+OS.
 
 
 Definition at line 45 of file parsing.\+c.
+
+
+
+Referenced by cat(), get\+\_\+token(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+\+B2\+S(), lif\+\_\+ctime\+\_\+gmt(), and Read\+\_\+\+Config().
 
