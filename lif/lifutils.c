@@ -171,7 +171,7 @@ int lif_tests(int argc, char *argv[])
 #ifdef TELEDISK
         td0_help(1);
 #endif
-        return(0);
+        return(1);
     }
 
 	// Turn one debugging
@@ -179,6 +179,7 @@ int lif_tests(int argc, char *argv[])
     if (MATCHARGS(ptr,"-d", (ind + 0) ,argc))
     {
 		debuglevel = 0xffff;
+        return(1);
 		ptr = argv[ind++];
     }
 

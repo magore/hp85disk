@@ -780,6 +780,15 @@ README</h1>
 <p>NOTE: Find the serial port name first - lets assume it was /dev/ttyS3</p><ul>
 <li><em>cd hp85disk</em></li>
 <li>*./term 115200 /dev/ttyS3*</li>
+<li>The term script starts a program called minicom<ul>
+<li>To Exit the minicom terminal emulator<ul>
+<li>Ctrl a (hold Ctrl down and press a key and release both keys)</li>
+<li>x (press the x key and release)</li>
+<li>Answer Yes to leave Minicom</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <h2>Compile Firmware</h2>
@@ -1453,7 +1462,7 @@ README</h1>
     10  SRQ    Service Request          22  Shield Ground (SRQ) 
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
-</pre><h2>AVR Terminal Commands</h2>
+</pre><h2>hp85disk Terminal Commands</h2>
 <ul>
 <li>Pressing any key will break out of the gpib task loop until a command is entered<ul>
 <li>help<ul>
@@ -1461,10 +1470,51 @@ README</h1>
 <li>Each main option has help. Example lif help</li>
 </ul>
 </li>
+<li><p class="startli">For main help menu type <em>help</em> &lt;verbatim&gt; Stand alone version of LIF utilities for linux HP85 Disk and Device Emulator (c) 2014-2020 by Mike Gore GNU version 3 -&gt; <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a> GIT last pushed: 2020-04-09 11:59:37.830975998 -0400 Last updated file: 2020-04-09 13:12:59.477795767 -0400</p>
+<p class="startli">fatfs help posix help lif help gpib help delay_tests help mem setdate time reset &lt;/verbatim&gt;</p>
+</li>
+<li>Any word that has help after it will give help for that command</li>
+<li>For lif help type <em>lif help</em> &lt;verbatim&gt; lif help lif add lifimage lifname from_ascii_file lif addbin lifimage lifname from_lif_file lif create lifimage label directory_sectors sectors lif createdisk lifimage label model lif del lifimage name lif dir lifimage lif extract lifimage lifname to_ascii_file lif extractbin lifimage lifname to_lif_file extracts a file into a sigle file LIF image lif rename lifimage oldlifname newlifname Use -d after first keyword 'lif' above for LIF filesystem debugging &lt;/verbatim&gt;<ul>
 <li>For detail using LIF commands to add/extract LIF files from SD card see the top of <a href="lif/lifutil.c">lif/lifutil.c</a></li>
 </ul>
 </li>
+<li>For posix help type <em>posix help</em> &lt;verbatim&gt; posix help posix prefix is optional posix cat file [-p] posix cd dir posix copy file1 file2 posix ls dir [-l] posix mkdir dir posix page NN posix pwd posix rm file posix rmdir dir posix rename old new &lt;/verbatim&gt;<ul>
+<li>For setting the time type <em>setdate</em> it will prompt for the date as shown below<ul>
+<li><em>setdate</em><ul>
+<li>This also sets the RTC &lt;verbatim&gt; Enter date YYYY MM DD HH:MM:SS &gt;2020 04 09 16:54:00 rtc seconds: 1586451240 rtc time: Thu Apr 9 16:54:00 2020 clk seconds: 1586451240 clk time: Thu Apr 9 16:54:00 2020 &lt;/verbatim&gt;</li>
 </ul>
+</li>
+</ul>
+</li>
+<li>For displaying the time and the rtc time type <em>time</em> &lt;verbatim&gt; time rtc seconds: 1586451317 rtc time: Thu Apr 9 16:55:17 2020 clk seconds: 1586451317 clk time: Thu Apr 9 16:55:17 2020 &lt;/verbatim&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>hp85disk setting debug options</h3>
+<p>&lt;verbatim&gt; Debug level truth table You can OR the following values together to add debug processing Values in the table are in HEX (base 16) </p><pre class="fragment">1 ERRORS - all GPIB and device related error message
+  # Note: Will not suppress Startup and configuration errors
+2 PPR states
+4 GPIB command and control byte messages
+8 GPIB main loop command data and control line states
+</pre><p> 10 TODO DEVICE support states - ie missing code 20 DEVICE states, AMIGO,SS80,PRINTER 40 disk I/O read/write times 80 GPIB read/write string timeing 100 GPIB read / write string byte decode 200 Parallel Poll bus status debug 400 LIF utitilites debugging</p>
+<p>Debug settings Examples: </p><pre class="fragment">Most usefull debuggging messages
+(1+2+8+10+20)
+DEBUG = 0x3D
+
+Main device states and errors only
+(1+2+10+20)
+DEBUG = 0x33
+
+Main device states and errors only
+(1+2+10+20)
+DEBUG = 0x33
+
+Errors and TODO messages only
+(1+10)
+DEBUG = 0x11
+</pre><p>&lt;/verbatim&gt;</p>
 <hr/>
 <h2>Main project files for hp85disk Project</h2>
 <ul>
@@ -2168,7 +2218,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 9 2020 13:25:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 9 2020 17:02:04 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -456,6 +456,11 @@ Note: You need to find the serial port name when hp85disk emulator is attached t
 NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
   * *cd hp85disk*
   * *./term 115200 /dev/ttyS3*
+  * The term script starts a program called minicom
+    * To Exit the minicom terminal emulator
+      * Ctrl a   (hold Ctrl down and press a key and release both keys)
+      * x        (press the x key and release)
+      * Answer Yes to leave Minicom
 
 ___ 
 
@@ -944,13 +949,122 @@ ___
 
 
 
-## AVR Terminal Commands
+## hp85disk Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
    * help
      * Will list all available commands and options
      * Each main option has help. Example lif help
 
-   * For detail using LIF commands to add/extract LIF files from SD card see the top of [lif/lifutil.c](lif/lifutil.c)
+   * For main help menu type *help*
+<verbatim>
+		Stand alone version of LIF utilities for linux
+		HP85 Disk and Device Emulator
+		 (c) 2014-2020 by Mike Gore
+		 GNU version 3
+		-> https://github.com/magore/hp85disk
+		   GIT last pushed:   2020-04-09 11:59:37.830975998 -0400
+		   Last updated file: 2020-04-09 13:12:59.477795767 -0400
+
+		fatfs help
+		posix help
+		lif help
+		gpib help
+		delay_tests
+		help
+		mem
+		setdate
+		time
+		reset
+</verbatim>
+   * Any word that has help after it will give help for that command
+   * For lif help type *lif help*
+<verbatim>
+		lif help
+		lif add lifimage lifname from_ascii_file
+		lif addbin lifimage lifname from_lif_file
+		lif create lifimage label directory_sectors sectors
+		lif createdisk lifimage label model
+		lif del lifimage name
+		lif dir lifimage
+		lif extract lifimage lifname to_ascii_file
+		lif extractbin lifimage lifname to_lif_file
+			extracts a file into a sigle file LIF image
+		lif rename lifimage oldlifname newlifname
+		Use -d after first keyword 'lif' above for LIF filesystem debugging
+</verbatim>
+      * For detail using LIF commands to add/extract LIF files from SD card see the top of [lif/lifutil.c](lif/lifutil.c)
+   * For posix help type *posix help*
+<verbatim>
+		posix help
+		posix prefix is optional
+		posix cat file [-p]
+		posix cd dir
+		posix copy file1 file2
+		posix ls dir [-l]
+		posix mkdir dir
+		posix page NN
+		posix pwd
+		posix rm file
+		posix rmdir dir
+		posix rename old new
+</verbatim>
+    * For setting the time type *setdate* it will prompt for the date as shown below
+      * *setdate*
+        * This also sets the RTC
+<verbatim>
+		Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
+		rtc seconds: 1586451240
+		rtc time:    Thu Apr  9 16:54:00 2020
+		clk seconds: 1586451240
+		clk time:    Thu Apr  9 16:54:00 2020
+</verbatim>
+    * For displaying the time and the rtc time type *time*
+<verbatim>
+		time
+		rtc seconds: 1586451317
+		rtc time:    Thu Apr  9 16:55:17 2020
+		clk seconds: 1586451317
+		clk time:    Thu Apr  9 16:55:17 2020
+</verbatim>
+
+### hp85disk setting debug options
+<verbatim>
+Debug level truth table
+  You can OR the following values together to add debug processing
+  Values in the table are in HEX (base 16)
+
+	  1 ERRORS - all GPIB and device related error message
+	    # Note: Will not suppress Startup and configuration errors
+	  2 PPR states
+	  4 GPIB command and control byte messages
+	  8 GPIB main loop command data and control line states
+	 10 TODO DEVICE support states - ie missing code
+	 20 DEVICE states, AMIGO,SS80,PRINTER
+	 40 disk I/O read/write times
+	 80 GPIB read/write string timeing
+	100 GPIB read / write string byte decode
+	200 Parallel Poll bus status debug
+	400 LIF utitilites debugging
+
+Debug settings Examples:
+
+	Most usefull debuggging messages
+	(1+2+8+10+20)
+	DEBUG = 0x3D
+
+	Main device states and errors only
+	(1+2+10+20)
+	DEBUG = 0x33
+
+	Main device states and errors only
+	(1+2+10+20)
+	DEBUG = 0x33
+
+	Errors and TODO messages only
+	(1+10)
+	DEBUG = 0x11
+
+</verbatim>
 
 ___ 
 

@@ -890,6 +890,15 @@ N\+O\+TE\+: Find the serial port name first -\/ lets assume it was /dev/tty\+S3
 \begin{DoxyItemize}
 \item {\itshape cd hp85disk}
 \item $\ast$./term 115200 /dev/tty\+S3$\ast$
+\item The term script starts a program called minicom
+\begin{DoxyItemize}
+\item To Exit the minicom terminal emulator
+\begin{DoxyItemize}
+\item Ctrl a (hold Ctrl down and press a key and release both keys)
+\item x (press the x key and release)
+\item Answer Yes to leave Minicom
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
@@ -1715,7 +1724,7 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \end{DoxyPre}
 
 
-\subsection*{A\+VR Terminal Commands}
+\subsection*{hp85disk Terminal Commands}
 
 
 \begin{DoxyItemize}
@@ -1726,9 +1735,57 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 \item Will list all available commands and options
 \item Each main option has help. Example lif help
 \end{DoxyItemize}
+\item For main help menu type {\itshape help} $<$verbatim$>$ Stand alone version of L\+IF utilities for linux H\+P85 Disk and Device Emulator (c) 2014-\/2020 by Mike Gore G\+NU version 3 -\/$>$ \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} G\+IT last pushed\+: 2020-\/04-\/09 11\+:59\+:37.\+830975998 -\/0400 Last updated file\+: 2020-\/04-\/09 13\+:12\+:59.\+477795767 -\/0400
+
+fatfs help posix help lif help gpib help delay\+\_\+tests help mem setdate time reset $<$/verbatim$>$
+\item Any word that has help after it will give help for that command
+\item For lif help type {\itshape lif help} $<$verbatim$>$ lif help lif add lifimage lifname from\+\_\+ascii\+\_\+file lif addbin lifimage lifname from\+\_\+lif\+\_\+file lif create lifimage label directory\+\_\+sectors sectors lif createdisk lifimage label model lif del lifimage name lif dir lifimage lif extract lifimage lifname to\+\_\+ascii\+\_\+file lif extractbin lifimage lifname to\+\_\+lif\+\_\+file extracts a file into a sigle file L\+IF image lif rename lifimage oldlifname newlifname Use -\/d after first keyword \textquotesingle{}lif\textquotesingle{} above for L\+IF filesystem debugging $<$/verbatim$>$
+\begin{DoxyItemize}
 \item For detail using L\+IF commands to add/extract L\+IF files from SD card see the top of \href{lif/lifutil.c}{\tt lif/lifutil.\+c}
 \end{DoxyItemize}
+\item For posix help type {\itshape posix help} $<$verbatim$>$ posix help posix prefix is optional posix cat file \mbox{[}-\/p\mbox{]} posix cd dir posix copy file1 file2 posix ls dir \mbox{[}-\/l\mbox{]} posix mkdir dir posix page NN posix pwd posix rm file posix rmdir dir posix rename old new $<$/verbatim$>$
+\begin{DoxyItemize}
+\item For setting the time type {\itshape setdate} it will prompt for the date as shown below
+\begin{DoxyItemize}
+\item {\itshape setdate}
+\begin{DoxyItemize}
+\item This also sets the R\+TC $<$verbatim$>$ Enter date Y\+Y\+YY MM DD H\+H\+:\+MM\+:SS $>$2020 04 09 16\+:54\+:00 rtc seconds\+: 1586451240 rtc time\+: Thu Apr 9 16\+:54\+:00 2020 clk seconds\+: 1586451240 clk time\+: Thu Apr 9 16\+:54\+:00 2020 $<$/verbatim$>$
 \end{DoxyItemize}
+\end{DoxyItemize}
+\item For displaying the time and the rtc time type {\itshape time} $<$verbatim$>$ time rtc seconds\+: 1586451317 rtc time\+: Thu Apr 9 16\+:55\+:17 2020 clk seconds\+: 1586451317 clk time\+: Thu Apr 9 16\+:55\+:17 2020 $<$/verbatim$>$
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{hp85disk setting debug options}
+
+$<$verbatim$>$ Debug level truth table You can OR the following values together to add debug processing Values in the table are in H\+EX (base 16) \begin{DoxyVerb}1 ERRORS - all GPIB and device related error message
+  # Note: Will not suppress Startup and configuration errors
+2 PPR states
+4 GPIB command and control byte messages
+8 GPIB main loop command data and control line states
+\end{DoxyVerb}
+ 10 T\+O\+DO D\+E\+V\+I\+CE support states -\/ ie missing code 20 D\+E\+V\+I\+CE states, A\+M\+I\+GO,S\+S80,P\+R\+I\+N\+T\+ER 40 disk I/O read/write times 80 G\+P\+IB read/write string timeing 100 G\+P\+IB read / write string byte decode 200 Parallel Poll bus status debug 400 L\+IF utitilites debugging
+
+Debug settings Examples\+: \begin{DoxyVerb}Most usefull debuggging messages
+(1+2+8+10+20)
+DEBUG = 0x3D
+
+Main device states and errors only
+(1+2+10+20)
+DEBUG = 0x33
+
+Main device states and errors only
+(1+2+10+20)
+DEBUG = 0x33
+
+Errors and TODO messages only
+(1+10)
+DEBUG = 0x11
+\end{DoxyVerb}
+
+
+$<$/verbatim$>$
 
 
 
