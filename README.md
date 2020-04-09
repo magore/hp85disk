@@ -82,7 +82,6 @@ ___
   * Access it via the USB cable attached to your computer using a serial terminal program
   * See section called Configuring the serial communication program 
 
-
 ___ 
 
 
@@ -316,35 +315,6 @@ ___
 ___ 
 
 
-## Clone hp85disk github project to your computer with a Web Browser
-  * Open a web browser to https://github.com/magore/hp85disk 
-    * Click on Branch and pick V2 in the drop down
-      * CLick on the Download Button
-
-## Clone hp85disk my github project to your computer using git
-### Linux install git
-  * Open a terminal window 
-  * Install git
-    * *apt-get install git*
-### Windows install git
-  * Install git
-    * https://git-scm.com/download/win
-  * Open a PowerShell Window
-### Clone git
-  * *git clone --branch V2 https://github.com/magore/hp85disk*
-  * *cd hp85disk*
-
-## Updating hp85disk github project at any time using git
-### Linux
-  * Open a terminal window 
-  * cd hp85disk
-  * git pull
-### Windows
-  * Open a PowerShell window 
-  * cd hp85disk
-  * git pull
-
-___ 
 
 
 ## Connecting a computer to the hp85disk emulator - finding the emulator serial port
@@ -415,7 +385,6 @@ ___
 ___ 
 
 
-## Compiling
 
 ### Installation Ubuntu and Windows software for building hp85disk and building related applications
 Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below
@@ -454,19 +423,44 @@ Note: For Windows install the WSL and Ubuntu App first - see previous section
     *  https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh
   * *bash ./install_hp85disk.sh*
     * The script will ask you once for your login password so the script can run the installation as root using sudo
+
+## Updating hp85disk github project at any time using git
+### Linux
+  * Open a terminal window 
+  * cd hp85disk
+  * git pull
+### Windows
+  * Open Ubuntu App
+  * cd hp85disk
+  * git pull
+
+___ 
+
  
+### Connecting to hp85disk emulator 
+
 ### Find the serial port device name for the hp85disk emulator
 Note: You need to find the serial port name when hp85disk emulator is attached to your computer.
   * Make sure the emulator is not connected to your PC/Mac
-    * Open a terminal window on Ubuntu
-      * Ubuntu App under Windows
-    * Run 
-      * *python3 uploader/listports.py*
-  * Connect the hp85disk emulator with the miniusb to your computer
-    * Run 
-      * *python3 uploader/listports.py*
+  * Open a terminal window on Ubuntu
+    * Ubuntu App under Windows
+  * Run 
+    * *cd hp85disk*
+    * *python3 uploader/listports.py*
+  * Attach the hp85disk emulator with the miniusb to your computer
+  * Run 
+    * *python3 uploader/listports.py*
   * The new port that appears in the last step is the Emulator Port name
-  * Edit the hp85disk/Makefile and change the PORT name near the start of the file to this name
+  * Optionally edit the hp85disk/Makefile and change the PORT name near the start of the file to this name
+
+### Opening a terminal window to the hp85disk emulator
+NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
+  * *cd hp85disk*
+  * *./term 115200 /dev/ttyS3*
+
+___ 
+
+
 
 ### Compile
 Note: Change into the hp85disk folder created by the install.sh script</br>
@@ -492,14 +486,12 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
   * *make install*
     * This installs utilities like lif and mkcfg
   * *make flash PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3*
-    * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
     * This overrides the two settings in the Makefile
-    * ALternatively you can edit the Makefile and change the two settings for your setup
+      * Alternatively you can edit the Makefile and change the two settings for your setup
   * Note: If You want to install the release firmware that I verified and uploaded to github
     * *make flash-release  PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3*
-      * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
       * This overrides the two settings in the Makefile
-      * Alternatively you can edit the Makefile and change the two settings for your setup
+        * Alternatively you can edit the Makefile and change the two settings for your setup
 
 ### Flash with external programmer
 ## Flashing the firmware using an extrenal programmer
@@ -513,9 +505,6 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
     * OR
   * *make flash-isp*         # do not press Enter yet!
     * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
-  * NOTE: When finished *make* will call a shell script to launch a terminal program for debugging
-    * Ctrl+] will exit the terminal program
-
 ___ 
 
 
@@ -601,8 +590,8 @@ ___
 </verbatim>
 
 ## Example building with Makefile overrides
-  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0
-  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3
+  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 
+  * make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 
 
 ___
 

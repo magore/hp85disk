@@ -578,50 +578,6 @@ README</h1>
 <li>I have instructions for flashing the firmware below</li>
 </ul>
 <hr/>
-<h2>Clone hp85disk github project to your computer with a Web Browser</h2>
-<ul>
-<li>Open a web browser to <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a><ul>
-<li>Click on Branch and pick V2 in the drop down<ul>
-<li>CLick on the Download Button</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Clone hp85disk my github project to your computer using git</h2>
-<h3>Linux install git</h3>
-<ul>
-<li>Open a terminal window</li>
-<li>Install git<ul>
-<li><em>apt-get install git</em> <h3>Windows install git</h3>
-</li>
-</ul>
-</li>
-<li>Install git<ul>
-<li><a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li>
-</ul>
-</li>
-<li>Open a PowerShell Window <h3>Clone git</h3>
-</li>
-</ul>
-<ul>
-<li><em>git clone &ndash;branch V2 <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a></em></li>
-<li><em>cd hp85disk</em></li>
-</ul>
-<h2>Updating hp85disk github project at any time using git</h2>
-<h3>Linux</h3>
-<ul>
-<li>Open a terminal window</li>
-<li>cd hp85disk</li>
-<li>git pull <h3>Windows</h3>
-</li>
-</ul>
-<ul>
-<li>Open a PowerShell window</li>
-<li>cd hp85disk</li>
-<li>git pull</li>
-</ul>
-<hr/>
 <h2>Connecting a computer to the hp85disk emulator - finding the emulator serial port</h2>
 <ul>
 <li>Follow the instructions of firmware updating dependencies for installing Python and libraries</li>
@@ -721,7 +677,6 @@ README</h1>
 </li>
 </ul>
 <hr/>
-<h2>Compiling</h2>
 <h3>Installation Ubuntu and Windows software for building hp85disk and building related applications</h3>
 <p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p>
 <h4>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h4>
@@ -781,29 +736,47 @@ README</h1>
 </ul>
 </li>
 </ul>
+<h2>Updating hp85disk github project at any time using git</h2>
+<h3>Linux</h3>
+<ul>
+<li>Open a terminal window</li>
+<li>cd hp85disk</li>
+<li>git pull <h3>Windows</h3>
+</li>
+</ul>
+<ul>
+<li>Open Ubuntu App</li>
+<li>cd hp85disk</li>
+<li>git pull</li>
+</ul>
+<hr/>
+<h3>Connecting to hp85disk emulator</h3>
 <h3>Find the serial port device name for the hp85disk emulator</h3>
 <p>Note: You need to find the serial port name when hp85disk emulator is attached to your computer.</p><ul>
-<li>Make sure the emulator is not connected to your PC/Mac<ul>
+<li>Make sure the emulator is not connected to your PC/Mac</li>
 <li>Open a terminal window on Ubuntu<ul>
 <li>Ubuntu App under Windows</li>
 </ul>
 </li>
 <li>Run<ul>
+<li><em>cd hp85disk</em></li>
 <li><em>python3 uploader/listports.py</em></li>
 </ul>
 </li>
-</ul>
-</li>
-<li>Connect the hp85disk emulator with the miniusb to your computer<ul>
+<li>Attach the hp85disk emulator with the miniusb to your computer</li>
 <li>Run<ul>
 <li><em>python3 uploader/listports.py</em></li>
 </ul>
 </li>
-</ul>
-</li>
 <li>The new port that appears in the last step is the Emulator Port name</li>
-<li>Edit the hp85disk/Makefile and change the PORT name near the start of the file to this name</li>
+<li>Optionally edit the hp85disk/Makefile and change the PORT name near the start of the file to this name</li>
 </ul>
+<h3>Opening a terminal window to the hp85disk emulator</h3>
+<p>NOTE: Find the serial port name first - lets assume it was /dev/ttyS3</p><ul>
+<li><em>cd hp85disk</em></li>
+<li>*./term 115200 /dev/ttyS3*</li>
+</ul>
+<hr/>
 <h3>Compile</h3>
 <p>Note: Change into the hp85disk folder created by the install.sh script</p><ul>
 <li><em>make clean</em></li>
@@ -841,16 +814,18 @@ README</h1>
 </ul>
 </li>
 <li><em>make flash PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</em><ul>
-<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging</li>
-<li>This overrides the two settings in the Makefile</li>
-<li>ALternatively you can edit the Makefile and change the two settings for your setup</li>
+<li>This overrides the two settings in the Makefile<ul>
+<li>Alternatively you can edit the Makefile and change the two settings for your setup</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Note: If You want to install the release firmware that I verified and uploaded to github<ul>
 <li><em>make flash-release PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</em><ul>
-<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging</li>
-<li>This overrides the two settings in the Makefile</li>
+<li>This overrides the two settings in the Makefile<ul>
 <li>Alternatively you can edit the Makefile and change the two settings for your setup</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -872,15 +847,11 @@ README</h1>
 </ul>
 </li>
 <li><em>make flash-isp</em> # do not press Enter yet!<ul>
-<li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware</li>
-</ul>
+<li>This will use <em>avrdude</em> and your ISP (In System Programmer) to flash the firmware <hr/>
 </li>
-<li>NOTE: When finished <em>make</em> will call a shell script to launch a terminal program for debugging<ul>
-<li>Ctrl+] will exit the terminal program</li>
 </ul>
 </li>
 </ul>
-<hr/>
 <h2>Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards</h2>
 <h2>Makefile Configuration options for building</h2>
 <ul>
@@ -994,8 +965,8 @@ README</h1>
 </ul>
 <h2>Example building with Makefile overrides</h2>
 <ul>
-<li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0</li>
-<li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</li>
+<li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0</li>
+<li>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3</li>
 </ul>
 <hr/>
 <h2>Notes concerning using the HP85 with the hp85disk emulator</h2>
@@ -2169,7 +2140,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 8 2020 20:35:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 8 2020 20:57:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

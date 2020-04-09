@@ -628,65 +628,6 @@ On the H\+P85 type
 
 
 
-\subsection*{Clone hp85disk github project to your computer with a Web Browser}
-
-
-\begin{DoxyItemize}
-\item Open a web browser to \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
-\begin{DoxyItemize}
-\item Click on Branch and pick V2 in the drop down
-\begin{DoxyItemize}
-\item C\+Lick on the Download Button
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Clone hp85disk my github project to your computer using git}
-
-\subsubsection*{Linux install git}
-
-
-\begin{DoxyItemize}
-\item Open a terminal window
-\item Install git
-\begin{DoxyItemize}
-\item {\itshape apt-\/get install git} \subsubsection*{Windows install git}
-\end{DoxyItemize}
-\item Install git
-\begin{DoxyItemize}
-\item \href{https://git-scm.com/download/win}{\tt https\+://git-\/scm.\+com/download/win}
-\end{DoxyItemize}
-\item Open a Power\+Shell Window \subsubsection*{Clone git}
-\end{DoxyItemize}
-
-
-\begin{DoxyItemize}
-\item {\itshape git clone --branch V2 \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}}
-\item {\itshape cd hp85disk}
-\end{DoxyItemize}
-
-\subsection*{Updating hp85disk github project at any time using git}
-
-\subsubsection*{Linux}
-
-
-\begin{DoxyItemize}
-\item Open a terminal window
-\item cd hp85disk
-\item git pull \subsubsection*{Windows}
-\end{DoxyItemize}
-
-
-\begin{DoxyItemize}
-\item Open a Power\+Shell window
-\item cd hp85disk
-\item git pull
-\end{DoxyItemize}
-
-
-
-
-
 \subsection*{Connecting a computer to the hp85disk emulator -\/ finding the emulator serial port}
 
 
@@ -815,8 +756,6 @@ On the H\+P85 type
 
 
 
-\subsection*{Compiling}
-
 \subsubsection*{Installation Ubuntu and Windows software for building hp85disk and building related applications}
 
 Note\+: If you only plan on updating firmware and would rather not compile skip to Firmware updating below
@@ -887,31 +826,64 @@ Note\+: For Windows install the W\+SL and Ubuntu App first -\/ see previous sect
 \end{DoxyItemize}
 \end{DoxyItemize}
 
+\subsection*{Updating hp85disk github project at any time using git}
+
+\subsubsection*{Linux}
+
+
+\begin{DoxyItemize}
+\item Open a terminal window
+\item cd hp85disk
+\item git pull \subsubsection*{Windows}
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item Open Ubuntu App
+\item cd hp85disk
+\item git pull
+\end{DoxyItemize}
+
+
+
+
+
+\subsubsection*{Connecting to hp85disk emulator}
+
 \subsubsection*{Find the serial port device name for the hp85disk emulator}
 
 Note\+: You need to find the serial port name when hp85disk emulator is attached to your computer.
 \begin{DoxyItemize}
 \item Make sure the emulator is not connected to your P\+C/\+Mac
-\begin{DoxyItemize}
 \item Open a terminal window on Ubuntu
 \begin{DoxyItemize}
 \item Ubuntu App under Windows
 \end{DoxyItemize}
 \item Run
 \begin{DoxyItemize}
+\item {\itshape cd hp85disk}
 \item {\itshape python3 uploader/listports.\+py}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\item Connect the hp85disk emulator with the miniusb to your computer
-\begin{DoxyItemize}
+\item Attach the hp85disk emulator with the miniusb to your computer
 \item Run
 \begin{DoxyItemize}
 \item {\itshape python3 uploader/listports.\+py}
 \end{DoxyItemize}
-\end{DoxyItemize}
 \item The new port that appears in the last step is the Emulator Port name
-\item Edit the hp85disk/\+Makefile and change the P\+O\+RT name near the start of the file to this name
+\item Optionally edit the hp85disk/\+Makefile and change the P\+O\+RT name near the start of the file to this name
 \end{DoxyItemize}
+
+\subsubsection*{Opening a terminal window to the hp85disk emulator}
+
+N\+O\+TE\+: Find the serial port name first -\/ lets assume it was /dev/tty\+S3
+\begin{DoxyItemize}
+\item {\itshape cd hp85disk}
+\item $\ast$./term 115200 /dev/tty\+S3$\ast$
+\end{DoxyItemize}
+
+
+
+
 
 \subsubsection*{Compile}
 
@@ -959,17 +931,19 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \item {\itshape make flash P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \begin{DoxyItemize}
-\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
 \item This overrides the two settings in the Makefile
-\item A\+Lternatively you can edit the Makefile and change the two settings for your setup
+\begin{DoxyItemize}
+\item Alternatively you can edit the Makefile and change the two settings for your setup
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item Note\+: If You want to install the release firmware that I verified and uploaded to github
 \begin{DoxyItemize}
 \item {\itshape make flash-\/release P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \begin{DoxyItemize}
-\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
 \item This overrides the two settings in the Makefile
+\begin{DoxyItemize}
 \item Alternatively you can edit the Makefile and change the two settings for your setup
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -994,17 +968,11 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \item {\itshape make flash-\/isp} \# do not press Enter yet!
 \begin{DoxyItemize}
-\item This will use {\itshape avrdude} and your I\+SP (In System Programmer) to flash the firmware
-\end{DoxyItemize}
-\item N\+O\+TE\+: When finished {\itshape make} will call a shell script to launch a terminal program for debugging
-\begin{DoxyItemize}
-\item Ctrl+\mbox{]} will exit the terminal program
+\item This will use {\itshape avrdude} and your I\+SP (In System Programmer) to flash the firmware 
+
+
 \end{DoxyItemize}
 \end{DoxyItemize}
-
-
-
-
 
 \subsection*{Makefile configuration for hp85disk emulator -\/ options for original V1 and new V2 boards}
 
@@ -1131,8 +1099,8 @@ Programming using an 6 wire I\+SP -\/ W\+I\+T\+H\+O\+UT installing optiboot I\+M
 
 
 \begin{DoxyItemize}
-\item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0 P\+O\+RT=/dev/tty\+U\+S\+B0
-\item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3 P\+O\+RT=/dev/tty\+S3
+\item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0
+\item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3
 \end{DoxyItemize}
 
 
