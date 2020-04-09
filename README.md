@@ -315,21 +315,23 @@ ___
 ___ 
 
 
-
 ## Connecting a computer to the hp85disk emulator - finding the emulator serial port
   * Follow the instructions of firmware updating dependencies for installing Python and libraries
   * Make sure you have a miniusb cable handy
   * Make sure the emulator is not connected to your PC/Mac
+
 ### Linux
-    * Open a terminal window
-      * Run the following command 
-        * *python3 uploader/listports.py*
+  * Open a terminal window
+    * Run the following command 
+    * *python3 uploader/listports.py*
+
 ### Windows
-    * Open a PowerShell window
-      * Run the following command *python3 uploader\listports.py*
+  * Open a PowerShell window
+    * Run the following command *python3 uploader\listports.py*
+
 ### Connect the emulator 
-    * Attach the miniusb cable to your computer and rerun the listports.py
-    * The new port that appears is the port you will connect with for interacting with the emulator and updating the firmware
+  * Attach the miniusb cable to your computer and rerun the listports.py
+  * The new port that appeared is the emulator port
 
 ___ 
 
