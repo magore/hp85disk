@@ -1742,18 +1742,66 @@ See \mbox{[}Documents folder\mbox{]}(documents)
 
 
 \begin{DoxyItemize}
-\item Any word that has help after it will give help for that command $<$verbatim$>$ help Stand alone version of L\+IF utilities for linux H\+P85 Disk and Device Emulator (c) 2014-\/2020 by Mike Gore G\+NU version 3 -\/$>$ \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} G\+IT last pushed\+: 2020-\/04-\/09 11\+:59\+:37.\+830975998 -\/0400 Last updated file\+: 2020-\/04-\/09 13\+:12\+:59.\+477795767 -\/0400
+\item Any word that has help after it will give help for that command 
+\begin{DoxyPre}
+help
+    Stand alone version of LIF utilities for linux
+    HP85 Disk and Device Emulator
+     (c) 2014-2020 by Mike Gore
+     GNU version 3
+    -> \href{https://github.com/magore/hp85disk}{\tt https://github.com/magore/hp85disk}
+       GIT last pushed:   2020-04-09 11:59:37.830975998 -0400
+       Last updated file: 2020-04-09 13:12:59.477795767 -0400\end{DoxyPre}
 
-fatfs help posix help lif help gpib help delay\+\_\+tests help mem setdate time reset $<$/verbatim$>$
+
+
+\begin{DoxyPre}    fatfs help
+    posix help
+    lif help
+    gpib help
+    delay\_tests
+    help
+    mem
+    setdate
+    time
+    reset
+\end{DoxyPre}
+
 \end{DoxyItemize}
 
-\subsubsection*{For lif help type {\itshape lif help}}
+\#\#\# For lif help type {\itshape lif help} 
+\begin{DoxyPre}
+lif help
+    lif add lifimage lifname from\_ascii\_file
+    lif addbin lifimage lifname from\_lif\_file
+    lif create lifimage label directory\_sectors sectors
+    lif createdisk lifimage label model
+    lif del lifimage name
+    lif dir lifimage
+    lif extract lifimage lifname to\_ascii\_file
+    lif extractbin lifimage lifname to\_lif\_file
+        extracts a file into a sigle file LIF image
+    lif rename lifimage oldlifname newlifname
+    Use -d after first keyword 'lif' above for LIF filesystem debugging
+\end{DoxyPre}
 
-$<$verbatim$>$ lif help lif add lifimage lifname from\+\_\+ascii\+\_\+file lif addbin lifimage lifname from\+\_\+lif\+\_\+file lif create lifimage label directory\+\_\+sectors sectors lif createdisk lifimage label model lif del lifimage name lif dir lifimage lif extract lifimage lifname to\+\_\+ascii\+\_\+file lif extractbin lifimage lifname to\+\_\+lif\+\_\+file extracts a file into a sigle file L\+IF image lif rename lifimage oldlifname newlifname Use -\/d after first keyword \textquotesingle{}lif\textquotesingle{} above for L\+IF filesystem debugging $<$/verbatim$>$
 
-\subsubsection*{For posix help type {\itshape posix help}}
+\#\#\# For posix help type {\itshape posix help} 
+\begin{DoxyPre}
+posix help
+    posix prefix is optional
+    posix cat file [-p]
+    posix cd dir
+    posix copy file1 file2
+    posix ls dir [-l]
+    posix mkdir dir
+    posix page NN
+    posix pwd
+    posix rm file
+    posix rmdir dir
+    posix rename old new
+\end{DoxyPre}
 
-$<$verbatim$>$ posix help posix prefix is optional posix cat file \mbox{[}-\/p\mbox{]} posix cd dir posix copy file1 file2 posix ls dir \mbox{[}-\/l\mbox{]} posix mkdir dir posix page NN posix pwd posix rm file posix rmdir dir posix rename old new $<$/verbatim$>$
 
 \subsubsection*{For setting the time type {\itshape setdate} it will prompt for the date as shown below}
 
@@ -1762,39 +1810,83 @@ $<$verbatim$>$ posix help posix prefix is optional posix cat file \mbox{[}-\/p\m
 \item This also sets the R\+TC
 \end{DoxyItemize}
 
-$<$verbatim$>$ setdate Enter date Y\+Y\+YY MM DD H\+H\+:\+MM\+:SS $>$2020 04 09 16\+:54\+:00 rtc seconds\+: 1586451240 rtc time\+: Thu Apr 9 16\+:54\+:00 2020 clk seconds\+: 1586451240 clk time\+: Thu Apr 9 16\+:54\+:00 2020 $<$/verbatim$>$
+
+\begin{DoxyPre}
+setdate
+    Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
+    rtc seconds: 1586451240
+    rtc time:    Thu Apr  9 16:54:00 2020
+    clk seconds: 1586451240
+    clk time:    Thu Apr  9 16:54:00 2020
+\end{DoxyPre}
+
 
 \subsubsection*{For displaying the time and the rtc time type {\itshape time}}
 
-$<$verbatim$>$ time rtc seconds\+: 1586451317 rtc time\+: Thu Apr 9 16\+:55\+:17 2020 clk seconds\+: 1586451317 clk time\+: Thu Apr 9 16\+:55\+:17 2020 $<$/verbatim$>$
+
+\begin{DoxyPre}
+time
+    rtc seconds: 1586451317
+    rtc time:    Thu Apr  9 16:55:17 2020
+    clk seconds: 1586451317
+    clk time:    Thu Apr  9 16:55:17 2020
+\end{DoxyPre}
+
 
 \subsubsection*{hp85disk setting debug options}
 
-$<$verbatim$>$ Debug level truth table You can OR the following values together to add debug processing Values in the table are in H\+EX (base 16) \begin{DoxyVerb}1 ERRORS - all GPIB and device related error message
-  # Note: Will not suppress Startup and configuration errors
-2 PPR states
-4 GPIB command and control byte messages
-8 GPIB main loop command data and control line states
-\end{DoxyVerb}
- 10 T\+O\+DO D\+E\+V\+I\+CE support states -\/ ie missing code 20 D\+E\+V\+I\+CE states, A\+M\+I\+GO,S\+S80,P\+R\+I\+N\+T\+ER 40 disk I/O read/write times 80 G\+P\+IB read/write string timeing 100 G\+P\+IB read / write string byte decode 200 Parallel Poll bus status debug 400 L\+IF utitilites debugging
 
-Debug settings Examples\+: \begin{DoxyVerb}Most usefull debuggging messages
-(1+2+8+10+20)
-DEBUG = 0x3D
+\begin{DoxyPre}
+Debug level truth table
+  You can OR the following values together to add debug processing
+  Values in the table are in HEX (base 16)\end{DoxyPre}
 
-Main device states and errors only
-(1+2+10+20)
-DEBUG = 0x33
 
-Main device states and errors only
-(1+2+10+20)
-DEBUG = 0x33
 
-Errors and TODO messages only
-(1+10)
-DEBUG = 0x11
-\end{DoxyVerb}
- $<$/verbatim$>$
+\begin{DoxyPre}      1 ERRORS - all GPIB and device related error message
+        \# Note: Will not suppress Startup and configuration errors
+      2 PPR states
+      4 GPIB command and control byte messages
+      8 GPIB main loop command data and control line states
+     10 TODO DEVICE support states - ie missing code
+     20 DEVICE states, AMIGO,SS80,PRINTER
+     40 disk I/O read/write times
+     80 GPIB read/write string timeing
+    100 GPIB read / write string byte decode
+    200 Parallel Poll bus status debug
+    400 LIF utitilites debugging
+\end{DoxyPre}
+
+
+\#\#\# hp85disk setting debug options 
+\begin{DoxyPre}
+Debug settings Examples:\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Most usefull debuggging messages
+    (1+2+8+10+20)
+    DEBUG = 0x3D\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Main device states and errors only
+    (1+2+10+20)
+    DEBUG = 0x33\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Main device states and errors only
+    (1+2+10+20)
+    DEBUG = 0x33\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Errors and TODO messages only
+    (1+10)
+    DEBUG = 0x11
+\end{DoxyPre}
+
 
 
 

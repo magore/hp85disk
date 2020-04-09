@@ -957,7 +957,7 @@ ___
 
 ### For main help menu type *help*
  * Any word that has help after it will give help for that command
-<verbatim>
+<pre>
 help
 	Stand alone version of LIF utilities for linux
 	HP85 Disk and Device Emulator
@@ -977,10 +977,10 @@ help
 	setdate
 	time
 	reset
-</verbatim>
+</pre>
 
 ### For lif help type *lif help*
-<verbatim>
+<pre>
 lif help
     lif add lifimage lifname from_ascii_file
     lif addbin lifimage lifname from_lif_file
@@ -993,10 +993,10 @@ lif help
     	extracts a file into a sigle file LIF image
     lif rename lifimage oldlifname newlifname
     Use -d after first keyword 'lif' above for LIF filesystem debugging
-</verbatim>
+</pre>
 
 ### For posix help type *posix help*
-<verbatim>
+<pre>
 posix help
     posix prefix is optional
     posix cat file [-p]
@@ -1009,33 +1009,33 @@ posix help
     posix rm file
     posix rmdir dir
     posix rename old new
-</verbatim>
+</pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
   * This also sets the RTC
 
-<verbatim>
+<pre>
 setdate
     Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
     rtc seconds: 1586451240
     rtc time:    Thu Apr  9 16:54:00 2020
     clk seconds: 1586451240
     clk time:    Thu Apr  9 16:54:00 2020
-</verbatim>
+</pre>
 
 ### For displaying the time and the rtc time type *time*
 
-<verbatim>
+<pre>
 time
     rtc seconds: 1586451317
     rtc time:    Thu Apr  9 16:55:17 2020
     clk seconds: 1586451317
     clk time:    Thu Apr  9 16:55:17 2020
-    </verbatim>
+</pre>
 
 ###  hp85disk setting debug options
 
-<verbatim>
+<pre>
 Debug level truth table
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
@@ -1052,7 +1052,10 @@ Debug level truth table
 	100 GPIB read / write string byte decode
 	200 Parallel Poll bus status debug
 	400 LIF utitilites debugging
+</pre>
 
+###  hp85disk setting debug options
+<pre>
 Debug settings Examples:
 
 	Most usefull debuggging messages
@@ -1070,7 +1073,7 @@ Debug settings Examples:
 	Errors and TODO messages only
 	(1+10)
 	DEBUG = 0x11
-</verbatim>
+</pre>
 
 ___ 
 
