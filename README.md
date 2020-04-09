@@ -579,7 +579,7 @@ ___
 ## make help documentation
   * make help
     * List the common commands to compile/install/flash the code
-<verbatim>
+<pre>
         Building Commands
             make install           - builds and installs all command line utilities
             make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
@@ -603,7 +603,7 @@ ___
                Makes booting and flashing process slightly faster
             make flash-isp-noboot         - build and flash the code using an ISP
             make flash-isp-noboot-release - flash the release code using an ISP
-</verbatim>
+</pre>
 
 ## Example building with Makefile overrides
   * make flash      AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3 
@@ -1056,22 +1056,22 @@ Debug level truth table
 
 ###  hp85disk setting debug options
 <pre>
-Debug settings Examples:
+# Debug settings Examples:
 
-	Most usefull debuggging messages
-	(1+2+8+10+20)
+# Most usefull debuggging messages
+# (1+2+8+10+20)
 	DEBUG = 0x3D
 
-	Main device states and errors only
-	(1+2+10+20)
+# Main device states and errors only
+# (1+2+10+20)
 	DEBUG = 0x33
 
-	Main device states and errors only
-	(1+2+10+20)
+# Main device states and errors only
+# (1+2+10+20)
 	DEBUG = 0x33
 
-	Errors and TODO messages only
-	(1+10)
+# Errors and TODO messages only
+# (1+10)
 	DEBUG = 0x11
 </pre>
 
