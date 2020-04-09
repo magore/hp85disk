@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "user_config.h"
 
 #include <string.h>
-#include "stringsup.h"
+#include "parsing.h"
 
 // =============================================
 ///@brief print seperator
