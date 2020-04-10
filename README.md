@@ -1473,16 +1473,15 @@ ___
             * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
                * We can get a drive block count using: *mkcfg -m DRIVE -b*
 <pre>
-		mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
-		   -list lists all of the drives in the hpdir.ini file
-		   -a disk address 0..7
-		   -m model only, list hpdisk.cfg format disk configuration
-		   -s short hpdisk.cfg format
-		   -b only display block count, you can can use this with -m
-		   -d only display computed directory block count, you can use this with -m
-		   -f NAME specifies the LIF image name for this drive
+    		mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+    		   -list lists all of the drives in the hpdir.ini file
+    		   -a disk address 0..7
+    		   -m model only, list hpdisk.cfg format disk configuration
+    		   -s short hpdisk.cfg format
+    		   -b only display block count, you can can use this with -m
+    		   -d only display computed directory block count, you can use this with -m
+		       -f NAME specifies the LIF image name for this drive
 </pre>
-
       * BUILD SCRIPTS
         * [sdcard/scripts](sdcard/scripts)
           * Scripts that help creating LIF images from multiple files
@@ -1535,4 +1534,5 @@ ___
           * GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files
             * NOTE: my lif utilities can translate between ASCII files and files in GET/SAVE format 
         * Various notes 
+
 ___
