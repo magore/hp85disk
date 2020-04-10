@@ -634,7 +634,7 @@ ___
         * 0 = V1 hardware without the GPIB buffers 
         * 1 = V2 hardware with GPIB buffers 
     * RTC_SUPPORT for Real Time Clock
-	  * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
+      * 1 = RTC support for a DS1307 command compatible RTC chip - the DS3231 is the 3.3V version
         * This will time stamp plot files and add time stamps inside lif images
         * The emulator will still work if this is set but not attache to an RTC
     * F_CPU  
@@ -729,7 +729,7 @@ ___
     * Using the Hewlett-Packard Series 80 - PRM-85 by Bill Kotaska
     * This makes my HP85A look like and HP85B 
       * I can also use the normal mass storage ROM if I limit to AMIGO drives.
-	  * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
+      * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
        * old site http://vintagecomputers.site90.net/hp85/prm85.htm
 
 ## Initializing a disk images
@@ -903,7 +903,7 @@ lif help
     lif dir lifimage
     lif extract lifimage lifname to_ascii_file
     lif extractbin lifimage lifname to_lif_file
-    	extracts a file into a sigle file LIF image
+        extracts a file into a sigle file LIF image
     lif rename lifimage oldlifname newlifname
     Use -d after first keyword 'lif' above for LIF filesystem debugging
 </pre>
@@ -956,18 +956,18 @@ time
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
   Warning: Setting too many can cause HP85 timeouts while displaying messages
-	  1 ERRORS - all GPIB and device related error message
-	    # Note: Will not suppress Startup and configuration errors
-	  2 PPR states
-	  4 GPIB command and control byte messages
-	  8 GPIB main loop command data and control line states
-	 10 TODO DEVICE support states - ie missing code
-	 20 DEVICE states, AMIGO,SS80,PRINTER
-	 40 disk I/O read/write times
-	 80 GPIB read/write string timeing
-	100 GPIB read / write string byte decode
-	200 Parallel Poll bus status debug
-	400 LIF utitilites debugging
+      1 ERRORS - all GPIB and device related error message
+        # Note: Will not suppress Startup and configuration errors
+      2 PPR states
+      4 GPIB command and control byte messages
+      8 GPIB main loop command data and control line states
+     10 TODO DEVICE support states - ie missing code
+     20 DEVICE states, AMIGO,SS80,PRINTER
+     40 disk I/O read/write times
+     80 GPIB read/write string timeing
+    100 GPIB read / write string byte decode
+    200 Parallel Poll bus status debug
+    400 LIF utitilites debugging
 </pre>
 
 ###  hp85disk setting debug examples
@@ -977,7 +977,7 @@ time
 <pre>
     # Errors and TODO messages only
     # (1+10)
-	DEBUG = 0x11
+    DEBUG = 0x11
 </pre>
 
   * Interactively
@@ -995,7 +995,7 @@ time
 <pre>
     # Most usefull debuggging messages
     # (1+2+8+10+20)
-	DEBUG = 0x3D
+    DEBUG = 0x3D
 </pre>
 
   * Interactively
@@ -1004,7 +1004,7 @@ time
 <pre>
     # Errors, TODO and SD Card Read/Write times
     # (1+10+40)
-	DEBUG = 0x51
+    DEBUG = 0x51
 </pre>
 
 ___ 
@@ -1471,16 +1471,17 @@ ___
         * [sdcard/mkcfg](sdcard/mkcfg)
           * Build a [hpdisk.cfg](sdcard/hpdisk.cfg) disk record 
             * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
-               * We can get a drive block count using: *mkcfg -m DRIVE -b*
+               * We can get drive block count *mkcfg -m DRIVE -b*
 <pre>
-    		mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
-    		   -list lists all of the drives in the hpdir.ini file
-    		   -a disk address 0..7
-    		   -m model only, list hpdisk.cfg format disk configuration
-    		   -s short hpdisk.cfg format
-    		   -b only display block count, you can can use this with -m
-    		   -d only display computed directory block count, you can use this with -m
-		       -f NAME specifies the LIF image name for this drive
+            mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+               -list lists all of the drives in the hpdir.ini file
+               -a disk address 0..7
+               -m model only, list hpdisk.cfg format disk configuration
+               -s short hpdisk.cfg format
+               -b only display block count, you can can use this with -m
+               -d only display computed directory block count, you can use this with -m
+               -f NAME specifies the LIF image name for this drive
+</pre>
 </pre>
       * BUILD SCRIPTS
         * [sdcard/scripts](sdcard/scripts)
@@ -1507,10 +1508,10 @@ ___
           * [RWTEST.TXT](sdcard/ASCII-files/RWTEST.TXT)
           * [TREK85A.TXT](sdcard/ASCII-files/TREK85A.TXT)
           * [ASCII-files/TREK85](sdcard/ASCII-files/TREK85)
-	        * TREK85 by Martin Hepperle, December 2015
-	          * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+            * TREK85 by Martin Hepperle, December 2015
+              * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
             * [author.txt](sdcard/TREK85/author.txt)  
-            * [readme.txt](sdcrad/TREK85/readme.txt)	
+            * [readme.txt](sdcrad/TREK85/readme.txt)    
             * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
             * [TREK85.BAS](sdcard/TREK85/TREK85.BAS)
             * [trek.lif](sdcard/TREK85/trek.lif)
@@ -1524,8 +1525,8 @@ ___
         * [RWTESTB.lif](sdcard/ASCII-files/RWTESTB.lif)
           * Reads,Writes and Purge tests
         * [TREK85B.lif](sdcard/ASCII-files/TREK85B.lif)
-	      * TREK85 by Martin Hepperle, December 2015
-	        * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+          * TREK85 by Martin Hepperle, December 2015
+            * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
       * LIF images with multiple programs in them
         * [LIF-volumes](sdcard/LIF-volumes)
           * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
