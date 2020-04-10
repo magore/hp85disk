@@ -1491,7 +1491,7 @@ ___
     * Scripts that help creating LIF images from multiple files
     * Used by [create_images.sh](create_images.sh)
 ### My HP85 bus trace files
-    * [sdcard/traces](sdcard/traces)
+  * [sdcard/traces](sdcard/traces)
     * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
     * AMIGO trace file when connected to HP85 showing odd out of order command issue
   * [gpib_reset.txt](sdcard/traces/gpib_reset.txt)
