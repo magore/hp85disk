@@ -15,24 +15,6 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Other resources for disk image manipulation}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive project has very useful references an tools for creating HP disk L\+IF images compatible with this project}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Dir project has very useful references and tools for manipulating HP disk L\+IF images compatible with this project}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt See L\+IF Documentation -\/ part of the H\+P\+Dir project for details}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\end{DoxyItemize}
-
 \subsection*{Features for the H\+P85 in brief}
 
 
@@ -93,6 +75,8 @@ L\+IF manipulation tools are built in see later sections for details
 
 
 
+\subsection*{Credits}
+
 \subsection*{H\+P85 disk emulator V2 circuit board layout design by (C) 2018-\/2020 Jay Hamlin}
 
 \subsection*{V2 board design -\/ github V2 branch targets the new board by Jay Hamlin}
@@ -131,6 +115,149 @@ L\+IF manipulation tools are built in see later sections for details
 \end{DoxyItemize}
 \item R\+TC D\+S1307 for time stamping
 \item My original board design without G\+P\+IB buffers
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{HP Disk Emulator by Anders Gustafsson}
+
+{\bfseries Anders Gustafsson was extremely helpful in getting my project started.} {\bfseries In fact I really owe the very existence of this project to his original project}
+\begin{DoxyItemize}
+\item You can visit his project at this site\+:
+\begin{DoxyItemize}
+\item \href{http://www.dalton.ax/hpdisk}{\tt http\+://www.\+dalton.\+ax/hpdisk}
+\item \href{http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html}{\tt http\+://www.\+elektor-\/labs.\+com/project/hpdisk-\/an-\/sd-\/based-\/disk-\/emulator-\/for-\/gpib-\/instruments-\/and-\/computers.\+13693.\+html}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+He provided me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
+
+\subsection*{The H\+P\+Dir project was a vital documentation source for this project}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
+\end{DoxyItemize}
+
+\subsection*{My Tele\+Disk to L\+IF conversion utility}
+
+
+\begin{DoxyItemize}
+\item I used the lzss libraries and documentation by Dave Dunfield
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
+\end{DoxyItemize}
+\item Documentation from Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO \href{lif/teledisk}{\tt lif/teledisk}
+\end{DoxyItemize}
+\item \href{lif/teledisk}{\tt lif/teledisk}
+\begin{DoxyItemize}
+\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
+\item Important Contributions (My converted would not have been possible without these)
+\begin{DoxyItemize}
+\item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
+\item \href{lif/teledisk/td0_lzss.h}{\tt td0\+\_\+lzss.\+h}
+\item \href{lif/teledisk/td0_lzss.c}{\tt td0\+\_\+lzss.\+c}
+\begin{DoxyItemize}
+\item L\+Z\+SS decoder
+\end{DoxyItemize}
+\item \href{lif/teledisk/td0notes.txt}{\tt td0notes.\+txt}
+\begin{DoxyItemize}
+\item Teledisk Documentation
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
+\begin{DoxyItemize}
+\item Tele\+Disk documentation
+\end{DoxyItemize}
+\item See his github project
+\begin{DoxyItemize}
+\item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Other resources for disk image manipulation}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive project has very useful references an tools for creating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Dir project has very useful references and tools for manipulating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt See L\+IF Documentation -\/ part of the H\+P\+Dir project for details}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Fat\+FS}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}fatfs\mbox{]}(fatfs)
+\begin{DoxyItemize}
+\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Optiboot}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}optiboot\mbox{]}(optiboot)
+\begin{DoxyItemize}
+\item Optiboot Bootloader for Arduino and Atmel A\+VR
+\item See\+: \href{https://github.com/Optiboot/optiboot}{\tt https\+://github.\+com/\+Optiboot/optiboot}
+\begin{DoxyItemize}
+\item \href{https://github.com/Optiboot/optiboot/blob/master/LICENSE}{\tt G\+P\+Lv2 W\+RT}
+\item https\+://github.com/\+Optiboot/optiboot/blob/master/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+R\+E\+A\+D\+M\+E\char`\"{}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{S\+T\+K500v1 uploader for Optiboot}
+
+
+\begin{DoxyItemize}
+\item \href{uploader/flasher.py}{\tt uploader/flasher.\+py}
+\begin{DoxyItemize}
+\item Optiboot uploader by Mathieu Virbel \href{mailto:mat@meltingrocks.com}{\tt mat@meltingrocks.\+com}
+\begin{DoxyItemize}
+\item Original repository \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
+\begin{DoxyItemize}
+\item Authors main github page \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
+\begin{DoxyItemize}
+\item \href{https://meltingrocks.com/}{\tt https\+://meltingrocks.\+com/}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} branch V2
+\begin{DoxyItemize}
+\item Changed to atmega1284p
+\item Jay converted code to Python 3
+\item Added Baudrate argument
+\item Added code to send \char`\"{}reset\char`\"{} command to hp85disk firmware to drop into optiboot
+\item Fixed Intel 02 segment record calculation
 \end{DoxyItemize}
 
 
@@ -594,9 +721,7 @@ On the H\+P85 type
 
 \subsection*{Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}
 
-\subsubsection*{Software}
-
-\paragraph*{Linux}
+\subsubsection*{Linux}
 
 
 \begin{DoxyItemize}
@@ -604,108 +729,28 @@ On the H\+P85 type
 \begin{DoxyItemize}
 \item Most modern Linux systems have Python3
 \end{DoxyItemize}
-\item {\itshape pip3 install py\+Serial} \paragraph*{Windows}
+\item {\itshape pip3 install py\+Serial}
 \end{DoxyItemize}
+
+\subsubsection*{Windows}
 
 
 \begin{DoxyItemize}
 \item Windows -\/ Install Python 3.\+7 from Windows App Store
 \begin{DoxyItemize}
-\item Open Power\+Sehll window -\/ always use Power\+Shell under Windows for running Python3
+\item Open Power\+Shell window -\/ always use Power\+Shell under Windows for running Python3
 \end{DoxyItemize}
 \item pip3 install py\+Serial
 \end{DoxyItemize}
 
-\subsubsection*{Discover your serial port name}
+
+
+
+
+\subsection*{Discover your serial port name}
 
 
 \begin{DoxyItemize}
-\item You must determine the name of the serial port when the hp85disk emulator is plugged in
-\begin{DoxyItemize}
-\item Linux example\+: /dev/tty\+U\+S\+B0
-\item Windows Example\+: C\+O\+M3
-\end{DoxyItemize}
-\item Note\+: The emulator uses the following port settings
-\begin{DoxyItemize}
-\item B\+A\+UD rate 115200
-\item Data bits\+: 8 Data bits NO parity
-\item Flow control N\+O\+NE
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Connecting to hp85disk interactive serial port}
-
-
-\begin{DoxyItemize}
-\item Note\+: Use the same port name as with the flashing example
-\item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
-\begin{DoxyItemize}
-\item Note\+: serial.\+tools.\+miniterm does N\+OT work on Windows W\+SL Ubuntu -\/ yet so use the term script
-\end{DoxyItemize}
-\item For a help menu type {\itshape help}
-\begin{DoxyItemize}
-\item Most of the commands listed by help also hale help of there own
-\begin{DoxyItemize}
-\item Example\+: {\itshape lif help}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Updating hp85disk firmware with built in bootloader}
-
-
-\begin{DoxyItemize}
-\item Only do this if recommended
-\item Note\+: The github hp85disk V2 branch project includes disk images and precompiled firmeare
-\begin{DoxyItemize}
-\item Compiled Firmware hex file \href{release/build}{\tt release/build}
-\item SD Card Disk Images \href{release/sdcard}{\tt release/sdcard}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\paragraph*{Linux firmware update example}
-
-
-\begin{DoxyItemize}
-\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex
-\end{DoxyItemize}
-
-\paragraph*{Windows firmware update example}
-
-
-\begin{DoxyItemize}
-\item python3 uploader/flasher.\+py 1152000 C\+O\+M3 release/build/gpib.\+hex
-\end{DoxyItemize}
-
-\paragraph*{Mac firmware update example}
-
-
-\begin{DoxyItemize}
-\item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
-\end{DoxyItemize}
-
-\paragraph*{Firmware update problems -\/ if you get a failure during updating}
-
-
-\begin{DoxyItemize}
-\item Type in the flashing command, see above, but {\itshape without} pressing Enter yet
-\begin{DoxyItemize}
-\item Now hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
-\begin{DoxyItemize}
-\item You have a short Window after releasing R\+E\+S\+ET to Press Enter
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-
-
-
-\subsection*{Connecting a computer to the hp85disk emulator -\/ finding the emulator serial port}
-
-
-\begin{DoxyItemize}
-\item Follow the instructins in the previous steps for M\+I\+N\+I\+M\+AL setup or F\+U\+LL setup later on below
 \item Make sure you have a miniusb cable handy
 \item Make sure the emulator is not connected to your P\+C/\+Mac
 \end{DoxyItemize}
@@ -731,12 +776,95 @@ On the H\+P85 type
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsubsection*{Connect the emulator}
+\subsubsection*{Connect the emulator to discover the port name}
 
 
 \begin{DoxyItemize}
 \item Attach the miniusb cable to your computer and rerun the listports.\+py
 \item The new port that appeared is the emulator port
+\begin{DoxyItemize}
+\item Linux example\+: /dev/tty\+U\+S\+B0
+\item Windows Example\+: C\+O\+M3
+\end{DoxyItemize}
+\item Note\+: The emulator uses the following port settings
+\begin{DoxyItemize}
+\item B\+A\+UD rate 115200
+\item Data bits\+: 8 Data bits NO parity
+\item Flow control N\+O\+NE
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Connecting to hp85disk interactive serial port}
+
+
+\begin{DoxyItemize}
+\item Note\+: Use the same port name as with the flashing example
+\item python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 1152000
+\begin{DoxyItemize}
+\item Note\+: serial.\+tools.\+miniterm does N\+OT work on Windows W\+SL Ubuntu -\/ yet so use the term script
+\end{DoxyItemize}
+\item For a help menu type {\itshape help}
+\begin{DoxyItemize}
+\item Most of the commands listed by help also have help of there own
+\begin{DoxyItemize}
+\item Example\+: {\itshape lif help}
+\end{DoxyItemize}
+\item There is a full list of the commands later in this R\+E\+A\+D\+ME
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Updating hp85disk firmware with built in bootloader}
+
+
+\begin{DoxyItemize}
+\item Only do this if recommended
+\item Note\+: The github hp85disk V2 branch project includes disk images and precompiled firmeare
+\begin{DoxyItemize}
+\item Compiled Firmware hex file \href{release/build}{\tt release/build}
+\item SD Card Disk Images \href{release/sdcard}{\tt release/sdcard}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Linux firmware update example}
+
+
+\begin{DoxyItemize}
+\item python3 uploader/flasher.\+py 1152000 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex
+\end{DoxyItemize}
+
+\subsubsection*{Windows firmware update example}
+
+
+\begin{DoxyItemize}
+\item python3 uploader/flasher.\+py 1152000 C\+O\+M3 release/build/gpib.\+hex
+\end{DoxyItemize}
+
+\subsubsection*{Mac firmware update example}
+
+
+\begin{DoxyItemize}
+\item python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex
+\end{DoxyItemize}
+
+\subsubsection*{Firmware update problems -\/ if you get a failure during updating}
+
+
+\begin{DoxyItemize}
+\item Type in the flashing command, see above, but {\itshape without} pressing Enter yet
+\begin{DoxyItemize}
+\item Now hold down R\+E\+S\+ET on the hp85disk board -\/ release R\+E\+S\+ET and press Enter quickly
+\begin{DoxyItemize}
+\item You have a short Window after releasing R\+E\+S\+ET to Press Enter
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
@@ -747,7 +875,7 @@ On the H\+P85 type
 
 
 \begin{DoxyItemize}
-\item P\+L\+E\+A\+SE R\+E\+A\+D! The steps below are required O\+N\+LY if\+:
+\item These steps, below, are required O\+N\+LY if\+:
 \begin{DoxyItemize}
 \item You plan to build the standalone lif and mkcfg utilities
 \item You plan on making code changes
@@ -857,11 +985,11 @@ Note\+: For Windows install the W\+SL and Ubuntu App first -\/ see previous sect
 
 
 
-\subsubsection*{Connecting to hp85disk emulator}
+\subsection*{Connecting to hp85disk emulator}
 
 \subsubsection*{Find the serial port device name for the hp85disk emulator}
 
-Note\+: You need to find the serial port name when hp85disk emulator is attached to your computer.
+
 \begin{DoxyItemize}
 \item Make sure the emulator is not connected to your P\+C/\+Mac
 \item Open a terminal window on Ubuntu
@@ -919,7 +1047,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 \begin{DoxyItemize}
-\item Note\+: you can override make built into programmer and port settings -\/ see Makefile notes
+\item Note\+: in the steps below you can override defaults
 \begin{DoxyItemize}
 \item You just tack on settings like this to the end of the make command line
 \begin{DoxyItemize}
@@ -1019,10 +1147,11 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 
-\subsection*{Makefile configuration for hp85disk emulator -\/ options for original V1 and new V2 boards}
+\subsection*{Makefile configuration options for hp85disk emulator}
 
 
 \begin{DoxyItemize}
+\item These options apply to original V1 and new V2 boards
 \item Update B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and R\+T\+C\+\_\+\+S\+U\+P\+P\+O\+RT for your platform
 \begin{DoxyItemize}
 \item A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE is the name of A\+VR as it is known by avrdude
@@ -1198,7 +1327,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 
-\subsection*{Building Doxygen documentation for the project -\/ optional}
+\subsection*{Building Doxygen documentation for the project -\/ O\+P\+T\+I\+O\+N\+AL}
 
 
 \begin{DoxyItemize}
@@ -1210,11 +1339,11 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 
 
-\subsection*{Notes concerning using the H\+P85 with the hp85disk emulator}
+\subsection*{Using the hp85disk emulator}
 
 
 \begin{DoxyItemize}
-\item Here we focus just on H\+P85 B\+A\+S\+IC command
+\item Here we focus just on H\+P85 B\+A\+S\+IC commands
 \item See \href{hpdisk/hpdisk.cfg}{\tt hpdisk.\+cfg} for configuration settings and setting and documentation.
 \begin{DoxyItemize}
 \item Printer capture is configured currently for my H\+P54645D scope
@@ -1272,14 +1401,14 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 
 \subsection*{Initializing a disk images}
 
-\subsection*{H\+P85B only feature or H\+P84A with P\+R\+M-\/85 board}
+\subsection*{H\+P85B only feature or H\+P88A with P\+R\+M-\/85 board}
 
 
 \begin{DoxyItemize}
+\item I\+M\+P\+O\+R\+T\+A\+NT N\+O\+TE\+: formatting is done automatically by the hp85disk lif image creation commands
 \item The H\+P85B and E\+MS R\+OM has extended I\+N\+I\+T\+I\+A\+L\+I\+ZE attributes
-\item I\+M\+P\+O\+R\+T\+A\+NT N\+O\+TE\+: this is already done for you with the hp85disk emulator
 \begin{DoxyItemize}
-\item If you do it it this erases everything on the emulated image
+\item If you use the h\+P85 I\+N\+I\+T\+I\+A\+L\+I\+ZE commands it erases everything on the emulated image
 \item You can however backup up copy existing L\+IF images to another folder on the SD Card for safe keeping
 \begin{DoxyItemize}
 \item There is a built in copy command for this 
@@ -1294,7 +1423,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{H\+P85A and H\+P85B feature}
+\subsection*{H\+P85A and H\+P85B examples}
 
 
 \begin{DoxyItemize}
@@ -1599,19 +1728,23 @@ time
 \end{DoxyPre}
 
 
-\subsubsection*{hp85disk setting debug options}
+\subsection*{hp85disk setting debug options}
 
 
 \begin{DoxyItemize}
-\item Debug level truth table 
+\item Debugging is can be controlled in two ways
+\begin{DoxyItemize}
+\item The D\+E\+B\+UG statement in \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg}
+\item Typing the command in interactively
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\#\#\# hp85disk D\+E\+B\+UG truth table 
 \begin{DoxyPre}
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
-  Warning: Enabling too many debug messages can cause HP85 timeouts\end{DoxyPre}
-
-
-
-\begin{DoxyPre}      1 ERRORS - all GPIB and device related error message
+  Warning: Setting too many can cause HP85 timeouts while displaying messages
+      1 ERRORS - all GPIB and device related error message
         \# Note: Will not suppress Startup and configuration errors
       2 PPR states
       4 GPIB command and control byte messages
@@ -1625,167 +1758,55 @@ time
     400 LIF utitilites debugging
 \end{DoxyPre}
 
-\end{DoxyItemize}
 
 \subsubsection*{hp85disk setting debug examples}
 
-gpib debug = 0x11 
+
+\begin{DoxyItemize}
+\item Interactively
+\begin{DoxyItemize}
+\item {\itshape gpib debug = 0x11}
+\end{DoxyItemize}
+\item In the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file 
 \begin{DoxyPre}
-    Errors and TODO messages only
-    (1+10)
+    \# Errors and TODO messages only
+    \# (1+10)
     DEBUG = 0x11
 \end{DoxyPre}
 
-
-gpib debug = 0x33 
+\item Interactively
+\begin{DoxyItemize}
+\item {\itshape gpib debug = 0x33}
+\end{DoxyItemize}
+\item In the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file 
 \begin{DoxyPre}
-    Main device states and errors only
-    (1+2+10+20)
+    \# Main device states and errors only
+    \# (1+2+10+20)
     DEBUG = 0x33
 \end{DoxyPre}
 
-
-gpib debug = 0x3D 
+\item Interactively
+\begin{DoxyItemize}
+\item {\itshape gpib debug = 0x3D}
+\end{DoxyItemize}
+\item In the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file 
 \begin{DoxyPre}
-    Most usefull debuggging messages
-    (1+2+8+10+20)
+    \# Most usefull debuggging messages
+    \# (1+2+8+10+20)
     DEBUG = 0x3D
 \end{DoxyPre}
 
-
-gpib debug = 0x51 
+\item Interactively
+\begin{DoxyItemize}
+\item {\itshape gpib debug = 0x51}
+\end{DoxyItemize}
+\item In the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file 
 \begin{DoxyPre}
-    Errors, TODO and SD Card Read/Write times
-    (1+10+40)
+    \# Errors, TODO and SD Card Read/Write times
+    \# (1+10+40)
     DEBUG = 0x51
 \end{DoxyPre}
 
-
-
-
-
-
-\subsection*{Credits}
-
-\subsection*{HP Disk Emulator by Anders Gustafsson}
-
-{\bfseries Anders Gustafsson was extremely helpful in getting my project started.} {\bfseries In fact I really owe the very existence of this project to his original project}
-\begin{DoxyItemize}
-\item You can visit his project at this site\+:
-\begin{DoxyItemize}
-\item \href{http://www.dalton.ax/hpdisk}{\tt http\+://www.\+dalton.\+ax/hpdisk}
-\item \href{http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html}{\tt http\+://www.\+elektor-\/labs.\+com/project/hpdisk-\/an-\/sd-\/based-\/disk-\/emulator-\/for-\/gpib-\/instruments-\/and-\/computers.\+13693.\+html}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-He provided me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
-
-\subsection*{The H\+P\+Dir project was a vital documentation source for this project}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
-\end{DoxyItemize}
-
-\subsection*{My Tele\+Disk to L\+IF conversion utility}
-
-
-\begin{DoxyItemize}
-\item I used the lzss libraries and documentation by Dave Dunfield
-\begin{DoxyItemize}
-\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
-\end{DoxyItemize}
-\item Documentation from Jean-\/\+Franois D\+EL N\+E\+RO
-\begin{DoxyItemize}
-\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO \href{lif/teledisk}{\tt lif/teledisk}
-\end{DoxyItemize}
-\item \href{lif/teledisk}{\tt lif/teledisk}
-\begin{DoxyItemize}
-\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
-\item Important Contributions (My converted would not have been possible without these)
-\begin{DoxyItemize}
-\item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
-\begin{DoxyItemize}
-\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
-\item \href{lif/teledisk/td0_lzss.h}{\tt td0\+\_\+lzss.\+h}
-\item \href{lif/teledisk/td0_lzss.c}{\tt td0\+\_\+lzss.\+c}
-\begin{DoxyItemize}
-\item L\+Z\+SS decoder
-\end{DoxyItemize}
-\item \href{lif/teledisk/td0notes.txt}{\tt td0notes.\+txt}
-\begin{DoxyItemize}
-\item Teledisk Documentation
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation
-\begin{DoxyItemize}
-\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO
-\begin{DoxyItemize}
-\item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
-\begin{DoxyItemize}
-\item Tele\+Disk documentation
-\end{DoxyItemize}
-\item See his github project
-\begin{DoxyItemize}
-\item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Fat\+FS}
-
-
-\begin{DoxyItemize}
-\item \mbox{[}fatfs\mbox{]}(fatfs)
-\begin{DoxyItemize}
-\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Optiboot}
-
-
-\begin{DoxyItemize}
-\item \mbox{[}optiboot\mbox{]}(optiboot)
-\begin{DoxyItemize}
-\item Optiboot Bootloader for Arduino and Atmel A\+VR
-\item See\+: \href{https://github.com/Optiboot/optiboot}{\tt https\+://github.\+com/\+Optiboot/optiboot}
-\begin{DoxyItemize}
-\item \href{https://github.com/Optiboot/optiboot/blob/master/LICENSE}{\tt G\+P\+Lv2 W\+RT}
-\item https\+://github.com/\+Optiboot/optiboot/blob/master/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+R\+E\+A\+D\+M\+E\char`\"{}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{S\+T\+K500v1 uploader for Optiboot}
-
-
-\begin{DoxyItemize}
-\item \href{uploader/flasher.py}{\tt uploader/flasher.\+py}
-\begin{DoxyItemize}
-\item Optiboot uploader by Mathieu Virbel \href{mailto:mat@meltingrocks.com}{\tt mat@meltingrocks.\+com}
-\begin{DoxyItemize}
-\item Original repository \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
-\begin{DoxyItemize}
-\item Authors main github page \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
-\begin{DoxyItemize}
-\item \href{https://meltingrocks.com/}{\tt https\+://meltingrocks.\+com/}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} branch V2
-\begin{DoxyItemize}
-\item Changed to atmega1284p
-\item Jay converted code to Python 3
-\item Added Baudrate argument
-\item Added code to send \char`\"{}reset\char`\"{} command to hp85disk firmware to drop into optiboot
-\item Fixed Intel 02 segment record calculation
 \end{DoxyItemize}
 
 

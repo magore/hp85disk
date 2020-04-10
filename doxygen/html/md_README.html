@@ -78,21 +78,6 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>Other resources for disk image manipulation</h2>
-<ul>
-<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-<li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">See LIF Documentation - part of the HPDir project for details</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-</ul>
 <h2>Features for the HP85 in brief</h2>
 <ul>
 <li>NOTE: Later sections go into more detail</li>
@@ -141,6 +126,7 @@ README</h1>
 <li>The emulator RTC can be used for time stamping plot files and files added into lif images</li>
 </ul>
 <hr/>
+<h2>Credits</h2>
 <h2>HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin</h2>
 <h2>V2 board design - github V2 branch targets the new board by Jay Hamlin</h2>
 <h2>V2 code is now working</h2>
@@ -171,6 +157,122 @@ README</h1>
 </li>
 <li>RTC DS1307 for time stamping</li>
 <li>My original board design without GPIB buffers</li>
+</ul>
+<hr/>
+<h2>HP Disk Emulator by Anders Gustafsson</h2>
+<p><b>Anders Gustafsson was extremely helpful in getting my project started.</b> <b>In fact I really owe the very existence of this project to his original project</b></p><ul>
+<li>You can visit his project at this site:<ul>
+<li><a href="http://www.dalton.ax/hpdisk">http://www.dalton.ax/hpdisk</a></li>
+<li><a href="http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html">http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html</a></li>
+</ul>
+</li>
+</ul>
+<p>He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b> NOTE: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. NOT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for GPIB ,AMIGO and SS80 state tracking.</p>
+<h2>The HPDir project was a vital documentation source for this project</h2>
+<ul>
+<li><a href="http://www.hp9845.net/9845/projects/hpdir">http://www.hp9845.net/9845/projects/hpdir</a></li>
+</ul>
+<h2>My TeleDisk to LIF conversion utility</h2>
+<ul>
+<li>I used the lzss libraries and documentation by Dave Dunfield<ul>
+<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
+</ul>
+</li>
+<li>Documentation from Jean-Franois DEL NERO<ul>
+<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO <a href="lif/teledisk">lif/teledisk</a></li>
+</ul>
+</li>
+<li><a href="lif/teledisk">lif/teledisk</a><ul>
+<li>My TELEDISK LIF extractor</li>
+<li>Important Contributions (My converted would not have been possible without these)<ul>
+<li>Dave Dunfield, LZSS Code and TeleDisk documentation<ul>
+<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
+<li><a href="lif/teledisk/td0_lzss.h">td0_lzss.h</a></li>
+<li><a href="lif/teledisk/td0_lzss.c">td0_lzss.c</a><ul>
+<li>LZSS decoder</li>
+</ul>
+</li>
+<li><a href="lif/teledisk/td0notes.txt">td0notes.txt</a><ul>
+<li>Teledisk Documentation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Jean-Franois DEL NERO, TeleDisk Documentation<ul>
+<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO<ul>
+<li><a href="lif/teledisk/wteledsk.htm">wteledsk.htm</a><ul>
+<li>TeleDisk documentation</li>
+</ul>
+</li>
+<li>See his github project<ul>
+<li><a href="https://github.com/jfdelnero/libhxcfe">https://github.com/jfdelnero/libhxcfe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Other resources for disk image manipulation</h3>
+<ul>
+<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
+<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
+<li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">See LIF Documentation - part of the HPDir project for details</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
+</ul>
+<h2>FatFS</h2>
+<ul>
+<li>[fatfs](fatfs)<ul>
+<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes</li>
+</ul>
+</li>
+</ul>
+<h2>Optiboot</h2>
+<ul>
+<li>[optiboot](optiboot)<ul>
+<li>Optiboot Bootloader for Arduino and Atmel AVR</li>
+<li>See: <a href="https://github.com/Optiboot/optiboot">https://github.com/Optiboot/optiboot</a><ul>
+<li><a href="https://github.com/Optiboot/optiboot/blob/master/LICENSE">GPLv2 WRT</a></li>
+<li>https://github.com/Optiboot/optiboot/blob/master/README.md "README"</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>STK500v1 uploader for Optiboot</h2>
+<ul>
+<li><a href="uploader/flasher.py">uploader/flasher.py</a><ul>
+<li>Optiboot uploader by Mathieu Virbel <a href="#" onclick="location.href='mai'+'lto:'+'mat'+'@m'+'elt'+'in'+'gro'+'ck'+'s.c'+'om'; return false;">mat@m<span style="display: none;">.nosp@m.</span>elti<span style="display: none;">.nosp@m.</span>ngroc<span style="display: none;">.nosp@m.</span>ks.c<span style="display: none;">.nosp@m.</span>om</a><ul>
+<li>Original repository <a href="https://github.com/tito/stk500">https://github.com/tito/stk500</a><ul>
+<li>Authors main github page <a href="https://github.com/tito/stk500">https://github.com/tito/stk500</a><ul>
+<li><a href="https://meltingrocks.com/">https://meltingrocks.com/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>See: <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a> branch V2</p><ul>
+<li>Changed to atmega1284p</li>
+<li>Jay converted code to Python 3</li>
+<li>Added Baudrate argument</li>
+<li>Added code to send "reset" command to hp85disk firmware to drop into optiboot</li>
+<li>Fixed Intel 02 segment record calculation</li>
 </ul>
 <hr/>
 <h2>Important notes about SD Card requirments for the emulator</h2>
@@ -555,87 +657,25 @@ README</h1>
 </ul>
 <hr/>
 <h2>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</h2>
-<h3>Software</h3>
-<h4>Linux</h4>
+<h3>Linux</h3>
 <ul>
 <li><em>apt-get install python3</em><ul>
 <li>Most modern Linux systems have Python3</li>
 </ul>
 </li>
-<li><em>pip3 install pySerial</em> <h4>Windows</h4>
-</li>
+<li><em>pip3 install pySerial</em></li>
 </ul>
+<h3>Windows</h3>
 <ul>
 <li>Windows - Install Python 3.7 from Windows App Store<ul>
-<li>Open PowerSehll window - always use PowerShell under Windows for running Python3</li>
+<li>Open PowerShell window - always use PowerShell under Windows for running Python3</li>
 </ul>
 </li>
 <li>pip3 install pySerial</li>
 </ul>
-<h3>Discover your serial port name</h3>
-<ul>
-<li>You must determine the name of the serial port when the hp85disk emulator is plugged in<ul>
-<li>Linux example: /dev/ttyUSB0</li>
-<li>Windows Example: COM3</li>
-</ul>
-</li>
-<li>Note: The emulator uses the following port settings<ul>
-<li>BAUD rate 115200</li>
-<li>Data bits: 8 Data bits NO parity</li>
-<li>Flow control NONE</li>
-</ul>
-</li>
-</ul>
-<h3>Connecting to hp85disk interactive serial port</h3>
-<ul>
-<li>Note: Use the same port name as with the flashing example</li>
-<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000<ul>
-<li>Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script</li>
-</ul>
-</li>
-<li>For a help menu type <em>help</em><ul>
-<li>Most of the commands listed by help also hale help of there own<ul>
-<li>Example: <em>lif help</em></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3>Updating hp85disk firmware with built in bootloader</h3>
-<ul>
-<li>Only do this if recommended</li>
-<li>Note: The github hp85disk V2 branch project includes disk images and precompiled firmeare<ul>
-<li>Compiled Firmware hex file <a href="release/build">release/build</a></li>
-<li>SD Card Disk Images <a href="release/sdcard">release/sdcard</a></li>
-</ul>
-</li>
-</ul>
-<h4>Linux firmware update example</h4>
-<ul>
-<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex</li>
-</ul>
-<h4>Windows firmware update example</h4>
-<ul>
-<li>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</li>
-</ul>
-<h4>Mac firmware update example</h4>
-<ul>
-<li>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</li>
-</ul>
-<h4>Firmware update problems - if you get a failure during updating</h4>
-<ul>
-<li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
-<li>Now hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
-<li>You have a short Window after releasing RESET to Press Enter</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <hr/>
-<h2>Connecting a computer to the hp85disk emulator - finding the emulator serial port</h2>
+<h2>Discover your serial port name</h2>
 <ul>
-<li>Follow the instructins in the previous steps for MINIMAL setup or FULL setup later on below</li>
 <li>Make sure you have a miniusb cable handy</li>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
 </ul>
@@ -654,15 +694,74 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h3>Connect the emulator</h3>
+<h3>Connect the emulator to discover the port name</h3>
 <ul>
 <li>Attach the miniusb cable to your computer and rerun the listports.py</li>
-<li>The new port that appeared is the emulator port</li>
+<li>The new port that appeared is the emulator port<ul>
+<li>Linux example: /dev/ttyUSB0</li>
+<li>Windows Example: COM3</li>
+</ul>
+</li>
+<li>Note: The emulator uses the following port settings<ul>
+<li>BAUD rate 115200</li>
+<li>Data bits: 8 Data bits NO parity</li>
+<li>Flow control NONE</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2>Connecting to hp85disk interactive serial port</h2>
+<ul>
+<li>Note: Use the same port name as with the flashing example</li>
+<li>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000<ul>
+<li>Note: serial.tools.miniterm does NOT work on Windows WSL Ubuntu - yet so use the term script</li>
+</ul>
+</li>
+<li>For a help menu type <em>help</em><ul>
+<li>Most of the commands listed by help also have help of there own<ul>
+<li>Example: <em>lif help</em></li>
+</ul>
+</li>
+<li>There is a full list of the commands later in this README</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2>Updating hp85disk firmware with built in bootloader</h2>
+<ul>
+<li>Only do this if recommended</li>
+<li>Note: The github hp85disk V2 branch project includes disk images and precompiled firmeare<ul>
+<li>Compiled Firmware hex file <a href="release/build">release/build</a></li>
+<li>SD Card Disk Images <a href="release/sdcard">release/sdcard</a></li>
+</ul>
+</li>
+</ul>
+<h3>Linux firmware update example</h3>
+<ul>
+<li>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex</li>
+</ul>
+<h3>Windows firmware update example</h3>
+<ul>
+<li>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</li>
+</ul>
+<h3>Mac firmware update example</h3>
+<ul>
+<li>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</li>
+</ul>
+<h3>Firmware update problems - if you get a failure during updating</h3>
+<ul>
+<li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
+<li>Now hold down RESET on the hp85disk board - release RESET and press Enter quickly<ul>
+<li>You have a short Window after releasing RESET to Press Enter</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <h2>Requirements for compiling and flashing the FULL hp85disk project</h2>
 <ul>
-<li>PLEASE READ! The steps below are required ONLY if:<ul>
+<li>These steps, below, are required ONLY if:<ul>
 <li>You plan to build the standalone lif and mkcfg utilities</li>
 <li>You plan on making code changes</li>
 <li>You wish to use an In System Programmer that requires avrdude to work</li>
@@ -752,9 +851,9 @@ README</h1>
 <li>git pull</li>
 </ul>
 <hr/>
-<h3>Connecting to hp85disk emulator</h3>
+<h2>Connecting to hp85disk emulator</h2>
 <h3>Find the serial port device name for the hp85disk emulator</h3>
-<p>Note: You need to find the serial port name when hp85disk emulator is attached to your computer.</p><ul>
+<ul>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
 <li>Open a terminal window on Ubuntu<ul>
 <li>Ubuntu App under Windows</li>
@@ -799,7 +898,7 @@ README</h1>
 </ul>
 <h3>Compile and updating Firmware - assumes you have compiletools installed</h3>
 <ul>
-<li>Note: you can override make built into programmer and port settings - see Makefile notes<ul>
+<li>Note: in the steps below you can override defaults<ul>
 <li>You just tack on settings like this to the end of the make command line<ul>
 <li>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</li>
 <li>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</li>
@@ -883,8 +982,9 @@ README</h1>
 <li><em>PORT</em> must be set to the hp85disk emulator serial port name</li>
 </ul>
 <hr/>
-<h2>Makefile configuration for hp85disk emulator - options for original V1 and new V2 boards</h2>
+<h2>Makefile configuration options for hp85disk emulator</h2>
 <ul>
+<li>These options apply to original V1 and new V2 boards</li>
 <li>Update BAUD, PORT, BOARD, PPR_REVERSE_BITS and RTC_SUPPORT for your platform<ul>
 <li>AVRDUDE_DEVICE is the name of AVR as it is known by avrdude<ul>
 <li>m1284</li>
@@ -1023,15 +1123,15 @@ README</h1>
 <li>make flash-isp AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb</li>
 </ul>
 <hr/>
-<h2>Building Doxygen documentation for the project - optional</h2>
+<h2>Building Doxygen documentation for the project - OPTIONAL</h2>
 <ul>
 <li><em>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</em></li>
 <li><em>If you omit this you will have to update the [Makefile](Makefile) to omit the steps</em></li>
 </ul>
 <hr/>
-<h2>Notes concerning using the HP85 with the hp85disk emulator</h2>
+<h2>Using the hp85disk emulator</h2>
 <ul>
-<li>Here we focus just on HP85 BASIC command</li>
+<li>Here we focus just on HP85 BASIC commands</li>
 <li>See <a href="hpdisk/hpdisk.cfg">hpdisk.cfg</a> for configuration settings and setting and documentation.<ul>
 <li>Printer capture is configured currently for my HP54645D scope<ul>
 <li>The following example works for an HP85 attached to the emulator via GPIB bus.<ul>
@@ -1084,11 +1184,11 @@ README</h1>
 </li>
 </ul>
 <h2>Initializing a disk images</h2>
-<h2>HP85B only feature or HP84A with PRM-85 board</h2>
+<h2>HP85B only feature or HP88A with PRM-85 board</h2>
 <ul>
-<li>The HP85B and EMS ROM has extended INITIALIZE attributes</li>
-<li>IMPORTANT NOTE: this is already done for you with the hp85disk emulator<ul>
-<li>If you do it it this erases everything on the emulated image</li>
+<li>IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands</li>
+<li>The HP85B and EMS ROM has extended INITIALIZE attributes<ul>
+<li>If you use the hP85 INITIALIZE commands it erases everything on the emulated image</li>
 <li>You can however backup up copy existing LIF images to another folder on the SD Card for safe keeping<ul>
 <li>There is a built in copy command for this <pre>
   INITIALIZE "AMIGO1",":D700",14,1
@@ -1101,7 +1201,7 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h2>HP85A and HP85B feature</h2>
+<h2>HP85A and HP85B examples</h2>
 <ul>
 <li>Note lines with a "#' as the first non blank character are just my comments<ul>
 <li>A bad habit from writing too many bash scripts</li>
@@ -1350,12 +1450,19 @@ time
     rtc time:    Thu Apr  9 16:55:17 2020
     clk seconds: 1586451317
     clk time:    Thu Apr  9 16:55:17 2020
-</pre><h3>hp85disk setting debug options</h3>
+</pre><h2>hp85disk setting debug options</h2>
 <ul>
-<li><p class="startli">Debug level truth table </p><pre>
+<li>Debugging is can be controlled in two ways<ul>
+<li>The DEBUG statement in <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a></li>
+<li>Typing the command in interactively</li>
+</ul>
+</li>
+</ul>
+<p>### hp85disk DEBUG truth table </p><pre>
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
-  Warning: Enabling too many debug messages can cause HP85 timeouts</pre><pre>      1 ERRORS - all GPIB and device related error message
+  Warning: Setting too many can cause HP85 timeouts while displaying messages
+      1 ERRORS - all GPIB and device related error message
         # Note: Will not suppress Startup and configuration errors
       2 PPR states
       4 GPIB command and control byte messages
@@ -1367,126 +1474,44 @@ time
     100 GPIB read / write string byte decode
     200 Parallel Poll bus status debug
     400 LIF utitilites debugging
-</pre></li>
+</pre><h3>hp85disk setting debug examples</h3>
+<ul>
+<li>Interactively<ul>
+<li><em>gpib debug = 0x11</em></li>
 </ul>
-<h3>hp85disk setting debug examples</h3>
-<p>gpib debug = 0x11 </p><pre>
-    Errors and TODO messages only
-    (1+10)
+</li>
+<li>In the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file <pre>
+    # Errors and TODO messages only
+    # (1+10)
     DEBUG = 0x11
-</pre><p>gpib debug = 0x33 </p><pre>
-    Main device states and errors only
-    (1+2+10+20)
+</pre></li>
+<li>Interactively<ul>
+<li><em>gpib debug = 0x33</em></li>
+</ul>
+</li>
+<li>In the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file <pre>
+    # Main device states and errors only
+    # (1+2+10+20)
     DEBUG = 0x33
-</pre><p>gpib debug = 0x3D </p><pre>
-    Most usefull debuggging messages
-    (1+2+8+10+20)
+</pre></li>
+<li>Interactively<ul>
+<li><em>gpib debug = 0x3D</em></li>
+</ul>
+</li>
+<li>In the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file <pre>
+    # Most usefull debuggging messages
+    # (1+2+8+10+20)
     DEBUG = 0x3D
-</pre><p>gpib debug = 0x51 </p><pre>
-    Errors, TODO and SD Card Read/Write times
-    (1+10+40)
+</pre></li>
+<li>Interactively<ul>
+<li><em>gpib debug = 0x51</em></li>
+</ul>
+</li>
+<li>In the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file <pre>
+    # Errors, TODO and SD Card Read/Write times
+    # (1+10+40)
     DEBUG = 0x51
-</pre><hr/>
-<h2>Credits</h2>
-<h2>HP Disk Emulator by Anders Gustafsson</h2>
-<p><b>Anders Gustafsson was extremely helpful in getting my project started.</b> <b>In fact I really owe the very existence of this project to his original project</b></p><ul>
-<li>You can visit his project at this site:<ul>
-<li><a href="http://www.dalton.ax/hpdisk">http://www.dalton.ax/hpdisk</a></li>
-<li><a href="http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html">http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html</a></li>
-</ul>
-</li>
-</ul>
-<p>He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b> NOTE: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. NOT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for GPIB ,AMIGO and SS80 state tracking.</p>
-<h2>The HPDir project was a vital documentation source for this project</h2>
-<ul>
-<li><a href="http://www.hp9845.net/9845/projects/hpdir">http://www.hp9845.net/9845/projects/hpdir</a></li>
-</ul>
-<h2>My TeleDisk to LIF conversion utility</h2>
-<ul>
-<li>I used the lzss libraries and documentation by Dave Dunfield<ul>
-<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
-</ul>
-</li>
-<li>Documentation from Jean-Franois DEL NERO<ul>
-<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO <a href="lif/teledisk">lif/teledisk</a></li>
-</ul>
-</li>
-<li><a href="lif/teledisk">lif/teledisk</a><ul>
-<li>My TELEDISK LIF extractor</li>
-<li>Important Contributions (My converted would not have been possible without these)<ul>
-<li>Dave Dunfield, LZSS Code and TeleDisk documentation<ul>
-<li>Copyright 2007-2008 Dave Dunfield All rights reserved.</li>
-<li><a href="lif/teledisk/td0_lzss.h">td0_lzss.h</a></li>
-<li><a href="lif/teledisk/td0_lzss.c">td0_lzss.c</a><ul>
-<li>LZSS decoder</li>
-</ul>
-</li>
-<li><a href="lif/teledisk/td0notes.txt">td0notes.txt</a><ul>
-<li>Teledisk Documentation</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Jean-Franois DEL NERO, TeleDisk Documentation<ul>
-<li>Copyright (C) 2006-2014 Jean-Franois DEL NERO<ul>
-<li><a href="lif/teledisk/wteledsk.htm">wteledsk.htm</a><ul>
-<li>TeleDisk documentation</li>
-</ul>
-</li>
-<li>See his github project<ul>
-<li><a href="https://github.com/jfdelnero/libhxcfe">https://github.com/jfdelnero/libhxcfe</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>FatFS</h2>
-<ul>
-<li>[fatfs](fatfs)<ul>
-<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes</li>
-</ul>
-</li>
-</ul>
-<h2>Optiboot</h2>
-<ul>
-<li>[optiboot](optiboot)<ul>
-<li>Optiboot Bootloader for Arduino and Atmel AVR</li>
-<li>See: <a href="https://github.com/Optiboot/optiboot">https://github.com/Optiboot/optiboot</a><ul>
-<li><a href="https://github.com/Optiboot/optiboot/blob/master/LICENSE">GPLv2 WRT</a></li>
-<li>https://github.com/Optiboot/optiboot/blob/master/README.md "README"</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>STK500v1 uploader for Optiboot</h2>
-<ul>
-<li><a href="uploader/flasher.py">uploader/flasher.py</a><ul>
-<li>Optiboot uploader by Mathieu Virbel <a href="#" onclick="location.href='mai'+'lto:'+'mat'+'@m'+'elt'+'in'+'gro'+'ck'+'s.c'+'om'; return false;">mat@m<span style="display: none;">.nosp@m.</span>elti<span style="display: none;">.nosp@m.</span>ngroc<span style="display: none;">.nosp@m.</span>ks.c<span style="display: none;">.nosp@m.</span>om</a><ul>
-<li>Original repository <a href="https://github.com/tito/stk500">https://github.com/tito/stk500</a><ul>
-<li>Authors main github page <a href="https://github.com/tito/stk500">https://github.com/tito/stk500</a><ul>
-<li><a href="https://meltingrocks.com/">https://meltingrocks.com/</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>See: <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a> branch V2</p><ul>
-<li>Changed to atmega1284p</li>
-<li>Jay converted code to Python 3</li>
-<li>Added Baudrate argument</li>
-<li>Added code to send "reset" command to hp85disk firmware to drop into optiboot</li>
-<li>Fixed Intel 02 segment record calculation</li>
+</pre></li>
 </ul>
 <hr/>
 <h1>Abbreviations</h1>
@@ -2303,7 +2328,7 @@ time
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 10 2020 16:06:11 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 10 2020 16:37:45 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
