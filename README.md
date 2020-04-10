@@ -67,20 +67,20 @@ ___
 ___ 
 
 ## HP Disk Emulator by Anders Gustafsson
-<b>Anders Gustafsson was extremely helpful in getting my project started.</b>
-<b>In fact I really owe the very existence of this project to his original project</b>
+*Anders Gustafsson was extremely helpful in getting my project started.*
+*In fact I really owe the very existence of this project to his original project*
  * You can visit his project at this site:
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
 
-He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b>
+He provided me his current source code code and mainy details of his project *which I am very thankful for.*
 NOTE: 
  As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
  I did this one part at a time as I learned the protocols and specifications.
  NOT because of any problems with his original work. 
  Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
 
-## The HPDir project was a vital documentation source for this project</b>
+## The HPDir project was a vital documentation source for this project*
    * <http://www.hp9845.net/9845/projects/hpdir>
 
 
@@ -1013,11 +1013,11 @@ ___
 
 # Abbreviations
 Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
- * <b>SS80</b>
- * <b>CS80</b>
- * <b>A or Amigo</b>
- * <b>HP-IP</b>
- * <b>HP-IP Tutorial</b>
+ * *SS80*
+ * *CS80*
+ * *A or Amigo*
+ * *HP-IP*
+ * *HP-IP Tutorial*
 
 ___
 
@@ -1471,7 +1471,7 @@ ___
         * [sdcard/mkcfg](sdcard/mkcfg)
           * Build a [hpdisk.cfg](sdcard/hpdisk.cfg) disk record 
             * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
-               * We can get a drive block count using: <b>mkcfg -m DRIVE -b</b>
+               * We can get a drive block count using: *mkcfg -m DRIVE -b*
 <pre>
 		mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
 		   -list lists all of the drives in the hpdir.ini file
