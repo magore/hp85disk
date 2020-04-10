@@ -71,6 +71,40 @@ ___
 
 ___ 
 
+
+## Important notes about SD Card requirments for the emulator
+  * Must be formatted FAT32
+  * The HP85 is sensitive to long read/write delays that some cards can cause problems with
+    * You want SD Cards with fast random writes
+    * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
+      * There is a huge difference in various cards on the market. 
+      * Look for the cards with the best 4K random write times
+      * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
+        * Specifically look at best 4k random write - faster is better.
+    * Why slow SD Cards are a problem?
+      * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
+      * Details:
+        * First step: hp85disk emulator writes to the SD Card
+        * Internally the SD card finds an internal page where our data will go
+        * Next the SD Card reads the page into internal RAM (recall it can be much over a megabyte)
+        * Next the SD Card modifies the internal RAM with our data
+        * Next the SD Card erases the page
+        * Lastly the page is written to the SD Card and this takes time
+          * Trivia - SD cards must to erase a page before updating because of the flash memory cell design
+      * Why is this delay critical to the hp85disk emulator?
+        * Too long of a delay can cause a timeout when writing to disk
+        * SD cards internal hardware is mostly optimized for sequential writing 
+          * Their buffers and timing are designed primarily for writing consecutive blocks one after another
+            * When writing in consecutive order they can queue up many requests and combine them into one operation - a huge savings in time - done all in hardware
+            * Writing to blocks in random locations break this optimization very badly
+              * Therefore some SD Cards can take so long the HP85 can timeout
+          * The hp85disk emulator does not have enough memory to work around this issue
+            * If we could load the entire disk image into ram AND we had more for many write buffers
+              * Then we could optimize the SD Card writing process to avoid the problems
+            * The AVR we use has only 20K of ram for everything
+              * Perhaps some day we will port this project to a Raspberry PI with add on hardware
+                * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
+
 ___ 
 
 
@@ -251,90 +285,14 @@ ___
 
 ___ 
 
-
-
-## Important notes about SD Card requirments for the emulator
-  * Must be formatted FAT32
-  * The HP85 is sensitive to long read/write delays that some cards can cause problems with
-    * You want SD Cards with fast random writes
-    * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
-      * There is a huge difference in various cards on the market. 
-      * Look for the cards with the best 4K random write times
-      * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
-        * Specifically look at best 4k random write - faster is better.
-    * Why slow SD Cards are a problem?
-      * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
-      * Details:
-        * First step: hp85disk emulator writes to the SD Card
-        * Internally the SD card finds an internal page where our data will go
-        * Next the SD Card reads the page into internal RAM (recall it can be much over a megabyte)
-        * Next the SD Card modifies the internal RAM with our data
-        * Next the SD Card erases the page
-        * Lastly the page is written to the SD Card and this takes time
-          * Trivia - SD cards must to erase a page before updating because of the flash memory cell design
-      * Why is this delay critical to the hp85disk emulator?
-        * Too long of a delay can cause a timeout when writing to disk
-        * SD cards internal hardware is mostly optimized for sequential writing 
-          * Their buffers and timing are designed primarily for writing consecutive blocks one after another
-            * When writing in consecutive order they can queue up many requests and combine them into one operation - a huge savings in time - done all in hardware
-            * Writing to blocks in random locations break this optimization very badly
-              * Therefore some SD Cards can take so long the HP85 can timeout
-          * The hp85disk emulator does not have enough memory to work around this issue
-            * If we could load the entire disk image into ram AND we had more for many write buffers
-              * Then we could optimize the SD Card writing process to avoid the problems
-            * The AVR we use has only 20K of ram for everything
-              * Perhaps some day we will port this project to a Raspberry PI with add on hardware
-                * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
-
-
-___ 
-
-
-## Requirements for building the hp85 disk project
-  * PLEASE READ! All steps below are intended ONLY REQUIRED IF YOU PLAN TO MAKE CODE CHANGES
-  * [I have provided compiled files under the folder release](release)
-    * You just need to flash the files
-
-## Building Doxygen documentation for the project - optional
-  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
-  * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
-
-___ 
-
-
 ## Tested Operating systems
 ### Linux
   * I used Ubuntu 18.04,16.04LTS and 14.04LTS when developing the code
-    * NOTE: It should be possible to setup the same build with Windows
-      * There are a number of build environments for Windows that will work 
-        * I hope to provide instructions soon
   * I have instructions for flashing the firmware below
 ### Windows
-  * I have instructions for flashing the firmware below
+  * I used Windows WSL and the Ubuntu App details below
 
 ___ 
-
-
-## Connecting a computer to the hp85disk emulator - finding the emulator serial port
-  * Follow the instructions of firmware updating dependencies for installing Python and libraries
-  * Make sure you have a miniusb cable handy
-  * Make sure the emulator is not connected to your PC/Mac
-
-### Linux
-  * Open a terminal window
-    * Run the following command 
-    * *python3 uploader/listports.py*
-
-### Windows
-  * Open a PowerShell window
-    * Run the following command *python3 uploader\listports.py*
-
-### Connect the emulator 
-  * Attach the miniusb cable to your computer and rerun the listports.py
-  * The new port that appeared is the emulator port
-
-___ 
-
 
 ## Firmware updating and connecting to the hp85disk emulator with MINIMAL software install
 ### Software
@@ -385,6 +343,36 @@ ___
       * You have a short Window after releasing RESET to Press Enter
 
 ___ 
+
+
+## Connecting a computer to the hp85disk emulator - finding the emulator serial port
+  * Follow the instructins in the previous steps for MINIMAL setup or FULL setup later on below
+  * Make sure you have a miniusb cable handy
+  * Make sure the emulator is not connected to your PC/Mac
+
+### Linux
+  * Open a terminal window
+    * Run the following command 
+    * *python3 uploader/listports.py*
+
+### Windows
+  * Open a PowerShell window
+    * Run the following command *python3 uploader\listports.py*
+
+### Connect the emulator 
+  * Attach the miniusb cable to your computer and rerun the listports.py
+  * The new port that appeared is the emulator port
+
+___ 
+
+
+## Requirements for compiling and flashing the FULL hp85disk project
+  * PLEASE READ!  The steps below are required ONLY if:
+   * You plan to build the standalone lif and mkcfg utilities
+   * You plan on making code changes
+   * You wish to use an In System Programmer that requires avrdude to work
+  * [I have provided compiled HEX files under the folder release](release)
+    * You just need to flash the files - see MINIMAL notes above
 
 
 ## Full installation Ubuntu and Windows software for building hp85disk and building related applications
@@ -584,29 +572,41 @@ ___
   * make help
     * List the common commands to compile/install/flash the code
 <pre>
-        Building Commands
-            make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-            make release           - builds all code and copies files to the release folder
-            make clean             - cleans all generated files
-            make                   - builds all code
-        
-        Programming using an 6 wire ISP - installs optiboot
-            make install_optiboot  - install optiboot boot loaded using an ISP
-            make flash-isp         - build and flash the code using an ISP
-            make flash-isp-release - flash the release code using an ISP
-            make verify-isp        - verify code using an ISP
-            make verify-isp-release- verify release code using an ISP
-        
-        Programming using the built in optiboot programmer
-            make flash             - build and flash the code using built in optiboot programmer
-            make flash-release     - flash the release code using built in optiboot programmer
-        
-        Programming using an 6 wire ISP - WITHOUT installing optiboot
-            IMPORTANT - you will not be able to use non isp flashing modes later on
-               Makes booting and flashing process slightly faster
-            make flash-isp-noboot         - build and flash the code using an ISP
-            make flash-isp-noboot-release - flash the release code using an ISP
+    Building Commands
+        make install           - builds and installs all command line utilities
+        make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+        make release           - builds all code and copies files to the release folder
+        make clean             - cleans all generated files
+        make                   - builds all code
+    
+    Listing current cunfiguration settings
+        make config
+    
+    Overriding any configuration settings
+        You can add configuration values at the end of your make commands like this
+        make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0
+    
+    Programming using an 6 wire ISP - installs optiboot
+        make install_optiboot  - install optiboot boot loaded using an ISP
+        make flash-isp         - build and flash the code using an ISP
+        make flash-isp-release - flash the release code using an ISP
+        make verify-isp        - verify code using an ISP
+        make verify-isp-release- verify release code using an ISP
+    
+    Programming using the built in optiboot programmer
+        make flash             - build and flash the code using built in optiboot programmer
+        make flash-release     - flash the release code using built in optiboot programmer
+        IMPORTANT - if flashing fails try these steps
+            On your computer type in the make command without pressing Enter afterwards
+            Then press RESET the button on the hp85disk board and next press Enter quickly afterwards
+    
+    Programming using an 6 wire ISP - WITHOUT installing optiboot
+        IMPORTANT - you will not be able to use non isp flashing modes later on
+           Makes booting and flashing process slightly faster
+        make flash-isp-noboot         - build and flash the code using an ISP
+        make flash-isp-noboot-release - flash the release code using an ISP
+    
+    Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards
 </pre>
 
 ## Example building with Makefile overrides
@@ -615,6 +615,12 @@ ___
   * make flash-isp  AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb
 
 ___
+
+## Building Doxygen documentation for the project - optional
+  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
+  * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
+
+___ 
 
 
 ## Notes concerning using the HP85 with the hp85disk emulator
@@ -779,180 +785,6 @@ ___
        * I use this feature to help prioritize which commands I first implemented.
 ___
 
-
-## Credits
-## HP Disk Emulator by Anders Gustafsson
-<b>Anders Gustafsson was extremely helpful in getting my project started.</b>
-<b>In fact I really owe the very existence of this project to his original project</b>
- * You can visit his project at this site:
-   * <http://www.dalton.ax/hpdisk>
-   * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
-
-He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b>
-NOTE: 
- As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
- I did this one part at a time as I learned the protocols and specifications.
- NOT because of any problems with his original work. 
- Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
-
-## The HPDir project was a vital documentation source for this project</b>
-   * <http://www.hp9845.net/9845/projects/hpdir>
-
-
-## My TeleDisk to LIF conversion utility
- * I used the lzss libraries and documentation by Dave Dunfield
-   * Copyright 2007-2008 Dave Dunfield All rights reserved.
- * Documentation from Jean-Franois DEL NERO
-   * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-[lif/teledisk](lif/teledisk)
- * [lif/teledisk](lif/teledisk)
-   * My TELEDISK LIF extractor
-   * Important Contributions (My converted would not have been possible without these)
-     * Dave Dunfield, LZSS Code and TeleDisk documentation
-       * Copyright 2007-2008 Dave Dunfield All rights reserved.
-       * [td0_lzss.h](lif/teledisk/td0_lzss.h)
-       * [td0_lzss.c](lif/teledisk/td0_lzss.c)
-         * LZSS decoder
-       * [td0notes.txt](lif/teledisk/td0notes.txt)
-         * Teledisk Documentation
-     * Jean-Franois DEL NERO, TeleDisk Documentation
-       * Copyright (C) 2006-2014 Jean-Franois DEL NERO
-         * [wteledsk.htm](lif/teledisk/wteledsk.htm)
-           * TeleDisk documentation
-         * See his github project
-             * https://github.com/jfdelnero/libhxcfe
-
-## FatFS
-  * [fatfs](fatfs)
-    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
-
-## Optiboot
-  * [optiboot](optiboot)
-    * Optiboot Bootloader for Arduino and Atmel AVR
-    * See: https://github.com/Optiboot/optiboot
-       * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
-       * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
-
-## STK500v1 uploader for Optiboot
-  * [uploader/flasher.py](uploader/flasher.py)
-    * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
-      * Original repository https://github.com/tito/stk500
-        * Authors main github page https://github.com/tito/stk500
-          * https://meltingrocks.com/
-
-   * See: https://github.com/magore/hp85disk branch V2
-   * Changed to atmega1284p
-   * Jay converted code to Python 3
-   * Added Baudrate argument
-   * Added code to send "reset" command to hp85disk firmware to drop into optiboot
-   * Fixed Intel 02 segment record calculation
-
-
-
-___
-
-
-# Abbreviations
-Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
- * <b>SS80</b>
- * <b>CS80</b>
- * <b>A or Amigo</b>
- * <b>HP-IP</b>
- * <b>HP-IP Tutorial</b>
-
-___
-## Documentation References and related sources of information
- * Web Resources
-   * <http://www.hp9845.net>
-   * <http://www.hpmuseum.net>
-   * <http://www.hpmusuem.org>
-   * <http://bitsavers.trailing-edge.com>
-   * <http://en.wikipedia.org/wiki/IEEE-488>
-   * See [Documents folder](documents)
-
-___
-## Enhanced version of Tony Duell's lif_utils by Joachim
-   * <https://github.com/bug400/lifutils>
-   * Create/Modify LIF images
-
-___
-## CS80 References: ("CS80" is the short form used in the project)
-   * "CS/80 Instruction Set Programming Manual"
-   * Printed: APR 1983
-   * HP Part# 5955-3442
-   * See [Documents folder](documents)
-
-___
-## Amigo References: ("A" or "Amigo" is the short form used in the project)
-   * "Appendix A of 9895A Flexible Disc Memory Service Manual"
-   * HP Part# 09895-90030
-   * See [Documents folder](documents)
-
-___
-## HP-IB
-   * ("HP-IB" is the short form used in the project)
-   * "Condensed Description of the Hewlett Packard Interface Bus"
-   * Printed March 1975
-   * HP Part# 59401-90030
-   * See [Documents folder](documents)
-
-___
-## Tutorial Description of the Hewlett Packard Interface Bus
-   * ("HP-IB Tutorial" is the short form used in the project)
-   * <http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf>
-   * Printed January 1983
-   * <http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf>
-   * Printed 1987
-   * See [Documents folder](documents)
-
-___
-## GPIB / IEEE 488 Tutorial by Ian Poole
-    * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
-   * See [Documents folder](documents)
-
-___
-## HP 9133/9134 D/H/L References
-   * "HP 9133/9134 D/H/L Service Manual"
-   * HP Part# 5957-6560
-   * Printed: APRIL 1985, Edition 2
-   * See [Documents folder](documents)
-___
-
-## LIF File system Format
-   * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
-   * See [Documents folder](documents)
-___
-
-## Useful Utilities
-   * [HPDir HP Drive - Disk Image Manipulation](http://www.hp9845.net/9845/projects/hpdir)
-     * Copyright © 2010 A. Kückes
-   * [HPDrive Drive Emulators for Windows Platform](http://www.hp9845.net/9845/projects/hpdrive)
-     * Copyright © 2010 A. Kückes
-
-
-## GPIB Connector pinout by Anders Gustafsson in his hpdisk project
-  * http://www.dalton.ax/hpdisk/
-
-
-<pre>
-    Pin Name   Signal Description       Pin Name   Signal Description 
-    1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
-    2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
-    3   DIO3   Data Input/Output Bit 3  15  DIO7   Data Input/Output Bit 7 
-    4   DIO4   Data Input/Output Bit 4  16  DIO8   Data Input/Output Bit 8 
-    5   EIO    End-Or-Identify          17  REN    Remote Enable 
-    6   DAV    Data Valid               18  Shield Ground (DAV) 
-    7   NRFD   Not Ready For Data       19  Shield Ground (NRFD) 
-    8   NDAC   Not Data Accepted        20  Shield Ground (NDAC) 
-    9   IFC    Interface Clear          21  Shield Ground (IFC) 
-    10  SRQ    Service Request          22  Shield Ground (SRQ) 
-    11  ATN    Attention                23  Shield Ground (ATN) 
-    12  Shield Chassis Ground           24  Single GND Single Ground
-</pre>
-
-
-
-
 ## hp85disk Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
    * help
@@ -1089,6 +921,199 @@ time
 </pre>
 
 ___ 
+
+
+## Credits
+## HP Disk Emulator by Anders Gustafsson
+<b>Anders Gustafsson was extremely helpful in getting my project started.</b>
+<b>In fact I really owe the very existence of this project to his original project</b>
+ * You can visit his project at this site:
+   * <http://www.dalton.ax/hpdisk>
+   * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
+
+He provided me his current source code code and mainy details of his project <b>which I am very thankful for.</b>
+NOTE: 
+ As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
+ I did this one part at a time as I learned the protocols and specifications.
+ NOT because of any problems with his original work. 
+ Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
+
+## The HPDir project was a vital documentation source for this project</b>
+   * <http://www.hp9845.net/9845/projects/hpdir>
+
+
+## My TeleDisk to LIF conversion utility
+ * I used the lzss libraries and documentation by Dave Dunfield
+   * Copyright 2007-2008 Dave Dunfield All rights reserved.
+ * Documentation from Jean-Franois DEL NERO
+   * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+[lif/teledisk](lif/teledisk)
+ * [lif/teledisk](lif/teledisk)
+   * My TELEDISK LIF extractor
+   * Important Contributions (My converted would not have been possible without these)
+     * Dave Dunfield, LZSS Code and TeleDisk documentation
+       * Copyright 2007-2008 Dave Dunfield All rights reserved.
+       * [td0_lzss.h](lif/teledisk/td0_lzss.h)
+       * [td0_lzss.c](lif/teledisk/td0_lzss.c)
+         * LZSS decoder
+       * [td0notes.txt](lif/teledisk/td0notes.txt)
+         * Teledisk Documentation
+     * Jean-Franois DEL NERO, TeleDisk Documentation
+       * Copyright (C) 2006-2014 Jean-Franois DEL NERO
+         * [wteledsk.htm](lif/teledisk/wteledsk.htm)
+           * TeleDisk documentation
+         * See his github project
+             * https://github.com/jfdelnero/libhxcfe
+
+## FatFS
+  * [fatfs](fatfs)
+    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
+
+## Optiboot
+  * [optiboot](optiboot)
+    * Optiboot Bootloader for Arduino and Atmel AVR
+    * See: https://github.com/Optiboot/optiboot
+       * [GPLv2 WRT](https://github.com/Optiboot/optiboot/blob/master/LICENSE)
+       * [README](https://github.com/Optiboot/optiboot/blob/master/README.md)
+
+## STK500v1 uploader for Optiboot
+  * [uploader/flasher.py](uploader/flasher.py)
+    * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
+      * Original repository https://github.com/tito/stk500
+        * Authors main github page https://github.com/tito/stk500
+          * https://meltingrocks.com/
+
+   * See: https://github.com/magore/hp85disk branch V2
+   * Changed to atmega1284p
+   * Jay converted code to Python 3
+   * Added Baudrate argument
+   * Added code to send "reset" command to hp85disk firmware to drop into optiboot
+   * Fixed Intel 02 segment record calculation
+
+___
+
+
+# Abbreviations
+Within this project I have attempted to provide detailed references to manuals, listed below.  I have included short quotes and section and page# reference to these works.
+ * <b>SS80</b>
+ * <b>CS80</b>
+ * <b>A or Amigo</b>
+ * <b>HP-IP</b>
+ * <b>HP-IP Tutorial</b>
+
+___
+
+## Documentation References and related sources of information
+ * Web Resources
+   * <http://www.hp9845.net>
+   * <http://www.hpmuseum.net>
+   * <http://www.hpmusuem.org>
+   * <http://bitsavers.trailing-edge.com>
+   * <http://en.wikipedia.org/wiki/IEEE-488>
+   * See [Documents folder](documents)
+
+
+___
+
+
+## Enhanced version of Tony Duell's lif_utils by Joachim
+   * <https://github.com/bug400/lifutils>
+   * Create/Modify LIF images
+
+
+___
+
+
+## CS80 References: ("CS80" is the short form used in the project)
+   * "CS/80 Instruction Set Programming Manual"
+   * Printed: APR 1983
+   * HP Part# 5955-3442
+   * See [Documents folder](documents)
+
+
+___
+
+## Amigo References: ("A" or "Amigo" is the short form used in the project)
+   * "Appendix A of 9895A Flexible Disc Memory Service Manual"
+   * HP Part# 09895-90030
+   * See [Documents folder](documents)
+
+___
+
+
+## HP-IB
+   * ("HP-IB" is the short form used in the project)
+   * "Condensed Description of the Hewlett Packard Interface Bus"
+   * Printed March 1975
+   * HP Part# 59401-90030
+   * See [Documents folder](documents)
+
+
+___
+
+
+## Tutorial Description of the Hewlett Packard Interface Bus
+   * ("HP-IB Tutorial" is the short form used in the project)
+   * <http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf>
+   * Printed January 1983
+   * <http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf>
+   * Printed 1987
+   * See [Documents folder](documents)
+
+___
+
+
+## GPIB / IEEE 488 Tutorial by Ian Poole
+    * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
+   * See [Documents folder](documents)
+
+___
+
+
+## HP 9133/9134 D/H/L References
+   * "HP 9133/9134 D/H/L Service Manual"
+   * HP Part# 5957-6560
+   * Printed: APRIL 1985, Edition 2
+   * See [Documents folder](documents)
+
+___
+
+
+## LIF File system Format
+   * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
+   * See [Documents folder](documents)
+
+___
+
+
+## Useful Utilities
+   * [HPDir HP Drive - Disk Image Manipulation](http://www.hp9845.net/9845/projects/hpdir)
+     * Copyright © 2010 A. Kückes
+   * [HPDrive Drive Emulators for Windows Platform](http://www.hp9845.net/9845/projects/hpdrive)
+     * Copyright © 2010 A. Kückes
+
+
+## GPIB Connector pinout by Anders Gustafsson in his hpdisk project
+  * http://www.dalton.ax/hpdisk/
+
+
+<pre>
+    Pin Name   Signal Description       Pin Name   Signal Description 
+    1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
+    2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
+    3   DIO3   Data Input/Output Bit 3  15  DIO7   Data Input/Output Bit 7 
+    4   DIO4   Data Input/Output Bit 4  16  DIO8   Data Input/Output Bit 8 
+    5   EIO    End-Or-Identify          17  REN    Remote Enable 
+    6   DAV    Data Valid               18  Shield Ground (DAV) 
+    7   NRFD   Not Ready For Data       19  Shield Ground (NRFD) 
+    8   NDAC   Not Data Accepted        20  Shield Ground (NDAC) 
+    9   IFC    Interface Clear          21  Shield Ground (IFC) 
+    10  SRQ    Service Request          22  Shield Ground (SRQ) 
+    11  ATN    Attention                23  Shield Ground (ATN) 
+    12  Shield Chassis Ground           24  Single GND Single Ground
+</pre>
+
+___
 
 
 ## Main project files for hp85disk Project 

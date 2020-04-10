@@ -137,6 +137,71 @@ L\+IF manipulation tools are built in see later sections for details
 
 
 
+\subsection*{Important notes about SD Card requirments for the emulator}
+
+
+\begin{DoxyItemize}
+\item Must be formatted F\+A\+T32
+\item The H\+P85 is sensitive to long read/write delays that some cards can cause problems with
+\begin{DoxyItemize}
+\item You want SD Cards with fast random writes
+\item I have found that the San\+Disk Extreme and San\+Disk Extreme Pro cards work best.
+\begin{DoxyItemize}
+\item There is a huge difference in various cards on the market.
+\item Look for the cards with the best 4K random write times
+\item A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
+\begin{DoxyItemize}
+\item Specifically look at best 4k random write -\/ faster is better.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Why slow SD Cards are a problem?
+\begin{DoxyItemize}
+\item Summary\+: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page -\/ this can take too long
+\item Details\+:
+\begin{DoxyItemize}
+\item First step\+: hp85disk emulator writes to the SD Card
+\item Internally the SD card finds an internal page where our data will go
+\item Next the SD Card reads the page into internal R\+AM (recall it can be much over a megabyte)
+\item Next the SD Card modifies the internal R\+AM with our data
+\item Next the SD Card erases the page
+\item Lastly the page is written to the SD Card and this takes time
+\begin{DoxyItemize}
+\item Trivia -\/ SD cards must to erase a page before updating because of the flash memory cell design
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Why is this delay critical to the hp85disk emulator?
+\begin{DoxyItemize}
+\item Too long of a delay can cause a timeout when writing to disk
+\item SD cards internal hardware is mostly optimized for sequential writing
+\begin{DoxyItemize}
+\item Their buffers and timing are designed primarily for writing consecutive blocks one after another
+\begin{DoxyItemize}
+\item When writing in consecutive order they can queue up many requests and combine them into one operation -\/ a huge savings in time -\/ done all in hardware
+\item Writing to blocks in random locations break this optimization very badly
+\begin{DoxyItemize}
+\item Therefore some SD Cards can take so long the H\+P85 can timeout
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item The hp85disk emulator does not have enough memory to work around this issue
+\begin{DoxyItemize}
+\item If we could load the entire disk image into ram A\+ND we had more for many write buffers
+\begin{DoxyItemize}
+\item Then we could optimize the SD Card writing process to avoid the problems
+\end{DoxyItemize}
+\item The A\+VR we use has only 20K of ram for everything
+\begin{DoxyItemize}
+\item Perhaps some day we will port this project to a Raspberry PI with add on hardware
+\begin{DoxyItemize}
+\item The protocol is already solved for the emulator so this would not be that hard -\/ only a battle with the time I have free
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
 
 
 
@@ -508,98 +573,6 @@ On the H\+P85 type
 
 
 
-\subsection*{Important notes about SD Card requirments for the emulator}
-
-
-\begin{DoxyItemize}
-\item Must be formatted F\+A\+T32
-\item The H\+P85 is sensitive to long read/write delays that some cards can cause problems with
-\begin{DoxyItemize}
-\item You want SD Cards with fast random writes
-\item I have found that the San\+Disk Extreme and San\+Disk Extreme Pro cards work best.
-\begin{DoxyItemize}
-\item There is a huge difference in various cards on the market.
-\item Look for the cards with the best 4K random write times
-\item A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
-\begin{DoxyItemize}
-\item Specifically look at best 4k random write -\/ faster is better.
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Why slow SD Cards are a problem?
-\begin{DoxyItemize}
-\item Summary\+: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page -\/ this can take too long
-\item Details\+:
-\begin{DoxyItemize}
-\item First step\+: hp85disk emulator writes to the SD Card
-\item Internally the SD card finds an internal page where our data will go
-\item Next the SD Card reads the page into internal R\+AM (recall it can be much over a megabyte)
-\item Next the SD Card modifies the internal R\+AM with our data
-\item Next the SD Card erases the page
-\item Lastly the page is written to the SD Card and this takes time
-\begin{DoxyItemize}
-\item Trivia -\/ SD cards must to erase a page before updating because of the flash memory cell design
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Why is this delay critical to the hp85disk emulator?
-\begin{DoxyItemize}
-\item Too long of a delay can cause a timeout when writing to disk
-\item SD cards internal hardware is mostly optimized for sequential writing
-\begin{DoxyItemize}
-\item Their buffers and timing are designed primarily for writing consecutive blocks one after another
-\begin{DoxyItemize}
-\item When writing in consecutive order they can queue up many requests and combine them into one operation -\/ a huge savings in time -\/ done all in hardware
-\item Writing to blocks in random locations break this optimization very badly
-\begin{DoxyItemize}
-\item Therefore some SD Cards can take so long the H\+P85 can timeout
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item The hp85disk emulator does not have enough memory to work around this issue
-\begin{DoxyItemize}
-\item If we could load the entire disk image into ram A\+ND we had more for many write buffers
-\begin{DoxyItemize}
-\item Then we could optimize the SD Card writing process to avoid the problems
-\end{DoxyItemize}
-\item The A\+VR we use has only 20K of ram for everything
-\begin{DoxyItemize}
-\item Perhaps some day we will port this project to a Raspberry PI with add on hardware
-\begin{DoxyItemize}
-\item The protocol is already solved for the emulator so this would not be that hard -\/ only a battle with the time I have free
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-
-
-
-\subsection*{Requirements for building the hp85 disk project}
-
-
-\begin{DoxyItemize}
-\item P\+L\+E\+A\+SE R\+E\+A\+D! All steps below are intended O\+N\+LY R\+E\+Q\+U\+I\+R\+ED IF Y\+OU P\+L\+AN TO M\+A\+KE C\+O\+DE C\+H\+A\+N\+G\+ES
-\item \mbox{[}I have provided compiled files under the folder release\mbox{]}(release)
-\begin{DoxyItemize}
-\item You just need to flash the files
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Building Doxygen documentation for the project -\/ optional}
-
-
-\begin{DoxyItemize}
-\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
-\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps}
-\end{DoxyItemize}
-
-
-
-
-
 \subsection*{Tested Operating systems}
 
 \subsubsection*{Linux}
@@ -607,63 +580,12 @@ On the H\+P85 type
 
 \begin{DoxyItemize}
 \item I used Ubuntu 18.\+04,16.\+04\+L\+TS and 14.\+04\+L\+TS when developing the code
-\begin{DoxyItemize}
-\item N\+O\+TE\+: It should be possible to setup the same build with Windows
-\begin{DoxyItemize}
-\item There are a number of build environments for Windows that will work
-\begin{DoxyItemize}
-\item I hope to provide instructions soon
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
 \item I have instructions for flashing the firmware below \subsubsection*{Windows}
 \end{DoxyItemize}
 
 
 \begin{DoxyItemize}
-\item I have instructions for flashing the firmware below
-\end{DoxyItemize}
-
-
-
-
-
-\subsection*{Connecting a computer to the hp85disk emulator -\/ finding the emulator serial port}
-
-
-\begin{DoxyItemize}
-\item Follow the instructions of firmware updating dependencies for installing Python and libraries
-\item Make sure you have a miniusb cable handy
-\item Make sure the emulator is not connected to your P\+C/\+Mac
-\end{DoxyItemize}
-
-\subsubsection*{Linux}
-
-
-\begin{DoxyItemize}
-\item Open a terminal window
-\begin{DoxyItemize}
-\item Run the following command
-\item {\itshape python3 uploader/listports.\+py}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Windows}
-
-
-\begin{DoxyItemize}
-\item Open a Power\+Shell window
-\begin{DoxyItemize}
-\item Run the following command $\ast$python3 uploader\textbackslash{}listports.\+py$\ast$
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsubsection*{Connect the emulator}
-
-
-\begin{DoxyItemize}
-\item Attach the miniusb cable to your computer and rerun the listports.\+py
-\item The new port that appeared is the emulator port
+\item I used Windows W\+SL and the Ubuntu App details below
 \end{DoxyItemize}
 
 
@@ -778,6 +700,64 @@ On the H\+P85 type
 
 
 
+
+\subsection*{Connecting a computer to the hp85disk emulator -\/ finding the emulator serial port}
+
+
+\begin{DoxyItemize}
+\item Follow the instructins in the previous steps for M\+I\+N\+I\+M\+AL setup or F\+U\+LL setup later on below
+\item Make sure you have a miniusb cable handy
+\item Make sure the emulator is not connected to your P\+C/\+Mac
+\end{DoxyItemize}
+
+\subsubsection*{Linux}
+
+
+\begin{DoxyItemize}
+\item Open a terminal window
+\begin{DoxyItemize}
+\item Run the following command
+\item {\itshape python3 uploader/listports.\+py}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Windows}
+
+
+\begin{DoxyItemize}
+\item Open a Power\+Shell window
+\begin{DoxyItemize}
+\item Run the following command $\ast$python3 uploader\textbackslash{}listports.\+py$\ast$
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{Connect the emulator}
+
+
+\begin{DoxyItemize}
+\item Attach the miniusb cable to your computer and rerun the listports.\+py
+\item The new port that appeared is the emulator port
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Requirements for compiling and flashing the F\+U\+LL hp85disk project}
+
+
+\begin{DoxyItemize}
+\item P\+L\+E\+A\+SE R\+E\+A\+D! The steps below are required O\+N\+LY if\+:
+\begin{DoxyItemize}
+\item You plan to build the standalone lif and mkcfg utilities
+\item You plan on making code changes
+\item You wish to use an In System Programmer that requires avrdude to work
+\end{DoxyItemize}
+\item \mbox{[}I have provided compiled H\+EX files under the folder release\mbox{]}(release)
+\begin{DoxyItemize}
+\item You just need to flash the files -\/ see M\+I\+N\+I\+M\+AL notes above
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 \subsection*{Full installation Ubuntu and Windows software for building hp85disk and building related applications}
 
@@ -1153,38 +1133,56 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \begin{DoxyItemize}
 \item List the common commands to compile/install/flash the code 
 \begin{DoxyPre}
-        Building Commands
-            make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-            make release           - builds all code and copies files to the release folder
-            make clean             - cleans all generated files
-            make                   - builds all code\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using an 6 wire ISP - installs optiboot
-            make install\_optiboot  - install optiboot boot loaded using an ISP
-            make flash-isp         - build and flash the code using an ISP
-            make flash-isp-release - flash the release code using an ISP
-            make verify-isp        - verify code using an ISP
-            make verify-isp-release- verify release code using an ISP\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using the built in optiboot programmer
-            make flash             - build and flash the code using built in optiboot programmer
-            make flash-release     - flash the release code using built in optiboot programmer\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using an 6 wire ISP - WITHOUT installing optiboot
-            IMPORTANT - you will not be able to use non isp flashing modes later on
-               Makes booting and flashing process slightly faster
-            make flash-isp-noboot         - build and flash the code using an ISP
-            make flash-isp-noboot-release - flash the release code using an ISP
-\end{DoxyPre}
+    Building Commands
+        make install           - builds and installs all command line utilities
+        make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+        make release           - builds all code and copies files to the release folder
+        make clean             - cleans all generated files
+        make                   - builds all code\end{DoxyPre}
 
 \end{DoxyItemize}
+
+
+\begin{DoxyPre}    Listing current cunfiguration settings
+        make config\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Overriding any configuration settings
+        You can add configuration values at the end of your make commands like this
+        make flash-isp AVRDUDE\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp PORT=/dev/ttyUSB0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Programming using an 6 wire ISP - installs optiboot
+        make install\_optiboot  - install optiboot boot loaded using an ISP
+        make flash-isp         - build and flash the code using an ISP
+        make flash-isp-release - flash the release code using an ISP
+        make verify-isp        - verify code using an ISP
+        make verify-isp-release- verify release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Programming using the built in optiboot programmer
+        make flash             - build and flash the code using built in optiboot programmer
+        make flash-release     - flash the release code using built in optiboot programmer
+        IMPORTANT - if flashing fails try these steps
+            On your computer type in the make command without pressing Enter afterwards
+            Then press RESET the button on the hp85disk board and next press Enter quickly afterwards\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Programming using an 6 wire ISP - WITHOUT installing optiboot
+        IMPORTANT - you will not be able to use non isp flashing modes later on
+           Makes booting and flashing process slightly faster
+        make flash-isp-noboot         - build and flash the code using an ISP
+        make flash-isp-noboot-release - flash the release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards
+\end{DoxyPre}
+
 \end{DoxyItemize}
 
 \subsection*{Example building with Makefile overrides}
@@ -1194,6 +1192,18 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \item make flash A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3
 \item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0
 \item make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=usb
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Building Doxygen documentation for the project -\/ optional}
+
+
+\begin{DoxyItemize}
+\item {\itshape aptitude install --with-\/recommends doxygen doxygen-\/doc doxygen-\/gui doxygen-\/latex}
+\item {\itshape If you omit this you will have to update the \mbox{[}Makefile\mbox{]}(Makefile) to omit the steps}
 \end{DoxyItemize}
 
 
@@ -1479,295 +1489,6 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsection*{Credits}
-
-\subsection*{HP Disk Emulator by Anders Gustafsson}
-
-{\bfseries Anders Gustafsson was extremely helpful in getting my project started.} {\bfseries In fact I really owe the very existence of this project to his original project}
-\begin{DoxyItemize}
-\item You can visit his project at this site\+:
-\begin{DoxyItemize}
-\item \href{http://www.dalton.ax/hpdisk}{\tt http\+://www.\+dalton.\+ax/hpdisk}
-\item \href{http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html}{\tt http\+://www.\+elektor-\/labs.\+com/project/hpdisk-\/an-\/sd-\/based-\/disk-\/emulator-\/for-\/gpib-\/instruments-\/and-\/computers.\+13693.\+html}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-He provided me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
-
-\subsection*{The H\+P\+Dir project was a vital documentation source for this project}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
-\end{DoxyItemize}
-
-\subsection*{My Tele\+Disk to L\+IF conversion utility}
-
-
-\begin{DoxyItemize}
-\item I used the lzss libraries and documentation by Dave Dunfield
-\begin{DoxyItemize}
-\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
-\end{DoxyItemize}
-\item Documentation from Jean-\/\+Franois D\+EL N\+E\+RO
-\begin{DoxyItemize}
-\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO \href{lif/teledisk}{\tt lif/teledisk}
-\end{DoxyItemize}
-\item \href{lif/teledisk}{\tt lif/teledisk}
-\begin{DoxyItemize}
-\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
-\item Important Contributions (My converted would not have been possible without these)
-\begin{DoxyItemize}
-\item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
-\begin{DoxyItemize}
-\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
-\item \href{lif/teledisk/td0_lzss.h}{\tt td0\+\_\+lzss.\+h}
-\item \href{lif/teledisk/td0_lzss.c}{\tt td0\+\_\+lzss.\+c}
-\begin{DoxyItemize}
-\item L\+Z\+SS decoder
-\end{DoxyItemize}
-\item \href{lif/teledisk/td0notes.txt}{\tt td0notes.\+txt}
-\begin{DoxyItemize}
-\item Teledisk Documentation
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation
-\begin{DoxyItemize}
-\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO
-\begin{DoxyItemize}
-\item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
-\begin{DoxyItemize}
-\item Tele\+Disk documentation
-\end{DoxyItemize}
-\item See his github project
-\begin{DoxyItemize}
-\item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Fat\+FS}
-
-
-\begin{DoxyItemize}
-\item \mbox{[}fatfs\mbox{]}(fatfs)
-\begin{DoxyItemize}
-\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{Optiboot}
-
-
-\begin{DoxyItemize}
-\item \mbox{[}optiboot\mbox{]}(optiboot)
-\begin{DoxyItemize}
-\item Optiboot Bootloader for Arduino and Atmel A\+VR
-\item See\+: \href{https://github.com/Optiboot/optiboot}{\tt https\+://github.\+com/\+Optiboot/optiboot}
-\begin{DoxyItemize}
-\item \href{https://github.com/Optiboot/optiboot/blob/master/LICENSE}{\tt G\+P\+Lv2 W\+RT}
-\item https\+://github.com/\+Optiboot/optiboot/blob/master/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+R\+E\+A\+D\+M\+E\char`\"{}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{S\+T\+K500v1 uploader for Optiboot}
-
-
-\begin{DoxyItemize}
-\item \href{uploader/flasher.py}{\tt uploader/flasher.\+py}
-\begin{DoxyItemize}
-\item Optiboot uploader by Mathieu Virbel \href{mailto:mat@meltingrocks.com}{\tt mat@meltingrocks.\+com}
-\begin{DoxyItemize}
-\item Original repository \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
-\begin{DoxyItemize}
-\item Authors main github page \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
-\begin{DoxyItemize}
-\item \href{https://meltingrocks.com/}{\tt https\+://meltingrocks.\+com/}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} branch V2
-\begin{DoxyItemize}
-\item Changed to atmega1284p
-\item Jay converted code to Python 3
-\item Added Baudrate argument
-\item Added code to send \char`\"{}reset\char`\"{} command to hp85disk firmware to drop into optiboot
-\item Fixed Intel 02 segment record calculation
-\end{DoxyItemize}
-
-
-
-
-
-\section*{Abbreviations}
-
-Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page\# reference to these works.
-\begin{DoxyItemize}
-\item {\bfseries S\+S80}
-\item {\bfseries C\+S80}
-\item {\bfseries A or Amigo}
-\item {\bfseries H\+P-\/\+IP}
-\item {\bfseries H\+P-\/\+IP Tutorial}
-\end{DoxyItemize}
-
-
-
- \subsection*{Documentation References and related sources of information}
-
-
-\begin{DoxyItemize}
-\item Web Resources
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net}{\tt http\+://www.\+hp9845.\+net}
-\item \href{http://www.hpmuseum.net}{\tt http\+://www.\+hpmuseum.\+net}
-\item \href{http://www.hpmusuem.org}{\tt http\+://www.\+hpmusuem.\+org}
-\item \href{http://bitsavers.trailing-edge.com}{\tt http\+://bitsavers.\+trailing-\/edge.\+com}
-\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
-\item See \mbox{[}Documents folder\mbox{]}(documents)
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-
- \subsection*{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}
-
-
-\begin{DoxyItemize}
-\item \href{https://github.com/bug400/lifutils}{\tt https\+://github.\+com/bug400/lifutils}
-\item Create/\+Modify L\+IF images
-\end{DoxyItemize}
-
-
-
- \subsection*{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}
-
-
-\begin{DoxyItemize}
-\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
-\item Printed\+: A\+PR 1983
-\item HP Part\# 5955-\/3442
-\item See \mbox{[}Documents folder\mbox{]}(documents)
-\end{DoxyItemize}
-
-
-
- \subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{} is the short form used in the project)}
-
-
-\begin{DoxyItemize}
-\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
-\item HP Part\# 09895-\/90030
-\item See \mbox{[}Documents folder\mbox{]}(documents)
-\end{DoxyItemize}
-
-
-
- \subsection*{H\+P-\/\+IB}
-
-
-\begin{DoxyItemize}
-\item (\char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project)
-\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
-\item Printed March 1975
-\item HP Part\# 59401-\/90030
-\item See \mbox{[}Documents folder\mbox{]}(documents)
-\end{DoxyItemize}
-
-
-
- \subsection*{Tutorial Description of the Hewlett Packard Interface Bus}
-
-
-\begin{DoxyItemize}
-\item (\char`\"{}\+H\+P-\/\+I\+B Tutorial\char`\"{} is the short form used in the project)
-\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
-\item Printed January 1983
-\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
-\item Printed 1987
-\item See \mbox{[}Documents folder\mbox{]}(documents)
-\end{DoxyItemize}
-
-
-
- \subsection*{G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}
-\end{DoxyItemize}
-
-See \mbox{[}Documents folder\mbox{]}(documents)
-
-
-
- \subsection*{HP 9133/9134 D/\+H/L References}
-
-
-\begin{DoxyItemize}
-\item \char`\"{}\+H\+P 9133/9134 D/\+H/\+L Service Manual\char`\"{}
-\item HP Part\# 5957-\/6560
-\item Printed\+: A\+P\+R\+IL 1985, Edition 2
-\item See \mbox{[}Documents folder\mbox{]}(documents) 
-
-
-\end{DoxyItemize}
-
-\subsection*{L\+IF File system Format}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
-\item See \mbox{[}Documents folder\mbox{]}(documents) 
-
-
-\end{DoxyItemize}
-
-\subsection*{Useful Utilities}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt H\+P\+Dir HP Drive -\/ Disk Image Manipulation}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive Drive Emulators for Windows Platform}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\subsection*{G\+P\+IB Connector pinout by Anders Gustafsson in his hpdisk project}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.dalton.ax/hpdisk/}{\tt http\+://www.\+dalton.\+ax/hpdisk/}
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}
-    Pin Name   Signal Description       Pin Name   Signal Description 
-    1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
-    2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
-    3   DIO3   Data Input/Output Bit 3  15  DIO7   Data Input/Output Bit 7 
-    4   DIO4   Data Input/Output Bit 4  16  DIO8   Data Input/Output Bit 8 
-    5   EIO    End-Or-Identify          17  REN    Remote Enable 
-    6   DAV    Data Valid               18  Shield Ground (DAV) 
-    7   NRFD   Not Ready For Data       19  Shield Ground (NRFD) 
-    8   NDAC   Not Data Accepted        20  Shield Ground (NDAC) 
-    9   IFC    Interface Clear          21  Shield Ground (IFC) 
-    10  SRQ    Service Request          22  Shield Ground (SRQ) 
-    11  ATN    Attention                23  Shield Ground (ATN) 
-    12  Shield Chassis Ground           24  Single GND Single Ground
-\end{DoxyPre}
-
-
 \subsection*{hp85disk Terminal Commands}
 
 
@@ -1937,6 +1658,319 @@ gpib debug = 0x51
     Errors, TODO and SD Card Read/Write times
     (1+10+40)
     DEBUG = 0x51
+\end{DoxyPre}
+
+
+
+
+
+
+\subsection*{Credits}
+
+\subsection*{HP Disk Emulator by Anders Gustafsson}
+
+{\bfseries Anders Gustafsson was extremely helpful in getting my project started.} {\bfseries In fact I really owe the very existence of this project to his original project}
+\begin{DoxyItemize}
+\item You can visit his project at this site\+:
+\begin{DoxyItemize}
+\item \href{http://www.dalton.ax/hpdisk}{\tt http\+://www.\+dalton.\+ax/hpdisk}
+\item \href{http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html}{\tt http\+://www.\+elektor-\/labs.\+com/project/hpdisk-\/an-\/sd-\/based-\/disk-\/emulator-\/for-\/gpib-\/instruments-\/and-\/computers.\+13693.\+html}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+He provided me his current source code code and mainy details of his project {\bfseries which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
+
+\subsection*{The H\+P\+Dir project was a vital documentation source for this project}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
+\end{DoxyItemize}
+
+\subsection*{My Tele\+Disk to L\+IF conversion utility}
+
+
+\begin{DoxyItemize}
+\item I used the lzss libraries and documentation by Dave Dunfield
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
+\end{DoxyItemize}
+\item Documentation from Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO \href{lif/teledisk}{\tt lif/teledisk}
+\end{DoxyItemize}
+\item \href{lif/teledisk}{\tt lif/teledisk}
+\begin{DoxyItemize}
+\item My T\+E\+L\+E\+D\+I\+SK L\+IF extractor
+\item Important Contributions (My converted would not have been possible without these)
+\begin{DoxyItemize}
+\item Dave Dunfield, L\+Z\+SS Code and Tele\+Disk documentation
+\begin{DoxyItemize}
+\item Copyright 2007-\/2008 Dave Dunfield All rights reserved.
+\item \href{lif/teledisk/td0_lzss.h}{\tt td0\+\_\+lzss.\+h}
+\item \href{lif/teledisk/td0_lzss.c}{\tt td0\+\_\+lzss.\+c}
+\begin{DoxyItemize}
+\item L\+Z\+SS decoder
+\end{DoxyItemize}
+\item \href{lif/teledisk/td0notes.txt}{\tt td0notes.\+txt}
+\begin{DoxyItemize}
+\item Teledisk Documentation
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Jean-\/\+Franois D\+EL N\+E\+RO, Tele\+Disk Documentation
+\begin{DoxyItemize}
+\item Copyright (C) 2006-\/2014 Jean-\/\+Franois D\+EL N\+E\+RO
+\begin{DoxyItemize}
+\item \href{lif/teledisk/wteledsk.htm}{\tt wteledsk.\+htm}
+\begin{DoxyItemize}
+\item Tele\+Disk documentation
+\end{DoxyItemize}
+\item See his github project
+\begin{DoxyItemize}
+\item \href{https://github.com/jfdelnero/libhxcfe}{\tt https\+://github.\+com/jfdelnero/libhxcfe}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Fat\+FS}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}fatfs\mbox{]}(fatfs)
+\begin{DoxyItemize}
+\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Optiboot}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}optiboot\mbox{]}(optiboot)
+\begin{DoxyItemize}
+\item Optiboot Bootloader for Arduino and Atmel A\+VR
+\item See\+: \href{https://github.com/Optiboot/optiboot}{\tt https\+://github.\+com/\+Optiboot/optiboot}
+\begin{DoxyItemize}
+\item \href{https://github.com/Optiboot/optiboot/blob/master/LICENSE}{\tt G\+P\+Lv2 W\+RT}
+\item https\+://github.com/\+Optiboot/optiboot/blob/master/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+R\+E\+A\+D\+M\+E\char`\"{}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{S\+T\+K500v1 uploader for Optiboot}
+
+
+\begin{DoxyItemize}
+\item \href{uploader/flasher.py}{\tt uploader/flasher.\+py}
+\begin{DoxyItemize}
+\item Optiboot uploader by Mathieu Virbel \href{mailto:mat@meltingrocks.com}{\tt mat@meltingrocks.\+com}
+\begin{DoxyItemize}
+\item Original repository \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
+\begin{DoxyItemize}
+\item Authors main github page \href{https://github.com/tito/stk500}{\tt https\+://github.\+com/tito/stk500}
+\begin{DoxyItemize}
+\item \href{https://meltingrocks.com/}{\tt https\+://meltingrocks.\+com/}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} branch V2
+\begin{DoxyItemize}
+\item Changed to atmega1284p
+\item Jay converted code to Python 3
+\item Added Baudrate argument
+\item Added code to send \char`\"{}reset\char`\"{} command to hp85disk firmware to drop into optiboot
+\item Fixed Intel 02 segment record calculation
+\end{DoxyItemize}
+
+
+
+
+
+\section*{Abbreviations}
+
+Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page\# reference to these works.
+\begin{DoxyItemize}
+\item {\bfseries S\+S80}
+\item {\bfseries C\+S80}
+\item {\bfseries A or Amigo}
+\item {\bfseries H\+P-\/\+IP}
+\item {\bfseries H\+P-\/\+IP Tutorial}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Documentation References and related sources of information}
+
+
+\begin{DoxyItemize}
+\item Web Resources
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net}{\tt http\+://www.\+hp9845.\+net}
+\item \href{http://www.hpmuseum.net}{\tt http\+://www.\+hpmuseum.\+net}
+\item \href{http://www.hpmusuem.org}{\tt http\+://www.\+hpmusuem.\+org}
+\item \href{http://bitsavers.trailing-edge.com}{\tt http\+://bitsavers.\+trailing-\/edge.\+com}
+\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/bug400/lifutils}{\tt https\+://github.\+com/bug400/lifutils}
+\item Create/\+Modify L\+IF images
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
+\item Printed\+: A\+PR 1983
+\item HP Part\# 5955-\/3442
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{} is the short form used in the project)}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
+\item HP Part\# 09895-\/90030
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{H\+P-\/\+IB}
+
+
+\begin{DoxyItemize}
+\item (\char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project)
+\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
+\item Printed March 1975
+\item HP Part\# 59401-\/90030
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Tutorial Description of the Hewlett Packard Interface Bus}
+
+
+\begin{DoxyItemize}
+\item (\char`\"{}\+H\+P-\/\+I\+B Tutorial\char`\"{} is the short form used in the project)
+\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
+\item Printed January 1983
+\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
+\item Printed 1987
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}
+\end{DoxyItemize}
+
+See \mbox{[}Documents folder\mbox{]}(documents)
+
+
+
+
+
+\subsection*{HP 9133/9134 D/\+H/L References}
+
+
+\begin{DoxyItemize}
+\item \char`\"{}\+H\+P 9133/9134 D/\+H/\+L Service Manual\char`\"{}
+\item HP Part\# 5957-\/6560
+\item Printed\+: A\+P\+R\+IL 1985, Edition 2
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{L\+IF File system Format}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}
+\item See \mbox{[}Documents folder\mbox{]}(documents)
+\end{DoxyItemize}
+
+
+
+
+
+\subsection*{Useful Utilities}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt H\+P\+Dir HP Drive -\/ Disk Image Manipulation}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive Drive Emulators for Windows Platform}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{G\+P\+IB Connector pinout by Anders Gustafsson in his hpdisk project}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.dalton.ax/hpdisk/}{\tt http\+://www.\+dalton.\+ax/hpdisk/}
+\end{DoxyItemize}
+
+
+\begin{DoxyPre}
+    Pin Name   Signal Description       Pin Name   Signal Description 
+    1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
+    2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
+    3   DIO3   Data Input/Output Bit 3  15  DIO7   Data Input/Output Bit 7 
+    4   DIO4   Data Input/Output Bit 4  16  DIO8   Data Input/Output Bit 8 
+    5   EIO    End-Or-Identify          17  REN    Remote Enable 
+    6   DAV    Data Valid               18  Shield Ground (DAV) 
+    7   NRFD   Not Ready For Data       19  Shield Ground (NRFD) 
+    8   NDAC   Not Data Accepted        20  Shield Ground (NDAC) 
+    9   IFC    Interface Clear          21  Shield Ground (IFC) 
+    10  SRQ    Service Request          22  Shield Ground (SRQ) 
+    11  ATN    Attention                23  Shield Ground (ATN) 
+    12  Shield Chassis Ground           24  Single GND Single Ground
 \end{DoxyPre}
 
 
