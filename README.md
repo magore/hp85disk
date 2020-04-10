@@ -1426,114 +1426,117 @@ ___
 
 ## SD Card files for project
   * [sdcard](sdcard)
-    * My HP85 AMIGO and SS80 disk images
-      * Linux bash script to build ALL the disk images
-        * [create_images.sh](sdcard/create_images.sh)
-          * Files from ASCII-files, LIF-files are added to all of the created images
-      * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
-        * [hpdisk.cfg](sdcard/hpdisk.cfg)
-          * PRINTER address
-      * Alternate configuration for using only AMIGO drives
-        * [amigo.cfg](sdcard/amigo.cfg)
-          * Use this if your system does not support SS80 drives 
-             * Copy this file over the hpdisk.cfg file after renaming the hpdisk.cfg file
-          * PRINTER address
-      * AMIGO disk images
-        * [amigo1.lif](sdcard/amigo0.lif)
-          * AMIGO disk image
-          * Has some demo basic programs in it
-        * [amigo2.lif](sdcard/amigo1.lif)
-          * AMIGO disk image
-          * Has some demo basic programs in it
-        * [amigo3.lif](sdcard/amigo2.lif)
-          * AMIGO disk image 
-          * Has some demo basic programs in it
-        * [amigo4.lif](sdcard/amigo3.lif)
-          * AMIGO disk image 
-          * Has some demo basic programs in it
-      * SS80 disk images
-        * [ss80-1.lif](sdcard/ss80-0.lif)
-          * SS80 disk image 
-          * Has some demo basic programs in it
-        * [ss80-2.lif](sdcard/ss80-1.lif)
-          * SS80 disk image 
-          * Has some demo basic programs in it
-        * [ss80-3.lif](sdcard/ss80-2.lif)
-          * SS80 disk image 
-          * Has some demo basic programs in it
-        * [ss80-4.lif](sdcard/ss80-3.lif)
-          * SS80 disk image 
-          * Has some demo basic programs in it
-      * SD Card emulator configuration file backups
-        * [sdcard/configs](sdcard/configs)
-          * Backup copies of the hp85disk config files
-      * Build Drive Configuration
-        * [sdcard/mkcfg](sdcard/mkcfg)
-          * Build a [hpdisk.cfg](sdcard/hpdisk.cfg) disk record 
-            * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
-               * We can get drive block count *mkcfg -m DRIVE -b*
+  * My HP85 AMIGO and SS80 disk images
+    * Linux bash script to build ALL the disk images
+      * [create_images.sh](sdcard/create_images.sh)
+        * Files from ASCII-files, LIF-files are added to all of the created images
+    * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
+      * [hpdisk.cfg](sdcard/hpdisk.cfg)
+        * PRINTER address
+    * Alternate configuration for using only AMIGO drives
+      * [amigo.cfg](sdcard/amigo.cfg)
+        * Use this if your system does not support SS80 drives 
+           * Copy this file over the hpdisk.cfg file after renaming the hpdisk.cfg file
+        * PRINTER address
+
+### AMIGO disk images
+  * [amigo1.lif](sdcard/amigo0.lif)
+    * AMIGO disk image
+    * Has some demo basic programs in it
+  * [amigo2.lif](sdcard/amigo1.lif)
+    * AMIGO disk image
+    * Has some demo basic programs in it
+  * [amigo3.lif](sdcard/amigo2.lif)
+    * AMIGO disk image 
+    * Has some demo basic programs in it
+  * [amigo4.lif](sdcard/amigo3.lif)
+    * AMIGO disk image 
+    * Has some demo basic programs in it
+### SS80 disk images
+  * [ss80-1.lif](sdcard/ss80-0.lif)
+    * SS80 disk image 
+    * Has some demo basic programs in it
+  * [ss80-2.lif](sdcard/ss80-1.lif)
+    * SS80 disk image 
+    * Has some demo basic programs in it
+  * [ss80-3.lif](sdcard/ss80-2.lif)
+    * SS80 disk image 
+    * Has some demo basic programs in it
+  * [ss80-4.lif](sdcard/ss80-3.lif)
+    * SS80 disk image 
+    * Has some demo basic programs in it
+
+### SD Card emulator configuration file backups
+  * [sdcard/configs](sdcard/configs)
+    * Backup copies of the hp85disk config files
+
+### Build Drive Configuration
+  * [sdcard/mkcfg](sdcard/mkcfg)
+  * Build a [hpdisk.cfg](sdcard/hpdisk.cfg) disk record 
+    * Using [hpdir.ini](sdcard/notes/hpdir.ini) database
+       * We can get drive block count *mkcfg -m DRIVE -b*
 <pre>
-            mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
-               -list lists all of the drives in the hpdir.ini file
-               -a disk address 0..7
-               -m model only, list hpdisk.cfg format disk configuration
-               -s short hpdisk.cfg format
-               -b only display block count, you can can use this with -m
-               -d only display computed directory block count, you can use this with -m
-               -f NAME specifies the LIF image name for this drive
+      mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+         -list lists all of the drives in the hpdir.ini file
+         -a disk address 0..7
+         -m model only, list hpdisk.cfg format disk configuration
+         -s short hpdisk.cfg format
+         -b only display block count, you can can use this with -m
+         -d only display computed directory block count, you can use this with -m
+         -f NAME specifies the LIF image name for this drive
 </pre>
-</pre>
-      * BUILD SCRIPTS
-        * [sdcard/scripts](sdcard/scripts)
-          * Scripts that help creating LIF images from multiple files
-          * Used by [create_images.sh](create_images.sh)
-      * My HP85 bus trace files
-        * [sdcard/traces](sdcard/traces)
-        * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
-          * AMIGO trace file when connected to HP85 showing odd out of order command issue
-        * [gpib_reset.txt](sdcard/traces/gpib_reset.txt)
-          * GPIB reset trace when connected to HP85
-        * [gpib_trace.txt](sdcard/traces/gpib_trace.txt)
-          * GPIB transaction trace when connected to HP85
-      * My HP85 plot capture files
-        * [plots](sdcard/plots]
-          * [plot1.plt](sdcard/plots/plot1.plt)
-          * [plot2.plt](sdcard/plots/plot2.plt)
-      * ASCII Basic files - in text format for easy editing
-        * [ASCII-files](sdcard/ASCII-files)
-          * [CIRCLE.TXT](sdcard/ASCII-files/CIRCLE.TXT)
-          * [DRIVES.TXT](sdcard/ASCII-files/DRIVES.TXT)
-          * [GPIB-TA.txt](sdcard/ASCII-files/GPIB-TA.txt)
-          * [HELLO.TXT](sdcard/ASCII-files/HELLO.TXT)
-          * [RWTEST.TXT](sdcard/ASCII-files/RWTEST.TXT)
-          * [TREK85A.TXT](sdcard/ASCII-files/TREK85A.TXT)
-          * [ASCII-files/TREK85](sdcard/ASCII-files/TREK85)
-            * TREK85 by Martin Hepperle, December 2015
-              * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
-            * [author.txt](sdcard/TREK85/author.txt)  
-            * [readme.txt](sdcrad/TREK85/readme.txt)    
-            * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
-            * [TREK85.BAS](sdcard/TREK85/TREK85.BAS)
-            * [trek.lif](sdcard/TREK85/trek.lif)
-      * LIF images with a single program in them
-        * [LIF-files](sdcard/LIF-files)
-          * Internal names are the same as the LIF name without extension
-        * [GETSAVE.LIF](sdcard/ASCII-files/GETSAVE.LIF)
-          * Adds GET and SAVE commands to an HP85
-        * [GPIB-T.lif](sdcard/ASCII-files/GPIB-T.lif)
-          * Simple GPIB test
-        * [RWTESTB.lif](sdcard/ASCII-files/RWTESTB.lif)
-          * Reads,Writes and Purge tests
-        * [TREK85B.lif](sdcard/ASCII-files/TREK85B.lif)
-          * TREK85 by Martin Hepperle, December 2015
-            * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
-      * LIF images with multiple programs in them
-        * [LIF-volumes](sdcard/LIF-volumes)
-          * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
-      * GETSAV documentation
-        * [notes](sdcard/notes)
-          * GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files
-            * NOTE: my lif utilities can translate between ASCII files and files in GET/SAVE format 
-        * Various notes 
+
+### BUILD SCRIPTS
+  * [sdcard/scripts](sdcard/scripts)
+    * Scripts that help creating LIF images from multiple files
+    * Used by [create_images.sh](create_images.sh)
+### My HP85 bus trace files
+    * [sdcard/traces](sdcard/traces)
+    * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
+    * AMIGO trace file when connected to HP85 showing odd out of order command issue
+  * [gpib_reset.txt](sdcard/traces/gpib_reset.txt)
+    * GPIB reset trace when connected to HP85
+  * [gpib_trace.txt](sdcard/traces/gpib_trace.txt)
+    * GPIB transaction trace when connected to HP85
+### My HP85 plot capture files
+  * [plots](sdcard/plots]
+    * [plot1.plt](sdcard/plots/plot1.plt)
+    * [plot2.plt](sdcard/plots/plot2.plt)
+### ASCII Basic files - in text format for easy editing
+  * [ASCII-files](sdcard/ASCII-files)
+    * [CIRCLE.TXT](sdcard/ASCII-files/CIRCLE.TXT)
+    * [DRIVES.TXT](sdcard/ASCII-files/DRIVES.TXT)
+    * [GPIB-TA.txt](sdcard/ASCII-files/GPIB-TA.txt)
+    * [HELLO.TXT](sdcard/ASCII-files/HELLO.TXT)
+    * [RWTEST.TXT](sdcard/ASCII-files/RWTEST.TXT)
+    * [TREK85A.TXT](sdcard/ASCII-files/TREK85A.TXT)
+    * [ASCII-files/TREK85](sdcard/ASCII-files/TREK85)
+      * TREK85 by Martin Hepperle, December 2015
+        * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+      * [author.txt](sdcard/TREK85/author.txt)  
+      * [readme.txt](sdcrad/TREK85/readme.txt)    
+      * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
+      * [TREK85.BAS](sdcard/TREK85/TREK85.BAS)
+      * [trek.lif](sdcard/TREK85/trek.lif)
+### LIF images with a single program in them
+  * [LIF-files](sdcard/LIF-files)
+    * Internal names are the same as the LIF name without extension
+  * [GETSAVE.LIF](sdcard/ASCII-files/GETSAVE.LIF)
+    * Adds GET and SAVE commands to an HP85
+  * [GPIB-T.lif](sdcard/ASCII-files/GPIB-T.lif)
+    * Simple GPIB test
+  * [RWTESTB.lif](sdcard/ASCII-files/RWTESTB.lif)
+    * Reads,Writes and Purge tests
+  * [TREK85B.lif](sdcard/ASCII-files/TREK85B.lif)
+    * TREK85 by Martin Hepperle, December 2015
+      * https://groups.io/g/hpseries80/topic/star_trek_game_for_hp_85/4845241
+  * LIF images with multiple programs in them
+  * [LIF-volumes](sdcard/LIF-volumes)
+    * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
+### GETSAV documentation
+  * [notes](sdcard/notes)
+    * GETSAVE can be loaded on an HP85 to GET and SAVE Basic text files
+      * NOTE: my lif utilities can translate between ASCII files and files in GET/SAVE format 
+  * Various notes 
 
 ___
