@@ -1,0 +1,2 @@
+define(["require","exports"],(function(e,t){"use strict";var a;Object.defineProperty(t,"__esModule",{value:!0}),(a=t.CollapsedInteraction||(t.CollapsedInteraction={})).LEAVE_COMMENT_CLICK="leave_comment_click",a.AVATAR_CLICK="avatar_click"}));
+//# sourceMappingURL=index.min.js-vflvbhNcQ.map

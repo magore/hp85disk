@@ -1,0 +1,2 @@
+define(["require","exports"],(function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createEmptyContent=function(){return{text:"",metadata:[],timestamp:new Date}},e.createCommentStatusFromContent=function(t){return{content:t}}}));
+//# sourceMappingURL=comment_utils.min.js-vflQbMqQ0.map

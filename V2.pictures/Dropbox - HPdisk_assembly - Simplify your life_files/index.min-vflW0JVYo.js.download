@@ -1,0 +1,2 @@
+define(["require","exports","file-viewer/titlebar/titlebar","file-viewer/titlebar/truncated_div","file-viewer/titlebar/truncated_title","file-viewer/titlebar/truncate"],(function(e,t,r,i,a,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Titlebar=r.Titlebar,t.TruncatedDiv=i.TruncatedDiv,t.TruncatedTitle=a.TruncatedTitle,t.truncateStringByLength=n.truncateStringByLength;t.TITLE_BAR_HEIGHT=parseInt("40px",10)}));
+//# sourceMappingURL=index.min.js-vfldAUZIj.map

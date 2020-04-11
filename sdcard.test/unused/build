@@ -1,0 +1,124 @@
+#!/bin/bash
+#
+# Make a basic file that displays intended Volume
+#
+ASCII="CIRCLE.BAS  DRIVES.BAS  HELLO.BAS  RWTEST.BAS"
+# LIF images with a single file
+# The file types are e020 HP85 BASIC encoding - binary
+
+# using lif extractbin lifimage lifname to_lif_file
+# We can extract a binary program as we can extract a file into a new
+
+BASIC=$(ls LIF/* | tr '\n' ' ' | sed -e "s/ $//")
+ASCII=$(ls ASCII/* | tr '\n' ' ' | sed -e "s/ $//")
+echo "LIF:[$BASIC]"
+echo "ASCII:[$ASCII]"
+
+#Rename program name inside a single file LIF image
+rename_internal()
+{
+	FILE="$1"
+	if [ -z "$FILE" ]
+	then
+		echo "Error - expected file name"
+		exit 1
+	fi
+	export LIFNAME=$(echo $FILE | sed -e "s/\..*$//")
+	# Rename file to the filename
+	printf "%-10b" "$LIFNAME" >tmp.txt
+    dd if=tmp.txt of=$FILE obs=1 seek=256 conv=notrunc
+}
+
+mk_header()
+{
+	if [ -z "$1" ]
+	then
+		echo $FUNC1 expected a name
+		exit 1
+	fi
+	echo "10 DISP \"$1\"" > $1
+	echo "20 END" >>$1
+}
+
+# AMIGO 9134XV
+# Drive                 9134XV
+# ID,                   $010F
+# Image Size Bytes,     14570496
+# Phys. Cylinders,      306
+# Phys. Heads,          6
+# Phys. Sectors/Track,  31
+# Phys. Records,        56916
+# Dir Sectors           124
+
+# hpdir add notes
+#hpdir -add "$NAME.lif" $LIFNAME.#e020
+
+
+
+# Create 6 AMIGO and 6 SS80 images
+# Add the lIF and ASCII files
+for i in 1 2 3 4 5 6
+do
+
+	# ======================================================================
+	# Creat SS80 LIF image
+	NAME="SS80-$i"
+	echo Creating  9134L $NAME.lif
+    lif create "$NAME".lif $NAME 124 58176
+
+	mk_header $NAME.TXT
+	lif add $NAME.lif $NAME $NAME.TXT
+	rm -f "$NAME.TXT"
+
+	# Add Basic encoded programs
+ 	for k in $BASIC 
+ 	do
+ 		LIFNAME=$(echo $(basename $k) | sed -e "s/\..*$//")
+		ln -sf $k $LIFNAME.#e020
+		echo hpdir -add "$NAME.lif" $LIFNAME.#e020
+		hpdir -add "$NAME.lif" $LIFNAME.#e020
+		rm -f $LIFNAME.#e020
+ 	done
+	echo =========================
+
+	# Add ASCII BASIC PROGRAMS
+	for k in $ASCII
+	do
+ 		LIFNAME=$(echo $(basename $k) | sed -e "s/\..*$//")
+		echo lif add "$NAME.lif" "$LIFNAME"-A $k
+		lif add "$NAME.lif" "$LIFNAME"-A $k
+	done
+	echo =========================
+
+	# ======================================================================
+	# Creat AMIGO LIF image
+	NAME="AMIGO"$i
+	echo Creating  9134XV $NAME.lif
+	lif create $NAME.lif $NAME 123 56916
+
+	mk_header $NAME.TXT
+	lif add $NAME.lif $NAME $NAME.TXT
+	rm -f "$NAME.TXT"
+
+	# Add Basic encoded programs
+ 	for k in $BASIC 
+ 	do
+ 		LIFNAME=$(echo $(basename $k) | sed -e "s/\..*$//")
+		ln -sf $k $LIFNAME.#e020
+		echo hpdir -add "$NAME.lif" $LIFNAME.#e020
+		hpdir -add "$NAME.lif" $LIFNAME.#e020
+		rm -f $LIFNAME.#e020
+ 	done
+	echo =========================
+
+	# Add ASCII BASIC PROGRAMS
+	for k in $ASCII
+	do
+ 		LIFNAME=$(echo $(basename $k) | sed -e "s/\..*$//")
+		# lif add "$NAME.lif" "$LIFNAME"-A $k
+		lif add "$NAME.lif" "$LIFNAME"-A $k
+	done
+	echo =========================
+
+done
+

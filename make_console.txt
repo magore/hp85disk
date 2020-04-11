@@ -1,0 +1,1351 @@
+jayhamlin@Jays-MBP hp85disk % make clean
+stat: illegal option -- c
+usage: stat [-FlLnqrsx] [-f format] [-t timefmt] [file ...]
+
+rm -f -r hardware/hal.o hardware/ram.o hardware/delay.o hardware/rs232.o hardware/spi.o hardware/TWI_AVR8.o hardware/i2c.o hardware/rtc.o hardware/LCD.o display/lcd_printf.o lib/stringsup.o lib/timer_hal.o lib/timer.o lib/time.o lib/queue.o printf/printf.o printf/mathio.o fatfs/ff.o fatfs/ffsystem.o fatfs/ffunicode.o fatfs.hal/diskio.o fatfs.hal/mmc.o fatfs.hal/mmc_hal.o fatfs.sup/fatfs_sup.o fatfs.sup/fatfs_tests.o posix/posix.o posix/posix_tests.o gpib/gpib_hal.o gpib/gpib.o gpib/gpib_task.o gpib/gpib_tests.o gpib/drives.o gpib/drives_sup.o gpib/ss80.o gpib/amigo.o gpib/printer.o gpib/controller.o lif/lifsup.o lif/lifutils.o main.o  gpib\.* dep/* | exit 0
+make -C lif clean
+stat: illegal option -- c
+usage: stat [-FlLnqrsx] [-f format] [-t timefmt] [file ...]
+rm -f lif td02lif lif.exe td02lif.exe 
+make -C printf clean
+rm -f test_printf n2a
+make -C sdcard/mkcfg clean
+rm -f mkcfg mkcfg.exe 
+make -C optiboot clean
+rm -f optiboot_\.*
+rm -f hardware/baudrate
+jayhamlin@Jays-MBP hp85disk % make      
+stat: illegal option -- c
+usage: stat [-FlLnqrsx] [-f format] [-t timefmt] [file ...]
+avr-gcc (GCC) 9.2.0
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+echo COBJ: hardware/hal.o hardware/ram.o hardware/delay.o hardware/rs232.o hardware/spi.o hardware/TWI_AVR8.o hardware/i2c.o hardware/rtc.o hardware/LCD.o display/lcd_printf.o lib/stringsup.o lib/timer_hal.o lib/timer.o lib/time.o lib/queue.o printf/printf.o printf/mathio.o fatfs/ff.o fatfs/ffsystem.o fatfs/ffunicode.o fatfs.hal/diskio.o fatfs.hal/mmc.o fatfs.hal/mmc_hal.o fatfs.sup/fatfs_sup.o fatfs.sup/fatfs_tests.o posix/posix.o posix/posix_tests.o gpib/gpib_hal.o gpib/gpib.o gpib/gpib_task.o gpib/gpib_tests.o gpib/drives.o gpib/drives_sup.o gpib/ss80.o gpib/amigo.o gpib/printer.o gpib/controller.o lif/lifsup.o lif/lifutils.o main.o 
+COBJ: hardware/hal.o hardware/ram.o hardware/delay.o hardware/rs232.o hardware/spi.o hardware/TWI_AVR8.o hardware/i2c.o hardware/rtc.o hardware/LCD.o display/lcd_printf.o lib/stringsup.o lib/timer_hal.o lib/timer.o lib/time.o lib/queue.o printf/printf.o printf/mathio.o fatfs/ff.o fatfs/ffsystem.o fatfs/ffunicode.o fatfs.hal/diskio.o fatfs.hal/mmc.o fatfs.hal/mmc_hal.o fatfs.sup/fatfs_sup.o fatfs.sup/fatfs_tests.o posix/posix.o posix/posix_tests.o gpib/gpib_hal.o gpib/gpib.o gpib/gpib_task.o gpib/gpib_tests.o gpib/drives.o gpib/drives_sup.o gpib/ss80.o gpib/amigo.o gpib/printer.o gpib/controller.o lif/lifsup.o lif/lifutils.o main.o
+
+hardware/hal.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,hal.o,-MF,dep/hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/hal.c -o hardware/hal.o
+hardware/hal.c: In function 'chip_addr':
+hardware/hal.c:268:20: warning: unused parameter 'addr' [-Wunused-parameter]
+  268 | void chip_addr(int addr)
+      |                ~~~~^~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,hal.o,-MF,dep/hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/hal.c -o hardware/hal.o
+
+hardware/ram.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ram.o,-MF,dep/ram.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/ram.c -o hardware/ram.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ram.o,-MF,dep/ram.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/ram.c -o hardware/ram.o
+
+hardware/delay.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,delay.o,-MF,dep/delay.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/delay.c -o hardware/delay.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,delay.o,-MF,dep/delay.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/delay.c -o hardware/delay.o
+
+hardware/rs232.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,rs232.o,-MF,dep/rs232.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/rs232.c -o hardware/rs232.o
+hardware/rs232.c: In function 'uart0_getchar':
+hardware/rs232.c:45:26: warning: unused parameter 'f' [-Wunused-parameter]
+   45 | int uart0_getchar( void *f)
+      |                    ~~~~~~^
+hardware/rs232.c: In function 'uart0_putchar':
+hardware/rs232.c:57:32: warning: unused parameter 'f' [-Wunused-parameter]
+   57 | int uart0_putchar(int c, void *f)
+      |                          ~~~~~~^
+hardware/rs232.c: In function 'uart_putchar':
+hardware/rs232.c:378:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  378 |     if( c == '\n' )
+      |     ^~
+hardware/rs232.c:381:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  381 |  return(c);
+      |  ^~~~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,rs232.o,-MF,dep/rs232.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/rs232.c -o hardware/rs232.o
+
+hardware/spi.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,spi.o,-MF,dep/spi.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/spi.c -o hardware/spi.o
+hardware/spi.c: In function 'SPI0_Init':
+hardware/spi.c:191:19: warning: variable 'D' set but not used [-Wunused-but-set-variable]
+  191 |  volatile uint8_t D;
+      |                   ^
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,spi.o,-MF,dep/spi.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/spi.c -o hardware/spi.o
+
+hardware/TWI_AVR8.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,TWI_AVR8.o,-MF,dep/TWI_AVR8.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/TWI_AVR8.c -o hardware/TWI_AVR8.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,TWI_AVR8.o,-MF,dep/TWI_AVR8.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/TWI_AVR8.c -o hardware/TWI_AVR8.o
+
+hardware/i2c.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,i2c.o,-MF,dep/i2c.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/i2c.c -o hardware/i2c.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,i2c.o,-MF,dep/i2c.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/i2c.c -o hardware/i2c.o
+
+hardware/rtc.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,rtc.o,-MF,dep/rtc.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/rtc.c -o hardware/rtc.o
+hardware/rtc.c: In function 'rtc_init':
+hardware/rtc.c:115:14: warning: unused variable 'WriteAddress' [-Wunused-variable]
+  115 |     uint8_t  WriteAddress;
+      |              ^~~~~~~~~~~~
+hardware/rtc.c:114:13: warning: unused variable 'addr' [-Wunused-variable]
+  114 |     uint8_t addr;
+      |             ^~~~
+hardware/rtc.c:113:13: warning: unused variable 'buf' [-Wunused-variable]
+  113 |     uint8_t buf[8];                               /* RTC R/W buffer */
+      |             ^~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,rtc.o,-MF,dep/rtc.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/rtc.c -o hardware/rtc.o
+
+hardware/LCD.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,LCD.o,-MF,dep/LCD.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/LCD.c -o hardware/LCD.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,LCD.o,-MF,dep/LCD.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert hardware/LCD.c -o hardware/LCD.o
+
+display/lcd_printf.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lcd_printf.o,-MF,dep/lcd_printf.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert display/lcd_printf.c -o display/lcd_printf.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lcd_printf.o,-MF,dep/lcd_printf.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert display/lcd_printf.c -o display/lcd_printf.o
+
+lib/stringsup.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,stringsup.o,-MF,dep/stringsup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/stringsup.c -o lib/stringsup.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,stringsup.o,-MF,dep/stringsup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/stringsup.c -o lib/stringsup.o
+
+lib/timer_hal.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,timer_hal.o,-MF,dep/timer_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/timer_hal.c -o lib/timer_hal.o
+lib/timer_hal.c: In function 'clock_gettime':
+lib/timer_hal.c:147:29: warning: unused parameter 'clk_id' [-Wunused-parameter]
+  147 | int clock_gettime(clockid_t clk_id, struct timespec *ts)
+      |                   ~~~~~~~~~~^~~~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,timer_hal.o,-MF,dep/timer_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/timer_hal.c -o lib/timer_hal.o
+
+lib/timer.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,timer.o,-MF,dep/timer.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/timer.c -o lib/timer.o
+lib/timer.c: In function 'set_timers':
+lib/timer.c:60:43: warning: unused parameter 'timer' [-Wunused-parameter]
+   60 | int set_timers(void (*handler)(void), int timer)
+      |                                       ~~~~^~~~~
+lib/timer.c: In function 'clock_getres':
+lib/timer.c:329:28: warning: unused parameter 'clk_id' [-Wunused-parameter]
+  329 | int clock_getres(clockid_t clk_id, struct timespec *res)
+      |                  ~~~~~~~~~~^~~~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,timer.o,-MF,dep/timer.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/timer.c -o lib/timer.o
+
+lib/time.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,time.o,-MF,dep/time.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/time.c -o lib/time.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,time.o,-MF,dep/time.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/time.c -o lib/time.o
+
+lib/queue.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,queue.o,-MF,dep/queue.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/queue.c -o lib/queue.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,queue.o,-MF,dep/queue.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lib/queue.c -o lib/queue.o
+
+printf/printf.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,printf.o,-MF,dep/printf.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert printf/printf.c -o printf/printf.o
+printf/printf.c: In function '_printf_fn':
+printf/printf.c:888:22: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  888 |                 size = sizeof(void *);
+      |                 ~~~~~^~~~~~~~~~~~~~~~
+printf/printf.c:890:13: note: here
+  890 |             case 'b':
+      |             ^~~~
+printf/printf.c:905:19: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  905 |                 if(f.b.zero && f.b.width && f.b.prec)
+      |                   ^
+printf/printf.c:910:13: note: here
+  910 |             case 'u':
+      |             ^~~~
+printf/printf.c:914:25: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  914 |                 f.b.neg = 0;
+      |                 ~~~~~~~~^~~
+printf/printf.c:915:13: note: here
+  915 |             case 'D':
+      |             ^~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,printf.o,-MF,dep/printf.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert printf/printf.c -o printf/printf.o
+
+printf/mathio.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mathio.o,-MF,dep/mathio.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert printf/mathio.c -o printf/mathio.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mathio.o,-MF,dep/mathio.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert printf/mathio.c -o printf/mathio.o
+
+fatfs/ff.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ff.o,-MF,dep/ff.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ff.c -o fatfs/ff.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ff.o,-MF,dep/ff.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ff.c -o fatfs/ff.o
+
+fatfs/ffsystem.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ffsystem.o,-MF,dep/ffsystem.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ffsystem.c -o fatfs/ffsystem.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ffsystem.o,-MF,dep/ffsystem.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ffsystem.c -o fatfs/ffsystem.o
+
+fatfs/ffunicode.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ffunicode.o,-MF,dep/ffunicode.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ffunicode.c -o fatfs/ffunicode.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ffunicode.o,-MF,dep/ffunicode.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs/ffunicode.c -o fatfs/ffunicode.o
+
+fatfs.hal/diskio.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,diskio.o,-MF,dep/diskio.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/diskio.c -o fatfs.hal/diskio.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,diskio.o,-MF,dep/diskio.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/diskio.c -o fatfs.hal/diskio.o
+
+fatfs.hal/mmc.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mmc.o,-MF,dep/mmc.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/mmc.c -o fatfs.hal/mmc.o
+fatfs.hal/mmc.c:97:6: warning: 'power_on' defined but not used [-Wunused-function]
+   97 | void power_on (void)
+      |      ^~~~~~~~
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mmc.o,-MF,dep/mmc.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/mmc.c -o fatfs.hal/mmc.o
+
+fatfs.hal/mmc_hal.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mmc_hal.o,-MF,dep/mmc_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/mmc_hal.c -o fatfs.hal/mmc_hal.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,mmc_hal.o,-MF,dep/mmc_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.hal/mmc_hal.c -o fatfs.hal/mmc_hal.o
+
+fatfs.sup/fatfs_sup.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,fatfs_sup.o,-MF,dep/fatfs_sup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.sup/fatfs_sup.c -o fatfs.sup/fatfs_sup.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,fatfs_sup.o,-MF,dep/fatfs_sup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.sup/fatfs_sup.c -o fatfs.sup/fatfs_sup.o
+
+fatfs.sup/fatfs_tests.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,fatfs_tests.o,-MF,dep/fatfs_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.sup/fatfs_tests.c -o fatfs.sup/fatfs_tests.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,fatfs_tests.o,-MF,dep/fatfs_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert fatfs.sup/fatfs_tests.c -o fatfs.sup/fatfs_tests.o
+
+posix/posix.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,posix.o,-MF,dep/posix.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert posix/posix.c -o posix/posix.o
+posix/posix.c: In function 'fputc':
+posix/posix.c:283:7: warning: nonnull argument 'stream' compared to NULL [-Wnonnull-compare]
+  283 |     if(stream == NULL)
+      |       ^
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,posix.o,-MF,dep/posix.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert posix/posix.c -o posix/posix.o
+
+posix/posix_tests.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,posix_tests.o,-MF,dep/posix_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert posix/posix_tests.c -o posix/posix_tests.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,posix_tests.o,-MF,dep/posix_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert posix/posix_tests.c -o posix/posix_tests.o
+
+gpib/gpib_hal.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_hal.o,-MF,dep/gpib_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_hal.c -o gpib/gpib_hal.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_hal.o,-MF,dep/gpib_hal.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_hal.c -o gpib/gpib_hal.o
+
+gpib/gpib.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib.o,-MF,dep/gpib.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib.c -o gpib/gpib.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib.o,-MF,dep/gpib.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib.c -o gpib/gpib.o
+
+gpib/gpib_task.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_task.o,-MF,dep/gpib_task.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_task.c -o gpib/gpib_task.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_task.o,-MF,dep/gpib_task.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_task.c -o gpib/gpib_task.o
+
+gpib/gpib_tests.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_tests.o,-MF,dep/gpib_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_tests.c -o gpib/gpib_tests.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib_tests.o,-MF,dep/gpib_tests.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/gpib_tests.c -o gpib/gpib_tests.o
+
+gpib/drives.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,drives.o,-MF,dep/drives.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/drives.c -o gpib/drives.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,drives.o,-MF,dep/drives.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/drives.c -o gpib/drives.o
+
+gpib/drives_sup.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,drives_sup.o,-MF,dep/drives_sup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/drives_sup.c -o gpib/drives_sup.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,drives_sup.o,-MF,dep/drives_sup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/drives_sup.c -o gpib/drives_sup.o
+
+gpib/ss80.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ss80.o,-MF,dep/ss80.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/ss80.c -o gpib/ss80.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,ss80.o,-MF,dep/ss80.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/ss80.c -o gpib/ss80.o
+
+gpib/amigo.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,amigo.o,-MF,dep/amigo.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/amigo.c -o gpib/amigo.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,amigo.o,-MF,dep/amigo.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/amigo.c -o gpib/amigo.o
+
+gpib/printer.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,printer.o,-MF,dep/printer.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/printer.c -o gpib/printer.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,printer.o,-MF,dep/printer.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/printer.c -o gpib/printer.o
+
+gpib/controller.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,controller.o,-MF,dep/controller.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/controller.c -o gpib/controller.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,controller.o,-MF,dep/controller.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert gpib/controller.c -o gpib/controller.o
+
+lif/lifsup.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lifsup.o,-MF,dep/lifsup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lif/lifsup.c -o lif/lifsup.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lifsup.o,-MF,dep/lifsup.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lif/lifsup.c -o lif/lifsup.o
+
+lif/lifutils.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lifutils.o,-MF,dep/lifutils.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lif/lifutils.c -o lif/lifutils.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,lifutils.o,-MF,dep/lifutils.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert lif/lifutils.c -o lif/lifutils.o
+
+main.c :
+avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,main.o,-MF,dep/main.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert main.c -o main.o
+# avr-gcc -c -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,main.o,-MF,dep/main.o.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert main.c -o main.o
+
+echo Linking ELF File
+Linking ELF File
+avr-gcc -Wl,-u,vfprintf -lprintf_flt -lm -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\"" -Wall  -std=gnu99 -funsigned-char -gdwarf-2 -mmcu=atmega1284p -Os -mcall-prologues -Wall -Wextra -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif -I. -Ihardware -Ilib -Iprintf -Ifatfs -Ifatfs.hal -Ifatfs.sup -Igpib -Iposix -Ilif/include -DAVR -DF_CPU=20000000 -DSDEBUG=0x11 -DSPOLL=1 -Datmega1284p -DDEFINE_PRINTF -DFLOATIO -DHP9134D -DAMIGO -DBAUD=115200UL -DI2C_SUPPORT -DRTC_SUPPORT -DFATFS_SUPPORT -DDRV_MMC=0 -DFATFS_TESTS -DLCD_SUPPORT -DLIF_SUPPORT -DPOSIX_TESTS -DBOARD=2 -DPPR_REVERSE_BITS=1 -MD -Wp,-M,-MP,-MT,gpib.o,-MF,dep/gpib.elf.d -mrelax -Wl,-Map,gpib.map -ffunction-sections -Wl,-gc-sections -Waddr-space-convert  hardware/hal.o hardware/ram.o hardware/delay.o hardware/rs232.o hardware/spi.o hardware/TWI_AVR8.o hardware/i2c.o hardware/rtc.o hardware/LCD.o display/lcd_printf.o lib/stringsup.o lib/timer_hal.o lib/timer.o lib/time.o lib/queue.o printf/printf.o printf/mathio.o fatfs/ff.o fatfs/ffsystem.o fatfs/ffunicode.o fatfs.hal/diskio.o fatfs.hal/mmc.o fatfs.hal/mmc_hal.o fatfs.sup/fatfs_sup.o fatfs.sup/fatfs_tests.o posix/posix.o posix/posix_tests.o gpib/gpib_hal.o gpib/gpib.o gpib/gpib_task.o gpib/gpib_tests.o gpib/drives.o gpib/drives_sup.o gpib/ss80.o gpib/amigo.o gpib/printer.o gpib/controller.o lif/lifsup.o lif/lifutils.o main.o   --output gpib.elf
+
+echo Making HEX file
+Making HEX file
+avr-objcopy -O ihex -R .eeprom  gpib.elf gpib.hex
+
+echo Making LST File
+Making LST File
+avr-objdump -h -S -C gpib.elf > gpib.lst
+
+echo Making SYM File
+Making SYM File
+avr-nm -n gpib.elf > gpib.sym
+echo Making LSS file
+Making LSS file
+avr-objdump -h -S -t gpib.elf > gpib.lss
+
+avr-size -C --mcu=atmega1284p gpib.elf
+AVR Memory Usage
+----------------
+Device: atmega1284p
+
+Program:  129092 bytes (98.5% Full)
+(.text + .data + .bootloader)
+
+Data:       8036 bytes (49.0% Full)
+(.data + .bss + .noinit)
+
+
+avr-size -x -A --mcu=atmega1284p gpib.elf
+gpib.elf  :
+section                       size       addr
+.data                       0x15fe   0x800100
+.text                      0x1e246        0x0
+.bss                         0x966   0x8016fe
+.comment                      0x11        0x0
+.note.gnu.avr.deviceinfo      0x40        0x0
+.debug_aranges              0x1a48        0x0
+.debug_info                0x3a3ec        0x0
+.debug_abbrev               0x84ff        0x0
+.debug_line                0x363e4        0x0
+.debug_frame                0x6058        0x0
+.debug_str                  0x3d47        0x0
+.debug_loc                 0x2cecf        0x0
+.debug_ranges               0x2228        0x0
+Total                      0xd37a8
+
+
+avr-size -x --common -C --mcu=atmega1284p gpib.elf
+AVR Memory Usage
+----------------
+Device: atmega1284p
+
+Program:  129092 bytes (98.5% Full)
+(.text + .data + .bootloader)
+
+Data:       8036 bytes (49.0% Full)
+(.data + .bss + .noinit)
+
+
+avr-nm -n -S gpib.elf | grep "__eeprom"
+00810000 N __eeprom_end
+#-avr-nm -n -S gpib.elf | grep "__noinit"
+avr-nm -n -S gpib.elf | grep "__bss"
+008016fe B __bss_start
+00802064 B __bss_end
+avr-nm -n -S gpib.elf | grep "__data"
+0001e246 A __data_load_start
+0001f844 A __data_load_end
+00800100 D __data_start
+008016fe D __data_end
+avr-nm -n -S gpib.elf | grep "__heap"
+00000000 W __heap_end
+00802064 N __heap_start
+avr-nm -n -S gpib.elf | grep "__brkval"
+00802060 00000002 B __brkval
+make -C lif
+stat: illegal option -- c
+usage: stat [-FlLnqrsx] [-f format] [-t timefmt] [file ...]
+gcc -O -D_GNU_SOURCE -g -static -DLIF_STAND_ALONE -DGIT_VERSION="\"\"" -DLOCAL_MOD="\"\""  -I. -Iteledisk -DTELEDISK -L/Users/jayhamlin/Documents/eagle/hp85disk/lif/teledisk -DMKCFG_STANDALONE lifsup.c lifutils.c teledisk/td0_lzss.c  td02lif.c -o lif -lm
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:53:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:54:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: conflicting types for '__builtin___strncpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:54:25: note: '__builtin___strncpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:55:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:56:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: conflicting types for '__builtin___strcat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:56:25: note: '__builtin___strcat_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:57:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:17:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: conflicting types for '__builtin___strncat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:57:25: note: '__builtin___strncat_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:19:
+./../lib/stringsup.c:161:1: error: expected parameter declarator
+strcpy(char *dest, const char *src)
+^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifsup.c:19:
+./../lib/stringsup.c:161:1: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.c:161:1: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifsup.c:19:
+./../lib/stringsup.c:161:1: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+strcpy(char *dest, const char *src)
+^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifsup.c:19:
+./../lib/stringsup.c:161:1: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifsup.c:19:
+./../lib/stringsup.c:161:1: error: definition of builtin function '__builtin___strcpy_chk'
+strcpy(char *dest, const char *src)
+^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+6 warnings and 20 errors generated.
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:53:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:54:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: conflicting types for '__builtin___strncpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:54:25: note: '__builtin___strncpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:55:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:56:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: conflicting types for '__builtin___strcat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:56:25: note: '__builtin___strcat_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:57:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from lifutils.c:93:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: conflicting types for '__builtin___strncat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:57:25: note: '__builtin___strncat_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+5 warnings and 15 errors generated.
+teledisk/td0_lzss.c:195:10: warning: result of comparison of constant -1 with expression of type 'unsigned char' is always
+      false [-Wtautological-constant-out-of-range-compare]
+    if(c == EOF)
+       ~ ^  ~~~
+1 warning generated.
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:53:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:53:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:54:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncpy ( char *dest , const char *src , size_t size );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:47: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:54:25: error: conflicting types for '__builtin___strncpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:54:25: note: '__builtin___strncpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:128:3: note: expanded from macro 'strncpy'
+                __builtin___strncpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:55:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:46: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:55:25: error: conflicting types for '__builtin___strcpy_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:53:25: note: '__builtin___strcpy_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+MEMSPACE WEAK_ATR char *strcpy ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:84:3: note: expanded from macro 'strcpy'
+                __builtin___strcpy_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:56:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strcat ( char *dest , const char *src );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:46: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                           ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:56:25: error: conflicting types for '__builtin___strcat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:56:25: note: '__builtin___strcat_chk' is a builtin with type 'char *(char *, const char *, unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:135:3: note: expanded from macro 'strcat'
+                __builtin___strcat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected parameter declarator
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: expected ')'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:62: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                             ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:30:32: note: expanded from macro
+      '_USE_FORTIFY_LEVEL'
+#    define _USE_FORTIFY_LEVEL 2
+                               ^
+./../lib/stringsup.h:57:25: note: to match this '('
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:53: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                                                    ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: warning: type specifier missing, defaults to 'int' [-Wimplicit-int]
+MEMSPACE WEAK_ATR char *strncat ( char *dest , const char *src , size_t max );
+                        ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:47: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                                                            ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_common.h:39:31: note: expanded from macro
+      '__darwin_obsz'
+#define __darwin_obsz(object) __builtin_object_size (object, _USE_FORTIFY_LEVEL > 1 ? 1 : 0)
+                              ^
+In file included from td02lif.c:49:
+In file included from ./lifsup.h:36:
+./../lib/stringsup.h:57:25: error: conflicting types for '__builtin___strncat_chk'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+./../lib/stringsup.h:57:25: note: '__builtin___strncat_chk' is a builtin with type 'char *(char *, const char *, unsigned long,
+      unsigned long)'
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h:143:3: note: expanded from macro 'strncat'
+                __builtin___strncat_chk (dest, __VA_ARGS__, __darwin_obsz (dest))
+                ^
+td02lif.c:426:19: warning: assigning to 'uint8_t *' (aka 'unsigned char *') from 'char [1]' converts between pointers to
+      integer types with different sign [-Wpointer-sign]
+    disk->comment = "";
+                  ^ ~~
+td02lif.c:449:11: warning: passing 'uint8_t [3]' to parameter of type 'char *' converts between pointers to integer types with
+      different sign [-Wpointer-sign]
+        if(MATCH(disk->td_header.Header,"TD"))
+                 ^~~~~~~~~~~~~~~~~~~~~~
+./../lib/stringsup.h:68:28: note: passing argument to parameter 'str' here
+MEMSPACE int MATCH ( char *str , char *pat );
+                           ^
+td02lif.c:454:16: warning: passing 'uint8_t [3]' to parameter of type 'char *' converts between pointers to integer types with
+      different sign [-Wpointer-sign]
+        else if(MATCH(disk->td_header.Header,"td"))
+                      ^~~~~~~~~~~~~~~~~~~~~~
+./../lib/stringsup.h:68:28: note: passing argument to parameter 'str' here
+MEMSPACE int MATCH ( char *str , char *pat );
+                           ^
+td02lif.c:592:26: warning: result of comparison of constant 256 with expression of type 'uint8_t' (aka 'unsigned char') is
+      always false [-Wtautological-constant-out-of-range-compare]
+        if(td_track.PCyl >= MAXCYL )
+           ~~~~~~~~~~~~~ ^  ~~~~~~
+9 warnings and 15 errors generated.
+make[1]: *** [lif] Error 1
+make: *** [lif] Error 2
+jayhamlin@Jays-MBP hp85disk % 

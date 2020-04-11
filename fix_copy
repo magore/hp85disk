@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+
+cat <<EOF >copy.txt
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
+ @see http://github.com/magore/hp85disk
+ @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
+EOF
+
+FILES=$*
+
+cp /share/embedded/GPIB/mike/hp85disk/copy.txt .
+for i in $FILES
+do
+    echo $i
+    sed -i -e '/Copyright.*Gore/r copy.txt' "$i"
+    sed -i -e '/Copyright.*Gore, Inc/d' "$i"    
+    head "$i"
+    echo ===========================================
+done
+rm -f copy.txt

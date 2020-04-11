@@ -1,0 +1,34 @@
+hardware/hal.c: In function ‘chip_addr’:
+hardware/hal.c:268:20: warning: unused parameter ‘addr’ [-Wunused-parameter]
+ void chip_addr(int addr)
+                    ^
+hardware/rs232.c: In function ‘uart0_getchar’:
+hardware/rs232.c:45:26: warning: unused parameter ‘f’ [-Wunused-parameter]
+ int uart0_getchar( void *f)
+                          ^
+hardware/rs232.c: In function ‘uart0_putchar’:
+hardware/rs232.c:57:32: warning: unused parameter ‘f’ [-Wunused-parameter]
+ int uart0_putchar(int c, void *f)
+                                ^
+hardware/spi.c: In function ‘SPI0_Init’:
+hardware/spi.c:191:19: warning: variable ‘D’ set but not used [-Wunused-but-set-variable]
+  volatile uint8_t D;
+                   ^
+lib/timer_hal.c: In function ‘clock_gettime’:
+lib/timer_hal.c:147:29: warning: unused parameter ‘clk_id’ [-Wunused-parameter]
+ int clock_gettime(clockid_t clk_id, struct timespec *ts)
+                             ^
+lib/timer.c: In function ‘set_timers’:
+lib/timer.c:60:43: warning: unused parameter ‘timer’ [-Wunused-parameter]
+ int set_timers(void (*handler)(void), int timer)
+                                           ^
+lib/timer.c: In function ‘clock_getres’:
+lib/timer.c:329:28: warning: unused parameter ‘clk_id’ [-Wunused-parameter]
+ int clock_getres(clockid_t clk_id, struct timespec *res)
+                            ^
+fatfs.hal/mmc.c:97:6: warning: ‘power_on’ defined but not used [-Wunused-function]
+ void power_on (void)
+      ^
+main.c:94:23: warning: initialization makes pointer from integer without a cast [-Wint-conversion]
+ void(*RESET) (void) = (0x10000-0x400);
+                       ^

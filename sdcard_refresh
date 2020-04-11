@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+umount /media/magore/*
+umount /dev/sdc1
+mkfs -t vfat /dev/sdc1
+sync
+mount /dev/sdc1 /mnt
+
+cd /share/embedded/GPIB/mike/hp85disk/sdcard
+rm *\.lif
+./create_images.sh
+chown -R magore:magore /share/embedded/GPIB/mike/hp85disk
+rsync -rt  --delete ./ /mnt/
+sync
+umount /mnt
+sleep 2
+fsck -f /dev/sdc1

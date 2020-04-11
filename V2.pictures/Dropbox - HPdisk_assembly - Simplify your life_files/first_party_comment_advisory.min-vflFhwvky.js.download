@@ -1,0 +1,2 @@
+define(["require","exports","tslib","react"],(function(e,t,r,o){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),o=r.__importStar(o),t.FirstPartyCommentAdvisory=function(e){var t=e.thirdPartySource,r=e.intl;return t?o.createElement(o.Fragment,null,r.formatMessage({id:"28sjP",defaultMessage:"Comment will only post to Dropbox."})):null}}));
+//# sourceMappingURL=first_party_comment_advisory.min.js-vflT3-W0H.map

@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+echo -n "GIT updated:  "
+stat -c%x update.last 2>/dev/null
+
+SRC="fatfs fatfs.hal lif fatfs.sup gpib hardware lib posix printf"
+FILES=""
+for i in $SRC
+do
+	FILES=$(find $i | grep "\.[ch]$\|\.md$\|\.txt$")" $FILES"
+done
+
+FILES="$FILES main.c"
+
+echo -n "Last touched: "
+ls -rt $FILES | tail -1 | xargs stat -c%x
+
