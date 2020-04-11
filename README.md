@@ -48,16 +48,19 @@ ___
 ## V2 code is now working
   * [Jay Hamlin designed this board](board/V2/releases)
   * V2 hardware adds
+   * PCB Circuit board
    * GPIB BUS drivers
      * 48Mma drive required by the GPIB spec
    * I2C level converters and standard Qwiic Bus interface - 3.3V
-      * optional RTC chips like the DS3231 
-      * LCD displays - work in progress
+   * RTC clock for time stamping files added to LIF images, etc
+   * Optional I2C LCD interface
+      * work in progress
    * Advanced Hardware Reset circuit
    * Micro size SD card interface
 ## V2 Pictures by Jay Hamlin
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-1.png)
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-2.png)
+
 
 
 ## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
@@ -67,7 +70,6 @@ ___
     * About half of the 48Mma drive required by the GPIB spec
     * However we can read any pin any time - useful for tracing/debugging
   * RTC DS1307 for time stamping 
-
 
 
 ## HP Disk Emulator by Anders Gustafsson
