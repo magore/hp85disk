@@ -1,2 +1,0 @@
-define(["require","exports","tslib","comments2/components/comment/annotated_comment","comments2/components/comment/comment","comments2/components/comment/time_coded_comment","comments2/components/comment/numbered_comment"],(function(e,t,m,o,n,c,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),m.__exportStar(o,t),m.__exportStar(n,t),m.__exportStar(c,t),m.__exportStar(r,t)}));
-//# sourceMappingURL=index.min.js-vflVCNYp8.map
