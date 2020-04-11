@@ -69,7 +69,6 @@ ___
   * [My original board design without GPIB buffers](board/V1/README.md)
 
 
-___ 
 
 ## HP Disk Emulator by Anders Gustafsson
 *Anders Gustafsson was extremely helpful in getting my project started.*
