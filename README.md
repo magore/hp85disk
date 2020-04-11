@@ -57,9 +57,10 @@ ___
    * I2C level converters and standard Qwiic Bus interface - 3.3V
    * RTC clock for time stamping files added to LIF images, etc
    * Optional I2C LCD interface
-      * work in progress
+     * work in progress
    * Advanced Hardware Reset circuit
    * Micro size SD card interface
+  * [Current design files](https://github.com/magore/hp85disk/tree/master/board/V2/releases/HP85Disk_release_03)
 ## V2 Pictures by Jay Hamlin
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-1.png)
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-2.png)
