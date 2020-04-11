@@ -157,13 +157,13 @@ README</h1>
 <h2>HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore</h2>
 <h2>board/V1/README.md "V1 board readme"</h2>
 <ul>
+<li>My original board design without GPIB buffers</li>
 <li>Limited control and BUS drive power<ul>
 <li>About half of the 48Mma drive required by the GPIB spec</li>
 <li>However we can read any pin any time - useful for tracing/debugging</li>
 </ul>
 </li>
 <li>RTC DS1307 for time stamping</li>
-<li>My original board design without GPIB buffers</li>
 </ul>
 <h2>HP Disk Emulator by Anders Gustafsson</h2>
 <p><em>Anders Gustafsson was extremely helpful in getting my project started.</em> <em>In fact I really owe the very existence of this project to his original project</em></p><ul>
@@ -173,10 +173,26 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p>He provided me his current source code code and mainy details of his project <em>which I am very thankful for.</em> NOTE: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. NOT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for GPIB ,AMIGO and SS80 state tracking.</p>
+<p>Anders originally provided me his source code in 2014 and many details of his project <em>which I am very thankful for.</em> NOTE: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for GPIB ,AMIGO and SS80 state tracking.</p>
 <h2>The HPDir project was a vital documentation source for this project*</h2>
 <ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">http://www.hp9845.net/9845/projects/hpdir</a></li>
+<li>I use the hpdir.ini of thier project for creating disk images</li>
+</ul>
+<h3>Other HPDir resources for disk image manipulation</h3>
+<ul>
+<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
+<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
+<li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">See LIF Documentation - part of the HPDir project for details</a><ul>
+<li>Copyright © 2010 A. Kückes</li>
+</ul>
+</li>
 </ul>
 <h2>My TeleDisk to LIF conversion utility</h2>
 <ul>
@@ -223,25 +239,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<h3>Other resources for disk image manipulation</h3>
-<ul>
-<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-<li><a href="http://www.hp9845.net/9845/projects/hpdrive">HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-<li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">See LIF Documentation - part of the HPDir project for details</a><ul>
-<li>Copyright © 2010 A. Kückes</li>
-</ul>
-</li>
-</ul>
 <h2>FatFS</h2>
 <ul>
 <li>[fatfs](fatfs)<ul>
-<li>R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes</li>
+<li>R0.14 FatFS code from (C) ChaN, 2019 - With very minimal changes</li>
 </ul>
 </li>
 </ul>
@@ -272,13 +273,14 @@ README</h1>
 </li>
 </ul>
 </li>
-</ul>
-<p>See: <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a> branch master</p><ul>
+<li>Changes Jay and I made<ul>
 <li>Changed to atmega1284p</li>
 <li>Jay converted code to Python 3</li>
 <li>Added Baudrate argument</li>
 <li>Added code to send "reset" command to hp85disk firmware to drop into optiboot</li>
 <li>Fixed Intel 02 segment record calculation</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <h2>Important notes about SD Card requirments for the emulator</h2>
@@ -2364,7 +2366,7 @@ time
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 11 2020 18:44:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 11 2020 18:53:21 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

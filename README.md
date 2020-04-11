@@ -62,11 +62,11 @@ ___
 
 ## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
 ## [V1 board readme](board/V1/README.md)
+  * [My original board design without GPIB buffers](board/V1/README.md)
   * Limited control and BUS drive power 
     * About half of the 48Mma drive required by the GPIB spec
     * However we can read any pin any time - useful for tracing/debugging
   * RTC DS1307 for time stamping 
-  * [My original board design without GPIB buffers](board/V1/README.md)
 
 
 
@@ -77,15 +77,24 @@ ___
    * <http://www.dalton.ax/hpdisk>
    * <http://www.elektor-labs.com/project/hpdisk-an-sd-based-disk-emulator-for-gpib-instruments-and-computers.13693.html>
 
-He provided me his current source code code and mainy details of his project *which I am very thankful for.*
+Anders originally provided me his source code in 2014 and many details of his project *which I am very thankful for.*
 NOTE: 
- As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. 
- I did this one part at a time as I learned the protocols and specifications.
- NOT because of any problems with his original work. 
- Although mostly rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
+ I ended up rewritting virtually all of Anders project.
+ This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work.
+ I did this one part at a time as I read the HP documents covering the protocols and specifications.
+ Although rewritten I have maintained the basic concept of using  state machines for GPIB ,AMIGO and SS80 state tracking.
 
 ## The HPDir project was a vital documentation source for this project*
-   * <http://www.hp9845.net/9845/projects/hpdir>
+  * <http://www.hp9845.net/9845/projects/hpdir>
+  * I use the hpdir.ini of thier project for creating disk images
+
+### Other HPDir resources for disk image manipulation
+  * [HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
+    * Copyright © 2010 A. Kückes
+  * [HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
+    * Copyright © 2010 A. Kückes
+  * [ See LIF Documentation - part of the HPDir project for details](http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem)
+    * Copyright © 2010 A. Kückes
 
 
 ## My TeleDisk to LIF conversion utility
@@ -111,18 +120,9 @@ NOTE:
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
-### Other resources for disk image manipulation
-  * [HPDrive project has very useful references an tools for creating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright © 2010 A. Kückes
-  * [HPDir project has very useful references and tools for manipulating HP disk LIF images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright © 2010 A. Kückes
-  * [ See LIF Documentation - part of the HPDir project for details](http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem)
-    * Copyright © 2010 A. Kückes
-
-
 ## FatFS
   * [fatfs](fatfs)
-    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
+    * R0.14 FatFS code from (C) ChaN, 2019 - With very minimal changes 
 
 ## Optiboot
   * [optiboot](optiboot)
@@ -137,8 +137,7 @@ NOTE:
       * Original repository https://github.com/tito/stk500
         * Authors main github page https://github.com/tito/stk500
           * https://meltingrocks.com/
-
-   * See: https://github.com/magore/hp85disk branch master
+  * Changes Jay and I made
    * Changed to atmega1284p
    * Jay converted code to Python 3
    * Added Baudrate argument

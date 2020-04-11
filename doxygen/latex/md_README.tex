@@ -110,13 +110,13 @@ L\+IF manipulation tools are built in see later sections for details
 
 
 \begin{DoxyItemize}
+\item My original board design without G\+P\+IB buffers
 \item Limited control and B\+US drive power
 \begin{DoxyItemize}
 \item About half of the 48\+Mma drive required by the G\+P\+IB spec
 \item However we can read any pin any time -\/ useful for tracing/debugging
 \end{DoxyItemize}
 \item R\+TC D\+S1307 for time stamping
-\item My original board design without G\+P\+IB buffers
 \end{DoxyItemize}
 
 \subsection*{HP Disk Emulator by Anders Gustafsson}
@@ -130,13 +130,32 @@ L\+IF manipulation tools are built in see later sections for details
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-He provided me his current source code code and mainy details of his project {\itshape which I am very thankful for.} N\+O\+TE\+: As mainly a personal exercise in fully understanding the code I ended up rewriting much of the hpdisk project. I did this one part at a time as I learned the protocols and specifications. N\+OT because of any problems with his original work. Although mostly rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
+Anders originally provided me his source code in 2014 and many details of his project {\itshape which I am very thankful for.} N\+O\+TE\+: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and N\+OT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for G\+P\+IB ,A\+M\+I\+GO and S\+S80 state tracking.
 
 \subsection*{The H\+P\+Dir project was a vital documentation source for this project$\ast$}
 
 
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir}{\tt http\+://www.\+hp9845.\+net/9845/projects/hpdir}
+\item I use the hpdir.\+ini of thier project for creating disk images
+\end{DoxyItemize}
+
+\subsubsection*{Other H\+P\+Dir resources for disk image manipulation}
+
+
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive project has very useful references an tools for creating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Dir project has very useful references and tools for manipulating HP disk L\+IF images compatible with this project}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
+\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt See L\+IF Documentation -\/ part of the H\+P\+Dir project for details}
+\begin{DoxyItemize}
+\item Copyright © 2010 A. Kückes
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \subsection*{My Tele\+Disk to L\+IF conversion utility}
@@ -187,31 +206,13 @@ He provided me his current source code code and mainy details of his project {\i
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\subsubsection*{Other resources for disk image manipulation}
-
-
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Drive project has very useful references an tools for creating HP disk L\+IF images compatible with this project}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdrive}{\tt H\+P\+Dir project has very useful references and tools for manipulating HP disk L\+IF images compatible with this project}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\item \href{http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem}{\tt See L\+IF Documentation -\/ part of the H\+P\+Dir project for details}
-\begin{DoxyItemize}
-\item Copyright © 2010 A. Kückes
-\end{DoxyItemize}
-\end{DoxyItemize}
-
 \subsection*{Fat\+FS}
 
 
 \begin{DoxyItemize}
 \item \mbox{[}fatfs\mbox{]}(fatfs)
 \begin{DoxyItemize}
-\item R0.\+12b Fat\+FS code from (C) ChaN, 2016 -\/ With very minimal changes
+\item R0.\+14 Fat\+FS code from (C) ChaN, 2019 -\/ With very minimal changes
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -247,15 +248,14 @@ He provided me his current source code code and mainy details of his project {\i
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-See\+: \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk} branch master
+\item Changes Jay and I made
 \begin{DoxyItemize}
 \item Changed to atmega1284p
 \item Jay converted code to Python 3
 \item Added Baudrate argument
 \item Added code to send \char`\"{}reset\char`\"{} command to hp85disk firmware to drop into optiboot
 \item Fixed Intel 02 segment record calculation
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 
