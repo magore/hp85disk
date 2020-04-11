@@ -6,7 +6,7 @@
   * The images are stored in LIF format used by the HP85 series computers
   * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
   * Documentation created using Doxygen available at
-    * https://rawgit.com/magore/hp85disk/V2/doxygen/html/index.html
+    * https://rawgit.com/magore/hp85disk/master/doxygen/html/index.html
     * All emulated disk images are just regular files stored on a standard FAT32 formatted SD Card
 
 ## Features for the HP85 in brief
@@ -43,7 +43,7 @@ ___
 ## Credits
 
 ## HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
-## V2 board design - github V2 branch targets the new board by Jay Hamlin
+## V2 board design - github master branch targets both old and new board by Jay Hamlin
 ## V2 code is now working
   * [Jay Hamlin designed this board](board/V2/releases)
   * V2 hardware adds
@@ -134,7 +134,7 @@ NOTE:
         * Authors main github page https://github.com/tito/stk500
           * https://meltingrocks.com/
 
-   * See: https://github.com/magore/hp85disk branch V2
+   * See: https://github.com/magore/hp85disk branch master
    * Changed to atmega1284p
    * Jay converted code to Python 3
    * Added Baudrate argument
@@ -285,7 +285,7 @@ ___
      * Please NO Unicode - both file names and file formats!
   * You have a serial terminal program installed - for example minicom 
   * You need a FAT32 format blank SD Card
-    * Copy of the hp85disk, github V2 branch, sdcard folder contents onto the SD Card
+    * Copy of the hp85disk, github master branch, sdcard folder contents onto the SD Card
       * Make sure you only copy the contents and NOT folder AND contents
         * The emulator assumes the SD card home directory contains the images and configuration files
 
@@ -421,7 +421,7 @@ ___
 
 ## Updating hp85disk firmware with built in bootloader
   * Only do this if recommended
-  * Note: The github hp85disk V2 branch project includes disk images and precompiled firmeare
+  * Note: The github hp85disk master branch project includes disk images and precompiled firmeare
     * Compiled Firmware hex file [release/build](release/build) 
     * SD Card Disk Images        [release/sdcard](release/sdcard)
 
@@ -487,7 +487,7 @@ Note: For Windows install the WSL and Ubuntu App first - see previous section
   * Open a terminal Window
     * Ubuntu App under Windows
   * You can download a script to do this
-    *  https://raw.githubusercontent.com/magore/hp85disk/V2/install_hp85disk.sh
+    *  https://raw.githubusercontent.com/magore/hp85disk/master/install_hp85disk.sh
   * *bash ./install_hp85disk.sh*
     * The script will ask you once for your login password so the script can run the installation as root using sudo
 

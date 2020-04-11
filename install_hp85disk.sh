@@ -21,11 +21,11 @@ echo installing pySerial
 pip3 install pySerial
 
 echo
-echo Downloading hp85disk github V2 branch code
+echo Downloading hp85disk github master branch code
 echo Downloading https://github.com/magore/hp85disk
 if [ ! -d hp85disk ]
 then
-	git clone --branch V2 https://github.com/magore/hp85disk
+	git clone --branch master https://github.com/magore/hp85disk
 else
 	pushd hp85disk
 		git pull
@@ -33,7 +33,7 @@ else
 fi
 
 pushd hp85disk
-	git checkout V2
+	git checkout master
 popd
 
 echo
