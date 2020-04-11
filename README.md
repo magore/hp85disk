@@ -54,7 +54,11 @@ ___
       * optional RTC chips like the DS3231 
       * LCD displays - work in progress
    * Advanced Hardware Reset circuit
-   * Full size SD card interface with Card detect
+   * Micro size SD card interface
+## V2 Pictures by Jay Hamlin
+![](https://github.com/magore/hp85disk/blob/master/hp85disk-1.png)
+![](https://github.com/magore/hp85disk/blob/master/hp85disk-2.png)
+
 
 ## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
 ## [V1 board readme](board/V1/README.md)
