@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -61,6 +61,7 @@ void gpib_clock_task( void );
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
 
 
+// control pins are the same on V1 and V2 hardware
 #define EOI     GPIO_B0
 #define DAV     GPIO_B1
 #define NRFD    GPIO_D2
@@ -70,28 +71,20 @@ void gpib_clock_task( void );
 #define ATN     GPIO_D6
 #define REN     GPIO_D7
 
+// V2 Hardware
+
+#define TE       GPIO_C2
+#define PE       GPIO_C3
+#define DC       GPIO_C4
+#define SC		 GPIO_C5
+#define LED1     GPIO_C6
+#define LED2     GPIO_C7
+
+// No loger being used
 #ifndef SOFTWARE_PP
 #warning Hardware PP
 #define PPE     GPIO_B2
 #endif
-
-///@brief changes pin mode to read, then read
-#define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
-
-///@brief changes pin mode to read
-#define GPIB_PIN_FLOAT(a)   GPIO_PIN_FLOAT(a)
-
-///@brief changes pin mode to write then set low
-#define GPIB_IO_LOW(a)      GPIO_PIN_LOW(a)
-
-///@brief changes pin mode to write then set hi
-#define GPIB_IO_HI(a)       GPIO_PIN_HI(a)
-
-///@brief checks the pin state without changing read/write mode
-#define GPIB_PIN_TST(a)     GPIO_PIN_TST(a)
-
-///@brief checks the port latch state without changing read/write mode
-#define GPIB_LATCH_RD(a)     GPIO_PIN_LATCH_RD(a)
 
 ///@brief changes to state of full 8bit port to out
 #define GPIB_BUS_OUT()      GPIO_PORT_DIR_OUT(GPIO_A)
@@ -102,8 +95,39 @@ void gpib_clock_task( void );
 ///@brief changes to state of full 8bit port to in then read
 #define GPIB_BUS_RD()       GPIO_PORT_RD(GPIO_A)
 
+///@brief writes GPIB port latch without changing to write direction
+#define GPIB_BUS_LATCH_WR(val) GPIO_PORT_LATCH_WR(GPIO_A,val)
+
 ///@brief changes to state of full 8bit port to out then write
 #define GPIB_BUS_WR(val)    GPIO_PORT_WR(GPIO_A,val)
+
+///@brief changes pin mode to read
+#define GPIB_PIN_FLOAT(a)   GPIO_PIN_FLOAT(a)
+
+///@brief changes pin mode to read
+#define GPIB_PIN_FLOAT_UP(a) GPIO_PIN_FLOAT_UP(a)
+
+///@brief checks the pin state without changing read/write mode
+#define GPIB_PIN_TST(a)     GPIO_PIN_TST(a)
+
+///@brief changes pin mode to write then set low
+#define GPIB_IO_LOW(a)      GPIO_PIN_LOW(a)
+
+///@brief changes pin mode to write then set hi
+#define GPIB_IO_HI(a)       GPIO_PIN_HI(a)
+
+///@brief changes pin mode to read, then read
+#define GPIB_IO_RD(a)       GPIO_PIN_RD(a)
+
+///@brief Update pin latch state without changing read/write mode
+#define GPIB_LATCH_HI(a)    GPIO_PIN_LATCH_LOW(a)
+
+///@brief Update pin latch state without changing read/write mode
+#define GPIB_LATCH_LOW(a)   GPIO_PIN_LATCH_HI(a)
+
+///@brief Read the pin latch state without changing read/write mode
+#define GPIB_LATCH_RD(a)    GPIO_PIN_LATCH_RD(a)
+
 
 ///@brief We attempt to detect PPR states for logging only
 /// PPR is handled in hardware - but useful if we can detect for logging
@@ -116,6 +140,9 @@ void gpib_clock_task( void );
 ///@brief read full port direction register state
 /// Optional - see gpib_detect_PPR
 #define GPIB_PPR_DDR_RD()   GPIO_PORT_DDR_RD(GPIO_A)
+
+/// ===================================================
+// FIXME just to be safe we check that evreything is defained
 
 #ifndef GPIB_BUS_RD
 #error GPIB_BUS_RD read macro is not defined
@@ -133,18 +160,38 @@ void gpib_clock_task( void );
 #error GPIB_BUS_OUT write macro is not defined
 #endif
 
-#ifndef GPIB_IO_LOW
-#error GPIB_IO_LOW is not defined
+#ifndef GPIB_BUS_LATCH_WR
+#error GPIB_BUS_LATCH_WR  write macro is not defined
 #endif
-#ifndef GPIB_IO_HI
-#error GPIB_IO_HI is not defined
+
+#ifndef GPIB_BUS_SETTLE
+#error GPIB_BUS_SETTLE write macro is not defined
 #endif
-#ifndef GPIB_PIN_FLOAT
-#error GPIB_PIN_FLOAT is not defined
-#endif
+
 #ifndef GPIB_IO_RD
 #error GPIB_IO_RD is not defined
 #endif
+
+#ifndef GPIB_IO_LOW
+#error GPIB_IO_LOW is not defined
+#endif
+
+#ifndef GPIB_IO_HI
+#error GPIB_IO_HI is not defined
+#endif
+
+#ifndef GPIB_PIN_FLOAT
+#error GPIB_PIN_FLOAT is not defined
+#endif
+
+#ifndef GPIB_PIN_FLOAT_UP
+#error GPIB_PIN_FLOAT_UP is not defined
+#endif
+
+#ifndef GPIB_PIN_TST
+#error GPIB_PIN_TST is not defined
+#endif
+
 
 /* gpib_hal.c */
 void gpib_timer_init ( void );

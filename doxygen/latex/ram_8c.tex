@@ -15,7 +15,7 @@ void \hyperlink{ram_8c_ad8337628eb01b7f72887a582e9417800}{Print\+Free} ()
 \begin{DoxyCompactList}\small\item\em Display A\+VR free memory of each type$>$ \end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{ram_8c_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc} (int size, int elements)
 \begin{DoxyCompactList}\small\item\em Safe Alloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{ram_8c_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+void $\ast$ \hyperlink{ram_8c_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
 \begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
 void \hyperlink{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}{safefree} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -30,7 +30,7 @@ Memory Utilities and safe free for A\+VR.
 \item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
 \end{DoxyItemize}
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, Inc. All rights reserved.}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, Inc. All rights reserved.}
 
 \end{DoxyParagraph}
 
@@ -119,7 +119,7 @@ Definition at line 91 of file ram.\+c.
 
 
 
-Referenced by alloc\+\_\+device(), copy(), fatfs\+\_\+ls(), fdevopen(), lif\+\_\+calloc(), Mat\+Alloc(), new\+\_\+file\+\_\+descriptor(), queue\+\_\+new(), stralloc(), and strnalloc().
+Referenced by alloc\+\_\+device(), copy(), fatfs\+\_\+ls(), fdevopen(), lif\+\_\+calloc(), Mat\+Alloc(), new\+\_\+file\+\_\+descriptor(), queue\+\_\+new(), set\+\_\+\+Config\+\_\+\+Defaults(), stralloc(), and strnalloc().
 
 \mbox{\Hypertarget{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}\label{ram_8c_a9dc7d99df87239df4577b5b45ec6300c}} 
 \index{ram.\+c@{ram.\+c}!safefree@{safefree}}
@@ -151,13 +151,13 @@ Definition at line 125 of file ram.\+c.
 
 
 
-Referenced by copy(), fatfs\+\_\+ls(), fatfs\+\_\+tests(), free\+\_\+file\+\_\+descriptor(), lif\+\_\+free(), Mat\+Free(), mkfs(), new\+\_\+file\+\_\+descriptor(), printer\+\_\+close(), queue\+\_\+del(), and queue\+\_\+new().
+Referenced by copy(), fatfs\+\_\+ls(), fatfs\+\_\+tests(), ff\+\_\+memfree(), free\+\_\+file\+\_\+descriptor(), lif\+\_\+free(), Mat\+Free(), mkfs(), new\+\_\+file\+\_\+descriptor(), printer\+\_\+close(), queue\+\_\+del(), and queue\+\_\+new().
 
 \mbox{\Hypertarget{ram_8c_adefba2d5cc5425b0deeaaaee6d9a384e}\label{ram_8c_adefba2d5cc5425b0deeaaaee6d9a384e}} 
 \index{ram.\+c@{ram.\+c}!safemalloc@{safemalloc}}
 \index{safemalloc@{safemalloc}!ram.\+c@{ram.\+c}}
 \subsubsection{\texorpdfstring{safemalloc()}{safemalloc()}}
-{\footnotesize\ttfamily void$\ast$ safemalloc (\begin{DoxyParamCaption}\item[{\hyperlink{user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void$\ast$ safemalloc (\begin{DoxyParamCaption}\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -181,5 +181,5 @@ Definition at line 107 of file ram.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), and mkfs().
+Referenced by fatfs\+\_\+tests(), ff\+\_\+memalloc(), and mkfs().
 

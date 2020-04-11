@@ -6,12 +6,12 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.
 
 */
 
 #include "user_config.h"
-#include "lib/time.h"
+#include "time.h"
 
 /// @brief Convert number >= 0 and <= 99 to BCD.
 ///
@@ -50,10 +50,10 @@ int8_t rtc_run_test()
     uint8_t b = 0;
 
     ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
+    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        printf("rtc_state read error\n");
+        printf("rtc_run_test read error\n");
         return -1;
     }
     if(b & 8)
@@ -77,10 +77,10 @@ int rtc_run(int run)
     uint8_t b = 0;
 
     ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
+    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        printf("rtc_run read error\n");
+        printf("rtc_run read status error\n");
         return -1;
     }
 
@@ -90,10 +90,10 @@ int rtc_run(int run)
     b = ( b  & 0x7f) | (run ? 0 : 0x80);
 
     WriteAddress = 0;
-    if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
+    if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
         (uint8_t*)&b, 1) != TWI_ERROR_NoError)
     {
-        printf("rtc_run - write error\n");
+        printf("rtc_run - write status error\n");
         return(-1);
     }
     return(run);
@@ -110,14 +110,11 @@ int rtc_run(int run)
 /// @return 0 on fail.
 uint8_t rtc_init (int force, time_t seconds)
 {
-    uint8_t buf[8];                               /* RTC R/W buffer */
-    uint8_t addr;
-    uint8_t  WriteAddress;
     int8_t    state;
 
     tm_t *tmp;
 
-    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 50000));
+    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 100000));
 
     if(!force)
     {
@@ -141,22 +138,28 @@ uint8_t rtc_init (int force, time_t seconds)
         tmp = gmtime(&seconds);
         if(!rtc_write(tmp))
         {
-            printf("rtc _write epoch failed\n");
+            printf("rtc_init  write epoch failed\n");
             rtc_ok = 0;
             return 0;
         }
 
+// RAM init fails on non DS1307 chips 
+#if 0
+		uint8_t buf[8];                               /* RTC R/W buffer */
+		uint8_t addr;
+		uint8_t  WriteAddress;
         memset(buf, 0, 8);
         for (addr = 8; addr < 0x3f; addr += 8)
         {
             WriteAddress = addr;
-            if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
+            if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
                 (uint8_t*)buf, 8) != TWI_ERROR_NoError)
             {
-                printf("rtc_init ram - write error\n");
+                printf("rtc_init ram - write error at %d\n", (int) addr);
                 return(0);
             }
         }
+#endif
 
         if(rtc_run(1) < 0)                        // START RTC
         {
@@ -211,7 +214,7 @@ uint8_t rtc_write(tm_t *t)
 #endif
 
     WriteAddress = 0;
-    if (TWI_WritePacket(DS1307_W, 20, &WriteAddress, sizeof(WriteAddress),
+    if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
         (uint8_t*)buf, 8) != TWI_ERROR_NoError)
     {
         printf("rtc_write error\n");
@@ -235,7 +238,7 @@ uint8_t rtc_read(tm_t *t)
     uint8_t ReadAddress = 0;
 
     ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, 20, &ReadAddress, sizeof(ReadAddress),
+    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
         (uint8_t*)buf, 8) != TWI_ERROR_NoError)
     {
         printf("rtc_read error\n");

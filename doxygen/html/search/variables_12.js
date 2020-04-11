@@ -25,6 +25,8 @@ var searchData=
   ['tm_5fwday',['tm_wday',['../structtm.html#afe81a8c46f1c693c43f259b288859f4f',1,'tm']]],
   ['tm_5fyday',['tm_yday',['../structtm.html#a93a0ba77cc23796df84405dcbcc57eb1',1,'tm']]],
   ['tm_5fyear',['tm_year',['../structtm.html#a33adf78fd6476b2120ce3b9c4a852053',1,'tm']]],
+  ['tok',['tok',['../structtoken__t.html#ab6ff2146ea8b1275e249fd0412988215',1,'token_t']]],
+  ['tokens',['tokens',['../Read__Config_8c.html#ac9135fa6b27171be1683c98c1b624c8a',1,'Read_Config.c']]],
   ['track',['track',['../structdisk__t.html#a6498dff29cc11a772be6e0cabb54520f',1,'disk_t']]],
   ['trackdensity',['TrackDensity',['../structtd__header__t.html#a2d1461bb956665d519d33fca629477ab',1,'td_header_t']]],
   ['tracks',['Tracks',['../structliftel__t.html#a1c433cb2546f09c4093f0e98d61212b2',1,'liftel_t::Tracks()'],['../structliftel__t.html#a24244c0ee111d3f46eedd7578eb1acf7',1,'liftel_t::tracks()']]],
@@ -33,7 +35,8 @@ var searchData=
   ['tv_5fnsec',['tv_nsec',['../structtimespec.html#ae3c7510dafa8cbcaede866ed13c99683',1,'timespec']]],
   ['tv_5fsec',['tv_sec',['../structtimeval.html#aef6ddab1064c430758f9f913b7e4a21e',1,'timeval::tv_sec()'],['../structtimespec.html#afc3302668d7cb5952f590da69fdd4955',1,'timespec::tv_sec()']]],
   ['tv_5fusec',['tv_usec',['../structtimeval.html#a8fd7abf5420981b3ff58bb23df458587',1,'timeval']]],
-  ['type',['TYPE',['../structSS80ControllerType.html#a255739680bca0ad3b4d1346cf5017332',1,'SS80ControllerType::TYPE()'],['../structDeviceType.html#acee5219162b6f47a9423b2086d127ede',1,'DeviceType::TYPE()']]],
+  ['txn',['txn',['../i2c_8c.html#a6087bb393b9b2096e8680f43ac19747b',1,'i2c.c']]],
+  ['type',['TYPE',['../structSS80ControllerType.html#a255739680bca0ad3b4d1346cf5017332',1,'SS80ControllerType::TYPE()'],['../structDeviceType.html#acee5219162b6f47a9423b2086d127ede',1,'DeviceType::TYPE()'],['../structhpdir__t.html#ad2f925b088d4fd746c9ea789f34f9507',1,'hpdir_t::TYPE()']]],
   ['tz_5fdsttime',['tz_dsttime',['../structtimezone.html#a85259977aeb63b17e6ce94f19afdfd99',1,'timezone']]],
   ['tz_5fminuteswest',['tz_minuteswest',['../structtimezone.html#a3042f7eff6e1b980728def76b1fa0eb7',1,'timezone']]]
 ];

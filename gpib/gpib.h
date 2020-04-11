@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -120,7 +120,8 @@ void gpib_timer_elapsed_end ( char *msg );
 void gpib_timer_task ( void );
 void gpib_timeout_set ( uint32_t time );
 uint8_t gpib_timeout_test ( void );
-void gpib_bus_init ( int cold );
+void gpib_bus_read_init ( int busy);
+void gpib_bus_init ( void );
 void gpib_state_init ( void );
 void gpib_enable_PPR ( int bit );
 void gpib_disable_PPR ( int bit );
@@ -131,8 +132,6 @@ uint16_t gpib_unread ( uint16_t ch );
 uint8_t gpib_bus_read ( void );
 uint16_t gpib_control_pin_read ( void );
 uint16_t gpib_handshake_pin_read ( void );
-uint16_t gpib_control_port_read ( void );
-uint16_t gpib_handshake_port_read ( void );
 uint16_t gpib_write_byte ( uint16_t ch );
 uint16_t gpib_read_byte ( int trace );
 void gpib_decode_header ( FILE *fo );

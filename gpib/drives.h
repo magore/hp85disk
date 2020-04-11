@@ -7,7 +7,7 @@
 
  @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -21,8 +21,10 @@
              (c) 2014 Anders Gustafsson <anders.gustafsson@pedago.fi>
 
 -------------------------------------------------------------------------*/
+
 #include "user_config.h"
 #include "posix.h"
+#include "drives_sup.h"
 
 
 ///@brief defulats if not drives defined in sdcard config file
@@ -33,17 +35,16 @@
 
 // =============================================
 ///@brief Maximum number of emulated devices
-#define MAX_DEVICES 8
+#define MAX_DEVICES 12
 
-///@brief Maximun lengh of device file name
-#define MAX_FILE_NAME_LEN 32
 
 //@brief Drive index, Address, PPR and file name for emulated drive
 typedef struct 
 {
     uint8_t ADDRESS;    //< GPIB Address
     uint8_t PPR;        //< Parallel Poll Response Bit
-    char     NAME[MAX_FILE_NAME_LEN+1]; // Filename of emulated image
+	///@brief Maximun lengh of device file name
+    char     *NAME;     // Filename of emulated image
 } HeaderType;
 
 //@brief Identify Bytes for Drives
@@ -98,14 +99,14 @@ typedef struct
     int16_t SECTORS_PER_TRACK;
     int16_t HEADS;
     int16_t CYLINDERS;
-} AMIGOGemometryType;
+} AMIGOGeometryType;
 
 ///@brief AMIGO Disk structure - ID bytes and layout.
 typedef struct 
 {
     HeaderType HEADER;
     ConfigType CONFIG;
-    AMIGOGemometryType GEOMETRY;
+    AMIGOGeometryType GEOMETRY;
 } AMIGODiskType;
 
 
@@ -161,7 +162,7 @@ typedef struct   //<  Unit description, 19 bytes
     uint8_t BUFFERED_BLOCKS;
     uint8_t BURST_SIZE;
     uint16_t BLOCK_TIME;
-    uint16_t CONTINOUS_TRANSFER_RATE;
+    uint16_t CONTINUOUS_TRANSFER_RATE;
     uint16_t OPTIMAL_RETRY_TIME;
     uint16_t ACCESS_TIME;
     uint8_t MAXIMUM_INTERLEAVE;
@@ -232,6 +233,9 @@ enum PARSE_STATES
     SS80_CONTROLLER,
     SS80_UNIT,
     SS80_VOLUME,
+    CONTROLLER_STATE,
+    CONTROLLER_CONTROLLER,
+    CONTROLLER_UNIT,
     AMIGO_STATE,
     AMIGO_HEADER,
     AMIGO_CONFIG,
@@ -246,19 +250,23 @@ enum DEVICE_TYPES
 {
     NO_TYPE,    
     AMIGO_TYPE,
+    SS80_DEFAULT_TYPE,
     SS80_TYPE,
     PRINTER_TYPE
 };
 
-///@brief Device Type 
+///@brief Device Type
 typedef struct
 {
-    uint8_t TYPE;   // TYPE SS80,AMIGO or PRINTER TYPE
-    uint8_t ADDRESS;// ADDRESS
-    uint8_t PPR;    // PPR
-    void *dev;      // Disk or Printer Structure
-    void *state;    // Disk or Printer State Structure
+    uint8_t  TYPE;   // TYPE SS80,AMIGO or PRINTER TYPE
+    uint8_t  ADDRESS;// ADDRESS
+    uint8_t  PPR;    // PPR
+    uint32_t BLOCKS;// Disk Blocks
+    char     model[MODEL_SIZE];
+    void     *dev;      // Disk or Printer Structure
+    void     *state;    // Disk or Printer State Structure
 } DeviceType;
+
 // =============================================
 ///@convert print_var strings into __memx space
 #define print_var(format, args...) print_var_P(PSTR(format), ##args)
@@ -274,6 +282,7 @@ extern AMIGOStateType *AMIGOs;
 #endif
 extern PRINTERDeviceType *PRINTERp;
 extern DeviceType Devices[MAX_DEVICES];
+// =============================================
 
 
 /* drives.c */
@@ -282,24 +291,27 @@ void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
 uint32_t B2V_MSB ( uint8_t *B , int index , int size );
 uint32_t B2V_LSB ( uint8_t *B , int index , int size );
 int find_type ( int type );
+int count_drive_types ( uint8_t type );
 char *type_to_str ( int type );
 char *base_to_str ( int base );
 int find_free ( void );
 int find_device ( int type , int address , int base );
 int set_active_device ( int index );
+void SS80_Set_Defaults ( int index );
 int alloc_device ( int type );
 void init_Devices ( void );
 int push_state ( int state );
 int pop_state ( void );
-uint32_t assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
+// bool assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
 void set_Config_Defaults ( void );
-int POSIX_Read_Config ( char *name );
+void hpdir_set_device ( int index );
+void hpdir_set_parameters ( int index , char *model );
+void Post_Config ( void );
+int Read_Config ( char *name );
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
 void display_Config ( void );
 void format_drives ( void );
 
-
-// =============================================
 #endif     // _DRIVES_H

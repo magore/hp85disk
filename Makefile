@@ -19,36 +19,143 @@
 ### Project name (also used for output file name)
 PROJECT = gpib
 
-### Target device
-DEVICE  = atmega1284p
+# ==============================================
+### Target AVR device used by GCC for this project
+export DEVICE ?= atmega1284p
+export F_CPU  ?= 20000000 
+
+# ==============================================
+# NOTE ALL of the variables below assigned with ?
+# Can me set on the make command line
+# Example: 
+#   make AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0
+# The hp85disk serial port is PORT and the Programmer is AVRDUDE_PORT
+# These can be the same if we are using the hp85disk boot loader for programmin
+#
+# ==============================================
+### Serial Port for hp85disk emulator user interface
+export PORT ?= /dev/ttyUSB0
+# export PORT      ?= /dev/ttyUSB0
+
+# Serial port speed default
+export BAUD ?= 115200
+
+# ==============================================
+# avrdude device programmer name as known by avrdude
+# Note: avrdude -c list   Will display all of ALL supported pogrammers
+#   I am using the atmelice_isp  Atmel-ICE (ARM/AVR) in ISP mode
+
+# AVRDUDE_ISP programmer default
+export AVRDUDE_ISP ?= atmelice_isp
+# Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
+
+# export AVRDUDE_ISP ?= avrisp
+#   avrisp is a low cost arduino bases ISP that costs around $10
+# export AVRDUDE_ISP ?= arduino
+#   hp85disk built in boot loader
+
+# AVRDUDE ISP PORT default
+export AVRDUDE_PORT ?= usb
+# Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
+#  *usb* only applies to Ubuntu Linux - not supported under Windows WSL
+# AVRDUDE_PORT      ?= /dev/ttyUSB1
+# AVRDUDE_PORT      ?= /dev/ttyS3
+
+# avrdude device name do NOT change
+export AVRDUDE_DEVICE ?= m1284
+
+# avrdude programming speed
+export AVRDUDE_SPEED ?= 5
+
+# ==============================================
+# optiboot bot loader support
+export OPTIBOOT      ?= 1
+# ==============================================
 
 
-#BAUD=105200UL
-BAUD=500000UL
+# ==============================================
+# AVR programming FUSES
+# Fuse bits for ATMEGA1284P
+# See: http://www.engbedded.com/fusecalc/
+#
+# NOTE: We MUST disable JTAG so we can use all of Port C GPIO bits
+# FYI: flash might randomly fail when JTAG is disabled - so just retry it
+
+fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
+optiboot_fuses ?= $(fuses)
+optiboot_lock  ?= -U lock:w:0xfd:m
+
+# Export all FUSES
+export fuses
+export optiboot_fuses
+export optiboot_lock
+
+# ==============================================
+# Project HARDWARE OPTIONS
+### Board Version Specific defines
+#
+# My original V1 release from 2015 to 2019
+# 1 for original hardware release 2015 to 2019
+#
+# 2 for Jay Hamlin V2 circuit board design
+BOARD 					?= 2
+
+# Parallel Poll Response (PPR) bit order
+#   The bus SPEC's require the disk 1 replies on by pulling BIT 8 low .. disk 8 pulls BIT 1 low
+#   So the bit order is reversed!
+#
+# Jay Hamlin V2 circuit board design 
+#   For this version we decided to do the PPR bit order swap in software 
+#   I now have documentation, in the new PPR functions, to help remind me why I did it 8-)
+PPR_REVERSE_BITS		?= 1
+
+# My original V1 release from 2015 to 2019 did the PPR reversal in hardware 
+ifeq ($(BOARD),1)
+    PPR_REVERSE_BITS=0
+endif
+
+
+# ==============================================
+# Hardware Addon Options 
+# Evaluate interrupt driven I2C code - compiled bit it is not being used yet
+I2C_SUPPORT 			?= 1
+
+# Do we have an RTC attachaed - code currently assumes DS1307 or DS3231
+RTC_SUPPORT 			?= 1
+
+# Do we have an I2C LCD
+LCD_SUPPORT 			?= 1
+# ==============================================
 
 # Enable AMIGO support Code
-AMIGO=1
-# AMIGO=0
-# Disable AMIGO support code
+# 0 Disables 
+AMIGO 					?= 1
+
 
 ### Source files and search directory
-FATFS_SUPPORT=1
-FATFS_TESTS=1
+# 0 Disables 
+FATFS_SUPPORT			?= 1
+FATFS_TESTS				?= 1
 
 # Extended user interactive fatfs tests
-FATFS_UTILS_FULL=0
+# 0 Disables 
+FATFS_UTILS_FULL		?= 0
+
+#GPIB Extended tests
+# 0 Disables 
+GPIB_EXTENDED_TESTS		?= 0
 
 # Extended user interactive posix tests
+# 0 Disables 
 POSIX_TESTS=1
+POSIX_EXTENDED_TESTS 	?= 0
 
-#LIF support 
+#LIF support for modifying LIF disik images used by the emulator
+# 0 Disables 
+LIF_SUPPORT 			?= 1
 
-LIF_SUPPORT=1
-
-
-#We have an RTC
-RTC_SUPPORT=1
-
+# ==============================================
+# Source filess to build the project 
 
 HARDWARE = \
 	hardware/hal.c \
@@ -57,13 +164,26 @@ HARDWARE = \
 	hardware/rs232.c \
 	hardware/spi.c \
 	hardware/TWI_AVR8.c 
-# We have an RTC
+
+# Evaluate interrupt driven I2C code - compiled bit it is not being used yet
+ifeq ($(I2C_SUPPORT),1)
+	HARDWARE += hardware/i2c.c 
+endif
+
+# Do we have an RTC attached
 ifeq ($(RTC_SUPPORT),1)
 	HARDWARE += hardware/rtc.c 
 endif
 
+# Do we have an I2C LCD
+ifeq ($(LCD_SUPPORT),1)
+	HARDWARE += hardware/LCD.c 
+	HARDWARE += display/lcd_printf.c
+endif
+
 LIB = \
 	lib/stringsup.c \
+	lib/parsing.c \
 	lib/timer_hal.c \
 	lib/timer.c \
 	lib/time.c \
@@ -75,12 +195,13 @@ PRINTF = \
 
 FATFS = \
 	fatfs/ff.c  \
-	fatfs/option/syscall.c  \
-	fatfs/option/unicode.c \
+	fatfs/ffsystem.c  \
+	fatfs/ffunicode.c \
 	fatfs.hal/diskio.c  \
 	fatfs.hal/mmc.c  \
 	fatfs.hal/mmc_hal.c  \
 	fatfs.sup/fatfs_sup.c  
+
 ifeq ($(FATFS_TESTS),1)
 	FATFS += fatfs.sup/fatfs_tests.c  
 endif
@@ -90,14 +211,16 @@ GPIB   = \
 	gpib/gpib.c \
 	gpib/gpib_task.c \
 	gpib/gpib_tests.c \
+	gpib/drives.c \
+	gpib/drives_sup.c \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
-	gpib/drives.c \
     gpib/controller.c
 
 POSIX = 
 	POSIX += posix/posix.c
+
 ifeq ($(POSIX_TESTS),1)
 	POSIX += posix/posix_tests.c  
 endif
@@ -108,6 +231,7 @@ ifeq ($(LIF_SUPPORT),1)
 	LIF +=lif/lifutils.c
 endif
 
+# Define ALL of the source files
 CSRC = \
 	$(HARDWARE) \
 	$(LIB) \
@@ -122,11 +246,14 @@ CSRC = \
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
 # update.last is safer to use, the file is touched by my git commit script
 GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
-LOCAL_MOD := $(shell ls -t $(CSRC) | tail -1 | xargs stat -c%x)
+#LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
+LOCAL_MOD := $(shell ls -rt */*[ch] | tail -1 | xargs stat -c%x)
 
+# Assembler sources
 ASRC    = 
 
 ### Optimization level (0, 1, 2, 3, 4 or s)
+# We MUST use s for this project - otherwise it is too big
 OPTIMIZE = s
 
 CC = avr-gcc
@@ -138,22 +265,36 @@ LIBS    =
 LIBDIRS =
 INCDIRS =. hardware lib printf fatfs fatfs.hal fatfs.sup gpib posix lif
 
-DEFS    = AVR F_CPU=20000000 SDEBUG=0x11 SPOLL=1 HP9134L=1 $(DEVICE) \
+DEFS    = AVR F_CPU=$(F_CPU) SDEBUG=0x11 SPOLL=1 $(DEVICE) \
 	DEFINE_PRINTF \
 	FLOATIO 
 
+ifeq ($(OPTIBOOT),1)
+	DEFS += OPTIBOOT
+endif
+
+# Default Controller values for an SS80 drive 
+#  - we just want the timing,transfer speeds etc, gemometry does not matter 
+# Do not change this - these time defaulst will be used for ALL SS80 drives
+DEFS += HP9134D
+
+ifeq ($(AMIGO),1)
+	DEFS += AMIGO 
+endif
+
 DEFS += BAUD=$(BAUD)
+
+ifeq ($(I2C_SUPPORT),1)
+	DEFS += I2C_SUPPORT
+endif
 
 ifeq ($(RTC_SUPPORT),1)
 	DEFS += RTC_SUPPORT
 endif
 
-ifeq ($(POSIX_TESTS),1)
-	DEFS += POSIX_TESTS
-endif
-
 ifeq ($(FATFS_SUPPORT),1)
 	DEFS += FATFS_SUPPORT
+	DEFS += DRV_MMC=0
 endif
 
 ifeq ($(FATFS_UTILS_FULL),1)
@@ -164,13 +305,32 @@ ifeq ($(FATFS_TESTS),1)
 	DEFS += FATFS_TESTS
 endif
 
+# We have an I2C LCD
+ifeq ($(LCD_SUPPORT),1)
+	DEFS += LCD_SUPPORT
+endif
+
 ifeq ($(LIF_SUPPORT),1)
 	DEFS += LIF_SUPPORT
 endif
 
-ifeq ($(AMIGO),1)
-	DEFS += AMIGO 
+ifeq ($(POSIX_TESTS),1)
+	DEFS += POSIX_TESTS
 endif
+
+ifeq ($(POSIX_EXTENDED_TESTS),1)
+	DEFS += POSIX_TESTS
+endif
+
+# ==============================================
+# BOARD Specific Defines
+# Version 2 Circuit Board by Jay Hamlin
+DEFS += BOARD=$(BOARD)
+# V1 circuit design by Mike Gore reverses PPR bits in hardware
+# V2 Circuit Board by Jay Hamlin uses software
+DEFS += PPR_REVERSE_BITS=$(PPR_REVERSE_BITS)
+# ==============================================
+
 
 ADEFS   =
 
@@ -226,6 +386,13 @@ CFLAGS += -ffunction-sections
 CFLAGS += -Wl,-gc-sections
 CFLAGS += -Waddr-space-convert
 
+# 9 April 2020 added a few more optimization flags
+CFLAGS += -maccumulate-args
+CFLAGS += -mstrict-X
+CFLAGS += -nodevicelib
+CFLAGS += -fdata-sections
+#CFLAGS += -mshort-calls
+
 # Assembler flags
 ASFLAGS += $(COMMON)
 ASFLAGS += $(addprefix -D,$(ADEFS)) -Wa,-gstabs,-g$(DEBUG)
@@ -242,47 +409,194 @@ HEX_EEPROM_FLAGS = -j .eeprom
 HEX_EEPROM_FLAGS += --set-section-flags=.eeprom="alloc,load"
 HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
-# atmega1284p and atmega644 can use same fuses
-fuses=-U lfuse:w:0xd6:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
 
 SRCS = $(CSRC)
-PROGS = hardware/baudrate
+PROGS = lif mkcfg hardware/baudrate
 
+all: version $(LIBS) build size $(PROGS) 
+
+# =======================================
+.PHONY: optiboot
+optiboot:
+	make -C optiboot optiboot
+
+.PHONY: optiboot
+install_optiboot:
+	make -C optiboot install_optiboot
+
+# =======================================
 # Default target.
-#all: doxy version $(LIBS) build size $(PROGS)
-all: term version $(LIBS) build size $(PROGS) lif
+#Example way of creating a current year string for  a #define
+# DATE="$(shell date +%Y)"
+# .PHONY: date
+# date:
+#	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
 
+main.c:	
+
+# =======================================
 hardware/baudrate:  hardware/baudrate.c
 	gcc hardware/baudrate.c -o hardware/baudrate -lm
 
+# =======================================
 .PHONY: term
 term:   
-	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" term
-	export BAUD=$(BAUD);sed -i -e "s/^BAUD.*$$/BAUD=$$BAUD/" miniterm
-	touch main.c
+	./term $(BAUD) $(PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
 
-flash:  all 
-#
-	# Program with avrdude using atmelice_isp
-	# avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# Program with avrdude using avrispmkii 
-	# avrdude -P usb -p m1284p -c avrispmkII -F -B 2 $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# Program with avrdude using dragon_isp
-	# avrdude -P usb -p m1284p -c dragon_isp -F -B 1 $(fuses) -U flash:w:$(PROJECT).hex
-	#
-	# ===================================================
-	# atmelice_isp
-	# avrdude -c list 2>&1 | grep -ie atmelice
-	#  atmelice         = Atmel-ICE (ARM/AVR) in JTAG mode
-	#  atmelice_dw      = Atmel-ICE (ARM/AVR) in debugWIRE mode
-	#  atmelice_isp     = Atmel-ICE (ARM/AVR) in ISP mode
-	#  atmelice_pdi     = Atmel-ICE (ARM/AVR) in PDI mode
-	avrdude -P usb -p m1284p -c atmelice_isp -F -B0.25 $(fuses) -U flash:w:$(PROJECT).hex
-	./term
-	#./miniterm
-	# ===================================================
+# =======================================
+.PHONE: hogs
+hogs:
+	nm -n -P -v gpib.elf | sort -k 4n | tail -40	
+
+# =======================================
+.PHONY: sdcard
+sdcard: install
+	-rm -f sdcard/*\.lif
+	cd sdcard; ./create_images.sh
+
+# =======================================
+.PHONY: release
+release: all install
+	# Save the results under release
+	cp -p $(PROJECT).*   release/build
+	cp -p sdcard/*\.lif  release/sdcard
+	cp -p sdcard/*\.cfg  release/sdcard
+	cp -p sdcard/*\.ini  release/sdcard
+
+# =======================================
+.PHONY: help
+help:
+	@echo
+	@echo 'Building Commands'
+	@echo "    make install           - builds and installs all command line utilities"
+	@echo "    make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files"
+	@echo "    make release           - builds all code and copies files to the release folder"
+	@echo "    make clean             - cleans all generated files"
+	@echo "    make                   - builds all code"
+	@echo
+	@echo 'Listing current cunfiguration settings'
+	@echo "    make config"
+	@echo
+	@echo 'Overriding any configuration settings'
+	@echo "    You can add configuration values at the end of your make commands like this"
+	@echo "    make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo
+	@echo 'Programming using an 6 wire ISP - installs optiboot'
+	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
+	@echo "    make flash-isp         - build and flash the code using an ISP"
+	@echo "    make flash-isp-release - flash the release code using an ISP"
+	@echo "    make verify-isp        - verify code using an ISP"
+	@echo "    make verify-isp-release- verify release code using an ISP"
+	@echo
+	@echo 'Programming using the built in optiboot programmer'
+	@echo "    make flash             - build and flash the code using built in optiboot programmer"
+	@echo "    make flash-release     - flash the release code using built in optiboot programmer"
+	@echo '    IMPORTANT - if flashing fails try these steps'
+	@echo '        On your computer type in the make command without pressing Enter afterwards'
+	@echo '        Then press RESET the button on the hp85disk board and next press Enter quickly afterwards'
+	@echo
+	@echo 'Programming using an 6 wire ISP - WITHOUT installing optiboot'
+	@echo '    IMPORTANT - you will not be able to use non isp flashing modes later on'
+	@echo '       Makes booting and flashing process slightly faster'
+	@echo "    make flash-isp-noboot         - build and flash the code using an ISP"
+	@echo "    make flash-isp-noboot-release - flash the release code using an ISP"
+	@echo
+	@echo 'Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards'
+	@echo 
+	@echo 
+
+.PHONY: config
+config:
+	@echo 
+	@echo "Current Configuration Defaults"
+	@echo "    You can override settings by adding assignments at the end of any make command"
+	@echo "    Example:"
+	@echo "             make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo 
+	@echo "    DEVICE                 = $(DEVICE)"
+	@echo "    F_CPU                  = $(F_CPU)"
+	@echo "    BAUD                   = $(BAUD)"
+	@echo "    PORT                   = $(PORT)"
+	@echo "    AVRDUDE_DEVICE         = $(AVRDUDE_DEVICE)"
+	@echo "    AVRDUDE_SPEED          = $(AVRDUDE_SPEED)"
+	@echo "    OPTIBOOT               = $(OPTIBOOT)"
+	@echo "    BOARD                  = $(BOARD)"
+	@echo "    PPR_REVERSE_BITS       = $(PPR_REVERSE_BITS)"
+	@echo "    I2C_SUPPORT            = $(I2C_SUPPORT)"
+	@echo "    RTC_SUPPORT            = $(RTC_SUPPORT)"
+	@echo "    LCD_SUPPORT            = $(LCD_SUPPORT)"
+	@echo "    AMIGO                  = $(AMIGO)"
+	@echo "    FATFS_SUPPORT          = $(FATFS_SUPPORT)"
+	@echo "    FATFS_TESTS            = $(FATFS_TESTS)"
+	@echo "    GPIB_EXTENDED_TESTS    = $(GPIB_EXTENDED_TESTS)"
+	@echo "    POSIX_TESTS            = $(POSIX_TESTS)"
+	@echo "    POSIX_EXTENDED_TESTS   = $(POSIX_EXTENDED_TESTS)"
+	@echo "    LIF_SUPPORT            = $(LIF_SUPPORT)"
+	@echo 
+	@echo 
+
+# =======================================
+# Display RAM memory use by function name
+data-size:
+	avr-nm -Ctd --size-sort  $(PROJECT).elf | grep -i ' [dbv] '
+
+# Display Code use by function name
+code-size:
+	avr-nm -Ctd --size-sort  gpib.elf | grep -v "^[0-9]* [Tt] __" | grep -i ' [Tt] '
+
+list-builtins:
+	avr-gcc -dM -E - < /dev/null | sort -u 
+
+# =======================================
+# ISP flashing - NOTE: WE ALWAYS INSTALL optiboot
+# We do NOT erase before flashing
+# install_optiboot erases the chip
+# install_optiboot sets our fuses!
+flash-isp: all install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
+
+flash-isp-fast: all install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
+
+flash-isp-release: install_optiboot
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+
+verify-isp: 
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
+
+verify-isp-fast: isp
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -U flash:v:$(PROJECT).hex:i
+
+# =======================================
+# OPTIBOOT flashing using built in boot loader - arduino protocol
+#    We Always disable eraseing
+# You MUST press RESET and issue these commands very quickly afterwards
+#    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
+# 
+flash: all
+	# ./reset $(BAUD) $(AVRDUDE_PORT)
+	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
+	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) $(PROJECT).hex
+
+flash-release:
+	# ./reset $(BAUD) $(AVRDUDE_PORT)
+	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) release/build/$(PROJECT).hex
+
+# =======================================
+# ISP flashing - NO optiboot!
+# We ALWAYS erase the CHIP before flashing
+flash-isp-noboot: 
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
+
+flash-isp-noboot-fast: 
+	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
+
+flash-isp-noboot-release:  
+	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
+
+# =======================================
 
 # If makefile changes, maybe the list of sources has changed, so update doxygens list
 .PHONY: doxyfile.inc
@@ -290,12 +604,19 @@ doxyfile.inc:
 	echo "INPUT         =  $(INCDIRS)" > doxyfile.inc
 	echo "FILE_PATTERNS =  *.h *.c *.md" >> doxyfile.inc
 
+.PHONY: mkcfg
+mkcfg:
+	make -C sdcard/mkcfg
+
 .PHONY: lif
 lif:   
 	make -C lif
 
-install:
+install: $(PROGS) optiboot 
 	make -C lif install
+	make -C sdcard/mkcfg install
+	make -C optiboot optiboot
+	install -s hardware/baudrate /usr/local/bin
 
 warn:	clean
 	make 2>&1 | grep -i warn >warnings.txt
@@ -333,7 +654,7 @@ lss: $(PROJECT).lss
 version :
 	@if [ ! -f "update.last" ]; then touch "update.last"; fi
 	@$(CC) --version
-	echo COBJ: $(COBJ)
+# @echo COBJ: $(COBJ)
 
 # Create final output file (.hex or .bin) from ELF output file.
 %.hex: %.elf
@@ -372,16 +693,21 @@ version :
 # Display size of file.
 .PHONY:	size
 size: 
-	@echo
-	-$(SIZE) -C --mcu=$(DEVICE) $(PROJECT).elf
-	-$(SIZE) -x -A --mcu=${DEVICE} $(PROJECT).elf
-	-$(SIZE) -x --common -C --mcu=${DEVICE} $(PROJECT).elf
-	-avr-nm -n -S $(PROJECT).elf | grep "__eeprom"
-	#-avr-nm -n -S $(PROJECT).elf | grep "__noinit"
-	-avr-nm -n -S $(PROJECT).elf | grep "__bss"
-	-avr-nm -n -S $(PROJECT).elf | grep "__data"
-	-avr-nm -n -S $(PROJECT).elf | grep "__heap"
-	-avr-nm -n -S $(PROJECT).elf | grep "__brkval"
+	@echo 
+	@echo Size 
+	-@$(SIZE) -B $(PROJECT).elf
+	@echo 
+	@echo Size HEX
+	-@$(SIZE) -x -B $(PROJECT).elf
+	@echo 
+	@echo Heap Symbols
+	-@avr-nm -n -S $(PROJECT).elf | grep "__eeprom"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__bss"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__data"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__heap"
+	-@avr-nm -n -S $(PROJECT).elf | grep "__brkval"
+	@echo 
+#-@avr-nm -n -S $(PROJECT).elf | grep "__noinit"
 
 # Link: create ELF output file from object files.
 %.elf:  $(AOBJ) $(COBJ) $(LIBS)
@@ -421,9 +747,12 @@ $(AOBJ) : %.o : %.S
 # Target: clean project.
 clean:
 	@echo
-	rm -f -r $(COBJ) $(PROGS) $(PROJECT)\.* dep/* | exit 0
+	rm -f -r $(COBJ) $(PROJECT)\.* dep/* | exit 0
 	make -C lif clean
 	make -C printf clean
+	make -C sdcard/mkcfg clean
+	make -C optiboot clean
+	rm -f hardware/baudrate
 	
 
 # Include the dependency files.
@@ -432,3 +761,4 @@ clean:
 -include $(shell mkdir dep 2>/dev/null) $(wildcard dep/*)
 
 .PHONY: all clean distclean doxy
+

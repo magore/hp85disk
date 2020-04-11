@@ -28,12 +28,11 @@
 ///@brief AVR GPIO MACROs
 #ifdef AVR
 
-#include "iom1284p.h"
+#include "gpio-1284p.h"
 
 #define SCK      GPIO_B7
 #define MISO     GPIO_B6
 #define MOSI     GPIO_B5
-#define SS       GPIO_B4
 
 #define MMC_CS   GPIO_B3
 
@@ -43,9 +42,19 @@
 #define RX0      GPIO_D0
 #define TX0      GPIO_D1
 
+#define LED1     GPIO_C6
+///@brief SS MUST be an output in prevent SPI slave mode when the pin is low
+/// SS is set as an output in SPI_init() 
+#define SS       GPIO_B4
+
+#define LED2     GPIO_B4
+
+#define CD       GPIO_C7 /* Card Detect */
+
+
 /// @brief GPIO MACRO notes
 ///   We do not use {} around the macro statements so they behave like functions.
-///   Consider what would happen if you used breaces (should be obviious)
+///   Consider what would happen if you used braces (should be obviious)
 ///      if ( GPIB_PIN_RD(SENSOR) )
 ///      {
 ///       printf"SENSOR");
@@ -57,10 +66,10 @@
 /// @brief program SFR to permit normal GPIO mode
 
 #define GPIO_PORT2SFR(port,base) _SFR_IO8( (((port) * 3) + (base)) )
-#define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR((pin>>3),(base) )
+#define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR(((pin)>>3),(base) )
 
 /// @brief program SFR to permit normal gpio input/output
-#define GPIO_PIN_MODE(pin)      gpio_pin_sfr_mode(pin) /* FIXME TODO */
+#define GPIO_PIN_MODE(pin)      /* FIXME TODO */
 
 /// @brief program input mode
 #define GPIO_PIN_DIR_IN(pin) 	BIT_CLR(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7)) 
@@ -76,10 +85,12 @@
 #define GPIO_PIN_DIR_OUT(pin)   BIT_SET(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7))
 #define GPIO_PIN_LOW(pin)       (GPIO_PIN_LATCH_LOW(pin), GPIO_PIN_DIR_OUT(pin))
 #define GPIO_PIN_HI(pin)        (GPIO_PIN_LATCH_HI(pin),  GPIO_PIN_DIR_OUT(pin))
-#define GPIO_PIN_WR(pin,level) ((level) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin))
+#define GPIO_PIN_WR(pin,level)  ((level) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin))
 
-//FIXME do pull up modes
 #define GPIO_PIN_FLOAT(pin)     GPIO_PIN_DIR_IN(pin)
+// FLOAT pullup
+#define GPIO_PIN_FLOAT_UP(pin)  GPIO_PIN_DIR_IN(pin)
+// #define GPIO_PIN_FLOAT_UP(pin)  (GPIO_PIN_DIR_IN(pin),GPIO_PIN_LATCH_HI(pin))
 
 #define GPIO_PORT_DIR_OUT(port) (GPIO_PORT2SFR(port,DDR_BASE) = 0xff)
 #define GPIO_PORT_DIR_IN(port) 	(GPIO_PORT2SFR(port,DDR_BASE) = 0x00)
@@ -87,8 +98,9 @@
 // GPIB
 #define GPIO_PORT_PINS_RD(port)  (GPIO_PORT2SFR(port,PIN_BASE) & 0xff)
 #define GPIO_PORT_DDR_RD(port)   (GPIO_PORT2SFR(port,DDR_BASE) & 0xff)
+#define GPIO_PORT_DDR_WR(port,val)  (GPIO_PORT2SFR(port,DDR_BASE) = (val))
 #define GPIO_PORT_LATCH_WR(port,val)  (GPIO_PORT2SFR(port,PORT_BASE) = (val))
-#define GPIO_PORT_LATCH_RD(port,val)  GPIO_PORT2SFR(port,PORT_BASE)
+#define GPIO_PORT_LATCH_RD(port)       GPIO_PORT2SFR(port,PORT_BASE)
 
 #define GPIO_PORT_RD(port)    	(GPIO_PORT_DIR_IN(port), GPIO_PORT_PINS_RD(port))
 #define GPIO_PORT_WR(port,val)  (GPIO_PORT_DIR_OUT(port), GPIO_PORT_LATCH_WR(port,val))

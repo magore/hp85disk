@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -59,12 +59,12 @@ uint8_t reverse_8bits(uint8_t mask)
             rmask |= 1;
         mask >>= 1;
     }
-    return(rmask);
+    return(rmask & 0xff);
 }
 
 
 /// @brief Enable or Disable Parallel Poll Response bits - PPR.
-///
+//
 /// - The hardware implimentation does reversal automatically.
 /// - The software implimentation must have the bits reversed.
 /// - Aside: Software PPR is impractical - timing is sub microsecond.
@@ -84,8 +84,15 @@ uint8_t reverse_8bits(uint8_t mask)
 
 void ppr_set(uint8_t mask)
 {
+///@brief optionally reverse bit order in PPR mask
+/// Used only of PPR circuit board PPR bits are not reversed in hardware
+#if PPR_REVERSE_BITS == 1
+    _ppr_reg = reverse_8bits(mask);
+#else
     _ppr_reg = mask;
+#endif
     SPI0_TXRX_Byte(_ppr_reg);
+
     GPIB_IO_HI(PPE);
     GPIB_IO_LOW(PPE);
 }
@@ -98,7 +105,13 @@ void ppr_set(uint8_t mask)
 
 uint8_t ppr_reg()
 {
+///@brief optionally reverse bit order in PPR mask
+/// Used only of PPR circuit board PPR bits are not reversed in hardware
+#if PPR_REVERSE_BITS == 1
+    return(reverse_8bits(_ppr_reg));
+#else
     return(_ppr_reg);
+#endif
 }
 
 

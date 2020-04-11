@@ -15,7 +15,6 @@
 #endif
 
 #include "ffconf.h"
-#include "integer.h"
 #include "ff.h"
 #include "diskio.h"
 #include "fatfs_sup.h"

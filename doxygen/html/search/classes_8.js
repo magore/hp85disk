@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['lif_5ft',['lif_t',['../structlif__t.html',1,'']]],
-  ['lifdir_5ft',['lifdir_t',['../structlifdir__t.html',1,'']]],
-  ['liftel_5ft',['liftel_t',['../structliftel__t.html',1,'']]],
-  ['lifvol_5ft',['lifvol_t',['../structlifvol__t.html',1,'']]]
+  ['i2c_5fop',['i2c_op',['../structi2c__op.html',1,'']]],
+  ['i2c_5ftxn',['i2c_txn',['../structi2c__txn.html',1,'']]]
 ];

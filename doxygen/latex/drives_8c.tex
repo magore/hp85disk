@@ -16,13 +16,16 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}ss80.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionval__t}{val\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{drives_8c_af24298a5ce56647751e432673282c6e2}{M\+A\+X\+\_\+\+S\+T\+A\+CK}~5
-\begin{DoxyCompactList}\small\item\em Config Parser Stack. \end{DoxyCompactList}\item 
-\#define \hyperlink{drives_8c_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}~8
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Config Parser Stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,6 +39,8 @@ uint32\+\_\+t \hyperlink{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}{B2\+V\+\_\
 \begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_adc9af84417d1ea9757b9f0596fd709b3}{find\+\_\+type} (int type)
 \begin{DoxyCompactList}\small\item\em Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type. \end{DoxyCompactList}\item 
+int \hyperlink{drives_8c_a306684070b386e868ed1e647e5172ee0}{count\+\_\+drive\+\_\+types} (uint8\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em Count number of devices of a sertain type. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{drives_8c_aa43e282b0ff4a2e5b2ce59f0fce3fb68}{type\+\_\+to\+\_\+str} (int type)
 \begin{DoxyCompactList}\small\item\em Convert a disk type into a string. \end{DoxyCompactList}\item 
 char $\ast$ \hyperlink{drives_8c_ac1a2445dba59c3eb47276b37107c6f64}{base\+\_\+to\+\_\+str} (int base)
@@ -46,6 +51,8 @@ int \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device} (i
 \begin{DoxyCompactList}\small\item\em Find a device with matching type A\+ND address. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_aece04902efa99dc0e1578dda79437a75}{set\+\_\+active\+\_\+device} (int index)
 \begin{DoxyCompactList}\small\item\em Set the Active disk or device pointers Since we can be called multiple times per single G\+P\+IB state we do not display state changes here. Other code displays the active state. \end{DoxyCompactList}\item 
+void \hyperlink{drives_8c_ac6ec9e422c7122cc7d3513fd33d686a8}{S\+S80\+\_\+\+Set\+\_\+\+Defaults} (int index)
+\begin{DoxyCompactList}\small\item\em Set Default Values for a new S\+S80 Device IF defaults have been defined Most values in the C\+O\+N\+T\+R\+O\+L\+ER and U\+N\+IT are defaults that should not need to be specified Note all of the values are zeroed on allocation including strings. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a779f57c67af69afdde92e28cb4ee9adb}{alloc\+\_\+device} (int type)
 \begin{DoxyCompactList}\small\item\em Allocate a Device structure for a disk or printer. \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}{init\+\_\+\+Devices} ()
@@ -54,11 +61,17 @@ int \hyperlink{drives_8c_a21b219166399e8a1195b92d6a9872bbe}{push\+\_\+state} (in
 \begin{DoxyCompactList}\small\item\em Push Parser State. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a45b0cf880b953984f9351f5d2bd9c77d}{pop\+\_\+state} ()
 \begin{DoxyCompactList}\small\item\em Pop Parser State. \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}{assign\+\_\+value} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}{assign\+\_\+value} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
 \begin{DoxyCompactList}\small\item\em assigned a value \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_af14d66761d39f4a2d5f7c3ac59439034}{set\+\_\+\+Config\+\_\+\+Defaults} ()
 \begin{DoxyCompactList}\small\item\em Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8c_a8f8d1205c8538831eb4196a29cf3f186}{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config} (char $\ast$name)
+void \hyperlink{drives_8c_a7cc2e9f068997d98d19e10ef305fe5bb}{hpdir\+\_\+set\+\_\+device} (int index)
+\begin{DoxyCompactList}\small\item\em Set Device parameters from hpdir information. \end{DoxyCompactList}\item 
+void \hyperlink{drives_8c_a899ab6043e756943a7f38022900ff998}{hpdir\+\_\+set\+\_\+parameters} (int index, char $\ast$model)
+\begin{DoxyCompactList}\small\item\em Lookup model in and set drive parameters if found. \end{DoxyCompactList}\item 
+void \hyperlink{drives_8c_aff9d64267d95d28e9305c740b4a5987a}{Post\+\_\+\+Config} ()
+\begin{DoxyCompactList}\small\item\em Post Process C\+Onfiguration file after reading. \end{DoxyCompactList}\item 
+int \hyperlink{drives_8c_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}{Read\+\_\+\+Config} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Read and parse a config file using P\+O\+S\+IX functions Set all drive parameters and debuglevel. \end{DoxyCompactList}\item 
 void \hyperlink{drives_8c_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P} (\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$str, uint32\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em Display Configuration File variable. \end{DoxyCompactList}\item 
@@ -73,22 +86,20 @@ void \hyperlink{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}{format\+\_\+drives}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{structhpdir__t}{hpdir\+\_\+t} \hyperlink{drives_8c_a6edb848661be578eca78845085870674}{hpdir}
+\begin{DoxyCompactList}\small\item\em hpdir.\+ini file processing \end{DoxyCompactList}\item 
 static int \hyperlink{drives_8c_a4c18df3efdb3fcd126c2df631f2f2515}{stack\+\_\+ind} = 0
 \item 
 static int \hyperlink{drives_8c_a7396cc31899052a2a171fbfe3f32b2d9}{stack\+\_\+p} \mbox{[}\hyperlink{drives_8c_af24298a5ce56647751e432673282c6e2}{M\+A\+X\+\_\+\+S\+T\+A\+CK}\mbox{]}
 \item 
 \hyperlink{structDeviceType}{Device\+Type} \hyperlink{drives_8c_acfedc9290d5356e240da3373bb0ebdbd}{Devices} \mbox{[}\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}\mbox{]}
 \item 
-\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} $\ast$ \hyperlink{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} $\ast$ \hyperlink{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \begin{DoxyCompactList}\small\item\em Active Printer Device. \end{DoxyCompactList}\item 
-\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} $\ast$ \hyperlink{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} $\ast$ \hyperlink{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \begin{DoxyCompactList}\small\item\em Active S\+S80 Device. \end{DoxyCompactList}\item 
-\hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s} = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
+\hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8c_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s} = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}
 \item 
-\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} \hyperlink{drives_8c_ae5c3a0a9ab88737f26d6554d34a35030}{P\+R\+I\+N\+T\+E\+R\+Device\+Default}
-\item 
-\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} \hyperlink{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}{S\+S80\+Disk\+Default}
-\begin{DoxyCompactList}\small\item\em S\+S80 Disk Definitions. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}{lines} = 0
 \begin{DoxyCompactList}\small\item\em Config file line number. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -102,7 +113,7 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 \item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file. 
 \end{DoxyItemize}
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, All rights reserved. G\+PL}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL}
 
 \end{DoxyParagraph}
 \begin{DoxySeeAlso}{See also}
@@ -113,20 +124,6 @@ drive definitions for H\+P85 disk emulator project for A\+VR.
 
 
 \subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{drives_8c_a4e132cfaa78353e3af1474a86b2dd535}\label{drives_8c_a4e132cfaa78353e3af1474a86b2dd535}} 
-\index{drives.\+c@{drives.\+c}!M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES@{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}}
-\index{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES@{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}{MAX\_DEVICES}}
-{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES~8}
-
-
-
-Definition at line 29 of file drives.\+c.
-
-
-
-Referenced by display\+\_\+\+Addresses(), display\+\_\+\+Config(), find\+\_\+device(), find\+\_\+type(), format\+\_\+drives(), init\+\_\+\+Devices(), set\+\_\+active\+\_\+device(), and S\+S80\+\_\+init().
-
 \mbox{\Hypertarget{drives_8c_af24298a5ce56647751e432673282c6e2}\label{drives_8c_af24298a5ce56647751e432673282c6e2}} 
 \index{drives.\+c@{drives.\+c}!M\+A\+X\+\_\+\+S\+T\+A\+CK@{M\+A\+X\+\_\+\+S\+T\+A\+CK}}
 \index{M\+A\+X\+\_\+\+S\+T\+A\+CK@{M\+A\+X\+\_\+\+S\+T\+A\+CK}!drives.\+c@{drives.\+c}}
@@ -139,7 +136,7 @@ Config Parser Stack.
 
 
 
-Definition at line 25 of file drives.\+c.
+Definition at line 28 of file drives.\+c.
 
 
 
@@ -168,23 +165,23 @@ Devices\mbox{[}\mbox{]} index on sucess or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 451 of file drives.\+c.
+Definition at line 473 of file drives.\+c.
 
 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by Read\+\_\+\+Config().
 
-\mbox{\Hypertarget{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}\label{drives_8c_a27684090bd1a441b3cb0478d2f7fedc5}} 
+\mbox{\Hypertarget{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}\label{drives_8c_a8b0e509b202f29cc333b28da6105f6c1}} 
 \index{drives.\+c@{drives.\+c}!assign\+\_\+value@{assign\+\_\+value}}
 \index{assign\+\_\+value@{assign\+\_\+value}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{assign\+\_\+value()}{assign\_value()}}
-{\footnotesize\ttfamily uint32\+\_\+t assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
 
 
 
 assigned a value 
 
-
+===============================================
 \begin{DoxyItemize}
 \item Used only for debugging 
 \begin{DoxyParams}[1]{Parameters}
@@ -203,11 +200,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 546 of file drives.\+c.
-
-
-
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Definition at line 581 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}\label{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}} 
 \index{drives.\+c@{drives.\+c}!B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}}
@@ -233,7 +226,7 @@ value
 \end{DoxyReturn}
 
 
-Definition at line 271 of file drives.\+c.
+Definition at line 234 of file drives.\+c.
 
 
 
@@ -263,7 +256,7 @@ value
 \end{DoxyReturn}
 
 
-Definition at line 252 of file drives.\+c.
+Definition at line 215 of file drives.\+c.
 
 
 
@@ -289,7 +282,30 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 \end{DoxyReturn}
 
 
-Definition at line 317 of file drives.\+c.
+Definition at line 294 of file drives.\+c.
+
+\mbox{\Hypertarget{drives_8c_a306684070b386e868ed1e647e5172ee0}\label{drives_8c_a306684070b386e868ed1e647e5172ee0}} 
+\index{drives.\+c@{drives.\+c}!count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}}
+\index{count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{count\+\_\+drive\+\_\+types()}{count\_drive\_types()}}
+{\footnotesize\ttfamily int count\+\_\+drive\+\_\+types (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
+
+
+
+Count number of devices of a sertain type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & disk type like S\+S80\+\_\+\+T\+Y\+PE \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 264 of file drives.\+c.
+
+
+
+Referenced by main().
 
 \mbox{\Hypertarget{drives_8c_a1dbca8748b76da795e7fe56b61762b51}\label{drives_8c_a1dbca8748b76da795e7fe56b61762b51}} 
 \index{drives.\+c@{drives.\+c}!display\+\_\+\+Addresses@{display\+\_\+\+Addresses}}
@@ -301,12 +317,12 @@ Definition at line 317 of file drives.\+c.
 
 Display Configuration device address saummary. 
 
-\begin{DoxyReturn}{Returns}
+=============================================== \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 
 
-Definition at line 1239 of file drives.\+c.
+Definition at line 1383 of file drives.\+c.
 
 
 
@@ -322,14 +338,14 @@ Referenced by gpib\+\_\+tests(), and main().
 
 Display current Configuration File values. 
 
-\begin{DoxyReturn}{Returns}
+=============================================== \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1276 of file drives.\+c.
+Definition at line 1421 of file drives.\+c.
 
 
 
@@ -369,7 +385,7 @@ convert to device address
 
 search for device address 
 
-Definition at line 340 of file drives.\+c.
+Definition at line 317 of file drives.\+c.
 
 
 
@@ -390,7 +406,7 @@ Devices\mbox{[}\mbox{]} index of free slot or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 330 of file drives.\+c.
+Definition at line 307 of file drives.\+c.
 
 
 
@@ -413,11 +429,11 @@ Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type.
 \end{DoxyParams}
 
 
-Definition at line 288 of file drives.\+c.
+Definition at line 251 of file drives.\+c.
 
 
 
-Referenced by find\+\_\+free(), plot\+\_\+echo(), and set\+\_\+\+Config\+\_\+\+Defaults().
+Referenced by find\+\_\+free(), plot\+\_\+echo(), set\+\_\+\+Config\+\_\+\+Defaults(), and S\+S80\+\_\+\+Set\+\_\+\+Defaults().
 
 \mbox{\Hypertarget{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}\label{drives_8c_ade13ccf70ad5e99d4c3f6e06e8c4796b}} 
 \index{drives.\+c@{drives.\+c}!format\+\_\+drives@{format\+\_\+drives}}
@@ -429,16 +445,70 @@ Referenced by find\+\_\+free(), plot\+\_\+echo(), and set\+\_\+\+Config\+\_\+\+D
 
 Format devices that have no image file. 
 
-\begin{DoxyReturn}{Returns}
+=============================================== \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1368 of file drives.\+c.
+Definition at line 1527 of file drives.\+c.
 
 
 
 Referenced by main().
+
+\mbox{\Hypertarget{drives_8c_a7cc2e9f068997d98d19e10ef305fe5bb}\label{drives_8c_a7cc2e9f068997d98d19e10ef305fe5bb}} 
+\index{drives.\+c@{drives.\+c}!hpdir\+\_\+set\+\_\+device@{hpdir\+\_\+set\+\_\+device}}
+\index{hpdir\+\_\+set\+\_\+device@{hpdir\+\_\+set\+\_\+device}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{hpdir\+\_\+set\+\_\+device()}{hpdir\_set\_device()}}
+{\footnotesize\ttfamily void hpdir\+\_\+set\+\_\+device (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Set Device parameters from hpdir information. 
+
+=============================================== 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em model} & model string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on sucess or 0 on fail 
+\end{DoxyReturn}
+
+
+Definition at line 695 of file drives.\+c.
+
+
+
+Referenced by hpdir\+\_\+set\+\_\+parameters().
+
+\mbox{\Hypertarget{drives_8c_a899ab6043e756943a7f38022900ff998}\label{drives_8c_a899ab6043e756943a7f38022900ff998}} 
+\index{drives.\+c@{drives.\+c}!hpdir\+\_\+set\+\_\+parameters@{hpdir\+\_\+set\+\_\+parameters}}
+\index{hpdir\+\_\+set\+\_\+parameters@{hpdir\+\_\+set\+\_\+parameters}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{hpdir\+\_\+set\+\_\+parameters()}{hpdir\_set\_parameters()}}
+{\footnotesize\ttfamily void hpdir\+\_\+set\+\_\+parameters (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{char $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Lookup model in and set drive parameters if found. 
+
+=============================================== 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & Devices index \\
+\hline
+\mbox{\tt in}  & {\em model} & model string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 753 of file drives.\+c.
+
+
+
+Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}\label{drives_8c_a756aa4b7d6e1757b9465729dffe7ed7f}} 
 \index{drives.\+c@{drives.\+c}!init\+\_\+\+Devices@{init\+\_\+\+Devices}}
@@ -452,11 +522,11 @@ Init Config Parser Stack Called only durring power up so we do not have to free 
 
 
 
-Definition at line 498 of file drives.\+c.
+Definition at line 528 of file drives.\+c.
 
 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_a45b0cf880b953984f9351f5d2bd9c77d}\label{drives_8c_a45b0cf880b953984f9351f5d2bd9c77d}} 
 \index{drives.\+c@{drives.\+c}!pop\+\_\+state@{pop\+\_\+state}}
@@ -468,44 +538,37 @@ Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
 
 Pop Parser State. 
 
-\begin{DoxyReturn}{Returns}
+=============================================== \begin{DoxyReturn}{Returns}
 state 
 \end{DoxyReturn}
 
 
-Definition at line 526 of file drives.\+c.
+Definition at line 560 of file drives.\+c.
 
 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by Read\+\_\+\+Config().
 
-\mbox{\Hypertarget{drives_8c_a8f8d1205c8538831eb4196a29cf3f186}\label{drives_8c_a8f8d1205c8538831eb4196a29cf3f186}} 
-\index{drives.\+c@{drives.\+c}!P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config@{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config}}
-\index{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config@{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config()}{POSIX\_Read\_Config()}}
-{\footnotesize\ttfamily int P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
-
-
-
-Read and parse a config file using P\+O\+S\+IX functions Set all drive parameters and debuglevel. 
+\mbox{\Hypertarget{drives_8c_aff9d64267d95d28e9305c740b4a5987a}\label{drives_8c_aff9d64267d95d28e9305c740b4a5987a}} 
+\index{drives.\+c@{drives.\+c}!Post\+\_\+\+Config@{Post\+\_\+\+Config}}
+\index{Post\+\_\+\+Config@{Post\+\_\+\+Config}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{Post\+\_\+\+Config()}{Post\_Config()}}
+{\footnotesize\ttfamily void Post\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
-\begin{DoxyParams}{Parameters}
-{\em name} & config file name to process \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-number of parse errors 
+
+Post Process C\+Onfiguration file after reading. 
+
+=============================================== \begin{DoxyReturn}{Returns}
+void 
 \end{DoxyReturn}
-Printer Device
+Active S\+S80 Device 
 
-S\+S80 Device 
-
-Definition at line 654 of file drives.\+c.
+Definition at line 762 of file drives.\+c.
 
 
 
-Referenced by gpib\+\_\+file\+\_\+init().
+Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_a3da86aaab90b0d4bb14f79e296a155bb}\label{drives_8c_a3da86aaab90b0d4bb14f79e296a155bb}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+str\+\_\+P@{print\+\_\+str\+\_\+P}}
@@ -517,7 +580,7 @@ Referenced by gpib\+\_\+file\+\_\+init().
 
 Display Configuration File string. 
 
-
+=============================================== 
 \begin{DoxyParams}{Parameters}
 {\em $\ast$str} & title \\
 \hline
@@ -529,7 +592,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1227 of file drives.\+c.
+Definition at line 1370 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8c_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -541,7 +604,7 @@ Definition at line 1227 of file drives.\+c.
 
 Display Configuration File variable. 
 
-
+=============================================== 
 \begin{DoxyParams}{Parameters}
 {\em str} & title \\
 \hline
@@ -553,7 +616,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1212 of file drives.\+c.
+Definition at line 1354 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8c_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
@@ -565,7 +628,7 @@ Definition at line 1212 of file drives.\+c.
 
 Push Parser State. 
 
-
+=============================================== 
 \begin{DoxyParams}{Parameters}
 {\em state} & parser state \\
 \hline
@@ -575,11 +638,39 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 515 of file drives.\+c.
+Definition at line 548 of file drives.\+c.
 
 
 
-Referenced by P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+Referenced by Read\+\_\+\+Config().
+
+\mbox{\Hypertarget{drives_8c_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}\label{drives_8c_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}} 
+\index{drives.\+c@{drives.\+c}!Read\+\_\+\+Config@{Read\+\_\+\+Config}}
+\index{Read\+\_\+\+Config@{Read\+\_\+\+Config}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{Read\+\_\+\+Config()}{Read\_Config()}}
+{\footnotesize\ttfamily int Read\+\_\+\+Config (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Read and parse a config file using P\+O\+S\+IX functions Set all drive parameters and debuglevel. 
+
+=============================================== 
+\begin{DoxyParams}{Parameters}
+{\em name} & config file name to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of parse errors 
+\end{DoxyReturn}
+Printer Device
+
+S\+S80 Device 
+
+Definition at line 822 of file drives.\+c.
+
+
+
+Referenced by gpib\+\_\+file\+\_\+init().
 
 \mbox{\Hypertarget{drives_8c_aece04902efa99dc0e1578dda79437a75}\label{drives_8c_aece04902efa99dc0e1578dda79437a75}} 
 \index{drives.\+c@{drives.\+c}!set\+\_\+active\+\_\+device@{set\+\_\+active\+\_\+device}}
@@ -601,7 +692,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \end{DoxyReturn}
 We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
 
-Definition at line 369 of file drives.\+c.
+Definition at line 346 of file drives.\+c.
 
 
 
@@ -617,16 +708,37 @@ Referenced by P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+L\+A(), P\+R\+I\+N\+T\+E\+R\
 
 Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. 
 
+=============================================== \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 628 of file drives.\+c.
+
+
+
+Referenced by gpib\+\_\+file\+\_\+init(), and Read\+\_\+\+Config().
+
+\mbox{\Hypertarget{drives_8c_ac6ec9e422c7122cc7d3513fd33d686a8}\label{drives_8c_ac6ec9e422c7122cc7d3513fd33d686a8}} 
+\index{drives.\+c@{drives.\+c}!S\+S80\+\_\+\+Set\+\_\+\+Defaults@{S\+S80\+\_\+\+Set\+\_\+\+Defaults}}
+\index{S\+S80\+\_\+\+Set\+\_\+\+Defaults@{S\+S80\+\_\+\+Set\+\_\+\+Defaults}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{S\+S80\+\_\+\+Set\+\_\+\+Defaults()}{SS80\_Set\_Defaults()}}
+{\footnotesize\ttfamily void S\+S80\+\_\+\+Set\+\_\+\+Defaults (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Set Default Values for a new S\+S80 Device IF defaults have been defined Most values in the C\+O\+N\+T\+R\+O\+L\+ER and U\+N\+IT are defaults that should not need to be specified Note all of the values are zeroed on allocation including strings. 
+
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Add optional hard coded devices for any that are missing 
-
-Definition at line 591 of file drives.\+c.
 
 
+Definition at line 430 of file drives.\+c.
 
-Referenced by gpib\+\_\+file\+\_\+init(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
+
+
+Referenced by alloc\+\_\+device().
 
 \mbox{\Hypertarget{drives_8c_aa43e282b0ff4a2e5b2ce59f0fce3fb68}\label{drives_8c_aa43e282b0ff4a2e5b2ce59f0fce3fb68}} 
 \index{drives.\+c@{drives.\+c}!type\+\_\+to\+\_\+str@{type\+\_\+to\+\_\+str}}
@@ -648,7 +760,7 @@ string pointer
 \end{DoxyReturn}
 
 
-Definition at line 302 of file drives.\+c.
+Definition at line 279 of file drives.\+c.
 
 
 
@@ -680,7 +792,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 236 of file drives.\+c.
+Definition at line 199 of file drives.\+c.
 
 
 
@@ -712,7 +824,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 219 of file drives.\+c.
+Definition at line 182 of file drives.\+c.
 
 
 
@@ -729,11 +841,25 @@ Referenced by lif\+\_\+dir2str(), lif\+\_\+vol2str(), Send\+\_\+\+Identify(), S\
 
 
 
-Definition at line 30 of file drives.\+c.
+Definition at line 32 of file drives.\+c.
 
 
 
-Referenced by S\+S80\+\_\+init().
+Referenced by Read\+\_\+\+Config(), and S\+S80\+\_\+init().
+
+\mbox{\Hypertarget{drives_8c_a6edb848661be578eca78845085870674}\label{drives_8c_a6edb848661be578eca78845085870674}} 
+\index{drives.\+c@{drives.\+c}!hpdir@{hpdir}}
+\index{hpdir@{hpdir}!drives.\+c@{drives.\+c}}
+\subsubsection{\texorpdfstring{hpdir}{hpdir}}
+{\footnotesize\ttfamily \hyperlink{structhpdir__t}{hpdir\+\_\+t} hpdir}
+
+
+
+hpdir.\+ini file processing 
+
+
+
+Definition at line 48 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}\label{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}} 
 \index{drives.\+c@{drives.\+c}!lines@{lines}}
@@ -747,38 +873,17 @@ Config file line number.
 
 
 
-Definition at line 535 of file drives.\+c.
+Definition at line 569 of file drives.\+c.
 
 
 
-Referenced by assign\+\_\+value(), Mat\+Read(), and P\+O\+S\+I\+X\+\_\+\+Read\+\_\+\+Config().
-
-\mbox{\Hypertarget{drives_8c_ae5c3a0a9ab88737f26d6554d34a35030}\label{drives_8c_ae5c3a0a9ab88737f26d6554d34a35030}} 
-\index{drives.\+c@{drives.\+c}!P\+R\+I\+N\+T\+E\+R\+Device\+Default@{P\+R\+I\+N\+T\+E\+R\+Device\+Default}}
-\index{P\+R\+I\+N\+T\+E\+R\+Device\+Default@{P\+R\+I\+N\+T\+E\+R\+Device\+Default}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{P\+R\+I\+N\+T\+E\+R\+Device\+Default}{PRINTERDeviceDefault}}
-{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} P\+R\+I\+N\+T\+E\+R\+Device\+Default}
-
-{\bfseries Initial value\+:}
-\begin{DoxyCode}
-=
-\{
-    \{ 
-        2,      
-        0xff,   
-        \textcolor{stringliteral}{"/printer.txt"}
-    \}
-\}
-\end{DoxyCode}
-
-
-Definition at line 46 of file drives.\+c.
+Referenced by assign\+\_\+value(), Mat\+Read(), and Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}\label{drives_8c_abe5ffe9f7c96ad748b695ed5b45d6e52}} 
 \index{drives.\+c@{drives.\+c}!P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}}
 \index{P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{P\+R\+I\+N\+T\+E\+Rp}{PRINTERp}}
-{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}$\ast$ P\+R\+I\+N\+T\+E\+Rp = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}$\ast$ P\+R\+I\+N\+T\+E\+Rp = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 
@@ -786,27 +891,17 @@ Active Printer Device.
 
 
 
-Definition at line 33 of file drives.\+c.
-
-\mbox{\Hypertarget{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}\label{drives_8c_a21c7953c08107cdbf2d0c264f2b32eab}} 
-\index{drives.\+c@{drives.\+c}!S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}}
-\index{S\+S80\+Disk\+Default@{S\+S80\+Disk\+Default}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{S\+S80\+Disk\+Default}{SS80DiskDefault}}
-{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} S\+S80\+Disk\+Default}
+Definition at line 35 of file drives.\+c.
 
 
 
-S\+S80 Disk Definitions. 
-
-S\+S80 H\+P9134L Disk Definitions 
-
-Definition at line 101 of file drives.\+c.
+Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}\label{drives_8c_ae2b90e5f9a8ae9e5df3fdee98a215939}} 
 \index{drives.\+c@{drives.\+c}!S\+S80p@{S\+S80p}}
 \index{S\+S80p@{S\+S80p}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{S\+S80p}{SS80p}}
-{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}$\ast$ S\+S80p = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}$\ast$ S\+S80p = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 
@@ -814,21 +909,21 @@ Active S\+S80 Device.
 
 
 
-Definition at line 36 of file drives.\+c.
+Definition at line 38 of file drives.\+c.
 
 
 
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
+Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), Read\+\_\+\+Config(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 
 \mbox{\Hypertarget{drives_8c_a26e0264b8581231a3a90fbb418f5812a}\label{drives_8c_a26e0264b8581231a3a90fbb418f5812a}} 
 \index{drives.\+c@{drives.\+c}!S\+S80s@{S\+S80s}}
 \index{S\+S80s@{S\+S80s}!drives.\+c@{drives.\+c}}
 \subsubsection{\texorpdfstring{S\+S80s}{SS80s}}
-{\footnotesize\ttfamily \hyperlink{structSS80StateType}{S\+S80\+State\+Type}$\ast$ S\+S80s = \hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
+{\footnotesize\ttfamily \hyperlink{structSS80StateType}{S\+S80\+State\+Type}$\ast$ S\+S80s = \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}}
 
 
 
-Definition at line 37 of file drives.\+c.
+Definition at line 39 of file drives.\+c.
 
 
 
@@ -842,7 +937,7 @@ Referenced by Clear\+\_\+\+Common(), G\+P\+I\+B(), S\+S80\+\_\+\+Cancel(), S\+S8
 
 
 
-Definition at line 26 of file drives.\+c.
+Definition at line 29 of file drives.\+c.
 
 
 
@@ -856,7 +951,7 @@ Referenced by init\+\_\+\+Devices(), pop\+\_\+state(), and push\+\_\+state().
 
 
 
-Definition at line 27 of file drives.\+c.
+Definition at line 30 of file drives.\+c.
 
 
 

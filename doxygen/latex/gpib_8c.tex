@@ -5,11 +5,8 @@
 G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.  
 
 
-{\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
-{\ttfamily \#include $<$avr/portpins.\+h$>$}\newline
-{\ttfamily \#include $<$avr/io.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}hardware/hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hal.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib.\+h\char`\"{}}\newline
@@ -38,8 +35,10 @@ void \hyperlink{gpib_8c_a687395337dd5c6604a775e3ffd3f006f}{gpib\+\_\+timeout\+\_
 \begin{DoxyCompactList}\small\item\em Set G\+P\+IB timeout timer in units of G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8c_a3eb10b99d17dd69982b6bfc820fb29db}{gpib\+\_\+timeout\+\_\+test} ()
 \begin{DoxyCompactList}\small\item\em Test G\+P\+IB timeout timer for timeout condition. \end{DoxyCompactList}\item 
-void \hyperlink{gpib_8c_a5576f7a1bab2c1beaab0c03bc62bb349}{gpib\+\_\+bus\+\_\+init} (int cold)
-\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for powerup or reset conditions. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init} (int busy)
+\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for R\+E\+AD Despite the name this everywhere to setup read mode. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}{gpib\+\_\+bus\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a32d2476eec2bbdf15e7db1b901c5a671}{gpib\+\_\+state\+\_\+init} (void)
 \begin{DoxyCompactList}\small\item\em Reset G\+P\+IB states and related variables. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\+\+P\+PR} (int bit)
@@ -47,7 +46,7 @@ void \hyperlink{gpib_8c_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\
 void \hyperlink{gpib_8c_ae7cace97c893474b3e6c672539a65041}{gpib\+\_\+disable\+\_\+\+P\+PR} (int bit)
 \begin{DoxyCompactList}\small\item\em Disable P\+PR (Parallel Poll Response) for a device. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{gpib_8c_aa86c792f901cc028cb9dc37f57cbcf72}{gpib\+\_\+detect\+\_\+\+PP} ()
-\begin{DoxyCompactList}\small\item\em Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state V2 hardware -\/ this does not work unless reading B\+US. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_a01eaf30370a0b43263d19ebaa2fa4a38}{gpib\+\_\+assert\+\_\+ifc} (void)
 \begin{DoxyCompactList}\small\item\em Assert Interface clear for 250us. \end{DoxyCompactList}\item 
 void \hyperlink{gpib_8c_ae826d722b789698ce9217758fe55fdcb}{gpib\+\_\+assert\+\_\+ren} (unsigned char state)
@@ -57,13 +56,9 @@ uint16\+\_\+t \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+un
 uint8\+\_\+t \hyperlink{gpib_8c_a3ab903cc837f89eda3af567d071b5065}{gpib\+\_\+bus\+\_\+read} ()
 \begin{DoxyCompactList}\small\item\em Read G\+P\+IB data B\+US only. \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_ae6b50a0c9391ae9bfb4ccff7227a22fb}{gpib\+\_\+control\+\_\+pin\+\_\+read} ()
-\begin{DoxyCompactList}\small\item\em Read G\+P\+IB control lines only. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB control lines only F\+I\+X\+ME V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_aae96a3c6c1e7037385d3f03e4baa1717}{gpib\+\_\+handshake\+\_\+pin\+\_\+read} ()
-\begin{DoxyCompactList}\small\item\em Read G\+P\+IB handshake lines only. \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{gpib_8c_afa4a47fedcd2cd5bc53c8cf2130512b8}{gpib\+\_\+control\+\_\+port\+\_\+read} ()
-\begin{DoxyCompactList}\small\item\em Read G\+P\+IB control P\+O\+RT lines only. \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{gpib_8c_a5fb936db66d77c3e0bcfc555e0b1d208}{gpib\+\_\+handshake\+\_\+port\+\_\+read} ()
-\begin{DoxyCompactList}\small\item\em Read G\+P\+IB P\+O\+RT handshake lines only. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB handshake lines only F\+I\+X\+ME\+: V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_ac3d50cc1d56705d107e2f8fb00692e68}{gpib\+\_\+write\+\_\+byte} (uint16\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em Send 1 byte and control line states to G\+P\+IB B\+US. \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte} (int trace)
@@ -113,7 +108,7 @@ G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 \begin{DoxyParagraph}{Edit History -\/ \mbox{[}1.0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.}
 
 \end{DoxyParagraph}
-\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2017 Mike Gore, All rights reserved. G\+PL}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL}
 
 \end{DoxyParagraph}
 \begin{DoxySeeAlso}{See also}
@@ -149,7 +144,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 399 of file gpib.\+c.
+Definition at line 475 of file gpib.\+c.
 
 
 
@@ -174,40 +169,28 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 419 of file gpib.\+c.
+Definition at line 495 of file gpib.\+c.
 
-\mbox{\Hypertarget{gpib_8c_a5576f7a1bab2c1beaab0c03bc62bb349}\label{gpib_8c_a5576f7a1bab2c1beaab0c03bc62bb349}} 
+\mbox{\Hypertarget{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}\label{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
 \index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+c@{gpib.\+c}}
 \subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+init()}{gpib\_bus\_init()}}
-{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{cold }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Initialize G\+P\+IB Bus control lines for powerup or reset conditions. 
+Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. 
 
-
-\begin{DoxyItemize}
-\item Set cold = 1 at powerup
-\item set cold = 0 in operation to reset bus state
-\begin{DoxyItemize}
-\item If cold = 0 N\+R\+F\+D/\+N\+D\+AC is set to 0 busy
-\end{DoxyItemize}
-\item References\+:
-\begin{DoxyItemize}
-\item H\+P-\/\+IB Tutorial
-\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+\begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+F\+I\+X\+ME verify resetting gpib\+\_\+unread\+\_\+f is A\+L\+W\+A\+YS correct when called 
 
-\end{DoxyItemize}
-\end{DoxyItemize}References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
-
-Definition at line 239 of file gpib.\+c.
+Definition at line 293 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+init\+\_\+devices(), and main().
+Referenced by gpib\+\_\+init\+\_\+devices(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+write\+\_\+byte(), and main().
 
 \mbox{\Hypertarget{gpib_8c_a3ab903cc837f89eda3af567d071b5065}\label{gpib_8c_a3ab903cc837f89eda3af567d071b5065}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+read@{gpib\+\_\+bus\+\_\+read}}
@@ -224,11 +207,43 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity 
 
-Definition at line 466 of file gpib.\+c.
+Definition at line 542 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}\label{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}} 
+\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}}
+\index{gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}!gpib.\+c@{gpib.\+c}}
+\subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+read\+\_\+init()}{gpib\_bus\_read\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+read\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+P\+IB Bus control lines for R\+E\+AD Despite the name this everywhere to setup read mode. 
+
+
+\begin{DoxyItemize}
+\item Set busy = 0 after powerup everying floating or high
+\begin{DoxyItemize}
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC are set to busy low
+\end{DoxyItemize}
+\item References\+:
+\begin{DoxyItemize}
+\item H\+P-\/\+IB Tutorial
+\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}release handshake lines References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
+
+Definition at line 234 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 
 \mbox{\Hypertarget{gpib_8c_ae6b50a0c9391ae9bfb4ccff7227a22fb}\label{gpib_8c_ae6b50a0c9391ae9bfb4ccff7227a22fb}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+control\+\_\+pin\+\_\+read@{gpib\+\_\+control\+\_\+pin\+\_\+read}}
@@ -238,35 +253,21 @@ Referenced by gpib\+\_\+read\+\_\+byte().
 
 
 
-Read G\+P\+IB control lines only. 
+Read G\+P\+IB control lines only F\+I\+X\+ME V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? 
 
 \begin{DoxyReturn}{Returns}
 control lines (upper 8 bits) 
 \end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init()} 
+\end{DoxySeeAlso}
 
 
-Definition at line 481 of file gpib.\+c.
+Definition at line 560 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
-
-\mbox{\Hypertarget{gpib_8c_afa4a47fedcd2cd5bc53c8cf2130512b8}\label{gpib_8c_afa4a47fedcd2cd5bc53c8cf2130512b8}} 
-\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+control\+\_\+port\+\_\+read@{gpib\+\_\+control\+\_\+port\+\_\+read}}
-\index{gpib\+\_\+control\+\_\+port\+\_\+read@{gpib\+\_\+control\+\_\+port\+\_\+read}!gpib.\+c@{gpib.\+c}}
-\subsubsection{\texorpdfstring{gpib\+\_\+control\+\_\+port\+\_\+read()}{gpib\_control\_port\_read()}}
-{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+control\+\_\+port\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-
-
-Read G\+P\+IB control P\+O\+RT lines only. 
-
-\begin{DoxyReturn}{Returns}
-control lines (upper 8 bits) 
-\end{DoxyReturn}
-
-
-Definition at line 516 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}\label{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+decode@{gpib\+\_\+decode}}
@@ -286,7 +287,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1588 of file gpib.\+c.
+Definition at line 1246 of file gpib.\+c.
 
 
 
@@ -301,8 +302,6 @@ Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+read\+\_\+str(), gpib
 
 
 Displays help for \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode()} function. 
-
-================================================================ \subsection*{R\+E\+A\+D/\+W\+R\+I\+TE byte testing code -\/ E\+ND }
 
 You would call this once at the start of a trace for example. \begin{DoxySeeAlso}{See also}
 \+: \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list is control \hyperlink{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}{lines} we track 
@@ -319,7 +318,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1408 of file gpib.\+c.
+Definition at line 1063 of file gpib.\+c.
 
 
 
@@ -333,14 +332,14 @@ Referenced by gpib\+\_\+trace\+\_\+task(), and plot\+\_\+echo().
 
 
 
-Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state. 
+Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state V2 hardware -\/ this does not work unless reading B\+US. 
 
 
 \begin{DoxyItemize}
 \item P\+PR is short for \char`\"{}\+Parellel Poll Response\char`\"{}
 \item P\+PR happens when the C\+IC (controller in charge) holds B\+O\+TH of A\+TN == 0 and E\+OI == 0
 \item P\+PR Response happens using hardware The hardware pulls a bit low on the G\+P\+IB bus corresponding to the device. But only if any P\+PR mask bits are set in the hardware
-\item Note\+: E\+OI is never used in command mode (A\+TN = 0) 1) Hardware will automatically hold D\+A\+TA B\+US lines low
+\item Note\+: E\+OI is never used in command mode (A\+TN = 0) 1) Hardware will automatically hold G\+P\+IB D\+A\+TA B\+US lines low
 \item \hyperlink{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}{ppr\+\_\+reg()} determines if we have P\+PR enabled.
 \item References\+:
 \begin{DoxyItemize}
@@ -354,9 +353,15 @@ Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ i
 \end{DoxyReturn}
 
 \end{DoxyItemize}
-\end{DoxyItemize}
+\end{DoxyItemize}F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode
 
-Definition at line 358 of file gpib.\+c.
+Bus pin states but do not alter port direction state
+
+debugging -\/ read the ddr data direction bits to determine read/write state
+
+F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode F\+I\+X\+ME We add a test for read/write state ?? 
+
+Definition at line 414 of file gpib.\+c.
 
 
 
@@ -380,7 +385,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 326 of file gpib.\+c.
+Definition at line 381 of file gpib.\+c.
 
 
 
@@ -400,7 +405,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 306 of file gpib.\+c.
+Definition at line 361 of file gpib.\+c.
 
 
 
@@ -414,35 +419,18 @@ Referenced by S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Cancel(), S\+S80
 
 
 
-Read G\+P\+IB handshake lines only. 
+Read G\+P\+IB handshake lines only F\+I\+X\+ME\+: V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? 
 
 \begin{DoxyReturn}{Returns}
 handshake lines (upper 8 bits) 
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 500 of file gpib.\+c.
+Definition at line 581 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
-
-\mbox{\Hypertarget{gpib_8c_a5fb936db66d77c3e0bcfc555e0b1d208}\label{gpib_8c_a5fb936db66d77c3e0bcfc555e0b1d208}} 
-\index{gpib.\+c@{gpib.\+c}!gpib\+\_\+handshake\+\_\+port\+\_\+read@{gpib\+\_\+handshake\+\_\+port\+\_\+read}}
-\index{gpib\+\_\+handshake\+\_\+port\+\_\+read@{gpib\+\_\+handshake\+\_\+port\+\_\+read}!gpib.\+c@{gpib.\+c}}
-\subsubsection{\texorpdfstring{gpib\+\_\+handshake\+\_\+port\+\_\+read()}{gpib\_handshake\_port\_read()}}
-{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+handshake\+\_\+port\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-
-
-Read G\+P\+IB P\+O\+RT handshake lines only. 
-
-\begin{DoxyReturn}{Returns}
-handshake lines (upper 8 bits) 
-\end{DoxyReturn}
-for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
-
-Definition at line 535 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}\label{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}}
@@ -482,7 +470,7 @@ read 1 byte and control line status from G\+P\+IB B\+US
 \begin{DoxySeeAlso}{See also}
 \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
 \begin{DoxyItemize}
-\item An error implies the data byte can\textquotesingle{}t be trusted
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
 \item Control Line Flags.
 \begin{DoxyItemize}
 \item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
@@ -500,17 +488,31 @@ read 1 byte and control line status from G\+P\+IB B\+US
 \begin{DoxyReturn}{Returns}
 (data bus, control and error status) 
 \end{DoxyReturn}
-Signal that we are ready to read
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
 
-Wait for Data Ready acknowledge
+F\+I\+X\+ME only enabled on V1 hardware
+
+Signal that we are ready to ready
+
+Wait for Ready acknowledge
 
 gpib\+\_\+bus\+\_\+read strips command parity if A\+TN is low at read time
+
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+F\+I\+X\+ME -\/ we can read on V1 hardware rx\+\_\+state = G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI;
+
+F\+I\+X\+ME do we want to keep the next state ? V1 boards can read and wait for N\+D\+AC to go HI F\+I\+X\+ME We clould add a test for read/write state ?? V2 boards we can\textquotesingle{}t -\/ not a big deal as the D\+AV test works anyway
 
 Wait for N\+D\+AC float HI
 
 Wait for D\+AV HI
 
 Ready for next byte
+
+V2 boards can not read all control and handshake bits at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs durring write phase, but not at very start
 
 Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \begin{DoxyItemize}
@@ -519,11 +521,11 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 821 of file gpib.\+c.
+Definition at line 872 of file gpib.\+c.
 
 
 
-Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), and gpib\+\_\+trace\+\_\+task().
+Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), and gpib\+\_\+trace\+\_\+task().
 
 \mbox{\Hypertarget{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}\label{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+read\+\_\+str@{gpib\+\_\+read\+\_\+str}}
@@ -605,7 +607,7 @@ status
 \item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1628 of file gpib.\+c.
+Definition at line 1286 of file gpib.\+c.
 
 
 
@@ -630,7 +632,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 281 of file gpib.\+c.
+Definition at line 335 of file gpib.\+c.
 
 
 
@@ -654,7 +656,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 211 of file gpib.\+c.
+Definition at line 207 of file gpib.\+c.
 
 
 
@@ -678,7 +680,7 @@ Test G\+P\+IB timeout timer for timeout condition.
 \end{DoxyReturn}
 
 
-Definition at line 224 of file gpib.\+c.
+Definition at line 220 of file gpib.\+c.
 
 
 
@@ -699,11 +701,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 137 of file gpib.\+c.
+Definition at line 133 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
+Referenced by gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
 
 \mbox{\Hypertarget{gpib_8c_a87ae4b4852f4a1987fc61fec20f53d42}\label{gpib_8c_a87ae4b4852f4a1987fc61fec20f53d42}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+timer\+\_\+elapsed\+\_\+end@{gpib\+\_\+timer\+\_\+elapsed\+\_\+end}}
@@ -720,11 +722,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 168 of file gpib.\+c.
+Definition at line 164 of file gpib.\+c.
 
 
 
-Referenced by gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
+Referenced by gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
 
 \mbox{\Hypertarget{gpib_8c_abe05115c27148ec7013e6f62dc94ae78}\label{gpib_8c_abe05115c27148ec7013e6f62dc94ae78}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+timer\+\_\+reset@{gpib\+\_\+timer\+\_\+reset}}
@@ -741,7 +743,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 154 of file gpib.\+c.
+Definition at line 150 of file gpib.\+c.
 
 
 
@@ -766,7 +768,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 194 of file gpib.\+c.
+Definition at line 190 of file gpib.\+c.
 
 
 
@@ -802,7 +804,7 @@ decode/display all control flags and data on the G\+P\+IB B\+US
 \begin{DoxySeeAlso}{See also}
 \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
 \begin{DoxyItemize}
-\item An error implies the data byte can\textquotesingle{}t be trusted
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
 \item Control Line Flags.
 \begin{DoxyItemize}
 \item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
@@ -830,11 +832,11 @@ decode/display all control flags and data on the G\+P\+IB B\+US
 \+: \hyperlink{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}{gpib\+\_\+decode\+\_\+header()}
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
-void 
+void Note the bits we can read depends on what hardware verions we have V2 hardware can only read status bits based on G\+P\+IB control buffer direction F\+I\+X\+ME We could add a test for read/write state ?? 
 \end{DoxyReturn}
 
 
-Definition at line 1457 of file gpib.\+c.
+Definition at line 1115 of file gpib.\+c.
 
 
 
@@ -873,7 +875,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 448 of file gpib.\+c.
+Definition at line 524 of file gpib.\+c.
 
 
 
@@ -888,8 +890,6 @@ Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), and gpib\+\_\+read\+\_
 
 
 Send 1 byte and control line states to G\+P\+IB B\+US. 
-
-================================================================ \subsection*{R\+E\+A\+D/\+W\+R\+I\+TE byte testing code -\/ S\+T\+A\+RT }
 
 
 \begin{DoxyItemize}
@@ -913,6 +913,9 @@ Send 1 byte and control line states to G\+P\+IB B\+US.
 \begin{DoxyItemize}
 \item E\+O\+I\+\_\+\+F\+L\+AG
 \item A\+T\+N\+\_\+\+F\+L\+AG
+\begin{DoxyItemize}
+\item E\+OI and A\+TN can only be used in controller mode
+\end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}\\
 \hline
@@ -933,7 +936,7 @@ Send 1 byte and control line states to G\+P\+IB B\+US.
 \begin{DoxySeeAlso}{See also}
 \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
 \begin{DoxyItemize}
-\item An error implies the data byte can\textquotesingle{}t be trusted
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
 \item Control Line Flags.
 \begin{DoxyItemize}
 \item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
@@ -948,21 +951,19 @@ Send 1 byte and control line states to G\+P\+IB B\+US.
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxySeeAlso}
-See H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states
-
 first device is ready
 
 A\+LL devices are ready
 
 B\+US
 
-for D\+AV to float HI 
+We are in read mode now  for D\+AV to finish float HI -\/ finishing floating HI 
 
-Definition at line 589 of file gpib.\+c.
+Definition at line 632 of file gpib.\+c.
 
 
 
-Referenced by controller\+\_\+ifc(), controller\+\_\+read\+\_\+str(), controller\+\_\+read\+\_\+trace(), controller\+\_\+send\+\_\+str(), gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+str().
+Referenced by controller\+\_\+ifc(), controller\+\_\+read\+\_\+str(), controller\+\_\+read\+\_\+trace(), controller\+\_\+send\+\_\+str(), and gpib\+\_\+write\+\_\+str().
 
 \mbox{\Hypertarget{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}\label{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+write\+\_\+str@{gpib\+\_\+write\+\_\+str}}
@@ -1037,7 +1038,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1717 of file gpib.\+c.
+Definition at line 1375 of file gpib.\+c.
 
 
 
@@ -1054,7 +1055,7 @@ Referenced by controller\+\_\+send\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\
 
 
 
-Definition at line 99 of file gpib.\+c.
+Definition at line 95 of file gpib.\+c.
 
 
 
@@ -1128,7 +1129,7 @@ common IO buffer for \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 79 of file gpib.\+c.
+Definition at line 75 of file gpib.\+c.
 
 
 
@@ -1156,12 +1157,12 @@ Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\
     \{0x19,\textcolor{stringliteral}{"SPD"} \},
     \{0x3F,\textcolor{stringliteral}{"UNL"} \},
     \{0x5F,\textcolor{stringliteral}{"UNT"} \},
-    \{-1,\hyperlink{user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL} \}
+    \{-1,\hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL} \}
 \}
 \end{DoxyCode}
 
 
-Definition at line 111 of file gpib.\+c.
+Definition at line 107 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_a8f8b0bbe03e4f62aa8e736a9a1f5f609}\label{gpib_8c_a8f8b0bbe03e4f62aa8e736a9a1f5f609}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+unread\+\_\+data@{gpib\+\_\+unread\+\_\+data}}
@@ -1175,7 +1176,7 @@ Definition at line 111 of file gpib.\+c.
 
 
 
-Definition at line 84 of file gpib.\+c.
+Definition at line 80 of file gpib.\+c.
 
 
 
@@ -1193,7 +1194,7 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+unread().
 
 
 
-Definition at line 82 of file gpib.\+c.
+Definition at line 78 of file gpib.\+c.
 
 
 
@@ -1211,7 +1212,7 @@ gpib current and last command
 
 
 
-Definition at line 99 of file gpib.\+c.
+Definition at line 95 of file gpib.\+c.
 
 
 
@@ -1229,7 +1230,7 @@ gpib listen address
 
 
 
-Definition at line 92 of file gpib.\+c.
+Definition at line 88 of file gpib.\+c.
 
 
 
@@ -1247,7 +1248,7 @@ gpib last listen address
 
 
 
-Definition at line 94 of file gpib.\+c.
+Definition at line 90 of file gpib.\+c.
 
 
 
@@ -1265,7 +1266,7 @@ gpib secondary
 
 
 
-Definition at line 102 of file gpib.\+c.
+Definition at line 98 of file gpib.\+c.
 
 
 
@@ -1283,7 +1284,7 @@ gpib serial poll status
 
 
 
-Definition at line 97 of file gpib.\+c.
+Definition at line 93 of file gpib.\+c.
 
 
 
@@ -1301,7 +1302,7 @@ gpib talk address
 
 G\+P\+IB B\+US states. 
 
-Definition at line 87 of file gpib.\+c.
+Definition at line 83 of file gpib.\+c.
 
 
 
@@ -1319,7 +1320,7 @@ gpib last talk address
 
 
 
-Definition at line 89 of file gpib.\+c.
+Definition at line 85 of file gpib.\+c.
 
 
 

@@ -17,12 +17,14 @@ DIR=$(shell pwd)
 TELEDISK=1
 
 
-CFLAGS = -O -D_GNU_SOURCE -g -static
+CFLAGS = -O -D_GNU_SOURCE -g 
+#CFLAGS += -static
 CFLAGS += -DLIF_STAND_ALONE
 CFLAGS += -DGIT_VERSION="\"$(GIT_VERSION)\""
 CFLAGS += -DLOCAL_MOD="\"$(LOCAL_MOD)\""
+CFLAGS += 
 
-SRC =  lifsup.c lifutils.c teledisk/td0_lzss.c
+SRC =  lifsup.c lifutils.c teledisk/td0_lzss.c 
 LIBS = -lm
 
 ifeq ($(TELEDISK),1)
@@ -32,6 +34,8 @@ ifeq ($(TELEDISK),1)
 	CFLAGS += -L${DIR}/teledisk
 	SRC += td02lif.c
 endif
+
+CFLAGS += -DMKCFG_STANDALONE
 
 
 BIN = lif

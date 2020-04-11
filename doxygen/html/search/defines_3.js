@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['calloc',['calloc',['../user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'user_config.h']]],
+  ['calloc',['calloc',['../hardware_2user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191',1,'user_config.h']]],
+  ['clear_5fcommand',['CLEAR_COMMAND',['../LCD_8h.html#a82878e578d01bb12ed5355ea7a49e1de',1,'LCD.h']]],
   ['clock_5fhz',['CLOCK_HZ',['../timer_8h.html#a4068229bfd30e574c7a9f1a8c6687582',1,'timer.h']]],
   ['clock_5ftic_5fns',['CLOCK_TIC_NS',['../timer_8h.html#a6aacf2441874a27f25ae927bbddf1235',1,'timer.h']]],
   ['clock_5ftic_5fus',['CLOCK_TIC_US',['../timer_8h.html#a1aa52cddadb40365ae68d2c45600d684',1,'timer.h']]],
@@ -24,6 +25,8 @@ var searchData=
   ['cmd8',['CMD8',['../mmc_8c.html#ac75b3e0ad1fb013ea946fb49bbe65668',1,'mmc.c']]],
   ['cmd9',['CMD9',['../mmc_8c.html#a1fac6a251d7e7dc204d21639bf521459',1,'mmc.c']]],
   ['cmd_5fmask',['CMD_MASK',['../gpib_8h.html#aede8404e1d3398c2c235eaa17ea2cd5d',1,'gpib.h']]],
+  ['codepage',['CODEPAGE',['../ff_8c.html#a0532865fc94e93704941f95e9425ccb9',1,'ff.c']]],
+  ['contrast_5fcommand',['CONTRAST_COMMAND',['../LCD_8h.html#acb58ae865f41b46042ec1005fe957951',1,'LCD.h']]],
   ['control_5fmask',['CONTROL_MASK',['../gpib_8h.html#ad0d5ed44566b2ed42807e78e534bc6cc',1,'gpib.h']]],
   ['create_5flinkmap',['CREATE_LINKMAP',['../ff_8h.html#aee297a9011164cf485a4df2a72758b08',1,'ff.h']]],
   ['cs_5fhigh',['CS_HIGH',['../mmc_8c.html#af67a5c0216de0cfadf059fa4cf05d65d',1,'mmc.c']]],
@@ -35,10 +38,12 @@ var searchData=
   ['ct_5fsdc',['CT_SDC',['../diskio_8h.html#ae76d94ac83c68d1f025cb0bcad77fa5d',1,'diskio.h']]],
   ['ctrl_5feject',['CTRL_EJECT',['../diskio_8h.html#a5e40e16d2d7ce196858950f070b9ec03',1,'diskio.h']]],
   ['ctrl_5fformat',['CTRL_FORMAT',['../diskio_8h.html#add07021167069f5914211a2f8830fabb',1,'diskio.h']]],
+  ['ctrl_5fget_5fsmart',['CTRL_GET_SMART',['../diskio_8h.html#a02dfc71ffe976b4b73afd1406b47aaf8',1,'diskio.h']]],
   ['ctrl_5flock',['CTRL_LOCK',['../diskio_8h.html#af40e5cf3000553a978ff6e30dae70858',1,'diskio.h']]],
   ['ctrl_5fpower_5fidle',['CTRL_POWER_IDLE',['../diskio_8h.html#a69bec9079062f809c3586977b2dc5d79',1,'diskio.h']]],
   ['ctrl_5fpower_5foff',['CTRL_POWER_OFF',['../diskio_8h.html#aa1f5a55ea2a24d274c16e51c111c97d8',1,'diskio.h']]],
   ['ctrl_5fsync',['CTRL_SYNC',['../diskio_8h.html#a1b3c492f9aec325f0655941b75256f3c',1,'diskio.h']]],
   ['ctrl_5ftrim',['CTRL_TRIM',['../diskio_8h.html#af09fd84bea8d4e889e272471f44d60d6',1,'diskio.h']]],
-  ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]]
+  ['ctrl_5funlock',['CTRL_UNLOCK',['../diskio_8h.html#a5d06770de580667138ca6101ae5138ac',1,'diskio.h']]],
+  ['cvtbl',['CVTBL',['../ffunicode_8c.html#afcbf86dfddc068d1df5155276ffc8ef8',1,'ffunicode.c']]]
 ];

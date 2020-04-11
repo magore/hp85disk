@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -15,14 +15,23 @@
 
 
 #define AVR 1
-
 #define MEMSPACE /**/
 
 #define SYSTEM_TASK_HZ 1000L
 #define HAVE_HIRES_TIMER 1
 
-#define MMC_SLOW 250000L
-#define MMC_FAST 2500000L
+// FATFS
+#ifdef AVR
+
+#ifndef MMC_SLOW
+  #define MMC_SLOW (500000UL)
+#endif
+
+#ifndef MMC_FAST
+  #define MMC_FAST (2500000UL)
+#endif
+
+#endif  // AVR
 
 #define NO_SCANF
 
@@ -36,18 +45,30 @@
 ///#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdarg.h>
 #include <ctype.h>
 
-#include "hardware/iom1284p.h"
+
+#include <avr/pgmspace.h>
+#include <avr/portpins.h>
+#include <avr/io.h>
+#include <assert.h>
+#include <avr/interrupt.h>
+
+
+#include "hardware/gpio-1284p.h"
 #include "hardware/hal.h"
 
 #include "hardware/bits.h"
 #include "hardware/delay.h"
 #include "hardware/ram.h"
 
+#include <util/twi.h>
+
+#include "lib/parsing.h"
 #include "lib/stringsup.h"
 #include "printf/mathio.h"
 
@@ -69,8 +90,7 @@ void copyright( void );
 #define NULL        ((void *) 0)
 #endif
 
-typedef enum { false, true }
-bool;
+typedef enum { false, true } bool;
 
 #ifndef _SIZE_T
 #define _SIZE_T
@@ -87,6 +107,14 @@ typedef unsigned long int size_t;
 #include "spi.h"
 #include "rtc.h"
 #include "TWI_AVR8.h"
+#ifdef I2C_SUPPORT
+#include "i2c.h"
+#endif
+#ifdef LCD_SUPPORT
+#include "LCD.h"
+#include "display/lcd_printf.h"
+#endif
+#include "posix/posix.h"
 
 // sys.c defines alternative safe functions
 #ifndef free

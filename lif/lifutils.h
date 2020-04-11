@@ -3,7 +3,7 @@
 
  @brief LIF file utilities
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -20,10 +20,9 @@
 
 #ifndef LIF_STAND_ALONE
 #include "user_config.h"
-#include "defines.h"
 #endif
+//#include "defines.h"
 
-extern int debuglevel;
 typedef struct stat stat_t;
 
 ///Depends on how much free ram we have

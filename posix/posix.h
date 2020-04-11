@@ -3,7 +3,7 @@
 
  @brief POSIX wrapper for FatFS
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
@@ -127,8 +127,8 @@ typedef struct utimbuf
    time_t modtime;      /* modification time */
 } utime_t;
 
-#if _USE_LFN != 0
-#define MAX_NAME_LEN _MAX_LFN 
+#if FF_USE_LFN != 0
+#define MAX_NAME_LEN FF_MAX_LFN 
 #else
 #define MAX_NAME_LEN 13
 #endif

@@ -29,10 +29,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HAVE_HIRES_TIMER /*< We can read a high resolution hardware timer */
 #endif
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
-#include "lib/time.h"
-#include "lib/timer.h"
+#include "time.h"
+#include "timer.h"
 
 /// @brief  System Clock Time
 volatile ts_t __clock;

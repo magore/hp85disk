@@ -85,10 +85,10 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5a896998acd804cbb68c8c2b8aed3e3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbuffer__t.html">buffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buffer_8h.html#a5a896998acd804cbb68c8c2b8aed3e3c">buffer_read_open</a> (char *name, uint8_t *buf, int size)</td></tr>
-<tr class="memdesc:a5a896998acd804cbb68c8c2b8aed3e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">FatFS does not have a f_fgetc() function Using <a class="el" href="ff_8c.html#ad55dbad62205065ba7e36ae5fc72dac6">f_read()</a> of just 1 byte is VERY VERY SLOW.  <a href="#a5a896998acd804cbb68c8c2b8aed3e3c">More...</a><br /></td></tr>
+<tr class="memdesc:a5a896998acd804cbb68c8c2b8aed3e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">FatFS does not have a f_fgetc() function Using <a class="el" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read()</a> of just 1 byte is VERY VERY SLOW.  <a href="#a5a896998acd804cbb68c8c2b8aed3e3c">More...</a><br /></td></tr>
 <tr class="separator:a5a896998acd804cbb68c8c2b8aed3e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a010cad6baf8e47ce65ddc90f7206b7b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buffer_8h.html#a010cad6baf8e47ce65ddc90f7206b7b4">buffer_read_close</a> (<a class="el" href="structbuffer__t.html">buffer_t</a> *p)</td></tr>
-<tr class="memdesc:a010cad6baf8e47ce65ddc90f7206b7b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffered read close FatFS does not have a f_fgetc() and using <a class="el" href="ff_8c.html#ad55dbad62205065ba7e36ae5fc72dac6">f_read()</a> of just 1 byte is VERY SLOW  <a href="#a010cad6baf8e47ce65ddc90f7206b7b4">More...</a><br /></td></tr>
+<tr class="memdesc:a010cad6baf8e47ce65ddc90f7206b7b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffered read close FatFS does not have a f_fgetc() and using <a class="el" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read()</a> of just 1 byte is VERY SLOW  <a href="#a010cad6baf8e47ce65ddc90f7206b7b4">More...</a><br /></td></tr>
 <tr class="separator:a010cad6baf8e47ce65ddc90f7206b7b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac376df96e4713216095e124c2ee1833c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buffer_8h.html#ac376df96e4713216095e124c2ee1833c">buffer_ungetc</a> (<a class="el" href="structbuffer__t.html">buffer_t</a> *p, int c)</td></tr>
 <tr class="memdesc:ac376df96e4713216095e124c2ee1833c"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffered ungetc  <a href="#ac376df96e4713216095e124c2ee1833c">More...</a><br /></td></tr>
@@ -103,7 +103,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>character read buffering wrappers for FatFS WHY? Character at a time operation is in FatFS are VERY slow </p>
 <p>character read buffering wrappers for FatFS Character at a time operation is FatFS are VERY slow</p>
-<dl class="section user"><dt>Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL License</dt><dd></dd></dl>
+<dl class="section user"><dt>Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL License</dt><dd></dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="http://github.com/magore/hp85disk">http://github.com/magore/hp85disk</a> </dd>
 <dd>
 <a href="http://github.com/magore/hp85disk/COPYRIGHT.md">http://github.com/magore/hp85disk/COPYRIGHT.md</a> for specific Copyright details</dd></dl>
@@ -206,7 +206,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>buffered read close FatFS does not have a f_fgetc() and using <a class="el" href="ff_8c.html#ad55dbad62205065ba7e36ae5fc72dac6">f_read()</a> of just 1 byte is VERY SLOW </p>
+<p>buffered read close FatFS does not have a f_fgetc() and using <a class="el" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read()</a> of just 1 byte is VERY SLOW </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td>buffer structure ppointer </td></tr>
@@ -253,7 +253,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>FatFS does not have a f_fgetc() function Using <a class="el" href="ff_8c.html#ad55dbad62205065ba7e36ae5fc72dac6">f_read()</a> of just 1 byte is VERY VERY SLOW. </p>
+<p>FatFS does not have a f_fgetc() function Using <a class="el" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read()</a> of just 1 byte is VERY VERY SLOW. </p>
 <p>buffered read open </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>file name </td></tr>
@@ -314,7 +314,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 11 2020 00:46:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 11 2020 00:48:17 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

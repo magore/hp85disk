@@ -3,7 +3,7 @@
 
 @brief Allocate, Free and display FILINFO structurs, getfattime(), display error messages
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _FATFS_SUP_H_
 #define _FATFS_SUP_H_
 
-#if _MULTI_PARTITION != 0
+#if FF_MULTI_PARTITION != 0
 extern const PARTITION Drives[] =
 {
     {
@@ -45,7 +45,7 @@ extern const PARTITION Drives[] =
 
 extern DWORD   AccSize;                           // Total file space used
 extern WORD    AccFiles, AccDirs;                 // Total files and directories
-extern FATFS   Fatfs[_VOLUMES];                   // File system object for each logical drive
+extern FATFS   Fatfs[FF_VOLUMES];                   // File system object for each logical drive
 
 /* fatfs_sup.c */
 MEMSPACE uint32_t tm_to_fat ( tm_t *t );

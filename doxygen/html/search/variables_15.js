@@ -1,8 +1,9 @@
 var searchData=
 [
+  ['w',['w',['../unionval__t.html#a35ceb0f111824a2835370671131c38c0',1,'val_t']]],
   ['wflag',['wflag',['../structFATFS.html#a647e43c9ccae94b7274793d1909897de',1,'FATFS']]],
   ['width',['width',['../unionf__t.html#ad6b1584314c27653690552e95e1ed96f',1,'f_t']]],
-  ['win',['win',['../structFATFS.html#a7cc35a593465e727ab87723c14610644',1,'FATFS']]],
-  ['winsect',['winsect',['../structFATFS.html#ac60e69c00e6bf7c25febfbac4dc1476b',1,'FATFS']]],
+  ['win',['win',['../structFATFS.html#a49e9c5c3ae9c13755242b6ce5748ecb1',1,'FATFS']]],
+  ['winsect',['winsect',['../structFATFS.html#aaf7eccaccdc9c4243230672d6b2f6566',1,'FATFS']]],
   ['writeindex',['writeindex',['../structliftel__t.html#a3c5f11408ea86ded8a0bc0d20a0ea689',1,'liftel_t']]]
 ];

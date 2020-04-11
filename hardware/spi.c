@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @copyright Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @copyright Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.
 
  @copyright GNU Public License.
 
@@ -183,26 +183,51 @@ int SPI0_Get_Mode( void )
 static int SPI0_Init_state = 0;
 
 ///@brief Initialize SPI0 device.
-///
-/// - Set default speed, IO pins and mode.
+/// See Atmel App Note AVR151
+/// Set default speed, IO pins and mode.
 void SPI0_Init(uint32_t speed)
 {
 
-    GPIO_PIN_HI(SS);                                    // SS Output HI
+	volatile uint8_t D;
 
-    delayus(10);
+#ifdef SPI_DEBUG
+	printf("SPI0_Init speed:%ld\n",speed);
+#endif
 
-    GPIO_PIN_HI(SCK);                                   // SCK Output
+
+#ifdef SPI_DEBUG
+	printf("SS HI\n");
+	printf("Port B DDR:   0x%02x\n", (int) GPIO_PORT_DDR_RD(GPIO_B));
+	printf("Port B LATCH: 0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+	printf("Port B PINS:  0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+#endif
+
+	SPCR = 0;				// Clear SPCR in case we are not called after RESET
+
+    GPIO_PIN_HI(SCK);       // SCK Output
     GPIO_PIN_HI(MOSI);                                  // MOSI Output
-    GPIO_PIN_FLOAT(MISO);                               // MISO Input, no pull-up
+    GPIO_PIN_FLOAT(MISO);   // MISO Input, no pull-up
 
-    BIT_SET(SPCR, SPE);                           // Enable SPI
-    BIT_SET(SPCR, MSTR);                          // Master Mode
+	// Warning *** MSTR MUST be set BEFORE SPE!!!! *** otherwise SS will NOT behave as an output
+	GPIO_PIN_LOW(SS); 		// SS Output must be HI prevent slave mode from getting set while initializing
+    BIT_SET(SPCR, MSTR);    // Master Mode
+    BIT_SET(SPCR, SPE);     // Enable SPI
 
+	// SPI Clear any pending interrupt flags
+	D = SPSR;
+	D = SPDR;
+
+	/// Set SPI clock mode 0 
+    ///  SPI Mode     CPOL    CPHA            Sample
+    ///  0    0       0       Leading (Rising)   Edge
     SPI0_Mode(0);
+
+	// Set SPI clock speed
     SPI0_Speed(speed);
-    SPI0_TXRX_Byte(0xff);
+
+    SPI0_TXRX_Byte(0xff);	// Send dummy 0xFF
 	SPI0_Init_state = 1;
+
 }
 
 

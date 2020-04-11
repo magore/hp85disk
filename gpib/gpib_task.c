@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -44,8 +44,11 @@ void gpib_file_init()
 
     debuglevel = 0;
 
-    errors = POSIX_Read_Config(cfgfile);
-    printf("%s had %d errors\n", cfgfile, errors);
+    errors = Read_Config(cfgfile);
+	if(errors > 0)
+		printf("%s had %d errors\n", cfgfile, errors);
+	if(errors < 0)
+		printf("%s open failure\n", cfgfile);
 
     ///@brief set any compile time defaults - but only those NOT already set by the config file
     set_Config_Defaults();
@@ -312,6 +315,7 @@ uint16_t gpib_error_test(uint16_t val)
             return(ABORT_FLAG);
         }
 
+		// Wait for IFC free
         if(val & IFC_FLAG )
         {
             while(GPIB_IO_RD(IFC) == 0)
@@ -329,7 +333,8 @@ uint16_t gpib_error_test(uint16_t val)
 /// @return  void
 void gpib_init_devices(void)
 {
-    gpib_bus_init(1);
+    gpib_bus_init();	// Not busy - we have to free all pins on the BUS
+
     // FIXME FIXME what does this break ???
     // Init PPR talking and listening states
     // gpib_state_init();   

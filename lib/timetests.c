@@ -27,11 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef ESP8266
 #include "user_config.h"
 #include "fatfs.h"
-#include "printf/mathio.h"
-#include "lib/time.h"
-#include "lib/timer.h"
+#include "mathio.h"
+#include "time.h"
+#include "timer.h"
 #ifdef RTC_SUPPORT
-#include "lib/rtc.h"
+#include "rtc.h"
 #endif
 
 #else

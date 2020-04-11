@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['no_5ftype',['NO_TYPE',['../drives_8h.html#a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc',1,'drives.h']]]
+  ['ibmformat_5fdd',['IBMFORMAT_DD',['../td02lif_8h.html#a726ca809ffd3d67ab4b8476646f26635a70cfb8452c9a7c273d2330b8196a4310',1,'td02lif.h']]],
+  ['ibmformat_5fsd',['IBMFORMAT_SD',['../td02lif_8h.html#a726ca809ffd3d67ab4b8476646f26635a8bc31c01d944463ce726f1e0be2dc208',1,'td02lif.h']]]
 ];

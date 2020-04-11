@@ -3,7 +3,7 @@
 
 @brief Allocate, Free and display FILINFO structurs, getfattime(), display error messages
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
@@ -28,21 +28,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "user_config.h"
-#include "fatfs.sup/fatfs.h"
+#include "fatfs.h"
 
 #ifdef AVR
 #include <stdlib.h>
 #endif
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
-#include "lib/time.h"
+#include "time.h"
 
 
 ///@brief FatFs Drive Volumes
-FATFS Fatfs[_VOLUMES];                            /* File system object for each logical drive */
+FATFS Fatfs[FF_VOLUMES];  /* File system object for each logical drive */
 
-#if _MULTI_PARTITION != 0
+#if FF_MULTI_PARTITION != 0
 /// @brief FatFs multiple partition drives
 const PARTITION Drives[] =
 {
@@ -292,7 +292,7 @@ void fatfs_status(char *ptr)
     printf("DIR start (lba,clustor) = %lu\n", fs->dirbase);
     printf("Data start (lba)        = %lu\n", fs->database);
 
-#if _USE_LABEL
+#if FF_USE_LABEL
     res = f_getlabel(ptr, label, (DWORD*)&vsn);
     if (res)
     {

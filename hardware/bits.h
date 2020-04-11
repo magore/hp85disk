@@ -6,7 +6,7 @@
  @par Edit History
  - [1.1]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.
 
 */
 

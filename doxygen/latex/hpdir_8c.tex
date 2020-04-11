@@ -1,0 +1,122 @@
+\hypertarget{hpdir_8c}{}\section{gpib/hpdir.c File Reference}
+\label{hpdir_8c}\index{gpib/hpdir.\+c@{gpib/hpdir.\+c}}
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defines.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}drives.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structhpdir}{hpdir}
+\begin{DoxyCompactList}\small\item\em Data structure for hpdir.\+ini H\+P\+Dir project disk parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{hpdir_8c_a11b45f71f1f175f9fc2388b697299e06}{init\+\_\+disk} ()
+\begin{DoxyCompactList}\small\item\em Init Disk Parameter Structure. \end{DoxyCompactList}\item 
+long \hyperlink{hpdir_8c_a264e7130c0a912421d467a5924ff0fef}{lif\+\_\+dir\+\_\+count} (long blocks)
+\begin{DoxyCompactList}\small\item\em L\+IF Directory blocks $\sim$= sqrt(blocks);. \end{DoxyCompactList}\item 
+int \hyperlink{hpdir_8c_ab1d0010ffbaf27c670441ba7d11e4353}{get\+\_\+drive\+\_\+params} (char $\ast$name, char $\ast$model)
+\begin{DoxyCompactList}\small\item\em Open hpdir.\+ini file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structhpdir}{hpdir} \hyperlink{hpdir_8c_a09cbcebdb55be05a82871170e97de6bd}{disk}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hpdir_8c_ab1d0010ffbaf27c670441ba7d11e4353}\label{hpdir_8c_ab1d0010ffbaf27c670441ba7d11e4353}} 
+\index{hpdir.\+c@{hpdir.\+c}!get\+\_\+drive\+\_\+params@{get\+\_\+drive\+\_\+params}}
+\index{get\+\_\+drive\+\_\+params@{get\+\_\+drive\+\_\+params}!hpdir.\+c@{hpdir.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+drive\+\_\+params()}{get\_drive\_params()}}
+{\footnotesize\ttfamily int get\+\_\+drive\+\_\+params (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Open hpdir.\+ini file. 
+
+
+\begin{DoxyItemize}
+\item Looks for hpdir.\+ini in current, root or program install directory
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em cfg} & F\+I\+LE $\ast$ \\
+\hline
+\mbox{\tt in}  & {\em model} & model string \\
+\hline
+\mbox{\tt in}  & {\em list} & list flag\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on sucess or 0 on fail 
+
+N\+U\+LL if no token found 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file hpdir.\+c.
+
+\mbox{\Hypertarget{hpdir_8c_a11b45f71f1f175f9fc2388b697299e06}\label{hpdir_8c_a11b45f71f1f175f9fc2388b697299e06}} 
+\index{hpdir.\+c@{hpdir.\+c}!init\+\_\+disk@{init\+\_\+disk}}
+\index{init\+\_\+disk@{init\+\_\+disk}!hpdir.\+c@{hpdir.\+c}}
+\subsubsection{\texorpdfstring{init\+\_\+disk()}{init\_disk()}}
+{\footnotesize\ttfamily void init\+\_\+disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Init Disk Parameter Structure. 
+
+This structure will containes the parsed and computed disk parameters from a single hpdir disk entry
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file hpdir.\+c.
+
+
+
+Referenced by get\+\_\+drive\+\_\+params().
+
+\mbox{\Hypertarget{hpdir_8c_a264e7130c0a912421d467a5924ff0fef}\label{hpdir_8c_a264e7130c0a912421d467a5924ff0fef}} 
+\index{hpdir.\+c@{hpdir.\+c}!lif\+\_\+dir\+\_\+count@{lif\+\_\+dir\+\_\+count}}
+\index{lif\+\_\+dir\+\_\+count@{lif\+\_\+dir\+\_\+count}!hpdir.\+c@{hpdir.\+c}}
+\subsubsection{\texorpdfstring{lif\+\_\+dir\+\_\+count()}{lif\_dir\_count()}}
+{\footnotesize\ttfamily long lif\+\_\+dir\+\_\+count (\begin{DoxyParamCaption}\item[{long}]{blocks }\end{DoxyParamCaption})}
+
+
+
+L\+IF Directory blocks $\sim$= sqrt(blocks);. 
+
+We simplify B\+I\+TS = M\+SB bit number of block count Directory size = B\+I\+TS / 2 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em blocks} & size of L\+IF image in total\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Size of L\+IF directory in blocks 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file hpdir.\+c.
+
+
+
+Referenced by get\+\_\+drive\+\_\+params().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{hpdir_8c_a09cbcebdb55be05a82871170e97de6bd}\label{hpdir_8c_a09cbcebdb55be05a82871170e97de6bd}} 
+\index{hpdir.\+c@{hpdir.\+c}!disk@{disk}}
+\index{disk@{disk}!hpdir.\+c@{hpdir.\+c}}
+\subsubsection{\texorpdfstring{disk}{disk}}
+{\footnotesize\ttfamily \hyperlink{structhpdir}{hpdir} disk}
+
+
+
+Definition at line 65 of file hpdir.\+c.
+

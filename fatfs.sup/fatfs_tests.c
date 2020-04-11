@@ -3,7 +3,7 @@
 
  @brief fatfs test utilities with user interface
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL  License
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
@@ -35,10 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #endif
 
-#include "lib/time.h"
-#include "lib/stringsup.h"
+#include "time.h"
+#include "stringsup.h"
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
 /// @brief Display FatFs test diagnostics help menu.
 /// @return  void
@@ -177,7 +177,7 @@ int fatfs_tests(int argc,char *argv[])
         return(1);
     }
 
-#if _FS_RPATH
+#if FF_FS_RPATH
     if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         fatfs_cd(argv[ind]);
@@ -221,15 +221,15 @@ int fatfs_tests(int argc,char *argv[])
         return(1);
     }
 
-#if _FS_RPATH
-#if _FS_RPATH >= 2
+#if FF_FS_RPATH
+#if FF_FS_RPATH >= 2
     if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
         fatfs_pwd();
         return(1);
     }
-#endif // #if _FS_RPATH >= 2
-#endif // #if _FS_RPATH 
+#endif // #if FF_FS_RPATH >= 2
+#endif // #if FF_FS_RPATH 
 
 
     if (MATCHARGS(ptr,"rename", (ind + 2), argc))
@@ -277,7 +277,7 @@ void mmc_test(void)
     fatfs_ls("/");
 
 #ifdef FATFS_UTILS_FULL
-#if _FS_RPATH
+#if FF_FS_RPATH
     fatfs_cd("/");
 #endif
     fatfs_create("test.txt","this is a test");
@@ -287,7 +287,7 @@ void mmc_test(void)
     fatfs_cat("test.txt");
     fatfs_copy("test.txt","test2.txt");
     fatfs_cat("test2.txt");
-#if _FS_RPATH
+#if FF_FS_RPATH
     fatfs_mkdir("/tmp");
     fatfs_copy("test.txt","tmp/test3.txt");
     fatfs_cat("tmp/test3.txt");
@@ -540,7 +540,7 @@ void fatfs_create(char *name, char *str)
 }
 
 
-#if _FS_RPATH >= 2
+#if FF_FS_RPATH >= 2
 /// @brief  Change directory.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -573,7 +573,7 @@ void fatfs_mkdir(char *name)
 
 }
 
-#if _FS_RPATH >= 2
+#if FF_FS_RPATH >= 2
 /// @brief  Display current working directory.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.

@@ -11,12 +11,10 @@ H\+AL layer S\+PI, G\+P\+IO, address and chip select.
 {\ttfamily \#include $<$stdarg.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}hardware/iom1284p.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpio-\/1284p.\+h\char`\"{}}\newline
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{hal_8c_aae4c3f2e10c806143c255941be7aef16}{gpio\+\_\+pin\+\_\+sfr\+\_\+mode} (int pin)
-\begin{DoxyCompactList}\small\item\em G\+P\+IO H\+AL. \end{DoxyCompactList}\item 
 void \hyperlink{hal_8c_a89f38d9e708a2136d2347bd1aff73010}{gpio\+\_\+pin\+\_\+out} (uint8\+\_\+t pin, uint8\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em set G\+P\+IO pin state HI or L\+OW \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}{gpio\+\_\+pin\+\_\+rd} (uint8\+\_\+t pin)
@@ -101,7 +99,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 271 of file hal.\+c.
+Definition at line 268 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_abd54cabf9040258ff4de02954a575e6a}\label{hal_8c_abd54cabf9040258ff4de02954a575e6a}} 
 \index{hal.\+c@{hal.\+c}!chip\+\_\+addr\+\_\+init@{chip\+\_\+addr\+\_\+init}}
@@ -118,7 +116,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 242 of file hal.\+c.
+Definition at line 239 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_adb2f7085f2b840c81a765bf67d14de0e}\label{hal_8c_adb2f7085f2b840c81a765bf67d14de0e}} 
 \index{hal.\+c@{hal.\+c}!chip\+\_\+deselect@{chip\+\_\+deselect}}
@@ -140,7 +138,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 227 of file hal.\+c.
+Definition at line 224 of file hal.\+c.
 
 
 
@@ -166,7 +164,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 213 of file hal.\+c.
+Definition at line 210 of file hal.\+c.
 
 
 
@@ -192,7 +190,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 198 of file hal.\+c.
+Definition at line 195 of file hal.\+c.
 
 
 
@@ -220,7 +218,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 155 of file hal.\+c.
+Definition at line 152 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}\label{hal_8c_a63ffa405ecc5ed74cf654bc8f9b24023}} 
 \index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+rd@{gpio\+\_\+pin\+\_\+rd}}
@@ -242,31 +240,7 @@ read G\+P\+IO pin
 \end{DoxyReturn}
 
 
-Definition at line 178 of file hal.\+c.
-
-\mbox{\Hypertarget{hal_8c_aae4c3f2e10c806143c255941be7aef16}\label{hal_8c_aae4c3f2e10c806143c255941be7aef16}} 
-\index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+sfr\+\_\+mode@{gpio\+\_\+pin\+\_\+sfr\+\_\+mode}}
-\index{gpio\+\_\+pin\+\_\+sfr\+\_\+mode@{gpio\+\_\+pin\+\_\+sfr\+\_\+mode}!hal.\+c@{hal.\+c}}
-\subsubsection{\texorpdfstring{gpio\+\_\+pin\+\_\+sfr\+\_\+mode()}{gpio\_pin\_sfr\_mode()}}
-{\footnotesize\ttfamily void gpio\+\_\+pin\+\_\+sfr\+\_\+mode (\begin{DoxyParamCaption}\item[{int}]{pin }\end{DoxyParamCaption})}
-
-
-
-G\+P\+IO H\+AL. 
-
-A\+VR G\+P\+IO M\+A\+C\+R\+Os.
-
-set G\+P\+IO S\+FR to permit normal G\+P\+IO mode 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em pin} & gpin pin number \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 52 of file hal.\+c.
+Definition at line 175 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}\label{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}} 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+begin@{spi\+\_\+begin}}
@@ -295,7 +269,7 @@ void
 \end{DoxyReturn}
 initialize pin in case it has not been done yet @ we cache the clock frequency seeting for multiple device support 
 
-Definition at line 355 of file hal.\+c.
+Definition at line 352 of file hal.\+c.
 
 
 
@@ -313,7 +287,7 @@ S\+PI CS pin status return CS G\+P\+IO pin number or 0xff.
 
 
 
-Definition at line 404 of file hal.\+c.
+Definition at line 401 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_a38fdaad472c50237f3d8821a01cda360}\label{hal_8c_a38fdaad472c50237f3d8821a01cda360}} 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+end@{spi\+\_\+end}}
@@ -340,7 +314,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 388 of file hal.\+c.
+Definition at line 385 of file hal.\+c.
 
 
 
@@ -354,7 +328,7 @@ Referenced by mmc\+\_\+spi\+\_\+end().
 
 
 
-Definition at line 327 of file hal.\+c.
+Definition at line 324 of file hal.\+c.
 
 
 
@@ -375,7 +349,7 @@ uint8\+\_\+t value
 \end{DoxyReturn}
 
 
-Definition at line 454 of file hal.\+c.
+Definition at line 451 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_a1fca48fcdb736ef3af2179ae8b10d963}\label{hal_8c_a1fca48fcdb736ef3af2179ae8b10d963}} 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+\+R\+X\+\_\+buffer@{spi\+\_\+\+R\+X\+\_\+buffer}}
@@ -399,7 +373,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 428 of file hal.\+c.
+Definition at line 425 of file hal.\+c.
 
 
 
@@ -425,7 +399,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 469 of file hal.\+c.
+Definition at line 466 of file hal.\+c.
 
 
 
@@ -453,7 +427,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 414 of file hal.\+c.
+Definition at line 411 of file hal.\+c.
 
 
 
@@ -479,7 +453,7 @@ uint8\+\_\+t value read
 \end{DoxyReturn}
 
 
-Definition at line 483 of file hal.\+c.
+Definition at line 480 of file hal.\+c.
 
 
 
@@ -507,7 +481,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 442 of file hal.\+c.
+Definition at line 439 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_a98abd8ed313db191648e1d7ae2720f83}\label{hal_8c_a98abd8ed313db191648e1d7ae2720f83}} 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+wait\+Ready@{spi\+\_\+wait\+Ready}}
@@ -524,7 +498,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 306 of file hal.\+c.
+Definition at line 303 of file hal.\+c.
 
 
 
@@ -560,11 +534,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 325 of file hal.\+c.
-
-
-
-Referenced by spi\+\_\+begin(), spi\+\_\+chip\+\_\+select\+\_\+status(), spi\+\_\+end(), and spi\+\_\+init().
+Definition at line 322 of file hal.\+c.
 
 \mbox{\Hypertarget{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}\label{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}} 
 \index{hal.\+c@{hal.\+c}!\+\_\+spi\+\_\+clock@{\+\_\+spi\+\_\+clock}}
@@ -574,9 +544,5 @@ Referenced by spi\+\_\+begin(), spi\+\_\+chip\+\_\+select\+\_\+status(), spi\+\_
 
 
 
-Definition at line 326 of file hal.\+c.
-
-
-
-Referenced by spi\+\_\+begin(), and spi\+\_\+init().
+Definition at line 323 of file hal.\+c.
 

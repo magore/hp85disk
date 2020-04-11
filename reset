@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Mike Gore Apr 2020
+# Quick hack - send "reset" command to hp85disk emulator
+#
+BAUD=$1
+if [ -z "$1" ]
+then
+    echo expected baud rate
+    exit 1
+fi
+BAUD=$(echo $1 | sed -e "s/UL//")
+PORT=$2
+if [ -z "$PORT" ]
+then
+    echo expected port
+    exit 1
+fi
+
+cat <<EOF | python - "$BAUD" "$PORT"
+#!/usr/bin/python
+#
+# Mike Gore Apr 2020
+# Quick hack serial reset command
+import sys
+import serial
+
+if len (sys.argv) != 3 :
+    sys.stderr.write("Missing arguments\n")
+    sys.exit (1)
+
+baud=sys.argv[1]
+port=sys.argv[2]
+
+ser = serial.Serial(port, baud, timeout=1, parity='N', bytesize=8, stopbits=1, rtscts=0)
+
+#debug
+#sys.stderr.write("\n--- Settings: {p.name}  {p.baudrate},{p.bytesize},{p.parity},{p.stopbits}\n".format(p=ser))
+
+ser.write(b'reset\r')
+ser.flush()
+ser.close()
+EOF

@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -227,7 +227,7 @@ uint8_t *SS80UnitPack(int *size)
     V2B_MSB_Index1(B,7,1,SS80p->UNIT.BUFFERED_BLOCKS);
     V2B_MSB_Index1(B,8,1,SS80p->UNIT.BURST_SIZE);
     V2B_MSB_Index1(B,9,2,SS80p->UNIT.BLOCK_TIME);
-    V2B_MSB_Index1(B,11,2,SS80p->UNIT.CONTINOUS_TRANSFER_RATE);
+    V2B_MSB_Index1(B,11,2,SS80p->UNIT.CONTINUOUS_TRANSFER_RATE);
     V2B_MSB_Index1(B,13,2,SS80p->UNIT.OPTIMAL_RETRY_TIME);
     V2B_MSB_Index1(B,15,2,SS80p->UNIT.ACCESS_TIME);
     V2B_MSB_Index1(B,17,1,SS80p->UNIT.MAXIMUM_INTERLEAVE);

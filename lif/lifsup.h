@@ -3,7 +3,7 @@
 
  @brief  LIF file utilities - utilities extracted from hp85disk project for stand alone use
 
- @par Copyright &copy; 2014-2017 Mike Gore, All rights reserved. GPL
+ @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <stdint.h>
 #include <string.h>
 #include <strings.h>
 #include <sys/stat.h>
@@ -27,15 +28,15 @@
 
 
 #define MEMSPACE /**/
+#define WEAK_ATR /**/
 typedef struct tm tm_t;
-#define MATCH(a,b) (strcmp(a,b) == 0 ? 1: 0)
 #define safecalloc(a,b) calloc(a,b)
 #define safefree(a) free(a)
 #define sync() 
+
+#include "../lib/parsing.h"
 #include "lifutils.h"
-
 #include "td02lif.h"
-
 
 void copyright();
 

@@ -6,7 +6,7 @@
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2014-2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.
 
 */
 
@@ -247,11 +247,15 @@ int uart_peek_tail(uint8_t uart)
 int uart_get_tail(uint8_t uart)
 {
     uint8_t c;
-    if(uart >= UARTS)
+
+    if (uart >= UARTS)
+	{
         return(EOF);
+	}
 
 	while(uart_rx_count(uart) < 1)
 		;
+
     cli();
     c = uarts[uart].rx_buf[uarts[uart].rx_tail++];
     if (uarts[uart].rx_tail >= RX_BUF_SIZE)
@@ -370,8 +374,10 @@ int uart_tx_byte(int c, uint8_t uart)
 int uart_putchar(int c, int uart)
 {
     uart_tx_byte(c, uart);
-    if( c == '\n')
+
+    if( c == '\n' )
         uart_tx_byte('\r', uart);
+
 	return(c);
 }
 

@@ -24,8 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "user_config.h"
 
-#include "lib/time.h"
-#include "lib/timer.h"
+#include "time.h"
+#include "timer.h"
 
 // =============================================
 /// @brief ESP8266 code

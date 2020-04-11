@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "fatfs.h"
 
-#include "printf/mathio.h"
+#include "mathio.h"
 
 #include "time.h"
 #include "timer.h"

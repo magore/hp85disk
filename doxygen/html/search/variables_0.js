@@ -11,6 +11,8 @@ var searchData=
   ['_5f_5fwday',['__WDay',['../time_8c.html#a6403bf32bcba7c1ca0fe395d8b30e542',1,'time.c']]],
   ['_5fcs_5fpin',['_cs_pin',['../hal_8c.html#a1d1ec6333b265b4dd659ee605a2421de',1,'hal.c']]],
   ['_5fde',['_de',['../posix_8c.html#a42837e7607f8e3b8ae74286253989724',1,'posix.c']]],
+  ['_5fdisplaycontrol',['_displayControl',['../LCD_8c.html#ac908adc08775bcf420d90d00566787c5',1,'LCD.c']]],
+  ['_5fdisplaymode',['_displayMode',['../LCD_8c.html#ab51de6346b73e694586c34c73ff8b2f2',1,'LCD.c']]],
   ['_5fdp',['_dp',['../posix_8c.html#ae5badb2fbda49f0741042e68c364532b',1,'posix.c']]],
   ['_5fmmc_5fclock',['_mmc_clock',['../mmc__hal_8c.html#a72ddc159b1a36ffda342f0f2d5c144f4',1,'mmc_hal.c']]],
   ['_5fmmc_5fpre',['_mmc_pre',['../mmc__hal_8c.html#adc0a07c5ad80e8ecbabee0cf04a1564e',1,'mmc_hal.c']]],
