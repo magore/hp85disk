@@ -1,0 +1,86 @@
+\hypertarget{delay_8c}{}\section{hardware/delay.c File Reference}
+\label{delay_8c}\index{hardware/delay.\+c@{hardware/delay.\+c}}
+
+
+Extended delay routines for A\+VR.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{delay_8c_a502e5da3ce5d02fb6f58b39f7f9da696}{delayus} (uint32\+\_\+t us)
+\begin{DoxyCompactList}\small\item\em Delay microseconds using A\+VR acr-\/libc \+\_\+delay\+\_\+us() function. \end{DoxyCompactList}\item 
+void \hyperlink{delay_8c_a6affbd666c6e19539d4b61e8e209f068}{delayms} (uint32\+\_\+t ms)
+\begin{DoxyCompactList}\small\item\em Delay miliseconds using A\+VR acr-\/libc \+\_\+delay\+\_\+us() function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Extended delay routines for A\+VR. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{delay_8c_a6affbd666c6e19539d4b61e8e209f068}\label{delay_8c_a6affbd666c6e19539d4b61e8e209f068}} 
+\index{delay.\+c@{delay.\+c}!delayms@{delayms}}
+\index{delayms@{delayms}!delay.\+c@{delay.\+c}}
+\subsubsection{\texorpdfstring{delayms()}{delayms()}}
+{\footnotesize\ttfamily void delayms (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ms }\end{DoxyParamCaption})}
+
+
+
+Delay miliseconds using A\+VR acr-\/libc \+\_\+delay\+\_\+us() function. 
+
+
+\begin{DoxyItemize}
+\item Depends on F\+\_\+\+C\+PU and function \+\_\+delay\+\_\+us() \+\_\+delay\+\_\+us() has limited range -\/ this extends it. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+delay\+\_\+us() is part of avr-\/libc 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+
+Definition at line 53 of file delay.\+c.
+
+
+
+Referenced by controller\+\_\+ifc(), delay\+\_\+tests(), L\+C\+D\+\_\+clear(), L\+C\+D\+\_\+command(), L\+C\+D\+\_\+create\+Char(), L\+C\+D\+\_\+disable\+Splash(), L\+C\+D\+\_\+disable\+System\+Messages(), L\+C\+D\+\_\+enable\+Splash(), L\+C\+D\+\_\+enable\+System\+Messages(), L\+C\+D\+\_\+init(), L\+C\+D\+\_\+save\+Splash(), L\+C\+D\+\_\+set\+Address(), L\+C\+D\+\_\+set\+Contrast(), L\+C\+D\+\_\+set\+Fast\+Backlight\+R\+G\+B(), L\+C\+D\+\_\+special\+Command(), L\+C\+D\+\_\+special\+Command\+Count(), and main().
+
+\mbox{\Hypertarget{delay_8c_a502e5da3ce5d02fb6f58b39f7f9da696}\label{delay_8c_a502e5da3ce5d02fb6f58b39f7f9da696}} 
+\index{delay.\+c@{delay.\+c}!delayus@{delayus}}
+\index{delayus@{delayus}!delay.\+c@{delay.\+c}}
+\subsubsection{\texorpdfstring{delayus()}{delayus()}}
+{\footnotesize\ttfamily void delayus (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{us }\end{DoxyParamCaption})}
+
+
+
+Delay microseconds using A\+VR acr-\/libc \+\_\+delay\+\_\+us() function. 
+
+
+\begin{DoxyItemize}
+\item Depends on F\+\_\+\+C\+PU and function \+\_\+delay\+\_\+us() \+\_\+delay\+\_\+us() has limited range -\/ this extends it. \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\+\_\+delay\+\_\+us() is part of avr-\/libc 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+
+Definition at line 26 of file delay.\+c.
+
+
+
+Referenced by delay\+\_\+tests(), and gpib\+\_\+assert\+\_\+ifc().
+

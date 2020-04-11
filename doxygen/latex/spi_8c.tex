@@ -1,0 +1,362 @@
+\hypertarget{spi_8c}{}\section{hardware/spi.c File Reference}
+\label{spi_8c}\index{hardware/spi.\+c@{hardware/spi.\+c}}
+
+
+S\+PI Driver A\+V\+R8.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}spi.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{spi_8c_a4b8379d9d83e3283bb53cfeca92f2e02}{S\+P\+I0\+\_\+\+Speed} (uint32\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em Set A\+VR S\+PI bus rate in HZ. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{spi_8c_a6b19a886a9e63fbc9ed02a6a6361e68b}{S\+P\+I0\+\_\+\+Get\+\_\+\+Speed} (void)
+\begin{DoxyCompactList}\small\item\em Return previously saved S\+PI B\+US rate in HZ. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\+P\+I0\+\_\+\+Mode} (int mode)
+\begin{DoxyCompactList}\small\item\em Set S\+PI clock mode. \end{DoxyCompactList}\item 
+int \hyperlink{spi_8c_ab93aed2163d123a27c97758c8cde0587}{S\+P\+I0\+\_\+\+Get\+\_\+\+Mode} (void)
+\begin{DoxyCompactList}\small\item\em Return saved S\+PI mode as set by \hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\+P\+I0\+\_\+\+Mode()}. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a09a39e7befac69f184fd466e10730595}{S\+P\+I0\+\_\+\+Init} (uint32\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em Initialize S\+P\+I0 device. See Atmel App Note A\+V\+R151 Set default speed, IO pins and mode. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}{S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte} (uint8\+\_\+t Data)
+\begin{DoxyCompactList}\small\item\em S\+PI read/\+Write byte. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}{S\+P\+I0\+\_\+\+TX} (uint8\+\_\+t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em S\+PI buffered write functions. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}{S\+P\+I0\+\_\+\+T\+X\+RX} (uint8\+\_\+t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI write and read using F\+I\+FO. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}{S\+P\+I0\+\_\+\+RX} (uint8\+\_\+t $\ast$data, int count)
+\begin{DoxyCompactList}\small\item\em H\+S\+PI read using F\+I\+FO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \hyperlink{spi_8c_a27ad9c881de03a6b8defda1bde93566f}{S\+P\+I0\+\_\+\+Speed\+\_\+value} = 0
+\begin{DoxyCompactList}\small\item\em Saved S\+PI bus speed. \end{DoxyCompactList}\item 
+static int \hyperlink{spi_8c_ae41154cf3f834c2d151bfa9e67cfc402}{S\+P\+I0\+\_\+\+Mode\+\_\+value} = 0
+\begin{DoxyCompactList}\small\item\em Saved S\+PI Mode. \end{DoxyCompactList}\item 
+static int \hyperlink{spi_8c_a4d167d8fd3bcfa0504b201183b94449b}{S\+P\+I0\+\_\+\+Init\+\_\+state} = 0
+\begin{DoxyCompactList}\small\item\em S\+P\+I0 initialization flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+PI Driver A\+V\+R8. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2014-\/2020 Mike Gore, Inc. All rights reserved.
+
+G\+NU Public License.
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Mike Gore 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{spi_8c_ab93aed2163d123a27c97758c8cde0587}\label{spi_8c_ab93aed2163d123a27c97758c8cde0587}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Get\+\_\+\+Mode@{S\+P\+I0\+\_\+\+Get\+\_\+\+Mode}}
+\index{S\+P\+I0\+\_\+\+Get\+\_\+\+Mode@{S\+P\+I0\+\_\+\+Get\+\_\+\+Mode}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Get\+\_\+\+Mode()}{SPI0\_Get\_Mode()}}
+{\footnotesize\ttfamily int S\+P\+I0\+\_\+\+Get\+\_\+\+Mode (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return saved S\+PI mode as set by \hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\+P\+I0\+\_\+\+Mode()}. 
+
+\begin{DoxyReturn}{Returns}
+saved mode. 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_a6b19a886a9e63fbc9ed02a6a6361e68b}\label{spi_8c_a6b19a886a9e63fbc9ed02a6a6361e68b}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Get\+\_\+\+Speed@{S\+P\+I0\+\_\+\+Get\+\_\+\+Speed}}
+\index{S\+P\+I0\+\_\+\+Get\+\_\+\+Speed@{S\+P\+I0\+\_\+\+Get\+\_\+\+Speed}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Get\+\_\+\+Speed()}{SPI0\_Get\_Speed()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I0\+\_\+\+Get\+\_\+\+Speed (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return previously saved S\+PI B\+US rate in HZ. 
+
+\begin{DoxyReturn}{Returns}
+S\+PI clock rate in HZ. 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_a09a39e7befac69f184fd466e10730595}\label{spi_8c_a09a39e7befac69f184fd466e10730595}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Init@{S\+P\+I0\+\_\+\+Init}}
+\index{S\+P\+I0\+\_\+\+Init@{S\+P\+I0\+\_\+\+Init}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Init()}{SPI0\_Init()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+Initialize S\+P\+I0 device. See Atmel App Note A\+V\+R151 Set default speed, IO pins and mode. 
+
+Set S\+PI clock mode 0 S\+PI Mode C\+P\+OL C\+P\+HA Sample 0 0 0 Leading (Rising) Edge 
+
+Definition at line 188 of file spi.\+c.
+
+
+
+Referenced by spi\+\_\+init().
+
+\mbox{\Hypertarget{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}\label{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Mode@{S\+P\+I0\+\_\+\+Mode}}
+\index{S\+P\+I0\+\_\+\+Mode@{S\+P\+I0\+\_\+\+Mode}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Mode()}{SPI0\_Mode()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+Mode (\begin{DoxyParamCaption}\item[{int}]{mode }\end{DoxyParamCaption})}
+
+
+
+Set S\+PI clock mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mode} & valid mades\+: \begin{DoxyVerb}*   SPI Mode     CPOL    CPHA            Sample
+*   0    0       0       Leading (Rising)   Edge
+*   1    0       1       Trailing (Falling) Edge
+*   2    1       0       Leading (Falling)  Edge
+*   3    1       1       Trailing (Rising)  Edge
+* \end{DoxyVerb}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file spi.\+c.
+
+
+
+Referenced by S\+P\+I0\+\_\+\+Init(), and spi\+\_\+init().
+
+\mbox{\Hypertarget{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}\label{spi_8c_a8e36c17c5822efaecdbcc75829f7582e}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+RX@{S\+P\+I0\+\_\+\+RX}}
+\index{S\+P\+I0\+\_\+\+RX@{S\+P\+I0\+\_\+\+RX}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+R\+X()}{SPI0\_RX()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+RX (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+H\+S\+PI read using F\+I\+FO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & receive buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 292 of file spi.\+c.
+
+
+
+Referenced by spi\+\_\+\+R\+X(), and spi\+\_\+\+R\+X\+\_\+buffer().
+
+\mbox{\Hypertarget{spi_8c_a4b8379d9d83e3283bb53cfeca92f2e02}\label{spi_8c_a4b8379d9d83e3283bb53cfeca92f2e02}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Speed@{S\+P\+I0\+\_\+\+Speed}}
+\index{S\+P\+I0\+\_\+\+Speed@{S\+P\+I0\+\_\+\+Speed}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Speed()}{SPI0\_Speed()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+Speed (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{speed }\end{DoxyParamCaption})}
+
+
+
+Set A\+VR S\+PI bus rate in HZ. 
+
+
+\begin{DoxyItemize}
+\item Compute precsale rate from desired frequency in HZ.
+\begin{DoxyItemize}
+\item Slowest rate\+: F\+\_\+\+C\+P\+U/128.
+\item Fastest rate\+: F\+\_\+\+C\+P\+U/2.
+\end{DoxyItemize}
+\item Precsale value is truncated not rounded.
+\item Valid precsle values are 2,4,8,16,32,64,128. \begin{DoxyVerb}/// SPI2X   SPR1    SPR0     SCK Frequency
+/// 1       0       0        fosc/2
+/// 0       0       0        fosc/4
+/// 1       0       1        fosc/8
+/// 0       0       1        fosc/16
+/// 1       1       0        fosc/32
+/// 0       1       0        fosc/64
+/// 1       1       1        fosc/64
+/// 0       1       1        fosc/128
+/// \end{DoxyVerb}
+ \begin{DoxyVerb}@param[in] speed: SPI clock rate in HZ.
+
+@return  void  \end{DoxyVerb}
+ 
+\end{DoxyItemize}Save speed value 
+
+Definition at line 47 of file spi.\+c.
+
+
+
+Referenced by S\+P\+I0\+\_\+\+Init().
+
+\mbox{\Hypertarget{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}\label{spi_8c_a491de3187a3fd4b12dfc1f7fbd50238f}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+TX@{S\+P\+I0\+\_\+\+TX}}
+\index{S\+P\+I0\+\_\+\+TX@{S\+P\+I0\+\_\+\+TX}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+T\+X()}{SPI0\_TX()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+TX (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+S\+PI buffered write functions. 
+
+H\+S\+PI write using F\+I\+FO 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 261 of file spi.\+c.
+
+
+
+Referenced by spi\+\_\+\+T\+X(), and spi\+\_\+\+T\+X\+\_\+buffer().
+
+\mbox{\Hypertarget{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}\label{spi_8c_a7b56f3fcfe9a88adaac0c59465c0e845}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+T\+X\+RX@{S\+P\+I0\+\_\+\+T\+X\+RX}}
+\index{S\+P\+I0\+\_\+\+T\+X\+RX@{S\+P\+I0\+\_\+\+T\+X\+RX}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+T\+X\+R\+X()}{SPI0\_TXRX()}}
+{\footnotesize\ttfamily void S\+P\+I0\+\_\+\+T\+X\+RX (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+H\+S\+PI write and read using F\+I\+FO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & transmit / receive buffer \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write / read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 277 of file spi.\+c.
+
+
+
+Referenced by spi\+\_\+\+T\+X\+R\+X(), and spi\+\_\+\+T\+X\+R\+X\+\_\+buffer().
+
+\mbox{\Hypertarget{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}\label{spi_8c_a795b3fa18e16d366d9a64e88f1cb18ab}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte@{S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte}}
+\index{S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte@{S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte()}{SPI0\_TXRX\_Byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+P\+I0\+\_\+\+T\+X\+R\+X\+\_\+\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Data }\end{DoxyParamCaption})}
+
+
+
+S\+PI read/\+Write byte. 
+
+
+\begin{DoxyItemize}
+\item We Write and read at the same time.
+\item If we want to read only set Data to 0xff.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Data} & Data to send.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data received. 
+\end{DoxyReturn}
+
+
+Definition at line 242 of file spi.\+c.
+
+
+
+Referenced by ppr\+\_\+set(), S\+P\+I0\+\_\+\+Init(), S\+P\+I0\+\_\+\+R\+X(), S\+P\+I0\+\_\+\+T\+X(), and S\+P\+I0\+\_\+\+T\+X\+R\+X().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{spi_8c_a4d167d8fd3bcfa0504b201183b94449b}\label{spi_8c_a4d167d8fd3bcfa0504b201183b94449b}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Init\+\_\+state@{S\+P\+I0\+\_\+\+Init\+\_\+state}}
+\index{S\+P\+I0\+\_\+\+Init\+\_\+state@{S\+P\+I0\+\_\+\+Init\+\_\+state}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Init\+\_\+state}{SPI0\_Init\_state}}
+{\footnotesize\ttfamily int S\+P\+I0\+\_\+\+Init\+\_\+state = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+S\+P\+I0 initialization flag. 
+
+
+
+Definition at line 183 of file spi.\+c.
+
+
+
+Referenced by S\+P\+I0\+\_\+\+Init().
+
+\mbox{\Hypertarget{spi_8c_ae41154cf3f834c2d151bfa9e67cfc402}\label{spi_8c_ae41154cf3f834c2d151bfa9e67cfc402}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Mode\+\_\+value@{S\+P\+I0\+\_\+\+Mode\+\_\+value}}
+\index{S\+P\+I0\+\_\+\+Mode\+\_\+value@{S\+P\+I0\+\_\+\+Mode\+\_\+value}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Mode\+\_\+value}{SPI0\_Mode\_value}}
+{\footnotesize\ttfamily int S\+P\+I0\+\_\+\+Mode\+\_\+value = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Saved S\+PI Mode. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{spi_8c_a50834bfd8ff3e59840ef35d5283f5306}{S\+P\+I0\+\_\+\+Mode()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 132 of file spi.\+c.
+
+
+
+Referenced by S\+P\+I0\+\_\+\+Get\+\_\+\+Mode(), and S\+P\+I0\+\_\+\+Mode().
+
+\mbox{\Hypertarget{spi_8c_a27ad9c881de03a6b8defda1bde93566f}\label{spi_8c_a27ad9c881de03a6b8defda1bde93566f}} 
+\index{spi.\+c@{spi.\+c}!S\+P\+I0\+\_\+\+Speed\+\_\+value@{S\+P\+I0\+\_\+\+Speed\+\_\+value}}
+\index{S\+P\+I0\+\_\+\+Speed\+\_\+value@{S\+P\+I0\+\_\+\+Speed\+\_\+value}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{S\+P\+I0\+\_\+\+Speed\+\_\+value}{SPI0\_Speed\_value}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I0\+\_\+\+Speed\+\_\+value = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Saved S\+PI bus speed. 
+
+
+
+Definition at line 23 of file spi.\+c.
+
+
+
+Referenced by S\+P\+I0\+\_\+\+Get\+\_\+\+Speed(), and S\+P\+I0\+\_\+\+Speed().
+

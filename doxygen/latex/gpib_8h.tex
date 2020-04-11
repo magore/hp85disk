@@ -1,0 +1,1808 @@
+\hypertarget{gpib_8h}{}\section{gpib/gpib.h File Reference}
+\label{gpib_8h}\index{gpib/gpib.\+h@{gpib/gpib.\+h}}
+
+
+G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gpib_8h_a32473ded8149304bd8d0be0abe6e3de8}{G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY}~2
+\item 
+\#define \hyperlink{gpib_8h_a6dcb5fc551174cd685f0802f86329f3b}{H\+T\+I\+M\+E\+O\+UT}~(500000\+L / G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+U\+S)
+\begin{DoxyCompactList}\small\item\em This is the default B\+US timeout of 0.\+5 Seconds in Microseconds. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}~0x0100
+\begin{DoxyCompactList}\small\item\em bus flags \end{DoxyCompactList}\item 
+\#define \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}~0x0200
+\item 
+\#define \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}~0x0400
+\item 
+\#define \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}~0x0800
+\item 
+\#define \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG}~0x1000
+\item 
+\#define \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}~0x2000
+\begin{DoxyCompactList}\small\item\em B\+US state flags. \end{DoxyCompactList}\item 
+\#define \hyperlink{gpib_8h_abc15e280bc4f374b8813d358059a121e}{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG}~0x4000
+\item 
+\#define \hyperlink{gpib_8h_a89e9767fc024095e7d73f7bd468b8118}{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG}~0x8000
+\item 
+\#define \hyperlink{gpib_8h_a607e563762523269fbdac027224c44fe}{D\+A\+V\+\_\+\+F\+L\+AG}~0x2000
+\begin{DoxyCompactList}\small\item\em handshake flasg used in tracing \end{DoxyCompactList}\item 
+\#define \hyperlink{gpib_8h_a1da25e2a8e12198ac9a381d09c566a8e}{N\+R\+F\+D\+\_\+\+F\+L\+AG}~0x4000
+\item 
+\#define \hyperlink{gpib_8h_ad1653d0cd48b2a0c72d422ba4aff114f}{N\+D\+A\+C\+\_\+\+F\+L\+AG}~0x8000
+\item 
+\#define \hyperlink{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(\hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_abc15e280bc4f374b8813d358059a121e}{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_a89e9767fc024095e7d73f7bd468b8118}{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG})
+\item 
+\#define \hyperlink{gpib_8h_ad0d5ed44566b2ed42807e78e534bc6cc}{C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK}~(\hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG})
+\item 
+\#define \hyperlink{gpib_8h_a9e6a597bbfd901b2259ad39de928d0c0}{D\+A\+T\+A\+\_\+\+M\+A\+SK}~0x00ff
+\item 
+\#define \hyperlink{gpib_8h_aede8404e1d3398c2c235eaa17ea2cd5d}{C\+M\+D\+\_\+\+M\+A\+SK}~0x007f
+\item 
+\#define \hyperlink{gpib_8h_aeb86657b890e53489f6178591bbd5b97}{S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}~0xff00
+\item 
+\#define \hyperlink{gpib_8h_ae4811a3fa9574a7836b8aaa99f553800}{T\+R\+A\+C\+E\+\_\+\+A\+LL}~1   /$\ast$ trace all bus states durring a \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read} $\ast$/
+\begin{DoxyCompactList}\small\item\em arguments to gpib\+\_\+read\+\_\+byte \end{DoxyCompactList}\item 
+\#define \hyperlink{gpib_8h_ace2bb0d802a911ea5b057e58286641cc}{N\+O\+\_\+\+T\+R\+A\+CE}~0   /$\ast$ do not trace bus states durring a \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read} $\ast$/
+\item 
+\#define \hyperlink{gpib_8h_a78f2361b60656c29cf6da26f240aaae2}{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}~512 /$\ast$ Max length of RX/TX \hyperlink{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}{G\+P\+IB} string $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a22947fdc26f7eb645d6a741ff2f3e3a0}{T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE}, 
+\hyperlink{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a498933b128852cbe066c04ea9ec8edbc}{T\+R\+A\+C\+E\+\_\+\+R\+E\+AD}, 
+\hyperlink{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7ad31617c6a0d0b675927d4332c18f084d}{T\+R\+A\+C\+E\+\_\+\+B\+US}
+ \}\begin{DoxyCompactList}\small\item\em G\+P\+IB read trace states. \end{DoxyCompactList}
+\item 
+enum \{ \newline
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a65d47037f330761936e9ac5eeaaad10b}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT} = 0, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a56f8ad0d5c6639cbc40999880affca9b}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW}, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a3695df589ea237c8fb2cde44c6772176}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW}, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a0bb01cfa5273efc068636f1c80034a54}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}, 
+\newline
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5acc231e73315d8ef3d7fd3d65370d0a70}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a8ac376607eb364680eb9733b7bb4d314}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI}, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5ac946d70a9af711b3bea083113800fdbb}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH}, 
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abe08af52b6cc1279f948ec251ee06a64}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR}, 
+\newline
+\hyperlink{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abf4490aabbbb58218e31f981cff0e748}{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE}
+ \}
+\item 
+enum \{ \newline
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a0f38fa38044e4624b4e740bb69000e96}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT} = 0, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a3c6f448906221dc9684e4462bf6ab3a8}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a689ac8ea1c2348752de0be4efc53c85d}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a83f293bb96f34b5360464e2f910d3074}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW}, 
+\newline
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04ad8eadaee87ac8dbb9737b417c4600d3b}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a233783ae46cb8dba39f16378a6b0d1a1}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a2ae02c759462700c779c9e6e90383d91}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04aafa56cb5893e904ffd2f840391ae1857}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}, 
+\newline
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbe4788363f0c6bb1239ca2867a86c13}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a42ffa1774dbaeec6c06c30a85c860203}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbb8a4da3ebe1792a9dc39e615d0226f}{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE}
+ \}
+\item 
+enum \{ \hyperlink{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca260175d57a02d78a58dbcf8d2479d838}{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE} = 0, 
+\hyperlink{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca9b409b733bb611072b0a7b0ca3299237}{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gpib_8h_a6a3c1941e17626338b878123677ae797}{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin} (void)
+\begin{DoxyCompactList}\small\item\em Start measuring time -\/ used with hpib\+\_\+timer\+\_\+elapsed\+\_\+end() \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_abe05115c27148ec7013e6f62dc94ae78}{gpib\+\_\+timer\+\_\+reset} (void)
+\begin{DoxyCompactList}\small\item\em Reset elapsed and timeout timers Elapses and Timeout Timers. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a87ae4b4852f4a1987fc61fec20f53d42}{gpib\+\_\+timer\+\_\+elapsed\+\_\+end} (char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Display user message and time delta since \hyperlink{gpib_8c_a6a3c1941e17626338b878123677ae797}{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin()} call. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_aea1dbabf2f23125b36492a2a6c4aeefc}{gpib\+\_\+timer\+\_\+task} (void)
+\begin{DoxyCompactList}\small\item\em Main G\+P\+IB timer task called by low level interrup hander. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a687395337dd5c6604a775e3ffd3f006f}{gpib\+\_\+timeout\+\_\+set} (uint32\+\_\+t \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Set G\+P\+IB timeout timer in units of G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a2096a86f435acacb3165a9bdb0af076b}{gpib\+\_\+timeout\+\_\+test} (void)
+\begin{DoxyCompactList}\small\item\em Test G\+P\+IB timeout timer for timeout condition. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init} (int busy)
+\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for R\+E\+AD Despite the name this everywhere to setup read mode. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}{gpib\+\_\+bus\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}{gpib\+\_\+state\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Reset G\+P\+IB states and related variables. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\+\+P\+PR} (int bit)
+\item 
+void \hyperlink{gpib_8h_ae7cace97c893474b3e6c672539a65041}{gpib\+\_\+disable\+\_\+\+P\+PR} (int bit)
+\begin{DoxyCompactList}\small\item\em Disable P\+PR (Parallel Poll Response) for a device. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_adb8803762af598f3a52cea7cde04eaae}{gpib\+\_\+detect\+\_\+\+PP} (void)
+\begin{DoxyCompactList}\small\item\em Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state V2 hardware -\/ this does not work unless reading B\+US. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}{gpib\+\_\+assert\+\_\+ifc} (void)
+\begin{DoxyCompactList}\small\item\em Assert Interface clear for 250us. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_ae826d722b789698ce9217758fe55fdcb}{gpib\+\_\+assert\+\_\+ren} (unsigned char state)
+\begin{DoxyCompactList}\small\item\em Assert R\+EN to put instrument in remote mode. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread} (uint16\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em G\+P\+IB ungets one character and all status states. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_aaf877e1057ef73855045f2436ff99cdc}{gpib\+\_\+bus\+\_\+read} (void)
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB data B\+US only. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_ab39377861a160a9128cc759523d26b53}{gpib\+\_\+control\+\_\+pin\+\_\+read} (void)
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB control lines only F\+I\+X\+ME V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_a5d4108418df33c00cda0e65ca34f2485}{gpib\+\_\+handshake\+\_\+pin\+\_\+read} (void)
+\begin{DoxyCompactList}\small\item\em Read G\+P\+IB handshake lines only F\+I\+X\+ME\+: V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_ac3d50cc1d56705d107e2f8fb00692e68}{gpib\+\_\+write\+\_\+byte} (uint16\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Send 1 byte and control line states to G\+P\+IB B\+US. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte} (int trace)
+\begin{DoxyCompactList}\small\item\em read 1 byte and control line status from G\+P\+IB B\+US \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a5b960a0e4ba7396e5511f248eea7442c}{gpib\+\_\+decode\+\_\+header} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$fo)
+\begin{DoxyCompactList}\small\item\em Displays help for \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode()} function. \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_ae2e0e847432d7964a28c6faf9d3e1eee}{gpib\+\_\+trace\+\_\+display} (uint16\+\_\+t status, int trace\+\_\+state)
+\begin{DoxyCompactList}\small\item\em decode/display all control flags and data on the G\+P\+IB B\+US \end{DoxyCompactList}\item 
+void \hyperlink{gpib_8h_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode} (uint16\+\_\+t ch)
+\begin{DoxyCompactList}\small\item\em Calls gpib\+\_\+decode\+\_\+str() and dosplays the result. \end{DoxyCompactList}\item 
+int \hyperlink{gpib_8h_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str} (uint8\+\_\+t $\ast$buf, int size, uint16\+\_\+t $\ast$status)
+\begin{DoxyCompactList}\small\item\em Read string from G\+P\+IB B\+US -\/ controlled by status flags. \end{DoxyCompactList}\item 
+int \hyperlink{gpib_8h_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str} (uint8\+\_\+t $\ast$buf, int size, uint16\+\_\+t $\ast$status)
+\begin{DoxyCompactList}\small\item\em Send string to G\+P\+IB B\+US -\/ controlled by status flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a00023217d54aa8bb6473583593942869}{gpib\+\_\+iobuff} \mbox{[}\hyperlink{gpib_8h_a78f2361b60656c29cf6da26f240aaae2}{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}\mbox{]}
+\begin{DoxyCompactList}\small\item\em common IO buffer for \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str()} and \hyperlink{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str()} \end{DoxyCompactList}\item 
+int \hyperlink{gpib_8h_af219299ebad47daa6631415a8b41345a}{debuglevel}
+\begin{DoxyCompactList}\small\item\em Debug flag -\/ used to log G\+P\+IB and emulator messages. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_ab80645c1c89c0842fa2e440cb2229c24}{talk31}
+\item 
+uint8\+\_\+t \hyperlink{gpib_8h_acef501d1e292f230efac5ed0cddf90e8}{talking}
+\begin{DoxyCompactList}\small\item\em gpib talk address \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a8f34b1ce42fbf3391219cfedde825495}{talking\+\_\+last}
+\begin{DoxyCompactList}\small\item\em gpib last talk address \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a906eb6f6a81521d91f73f9ab2e03b02e}{listening}
+\begin{DoxyCompactList}\small\item\em gpib listen address \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a049cdc383eed2f97e4384a5728c00123}{listening\+\_\+last}
+\begin{DoxyCompactList}\small\item\em gpib last listen address \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a0205f89c3878a7a6cb4ee1f75de35fb3}{spoll}
+\begin{DoxyCompactList}\small\item\em gpib serial poll status \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{gpib_8h_aaad5615d233044464c3661481a6760cd}{current}
+\item 
+uint16\+\_\+t \hyperlink{gpib_8h_ab8bc74192b6d8a3e352b03e724dac5b7}{lastcmd}
+\begin{DoxyCompactList}\small\item\em gpib current and last command \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}{secondary}
+\begin{DoxyCompactList}\small\item\em gpib secondary \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{gpib_8h_a2376f17d1e7367401184b2a3978bcd3a}{device}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Based on work by Anders Gustafsson.}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014 Anders Gustafsson All rights reserved..}
+
+\end{DoxyParagraph}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}\label{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}} 
+\index{gpib.\+h@{gpib.\+h}!A\+T\+N\+\_\+\+F\+L\+AG@{A\+T\+N\+\_\+\+F\+L\+AG}}
+\index{A\+T\+N\+\_\+\+F\+L\+AG@{A\+T\+N\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{A\+T\+N\+\_\+\+F\+L\+AG}{ATN\_FLAG}}
+{\footnotesize\ttfamily \#define A\+T\+N\+\_\+\+F\+L\+AG~0x0400}
+
+
+
+Definition at line 35 of file gpib.\+h.
+
+
+
+Referenced by controller\+\_\+ifc(), controller\+\_\+read\+\_\+str(), controller\+\_\+read\+\_\+trace(), controller\+\_\+send\+\_\+str(), gpib\+\_\+control\+\_\+pin\+\_\+read(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+write\+\_\+byte(), and gpib\+\_\+write\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_a89e9767fc024095e7d73f7bd468b8118}\label{gpib_8h_a89e9767fc024095e7d73f7bd468b8118}} 
+\index{gpib.\+h@{gpib.\+h}!B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG@{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG}}
+\index{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG@{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG}{BUS\_ERROR\_FLAG}}
+{\footnotesize\ttfamily \#define B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG~0x8000}
+
+
+
+Definition at line 42 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+error\+\_\+test(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_aede8404e1d3398c2c235eaa17ea2cd5d}\label{gpib_8h_aede8404e1d3398c2c235eaa17ea2cd5d}} 
+\index{gpib.\+h@{gpib.\+h}!C\+M\+D\+\_\+\+M\+A\+SK@{C\+M\+D\+\_\+\+M\+A\+SK}}
+\index{C\+M\+D\+\_\+\+M\+A\+SK@{C\+M\+D\+\_\+\+M\+A\+SK}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{C\+M\+D\+\_\+\+M\+A\+SK}{CMD\_MASK}}
+{\footnotesize\ttfamily \#define C\+M\+D\+\_\+\+M\+A\+SK~0x007f}
+
+
+
+Definition at line 53 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_ad0d5ed44566b2ed42807e78e534bc6cc}\label{gpib_8h_ad0d5ed44566b2ed42807e78e534bc6cc}} 
+\index{gpib.\+h@{gpib.\+h}!C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK@{C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK}}
+\index{C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK@{C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK}{CONTROL\_MASK}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+R\+O\+L\+\_\+\+M\+A\+SK~(\hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG})}
+
+
+
+Definition at line 50 of file gpib.\+h.
+
+\mbox{\Hypertarget{gpib_8h_a9e6a597bbfd901b2259ad39de928d0c0}\label{gpib_8h_a9e6a597bbfd901b2259ad39de928d0c0}} 
+\index{gpib.\+h@{gpib.\+h}!D\+A\+T\+A\+\_\+\+M\+A\+SK@{D\+A\+T\+A\+\_\+\+M\+A\+SK}}
+\index{D\+A\+T\+A\+\_\+\+M\+A\+SK@{D\+A\+T\+A\+\_\+\+M\+A\+SK}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{D\+A\+T\+A\+\_\+\+M\+A\+SK}{DATA\_MASK}}
+{\footnotesize\ttfamily \#define D\+A\+T\+A\+\_\+\+M\+A\+SK~0x00ff}
+
+
+
+Definition at line 52 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_a607e563762523269fbdac027224c44fe}\label{gpib_8h_a607e563762523269fbdac027224c44fe}} 
+\index{gpib.\+h@{gpib.\+h}!D\+A\+V\+\_\+\+F\+L\+AG@{D\+A\+V\+\_\+\+F\+L\+AG}}
+\index{D\+A\+V\+\_\+\+F\+L\+AG@{D\+A\+V\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{D\+A\+V\+\_\+\+F\+L\+AG}{DAV\_FLAG}}
+{\footnotesize\ttfamily \#define D\+A\+V\+\_\+\+F\+L\+AG~0x2000}
+
+
+
+handshake flasg used in tracing 
+
+
+
+Definition at line 45 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+handshake\+\_\+pin\+\_\+read(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}\label{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}} 
+\index{gpib.\+h@{gpib.\+h}!E\+O\+I\+\_\+\+F\+L\+AG@{E\+O\+I\+\_\+\+F\+L\+AG}}
+\index{E\+O\+I\+\_\+\+F\+L\+AG@{E\+O\+I\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{E\+O\+I\+\_\+\+F\+L\+AG}{EOI\_FLAG}}
+{\footnotesize\ttfamily \#define E\+O\+I\+\_\+\+F\+L\+AG~0x0100}
+
+
+
+bus flags 
+
+
+
+Definition at line 33 of file gpib.\+h.
+
+
+
+Referenced by controller\+\_\+read\+\_\+str(), controller\+\_\+read\+\_\+trace(), controller\+\_\+send\+\_\+str(), gpib\+\_\+control\+\_\+pin\+\_\+read(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+write\+\_\+byte(), gpib\+\_\+write\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+describe(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}\label{gpib_8h_a10916ab21f8ba06e447e898790ef6a4b}} 
+\index{gpib.\+h@{gpib.\+h}!E\+R\+R\+O\+R\+\_\+\+M\+A\+SK@{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}}
+\index{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK@{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}{ERROR\_MASK}}
+{\footnotesize\ttfamily \#define E\+R\+R\+O\+R\+\_\+\+M\+A\+SK~(\hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_abc15e280bc4f374b8813d358059a121e}{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG} $\vert$ \hyperlink{gpib_8h_a89e9767fc024095e7d73f7bd468b8118}{B\+U\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+L\+AG})}
+
+
+
+Definition at line 49 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+write\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+describe(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_a32473ded8149304bd8d0be0abe6e3de8}\label{gpib_8h_a32473ded8149304bd8d0be0abe6e3de8}} 
+\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY@{G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY}}
+\index{G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY@{G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY}{GPIB\_BUS\_SETTLE\_DELAY}}
+{\footnotesize\ttfamily \#define G\+P\+I\+B\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+T\+L\+E\+\_\+\+D\+E\+L\+AY~2}
+
+
+
+Definition at line 27 of file gpib.\+h.
+
+\mbox{\Hypertarget{gpib_8h_a78f2361b60656c29cf6da26f240aaae2}\label{gpib_8h_a78f2361b60656c29cf6da26f240aaae2}} 
+\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN@{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}}
+\index{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN@{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}{GPIB\_IOBUFF\_LEN}}
+{\footnotesize\ttfamily \#define G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN~512 /$\ast$ Max length of RX/TX \hyperlink{gpib__task_8h_ac63d4e431ab55dddfbf436d87135128e}{G\+P\+IB} string $\ast$/}
+
+
+
+Definition at line 101 of file gpib.\+h.
+
+
+
+Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_a6dcb5fc551174cd685f0802f86329f3b}\label{gpib_8h_a6dcb5fc551174cd685f0802f86329f3b}} 
+\index{gpib.\+h@{gpib.\+h}!H\+T\+I\+M\+E\+O\+UT@{H\+T\+I\+M\+E\+O\+UT}}
+\index{H\+T\+I\+M\+E\+O\+UT@{H\+T\+I\+M\+E\+O\+UT}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{H\+T\+I\+M\+E\+O\+UT}{HTIMEOUT}}
+{\footnotesize\ttfamily \#define H\+T\+I\+M\+E\+O\+UT~(500000\+L / G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+U\+S)}
+
+
+
+This is the default B\+US timeout of 0.\+5 Seconds in Microseconds. 
+
+
+
+Definition at line 29 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}\label{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}} 
+\index{gpib.\+h@{gpib.\+h}!I\+F\+C\+\_\+\+F\+L\+AG@{I\+F\+C\+\_\+\+F\+L\+AG}}
+\index{I\+F\+C\+\_\+\+F\+L\+AG@{I\+F\+C\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{I\+F\+C\+\_\+\+F\+L\+AG}{IFC\_FLAG}}
+{\footnotesize\ttfamily \#define I\+F\+C\+\_\+\+F\+L\+AG~0x1000}
+
+
+
+Definition at line 37 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+control\+\_\+pin\+\_\+read(), gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+write\+\_\+byte(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
+
+\mbox{\Hypertarget{gpib_8h_ad1653d0cd48b2a0c72d422ba4aff114f}\label{gpib_8h_ad1653d0cd48b2a0c72d422ba4aff114f}} 
+\index{gpib.\+h@{gpib.\+h}!N\+D\+A\+C\+\_\+\+F\+L\+AG@{N\+D\+A\+C\+\_\+\+F\+L\+AG}}
+\index{N\+D\+A\+C\+\_\+\+F\+L\+AG@{N\+D\+A\+C\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{N\+D\+A\+C\+\_\+\+F\+L\+AG}{NDAC\_FLAG}}
+{\footnotesize\ttfamily \#define N\+D\+A\+C\+\_\+\+F\+L\+AG~0x8000}
+
+
+
+Definition at line 47 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+handshake\+\_\+pin\+\_\+read(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_ace2bb0d802a911ea5b057e58286641cc}\label{gpib_8h_ace2bb0d802a911ea5b057e58286641cc}} 
+\index{gpib.\+h@{gpib.\+h}!N\+O\+\_\+\+T\+R\+A\+CE@{N\+O\+\_\+\+T\+R\+A\+CE}}
+\index{N\+O\+\_\+\+T\+R\+A\+CE@{N\+O\+\_\+\+T\+R\+A\+CE}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{N\+O\+\_\+\+T\+R\+A\+CE}{NO\_TRACE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+T\+R\+A\+CE~0   /$\ast$ do not trace bus states durring a \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read} $\ast$/}
+
+
+
+Definition at line 65 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+str(), and gpib\+\_\+task().
+
+\mbox{\Hypertarget{gpib_8h_a1da25e2a8e12198ac9a381d09c566a8e}\label{gpib_8h_a1da25e2a8e12198ac9a381d09c566a8e}} 
+\index{gpib.\+h@{gpib.\+h}!N\+R\+F\+D\+\_\+\+F\+L\+AG@{N\+R\+F\+D\+\_\+\+F\+L\+AG}}
+\index{N\+R\+F\+D\+\_\+\+F\+L\+AG@{N\+R\+F\+D\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{N\+R\+F\+D\+\_\+\+F\+L\+AG}{NRFD\_FLAG}}
+{\footnotesize\ttfamily \#define N\+R\+F\+D\+\_\+\+F\+L\+AG~0x4000}
+
+
+
+Definition at line 46 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+handshake\+\_\+pin\+\_\+read(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}\label{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}} 
+\index{gpib.\+h@{gpib.\+h}!P\+P\+\_\+\+F\+L\+AG@{P\+P\+\_\+\+F\+L\+AG}}
+\index{P\+P\+\_\+\+F\+L\+AG@{P\+P\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{P\+P\+\_\+\+F\+L\+AG}{PP\_FLAG}}
+{\footnotesize\ttfamily \#define P\+P\+\_\+\+F\+L\+AG~0x2000}
+
+
+
+B\+US state flags. 
+
+
+
+Definition at line 40 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+display(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}\label{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}} 
+\index{gpib.\+h@{gpib.\+h}!R\+E\+N\+\_\+\+F\+L\+AG@{R\+E\+N\+\_\+\+F\+L\+AG}}
+\index{R\+E\+N\+\_\+\+F\+L\+AG@{R\+E\+N\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{R\+E\+N\+\_\+\+F\+L\+AG}{REN\_FLAG}}
+{\footnotesize\ttfamily \#define R\+E\+N\+\_\+\+F\+L\+AG~0x0800}
+
+
+
+Definition at line 36 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+control\+\_\+pin\+\_\+read(), gpib\+\_\+trace\+\_\+display(), and printer\+\_\+buffer().
+
+\mbox{\Hypertarget{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}\label{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}} 
+\index{gpib.\+h@{gpib.\+h}!S\+R\+Q\+\_\+\+F\+L\+AG@{S\+R\+Q\+\_\+\+F\+L\+AG}}
+\index{S\+R\+Q\+\_\+\+F\+L\+AG@{S\+R\+Q\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{S\+R\+Q\+\_\+\+F\+L\+AG}{SRQ\_FLAG}}
+{\footnotesize\ttfamily \#define S\+R\+Q\+\_\+\+F\+L\+AG~0x0200}
+
+
+
+Definition at line 34 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+control\+\_\+pin\+\_\+read(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{gpib_8h_aeb86657b890e53489f6178591bbd5b97}\label{gpib_8h_aeb86657b890e53489f6178591bbd5b97}} 
+\index{gpib.\+h@{gpib.\+h}!S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK@{S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}}
+\index{S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK@{S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK}{STATUS\_MASK}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+U\+S\+\_\+\+M\+A\+SK~0xff00}
+
+
+
+Definition at line 54 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+str(), and gpib\+\_\+write\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_abc15e280bc4f374b8813d358059a121e}\label{gpib_8h_abc15e280bc4f374b8813d358059a121e}} 
+\index{gpib.\+h@{gpib.\+h}!T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG@{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG}}
+\index{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG@{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG}{TIMEOUT\_FLAG}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG~0x4000}
+
+
+
+Definition at line 41 of file gpib.\+h.
+
+
+
+Referenced by gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+display(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_ae4811a3fa9574a7836b8aaa99f553800}\label{gpib_8h_ae4811a3fa9574a7836b8aaa99f553800}} 
+\index{gpib.\+h@{gpib.\+h}!T\+R\+A\+C\+E\+\_\+\+A\+LL@{T\+R\+A\+C\+E\+\_\+\+A\+LL}}
+\index{T\+R\+A\+C\+E\+\_\+\+A\+LL@{T\+R\+A\+C\+E\+\_\+\+A\+LL}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{T\+R\+A\+C\+E\+\_\+\+A\+LL}{TRACE\_ALL}}
+{\footnotesize\ttfamily \#define T\+R\+A\+C\+E\+\_\+\+A\+LL~1   /$\ast$ trace all bus states durring a \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read} $\ast$/}
+
+
+
+arguments to gpib\+\_\+read\+\_\+byte 
+
+
+
+Definition at line 64 of file gpib.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7}\label{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+
+
+G\+P\+IB read trace states. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE@{T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE@{T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE}}}\mbox{\Hypertarget{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a22947fdc26f7eb645d6a741ff2f3e3a0}\label{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a22947fdc26f7eb645d6a741ff2f3e3a0}} 
+T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+R\+A\+C\+E\+\_\+\+R\+E\+AD@{T\+R\+A\+C\+E\+\_\+\+R\+E\+AD}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!T\+R\+A\+C\+E\+\_\+\+R\+E\+AD@{T\+R\+A\+C\+E\+\_\+\+R\+E\+AD}}}\mbox{\Hypertarget{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a498933b128852cbe066c04ea9ec8edbc}\label{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7a498933b128852cbe066c04ea9ec8edbc}} 
+T\+R\+A\+C\+E\+\_\+\+R\+E\+AD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+R\+A\+C\+E\+\_\+\+B\+US@{T\+R\+A\+C\+E\+\_\+\+B\+US}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!T\+R\+A\+C\+E\+\_\+\+B\+US@{T\+R\+A\+C\+E\+\_\+\+B\+US}}}\mbox{\Hypertarget{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7ad31617c6a0d0b675927d4332c18f084d}\label{gpib_8h_adf764cbdea00d65edcd07bb9953ad2b7ad31617c6a0d0b675927d4332c18f084d}} 
+T\+R\+A\+C\+E\+\_\+\+B\+US&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 57 of file gpib.\+h.
+
+\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a65d47037f330761936e9ac5eeaaad10b}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a65d47037f330761936e9ac5eeaaad10b}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a56f8ad0d5c6639cbc40999880affca9b}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a56f8ad0d5c6639cbc40999880affca9b}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a3695df589ea237c8fb2cde44c6772176}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a3695df589ea237c8fb2cde44c6772176}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a0bb01cfa5273efc068636f1c80034a54}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a0bb01cfa5273efc068636f1c80034a54}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5acc231e73315d8ef3d7fd3d65370d0a70}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5acc231e73315d8ef3d7fd3d65370d0a70}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a8ac376607eb364680eb9733b7bb4d314}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5a8ac376607eb364680eb9733b7bb4d314}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+A\+V\+\_\+\+I\+S\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5ac946d70a9af711b3bea083113800fdbb}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5ac946d70a9af711b3bea083113800fdbb}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+SH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abe08af52b6cc1279f948ec251ee06a64}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abe08af52b6cc1279f948ec251ee06a64}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE@{G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE}}}\mbox{\Hypertarget{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abf4490aabbbb58218e31f981cff0e748}\label{gpib_8h_a99fb83031ce9923c84392b4e92f956b5abf4490aabbbb58218e31f981cff0e748}} 
+G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+D\+O\+NE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 67 of file gpib.\+h.
+
+\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a0f38fa38044e4624b4e740bb69000e96}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a0f38fa38044e4624b4e740bb69000e96}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+T\+A\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a3c6f448906221dc9684e4462bf6ab3a8}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a3c6f448906221dc9684e4462bf6ab3a8}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+R\+E\+A\+DY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a689ac8ea1c2348752de0be4efc53c85d}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a689ac8ea1c2348752de0be4efc53c85d}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+P\+U\+T\+\_\+\+D\+A\+TA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a83f293bb96f34b5360464e2f910d3074}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a83f293bb96f34b5360464e2f910d3074}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04ad8eadaee87ac8dbb9737b417c4600d3b}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04ad8eadaee87ac8dbb9737b417c4600d3b}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+R\+F\+D\+\_\+\+L\+OW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a233783ae46cb8dba39f16378a6b0d1a1}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a233783ae46cb8dba39f16378a6b0d1a1}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+N\+D\+A\+C\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a2ae02c759462700c779c9e6e90383d91}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a2ae02c759462700c779c9e6e90383d91}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+S\+E\+T\+\_\+\+D\+A\+V\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04aafa56cb5893e904ffd2f840391ae1857}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04aafa56cb5893e904ffd2f840391ae1857}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbe4788363f0c6bb1239ca2867a86c13}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbe4788363f0c6bb1239ca2867a86c13}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+SH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a42ffa1774dbaeec6c06c30a85c860203}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04a42ffa1774dbaeec6c06c30a85c860203}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE@{G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE}}}\mbox{\Hypertarget{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbb8a4da3ebe1792a9dc39e615d0226f}\label{gpib_8h_abc6126af1d45847bc59afa0aa3216b04abbb8a4da3ebe1792a9dc39e615d0226f}} 
+G\+P\+I\+B\+\_\+\+T\+X\+\_\+\+D\+O\+NE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 80 of file gpib.\+h.
+
+\mbox{\Hypertarget{gpib_8h_adc29c2ff13d900c2f185ee95427fb06c}\label{gpib_8h_adc29c2ff13d900c2f185ee95427fb06c}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE@{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE@{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE}}}\mbox{\Hypertarget{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca260175d57a02d78a58dbcf8d2479d838}\label{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca260175d57a02d78a58dbcf8d2479d838}} 
+G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+I\+D\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED@{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED}!gpib.\+h@{gpib.\+h}}\index{gpib.\+h@{gpib.\+h}!G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED@{G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED}}}\mbox{\Hypertarget{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca9b409b733bb611072b0a7b0ca3299237}\label{gpib_8h_adc29c2ff13d900c2f185ee95427fb06ca9b409b733bb611072b0a7b0ca3299237}} 
+G\+P\+I\+B\+\_\+\+P\+P\+\_\+\+D\+E\+T\+E\+C\+T\+ED&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 95 of file gpib.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}\label{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+assert\+\_\+ifc@{gpib\+\_\+assert\+\_\+ifc}}
+\index{gpib\+\_\+assert\+\_\+ifc@{gpib\+\_\+assert\+\_\+ifc}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+assert\+\_\+ifc()}{gpib\_assert\_ifc()}}
+{\footnotesize\ttfamily void gpib\+\_\+assert\+\_\+ifc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Assert Interface clear for 250us. 
+
+
+\begin{DoxyItemize}
+\item 100us is the Minumum
+\item Reference\+: S\+S80 section 3-\/15, pg 3-\/26 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 475 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+tests().
+
+\mbox{\Hypertarget{gpib_8h_ae826d722b789698ce9217758fe55fdcb}\label{gpib_8h_ae826d722b789698ce9217758fe55fdcb}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+assert\+\_\+ren@{gpib\+\_\+assert\+\_\+ren}}
+\index{gpib\+\_\+assert\+\_\+ren@{gpib\+\_\+assert\+\_\+ren}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+assert\+\_\+ren()}{gpib\_assert\_ren()}}
+{\footnotesize\ttfamily void gpib\+\_\+assert\+\_\+ren (\begin{DoxyParamCaption}\item[{unsigned char}]{state }\end{DoxyParamCaption})}
+
+
+
+Assert R\+EN to put instrument in remote mode. 
+
+
+\begin{DoxyItemize}
+\item If state != 0 -\/$>$ assert R\+EN
+\item If state == 0 -\/$>$ deassert R\+EN \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 495 of file gpib.\+c.
+
+\mbox{\Hypertarget{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}\label{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
+\index{gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+init()}{gpib\_bus\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize/\+Release G\+P\+IB Bus control lines for powerup or I\+FC reset conditions. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+F\+I\+X\+ME verify resetting gpib\+\_\+unread\+\_\+f is A\+L\+W\+A\+YS correct when called 
+
+Definition at line 293 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+init\+\_\+devices(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+write\+\_\+byte(), and main().
+
+\mbox{\Hypertarget{gpib_8h_aaf877e1057ef73855045f2436ff99cdc}\label{gpib_8h_aaf877e1057ef73855045f2436ff99cdc}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+bus\+\_\+read@{gpib\+\_\+bus\+\_\+read}}
+\index{gpib\+\_\+bus\+\_\+read@{gpib\+\_\+bus\+\_\+read}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+read()}{gpib\_bus\_read()}}
+{\footnotesize\ttfamily uint8\+\_\+t gpib\+\_\+bus\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read G\+P\+IB data B\+US only. 
+
+\begin{DoxyReturn}{Returns}
+bus (lower 8 bits) 
+\end{DoxyReturn}
+if a command byte (A\+TN low) then strip partity 
+
+Definition at line 542 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}\label{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}}
+\index{gpib\+\_\+bus\+\_\+read\+\_\+init@{gpib\+\_\+bus\+\_\+read\+\_\+init}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+bus\+\_\+read\+\_\+init()}{gpib\_bus\_read\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+read\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+P\+IB Bus control lines for R\+E\+AD Despite the name this everywhere to setup read mode. 
+
+
+\begin{DoxyItemize}
+\item Set busy = 0 after powerup everying floating or high
+\begin{DoxyItemize}
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC are set to busy low
+\end{DoxyItemize}
+\item References\+:
+\begin{DoxyItemize}
+\item H\+P-\/\+IB Tutorial
+\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}release handshake lines References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
+
+Definition at line 234 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_ab39377861a160a9128cc759523d26b53}\label{gpib_8h_ab39377861a160a9128cc759523d26b53}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+control\+\_\+pin\+\_\+read@{gpib\+\_\+control\+\_\+pin\+\_\+read}}
+\index{gpib\+\_\+control\+\_\+pin\+\_\+read@{gpib\+\_\+control\+\_\+pin\+\_\+read}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+control\+\_\+pin\+\_\+read()}{gpib\_control\_pin\_read()}}
+{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+control\+\_\+pin\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read G\+P\+IB control lines only F\+I\+X\+ME V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? 
+
+\begin{DoxyReturn}{Returns}
+control lines (upper 8 bits) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8c_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 560 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a37b2271a4a82b5c953bf08cf0c571577}\label{gpib_8h_a37b2271a4a82b5c953bf08cf0c571577}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+decode@{gpib\+\_\+decode}}
+\index{gpib\+\_\+decode@{gpib\+\_\+decode}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+decode()}{gpib\_decode()}}
+{\footnotesize\ttfamily void gpib\+\_\+decode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{ch }\end{DoxyParamCaption})}
+
+
+
+Calls gpib\+\_\+decode\+\_\+str() and dosplays the result. 
+
+Display\+: decode/display all control flags and data on G\+P\+IB B\+US. \begin{DoxySeeAlso}{See also}
+gpib\+\_\+decode\+\_\+str() 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1246 of file gpib.\+c.
+
+
+
+Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and gpib\+\_\+write\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_a5b960a0e4ba7396e5511f248eea7442c}\label{gpib_8h_a5b960a0e4ba7396e5511f248eea7442c}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}}
+\index{gpib\+\_\+decode\+\_\+header@{gpib\+\_\+decode\+\_\+header}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+decode\+\_\+header()}{gpib\_decode\_header()}}
+{\footnotesize\ttfamily void gpib\+\_\+decode\+\_\+header (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{fo }\end{DoxyParamCaption})}
+
+
+
+Displays help for \hyperlink{gpib_8c_a37b2271a4a82b5c953bf08cf0c571577}{gpib\+\_\+decode()} function. 
+
+You would call this once at the start of a trace for example. \begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list is control \hyperlink{drives_8c_a9921ae02cadccc99dd6c3a9b68be050a}{lines} we track 
+
+\+: gpib\+\_\+trace() 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fo} & F\+I\+LE pointer or \char`\"{}stdout\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1063 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+trace\+\_\+task(), and plot\+\_\+echo().
+
+\mbox{\Hypertarget{gpib_8h_adb8803762af598f3a52cea7cde04eaae}\label{gpib_8h_adb8803762af598f3a52cea7cde04eaae}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+detect\+\_\+\+PP@{gpib\+\_\+detect\+\_\+\+PP}}
+\index{gpib\+\_\+detect\+\_\+\+PP@{gpib\+\_\+detect\+\_\+\+PP}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+detect\+\_\+\+P\+P()}{gpib\_detect\_PP()}}
+{\footnotesize\ttfamily uint8\+\_\+t gpib\+\_\+detect\+\_\+\+PP (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state V2 hardware -\/ this does not work unless reading B\+US. 
+
+
+\begin{DoxyItemize}
+\item P\+PR is short for \char`\"{}\+Parellel Poll Response\char`\"{}
+\item P\+PR happens when the C\+IC (controller in charge) holds B\+O\+TH of A\+TN == 0 and E\+OI == 0
+\item P\+PR Response happens using hardware The hardware pulls a bit low on the G\+P\+IB bus corresponding to the device. But only if any P\+PR mask bits are set in the hardware
+\item Note\+: E\+OI is never used in command mode (A\+TN = 0) 1) Hardware will automatically hold G\+P\+IB D\+A\+TA B\+US lines low
+\item \hyperlink{gpib__hal_8c_a639fcfaa605f43d589798545d9d1a975}{ppr\+\_\+reg()} determines if we have P\+PR enabled.
+\item References\+:
+\begin{DoxyItemize}
+\item S\+S80 pg 3-\/4, section 3-\/3 \begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8c_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\+\+P\+P\+R()} 
+
+\hyperlink{gpib_8c_ae7cace97c893474b3e6c672539a65041}{gpib\+\_\+disable\+\_\+\+P\+P\+R()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+1 if we see a P\+PR, 0 if not 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode
+
+Bus pin states but do not alter port direction state
+
+debugging -\/ read the ddr data direction bits to determine read/write state
+
+F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode F\+I\+X\+ME We add a test for read/write state ?? 
+
+Definition at line 414 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_ae7cace97c893474b3e6c672539a65041}\label{gpib_8h_ae7cace97c893474b3e6c672539a65041}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+disable\+\_\+\+P\+PR@{gpib\+\_\+disable\+\_\+\+P\+PR}}
+\index{gpib\+\_\+disable\+\_\+\+P\+PR@{gpib\+\_\+disable\+\_\+\+P\+PR}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+disable\+\_\+\+P\+P\+R()}{gpib\_disable\_PPR()}}
+{\footnotesize\ttfamily void gpib\+\_\+disable\+\_\+\+P\+PR (\begin{DoxyParamCaption}\item[{int}]{bit }\end{DoxyParamCaption})}
+
+
+
+Disable P\+PR (Parallel Poll Response) for a device. 
+
+
+\begin{DoxyItemize}
+\item Reference\+: S\+S80 pg 3-\/4, section 3-\/3 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 381 of file gpib.\+c.
+
+
+
+Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_adac78c8b4bd167b97a37e9fe7e9e395d}\label{gpib_8h_adac78c8b4bd167b97a37e9fe7e9e395d}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+enable\+\_\+\+P\+PR@{gpib\+\_\+enable\+\_\+\+P\+PR}}
+\index{gpib\+\_\+enable\+\_\+\+P\+PR@{gpib\+\_\+enable\+\_\+\+P\+PR}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+enable\+\_\+\+P\+P\+R()}{gpib\_enable\_PPR()}}
+{\footnotesize\ttfamily void gpib\+\_\+enable\+\_\+\+P\+PR (\begin{DoxyParamCaption}\item[{int}]{bit }\end{DoxyParamCaption})}
+
+
+\begin{DoxyItemize}
+\item Reference\+: S\+S80 pg 3-\/4, section 3-\/3 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 361 of file gpib.\+c.
+
+
+
+Referenced by S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), and S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear().
+
+\mbox{\Hypertarget{gpib_8h_a5d4108418df33c00cda0e65ca34f2485}\label{gpib_8h_a5d4108418df33c00cda0e65ca34f2485}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+handshake\+\_\+pin\+\_\+read@{gpib\+\_\+handshake\+\_\+pin\+\_\+read}}
+\index{gpib\+\_\+handshake\+\_\+pin\+\_\+read@{gpib\+\_\+handshake\+\_\+pin\+\_\+read}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+handshake\+\_\+pin\+\_\+read()}{gpib\_handshake\_pin\_read()}}
+{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+handshake\+\_\+pin\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read G\+P\+IB handshake lines only F\+I\+X\+ME\+: V2 boards can only read pins enabled for read by the S\+N75162 F\+I\+X\+ME We could add a test for read/write state ?? 
+
+\begin{DoxyReturn}{Returns}
+handshake lines (upper 8 bits) 
+\end{DoxyReturn}
+for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
+
+Definition at line 581 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a81625ecfb43b4df7691a80c9e2ebb837}\label{gpib_8h_a81625ecfb43b4df7691a80c9e2ebb837}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}}
+\index{gpib\+\_\+read\+\_\+byte@{gpib\+\_\+read\+\_\+byte}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+read\+\_\+byte()}{gpib\_read\_byte()}}
+{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+read\+\_\+byte (\begin{DoxyParamCaption}\item[{int}]{trace }\end{DoxyParamCaption})}
+
+
+
+read 1 byte and control line status from G\+P\+IB B\+US 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em trace} & if non-\/zero do full bus handshake trace of read\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item References\+: H\+P-\/\+IB Tutorial pg 13, 14.
+\item Notes\+: Their diagram is a bit misleading -\/ they start in the B\+US init phase. The init happens much earlier in other code -\/ we N\+E\+V\+ER want to do that here or bad things will happen -\/ we could step on the sender N\+R\+FD test and false trigger it. We instead start with N\+R\+FD F\+L\+O\+AT, and N\+D\+AC L\+OW. See loop in send diagram it has N\+D\+AC == 0 and N\+R\+FD == 1 in the return to send (beginning) part of the loop.
+\item The H\+P-\/\+IB reference has an error\+: Read ready actually starts when N\+R\+FD = 1 and N\+D\+AC = 0. If you look at the Write state diagram that can be confirmed.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\begin{DoxyItemize}
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+(data bus, control and error status) 
+\end{DoxyReturn}
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+F\+I\+X\+ME only enabled on V1 hardware
+
+Signal that we are ready to ready
+
+Wait for Ready acknowledge
+
+gpib\+\_\+bus\+\_\+read strips command parity if A\+TN is low at read time
+
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+V2 boards can N\+OT read all bits on the control bus at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs
+
+F\+I\+X\+ME -\/ we can read on V1 hardware rx\+\_\+state = G\+P\+I\+B\+\_\+\+R\+X\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+D\+A\+V\+\_\+\+HI;
+
+F\+I\+X\+ME do we want to keep the next state ? V1 boards can read and wait for N\+D\+AC to go HI F\+I\+X\+ME We clould add a test for read/write state ?? V2 boards we can\textquotesingle{}t -\/ not a big deal as the D\+AV test works anyway
+
+Wait for N\+D\+AC float HI
+
+Wait for D\+AV HI
+
+Ready for next byte
+
+V2 boards can not read all control and handshake bits at once F\+I\+X\+ME We could add a test for read/write state ?? N\+R\+FD,N\+D\+AC S\+RQ are outputs durring write phase, but not at very start
+
+Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
+\begin{DoxyItemize}
+\item Remember that N\+D\+AC and N\+R\+FD are now both L\+O\+W!
+\item The spec says to K\+E\+EP B\+O\+TH L\+OW when N\+OT ready to read otherwise we may miss a transfer and cause a controller timeout!
+\item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
+\end{DoxyItemize}
+
+Definition at line 872 of file gpib.\+c.
+
+
+
+Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+read\+\_\+str(), gpib\+\_\+task(), and gpib\+\_\+trace\+\_\+task().
+
+\mbox{\Hypertarget{gpib_8h_a67f7cdca85091b3eb0eea0051a200fbe}\label{gpib_8h_a67f7cdca85091b3eb0eea0051a200fbe}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+read\+\_\+str@{gpib\+\_\+read\+\_\+str}}
+\index{gpib\+\_\+read\+\_\+str@{gpib\+\_\+read\+\_\+str}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+read\+\_\+str()}{gpib\_read\_str()}}
+{\footnotesize\ttfamily int gpib\+\_\+read\+\_\+str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{int}]{size,  }\item[{uint16\+\_\+t $\ast$}]{status }\end{DoxyParamCaption})}
+
+
+
+Read string from G\+P\+IB B\+US -\/ controlled by status flags. 
+
+
+\begin{DoxyItemize}
+\item Status flags used when reading
+\begin{DoxyItemize}
+\item If E\+OI is set then E\+OI detection will end reading when E\+OI is detected.
+\item If an early or unexpected E\+OI is detected a warning is displayed.
+\item The state of A\+TN controls the type of data read.
+\begin{DoxyItemize}
+\item If A\+TN is set then parity is stripped.
+\item Only data matching the A\+TN flag state set by user is read.
+\begin{DoxyItemize}
+\item If we see a mismatch we \char`\"{}unread\char`\"{} it and exit.
+\item Unreading saves data A\+ND status to be reread later on.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} 
+
+\+: \hyperlink{gpib_8c_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Binary gpib string to read \\
+\hline
+\mbox{\tt in}  & {\em size} & Size of string we want to read \\
+\hline
+\mbox{\tt in}  & {\em status} & controls sending modes and returns status\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes read 
+
+status
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Errors T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG or I\+F\+C\+\_\+\+F\+L\+AG will cause early exit and set status.
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item \begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\end{DoxySeeAlso}
+
+\item An error implies the data byte can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item E\+O\+I\+\_\+\+F\+L\+AG
+\item S\+R\+Q\+\_\+\+F\+L\+AG
+\item A\+T\+N\+\_\+\+F\+L\+AG
+\item R\+E\+N\+\_\+\+F\+L\+AG
+\item P\+P\+\_\+\+F\+L\+AG
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item I\+F\+C\+\_\+\+F\+L\+AG 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
+
+
+Definition at line 1286 of file gpib.\+c.
+
+
+
+Referenced by controller\+\_\+read\+\_\+str(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}\label{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+state\+\_\+init@{gpib\+\_\+state\+\_\+init}}
+\index{gpib\+\_\+state\+\_\+init@{gpib\+\_\+state\+\_\+init}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+state\+\_\+init()}{gpib\_state\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+state\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reset G\+P\+IB states and related variables. 
+
+
+\begin{DoxyItemize}
+\item Called at powerup and I\+FC or reset states.
+\item Does not reset B\+US \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 335 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+task(), gpib\+\_\+trace\+\_\+task(), and main().
+
+\mbox{\Hypertarget{gpib_8h_a687395337dd5c6604a775e3ffd3f006f}\label{gpib_8h_a687395337dd5c6604a775e3ffd3f006f}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timeout\+\_\+set@{gpib\+\_\+timeout\+\_\+set}}
+\index{gpib\+\_\+timeout\+\_\+set@{gpib\+\_\+timeout\+\_\+set}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timeout\+\_\+set()}{gpib\_timeout\_set()}}
+{\footnotesize\ttfamily void gpib\+\_\+timeout\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time }\end{DoxyParamCaption})}
+
+
+
+Set G\+P\+IB timeout timer in units of G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US. 
+
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_a3eb10b99d17dd69982b6bfc820fb29db}{gpib\+\_\+timeout\+\_\+test()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 207 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a2096a86f435acacb3165a9bdb0af076b}\label{gpib_8h_a2096a86f435acacb3165a9bdb0af076b}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timeout\+\_\+test@{gpib\+\_\+timeout\+\_\+test}}
+\index{gpib\+\_\+timeout\+\_\+test@{gpib\+\_\+timeout\+\_\+test}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timeout\+\_\+test()}{gpib\_timeout\_test()}}
+{\footnotesize\ttfamily uint8\+\_\+t gpib\+\_\+timeout\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Test G\+P\+IB timeout timer for timeout condition. 
+
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_a687395337dd5c6604a775e3ffd3f006f}{gpib\+\_\+timeout\+\_\+set()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+1 if timeout, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 220 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a6a3c1941e17626338b878123677ae797}\label{gpib_8h_a6a3c1941e17626338b878123677ae797}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timer\+\_\+elapsed\+\_\+begin@{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin}}
+\index{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin@{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin()}{gpib\_timer\_elapsed\_begin()}}
+{\footnotesize\ttfamily void gpib\+\_\+timer\+\_\+elapsed\+\_\+begin (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Start measuring time -\/ used with hpib\+\_\+timer\+\_\+elapsed\+\_\+end() 
+
+See \hyperlink{gpib__hal_8c}{gpib\+\_\+hal.\+c} for C\+PU specific code Provide Elapsed timer and Timeout timer -\/ both in Microseconds We use the lower level clock elapsed timer functions here \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 133 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
+
+\mbox{\Hypertarget{gpib_8h_a87ae4b4852f4a1987fc61fec20f53d42}\label{gpib_8h_a87ae4b4852f4a1987fc61fec20f53d42}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timer\+\_\+elapsed\+\_\+end@{gpib\+\_\+timer\+\_\+elapsed\+\_\+end}}
+\index{gpib\+\_\+timer\+\_\+elapsed\+\_\+end@{gpib\+\_\+timer\+\_\+elapsed\+\_\+end}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer\+\_\+elapsed\+\_\+end()}{gpib\_timer\_elapsed\_end()}}
+{\footnotesize\ttfamily void gpib\+\_\+timer\+\_\+elapsed\+\_\+end (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg }\end{DoxyParamCaption})}
+
+
+
+Display user message and time delta since \hyperlink{gpib_8c_a6a3c1941e17626338b878123677ae797}{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin()} call. 
+
+Display a message \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+tests(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), and S\+S80\+\_\+locate\+\_\+and\+\_\+write().
+
+\mbox{\Hypertarget{gpib_8h_abe05115c27148ec7013e6f62dc94ae78}\label{gpib_8h_abe05115c27148ec7013e6f62dc94ae78}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timer\+\_\+reset@{gpib\+\_\+timer\+\_\+reset}}
+\index{gpib\+\_\+timer\+\_\+reset@{gpib\+\_\+timer\+\_\+reset}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer\+\_\+reset()}{gpib\_timer\_reset()}}
+{\footnotesize\ttfamily void gpib\+\_\+timer\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reset elapsed and timeout timers Elapses and Timeout Timers. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+timer\+\_\+init().
+
+\mbox{\Hypertarget{gpib_8h_aea1dbabf2f23125b36492a2a6c4aeefc}\label{gpib_8h_aea1dbabf2f23125b36492a2a6c4aeefc}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+timer\+\_\+task@{gpib\+\_\+timer\+\_\+task}}
+\index{gpib\+\_\+timer\+\_\+task@{gpib\+\_\+timer\+\_\+task}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+timer\+\_\+task()}{gpib\_timer\_task()}}
+{\footnotesize\ttfamily void gpib\+\_\+timer\+\_\+task (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Main G\+P\+IB timer task called by low level interrup hander. 
+
+
+\begin{DoxyItemize}
+\item Provides Down timers and Elapsed timers
+\item Called every G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US Micro Seconds \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 190 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+timer\+\_\+init().
+
+\mbox{\Hypertarget{gpib_8h_ae2e0e847432d7964a28c6faf9d3e1eee}\label{gpib_8h_ae2e0e847432d7964a28c6faf9d3e1eee}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+trace\+\_\+display@{gpib\+\_\+trace\+\_\+display}}
+\index{gpib\+\_\+trace\+\_\+display@{gpib\+\_\+trace\+\_\+display}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+trace\+\_\+display()}{gpib\_trace\_display()}}
+{\footnotesize\ttfamily void gpib\+\_\+trace\+\_\+display (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{status,  }\item[{int}]{trace\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+decode/display all control flags and data on the G\+P\+IB B\+US 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em status} & data bus value (lower 8 bits) control bus (upper 8 bits) \\
+\hline
+\mbox{\tt in}  & {\em trace\+\_\+state} & level of trace detail T\+R\+A\+C\+E\+\_\+\+D\+I\+S\+A\+B\+LE = normal bus and control status report from read state only T\+R\+A\+C\+E\+\_\+\+R\+E\+AD = trace bus and control reporting from read state only T\+R\+A\+C\+E\+\_\+\+B\+US = trace control reporting from all non-\/read states, data bus values are omiited Note\+: trace states add D\+AV,N\+R\+FD,N\+D\+AC and ommit P\+PR status, B\+US error and timeout given that \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} report these anyway
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\begin{DoxyItemize}
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string pointer to store the decoded result in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} 
+
+\+: gpib\+\_\+write\+\_\+byte(int ch) 
+
+\+: \hyperlink{gpib_8c_a5b960a0e4ba7396e5511f248eea7442c}{gpib\+\_\+decode\+\_\+header()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void Note the bits we can read depends on what hardware verions we have V2 hardware can only read status bits based on G\+P\+IB control buffer direction F\+I\+X\+ME We could add a test for read/write state ?? 
+\end{DoxyReturn}
+
+
+Definition at line 1115 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+decode(), and gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}\label{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+unread@{gpib\+\_\+unread}}
+\index{gpib\+\_\+unread@{gpib\+\_\+unread}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+unread()}{gpib\_unread()}}
+{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+unread (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{ch }\end{DoxyParamCaption})}
+
+
+
+G\+P\+IB ungets one character and all status states. 
+
+Pushes a character back into the read buffer 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ch} & 
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors present.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ch 
+\end{DoxyReturn}
+
+
+Definition at line 524 of file gpib.\+c.
+
+
+
+Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), and gpib\+\_\+read\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_ac3d50cc1d56705d107e2f8fb00692e68}\label{gpib_8h_ac3d50cc1d56705d107e2f8fb00692e68}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+write\+\_\+byte@{gpib\+\_\+write\+\_\+byte}}
+\index{gpib\+\_\+write\+\_\+byte@{gpib\+\_\+write\+\_\+byte}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+write\+\_\+byte()}{gpib\_write\_byte()}}
+{\footnotesize\ttfamily uint16\+\_\+t gpib\+\_\+write\+\_\+byte (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{ch }\end{DoxyParamCaption})}
+
+
+
+Send 1 byte and control line states to G\+P\+IB B\+US. 
+
+
+\begin{DoxyItemize}
+\item We assume we are talking to an active controller already in read state
+\begin{DoxyItemize}
+\item Any error flags set on return imply the data was not likely sent
+\item You can OR the control flags A\+T\+N\+\_\+\+F\+L\+AG, E\+O\+I\+\_\+\+F\+L\+AG with (ch) to send them these states.
+\item Results can be displayed for debugging with the decode(ch) funnction
+\item We always exit with N\+R\+FD and N\+D\+AC L\+OW
+\end{DoxyItemize}
+\item References\+: H\+P-\/\+IB Tutorial pg13. H\+P-\/\+IB Tutorial pg 13 for the receive and send control line states Correction\+: The send routine M\+U\+ST also wait for N\+D\+AC L\+OW before exit. (You can verify this by checking the receive part of the handshake diagram just before it returns to the start of the loop) Failing to wait will cause problems that may masqurade as timing issues.
+\item (It caused problems with my H\+P85 before I added the code)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em ch} & ( Data or Command ) and control flags
+\begin{DoxyItemize}
+\item Upper 8 bits\+: contril flags
+\item Flags\+:
+\begin{DoxyItemize}
+\item E\+O\+I\+\_\+\+F\+L\+AG
+\item A\+T\+N\+\_\+\+F\+L\+AG
+\begin{DoxyItemize}
+\item E\+OI and A\+TN can only be used in controller mode
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\begin{DoxyItemize}
+\item An error implies the data \hyperlink{LCD_8h_ab8ef12fab634c171394422d0ee8baf94}{byte} can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_ab6e601afadf8d274d9d341323a5c6a3e}{E\+O\+I\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_aadec0e361e7d2ed6a82ef28bee7231f6}{S\+R\+Q\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_abbe287946c2beaa1f76fe5be364c07ad}{A\+T\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_ac5ae85572f7432aaab806c29177eec8d}{R\+E\+N\+\_\+\+F\+L\+AG}
+\item \hyperlink{gpib_8h_a660f399a9ffcc5c666bcc726073338cb}{P\+P\+\_\+\+F\+L\+AG}
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item \hyperlink{gpib_8h_a0202c6cc39130a2c251235ef2336cd13}{I\+F\+C\+\_\+\+F\+L\+AG} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxySeeAlso}
+first device is ready
+
+A\+LL devices are ready
+
+B\+US
+
+We are in read mode now  for D\+AV to finish float HI -\/ finishing floating HI 
+
+Definition at line 632 of file gpib.\+c.
+
+
+
+Referenced by controller\+\_\+ifc(), controller\+\_\+read\+\_\+str(), controller\+\_\+read\+\_\+trace(), controller\+\_\+send\+\_\+str(), and gpib\+\_\+write\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8h_a1bdaac9496e7a0a3523481f2e8a2b9fe}\label{gpib_8h_a1bdaac9496e7a0a3523481f2e8a2b9fe}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+write\+\_\+str@{gpib\+\_\+write\+\_\+str}}
+\index{gpib\+\_\+write\+\_\+str@{gpib\+\_\+write\+\_\+str}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+write\+\_\+str()}{gpib\_write\_str()}}
+{\footnotesize\ttfamily int gpib\+\_\+write\+\_\+str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{int}]{size,  }\item[{uint16\+\_\+t $\ast$}]{status }\end{DoxyParamCaption})}
+
+
+
+Send string to G\+P\+IB B\+US -\/ controlled by status flags. 
+
+
+\begin{DoxyItemize}
+\item Status flags used when sending
+\begin{DoxyItemize}
+\item If E\+OI is set then E\+OI is sent at last character
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buf} & Binary gpib string to send \\
+\hline
+\mbox{\tt in}  & {\em size} & Size of string \\
+\hline
+\mbox{\tt in}  & {\em status} & User status flags that control the sending process.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes sent
+\begin{DoxyItemize}
+\item will match size on success (no other tests needed).
+\item Any size mismatch impiles error flags I\+F\+C\+\_\+\+F\+L\+AG and T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG.
+\end{DoxyItemize}
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Errors T\+I\+M\+E\+O\+U\+T\+\_\+\+F\+L\+AG or I\+F\+C\+\_\+\+F\+L\+AG will cause early exit and set status.
+\begin{DoxyItemize}
+\item Lower 8 bits\+: Data or Command.
+\begin{DoxyItemize}
+\item If A\+TN is L\+OW then we strip parity from the byte.
+\end{DoxyItemize}
+\item Upper 8 bits\+: Status and Errors.
+\begin{DoxyItemize}
+\item \begin{DoxySeeAlso}{See also}
+\hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list.
+\end{DoxySeeAlso}
+
+\item An error implies the data byte can\textquotesingle{}t be trusted
+\item Control Line Flags.
+\begin{DoxyItemize}
+\item E\+O\+I\+\_\+\+F\+L\+AG
+\item S\+R\+Q\+\_\+\+F\+L\+AG
+\item A\+T\+N\+\_\+\+F\+L\+AG
+\item R\+E\+N\+\_\+\+F\+L\+AG
+\item P\+P\+\_\+\+F\+L\+AG
+\end{DoxyItemize}
+\item Error Flags\+:
+\begin{DoxyItemize}
+\item I\+F\+C\+\_\+\+F\+L\+AG \begin{DoxySeeAlso}{See also}
+\+: \hyperlink{gpib_8c_ac3d50cc1d56705d107e2f8fb00692e68}{gpib\+\_\+write\+\_\+byte()} 
+
+\+: \hyperlink{gpib_8h}{gpib.\+h} \+\_\+\+F\+L\+A\+GS defines for a full list) 
+\end{DoxySeeAlso}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\begin{DoxyReturn}{Returns}
+Returns 
+\end{DoxyReturn}
+
+
+Definition at line 1375 of file gpib.\+c.
+
+
+
+Referenced by controller\+\_\+send\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\_\+describe(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+\+Report(), and S\+S80\+\_\+send\+\_\+status().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{gpib_8h_aaad5615d233044464c3661481a6760cd}\label{gpib_8h_aaad5615d233044464c3661481a6760cd}} 
+\index{gpib.\+h@{gpib.\+h}!current@{current}}
+\index{current@{current}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{current}{current}}
+{\footnotesize\ttfamily uint16\+\_\+t current}
+
+
+
+Definition at line 95 of file gpib.\+c.
+
+
+
+Referenced by clock\+\_\+elapsed\+\_\+end(), gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+state\+\_\+init().
+
+\mbox{\Hypertarget{gpib_8h_af219299ebad47daa6631415a8b41345a}\label{gpib_8h_af219299ebad47daa6631415a8b41345a}} 
+\index{gpib.\+h@{gpib.\+h}!debuglevel@{debuglevel}}
+\index{debuglevel@{debuglevel}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{debuglevel}{debuglevel}}
+{\footnotesize\ttfamily int debuglevel}
+
+
+
+Debug flag -\/ used to log G\+P\+IB and emulator messages. 
+
+
+
+Definition at line 34 of file gpib\+\_\+task.\+c.
+
+\mbox{\Hypertarget{gpib_8h_a2376f17d1e7367401184b2a3978bcd3a}\label{gpib_8h_a2376f17d1e7367401184b2a3978bcd3a}} 
+\index{gpib.\+h@{gpib.\+h}!device@{device}}
+\index{device@{device}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily uint8\+\_\+t device}
+
+\mbox{\Hypertarget{gpib_8h_a00023217d54aa8bb6473583593942869}\label{gpib_8h_a00023217d54aa8bb6473583593942869}} 
+\index{gpib.\+h@{gpib.\+h}!gpib\+\_\+iobuff@{gpib\+\_\+iobuff}}
+\index{gpib\+\_\+iobuff@{gpib\+\_\+iobuff}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{gpib\+\_\+iobuff}{gpib\_iobuff}}
+{\footnotesize\ttfamily uint8\+\_\+t gpib\+\_\+iobuff\mbox{[}\hyperlink{gpib_8h_a78f2361b60656c29cf6da26f240aaae2}{G\+P\+I\+B\+\_\+\+I\+O\+B\+U\+F\+F\+\_\+\+L\+EN}\mbox{]}}
+
+
+
+common IO buffer for \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str()} and \hyperlink{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str()} 
+
+
+\begin{DoxyItemize}
+\item References\+: Documenation and related sources of information
+\begin{DoxyItemize}
+\item Web Resources\+:
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net}{\tt http\+://www.\+hp9845.\+net}
+\item \href{http://www.hpmuseum.net}{\tt http\+://www.\+hpmuseum.\+net}
+\item \href{http://www.hpmusuem.org}{\tt http\+://www.\+hpmusuem.\+org}
+\item \href{http://bitsavers.trailing-edge.com}{\tt http\+://bitsavers.\+trailing-\/edge.\+com}
+\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\tt http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item S\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+S\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+Subset 80 from Fixed and flexible disc drives\char`\"{}
+\item Printed November, 1985
+\item HP Part\# 5958-\/4129
+\end{DoxyItemize}
+\item C\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+C\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
+\item Printed\+: A\+PR 1983
+\item HP Part\# 5955-\/3442
+\end{DoxyItemize}
+\item Amigo References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Amigo\char`\"{} is the short form used in the project
+\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
+\item HP Part\# 09895-\/90030
+\end{DoxyItemize}
+\item H\+P-\/\+IB
+\begin{DoxyItemize}
+\item \char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project
+\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
+\item Printed March 1975
+\item HP Part\# 59401-\/90030
+\end{DoxyItemize}
+\item Tutorial Description of The Hewllet Packard Interface Bus\char`\"{}
+  -\/ \char`\"{}H\+P-\/\+IB Tutorial" is the short form used in the project
+\begin{DoxyItemize}
+\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\tt http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}
+\begin{DoxyItemize}
+\item Printed January 1983
+\end{DoxyItemize}
+\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\tt http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}
+\begin{DoxyItemize}
+\item Printed 1987
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole
+\begin{DoxyItemize}
+\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\tt http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Definition at line 75 of file gpib.\+c.
+
+
+
+Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_ab8bc74192b6d8a3e352b03e724dac5b7}\label{gpib_8h_ab8bc74192b6d8a3e352b03e724dac5b7}} 
+\index{gpib.\+h@{gpib.\+h}!lastcmd@{lastcmd}}
+\index{lastcmd@{lastcmd}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{lastcmd}{lastcmd}}
+{\footnotesize\ttfamily uint16\+\_\+t lastcmd}
+
+
+
+gpib current and last command 
+
+
+
+Definition at line 95 of file gpib.\+c.
+
+
+
+Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+state\+\_\+init(), and gpib\+\_\+task().
+
+\mbox{\Hypertarget{gpib_8h_a906eb6f6a81521d91f73f9ab2e03b02e}\label{gpib_8h_a906eb6f6a81521d91f73f9ab2e03b02e}} 
+\index{gpib.\+h@{gpib.\+h}!listening@{listening}}
+\index{listening@{listening}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{listening}{listening}}
+{\footnotesize\ttfamily uint8\+\_\+t listening}
+
+
+
+gpib listen address 
+
+
+
+Definition at line 88 of file gpib.\+c.
+
+\mbox{\Hypertarget{gpib_8h_a049cdc383eed2f97e4384a5728c00123}\label{gpib_8h_a049cdc383eed2f97e4384a5728c00123}} 
+\index{gpib.\+h@{gpib.\+h}!listening\+\_\+last@{listening\+\_\+last}}
+\index{listening\+\_\+last@{listening\+\_\+last}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{listening\+\_\+last}{listening\_last}}
+{\footnotesize\ttfamily uint8\+\_\+t listening\+\_\+last}
+
+
+
+gpib last listen address 
+
+
+
+Definition at line 90 of file gpib.\+c.
+
+
+
+Referenced by G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+state\+\_\+init(), and listen\+\_\+cleanup().
+
+\mbox{\Hypertarget{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}\label{gpib_8h_a25538708e408bbc21b380cb6f709f5d8}} 
+\index{gpib.\+h@{gpib.\+h}!secondary@{secondary}}
+\index{secondary@{secondary}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{secondary}{secondary}}
+{\footnotesize\ttfamily uint8\+\_\+t secondary}
+
+
+
+gpib secondary 
+
+
+
+Definition at line 98 of file gpib.\+c.
+
+
+
+Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), gpib\+\_\+state\+\_\+init(), and gpib\+\_\+task().
+
+\mbox{\Hypertarget{gpib_8h_a0205f89c3878a7a6cb4ee1f75de35fb3}\label{gpib_8h_a0205f89c3878a7a6cb4ee1f75de35fb3}} 
+\index{gpib.\+h@{gpib.\+h}!spoll@{spoll}}
+\index{spoll@{spoll}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{spoll}{spoll}}
+{\footnotesize\ttfamily uint8\+\_\+t spoll}
+
+
+
+gpib serial poll status 
+
+
+
+Definition at line 93 of file gpib.\+c.
+
+\mbox{\Hypertarget{gpib_8h_ab80645c1c89c0842fa2e440cb2229c24}\label{gpib_8h_ab80645c1c89c0842fa2e440cb2229c24}} 
+\index{gpib.\+h@{gpib.\+h}!talk31@{talk31}}
+\index{talk31@{talk31}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{talk31}{talk31}}
+{\footnotesize\ttfamily uint8\+\_\+t talk31}
+
+\mbox{\Hypertarget{gpib_8h_acef501d1e292f230efac5ed0cddf90e8}\label{gpib_8h_acef501d1e292f230efac5ed0cddf90e8}} 
+\index{gpib.\+h@{gpib.\+h}!talking@{talking}}
+\index{talking@{talking}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{talking}{talking}}
+{\footnotesize\ttfamily uint8\+\_\+t talking}
+
+
+
+gpib talk address 
+
+
+
+Definition at line 83 of file gpib.\+c.
+
+\mbox{\Hypertarget{gpib_8h_a8f34b1ce42fbf3391219cfedde825495}\label{gpib_8h_a8f34b1ce42fbf3391219cfedde825495}} 
+\index{gpib.\+h@{gpib.\+h}!talking\+\_\+last@{talking\+\_\+last}}
+\index{talking\+\_\+last@{talking\+\_\+last}!gpib.\+h@{gpib.\+h}}
+\subsubsection{\texorpdfstring{talking\+\_\+last}{talking\_last}}
+{\footnotesize\ttfamily uint8\+\_\+t talking\+\_\+last}
+
+
+
+gpib last talk address 
+
+
+
+Definition at line 85 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+state\+\_\+init(), and G\+P\+I\+B\+\_\+\+T\+A\+L\+K().
+

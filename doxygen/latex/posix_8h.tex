@@ -1,0 +1,3779 @@
+\hypertarget{posix_8h}{}\section{posix/posix.h File Reference}
+\label{posix_8h}\index{posix/posix.\+h@{posix/posix.\+h}}
+
+
+P\+O\+S\+IX wrapper for Fat\+FS.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structstat}{stat}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structutimbuf}{utimbuf}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX utimbuf structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structdirent}{dirent}
+\item 
+struct \hyperlink{struct____file}{\+\_\+\+\_\+file}
+\begin{DoxyCompactList}\small\item\em F\+I\+LE type structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX}
+\item 
+\#define \hyperlink{posix_8h_afd709f201d7643c3909621f620ea648a}{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}~13
+\item 
+\#define \hyperlink{posix_8h_ae730c85752284268b39560df693cb207}{lstat}~\hyperlink{structstat}{stat}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8h_ae730c85752284268b39560df693cb207}{lstat()} \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{\+\_\+\+\_\+\+S\+RD}~0x0001      /$\ast$ O\+K to read $\ast$/
+\item 
+\#define \hyperlink{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{\+\_\+\+\_\+\+S\+WR}~0x0002      /$\ast$ O\+K to write $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a7934343459dfe68ced51599a7b9a316f}{\+\_\+\+\_\+\+S\+S\+TR}~0x0004      /$\ast$ this is an sprintf/snprintf string $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a4f8a55506b9fec8dff9442bec5a86dee}{\+\_\+\+\_\+\+S\+P\+GM}~0x0008      /$\ast$ fmt string is in progmem $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a37117409538ffeec47002d6580e4b703}{\+\_\+\+\_\+\+S\+E\+RR}~0x0010      /$\ast$ found error $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a63f42c2888ed9bd0f00ee25002ee3b02}{\+\_\+\+\_\+\+S\+E\+OF}~0x0020      /$\ast$ found E\+O\+F $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ad541703cea6b378290dcf2ea448d2879}{\+\_\+\+\_\+\+S\+U\+N\+G\+ET}~0x040      /$\ast$ ungetc() happened $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a910f0d9b3aff8a868393ce38fe91cc7d}{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC}~0x80      /$\ast$ handle is malloc()ed $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a4dc4d45e07d2abc899bcaf04b2846a87}{O\+\_\+\+A\+C\+C\+M\+O\+DE}~00000003 /$\ast$$<$ \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read}, \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write}, \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read}-\/\hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} modes $\ast$/
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX open modes -\/ no other combination are allowed. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a7a68c9ffaac7dbcd652225dd7c06a54b}{O\+\_\+\+R\+D\+O\+N\+LY}~00000000 /$\ast$$<$ Read only $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a11b644a8526139c4cc1850dac1271ced}{O\+\_\+\+W\+R\+O\+N\+LY}~00000001 /$\ast$$<$ Write only $\ast$/
+\item 
+\#define \hyperlink{posix_8h_abb0586253488ee61072b73557eeb873b}{O\+\_\+\+R\+D\+WR}~00000002 /$\ast$$<$ Read/Write $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a1cf6b1de1fffedaa1d26b189e9a8d2cc}{O\+\_\+\+C\+R\+E\+AT}~00000100 /$\ast$$<$ Create file only if it does not exist $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a9f5acfe79fafe14b6694447bd0e9f10b}{O\+\_\+\+E\+X\+CL}
+\item 
+\#define \hyperlink{posix_8h_a2e375ab32c7ef4581b026be28e4cc116}{O\+\_\+\+N\+O\+C\+T\+TY}~00000400 /$\ast$$<$ @todo $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ad1d67e453fb3031f40f8cd3403773813}{O\+\_\+\+T\+R\+U\+NC}~00001000 /$\ast$$<$ Truncate if exists $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ae036f789407d21f07b211552d67b3214}{O\+\_\+\+A\+P\+P\+E\+ND}~00002000 /$\ast$$<$ All writes are to \hyperlink{posix_8h_a59adc4c82490d23754cd39c2fb99b0da}{E\+OF} $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a39d33ce33804efd4d52606d59071c6d8}{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}~00004000 /$\ast$$<$ @todo $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a36fa9b2e726512bc17a7a6d3e39002be}{O\+\_\+\+B\+I\+N\+A\+RY}~00000004 /$\ast$$<$ Binary $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a9abb6d01b83e0bc5a6e2adeceb7dffd7}{O\+\_\+\+T\+E\+XT}~00000004 /$\ast$$<$ Text End Of Line translation $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ab5bee51e9ee68b83ab11d4b340f7200b}{S\+\_\+\+I\+F\+MT}~0170000  /$\ast$$<$ These bits determine file type.  $\ast$/
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX File types, see fstat and stat. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}{S\+\_\+\+I\+F\+D\+IR}~0040000  /$\ast$$<$ Directory.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}{S\+\_\+\+I\+F\+C\+HR}~0020000  /$\ast$$<$ Character device.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}{S\+\_\+\+I\+F\+B\+LK}~0060000  /$\ast$$<$ Block device.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}{S\+\_\+\+I\+F\+R\+EG}~0100000  /$\ast$$<$ Regular file.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a4966f25d9f03a7a06bc47ac729fd86cf}{S\+\_\+\+I\+F\+I\+FO}~0010000  /$\ast$$<$ F\+I\+F\+O.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_afef163ce62372757e84bd9fc88c07aad}{S\+\_\+\+I\+F\+L\+NK}~0120000  /$\ast$$<$ Symbolic link.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a28e80cd43106882904be148b2a397d42}{S\+\_\+\+I\+F\+S\+O\+CK}~0140000  /$\ast$$<$ Socket.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{S\+\_\+\+I\+R\+E\+AD}~0400     /$\ast$$<$ Read by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{S\+\_\+\+I\+W\+R\+I\+TE}~0200     /$\ast$$<$ Write by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{S\+\_\+\+I\+E\+X\+EC}~0100     /$\ast$$<$ Execute by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}(mode,  mask)~(((mode) \& \hyperlink{posix_8h_ab5bee51e9ee68b83ab11d4b340f7200b}{S\+\_\+\+I\+F\+MT}) == (mask))
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX File type test macros. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a3746cdc5aac871e6f6504fbcbd29ef1d}{S\+\_\+\+I\+S\+D\+IR}(mode)~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}{S\+\_\+\+I\+F\+D\+IR})
+\item 
+\#define \hyperlink{posix_8h_aae33be85d242a1317f972cf2b189f03d}{S\+\_\+\+I\+S\+C\+HR}(mode)~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}{S\+\_\+\+I\+F\+C\+HR})
+\item 
+\#define \hyperlink{posix_8h_a8b86a24d84c3cfce39cc832a017656ba}{S\+\_\+\+I\+S\+B\+LK}(mode)~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}{S\+\_\+\+I\+F\+B\+LK})
+\item 
+\#define \hyperlink{posix_8h_aad0f32c2c182238f2ff71c83e6ab65a0}{S\+\_\+\+I\+S\+R\+EG}(mode)~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}{S\+\_\+\+I\+F\+R\+EG})
+\item 
+\#define \hyperlink{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{S\+\_\+\+I\+R\+U\+SR}~\hyperlink{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{S\+\_\+\+I\+R\+E\+AD}                     /$\ast$$<$ Read by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{S\+\_\+\+I\+W\+U\+SR}~\hyperlink{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{S\+\_\+\+I\+W\+R\+I\+TE}                    /$\ast$$<$ Write by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_af10a35e3950795d6ee4e07157d000131}{S\+\_\+\+I\+X\+U\+SR}~\hyperlink{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{S\+\_\+\+I\+E\+X\+EC}                     /$\ast$$<$ Execute by owner.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_afe3da42e762f6362c93454682fad5eb5}{S\+\_\+\+I\+R\+W\+XU}~(\hyperlink{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{S\+\_\+\+I\+R\+E\+AD}$\vert$\hyperlink{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{S\+\_\+\+I\+W\+R\+I\+TE}$\vert$\hyperlink{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{S\+\_\+\+I\+E\+X\+EC})  /$\ast$$<$ Read,Write,Execute by owner $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{S\+\_\+\+I\+R\+G\+RP}~(\hyperlink{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{S\+\_\+\+I\+R\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Read by group.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{S\+\_\+\+I\+W\+G\+RP}~(\hyperlink{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{S\+\_\+\+I\+W\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Write by group.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{S\+\_\+\+I\+X\+G\+RP}~(\hyperlink{posix_8h_af10a35e3950795d6ee4e07157d000131}{S\+\_\+\+I\+X\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Execute by group.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a230c642d2bb81f15f85c122b1883de5c}{S\+\_\+\+I\+R\+W\+XG}~(\hyperlink{posix_8h_afe3da42e762f6362c93454682fad5eb5}{S\+\_\+\+I\+R\+W\+XU} $>$$>$ 3)              /$\ast$$<$ Read,Write,Execute by user $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a071147a0cb995036967c80f64b1f74b9}{S\+\_\+\+I\+R\+O\+TH}~(\hyperlink{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{S\+\_\+\+I\+R\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Read by others.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a5303f49f26293acdb9533756c78322fb}{S\+\_\+\+I\+W\+O\+TH}~(\hyperlink{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{S\+\_\+\+I\+W\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Write by others.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}{S\+\_\+\+I\+X\+O\+TH}~(\hyperlink{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{S\+\_\+\+I\+X\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Execute by others.  $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a5b93e0da7fe32bbd4926626bffad96b1}{S\+\_\+\+I\+R\+W\+XO}~(\hyperlink{posix_8h_a230c642d2bb81f15f85c122b1883de5c}{S\+\_\+\+I\+R\+W\+XG} $>$$>$ 3)              /$\ast$$<$ Read,Write,Execute by other $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a28002092a0615e21c9943a426e81015f}{modecmp}(str,  pat)~(\hyperlink{stringsup_8h_abee00aec80e542c31b536a531ffe761a}{strcmp}(str, pat) == 0 ? 1\+: 0)
+\begin{DoxyCompactList}\small\item\em used in \hyperlink{posix_8c}{posix.\+c} to compare to ascii file modes \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_ac5a6f01348af03d4c2cdd9d557880c4d}{F\+A\+T\+F\+S\+\_\+R}~(\hyperlink{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{S\+\_\+\+I\+R\+U\+SR} $\vert$ \hyperlink{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{S\+\_\+\+I\+R\+G\+RP} $\vert$ \hyperlink{posix_8h_a071147a0cb995036967c80f64b1f74b9}{S\+\_\+\+I\+R\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Read perms $\ast$/
+\begin{DoxyCompactList}\small\item\em \hyperlink{structFATFS}{F\+A\+T\+FS} open modes. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a58a8434d968e434626088e2dc6ae6124}{F\+A\+T\+F\+S\+\_\+W}~(\hyperlink{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{S\+\_\+\+I\+W\+U\+SR} $\vert$ \hyperlink{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{S\+\_\+\+I\+W\+G\+RP} $\vert$ \hyperlink{posix_8h_a5303f49f26293acdb9533756c78322fb}{S\+\_\+\+I\+W\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Write perms $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a0a88f1032e29e7cc97a96b40cdc996a5}{F\+A\+T\+F\+S\+\_\+X}~(\hyperlink{posix_8h_af10a35e3950795d6ee4e07157d000131}{S\+\_\+\+I\+X\+U\+SR} $\vert$ \hyperlink{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{S\+\_\+\+I\+X\+G\+RP} $\vert$ \hyperlink{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}{S\+\_\+\+I\+X\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Execute perms $\ast$/
+\item 
+\#define \hyperlink{posix_8h_a59adc4c82490d23754cd39c2fb99b0da}{E\+OF}~(-\/1)
+\begin{DoxyCompactList}\small\item\em End of file or device read. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a0d112bae8fd35be772185b6ec6bcbe64}{S\+E\+E\+K\+\_\+\+S\+ET}~0
+\begin{DoxyCompactList}\small\item\em Seek offset macros. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a4c8d0b76b470ba65a43ca46a88320f39}{S\+E\+E\+K\+\_\+\+C\+UR}~1
+\item 
+\#define \hyperlink{posix_8h_ad2a2e6c114780c3071efd24f16c7f7d8}{S\+E\+E\+K\+\_\+\+E\+ND}~2
+\item 
+\#define \hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}~16
+\begin{DoxyCompactList}\small\item\em Maximum number of P\+O\+S\+IX file handles. \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_aaca70138f0cb63ddb026921afc635179}{stdin}~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}0\mbox{]})
+\begin{DoxyCompactList}\small\item\em define stdin, stdout and stderr \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a0c0ef221f95f64e8632451312fd18cc8}{stdout}~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}1\mbox{]})
+\item 
+\#define \hyperlink{posix_8h_a5ce35bd5ba5021fd3b2e951e8f497656}{stderr}~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}2\mbox{]})
+\item 
+\#define \hyperlink{posix_8h_a793fcb8f10b6b8746d4186012929ddf1}{fdev\+\_\+set\+\_\+udata}(stream,  u)~do \{ (stream)-\/$>$udata = u; \} while(0)
+\begin{DoxyCompactList}\small\item\em device IO udata \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_ac04f5faa8e86a4ce4ae084d85386af40}{fdev\+\_\+get\+\_\+udata}(stream)~((stream)-\/$>$udata)
+\item 
+\#define \hyperlink{posix_8h_a280c47b9edff2751b8dbb9a715dc44c5}{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF}~(-\/1)
+\begin{DoxyCompactList}\small\item\em device status flags \end{DoxyCompactList}\item 
+\#define \hyperlink{posix_8h_a132917c782a0ba854c3ae9abe57c3b12}{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}~(-\/2)
+\item 
+\#define \hyperlink{posix_8h_a79826a1c733e4f67843256d34ad64352}{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD}~\hyperlink{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{\+\_\+\+\_\+\+S\+RD}
+\item 
+\#define \hyperlink{posix_8h_a822a791a1c06a12b95c14ace75b48ad2}{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE}~\hyperlink{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{\+\_\+\+\_\+\+S\+WR}
+\item 
+\#define \hyperlink{posix_8h_a93db55caeeaf13488a635f8896a6bdf3}{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW}~(\hyperlink{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{\+\_\+\+\_\+\+S\+RD}$\vert$\hyperlink{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{\+\_\+\+\_\+\+S\+WR})
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_a451f1b5788fa7cc5d33db47a5992e7a6}{dev\+\_\+t}
+\begin{DoxyCompactList}\small\item\em make sure we use our E\+D\+OM and E\+R\+A\+N\+GE values \end{DoxyCompactList}\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_aed4e918b44240739869c4bdb1c4787a9}{ino\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_a9e3c03dae15b90102eb1770dd95adadc}{nlink\+\_\+t}
+\item 
+typedef uint16\+\_\+t \hyperlink{posix_8h_a0f43c63879b4ab6960f41e756392c77d}{uid\+\_\+t}
+\item 
+typedef uint16\+\_\+t \hyperlink{posix_8h_a5569b17fdf47f9bb7e3b4b94aa083c39}{gid\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_a2706f994576080967d7633282dfcabbf}{blkcnt\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_a390f3028d0805a15c3d28ee27439c389}{blksize\+\_\+t}
+\item 
+typedef uint32\+\_\+t \hyperlink{posix_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}
+\item 
+typedef int32\+\_\+t \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t}
+\item 
+typedef struct \hyperlink{structutimbuf}{utimbuf} \hyperlink{posix_8h_ab29c02d05027f32f3f17bee2e4839777}{utime\+\_\+t}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX utimbuf structure. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structdirent}{dirent} \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t}
+\item 
+typedef struct \hyperlink{struct____file}{\+\_\+\+\_\+file} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}
+\begin{DoxyCompactList}\small\item\em define F\+I\+LE type \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6a}{P\+O\+S\+I\+X\+\_\+errno} \{ \newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669}{E\+OK}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267}{E\+P\+E\+RM}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a}{E\+N\+O\+E\+NT}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4e376a13d0c1557d399f473218915625}{E\+S\+R\+CH}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cc241d56d59d11ceea8efc37bec8ed4}{E\+I\+N\+TR}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6d2c32b1730ea078f2802b34b1258a4c}{E\+IO}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb}{E\+N\+X\+IO}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa755e0cbde2880a406893ad61304bac29}{E2\+B\+IG}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aadabd09d64c920a9a75f60165fda651d5}{E\+N\+O\+E\+X\+EC}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369}{E\+B\+A\+DF}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae63e89f8fc44ef75addd0c1acc9c4828}{E\+C\+H\+I\+LD}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4bde0de54c0b708a605ed5095959c14e}{E\+A\+G\+A\+IN}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca}{E\+N\+O\+M\+EM}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98}{E\+A\+C\+C\+ES}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf740610de680c2861ac4042ad4485d15}{E\+F\+A\+U\+LT}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaee10bd01c67a10db950db7d8b814ef3e}{E\+N\+O\+T\+B\+LK}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b}{E\+B\+U\+SY}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa523e02a73d840e490c14a179a997627e}{E\+E\+X\+I\+ST}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa953d85d9cf4a55d49811d920c169eded}{E\+X\+D\+EV}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae350307a3417656c8cabc816ba8d07cd}{E\+N\+O\+D\+EV}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cd7a7b948ee085bbaeb2a210b412d6e}{E\+N\+O\+T\+D\+IR}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6a73363cf3fa4dc0d77c4cb3b9d83321}{E\+I\+S\+D\+IR}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8}{E\+I\+N\+V\+AL}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8}{E\+N\+F\+I\+LE}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf}{E\+M\+F\+I\+LE}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf3dc036138d242739c3dbe36c5dfa095}{E\+N\+O\+T\+TY}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa83ea4e18eaac3a62036e1b5723d6e353}{E\+T\+X\+T\+B\+SY}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3d9f70d8ebd10e9d4aa420b9cb22cb53}{E\+F\+B\+IG}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb}{E\+N\+O\+S\+PC}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e5433f0863ce3470329184a3ee495a7}{E\+S\+P\+I\+PE}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31}{E\+R\+O\+FS}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae8a4cdbd60a66eb9705bcb0a655e94fe}{E\+M\+L\+I\+NK}, 
+\newline
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae573afaecfe768915268b5c70823ee70}{E\+P\+I\+PE}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa21e6505c229a4508912c375435eb86a8}{E\+D\+OM}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3ffb99860526d55ef132365553694c3d}{E\+R\+A\+N\+GE}, 
+\hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa952ba8aa5afef31b7893ed91ae13a56c}{E\+B\+A\+D\+M\+SG}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a31986cce890109c211ccb14151aafd0e}{isatty} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a1d2fa24415329171e6765ed5309b6edd}{fgetc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Get byte from a T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Put a byte to T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$put = fatfs\+\_\+outc() for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ab38efc888190556f106cafb08d17d16f}{getchar} (void)
+\begin{DoxyCompactList}\small\item\em functions normally defined as macros \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} (int c)
+\begin{DoxyCompactList}\small\item\em put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_af979e8f6598be71d68be7cc49a41626b}{ungetc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Un-\/\+Get byte from a T\+TY device or Fat\+Fs file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ae59fd612372df957f59fb3cdcbd8b9e9}{putc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a3759827e157badd49d076bd157f508d9}{fgets} (char $\ast$str, int size, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em get a string from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a30a4070a8b1719d53cb01dd4b2a65069}{fputs} (const char $\ast$str, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_aa360dd5203b246757abc21253ed8eb2e}{puts} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_af98213e7457dbe734d81d34758d2b505}{feof} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em feof reports if the stream is at E\+OF \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_acb9e5741c01183dfe3179d646b264e5b}{fgetpos} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$pos)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get position of file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ad31144743f0014784193221563ca8dd2}{fseek} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, long offset, int whence)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file possition. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a8705d74fe77c1b23824074ecd14be1c7}{fsetpos} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$pos)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX set position of file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix_8h_af53dca187c78408fe2f1958c4eb88603}{ftell} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX file position of open stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} \hyperlink{posix_8h_abb875e56516d235a6aaf69951444cc63}{lseek} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno}, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} position, int whence)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file position. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_a35e6a58f44d4651951ecfeb97f369884}{rewind} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rewind file to the beginning. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a48dc1df1627501d3faed4bf1f9801759}{close} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Close a file with fileno handel. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX stream pointer to P\+O\+S\+IX fileno (index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}) \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8h_a2c01fe0e0aa550b2a8b4dcc326983b57}{fileno\+\_\+to\+\_\+stream} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream pointer. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8h_a8e661c338f41695d1a1e70aed6255e2d}{fopen} (const char $\ast$path, const char $\ast$mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Open a file with path name and ascii file mode string. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{posix_8h_a01233ac8fd574e20b0b38472adbee551}{fread} (void $\ast$ptr, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a474e4e6cac62ef12c66b8a597c14e5f6}{ftruncate} (int fd, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate open file to length. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{posix_8h_a148630cbecc0822d9395f002691ffe75}{fwrite} (const void $\ast$ptr, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX write nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open} (const char $\ast$pathname, int flags)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Open a file with integer mode flags. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read} (int fd, const void $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} count)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_a8f7f00d4ec0d99440762b0a664aebf70}{sync} (void)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync all pending file changes and metadata on A\+LL files. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a521c33bdb3606c9f3546b9cbcd37b9ac}{syncfs} (int fd)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync pending file changes and metadata for specified fileno. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a73a95c4a93875be906e573c00b30c5ea}{truncate} (const char $\ast$path, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate named file to length. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} (int fd, const void $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} count)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Write count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ad6fd240fec1d65213f34b6e6465a8033}{fclose} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX close a file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_a111f2e6e6bc9f0a46210a323cab093c7}{dump\+\_\+stat} (struct \hyperlink{structstat}{stat} $\ast$sp)
+\begin{DoxyCompactList}\small\item\em Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a39eea0b104438afa9ca0500c2e8d6887}{mctime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} timev)
+\begin{DoxyCompactList}\small\item\em Display Ascii formatted time from timev seconds N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_abef70bf7a4af8a1f4998db0035c51781}{stat} (char $\ast$name, struct \hyperlink{structstat}{stat} $\ast$buf)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat -\/ get file status of named file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}{basename} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Basename of filename. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a0b33c90b99d00a8bd2595f254d1409e1}{baseext} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em File extention of a file name. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a9c74403d1a11692bcab2c9ab7de4b0d3}{chdir} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX change directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a43b14410cd7b1b67c7834ad2d6a193ce}{chmod} (const char $\ast$pathname, \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t} mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX chmod function -\/ change file access permission Unfortunately file f\+\_\+open modes and f\+\_\+chmod modes are not the same Files that are open have way more options -\/ but only while the file is open. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a26a07a3db060ffc5659fe03495a29a1c}{dirname} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX directory name of a filename. Return the index of the last \textquotesingle{}/\textquotesingle{} character. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a732642e09075838bbbca28b3529f13db}{utime} (const char $\ast$filename, const struct \hyperlink{structutimbuf}{utimbuf} $\ast$times)
+\begin{DoxyCompactList}\small\item\em Set Modification and Access time of a file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a6411298bb01166960f5a0378ac0fdb82}{getcwd} (char $\ast$pathname, int len)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get current working directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a8b57a7ee1ba139c636477cf2998e8b1e}{mkdir} (const char $\ast$pathname, \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t} mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX make a directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ada8cc8f9394cf54db8f338838a9fa7ce}{rename} (const char $\ast$oldpath, const char $\ast$newpath)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rename a file by name. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a6080dee579486f132062435577b77d10}{rmdir} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_aa964d662c19b2021d9cfd0c71bc686bd}{unlink} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a file. \end{DoxyCompactList}\item 
+int \hyperlink{posix_8h_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}{closedir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX closedir. \end{DoxyCompactList}\item 
+\hyperlink{structDIR}{D\+IR} $\ast$ \hyperlink{posix_8h_a19051b9081dfef221d9bf4583e935031}{opendir} (const char $\ast$pathdir)
+\item 
+struct \hyperlink{structdirent}{dirent} $\ast$ \hyperlink{posix_8h_a58257faf8b13b3f14558613c632b2373}{readdir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_a03baa4d851a2a855656081a4b7c8d72c}{clrerror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em clrerror resets stream E\+OF and error flags \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ac37bff9f639fa95401b71839bbabd9a0}{ferror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em ferror reports if the stream has an error flag set \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_a4ce26afbb10890d31c53a8ff76d992e3}{perror} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} $\ast$ \hyperlink{posix_8h_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror} (int errnum)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8h_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r} (int errnum, char $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} buflen)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8h_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen} (int($\ast$put)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$), int($\ast$get)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$))
+\begin{DoxyCompactList}\small\item\em Device open functions. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_aa1efac33e58ea2abd4cad808e05eb6dd}{mkfs} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Formt SD card. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc()} to put a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc()} \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_ac20f0fc565c27bbbb900bde3337b09b9}{fatfs\+\_\+to\+\_\+errno} (\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} Result)
+\begin{DoxyCompactList}\small\item\em Convert Faf\+Fs error result to P\+O\+S\+IX errno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a81f14429660ca6a685676d6ceaf5350c}{fatfs\+\_\+to\+\_\+fileno} (\hyperlink{structFIL}{F\+IL} $\ast$fh)
+\begin{DoxyCompactList}\small\item\em Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8h_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (uint16\+\_\+t date, uint16\+\_\+t \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}{unix\+\_\+time\+\_\+to\+\_\+fat} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} epoch, uint16\+\_\+t $\ast$date, uint16\+\_\+t $\ast$\hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8h_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Free P\+O\+S\+IX fileno F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_abab788c42cce343cde2f5b8f90015229}{new\+\_\+file\+\_\+descriptor} (void)
+\begin{DoxyCompactList}\small\item\em Allocate a P\+O\+S\+IX F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a607feb06d296e0ff60d5a19538bd17fc}{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open} (const char $\ast$mode)
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fopen mode to P\+O\+S\+IX open mode flags. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8h_a91ade11061b9b43b1edd37ff32f76591}{fprintf} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$fp, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em fprintf function Example user defined printf function using fputc for I/O This method allows I/O to devices and strings without typical C++ overhead \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob} \mbox{[}\hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}\mbox{]}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+O\+S\+IX wrapper for Fat\+FS. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for specific Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix_8h_a63f42c2888ed9bd0f00ee25002ee3b02}\label{posix_8h_a63f42c2888ed9bd0f00ee25002ee3b02}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+E\+OF@{\+\_\+\+\_\+\+S\+E\+OF}}
+\index{\+\_\+\+\_\+\+S\+E\+OF@{\+\_\+\+\_\+\+S\+E\+OF}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+E\+OF}{\_\_SEOF}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+E\+OF~0x0020      /$\ast$ found E\+O\+F $\ast$/}
+
+
+
+Definition at line 165 of file posix.\+h.
+
+
+
+Referenced by clrerror(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), feof(), fgetc(), and ungetc().
+
+\mbox{\Hypertarget{posix_8h_a37117409538ffeec47002d6580e4b703}\label{posix_8h_a37117409538ffeec47002d6580e4b703}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+E\+RR@{\+\_\+\+\_\+\+S\+E\+RR}}
+\index{\+\_\+\+\_\+\+S\+E\+RR@{\+\_\+\+\_\+\+S\+E\+RR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+E\+RR}{\_\_SERR}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+E\+RR~0x0010      /$\ast$ found error $\ast$/}
+
+
+
+Definition at line 164 of file posix.\+h.
+
+
+
+Referenced by clrerror(), ferror(), and fgetc().
+
+\mbox{\Hypertarget{posix_8h_a910f0d9b3aff8a868393ce38fe91cc7d}\label{posix_8h_a910f0d9b3aff8a868393ce38fe91cc7d}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC@{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC}}
+\index{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC@{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC}{\_\_SMALLOC}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+M\+A\+L\+L\+OC~0x80      /$\ast$ handle is malloc()ed $\ast$/}
+
+
+
+Definition at line 167 of file posix.\+h.
+
+
+
+Referenced by fdevopen(), and free\+\_\+file\+\_\+descriptor().
+
+\mbox{\Hypertarget{posix_8h_a4f8a55506b9fec8dff9442bec5a86dee}\label{posix_8h_a4f8a55506b9fec8dff9442bec5a86dee}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+P\+GM@{\+\_\+\+\_\+\+S\+P\+GM}}
+\index{\+\_\+\+\_\+\+S\+P\+GM@{\+\_\+\+\_\+\+S\+P\+GM}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+P\+GM}{\_\_SPGM}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+P\+GM~0x0008      /$\ast$ fmt string is in progmem $\ast$/}
+
+
+
+Definition at line 163 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}\label{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+RD@{\+\_\+\+\_\+\+S\+RD}}
+\index{\+\_\+\+\_\+\+S\+RD@{\+\_\+\+\_\+\+S\+RD}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+RD}{\_\_SRD}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+RD~0x0001      /$\ast$ O\+K to read $\ast$/}
+
+
+
+Definition at line 160 of file posix.\+h.
+
+
+
+Referenced by fdevopen(), fgetc(), and ungetc().
+
+\mbox{\Hypertarget{posix_8h_a7934343459dfe68ced51599a7b9a316f}\label{posix_8h_a7934343459dfe68ced51599a7b9a316f}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+S\+TR@{\+\_\+\+\_\+\+S\+S\+TR}}
+\index{\+\_\+\+\_\+\+S\+S\+TR@{\+\_\+\+\_\+\+S\+S\+TR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+S\+TR}{\_\_SSTR}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+S\+TR~0x0004      /$\ast$ this is an sprintf/snprintf string $\ast$/}
+
+
+
+Definition at line 162 of file posix.\+h.
+
+
+
+Referenced by fgetc(), and fputc().
+
+\mbox{\Hypertarget{posix_8h_ad541703cea6b378290dcf2ea448d2879}\label{posix_8h_ad541703cea6b378290dcf2ea448d2879}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+U\+N\+G\+ET@{\+\_\+\+\_\+\+S\+U\+N\+G\+ET}}
+\index{\+\_\+\+\_\+\+S\+U\+N\+G\+ET@{\+\_\+\+\_\+\+S\+U\+N\+G\+ET}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+U\+N\+G\+ET}{\_\_SUNGET}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+U\+N\+G\+ET~0x040      /$\ast$ ungetc() happened $\ast$/}
+
+
+
+Definition at line 166 of file posix.\+h.
+
+
+
+Referenced by fgetc(), lseek(), read(), syncfs(), and ungetc().
+
+\mbox{\Hypertarget{posix_8h_af08f227b04a8833c49ce8b798ca7f403}\label{posix_8h_af08f227b04a8833c49ce8b798ca7f403}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+\+S\+WR@{\+\_\+\+\_\+\+S\+WR}}
+\index{\+\_\+\+\_\+\+S\+WR@{\+\_\+\+\_\+\+S\+WR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+S\+WR}{\_\_SWR}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+S\+WR~0x0002      /$\ast$ O\+K to write $\ast$/}
+
+
+
+Definition at line 161 of file posix.\+h.
+
+
+
+Referenced by fdevopen(), and fputc().
+
+\mbox{\Hypertarget{posix_8h_a280c47b9edff2751b8dbb9a715dc44c5}\label{posix_8h_a280c47b9edff2751b8dbb9a715dc44c5}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF}}
+\index{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF}{\_FDEV\_EOF}}
+{\footnotesize\ttfamily \#define \+\_\+\+F\+D\+E\+V\+\_\+\+E\+OF~(-\/1)}
+
+
+
+device status flags 
+
+
+
+Definition at line 295 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a132917c782a0ba854c3ae9abe57c3b12}\label{posix_8h_a132917c782a0ba854c3ae9abe57c3b12}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}}
+\index{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR@{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR}{\_FDEV\_ERR}}
+{\footnotesize\ttfamily \#define \+\_\+\+F\+D\+E\+V\+\_\+\+E\+RR~(-\/2)}
+
+
+
+Definition at line 296 of file posix.\+h.
+
+
+
+Referenced by fgetc().
+
+\mbox{\Hypertarget{posix_8h_a79826a1c733e4f67843256d34ad64352}\label{posix_8h_a79826a1c733e4f67843256d34ad64352}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD}}
+\index{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD}{\_FDEV\_SETUP\_READ}}
+{\footnotesize\ttfamily \#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+R\+E\+AD~\hyperlink{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{\+\_\+\+\_\+\+S\+RD}}
+
+fdev\+\_\+setup\+\_\+stream() with read intent 
+
+Definition at line 298 of file posix.\+h.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_a93db55caeeaf13488a635f8896a6bdf3}\label{posix_8h_a93db55caeeaf13488a635f8896a6bdf3}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW}}
+\index{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW}{\_FDEV\_SETUP\_RW}}
+{\footnotesize\ttfamily \#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+RW~(\hyperlink{posix_8h_a9a9bfdbe4548d021af62fb947d2b6b82}{\+\_\+\+\_\+\+S\+RD}$\vert$\hyperlink{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{\+\_\+\+\_\+\+S\+WR})}
+
+fdev\+\_\+setup\+\_\+stream() with read/write intent 
+
+Definition at line 300 of file posix.\+h.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_a822a791a1c06a12b95c14ace75b48ad2}\label{posix_8h_a822a791a1c06a12b95c14ace75b48ad2}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE}}
+\index{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE@{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE}{\_FDEV\_SETUP\_WRITE}}
+{\footnotesize\ttfamily \#define \+\_\+\+F\+D\+E\+V\+\_\+\+S\+E\+T\+U\+P\+\_\+\+W\+R\+I\+TE~\hyperlink{posix_8h_af08f227b04a8833c49ce8b798ca7f403}{\+\_\+\+\_\+\+S\+WR}}
+
+fdev\+\_\+setup\+\_\+stream() with write intent 
+
+Definition at line 299 of file posix.\+h.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_a59adc4c82490d23754cd39c2fb99b0da}\label{posix_8h_a59adc4c82490d23754cd39c2fb99b0da}} 
+\index{posix.\+h@{posix.\+h}!E\+OF@{E\+OF}}
+\index{E\+OF@{E\+OF}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{E\+OF}{EOF}}
+{\footnotesize\ttfamily \#define E\+OF~(-\/1)}
+
+
+
+End of file or device read. 
+
+
+
+Definition at line 248 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ac5a6f01348af03d4c2cdd9d557880c4d}\label{posix_8h_ac5a6f01348af03d4c2cdd9d557880c4d}} 
+\index{posix.\+h@{posix.\+h}!F\+A\+T\+F\+S\+\_\+R@{F\+A\+T\+F\+S\+\_\+R}}
+\index{F\+A\+T\+F\+S\+\_\+R@{F\+A\+T\+F\+S\+\_\+R}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{F\+A\+T\+F\+S\+\_\+R}{FATFS\_R}}
+{\footnotesize\ttfamily \#define F\+A\+T\+F\+S\+\_\+R~(\hyperlink{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{S\+\_\+\+I\+R\+U\+SR} $\vert$ \hyperlink{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{S\+\_\+\+I\+R\+G\+RP} $\vert$ \hyperlink{posix_8h_a071147a0cb995036967c80f64b1f74b9}{S\+\_\+\+I\+R\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Read perms $\ast$/}
+
+
+
+\hyperlink{structFATFS}{F\+A\+T\+FS} open modes. 
+
+
+
+Definition at line 242 of file posix.\+h.
+
+
+
+Referenced by stat().
+
+\mbox{\Hypertarget{posix_8h_a58a8434d968e434626088e2dc6ae6124}\label{posix_8h_a58a8434d968e434626088e2dc6ae6124}} 
+\index{posix.\+h@{posix.\+h}!F\+A\+T\+F\+S\+\_\+W@{F\+A\+T\+F\+S\+\_\+W}}
+\index{F\+A\+T\+F\+S\+\_\+W@{F\+A\+T\+F\+S\+\_\+W}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{F\+A\+T\+F\+S\+\_\+W}{FATFS\_W}}
+{\footnotesize\ttfamily \#define F\+A\+T\+F\+S\+\_\+W~(\hyperlink{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{S\+\_\+\+I\+W\+U\+SR} $\vert$ \hyperlink{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{S\+\_\+\+I\+W\+G\+RP} $\vert$ \hyperlink{posix_8h_a5303f49f26293acdb9533756c78322fb}{S\+\_\+\+I\+W\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Write perms $\ast$/}
+
+
+
+Definition at line 243 of file posix.\+h.
+
+
+
+Referenced by stat().
+
+\mbox{\Hypertarget{posix_8h_a0a88f1032e29e7cc97a96b40cdc996a5}\label{posix_8h_a0a88f1032e29e7cc97a96b40cdc996a5}} 
+\index{posix.\+h@{posix.\+h}!F\+A\+T\+F\+S\+\_\+X@{F\+A\+T\+F\+S\+\_\+X}}
+\index{F\+A\+T\+F\+S\+\_\+X@{F\+A\+T\+F\+S\+\_\+X}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{F\+A\+T\+F\+S\+\_\+X}{FATFS\_X}}
+{\footnotesize\ttfamily \#define F\+A\+T\+F\+S\+\_\+X~(\hyperlink{posix_8h_af10a35e3950795d6ee4e07157d000131}{S\+\_\+\+I\+X\+U\+SR} $\vert$ \hyperlink{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{S\+\_\+\+I\+X\+G\+RP} $\vert$ \hyperlink{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}{S\+\_\+\+I\+X\+O\+TH})   /$\ast$$<$ \hyperlink{ff_8c_a0eeaf4cd8426fce14e6a07468c076f31}{Fat\+Fs} Execute perms $\ast$/}
+
+
+
+Definition at line 244 of file posix.\+h.
+
+
+
+Referenced by stat().
+
+\mbox{\Hypertarget{posix_8h_ac04f5faa8e86a4ce4ae084d85386af40}\label{posix_8h_ac04f5faa8e86a4ce4ae084d85386af40}} 
+\index{posix.\+h@{posix.\+h}!fdev\+\_\+get\+\_\+udata@{fdev\+\_\+get\+\_\+udata}}
+\index{fdev\+\_\+get\+\_\+udata@{fdev\+\_\+get\+\_\+udata}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fdev\+\_\+get\+\_\+udata}{fdev\_get\_udata}}
+{\footnotesize\ttfamily \#define fdev\+\_\+get\+\_\+udata(\begin{DoxyParamCaption}\item[{}]{stream }\end{DoxyParamCaption})~((stream)-\/$>$udata)}
+
+
+
+Definition at line 292 of file posix.\+h.
+
+
+
+Referenced by fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), fileno\+\_\+to\+\_\+fatfs(), and free\+\_\+file\+\_\+descriptor().
+
+\mbox{\Hypertarget{posix_8h_a793fcb8f10b6b8746d4186012929ddf1}\label{posix_8h_a793fcb8f10b6b8746d4186012929ddf1}} 
+\index{posix.\+h@{posix.\+h}!fdev\+\_\+set\+\_\+udata@{fdev\+\_\+set\+\_\+udata}}
+\index{fdev\+\_\+set\+\_\+udata@{fdev\+\_\+set\+\_\+udata}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fdev\+\_\+set\+\_\+udata}{fdev\_set\_udata}}
+{\footnotesize\ttfamily \#define fdev\+\_\+set\+\_\+udata(\begin{DoxyParamCaption}\item[{}]{stream,  }\item[{}]{u }\end{DoxyParamCaption})~do \{ (stream)-\/$>$udata = u; \} while(0)}
+
+
+
+device IO udata 
+
+
+
+Definition at line 291 of file posix.\+h.
+
+
+
+Referenced by new\+\_\+file\+\_\+descriptor().
+
+\mbox{\Hypertarget{posix_8h_ae730c85752284268b39560df693cb207}\label{posix_8h_ae730c85752284268b39560df693cb207}} 
+\index{posix.\+h@{posix.\+h}!lstat@{lstat}}
+\index{lstat@{lstat}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{lstat}{lstat}}
+{\footnotesize\ttfamily \#define lstat~\hyperlink{structstat}{stat}}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8h_ae730c85752284268b39560df693cb207}{lstat()} 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8h_abef70bf7a4af8a1f4998db0035c51781}{stat()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 153 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}\label{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}} 
+\index{posix.\+h@{posix.\+h}!M\+A\+X\+\_\+\+F\+I\+L\+ES@{M\+A\+X\+\_\+\+F\+I\+L\+ES}}
+\index{M\+A\+X\+\_\+\+F\+I\+L\+ES@{M\+A\+X\+\_\+\+F\+I\+L\+ES}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+F\+I\+L\+ES}{MAX\_FILES}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+F\+I\+L\+ES~16}
+
+
+
+Maximum number of P\+O\+S\+IX file handles. 
+
+
+
+Definition at line 260 of file posix.\+h.
+
+
+
+Referenced by fatfs\+\_\+to\+\_\+fileno(), fileno(), fileno\+\_\+to\+\_\+stream(), new\+\_\+file\+\_\+descriptor(), and sync().
+
+\mbox{\Hypertarget{posix_8h_afd709f201d7643c3909621f620ea648a}\label{posix_8h_afd709f201d7643c3909621f620ea648a}} 
+\index{posix.\+h@{posix.\+h}!M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN@{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}}
+\index{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN@{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}{MAX\_NAME\_LEN}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN~13}
+
+
+
+Definition at line 133 of file posix.\+h.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8h_a28002092a0615e21c9943a426e81015f}\label{posix_8h_a28002092a0615e21c9943a426e81015f}} 
+\index{posix.\+h@{posix.\+h}!modecmp@{modecmp}}
+\index{modecmp@{modecmp}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{modecmp}{modecmp}}
+{\footnotesize\ttfamily \#define modecmp(\begin{DoxyParamCaption}\item[{}]{str,  }\item[{}]{pat }\end{DoxyParamCaption})~(\hyperlink{stringsup_8h_abee00aec80e542c31b536a531ffe761a}{strcmp}(str, pat) == 0 ? 1\+: 0)}
+
+
+
+used in \hyperlink{posix_8c}{posix.\+c} to compare to ascii file modes 
+
+
+
+Definition at line 238 of file posix.\+h.
+
+
+
+Referenced by posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a4dc4d45e07d2abc899bcaf04b2846a87}\label{posix_8h_a4dc4d45e07d2abc899bcaf04b2846a87}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+A\+C\+C\+M\+O\+DE@{O\+\_\+\+A\+C\+C\+M\+O\+DE}}
+\index{O\+\_\+\+A\+C\+C\+M\+O\+DE@{O\+\_\+\+A\+C\+C\+M\+O\+DE}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+A\+C\+C\+M\+O\+DE}{O\_ACCMODE}}
+{\footnotesize\ttfamily \#define O\+\_\+\+A\+C\+C\+M\+O\+DE~00000003 /$\ast$$<$ \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read}, \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write}, \hyperlink{posix_8h_af104a2c05bef787e54c6925616e867df}{read}-\/\hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} modes $\ast$/}
+
+
+
+P\+O\+S\+IX open modes -\/ no other combination are allowed. 
+
+
+\begin{DoxyItemize}
+\item man page open(2)
+\item Note\+: The P\+O\+S\+IX correct test of O\+\_\+\+R\+D\+O\+N\+LY is\+: (mode \& O\+\_\+\+A\+C\+C\+M\+O\+DE) == O\+\_\+\+R\+D\+O\+N\+LY. 
+\end{DoxyItemize}
+
+Definition at line 186 of file posix.\+h.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_ae036f789407d21f07b211552d67b3214}\label{posix_8h_ae036f789407d21f07b211552d67b3214}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+A\+P\+P\+E\+ND@{O\+\_\+\+A\+P\+P\+E\+ND}}
+\index{O\+\_\+\+A\+P\+P\+E\+ND@{O\+\_\+\+A\+P\+P\+E\+ND}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+A\+P\+P\+E\+ND}{O\_APPEND}}
+{\footnotesize\ttfamily \#define O\+\_\+\+A\+P\+P\+E\+ND~00002000 /$\ast$$<$ All writes are to \hyperlink{posix_8h_a59adc4c82490d23754cd39c2fb99b0da}{E\+OF} $\ast$/}
+
+
+
+Definition at line 195 of file posix.\+h.
+
+
+
+Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a36fa9b2e726512bc17a7a6d3e39002be}\label{posix_8h_a36fa9b2e726512bc17a7a6d3e39002be}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+B\+I\+N\+A\+RY@{O\+\_\+\+B\+I\+N\+A\+RY}}
+\index{O\+\_\+\+B\+I\+N\+A\+RY@{O\+\_\+\+B\+I\+N\+A\+RY}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+B\+I\+N\+A\+RY}{O\_BINARY}}
+{\footnotesize\ttfamily \#define O\+\_\+\+B\+I\+N\+A\+RY~00000004 /$\ast$$<$ Binary $\ast$/}
+
+
+
+Definition at line 197 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a1cf6b1de1fffedaa1d26b189e9a8d2cc}\label{posix_8h_a1cf6b1de1fffedaa1d26b189e9a8d2cc}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+C\+R\+E\+AT@{O\+\_\+\+C\+R\+E\+AT}}
+\index{O\+\_\+\+C\+R\+E\+AT@{O\+\_\+\+C\+R\+E\+AT}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+C\+R\+E\+AT}{O\_CREAT}}
+{\footnotesize\ttfamily \#define O\+\_\+\+C\+R\+E\+AT~00000100 /$\ast$$<$ Create file only if it does not exist $\ast$/}
+
+
+
+Definition at line 190 of file posix.\+h.
+
+
+
+Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a9f5acfe79fafe14b6694447bd0e9f10b}\label{posix_8h_a9f5acfe79fafe14b6694447bd0e9f10b}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+E\+X\+CL@{O\+\_\+\+E\+X\+CL}}
+\index{O\+\_\+\+E\+X\+CL@{O\+\_\+\+E\+X\+CL}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+E\+X\+CL}{O\_EXCL}}
+{\footnotesize\ttfamily \#define O\+\_\+\+E\+X\+CL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+00000200 \textcolor{comment}{/*< O\_CREAT option, Create fails if file exists }
+\textcolor{comment}{*/}
+\end{DoxyCode}
+
+
+Definition at line 191 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a2e375ab32c7ef4581b026be28e4cc116}\label{posix_8h_a2e375ab32c7ef4581b026be28e4cc116}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+N\+O\+C\+T\+TY@{O\+\_\+\+N\+O\+C\+T\+TY}}
+\index{O\+\_\+\+N\+O\+C\+T\+TY@{O\+\_\+\+N\+O\+C\+T\+TY}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+N\+O\+C\+T\+TY}{O\_NOCTTY}}
+{\footnotesize\ttfamily \#define O\+\_\+\+N\+O\+C\+T\+TY~00000400 /$\ast$$<$ @todo $\ast$/}
+
+
+
+Definition at line 193 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a39d33ce33804efd4d52606d59071c6d8}\label{posix_8h_a39d33ce33804efd4d52606d59071c6d8}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+N\+O\+N\+B\+L\+O\+CK@{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}}
+\index{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK@{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+N\+O\+N\+B\+L\+O\+CK}{O\_NONBLOCK}}
+{\footnotesize\ttfamily \#define O\+\_\+\+N\+O\+N\+B\+L\+O\+CK~00004000 /$\ast$$<$ @todo $\ast$/}
+
+
+
+Definition at line 196 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a7a68c9ffaac7dbcd652225dd7c06a54b}\label{posix_8h_a7a68c9ffaac7dbcd652225dd7c06a54b}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+R\+D\+O\+N\+LY@{O\+\_\+\+R\+D\+O\+N\+LY}}
+\index{O\+\_\+\+R\+D\+O\+N\+LY@{O\+\_\+\+R\+D\+O\+N\+LY}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+R\+D\+O\+N\+LY}{O\_RDONLY}}
+{\footnotesize\ttfamily \#define O\+\_\+\+R\+D\+O\+N\+LY~00000000 /$\ast$$<$ Read only $\ast$/}
+
+
+
+Definition at line 187 of file posix.\+h.
+
+
+
+Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_abb0586253488ee61072b73557eeb873b}\label{posix_8h_abb0586253488ee61072b73557eeb873b}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+R\+D\+WR@{O\+\_\+\+R\+D\+WR}}
+\index{O\+\_\+\+R\+D\+WR@{O\+\_\+\+R\+D\+WR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+R\+D\+WR}{O\_RDWR}}
+{\footnotesize\ttfamily \#define O\+\_\+\+R\+D\+WR~00000002 /$\ast$$<$ Read/Write $\ast$/}
+
+
+
+Definition at line 189 of file posix.\+h.
+
+
+
+Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a9abb6d01b83e0bc5a6e2adeceb7dffd7}\label{posix_8h_a9abb6d01b83e0bc5a6e2adeceb7dffd7}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+T\+E\+XT@{O\+\_\+\+T\+E\+XT}}
+\index{O\+\_\+\+T\+E\+XT@{O\+\_\+\+T\+E\+XT}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+T\+E\+XT}{O\_TEXT}}
+{\footnotesize\ttfamily \#define O\+\_\+\+T\+E\+XT~00000004 /$\ast$$<$ Text End Of Line translation $\ast$/}
+
+
+
+Definition at line 198 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ad1d67e453fb3031f40f8cd3403773813}\label{posix_8h_ad1d67e453fb3031f40f8cd3403773813}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+T\+R\+U\+NC@{O\+\_\+\+T\+R\+U\+NC}}
+\index{O\+\_\+\+T\+R\+U\+NC@{O\+\_\+\+T\+R\+U\+NC}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+T\+R\+U\+NC}{O\_TRUNC}}
+{\footnotesize\ttfamily \#define O\+\_\+\+T\+R\+U\+NC~00001000 /$\ast$$<$ Truncate if exists $\ast$/}
+
+
+
+Definition at line 194 of file posix.\+h.
+
+
+
+Referenced by open(), and posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a11b644a8526139c4cc1850dac1271ced}\label{posix_8h_a11b644a8526139c4cc1850dac1271ced}} 
+\index{posix.\+h@{posix.\+h}!O\+\_\+\+W\+R\+O\+N\+LY@{O\+\_\+\+W\+R\+O\+N\+LY}}
+\index{O\+\_\+\+W\+R\+O\+N\+LY@{O\+\_\+\+W\+R\+O\+N\+LY}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{O\+\_\+\+W\+R\+O\+N\+LY}{O\_WRONLY}}
+{\footnotesize\ttfamily \#define O\+\_\+\+W\+R\+O\+N\+LY~00000001 /$\ast$$<$ Write only $\ast$/}
+
+
+
+Definition at line 188 of file posix.\+h.
+
+
+
+Referenced by posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open().
+
+\mbox{\Hypertarget{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}\label{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}} 
+\index{posix.\+h@{posix.\+h}!P\+O\+S\+IX@{P\+O\+S\+IX}}
+\index{P\+O\+S\+IX@{P\+O\+S\+IX}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{P\+O\+S\+IX}{POSIX}}
+{\footnotesize\ttfamily \#define P\+O\+S\+IX}
+
+
+
+Definition at line 30 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}\label{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+E\+X\+EC@{S\+\_\+\+I\+E\+X\+EC}}
+\index{S\+\_\+\+I\+E\+X\+EC@{S\+\_\+\+I\+E\+X\+EC}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+E\+X\+EC}{S\_IEXEC}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+E\+X\+EC~0100     /$\ast$$<$ Execute by owner.  $\ast$/}
+
+
+
+Definition at line 211 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}\label{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+B\+LK@{S\+\_\+\+I\+F\+B\+LK}}
+\index{S\+\_\+\+I\+F\+B\+LK@{S\+\_\+\+I\+F\+B\+LK}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+B\+LK}{S\_IFBLK}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+B\+LK~0060000  /$\ast$$<$ Block device.  $\ast$/}
+
+
+
+Definition at line 204 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}\label{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+C\+HR@{S\+\_\+\+I\+F\+C\+HR}}
+\index{S\+\_\+\+I\+F\+C\+HR@{S\+\_\+\+I\+F\+C\+HR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+C\+HR}{S\_IFCHR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+C\+HR~0020000  /$\ast$$<$ Character device.  $\ast$/}
+
+
+
+Definition at line 203 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}\label{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+D\+IR@{S\+\_\+\+I\+F\+D\+IR}}
+\index{S\+\_\+\+I\+F\+D\+IR@{S\+\_\+\+I\+F\+D\+IR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+D\+IR}{S\_IFDIR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+D\+IR~0040000  /$\ast$$<$ Directory.  $\ast$/}
+
+
+
+Definition at line 202 of file posix.\+h.
+
+
+
+Referenced by ls(), and stat().
+
+\mbox{\Hypertarget{posix_8h_a4966f25d9f03a7a06bc47ac729fd86cf}\label{posix_8h_a4966f25d9f03a7a06bc47ac729fd86cf}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+I\+FO@{S\+\_\+\+I\+F\+I\+FO}}
+\index{S\+\_\+\+I\+F\+I\+FO@{S\+\_\+\+I\+F\+I\+FO}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+I\+FO}{S\_IFIFO}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+I\+FO~0010000  /$\ast$$<$ F\+I\+F\+O.  $\ast$/}
+
+
+
+Definition at line 206 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_afef163ce62372757e84bd9fc88c07aad}\label{posix_8h_afef163ce62372757e84bd9fc88c07aad}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+L\+NK@{S\+\_\+\+I\+F\+L\+NK}}
+\index{S\+\_\+\+I\+F\+L\+NK@{S\+\_\+\+I\+F\+L\+NK}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+L\+NK}{S\_IFLNK}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+L\+NK~0120000  /$\ast$$<$ Symbolic link.  $\ast$/}
+
+
+
+Definition at line 207 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ab5bee51e9ee68b83ab11d4b340f7200b}\label{posix_8h_ab5bee51e9ee68b83ab11d4b340f7200b}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+MT@{S\+\_\+\+I\+F\+MT}}
+\index{S\+\_\+\+I\+F\+MT@{S\+\_\+\+I\+F\+MT}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+MT}{S\_IFMT}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+MT~0170000  /$\ast$$<$ These bits determine file type.  $\ast$/}
+
+
+
+P\+O\+S\+IX File types, see fstat and stat. 
+
+
+
+Definition at line 201 of file posix.\+h.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}\label{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+R\+EG@{S\+\_\+\+I\+F\+R\+EG}}
+\index{S\+\_\+\+I\+F\+R\+EG@{S\+\_\+\+I\+F\+R\+EG}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+R\+EG}{S\_IFREG}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+R\+EG~0100000  /$\ast$$<$ Regular file.  $\ast$/}
+
+
+
+Definition at line 205 of file posix.\+h.
+
+
+
+Referenced by ls(), and stat().
+
+\mbox{\Hypertarget{posix_8h_a28e80cd43106882904be148b2a397d42}\label{posix_8h_a28e80cd43106882904be148b2a397d42}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+F\+S\+O\+CK@{S\+\_\+\+I\+F\+S\+O\+CK}}
+\index{S\+\_\+\+I\+F\+S\+O\+CK@{S\+\_\+\+I\+F\+S\+O\+CK}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+F\+S\+O\+CK}{S\_IFSOCK}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+F\+S\+O\+CK~0140000  /$\ast$$<$ Socket.  $\ast$/}
+
+
+
+Definition at line 208 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a96c6486aa02a821aa4199525f5e79f60}\label{posix_8h_a96c6486aa02a821aa4199525f5e79f60}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+E\+AD@{S\+\_\+\+I\+R\+E\+AD}}
+\index{S\+\_\+\+I\+R\+E\+AD@{S\+\_\+\+I\+R\+E\+AD}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+E\+AD}{S\_IREAD}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+E\+AD~0400     /$\ast$$<$ Read by owner.  $\ast$/}
+
+
+
+Definition at line 209 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a4f5f280b929768113739fb34d6f7be8a}\label{posix_8h_a4f5f280b929768113739fb34d6f7be8a}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+G\+RP@{S\+\_\+\+I\+R\+G\+RP}}
+\index{S\+\_\+\+I\+R\+G\+RP@{S\+\_\+\+I\+R\+G\+RP}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+G\+RP}{S\_IRGRP}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+G\+RP~(\hyperlink{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}{S\+\_\+\+I\+R\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Read by group.  $\ast$/}
+
+
+
+Definition at line 226 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a071147a0cb995036967c80f64b1f74b9}\label{posix_8h_a071147a0cb995036967c80f64b1f74b9}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+O\+TH@{S\+\_\+\+I\+R\+O\+TH}}
+\index{S\+\_\+\+I\+R\+O\+TH@{S\+\_\+\+I\+R\+O\+TH}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+O\+TH}{S\_IROTH}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+O\+TH~(\hyperlink{posix_8h_a4f5f280b929768113739fb34d6f7be8a}{S\+\_\+\+I\+R\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Read by others.  $\ast$/}
+
+
+
+Definition at line 231 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}\label{posix_8h_a84c7dbf5cf2fdfb690f76348b60a8cb7}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+U\+SR@{S\+\_\+\+I\+R\+U\+SR}}
+\index{S\+\_\+\+I\+R\+U\+SR@{S\+\_\+\+I\+R\+U\+SR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+U\+SR}{S\_IRUSR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+U\+SR~\hyperlink{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{S\+\_\+\+I\+R\+E\+AD}                     /$\ast$$<$ Read by owner.  $\ast$/}
+
+
+
+Definition at line 221 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a230c642d2bb81f15f85c122b1883de5c}\label{posix_8h_a230c642d2bb81f15f85c122b1883de5c}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XG@{S\+\_\+\+I\+R\+W\+XG}}
+\index{S\+\_\+\+I\+R\+W\+XG@{S\+\_\+\+I\+R\+W\+XG}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+W\+XG}{S\_IRWXG}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+W\+XG~(\hyperlink{posix_8h_afe3da42e762f6362c93454682fad5eb5}{S\+\_\+\+I\+R\+W\+XU} $>$$>$ 3)              /$\ast$$<$ Read,Write,Execute by user $\ast$/}
+
+
+
+Definition at line 229 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a5b93e0da7fe32bbd4926626bffad96b1}\label{posix_8h_a5b93e0da7fe32bbd4926626bffad96b1}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XO@{S\+\_\+\+I\+R\+W\+XO}}
+\index{S\+\_\+\+I\+R\+W\+XO@{S\+\_\+\+I\+R\+W\+XO}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+W\+XO}{S\_IRWXO}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+W\+XO~(\hyperlink{posix_8h_a230c642d2bb81f15f85c122b1883de5c}{S\+\_\+\+I\+R\+W\+XG} $>$$>$ 3)              /$\ast$$<$ Read,Write,Execute by other $\ast$/}
+
+
+
+Definition at line 234 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_afe3da42e762f6362c93454682fad5eb5}\label{posix_8h_afe3da42e762f6362c93454682fad5eb5}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+R\+W\+XU@{S\+\_\+\+I\+R\+W\+XU}}
+\index{S\+\_\+\+I\+R\+W\+XU@{S\+\_\+\+I\+R\+W\+XU}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+R\+W\+XU}{S\_IRWXU}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+R\+W\+XU~(\hyperlink{posix_8h_a96c6486aa02a821aa4199525f5e79f60}{S\+\_\+\+I\+R\+E\+AD}$\vert$\hyperlink{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{S\+\_\+\+I\+W\+R\+I\+TE}$\vert$\hyperlink{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{S\+\_\+\+I\+E\+X\+EC})  /$\ast$$<$ Read,Write,Execute by owner $\ast$/}
+
+
+
+Definition at line 224 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a8b86a24d84c3cfce39cc832a017656ba}\label{posix_8h_a8b86a24d84c3cfce39cc832a017656ba}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+B\+LK@{S\+\_\+\+I\+S\+B\+LK}}
+\index{S\+\_\+\+I\+S\+B\+LK@{S\+\_\+\+I\+S\+B\+LK}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+S\+B\+LK}{S\_ISBLK}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+S\+B\+LK(\begin{DoxyParamCaption}\item[{}]{mode }\end{DoxyParamCaption})~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a5c5b74a1cb1a1ae83572500b94e1938f}{S\+\_\+\+I\+F\+B\+LK})}
+
+
+
+Definition at line 217 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_aae33be85d242a1317f972cf2b189f03d}\label{posix_8h_aae33be85d242a1317f972cf2b189f03d}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+C\+HR@{S\+\_\+\+I\+S\+C\+HR}}
+\index{S\+\_\+\+I\+S\+C\+HR@{S\+\_\+\+I\+S\+C\+HR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+S\+C\+HR}{S\_ISCHR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+S\+C\+HR(\begin{DoxyParamCaption}\item[{}]{mode }\end{DoxyParamCaption})~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_aef3a1d1ba22c83e30b5c834dd343b2a8}{S\+\_\+\+I\+F\+C\+HR})}
+
+
+
+Definition at line 216 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a3746cdc5aac871e6f6504fbcbd29ef1d}\label{posix_8h_a3746cdc5aac871e6f6504fbcbd29ef1d}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+D\+IR@{S\+\_\+\+I\+S\+D\+IR}}
+\index{S\+\_\+\+I\+S\+D\+IR@{S\+\_\+\+I\+S\+D\+IR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+S\+D\+IR}{S\_ISDIR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+S\+D\+IR(\begin{DoxyParamCaption}\item[{}]{mode }\end{DoxyParamCaption})~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a11fb0652b963a735f3377eb1c9239f2d}{S\+\_\+\+I\+F\+D\+IR})}
+
+
+
+Definition at line 215 of file posix.\+h.
+
+
+
+Referenced by dump\+\_\+stat(), and ls\+\_\+info().
+
+\mbox{\Hypertarget{posix_8h_aad0f32c2c182238f2ff71c83e6ab65a0}\label{posix_8h_aad0f32c2c182238f2ff71c83e6ab65a0}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+R\+EG@{S\+\_\+\+I\+S\+R\+EG}}
+\index{S\+\_\+\+I\+S\+R\+EG@{S\+\_\+\+I\+S\+R\+EG}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+S\+R\+EG}{S\_ISREG}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+S\+R\+EG(\begin{DoxyParamCaption}\item[{}]{mode }\end{DoxyParamCaption})~\hyperlink{posix_8h_adc77a7a79522cf692b584af4b20cd256}{S\+\_\+\+I\+S\+T\+Y\+PE}((mode), \hyperlink{posix_8h_a1aaa48b192a5dd3b6d7ee91fc98cd17d}{S\+\_\+\+I\+F\+R\+EG})}
+
+
+
+Definition at line 218 of file posix.\+h.
+
+
+
+Referenced by dump\+\_\+stat().
+
+\mbox{\Hypertarget{posix_8h_adc77a7a79522cf692b584af4b20cd256}\label{posix_8h_adc77a7a79522cf692b584af4b20cd256}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+S\+T\+Y\+PE@{S\+\_\+\+I\+S\+T\+Y\+PE}}
+\index{S\+\_\+\+I\+S\+T\+Y\+PE@{S\+\_\+\+I\+S\+T\+Y\+PE}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+S\+T\+Y\+PE}{S\_ISTYPE}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+S\+T\+Y\+PE(\begin{DoxyParamCaption}\item[{}]{mode,  }\item[{}]{mask }\end{DoxyParamCaption})~(((mode) \& \hyperlink{posix_8h_ab5bee51e9ee68b83ab11d4b340f7200b}{S\+\_\+\+I\+F\+MT}) == (mask))}
+
+
+
+P\+O\+S\+IX File type test macros. 
+
+
+
+Definition at line 214 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ae6774871a90d9442f00abe18b87fee6e}\label{posix_8h_ae6774871a90d9442f00abe18b87fee6e}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+G\+RP@{S\+\_\+\+I\+W\+G\+RP}}
+\index{S\+\_\+\+I\+W\+G\+RP@{S\+\_\+\+I\+W\+G\+RP}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+W\+G\+RP}{S\_IWGRP}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+W\+G\+RP~(\hyperlink{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}{S\+\_\+\+I\+W\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Write by group.  $\ast$/}
+
+
+
+Definition at line 227 of file posix.\+h.
+
+
+
+Referenced by chmod().
+
+\mbox{\Hypertarget{posix_8h_a5303f49f26293acdb9533756c78322fb}\label{posix_8h_a5303f49f26293acdb9533756c78322fb}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+O\+TH@{S\+\_\+\+I\+W\+O\+TH}}
+\index{S\+\_\+\+I\+W\+O\+TH@{S\+\_\+\+I\+W\+O\+TH}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+W\+O\+TH}{S\_IWOTH}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+W\+O\+TH~(\hyperlink{posix_8h_ae6774871a90d9442f00abe18b87fee6e}{S\+\_\+\+I\+W\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Write by others.  $\ast$/}
+
+
+
+Definition at line 232 of file posix.\+h.
+
+
+
+Referenced by chmod().
+
+\mbox{\Hypertarget{posix_8h_a40eb4ad4bcc675d265615042657c37b7}\label{posix_8h_a40eb4ad4bcc675d265615042657c37b7}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+R\+I\+TE@{S\+\_\+\+I\+W\+R\+I\+TE}}
+\index{S\+\_\+\+I\+W\+R\+I\+TE@{S\+\_\+\+I\+W\+R\+I\+TE}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+W\+R\+I\+TE}{S\_IWRITE}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+W\+R\+I\+TE~0200     /$\ast$$<$ Write by owner.  $\ast$/}
+
+
+
+Definition at line 210 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}\label{posix_8h_ad70001754261c15a1bdc8e876c6d09d7}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+W\+U\+SR@{S\+\_\+\+I\+W\+U\+SR}}
+\index{S\+\_\+\+I\+W\+U\+SR@{S\+\_\+\+I\+W\+U\+SR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+W\+U\+SR}{S\_IWUSR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+W\+U\+SR~\hyperlink{posix_8h_a40eb4ad4bcc675d265615042657c37b7}{S\+\_\+\+I\+W\+R\+I\+TE}                    /$\ast$$<$ Write by owner.  $\ast$/}
+
+
+
+Definition at line 222 of file posix.\+h.
+
+
+
+Referenced by chmod().
+
+\mbox{\Hypertarget{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}\label{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+X\+G\+RP@{S\+\_\+\+I\+X\+G\+RP}}
+\index{S\+\_\+\+I\+X\+G\+RP@{S\+\_\+\+I\+X\+G\+RP}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+X\+G\+RP}{S\_IXGRP}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+X\+G\+RP~(\hyperlink{posix_8h_af10a35e3950795d6ee4e07157d000131}{S\+\_\+\+I\+X\+U\+SR} $>$$>$ 3)              /$\ast$$<$ Execute by group.  $\ast$/}
+
+
+
+Definition at line 228 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}\label{posix_8h_a40223db1b95a04f5b28cceb3c34cfebd}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+X\+O\+TH@{S\+\_\+\+I\+X\+O\+TH}}
+\index{S\+\_\+\+I\+X\+O\+TH@{S\+\_\+\+I\+X\+O\+TH}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+X\+O\+TH}{S\_IXOTH}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+X\+O\+TH~(\hyperlink{posix_8h_a042e69ac0e7dd56e5cfcd9e97d010323}{S\+\_\+\+I\+X\+G\+RP} $>$$>$ 3)              /$\ast$$<$ Execute by others.  $\ast$/}
+
+
+
+Definition at line 233 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_af10a35e3950795d6ee4e07157d000131}\label{posix_8h_af10a35e3950795d6ee4e07157d000131}} 
+\index{posix.\+h@{posix.\+h}!S\+\_\+\+I\+X\+U\+SR@{S\+\_\+\+I\+X\+U\+SR}}
+\index{S\+\_\+\+I\+X\+U\+SR@{S\+\_\+\+I\+X\+U\+SR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+I\+X\+U\+SR}{S\_IXUSR}}
+{\footnotesize\ttfamily \#define S\+\_\+\+I\+X\+U\+SR~\hyperlink{posix_8h_a49a6665b56f38f52ee9b157cefcf4d68}{S\+\_\+\+I\+E\+X\+EC}                     /$\ast$$<$ Execute by owner.  $\ast$/}
+
+
+
+Definition at line 223 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a4c8d0b76b470ba65a43ca46a88320f39}\label{posix_8h_a4c8d0b76b470ba65a43ca46a88320f39}} 
+\index{posix.\+h@{posix.\+h}!S\+E\+E\+K\+\_\+\+C\+UR@{S\+E\+E\+K\+\_\+\+C\+UR}}
+\index{S\+E\+E\+K\+\_\+\+C\+UR@{S\+E\+E\+K\+\_\+\+C\+UR}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+E\+K\+\_\+\+C\+UR}{SEEK\_CUR}}
+{\footnotesize\ttfamily \#define S\+E\+E\+K\+\_\+\+C\+UR~1}
+
+
+
+Definition at line 252 of file posix.\+h.
+
+
+
+Referenced by lseek().
+
+\mbox{\Hypertarget{posix_8h_ad2a2e6c114780c3071efd24f16c7f7d8}\label{posix_8h_ad2a2e6c114780c3071efd24f16c7f7d8}} 
+\index{posix.\+h@{posix.\+h}!S\+E\+E\+K\+\_\+\+E\+ND@{S\+E\+E\+K\+\_\+\+E\+ND}}
+\index{S\+E\+E\+K\+\_\+\+E\+ND@{S\+E\+E\+K\+\_\+\+E\+ND}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+E\+K\+\_\+\+E\+ND}{SEEK\_END}}
+{\footnotesize\ttfamily \#define S\+E\+E\+K\+\_\+\+E\+ND~2}
+
+
+
+Definition at line 253 of file posix.\+h.
+
+
+
+Referenced by lif\+\_\+close\+\_\+volume(), and lseek().
+
+\mbox{\Hypertarget{posix_8h_a0d112bae8fd35be772185b6ec6bcbe64}\label{posix_8h_a0d112bae8fd35be772185b6ec6bcbe64}} 
+\index{posix.\+h@{posix.\+h}!S\+E\+E\+K\+\_\+\+S\+ET@{S\+E\+E\+K\+\_\+\+S\+ET}}
+\index{S\+E\+E\+K\+\_\+\+S\+ET@{S\+E\+E\+K\+\_\+\+S\+ET}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+E\+K\+\_\+\+S\+ET}{SEEK\_SET}}
+{\footnotesize\ttfamily \#define S\+E\+E\+K\+\_\+\+S\+ET~0}
+
+
+
+Seek offset macros. 
+
+
+
+Definition at line 251 of file posix.\+h.
+
+
+
+Referenced by fsetpos(), lif\+\_\+seek\+\_\+msg(), and rewind().
+
+\mbox{\Hypertarget{posix_8h_a5ce35bd5ba5021fd3b2e951e8f497656}\label{posix_8h_a5ce35bd5ba5021fd3b2e951e8f497656}} 
+\index{posix.\+h@{posix.\+h}!stderr@{stderr}}
+\index{stderr@{stderr}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{stderr}{stderr}}
+{\footnotesize\ttfamily \#define stderr~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}2\mbox{]})}
+
+
+
+Definition at line 271 of file posix.\+h.
+
+
+
+Referenced by fdevopen(), fputc(), read(), and write().
+
+\mbox{\Hypertarget{posix_8h_aaca70138f0cb63ddb026921afc635179}\label{posix_8h_aaca70138f0cb63ddb026921afc635179}} 
+\index{posix.\+h@{posix.\+h}!stdin@{stdin}}
+\index{stdin@{stdin}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{stdin}{stdin}}
+{\footnotesize\ttfamily \#define stdin~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}0\mbox{]})}
+
+
+
+define stdin, stdout and stderr 
+
+
+
+Definition at line 269 of file posix.\+h.
+
+
+
+Referenced by fdevopen(), getchar(), ls(), read(), setdate(), task(), and write().
+
+\mbox{\Hypertarget{posix_8h_a0c0ef221f95f64e8632451312fd18cc8}\label{posix_8h_a0c0ef221f95f64e8632451312fd18cc8}} 
+\index{posix.\+h@{posix.\+h}!stdout@{stdout}}
+\index{stdout@{stdout}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{stdout}{stdout}}
+{\footnotesize\ttfamily \#define stdout~(\hyperlink{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob}\mbox{[}1\mbox{]})}
+
+
+
+Definition at line 270 of file posix.\+h.
+
+
+
+Referenced by fatfs\+\_\+ls(), fdevopen(), fputc(), gpib\+\_\+decode\+\_\+header(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+trace\+\_\+task(), plot\+\_\+echo(), putchar(), puts(), read(), timetests(), and write().
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{posix_8h_a2706f994576080967d7633282dfcabbf}\label{posix_8h_a2706f994576080967d7633282dfcabbf}} 
+\index{posix.\+h@{posix.\+h}!blkcnt\+\_\+t@{blkcnt\+\_\+t}}
+\index{blkcnt\+\_\+t@{blkcnt\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{blkcnt\+\_\+t}{blkcnt\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_a2706f994576080967d7633282dfcabbf}{blkcnt\+\_\+t}}
+
+
+
+Definition at line 52 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a390f3028d0805a15c3d28ee27439c389}\label{posix_8h_a390f3028d0805a15c3d28ee27439c389}} 
+\index{posix.\+h@{posix.\+h}!blksize\+\_\+t@{blksize\+\_\+t}}
+\index{blksize\+\_\+t@{blksize\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{blksize\+\_\+t}{blksize\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_a390f3028d0805a15c3d28ee27439c389}{blksize\+\_\+t}}
+
+
+
+Definition at line 53 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a451f1b5788fa7cc5d33db47a5992e7a6}\label{posix_8h_a451f1b5788fa7cc5d33db47a5992e7a6}} 
+\index{posix.\+h@{posix.\+h}!dev\+\_\+t@{dev\+\_\+t}}
+\index{dev\+\_\+t@{dev\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{dev\+\_\+t}{dev\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_a451f1b5788fa7cc5d33db47a5992e7a6}{dev\+\_\+t}}
+
+
+
+make sure we use our E\+D\+OM and E\+R\+A\+N\+GE values 
+
+Standard P\+O\+S\+IX typedefs.
+
+
+\begin{DoxyItemize}
+\item Using these makes code portable accross many acrchitectures 
+\end{DoxyItemize}
+
+Definition at line 45 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}\label{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}} 
+\index{posix.\+h@{posix.\+h}!dirent\+\_\+t@{dirent\+\_\+t}}
+\index{dirent\+\_\+t@{dirent\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{dirent\+\_\+t}{dirent\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structdirent}{dirent} \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t}}
+
+
+
+Definition at line 147 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}\label{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}} 
+\index{posix.\+h@{posix.\+h}!F\+I\+LE@{F\+I\+LE}}
+\index{F\+I\+LE@{F\+I\+LE}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{F\+I\+LE}{FILE}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct____file}{\+\_\+\+\_\+file} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}}
+
+
+
+define F\+I\+LE type 
+
+
+
+Definition at line 257 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a5569b17fdf47f9bb7e3b4b94aa083c39}\label{posix_8h_a5569b17fdf47f9bb7e3b4b94aa083c39}} 
+\index{posix.\+h@{posix.\+h}!gid\+\_\+t@{gid\+\_\+t}}
+\index{gid\+\_\+t@{gid\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{gid\+\_\+t}{gid\_t}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \hyperlink{posix_8h_a5569b17fdf47f9bb7e3b4b94aa083c39}{gid\+\_\+t}}
+
+
+
+Definition at line 50 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_aed4e918b44240739869c4bdb1c4787a9}\label{posix_8h_aed4e918b44240739869c4bdb1c4787a9}} 
+\index{posix.\+h@{posix.\+h}!ino\+\_\+t@{ino\+\_\+t}}
+\index{ino\+\_\+t@{ino\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ino\+\_\+t}{ino\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_aed4e918b44240739869c4bdb1c4787a9}{ino\+\_\+t}}
+
+
+
+Definition at line 46 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}\label{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}} 
+\index{posix.\+h@{posix.\+h}!mode\+\_\+t@{mode\+\_\+t}}
+\index{mode\+\_\+t@{mode\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{mode\+\_\+t}{mode\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}}
+
+
+
+Definition at line 47 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a9e3c03dae15b90102eb1770dd95adadc}\label{posix_8h_a9e3c03dae15b90102eb1770dd95adadc}} 
+\index{posix.\+h@{posix.\+h}!nlink\+\_\+t@{nlink\+\_\+t}}
+\index{nlink\+\_\+t@{nlink\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{nlink\+\_\+t}{nlink\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_a9e3c03dae15b90102eb1770dd95adadc}{nlink\+\_\+t}}
+
+
+
+Definition at line 48 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_aac46e03c2018bada012333c31f41df12}\label{posix_8h_aac46e03c2018bada012333c31f41df12}} 
+\index{posix.\+h@{posix.\+h}!off\+\_\+t@{off\+\_\+t}}
+\index{off\+\_\+t@{off\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{off\+\_\+t}{off\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}
+
+
+
+Definition at line 51 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a170745d0d946e79c4c2a056d1d158996}\label{posix_8h_a170745d0d946e79c4c2a056d1d158996}} 
+\index{posix.\+h@{posix.\+h}!ssize\+\_\+t@{ssize\+\_\+t}}
+\index{ssize\+\_\+t@{ssize\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ssize\+\_\+t}{ssize\_t}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t}}
+
+
+
+Definition at line 55 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a3346b04b0420b32ccf6b706551b70762}\label{posix_8h_a3346b04b0420b32ccf6b706551b70762}} 
+\index{posix.\+h@{posix.\+h}!time\+\_\+t@{time\+\_\+t}}
+\index{time\+\_\+t@{time\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{time\+\_\+t}{time\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}}
+
+
+
+Definition at line 54 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_a0f43c63879b4ab6960f41e756392c77d}\label{posix_8h_a0f43c63879b4ab6960f41e756392c77d}} 
+\index{posix.\+h@{posix.\+h}!uid\+\_\+t@{uid\+\_\+t}}
+\index{uid\+\_\+t@{uid\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{uid\+\_\+t}{uid\_t}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t \hyperlink{posix_8h_a0f43c63879b4ab6960f41e756392c77d}{uid\+\_\+t}}
+
+
+
+Definition at line 49 of file posix.\+h.
+
+\mbox{\Hypertarget{posix_8h_ab29c02d05027f32f3f17bee2e4839777}\label{posix_8h_ab29c02d05027f32f3f17bee2e4839777}} 
+\index{posix.\+h@{posix.\+h}!utime\+\_\+t@{utime\+\_\+t}}
+\index{utime\+\_\+t@{utime\+\_\+t}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{utime\+\_\+t}{utime\_t}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structutimbuf}{utimbuf}  \hyperlink{posix_8h_ab29c02d05027f32f3f17bee2e4839777}{utime\+\_\+t}}
+
+
+
+P\+O\+S\+IX utimbuf structure. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a732642e09075838bbbca28b3529f13db}{utime()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6a}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6a}} 
+\index{posix.\+h@{posix.\+h}!P\+O\+S\+I\+X\+\_\+errno@{P\+O\+S\+I\+X\+\_\+errno}}
+\index{P\+O\+S\+I\+X\+\_\+errno@{P\+O\+S\+I\+X\+\_\+errno}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{P\+O\+S\+I\+X\+\_\+errno}{POSIX\_errno}}
+{\footnotesize\ttfamily enum \hyperlink{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6a}{P\+O\+S\+I\+X\+\_\+errno}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+OK@{E\+OK}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+OK@{E\+OK}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c6a3022e8b55d43daf722d13d7e0669}} 
+E\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+P\+E\+RM@{E\+P\+E\+RM}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+P\+E\+RM@{E\+P\+E\+RM}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267}} 
+E\+P\+E\+RM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+E\+NT@{E\+N\+O\+E\+NT}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+E\+NT@{E\+N\+O\+E\+NT}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a}} 
+E\+N\+O\+E\+NT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+S\+R\+CH@{E\+S\+R\+CH}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+S\+R\+CH@{E\+S\+R\+CH}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4e376a13d0c1557d399f473218915625}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4e376a13d0c1557d399f473218915625}} 
+E\+S\+R\+CH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+I\+N\+TR@{E\+I\+N\+TR}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+I\+N\+TR@{E\+I\+N\+TR}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cc241d56d59d11ceea8efc37bec8ed4}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cc241d56d59d11ceea8efc37bec8ed4}} 
+E\+I\+N\+TR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+IO@{E\+IO}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+IO@{E\+IO}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6d2c32b1730ea078f2802b34b1258a4c}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6d2c32b1730ea078f2802b34b1258a4c}} 
+E\+IO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+X\+IO@{E\+N\+X\+IO}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+X\+IO@{E\+N\+X\+IO}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb}} 
+E\+N\+X\+IO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E2\+B\+IG@{E2\+B\+IG}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E2\+B\+IG@{E2\+B\+IG}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa755e0cbde2880a406893ad61304bac29}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa755e0cbde2880a406893ad61304bac29}} 
+E2\+B\+IG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+E\+X\+EC@{E\+N\+O\+E\+X\+EC}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+E\+X\+EC@{E\+N\+O\+E\+X\+EC}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aadabd09d64c920a9a75f60165fda651d5}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aadabd09d64c920a9a75f60165fda651d5}} 
+E\+N\+O\+E\+X\+EC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+B\+A\+DF@{E\+B\+A\+DF}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+B\+A\+DF@{E\+B\+A\+DF}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369}} 
+E\+B\+A\+DF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+C\+H\+I\+LD@{E\+C\+H\+I\+LD}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+C\+H\+I\+LD@{E\+C\+H\+I\+LD}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae63e89f8fc44ef75addd0c1acc9c4828}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae63e89f8fc44ef75addd0c1acc9c4828}} 
+E\+C\+H\+I\+LD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+A\+G\+A\+IN@{E\+A\+G\+A\+IN}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+A\+G\+A\+IN@{E\+A\+G\+A\+IN}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4bde0de54c0b708a605ed5095959c14e}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa4bde0de54c0b708a605ed5095959c14e}} 
+E\+A\+G\+A\+IN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+M\+EM@{E\+N\+O\+M\+EM}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+M\+EM@{E\+N\+O\+M\+EM}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca}} 
+E\+N\+O\+M\+EM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+A\+C\+C\+ES@{E\+A\+C\+C\+ES}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+A\+C\+C\+ES@{E\+A\+C\+C\+ES}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98}} 
+E\+A\+C\+C\+ES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+F\+A\+U\+LT@{E\+F\+A\+U\+LT}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+F\+A\+U\+LT@{E\+F\+A\+U\+LT}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf740610de680c2861ac4042ad4485d15}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf740610de680c2861ac4042ad4485d15}} 
+E\+F\+A\+U\+LT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+T\+B\+LK@{E\+N\+O\+T\+B\+LK}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+T\+B\+LK@{E\+N\+O\+T\+B\+LK}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaee10bd01c67a10db950db7d8b814ef3e}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaee10bd01c67a10db950db7d8b814ef3e}} 
+E\+N\+O\+T\+B\+LK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+B\+U\+SY@{E\+B\+U\+SY}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+B\+U\+SY@{E\+B\+U\+SY}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b}} 
+E\+B\+U\+SY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+E\+X\+I\+ST@{E\+E\+X\+I\+ST}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+E\+X\+I\+ST@{E\+E\+X\+I\+ST}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa523e02a73d840e490c14a179a997627e}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa523e02a73d840e490c14a179a997627e}} 
+E\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+X\+D\+EV@{E\+X\+D\+EV}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+X\+D\+EV@{E\+X\+D\+EV}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa953d85d9cf4a55d49811d920c169eded}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa953d85d9cf4a55d49811d920c169eded}} 
+E\+X\+D\+EV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+D\+EV@{E\+N\+O\+D\+EV}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+D\+EV@{E\+N\+O\+D\+EV}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae350307a3417656c8cabc816ba8d07cd}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae350307a3417656c8cabc816ba8d07cd}} 
+E\+N\+O\+D\+EV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+T\+D\+IR@{E\+N\+O\+T\+D\+IR}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+T\+D\+IR@{E\+N\+O\+T\+D\+IR}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cd7a7b948ee085bbaeb2a210b412d6e}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa8cd7a7b948ee085bbaeb2a210b412d6e}} 
+E\+N\+O\+T\+D\+IR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+I\+S\+D\+IR@{E\+I\+S\+D\+IR}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+I\+S\+D\+IR@{E\+I\+S\+D\+IR}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6a73363cf3fa4dc0d77c4cb3b9d83321}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa6a73363cf3fa4dc0d77c4cb3b9d83321}} 
+E\+I\+S\+D\+IR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+I\+N\+V\+AL@{E\+I\+N\+V\+AL}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+I\+N\+V\+AL@{E\+I\+N\+V\+AL}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8}} 
+E\+I\+N\+V\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+F\+I\+LE@{E\+N\+F\+I\+LE}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+F\+I\+LE@{E\+N\+F\+I\+LE}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8}} 
+E\+N\+F\+I\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+M\+F\+I\+LE@{E\+M\+F\+I\+LE}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+M\+F\+I\+LE@{E\+M\+F\+I\+LE}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf}} 
+E\+M\+F\+I\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+T\+TY@{E\+N\+O\+T\+TY}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+T\+TY@{E\+N\+O\+T\+TY}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf3dc036138d242739c3dbe36c5dfa095}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aaf3dc036138d242739c3dbe36c5dfa095}} 
+E\+N\+O\+T\+TY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+T\+X\+T\+B\+SY@{E\+T\+X\+T\+B\+SY}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+T\+X\+T\+B\+SY@{E\+T\+X\+T\+B\+SY}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa83ea4e18eaac3a62036e1b5723d6e353}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa83ea4e18eaac3a62036e1b5723d6e353}} 
+E\+T\+X\+T\+B\+SY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+F\+B\+IG@{E\+F\+B\+IG}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+F\+B\+IG@{E\+F\+B\+IG}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3d9f70d8ebd10e9d4aa420b9cb22cb53}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3d9f70d8ebd10e9d4aa420b9cb22cb53}} 
+E\+F\+B\+IG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+N\+O\+S\+PC@{E\+N\+O\+S\+PC}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+N\+O\+S\+PC@{E\+N\+O\+S\+PC}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb}} 
+E\+N\+O\+S\+PC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+S\+P\+I\+PE@{E\+S\+P\+I\+PE}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+S\+P\+I\+PE@{E\+S\+P\+I\+PE}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e5433f0863ce3470329184a3ee495a7}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa9e5433f0863ce3470329184a3ee495a7}} 
+E\+S\+P\+I\+PE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+R\+O\+FS@{E\+R\+O\+FS}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+R\+O\+FS@{E\+R\+O\+FS}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31}} 
+E\+R\+O\+FS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+M\+L\+I\+NK@{E\+M\+L\+I\+NK}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+M\+L\+I\+NK@{E\+M\+L\+I\+NK}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae8a4cdbd60a66eb9705bcb0a655e94fe}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae8a4cdbd60a66eb9705bcb0a655e94fe}} 
+E\+M\+L\+I\+NK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+P\+I\+PE@{E\+P\+I\+PE}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+P\+I\+PE@{E\+P\+I\+PE}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae573afaecfe768915268b5c70823ee70}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aae573afaecfe768915268b5c70823ee70}} 
+E\+P\+I\+PE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+D\+OM@{E\+D\+OM}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+D\+OM@{E\+D\+OM}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa21e6505c229a4508912c375435eb86a8}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa21e6505c229a4508912c375435eb86a8}} 
+E\+D\+OM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+R\+A\+N\+GE@{E\+R\+A\+N\+GE}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+R\+A\+N\+GE@{E\+R\+A\+N\+GE}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3ffb99860526d55ef132365553694c3d}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa3ffb99860526d55ef132365553694c3d}} 
+E\+R\+A\+N\+GE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+B\+A\+D\+M\+SG@{E\+B\+A\+D\+M\+SG}!posix.\+h@{posix.\+h}}\index{posix.\+h@{posix.\+h}!E\+B\+A\+D\+M\+SG@{E\+B\+A\+D\+M\+SG}}}\mbox{\Hypertarget{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa952ba8aa5afef31b7893ed91ae13a56c}\label{posix_8h_ac29db18b9f0e7e7d5c43d558ccffea6aa952ba8aa5afef31b7893ed91ae13a56c}} 
+E\+B\+A\+D\+M\+SG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 61 of file posix.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{posix_8h_a0b33c90b99d00a8bd2595f254d1409e1}\label{posix_8h_a0b33c90b99d00a8bd2595f254d1409e1}} 
+\index{posix.\+h@{posix.\+h}!baseext@{baseext}}
+\index{baseext@{baseext}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{baseext()}{baseext()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ baseext (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+File extention of a file name. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to find extension in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to basename extension. 
+\end{DoxyReturn}
+
+
+Definition at line 1466 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}\label{posix_8h_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}} 
+\index{posix.\+h@{posix.\+h}!basename@{basename}}
+\index{basename@{basename}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{basename()}{basename()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ basename (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Basename of filename. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file and directory manipulation-\/ man page (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to find basename in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to basename of string. 
+\end{DoxyReturn}
+
+
+Definition at line 1446 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+fixname(), and ls\+\_\+info().
+
+\mbox{\Hypertarget{posix_8h_a9c74403d1a11692bcab2c9ab7de4b0d3}\label{posix_8h_a9c74403d1a11692bcab2c9ab7de4b0d3}} 
+\index{posix.\+h@{posix.\+h}!chdir@{chdir}}
+\index{chdir@{chdir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{chdir()}{chdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int chdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX change directory. 
+
+
+\begin{DoxyItemize}
+\item man page chdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to change to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1488 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a43b14410cd7b1b67c7834ad2d6a193ce}\label{posix_8h_a43b14410cd7b1b67c7834ad2d6a193ce}} 
+\index{posix.\+h@{posix.\+h}!chmod@{chmod}}
+\index{chmod@{chmod}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{chmod()}{chmod()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int chmod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{\hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX chmod function -\/ change file access permission Unfortunately file f\+\_\+open modes and f\+\_\+chmod modes are not the same Files that are open have way more options -\/ but only while the file is open. 
+
+
+\begin{DoxyItemize}
+\item so this is a bit of a hack -\/ we can only set read only -\/ if on one has write perms
+\end{DoxyItemize}
+
+man page chmod (2).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX chmod modes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+\end{DoxyReturn}
+
+
+Definition at line 1513 of file posix.\+c.
+
+
+
+Referenced by mkdir(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a48dc1df1627501d3faed4bf1f9801759}\label{posix_8h_a48dc1df1627501d3faed4bf1f9801759}} 
+\index{posix.\+h@{posix.\+h}!close@{close}}
+\index{close@{close}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int close (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Close a file with fileno handel. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file functions-\/ man page close (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & fileno of file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 685 of file posix.\+c.
+
+
+
+Referenced by fclose().
+
+\mbox{\Hypertarget{posix_8h_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}\label{posix_8h_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}} 
+\index{posix.\+h@{posix.\+h}!closedir@{closedir}}
+\index{closedir@{closedir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{closedir()}{closedir()}}
+{\footnotesize\ttfamily int closedir (\begin{DoxyParamCaption}\item[{\hyperlink{structDIR}{D\+IR} $\ast$}]{dirp }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX closedir. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX -\/ directory scanning functions-\/ man page closedir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dirp} & \hyperlink{structDIR}{D\+IR} $\ast$ directory handle\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1717 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8h_a03baa4d851a2a855656081a4b7c8d72c}\label{posix_8h_a03baa4d851a2a855656081a4b7c8d72c}} 
+\index{posix.\+h@{posix.\+h}!clrerror@{clrerror}}
+\index{clrerror@{clrerror}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{clrerror()}{clrerror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void clrerror (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+clrerror resets stream E\+OF and error flags 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX error functions-\/ man page clrerror(3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1786 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a26a07a3db060ffc5659fe03495a29a1c}\label{posix_8h_a26a07a3db060ffc5659fe03495a29a1c}} 
+\index{posix.\+h@{posix.\+h}!dirname@{dirname}}
+\index{dirname@{dirname}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{dirname()}{dirname()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int dirname (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX directory name of a filename. Return the index of the last \textquotesingle{}/\textquotesingle{} character. 
+
+
+\begin{DoxyItemize}
+\item Example\+: 
+\begin{DoxyCode}
+dir[0] = 0;
+ret = \hyperlink{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}{dirname}(path)
+\textcolor{keywordflow}{if}(ret)
+ \hyperlink{stringsup_8c_acdb13cf3724e976e98a6178baf0a3ac5}{strncpy}(dir,path,ret);
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to examine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if no directory part. 
+
+index of last \textquotesingle{}/\textquotesingle{} character. 
+\end{DoxyReturn}
+
+
+Definition at line 1551 of file posix.\+c.
+
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive().
+
+\mbox{\Hypertarget{posix_8h_a111f2e6e6bc9f0a46210a323cab093c7}\label{posix_8h_a111f2e6e6bc9f0a46210a323cab093c7}} 
+\index{posix.\+h@{posix.\+h}!dump\+\_\+stat@{dump\+\_\+stat}}
+\index{dump\+\_\+stat@{dump\+\_\+stat}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{dump\+\_\+stat()}{dump\_stat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void dump\+\_\+stat (\begin{DoxyParamCaption}\item[{struct \hyperlink{structstat}{stat} $\ast$}]{sp }\end{DoxyParamCaption})}
+
+
+
+Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file information functions
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sp} & struct stat pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 1260 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a178d5d21b21c0f60d6ff8dfbbc0d86f5}\label{posix_8h_a178d5d21b21c0f60d6ff8dfbbc0d86f5}} 
+\index{posix.\+h@{posix.\+h}!fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}}
+\index{fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fat\+\_\+time\+\_\+to\+\_\+unix()}{fat\_time\_to\_unix()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} fat\+\_\+time\+\_\+to\+\_\+unix (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{date,  }\item[{uint16\+\_\+t}]{time }\end{DoxyParamCaption})}
+
+
+
+Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page timegm (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em date} & Fat\+Fs date. \\
+\hline
+\mbox{\tt in}  & {\em time} & Fat\+Fs time.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+epoch seconds 
+\end{DoxyReturn}
+
+
+Definition at line 2230 of file posix.\+c.
+
+
+
+Referenced by stat().
+
+\mbox{\Hypertarget{posix_8h_a5811041feb43c22c6e609a8875475abc}\label{posix_8h_a5811041feb43c22c6e609a8875475abc}} 
+\index{posix.\+h@{posix.\+h}!fatfs\+\_\+getc@{fatfs\+\_\+getc}}
+\index{fatfs\+\_\+getc@{fatfs\+\_\+getc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+getc()}{fatfs\_getc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+getc (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} 
+
+
+\begin{DoxyItemize}
+\item man page fgetc (3).
+\item Notes\+: fgetc does all tests prior to caling us, including ungetc.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1987 of file posix.\+c.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_adfd015ed8dbac3473269d1a068bf5904}\label{posix_8h_adfd015ed8dbac3473269d1a068bf5904}} 
+\index{posix.\+h@{posix.\+h}!fatfs\+\_\+putc@{fatfs\+\_\+putc}}
+\index{fatfs\+\_\+putc@{fatfs\+\_\+putc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+putc()}{fatfs\_putc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+putc (\begin{DoxyParamCaption}\item[{char}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Private Fat\+Fs function called by \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc()} to put a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc()} 
+
+
+\begin{DoxyItemize}
+\item man page fputc (3).
+\item Notes\+: fputc does all tests prior to caling us.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 2077 of file posix.\+c.
+
+
+
+Referenced by fputc(), and open().
+
+\mbox{\Hypertarget{posix_8h_ac20f0fc565c27bbbb900bde3337b09b9}\label{posix_8h_ac20f0fc565c27bbbb900bde3337b09b9}} 
+\index{posix.\+h@{posix.\+h}!fatfs\+\_\+to\+\_\+errno@{fatfs\+\_\+to\+\_\+errno}}
+\index{fatfs\+\_\+to\+\_\+errno@{fatfs\+\_\+to\+\_\+errno}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+to\+\_\+errno()}{fatfs\_to\_errno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+to\+\_\+errno (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT}}]{Result }\end{DoxyParamCaption})}
+
+
+
+Convert Faf\+Fs error result to P\+O\+S\+IX errno. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page errno (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Result} & Fat\+Fs Result code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+O\+S\+IX errno. 
+
+E\+B\+A\+D\+M\+SG if no conversion possible. 
+\end{DoxyReturn}
+
+
+Definition at line 2117 of file posix.\+c.
+
+
+
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), utime(), and write().
+
+\mbox{\Hypertarget{posix_8h_a81f14429660ca6a685676d6ceaf5350c}\label{posix_8h_a81f14429660ca6a685676d6ceaf5350c}} 
+\index{posix.\+h@{posix.\+h}!fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}}
+\index{fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+to\+\_\+fileno()}{fatfs\_to\_fileno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+to\+\_\+fileno (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fh }\end{DoxyParamCaption})}
+
+
+
+Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fh} & Fat\+FS file pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on error with errno set to E\+B\+A\+DF. 
+\end{DoxyReturn}
+
+
+Definition at line 2193 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_ad6fd240fec1d65213f34b6e6465a8033}\label{posix_8h_ad6fd240fec1d65213f34b6e6465a8033}} 
+\index{posix.\+h@{posix.\+h}!fclose@{fclose}}
+\index{fclose@{fclose}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fclose()}{fclose()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fclose (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX close a file stream. 
+
+
+\begin{DoxyItemize}
+\item man page flose (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error witrh errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1239 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+close(), cat(), copy(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+close\+\_\+volume(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), ls(), Mat\+Read(), Mat\+Write(), printer\+\_\+close(), Read\+\_\+\+Config(), td02lif(), and timetests().
+
+\mbox{\Hypertarget{posix_8h_ab814cff71bcbcc3a72a6c399e5084573}\label{posix_8h_ab814cff71bcbcc3a72a6c399e5084573}} 
+\index{posix.\+h@{posix.\+h}!fdevopen@{fdevopen}}
+\index{fdevopen@{fdevopen}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fdevopen()}{fdevopen()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fdevopen (\begin{DoxyParamCaption}\item[{int($\ast$)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$)}]{put,  }\item[{int($\ast$)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$)}]{get }\end{DoxyParamCaption})}
+
+
+
+Device open functions. 
+
+Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$put} & putc function pointer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$get} & gutc function pointer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1876 of file posix.\+c.
+
+
+
+Referenced by uart\+\_\+init().
+
+\mbox{\Hypertarget{posix_8h_af98213e7457dbe734d81d34758d2b505}\label{posix_8h_af98213e7457dbe734d81d34758d2b505}} 
+\index{posix.\+h@{posix.\+h}!feof@{feof}}
+\index{feof@{feof}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{feof()}{feof()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int feof (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+feof reports if the stream is at E\+OF 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file position functions-\/ man page feof (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if E\+OF set, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 505 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_ac37bff9f639fa95401b71839bbabd9a0}\label{posix_8h_ac37bff9f639fa95401b71839bbabd9a0}} 
+\index{posix.\+h@{posix.\+h}!ferror@{ferror}}
+\index{ferror@{ferror}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ferror()}{ferror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ferror (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+ferror reports if the stream has an error flag set 
+
+
+\begin{DoxyItemize}
+\item man page ferror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if E\+OF set, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1798 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a1d2fa24415329171e6765ed5309b6edd}\label{posix_8h_a1d2fa24415329171e6765ed5309b6edd}} 
+\index{posix.\+h@{posix.\+h}!fgetc@{fgetc}}
+\index{fgetc@{fgetc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fgetc()}{fgetc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fgetc (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Get byte from a T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page fgetc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 216 of file posix.\+c.
+
+
+
+Referenced by fgets(), getchar(), and read().
+
+\mbox{\Hypertarget{posix_8h_acb9e5741c01183dfe3179d646b264e5b}\label{posix_8h_acb9e5741c01183dfe3179d646b264e5b}} 
+\index{posix.\+h@{posix.\+h}!fgetpos@{fgetpos}}
+\index{fgetpos@{fgetpos}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fgetpos()}{fgetpos()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fgetpos (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$}]{pos }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX get position of file stream. 
+
+
+\begin{DoxyItemize}
+\item man page fgetpos (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em pos} & position pointer for return.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 522 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a3759827e157badd49d076bd157f508d9}\label{posix_8h_a3759827e157badd49d076bd157f508d9}} 
+\index{posix.\+h@{posix.\+h}!fgets@{fgets}}
+\index{fgets@{fgets}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fgets()}{fgets()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ fgets (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{size,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+get a string from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+P\+O\+S\+IX string I/O
+\begin{DoxyItemize}
+\item man page fgets (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 420 of file posix.\+c.
+
+
+
+Referenced by cat(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), ls(), Mat\+Read(), Read\+\_\+\+Config(), setdate(), and task().
+
+\mbox{\Hypertarget{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}\label{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}} 
+\index{posix.\+h@{posix.\+h}!fileno@{fileno}}
+\index{fileno@{fileno}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fileno()}{fileno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fileno (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX stream pointer to P\+O\+S\+IX fileno (index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}) 
+
+
+\begin{DoxyItemize}
+\item man page fileno (3) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & stream pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int fileno on success 
+
+-\/1 with errno = E\+B\+A\+FD if stream is N\+U\+LL or not found 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 724 of file posix.\+c.
+
+
+
+Referenced by fclose(), fileno(), fileno\+\_\+to\+\_\+stream(), fopen(), fread(), free\+\_\+file\+\_\+descriptor(), fseek(), ftell(), fwrite(), open(), receive\+\_\+plot\+\_\+flush(), and ungetc().
+
+\mbox{\Hypertarget{posix_8h_a9b859123258b36eb57f4f71d2606d8a5}\label{posix_8h_a9b859123258b36eb57f4f71d2606d8a5}} 
+\index{posix.\+h@{posix.\+h}!fileno\+\_\+to\+\_\+fatfs@{fileno\+\_\+to\+\_\+fatfs}}
+\index{fileno\+\_\+to\+\_\+fatfs@{fileno\+\_\+to\+\_\+fatfs}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fileno\+\_\+to\+\_\+fatfs()}{fileno\_to\_fatfs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL}$\ast$ fileno\+\_\+to\+\_\+fatfs (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item Fat\+FS file handle is pointed to by the avr-\/libc stream-\/$>$udata.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & fileno of file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structFIL}{F\+IL} $\ast$ Fat\+FS file handle on success. 
+
+N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 2279 of file posix.\+c.
+
+
+
+Referenced by close(), ftell(), ftruncate(), lseek(), open(), read(), sync(), syncfs(), and write().
+
+\mbox{\Hypertarget{posix_8h_a2c01fe0e0aa550b2a8b4dcc326983b57}\label{posix_8h_a2c01fe0e0aa550b2a8b4dcc326983b57}} 
+\index{posix.\+h@{posix.\+h}!fileno\+\_\+to\+\_\+stream@{fileno\+\_\+to\+\_\+stream}}
+\index{fileno\+\_\+to\+\_\+stream@{fileno\+\_\+to\+\_\+stream}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fileno\+\_\+to\+\_\+stream()}{fileno\_to\_stream()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fileno\+\_\+to\+\_\+stream (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream pointer. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item inverse of P\+O\+S\+IX \hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno()}
+\item man page fileno (3)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno is the index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+F\+I\+LE $\ast$ on success 
+
+N\+U\+LL on error with errno set, N\+U\+LL if fileno out of bounds 
+\end{DoxyReturn}
+
+
+Definition at line 754 of file posix.\+c.
+
+
+
+Referenced by close(), fileno\+\_\+to\+\_\+fatfs(), fopen(), free\+\_\+file\+\_\+descriptor(), lseek(), open(), read(), syncfs(), and write().
+
+\mbox{\Hypertarget{posix_8h_a8e661c338f41695d1a1e70aed6255e2d}\label{posix_8h_a8e661c338f41695d1a1e70aed6255e2d}} 
+\index{posix.\+h@{posix.\+h}!fopen@{fopen}}
+\index{fopen@{fopen}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fopen()}{fopen()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fopen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Open a file with path name and ascii file mode string. 
+
+
+\begin{DoxyItemize}
+\item man page fopen(3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX open mode strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stream $\ast$ on success. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 782 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+open(), cat(), copy(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+open(), ls(), Mat\+Read(), Mat\+Write(), printer\+\_\+open(), Read\+\_\+\+Config(), td02lif(), td0\+\_\+open(), and timetests().
+
+\mbox{\Hypertarget{posix_8h_a91ade11061b9b43b1edd37ff32f76591}\label{posix_8h_a91ade11061b9b43b1edd37ff32f76591}} 
+\index{posix.\+h@{posix.\+h}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fprintf()}{fprintf()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fprintf (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{fp,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+fprintf function Example user defined printf function using fputc for I/O This method allows I/O to devices and strings without typical C++ overhead 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$fp} & F\+I\+LE stream pointer \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf forat string \\
+\hline
+\mbox{\tt in}  & {\em ...} & vararg list or arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of printed result 
+\end{DoxyReturn}
+
+
+Definition at line 2487 of file posix.\+c.
+
+
+
+Referenced by gpib\+\_\+decode\+\_\+header(), gpib\+\_\+log(), gpib\+\_\+trace\+\_\+display(), Mat\+Write(), and timetests().
+
+\mbox{\Hypertarget{posix_8h_a6bdef0a37397953c3b0f14c4d5d0eb10}\label{posix_8h_a6bdef0a37397953c3b0f14c4d5d0eb10}} 
+\index{posix.\+h@{posix.\+h}!fputc@{fputc}}
+\index{fputc@{fputc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fputc()}{fputc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fputc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Put a byte to T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$put = fatfs\+\_\+outc() for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page fputc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file posix.\+c.
+
+
+
+Referenced by \+\_\+fprintf\+\_\+putc(), fputs(), putc(), putchar(), puts(), and write().
+
+\mbox{\Hypertarget{posix_8h_a30a4070a8b1719d53cb01dd4b2a65069}\label{posix_8h_a30a4070a8b1719d53cb01dd4b2a65069}} 
+\index{posix.\+h@{posix.\+h}!fputs@{fputs}}
+\index{fputs@{fputs}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fputs()}{fputs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fputs (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page fputs (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 457 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a01233ac8fd574e20b0b38472adbee551}\label{posix_8h_a01233ac8fd574e20b0b38472adbee551}} 
+\index{posix.\+h@{posix.\+h}!fread@{fread}}
+\index{fread@{fread}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fread()}{fread()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} fread (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{nmemb,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX read nmemb elements from buf, size bytes each, to the stream fd. 
+
+
+\begin{DoxyItemize}
+\item man page fread (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em nmemb} & number of items to read. \\
+\hline
+\mbox{\tt in}  & {\em size} & size of each item in bytes. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+0 or $<$ size on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 803 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+getc(), copy(), lif\+\_\+read(), ls(), td0\+\_\+open(), and td0\+\_\+read().
+
+\mbox{\Hypertarget{posix_8h_a38496612f759733234128893e4c60a89}\label{posix_8h_a38496612f759733234128893e4c60a89}} 
+\index{posix.\+h@{posix.\+h}!free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}}
+\index{free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{free\+\_\+file\+\_\+descriptor()}{free\_file\_descriptor()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int free\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Free P\+O\+S\+IX fileno F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX file number \+\_\+\+\_\+iob\mbox{[}\mbox{]} index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 2314 of file posix.\+c.
+
+
+
+Referenced by close(), and open().
+
+\mbox{\Hypertarget{posix_8h_ad31144743f0014784193221563ca8dd2}\label{posix_8h_ad31144743f0014784193221563ca8dd2}} 
+\index{posix.\+h@{posix.\+h}!fseek@{fseek}}
+\index{fseek@{fseek}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fseek()}{fseek()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fseek (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{long}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX seek to file possition. 
+
+
+\begin{DoxyItemize}
+\item man page fseek (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em offset} & offset to seek to. \\
+\hline
+\mbox{\tt in}  & {\em whence} & 
+\begin{DoxyItemize}
+\item S\+E\+E\+K\+\_\+\+S\+ET The offset is set to offset bytes.
+\item S\+E\+E\+K\+\_\+\+C\+UR The offset is set to its current location plus offset bytes.
+\item S\+E\+E\+K\+\_\+\+E\+ND The offset is set to the size of the file plus offset bytes.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 545 of file posix.\+c.
+
+
+
+Referenced by fsetpos(), lif\+\_\+close\+\_\+volume(), lif\+\_\+seek\+\_\+msg(), and rewind().
+
+\mbox{\Hypertarget{posix_8h_a8705d74fe77c1b23824074ecd14be1c7}\label{posix_8h_a8705d74fe77c1b23824074ecd14be1c7}} 
+\index{posix.\+h@{posix.\+h}!fsetpos@{fsetpos}}
+\index{fsetpos@{fsetpos}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fsetpos()}{fsetpos()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fsetpos (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$}]{pos }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX set position of file stream. 
+
+
+\begin{DoxyItemize}
+\item man page fsetpos (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em pos} & position pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 with $\ast$pos set to position on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 571 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_af53dca187c78408fe2f1958c4eb88603}\label{posix_8h_af53dca187c78408fe2f1958c4eb88603}} 
+\index{posix.\+h@{posix.\+h}!ftell@{ftell}}
+\index{ftell@{ftell}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ftell()}{ftell()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long ftell (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX file position of open stream. 
+
+
+\begin{DoxyItemize}
+\item man page fteel (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 585 of file posix.\+c.
+
+
+
+Referenced by fgetpos(), and lif\+\_\+seek\+\_\+msg().
+
+\mbox{\Hypertarget{posix_8h_a474e4e6cac62ef12c66b8a597c14e5f6}\label{posix_8h_a474e4e6cac62ef12c66b8a597c14e5f6}} 
+\index{posix.\+h@{posix.\+h}!ftruncate@{ftruncate}}
+\index{ftruncate@{ftruncate}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ftruncate()}{ftruncate()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ftruncate (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{length }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX truncate open file to length. 
+
+
+\begin{DoxyItemize}
+\item man page ftruncate (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & open file number. \\
+\hline
+\mbox{\tt in}  & {\em length} & length to truncate to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 827 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a148630cbecc0822d9395f002691ffe75}\label{posix_8h_a148630cbecc0822d9395f002691ffe75}} 
+\index{posix.\+h@{posix.\+h}!fwrite@{fwrite}}
+\index{fwrite@{fwrite}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{fwrite()}{fwrite()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} fwrite (\begin{DoxyParamCaption}\item[{const void $\ast$}]{ptr,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{nmemb,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX write nmemb elements from buf, size bytes each, to the stream fd. 
+
+
+\begin{DoxyItemize}
+\item man page write (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em nmemb} & number of items to write. \\
+\hline
+\mbox{\tt in}  & {\em size} & size of each item in bytes. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count written on sucess. 
+
+0 or $<$ size on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 868 of file posix.\+c.
+
+
+
+Referenced by copy(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+write(), ls(), receive\+\_\+plot\+\_\+flush(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
+
+\mbox{\Hypertarget{posix_8h_ab38efc888190556f106cafb08d17d16f}\label{posix_8h_ab38efc888190556f106cafb08d17d16f}} 
+\index{posix.\+h@{posix.\+h}!getchar@{getchar}}
+\index{getchar@{getchar}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{getchar()}{getchar()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int getchar (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+functions normally defined as macros 
+
+get a character from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices
+
+
+\begin{DoxyItemize}
+\item man page getchar (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 336 of file posix.\+c.
+
+
+
+Referenced by testpage().
+
+\mbox{\Hypertarget{posix_8h_a6411298bb01166960f5a0378ac0fdb82}\label{posix_8h_a6411298bb01166960f5a0378ac0fdb82}} 
+\index{posix.\+h@{posix.\+h}!getcwd@{getcwd}}
+\index{getcwd@{getcwd}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{getcwd()}{getcwd()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ getcwd (\begin{DoxyParamCaption}\item[{char $\ast$}]{pathname,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX get current working directory. 
+
+
+\begin{DoxyItemize}
+\item man page getcwd (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to change to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1596 of file posix.\+c.
+
+
+
+Referenced by ls(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a31986cce890109c211ccb14151aafd0e}\label{posix_8h_a31986cce890109c211ccb14151aafd0e}} 
+\index{posix.\+h@{posix.\+h}!isatty@{isatty}}
+\index{isatty@{isatty}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{isatty()}{isatty()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int isatty (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX character I/O functions
+\begin{DoxyItemize}
+\item man page isatty (3).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno of open file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if fileno is a serial T\+T\+Y/\+Console (uart in avr-\/libc terms). 
+
+0 if P\+O\+S\+IX fileno is N\+OT a Serial T\+TY. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000049}{Todo}]Perhaps we should verify console functions have been added ? \end{DoxyRefDesc}
+
+
+Definition at line 196 of file posix.\+c.
+
+
+
+Referenced by dump\+\_\+stat(), fileno\+\_\+to\+\_\+fatfs(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), lseek(), new\+\_\+file\+\_\+descriptor(), sync(), syncfs(), and ungetc().
+
+\mbox{\Hypertarget{posix_8h_abb875e56516d235a6aaf69951444cc63}\label{posix_8h_abb875e56516d235a6aaf69951444cc63}} 
+\index{posix.\+h@{posix.\+h}!lseek@{lseek}}
+\index{lseek@{lseek}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{lseek()}{lseek()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} lseek (\begin{DoxyParamCaption}\item[{int}]{fileno,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{position,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX seek to file position. 
+
+
+\begin{DoxyItemize}
+\item man page lseek (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno of open file. \\
+\hline
+\mbox{\tt in}  & {\em position} & offset to seek to. \\
+\hline
+\mbox{\tt in}  & {\em whence} & 
+\begin{DoxyItemize}
+\item S\+E\+E\+K\+\_\+\+S\+ET The offset is set to offset bytes.
+\item S\+E\+E\+K\+\_\+\+C\+UR The offset is set to its current location plus offset bytes.
+\item S\+E\+E\+K\+\_\+\+E\+ND The offset is set to the size of the file plus offset bytes.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 617 of file posix.\+c.
+
+
+
+Referenced by fseek().
+
+\mbox{\Hypertarget{posix_8h_a39eea0b104438afa9ca0500c2e8d6887}\label{posix_8h_a39eea0b104438afa9ca0500c2e8d6887}} 
+\index{posix.\+h@{posix.\+h}!mctime@{mctime}}
+\index{mctime@{mctime}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{mctime()}{mctime()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ mctime (\begin{DoxyParamCaption}\item[{\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}}]{timev }\end{DoxyParamCaption})}
+
+
+
+Display Ascii formatted time from timev seconds N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item Assumes no timezone offset.
+\item man page ctime (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em timev} & epoch time in seconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ascii string pointer of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 1323 of file posix.\+c.
+
+
+
+Referenced by dump\+\_\+stat(), and ls\+\_\+info().
+
+\mbox{\Hypertarget{posix_8h_a8b57a7ee1ba139c636477cf2998e8b1e}\label{posix_8h_a8b57a7ee1ba139c636477cf2998e8b1e}} 
+\index{posix.\+h@{posix.\+h}!mkdir@{mkdir}}
+\index{mkdir@{mkdir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{mkdir()}{mkdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int mkdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{\hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX make a directory. 
+
+
+\begin{DoxyItemize}
+\item man page mkdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to create\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1619 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_aa1efac33e58ea2abd4cad808e05eb6dd}\label{posix_8h_aa1efac33e58ea2abd4cad808e05eb6dd}} 
+\index{posix.\+h@{posix.\+h}!mkfs@{mkfs}}
+\index{mkfs@{mkfs}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{mkfs()}{mkfs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int mkfs (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Formt SD card. 
+
+
+\begin{DoxyItemize}
+\item Fat\+FS to P\+O\+S\+IX bridge functions
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & device name  void \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line 1922 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_abab788c42cce343cde2f5b8f90015229}\label{posix_8h_abab788c42cce343cde2f5b8f90015229}} 
+\index{posix.\+h@{posix.\+h}!new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}}
+\index{new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{new\+\_\+file\+\_\+descriptor()}{new\_file\_descriptor()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int new\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocate a P\+O\+S\+IX F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. 
+
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on failure with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 2358 of file posix.\+c.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8h_a3e5e6f96d36b5cdacfaf6b3976cd5af2}\label{posix_8h_a3e5e6f96d36b5cdacfaf6b3976cd5af2}} 
+\index{posix.\+h@{posix.\+h}!open@{open}}
+\index{open@{open}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Open a file with integer mode flags. 
+
+
+\begin{DoxyItemize}
+\item man page open (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em flags} & P\+O\+S\+IX open modes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+Seek to end of the file 
+
+Definition at line 895 of file posix.\+c.
+
+
+
+Referenced by fopen().
+
+\mbox{\Hypertarget{posix_8h_a19051b9081dfef221d9bf4583e935031}\label{posix_8h_a19051b9081dfef221d9bf4583e935031}} 
+\index{posix.\+h@{posix.\+h}!opendir@{opendir}}
+\index{opendir@{opendir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{opendir()}{opendir()}}
+{\footnotesize\ttfamily \hyperlink{structDIR}{D\+IR}$\ast$ opendir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathdir }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1736 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8h_a4ce26afbb10890d31c53a8ff76d992e3}\label{posix_8h_a4ce26afbb10890d31c53a8ff76d992e3}} 
+\index{posix.\+h@{posix.\+h}!perror@{perror}}
+\index{perror@{perror}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{perror()}{perror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void perror (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page errno (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em s} & User message displayed before the error message\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 1814 of file posix.\+c.
+
+
+
+Referenced by gpib\+\_\+trace\+\_\+task(), printer\+\_\+open(), Read\+\_\+\+Config(), receive\+\_\+plot\+\_\+flush(), and timetests().
+
+\mbox{\Hypertarget{posix_8h_a607feb06d296e0ff60d5a19538bd17fc}\label{posix_8h_a607feb06d296e0ff60d5a19538bd17fc}} 
+\index{posix.\+h@{posix.\+h}!posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open@{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open}}
+\index{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open@{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open()}{posix\_fopen\_modes\_to\_open()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fopen mode to P\+O\+S\+IX open mode flags. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page fopen (3).
+\item man page open (2).
+\item Valid modes.
+\item Read
+\begin{DoxyItemize}
+\item \char`\"{}r\char`\"{}, \char`\"{}rb\char`\"{}
+\end{DoxyItemize}
+\item Read and Write
+\begin{DoxyItemize}
+\item \char`\"{}r+\char`\"{}, \char`\"{}r+b\char`\"{}, \char`\"{}rb+\char`\"{}
+\end{DoxyItemize}
+\item Write
+\begin{DoxyItemize}
+\item \char`\"{}w\char`\"{}, \char`\"{}wb\char`\"{}
+\end{DoxyItemize}
+\item Write and Read.
+\begin{DoxyItemize}
+\item \char`\"{}w+\char`\"{}, \char`\"{}w+b\char`\"{}, \char`\"{}wb+\char`\"{}
+\item \char`\"{}w+\char`\"{} implies write/read access.
+\end{DoxyItemize}
+\item Append
+\begin{DoxyItemize}
+\item \char`\"{}a\char`\"{}, \char`\"{}ab\char`\"{}
+\end{DoxyItemize}
+\item Append and Read
+\begin{DoxyItemize}
+\item \char`\"{}a+\char`\"{}, \char`\"{}a+b\char`\"{}, \char`\"{}ab+\char`\"{}
+\end{DoxyItemize}
+\item Note\+: O\+R\+D\+ER IS I\+M\+P\+O\+R\+T\+A\+N\+T! so w+ is N\+OT the same as r+.
+\item A\+L\+W\+A\+YS do a fflush or fseek between rear write operations if + is used..
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX file mode string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+open mode flags. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+read and write B\+O\+TH share the same stream buffer and buffer index pointers. 
+\end{DoxyWarning}
+
+
+Definition at line 2421 of file posix.\+c.
+
+
+
+Referenced by fopen().
+
+\mbox{\Hypertarget{posix_8h_ae59fd612372df957f59fb3cdcbd8b9e9}\label{posix_8h_ae59fd612372df957f59fb3cdcbd8b9e9}} 
+\index{posix.\+h@{posix.\+h}!putc@{putc}}
+\index{putc@{putc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{putc()}{putc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int putc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page putc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 401 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}\label{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}} 
+\index{posix.\+h@{posix.\+h}!putchar@{putchar}}
+\index{putchar@{putchar}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{putchar()}{putchar()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int putchar (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page putchar (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 351 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_aa360dd5203b246757abc21253ed8eb2e}\label{posix_8h_aa360dd5203b246757abc21253ed8eb2e}} 
+\index{posix.\+h@{posix.\+h}!puts@{puts}}
+\index{puts@{puts}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{puts()}{puts()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int puts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page puts (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 480 of file posix.\+c.
+
+
+
+Referenced by cat(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{posix_8h_af104a2c05bef787e54c6925616e867df}\label{posix_8h_af104a2c05bef787e54c6925616e867df}} 
+\index{posix.\+h@{posix.\+h}!read@{read}}
+\index{read@{read}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} read (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{count }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX read count bytes from $\ast$buf to fileno fd. 
+
+
+\begin{DoxyItemize}
+\item man page read (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno. \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1006 of file posix.\+c.
+
+
+
+Referenced by fread().
+
+\mbox{\Hypertarget{posix_8h_a58257faf8b13b3f14558613c632b2373}\label{posix_8h_a58257faf8b13b3f14558613c632b2373}} 
+\index{posix.\+h@{posix.\+h}!readdir@{readdir}}
+\index{readdir@{readdir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{readdir()}{readdir()}}
+{\footnotesize\ttfamily struct \hyperlink{structdirent}{dirent}$\ast$ readdir (\begin{DoxyParamCaption}\item[{\hyperlink{structDIR}{D\+IR} $\ast$}]{dirp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1755 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8h_ada8cc8f9394cf54db8f338838a9fa7ce}\label{posix_8h_ada8cc8f9394cf54db8f338838a9fa7ce}} 
+\index{posix.\+h@{posix.\+h}!rename@{rename}}
+\index{rename@{rename}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{rename()}{rename()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int rename (\begin{DoxyParamCaption}\item[{const char $\ast$}]{oldpath,  }\item[{const char $\ast$}]{newpath }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX rename a file by name. 
+
+
+\begin{DoxyItemize}
+\item man page (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em oldpath} & original name. \\
+\hline
+\mbox{\tt in}  & {\em newpath} & new name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1648 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a35e6a58f44d4651951ecfeb97f369884}\label{posix_8h_a35e6a58f44d4651951ecfeb97f369884}} 
+\index{posix.\+h@{posix.\+h}!rewind@{rewind}}
+\index{rewind@{rewind}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{rewind()}{rewind()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void rewind (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX rewind file to the beginning. 
+
+
+\begin{DoxyItemize}
+\item man page rewind (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 666 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a6080dee579486f132062435577b77d10}\label{posix_8h_a6080dee579486f132062435577b77d10}} 
+\index{posix.\+h@{posix.\+h}!rmdir@{rmdir}}
+\index{rmdir@{rmdir}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{rmdir()}{rmdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int rmdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX delete a directory. 
+
+
+\begin{DoxyItemize}
+\item man page rmdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1671 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_abef70bf7a4af8a1f4998db0035c51781}\label{posix_8h_abef70bf7a4af8a1f4998db0035c51781}} 
+\index{posix.\+h@{posix.\+h}!stat@{stat}}
+\index{stat@{stat}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{stat()}{stat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{structstat}{stat} (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \hyperlink{structstat}{stat} $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX stat -\/ get file status of named file. 
+
+
+\begin{DoxyItemize}
+\item man page (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name. \\
+\hline
+\mbox{\tt in}  & {\em buf} & struct stat buffer to return results in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1344 of file posix.\+c.
+
+
+
+Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), format\+\_\+drives(), lif\+\_\+stat(), ls(), ls\+\_\+info(), mount\+\_\+volume(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_ae03e9f4fe4bf5e64a70fd186d532a5c8}\label{posix_8h_ae03e9f4fe4bf5e64a70fd186d532a5c8}} 
+\index{posix.\+h@{posix.\+h}!strerror@{strerror}}
+\index{strerror@{strerror}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{strerror()}{strerror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}$\ast$ strerror (\begin{DoxyParamCaption}\item[{int}]{errnum }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page strerror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em errnum} & index for sys\+\_\+errlist\mbox{[}\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 1840 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a6311c6b29216455ec9b716b9eb31c799}\label{posix_8h_a6311c6b29216455ec9b716b9eb31c799}} 
+\index{posix.\+h@{posix.\+h}!strerror\+\_\+r@{strerror\+\_\+r}}
+\index{strerror\+\_\+r@{strerror\+\_\+r}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{strerror\+\_\+r()}{strerror\_r()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ strerror\+\_\+r (\begin{DoxyParamCaption}\item[{int}]{errnum,  }\item[{char $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{buflen }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page strerror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em errnum} & index for sys\+\_\+errlist\mbox{[}\mbox{]} \\
+\hline
+\mbox{\tt in}  & {\em buf} & user buffer for error message \\
+\hline
+\mbox{\tt in}  & {\em buflen} & length of user buffer for error message\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 1857 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_a8f7f00d4ec0d99440762b0a664aebf70}\label{posix_8h_a8f7f00d4ec0d99440762b0a664aebf70}} 
+\index{posix.\+h@{posix.\+h}!sync@{sync}}
+\index{sync@{sync}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{sync()}{sync()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void sync (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Sync all pending file changes and metadata on A\+LL files. 
+
+
+\begin{DoxyItemize}
+\item man page sync (2).
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 1069 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+close\+\_\+volume(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), and ls().
+
+\mbox{\Hypertarget{posix_8h_a521c33bdb3606c9f3546b9cbcd37b9ac}\label{posix_8h_a521c33bdb3606c9f3546b9cbcd37b9ac}} 
+\index{posix.\+h@{posix.\+h}!syncfs@{syncfs}}
+\index{syncfs@{syncfs}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{syncfs()}{syncfs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int syncfs (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Sync pending file changes and metadata for specified fileno. 
+
+
+\begin{DoxyItemize}
+\item man page syncfs (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno to sync. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0. 
+
+-\/1 on error witrh errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1096 of file posix.\+c.
+
+
+
+Referenced by receive\+\_\+plot\+\_\+flush(), and sync().
+
+\mbox{\Hypertarget{posix_8h_a73a95c4a93875be906e573c00b30c5ea}\label{posix_8h_a73a95c4a93875be906e573c00b30c5ea}} 
+\index{posix.\+h@{posix.\+h}!truncate@{truncate}}
+\index{truncate@{truncate}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{truncate()}{truncate()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int truncate (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{length }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX truncate named file to length. 
+
+
+\begin{DoxyItemize}
+\item man page truncate (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & file name to truncate. \\
+\hline
+\mbox{\tt in}  & {\em length} & length to truncate to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 n fail. 
+\end{DoxyReturn}
+
+
+Definition at line 1142 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_af979e8f6598be71d68be7cc49a41626b}\label{posix_8h_af979e8f6598be71d68be7cc49a41626b}} 
+\index{posix.\+h@{posix.\+h}!ungetc@{ungetc}}
+\index{ungetc@{ungetc}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{ungetc()}{ungetc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ungetc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Un-\/\+Get byte from a T\+TY device or Fat\+Fs file stream. 
+
+
+\begin{DoxyItemize}
+\item man page ungetc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & Character to unget \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 368 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}\label{posix_8h_aa5666c514336f78c6d1ab6bc35c74ae0}} 
+\index{posix.\+h@{posix.\+h}!unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}}
+\index{unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{unix\+\_\+time\+\_\+to\+\_\+fat()}{unix\_time\_to\_fat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void unix\+\_\+time\+\_\+to\+\_\+fat (\begin{DoxyParamCaption}\item[{\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}}]{epoch,  }\item[{uint16\+\_\+t $\ast$}]{date,  }\item[{uint16\+\_\+t $\ast$}]{time }\end{DoxyParamCaption})}
+
+
+
+Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page gmtime (3). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em epoch} & unix epoch seconds \\
+\hline
+\mbox{\tt in}  & {\em $\ast$date} & fat32 date \\
+\hline
+\mbox{\tt in}  & {\em $\ast$time} & fat32 time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 2255 of file posix.\+c.
+
+
+
+Referenced by utime().
+
+\mbox{\Hypertarget{posix_8h_aa964d662c19b2021d9cfd0c71bc686bd}\label{posix_8h_aa964d662c19b2021d9cfd0c71bc686bd}} 
+\index{posix.\+h@{posix.\+h}!unlink@{unlink}}
+\index{unlink@{unlink}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{unlink()}{unlink()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int unlink (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX delete a file. 
+
+
+\begin{DoxyItemize}
+\item man page unlink (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1693 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8h_a732642e09075838bbbca28b3529f13db}\label{posix_8h_a732642e09075838bbbca28b3529f13db}} 
+\index{posix.\+h@{posix.\+h}!utime@{utime}}
+\index{utime@{utime}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{utime()}{utime()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int utime (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{const struct \hyperlink{structutimbuf}{utimbuf} $\ast$}]{times }\end{DoxyParamCaption})}
+
+
+
+Set Modification and Access time of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em filename} & file name \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1407 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii().
+
+\mbox{\Hypertarget{posix_8h_a072435300ac99e8d7c3749f45166e797}\label{posix_8h_a072435300ac99e8d7c3749f45166e797}} 
+\index{posix.\+h@{posix.\+h}!write@{write}}
+\index{write@{write}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} write (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{count }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Write count bytes from $\ast$buf to fileno fd. 
+
+
+\begin{DoxyItemize}
+\item man page write (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno. \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1180 of file posix.\+c.
+
+
+
+Referenced by fwrite().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}\label{posix_8h_aae2f027325f7e73c3aa5e7dc990bd90d}} 
+\index{posix.\+h@{posix.\+h}!\+\_\+\+\_\+iob@{\+\_\+\+\_\+iob}}
+\index{\+\_\+\+\_\+iob@{\+\_\+\+\_\+iob}!posix.\+h@{posix.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+iob}{\_\_iob}}
+{\footnotesize\ttfamily \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ \+\_\+\+\_\+iob\mbox{[}\hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}\mbox{]}}
+
+
+
+P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table. 
+
+
+\begin{DoxyItemize}
+\item Note\+: the index of \+\_\+\+\_\+iob\mbox{[}\mbox{]} is reffered to \char`\"{}fileno\char`\"{}.
+\item Reference\+: libc/avr-\/libc-\/1.\+8.\+0/libc/stdio.
+\item stdin = \+\_\+\+\_\+iob\mbox{[}0\mbox{]}.
+\item \+\_\+\+\_\+iob\mbox{[}1\mbox{]} = stdout.
+\item \+\_\+\+\_\+iob\mbox{[}2\mbox{]} = stderr. 
+\end{DoxyItemize}
+
+Definition at line 139 of file posix.\+c.
+

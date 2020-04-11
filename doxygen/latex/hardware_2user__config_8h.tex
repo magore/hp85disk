@@ -1,0 +1,360 @@
+\hypertarget{hardware_2user__config_8h}{}\section{hardware/user\+\_\+config.h File Reference}
+\label{hardware_2user__config_8h}\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+{\ttfamily \#include $<$hardware/cpu.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
+{\ttfamily \#include $<$avr/portpins.\+h$>$}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hardware/gpio-\/1284p.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware/hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware/bits.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware/delay.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware/ram.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$util/twi.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lib/parsing.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lib/stringsup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}printf/mathio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lib/time.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lib/timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lib/queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}hardware/rtc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fatfs.\+sup/fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rs232.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}spi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}T\+W\+I\+\_\+\+A\+V\+R8.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix/posix.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a1519396040c1c9c28f597ccfbae61843}{A\+VR}~1
+\item 
+\#define \hyperlink{hardware_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
+\item 
+\#define \hyperlink{hardware_2user__config_8h_ab29f444706056b13bca09e97c909bbc5}{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}~1000L
+\item 
+\#define \hyperlink{hardware_2user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER}~1
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}{M\+M\+C\+\_\+\+S\+L\+OW}~(500000\+U\+L)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a1cf90afdd82046f772117bb46a9849e6}{M\+M\+C\+\_\+\+F\+A\+ST}~(2500000\+U\+L)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}{N\+O\+\_\+\+S\+C\+A\+NF}
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}{printf}(format,  args...)~printf\+\_\+P(P\+S\+TR(format), \#\#args)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}{snprintf}(s,  size,  format,  args...)~snprintf\+\_\+P(s, size, P\+S\+TR(format), \#\#args)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_ab99ed44389e722578695fa0065118fac}{sprintf}(s,  format,  args...)~sprintf\+\_\+P(s, P\+S\+TR(format), \#\#args)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL}~((void $\ast$) 0)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}{\+\_\+\+S\+I\+Z\+E\+\_\+T}
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}{Mem\+\_\+\+Clear}(a)~memset(a, 0, sizeof(a))
+\item 
+\#define \hyperlink{hardware_2user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}{Mem\+\_\+\+Set}(a,  b)~memset(a, (int) b, sizeof(a))
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}{U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT}~1
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}{free}(p)~\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}(p)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}{calloc}(n,  s)~\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}(n,s)
+\item 
+\#define \hyperlink{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc}(s)~\hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc}(s)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned long int \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \{ \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}{false}, 
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}{true}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{hardware_2user__config_8h_ae4c83013e72a2a5ed2f205b36a40583a}{copyright} (void)
+\begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hardware_2user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}\label{hardware_2user__config_8h_a0ba95ba075f659fa991ee3df107aa3c3}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!\+\_\+\+S\+I\+Z\+E\+\_\+T@{\+\_\+\+S\+I\+Z\+E\+\_\+T}}
+\index{\+\_\+\+S\+I\+Z\+E\+\_\+T@{\+\_\+\+S\+I\+Z\+E\+\_\+T}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+S\+I\+Z\+E\+\_\+T}{\_SIZE\_T}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+I\+Z\+E\+\_\+T}
+
+
+
+Definition at line 96 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a1519396040c1c9c28f597ccfbae61843}\label{hardware_2user__config_8h_a1519396040c1c9c28f597ccfbae61843}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!A\+VR@{A\+VR}}
+\index{A\+VR@{A\+VR}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{A\+VR}{AVR}}
+{\footnotesize\ttfamily \#define A\+VR~1}
+
+
+
+Definition at line 17 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}\label{hardware_2user__config_8h_ad3a606b2415cc9127bbb52d8ed5d3191}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!calloc@{calloc}}
+\index{calloc@{calloc}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{calloc}{calloc}}
+{\footnotesize\ttfamily \#define calloc(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{s }\end{DoxyParamCaption})~\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}(n,s)}
+
+
+
+Definition at line 124 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}\label{hardware_2user__config_8h_a9d4b5df3530d1bc733070a4669ba6ebc}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!free@{free}}
+\index{free@{free}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{free}{free}}
+{\footnotesize\ttfamily \#define free(\begin{DoxyParamCaption}\item[{}]{p }\end{DoxyParamCaption})~\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}(p)}
+
+
+
+Definition at line 121 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}\label{hardware_2user__config_8h_ace7ce1901bf0c350e7704eb37b07ad74}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER@{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER}}
+\index{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER@{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER}{HAVE\_HIRES\_TIMER}}
+{\footnotesize\ttfamily \#define H\+A\+V\+E\+\_\+\+H\+I\+R\+E\+S\+\_\+\+T\+I\+M\+ER~1}
+
+
+
+Definition at line 21 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}\label{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!malloc@{malloc}}
+\index{malloc@{malloc}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{malloc}{malloc}}
+{\footnotesize\ttfamily \#define malloc(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~\hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc}(s)}
+
+
+
+Definition at line 127 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}\label{hardware_2user__config_8h_a027f5683e524693c2ba74dd55fb42d5a}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}}
+\index{Mem\+\_\+\+Clear@{Mem\+\_\+\+Clear}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{Mem\+\_\+\+Clear}{Mem\_Clear}}
+{\footnotesize\ttfamily \#define Mem\+\_\+\+Clear(\begin{DoxyParamCaption}\item[{}]{a }\end{DoxyParamCaption})~memset(a, 0, sizeof(a))}
+
+
+
+Definition at line 100 of file user\+\_\+config.\+h.
+
+
+
+Referenced by S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+send\+\_\+status().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}\label{hardware_2user__config_8h_accba58d1237bfcb21e9f4bb040aebc4a}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!Mem\+\_\+\+Set@{Mem\+\_\+\+Set}}
+\index{Mem\+\_\+\+Set@{Mem\+\_\+\+Set}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{Mem\+\_\+\+Set}{Mem\_Set}}
+{\footnotesize\ttfamily \#define Mem\+\_\+\+Set(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~memset(a, (int) b, sizeof(a))}
+
+
+
+Definition at line 101 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}\label{hardware_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
+\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}
+{\footnotesize\ttfamily \#define M\+E\+M\+S\+P\+A\+CE}
+
+
+
+Definition at line 18 of file user\+\_\+config.\+h.
+
+
+
+Referenced by \+\_\+fprintf\+\_\+putc(), \+\_\+printf\+\_\+fn(), \+\_\+putc\+\_\+buffer\+\_\+fn(), \+\_\+puts\+\_\+pad(), Adjugate(), asctime(), asctime\+\_\+r(), atodigit(), atoh(), atoi(), atol(), aton(), baseext(), basename(), cat(), chdir(), chmod(), clock\+\_\+clear(), clock\+\_\+elapsed\+\_\+begin(), clock\+\_\+elapsed\+\_\+end(), clock\+\_\+getres(), clock\+\_\+set(), clock\+\_\+settime(), clock\+\_\+task(), close(), clrerror(), Cofactor(), copy(), ctime(), ctime\+\_\+gm(), ctime\+\_\+r(), Days\+\_\+\+Per\+\_\+\+Month(), Days\+\_\+\+Per\+\_\+\+Year(), delete\+\_\+all\+\_\+timers(), Delete\+Row\+Col(), deselect(), Determinant(), dirname(), disable\+\_\+timers(), dump\+\_\+stat(), fat\+\_\+time\+\_\+to\+\_\+unix(), fatfs\+\_\+fstype(), fatfs\+\_\+getc(), fatfs\+\_\+help(), fatfs\+\_\+ls(), fatfs\+\_\+putc(), fatfs\+\_\+scan\+\_\+files(), fatfs\+\_\+status(), fatfs\+\_\+tests(), fatfs\+\_\+to\+\_\+errno(), fatfs\+\_\+to\+\_\+fileno(), fclose(), feof(), ferror(), fgetc(), fgetpos(), fgets(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), find\+\_\+dst(), finddayofweek(), fopen(), fputc(), fputs(), fread(), free\+\_\+file\+\_\+descriptor(), fseek(), fsetpos(), ftell(), ftruncate(), fwrite(), get\+\_\+fattime(), get\+\_\+token(), getchar(), getcwd(), gettimeofday(), gettimezone(), gmtime(), gmtime\+\_\+r(), heapify(), heapsort(), init\+\_\+timers(), initialize\+\_\+clock(), Invert(), is\+\_\+dst(), I\+S\+\_\+\+Leap(), isatty(), isdigit(), islower(), isupper(), kill\+\_\+timer(), Leap\+\_\+\+Days\+\_\+\+Since\+\_\+1900(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+\+B2\+S(), lif\+\_\+\+B\+C\+D2\+B\+I\+N(), lif\+\_\+\+B\+I\+N2\+B\+C\+D(), lif\+\_\+bytes2sectors(), lif\+\_\+calloc(), lif\+\_\+chars(), lif\+\_\+check\+\_\+dir(), lif\+\_\+check\+\_\+volume(), lif\+\_\+checkdirindex(), lif\+\_\+checkname(), lif\+\_\+close\+\_\+volume(), lif\+\_\+closedir(), lif\+\_\+create\+\_\+volume(), lif\+\_\+ctime\+\_\+gmt(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+dir2str(), lif\+\_\+dir\+\_\+clear(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+e010\+\_\+pad\+\_\+sector(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+fixname(), lif\+\_\+free(), lif\+\_\+help(), lif\+\_\+image\+\_\+clear(), lif\+\_\+lifbcd2time(), lif\+\_\+lifbcd2timestr(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+read(), lif\+\_\+readdir(), lif\+\_\+readdirindex(), lif\+\_\+rename\+\_\+file(), lif\+\_\+rewinddir(), lif\+\_\+\+S2\+B(), lif\+\_\+seek\+\_\+msg(), lif\+\_\+stat(), lif\+\_\+str2dir(), lif\+\_\+str2vol(), lif\+\_\+stralloc(), lif\+\_\+tests(), lif\+\_\+time2lifbcd(), lif\+\_\+updatefree(), lif\+\_\+vol2str(), lif\+\_\+vol\+\_\+clear(), lif\+\_\+write(), lif\+\_\+writedir\+E\+O\+F(), lif\+\_\+writedirindex(), localtime(), localtime\+\_\+r(), ls(), ls\+\_\+info(), lseek(), Mat\+Alloc(), Mat\+Alloc\+S\+Q(), M\+A\+T\+C\+H(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+A\+R\+G\+S(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), Mat\+Free(), Mat\+Load(), Mat\+Load\+S\+Q(), Mat\+Mul(), Mat\+Print(), Mat\+Read(), mctime(), memchr(), Minor(), mkdir(), mkfs(), mktime(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+init(), mmc\+\_\+ins\+\_\+status(), mmc\+\_\+power\+\_\+off(), mmc\+\_\+power\+\_\+on(), mmc\+\_\+set\+\_\+ms\+\_\+timeout(), mmc\+\_\+spi\+\_\+\+T\+X\+R\+X(), mmc\+\_\+task(), mmc\+\_\+test(), mmc\+\_\+test\+\_\+timeout(), mul10str(), myrand(), mysrand(), new\+\_\+file\+\_\+descriptor(), nextspace(), normalize(), open(), p\+\_\+ntoa(), pch(), pch\+\_\+ind(), pch\+\_\+init(), pch\+\_\+max\+\_\+ind(), perror(), posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open(), posix\+\_\+help(), posix\+\_\+tests(), power\+\_\+on(), print\+\_\+dst(), print\+\_\+dst\+\_\+gmt(), print\+\_\+flags(), Pseudo\+Invert(), putc(), putchar(), puts(), rcvr\+\_\+datablock(), read(), readdir(), rename(), reverse(), rewind(), rmdir(), select(), send\+\_\+cmd(), sep(), set\+\_\+dst(), set\+\_\+timers(), setdate(), setdate\+\_\+r(), setpage(), settimeofday(), settimezone(), skipchars(), skipspaces(), snprintf(), split\+\_\+args(), stat(), strcasecmp(), strcat(), strcmp(), strcpy(), strerror(), strerror\+\_\+r(), strlen(), strnalloc(), strncasecmp(), strncat(), strncmp(), strncpy(), strtol(), strtoll(), strupper(), sync(), syncfs(), testpage(), Test\+Square(), time(), time\+\_\+to\+\_\+tm(), timegm(), tm2epoch(), tm\+\_\+mon\+\_\+to\+\_\+ascii(), tm\+\_\+to\+\_\+fat(), token(), tolower(), toupper(), Transpose(), trim\+\_\+tail(), truncate(), ts\+\_\+to\+\_\+str(), ungetc(), unix\+\_\+time\+\_\+to\+\_\+fat(), utime(), vsnprintf(), wait\+\_\+ready(), write(), and xmit\+\_\+spi\+\_\+multi().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a1cf90afdd82046f772117bb46a9849e6}\label{hardware_2user__config_8h_a1cf90afdd82046f772117bb46a9849e6}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!M\+M\+C\+\_\+\+F\+A\+ST@{M\+M\+C\+\_\+\+F\+A\+ST}}
+\index{M\+M\+C\+\_\+\+F\+A\+ST@{M\+M\+C\+\_\+\+F\+A\+ST}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{M\+M\+C\+\_\+\+F\+A\+ST}{MMC\_FAST}}
+{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+F\+A\+ST~(2500000\+U\+L)}
+
+
+
+Definition at line 31 of file user\+\_\+config.\+h.
+
+
+
+Referenced by mmc\+\_\+fast().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}\label{hardware_2user__config_8h_a0fc3621fbfd7c2ba408bcbd05b27fbf3}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!M\+M\+C\+\_\+\+S\+L\+OW@{M\+M\+C\+\_\+\+S\+L\+OW}}
+\index{M\+M\+C\+\_\+\+S\+L\+OW@{M\+M\+C\+\_\+\+S\+L\+OW}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{M\+M\+C\+\_\+\+S\+L\+OW}{MMC\_SLOW}}
+{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+S\+L\+OW~(500000\+U\+L)}
+
+
+
+Definition at line 27 of file user\+\_\+config.\+h.
+
+
+
+Referenced by main(), and mmc\+\_\+slow().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}\label{hardware_2user__config_8h_a21b034d5f0cf6ffe22668e12816734ef}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!N\+O\+\_\+\+S\+C\+A\+NF@{N\+O\+\_\+\+S\+C\+A\+NF}}
+\index{N\+O\+\_\+\+S\+C\+A\+NF@{N\+O\+\_\+\+S\+C\+A\+NF}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{N\+O\+\_\+\+S\+C\+A\+NF}{NO\_SCANF}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+S\+C\+A\+NF}
+
+
+
+Definition at line 36 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}\label{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!N\+U\+LL@{N\+U\+LL}}
+\index{N\+U\+LL@{N\+U\+LL}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{N\+U\+LL}{NULL}}
+{\footnotesize\ttfamily \#define N\+U\+LL~((void $\ast$) 0)}
+
+
+
+Definition at line 90 of file user\+\_\+config.\+h.
+
+
+
+Referenced by \+\_\+printf\+\_\+fn(), alloc\+\_\+device(), atoh(), atoi(), atol(), buffer\+\_\+gets(), buffer\+\_\+read\+\_\+open(), cat(), close(), copy(), display\+\_\+\+Config(), execute\+\_\+timers(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), ff\+\_\+memfree(), fgetc(), fgets(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), format\+\_\+drives(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), gpib\+\_\+decode\+\_\+header(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+log(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+task(), gpib\+\_\+trace\+\_\+display(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+set\+\_\+device(), i2c\+\_\+post(), i2c\+\_\+txn\+\_\+init(), init\+\_\+\+Devices(), I\+S\+R(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+close\+\_\+volume(), lif\+\_\+create\+\_\+image(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdir(), lif\+\_\+rename\+\_\+file(), lif\+\_\+stat(), lif\+\_\+stralloc(), lif\+\_\+tests(), lif\+\_\+updatefree(), ls(), lseek(), Mat\+Alloc(), Mat\+Free(), Mat\+Read(), Mat\+Write(), memchr(), new\+\_\+file\+\_\+descriptor(), open(), opendir(), perror(), posix\+\_\+tests(), Post\+\_\+\+Config(), printer\+\_\+init(), printer\+\_\+open(), queue\+\_\+del(), queue\+\_\+new(), read(), Read\+\_\+\+Config(), readdir(), receive\+\_\+plot\+\_\+flush(), safefree(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), split\+\_\+args(), strnalloc(), sync(), syncfs(), td02lif(), td0\+\_\+analize\+\_\+format(), td0\+\_\+init\+\_\+sectors(), time(), timetests(), and write().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}\label{hardware_2user__config_8h_a09cf97040f1ff2e7a6dd51e19339cf91}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!printf@{printf}}
+\index{printf@{printf}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{printf}{printf}}
+{\footnotesize\ttfamily \#define printf(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~printf\+\_\+P(P\+S\+TR(format), \#\#args)}
+
+standard includes include $<$stdio.\+h$>$ 
+
+Definition at line 75 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}\label{hardware_2user__config_8h_a8ca99a0a57619094a5bff3a009b5cea8}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{snprintf}{snprintf}}
+{\footnotesize\ttfamily \#define snprintf(\begin{DoxyParamCaption}\item[{}]{s,  }\item[{}]{size,  }\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~snprintf\+\_\+P(s, size, P\+S\+TR(format), \#\#args)}
+
+
+
+Definition at line 76 of file user\+\_\+config.\+h.
+
+
+
+Referenced by asctime\+\_\+r(), and ts\+\_\+to\+\_\+str().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_ab99ed44389e722578695fa0065118fac}\label{hardware_2user__config_8h_ab99ed44389e722578695fa0065118fac}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{sprintf}{sprintf}}
+{\footnotesize\ttfamily \#define sprintf(\begin{DoxyParamCaption}\item[{}]{s,  }\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~sprintf\+\_\+P(s, P\+S\+TR(format), \#\#args)}
+
+
+
+Definition at line 77 of file user\+\_\+config.\+h.
+
+
+
+Referenced by format\+\_\+drives(), gpib\+\_\+trace\+\_\+display(), and printer\+\_\+open().
+
+\mbox{\Hypertarget{hardware_2user__config_8h_ab29f444706056b13bca09e97c909bbc5}\label{hardware_2user__config_8h_ab29f444706056b13bca09e97c909bbc5}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}}
+\index{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ@{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ}{SYSTEM\_TASK\_HZ}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+T\+E\+M\+\_\+\+T\+A\+S\+K\+\_\+\+HZ~1000L}
+
+
+
+Definition at line 20 of file user\+\_\+config.\+h.
+
+\mbox{\Hypertarget{hardware_2user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}\label{hardware_2user__config_8h_a5073c91ce37d806cbbfbd8131bc9c31c}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT@{U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT}}
+\index{U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT@{U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT}{UART\_DEVICE\_CNT}}
+{\footnotesize\ttfamily \#define U\+A\+R\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+NT~1}
+
+U\+A\+RT device number 
+
+Definition at line 103 of file user\+\_\+config.\+h.
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}\label{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!size\+\_\+t@{size\+\_\+t}}
+\index{size\+\_\+t@{size\+\_\+t}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{size\+\_\+t}{size\_t}}
+{\footnotesize\ttfamily typedef unsigned long int \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}
+
+
+
+Definition at line 97 of file user\+\_\+config.\+h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}\label{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!bool@{bool}}
+\index{bool@{bool}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily enum \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{false@{false}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!false@{false}}}\mbox{\Hypertarget{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}\label{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1ae9de385ef6fe9bf3360d1038396b884c}} 
+false&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{true@{true}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!true@{true}}}\mbox{\Hypertarget{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}\label{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b}} 
+true&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 93 of file user\+\_\+config.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{hardware_2user__config_8h_ae4c83013e72a2a5ed2f205b36a40583a}\label{hardware_2user__config_8h_ae4c83013e72a2a5ed2f205b36a40583a}} 
+\index{hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}!copyright@{copyright}}
+\index{copyright@{copyright}!hardware/user\+\_\+config.\+h@{hardware/user\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{copyright()}{copyright()}}
+{\footnotesize\ttfamily void copyright (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Display Copyright. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file main.\+c.
+
+
+
+Referenced by help().
+

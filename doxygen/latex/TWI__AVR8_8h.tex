@@ -1,0 +1,227 @@
+\hypertarget{TWI__AVR8_8h}{}\section{hardware/\+T\+W\+I\+\_\+\+A\+V\+R8.h File Reference}
+\label{TWI__AVR8_8h}\index{hardware/\+T\+W\+I\+\_\+\+A\+V\+R8.\+h@{hardware/\+T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+
+
+T\+WI Peripheral Driver (A\+V\+R8)  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{TWI__AVR8_8h_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init} (const uint8\+\_\+t Prescale, const uint8\+\_\+t Bit\+Length)
+\begin{DoxyCompactList}\small\item\em Initialize I2C device. \end{DoxyCompactList}\item 
+void \hyperlink{TWI__AVR8_8h_a053f3f8c0c05407d204375de911dcbbb}{T\+W\+I\+\_\+\+Stop\+Transmission} (void)
+\begin{DoxyCompactList}\small\item\em Sends a T\+WI S\+T\+OP onto the T\+WI bus, terminating communication with the currently addressed device. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{TWI__AVR8_8h_a5e9fac0280a2414490f628071c0073c2}{T\+W\+I\+\_\+\+Start\+Transmission} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS)
+\begin{DoxyCompactList}\small\item\em Start I2C transmission. \end{DoxyCompactList}\item 
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{TWI__AVR8_8h_a57d8ffa11749c0ba97d52c2a6e246d65}{T\+W\+I\+\_\+\+Send\+Byte} (const uint8\+\_\+t Byte)
+\begin{DoxyCompactList}\small\item\em T\+WI send byte. \end{DoxyCompactList}\item 
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{TWI__AVR8_8h_a551074dff05c93c7317440b55278aa1b}{T\+W\+I\+\_\+\+Receive\+Byte} (uint8\+\_\+t $\ast$const Byte, const \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} Last\+Byte)
+\item 
+uint8\+\_\+t \hyperlink{TWI__AVR8_8h_aea02d723a16ed7f11d485c24175d8117}{T\+W\+I\+\_\+\+Read\+Packet} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS, const uint8\+\_\+t $\ast$Internal\+Address, uint8\+\_\+t Internal\+Address\+Len, uint8\+\_\+t $\ast$Buffer, uint8\+\_\+t Length)
+\begin{DoxyCompactList}\small\item\em T\+WI read packet. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{TWI__AVR8_8h_a7a9c708e4d9fbe6ed807f582bcbded0e}{T\+W\+I\+\_\+\+Write\+Packet} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS, const uint8\+\_\+t $\ast$Internal\+Address, uint8\+\_\+t Internal\+Address\+Len, const uint8\+\_\+t $\ast$Buffer, uint8\+\_\+t Length)
+\begin{DoxyCompactList}\small\item\em T\+WI write packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+WI Peripheral Driver (A\+V\+R8) 
+
+On-\/chip T\+WI driver for the 8-\/bit A\+VR microcontrollers.
+
+\begin{DoxyNote}{Note}
+This file should not be included directly. It is automatically included as needed by the T\+WI driver dispatch header located in L\+U\+F\+A/\+Drivers/\+Peripheral/\+T\+W\+I.\+h. 
+\end{DoxyNote}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{TWI__AVR8_8h_a08e1eb463ce4ec168f2c1cb9b4039cae}\label{TWI__AVR8_8h_a08e1eb463ce4ec168f2c1cb9b4039cae}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Init@{T\+W\+I\+\_\+\+Init}}
+\index{T\+W\+I\+\_\+\+Init@{T\+W\+I\+\_\+\+Init}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Init()}{TWI\_Init()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Init (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Prescale,  }\item[{const uint8\+\_\+t}]{Bit\+Length }\end{DoxyParamCaption})}
+
+
+
+Initialize I2C device. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Prescale} & prescale value. \\
+\hline
+\mbox{\tt in}  & {\em Bit\+Length} & Number of bits.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by main(), and rtc\+\_\+init().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_aea02d723a16ed7f11d485c24175d8117}\label{TWI__AVR8_8h_aea02d723a16ed7f11d485c24175d8117}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Read\+Packet@{T\+W\+I\+\_\+\+Read\+Packet}}
+\index{T\+W\+I\+\_\+\+Read\+Packet@{T\+W\+I\+\_\+\+Read\+Packet}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Read\+Packet()}{TWI\_ReadPacket()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Read\+Packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS,  }\item[{const uint8\+\_\+t $\ast$}]{Internal\+Address,  }\item[{uint8\+\_\+t}]{Internal\+Address\+Len,  }\item[{uint8\+\_\+t $\ast$}]{Buffer,  }\item[{uint8\+\_\+t}]{Length }\end{DoxyParamCaption})}
+
+
+
+T\+WI read packet. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & T\+WI sleave address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Our Address. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Our Address Length. \\
+\hline
+\mbox{\tt out}  & {\em Buffer} & Buffer to Read Data into. \\
+\hline
+\mbox{\tt in}  & {\em Length} & Length of data to read.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+Error code on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 200 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by rtc\+\_\+read(), rtc\+\_\+run(), and rtc\+\_\+run\+\_\+test().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_a551074dff05c93c7317440b55278aa1b}\label{TWI__AVR8_8h_a551074dff05c93c7317440b55278aa1b}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Receive\+Byte@{T\+W\+I\+\_\+\+Receive\+Byte}}
+\index{T\+W\+I\+\_\+\+Receive\+Byte@{T\+W\+I\+\_\+\+Receive\+Byte}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Receive\+Byte()}{TWI\_ReceiveByte()}}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} T\+W\+I\+\_\+\+Receive\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$const}]{Byte,  }\item[{const \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool}}]{Last\+Byte }\end{DoxyParamCaption})}
+
+
+
+Definition at line 168 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by T\+W\+I\+\_\+\+Read\+Packet().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_a57d8ffa11749c0ba97d52c2a6e246d65}\label{TWI__AVR8_8h_a57d8ffa11749c0ba97d52c2a6e246d65}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Send\+Byte@{T\+W\+I\+\_\+\+Send\+Byte}}
+\index{T\+W\+I\+\_\+\+Send\+Byte@{T\+W\+I\+\_\+\+Send\+Byte}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Send\+Byte()}{TWI\_SendByte()}}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} T\+W\+I\+\_\+\+Send\+Byte (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Byte }\end{DoxyParamCaption})}
+
+
+
+T\+WI send byte. 
+
+\begin{DoxyReturn}{Returns}
+1 if Acknowledge. 
+
+0 on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Send(), I2\+C\+\_\+\+Send\+Message(), T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_a5e9fac0280a2414490f628071c0073c2}\label{TWI__AVR8_8h_a5e9fac0280a2414490f628071c0073c2}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Start\+Transmission@{T\+W\+I\+\_\+\+Start\+Transmission}}
+\index{T\+W\+I\+\_\+\+Start\+Transmission@{T\+W\+I\+\_\+\+Start\+Transmission}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Start\+Transmission()}{TWI\_StartTransmission()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Start\+Transmission (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS }\end{DoxyParamCaption})}
+
+
+
+Start I2C transmission. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & I2C Address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error on success. 
+
+T\+WI error value on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Start(), T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_a053f3f8c0c05407d204375de911dcbbb}\label{TWI__AVR8_8h_a053f3f8c0c05407d204375de911dcbbb}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Stop\+Transmission@{T\+W\+I\+\_\+\+Stop\+Transmission}}
+\index{T\+W\+I\+\_\+\+Stop\+Transmission@{T\+W\+I\+\_\+\+Stop\+Transmission}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Stop\+Transmission()}{TWI\_StopTransmission()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Stop\+Transmission (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sends a T\+WI S\+T\+OP onto the T\+WI bus, terminating communication with the currently addressed device. 
+
+
+
+Definition at line 75 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Stop(), T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{TWI__AVR8_8h_a7a9c708e4d9fbe6ed807f582bcbded0e}\label{TWI__AVR8_8h_a7a9c708e4d9fbe6ed807f582bcbded0e}} 
+\index{T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}!T\+W\+I\+\_\+\+Write\+Packet@{T\+W\+I\+\_\+\+Write\+Packet}}
+\index{T\+W\+I\+\_\+\+Write\+Packet@{T\+W\+I\+\_\+\+Write\+Packet}!T\+W\+I\+\_\+\+A\+V\+R8.\+h@{T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Write\+Packet()}{TWI\_WritePacket()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Write\+Packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS,  }\item[{const uint8\+\_\+t $\ast$}]{Internal\+Address,  }\item[{uint8\+\_\+t}]{Internal\+Address\+Len,  }\item[{const uint8\+\_\+t $\ast$}]{Buffer,  }\item[{uint8\+\_\+t}]{Length }\end{DoxyParamCaption})}
+
+
+
+T\+WI write packet. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & T\+WI sleave address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Our Address. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Our Address Length. \\
+\hline
+\mbox{\tt in}  & {\em Buffer} & Buffer to Write. \\
+\hline
+\mbox{\tt in}  & {\em Length} & Length of data to write.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+Error code on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 252 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by rtc\+\_\+init(), rtc\+\_\+run(), and rtc\+\_\+write().
+
