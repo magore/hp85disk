@@ -1,0 +1,71 @@
+\hypertarget{group__Group__TWI__AVR8}{}\section{T\+WI Peripheral Driver (A\+V\+R8)}
+\label{group__Group__TWI__AVR8}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\hypertarget{group__Group__TWI__AVR8_Sec_ModDescription}{}\subsection{Module Description}\label{group__Group__TWI__AVR8_Sec_ModDescription}
+Master mode T\+WI driver for the 8-\/bit A\+VR microcontrollers which contain a hardware T\+WI module.
+
+\begin{DoxyNote}{Note}
+This file should not be included directly. It is automatically included as needed by the T\+WI driver dispatch header located in L\+U\+F\+A/\+Drivers/\+Peripheral/\+T\+W\+I.\+h.
+\end{DoxyNote}
+\hypertarget{group__Group__TWI__AVR8_Sec_ExampleUsage}{}\subsection{Example Usage}\label{group__Group__TWI__AVR8_Sec_ExampleUsage}
+The following snippet is an example of how this module may be used within a typical application.
+
+{\bfseries Low Level A\+PI Example\+:} 
+\begin{DoxyCode}
+\textcolor{comment}{// Initialize the TWI driver before first use at 200KHz}
+\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(TWI\_BIT\_PRESCALE\_1, TWI\_BITLENGTH\_FROM\_FREQ(1, 200000));
+
+\textcolor{comment}{// Start a write session to device at device address 0xA0, internal address 0xDC with a 10ms timeout}
+\textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_WRITE, 10) == TWI\_ERROR\_NoError)
+\{
+    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
+
+    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x01);
+    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x02);
+    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x03);
+
+    \textcolor{comment}{// Must stop transmission afterwards to release the bus}
+    \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
+\}
+
+\textcolor{comment}{// Start a read session to device at address 0xA0, internal address 0xDC with a 10ms timeout}
+\textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_WRITE, 10) == TWI\_ERROR\_NoError)
+\{
+    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
+    \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
+
+    \textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_READ, 10) == TWI\_ERROR\_NoError)
+    \{
+        uint8\_t Byte1, Byte2, Byte3;
+
+        \textcolor{comment}{// Read three bytes, acknowledge after the third byte is received}
+        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte1, \textcolor{keyword}{false});
+        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte2, \textcolor{keyword}{false});
+        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte3, \textcolor{keyword}{true});
+
+        \textcolor{comment}{// Must stop transmission afterwards to release the bus}
+        \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
+    \}
+\}
+\end{DoxyCode}
+
+
+{\bfseries High Level A\+PI Example\+:} 
+\begin{DoxyCode}
+\textcolor{comment}{// Initialize the TWI driver before first use at 200KHz}
+\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(TWI\_BIT\_PRESCALE\_1, TWI\_BITLENGTH\_FROM\_FREQ(1, 200000));
+
+\textcolor{comment}{// Start a write session to device at device address 0xA0, internal address 0xDC with a 10ms timeout}
+uint8\_t InternalWriteAddress = 0xDC;
+uint8\_t WritePacket[3] = \{0x01, 0x02, 0x03\};
+
+\hyperlink{TWI__AVR8_8c_a7a9c708e4d9fbe6ed807f582bcbded0e}{TWI\_WritePacket}(0xA0, 10, &InternalWriteAddress, \textcolor{keyword}{sizeof}(InternalWriteAddress),
+                &WritePacket, \textcolor{keyword}{sizeof}(WritePacket);
+
+\textcolor{comment}{// Start a read session to device at address 0xA0, internal address 0xDC with a 10ms timeout}
+uint8\_t InternalReadAddress = 0xDC;
+uint8\_t ReadPacket[3];
+
+\hyperlink{TWI__AVR8_8c_aea02d723a16ed7f11d485c24175d8117}{TWI\_ReadPacket}(0xA0, 10, &InternalReadAddress, \textcolor{keyword}{sizeof}(InternalReadAddress),
+               &ReadPacket, \textcolor{keyword}{sizeof}(ReadPacket);
+\end{DoxyCode}
+ 

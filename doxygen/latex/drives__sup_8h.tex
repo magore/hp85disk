@@ -1,0 +1,125 @@
+\hypertarget{drives__sup_8h}{}\section{gpib/drives\+\_\+sup.h File Reference}
+\label{drives__sup_8h}\index{gpib/drives\+\_\+sup.\+h@{gpib/drives\+\_\+sup.\+h}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structhpdir__t}{hpdir\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{drives__sup_8h_a3f11d81c1e6d925611a9bdd5115064a0}{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}~32
+\begin{DoxyCompactList}\small\item\em Data structure for hpdir.\+ini H\+P\+Dir project disk parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{drives__sup_8h_ad82a5b6b7404287bb16cf6c0cc35740c}{hpdir\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em hpdir.\+ini file processing \end{DoxyCompactList}\item 
+long \hyperlink{drives__sup_8h_a264e7130c0a912421d467a5924ff0fef}{lif\+\_\+dir\+\_\+count} (long blocks)
+\begin{DoxyCompactList}\small\item\em L\+IF Directory blocks $\sim$= sqrt(blocks);. \end{DoxyCompactList}\item 
+int \hyperlink{drives__sup_8h_ad8337467346aa3569bbae92859e821c1}{hpdir\+\_\+find\+\_\+drive} (char $\ast$model, int list, int verbose)
+\begin{DoxyCompactList}\small\item\em Find drive parameters in hpdir.\+ini file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{drives__sup_8h_a3f11d81c1e6d925611a9bdd5115064a0}\label{drives__sup_8h_a3f11d81c1e6d925611a9bdd5115064a0}} 
+\index{drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}!M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE@{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}}
+\index{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE@{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}!drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}}
+\subsubsection{\texorpdfstring{M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE}{MODEL\_SIZE}}
+{\footnotesize\ttfamily \#define M\+O\+D\+E\+L\+\_\+\+S\+I\+ZE~32}
+
+
+
+Data structure for hpdir.\+ini H\+P\+Dir project disk parameters. 
+
+================================================= This structure will containes the parsed and computed disk parameters from a single hpdir disk entry
+
+; A\+M\+I\+G\+I\+O/\+C\+S80/\+S\+S80 disk drives ; 1 -\/ S\+S80 \mbox{[}H\+P9134L\mbox{]} unique drive model identifier (should be identical to \mbox{[}fsinfo\mbox{]} section above) ; 2 -\/ C\+O\+M\+M\+E\+NT descriptive string ; 3 -\/ S\+S80/\+A\+M\+I\+GO\+: drive protocol A\+M\+I\+GO, C\+S80 or S\+S80 ; 4 -\/ ID\+: ID returned by A\+M\+I\+GO identify ; 5 -\/ mask for secondary ID returned by high byte of S\+T\+A\+T2 ; 6 -\/ ID returned by high byte of S\+T\+A\+T2 ; 7 -\/ D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER\+: drive number returned by C\+S/80 describe command ; 8 -\/ U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+E\+D(0x8001)\+: number of units installed ; 9 -\/ M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER\+: number of cylinders ;10 -\/ M\+A\+X\+\_\+\+H\+E\+AD\+: number of heads or surfaces ;11 -\/ M\+A\+X\+\_\+\+S\+E\+C\+T\+OR\+: number of sectors per track ;12 -\/ B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK\+: number of bytes per block or sector ;13 -\/ I\+N\+T\+E\+R\+L\+E\+A\+VE\+: default interleave ;14 -\/ media type 0=fixed media, 1=removable media ; \# Removable volume byte; one bit per volume (set if removable) ; 1, x, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14 Example entry 9895 = \char`\"{}\+H\+P9895\+A dual 1.\+15\+M A\+M\+I\+G\+O floppy disc\char`\"{}, A\+M\+I\+GO, 0x0081, 0x00, 0x00, 0x000000, 1, 77, 2, 30, 256, 7, 1
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file drives\+\_\+sup.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{drives__sup_8h_ad8337467346aa3569bbae92859e821c1}\label{drives__sup_8h_ad8337467346aa3569bbae92859e821c1}} 
+\index{drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}!hpdir\+\_\+find\+\_\+drive@{hpdir\+\_\+find\+\_\+drive}}
+\index{hpdir\+\_\+find\+\_\+drive@{hpdir\+\_\+find\+\_\+drive}!drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}}
+\subsubsection{\texorpdfstring{hpdir\+\_\+find\+\_\+drive()}{hpdir\_find\_drive()}}
+{\footnotesize\ttfamily int hpdir\+\_\+find\+\_\+drive (\begin{DoxyParamCaption}\item[{char $\ast$}]{model,  }\item[{int}]{list,  }\item[{int}]{verbose }\end{DoxyParamCaption})}
+
+
+
+Find drive parameters in hpdir.\+ini file. 
+
+=============================================== 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em model} & model string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on sucess or 0 on fail 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file drives\+\_\+sup.\+c.
+
+
+
+Referenced by hpdir\+\_\+set\+\_\+parameters(), and lif\+\_\+tests().
+
+\mbox{\Hypertarget{drives__sup_8h_ad82a5b6b7404287bb16cf6c0cc35740c}\label{drives__sup_8h_ad82a5b6b7404287bb16cf6c0cc35740c}} 
+\index{drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}!hpdir\+\_\+init@{hpdir\+\_\+init}}
+\index{hpdir\+\_\+init@{hpdir\+\_\+init}!drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}}
+\subsubsection{\texorpdfstring{hpdir\+\_\+init()}{hpdir\_init()}}
+{\footnotesize\ttfamily void hpdir\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+hpdir.\+ini file processing 
+
+===========================================================Init Disk Parameter Structure
+
+This structure will containes the parsed and computed disk parameters from a single hpdir disk entry
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file drives\+\_\+sup.\+c.
+
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive().
+
+\mbox{\Hypertarget{drives__sup_8h_a264e7130c0a912421d467a5924ff0fef}\label{drives__sup_8h_a264e7130c0a912421d467a5924ff0fef}} 
+\index{drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}!lif\+\_\+dir\+\_\+count@{lif\+\_\+dir\+\_\+count}}
+\index{lif\+\_\+dir\+\_\+count@{lif\+\_\+dir\+\_\+count}!drives\+\_\+sup.\+h@{drives\+\_\+sup.\+h}}
+\subsubsection{\texorpdfstring{lif\+\_\+dir\+\_\+count()}{lif\_dir\_count()}}
+{\footnotesize\ttfamily long lif\+\_\+dir\+\_\+count (\begin{DoxyParamCaption}\item[{long}]{blocks }\end{DoxyParamCaption})}
+
+
+
+L\+IF Directory blocks $\sim$= sqrt(blocks);. 
+
+We simplify B\+I\+TS = M\+SB bit number of block count Directory size = B\+I\+TS / 2 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em blocks} & size of L\+IF image in total\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Size of L\+IF directory in blocks 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file drives\+\_\+sup.\+c.
+
+
+
+Referenced by format\+\_\+drives(), and lif\+\_\+tests().
+

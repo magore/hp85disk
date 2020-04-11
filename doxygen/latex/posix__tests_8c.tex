@@ -1,0 +1,303 @@
+\hypertarget{posix__tests_8c}{}\section{posix/posix\+\_\+tests.c File Reference}
+\label{posix__tests_8c}\index{posix/posix\+\_\+tests.\+c@{posix/posix\+\_\+tests.\+c}}
+
+
+fatfs test utilities with user interface  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}time.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stringsup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mathio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix\+\_\+tests.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{posix__tests_8c_aeca034f67218340ecb2261a22c2f3dcd}{B\+U\+F\+S\+I\+ZE}~512
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix__tests_8c_ae59f48db88ed3bb8f9c549a7fbe9717d}{posix\+\_\+help} (int full)
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix__tests_8c_a36d7c93fa658c992f9a881b89bb7f0af}{posix\+\_\+tests} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX tests. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix__tests_8c_aeff1a094f806e4de30ef181e9a09cbe4}{cat} (char $\ast$name, int dopage)
+\begin{DoxyCompactList}\small\item\em Display the contents of a file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix__tests_8c_aa20d1cbe580573b96d08f9429a08fcd3}{copy} (char $\ast$from, char $\ast$to)
+\begin{DoxyCompactList}\small\item\em Copy a file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix__tests_8c_ad6ce57bb64ab0fd7f91d04079fc4b070}{setpage} (int count)
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix__tests_8c_a568ac783ed7c976d2832966dcbce607c}{testpage} (int count)
+\begin{DoxyCompactList}\small\item\em Used to page output of functions like cat, hexdump, etc. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix__tests_8c_a573eb4f7de945139101e2cfb59111722}{ls\+\_\+info} (char $\ast$name, int verbose)
+\begin{DoxyCompactList}\small\item\em list one file \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix__tests_8c_ad6e0550e9557209680b1640c814746d8}{ls} (char $\ast$name, int verbose)
+\begin{DoxyCompactList}\small\item\em Directory listing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{posix__tests_8c_a8103355735500cb8d1c1eea35e352cda}{\+\_\+pagesize} = 25
+\begin{DoxyCompactList}\small\item\em Used to page output of functions like cat, hexdump, etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+fatfs test utilities with user interface 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for specific Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix__tests_8c_aeca034f67218340ecb2261a22c2f3dcd}\label{posix__tests_8c_aeca034f67218340ecb2261a22c2f3dcd}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!B\+U\+F\+S\+I\+ZE@{B\+U\+F\+S\+I\+ZE}}
+\index{B\+U\+F\+S\+I\+ZE@{B\+U\+F\+S\+I\+ZE}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{B\+U\+F\+S\+I\+ZE}{BUFSIZE}}
+{\footnotesize\ttfamily \#define B\+U\+F\+S\+I\+ZE~512}
+
+
+
+Definition at line 43 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by copy().
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{posix__tests_8c_aeff1a094f806e4de30ef181e9a09cbe4}\label{posix__tests_8c_aeff1a094f806e4de30ef181e9a09cbe4}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!cat@{cat}}
+\index{cat@{cat}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{cat()}{cat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long cat (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{int}]{dopage }\end{DoxyParamCaption})}
+
+
+
+Display the contents of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name. \\
+\hline
+\mbox{\tt in}  & {\em option} & --p page display \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix__tests_8c_aa20d1cbe580573b96d08f9429a08fcd3}\label{posix__tests_8c_aa20d1cbe580573b96d08f9429a08fcd3}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!copy@{copy}}
+\index{copy@{copy}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long copy (\begin{DoxyParamCaption}\item[{char $\ast$}]{from,  }\item[{char $\ast$}]{to }\end{DoxyParamCaption})}
+
+
+
+Copy a file. 
+
+
+\begin{DoxyItemize}
+\item Credit\+: part of Fat\+Fs avr example project (C)ChaN, 2013. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em from} & source file. \\
+\hline
+\mbox{\tt in}  & {\em to} & destination file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bytes written 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 321 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix__tests_8c_ad6e0550e9557209680b1640c814746d8}\label{posix__tests_8c_ad6e0550e9557209680b1640c814746d8}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!ls@{ls}}
+\index{ls@{ls}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{ls()}{ls()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ls (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{int}]{verbose }\end{DoxyParamCaption})}
+
+
+
+Directory listing. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & file name or directory \\
+\hline
+\mbox{\tt in}  & {\em option} & -\/l for detail \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of files 
+\end{DoxyReturn}
+
+
+Definition at line 538 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix__tests_8c_a573eb4f7de945139101e2cfb59111722}\label{posix__tests_8c_a573eb4f7de945139101e2cfb59111722}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!ls\+\_\+info@{ls\+\_\+info}}
+\index{ls\+\_\+info@{ls\+\_\+info}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{ls\+\_\+info()}{ls\_info()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ls\+\_\+info (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{int}]{verbose }\end{DoxyParamCaption})}
+
+
+
+list one file 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & file name or directory \\
+\hline
+\mbox{\tt in}  & {\em verbose} & 1 = detail, 0 = name only \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 on success 0 on fail 
+\end{DoxyReturn}
+
+
+Definition at line 486 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix__tests_8c_ae59f48db88ed3bb8f9c549a7fbe9717d}\label{posix__tests_8c_ae59f48db88ed3bb8f9c549a7fbe9717d}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!posix\+\_\+help@{posix\+\_\+help}}
+\index{posix\+\_\+help@{posix\+\_\+help}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{posix\+\_\+help()}{posix\_help()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void posix\+\_\+help (\begin{DoxyParamCaption}\item[{int}]{full }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by help(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix__tests_8c_a36d7c93fa658c992f9a881b89bb7f0af}\label{posix__tests_8c_a36d7c93fa658c992f9a881b89bb7f0af}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!posix\+\_\+tests@{posix\+\_\+tests}}
+\index{posix\+\_\+tests@{posix\+\_\+tests}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{posix\+\_\+tests()}{posix\_tests()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int posix\+\_\+tests (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX tests. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em agc} & cont of arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 The ruturn code indicates a command matched. 
+
+0 if no rules matched 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by task().
+
+\mbox{\Hypertarget{posix__tests_8c_ad6ce57bb64ab0fd7f91d04079fc4b070}\label{posix__tests_8c_ad6ce57bb64ab0fd7f91d04079fc4b070}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!setpage@{setpage}}
+\index{setpage@{setpage}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{setpage()}{setpage()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int setpage (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+Definition at line 445 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix__tests_8c_a568ac783ed7c976d2832966dcbce607c}\label{posix__tests_8c_a568ac783ed7c976d2832966dcbce607c}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!testpage@{testpage}}
+\index{testpage@{testpage}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{testpage()}{testpage()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int testpage (\begin{DoxyParamCaption}\item[{int}]{count }\end{DoxyParamCaption})}
+
+
+
+Used to page output of functions like cat, hexdump, etc. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & file to hexdump  -\/1 = quit, return count or 0 at new page \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 456 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by cat(), and copy().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{posix__tests_8c_a8103355735500cb8d1c1eea35e352cda}\label{posix__tests_8c_a8103355735500cb8d1c1eea35e352cda}} 
+\index{posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}!\+\_\+pagesize@{\+\_\+pagesize}}
+\index{\+\_\+pagesize@{\+\_\+pagesize}!posix\+\_\+tests.\+c@{posix\+\_\+tests.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+pagesize}{\_pagesize}}
+{\footnotesize\ttfamily int \+\_\+pagesize = 25\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Used to page output of functions like cat, hexdump, etc. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & file to hexdump  void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 443 of file posix\+\_\+tests.\+c.
+
+
+
+Referenced by setpage(), and testpage().
+

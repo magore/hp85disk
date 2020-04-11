@@ -1,0 +1,227 @@
+\hypertarget{main_8c}{}\section{main.\+c File Reference}
+\label{main_8c}\index{main.\+c@{main.\+c}}
+
+
+Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.  
+
+
+{\ttfamily \#include $<$user\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gpib/defines.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/gpib\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/gpib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/gpib\+\_\+task.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/gpib\+\_\+tests.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/printer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/amigo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpib/ss80.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}{copyright} ()
+\begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a9926884643efcc16ac36662b381b6bde}{delay\+\_\+tests} ()
+\begin{DoxyCompactList}\small\item\em perform tests on delay functions \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a66ac220b8fb4c59823fdf116cecda862}{task} (uint8\+\_\+t gpib)
+\begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \hyperlink{main_8c_a438e8d406e17d032b87f58cac4e6616d}{R\+E\+S\+ET} )(void)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file. 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}\label{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}} 
+\index{main.\+c@{main.\+c}!copyright@{copyright}}
+\index{copyright@{copyright}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{copyright()}{copyright()}}
+{\footnotesize\ttfamily void copyright (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Display Copyright. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file main.\+c.
+
+
+
+Referenced by help().
+
+\mbox{\Hypertarget{main_8c_a9926884643efcc16ac36662b381b6bde}\label{main_8c_a9926884643efcc16ac36662b381b6bde}} 
+\index{main.\+c@{main.\+c}!delay\+\_\+tests@{delay\+\_\+tests}}
+\index{delay\+\_\+tests@{delay\+\_\+tests}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{delay\+\_\+tests()}{delay\_tests()}}
+{\footnotesize\ttfamily void delay\+\_\+tests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+perform tests on delay functions 
+
+This included measurement of avr-\/libc delays \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file main.\+c.
+
+
+
+Referenced by task().
+
+\mbox{\Hypertarget{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}\label{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}} 
+\index{main.\+c@{main.\+c}!help@{help}}
+\index{help@{help}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{help()}{help()}}
+{\footnotesize\ttfamily void help (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Display the main help menu -\/ calls all other help menus. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib__tests_8c_a4bd85d1cfc93b13cd8cfbac1014224c4}{gpib\+\_\+help()} 
+
+\hyperlink{fatfs__tests_8c_ad16bc1913c19300dba43a07006c9ac52}{fatfs\+\_\+help()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 104 of file main.\+c.
+
+
+
+Referenced by task().
+
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project 
+
+\begin{DoxyReturn}{Returns}
+should never return! 
+\end{DoxyReturn}
+@ initialize bus state as soon as practical
+
+@ Initialize U\+A\+RT early Returns actual B\+A\+UD rate -\/ possible with hardware -\/ may differ slightly
+
+Power up delay
+
+Power up delay
+
+@ initialize S\+PI bus
+
+@ initialize I2C bus
+
+@ initialize clock by R\+TC if we have it
+
+@ initialize Optional I2C L\+CD
+
+@ initialize M\+MC bus
+
+@ initialize bus state as soon as practical
+
+@ initialize Printer Capture
+
+@ initialize G\+P\+IB timer tasks
+
+Process hp85disk emulator config file
+
+G\+P\+IB talking/listening state variables Must be done A\+F\+T\+ER \hyperlink{gpib__task_8c_a29b89503cfbf214695082b16d6d40f52}{gpib\+\_\+file\+\_\+init()} so we have a valid configuration
+
+Display Configuration
+
+Format any drives that do not yet exist
+
+Display Address Summary
+
+Display debug level
+
+Start main G\+P\+IB state machine
+
+Keep the task running -\/ it exits after every user interaction, ie key press 
+
+Definition at line 240 of file main.\+c.
+
+
+
+Referenced by Mat\+Write().
+
+\mbox{\Hypertarget{main_8c_a66ac220b8fb4c59823fdf116cecda862}\label{main_8c_a66ac220b8fb4c59823fdf116cecda862}} 
+\index{main.\+c@{main.\+c}!task@{task}}
+\index{task@{task}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{task()}{task()}}
+{\footnotesize\ttfamily void task (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{gpib }\end{DoxyParamCaption})}
+
+
+
+User command handler -\/ called as main task. 
+
+If a keypress is detected read a line from the uart parse the result and call various user functions. ? will return a list of fuctions and paramters permitted 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em gpib} & -\/ if non-\/zero run gpib while there are no user commands \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file main.\+c.
+
+
+
+Referenced by main().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_a438e8d406e17d032b87f58cac4e6616d}\label{main_8c_a438e8d406e17d032b87f58cac4e6616d}} 
+\index{main.\+c@{main.\+c}!R\+E\+S\+ET@{R\+E\+S\+ET}}
+\index{R\+E\+S\+ET@{R\+E\+S\+ET}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{R\+E\+S\+ET}{RESET}}
+{\footnotesize\ttfamily void($\ast$ R\+E\+S\+ET) (void)=0}
+
+
+
+Definition at line 96 of file main.\+c.
+
+
+
+Referenced by delay\+\_\+tests(), and task().
+

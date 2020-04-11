@@ -1,0 +1,2547 @@
+\hypertarget{posix_8c}{}\section{posix/posix.c File Reference}
+\label{posix_8c}\index{posix/posix.\+c@{posix/posix.\+c}}
+
+
+P\+O\+S\+IX wrapper for Fat\+FS.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stringsup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a31986cce890109c211ccb14151aafd0e}{isatty} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Get byte from a T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Put a byte to T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$put = fatfs\+\_\+outc() for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a65ef3ba32c47b84f7727e36de68ef86c}{getchar} ()
+\begin{DoxyCompactList}\small\item\em functions normally defined as macros \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} (int c)
+\begin{DoxyCompactList}\small\item\em put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_af979e8f6598be71d68be7cc49a41626b}{ungetc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Un-\/\+Get byte from a T\+TY device or Fat\+Fs file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ae59fd612372df957f59fb3cdcbd8b9e9}{putc} (int c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a3759827e157badd49d076bd157f508d9}{fgets} (char $\ast$str, int size, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em get a string from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a30a4070a8b1719d53cb01dd4b2a65069}{fputs} (const char $\ast$str, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aa360dd5203b246757abc21253ed8eb2e}{puts} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_af98213e7457dbe734d81d34758d2b505}{feof} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em feof reports if the stream is at E\+OF \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_acb9e5741c01183dfe3179d646b264e5b}{fgetpos} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$pos)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get position of file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad31144743f0014784193221563ca8dd2}{fseek} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, long offset, int whence)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file possition. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a8705d74fe77c1b23824074ecd14be1c7}{fsetpos} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$pos)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX set position of file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{posix_8c_af53dca187c78408fe2f1958c4eb88603}{ftell} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX file position of open stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} \hyperlink{posix_8c_abb875e56516d235a6aaf69951444cc63}{lseek} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno}, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} position, int whence)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX seek to file position. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a35e6a58f44d4651951ecfeb97f369884}{rewind} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rewind file to the beginning. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a48dc1df1627501d3faed4bf1f9801759}{close} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Close a file with fileno handel. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX stream pointer to P\+O\+S\+IX fileno (index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}) \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_a2c01fe0e0aa550b2a8b4dcc326983b57}{fileno\+\_\+to\+\_\+stream} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream pointer. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen} (const char $\ast$path, const char $\ast$mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Open a file with path name and ascii file mode string. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{posix_8c_a01233ac8fd574e20b0b38472adbee551}{fread} (void $\ast$ptr, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a474e4e6cac62ef12c66b8a597c14e5f6}{ftruncate} (int fd, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate open file to length. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{posix_8c_a148630cbecc0822d9395f002691ffe75}{fwrite} (const void $\ast$ptr, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX write nmemb elements from buf, size bytes each, to the stream fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open} (const char $\ast$pathname, int flags)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Open a file with integer mode flags. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_af104a2c05bef787e54c6925616e867df}{read} (int fd, const void $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} count)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX read count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a8f7f00d4ec0d99440762b0a664aebf70}{sync} (void)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync all pending file changes and metadata on A\+LL files. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a521c33bdb3606c9f3546b9cbcd37b9ac}{syncfs} (int fd)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Sync pending file changes and metadata for specified fileno. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a73a95c4a93875be906e573c00b30c5ea}{truncate} (const char $\ast$path, \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} length)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX truncate named file to length. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} \hyperlink{posix_8c_a072435300ac99e8d7c3749f45166e797}{write} (int fd, const void $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} count)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Write count bytes from $\ast$buf to fileno fd. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ad6fd240fec1d65213f34b6e6465a8033}{fclose} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX close a file stream. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a111f2e6e6bc9f0a46210a323cab093c7}{dump\+\_\+stat} (struct \hyperlink{structstat}{stat} $\ast$sp)
+\begin{DoxyCompactList}\small\item\em Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a39eea0b104438afa9ca0500c2e8d6887}{mctime} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} timev)
+\begin{DoxyCompactList}\small\item\em Display Ascii formatted time from timev seconds N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abef70bf7a4af8a1f4998db0035c51781}{stat} (char $\ast$name, struct \hyperlink{structstat}{stat} $\ast$buf)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX stat -\/ get file status of named file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a732642e09075838bbbca28b3529f13db}{utime} (const char $\ast$filename, const struct \hyperlink{structutimbuf}{utimbuf} $\ast$times)
+\begin{DoxyCompactList}\small\item\em Set Modification and Access time of a file. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}{basename} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX Basename of filename. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}{baseext} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em File extention of a file name. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a9c74403d1a11692bcab2c9ab7de4b0d3}{chdir} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX change directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a43b14410cd7b1b67c7834ad2d6a193ce}{chmod} (const char $\ast$pathname, \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t} mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX chmod function -\/ change file access permission Unfortunately file f\+\_\+open modes and f\+\_\+chmod modes are not the same Files that are open have way more options -\/ but only while the file is open. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}{dirname} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX directory name of a filename. Return the index of the last \textquotesingle{}/\textquotesingle{} character. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a6411298bb01166960f5a0378ac0fdb82}{getcwd} (char $\ast$pathname, int len)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX get current working directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a8b57a7ee1ba139c636477cf2998e8b1e}{mkdir} (const char $\ast$pathname, \hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t} mode)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX make a directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ada8cc8f9394cf54db8f338838a9fa7ce}{rename} (const char $\ast$oldpath, const char $\ast$newpath)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX rename a file by name. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a6080dee579486f132062435577b77d10}{rmdir} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a directory. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_aa964d662c19b2021d9cfd0c71bc686bd}{unlink} (const char $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX delete a file. \end{DoxyCompactList}\item 
+int \hyperlink{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}{closedir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX closedir. \end{DoxyCompactList}\item 
+\hyperlink{structDIR}{D\+IR} $\ast$ \hyperlink{posix_8c_a19051b9081dfef221d9bf4583e935031}{opendir} (const char $\ast$pathdir)
+\item 
+\hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} $\ast$ \hyperlink{posix_8c_a1508fedaef509d2976b43300306d1400}{readdir} (\hyperlink{structDIR}{D\+IR} $\ast$dirp)
+\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a03baa4d851a2a855656081a4b7c8d72c}{clrerror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em clrerror resets stream E\+OF and error flags \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac37bff9f639fa95401b71839bbabd9a0}{ferror} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em ferror reports if the stream has an error flag set \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} $\ast$ \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror} (int errnum)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char $\ast$ \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r} (int errnum, char $\ast$buf, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} buflen)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen} (int($\ast$put)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$), int($\ast$get)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$))
+\begin{DoxyCompactList}\small\item\em Device open functions. \end{DoxyCompactList}\item 
+int \hyperlink{posix_8c_ab66b36e0fd29a0a7384efda96cef575b}{mkfs} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Formt SD card. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc} (char c, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Private Fat\+Fs function called by \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc()} to put a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc()} \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_ac20f0fc565c27bbbb900bde3337b09b9}{fatfs\+\_\+to\+\_\+errno} (\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT} Result)
+\begin{DoxyCompactList}\small\item\em Convert Faf\+Fs error result to P\+O\+S\+IX errno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a81f14429660ca6a685676d6ceaf5350c}{fatfs\+\_\+to\+\_\+fileno} (\hyperlink{structFIL}{F\+IL} $\ast$fh)
+\begin{DoxyCompactList}\small\item\em Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} \hyperlink{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}{fat\+\_\+time\+\_\+to\+\_\+unix} (uint16\+\_\+t date, uint16\+\_\+t \hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}{unix\+\_\+time\+\_\+to\+\_\+fat} (\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} epoch, uint16\+\_\+t $\ast$date, uint16\+\_\+t $\ast$\hyperlink{time_8h_a32b1cbd925752f0cd61d202bbe204a69}{time})
+\begin{DoxyCompactList}\small\item\em Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL} $\ast$ \hyperlink{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}{fileno\+\_\+to\+\_\+fatfs} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a38496612f759733234128893e4c60a89}{free\+\_\+file\+\_\+descriptor} (int \hyperlink{posix_8h_aceb657a1b3c10d576aed287714bfd5d1}{fileno})
+\begin{DoxyCompactList}\small\item\em Free P\+O\+S\+IX fileno F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_abab788c42cce343cde2f5b8f90015229}{new\+\_\+file\+\_\+descriptor} (void)
+\begin{DoxyCompactList}\small\item\em Allocate a P\+O\+S\+IX F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a607feb06d296e0ff60d5a19538bd17fc}{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open} (const char $\ast$mode)
+\begin{DoxyCompactList}\small\item\em Convert P\+O\+S\+IX fopen mode to P\+O\+S\+IX open mode flags. N\+OT P\+O\+S\+IX. \end{DoxyCompactList}\item 
+static \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{posix_8c_a2b4462e4e183cf38f0e7c3674be496e2}{\+\_\+fprintf\+\_\+putc} (struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$p, char ch)
+\begin{DoxyCompactList}\small\item\em fprintf character write function \end{DoxyCompactList}\item 
+\hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{posix_8c_a91ade11061b9b43b1edd37ff32f76591}{fprintf} (\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$fp, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em fprintf function Example user defined printf function using fputc for I/O This method allows I/O to devices and strings without typical C++ overhead \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}{errno}
+\begin{DoxyCompactList}\small\item\em Note\+: fdevopen assigns stdin,stdout,stderr. \end{DoxyCompactList}\item 
+\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$ \hyperlink{posix_8c_aae2f027325f7e73c3aa5e7dc990bd90d}{\+\_\+\+\_\+iob} \mbox{[}\hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}\mbox{]}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX error messages for each errno value. \end{DoxyCompactList}\item 
+static \hyperlink{structDIR}{D\+IR} \hyperlink{posix_8c_ae5badb2fbda49f0741042e68c364532b}{\+\_\+dp}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir. \end{DoxyCompactList}\item 
+static \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} \hyperlink{posix_8c_a42837e7607f8e3b8ae74286253989724}{\+\_\+de}
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX opendir. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+O\+S\+IX wrapper for Fat\+FS. 
+
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL License}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for specific Copyright details
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
+please retain a copy of this notice in any code you use it in.
+\end{DoxyParagraph}
+This is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}.
+
+
+\begin{DoxyItemize}
+\item Provides many of the common Posix/linux functions
+\item P\+O\+S\+IX character I/O functions
+\begin{DoxyItemize}
+\item isatty
+\item fgetc
+\item fputc
+\item getchar
+\item putc
+\item putchar
+\item ungetc
+\end{DoxyItemize}
+\item P\+O\+S\+IX string I/O functions
+\begin{DoxyItemize}
+\item fgets
+\item fputs
+\item puts
+\end{DoxyItemize}
+\item P\+O\+S\+IX file position functions
+\begin{DoxyItemize}
+\item feof
+\item fgetpos
+\item fseek
+\item fsetpos
+\item ftell
+\item lseek
+\item rewind
+\end{DoxyItemize}
+\item P\+O\+S\+IX file functions
+\begin{DoxyItemize}
+\item close
+\item fileno
+\item fileno\+\_\+to\+\_\+stream N\+OT P\+O\+S\+IX
+\item fopen
+\item fread
+\item ftruncate
+\item fwrite
+\item open
+\item read
+\item sync
+\item syncfs
+\item truncate
+\item write
+\item fclose
+\end{DoxyItemize}
+\item P\+O\+S\+IX file information functions
+\begin{DoxyItemize}
+\item dump\+\_\+stat -\/ N\+OT P\+O\+S\+IX
+\item fstat
+\item mctime -\/ N\+OT P\+O\+S\+IX
+\item stat
+\end{DoxyItemize}
+\item P\+O\+S\+IX file and directory manipulation
+\begin{DoxyItemize}
+\item basename
+\item baseext -\/ N\+OT P\+O\+S\+IX
+\item chmod
+\item chdir
+\item dirname
+\item getcwd
+\item mkdir
+\item rename
+\item rmdir
+\item unlink
+\item utime
+\end{DoxyItemize}
+\item P\+O\+S\+IX -\/ directory scanning functions
+\begin{DoxyItemize}
+\item closedir
+\item opendir
+\item readdir
+\end{DoxyItemize}
+\item P\+O\+S\+IX error functions
+\begin{DoxyItemize}
+\item clrerror
+\item ferror
+\item perror
+\item strerror
+\item strerror\+\_\+r
+\end{DoxyItemize}
+\item Device open functions
+\begin{DoxyItemize}
+\item fdevopen -\/ N\+OT P\+O\+S\+IX
+\end{DoxyItemize}
+\item Fat\+FS to P\+O\+S\+IX bridge functions -\/ N\+OT P\+O\+S\+IX
+\begin{DoxyItemize}
+\item fatfs\+\_\+getc
+\item fatfs\+\_\+putc
+\item fatfs\+\_\+to\+\_\+errno
+\item fatfs\+\_\+to\+\_\+fileno
+\item fat\+\_\+time\+\_\+to\+\_\+unix
+\item fileno\+\_\+to\+\_\+fatfs
+\item free\+\_\+file\+\_\+descriptor
+\item new\+\_\+file\+\_\+descriptor
+\item mkfs
+\item posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open
+\item unix\+\_\+time\+\_\+to\+\_\+fat 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{posix_8c_a2b4462e4e183cf38f0e7c3674be496e2}\label{posix_8c_a2b4462e4e183cf38f0e7c3674be496e2}} 
+\index{posix.\+c@{posix.\+c}!\+\_\+fprintf\+\_\+putc@{\+\_\+fprintf\+\_\+putc}}
+\index{\+\_\+fprintf\+\_\+putc@{\+\_\+fprintf\+\_\+putc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+fprintf\+\_\+putc()}{\_fprintf\_putc()}}
+{\footnotesize\ttfamily static \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \+\_\+fprintf\+\_\+putc (\begin{DoxyParamCaption}\item[{struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+fprintf character write function 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX fprintf function
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$p} & printf user buffer \\
+\hline
+\mbox{\tt in}  & {\em ch} & character T\+O\+DO if fputc fails we might want to also set an error in the $\ast$p structure -\/ error in the stream will already be set \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line 2471 of file posix.\+c.
+
+
+
+Referenced by fprintf().
+
+\mbox{\Hypertarget{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}\label{posix_8c_a0b33c90b99d00a8bd2595f254d1409e1}} 
+\index{posix.\+c@{posix.\+c}!baseext@{baseext}}
+\index{baseext@{baseext}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{baseext()}{baseext()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ baseext (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+File extention of a file name. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to find extension in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to basename extension. 
+\end{DoxyReturn}
+
+
+Definition at line 1466 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}\label{posix_8c_a4d3dfaf2f5a63e2e4eaa128477a9b5e7}} 
+\index{posix.\+c@{posix.\+c}!basename@{basename}}
+\index{basename@{basename}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{basename()}{basename()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ basename (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Basename of filename. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file and directory manipulation-\/ man page (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to find basename in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to basename of string. 
+\end{DoxyReturn}
+
+
+Definition at line 1446 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+fixname(), and ls\+\_\+info().
+
+\mbox{\Hypertarget{posix_8c_a9c74403d1a11692bcab2c9ab7de4b0d3}\label{posix_8c_a9c74403d1a11692bcab2c9ab7de4b0d3}} 
+\index{posix.\+c@{posix.\+c}!chdir@{chdir}}
+\index{chdir@{chdir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{chdir()}{chdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int chdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX change directory. 
+
+
+\begin{DoxyItemize}
+\item man page chdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to change to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1488 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a43b14410cd7b1b67c7834ad2d6a193ce}\label{posix_8c_a43b14410cd7b1b67c7834ad2d6a193ce}} 
+\index{posix.\+c@{posix.\+c}!chmod@{chmod}}
+\index{chmod@{chmod}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{chmod()}{chmod()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int chmod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{\hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX chmod function -\/ change file access permission Unfortunately file f\+\_\+open modes and f\+\_\+chmod modes are not the same Files that are open have way more options -\/ but only while the file is open. 
+
+
+\begin{DoxyItemize}
+\item so this is a bit of a hack -\/ we can only set read only -\/ if on one has write perms
+\end{DoxyItemize}
+
+man page chmod (2).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX chmod modes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+\end{DoxyReturn}
+
+
+Definition at line 1513 of file posix.\+c.
+
+
+
+Referenced by mkdir(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a48dc1df1627501d3faed4bf1f9801759}\label{posix_8c_a48dc1df1627501d3faed4bf1f9801759}} 
+\index{posix.\+c@{posix.\+c}!close@{close}}
+\index{close@{close}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int close (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Close a file with fileno handel. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file functions-\/ man page close (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & fileno of file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 685 of file posix.\+c.
+
+
+
+Referenced by fclose().
+
+\mbox{\Hypertarget{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}\label{posix_8c_aaeac2b41e8c2c3a5f91c9bd511a8c0a6}} 
+\index{posix.\+c@{posix.\+c}!closedir@{closedir}}
+\index{closedir@{closedir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{closedir()}{closedir()}}
+{\footnotesize\ttfamily int closedir (\begin{DoxyParamCaption}\item[{\hyperlink{structDIR}{D\+IR} $\ast$}]{dirp }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX closedir. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX -\/ directory scanning functions-\/ man page closedir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dirp} & \hyperlink{structDIR}{D\+IR} $\ast$ directory handle\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1717 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8c_a03baa4d851a2a855656081a4b7c8d72c}\label{posix_8c_a03baa4d851a2a855656081a4b7c8d72c}} 
+\index{posix.\+c@{posix.\+c}!clrerror@{clrerror}}
+\index{clrerror@{clrerror}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{clrerror()}{clrerror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void clrerror (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+clrerror resets stream E\+OF and error flags 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX error functions-\/ man page clrerror(3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1786 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}\label{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}} 
+\index{posix.\+c@{posix.\+c}!dirname@{dirname}}
+\index{dirname@{dirname}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{dirname()}{dirname()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int dirname (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX directory name of a filename. Return the index of the last \textquotesingle{}/\textquotesingle{} character. 
+
+
+\begin{DoxyItemize}
+\item Example\+: 
+\begin{DoxyCode}
+dir[0] = 0;
+ret = \hyperlink{posix_8c_a26a07a3db060ffc5659fe03495a29a1c}{dirname}(path)
+\textcolor{keywordflow}{if}(ret)
+ \hyperlink{stringsup_8c_acdb13cf3724e976e98a6178baf0a3ac5}{strncpy}(dir,path,ret);
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em str} & string to examine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if no directory part. 
+
+index of last \textquotesingle{}/\textquotesingle{} character. 
+\end{DoxyReturn}
+
+
+Definition at line 1551 of file posix.\+c.
+
+
+
+Referenced by hpdir\+\_\+find\+\_\+drive().
+
+\mbox{\Hypertarget{posix_8c_a111f2e6e6bc9f0a46210a323cab093c7}\label{posix_8c_a111f2e6e6bc9f0a46210a323cab093c7}} 
+\index{posix.\+c@{posix.\+c}!dump\+\_\+stat@{dump\+\_\+stat}}
+\index{dump\+\_\+stat@{dump\+\_\+stat}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{dump\+\_\+stat()}{dump\_stat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void dump\+\_\+stat (\begin{DoxyParamCaption}\item[{struct \hyperlink{structstat}{stat} $\ast$}]{sp }\end{DoxyParamCaption})}
+
+
+
+Display struct stat, from P\+O\+S\+IX stat(0 or fstat(), in A\+S\+C\+II. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file information functions
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sp} & struct stat pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 1260 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}\label{posix_8c_a178d5d21b21c0f60d6ff8dfbbc0d86f5}} 
+\index{posix.\+c@{posix.\+c}!fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}}
+\index{fat\+\_\+time\+\_\+to\+\_\+unix@{fat\+\_\+time\+\_\+to\+\_\+unix}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fat\+\_\+time\+\_\+to\+\_\+unix()}{fat\_time\_to\_unix()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} fat\+\_\+time\+\_\+to\+\_\+unix (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{date,  }\item[{uint16\+\_\+t}]{time }\end{DoxyParamCaption})}
+
+
+
+Convert Fat\+Fs file date and time to P\+O\+S\+IX epoch seconds. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page timegm (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em date} & Fat\+Fs date. \\
+\hline
+\mbox{\tt in}  & {\em time} & Fat\+Fs time.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a8386ff819a39512ea00cfc78ce5a27d5}{timegm()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+epoch seconds 
+\end{DoxyReturn}
+
+
+Definition at line 2230 of file posix.\+c.
+
+
+
+Referenced by stat().
+
+\mbox{\Hypertarget{posix_8c_a5811041feb43c22c6e609a8875475abc}\label{posix_8c_a5811041feb43c22c6e609a8875475abc}} 
+\index{posix.\+c@{posix.\+c}!fatfs\+\_\+getc@{fatfs\+\_\+getc}}
+\index{fatfs\+\_\+getc@{fatfs\+\_\+getc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+getc()}{fatfs\_getc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+getc (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Private Fat\+Fs function called by \hyperlink{posix_8c_a1d2fa24415329171e6765ed5309b6edd}{fgetc()} to get a byte from file stream F\+I\+X\+ME buffer this function call N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} 
+
+
+\begin{DoxyItemize}
+\item man page fgetc (3).
+\item Notes\+: fgetc does all tests prior to caling us, including ungetc.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1987 of file posix.\+c.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8c_adfd015ed8dbac3473269d1a068bf5904}\label{posix_8c_adfd015ed8dbac3473269d1a068bf5904}} 
+\index{posix.\+c@{posix.\+c}!fatfs\+\_\+putc@{fatfs\+\_\+putc}}
+\index{fatfs\+\_\+putc@{fatfs\+\_\+putc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+putc()}{fatfs\_putc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+putc (\begin{DoxyParamCaption}\item[{char}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Private Fat\+Fs function called by \hyperlink{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}{fputc()} to put a byte from file stream N\+OT P\+O\+S\+IX \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} assigns stream-\/$>$put = \hyperlink{posix_8c_adfd015ed8dbac3473269d1a068bf5904}{fatfs\+\_\+putc()} 
+
+
+\begin{DoxyItemize}
+\item man page fputc (3).
+\item Notes\+: fputc does all tests prior to caling us.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 2077 of file posix.\+c.
+
+
+
+Referenced by fputc(), and open().
+
+\mbox{\Hypertarget{posix_8c_ac20f0fc565c27bbbb900bde3337b09b9}\label{posix_8c_ac20f0fc565c27bbbb900bde3337b09b9}} 
+\index{posix.\+c@{posix.\+c}!fatfs\+\_\+to\+\_\+errno@{fatfs\+\_\+to\+\_\+errno}}
+\index{fatfs\+\_\+to\+\_\+errno@{fatfs\+\_\+to\+\_\+errno}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+to\+\_\+errno()}{fatfs\_to\_errno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+to\+\_\+errno (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a49d0171ecbd362cda5680a0d360db44c}{F\+R\+E\+S\+U\+LT}}]{Result }\end{DoxyParamCaption})}
+
+
+
+Convert Faf\+Fs error result to P\+O\+S\+IX errno. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page errno (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Result} & Fat\+Fs Result code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+O\+S\+IX errno. 
+
+E\+B\+A\+D\+M\+SG if no conversion possible. 
+\end{DoxyReturn}
+
+
+Definition at line 2117 of file posix.\+c.
+
+
+
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), ftruncate(), getcwd(), lseek(), mkdir(), open(), opendir(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), utime(), and write().
+
+\mbox{\Hypertarget{posix_8c_a81f14429660ca6a685676d6ceaf5350c}\label{posix_8c_a81f14429660ca6a685676d6ceaf5350c}} 
+\index{posix.\+c@{posix.\+c}!fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}}
+\index{fatfs\+\_\+to\+\_\+fileno@{fatfs\+\_\+to\+\_\+fileno}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fatfs\+\_\+to\+\_\+fileno()}{fatfs\_to\_fileno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fatfs\+\_\+to\+\_\+fileno (\begin{DoxyParamCaption}\item[{\hyperlink{structFIL}{F\+IL} $\ast$}]{fh }\end{DoxyParamCaption})}
+
+
+
+Convert Fat\+FS file handle to P\+O\+S\+IX fileno. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fh} & Fat\+FS file pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on error with errno set to E\+B\+A\+DF. 
+\end{DoxyReturn}
+
+
+Definition at line 2193 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_ad6fd240fec1d65213f34b6e6465a8033}\label{posix_8c_ad6fd240fec1d65213f34b6e6465a8033}} 
+\index{posix.\+c@{posix.\+c}!fclose@{fclose}}
+\index{fclose@{fclose}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fclose()}{fclose()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fclose (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX close a file stream. 
+
+
+\begin{DoxyItemize}
+\item man page flose (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error witrh errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1239 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+close(), cat(), copy(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+close\+\_\+volume(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), ls(), Mat\+Read(), Mat\+Write(), printer\+\_\+close(), Read\+\_\+\+Config(), td02lif(), and timetests().
+
+\mbox{\Hypertarget{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}\label{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}} 
+\index{posix.\+c@{posix.\+c}!fdevopen@{fdevopen}}
+\index{fdevopen@{fdevopen}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fdevopen()}{fdevopen()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fdevopen (\begin{DoxyParamCaption}\item[{int($\ast$)(char, \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$)}]{put,  }\item[{int($\ast$)(\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$)}]{get }\end{DoxyParamCaption})}
+
+
+
+Device open functions. 
+
+Assign stdin,stdout,stderr or any use defined I/O N\+OT P\+O\+S\+IX
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$put} & putc function pointer \\
+\hline
+\mbox{\tt in}  & {\em $\ast$get} & gutc function pointer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1876 of file posix.\+c.
+
+
+
+Referenced by uart\+\_\+init().
+
+\mbox{\Hypertarget{posix_8c_af98213e7457dbe734d81d34758d2b505}\label{posix_8c_af98213e7457dbe734d81d34758d2b505}} 
+\index{posix.\+c@{posix.\+c}!feof@{feof}}
+\index{feof@{feof}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{feof()}{feof()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int feof (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+feof reports if the stream is at E\+OF 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX file position functions-\/ man page feof (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if E\+OF set, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 505 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_ac37bff9f639fa95401b71839bbabd9a0}\label{posix_8c_ac37bff9f639fa95401b71839bbabd9a0}} 
+\index{posix.\+c@{posix.\+c}!ferror@{ferror}}
+\index{ferror@{ferror}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{ferror()}{ferror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ferror (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+ferror reports if the stream has an error flag set 
+
+
+\begin{DoxyItemize}
+\item man page ferror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if E\+OF set, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1798 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a1d2fa24415329171e6765ed5309b6edd}\label{posix_8c_a1d2fa24415329171e6765ed5309b6edd}} 
+\index{posix.\+c@{posix.\+c}!fgetc@{fgetc}}
+\index{fgetc@{fgetc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fgetc()}{fgetc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fgetc (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Get byte from a T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$get = \hyperlink{posix_8c_a5811041feb43c22c6e609a8875475abc}{fatfs\+\_\+getc()} for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page fgetc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 216 of file posix.\+c.
+
+
+
+Referenced by fgets(), getchar(), and read().
+
+\mbox{\Hypertarget{posix_8c_acb9e5741c01183dfe3179d646b264e5b}\label{posix_8c_acb9e5741c01183dfe3179d646b264e5b}} 
+\index{posix.\+c@{posix.\+c}!fgetpos@{fgetpos}}
+\index{fgetpos@{fgetpos}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fgetpos()}{fgetpos()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fgetpos (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$}]{pos }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX get position of file stream. 
+
+
+\begin{DoxyItemize}
+\item man page fgetpos (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em pos} & position pointer for return.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 522 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a3759827e157badd49d076bd157f508d9}\label{posix_8c_a3759827e157badd49d076bd157f508d9}} 
+\index{posix.\+c@{posix.\+c}!fgets@{fgets}}
+\index{fgets@{fgets}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fgets()}{fgets()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ fgets (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{size,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+get a string from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+P\+O\+S\+IX string I/O
+\begin{DoxyItemize}
+\item man page fgets (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 420 of file posix.\+c.
+
+
+
+Referenced by cat(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), ls(), Mat\+Read(), Read\+\_\+\+Config(), setdate(), and task().
+
+\mbox{\Hypertarget{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}\label{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}} 
+\index{posix.\+c@{posix.\+c}!fileno@{fileno}}
+\index{fileno@{fileno}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fileno()}{fileno()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fileno (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX stream pointer to P\+O\+S\+IX fileno (index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}) 
+
+
+\begin{DoxyItemize}
+\item man page fileno (3) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & stream pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int fileno on success 
+
+-\/1 with errno = E\+B\+A\+FD if stream is N\+U\+LL or not found 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 724 of file posix.\+c.
+
+
+
+Referenced by fclose(), fileno(), fileno\+\_\+to\+\_\+stream(), fopen(), fread(), free\+\_\+file\+\_\+descriptor(), fseek(), ftell(), fwrite(), open(), receive\+\_\+plot\+\_\+flush(), and ungetc().
+
+\mbox{\Hypertarget{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}\label{posix_8c_a9b859123258b36eb57f4f71d2606d8a5}} 
+\index{posix.\+c@{posix.\+c}!fileno\+\_\+to\+\_\+fatfs@{fileno\+\_\+to\+\_\+fatfs}}
+\index{fileno\+\_\+to\+\_\+fatfs@{fileno\+\_\+to\+\_\+fatfs}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fileno\+\_\+to\+\_\+fatfs()}{fileno\_to\_fatfs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{structFIL}{F\+IL}$\ast$ fileno\+\_\+to\+\_\+fatfs (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fileno to Fat\+FS handle N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item Fat\+FS file handle is pointed to by the avr-\/libc stream-\/$>$udata.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & fileno of file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structFIL}{F\+IL} $\ast$ Fat\+FS file handle on success. 
+
+N\+U\+LL if P\+O\+S\+IX fileno is invalid N\+U\+LL 
+\end{DoxyReturn}
+
+
+Definition at line 2279 of file posix.\+c.
+
+
+
+Referenced by close(), ftell(), ftruncate(), lseek(), open(), read(), sync(), syncfs(), and write().
+
+\mbox{\Hypertarget{posix_8c_a2c01fe0e0aa550b2a8b4dcc326983b57}\label{posix_8c_a2c01fe0e0aa550b2a8b4dcc326983b57}} 
+\index{posix.\+c@{posix.\+c}!fileno\+\_\+to\+\_\+stream@{fileno\+\_\+to\+\_\+stream}}
+\index{fileno\+\_\+to\+\_\+stream@{fileno\+\_\+to\+\_\+stream}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fileno\+\_\+to\+\_\+stream()}{fileno\_to\_stream()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fileno\+\_\+to\+\_\+stream (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream pointer. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item inverse of P\+O\+S\+IX \hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno()}
+\item man page fileno (3)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno is the index of \+\_\+\+\_\+iob\mbox{[}\mbox{]}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_aceb657a1b3c10d576aed287714bfd5d1}{fileno()} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+F\+I\+LE $\ast$ on success 
+
+N\+U\+LL on error with errno set, N\+U\+LL if fileno out of bounds 
+\end{DoxyReturn}
+
+
+Definition at line 754 of file posix.\+c.
+
+
+
+Referenced by close(), fileno\+\_\+to\+\_\+fatfs(), fopen(), free\+\_\+file\+\_\+descriptor(), lseek(), open(), read(), syncfs(), and write().
+
+\mbox{\Hypertarget{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}\label{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}} 
+\index{posix.\+c@{posix.\+c}!fopen@{fopen}}
+\index{fopen@{fopen}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fopen()}{fopen()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ fopen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Open a file with path name and ascii file mode string. 
+
+
+\begin{DoxyItemize}
+\item man page fopen(3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX open mode strings.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stream $\ast$ on success. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 782 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+read\+\_\+open(), cat(), copy(), gpib\+\_\+trace\+\_\+task(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+open(), ls(), Mat\+Read(), Mat\+Write(), printer\+\_\+open(), Read\+\_\+\+Config(), td02lif(), td0\+\_\+open(), and timetests().
+
+\mbox{\Hypertarget{posix_8c_a91ade11061b9b43b1edd37ff32f76591}\label{posix_8c_a91ade11061b9b43b1edd37ff32f76591}} 
+\index{posix.\+c@{posix.\+c}!fprintf@{fprintf}}
+\index{fprintf@{fprintf}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fprintf()}{fprintf()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fprintf (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{fp,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+fprintf function Example user defined printf function using fputc for I/O This method allows I/O to devices and strings without typical C++ overhead 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$fp} & F\+I\+LE stream pointer \\
+\hline
+\mbox{\tt in}  & {\em fmt} & printf forat string \\
+\hline
+\mbox{\tt in}  & {\em ...} & vararg list or arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of printed result 
+\end{DoxyReturn}
+
+
+Definition at line 2487 of file posix.\+c.
+
+
+
+Referenced by gpib\+\_\+decode\+\_\+header(), gpib\+\_\+log(), gpib\+\_\+trace\+\_\+display(), Mat\+Write(), and timetests().
+
+\mbox{\Hypertarget{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}\label{posix_8c_a6bdef0a37397953c3b0f14c4d5d0eb10}} 
+\index{posix.\+c@{posix.\+c}!fputc@{fputc}}
+\index{fputc@{fputc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fputc()}{fputc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fputc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Put a byte to T\+TY device or Fat\+Fs file stream \hyperlink{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}{open()} or \hyperlink{posix_8c_a8e661c338f41695d1a1e70aed6255e2d}{fopen()} sets stream-\/$>$put = fatfs\+\_\+outc() for Fat\+Fs functions See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page fputc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file posix.\+c.
+
+
+
+Referenced by \+\_\+fprintf\+\_\+putc(), fputs(), putc(), putchar(), puts(), and write().
+
+\mbox{\Hypertarget{posix_8c_a30a4070a8b1719d53cb01dd4b2a65069}\label{posix_8c_a30a4070a8b1719d53cb01dd4b2a65069}} 
+\index{posix.\+c@{posix.\+c}!fputs@{fputs}}
+\index{fputs@{fputs}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fputs()}{fputs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fputs (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page fputs (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 457 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a01233ac8fd574e20b0b38472adbee551}\label{posix_8c_a01233ac8fd574e20b0b38472adbee551}} 
+\index{posix.\+c@{posix.\+c}!fread@{fread}}
+\index{fread@{fread}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fread()}{fread()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} fread (\begin{DoxyParamCaption}\item[{void $\ast$}]{ptr,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{nmemb,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX read nmemb elements from buf, size bytes each, to the stream fd. 
+
+
+\begin{DoxyItemize}
+\item man page fread (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em nmemb} & number of items to read. \\
+\hline
+\mbox{\tt in}  & {\em size} & size of each item in bytes. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+0 or $<$ size on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 803 of file posix.\+c.
+
+
+
+Referenced by buffer\+\_\+getc(), copy(), lif\+\_\+read(), ls(), td0\+\_\+open(), and td0\+\_\+read().
+
+\mbox{\Hypertarget{posix_8c_a38496612f759733234128893e4c60a89}\label{posix_8c_a38496612f759733234128893e4c60a89}} 
+\index{posix.\+c@{posix.\+c}!free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}}
+\index{free\+\_\+file\+\_\+descriptor@{free\+\_\+file\+\_\+descriptor}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{free\+\_\+file\+\_\+descriptor()}{free\_file\_descriptor()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int free\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Free P\+O\+S\+IX fileno F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX file number \+\_\+\+\_\+iob\mbox{[}\mbox{]} index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 2314 of file posix.\+c.
+
+
+
+Referenced by close(), and open().
+
+\mbox{\Hypertarget{posix_8c_ad31144743f0014784193221563ca8dd2}\label{posix_8c_ad31144743f0014784193221563ca8dd2}} 
+\index{posix.\+c@{posix.\+c}!fseek@{fseek}}
+\index{fseek@{fseek}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fseek()}{fseek()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fseek (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{long}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX seek to file possition. 
+
+
+\begin{DoxyItemize}
+\item man page fseek (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em offset} & offset to seek to. \\
+\hline
+\mbox{\tt in}  & {\em whence} & 
+\begin{DoxyItemize}
+\item S\+E\+E\+K\+\_\+\+S\+ET The offset is set to offset bytes.
+\item S\+E\+E\+K\+\_\+\+C\+UR The offset is set to its current location plus offset bytes.
+\item S\+E\+E\+K\+\_\+\+E\+ND The offset is set to the size of the file plus offset bytes.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 545 of file posix.\+c.
+
+
+
+Referenced by fsetpos(), lif\+\_\+close\+\_\+volume(), lif\+\_\+seek\+\_\+msg(), and rewind().
+
+\mbox{\Hypertarget{posix_8c_a8705d74fe77c1b23824074ecd14be1c7}\label{posix_8c_a8705d74fe77c1b23824074ecd14be1c7}} 
+\index{posix.\+c@{posix.\+c}!fsetpos@{fsetpos}}
+\index{fsetpos@{fsetpos}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fsetpos()}{fsetpos()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int fsetpos (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} $\ast$}]{pos }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX set position of file stream. 
+
+
+\begin{DoxyItemize}
+\item man page fsetpos (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream. \\
+\hline
+\mbox{\tt in}  & {\em pos} & position pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 with $\ast$pos set to position on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 571 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_af53dca187c78408fe2f1958c4eb88603}\label{posix_8c_af53dca187c78408fe2f1958c4eb88603}} 
+\index{posix.\+c@{posix.\+c}!ftell@{ftell}}
+\index{ftell@{ftell}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{ftell()}{ftell()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long ftell (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX file position of open stream. 
+
+
+\begin{DoxyItemize}
+\item man page fteel (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 585 of file posix.\+c.
+
+
+
+Referenced by fgetpos(), and lif\+\_\+seek\+\_\+msg().
+
+\mbox{\Hypertarget{posix_8c_a474e4e6cac62ef12c66b8a597c14e5f6}\label{posix_8c_a474e4e6cac62ef12c66b8a597c14e5f6}} 
+\index{posix.\+c@{posix.\+c}!ftruncate@{ftruncate}}
+\index{ftruncate@{ftruncate}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{ftruncate()}{ftruncate()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ftruncate (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{length }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX truncate open file to length. 
+
+
+\begin{DoxyItemize}
+\item man page ftruncate (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & open file number. \\
+\hline
+\mbox{\tt in}  & {\em length} & length to truncate to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 827 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a148630cbecc0822d9395f002691ffe75}\label{posix_8c_a148630cbecc0822d9395f002691ffe75}} 
+\index{posix.\+c@{posix.\+c}!fwrite@{fwrite}}
+\index{fwrite@{fwrite}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{fwrite()}{fwrite()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} fwrite (\begin{DoxyParamCaption}\item[{const void $\ast$}]{ptr,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{nmemb,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX write nmemb elements from buf, size bytes each, to the stream fd. 
+
+
+\begin{DoxyItemize}
+\item man page write (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ptr} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em nmemb} & number of items to write. \\
+\hline
+\mbox{\tt in}  & {\em size} & size of each item in bytes. \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count written on sucess. 
+
+0 or $<$ size on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 868 of file posix.\+c.
+
+
+
+Referenced by copy(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+write(), ls(), receive\+\_\+plot\+\_\+flush(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
+
+\mbox{\Hypertarget{posix_8c_a65ef3ba32c47b84f7727e36de68ef86c}\label{posix_8c_a65ef3ba32c47b84f7727e36de68ef86c}} 
+\index{posix.\+c@{posix.\+c}!getchar@{getchar}}
+\index{getchar@{getchar}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{getchar()}{getchar()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int getchar (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+functions normally defined as macros 
+
+get a character from stdin See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$get for T\+TY devices
+
+
+\begin{DoxyItemize}
+\item man page getchar (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 336 of file posix.\+c.
+
+
+
+Referenced by testpage().
+
+\mbox{\Hypertarget{posix_8c_a6411298bb01166960f5a0378ac0fdb82}\label{posix_8c_a6411298bb01166960f5a0378ac0fdb82}} 
+\index{posix.\+c@{posix.\+c}!getcwd@{getcwd}}
+\index{getcwd@{getcwd}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{getcwd()}{getcwd()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ getcwd (\begin{DoxyParamCaption}\item[{char $\ast$}]{pathname,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX get current working directory. 
+
+
+\begin{DoxyItemize}
+\item man page getcwd (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to change to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1596 of file posix.\+c.
+
+
+
+Referenced by ls(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a31986cce890109c211ccb14151aafd0e}\label{posix_8c_a31986cce890109c211ccb14151aafd0e}} 
+\index{posix.\+c@{posix.\+c}!isatty@{isatty}}
+\index{isatty@{isatty}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{isatty()}{isatty()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int isatty (\begin{DoxyParamCaption}\item[{int}]{fileno }\end{DoxyParamCaption})}
+
+
+
+Test P\+O\+S\+IX fileno if it is a Serial Console/\+T\+TY. 
+
+
+\begin{DoxyItemize}
+\item P\+O\+S\+IX character I/O functions
+\begin{DoxyItemize}
+\item man page isatty (3).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno of open file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if fileno is a serial T\+T\+Y/\+Console (uart in avr-\/libc terms). 
+
+0 if P\+O\+S\+IX fileno is N\+OT a Serial T\+TY. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000049}{Todo}]Perhaps we should verify console functions have been added ? \end{DoxyRefDesc}
+
+
+Definition at line 196 of file posix.\+c.
+
+
+
+Referenced by dump\+\_\+stat(), fileno\+\_\+to\+\_\+fatfs(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), lseek(), new\+\_\+file\+\_\+descriptor(), sync(), syncfs(), and ungetc().
+
+\mbox{\Hypertarget{posix_8c_abb875e56516d235a6aaf69951444cc63}\label{posix_8c_abb875e56516d235a6aaf69951444cc63}} 
+\index{posix.\+c@{posix.\+c}!lseek@{lseek}}
+\index{lseek@{lseek}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{lseek()}{lseek()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t} lseek (\begin{DoxyParamCaption}\item[{int}]{fileno,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{position,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX seek to file position. 
+
+
+\begin{DoxyItemize}
+\item man page lseek (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileno} & P\+O\+S\+IX fileno of open file. \\
+\hline
+\mbox{\tt in}  & {\em position} & offset to seek to. \\
+\hline
+\mbox{\tt in}  & {\em whence} & 
+\begin{DoxyItemize}
+\item S\+E\+E\+K\+\_\+\+S\+ET The offset is set to offset bytes.
+\item S\+E\+E\+K\+\_\+\+C\+UR The offset is set to its current location plus offset bytes.
+\item S\+E\+E\+K\+\_\+\+E\+ND The offset is set to the size of the file plus offset bytes.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file position on sucess. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 617 of file posix.\+c.
+
+
+
+Referenced by fseek().
+
+\mbox{\Hypertarget{posix_8c_a39eea0b104438afa9ca0500c2e8d6887}\label{posix_8c_a39eea0b104438afa9ca0500c2e8d6887}} 
+\index{posix.\+c@{posix.\+c}!mctime@{mctime}}
+\index{mctime@{mctime}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{mctime()}{mctime()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ mctime (\begin{DoxyParamCaption}\item[{\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}}]{timev }\end{DoxyParamCaption})}
+
+
+
+Display Ascii formatted time from timev seconds N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item Assumes no timezone offset.
+\item man page ctime (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em timev} & epoch time in seconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ascii string pointer of P\+O\+S\+IX \hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{time_8c_a77d6bba12950028852621634ffaf4835}{ctime()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 1323 of file posix.\+c.
+
+
+
+Referenced by dump\+\_\+stat(), and ls\+\_\+info().
+
+\mbox{\Hypertarget{posix_8c_a8b57a7ee1ba139c636477cf2998e8b1e}\label{posix_8c_a8b57a7ee1ba139c636477cf2998e8b1e}} 
+\index{posix.\+c@{posix.\+c}!mkdir@{mkdir}}
+\index{mkdir@{mkdir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{mkdir()}{mkdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int mkdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{\hyperlink{posix_8h_af8f4385bb42836d1e3ad4fea9d71d1b9}{mode\+\_\+t}}]{mode }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX make a directory. 
+
+
+\begin{DoxyItemize}
+\item man page mkdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to create\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1619 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_ab66b36e0fd29a0a7384efda96cef575b}\label{posix_8c_ab66b36e0fd29a0a7384efda96cef575b}} 
+\index{posix.\+c@{posix.\+c}!mkfs@{mkfs}}
+\index{mkfs@{mkfs}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{mkfs()}{mkfs()}}
+{\footnotesize\ttfamily int mkfs (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Formt SD card. 
+
+
+\begin{DoxyItemize}
+\item Fat\+FS to P\+O\+S\+IX bridge functions
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$name} & device name  void \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line 1922 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_abab788c42cce343cde2f5b8f90015229}\label{posix_8c_abab788c42cce343cde2f5b8f90015229}} 
+\index{posix.\+c@{posix.\+c}!new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}}
+\index{new\+\_\+file\+\_\+descriptor@{new\+\_\+file\+\_\+descriptor}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{new\+\_\+file\+\_\+descriptor()}{new\_file\_descriptor()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int new\+\_\+file\+\_\+descriptor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocate a P\+O\+S\+IX F\+I\+LE descriptor. N\+OT P\+O\+S\+IX. 
+
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on failure with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 2358 of file posix.\+c.
+
+
+
+Referenced by open().
+
+\mbox{\Hypertarget{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}\label{posix_8c_a3e5e6f96d36b5cdacfaf6b3976cd5af2}} 
+\index{posix.\+c@{posix.\+c}!open@{open}}
+\index{open@{open}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Open a file with integer mode flags. 
+
+
+\begin{DoxyItemize}
+\item man page open (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename string. \\
+\hline
+\mbox{\tt in}  & {\em flags} & P\+O\+S\+IX open modes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fileno on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+Seek to end of the file 
+
+Definition at line 895 of file posix.\+c.
+
+
+
+Referenced by fopen().
+
+\mbox{\Hypertarget{posix_8c_a19051b9081dfef221d9bf4583e935031}\label{posix_8c_a19051b9081dfef221d9bf4583e935031}} 
+\index{posix.\+c@{posix.\+c}!opendir@{opendir}}
+\index{opendir@{opendir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{opendir()}{opendir()}}
+{\footnotesize\ttfamily \hyperlink{structDIR}{D\+IR}$\ast$ opendir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathdir }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1736 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}\label{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}} 
+\index{posix.\+c@{posix.\+c}!perror@{perror}}
+\index{perror@{perror}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{perror()}{perror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void perror (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_a4ce26afbb10890d31c53a8ff76d992e3}{perror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page errno (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em s} & User message displayed before the error message\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 1814 of file posix.\+c.
+
+
+
+Referenced by gpib\+\_\+trace\+\_\+task(), printer\+\_\+open(), Read\+\_\+\+Config(), receive\+\_\+plot\+\_\+flush(), and timetests().
+
+\mbox{\Hypertarget{posix_8c_a607feb06d296e0ff60d5a19538bd17fc}\label{posix_8c_a607feb06d296e0ff60d5a19538bd17fc}} 
+\index{posix.\+c@{posix.\+c}!posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open@{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open}}
+\index{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open@{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open()}{posix\_fopen\_modes\_to\_open()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int posix\+\_\+fopen\+\_\+modes\+\_\+to\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+Convert P\+O\+S\+IX fopen mode to P\+O\+S\+IX open mode flags. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page fopen (3).
+\item man page open (2).
+\item Valid modes.
+\item Read
+\begin{DoxyItemize}
+\item \char`\"{}r\char`\"{}, \char`\"{}rb\char`\"{}
+\end{DoxyItemize}
+\item Read and Write
+\begin{DoxyItemize}
+\item \char`\"{}r+\char`\"{}, \char`\"{}r+b\char`\"{}, \char`\"{}rb+\char`\"{}
+\end{DoxyItemize}
+\item Write
+\begin{DoxyItemize}
+\item \char`\"{}w\char`\"{}, \char`\"{}wb\char`\"{}
+\end{DoxyItemize}
+\item Write and Read.
+\begin{DoxyItemize}
+\item \char`\"{}w+\char`\"{}, \char`\"{}w+b\char`\"{}, \char`\"{}wb+\char`\"{}
+\item \char`\"{}w+\char`\"{} implies write/read access.
+\end{DoxyItemize}
+\item Append
+\begin{DoxyItemize}
+\item \char`\"{}a\char`\"{}, \char`\"{}ab\char`\"{}
+\end{DoxyItemize}
+\item Append and Read
+\begin{DoxyItemize}
+\item \char`\"{}a+\char`\"{}, \char`\"{}a+b\char`\"{}, \char`\"{}ab+\char`\"{}
+\end{DoxyItemize}
+\item Note\+: O\+R\+D\+ER IS I\+M\+P\+O\+R\+T\+A\+N\+T! so w+ is N\+OT the same as r+.
+\item A\+L\+W\+A\+YS do a fflush or fseek between rear write operations if + is used..
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mode} & P\+O\+S\+IX file mode string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+open mode flags. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+read and write B\+O\+TH share the same stream buffer and buffer index pointers. 
+\end{DoxyWarning}
+
+
+Definition at line 2421 of file posix.\+c.
+
+
+
+Referenced by fopen().
+
+\mbox{\Hypertarget{posix_8c_ae59fd612372df957f59fb3cdcbd8b9e9}\label{posix_8c_ae59fd612372df957f59fb3cdcbd8b9e9}} 
+\index{posix.\+c@{posix.\+c}!putc@{putc}}
+\index{putc@{putc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{putc()}{putc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int putc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Put a character to a stream See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices. 
+
+
+\begin{DoxyItemize}
+\item man page putc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 401 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_ac9195b3de02e450cfdeea1ce97b32da4}\label{posix_8c_ac9195b3de02e450cfdeea1ce97b32da4}} 
+\index{posix.\+c@{posix.\+c}!putchar@{putchar}}
+\index{putchar@{putchar}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{putchar()}{putchar()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int putchar (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page putchar (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 351 of file posix.\+c.
+
+
+
+Referenced by copy(), fatfs\+\_\+ls(), plot\+\_\+echo(), and snprintf().
+
+\mbox{\Hypertarget{posix_8c_aa360dd5203b246757abc21253ed8eb2e}\label{posix_8c_aa360dd5203b246757abc21253ed8eb2e}} 
+\index{posix.\+c@{posix.\+c}!puts@{puts}}
+\index{puts@{puts}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{puts()}{puts()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int puts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+put a string to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+
+
+\begin{DoxyItemize}
+\item man page puts (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+\end{DoxyReturn}
+
+
+Definition at line 480 of file posix.\+c.
+
+
+
+Referenced by cat(), and gpib\+\_\+trace\+\_\+display().
+
+\mbox{\Hypertarget{posix_8c_af104a2c05bef787e54c6925616e867df}\label{posix_8c_af104a2c05bef787e54c6925616e867df}} 
+\index{posix.\+c@{posix.\+c}!read@{read}}
+\index{read@{read}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} read (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{count }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX read count bytes from $\ast$buf to fileno fd. 
+
+
+\begin{DoxyItemize}
+\item man page read (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno. \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1006 of file posix.\+c.
+
+
+
+Referenced by fread().
+
+\mbox{\Hypertarget{posix_8c_a1508fedaef509d2976b43300306d1400}\label{posix_8c_a1508fedaef509d2976b43300306d1400}} 
+\index{posix.\+c@{posix.\+c}!readdir@{readdir}}
+\index{readdir@{readdir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{readdir()}{readdir()}}
+{\footnotesize\ttfamily \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t}$\ast$ readdir (\begin{DoxyParamCaption}\item[{\hyperlink{structDIR}{D\+IR} $\ast$}]{dirp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1755 of file posix.\+c.
+
+
+
+Referenced by ls().
+
+\mbox{\Hypertarget{posix_8c_ada8cc8f9394cf54db8f338838a9fa7ce}\label{posix_8c_ada8cc8f9394cf54db8f338838a9fa7ce}} 
+\index{posix.\+c@{posix.\+c}!rename@{rename}}
+\index{rename@{rename}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{rename()}{rename()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int rename (\begin{DoxyParamCaption}\item[{const char $\ast$}]{oldpath,  }\item[{const char $\ast$}]{newpath }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX rename a file by name. 
+
+
+\begin{DoxyItemize}
+\item man page (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em oldpath} & original name. \\
+\hline
+\mbox{\tt in}  & {\em newpath} & new name.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1648 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a35e6a58f44d4651951ecfeb97f369884}\label{posix_8c_a35e6a58f44d4651951ecfeb97f369884}} 
+\index{posix.\+c@{posix.\+c}!rewind@{rewind}}
+\index{rewind@{rewind}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{rewind()}{rewind()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void rewind (\begin{DoxyParamCaption}\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX rewind file to the beginning. 
+
+
+\begin{DoxyItemize}
+\item man page rewind (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX file stream.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 666 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a6080dee579486f132062435577b77d10}\label{posix_8c_a6080dee579486f132062435577b77d10}} 
+\index{posix.\+c@{posix.\+c}!rmdir@{rmdir}}
+\index{rmdir@{rmdir}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{rmdir()}{rmdir()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int rmdir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX delete a directory. 
+
+
+\begin{DoxyItemize}
+\item man page rmdir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1671 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_abef70bf7a4af8a1f4998db0035c51781}\label{posix_8c_abef70bf7a4af8a1f4998db0035c51781}} 
+\index{posix.\+c@{posix.\+c}!stat@{stat}}
+\index{stat@{stat}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{stat()}{stat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{structstat}{stat} (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{struct \hyperlink{structstat}{stat} $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX stat -\/ get file status of named file. 
+
+
+\begin{DoxyItemize}
+\item man page (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em name} & file name. \\
+\hline
+\mbox{\tt in}  & {\em buf} & struct stat buffer to return results in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1344 of file posix.\+c.
+
+
+
+Referenced by f\+\_\+getfree(), f\+\_\+mkfs(), format\+\_\+drives(), lif\+\_\+stat(), ls(), ls\+\_\+info(), mount\+\_\+volume(), and posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}\label{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}} 
+\index{posix.\+c@{posix.\+c}!strerror@{strerror}}
+\index{strerror@{strerror}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{strerror()}{strerror()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}$\ast$ strerror (\begin{DoxyParamCaption}\item[{int}]{errnum }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_ae03e9f4fe4bf5e64a70fd186d532a5c8}{strerror()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page strerror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em errnum} & index for sys\+\_\+errlist\mbox{[}\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 1840 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a6311c6b29216455ec9b716b9eb31c799}\label{posix_8c_a6311c6b29216455ec9b716b9eb31c799}} 
+\index{posix.\+c@{posix.\+c}!strerror\+\_\+r@{strerror\+\_\+r}}
+\index{strerror\+\_\+r@{strerror\+\_\+r}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{strerror\+\_\+r()}{strerror\_r()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} char$\ast$ strerror\+\_\+r (\begin{DoxyParamCaption}\item[{int}]{errnum,  }\item[{char $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{buflen }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX \hyperlink{posix_8c_a6311c6b29216455ec9b716b9eb31c799}{strerror\+\_\+r()} -\/ convert P\+O\+S\+IX errno to text with user message. 
+
+
+\begin{DoxyItemize}
+\item man page strerror (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em errnum} & index for sys\+\_\+errlist\mbox{[}\mbox{]} \\
+\hline
+\mbox{\tt in}  & {\em buf} & user buffer for error message \\
+\hline
+\mbox{\tt in}  & {\em buflen} & length of user buffer for error message\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}{sys\+\_\+errlist}\mbox{[}\mbox{]}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line 1857 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a8f7f00d4ec0d99440762b0a664aebf70}\label{posix_8c_a8f7f00d4ec0d99440762b0a664aebf70}} 
+\index{posix.\+c@{posix.\+c}!sync@{sync}}
+\index{sync@{sync}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{sync()}{sync()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void sync (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Sync all pending file changes and metadata on A\+LL files. 
+
+
+\begin{DoxyItemize}
+\item man page sync (2).
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 1069 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+close\+\_\+volume(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), and ls().
+
+\mbox{\Hypertarget{posix_8c_a521c33bdb3606c9f3546b9cbcd37b9ac}\label{posix_8c_a521c33bdb3606c9f3546b9cbcd37b9ac}} 
+\index{posix.\+c@{posix.\+c}!syncfs@{syncfs}}
+\index{syncfs@{syncfs}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{syncfs()}{syncfs()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int syncfs (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Sync pending file changes and metadata for specified fileno. 
+
+
+\begin{DoxyItemize}
+\item man page syncfs (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno to sync. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0. 
+
+-\/1 on error witrh errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1096 of file posix.\+c.
+
+
+
+Referenced by receive\+\_\+plot\+\_\+flush(), and sync().
+
+\mbox{\Hypertarget{posix_8c_a73a95c4a93875be906e573c00b30c5ea}\label{posix_8c_a73a95c4a93875be906e573c00b30c5ea}} 
+\index{posix.\+c@{posix.\+c}!truncate@{truncate}}
+\index{truncate@{truncate}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{truncate()}{truncate()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int truncate (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{\hyperlink{posix_8h_aac46e03c2018bada012333c31f41df12}{off\+\_\+t}}]{length }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX truncate named file to length. 
+
+
+\begin{DoxyItemize}
+\item man page truncate (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em path} & file name to truncate. \\
+\hline
+\mbox{\tt in}  & {\em length} & length to truncate to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 n fail. 
+\end{DoxyReturn}
+
+
+Definition at line 1142 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_af979e8f6598be71d68be7cc49a41626b}\label{posix_8c_af979e8f6598be71d68be7cc49a41626b}} 
+\index{posix.\+c@{posix.\+c}!ungetc@{ungetc}}
+\index{ungetc@{ungetc}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{ungetc()}{ungetc()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int ungetc (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{\hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+
+
+Un-\/\+Get byte from a T\+TY device or Fat\+Fs file stream. 
+
+
+\begin{DoxyItemize}
+\item man page ungetc (3).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & Character to unget \\
+\hline
+\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+E\+OF on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 368 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}\label{posix_8c_aa5666c514336f78c6d1ab6bc35c74ae0}} 
+\index{posix.\+c@{posix.\+c}!unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}}
+\index{unix\+\_\+time\+\_\+to\+\_\+fat@{unix\+\_\+time\+\_\+to\+\_\+fat}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{unix\+\_\+time\+\_\+to\+\_\+fat()}{unix\_time\_to\_fat()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void unix\+\_\+time\+\_\+to\+\_\+fat (\begin{DoxyParamCaption}\item[{\hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t}}]{epoch,  }\item[{uint16\+\_\+t $\ast$}]{date,  }\item[{uint16\+\_\+t $\ast$}]{time }\end{DoxyParamCaption})}
+
+
+
+Convert Linux P\+O\+S\+IX time\+\_\+t to F\+A\+T32 date and time. N\+OT P\+O\+S\+IX. 
+
+
+\begin{DoxyItemize}
+\item man page gmtime (3). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em epoch} & unix epoch seconds \\
+\hline
+\mbox{\tt in}  & {\em $\ast$date} & fat32 date \\
+\hline
+\mbox{\tt in}  & {\em $\ast$time} & fat32 time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 2255 of file posix.\+c.
+
+
+
+Referenced by utime().
+
+\mbox{\Hypertarget{posix_8c_aa964d662c19b2021d9cfd0c71bc686bd}\label{posix_8c_aa964d662c19b2021d9cfd0c71bc686bd}} 
+\index{posix.\+c@{posix.\+c}!unlink@{unlink}}
+\index{unlink@{unlink}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{unlink()}{unlink()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int unlink (\begin{DoxyParamCaption}\item[{const char $\ast$}]{pathname }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX delete a file. 
+
+
+\begin{DoxyItemize}
+\item man page unlink (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & filename to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1693 of file posix.\+c.
+
+
+
+Referenced by posix\+\_\+tests().
+
+\mbox{\Hypertarget{posix_8c_a732642e09075838bbbca28b3529f13db}\label{posix_8c_a732642e09075838bbbca28b3529f13db}} 
+\index{posix.\+c@{posix.\+c}!utime@{utime}}
+\index{utime@{utime}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{utime()}{utime()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int utime (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{const struct \hyperlink{structutimbuf}{utimbuf} $\ast$}]{times }\end{DoxyParamCaption})}
+
+
+
+Set Modification and Access time of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em filename} & file name \\
+\hline
+ & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1407 of file posix.\+c.
+
+
+
+Referenced by lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii().
+
+\mbox{\Hypertarget{posix_8c_a072435300ac99e8d7c3749f45166e797}\label{posix_8c_a072435300ac99e8d7c3749f45166e797}} 
+\index{posix.\+c@{posix.\+c}!write@{write}}
+\index{write@{write}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \hyperlink{lif_2user__config_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{posix_8h_a170745d0d946e79c4c2a056d1d158996}{ssize\+\_\+t} write (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const void $\ast$}]{buf,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{count }\end{DoxyParamCaption})}
+
+
+
+P\+O\+S\+IX Write count bytes from $\ast$buf to fileno fd. 
+
+
+\begin{DoxyItemize}
+\item man page write (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fd} & P\+O\+S\+IX fileno. \\
+\hline
+\mbox{\tt in}  & {\em buf} & buffer. \\
+\hline
+\mbox{\tt in}  & {\em count} & number of bytes to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count on sucess. 
+
+-\/1 on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1180 of file posix.\+c.
+
+
+
+Referenced by fwrite().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{posix_8c_aae2f027325f7e73c3aa5e7dc990bd90d}\label{posix_8c_aae2f027325f7e73c3aa5e7dc990bd90d}} 
+\index{posix.\+c@{posix.\+c}!\+\_\+\+\_\+iob@{\+\_\+\+\_\+iob}}
+\index{\+\_\+\+\_\+iob@{\+\_\+\+\_\+iob}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+iob}{\_\_iob}}
+{\footnotesize\ttfamily \hyperlink{posix_8h_aed4dabeb9f7c518ded42f930a04abce8}{F\+I\+LE}$\ast$ \+\_\+\+\_\+iob\mbox{[}\hyperlink{posix_8h_a2c5eecb22513a88c24ae5831a3265e54}{M\+A\+X\+\_\+\+F\+I\+L\+ES}\mbox{]}}
+
+
+
+P\+O\+S\+IX fileno to P\+O\+S\+IX F\+I\+LE stream table. 
+
+
+\begin{DoxyItemize}
+\item Note\+: the index of \+\_\+\+\_\+iob\mbox{[}\mbox{]} is reffered to \char`\"{}fileno\char`\"{}.
+\item Reference\+: libc/avr-\/libc-\/1.\+8.\+0/libc/stdio.
+\item stdin = \+\_\+\+\_\+iob\mbox{[}0\mbox{]}.
+\item \+\_\+\+\_\+iob\mbox{[}1\mbox{]} = stdout.
+\item \+\_\+\+\_\+iob\mbox{[}2\mbox{]} = stderr. 
+\end{DoxyItemize}
+
+Definition at line 139 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_a42837e7607f8e3b8ae74286253989724}\label{posix_8c_a42837e7607f8e3b8ae74286253989724}} 
+\index{posix.\+c@{posix.\+c}!\+\_\+de@{\+\_\+de}}
+\index{\+\_\+de@{\+\_\+de}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+de}{\_de}}
+{\footnotesize\ttfamily \hyperlink{posix_8h_a6673e8f64ca9ebd7e26e6289dca06e87}{dirent\+\_\+t} \+\_\+de\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+P\+O\+S\+IX opendir. 
+
+
+\begin{DoxyItemize}
+\item man page readdir(2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dirp} & \hyperlink{structDIR}{D\+IR} $\ast$ directory handle\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1754 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_ae5badb2fbda49f0741042e68c364532b}\label{posix_8c_ae5badb2fbda49f0741042e68c364532b}} 
+\index{posix.\+c@{posix.\+c}!\+\_\+dp@{\+\_\+dp}}
+\index{\+\_\+dp@{\+\_\+dp}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+dp}{\_dp}}
+{\footnotesize\ttfamily \hyperlink{structDIR}{D\+IR} \+\_\+dp\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+P\+O\+S\+IX opendir. 
+
+
+\begin{DoxyItemize}
+\item man page opendir (2).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pathname} & directory to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structDIR}{D\+IR} $\ast$ on sucess. 
+
+N\+U\+LL on error with errno set. 
+\end{DoxyReturn}
+
+
+Definition at line 1735 of file posix.\+c.
+
+\mbox{\Hypertarget{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}\label{posix_8c_ad65a8842cc674e3ddf69355898c0ecbf}} 
+\index{posix.\+c@{posix.\+c}!errno@{errno}}
+\index{errno@{errno}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{errno}{errno}}
+{\footnotesize\ttfamily int errno}
+
+
+
+Note\+: fdevopen assigns stdin,stdout,stderr. 
+
+P\+O\+S\+IX errno. 
+
+Definition at line 129 of file posix.\+c.
+
+
+
+Referenced by chdir(), chmod(), close(), closedir(), fatfs\+\_\+getc(), fatfs\+\_\+putc(), fatfs\+\_\+to\+\_\+fileno(), fgetc(), fileno(), fileno\+\_\+to\+\_\+fatfs(), fileno\+\_\+to\+\_\+stream(), fputc(), free\+\_\+file\+\_\+descriptor(), ftell(), ftruncate(), getcwd(), lseek(), mctime(), mkdir(), new\+\_\+file\+\_\+descriptor(), open(), opendir(), perror(), read(), readdir(), rename(), rmdir(), stat(), syncfs(), truncate(), unlink(), and write().
+
+\mbox{\Hypertarget{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}\label{posix_8c_a76ebfe24a40210e5935998c1fa86d3a0}} 
+\index{posix.\+c@{posix.\+c}!sys\+\_\+errlist@{sys\+\_\+errlist}}
+\index{sys\+\_\+errlist@{sys\+\_\+errlist}!posix.\+c@{posix.\+c}}
+\subsubsection{\texorpdfstring{sys\+\_\+errlist}{sys\_errlist}}
+{\footnotesize\ttfamily const char$\ast$ sys\+\_\+errlist\mbox{[}$\,$\mbox{]}}
+
+
+
+P\+O\+S\+IX error messages for each errno value. 
+
+
+\begin{DoxyItemize}
+\item man page errno (3) 
+\end{DoxyItemize}
+
+Definition at line 144 of file posix.\+c.
+
+
+
+Referenced by perror(), strerror(), and strerror\+\_\+r().
+

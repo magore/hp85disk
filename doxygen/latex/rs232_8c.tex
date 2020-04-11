@@ -1,0 +1,588 @@
+\hypertarget{rs232_8c}{}\section{hardware/rs232.c File Reference}
+\label{rs232_8c}\index{hardware/rs232.\+c@{hardware/rs232.\+c}}
+
+
+R\+S232 Driver A\+V\+R8.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rs232.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{rs232_8c_ab823b4d83752db47c0852bfa36a59036}{uart\+\_\+rx\+\_\+flush} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Flush receive ring buffer for specified uart. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a3e291aed5863354a29aea03c94cc1d5e}{uart0\+\_\+getchar} (void $\ast$f)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_ab0bdd8f61d18809268fc58d8871a881b}{uart0\+\_\+putchar} (int c, void $\ast$f)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{rs232_8c_acf0f1788a444afef4ccd7c614429df05}{uart\+\_\+ubr} (uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}{uart\+\_\+init} (uint8\+\_\+t uart, uint32\+\_\+t baud)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT initialization function that works with avr-\/libc functions. \end{DoxyCompactList}\item 
+\hyperlink{rs232_8c_a084f0a9cf05b1877bd8a71a90dae7ff8}{I\+SR} (U\+S\+A\+R\+T0\+\_\+\+R\+X\+\_\+vect)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT 0 Receive Interrupt runction. \end{DoxyCompactList}\item 
+void \hyperlink{rs232_8c_a382aa76e85fa3a1a2add5111578e954e}{uart\+\_\+rx\+\_\+interrupt} (uint8\+\_\+t uart, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT Receive Interrupt task. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a6d3c4d6b4fb921390e819f9306d4baa9}{uart\+\_\+peek\+\_\+tail} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Return character waiting in ring buffer without removing it. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a608ab716311f6b7d674356ec38307593}{uart\+\_\+get\+\_\+tail} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Return next character from ring buffer. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a72746897c9285db2e3d50c9c38e8bb93}{uart\+\_\+rx\+\_\+count} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em return count of character count waiting in U\+A\+RT ring buffer. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_ac2daabfbed3e1679f834b158dfbbbe80}{uart\+\_\+rx\+\_\+byte} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Recive character character from uart. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a9364291206d77b83c180ff6832e61c9b}{uart\+\_\+getchar} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Receive character from uart with option C\+R/\+LF conversion. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a3c1200094b998cbb987f545257aaa355}{uart\+\_\+tx\+\_\+byte} (int c, uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Transmit 1 byte on uart. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a4f688360d609d955f8bd6fd629872e80}{uart\+\_\+putchar} (int c, int uart)
+\begin{DoxyCompactList}\small\item\em Transmit 1 byte on uart. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a94d11755189c23a221fc8819d326289c}{uart\+\_\+keyhit} (uint8\+\_\+t uart)
+\begin{DoxyCompactList}\small\item\em Do we have receive characters waiting ?. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a19bd935cf7d05c0d5fe2a07782dff641}{uart\+\_\+put} (int c)
+\begin{DoxyCompactList}\small\item\em Transmit a character on U\+A\+RT 0. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a0f8facdf08ca026788fdd919aacee502}{uart\+\_\+get} (void)
+\begin{DoxyCompactList}\small\item\em Receive a character from U\+A\+RT 0. \end{DoxyCompactList}\item 
+int \hyperlink{rs232_8c_a293b550a7aa47a2f4bbadcf1103b78e6}{get\+\_\+line} (char $\ast$buff, int len)
+\begin{DoxyCompactList}\small\item\em Get a line from U\+A\+RT 0 up to a maximum of len bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__uart}{\+\_\+uart} \hyperlink{rs232_8c_a4174a66887247991f40c85ea4bb0c8a7}{uarts} \mbox{[}\hyperlink{rs232_8h_a14061d90f6727665218418b15943af7f}{U\+A\+R\+TS}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Uart ring buffers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+S232 Driver A\+V\+R8. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, Inc. All rights reserved.}
+
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rs232_8c_a293b550a7aa47a2f4bbadcf1103b78e6}\label{rs232_8c_a293b550a7aa47a2f4bbadcf1103b78e6}} 
+\index{rs232.\+c@{rs232.\+c}!get\+\_\+line@{get\+\_\+line}}
+\index{get\+\_\+line@{get\+\_\+line}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+line()}{get\_line()}}
+{\footnotesize\ttfamily int get\+\_\+line (\begin{DoxyParamCaption}\item[{char $\ast$}]{buff,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Get a line from U\+A\+RT 0 up to a maximum of len bytes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buff} & line input buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & line length maximum \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 418 of file rs232.\+c.
+
+\mbox{\Hypertarget{rs232_8c_a084f0a9cf05b1877bd8a71a90dae7ff8}\label{rs232_8c_a084f0a9cf05b1877bd8a71a90dae7ff8}} 
+\index{rs232.\+c@{rs232.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{I\+S\+R()}{ISR()}}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{U\+S\+A\+R\+T0\+\_\+\+R\+X\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT 0 Receive Interrupt runction. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{rs232_8c_a382aa76e85fa3a1a2add5111578e954e}{uart\+\_\+rx\+\_\+interrupt()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 184 of file rs232.\+c.
+
+\mbox{\Hypertarget{rs232_8c_a3e291aed5863354a29aea03c94cc1d5e}\label{rs232_8c_a3e291aed5863354a29aea03c94cc1d5e}} 
+\index{rs232.\+c@{rs232.\+c}!uart0\+\_\+getchar@{uart0\+\_\+getchar}}
+\index{uart0\+\_\+getchar@{uart0\+\_\+getchar}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart0\+\_\+getchar()}{uart0\_getchar()}}
+{\footnotesize\ttfamily int uart0\+\_\+getchar (\begin{DoxyParamCaption}\item[{void $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT receive character function using avr-\/libc. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em f} & unused F\+I\+LE $\ast$stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uart\+\_\+getchar(0);. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} from avr-\/libc. 
+\end{DoxySeeAlso}
+
+
+Definition at line 45 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+get(), and uart\+\_\+init().
+
+\mbox{\Hypertarget{rs232_8c_ab0bdd8f61d18809268fc58d8871a881b}\label{rs232_8c_ab0bdd8f61d18809268fc58d8871a881b}} 
+\index{rs232.\+c@{rs232.\+c}!uart0\+\_\+putchar@{uart0\+\_\+putchar}}
+\index{uart0\+\_\+putchar@{uart0\+\_\+putchar}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart0\+\_\+putchar()}{uart0\_putchar()}}
+{\footnotesize\ttfamily int uart0\+\_\+putchar (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{void $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT transmit character function using avr-\/libc. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to send. \\
+\hline
+\mbox{\tt in}  & {\em f} & unused F\+I\+LE $\ast$stream pointer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uart\+\_\+putchar(c, 0);. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} from avr-\/libc. 
+\end{DoxySeeAlso}
+
+
+Definition at line 57 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+init(), and uart\+\_\+put().
+
+\mbox{\Hypertarget{rs232_8c_a0f8facdf08ca026788fdd919aacee502}\label{rs232_8c_a0f8facdf08ca026788fdd919aacee502}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+get@{uart\+\_\+get}}
+\index{uart\+\_\+get@{uart\+\_\+get}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+get()}{uart\_get()}}
+{\footnotesize\ttfamily int uart\+\_\+get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Receive a character from U\+A\+RT 0. 
+
+\begin{DoxyReturn}{Returns}
+character 
+\end{DoxyReturn}
+
+
+Definition at line 408 of file rs232.\+c.
+
+
+
+Referenced by get\+\_\+line().
+
+\mbox{\Hypertarget{rs232_8c_a608ab716311f6b7d674356ec38307593}\label{rs232_8c_a608ab716311f6b7d674356ec38307593}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+get\+\_\+tail@{uart\+\_\+get\+\_\+tail}}
+\index{uart\+\_\+get\+\_\+tail@{uart\+\_\+get\+\_\+tail}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+get\+\_\+tail()}{uart\_get\_tail()}}
+{\footnotesize\ttfamily int uart\+\_\+get\+\_\+tail (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Return next character from ring buffer. 
+
+
+\begin{DoxyItemize}
+\item Wait for at least one character.
+\item Update index pointers and character count.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+character. 
+
+0 on error. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{rs232_8c_a72746897c9285db2e3d50c9c38e8bb93}{uart\+\_\+rx\+\_\+count()}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 247 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+rx\+\_\+byte().
+
+\mbox{\Hypertarget{rs232_8c_a9364291206d77b83c180ff6832e61c9b}\label{rs232_8c_a9364291206d77b83c180ff6832e61c9b}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+getchar@{uart\+\_\+getchar}}
+\index{uart\+\_\+getchar@{uart\+\_\+getchar}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+getchar()}{uart\_getchar()}}
+{\footnotesize\ttfamily int uart\+\_\+getchar (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Receive character from uart with option C\+R/\+LF conversion. 
+
+
+\begin{DoxyItemize}
+\item C\+R/\+LF processing is disabled at the moment.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Character. 
+\end{DoxyReturn}
+
+
+Definition at line 310 of file rs232.\+c.
+
+
+
+Referenced by uart0\+\_\+getchar().
+
+\mbox{\Hypertarget{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}\label{rs232_8c_aeadb33b98af6eefa927f6d623cd5759e}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+init@{uart\+\_\+init}}
+\index{uart\+\_\+init@{uart\+\_\+init}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+init()}{uart\_init()}}
+{\footnotesize\ttfamily uint32\+\_\+t uart\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart,  }\item[{uint32\+\_\+t}]{baud }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT initialization function that works with avr-\/libc functions. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & U\+A\+RT number. \\
+\hline
+\mbox{\tt in}  & {\em baud} & Baud Rate in HZ.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+actual baud rate, closest we could get with register settings 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} avr-\/libc function that attaches uart functions to \hyperlink{posix_8h_ab38efc888190556f106cafb08d17d16f}{getchar} and \hyperlink{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX} functions. 
+\end{DoxySeeAlso}
+actual baud rate 
+
+Definition at line 115 of file rs232.\+c.
+
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{rs232_8c_a94d11755189c23a221fc8819d326289c}\label{rs232_8c_a94d11755189c23a221fc8819d326289c}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+keyhit@{uart\+\_\+keyhit}}
+\index{uart\+\_\+keyhit@{uart\+\_\+keyhit}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+keyhit()}{uart\_keyhit()}}
+{\footnotesize\ttfamily int uart\+\_\+keyhit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Do we have receive characters waiting ?. 
+
+
+\begin{DoxyItemize}
+\item Returns non zero if there are any caracters.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Character count in receive buffer. 
+\end{DoxyReturn}
+
+
+Definition at line 392 of file rs232.\+c.
+
+
+
+Referenced by controller\+\_\+read\+\_\+trace(), gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+error\+\_\+test(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+write\+\_\+byte(), and plot\+\_\+echo().
+
+\mbox{\Hypertarget{rs232_8c_a6d3c4d6b4fb921390e819f9306d4baa9}\label{rs232_8c_a6d3c4d6b4fb921390e819f9306d4baa9}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}}
+\index{uart\+\_\+peek\+\_\+tail@{uart\+\_\+peek\+\_\+tail}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+peek\+\_\+tail()}{uart\_peek\_tail()}}
+{\footnotesize\ttfamily int uart\+\_\+peek\+\_\+tail (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Return character waiting in ring buffer without removing it. 
+
+\begin{DoxyReturn}{Returns}
+character. 
+
+0 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 225 of file rs232.\+c.
+
+\mbox{\Hypertarget{rs232_8c_a19bd935cf7d05c0d5fe2a07782dff641}\label{rs232_8c_a19bd935cf7d05c0d5fe2a07782dff641}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+put@{uart\+\_\+put}}
+\index{uart\+\_\+put@{uart\+\_\+put}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+put()}{uart\_put()}}
+{\footnotesize\ttfamily int uart\+\_\+put (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Transmit a character on U\+A\+RT 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & character to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 401 of file rs232.\+c.
+
+
+
+Referenced by get\+\_\+line().
+
+\mbox{\Hypertarget{rs232_8c_a4f688360d609d955f8bd6fd629872e80}\label{rs232_8c_a4f688360d609d955f8bd6fd629872e80}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+putchar@{uart\+\_\+putchar}}
+\index{uart\+\_\+putchar@{uart\+\_\+putchar}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+putchar()}{uart\_putchar()}}
+{\footnotesize\ttfamily int uart\+\_\+putchar (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int}]{uart }\end{DoxyParamCaption})}
+
+
+
+Transmit 1 byte on uart. 
+
+
+\begin{DoxyItemize}
+\item C\+R/\+LF Output translation. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & transmit character. \\
+\hline
+\mbox{\tt in}  & {\em uart} & uart number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 374 of file rs232.\+c.
+
+
+
+Referenced by uart0\+\_\+putchar().
+
+\mbox{\Hypertarget{rs232_8c_ac2daabfbed3e1679f834b158dfbbbe80}\label{rs232_8c_ac2daabfbed3e1679f834b158dfbbbe80}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+rx\+\_\+byte@{uart\+\_\+rx\+\_\+byte}}
+\index{uart\+\_\+rx\+\_\+byte@{uart\+\_\+rx\+\_\+byte}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+rx\+\_\+byte()}{uart\_rx\_byte()}}
+{\footnotesize\ttfamily int uart\+\_\+rx\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Recive character character from uart. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Character. 
+\end{DoxyReturn}
+
+
+Definition at line 297 of file rs232.\+c.
+
+
+
+Referenced by plot\+\_\+echo(), and uart\+\_\+getchar().
+
+\mbox{\Hypertarget{rs232_8c_a72746897c9285db2e3d50c9c38e8bb93}\label{rs232_8c_a72746897c9285db2e3d50c9c38e8bb93}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+rx\+\_\+count@{uart\+\_\+rx\+\_\+count}}
+\index{uart\+\_\+rx\+\_\+count@{uart\+\_\+rx\+\_\+count}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+rx\+\_\+count()}{uart\_rx\_count()}}
+{\footnotesize\ttfamily int uart\+\_\+rx\+\_\+count (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+return count of character count waiting in U\+A\+RT ring buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number to check count for.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Character count in ring buffer. 
+\end{DoxyReturn}
+
+
+Definition at line 275 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+get\+\_\+tail(), and uart\+\_\+keyhit().
+
+\mbox{\Hypertarget{rs232_8c_ab823b4d83752db47c0852bfa36a59036}\label{rs232_8c_ab823b4d83752db47c0852bfa36a59036}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+rx\+\_\+flush@{uart\+\_\+rx\+\_\+flush}}
+\index{uart\+\_\+rx\+\_\+flush@{uart\+\_\+rx\+\_\+flush}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+rx\+\_\+flush()}{uart\_rx\_flush()}}
+{\footnotesize\ttfamily void uart\+\_\+rx\+\_\+flush (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Flush receive ring buffer for specified uart. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file rs232.\+c.
+
+
+
+Referenced by task(), and uart\+\_\+init().
+
+\mbox{\Hypertarget{rs232_8c_a382aa76e85fa3a1a2add5111578e954e}\label{rs232_8c_a382aa76e85fa3a1a2add5111578e954e}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+rx\+\_\+interrupt@{uart\+\_\+rx\+\_\+interrupt}}
+\index{uart\+\_\+rx\+\_\+interrupt@{uart\+\_\+rx\+\_\+interrupt}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+rx\+\_\+interrupt()}{uart\_rx\_interrupt()}}
+{\footnotesize\ttfamily void uart\+\_\+rx\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{uart,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT Receive Interrupt task. 
+
+
+\begin{DoxyItemize}
+\item Add characters to ring receive buffer.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & uart number. \\
+\hline
+\mbox{\tt in}  & {\em data} & register data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 206 of file rs232.\+c.
+
+
+
+Referenced by I\+S\+R().
+
+\mbox{\Hypertarget{rs232_8c_a3c1200094b998cbb987f545257aaa355}\label{rs232_8c_a3c1200094b998cbb987f545257aaa355}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+tx\+\_\+byte@{uart\+\_\+tx\+\_\+byte}}
+\index{uart\+\_\+tx\+\_\+byte@{uart\+\_\+tx\+\_\+byte}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+tx\+\_\+byte()}{uart\_tx\_byte()}}
+{\footnotesize\ttfamily int uart\+\_\+tx\+\_\+byte (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{uint8\+\_\+t}]{uart }\end{DoxyParamCaption})}
+
+
+
+Transmit 1 byte on uart. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em c} & transmit character. \\
+\hline
+\mbox{\tt in}  & {\em uart} & uart number.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line 345 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+getchar(), and uart\+\_\+putchar().
+
+\mbox{\Hypertarget{rs232_8c_acf0f1788a444afef4ccd7c614429df05}\label{rs232_8c_acf0f1788a444afef4ccd7c614429df05}} 
+\index{rs232.\+c@{rs232.\+c}!uart\+\_\+ubr@{uart\+\_\+ubr}}
+\index{uart\+\_\+ubr@{uart\+\_\+ubr}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+ubr()}{uart\_ubr()}}
+{\footnotesize\ttfamily uint16\+\_\+t uart\+\_\+ubr (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baud,  }\item[{int $\ast$}]{u2x,  }\item[{uint32\+\_\+t $\ast$}]{actual }\end{DoxyParamCaption})}
+
+
+
+U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em uart} & desired baud rate in HZ \\
+\hline
+\mbox{\tt in}  & {\em $\ast$u2x} & computed prescale 1 = divide by 8, 0 = divide by 16 \\
+\hline
+\mbox{\tt in}  & {\em $\ast$actual} & Actual computed baud rate, closest we could get with register settings\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+baud rate register value 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} avr-\/libc function that attaches uart functions to \hyperlink{posix_8h_ab38efc888190556f106cafb08d17d16f}{getchar} and \hyperlink{posix_8h_ac9195b3de02e450cfdeea1ce97b32da4}{putchar} \hyperlink{posix_8h_a1c3d85ae80df5590fa314acffd8bf840}{P\+O\+S\+IX} functions. 
+\end{DoxySeeAlso}
+Use 8 prescale as a default
+
+Use 16 prescale f we have a low baud rate 
+
+Definition at line 72 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+init().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rs232_8c_a4174a66887247991f40c85ea4bb0c8a7}\label{rs232_8c_a4174a66887247991f40c85ea4bb0c8a7}} 
+\index{rs232.\+c@{rs232.\+c}!uarts@{uarts}}
+\index{uarts@{uarts}!rs232.\+c@{rs232.\+c}}
+\subsubsection{\texorpdfstring{uarts}{uarts}}
+{\footnotesize\ttfamily struct \hyperlink{struct__uart}{\+\_\+uart} uarts\mbox{[}\hyperlink{rs232_8h_a14061d90f6727665218418b15943af7f}{U\+A\+R\+TS}\mbox{]}}
+
+
+
+Uart ring buffers. 
+
+
+
+Definition at line 17 of file rs232.\+c.
+
+
+
+Referenced by uart\+\_\+get\+\_\+tail(), uart\+\_\+peek\+\_\+tail(), uart\+\_\+rx\+\_\+count(), uart\+\_\+rx\+\_\+flush(), and uart\+\_\+rx\+\_\+interrupt().
+
