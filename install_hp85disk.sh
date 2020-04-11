@@ -16,6 +16,7 @@ sudo apt-get update
 sudo apt-get install -y git aptitude make build-essential binutils gcc
 sudo aptitude --with-recommends install -y python3 python3-pip python-serial minicom avr-libc avra avrdude avrdude-doc avrp binutils-avr gcc-avr gdb-avr
 
+
 echo
 echo installing pySerial
 pip3 install pySerial
