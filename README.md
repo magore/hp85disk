@@ -51,9 +51,9 @@ ___
 ## V2 code is now working
   * [Jay Hamlin designed this board](board/V2/releases)
   * V2 hardware adds
-   * PCB Circuit board
-   * **GPIB** BUS drivers
-     * 48Mma drive required by the **GPIB** spec
+   * **PCB Circuit board design**
+   * **GPIB BUS drivers**
+     * 48Mma drive required by the GPIB spec
    * **I2C** level converters and standard Qwiic Bus interface - 3.3V
    * **RTC** clock for time stamping files added to **LIF** images, etc
    * Optional I2C LCD interface
@@ -77,7 +77,7 @@ ___
 
 
 ## HP Disk Emulator by Anders Gustafsson
-*Anders Gustafsson was extremely helpful in getting my project started.*
+**Anders Gustafsson was extremely helpful in getting my project started.**
 *In fact I really owe the very existence of this project to his original project*
  * You can visit his project at this site:
    * <http://www.dalton.ax/hpdisk>
@@ -96,39 +96,39 @@ NOTE:
 
 ### Other HPDir resources for disk image manipulation
   * [HPDrive project has very useful references an tools for creating HP disk **LIF** images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright © 2010 A. Kückes
+    * Copyright © 2010 **A. Kückes**
   * [HPDir project has very useful references and tools for manipulating HP disk **LIF** images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
-    * Copyright © 2010 A. Kückes
+    * Copyright © 2010 **A. Kückes**
   * [ See **LIF** Documentation - part of the HPDir project for details](http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem)
-    * Copyright © 2010 A. Kückes
+    * Copyright © 2010 **A. Kückes**
 
 
 ## My TeleDisk to **LIF** conversion utility
- * I used the lzss libraries and documentation by Dave Dunfield
+ * I used the lzss libraries and documentation by **Dave Dunfield**
    * Copyright 2007-2008 Dave Dunfield All rights reserved.
- * Documentation from Jean-Franois DEL NERO
+ * Documentation from **Jean-Franois DEL NERO**
    * Copyright (C) 2006-2014 Jean-Franois DEL NERO
 [lif/teledisk](lif/teledisk)
  * [lif/teledisk](lif/teledisk)
    * My **TELEDISK LIF** extractor
    * Important Contributions (My converted would not have been possible without these)
-     * Dave Dunfield, LZSS Code and *TeleDisk* documentation
+     * **Dave Dunfield**, LZSS Code and *TeleDisk* documentation
        * Copyright 2007-2008 Dave Dunfield All rights reserved.
        * [td0_lzss.h](lif/teledisk/td0_lzss.h)
        * [td0_lzss.c](lif/teledisk/td0_lzss.c)
-         * LZSS decoder
+         * *LZSS decoder*
        * [td0notes.txt](lif/teledisk/td0notes.txt)
-         * *TeleDisk* Documentation
-     * Jean-Franois DEL NERO, *TeleDisk* Documentation
+         * *TeleDisk Documentation*
+     * **Jean-Franois DEL NERO**, **TeleDisk Documentation**
        * Copyright (C) 2006-2014 Jean-Franois DEL NERO
          * [wteledsk.htm](lif/teledisk/wteledsk.htm)
-           * *TeleDisk* documentation
+           * *TeleDisk documentation*
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
 ## FatFS
   * [fatfs](fatfs)
-    * R0.14 FatFS code from (C) ChaN, 2019 - With very minimal changes 
+    * R0.14 FatFS code from (C) **ChaN**, 2019 - With very minimal changes 
 
 ## Optiboot
   * [optiboot](optiboot)
@@ -139,7 +139,7 @@ NOTE:
 
 ## STK500v1 uploader for Optiboot
   * [uploader/flasher.py](uploader/flasher.py)
-    * Optiboot uploader by Mathieu Virbel <mat@meltingrocks.com> 
+    * Optiboot uploader by **Mathieu Virbel** <mat@meltingrocks.com> 
       * Original repository https://github.com/tito/stk500
         * Authors main github page https://github.com/tito/stk500
           * https://meltingrocks.com/
@@ -387,7 +387,7 @@ ___
 ### Windows
     * Windows - Install Python 3.7 from Windows App Store
       * Open PowerShell window - always use PowerShell under Windows for running Python3
-    * *pip3 install pySerial*
+    * **pip3 install pySerial**
 
 ___ 
 
@@ -1186,7 +1186,7 @@ ___
       * [board design and pinouts of this project and a schematic DOC ](board/V1//HP85Disk.doc)
       * [board README.md](board/V1/HP85Disk.doc)
     * [V2/releases](V2/releases)
-      * Jay Hamlin version 2 circuit board design using **GPIB** buffers
+      * **Jay Hamlin version 2 circuit board design using GPIB buffers**
 
 ## Documents
   * [Documents](Documents)
@@ -1194,11 +1194,11 @@ ___
     * [Documents/README.md](Documents/README.md) 
 
 ## hp85disk software files
-  * Most of the software in the project was written by me except where notes
+  * Most of the software in the project was written by me except where noted
   
 ## FatFs
   * [fatfs](fatfs)
-    * R0.12b FatFS code from (C) ChaN, 2016 - With very minimal changes 
+    * R0.14 FatFS code from (C) **ChaN**, 2019 - With very minimal changes 
     * [00history.txt](fatfs/00history.txt)
     * [00readme.txt](fatfs/00readme.txt)
     * [ff.c](fatfs/ff.c)
@@ -1207,7 +1207,7 @@ ___
     * [integer.h](fatfs/integer.h)
 
   * [fatfs.hal](fatfs.hal/fatfs.hal)
-    * R0.12b FatFS code from (C) ChaN, 2016 with changes
+    * R0.14 FatFS code from (C) **ChaN**, 2019 with changes
       * Hardware abstraction layer based on example AVR project
     * [diskio.c](fatfs.hal/diskio.c)
       * Low level disk I/O module glue functions (fatfs.hal/C)ChaN, 2016 
