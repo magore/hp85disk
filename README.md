@@ -11,19 +11,19 @@
 
 ## Features for the **HP85** in brief
   * **NOTE: Later sections go into more detail**
-  * This project emulates **GPIB** drives and HPGL printer 
-    * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SDCARD.
+  * This project emulates **GPIB drives** and **HPGL printer **
+    * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SD CARD.
    * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
-     * Disk images are **LIF** encoded files that are compatible with ***HP85A**/B* and many other computers
+     * Disk images are **LIF** encoded files that are compatible with ***HP85A/B** and many other computers
      * Missing disk image files are created automatically if 
-  * The emulator will automatically create missing **LIF** images defined in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) on the SDCARD
+  * The emulator will automatically create missing **LIF** images defined in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) on the SD CARD
   * There are disk images for AMIGO and SS80 disks
     * **AMIGO** drives work with **HP85A** 
     * **SS80** drives work with **HP85B** (or **HP85A** with **PRM-85** with modified EMS and Electronic disk ROM add on board see links)
       * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
-  * There is a Printer emulator that can capture and save printer data to a time stamped file.
+  * There is a **Printer emulator** that can capture and save printer data to a time stamped file.
   * Built in command processor with lots of useful features
-    * Want to translate between plain text BASIC files and **HP85** BASIC programs? You Can!
+    * Want to translate between plain text **BASIC** files and **HP85** BASIC programs? You Can!
       * See full details later in this document
     * Access the hp85disk command processor via its USB interface and your computer with a serial terminal program
       * See full details later in this document for serial terminal configuration and finding the device port name
@@ -308,23 +308,24 @@ ___
   * You can do these examples without out my emulator but requires an extra tools and steps
 
 ## Importing ASCII and plain text as **HP85** BASIC programs
-  * Lets import a text file with BASIC statements into one of the emulator images amigo1.lif 
+  * Lets import a text file with BASIC statements into one of the emulator images **amigo1.lif **
   * Turn off both the **HP85** and emulator - if it is attached
     * Remove the SD Card
-  * Create a plain text file with BASIC statements in it on your desktop - NOT on HP85
+  * Create a plain text file with BASIC statements in it **on your Desktop - NOT on HP85**
       * **10 DISP :HELLO WORLD"**
       * **20 END**
     * Save this file as **TEST.txt** onto the SD Card and exit your editor 
       * Unmount the SD Card "eject it" in windows jargon
       * Reinstall the SD Card in the emulator
   * Turn on the hp85disk emulator FIRST - THEN turn on the HP85
-    * Trivia - the **HP85** only detects disk at power on or after a RESET - therefore the emulator MUST be running first
-      * Open your serial program with the documented settings
+    * Trivia - the **HP85 only detects disk at power on or after a RESET** 
+      * Therefore the emulator MUST be running first
+    * Open your serial program with the documented settings
 
-  ** Lets add **TEST.txt** from the SD Card into the *amigo1.lif* emulator disk image
+  * Lets add **TEST.txt** from the SD Card into the **amigo1.lif** emulator disk image
     * Type:
-      * *lif add amigo1.lif TEST TEST.txt*
-        * **TEST** is the internal **LIF** name, *TEST.txt* is you source file
+      * **lif add amigo1.lif TEST TEST.txt**
+        * **TEST** is the internal **LIF** name, **TEST.txt** is you source file
 
   * On your **HP85** we will load a binary program called **GETSAVE**
     * **LOADBIN "GETSAVE"**
@@ -539,9 +540,9 @@ NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
   * **./term 115200 /dev/ttyS3**
   * The term script starts a program called minicom
     * To Exit the minicom terminal emulator
-      * Ctrl a   (hold Ctrl down and press a key and release both keys)
-      * x        (press the x key and release)
-      * Answer Yes to leave Minicom
+      * **Ctrl a**   (hold Ctrl down and press a key and release both keys)
+      * **x**        (press the x key and release)
+      * Answer **Yes** to leave Minicom
 
 ___ 
 
@@ -790,9 +791,9 @@ ___
   # See all of the detailed notes earlier in the README 
 </pre>
   * Now on the emulator itself type
-  * lif add amigo1.lif MYTEST test.txt
+  * **lif add amigo1.lif MYTEST test.txt**
      * See all of the detailed notes earlier in the README 
-  * We just added the TEST.txt file to the image file called amigo1.lif and named it MYTEST
+  * We just added the **TEST.txt** file to the image file called **amigo1.lif** and named it MYTEST
 <pre>
   # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
   GET "HELLO:D700"
