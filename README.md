@@ -319,7 +319,7 @@ ___
       * Reinstall the SD Card in the emulator
   * Turn on the hp85disk emulator FIRST - THEN turn on the HP85
     * Trivia - the **HP85 only detects disk at power on or after a RESET** 
-      * Therefore the emulator MUST be running first
+      * **Therefore the emulator MUST be running first**
     * Open your serial program with the documented settings
 
   * Lets add **TEST.txt** from the SD Card into the **amigo1.lif** emulator disk image
