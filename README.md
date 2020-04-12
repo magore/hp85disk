@@ -14,7 +14,7 @@
   * This project emulates **GPIB drives** and **HPGL printer **
     * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SD CARD.
    * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
-     * Disk images are **LIF** encoded files that are compatible with ***HP85A/B** and many other computers
+     * Disk images are **LIF** encoded files that are compatible with **HP85A/B** and many other computers
      * Missing disk image files are created automatically if 
   * The emulator will automatically create missing **LIF** images defined in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) on the SD CARD
   * There are disk images for AMIGO and SS80 disks
@@ -334,7 +334,7 @@ ___
         * **GETSAVE** adds new functions **"GET"** and **"SAVE"** to your **HP85** computer
   * On the **HP85** type
     * **GET "TEST"**
-      * Wait until you see DONE 
+      * Wait until you see **DONE**
         * On BIG programs GET can take a very long time 
           * The slow speed is a **GETSAVE** limitation and not due to my emulator speed
     * Lets save it as a normal **HP85** basic program
@@ -354,7 +354,7 @@ ___
     * **LOAD "RWTESTB"**
   * First stage conversions
     * **SAVE "RWTESTA"**
-      * Wait until you see **DONE **
+      * Wait until you see **DONE**
         * On BIG programs SAVE can take a very long time 
           * The slow speed is a **GETSAVE** limitation and not due to my emulator speed
   * Lets export and convert **"RWTESTA"** to plain text using the emulator command prompts
@@ -374,7 +374,7 @@ ___
   * I used **Ubuntu 18.04,16.04LTS and 14.04LTS** when developing the code
   * I have instructions for flashing the firmware below
 ### Windows
-    * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
+  * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
 
 ___ 
 
@@ -386,9 +386,9 @@ ___
   * **pip3 install pySerial**
 
 ### Windows
-    * Windows - Install Python 3.7 from Windows App Store
-      * Open PowerShell window - always use PowerShell under Windows for running Python3
-    * **pip3 install pySerial**
+  * Windows - Install Python 3.7 from Windows App Store
+    * Open PowerShell window - always use PowerShell under Windows for running Python3
+  * **pip3 install pySerial**
 
 ___ 
 
@@ -472,25 +472,25 @@ Note: If you only plan on updating firmware and would rather not compile skip to
 ### Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App
 Note: I recommend this as the easiest way to compile and build hp85disk under Windows</br>
   * Following these steps take less then 10 minutes incuding the software and hp85disk download
-  * Install WSL - Windows SUbsystem for Linux
+  * Install **WSL - Windows Subsystem for Linux**
     * See: https://docs.microsoft.com/en-us/windows/wsl/install-win10
     * See: https://wiki.ubuntu.com/WSL
     * Using the GUI for enabling Windows features
       * Open the Start Menu and search **Turn Windows features on or off**
       * Select **Windows Subsystem for Linux**
-      * Click OK
+      * Click **OK**
       * Restart your computer when prompted
     * Open **Windows Store**
       * Install **Ubuntu App**
-        * Note: you DO NOT have to sign in to the Windows Store to install this
-         * If you just X out of the sign in prompt the software will still install
-    * Search Ubuntu
-      * Launch **Ubuntu App**
+        * Note: you DO NOT have to sign in to the Windows Store to install this, although that may not be obvious
+         * If you just **X** out of the sign in prompt the software will still install
+    * Search **Ubuntu**
+      * **Launch Ubuntu App**
         * This will take a few minutes the first time depending on your network speed 
         * It will ask for a userid and password for a new user
-      * Right Click on the very top of the Ubuntu App window 
-        * Click on Properties -> Open the Options Tab
-          * Enable **Ctrl+Shift+C/V Copy Paste**
+      * **Right Click on the very top of the Ubuntu App window**
+        * **Click on Properties -> Open the Options Tab**
+          * **Enable Ctrl+Shift+C/V Copy Paste**
 
 ### Ubuntu 18.04 LTS or later
 Note: For Windows install the WSL and Ubuntu App - see previous section
@@ -508,11 +508,11 @@ Note: For Windows install the WSL and Ubuntu App first - see previous section
 
 ### Updating hp85disk github project at any time using git
 ### Linux
-  * Open a terminal window 
+  * Open a **terminal window**
   * **cd hp85disk**
   * **git pull**
 ### Windows
-  * Open Ubuntu App
+  * Open **Ubuntu App**
   * **cd hp85disk**
   * **git pull**
 
@@ -523,8 +523,8 @@ ___
 
 ### Find the serial port device name for the hp85disk emulator
   * Make sure the emulator is not connected to your PC/Mac
-  * Open a terminal window on Ubuntu
-    * Ubuntu App under Windows
+  * Open a **terminal window** on **Ubuntu**
+    * **Ubuntu App** under **Windows**
   * Run 
     * **cd hp85disk**
     * **python3 uploader/listports.py**
@@ -532,13 +532,13 @@ ___
   * Run 
     * **python3 uploader/listports.py**
   * The new port that appears in the last step is the Emulator Port name
-  * Optionally edit the hp85disk/Makefile and change the PORT name near the start of the file to this name
+  * Optionally edit the hp85disk [Makefile](Makefile) and change the **PORT** name near the start of the file to this name
 
 ### Opening a terminal window to the hp85disk emulator
 NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
   * **cd hp85disk**
   * **./term 115200 /dev/ttyS3**
-  * The term script starts a program called minicom
+  * The term script starts a program called **minicom**
     * To Exit the minicom terminal emulator
       * **Ctrl a**   (hold Ctrl down and press a key and release both keys)
       * **x**        (press the x key and release)
@@ -564,7 +564,7 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
 
 ### Flash with Internal optiboot
   * Note: in this example assume the hp85disk serial port is /dev/ttyS3
-    * You can override the Makefile default without editing it
+    * You can override the [Makefile](Makefile)  default without editing it
   * **make clean**
   * **make**
   * **make install**
@@ -578,13 +578,13 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
         * Alternatively you can edit the Makefile and change the two settings for your setup
 
 #### If you have a firmware update problems - if you get a failure during updating
-  * Type in the flashing command, see  above, but *without* pressing Enter yet
+  * Type in the flashing command, see  above, but **without pressing Enter yet**
     * Now hold down **RESET** on the hp85disk board - release RESET and press Enter quickly
       * You have a short Window after releasing RESET to Press Enter
 
 ### Update Firmware with external programmer
-  * You will need and AVR programmer supported by avrdude (part of avrtools)
-    * See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT in next Makefile section
+  * You will need and AVR programmer supported by **avrdude** (part of avrtools)
+    * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **AVRDUDE_PORT** in next [Makefile](Makefile) section
   * **make clean**
   * **make**
   * **make install**
@@ -592,10 +592,10 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
     * **make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3**
     * OR
   * **make flash-isp**         # do not press Enter yet!
-    * This will use *avrdude* and your ISP (In System Programmer) to flash the firmware
+    * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
 
 ### Flashing AND connecting to hp85disk emualtor terminal just after firmware update 
-  * Note: You can add *term* after *ANY* make flash commands
+  * **Note: You can add *term* after *ANY* make flash commands**
   * Examples:
     * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb**
     * **make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS5**
@@ -608,25 +608,25 @@ ___
 ## Makefile configuration options for hp85disk emulator 
   * These options apply to original V1 and new V2 boards
   * Update **BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT** for your platform
-    * **AVRDUDE_DEVICE** is the name of AVR as it is known by avrdude
+    * **AVRDUDE_DEVICE** is the name of AVR as it is known by **avrdude**
       * **m1284**
-    * **AVRDUDE_SPEED**  is the programming clock speed used by avrdude
+    * **AVRDUDE_SPEED**  is the programming clock speed used by **avrdude**
       * **5**
         * My device works with 0.25 but 5 is safe
     * **AVRDUDE_ISP**
-      * You will need and AVR programmer supported by avrdude (part of avrtools)
-        * You can list all of the supported programmers using the command *avrdude -c list*
+      * You will need and AVR programmer supported by **avrdude** (part of avrtools)
+        * You can list all of the supported programmers using the command **avrdude -c list**
           * Note: **ISP** = *In System Programmer*
-          * avrdude device programmer name as known by avrdude
-            * avrdude -c list  # for a list of devices
-          * See Makefile](Makefile) keywords AVRDUDE_ISP and AVRDUDE_PORT 
+          * **avrdude device programmer name as known by avrdude**
+            * **avrdude -c list**  # for a list of devices
+          * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **AVRDUDE_PORT**
             * This is the ISP programmer and port names
-            * FYI: I am using atmelice_isp [Makefile](Makefile) as the default
+            * FYI: I am using **atmelice_isp** [Makefile](Makefile) as the default
           * The cheapest ISP is the Arduino as ISP 
             * **AVRDUDE_ISP** = *avrisp*
               * There are many sources that sell this low cost programmer - Amazon has them for about $10 
-              * FYI: Arduino includes the source in the Example Programs if you want to make one
-          * Note: JTAG is disabled for this project so you can not use a JTAG programmer
+              * FYI: The Arduino installer package includes the source for the Arduino ISP in the Example Programs if you want to make one
+          * **Note: JTAG is disabled for this project so you can not use a JTAG programmer**
     * **AVRDUDE_PORT**
       * Same as **PORT** name, below, for avrisp and arduino
       * **usb** for **atmelice_isp**
@@ -638,12 +638,12 @@ ___
         * NOTE: Faster is better when enabling more debug messages 
           * Too many messages can cause the **HP85** to timeout waiting for IO
     * **DEVICE**
-      * Target AVR device used by GCC for this project
+      * **Target AVR device as known by GCC** for this project
       * **atmega1284p**
-        * DO NOT CHANGE THIS - there are too main dependencies
+        * **DO NOT CHANGE THIS - there are too main dependencies**
     * **BOARD** is the version of the hardware currently V2
       * **1** = **V1 hardware** without **GPIB** BUS transceivers
-      * **2** = **V2 hardware** with **GPIB** BUS transceivers
+      * **2** = **V2 hardware** with **GPIB** BUS transceivers (DEFAULT)
     * **PPR_REVERSE_BITS**
       * **Note: This is now automatically set by board revision so this is not normally needed**
         * **0** = **V1 hardware** without the **GPIB** buffers 
@@ -690,8 +690,8 @@ ___
         make flash             - build and flash the code using built in optiboot programmer
         make flash-release     - flash the release code using built in optiboot programmer
         IMPORTANT - if flashing fails try these steps
-            On your computer type in the make command without pressing Enter afterwards
-            Then press RESET the button on the hp85disk board and next press Enter quickly afterwards
+            On your computer type in the make command **without pressing Enter afterwards**
+            Then press **RESET the button on the hp85disk board** and next **press Enter quickly afterwards**
     
     Programming using an 6 wire ISP - WITHOUT installing optiboot
         IMPORTANT - you will not be able to use non isp flashing modes later on
@@ -699,7 +699,7 @@ ___
         make flash-isp-noboot         - build and flash the code using an ISP
         make flash-isp-noboot-release - flash the release code using an ISP
     
-    Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards
+    Note: **you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards**
 </pre>
 
 ## Example building with Makefile overrides
@@ -711,7 +711,7 @@ ___
 
 
 ## Building Doxygen documentation for the project - OPTIONAL
-  * *aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex*
+  * **aptitude install --with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex**
   * *If you omit this you will have to update the [Makefile](Makefile) to omit the steps*
 
 ___ 
@@ -725,10 +725,10 @@ ___
          * **PRINTER IS 705**
          * **PLIST**
      * Disk images in [sdcard](sdcard) folder drive and configuration settings
-       * First  Amigo   9121D disk at 710 for my **HP85A** (with 85A ROM's)
-       * Second Amigo   9121D disk at 710 for my **HP85A** (with 85A ROM's)
-       * First   SS80 HP9134L disk at 720 for my **HP85B** (with 85B ROM's)
-       * Second  SS80 HP9134L disk at 730 for my **HP85B** (with 85B ROM's)
+       * **First  Amigo**   9121D disk at 710 for my **HP85A** (with 85A ROM's)
+       * **Second Amigo**   9121D disk at 710 for my **HP85A** (with 85A ROM's)
+       * **First   SS80** HP9134L disk at 720 for my **HP85B** (with 85B ROM's)
+       * **Second  SS80** HP9134L disk at 730 for my **HP85B** (with 85B ROM's)
 
      * How to use the examples with your **HP85**
        * Copy the files inside the project [sdcard](sdcard) folder to the home folder of a fat32 formatted drive
@@ -821,27 +821,26 @@ ___
     * **PPR** response occurs when a disk drive pulls one **GPIB** bus data line low in response.
        * You can only have 8 of these because there are only 8 **GPIB** data bus lines.
          * **GPIB** data bus bits are numbered from 1 to 8
-         * **PPR** response bits are *assigned in reverse order* starting from 8, bit 8 for device 0
-           * This is a **GPIB** specification - not my idea.
-         * The **HP85** uses these assumptions
-            * **PPR** bits are assigned in reverse order from device numbers.
-  * IMPORTANT! On power up the **HP85** issues a **PPR** query for disk drives 
-    * The emulator must be running BEFORE this happens.
+         * **PPR** response bits are **assigned in reverse order starting from 8, bit 8 for device 0**
+           * **This is a GPIB specification - not my idea**
+             * The **HP85** uses these assumptions
+  * **IMPORTANT! On power up the HP85 issues a PPR query for disk drives**
+    * **The emulator must be running BEFORE this happens**
     * **PPR** query = both **ATN** and **EOI** being pulled low by the computer.
     * **PPR** response is when each drive pulls a single **GPIB** data bus bit **LOW** - while **ATN** and **EOI** are **LOW**.
        * *ONLY* those that are detected in this way are then next scanned
-    * Next for all detected drives the **HP85** issues "Request Identify" to each in turn.
+    * Next for all detected drives the **HP85** issues **Request Identify** to each in turn.
       * This is done one drive at a time in order
       * The **PPR** keyword in the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the **PPR** bit the drive uses
         * **PPR** of **0 = PPR** response on **GPIB** data bus **bit number 8** - as per **GPIB BUS specifications**.
       * The ID keyword in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the 16 bit reply to "Request Identify Reply"
-        * IMPORTANT! ***AMIGO*** drives cannot be queried for detailed drive layout information
-          * The **HP85A** can only use its *hard-coded firmware tables* to map **ID** to disk layout parameters
-          * This implies that the **HP85A** can only use ***AMIGO*** disks it has defined in firmware.
-        * The **HP85B** can query newer **SS80** drives for detailed drive layout information instead.
+        * **IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information**
+          * The **HP85A** can only use its **hard-coded firmware tables** to map **ID** to disk layout parameters
+          * This implies that the **HP85A** can only use **AMIGO** disks it has defined in firmware.
+        * The **HP85B** can however; query newer **SS80** drives for detailed drive layout information instead.
         * The **HP85A** cannot use **SS80** drives unless it uses copies of the **HP85B** EMS and EDISK ROMS.
-            * One way this can be done with the **PRM-85** expansion board offered by Bill Kotaska 
-              * (The **PRM-85** is great product giving you access to all of the useful ROMS)
+          * One way this can be done with the **PRM-85** expansion board offered by Bill Kotaska 
+            * (The **PRM-85** is great product giving you access to all of the useful ROMS)
 ___
 
 ## Technical Limitations
@@ -853,11 +852,11 @@ ___
    * Note: The **HP85A** can only use **AMIGO** drives - unless you have the **HP85B** EMS ROM installed in your HPH9A
       * This can be done with the **PRM-85** expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
-   * The correct **GPIB** BUS address and parallel pool response (**PPR**) bit number your computer expects.
+   * The correct **GPIB BUS address** and **parallel pool response (PPR)** bit number your computer expects.
      * See **ADDRESS**, **PPR** and **ID** values in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
    * Older computers may only support **AMIGO** drives.
      * Such computers will have a hard coded in firmware list of drive its supports.
-       * These computers will issue a **GPIB** BUS "request identify" command and only detect those it knows about.
+       * These computers will issue a *GPIB BUS* **Request Identify** command and only detect those it knows about.
        * *If these assumptions do NOT match the layout defined in the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) no drives will be detected.*
    * Newer computers with **SS80** support can request fully detailed disk layout instead of the "request identify"
    * My emulator supports both reporting methods - but your computer may not use them both!
@@ -865,7 +864,7 @@ ___
        * See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)
      * In all cases the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) parameters MUST match these expectations.
    * The [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file tells the emulator how the emulated disk is defined.
-     * **GPIB** BUS address, Parallel Poll Response bit number and **AMIGO** Request Identify response values.
+     * **GPIB BUS address**, **PPR bit number** and **AMIGO** **Request Identify* response values.
      * Additional detail for **SS80** drives that newer computers can use.
      * In ALL cases the file informs the code what parameters to emulate and report.
        * ALL of these values MUST match your computers expectations for drives it knows about.
@@ -884,10 +883,10 @@ ___
    * **help**
      * List all available commands 
      * Some commands also have their own help like *lif help*
-     * Note: all command options must be seperated with spaces between each item
+     * **Note: all command options must be seperated with spaces between each item**
 
 ### For main help menu type *help*
- * Any word that has help after it will give help for that command
+ * Any word that has **help** after it will give help for that command
  * **help**
 <pre>
     Stand alone version of **LIF** utilities for linux
@@ -964,7 +963,7 @@ ___
 
 ##  hp85disk setting debug options
   * Debugging is can be controlled in two ways
-    * The DEBUG statement in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
+    * The **DEBUG** statement in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
     * Typing the command in interactively
 
 ###  hp85disk DEBUG truth table
