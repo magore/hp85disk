@@ -57,8 +57,8 @@ ___
   * **make**
 ## LIF and TeleDisk standalone tool help
   * **lif**
-  * ** lif help**
-  * ** td02lif**
+  * **lif help**
+  * **td02lif**
 
 ___
 
