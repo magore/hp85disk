@@ -1,7 +1,7 @@
 \hypertarget{md_README_README}{}\section{R\+E\+A\+D\+ME}\label{md_README_README}
 \section*{Documentation}
 
-\subsection*{$\ast$$\ast$\+H\+P85$\ast$$\ast$ Disk Emulator Copyright (C) 2014-\/2020 Mike Gore}
+\subsection*{H\+P85 Disk Emulator Copyright (C) 2014-\/2020 Mike Gore}
 
 
 \begin{DoxyItemize}
@@ -71,7 +71,7 @@
 \item The emulator {\bfseries R\+TC} can be used for time stamping plot files and files added into lif images
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{$\ast$$\ast$\+H\+P85$\ast$$\ast$ Disk Emulator is available at the Tendie store}}
+{\bfseries \subsection*{H\+P85 Disk Emulator is available at the Tendie store}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -86,7 +86,7 @@
 
 {\bfseries }
 
-{\bfseries \subsection*{$\ast$$\ast$\+H\+P85$\ast$$\ast$ disk emulator V2 circuit board layout design by (C) 2018-\/2020 Jay Hamlin}}
+{\bfseries \subsection*{H\+P85 disk emulator V2 circuit board layout design by (C) 2018-\/2020 Jay Hamlin}}
 
 {\bfseries  \subsection*{V2 board design -\/ github master branch targets both old and new board by Jay Hamlin}}
 
@@ -116,7 +116,7 @@
 
 {\bfseries   }
 
-{\bfseries \subsection*{$\ast$$\ast$\+H\+P85$\ast$$\ast$ disk emulator V1 board design (C) 2014-\/2020 Mike Gore}}
+{\bfseries \subsection*{H\+P85 disk emulator V1 board design (C) 2014-\/2020 Mike Gore}}
 
 {\bfseries  \subsection*{board/\+V1/\+R\+E\+A\+D\+M\+E.\+md \char`\"{}\+V1 board readme\char`\"{}}}
 
@@ -144,7 +144,7 @@
 
 {\bfseries Anders originally provided me his source code in 2014 and many details of his project {\itshape which I am very thankful for.} N\+O\+TE\+: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and N\+OT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for {\bfseries G\+P\+IB} ,A\+M\+I\+GO and S\+S80 state tracking.}
 
-{\bfseries \subsection*{The H\+P\+Dir project was a vital documentation source for this project$\ast$}}
+{\bfseries \subsection*{The H\+P\+Dir project was a vital documentation source for this project}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -170,7 +170,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{My Tele\+Disk to {\bfseries L\+IF} conversion utility}}
+{\bfseries \subsection*{My Tele\+Disk to L\+IF conversion utility}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -218,7 +218,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Fat\+FS}}
+{\bfseries \subsection*{Fat\+FS low level disk IO}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -362,7 +362,7 @@
 
 }
 
-{\bfseries \subsection*{$\ast$$\ast$\+L\+I\+F$\ast$$\ast$ tools are built into emulator firmware}}
+{\bfseries \subsection*{L\+IF tools are built into emulator firmware}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -373,6 +373,7 @@
 \item Gives lif commands
 \end{DoxyItemize}
 \end{DoxyItemize}
+\item Summary -\/ List, Create, import, export, translate, copy, rename, delete, etc
 \item N\+O\+TE\+: Each disk image is a single file, encoded in {\bfseries L\+IF} format,saved on the SD Card
 \begin{DoxyItemize}
 \item {\bfseries L\+IF} format is a common the filesystem on series 80 computers.
@@ -381,10 +382,16 @@
 \item {\bfseries L\+IF} format includes file date,size permissions and other important meta data
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item You can work with {\bfseries L\+IF} images
+\item Translate between D\+T\+A8x (type E010) and plain text files
+\begin{DoxyItemize}
+\item You can add a plain text file, and translate it, into a {\bfseries L\+IF} image with file format D\+T\+A8x (type E010)
+\item You can extract and translate D\+T\+A8x (type E010) into a plain text files
+\end{DoxyItemize}
+\item {\bfseries Key L\+IF manipulation features}
+\begin{DoxyItemize}
+\item {\bfseries dir} display a directory of a {\bfseries L\+IF} image
 \begin{DoxyItemize}
 \item Directory listing of {\bfseries L\+IF} images and S\+SD Card files
-\begin{DoxyItemize}
 \item If you have an R\+TC the listing can display file and {\bfseries L\+IF} volume date and time
 \begin{DoxyItemize}
 \item Display time stamps if they were set
@@ -403,25 +410,21 @@
 \item This function permits renaming of the translated file
 \item They get translated between {\bfseries H\+P85} D\+T\+A8x (type E010) format and plain text files!!!
 \end{DoxyItemize}
-\item {\bfseries add} binary programs from one {\bfseries L\+IF} image to another {\itshape L\+IF} image
+\item {\bfseries addbin} add binary programs from one {\bfseries L\+IF} image to another {\itshape L\+IF} image
 \begin{DoxyItemize}
 \item This function permits renaming of the translated file
 \end{DoxyItemize}
-\item {\bfseries extract} a single binary file or program into a new {\bfseries L\+IF} image
+\item {\bfseries extractbin} a single binary file or program into a new {\bfseries L\+IF} image
 \begin{DoxyItemize}
 \item This function permits renaming of the translated file
 \item Extracted {\bfseries L\+IF} images contain a single file a 256 byte volume header, 256 byte directory followed by a file.
 \end{DoxyItemize}
-\item {\bfseries delete} file in {\bfseries L\+IF} image
+\item {\bfseries del} delete file in {\bfseries L\+IF} image
 \item {\bfseries rename} file in {\bfseries L\+IF} image
-\item Create, import, export copy, rename, delete, etc
-\begin{DoxyItemize}
-\item You can add a plain text file, and translate it, into a {\bfseries L\+IF} image with file format D\+T\+A8x (type E010)
-\item You can extract and translate D\+T\+A8x (type E010) into a plain text files
+\item {\bfseries create} create a L\+IF image specifing a label, directory size and overall disk size
+\item {\bfseries createdisk} create a L\+IF image specifying a label and drive model name
 \end{DoxyItemize}
 \item \hyperlink{md_lif_README}{For more $\ast$$\ast$\+L\+I\+F$\ast$$\ast$ documentation}
-\item Also see the Other Resources section above
-\end{DoxyItemize}
 \end{DoxyItemize}}
 
 {\bfseries \subsection*{Tele\+Disk to L\+IF conversion tool (updated) -\/ see  \hyperlink{lif_2README_8md}{lif/\+R\+E\+A\+D\+M\+E.\+md} \char`\"{}\+L\+I\+F R\+E\+A\+D\+M\+E.\+md\char`\"{}}}
@@ -491,7 +494,7 @@
 
 }
 
-{\bfseries \subsection*{Specific details for Translating between plain text and {\bfseries H\+P85} B\+A\+S\+IC programs using hp85disk}}
+{\bfseries \subsection*{Specific details for Translating between plain text and H\+P85 B\+A\+S\+IC programs using hp85disk}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -526,7 +529,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Translating between plain text and {\bfseries H\+P85} B\+A\+S\+IC programs W\+I\+T\+H\+O\+UT hp85disk}}
+{\bfseries \subsection*{Translating between plain text and H\+P85 B\+A\+S\+IC programs W\+I\+T\+H\+O\+UT hp85disk}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -582,7 +585,7 @@
 \item You can do these examples without out my emulator but requires an extra tools and steps
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Importing A\+S\+C\+II and plain text as {\bfseries H\+P85} B\+A\+S\+IC programs}}
+{\bfseries \subsection*{Importing A\+S\+C\+II and plain text as H\+P85 B\+A\+S\+IC programs}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -658,7 +661,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries \subsection*{Exporting {\bfseries H\+P85} B\+A\+S\+IC programs to A\+S\+C\+II plain text}}
+{\bfseries \subsection*{Exporting H\+P85 B\+A\+S\+IC programs to A\+S\+C\+II plain text}}
 
 {\bfseries 
 \begin{DoxyItemize}
@@ -1429,7 +1432,7 @@
 
 {\bfseries {\bfseries \subsection*{Initializing a disk images}}}
 
-{\bfseries {\bfseries  \subsection*{$\ast$$\ast$\+H\+P85\+B$\ast$$\ast$ only feature or H\+P88A with {\bfseries P\+R\+M-\/85} board}}}
+{\bfseries {\bfseries  \subsection*{H\+P85B only feature or H\+P88A with {\bfseries P\+R\+M-\/85} board}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -1451,7 +1454,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+H\+P85\+A$\ast$$\ast$ and {\bfseries H\+P85B} examples}}}
+{\bfseries {\bfseries \subsection*{H\+P85A and H\+P85B examples}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -1517,7 +1520,7 @@
 
 }}
 
-{\bfseries {\bfseries \subsection*{Understanding Drive {\bfseries G\+P\+IB} B\+US addressing and Parallel Poll Response ({\bfseries P\+PR}) -\/ {\bfseries H\+P85A} vs. {\bfseries H\+P85B}}}}
+{\bfseries {\bfseries \subsection*{Understanding Drive G\+P\+IB B\+US addressing and Parallel Poll Response (P\+PR) -\/ H\+P85A vs H\+P85B}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -1908,7 +1911,7 @@
 
 }}
 
-{\bfseries {\bfseries \subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{} is the short form used in the project)}}}
+{\bfseries {\bfseries \subsection*{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{}) is the short form used in the project}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -1952,7 +1955,7 @@
 
 }}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+G\+P\+I\+B$\ast$$\ast$ / I\+E\+EE 488 Tutorial by Ian Poole}}}
+{\bfseries {\bfseries \subsection*{G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -1979,7 +1982,7 @@
 
 }}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+L\+I\+F$\ast$$\ast$ File system Format}}}
+{\bfseries {\bfseries \subsection*{$\ast$\+L\+I\+F$\ast$ File system Format}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -2005,7 +2008,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+G\+P\+I\+B$\ast$$\ast$ Connector pinout by Anders Gustafsson in his hpdisk project}}}
+{\bfseries {\bfseries \subsection*{$\ast$\+G\+P\+I\+B$\ast$ Connector pinout by Anders Gustafsson in his hpdisk project}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -2439,7 +2442,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+L\+I\+F$\ast$$\ast$ files}}}
+{\bfseries {\bfseries \subsection*{$\ast$\+L\+I\+F$\ast$ files}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -2504,7 +2507,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \subsection*{$\ast$$\ast$\+L\+I\+F$\ast$$\ast$ teledisk files}}}
+{\bfseries {\bfseries \subsection*{$\ast$\+L\+I\+F$\ast$ teledisk files}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -2645,7 +2648,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \subsubsection*{$\ast$$\ast$\+A\+M\+I\+G\+O$\ast$$\ast$ disk images}}}
+{\bfseries {\bfseries \subsubsection*{$\ast$\+A\+M\+I\+G\+O$\ast$ disk images}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
@@ -2667,8 +2670,14 @@
 \item \href{sdcard/amigo3.lif}{\tt amigo4.\+lif}
 \begin{DoxyItemize}
 \item {\bfseries A\+M\+I\+GO} disk image
-\item Has some demo basic programs in it \subsubsection*{$\ast$$\ast$\+S\+S80$\ast$$\ast$ disk images}
+\item Has some demo basic programs in it
 \end{DoxyItemize}
+\end{DoxyItemize}}}
+
+{\bfseries {\bfseries \subsubsection*{$\ast$\+S\+S80$\ast$ disk images}}}
+
+{\bfseries {\bfseries 
+\begin{DoxyItemize}
 \item \href{sdcard/ss80-0.lif}{\tt ss80-\/1.\+lif}
 \begin{DoxyItemize}
 \item {\bfseries S\+S80} disk image
@@ -2733,7 +2742,7 @@
 \item \href{sdcard/scripts}{\tt sdcard/scripts}
 \begin{DoxyItemize}
 \item Scripts that help creating {\bfseries L\+IF} images from multiple files
-\item Used by \href{sdcard/create_images.sh}{\tt create\+\_\+images.\+sh} \subsubsection*{My {\bfseries H\+P85} bus trace files}
+\item Used by \href{sdcard/create_images.sh}{\tt create\+\_\+images.\+sh} \subsubsection*{My {\itshape H\+P85} bus trace files}
 \end{DoxyItemize}
 \item \href{sdcard/traces}{\tt sdcard/traces}
 \begin{DoxyItemize}
@@ -2746,7 +2755,7 @@
 \end{DoxyItemize}
 \item \href{sdcard/traces/gpib_trace.txt}{\tt gpib\+\_\+trace.\+txt}
 \begin{DoxyItemize}
-\item {\bfseries G\+P\+IB} transaction trace when connected to H\+P85 \subsubsection*{My {\bfseries H\+P85} plot capture files}
+\item {\bfseries G\+P\+IB} transaction trace when connected to H\+P85 \subsubsection*{My {\itshape H\+P85} plot capture files}
 \end{DoxyItemize}
 \item \mbox{[}plots\mbox{]}(sdcard/plots\mbox{]}
 \begin{DoxyItemize}
@@ -2771,7 +2780,7 @@
 \item \href{sdcrad/TREK85/readme.txt}{\tt readme.\+txt}
 \item \href{sdcard/TREK85/Start Trek.pdf}{\tt Star Trek.\+pdf}
 \item \href{sdcard/TREK85/TREK85.BAS}{\tt T\+R\+E\+K85.\+B\+AS}
-\item \href{sdcard/TREK85/trek.lif}{\tt trek.\+lif} \subsubsection*{$\ast$$\ast$\+L\+I\+F$\ast$$\ast$ images with a single program in them}
+\item \href{sdcard/TREK85/trek.lif}{\tt trek.\+lif} \subsubsection*{$\ast$\+L\+I\+F$\ast$ images with a single program in them}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item \href{sdcard/LIF-files}{\tt L\+I\+F-\/files}
@@ -2800,7 +2809,7 @@
 \item {\bfseries L\+IF} images with multiple programs in them
 \item \href{sdcard/LIF-volumes}{\tt L\+I\+F-\/volumes}
 \begin{DoxyItemize}
-\item \href{sdcard/ASCII-files/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF} \subsubsection*{$\ast$$\ast$\+G\+E\+T\+S\+A\+V$\ast$$\ast$ documentation}
+\item \href{sdcard/ASCII-files/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF} \subsubsection*{$\ast$\+G\+E\+T\+S\+A\+V$\ast$ documentation}
 \end{DoxyItemize}
 \item \href{sdcard/notes}{\tt notes}
 \begin{DoxyItemize}

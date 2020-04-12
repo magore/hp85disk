@@ -67,7 +67,7 @@ $(function() {
 <div class="textblock"><h1><a class="anchor" id="README"></a>
 README</h1>
 <h1>Documentation</h1>
-<h2>**HP85** Disk Emulator Copyright (C) 2014-2020 Mike Gore</h2>
+<h2>HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore</h2>
 <ul>
 <li>This Project Emulates <b>AMIGO</b> and <b>SS80</b> disk drives used by the <b>HP85</b> series computers.</li>
 <li>The images are stored in <b>LIF</b> format used by the <b>HP85</b> series computers</li>
@@ -128,7 +128,7 @@ README</h1>
 <li>The emulator <b>RTC</b> can be used for time stamping plot files and files added into lif images</li>
 </ul>
 <p></b></p>
-<p><b></p><h2>**HP85** Disk Emulator is available at the Tendie store</h2>
+<p><b></p><h2>HP85 Disk Emulator is available at the Tendie store</h2>
 <p></b></p>
 <p><b></p><ul>
 <li><a href="https://www.tindie.com/products/hp85disk/hp85disk-disk-emulator-for-hp85-series-computers/">https://www.tindie.com/products/hp85disk/hp85disk-disk-emulator-for-hp85-series-computers/</a></li>
@@ -139,7 +139,7 @@ README</h1>
 <p><b></p><h2>Credits</h2>
 <p></b></p>
 <p><b></b></p>
-<p><b></p><h2>**HP85** disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin</h2>
+<p><b></p><h2>HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin</h2>
 <p></b></p>
 <p><b> </p><h2>V2 board design - github master branch targets both old and new board by Jay Hamlin</h2>
 <p></b></p>
@@ -174,7 +174,7 @@ README</h1>
 <img src="https://github.com/magore/hp85disk/blob/master/hp85disk-2.png"/>
 </div>
 <p></b></p>
-<p><b></p><h2>**HP85** disk emulator V1 board design (C) 2014-2020 Mike Gore</h2>
+<p><b></p><h2>HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore</h2>
 <p></b></p>
 <p><b> </p><h2>board/V1/README.md "V1 board readme"</h2>
 <p></b></p>
@@ -199,7 +199,7 @@ README</h1>
 </ul>
 <p></b></p>
 <p><b>Anders originally provided me his source code in 2014 and many details of his project <em>which I am very thankful for.</em> NOTE: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for <b>GPIB</b> ,AMIGO and SS80 state tracking.</b></p>
-<p><b></p><h2>The HPDir project was a vital documentation source for this project*</h2>
+<p><b></p><h2>The HPDir project was a vital documentation source for this project</h2>
 <p></b></p>
 <p><b></p><ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">http://www.hp9845.net/9845/projects/hpdir</a></li>
@@ -223,7 +223,7 @@ README</h1>
 </li>
 </ul>
 <p></b></p>
-<p><b></p><h2>My TeleDisk to <b>LIF</b> conversion utility</h2>
+<p><b></p><h2>My TeleDisk to LIF conversion utility</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>I used the lzss libraries and documentation by <b>Dave Dunfield</b><ul>
@@ -270,7 +270,7 @@ README</h1>
 </li>
 </ul>
 <p></b></p>
-<p><b></p><h2>FatFS</h2>
+<p><b></p><h2>FatFS low level disk IO</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>[fatfs](fatfs)<ul>
@@ -402,7 +402,7 @@ README</h1>
 <p></b></p>
 <p><b></p><hr/>
 <p></b></p>
-<p><b></p><h2>**LIF** tools are built into emulator firmware</h2>
+<p><b></p><h2>LIF tools are built into emulator firmware</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>Built in help<ul>
@@ -412,6 +412,7 @@ README</h1>
 </li>
 </ul>
 </li>
+<li>Summary - List, Create, import, export, translate, copy, rename, delete, etc</li>
 <li>NOTE: Each disk image is a single file, encoded in <b>LIF</b> format,saved on the SD Card<ul>
 <li><b>LIF</b> format is a common the filesystem on series 80 computers.</li>
 <li><b>LIF</b> format is also a vary common file interchange format for series 80 computers<ul>
@@ -420,8 +421,14 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>You can work with <b>LIF</b> images<ul>
-<li>Directory listing of <b>LIF</b> images and SSD Card files<ul>
+<li>Translate between DTA8x (type E010) and plain text files<ul>
+<li>You can add a plain text file, and translate it, into a <b>LIF</b> image with file format DTA8x (type E010)</li>
+<li>You can extract and translate DTA8x (type E010) into a plain text files</li>
+</ul>
+</li>
+<li><b>Key LIF manipulation features</b><ul>
+<li><b>dir</b> display a directory of a <b>LIF</b> image<ul>
+<li>Directory listing of <b>LIF</b> images and SSD Card files</li>
 <li>If you have an RTC the listing can display file and <b>LIF</b> volume date and time<ul>
 <li>Display time stamps if they were set<ul>
 <li>But only if they were created or added with the built in tools</li>
@@ -441,26 +448,22 @@ README</h1>
 <li>They get translated between <b>HP85</b> DTA8x (type E010) format and plain text files!!!</li>
 </ul>
 </li>
-<li><b>add</b> binary programs from one <b>LIF</b> image to another <em>LIF</em> image<ul>
+<li><b>addbin</b> add binary programs from one <b>LIF</b> image to another <em>LIF</em> image<ul>
 <li>This function permits renaming of the translated file</li>
 </ul>
 </li>
-<li><b>extract</b> a single binary file or program into a new <b>LIF</b> image<ul>
+<li><b>extractbin</b> a single binary file or program into a new <b>LIF</b> image<ul>
 <li>This function permits renaming of the translated file</li>
 <li>Extracted <b>LIF</b> images contain a single file a 256 byte volume header, 256 byte directory followed by a file.</li>
 </ul>
 </li>
-<li><b>delete</b> file in <b>LIF</b> image</li>
+<li><b>del</b> delete file in <b>LIF</b> image</li>
 <li><b>rename</b> file in <b>LIF</b> image</li>
-<li>Create, import, export copy, rename, delete, etc<ul>
-<li>You can add a plain text file, and translate it, into a <b>LIF</b> image with file format DTA8x (type E010)</li>
-<li>You can extract and translate DTA8x (type E010) into a plain text files</li>
+<li><b>create</b> create a LIF image specifing a label, directory size and overall disk size</li>
+<li><b>createdisk</b> create a LIF image specifying a label and drive model name</li>
 </ul>
 </li>
 <li><a class="el" href="md_lif_README.html">For more **LIF** documentation</a></li>
-<li>Also see the Other Resources section above</li>
-</ul>
-</li>
 </ul>
 <p></b></p>
 <p><b></p><h2>TeleDisk to LIF conversion tool (updated) - see  <a class="el" href="lif_2README_8md.html">lif/README.md</a> "LIF README.md"</h2>
@@ -525,7 +528,7 @@ README</h1>
 <p></b></p>
 <p><b></p><hr/>
 <p></b></p>
-<p><b></p><h2>Specific details for Translating between plain text and <b>HP85</b> BASIC programs using hp85disk</h2>
+<p><b></p><h2>Specific details for Translating between plain text and HP85 BASIC programs using hp85disk</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>Requirements<ul>
@@ -558,7 +561,7 @@ README</h1>
 </li>
 </ul>
 <p></b></p>
-<p><b></p><h2>Translating between plain text and <b>HP85</b> BASIC programs WITHOUT hp85disk</h2>
+<p><b></p><h2>Translating between plain text and HP85 BASIC programs WITHOUT hp85disk</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>You must compile and install the stand alone lif tools found under the project [lif](lif) folder</li>
@@ -609,7 +612,7 @@ README</h1>
 <li>You can do these examples without out my emulator but requires an extra tools and steps</li>
 </ul>
 <p></b></p>
-<p><b></p><h2>Importing ASCII and plain text as <b>HP85</b> BASIC programs</h2>
+<p><b></p><h2>Importing ASCII and plain text as HP85 BASIC programs</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>Lets import a text file with BASIC statements into one of the emulator images <b>amigo1.lif **</b></li>
@@ -679,7 +682,7 @@ README</h1>
 </li>
 </ul>
 <p></b></p>
-<p><b></p><h2>Exporting <b>HP85</b> BASIC programs to ASCII plain text</h2>
+<p><b></p><h2>Exporting HP85 BASIC programs to ASCII plain text</h2>
 <p></b></p>
 <p><b></p><ul>
 <li>You must have the hp85disk emulator power ON and atteched to you HP85<ul>
@@ -1366,7 +1369,7 @@ README</h1>
 <p></b></b></p>
 <p><b><b></p><h2>Initializing a disk images</h2>
 <p></b></b></p>
-<p><b><b> </p><h2>**HP85B** only feature or HP88A with <b>PRM-85</b> board</h2>
+<p><b><b> </p><h2>HP85B only feature or HP88A with <b>PRM-85</b> board</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands</li>
@@ -1385,7 +1388,7 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
-<p><b><b></p><h2>**HP85A** and <b>HP85B</b> examples</h2>
+<p><b><b></p><h2>HP85A and HP85B examples</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>Note lines with a "#' as the first non blank character are just my comments<ul>
@@ -1440,7 +1443,7 @@ README</h1>
 <p></b></b></p>
 <p><b><b></p><hr/>
 <p></b></b></p>
-<p><b><b></p><h2>Understanding Drive <b>GPIB</b> BUS addressing and Parallel Poll Response (<b>PPR</b>) - <b>HP85A</b> vs. <b>HP85B</b></h2>
+<p><b><b></p><h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>While <b>GPIB</b> devices can have address between 0 and 31 you can have no more than 8 disk drives.</li>
@@ -1780,7 +1783,7 @@ README</h1>
 <p></b></b></p>
 <p><b><b></p><hr/>
 <p></b></b></p>
-<p><b><b></p><h2>Amigo References: ("A" or "Amigo" is the short form used in the project)</h2>
+<p><b><b></p><h2>Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>"Appendix A of 9895A Flexible Disc Memory Service Manual"</li>
@@ -1815,7 +1818,7 @@ README</h1>
 <p></b></b></p>
 <p><b><b></p><hr/>
 <p></b></b></p>
-<p><b><b></p><h2>**GPIB** / IEEE 488 Tutorial by Ian Poole</h2>
+<p><b><b></p><h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li><a href="http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php">http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php</a></li>
@@ -1835,7 +1838,7 @@ README</h1>
 <p></b></b></p>
 <p><b><b></p><hr/>
 <p></b></b></p>
-<p><b><b></p><h2>**LIF** File system Format</h2>
+<p><b><b></p><h2>*LIF* File system Format</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
@@ -1857,7 +1860,7 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
-<p><b><b></p><h2>**GPIB** Connector pinout by Anders Gustafsson in his hpdisk project</h2>
+<p><b><b></p><h2>*GPIB* Connector pinout by Anders Gustafsson in his hpdisk project</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li><a href="http://www.dalton.ax/hpdisk/">http://www.dalton.ax/hpdisk/</a></li>
@@ -2276,7 +2279,7 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
-<p><b><b></p><h2>**LIF** files</h2>
+<p><b><b></p><h2>*LIF* files</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>[lif](lif)<ul>
@@ -2340,7 +2343,7 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
-<p><b><b></p><h2>**LIF** teledisk files</h2>
+<p><b><b></p><h2>*LIF* teledisk files</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
@@ -2477,7 +2480,7 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
-<p><b><b></p><h3>**AMIGO** disk images</h3>
+<p><b><b></p><h3>*AMIGO* disk images</h3>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li><a href="sdcard/amigo0.lif">amigo1.lif</a><ul>
@@ -2497,10 +2500,14 @@ README</h1>
 </li>
 <li><a href="sdcard/amigo3.lif">amigo4.lif</a><ul>
 <li><b>AMIGO</b> disk image</li>
-<li>Has some demo basic programs in it <h3>**SS80** disk images</h3>
-</li>
+<li>Has some demo basic programs in it</li>
 </ul>
 </li>
+</ul>
+<p></b></b></p>
+<p><b><b></p><h3>*SS80* disk images</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><a href="sdcard/ss80-0.lif">ss80-1.lif</a><ul>
 <li><b>SS80</b> disk image</li>
 <li>Has some demo basic programs in it</li>
@@ -2559,7 +2566,7 @@ README</h1>
 <p><b><b></p><ul>
 <li><a href="sdcard/scripts">sdcard/scripts</a><ul>
 <li>Scripts that help creating <b>LIF</b> images from multiple files</li>
-<li>Used by <a href="sdcard/create_images.sh">create_images.sh</a> <h3>My <b>HP85</b> bus trace files</h3>
+<li>Used by <a href="sdcard/create_images.sh">create_images.sh</a> <h3>My <em>HP85</em> bus trace files</h3>
 </li>
 </ul>
 </li>
@@ -2573,7 +2580,7 @@ README</h1>
 </ul>
 </li>
 <li><a href="sdcard/traces/gpib_trace.txt">gpib_trace.txt</a><ul>
-<li><b>GPIB</b> transaction trace when connected to HP85 <h3>My <b>HP85</b> plot capture files</h3>
+<li><b>GPIB</b> transaction trace when connected to HP85 <h3>My <em>HP85</em> plot capture files</h3>
 </li>
 </ul>
 </li>
@@ -2599,7 +2606,7 @@ README</h1>
 <li><a href="sdcrad/TREK85/readme.txt">readme.txt</a></li>
 <li><a href="sdcard/TREK85/Start Trek.pdf">Star Trek.pdf</a></li>
 <li><a href="sdcard/TREK85/TREK85.BAS">TREK85.BAS</a></li>
-<li><a href="sdcard/TREK85/trek.lif">trek.lif</a> <h3>**LIF** images with a single program in them</h3>
+<li><a href="sdcard/TREK85/trek.lif">trek.lif</a> <h3>*LIF* images with a single program in them</h3>
 </li>
 </ul>
 </li>
@@ -2630,7 +2637,7 @@ README</h1>
 </li>
 <li><b>LIF</b> images with multiple programs in them</li>
 <li><a href="sdcard/LIF-volumes">LIF-volumes</a><ul>
-<li><a href="sdcard/ASCII-files/85-SS80.LIF">85-SS80.LIF</a> <h3>**GETSAV** documentation</h3>
+<li><a href="sdcard/ASCII-files/85-SS80.LIF">85-SS80.LIF</a> <h3>*GETSAV* documentation</h3>
 </li>
 </ul>
 </li>
@@ -2649,7 +2656,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 11 2020 21:16:01 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 12 2020 00:35:16 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

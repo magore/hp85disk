@@ -1,7 +1,7 @@
 \section README
 
 # Documentation
-## **HP85** Disk Emulator Copyright (C) 2014-2020 Mike Gore 
+## HP85 Disk Emulator Copyright (C) 2014-2020 Mike Gore 
   * This Project Emulates **AMIGO** and **SS80** disk drives used by the **HP85** series computers.
   * The images are stored in **LIF** format used by the **HP85** series computers
   * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
@@ -37,7 +37,7 @@
    * The emulator **RTC** can be used for time stamping plot files and files added into lif images
 
 
-## **HP85** Disk Emulator is available at the Tendie store
+## HP85 Disk Emulator is available at the Tendie store
   * https://www.tindie.com/products/hp85disk/hp85disk-disk-emulator-for-hp85-series-computers/
 
 ___ 
@@ -46,7 +46,7 @@ ___
 
 ## Credits
 
-## **HP85** disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
+## HP85 disk emulator V2 circuit board layout design by (C) 2018-2020 Jay Hamlin
 ## V2 board design - github master branch targets both old and new board by Jay Hamlin
 ## V2 code is now working
   * [Jay Hamlin designed this board](board/V2/releases)
@@ -67,7 +67,7 @@ ___
 
 
 
-## **HP85** disk emulator V1 board design (C) 2014-2020 Mike Gore
+## HP85 disk emulator V1 board design (C) 2014-2020 Mike Gore
 ## [V1 board readme](board/V1/README.md)
   * [My original board design without **GPIB** buffers](board/V1/README.md)
   * Limited control and BUS drive power 
@@ -90,7 +90,7 @@ NOTE:
  I did this one part at a time as I read the HP documents covering the protocols and specifications.
  Although rewritten I have maintained the basic concept of using  state machines for **GPIB** ,AMIGO and SS80 state tracking.
 
-## The HPDir project was a vital documentation source for this project*
+## The HPDir project was a vital documentation source for this project
   * <http://www.hp9845.net/9845/projects/hpdir>
   * I use the **hpdir.ini** of thier project for creating disk images
 
@@ -103,7 +103,7 @@ NOTE:
     * Copyright © 2010 **A. Kückes**
 
 
-## My TeleDisk to **LIF** conversion utility
+## My TeleDisk to LIF conversion utility
  * I used the lzss libraries and documentation by **Dave Dunfield**
    * Copyright 2007-2008 Dave Dunfield All rights reserved.
  * Documentation from **Jean-Franois DEL NERO**
@@ -126,7 +126,7 @@ NOTE:
          * See his github project
              * https://github.com/jfdelnero/libhxcfe
 
-## FatFS
+## FatFS low level disk IO
   * [fatfs](fatfs)
     * R0.14 FatFS code from (C) **ChaN**, 2019 - With very minimal changes 
 
@@ -200,16 +200,21 @@ ___
 ___ 
 
 
-## **LIF** tools are built into emulator firmware 
+## LIF tools are built into emulator firmware 
   * Built in help
     * **lif help**
       * Gives lif commands
+  * Summary - List, Create, import, export, translate, copy, rename, delete, etc
   * NOTE: Each disk image is a single file, encoded in **LIF** format,saved on the SD Card
     * **LIF** format is a common the filesystem on series 80 computers.
     * **LIF** format is also a vary common file interchange format for series 80 computers
       * **LIF** format includes file date,size permissions and other important meta data
-  * You can work with **LIF** images 
-    * Directory listing of **LIF** images and SSD Card files
+  * Translate between DTA8x (type E010) and plain text files
+      * You can add a plain text file, and translate it, into a **LIF** image with file format DTA8x (type E010)
+      * You can extract and translate DTA8x (type E010) into a plain text files
+  * **Key LIF manipulation features**
+    * **dir** display a directory of a **LIF** image
+      * Directory listing of **LIF** images and SSD Card files
       * If you have an RTC the listing can display file and **LIF** volume date and time
         * Display time stamps if they were set
           * But only if they were created or added with the built in tools
@@ -219,18 +224,16 @@ ___
     * **extract** ASCII files from **LIF** image
       * This function permits renaming of the translated file
       * They get translated between **HP85** DTA8x (type E010) format and plain text files!!!
-    * **add** binary programs from one **LIF** image to another *LIF* image
+    * **addbin** add binary programs from one **LIF** image to another *LIF* image
       * This function permits renaming of the translated file
-    * **extract** a single binary file or program into a new **LIF** image
+    * **extractbin** a single binary file or program into a new **LIF** image
       * This function permits renaming of the translated file
       * Extracted **LIF** images contain a single file a 256 byte volume header, 256 byte directory followed by a file.
-    * **delete** file in **LIF** image
+    * **del** delete file in **LIF** image
     * **rename** file in **LIF** image
-    * Create, import, export copy, rename, delete, etc
-      * You can add a plain text file, and translate it, into a **LIF** image with file format DTA8x (type E010)
-      * You can extract and translate DTA8x (type E010) into a plain text files
-    * [For more **LIF** documentation](lif/README.md)
-    * Also see the Other Resources section above
+    * **create** create a LIF image specifing a label, directory size and overall disk size
+    * **createdisk** create a LIF image specifying a label and drive model name
+  * [For more **LIF** documentation](lif/README.md)
 
 ## TeleDisk to LIF conversion tool (updated) - see [LIF README.md](lif/README.md)
   * [td02lif](lif/t202lif) [85-SS80.TD0](lif/85-SS80.TD0) [85-SS80.LIF](lif/85-SS80.LIF)
@@ -264,7 +267,7 @@ ___
 ___ 
 
 
-## Specific details for Translating between plain text and **HP85** BASIC programs using hp85disk
+## Specific details for Translating between plain text and HP85 BASIC programs using hp85disk
   * Requirements
     * hp85disk emulator 
       * There is a solution documented below in you do not have the hp85emulator
@@ -279,7 +282,7 @@ ___
   * Used together with the **HP85** these tools can translate between ASCII plain text and *HP85* BASIC programs!!!
     * Specific details steps are documented later in the README
 
-## Translating between plain text and **HP85** BASIC programs WITHOUT hp85disk
+## Translating between plain text and HP85 BASIC programs WITHOUT hp85disk
   * You must compile and install the stand alone lif tools found under the project [lif](lif) folder
   * You will also need a way of transfer binary files to/from your **HP85** 
     * You need to copy the **GETSAVE** program to your **HP85** some how
@@ -307,7 +310,7 @@ ___
 ## FULL example step by step translating bewteen plain text files and HP86 BASIC programs
   * You can do these examples without out my emulator but requires an extra tools and steps
 
-## Importing ASCII and plain text as **HP85** BASIC programs
+## Importing ASCII and plain text as HP85 BASIC programs
   * Lets import a text file with BASIC statements into one of the emulator images **amigo1.lif **
   * Turn off both the **HP85** and emulator - if it is attached
     * Remove the SD Card
@@ -342,7 +345,7 @@ ___
         * Saving in this format makes a totally HUGE difference in speed for BIG programs
         * In the future you can use **LOAD "TESTB"**
 
-## Exporting **HP85** BASIC programs to ASCII plain text
+## Exporting HP85 BASIC programs to ASCII plain text
   * You must have the hp85disk emulator power ON and atteched to you HP85
     * Turn on the HP85
   * On your **HP85** we will load a binary program called **GETSAVE**
@@ -751,7 +754,7 @@ ___
        * old site http://vintagecomputers.site90.net/hp85/prm85.htm
 
 ## Initializing a disk images
-## **HP85B** only feature or HP88A with **PRM-85** board
+## HP85B only feature or HP88A with **PRM-85** board
   * IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands
   * The **HP85B** and EMS ROM has extended INITIALIZE attributes
     * If you use the hP85 INITIALIZE commands it erases everything on the emulated image
@@ -764,7 +767,7 @@ ___
   INITIALIZE "SS80-2",":D730",128,1
 </pre>
   
-## **HP85A** and **HP85B** examples
+## HP85A and HP85B examples
   * Note lines with a "#' as the first non blank character are just my comments 
     * A bad habit from writing too many bash scripts 
 
@@ -814,7 +817,7 @@ ___
 ___ 
 
 
-## Understanding Drive **GPIB** BUS addressing and Parallel Poll Response (**PPR**) - **HP85A** vs. **HP85B**
+## Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B
   * While **GPIB** devices can have address between 0 and 31 you can have no more than 8 disk drives.
   * ALL disk drives are required to respond to a **PPR** query by the (HP85) controller.
     * **PPR** query is done when the controller in charge (HP85) pulls **ATN** and **EOI** low.
@@ -1066,7 +1069,7 @@ ___
 
 ___
 
-## Amigo References: ("A" or "Amigo" is the short form used in the project)
+## Amigo References: ("A" or "Amigo") is the short form used in the project
    * "Appendix A of 9895A Flexible Disc Memory Service Manual"
    * HP Part# 09895-90030
    * See [Documents folder](documents)
@@ -1096,7 +1099,7 @@ ___
 ___
 
 
-## **GPIB** / IEEE 488 Tutorial by Ian Poole
+## GPIB / IEEE 488 Tutorial by Ian Poole
     * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
    * See [Documents folder](documents)
 
@@ -1112,7 +1115,7 @@ ___
 ___
 
 
-## **LIF** File system Format
+## *LIF* File system Format
    * <http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem>
    * See [Documents folder](documents)
 
@@ -1126,7 +1129,7 @@ ___
      * Copyright © 2010 A. Kückes
 
 
-## **GPIB** Connector pinout by Anders Gustafsson in his hpdisk project
+## *GPIB* Connector pinout by Anders Gustafsson in his hpdisk project
   * http://www.dalton.ax/hpdisk/
 
 
@@ -1356,7 +1359,7 @@ ___
     * [timetests.c](lib/timetests.c)
       * Time and timer test code
 
-## **LIF** files
+## *LIF* files
   * [lif](lif)
     * My **LIF** disk image utilities 
     * [lif/lifutils.c](lif/lifutils.c)
@@ -1389,7 +1392,7 @@ ___
           *  cyl 13, side 0 sector 116 mapped to 11
           *  cyl 15, side 0 sector 10  missing - zero filled
 
-## **LIF** teledisk files
+## *LIF* teledisk files
    * [lif/teledisk](lif/teledisk)
      * My TELEDISK **LIF** extractor 
        * Note: The TeleDisk image MUST contain a **LIF** image  - we do NOT translate it
@@ -1454,7 +1457,7 @@ ___
            * Copy this file over the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file after renaming the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file
         * PRINTER address
 
-### **AMIGO** disk images
+### *AMIGO* disk images
   * [amigo1.lif](sdcard/amigo0.lif)
     * **AMIGO** disk image
     * Has some demo basic programs in it
@@ -1467,7 +1470,8 @@ ___
   * [amigo4.lif](sdcard/amigo3.lif)
     * **AMIGO** disk image 
     * Has some demo basic programs in it
-### **SS80** disk images
+
+### *SS80* disk images
   * [ss80-1.lif](sdcard/ss80-0.lif)
     * **SS80** disk image 
     * Has some demo basic programs in it
@@ -1505,7 +1509,7 @@ ___
   * [sdcard/scripts](sdcard/scripts)
     * Scripts that help creating **LIF** images from multiple files
     * Used by [create_images.sh](sdcard/create_images.sh)
-### My **HP85** bus trace files
+### My *HP85* bus trace files
   * [sdcard/traces](sdcard/traces)
     * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
     * AMIGO trace file when connected to **HP85** showing odd out of order command issue
@@ -1513,7 +1517,7 @@ ___
     * **GPIB** reset trace when connected to HP85
   * [gpib_trace.txt](sdcard/traces/gpib_trace.txt)
     * **GPIB** transaction trace when connected to HP85
-### My **HP85** plot capture files
+### My *HP85* plot capture files
   * [plots](sdcard/plots]
     * [plot1.plt](sdcard/plots/plot1.plt)
     * [plot2.plt](sdcard/plots/plot2.plt)
@@ -1533,7 +1537,7 @@ ___
       * [Star Trek.pdf](sdcard/TREK85/Start Trek.pdf)
       * [TREK85.BAS](sdcard/TREK85/TREK85.BAS)
       * [trek.lif](sdcard/TREK85/trek.lif)
-### **LIF** images with a single program in them
+### *LIF* images with a single program in them
   * [LIF-files](sdcard/LIF-files)
     * Internal names are the same as the **LIF** name without extension
   * [GETSAVE.LIF](sdcard/ASCII-files/GETSAVE.LIF)
@@ -1548,7 +1552,7 @@ ___
   * **LIF** images with multiple programs in them
   * [LIF-volumes](sdcard/LIF-volumes)
     * [85-SS80.LIF](sdcard/ASCII-files/85-SS80.LIF)
-### **GETSAV** documentation
+### *GETSAV* documentation
   * [notes](sdcard/notes)
     * **GETSAVE** can be loaded on an **HP85** to GET and SAVE Basic text files
       * NOTE: my LIF utilities can translate between ASCII files and files in GET/SAVE format 
