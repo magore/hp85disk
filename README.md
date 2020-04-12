@@ -451,17 +451,17 @@ ___
 
 ### Firmware update problems - if you get a failure during updating
   * Type in the flashing command, see  above, but *without* pressing Enter yet
-    * Now hold down RESET on the hp85disk board - release RESET and press Enter quickly
-      * You have a short Window after releasing RESET to Press Enter
+    * **Now hold down RESET on the hp85disk board - now release RESET and press Enter quickly**
+      * **You have a short Window after releasing RESET to Press Enter**
 
 ___ 
 
 
 ## Requirements for compiling and flashing the FULL hp85disk project
   * These steps, below, are required ONLY if:
-   * You plan to build the standalone lif and mkcfg utilities
+   * You plan to build the standalone **lif** and **mkcfg** utilities
    * You plan on making code changes
-   * You wish to use an In System Programmer that requires avrdude to work
+   * You wish to use an **In System Programmer (ISP)** that requires **avrdude** to work
   * [I have provided compiled HEX files under the folder release/build](release/build)
     * You just need to flash the files - see MINIMAL notes above
 
