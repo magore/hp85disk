@@ -1170,7 +1170,7 @@ On the {\bfseries H\+P85} type
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
 \item These options apply to original V1 and new V2 boards
-\item Update {\itshape B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and L\+C\+D\+\_\+\+S\+U\+P\+P\+O\+RT} for your platform
+\item Update {\bfseries B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and L\+C\+D\+\_\+\+S\+U\+P\+P\+O\+RT} for your platform
 \begin{DoxyItemize}
 \item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE} is the name of A\+VR as it is known by avrdude
 \begin{DoxyItemize}
@@ -1519,7 +1519,7 @@ On the {\bfseries H\+P85} type
 \item While {\bfseries G\+P\+IB} devices can have address between 0 and 31 you can have no more than 8 disk drives.
 \item A\+LL disk drives are required to respond to a {\bfseries P\+PR} query by the (H\+P85) controller.
 \begin{DoxyItemize}
-\item {\bfseries P\+PR} query is done when the controller in charge (H\+P85) pulls A\+TN and E\+OI low.
+\item {\bfseries P\+PR} query is done when the controller in charge (H\+P85) pulls {\bfseries A\+TN} and {\bfseries E\+OI} low.
 \item {\bfseries P\+PR} response occurs when a disk drive pulls one {\bfseries G\+P\+IB} bus data line low in response.
 \begin{DoxyItemize}
 \item You can only have 8 of these because there are only 8 {\bfseries G\+P\+IB} data bus lines.
@@ -1539,23 +1539,23 @@ On the {\bfseries H\+P85} type
 \item I\+M\+P\+O\+R\+T\+A\+N\+T! On power up the {\bfseries H\+P85} issues a {\bfseries P\+PR} query for disk drives
 \begin{DoxyItemize}
 \item The emulator must be running B\+E\+F\+O\+RE this happens.
-\item {\bfseries P\+PR} query = both A\+TN and E\+OI being pulled low by the computer.
-\item {\bfseries P\+PR} response is when each drive pulls a single {\bfseries G\+P\+IB} data bus bit L\+OW -\/ while A\+TN and E\+OI are low.
+\item {\bfseries P\+PR} query = both {\bfseries A\+TN} and {\bfseries E\+OI} being pulled low by the computer.
+\item {\bfseries P\+PR} response is when each drive pulls a single {\bfseries G\+P\+IB} data bus bit {\bfseries L\+OW} -\/ while {\bfseries A\+TN} and {\bfseries E\+OI} are {\bfseries L\+OW}.
 \begin{DoxyItemize}
 \item {\itshape O\+N\+LY} those that are detected in this way are then next scanned
 \end{DoxyItemize}
 \item Next for all detected drives the {\bfseries H\+P85} issues \char`\"{}\+Request Identify\char`\"{} to each in turn.
 \begin{DoxyItemize}
 \item This is done one drive at a time in order
-\item The {\bfseries P\+PR} keyword in the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} is the {\itshape P\+PR} bit the drive uses
+\item The {\bfseries P\+PR} keyword in the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} is the {\bfseries P\+PR} bit the drive uses
 \begin{DoxyItemize}
-\item {\bfseries P\+PR} of 0 = {\itshape P\+PR} response on {\bfseries G\+P\+IB} data bus bit number 8 -\/ as per {\itshape G\+P\+IB} B\+US specifications.
+\item {\bfseries P\+PR} of {\bfseries 0 = P\+PR} response on {\bfseries G\+P\+IB} data bus {\bfseries bit number 8} -\/ as per {\bfseries G\+P\+IB B\+US specifications}.
 \end{DoxyItemize}
 \item The ID keyword in \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} is the 16 bit reply to \char`\"{}\+Request Identify Reply\char`\"{}
 \begin{DoxyItemize}
 \item I\+M\+P\+O\+R\+T\+A\+N\+T! {\itshape {\bfseries A\+M\+I\+GO}} drives cannot be queried for detailed drive layout information
 \begin{DoxyItemize}
-\item The {\bfseries H\+P85A} can only use its {\itshape hard-\/coded firmware tables} to map ID to disk layout parameters
+\item The {\bfseries H\+P85A} can only use its {\itshape hard-\/coded firmware tables} to map {\bfseries ID} to disk layout parameters
 \item This implies that the {\bfseries H\+P85A} can only use {\itshape {\bfseries A\+M\+I\+GO}} disks it has defined in firmware.
 \end{DoxyItemize}
 \item The {\bfseries H\+P85B} can query newer {\bfseries S\+S80} drives for detailed drive layout information instead.
@@ -1660,9 +1660,9 @@ On the {\bfseries H\+P85} type
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
-\item Any word that has help after it will give help for that command 
+\item Any word that has help after it will give help for that command
+\item {\bfseries help} 
 \begin{DoxyPre}
-help
     Stand alone version of **LIF** utilities for linux
     **HP85** Disk and Device Emulator
      (c) 2014-2020 by Mike Gore
@@ -1687,9 +1687,12 @@ help
 
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries \#\#\# For lif help type {\itshape lif help} 
+{\bfseries {\bfseries \subsubsection*{For lif help type {\itshape lif help}}}}
+
+{\bfseries {\bfseries 
+\begin{DoxyItemize}
+\item {\bfseries lif help} 
 \begin{DoxyPre}
-lif help
     lif add lifimage lifname from\_ascii\_file
     lif addbin lifimage lifname from\_lif\_file
     lif create lifimage label directory\_sectors sectors
@@ -1702,11 +1705,15 @@ lif help
     lif rename lifimage oldlifname newlifname
     Use -d after first keyword 'lif' above for **LIF** filesystem debugging
 \end{DoxyPre}
-}}
 
-{\bfseries {\bfseries \#\#\# For posix help type {\itshape posix help} 
+\end{DoxyItemize}}}
+
+{\bfseries {\bfseries \subsubsection*{For posix help type {\itshape posix help}}}}
+
+{\bfseries {\bfseries 
+\begin{DoxyItemize}
+\item {\bfseries posix help} 
 \begin{DoxyPre}
-posix help
     posix prefix is optional
     posix cat file [-p]
     posix cd dir
@@ -1719,39 +1726,38 @@ posix help
     posix rmdir dir
     posix rename old new
 \end{DoxyPre}
-}}
+
+\end{DoxyItemize}}}
 
 {\bfseries {\bfseries \subsubsection*{For setting the time type {\itshape setdate} it will prompt for the date as shown below}}}
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
 \item This also sets the R\+TC
-\end{DoxyItemize}}}
-
-{\bfseries {\bfseries 
+\item {\bfseries setdate} 
 \begin{DoxyPre}
-setdate
     Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
     rtc seconds: 1586451240
     rtc time:    Thu Apr  9 16:54:00 2020
     clk seconds: 1586451240
     clk time:    Thu Apr  9 16:54:00 2020
 \end{DoxyPre}
-}}
+
+\end{DoxyItemize}}}
 
 {\bfseries {\bfseries \subsubsection*{For displaying the time and the rtc time type {\itshape time}}}}
 
-{\bfseries {\bfseries }}
-
 {\bfseries {\bfseries 
+\begin{DoxyItemize}
+\item {\bfseries time} 
 \begin{DoxyPre}
-time
     rtc seconds: 1586451317
     rtc time:    Thu Apr  9 16:55:17 2020
     clk seconds: 1586451317
     clk time:    Thu Apr  9 16:55:17 2020
 \end{DoxyPre}
-}}
+
+\end{DoxyItemize}}}
 
 {\bfseries {\bfseries \subsection*{hp85disk setting debug options}}}
 

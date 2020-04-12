@@ -606,7 +606,7 @@ ___
 
 ## Makefile configuration options for hp85disk emulator 
   * These options apply to original V1 and new V2 boards
-  * Update *BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT* for your platform
+  * Update **BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT** for your platform
     * **AVRDUDE_DEVICE** is the name of AVR as it is known by avrdude
       * **m1284**
     * **AVRDUDE_SPEED**  is the programming clock speed used by avrdude
@@ -816,7 +816,7 @@ ___
 ## Understanding Drive **GPIB** BUS addressing and Parallel Poll Response (**PPR**) - **HP85A** vs. **HP85B**
   * While **GPIB** devices can have address between 0 and 31 you can have no more than 8 disk drives.
   * ALL disk drives are required to respond to a **PPR** query by the (HP85) controller.
-    * **PPR** query is done when the controller in charge (HP85) pulls ATN and EOI low.
+    * **PPR** query is done when the controller in charge (HP85) pulls **ATN** and **EOI** low.
     * **PPR** response occurs when a disk drive pulls one **GPIB** bus data line low in response.
        * You can only have 8 of these because there are only 8 **GPIB** data bus lines.
          * **GPIB** data bus bits are numbered from 1 to 8
@@ -826,16 +826,16 @@ ___
             * **PPR** bits are assigned in reverse order from device numbers.
   * IMPORTANT! On power up the **HP85** issues a **PPR** query for disk drives 
     * The emulator must be running BEFORE this happens.
-    * **PPR** query = both ATN and EOI being pulled low by the computer.
-    * **PPR** response is when each drive pulls a single **GPIB** data bus bit LOW - while ATN and EOI are low.
+    * **PPR** query = both **ATN** and **EOI** being pulled low by the computer.
+    * **PPR** response is when each drive pulls a single **GPIB** data bus bit **LOW** - while **ATN** and **EOI** are **LOW**.
        * *ONLY* those that are detected in this way are then next scanned
     * Next for all detected drives the **HP85** issues "Request Identify" to each in turn.
       * This is done one drive at a time in order
-      * The **PPR** keyword in the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the *PPR* bit the drive uses
-        * **PPR** of 0 = *PPR* response on **GPIB** data bus bit number 8 - as per *GPIB* BUS specifications.
+      * The **PPR** keyword in the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the **PPR** bit the drive uses
+        * **PPR** of **0 = PPR** response on **GPIB** data bus **bit number 8** - as per **GPIB BUS specifications**.
       * The ID keyword in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the 16 bit reply to "Request Identify Reply"
         * IMPORTANT! ***AMIGO*** drives cannot be queried for detailed drive layout information
-          * The **HP85A** can only use its *hard-coded firmware tables* to map ID to disk layout parameters
+          * The **HP85A** can only use its *hard-coded firmware tables* to map **ID** to disk layout parameters
           * This implies that the **HP85A** can only use ***AMIGO*** disks it has defined in firmware.
         * The **HP85B** can query newer **SS80** drives for detailed drive layout information instead.
         * The **HP85A** cannot use **SS80** drives unless it uses copies of the **HP85B** EMS and EDISK ROMS.
@@ -887,8 +887,8 @@ ___
 
 ### For main help menu type *help*
  * Any word that has help after it will give help for that command
+ * **help**
 <pre>
-help
     Stand alone version of **LIF** utilities for linux
     **HP85** Disk and Device Emulator
      (c) 2014-2020 by Mike Gore
@@ -910,8 +910,8 @@ help
 </pre>
 
 ### For lif help type *lif help*
+ * **lif help**
 <pre>
-lif help
     lif add lifimage lifname from_ascii_file
     lif addbin lifimage lifname from_lif_file
     lif create lifimage label directory_sectors sectors
@@ -926,8 +926,8 @@ lif help
 </pre>
 
 ### For posix help type *posix help*
+ * **posix help**
 <pre>
-posix help
     posix prefix is optional
     posix cat file [-p]
     posix cd dir
@@ -942,10 +942,9 @@ posix help
 </pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
-  * This also sets the RTC
-
+ * This also sets the RTC
+ * **setdate**
 <pre>
-setdate
     Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
     rtc seconds: 1586451240
     rtc time:    Thu Apr  9 16:54:00 2020
@@ -954,9 +953,8 @@ setdate
 </pre>
 
 ### For displaying the time and the rtc time type *time*
-
+ * **time**
 <pre>
-time
     rtc seconds: 1586451317
     rtc time:    Thu Apr  9 16:55:17 2020
     clk seconds: 1586451317
