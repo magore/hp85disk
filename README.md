@@ -312,7 +312,7 @@ ___
   * Turn off both the **HP85** and emulator - if it is attached
     * Remove the SD Card
   * Create a plain text file with BASIC statements in it **on your Desktop - NOT on HP85**
-      * **10 DISP :HELLO WORLD"**
+      * **10 DISP "HELLO WORLD"**
       * **20 END**
     * Save this file as **TEST.txt** onto the SD Card and exit your editor 
       * Unmount the SD Card "eject it" in windows jargon
