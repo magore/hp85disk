@@ -2,7 +2,7 @@
 
 # Documentation
 ## **HP85** Disk Emulator Copyright (C) 2014-2020 Mike Gore 
-  * This Project Emulates AMIGO and SS80 disk drives used by the **HP85** series computers.
+  * This Project Emulates **AMIGO** and **SS80** disk drives used by the **HP85** series computers.
   * The images are stored in **LIF** format used by the **HP85** series computers
   * See [COPYRIGHT](COPYRIGHT.md) for a full copyright notice for the project
   * Documentation created using Doxygen available at
@@ -10,7 +10,7 @@
     * All emulated disk images are just regular files stored on a standard FAT32 formatted SD Card
 
 ## Features for the **HP85** in brief
-  * NOTE: Later sections go into more detail
+  * **NOTE: Later sections go into more detail**
   * This project emulates **GPIB** drives and HPGL printer 
     * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SDCARD.
    * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
@@ -34,7 +34,7 @@
       * Example: **lif help**
    * **LIF** manipulation tools are built in see later sections for details
    * Convert *TeleDisk* images into **LIF**
-   * The emulator RTC can be used for time stamping plot files and files added into lif images
+   * The emulator **RTC** can be used for time stamping plot files and files added into lif images
 
 
 ## **HP85** Disk Emulator is available at the Tendie store
@@ -73,7 +73,7 @@ ___
   * Limited control and BUS drive power 
     * About half of the 48Mma drive required by the **GPIB** spec
     * However we can read any pin any time - useful for tracing/debugging
-  * RTC **DS1307** for time stamping 
+  * **RTC** -  **DS1307** for time stamping 
 
 
 ## HP Disk Emulator by Anders Gustafsson
@@ -92,7 +92,7 @@ NOTE:
 
 ## The HPDir project was a vital documentation source for this project*
   * <http://www.hp9845.net/9845/projects/hpdir>
-  * I use the hpdir.ini of thier project for creating disk images
+  * I use the **hpdir.ini** of thier project for creating disk images
 
 ### Other HPDir resources for disk image manipulation
   * [HPDrive project has very useful references an tools for creating HP disk **LIF** images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
