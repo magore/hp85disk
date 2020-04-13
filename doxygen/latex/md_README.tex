@@ -23,6 +23,7 @@
 \item This project emulates {\bfseries G\+P\+IB drives} and {\bfseries H\+P\+GL printer $\ast$$\ast$
 \begin{DoxyItemize}
 \item Each emulated disk image is a $\ast$$\ast$\+L\+IF encoded file on a F\+A\+T32 formatted SD C\+A\+RD.
+\item {\bfseries You M\+U\+ST have the G\+P\+IB module installed in your H\+P85 in order to connect to the hp85disk emulator}
 \end{DoxyItemize}}
 \end{DoxyItemize}
 
@@ -274,13 +275,116 @@
 
 }
 
-{\bfseries \subsection*{Important notes about SD Card requirments for the emulator}}
+{\bfseries \subsection*{Detailed information about tools and features}}
+
+{\bfseries }
+
+{\bfseries \subsection*{Built in command processor with many tools}}
+
+{\bfseries  \subsubsection*{Accessing the hp85disk command interface with a serial terminal}}
 
 {\bfseries 
 \begin{DoxyItemize}
-\item Must be formatted F\+A\+T32
-\item The {\bfseries H\+P85} is sensitive to long read/write delays that some cards can cause problems with
+\item Used to access the hp85disk command interface
+\item Access it via the U\+SB cable attached to your computer using a serial terminal program
+\item See section called Configuring the serial communication program
+\end{DoxyItemize}}
+
+{\bfseries \subsubsection*{Command interface notes}}
+
+{\bfseries 
 \begin{DoxyItemize}
+\item When typing {\bfseries any character} to the hp85disk emulator will stop disk emulation and display\+:
+\begin{DoxyItemize}
+\item $<$I\+N\+T\+E\+R\+R\+U\+PT$>$
+\end{DoxyItemize}
+\item After you type {\bfseries Enter} the command processor will execute the command and return to disk emulation automatically
+\end{DoxyItemize}}
+
+{\bfseries 
+
+}
+
+{\bfseries \subsection*{Important notes about SD Card requirments for the emulator}}
+
+{\bfseries }
+
+{\bfseries \subsubsection*{Removing the SD Card from the emulator}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item {\bfseries A\+L\+W\+A\+YS P\+O\+W\+ER O\+FF T\+HE E\+M\+U\+L\+A\+T\+OR B\+E\+F\+O\+RE R\+E\+M\+O\+V\+I\+NG -\/or -\/ I\+N\+S\+E\+R\+T\+I\+NG T\+HE SD C\+A\+RD}
+\end{DoxyItemize}}
+
+{\bfseries \subsubsection*{Formatting a new SD Card}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item Must be formatted {\bfseries F\+A\+T32} not F\+A\+T32x
+\end{DoxyItemize}}
+
+{\bfseries \subsubsection*{Using the SD Card images on your H\+P85}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item We provide the emulator with an SD card with images already installed
+\begin{DoxyItemize}
+\item If you wish to create a new one follow these steps
+\end{DoxyItemize}
+\item There are working copies of disk images under the github sdcard folder
+\item Open a web browser to \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
+\begin{DoxyItemize}
+\item Click on the Green $\ast$$\ast$$\ast$\+Colne or Download$\ast$$\ast$ button
+\item Pick download as Z\+IP
+\item You can extract all of the folders and files to a folder of your choid
+\item locate the {\bfseries sdcard$\ast$ folder}
+\end{DoxyItemize}
+\item {\bfseries Copy the $\ast$$\ast$contents$\ast$ of the $\ast$$\ast$sdcard} folder to the root/home folder of a a F\+A\+T32 formatted SD card
+\begin{DoxyItemize}
+\item You should not see the {\bfseries sdcard} folder on the SD Card itself just the contents of that folder and its subfolders
+\end{DoxyItemize}
+\end{DoxyItemize}}
+
+{\bfseries \paragraph*{H\+P85A users SD card setup}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item Normally you will not be able to access S\+S80 drives unless you have versions of the H\+P85B roms installed
+\begin{DoxyItemize}
+\item See the notes about usings a {\bfseries P\+R\+M-\/85} to add the required R\+O\+MS
+\end{DoxyItemize}
+\item Copy the \href{sdcard/amigo.cfg}{\tt amigo.\+cfg} to the SD card and rename it to \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg}
+\begin{DoxyItemize}
+\item This is an A\+M\+I\+GO drive only configuration
+\item The default amigo.\+cfg file defines four A\+M\+I\+GO drives to go
+\end{DoxyItemize}
+\end{DoxyItemize}}
+
+{\bfseries \paragraph*{H\+P85B users SD card setup}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item You needs the E\+MS rom for S\+S80 drives
+\begin{DoxyItemize}
+\item If you do not have them see the H\+P85A notes above
+\end{DoxyItemize}
+\item You do not need to make any changes
+\begin{DoxyItemize}
+\item The default hpdisk.\+cfg uses two A\+M\+I\+GO drives and two S\+S80 drives ready to go
+\end{DoxyItemize}
+\end{DoxyItemize}}
+
+{\bfseries 
+
+}
+
+{\bfseries \subsubsection*{Choosing and SD Card for the H\+P85 emulator P\+L\+E\+A\+SE R\+E\+AD}}
+
+{\bfseries 
+\begin{DoxyItemize}
+\item Summary\+: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page -\/ this can take too long
+\begin{DoxyItemize}
+\item The {\bfseries H\+P85} is sensitive to long read/write delays that some cards can cause problems with
 \item You want SD Cards with fast random writes
 \item I have found that the San\+Disk Extreme and San\+Disk Extreme Pro cards work best.
 \begin{DoxyItemize}
@@ -291,9 +395,7 @@
 \item Specifically look at best 4k random write -\/ faster is better.
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Why slow SD Cards are a problem?
-\begin{DoxyItemize}
-\item Summary\+: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page -\/ this can take too long
+\end{DoxyItemize}
 \item Details\+:
 \begin{DoxyItemize}
 \item First step\+: hp85disk emulator writes to the SD Card
@@ -335,38 +437,85 @@
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries 
-
-}
-
-{\bfseries \subsection*{Detailed information about tools and features}}
-
-{\bfseries }
-
-{\bfseries \subsection*{Built in command processor with many tools}}
-
-{\bfseries  \subsubsection*{Accessing the hp85disk command interface with a serial terminal}}
+{\bfseries \subsubsection*{SD Card problems}}
 
 {\bfseries 
 \begin{DoxyItemize}
-\item Used to access the hp85disk command interface
-\item Access it via the U\+SB cable attached to your computer using a serial terminal program
-\item See section called Configuring the serial communication program
+\item The the file system on the SD card might get corrupted if it was powered on while removing the card
+\begin{DoxyItemize}
+\item {\bfseries Symptoms -\/ the hp85disk will not detect any drives}
+\begin{DoxyItemize}
+\item This is because the small Fat\+FS file system code I used can not self repair any filesystem errors
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item If you suspect this the easy way to check is to connect the emulator to a desktop/laptop computer
+\begin{DoxyItemize}
+\item See this section for details\+: {\bfseries Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}
+\end{DoxyItemize}
+\item When powering on the emulator it will report a details about the SD Card -\/ you will see very obvious errors if it can not read the SD Card
+\item If the emulator says it can not open the card then go to the {\bfseries SD Card filesystem repair sections}
 \end{DoxyItemize}}
 
-{\bfseries \subsubsection*{Command interface notes}}
+{\bfseries \subsubsection*{SD Card filesystem repair}}
 
 {\bfseries 
 \begin{DoxyItemize}
-\item When typing {\bfseries any character} to the hp85disk emulator will stop disk emulation and display\+:
+\item {\bfseries Windows} insert the Micro SD card into you desktop/laptop Card Reader
 \begin{DoxyItemize}
-\item $<$I\+N\+T\+E\+R\+R\+U\+PT$>$
+\item Windows might detect errors and offer to fix them -\/ answer {\bfseries yes}
+\item You can make Windows Check the drive using the following steps
+\begin{DoxyItemize}
+\item Open {\itshape File Explorer} {\bfseries Right Click} on the SD card drive and pick {\bfseries properies}
+\item Open the Tools tab
+\item Click on Error Checking
 \end{DoxyItemize}
-\item After you type {\bfseries Enter} the command processor will execute the command and return to disk emulation automatically
+\end{DoxyItemize}
+\item {\bfseries Ubuntu Desktop with G\+UI} insert the Micro SD card into you desktop/laptop Card Reader
+\begin{DoxyItemize}
+\item Under {\bfseries Activities} search for {\bfseries Disks}
+\begin{DoxyItemize}
+\item Open {\bfseries Disks} You will see a list of all of your drives on the left panel
+\begin{DoxyItemize}
+\item Not -\/ your SD Card may look like a U\+SB device if you use a U\+SB card reader
+\end{DoxyItemize}
+\item Click on the correct drive in the left panel
+\begin{DoxyItemize}
+\item You will notice it give the size and partition type
+\end{DoxyItemize}
+\item Click on the Volume in the right panel
+\item Click on the settings gear icon below the Volume
+\item Click Repair filesystem
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries Ubuntu Command line -\/ without G\+UI}
+\begin{DoxyItemize}
+\item {\bfseries sudo bash}
+\item Method 1
+\begin{DoxyItemize}
+\item Insert the Micro SD card into you desktop/laptop Card Reader
+\item {\bfseries dmesg $\vert$ tail -\/25}
+\begin{DoxyItemize}
+\item You will see the device partition listed in the last 10 or 20 lines
+\item We will use\+: $\ast$$\ast$/dev/sdc1$\ast$$\ast$ in the example {\bfseries M\+A\+KE S\+U\+RE Y\+OU U\+SE T\+HE O\+NE Y\+OU D\+E\+T\+E\+C\+T\+ED}
+\end{DoxyItemize}
+\item {\bfseries umount /dev/sdc1}
+\item {\bfseries fsck -\/f /dev/sdc1}
+\end{DoxyItemize}
+\item Method 2
+\item {\bfseries udevadm monitor --udev}
+\begin{DoxyItemize}
+\item Insert the Micro SD card into you desktop/laptop Card Reader
+\item The \char`\"{}add\char`\"{} lines will have the card partition listed on the far right
+\begin{DoxyItemize}
+\item We will use\+: $\ast$$\ast$/dev/sdc1$\ast$$\ast$ in the example {\bfseries M\+A\+KE S\+U\+RE Y\+OU U\+SE T\+HE O\+NE Y\+OU D\+E\+T\+E\+C\+T\+ED}
+\end{DoxyItemize}
+\item Press {\bfseries Ctrl c} to exit udevadm monitor
+\item {\bfseries umount /dev/sdc1}
+\item {\bfseries fsck -\/f /dev/sdc1}
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}}
 
 {\bfseries 

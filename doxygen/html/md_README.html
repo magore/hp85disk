@@ -83,6 +83,7 @@ README</h1>
 <li><b>NOTE: Later sections go into more detail</b></li>
 <li>This project emulates <b>GPIB drives</b> and <b>HPGL printer **<ul>
 <li>Each emulated disk image is a **LIF encoded file on a FAT32 formatted SD CARD.</li>
+<li><b>You MUST have the GPIB module installed in your HP85 in order to connect to the hp85disk emulator</b></li>
 </ul>
 </b></li>
 </ul>
@@ -321,11 +322,101 @@ README</h1>
 <p></b></p>
 <p><b></p><hr/>
 <p></b></p>
-<p><b></p><h2>Important notes about SD Card requirments for the emulator</h2>
+<p><b></p><h2>Detailed information about tools and features</h2>
+<p></b></p>
+<p><b></b></p>
+<p><b></p><h2>Built in command processor with many tools</h2>
+<p></b></p>
+<p><b> </p><h3>Accessing the hp85disk command interface with a serial terminal</h3>
 <p></b></p>
 <p><b></p><ul>
-<li>Must be formatted FAT32</li>
-<li>The <b>HP85</b> is sensitive to long read/write delays that some cards can cause problems with<ul>
+<li>Used to access the hp85disk command interface</li>
+<li>Access it via the USB cable attached to your computer using a serial terminal program</li>
+<li>See section called Configuring the serial communication program</li>
+</ul>
+<p></b></p>
+<p><b></p><h3>Command interface notes</h3>
+<p></b></p>
+<p><b></p><ul>
+<li>When typing <b>any character</b> to the hp85disk emulator will stop disk emulation and display:<ul>
+<li>&lt;INTERRUPT&gt;</li>
+</ul>
+</li>
+<li>After you type <b>Enter</b> the command processor will execute the command and return to disk emulation automatically</li>
+</ul>
+<p></b></p>
+<p><b></p><hr/>
+<p></b></p>
+<p><b></p><h2>Important notes about SD Card requirments for the emulator</h2>
+<p></b></p>
+<p><b></b></p>
+<p><b></p><h3>Removing the SD Card from the emulator</h3>
+<p></b></p>
+<p><b></p><ul>
+<li><b>ALWAYS POWER OFF THE EMULATOR BEFORE REMOVING -or - INSERTING THE SD CARD</b></li>
+</ul>
+<p></b></p>
+<p><b></p><h3>Formatting a new SD Card</h3>
+<p></b></p>
+<p><b></p><ul>
+<li>Must be formatted <b>FAT32</b> not FAT32x</li>
+</ul>
+<p></b></p>
+<p><b></p><h3>Using the SD Card images on your HP85</h3>
+<p></b></p>
+<p><b></p><ul>
+<li>We provide the emulator with an SD card with images already installed<ul>
+<li>If you wish to create a new one follow these steps</li>
+</ul>
+</li>
+<li>There are working copies of disk images under the github sdcard folder</li>
+<li>Open a web browser to <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a><ul>
+<li>Click on the Green ***Colne or Download** button</li>
+<li>Pick download as ZIP</li>
+<li>You can extract all of the folders and files to a folder of your choid</li>
+<li>locate the <b>sdcard* folder</b></li>
+</ul>
+</li>
+<li><b>Copy the **contents* of the **sdcard</b> folder to the root/home folder of a a FAT32 formatted SD card<ul>
+<li>You should not see the <b>sdcard</b> folder on the SD Card itself just the contents of that folder and its subfolders</li>
+</ul>
+</li>
+</ul>
+<p></b></p>
+<p><b></p><h4>HP85A users SD card setup</h4>
+<p></b></p>
+<p><b></p><ul>
+<li>Normally you will not be able to access SS80 drives unless you have versions of the HP85B roms installed<ul>
+<li>See the notes about usings a <b>PRM-85</b> to add the required ROMS</li>
+</ul>
+</li>
+<li>Copy the <a href="sdcard/amigo.cfg">amigo.cfg</a> to the SD card and rename it to <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a><ul>
+<li>This is an AMIGO drive only configuration</li>
+<li>The default amigo.cfg file defines four AMIGO drives to go</li>
+</ul>
+</li>
+</ul>
+<p></b></p>
+<p><b></p><h4>HP85B users SD card setup</h4>
+<p></b></p>
+<p><b></p><ul>
+<li>You needs the EMS rom for SS80 drives<ul>
+<li>If you do not have them see the HP85A notes above</li>
+</ul>
+</li>
+<li>You do not need to make any changes<ul>
+<li>The default hpdisk.cfg uses two AMIGO drives and two SS80 drives ready to go</li>
+</ul>
+</li>
+</ul>
+<p></b></p>
+<p><b></p><hr/>
+<p></b></p>
+<p><b></p><h3>Choosing and SD Card for the HP85 emulator PLEASE READ</h3>
+<p></b></p>
+<p><b></p><ul>
+<li>Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long<ul>
+<li>The <b>HP85</b> is sensitive to long read/write delays that some cards can cause problems with</li>
 <li>You want SD Cards with fast random writes</li>
 <li>I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.<ul>
 <li>There is a huge difference in various cards on the market.</li>
@@ -336,8 +427,8 @@ README</h1>
 </li>
 </ul>
 </li>
-<li>Why slow SD Cards are a problem?<ul>
-<li>Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long</li>
+</ul>
+</li>
 <li>Details:<ul>
 <li>First step: hp85disk emulator writes to the SD Card</li>
 <li>Internally the SD card finds an internal page where our data will go</li>
@@ -380,34 +471,82 @@ README</h1>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
 <p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Detailed information about tools and features</h2>
-<p></b></p>
-<p><b></b></p>
-<p><b></p><h2>Built in command processor with many tools</h2>
-<p></b></p>
-<p><b> </p><h3>Accessing the hp85disk command interface with a serial terminal</h3>
+<p><b></p><h3>SD Card problems</h3>
 <p></b></p>
 <p><b></p><ul>
-<li>Used to access the hp85disk command interface</li>
-<li>Access it via the USB cable attached to your computer using a serial terminal program</li>
-<li>See section called Configuring the serial communication program</li>
-</ul>
-<p></b></p>
-<p><b></p><h3>Command interface notes</h3>
-<p></b></p>
-<p><b></p><ul>
-<li>When typing <b>any character</b> to the hp85disk emulator will stop disk emulation and display:<ul>
-<li>&lt;INTERRUPT&gt;</li>
+<li>The the file system on the SD card might get corrupted if it was powered on while removing the card<ul>
+<li><b>Symptoms - the hp85disk will not detect any drives</b><ul>
+<li>This is because the small FatFS file system code I used can not self repair any filesystem errors</li>
 </ul>
 </li>
-<li>After you type <b>Enter</b> the command processor will execute the command and return to disk emulation automatically</li>
+</ul>
+</li>
+<li>If you suspect this the easy way to check is to connect the emulator to a desktop/laptop computer<ul>
+<li>See this section for details: <b>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</b></li>
+</ul>
+</li>
+<li>When powering on the emulator it will report a details about the SD Card - you will see very obvious errors if it can not read the SD Card</li>
+<li>If the emulator says it can not open the card then go to the <b>SD Card filesystem repair sections</b></li>
+</ul>
+<p></b></p>
+<p><b></p><h3>SD Card filesystem repair</h3>
+<p></b></p>
+<p><b></p><ul>
+<li><b>Windows</b> insert the Micro SD card into you desktop/laptop Card Reader<ul>
+<li>Windows might detect errors and offer to fix them - answer <b>yes</b></li>
+<li>You can make Windows Check the drive using the following steps<ul>
+<li>Open <em>File Explorer</em> <b>Right Click</b> on the SD card drive and pick <b>properies</b></li>
+<li>Open the Tools tab</li>
+<li>Click on Error Checking</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ubuntu Desktop with GUI</b> insert the Micro SD card into you desktop/laptop Card Reader<ul>
+<li>Under <b>Activities</b> search for <b>Disks</b><ul>
+<li>Open <b>Disks</b> You will see a list of all of your drives on the left panel<ul>
+<li>Not - your SD Card may look like a USB device if you use a USB card reader</li>
+</ul>
+</li>
+<li>Click on the correct drive in the left panel<ul>
+<li>You will notice it give the size and partition type</li>
+</ul>
+</li>
+<li>Click on the Volume in the right panel</li>
+<li>Click on the settings gear icon below the Volume</li>
+<li>Click Repair filesystem</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><b>Ubuntu Command line - without GUI</b><ul>
+<li><b>sudo bash</b></li>
+<li>Method 1<ul>
+<li>Insert the Micro SD card into you desktop/laptop Card Reader</li>
+<li><b>dmesg | tail -25</b><ul>
+<li>You will see the device partition listed in the last 10 or 20 lines</li>
+<li>We will use: **/dev/sdc1** in the example <b>MAKE SURE YOU USE THE ONE YOU DETECTED</b></li>
+</ul>
+</li>
+<li><b>umount /dev/sdc1</b></li>
+<li><b>fsck -f /dev/sdc1</b></li>
+</ul>
+</li>
+<li>Method 2</li>
+<li><b>udevadm monitor &ndash;udev</b><ul>
+<li>Insert the Micro SD card into you desktop/laptop Card Reader</li>
+<li>The "add" lines will have the card partition listed on the far right<ul>
+<li>We will use: **/dev/sdc1** in the example <b>MAKE SURE YOU USE THE ONE YOU DETECTED</b></li>
+</ul>
+</li>
+<li>Press <b>Ctrl c</b> to exit udevadm monitor</li>
+<li><b>umount /dev/sdc1</b></li>
+<li><b>fsck -f /dev/sdc1</b></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p></b></p>
 <p><b></p><hr/>
@@ -2784,7 +2923,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 13 2020 00:30:54 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 13 2020 19:46:12 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

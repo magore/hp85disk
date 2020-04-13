@@ -13,6 +13,7 @@
   * **NOTE: Later sections go into more detail**
   * This project emulates **GPIB drives** and **HPGL printer **
     * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SD CARD.
+    * **You MUST have the GPIB module installed in your HP85 in order to connect to the hp85disk emulator**
    * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
      * Disk images are **LIF** encoded files that are compatible with **HP85A/B** and many other computers
      * Missing disk image files are created automatically if 
@@ -153,40 +154,6 @@ NOTE:
 ___
 
 
-## Important notes about SD Card requirments for the emulator
-  * Must be formatted FAT32
-  * The **HP85** is sensitive to long read/write delays that some cards can cause problems with
-    * You want SD Cards with fast random writes
-    * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
-      * There is a huge difference in various cards on the market. 
-      * Look for the cards with the best 4K random write times
-      * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
-        * Specifically look at best 4k random write - faster is better.
-    * Why slow SD Cards are a problem?
-      * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
-      * Details:
-        * First step: hp85disk emulator writes to the SD Card
-        * Internally the SD card finds an internal page where our data will go
-        * Next the SD Card reads the page into internal RAM (recall it can be much over a megabyte)
-        * Next the SD Card modifies the internal RAM with our data
-        * Next the SD Card erases the page
-        * Lastly the page is written to the SD Card and this takes time
-          * Trivia - SD cards must to erase a page before updating because of the flash memory cell design
-      * Why is this delay critical to the hp85disk emulator?
-        * Too long of a delay can cause a timeout when writing to disk
-        * SD cards internal hardware is mostly optimized for sequential writing 
-          * Their buffers and timing are designed primarily for writing consecutive blocks one after another
-            * When writing in consecutive order they can queue up many requests and combine them into one operation - a huge savings in time - done all in hardware
-            * Writing to blocks in random locations break this optimization very badly
-              * Therefore some SD Cards can take so long the **HP85** can timeout
-          * The hp85disk emulator does not have enough memory to work around this issue
-            * If we could load the entire disk image into ram AND we had more for many write buffers
-              * Then we could optimize the SD Card writing process to avoid the problems
-            * The AVR we use has only 20K of ram for everything
-              * Perhaps some day we will port this project to a Raspberry PI with add on hardware
-                * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
-
-___ 
 
 
 ## Detailed information about tools and features 
@@ -201,6 +168,119 @@ ___
   * When typing **any character** to the hp85disk emulator will stop disk emulation and display:
     * \<INTERRUPT>
   * After you type **Enter** the command processor will execute the command and return to disk emulation automatically
+
+___ 
+
+
+## Important notes about SD Card requirments for the emulator
+
+### Removing the SD Card from the emulator
+  * **ALWAYS POWER OFF THE EMULATOR BEFORE REMOVING -or - INSERTING THE SD CARD**
+
+### Formatting a new SD Card 
+  * Must be formatted **FAT32** not FAT32x
+
+### Using the SD Card images on your HP85
+  * We provide the emulator with an SD card with images already installed
+    * If you wish to create a new one follow these steps
+  * There are working copies of disk images under the github sdcard folder
+  * Open a web browser to https://github.com/magore/hp85disk
+    * Click on the Green ***Colne or Download** button
+    * Pick download as ZIP
+    * You can extract all of the folders and files to a folder of your choid
+    * locate the **sdcard* folder
+  * Copy the **contents* of the **sdcard** folder to the root/home folder of a a FAT32 formatted SD card
+    * You should not see the **sdcard** folder on the SD Card itself just the contents of that folder and its subfolders
+
+#### HP85A users SD card setup
+  * Normally you will not be able to access SS80 drives unless you have versions of the HP85B roms installed
+    * See the notes about usings a **PRM-85** to add the required ROMS
+  * Copy the [amigo.cfg](sdcard/amigo.cfg) to the SD card and rename it to [hpdisk.cfg](sdcard/hpdisk.cfg)
+    * This is an AMIGO drive only configuration
+    * The default amigo.cfg file defines four AMIGO drives to go
+
+#### HP85B users SD card setup
+  * You needs the EMS rom for SS80 drives
+    * If you do not have them see the HP85A notes above
+  * You do not need to make any changes
+    * The default hpdisk.cfg uses two AMIGO drives and two SS80 drives ready to go
+
+___ 
+
+
+###  Choosing and SD Card for the HP85 emulator PLEASE READ
+  * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
+    * The **HP85** is sensitive to long read/write delays that some cards can cause problems with
+    * You want SD Cards with fast random writes
+    * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
+      * There is a huge difference in various cards on the market. 
+      * Look for the cards with the best 4K random write times
+      * A good source of benchmark information is looking for recent Raspberry Pi SD card benchmarks because they use SD Cards
+        * Specifically look at best 4k random write - faster is better.
+  * Details:
+    * First step: hp85disk emulator writes to the SD Card
+    * Internally the SD card finds an internal page where our data will go
+    * Next the SD Card reads the page into internal RAM (recall it can be much over a megabyte)
+    * Next the SD Card modifies the internal RAM with our data
+    * Next the SD Card erases the page
+    * Lastly the page is written to the SD Card and this takes time
+      * Trivia - SD cards must to erase a page before updating because of the flash memory cell design
+  * Why is this delay critical to the hp85disk emulator?
+    * Too long of a delay can cause a timeout when writing to disk
+    * SD cards internal hardware is mostly optimized for sequential writing 
+      * Their buffers and timing are designed primarily for writing consecutive blocks one after another
+        * When writing in consecutive order they can queue up many requests and combine them into one operation - a huge savings in time - done all in hardware
+        * Writing to blocks in random locations break this optimization very badly
+          * Therefore some SD Cards can take so long the **HP85** can timeout
+      * The hp85disk emulator does not have enough memory to work around this issue
+        * If we could load the entire disk image into ram AND we had more for many write buffers
+          * Then we could optimize the SD Card writing process to avoid the problems
+        * The AVR we use has only 20K of ram for everything
+          * Perhaps some day we will port this project to a Raspberry PI with add on hardware
+            * The protocol is already solved for the emulator so this would not be that hard - only a battle with the time I have free
+
+### SD Card problems 
+  * The the file system on the SD card might get corrupted if it was powered on while removing the card
+    * **Symptoms - the hp85disk will not detect any drives**
+      * This is because the small FatFS file system code I used can not self repair any filesystem errors
+  * If you suspect this the easy way to check is to connect the emulator to a desktop/laptop computer
+    * See this section for details: **Firmware updating and connecting to the hp85disk emulator with MINIMAL software install**
+  * When powering on the emulator it will report a details about the SD Card - you will see very obvious errors if it can not read the SD Card
+  * If the emulator says it can not open the card then go to the **SD Card filesystem repair sections**
+
+### SD Card filesystem repair
+  * **Windows** insert the Micro SD card into you desktop/laptop Card Reader
+    * Windows might detect errors and offer to fix them - answer **yes**
+    * You can make Windows Check the drive using the following steps
+      * Open *File Explorer* **Right Click** on the SD card drive and pick **properies**
+      * Open the Tools tab
+      * Click on Error Checking 
+  * **Ubuntu Desktop with GUI** insert the Micro SD card into you desktop/laptop Card Reader
+    * Under **Activities** search for **Disks**
+      * Open **Disks** You will see a list of all of your drives on the left panel
+        * Not - your SD Card may look like a USB device if you use a USB card reader
+      * Click on the correct drive in the left panel
+        * You will notice it give the size and partition type
+      * Click on the Volume in the right panel
+      * Click on the settings gear icon below the Volume
+      * Click Repair filesystem
+  * **Ubuntu Command line - without GUI** 
+    * **sudo bash**
+	* Method 1
+      * Insert the Micro SD card into you desktop/laptop Card Reader
+      * **dmesg | tail -25**
+        * You will see the device partition listed in the last 10 or 20 lines
+        * We will use: **/dev/sdc1** in the example **MAKE SURE YOU USE THE ONE YOU DETECTED**
+      * **umount /dev/sdc1**
+      * **fsck -f /dev/sdc1**
+	* Method 2
+    * **udevadm monitor --udev**
+      * Insert the Micro SD card into you desktop/laptop Card Reader
+      * The "add" lines will have the card partition listed on the far right
+        * We will use: **/dev/sdc1** in the example **MAKE SURE YOU USE THE ONE YOU DETECTED**
+      * Press **Ctrl c** to exit udevadm monitor
+      * **umount /dev/sdc1**
+      * **fsck -f /dev/sdc1**
 
 ___ 
 
