@@ -2714,6 +2714,6 @@ long lif_create_image(char *lifimagename, char *liflabel, uint32_t dirsectors, u
         return(-1);
     lif_close_volume(LIF);
 
-    printf("\tFormating: wrote %ld sectors\n", (long)end);
+    printf("\tFormatting: wrote %ld sectors\n", (long)end);
     return(end);
 }
