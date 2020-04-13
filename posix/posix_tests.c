@@ -124,7 +124,7 @@ int posix_tests(int argc,char *argv[])
         for(i=ind;i<argc;++i)
         {
             if(!MATCH(argv[i],"-p"))
-                cat(argv[ind], page);
+				cat(argv[ind], page);
         }
         return(1);
     }
@@ -145,7 +145,8 @@ int posix_tests(int argc,char *argv[])
 
     if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
-        chdir(argv[ind]);
+        if ( chdir(argv[ind]) != 0)
+			printf("chdir %s failed\n", argv[ind]);
         return(1);
     }
 
@@ -208,7 +209,11 @@ int posix_tests(int argc,char *argv[])
         {
             mode = strtol(argv[ind+1],NULL,8);
         }
-        mkdir(argv[ind],mode);
+        if ( mkdir(argv[ind],mode) != 0 )
+		{
+			printf("mkdir %s failed\n", argv[ind]);
+			return(0);
+		}
         return(1);
     }
 
@@ -227,13 +232,21 @@ int posix_tests(int argc,char *argv[])
 
     if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
-        rename(argv[ind],argv[ind+1]);
+        if( rename(argv[ind],argv[ind+1]) != 0)
+		{
+			printf("rename %s to %s\n", argv[ind], argv[ind+1]);
+			return(0);
+		}
         return(1);
     }
 
     if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
-        unlink(argv[ind]);
+        if ( unlink(argv[ind]) != 0)
+		{
+			printf("rm %s failed\n", argv[ind]);
+			return(0);
+		}
         return(1);
     }
 
@@ -255,7 +268,11 @@ int posix_tests(int argc,char *argv[])
 
     if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
-        rmdir(argv[ind]);
+        if ( rmdir(argv[ind]) != 0)
+		{
+			printf("rmdir %s failed\n", argv[ind]);
+			return(0);
+		}
         return(1);
     }
 
@@ -572,7 +589,7 @@ int ls(char *name, int verbose)
     switch (st.st_mode & S_IFMT) 
     {
     case S_IFREG:
-        ls_info(fullpath,verbose);
+        files = ls_info(fullpath,verbose);
         break;
     case S_IFDIR:
         dirp = opendir(fullpath);

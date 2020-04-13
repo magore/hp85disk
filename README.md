@@ -192,10 +192,107 @@ ___
 ## Detailed information about tools and features 
 
 ## Built in command processor with many tools
-## Accessing the hp85disk command interface with a serial terminal
+### Accessing the hp85disk command interface with a serial terminal
   * Used to access the hp85disk command interface
   * Access it via the USB cable attached to your computer using a serial terminal program
   * See section called Configuring the serial communication program 
+  
+### Command interface notes
+  * When typing **any character** to the hp85disk emulator will stop disk emulation and display:
+<pre>
+    <INTERRUPT>
+    
+</pre>
+  * When you type **Enter** the command processor will execute the command and return to disk emulation automatically
+
+___ 
+
+
+## SD Card file manipulation commands 
+  * These are very useful for backing up and copying disk images and configuration files
+  * Path names may optionally be fully qualified file names or relitive names
+  * Directory seperators may be / or \
+  * Relative names can include . or ..
+    * Examples
+       * **..** is previous directory
+       * **.** is current directory
+       * **/** or **\** is a directory seperator
+       * /configs/../amigo0.lif is the same as /amigo0.lif
+  * Note: Wild card pattern matchings is NOT implimented on any of these commands.
+
+### SD Card file command summary with examples
+  * **cd dir**
+    * Change to new working, default,  directory
+<pre>
+    cd /configs
+</pre>
+
+  * **pwd**
+    * Display current working, default,  directory
+<pre>
+    pwd
+    /configs
+</pre>
+
+  * **ls files and or directories **
+    * You can specify any number of files or directory names or files as arguments
+      * This is limited to a total length of 250 characters total
+    * File information displayed includes type size date and name 
+      * The file and directory information displayed is similar to the Linux **ls -la** command
+    * Directory listing includes the file count for each directory
+    * Example: 
+<pre>
+    ls /notes /backups /amigo0.lifg
+    Listing:[/notes]
+    -rwxrwxrwx none none         4151 Mon Mar  2 00:19:16 2020 drive-parameters.txt
+    -rwxrwxrwx none none          563 Sun Mar  1 22:19:48 2020 GETSAVE-Readme.txt
+    -rwxrwxrwx none none       367277 Sun Mar  1 22:08:44 2020 GETSAV Series80 Group Data Communications Pac for the HP 83_85.pdf
+    -rwxrwxrwx none none       312128 Sun Mar  1 22:09:48 2020 GETSAV Series80 Group HP85 I_O rom Image specifier error 52.pdf
+    -rwxrwxrwx none none         2560 Sun Mar  1 03:57:42 2020 GETSAVE.#e008
+    -rwxrwxrwx none none         3512 Sat Feb 29 07:19:34 2020 drives_parameters.txt
+    -rwxrwxrwx none none          102 Sun Mar  1 07:20:12 2020 hpdir-notes-examples.txt
+    Files: 7
+    Listing:[/backups]
+    -rwxrwxrwx none none         3416 Fri Dec 31 19:17:44 1999 amigo.cfg
+    -rwxrwxrwx none none         5690 Fri Dec 31 19:18:00 1999 hpdisk.cfg
+    Files: 2
+    Listing:[/amigo0.lif]
+    -rwxrwxrwx none none       286720 Mon Apr 13 00:03:22 2020 amigo0.lif
+    Files: 1
+</pre>
+  * **mkdir dir**
+    * Make a new directory called dir
+  * **rmdir dir**
+    * Delete a directory - it must be empty
+  * **rm file**
+    * Remove/Delete a file
+  * **copy file1 file2**
+    * Copy an existing file to a new location and name
+<pre>
+	mkdir /backups
+	copy /amigo.cfg /backups/amigo.cfg
+    Opening /amigo.cfg
+    Creating /backups/amigo.cfg
+    
+    Copying...
+    3416 bytes copied.
+    
+    copy /hpdisk.cfg /backups/hpdisk.cfg
+    Opening /hpdisk.cfg
+    Creating /backups/hpdisk.cfg
+    
+    Copying...
+    5690 bytes copied.
+</pre>
+  * **rename old new**
+    * Rename a file - this is similar to a copy command source and destination paths and names can differ
+  * **page NN**
+   * **NN** is the number of lines to display per page with the **cat** with the page **-p** option
+   * Default is 25 lines
+  * **cat file [-p]**
+    * List a file to the display with optional pausing
+    * **-p** page option tells **cat** to pause after the number of lines specified by the **page** command
+    * When pausing, typing Space advances another page, Enter another line, q exits
 
 ___ 
 
@@ -250,7 +347,7 @@ ___
   * [sdcard folder has premade **LIF** disk images](sdcard)
     * [sdcard/create_images.sh](sdcard/create_images.sh)  creates the default **LIF** images and creates a matching default configuration files
   * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) contains the default disk definitions that correspond to the **LIF** images - disk hardware definition
-    * [sdcard/create_images.sh](sdcard/create_images.sh)  creates the default configuration and **LIF** images
+    * NOTE: The file paths can include subdirectory paths in the file name. This permits using multiple folders
 
 ## Note about LIF images and [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) disk definitions
   * To create/modify or update **LIF** images see the section on the LIF utilities supplied with teh emulator

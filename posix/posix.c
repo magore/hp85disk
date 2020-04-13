@@ -1349,8 +1349,8 @@ int stat(char *name, struct stat *buf)
     uint16_t mode;
     errno = 0;
 
-    // f_stat does not handle / or . as root directory
-    if (strcmp(name,"/") == 0 || strcmp(name,".") == 0)
+    // f_stat does not handle / \ or . as root directory
+    if (MATCH(name,"\\") || MATCH(name,"/") || MATCH(name,".") )
     {
         buf->st_atime = 0;
         buf->st_mtime = 0;

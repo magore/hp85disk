@@ -146,7 +146,7 @@ void task(uint8_t gpib)
     int ind;
     int argc;
     char *argv[50];
-    char line[128];
+    char line[256];
 
     if(gpib)
         gpib_task();

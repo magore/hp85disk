@@ -626,6 +626,11 @@ warn:	clean
 doxy:	doxyfile.inc $(SRCS) 
 	doxygen Doxyfile
 
+.PHONY: doxy_clean
+doxy_clean:	
+	-rm -rf doxygen/html
+	-rm -rf doxygen/latex
+
 ifeq ($(OUTPUT),ihex)
 build: elf hex lst sym lss 
 hex: $(PROJECT).hex
@@ -745,7 +750,7 @@ $(AOBJ) : %.o : %.S
 
 
 # Target: clean project.
-clean:
+clean: doxy_clean
 	@echo
 	rm -f -r $(COBJ) $(PROJECT)\.* dep/* | exit 0
 	make -C lif clean

@@ -392,7 +392,7 @@ README</h1>
 <p><b></b></p>
 <p><b></p><h2>Built in command processor with many tools</h2>
 <p></b></p>
-<p><b> </p><h2>Accessing the hp85disk command interface with a serial terminal</h2>
+<p><b> </p><h3>Accessing the hp85disk command interface with a serial terminal</h3>
 <p></b></p>
 <p><b></p><ul>
 <li>Used to access the hp85disk command interface</li>
@@ -400,11 +400,136 @@ README</h1>
 <li>See section called Configuring the serial communication program</li>
 </ul>
 <p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>LIF tools are built into emulator firmware</h2>
+<p><b></p><h3>Command interface notes</h3>
 <p></b></p>
 <p><b></p><ul>
+<li>When typing <b>any character</b> to the hp85disk emulator will stop disk emulation and display: <pre>
+    &lt;INTERRUPT&gt;</pre></li>
+</ul>
+<p></b></p>
+<p><b></p><pre></pre><ul>
+<li>When you type <b>Enter</b> the command processor will execute the command and return to disk emulation automatically</li>
+</ul>
+<p></b></p>
+<p><b></p><hr/>
+<p></b></p>
+<p><b></p><h2>SD Card file manipulation commands</h2>
+<p></b></p>
+<p><b></p><ul>
+<li>These are very useful for backing up and copying disk images and configuration files</li>
+<li>Path names may optionally be fully qualified file names or relitive names</li>
+<li>Directory seperators may be / or \</li>
+<li>Relative names can include . or ..<ul>
+<li>Examples<ul>
+<li>**..** is previous directory</li>
+<li>**.** is current directory</li>
+<li>**/** or **** is a directory seperator</li>
+<li>/configs/../amigo0.lif is the same as /amigo0.lif</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note: Wild card pattern matchings is NOT implimented on any of these commands.</li>
+</ul>
+<p></b></p>
+<p><b></p><h3>SD Card file command summary with examples</h3>
+<p></b></p>
+<p><b></p><ul>
+<li><b>cd dir</b><ul>
+<li>Change to new working, default, directory <pre>
+    cd /configs
+</pre></li>
+</ul>
+</li>
+<li><b>pwd</b><ul>
+<li>Display current working, default, directory <pre>
+    pwd
+    /configs
+</pre></li>
+</ul>
+</li>
+<li><b>ls files and or directories **<ul>
+<li>You can specify any number of files or directory names or files as arguments<ul>
+<li>This is limited to a total length of 250 characters total</li>
+</ul>
+</li>
+<li>File information displayed includes type size date and name<ul>
+<li>The file and directory information displayed is similar to the Linux **ls -la command</li>
+</ul>
+</li>
+<li>Directory listing includes the file count for each directory</li>
+<li>Example: <pre>
+    ls /notes /backups /amigo0.lifg
+    Listing:[/notes]
+    -rwxrwxrwx none none         4151 Mon Mar  2 00:19:16 2020 drive-parameters.txt
+    -rwxrwxrwx none none          563 Sun Mar  1 22:19:48 2020 GETSAVE-Readme.txt
+    -rwxrwxrwx none none       367277 Sun Mar  1 22:08:44 2020 GETSAV Series80 Group Data Communications Pac for the HP 83_85.pdf
+    -rwxrwxrwx none none       312128 Sun Mar  1 22:09:48 2020 GETSAV Series80 Group HP85 I_O rom Image specifier error 52.pdf
+    -rwxrwxrwx none none         2560 Sun Mar  1 03:57:42 2020 GETSAVE.#e008
+    -rwxrwxrwx none none         3512 Sat Feb 29 07:19:34 2020 drives_parameters.txt
+    -rwxrwxrwx none none          102 Sun Mar  1 07:20:12 2020 hpdir-notes-examples.txt
+    Files: 7
+    Listing:[/backups]
+    -rwxrwxrwx none none         3416 Fri Dec 31 19:17:44 1999 amigo.cfg
+    -rwxrwxrwx none none         5690 Fri Dec 31 19:18:00 1999 hpdisk.cfg
+    Files: 2
+    Listing:[/amigo0.lif]
+    -rwxrwxrwx none none       286720 Mon Apr 13 00:03:22 2020 amigo0.lif
+    Files: 1
+</pre></li>
+</ul>
+</b></li>
+<li><b><b>mkdir dir</b><ul>
+<li>Make a new directory called dir</li>
+</ul>
+</b></li>
+<li><b><b>rmdir dir</b><ul>
+<li>Delete a directory - it must be empty</li>
+</ul>
+</b></li>
+<li><b><b>rm file</b><ul>
+<li>Remove/Delete a file</li>
+</ul>
+</b></li>
+<li><p class="startli"><b><b>copy file1 file2</b></p><ul>
+<li>Copy an existing file to a new location and name <pre>
+    mkdir /backups
+    copy /amigo.cfg /backups/amigo.cfg
+    Opening /amigo.cfg
+    Creating /backups/amigo.cfg</pre></li>
+</ul>
+<p></b></p>
+<p class="startli"><b></p><pre>    Copying...
+    3416 bytes copied.</pre><p></b></p>
+<p class="startli"><b></p><pre>    copy /hpdisk.cfg /backups/hpdisk.cfg
+    Opening /hpdisk.cfg
+    Creating /backups/hpdisk.cfg</pre><p></b></p>
+<p class="startli"><b></p><pre>    Copying...
+    5690 bytes copied.
+</pre><p></b></p>
+</li>
+<li><b><b>rename old new</b><ul>
+<li>Rename a file - this is similar to a copy command source and destination paths and names can differ</li>
+</ul>
+</b></li>
+<li><b><b>page NN</b><ul>
+<li><b>NN</b> is the number of lines to display per page with the <b>cat</b> with the page <b>-p</b> option</li>
+<li>Default is 25 lines</li>
+</ul>
+</b></li>
+<li><b><b>cat file [-p]</b><ul>
+<li>List a file to the display with optional pausing</li>
+<li><b>-p</b> page option tells <b>cat</b> to pause after the number of lines specified by the <b>page</b> command</li>
+<li>When pausing, typing Space advances another page, Enter another line, q exits</li>
+</ul>
+</b></li>
+</ul>
+<p></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>LIF tools are built into emulator firmware</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Built in help<ul>
 <li><b>lif help</b><ul>
 <li>Gives lif commands</li>
@@ -465,10 +590,10 @@ README</h1>
 </li>
 <li><a class="el" href="md_lif_README.html">For more **LIF** documentation</a></li>
 </ul>
-<p></b></p>
-<p><b></p><h2>TeleDisk to LIF conversion tool (updated) - see  <a class="el" href="lif_2README_8md.html">lif/README.md</a> "LIF README.md"</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>TeleDisk to LIF conversion tool (updated) - see  <a class="el" href="lif_2README_8md.html">lif/README.md</a> "LIF README.md"</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><a href="lif/t202lif">td02lif</a> <a href="lif/85-SS80.TD0">85-SS80.TD0</a> <a href="lif/85-SS80.LIF">85-SS80.LIF</a></li>
 <li>NOTE: There are a stand alone version of the tool that run on Linux - making it work on Windows should be easy<ul>
 <li>You can extract a <b>DTA8x</b> (type E010) file from a <b>LIF</b> image and translate it into plain text</li>
@@ -485,23 +610,23 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Disk images and default configuration file for the hp85disk project</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Disk images and default configuration file for the hp85disk project</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>[sdcard folder has premade <b>LIF</b> disk images](sdcard)<ul>
 <li><a href="sdcard/create_images.sh">sdcard/create_images.sh</a> creates the default <b>LIF</b> images and creates a matching default configuration files</li>
 </ul>
 </li>
 <li><a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> contains the default disk definitions that correspond to the <b>LIF</b> images - disk hardware definition<ul>
-<li><a href="sdcard/create_images.sh">sdcard/create_images.sh</a> creates the default configuration and <b>LIF</b> images</li>
+<li>NOTE: The file paths can include subdirectory paths in the file name. This permits using multiple folders</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Note about LIF images and <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> disk definitions</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Note about LIF images and <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> disk definitions</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>To create/modify or update <b>LIF</b> images see the section on the LIF utilities supplied with teh emulator</li>
 <li>It is important that the <b>LIF</b> image size match the disk definitions<ul>
 <li>The emulator gets the hard limits for disk using <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a><ul>
@@ -525,12 +650,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Specific details for Translating between plain text and HP85 BASIC programs using hp85disk</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Specific details for Translating between plain text and HP85 BASIC programs using hp85disk</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Requirements<ul>
 <li>hp85disk emulator<ul>
 <li>There is a solution documented below in you do not have the hp85emulator</li>
@@ -546,10 +671,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>GETSAV is called GETSAVE inside my LIF disk images</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>GETSAV is called GETSAVE inside my LIF disk images</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Here is a direct link to <em>GETSAVE.LIF</em> - which is encoded as a <b>LIF</b> file: <a href="sdcard/LIF-files/GETSAVE.LIF">sdcard/LIF-files/GETSAVE.LIF</a></li>
 <li>My hp85disk tools built in the firmware can tools translate between DT8x (type E010 ) and plain text ASCII files<ul>
 <li>I provide stand alone <b>LIF</b> tools in the lif subfolder of the github project that do the same thing</li>
@@ -560,10 +685,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Translating between plain text and HP85 BASIC programs WITHOUT hp85disk</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Translating between plain text and HP85 BASIC programs WITHOUT hp85disk</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>You must compile and install the stand alone lif tools found under the project [lif](lif) folder</li>
 <li>You will also need a way of transfer binary files to/from your <b>HP85</b><ul>
 <li>You need to copy the <b>GETSAVE</b> program to your <b>HP85</b> some how</li>
@@ -571,10 +696,10 @@ README</h1>
 </li>
 <li>Specific details steps are documented later in the README</li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Initial setup of the hp85disk ASSUMPTIONS and Requirements</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Initial setup of the hp85disk ASSUMPTIONS and Requirements</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>You have the hp85disk emulator attached to your <b>HP85</b> with a <b>GPIB</b> cable<ul>
 <li>Strongly advise having no other devices attached just durring setup/testing<ul>
 <li>This is to avoid other <b>GPIB</b> bus address conflicts initially - you can update addresses later</li>
@@ -603,18 +728,18 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>FULL example step by step translating bewteen plain text files and HP86 BASIC programs</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>FULL example step by step translating bewteen plain text files and HP86 BASIC programs</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>You can do these examples without out my emulator but requires an extra tools and steps</li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Importing ASCII and plain text as HP85 BASIC programs</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Importing ASCII and plain text as HP85 BASIC programs</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Lets import a text file with BASIC statements into one of the emulator images <b>amigo1.lif **</b></li>
 <li><b>Turn off both the **HP85</b> and emulator - if it is attached<ul>
 <li>Remove the SD Card</li>
@@ -626,21 +751,21 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b>Save this file as <b>TEST.txt</b> onto the SD Card and exit your editor</p><ul>
+<p></b></b></p>
+<p><b><b>Save this file as <b>TEST.txt</b> onto the SD Card and exit your editor</p><ul>
 <li>Unmount the SD Card "eject it" in windows jargon</li>
 <li>Reinstall the SD Card in the emulator</li>
 </ul>
-<p></b></p>
-<p><b>Turn on the hp85disk emulator FIRST - THEN turn on the HP85</p><ul>
+<p></b></b></p>
+<p><b><b>Turn on the hp85disk emulator FIRST - THEN turn on the HP85</p><ul>
 <li>Trivia - the <b>HP85 only detects disk at power on or after a RESET</b><ul>
 <li><b>Therefore the emulator MUST be running first</b></li>
 </ul>
 </li>
 <li>Open your serial program with the documented settings</li>
 </ul>
-<p></b></p>
-<p><b>Lets add <b>TEST.txt</b> from the SD Card into the <b>amigo1.lif</b> emulator disk image</p><ul>
+<p></b></b></p>
+<p><b><b>Lets add <b>TEST.txt</b> from the SD Card into the <b>amigo1.lif</b> emulator disk image</p><ul>
 <li>Type:<ul>
 <li><b>lif add amigo1.lif TEST TEST.txt</b><ul>
 <li><b>TEST</b> is the internal <b>LIF</b> name, <b>TEST.txt</b> is you source file</li>
@@ -649,8 +774,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b>On your <b>HP85</b> we will load a binary program called <b>GETSAVE</b></p><ul>
+<p></b></b></p>
+<p><b><b>On your <b>HP85</b> we will load a binary program called <b>GETSAVE</b></p><ul>
 <li><b>LOADBIN "GETSAVE"</b><ul>
 <li>Note: quotes are always required on <b>HP85</b> BASIC file names</li>
 <li>This installs <b>GETSAVE</b> into program memory on your <b>HP85</b> until reset or power cycle<ul>
@@ -660,8 +785,8 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b>On the <b>HP85</b> type</p><ul>
+<p></b></b></p>
+<p><b><b>On the <b>HP85</b> type</p><ul>
 <li><b>GET "TEST"</b><ul>
 <li>Wait until you see <b>DONE</b><ul>
 <li>On BIG programs GET can take a very long time<ul>
@@ -681,10 +806,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Exporting HP85 BASIC programs to ASCII plain text</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Exporting HP85 BASIC programs to ASCII plain text</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>You must have the hp85disk emulator power ON and atteched to you HP85<ul>
 <li>Turn on the HP85</li>
 </ul>
@@ -735,78 +860,78 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Tested Operating systems</h2>
-<p></b></p>
-<p><b> </p><h3>Linux</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Tested Operating systems</h2>
+<p></b></b></p>
+<p><b><b> </p><h3>Linux</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>I used <b>Ubuntu 18.04,16.04LTS and 14.04LTS</b> when developing the code</li>
 <li>I have instructions for flashing the firmware below <h3>Windows</h3>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><b>Windows 10</b> running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</h2>
-<p></b></p>
-<p><b> </p><h3>Linux</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</h2>
+<p></b></b></p>
+<p><b><b> </p><h3>Linux</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><b>apt-get install python3</b><ul>
 <li>Most modern Linux systems have Python3</li>
 </ul>
 </li>
 <li><b>pip3 install pySerial</b></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Windows</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Windows</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Windows - Install Python 3.7 from Windows App Store<ul>
 <li>Open PowerShell window - always use PowerShell under Windows for running Python3</li>
 </ul>
 </li>
 <li><b>pip3 install pySerial</b></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Discover your serial port name</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Discover your serial port name</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Make sure you have a miniusb cable handy</li>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Linux</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Linux</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Open a terminal window<ul>
 <li>Run the following command</li>
 <li><b>python3 uploader/listports.py</b></li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Windows</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Windows</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Open a PowerShell window<ul>
 <li>Run the following command **python3 uploader\listports.py**</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Connect the emulator to discover the port name</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Connect the emulator to discover the port name</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Attach the miniusb cable to your computer and rerun the <b>listports.py</b></li>
 <li>The new port that appeared is the emulator port<ul>
 <li>Linux example: **/dev/ttyUSB0**</li>
@@ -820,12 +945,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Connecting to hp85disk interactive serial port</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Connecting to hp85disk interactive serial port</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Note: Use the same port name as with the flashing example</li>
 <li><b>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 1152000</b><ul>
 <li>Note: <b>serial.tools.miniterm</b> does <b>NOT work on Windows WSL Ubuntu</b> - yet so use the term script</li>
@@ -840,12 +965,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Updating hp85disk firmware with built in bootloader</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Updating hp85disk firmware with built in bootloader</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Only do this if recommended</li>
 <li>Note: The github hp85disk master branch project includes disk images and precompiled firmeare<ul>
 <li>Compiled Firmware hex file <a href="release/build">release/build</a></li>
@@ -857,28 +982,28 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Linux firmware update example</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Linux firmware update example</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><b>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex</b></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Windows firmware update example</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Windows firmware update example</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><b>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</b></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Mac firmware update example</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Mac firmware update example</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li><b>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</b></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Firmware update problems - if you get a failure during updating</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Firmware update problems - if you get a failure during updating</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
 <li><b>Now hold down RESET on the hp85disk board - now release RESET and press Enter quickly</b><ul>
 <li><b>You have a short Window after releasing RESET to Press Enter</b></li>
@@ -887,12 +1012,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Requirements for compiling and flashing the FULL hp85disk project</h2>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Requirements for compiling and flashing the FULL hp85disk project</h2>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>These steps, below, are required ONLY if:<ul>
 <li>You plan to build the standalone <b>lif</b> and <b>mkcfg</b> utilities</li>
 <li>You plan on making code changes</li>
@@ -904,13 +1029,13 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Full installation Ubuntu and Windows software for building hp85disk and building related applications</h2>
-<p></b></p>
-<p><b> Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</b></p>
-<p><b></p><h3>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h3>
-<p></b></p>
-<p><b> Note: I recommend this as the easiest way to compile and build hp85disk under Windows</p><ul>
+<p></b></b></p>
+<p><b><b></p><h2>Full installation Ubuntu and Windows software for building hp85disk and building related applications</h2>
+<p></b></b></p>
+<p><b><b> Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</b></b></p>
+<p><b><b></p><h3>Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h3>
+<p></b></b></p>
+<p><b><b> Note: I recommend this as the easiest way to compile and build hp85disk under Windows</p><ul>
 <li>Following these steps take less then 10 minutes incuding the software and hp85disk download</li>
 <li>Install <b>WSL - Windows Subsystem for Linux</b><ul>
 <li>See: <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></li>
@@ -950,19 +1075,19 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Ubuntu 18.04 LTS or later</h3>
-<p></b></p>
-<p><b> Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Ubuntu 18.04 LTS or later</h3>
+<p></b></b></p>
+<p><b><b> Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
 <li>If you are installing Ubuntu on a new machine<ul>
 <li>See <a href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Automated software install and hp85disk github project download</h3>
-<p></b></p>
-<p><b> Note: For Windows install the WSL and Ubuntu App first - see previous section</p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Automated software install and hp85disk github project download</h3>
+<p></b></b></p>
+<p><b><b> Note: For Windows install the WSL and Ubuntu App first - see previous section</p><ul>
 <li>Open a terminal Window<ul>
 <li><b>Ubuntu App</b> under Windows</li>
 </ul>
@@ -976,32 +1101,32 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Updating hp85disk github project at any time using git</h3>
-<p></b></p>
-<p><b> </p><h3>Linux</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Updating hp85disk github project at any time using git</h3>
+<p></b></b></p>
+<p><b><b> </p><h3>Linux</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Open a <b>terminal window</b></li>
 <li><b>cd hp85disk</b></li>
 <li><b>git pull</b> <h3>Windows</h3>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Open <b>Ubuntu App</b></li>
 <li><b>cd hp85disk</b></li>
 <li><b>git pull</b></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Connecting to hp85disk emulator</h2>
-<p></b></p>
-<p><b></b></p>
-<p><b></p><h3>Find the serial port device name for the hp85disk emulator</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Connecting to hp85disk emulator</h2>
+<p></b></b></p>
+<p><b><b></b></b></p>
+<p><b><b></p><h3>Find the serial port device name for the hp85disk emulator</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
 <li>Open a <b>terminal window</b> on <b>Ubuntu</b><ul>
 <li><b>Ubuntu App</b> under <b>Windows</b></li>
@@ -1020,10 +1145,10 @@ README</h1>
 <li>The new port that appears in the last step is the Emulator Port name</li>
 <li>Optionally edit the hp85disk [Makefile](Makefile) and change the <b>PORT</b> name near the start of the file to this name</li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Opening a terminal window to the hp85disk emulator</h3>
-<p></b></p>
-<p><b> NOTE: Find the serial port name first - lets assume it was /dev/ttyS3</p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Opening a terminal window to the hp85disk emulator</h3>
+<p></b></b></p>
+<p><b><b> NOTE: Find the serial port name first - lets assume it was /dev/ttyS3</p><ul>
 <li><b>cd hp85disk</b></li>
 <li>**./term 115200 /dev/ttyS3**</li>
 <li>The term script starts a program called <b>minicom</b><ul>
@@ -1036,12 +1161,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Compile Firmware</h2>
-<p></b></p>
-<p><b> Note: Change into the hp85disk folder created by the install.sh script</p><ul>
+<p></b></b></p>
+<p><b><b></p><hr/>
+<p></b></b></p>
+<p><b><b></p><h2>Compile Firmware</h2>
+<p></b></b></p>
+<p><b><b> Note: Change into the hp85disk folder created by the install.sh script</p><ul>
 <li><b>make clean</b></li>
 <li><b>make</b></li>
 <li><b>make install</b><ul>
@@ -1049,10 +1174,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Compile and updating Firmware - assumes you have compiletools installed</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Compile and updating Firmware - assumes you have compiletools installed</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Note: in the steps below you can override defaults<ul>
 <li>You just tack on settings like this to the end of the make command line<ul>
 <li><b>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</b></li>
@@ -1066,10 +1191,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Flash with Internal optiboot</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Flash with Internal optiboot</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Note: in this example assume the hp85disk serial port is /dev/ttyS3<ul>
 <li>You can override the [Makefile](Makefile) default without editing it</li>
 </ul>
@@ -1098,10 +1223,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h4>If you have a firmware update problems - if you get a failure during updating</h4>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h4>If you have a firmware update problems - if you get a failure during updating</h4>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>Type in the flashing command, see above, but <b>without pressing Enter yet</b><ul>
 <li>Now hold down <b>RESET</b> on the hp85disk board - release RESET and press Enter quickly<ul>
 <li>You have a short Window after releasing RESET to Press Enter</li>
@@ -1110,10 +1235,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Update Firmware with external programmer</h3>
-<p></b></p>
-<p><b></p><ul>
+<p></b></b></p>
+<p><b><b></p><h3>Update Firmware with external programmer</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
 <li>You will need and AVR programmer supported by <b>avrdude</b> (part of avrtools)<ul>
 <li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>AVRDUDE_PORT</b> in next [Makefile](Makefile) section</li>
 </ul>
@@ -1131,10 +1256,10 @@ README</h1>
 </ul>
 </b></li>
 </ul>
-<p></b></p>
-<p><b><b></p><h3>Flashing AND connecting to hp85disk emualtor terminal just after firmware update</h3>
 <p></b></b></p>
-<p><b><b></p><ul>
+<p><b><b><b></p><h3>Flashing AND connecting to hp85disk emualtor terminal just after firmware update</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
 <li>Examples:<ul>
 <li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb</b></li>
@@ -1144,12 +1269,12 @@ README</h1>
 <li><b>AVRDUDE_PORT</b> must be set to the programmer port name</li>
 <li><b>PORT</b> must be set to the hp85disk emulator serial port name</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Makefile configuration options for hp85disk emulator</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Makefile configuration options for hp85disk emulator</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>These options apply to original V1 and new V2 boards</li>
 <li>Update <b>BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT</b> for your platform<ul>
 <li><b>AVRDUDE_DEVICE</b> is the name of AVR as it is known by <b>avrdude</b><ul>
@@ -1256,10 +1381,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>make help documentation</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>make help documentation</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><p class="startli"><b>make help</b></p><ul>
 <li>List the common commands to compile/install/flash the code <pre>
     Building Commands
@@ -1289,29 +1414,29 @@ README</h1>
         make flash-isp-noboot-release - flash the release code using an ISP</pre><pre>    Note: **you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards**
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Example building with Makefile overrides</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Example building with Makefile overrides</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>make flash AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3</b></li>
 <li><b>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0</b></li>
 <li><b>make flash-isp AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb</b></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Building Doxygen documentation for the project - OPTIONAL</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Building Doxygen documentation for the project - OPTIONAL</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</b></li>
 <li><em>If you omit this you will have to update the [Makefile](Makefile) to omit the steps</em></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Using the hp85disk emulator</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Using the hp85disk emulator</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Here we focus just on <b>HP85</b> BASIC commands</li>
 <li>See <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> for configuration settings and setting and documentation.<ul>
 <li>Printer capture is configured currently for my HP54645D scope<ul>
@@ -1349,10 +1474,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Testing examples on your HP85</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Testing examples on your HP85</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Testing was done with an <b>HP85A</b> (with extended EMS ROM)<ul>
 <li>Using the Hewlett-Packard Series 80 - <b>PRM-85</b> by Bill Kotaska</li>
 <li>This makes my <b>HP85A</b> look like and <b>HP85B</b><ul>
@@ -1366,12 +1491,12 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Initializing a disk images</h2>
-<p></b></b></p>
-<p><b><b> </p><h2>HP85B only feature or HP88A with <b>PRM-85</b> board</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Initializing a disk images</h2>
+<p></b></b></b></p>
+<p><b><b><b> </p><h2>HP85B only feature or HP88A with <b>PRM-85</b> board</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands</li>
 <li>The <b>HP85B</b> and EMS ROM has extended INITIALIZE attributes<ul>
 <li>If you use the hP85 INITIALIZE commands it erases everything on the emulated image</li>
@@ -1387,17 +1512,17 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>HP85A and HP85B examples</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>HP85A and HP85B examples</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Note lines with a "#' as the first non blank character are just my comments<ul>
 <li>A bad habit from writing too many bash scripts</li>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><pre>
+<p></b></b></b></p>
+<p><b><b><b></p><pre>
   # Listing files:
   # first AMIGO
   CAT ":D700"
@@ -1406,8 +1531,8 @@ README</h1>
   # first SS80
   CAT ":D720"
   # second SS80
-  CAT ":D730"</pre><p></b></b></p>
-<p><b><b></p><pre>  # Loading file from first SS80:
+  CAT ":D730"</pre><p></b></b></b></p>
+<p><b><b><b></p><pre>  # Loading file from first SS80:
   LOAD "HELLO:D720"
   # Copying file between devices: fist AMIGO to second AMIGO
   COPY "HELLO:D700" TO "HELLO:D710"
@@ -1440,12 +1565,12 @@ README</h1>
   SCRATCH
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>While <b>GPIB</b> devices can have address between 0 and 31 you can have no more than 8 disk drives.</li>
 <li>ALL disk drives are required to respond to a <b>PPR</b> query by the (HP85) controller.<ul>
 <li><b>PPR</b> query is done when the controller in charge (HP85) pulls <b>ATN</b> and <b>EOI</b> low.</li>
@@ -1500,10 +1625,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Technical Limitations</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Technical Limitations</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Multiple drive support is implements but UNIT support is NOT</li>
 <li>While most <b>AMIGO</b> and <b>SS80</b> feature have been implemented my primary focus was on the <b>HP85A</b> and <b>HP85B</b>.<ul>
 <li>(I do not have access to other computers to test for full compatibility)</li>
@@ -1566,10 +1691,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>hp85disk Terminal Commands</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>hp85disk Terminal Commands</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Pressing any key will break out of the gpib task loop until a command is entered<ul>
 <li><b>help</b><ul>
 <li>List all available commands</li>
@@ -1580,10 +1705,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>For main help menu type <em>help</em></h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>For main help menu type <em>help</em></h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Any word that has <b>help</b> after it will give help for that command</li>
 <li><p class="startli"><b>help</b> </p><pre>
     Stand alone version of **LIF** utilities for linux
@@ -1604,10 +1729,10 @@ README</h1>
     reset
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>For lif help type <em>lif help</em></h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>For lif help type <em>lif help</em></h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>lif help</b> <pre>
     lif add lifimage lifname from_ascii_file
     lif addbin lifimage lifname from_lif_file
@@ -1622,10 +1747,10 @@ README</h1>
     Use -d after first keyword 'lif' above for **LIF** filesystem debugging
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>For posix help type <em>posix help</em></h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>For posix help type <em>posix help</em></h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>posix help</b> <pre>
     posix prefix is optional
     posix cat file [-p]
@@ -1640,10 +1765,10 @@ README</h1>
     posix rename old new
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>For setting the time type <em>setdate</em> it will prompt for the date as shown below</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>For setting the time type <em>setdate</em> it will prompt for the date as shown below</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>This also sets the RTC</li>
 <li><b>setdate</b> <pre>
     Enter date YYYY MM DD HH:MM:SS &gt;2020 04 09 16:54:00
@@ -1653,10 +1778,10 @@ README</h1>
     clk time:    Thu Apr  9 16:54:00 2020
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>For displaying the time and the rtc time type <em>time</em></h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>For displaying the time and the rtc time type <em>time</em></h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><b>time</b> <pre>
     rtc seconds: 1586451317
     rtc time:    Thu Apr  9 16:55:17 2020
@@ -1664,18 +1789,18 @@ README</h1>
     clk time:    Thu Apr  9 16:55:17 2020
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>hp85disk setting debug options</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>hp85disk setting debug options</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Debugging is can be controlled in two ways<ul>
 <li>The <b>DEBUG</b> statement in <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a></li>
 <li>Typing the command in interactively</li>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b>### hp85disk DEBUG truth table </p><pre>
+<p></b></b></b></p>
+<p><b><b><b>### hp85disk DEBUG truth table </p><pre>
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
   Warning: Setting too many can cause **HP85** timeouts while displaying messages
@@ -1691,10 +1816,10 @@ README</h1>
     100 **GPIB** read / write string byte decode
     200 Parallel Poll bus status debug
     400 **LIF** utitilites debugging
-</pre><p></b></b></p>
-<p><b><b></p><h3>hp85disk setting debug examples</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+</pre><p></b></b></b></p>
+<p><b><b><b></p><h3>hp85disk setting debug examples</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Interactively<ul>
 <li><b>gpib debug = 0x11</b></li>
 </ul>
@@ -1732,24 +1857,24 @@ README</h1>
     DEBUG = 0x51
 </pre></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h1>Abbreviations</h1>
-<p></b></b></p>
-<p><b><b> Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h1>Abbreviations</h1>
+<p></b></b></b></p>
+<p><b><b><b> Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
 <li><b>SS80</b></li>
 <li><b>CS80</b></li>
 <li><b>A or Amigo</b></li>
 <li><b>HP-IP</b></li>
 <li><b>HP-IP Tutorial</b></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Documentation References and related sources of information</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Documentation References and related sources of information</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Web Resources<ul>
 <li><a href="http://www.hp9845.net">http://www.hp9845.net</a></li>
 <li><a href="http://www.hpmuseum.net">http://www.hpmuseum.net</a></li>
@@ -1760,54 +1885,54 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Enhanced version of Tony Duell's lif_utils by Joachim</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Enhanced version of Tony Duell's lif_utils by Joachim</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="https://github.com/bug400/lifutils">https://github.com/bug400/lifutils</a></li>
 <li>Create/Modify <b>LIF</b> images</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>CS80 References: ("CS80" is the short form used in the project)</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>CS80 References: ("CS80" is the short form used in the project)</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>"CS/80 Instruction Set Programming Manual"</li>
 <li>Printed: APR 1983</li>
 <li>HP Part# 5955-3442</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>"Appendix A of 9895A Flexible Disc Memory Service Manual"</li>
 <li>HP Part# 09895-90030</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>HP-IB</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>HP-IB</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>("HP-IB" is the short form used in the project)</li>
 <li>"Condensed Description of the Hewlett Packard Interface Bus"</li>
 <li>Printed March 1975</li>
 <li>HP Part# 59401-90030</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Tutorial Description of the Hewlett Packard Interface Bus</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Tutorial Description of the Hewlett Packard Interface Bus</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>("HP-IB Tutorial" is the short form used in the project)</li>
 <li><a href="http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf">http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf</a></li>
 <li>Printed January 1983</li>
@@ -1815,41 +1940,41 @@ README</h1>
 <li>Printed 1987</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php">http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php</a></li>
 </ul>
-<p></b></b></p>
-<p><b><b>See [Documents folder](documents)</b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>HP 9133/9134 D/H/L References</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b>See [Documents folder](documents)</b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>HP 9133/9134 D/H/L References</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>"HP 9133/9134 D/H/L Service Manual"</li>
 <li>HP Part# 5957-6560</li>
 <li>Printed: APRIL 1985, Edition 2</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>*LIF* File system Format</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>*LIF* File system Format</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Useful Utilities</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Useful Utilities</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">HPDir HP Drive - Disk Image Manipulation</a><ul>
 <li>Copyright © 2010 A. Kückes</li>
 </ul>
@@ -1859,14 +1984,14 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>*GPIB* Connector pinout by Anders Gustafsson in his hpdisk project</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>*GPIB* Connector pinout by Anders Gustafsson in his hpdisk project</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="http://www.dalton.ax/hpdisk/">http://www.dalton.ax/hpdisk/</a></li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><pre>
+<p></b></b></b></p>
+<p><b><b><b></p><pre>
     Pin Name   Signal Description       Pin Name   Signal Description 
     1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
     2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
@@ -1880,12 +2005,12 @@ README</h1>
     10  SRQ    Service Request          22  Shield Ground (SRQ) 
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
-</pre><p></b></b></p>
-<p><b><b></p><hr/>
-<p></b></b></p>
-<p><b><b></p><h2>Main project files for hp85disk Project</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+</pre><p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Main project files for hp85disk Project</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Project Main Home Directory<ul>
 <li><a href="main.c">main.c</a></li>
 <li><a href="main.h">main.h</a><ul>
@@ -1939,16 +2064,16 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Compiled firmware release files</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Compiled firmware release files</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[release](release)</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Board design file for version 1 and 2 hardware information</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Board design file for version 1 and 2 hardware information</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[board](board)<ul>
 <li><a href="board/V1">V1</a><ul>
 <li>V1 Board documentation and Release files</li>
@@ -1964,26 +2089,26 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Documents</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Documents</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[Documents](Documents)</li>
 <li><b>GPIB</b> BUS, HP device, <b>LIF</b> and chips documentation for this project<ul>
 <li>Documents/README.md</li>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>hp85disk software files</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>hp85disk software files</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>Most of the software in the project was written by me except where noted</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>FatFs</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>FatFs</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[fatfs](fatfs)<ul>
 <li>R0.14 FatFS code from (C) <b>ChaN</b>, 2019 - With very minimal changes</li>
 <li><a href="fatfs/00history.txt">00history.txt</a></li>
@@ -2044,10 +2169,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>**GPIB** related</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>**GPIB** related</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="gpib/gpib">gpib</a><ul>
 <li>My <b>GPIB</b> code for AMIGO SS80 and PRINTER support</li>
 <li><a href="gpib/amigo.c">amigo.c</a><ul>
@@ -2137,10 +2262,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Hardware CPU specific</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Hardware CPU specific</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[hardware](hardware)<ul>
 <li>My CPU hardware specific code</li>
 <li><a href="hardware/baudrate.c">baudrate.c</a><ul>
@@ -2223,10 +2348,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Common libraries</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Common libraries</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[lib](lib)<ul>
 <li>My Library functions</li>
 <li><a href="lib/bcpp.cfg">bcpp.cfg</a><ul>
@@ -2278,10 +2403,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>*LIF* files</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>*LIF* files</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[lif](lif)<ul>
 <li>My <b>LIF</b> disk image utilities</li>
 <li><a href="lif/lifutils.c">lif/lifutils.c</a></li>
@@ -2342,10 +2467,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>*LIF* teledisk files</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>*LIF* teledisk files</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
 <li>My TELEDISK <b>LIF</b> extractor<ul>
 <li>Note: The TeleDisk image MUST contain a <b>LIF</b> image - we do NOT translate it</li>
@@ -2388,10 +2513,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Posix wrapper - provides Linux file IO functions for Fatfs</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Posix wrapper - provides Linux file IO functions for Fatfs</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[posix](posix)<ul>
 <li>My POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
 <li><a href="buffer.c">buffer.c</a></li>
@@ -2412,10 +2537,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>Printf display functions</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>Printf display functions</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[printf](printf)<ul>
 <li>My Printf and math IO functions</li>
 <li><a href="printf/mathio.c">mathio.c</a><ul>
@@ -2445,10 +2570,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h2>SD Card files for project</h2>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h2>SD Card files for project</h2>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li>[sdcard](sdcard)</li>
 <li>My <b>HP85</b> AMIGO and SS80 disk images<ul>
 <li>Linux bash script to build ALL the disk images<ul>
@@ -2479,10 +2604,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>*AMIGO* disk images</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>*AMIGO* disk images</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="sdcard/amigo0.lif">amigo1.lif</a><ul>
 <li><b>AMIGO</b> disk image</li>
 <li>Has some demo basic programs in it</li>
@@ -2504,10 +2629,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>*SS80* disk images</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>*SS80* disk images</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="sdcard/ss80-0.lif">ss80-1.lif</a><ul>
 <li><b>SS80</b> disk image</li>
 <li>Has some demo basic programs in it</li>
@@ -2529,19 +2654,19 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>SD Card emulator configuration file backups</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>SD Card emulator configuration file backups</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="sdcard/configs">sdcard/configs</a><ul>
 <li>Backup copies of the hp85disk config files</li>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>Build Drive Configuration</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>Build Drive Configuration</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="sdcard/mkcfg">sdcard/mkcfg</a></li>
 <li>Build a <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> disk record<ul>
 <li>Using <a href="sdcard/notes/hpdir.ini">hpdir.ini</a> database<ul>
@@ -2560,10 +2685,10 @@ README</h1>
 </ul>
 </li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><h3>BUILD SCRIPTS</h3>
-<p></b></b></p>
-<p><b><b></p><ul>
+<p></b></b></b></p>
+<p><b><b><b></p><h3>BUILD SCRIPTS</h3>
+<p></b></b></b></p>
+<p><b><b><b></p><ul>
 <li><a href="sdcard/scripts">sdcard/scripts</a><ul>
 <li>Scripts that help creating <b>LIF</b> images from multiple files</li>
 <li>Used by <a href="sdcard/create_images.sh">create_images.sh</a> <h3>My <em>HP85</em> bus trace files</h3>
@@ -2650,13 +2775,13 @@ README</h1>
 </li>
 <li>Various notes</li>
 </ul>
-<p></b></b></p>
-<p><b><b></p><hr/>
-<p> </b></b></p>
+<p></b></b></b></p>
+<p><b><b><b></p><hr/>
+<p> </b></b></b></p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 12 2020 00:37:48 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Apr 12 2020 22:06:40 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
