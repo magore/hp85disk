@@ -271,6 +271,11 @@ int main(int argc, char *argv[])
     if(argc <= 1)
     {
         copyright();
+        lif_help(1);
+#ifdef TELEDISK
+        td0_help(1);
+		return(0);
+#endif
     }
     if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
     {

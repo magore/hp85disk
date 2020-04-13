@@ -145,6 +145,7 @@ void task(uint8_t gpib)
     char *ptr;
     int ind;
     int argc;
+	int result = 0;
     char *argv[50];
     char line[256];
 
@@ -155,7 +156,9 @@ void task(uint8_t gpib)
         return;
 
     printf("\n>");
+
     fgets(line,sizeof(line)-2,stdin);
+	trim_tail(line);
     argc = split_args(line,argv,50);
 
 #if 0
@@ -164,24 +167,26 @@ void task(uint8_t gpib)
     for(i=0;i<argc;++i)
         printf("   [%s]\n", argv[i]);
 #endif
+
     ind = 0;
     ptr = argv[ind++];
 
-    if(!ptr)
-        return;
-
-    if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
+	if(!ptr || argc < 1)
+	{
+        result = 1;
+	}
+    else if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
     {
         delay_tests();
-        return;
+        result = 1;
 
     }
-    if ( MATCHARGS(ptr,"time",(ind+0),argc))
+    else if ( MATCHARGS(ptr,"time",(ind+0),argc))
     {
-        display_clock();
-        return;
+		display_clock();
+        result = 1;
     }
-    if ( MATCHARGS(ptr,"reset",(ind+0),argc))
+    else if ( MATCHARGS(ptr,"reset",(ind+0),argc))
     {
 		cli();	
 		uart_rx_flush(0);
@@ -189,48 +194,51 @@ void task(uint8_t gpib)
 		MCUSR = (1 << EXTRF);
         RESET();
 		// should not return!
-        return;
+        result = 1;
     }
-    if ( MATCHARGS(ptr,"setdate",(ind+0),argc))
+    else if ( MATCHARGS(ptr,"setdate",(ind+0),argc))
     {
         setdate();
         display_clock();
-        return;
+        result = 1;
     }
-    if ( MATCHARGS(ptr,"mem",(ind+0),argc))
+    else if ( MATCHARGS(ptr,"mem",(ind+0),argc))
     {
         PrintFree();
-        return;
+        result = 1;
 
     }
-    if ( MATCHARGS(ptr,"help",(ind+0),argc) || MATCHARGS(ptr,"?",(ind+0),argc))
+    else if ( MATCHARGS(ptr,"help",(ind+0),argc) || MATCHARGS(ptr,"?",(ind+0),argc))
     {
         help();
-        return;
+        result = 1;
     }
 
-    if(gpib_tests(argc,argv))
+    else if(gpib_tests(argc,argv))
     {
         // Restore GPIB BUS states
         gpib_init_devices();
-        return;
+        result = 1;
     }
 
 #ifdef POSIX_TESTS
-    if(posix_tests(argc,argv))
-        return;
+    else if(posix_tests(argc,argv))
+        result = 1;
 #endif
 
 #ifdef FATFS_TESTS
-    if(fatfs_tests(argc,argv))
-        return;
+    else if(fatfs_tests(argc,argv))
+        result = 1;
 #endif
 
 #ifdef LIF_SUPPORT
-    if(lif_tests(argc,argv))
-        return;
+    else if(lif_tests(argc,argv))
+        result = 1;
 #endif
-    printf("Error:[%s]\n",ptr);
+	if(result)
+		printf("OK\n");
+	else
+		printf("Error:[%s]\n",line);
 }
 
 

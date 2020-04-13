@@ -143,29 +143,31 @@ MEMSPACE
 int lif_tests(int argc, char *argv[])
 {
 
-    int ind;
+    int ind=0;
     char *ptr;
 
 #ifdef LIF_DEBUG
+	int i;
     for(i=0;i<argc;++i)
-        printf("%02d:%s\n", i, argv[i]);
+        printf("%d:%s\n", i, argv[i]);
     printf("\n");
 #endif
 
-    // NAME
-    ind = 0;
-	// Skip program name
-    ptr = argv[ind++];
+	// Nothing to do ?
+	if(argc < 2)
+		return (1);
 
-    if(!ptr )
-        return(0);
+    // Argument 1
+    ind = 1;
+	ptr = argv[ind++];
 
-	// Next Argument after program name
-    ptr = argv[ind++];
+	// Argument 1 missing ?
+    //        Nothing to do
+	// argc should really get this 
+    if(!ptr || !*ptr)
+        return(1);
 
-
-
-    if(argc <= 1 || !ptr || MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
+    if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
     {
         lif_help(1);
 #ifdef TELEDISK
