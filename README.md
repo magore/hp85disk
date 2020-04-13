@@ -206,6 +206,8 @@ ___
 
 
 ## SD Card file manipulation commands 
+  * **posix help** displays a list of these SD cards related commands
+    * **NOTE: you do NOT thave to put the "posix" keyword prior to any of these command**
   * These are very useful for backing up and copying disk images and configuration files
   * Path names may optionally be fully qualified file names or relitive names
   * Directory seperators may be / or \
