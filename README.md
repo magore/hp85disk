@@ -199,10 +199,10 @@ ___
   
 ### Command interface notes
   * When typing **any character** to the hp85disk emulator will stop disk emulation and display:
-<verbatim>
-    <INTERRUPT>
+<pre>
+    <<INTERRUPT>>
     
-</verbatim>
+</pre>
   * When you type **Enter** the command processor will execute the command and return to disk emulation automatically
 
 ___ 
