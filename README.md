@@ -284,7 +284,7 @@ ___
     5690 bytes copied.
 </pre>
   * **rename old new**
-    * Rename a file - this is similar to a copy command source and destination paths and names can differ
+    * Rename a file - this is similar to a move command source and destination paths and names can differ
   * **page NN**
    * **NN** is the number of lines to display per page with the **cat** with the page **-p** option
    * Default is 25 lines
