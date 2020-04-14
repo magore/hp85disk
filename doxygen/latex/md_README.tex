@@ -35,7 +35,7 @@
 
 {\bfseries The emulator will automatically create missing {\bfseries L\+IF} images defined in \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} on the SD C\+A\+RD
 \begin{DoxyItemize}
-\item There are disk images for A\+M\+I\+GO and S\+S80 disks
+\item There are disk images for {\bfseries A\+M\+I\+GO} and {\bfseries S\+S80} disks
 \begin{DoxyItemize}
 \item {\bfseries A\+M\+I\+GO} drives work with {\bfseries H\+P85A}
 \item {\bfseries S\+S80} drives work with {\bfseries H\+P85B} (or {\bfseries H\+P85A} with {\bfseries P\+R\+M-\/85} with modified E\+MS and Electronic disk R\+OM add on board see links)
@@ -143,7 +143,7 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
-{\bfseries Anders originally provided me his source code in 2014 and many details of his project {\itshape which I am very thankful for.} N\+O\+TE\+: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and N\+OT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for {\bfseries G\+P\+IB} ,A\+M\+I\+GO and S\+S80 state tracking.}
+{\bfseries Anders originally provided me his source code in 2014 and many details of his project {\itshape which I am very thankful for.} N\+O\+TE\+: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and N\+OT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for {\bfseries G\+P\+IB} ,{\bfseries A\+M\+I\+GO} and {\bfseries S\+S80} state tracking.}
 
 {\bfseries \subsection*{The H\+P\+Dir project was a vital documentation source for this project}}
 
@@ -349,14 +349,14 @@
 
 {\bfseries 
 \begin{DoxyItemize}
-\item Normally you will not be able to access S\+S80 drives unless you have versions of the H\+P85B roms installed
+\item Normally you will not be able to access {\bfseries S\+S80} drives unless you have versions of the {\bfseries H\+P85B} roms installed
 \begin{DoxyItemize}
 \item See the notes about usings a {\bfseries P\+R\+M-\/85} to add the required R\+O\+MS
 \end{DoxyItemize}
 \item Copy the \href{sdcard/amigo.cfg}{\tt amigo.\+cfg} to the SD card and rename it to \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg}
 \begin{DoxyItemize}
-\item This is an A\+M\+I\+GO drive only configuration
-\item The default amigo.\+cfg file defines four A\+M\+I\+GO drives ready to go
+\item This is an {\bfseries A\+M\+I\+GO} drive only configuration
+\item The default amigo.\+cfg file defines four {\bfseries A\+M\+I\+GO} drives ready to go
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
@@ -364,13 +364,13 @@
 
 {\bfseries 
 \begin{DoxyItemize}
-\item You needs the E\+MS rom for S\+S80 drives
+\item You needs the {\bfseries E\+MS} rom for {\bfseries S\+S80} drives
 \begin{DoxyItemize}
-\item If you do not have them see the H\+P85A notes above
+\item If you do not have them see the {\bfseries H\+P85A} notes above
 \end{DoxyItemize}
 \item You do not need to make any changes
 \begin{DoxyItemize}
-\item The default hpdisk.\+cfg uses two A\+M\+I\+GO drives and two S\+S80 drives ready to go
+\item The default \href{sdcard/hpdisk.cfg}{\tt hpdisk.\+cfg} uses two {\bfseries A\+M\+I\+GO} drives and two {\bfseries S\+S80} drives ready to go
 \end{DoxyItemize}
 \end{DoxyItemize}}
 
@@ -802,11 +802,11 @@
 \begin{DoxyItemize}
 \item There is a solution documented below in you do not have the hp85emulator
 \end{DoxyItemize}
-\item A HP utility commonly called \char`\"{}\+G\+E\+T\+S\+A\+V\char`\"{} translates between {\bfseries H\+P85} B\+A\+S\+IC and D\+T\+A8x (type E010 ) files
+\item A HP utility commonly called \char`\"{}\+G\+E\+T\+S\+A\+V\char`\"{} translates between {\bfseries H\+P85} B\+A\+S\+IC and D\+T\+A8x (type E010) files
 \begin{DoxyItemize}
 \item The utility adds functions \char`\"{}\+G\+E\+T\char`\"{} and \char`\"{}\+S\+A\+V\+E\char`\"{} to your {\bfseries H\+P85} computer
 \begin{DoxyItemize}
-\item This HP utility was part of a larger software package from HP for the H\+P85
+\item This HP utility was part of a larger software package from HP for the {\bfseries H\+P85}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -817,6 +817,9 @@
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
 \item Here is a direct link to {\itshape G\+E\+T\+S\+A\+V\+E.\+L\+IF} -\/ which is encoded as a {\bfseries L\+IF} file\+: \href{sdcard/LIF-files/GETSAVE.LIF}{\tt sdcard/\+L\+I\+F-\/files/\+G\+E\+T\+S\+A\+V\+E.\+L\+IF}
+\begin{DoxyItemize}
+\item Can be installed on the {\bfseries H\+P85} with using {\bfseries L\+O\+A\+D\+B\+IN \char`\"{}\+G\+E\+T\+S\+A\+V\+E\char`\"{}}
+\end{DoxyItemize}
 \item My hp85disk tools built in the firmware can tools translate between D\+T8x (type E010 ) and plain text A\+S\+C\+II files
 \begin{DoxyItemize}
 \item I provide stand alone {\bfseries L\+IF} tools in the lif subfolder of the github project that do the same thing
@@ -905,7 +908,7 @@
 \item Reinstall the SD Card in the emulator
 \end{DoxyItemize}}}
 
-{\bfseries {\bfseries Turn on the hp85disk emulator F\+I\+R\+ST -\/ T\+H\+EN turn on the H\+P85
+{\bfseries {\bfseries Turn on the hp85disk emulator F\+I\+R\+ST -\/ T\+H\+EN turn on the {\bfseries H\+P85}
 \begin{DoxyItemize}
 \item Trivia -\/ the {\bfseries H\+P85 only detects disk at power on or after a R\+E\+S\+ET}
 \begin{DoxyItemize}
@@ -963,9 +966,9 @@
 
 {\bfseries {\bfseries 
 \begin{DoxyItemize}
-\item You must have the hp85disk emulator power ON and atteched to you H\+P85
+\item You must have the hp85disk emulator power ON and atteched to you {\bfseries H\+P85}
 \begin{DoxyItemize}
-\item Turn on the H\+P85
+\item Turn on the {\bfseries H\+P85}
 \end{DoxyItemize}
 \item On your {\bfseries H\+P85} we will load a binary program called {\bfseries G\+E\+T\+S\+A\+VE}
 \begin{DoxyItemize}
@@ -1719,7 +1722,7 @@
 \item Using the Hewlett-\/\+Packard Series 80 -\/ {\bfseries P\+R\+M-\/85} by Bill Kotaska
 \item This makes my {\bfseries H\+P85A} look like and {\bfseries H\+P85B}
 \begin{DoxyItemize}
-\item I can also use the normal mass storage R\+OM if I limit to A\+M\+I\+GO drives.
+\item I can also use the normal mass storage R\+OM if I limit to {\bfseries A\+M\+I\+GO} drives.
 \item \href{http://vintagecomputers.sdfeu.org/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+sdfeu.\+org/hp85/prm85.\+htm}
 \begin{DoxyItemize}
 \item old site \href{http://vintagecomputers.site90.net/hp85/prm85.htm}{\tt http\+://vintagecomputers.\+site90.\+net/hp85/prm85.\+htm}
@@ -1858,7 +1861,7 @@
 \end{DoxyItemize}
 \item The ID keyword in \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} is the 16 bit reply to \char`\"{}\+Request Identify Reply\char`\"{}
 \begin{DoxyItemize}
-\item {\bfseries I\+M\+P\+O\+R\+T\+A\+N\+T! A\+M\+I\+GO drives cannot be queried for detailed drive layout information}
+\item {\bfseries I\+M\+P\+O\+R\+T\+A\+N\+T! $\ast$$\ast$\+A\+M\+I\+GO} drives cannot be queried for detailed drive layout information$\ast$$\ast$
 \begin{DoxyItemize}
 \item The {\bfseries H\+P85A} can only use its {\bfseries hard-\/coded firmware tables} to map {\bfseries ID} to disk layout parameters
 \item This implies that the {\bfseries H\+P85A} can only use {\bfseries A\+M\+I\+GO} disks it has defined in firmware.
@@ -1920,8 +1923,8 @@
 \end{DoxyItemize}
 \item The \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file tells the emulator how the emulated disk is defined.
 \begin{DoxyItemize}
-\item {\bfseries G\+P\+IB B\+US address}, {\bfseries P\+PR bit number} and {\bfseries A\+M\+I\+GO} {\bfseries Request Identify$\ast$ response values.}
-\item {\bfseries Additional detail for $\ast$$\ast$\+S\+S80} drives that newer computers can use.
+\item {\bfseries G\+P\+IB B\+US address}, {\bfseries P\+PR bit number} and {\bfseries A\+M\+I\+GO} {\bfseries Request Identify} response values.
+\item Additional detail for {\bfseries S\+S80} drives that newer computers can use.
 \item In A\+LL cases the file informs the code what parameters to emulate and report.
 \begin{DoxyItemize}
 \item A\+LL of these values M\+U\+ST match your computers expectations for drives it knows about.
@@ -2509,14 +2512,14 @@
 \begin{DoxyItemize}
 \item \href{gpib/gpib}{\tt gpib}
 \begin{DoxyItemize}
-\item My {\bfseries G\+P\+IB} code for A\+M\+I\+GO S\+S80 and P\+R\+I\+N\+T\+ER support
+\item My {\bfseries G\+P\+IB} code for {\bfseries A\+M\+I\+GO}, {\bfseries S\+S80} and {\bfseries P\+R\+I\+N\+T\+ER} support
 \item \href{gpib/amigo.c}{\tt amigo.\+c}
 \begin{DoxyItemize}
-\item A\+M\+I\+GO parser
+\item {\bfseries A\+M\+I\+GO} parser
 \end{DoxyItemize}
 \item \href{gpib/amigo.h}{\tt amigo.\+h}
 \begin{DoxyItemize}
-\item A\+M\+I\+GO parser
+\item {\bfseries A\+M\+I\+GO} parser
 \end{DoxyItemize}
 \item \href{gpib/defines.h}{\tt defines.\+h}
 \begin{DoxyItemize}
@@ -2580,15 +2583,15 @@
 \end{DoxyItemize}
 \item \href{gpib/references.txt}{\tt references.\+txt}
 \begin{DoxyItemize}
-\item Main S80 S\+S80 A\+M\+I\+GO and {\bfseries G\+P\+IB} references part numbers and web links
+\item Main {\bfseries S\+S80}, {\bfseries A\+M\+I\+GO} and {\bfseries G\+P\+IB} references part numbers and web links
 \end{DoxyItemize}
 \item \href{gpib/ss80.c}{\tt ss80.\+c}
 \begin{DoxyItemize}
-\item S\+S80 parser
+\item {\bfseries S\+S80} parser
 \end{DoxyItemize}
 \item \href{gpib/ss80.h}{\tt ss80.\+h}
 \begin{DoxyItemize}
-\item S\+S80 parser
+\item {\bfseries S\+S80} parser
 \end{DoxyItemize}
 \item \href{gpib/notes.txt}{\tt notes.\+txt}
 \begin{DoxyItemize}
@@ -2790,7 +2793,7 @@
 \end{DoxyItemize}
 \item \href{lif/85-SS80.TD0}{\tt 85-\/\+S\+S80.\+T\+D0} from hpmuseum.\+org
 \begin{DoxyItemize}
-\item Damaged S\+S80 Exerciser from HP Museum
+\item Damaged {\bfseries S\+S80} Exerciser from HP Museum
 \end{DoxyItemize}
 \item \href{lif/85-SS80.LIF}{\tt 85-\/\+S\+S80.\+L\+IF}
 \begin{DoxyItemize}
@@ -2916,27 +2919,27 @@
 {\bfseries {\bfseries {\bfseries 
 \begin{DoxyItemize}
 \item \mbox{[}sdcard\mbox{]}(sdcard)
-\item My {\bfseries H\+P85} A\+M\+I\+GO and S\+S80 disk images
+\item My {\bfseries H\+P85} {\bfseries A\+M\+I\+GO} and {\bfseries S\+S80} disk images
 \begin{DoxyItemize}
 \item Linux bash script to build A\+LL the disk images
 \begin{DoxyItemize}
 \item \href{sdcard/create_images.sh}{\tt sdcard/create\+\_\+images.\+sh}
 \begin{DoxyItemize}
-\item Files from A\+S\+C\+I\+I-\/files, L\+I\+F-\/files are added to all of the created images
+\item Files from {\bfseries A\+S\+C\+I\+I-\/files}, {\bfseries L\+I\+F-\/files} are added to all of the created images
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item All Disk definitions, address, P\+PR, D\+E\+B\+UG level for S\+S80 and A\+M\+I\+GO drives
+\item All Disk definitions, address,{\bfseries P\+PR}, {\bfseries D\+E\+B\+UG} level for {\bfseries S\+S80} and {\bfseries A\+M\+I\+GO} drives
 \begin{DoxyItemize}
 \item \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg}
 \begin{DoxyItemize}
 \item P\+R\+I\+N\+T\+ER address
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item Alternate configuration for using only A\+M\+I\+GO drives
+\item Alternate configuration for using only {\bfseries A\+M\+I\+GO} drives
 \begin{DoxyItemize}
 \item \href{sdcard/amigo.cfg}{\tt amigo.\+cfg}
 \begin{DoxyItemize}
-\item Use this if your system does not support S\+S80 drives
+\item Use this if your system does not support {\bfseries S\+S80} drives
 \begin{DoxyItemize}
 \item Copy this file over the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file after renaming the \href{sdcard/hpdisk.cfg}{\tt sdcard/hpdisk.\+cfg} file
 \end{DoxyItemize}
@@ -3045,15 +3048,15 @@
 \item \href{sdcard/traces}{\tt sdcard/traces}
 \begin{DoxyItemize}
 \item \href{sdcard/traces/amigo_trace.txt}{\tt amigo\+\_\+trace.\+txt}
-\item A\+M\+I\+GO trace file when connected to {\bfseries H\+P85} showing odd out of order command issue
+\item {\bfseries A\+M\+I\+GO} trace file when connected to {\bfseries H\+P85} showing odd out of order command issue
 \end{DoxyItemize}
 \item \href{sdcard/traces/gpib_reset.txt}{\tt gpib\+\_\+reset.\+txt}
 \begin{DoxyItemize}
-\item {\bfseries G\+P\+IB} reset trace when connected to H\+P85
+\item {\bfseries G\+P\+IB} reset trace when connected to {\bfseries H\+P85}
 \end{DoxyItemize}
 \item \href{sdcard/traces/gpib_trace.txt}{\tt gpib\+\_\+trace.\+txt}
 \begin{DoxyItemize}
-\item {\bfseries G\+P\+IB} transaction trace when connected to H\+P85 \subsubsection*{My {\itshape H\+P85} plot capture files}
+\item {\bfseries G\+P\+IB} transaction trace when connected to {\bfseries H\+P85} \subsubsection*{My {\itshape H\+P85} plot capture files}
 \end{DoxyItemize}
 \item \mbox{[}plots\mbox{]}(sdcard/plots\mbox{]}
 \begin{DoxyItemize}
@@ -3087,7 +3090,7 @@
 \end{DoxyItemize}
 \item \href{sdcard/ASCII-files/GETSAVE.LIF}{\tt G\+E\+T\+S\+A\+V\+E.\+L\+IF}
 \begin{DoxyItemize}
-\item Adds G\+ET and S\+A\+VE commands to an H\+P85
+\item Adds {\bfseries G\+ET} and {\bfseries S\+A\+VE} commands to an {\bfseries H\+P85}
 \end{DoxyItemize}
 \item \href{sdcard/ASCII-files/GPIB-T.lif}{\tt G\+P\+I\+B-\/\+T.\+lif}
 \begin{DoxyItemize}
@@ -3113,6 +3116,7 @@
 \begin{DoxyItemize}
 \item {\bfseries G\+E\+T\+S\+A\+VE} can be loaded on an {\bfseries H\+P85} to G\+ET and S\+A\+VE Basic text files
 \begin{DoxyItemize}
+\item This can be installed on your {\bfseries H\+P85} with this command L\+O\+A\+D\+B\+IN \char`\"{}\+G\+E\+T\+S\+A\+V\+E\char`\"{}
 \item N\+O\+TE\+: my L\+IF utilities can translate between A\+S\+C\+II files and files in G\+E\+T/\+S\+A\+VE format
 \end{DoxyItemize}
 \end{DoxyItemize}

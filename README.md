@@ -18,7 +18,7 @@
      * Disk images are **LIF** encoded files that are compatible with **HP85A/B** and many other computers
      * Missing disk image files are created automatically if 
   * The emulator will automatically create missing **LIF** images defined in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) on the SD CARD
-  * There are disk images for AMIGO and SS80 disks
+  * There are disk images for **AMIGO** and **SS80** disks
     * **AMIGO** drives work with **HP85A** 
     * **SS80** drives work with **HP85B** (or **HP85A** with **PRM-85** with modified EMS and Electronic disk ROM add on board see links)
       * You may have up to 4 disks with V1 hardware and 8 with V2 hardware
@@ -89,7 +89,7 @@ NOTE:
  I ended up rewritting virtually all of Anders project.
  This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work.
  I did this one part at a time as I read the HP documents covering the protocols and specifications.
- Although rewritten I have maintained the basic concept of using  state machines for **GPIB** ,AMIGO and SS80 state tracking.
+ Although rewritten I have maintained the basic concept of using  state machines for **GPIB** ,**AMIGO** and **SS80** state tracking.
 
 ## The HPDir project was a vital documentation source for this project
   * <http://www.hp9845.net/9845/projects/hpdir>
@@ -193,17 +193,17 @@ ___
     * You should not see the **sdcard** folder on the SD Card itself just the contents of that folder and its subfolders
 
 #### HP85A users SD card setup
-  * Normally you will not be able to access SS80 drives unless you have versions of the HP85B roms installed
+  * Normally you will not be able to access **SS80** drives unless you have versions of the **HP85B** roms installed
     * See the notes about usings a **PRM-85** to add the required ROMS
   * Copy the [amigo.cfg](sdcard/amigo.cfg) to the SD card and rename it to [hpdisk.cfg](sdcard/hpdisk.cfg)
-    * This is an AMIGO drive only configuration
-    * The default amigo.cfg file defines four AMIGO drives ready to go
+    * This is an **AMIGO** drive only configuration
+    * The default amigo.cfg file defines four **AMIGO** drives ready to go
 
 #### HP85B users SD card setup
-  * You needs the EMS rom for SS80 drives
-    * If you do not have them see the HP85A notes above
+  * You needs the **EMS** rom for **SS80** drives
+    * If you do not have them see the **HP85A** notes above
   * You do not need to make any changes
-    * The default hpdisk.cfg uses two AMIGO drives and two SS80 drives ready to go
+    * The default [hpdisk.cfg](sdcard/hpdisk.cfg) uses two **AMIGO** drives and two **SS80** drives ready to go
 
 ___ 
 
@@ -447,12 +447,13 @@ ___
   * Requirements
     * hp85disk emulator 
       * There is a solution documented below in you do not have the hp85emulator
-    * A HP utility commonly called "GETSAV" translates between **HP85** BASIC and DTA8x (type E010 ) files
+    * A HP utility commonly called "GETSAV" translates between **HP85** BASIC and DTA8x (type E010) files
       * The utility adds functions "GET" and "SAVE" to your **HP85** computer
-        * This HP utility was part of a larger software package from HP for the HP85
+        * This HP utility was part of a larger software package from HP for the **HP85**
 
 ## GETSAV is called GETSAVE inside my LIF disk images
   * Here is a direct link to *GETSAVE.LIF* - which is encoded as a **LIF** file: [sdcard/LIF-files/GETSAVE.LIF](sdcard/LIF-files/GETSAVE.LIF)
+    * Can be installed on the **HP85** with using **LOADBIN "GETSAVE"**
   * My hp85disk tools built in the firmware can tools translate between DT8x (type E010 ) and plain text ASCII files
     * I provide stand alone **LIF** tools in the lif subfolder of the github project that do the same thing
   * Used together with the **HP85** these tools can translate between ASCII plain text and *HP85* BASIC programs!!!
@@ -496,7 +497,7 @@ ___
     * Save this file as **TEST.txt** onto the SD Card and exit your editor 
       * Unmount the SD Card "eject it" in windows jargon
       * Reinstall the SD Card in the emulator
-  * Turn on the hp85disk emulator FIRST - THEN turn on the HP85
+  * Turn on the hp85disk emulator FIRST - THEN turn on the **HP85**
     * Trivia - the **HP85 only detects disk at power on or after a RESET** 
       * **Therefore the emulator MUST be running first**
     * Open your serial program with the documented settings
@@ -522,8 +523,8 @@ ___
         * In the future you can use **LOAD "TESTB"**
 
 ## Exporting HP85 BASIC programs to ASCII plain text
-  * You must have the hp85disk emulator power ON and atteched to you HP85
-    * Turn on the HP85
+  * You must have the hp85disk emulator power ON and atteched to you **HP85**
+    * Turn on the **HP85**
   * On your **HP85** we will load a binary program called **GETSAVE**
     * **LOADBIN "GETSAVE"**
       * Note: quotes are always required on **HP85** BASIC file names
@@ -925,7 +926,7 @@ ___
   * Testing was done with an **HP85A** (with extended EMS ROM) 
     * Using the Hewlett-Packard Series 80 - **PRM-85** by Bill Kotaska
     * This makes my **HP85A** look like and **HP85B** 
-      * I can also use the normal mass storage ROM if I limit to AMIGO drives.
+      * I can also use the normal mass storage ROM if I limit to **AMIGO** drives.
       * http://vintagecomputers.sdfeu.org/hp85/prm85.htm
        * old site http://vintagecomputers.site90.net/hp85/prm85.htm
 
@@ -1013,7 +1014,7 @@ ___
       * The **PPR** keyword in the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the **PPR** bit the drive uses
         * **PPR** of **0 = PPR** response on **GPIB** data bus **bit number 8** - as per **GPIB BUS specifications**.
       * The ID keyword in [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) is the 16 bit reply to "Request Identify Reply"
-        * **IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information**
+        * **IMPORTANT! **AMIGO** drives cannot be queried for detailed drive layout information**
           * The **HP85A** can only use its **hard-coded firmware tables** to map **ID** to disk layout parameters
           * This implies that the **HP85A** can only use **AMIGO** disks it has defined in firmware.
         * The **HP85B** can however; query newer **SS80** drives for detailed drive layout information instead.
@@ -1043,7 +1044,7 @@ ___
        * See gpib/drives_parameters.txt for a list on some known value (CREDITS; these are from the HPDir project)
      * In all cases the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) parameters MUST match these expectations.
    * The [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file tells the emulator how the emulated disk is defined.
-     * **GPIB BUS address**, **PPR bit number** and **AMIGO** **Request Identify* response values.
+     * **GPIB BUS address**, **PPR bit number** and **AMIGO** **Request Identify** response values.
      * Additional detail for **SS80** drives that newer computers can use.
      * In ALL cases the file informs the code what parameters to emulate and report.
        * ALL of these values MUST match your computers expectations for drives it knows about.
@@ -1414,11 +1415,11 @@ ___
 
 ## **GPIB** related
   * [gpib](gpib/gpib)
-    * My **GPIB** code for AMIGO SS80 and PRINTER support
+    * My **GPIB** code for **AMIGO**, **SS80** and **PRINTER** support
     * [amigo.c](gpib/amigo.c)
-      * AMIGO parser
+      * **AMIGO** parser
     * [amigo.h](gpib/amigo.h)
-      * AMIGO parser
+      * **AMIGO** parser
     * [defines.h](gpib/defines.h)
       * Main **GPIB** header and configuration options
     * [debug.txt](debug.txt)
@@ -1450,11 +1451,11 @@ ___
     * [printer.h](gpib/printer.h)
       * **GPIB** printer capture code
     * [references.txt](gpib/references.txt)
-      * Main S80 SS80 AMIGO and **GPIB** references part numbers and web links
+      * Main **SS80**, **AMIGO** and **GPIB** references part numbers and web links
     * [ss80.c](gpib/ss80.c)
-      * SS80 parser
+      * **SS80** parser
     * [ss80.h](gpib/ss80.h)
-      * SS80 parser
+      * **SS80** parser
     * [notes.txt](gpib/notes.txt)
       * My notes on **GPIB** bus states as it relates to the project
 
@@ -1561,7 +1562,7 @@ ___
       * [README.txt](lif/README.txt)
         * Notes on each file under **LIF** and lif/teledisk
       * [85-SS80.TD0](lif/85-SS80.TD0) from hpmuseum.org
-        * Damaged SS80 Exerciser from HP Museum
+        * Damaged **SS80** Exerciser from HP Museum
       * [85-SS80.LIF](lif/85-SS80.LIF)
         * The current converter automatically did these repairs
           *  cyl 11, side 0 sector 116 mapped to 8
@@ -1620,16 +1621,16 @@ ___
 
 ## SD Card files for project
   * [sdcard](sdcard)
-  * My **HP85** AMIGO and SS80 disk images
+  * My **HP85** **AMIGO** and **SS80** disk images
     * Linux bash script to build ALL the disk images
       * [sdcard/create_images.sh](sdcard/create_images.sh)
-        * Files from ASCII-files, LIF-files are added to all of the created images
-    * All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives
+        * Files from **ASCII-files**, **LIF-files** are added to all of the created images
+    * All Disk definitions, address,**PPR**, **DEBUG** level for **SS80** and **AMIGO** drives
       * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
         * PRINTER address
-    * Alternate configuration for using only AMIGO drives
+    * Alternate configuration for using only **AMIGO** drives
       * [amigo.cfg](sdcard/amigo.cfg)
-        * Use this if your system does not support SS80 drives 
+        * Use this if your system does not support **SS80** drives 
            * Copy this file over the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file after renaming the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file
         * PRINTER address
 
@@ -1688,11 +1689,11 @@ ___
 ### My *HP85* bus trace files
   * [sdcard/traces](sdcard/traces)
     * [amigo_trace.txt](sdcard/traces/amigo_trace.txt)
-    * AMIGO trace file when connected to **HP85** showing odd out of order command issue
+    * **AMIGO** trace file when connected to **HP85** showing odd out of order command issue
   * [gpib_reset.txt](sdcard/traces/gpib_reset.txt)
-    * **GPIB** reset trace when connected to HP85
+    * **GPIB** reset trace when connected to **HP85**
   * [gpib_trace.txt](sdcard/traces/gpib_trace.txt)
-    * **GPIB** transaction trace when connected to HP85
+    * **GPIB** transaction trace when connected to **HP85**
 ### My *HP85* plot capture files
   * [plots](sdcard/plots]
     * [plot1.plt](sdcard/plots/plot1.plt)
@@ -1717,7 +1718,7 @@ ___
   * [LIF-files](sdcard/LIF-files)
     * Internal names are the same as the **LIF** name without extension
   * [GETSAVE.LIF](sdcard/ASCII-files/GETSAVE.LIF)
-    * Adds GET and SAVE commands to an HP85
+    * Adds **GET** and **SAVE** commands to an **HP85**
   * [GPIB-T.lif](sdcard/ASCII-files/GPIB-T.lif)
     * Simple **GPIB** test
   * [RWTESTB.lif](sdcard/ASCII-files/RWTESTB.lif)
@@ -1731,6 +1732,7 @@ ___
 ### *GETSAV* documentation
   * [notes](sdcard/notes)
     * **GETSAVE** can be loaded on an **HP85** to GET and SAVE Basic text files
+	  * This can be installed on your **HP85** with this command LOADBIN "GETSAVE"
       * NOTE: my LIF utilities can translate between ASCII files and files in GET/SAVE format 
   * Various notes 
 

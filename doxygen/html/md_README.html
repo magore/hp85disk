@@ -93,7 +93,7 @@ README</h1>
 </ul>
 <p></b></p>
 <p><b>The emulator will automatically create missing <b>LIF</b> images defined in <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> on the SD CARD</p><ul>
-<li>There are disk images for AMIGO and SS80 disks<ul>
+<li>There are disk images for <b>AMIGO</b> and <b>SS80</b> disks<ul>
 <li><b>AMIGO</b> drives work with <b>HP85A</b></li>
 <li><b>SS80</b> drives work with <b>HP85B</b> (or <b>HP85A</b> with <b>PRM-85</b> with modified EMS and Electronic disk ROM add on board see links)<ul>
 <li>You may have up to 4 disks with V1 hardware and 8 with V2 hardware</li>
@@ -199,7 +199,7 @@ README</h1>
 </li>
 </ul>
 <p></b></p>
-<p><b>Anders originally provided me his source code in 2014 and many details of his project <em>which I am very thankful for.</em> NOTE: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for <b>GPIB</b> ,AMIGO and SS80 state tracking.</b></p>
+<p><b>Anders originally provided me his source code in 2014 and many details of his project <em>which I am very thankful for.</em> NOTE: I ended up rewritting virtually all of Anders project. This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work. I did this one part at a time as I read the HP documents covering the protocols and specifications. Although rewritten I have maintained the basic concept of using state machines for <b>GPIB</b> ,<b>AMIGO</b> and <b>SS80</b> state tracking.</b></p>
 <p><b></p><h2>The HPDir project was a vital documentation source for this project</h2>
 <p></b></p>
 <p><b></p><ul>
@@ -386,13 +386,13 @@ README</h1>
 <p><b></p><h4>HP85A users SD card setup</h4>
 <p></b></p>
 <p><b></p><ul>
-<li>Normally you will not be able to access SS80 drives unless you have versions of the HP85B roms installed<ul>
+<li>Normally you will not be able to access <b>SS80</b> drives unless you have versions of the <b>HP85B</b> roms installed<ul>
 <li>See the notes about usings a <b>PRM-85</b> to add the required ROMS</li>
 </ul>
 </li>
 <li>Copy the <a href="sdcard/amigo.cfg">amigo.cfg</a> to the SD card and rename it to <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a><ul>
-<li>This is an AMIGO drive only configuration</li>
-<li>The default amigo.cfg file defines four AMIGO drives ready to go</li>
+<li>This is an <b>AMIGO</b> drive only configuration</li>
+<li>The default amigo.cfg file defines four <b>AMIGO</b> drives ready to go</li>
 </ul>
 </li>
 </ul>
@@ -400,12 +400,12 @@ README</h1>
 <p><b></p><h4>HP85B users SD card setup</h4>
 <p></b></p>
 <p><b></p><ul>
-<li>You needs the EMS rom for SS80 drives<ul>
-<li>If you do not have them see the HP85A notes above</li>
+<li>You needs the <b>EMS</b> rom for <b>SS80</b> drives<ul>
+<li>If you do not have them see the <b>HP85A</b> notes above</li>
 </ul>
 </li>
 <li>You do not need to make any changes<ul>
-<li>The default hpdisk.cfg uses two AMIGO drives and two SS80 drives ready to go</li>
+<li>The default <a href="sdcard/hpdisk.cfg">hpdisk.cfg</a> uses two <b>AMIGO</b> drives and two <b>SS80</b> drives ready to go</li>
 </ul>
 </li>
 </ul>
@@ -803,9 +803,9 @@ README</h1>
 <li>There is a solution documented below in you do not have the hp85emulator</li>
 </ul>
 </li>
-<li>A HP utility commonly called "GETSAV" translates between <b>HP85</b> BASIC and DTA8x (type E010 ) files<ul>
+<li>A HP utility commonly called "GETSAV" translates between <b>HP85</b> BASIC and DTA8x (type E010) files<ul>
 <li>The utility adds functions "GET" and "SAVE" to your <b>HP85</b> computer<ul>
-<li>This HP utility was part of a larger software package from HP for the HP85</li>
+<li>This HP utility was part of a larger software package from HP for the <b>HP85</b></li>
 </ul>
 </li>
 </ul>
@@ -817,7 +817,10 @@ README</h1>
 <p><b><b></p><h2>GETSAV is called GETSAVE inside my LIF disk images</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
-<li>Here is a direct link to <em>GETSAVE.LIF</em> - which is encoded as a <b>LIF</b> file: <a href="sdcard/LIF-files/GETSAVE.LIF">sdcard/LIF-files/GETSAVE.LIF</a></li>
+<li>Here is a direct link to <em>GETSAVE.LIF</em> - which is encoded as a <b>LIF</b> file: <a href="sdcard/LIF-files/GETSAVE.LIF">sdcard/LIF-files/GETSAVE.LIF</a><ul>
+<li>Can be installed on the <b>HP85</b> with using <b>LOADBIN "GETSAVE"</b></li>
+</ul>
+</li>
 <li>My hp85disk tools built in the firmware can tools translate between DT8x (type E010 ) and plain text ASCII files<ul>
 <li>I provide stand alone <b>LIF</b> tools in the lif subfolder of the github project that do the same thing</li>
 </ul>
@@ -899,7 +902,7 @@ README</h1>
 <li>Reinstall the SD Card in the emulator</li>
 </ul>
 <p></b></b></p>
-<p><b><b>Turn on the hp85disk emulator FIRST - THEN turn on the HP85</p><ul>
+<p><b><b>Turn on the hp85disk emulator FIRST - THEN turn on the <b>HP85</b></p><ul>
 <li>Trivia - the <b>HP85 only detects disk at power on or after a RESET</b><ul>
 <li><b>Therefore the emulator MUST be running first</b></li>
 </ul>
@@ -952,8 +955,8 @@ README</h1>
 <p><b><b></p><h2>Exporting HP85 BASIC programs to ASCII plain text</h2>
 <p></b></b></p>
 <p><b><b></p><ul>
-<li>You must have the hp85disk emulator power ON and atteched to you HP85<ul>
-<li>Turn on the HP85</li>
+<li>You must have the hp85disk emulator power ON and atteched to you <b>HP85</b><ul>
+<li>Turn on the <b>HP85</b></li>
 </ul>
 </li>
 <li>On your <b>HP85</b> we will load a binary program called <b>GETSAVE</b><ul>
@@ -1623,7 +1626,7 @@ README</h1>
 <li>Testing was done with an <b>HP85A</b> (with extended EMS ROM)<ul>
 <li>Using the Hewlett-Packard Series 80 - <b>PRM-85</b> by Bill Kotaska</li>
 <li>This makes my <b>HP85A</b> look like and <b>HP85B</b><ul>
-<li>I can also use the normal mass storage ROM if I limit to AMIGO drives.</li>
+<li>I can also use the normal mass storage ROM if I limit to <b>AMIGO</b> drives.</li>
 <li><a href="http://vintagecomputers.sdfeu.org/hp85/prm85.htm">http://vintagecomputers.sdfeu.org/hp85/prm85.htm</a><ul>
 <li>old site <a href="http://vintagecomputers.site90.net/hp85/prm85.htm">http://vintagecomputers.site90.net/hp85/prm85.htm</a></li>
 </ul>
@@ -1746,7 +1749,7 @@ README</h1>
 </ul>
 </li>
 <li>The ID keyword in <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> is the 16 bit reply to "Request Identify Reply"<ul>
-<li><b>IMPORTANT! AMIGO drives cannot be queried for detailed drive layout information</b><ul>
+<li><b>IMPORTANT! **AMIGO</b> drives cannot be queried for detailed drive layout information**<ul>
 <li>The <b>HP85A</b> can only use its <b>hard-coded firmware tables</b> to map <b>ID</b> to disk layout parameters</li>
 <li>This implies that the <b>HP85A</b> can only use <b>AMIGO</b> disks it has defined in firmware.</li>
 </ul>
@@ -1807,8 +1810,8 @@ README</h1>
 </ul>
 </li>
 <li>The <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file tells the emulator how the emulated disk is defined.<ul>
-<li><b>GPIB BUS address</b>, <b>PPR bit number</b> and <b>AMIGO</b> <b>Request Identify* response values.</b></li>
-<li><b>Additional detail for **SS80</b> drives that newer computers can use.</li>
+<li><b>GPIB BUS address</b>, <b>PPR bit number</b> and <b>AMIGO</b> <b>Request Identify</b> response values.</li>
+<li>Additional detail for <b>SS80</b> drives that newer computers can use.</li>
 <li>In ALL cases the file informs the code what parameters to emulate and report.<ul>
 <li>ALL of these values MUST match your computers expectations for drives it knows about.</li>
 </ul>
@@ -2316,13 +2319,13 @@ README</h1>
 <p></b></b></b></p>
 <p><b><b><b></p><ul>
 <li><a href="gpib/gpib">gpib</a><ul>
-<li>My <b>GPIB</b> code for AMIGO SS80 and PRINTER support</li>
+<li>My <b>GPIB</b> code for <b>AMIGO</b>, <b>SS80</b> and <b>PRINTER</b> support</li>
 <li><a href="gpib/amigo.c">amigo.c</a><ul>
-<li>AMIGO parser</li>
+<li><b>AMIGO</b> parser</li>
 </ul>
 </li>
 <li><a href="gpib/amigo.h">amigo.h</a><ul>
-<li>AMIGO parser</li>
+<li><b>AMIGO</b> parser</li>
 </ul>
 </li>
 <li><a href="gpib/defines.h">defines.h</a><ul>
@@ -2386,15 +2389,15 @@ README</h1>
 </ul>
 </li>
 <li><a href="gpib/references.txt">references.txt</a><ul>
-<li>Main S80 SS80 AMIGO and <b>GPIB</b> references part numbers and web links</li>
+<li>Main <b>SS80</b>, <b>AMIGO</b> and <b>GPIB</b> references part numbers and web links</li>
 </ul>
 </li>
 <li><a href="gpib/ss80.c">ss80.c</a><ul>
-<li>SS80 parser</li>
+<li><b>SS80</b> parser</li>
 </ul>
 </li>
 <li><a href="gpib/ss80.h">ss80.h</a><ul>
-<li>SS80 parser</li>
+<li><b>SS80</b> parser</li>
 </ul>
 </li>
 <li><a href="gpib/notes.txt">notes.txt</a><ul>
@@ -2592,7 +2595,7 @@ README</h1>
 </ul>
 </li>
 <li><a href="lif/85-SS80.TD0">85-SS80.TD0</a> from hpmuseum.org<ul>
-<li>Damaged SS80 Exerciser from HP Museum</li>
+<li>Damaged <b>SS80</b> Exerciser from HP Museum</li>
 </ul>
 </li>
 <li><a href="lif/85-SS80.LIF">85-SS80.LIF</a><ul>
@@ -2717,24 +2720,24 @@ README</h1>
 <p></b></b></b></p>
 <p><b><b><b></p><ul>
 <li>[sdcard](sdcard)</li>
-<li>My <b>HP85</b> AMIGO and SS80 disk images<ul>
+<li>My <b>HP85</b> <b>AMIGO</b> and <b>SS80</b> disk images<ul>
 <li>Linux bash script to build ALL the disk images<ul>
 <li><a href="sdcard/create_images.sh">sdcard/create_images.sh</a><ul>
-<li>Files from ASCII-files, LIF-files are added to all of the created images</li>
+<li>Files from <b>ASCII-files</b>, <b>LIF-files</b> are added to all of the created images</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>All Disk definitions, address, PPR, DEBUG level for SS80 and AMIGO drives<ul>
+<li>All Disk definitions, address,<b>PPR</b>, <b>DEBUG</b> level for <b>SS80</b> and <b>AMIGO</b> drives<ul>
 <li><a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a><ul>
 <li>PRINTER address</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Alternate configuration for using only AMIGO drives<ul>
+<li>Alternate configuration for using only <b>AMIGO</b> drives<ul>
 <li><a href="sdcard/amigo.cfg">amigo.cfg</a><ul>
-<li>Use this if your system does not support SS80 drives<ul>
+<li>Use this if your system does not support <b>SS80</b> drives<ul>
 <li>Copy this file over the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file after renaming the <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> file</li>
 </ul>
 </li>
@@ -2839,15 +2842,15 @@ README</h1>
 </li>
 <li><a href="sdcard/traces">sdcard/traces</a><ul>
 <li><a href="sdcard/traces/amigo_trace.txt">amigo_trace.txt</a></li>
-<li>AMIGO trace file when connected to <b>HP85</b> showing odd out of order command issue</li>
+<li><b>AMIGO</b> trace file when connected to <b>HP85</b> showing odd out of order command issue</li>
 </ul>
 </li>
 <li><a href="sdcard/traces/gpib_reset.txt">gpib_reset.txt</a><ul>
-<li><b>GPIB</b> reset trace when connected to HP85</li>
+<li><b>GPIB</b> reset trace when connected to <b>HP85</b></li>
 </ul>
 </li>
 <li><a href="sdcard/traces/gpib_trace.txt">gpib_trace.txt</a><ul>
-<li><b>GPIB</b> transaction trace when connected to HP85 <h3>My <em>HP85</em> plot capture files</h3>
+<li><b>GPIB</b> transaction trace when connected to <b>HP85</b> <h3>My <em>HP85</em> plot capture files</h3>
 </li>
 </ul>
 </li>
@@ -2884,7 +2887,7 @@ README</h1>
 </ul>
 </li>
 <li><a href="sdcard/ASCII-files/GETSAVE.LIF">GETSAVE.LIF</a><ul>
-<li>Adds GET and SAVE commands to an HP85</li>
+<li>Adds <b>GET</b> and <b>SAVE</b> commands to an <b>HP85</b></li>
 </ul>
 </li>
 <li><a href="sdcard/ASCII-files/GPIB-T.lif">GPIB-T.lif</a><ul>
@@ -2910,6 +2913,7 @@ README</h1>
 </li>
 <li><a href="sdcard/notes">notes</a><ul>
 <li><b>GETSAVE</b> can be loaded on an <b>HP85</b> to GET and SAVE Basic text files<ul>
+<li>This can be installed on your <b>HP85</b> with this command LOADBIN "GETSAVE"</li>
 <li>NOTE: my LIF utilities can translate between ASCII files and files in GET/SAVE format</li>
 </ul>
 </li>
@@ -2923,7 +2927,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 14 2020 14:53:51 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 14 2020 15:39:30 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
