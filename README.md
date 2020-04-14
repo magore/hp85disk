@@ -1028,7 +1028,7 @@ ___
    * (I do not have access to other computers to test for full compatibility)
    * This means that a few **AMIGO** and **SS80** **GPIB** commands are not yet implemented!
      * Some of these are extended reporting modes - many of which are optional.
-   * Note: The **HP85A** can only use **AMIGO** drives - unless you have the **HP85B** EMS ROM installed in your HPH9A
+   * Note: The **HP85A** can only use **AMIGO** drives - unless you have the **HP85B** EMS ROM installed in your **HP85A**
       * This can be done with the **PRM-85** expansion board offered by Bill Kotaska (a great product!)
  * To attach a drive to our computer, real or otherwise, you must know:
    * The correct **GPIB BUS address** and **parallel pool response (PPR)** bit number your computer expects.
