@@ -734,11 +734,11 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
   * **make install**
     * Installs **lif** and **mkcfg** tools
 
-### Compile and updating Firmware - assumes you have compiletools installed
+### Compile and updating Firmware - assumes you have all tools installed
   * Note: in the steps below you can override defaults
     * You just tack on settings like this to the end of the make command line
-      * **AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3**
-      * **AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3**
+      * **AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS4 PORT=/dev/ttyS3**
+      * **AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3**
   * Now attached the emulator miniusb port to your computer 
     * Make sure you have installed the software in the previous steps and discovered the hp85disk serial port
 
