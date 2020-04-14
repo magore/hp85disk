@@ -1023,7 +1023,7 @@ ___
 ___
 
 ## Technical Limitations
- * Multiple drive support is implements but UNIT support is NOT
+ * Multiple drive support is implemented but multiple UNIT support is NOT
  * While most **AMIGO** and **SS80** feature have been implemented my primary focus was on the **HP85A** and **HP85B**.
    * (I do not have access to other computers to test for full compatibility)
    * This means that a few **AMIGO** and **SS80** **GPIB** commands are not yet implemented!
