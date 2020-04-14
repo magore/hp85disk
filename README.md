@@ -61,7 +61,7 @@ ___
      * work in progress
    * Advanced Hardware Reset circuit
    * Micro size SD card interface
-  * [Current design files](https://github.com/magore/hp85disk/tree/master/board/V2/releases/HP85Disk_release_03)
+  * [Current design files](https://github.com/magore/hp85disk/tree/master/board/releases/HP85Disk_release_03)
 ## V2 Pictures by Jay Hamlin
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-1.png)
 ![](https://github.com/magore/hp85disk/blob/master/hp85disk-2.png)
@@ -185,7 +185,7 @@ ___
     * If you wish to create a new one follow these steps
   * There are working copies of disk images under the github sdcard folder
   * Open a web browser to https://github.com/magore/hp85disk
-    * Click on the Green ***Colne or Download** button
+    * Click on the Green **Clone or Download** button
     * Pick download as ZIP
     * You can extract all of the folders and files to a folder of your choid
     * locate the **sdcard* folder
