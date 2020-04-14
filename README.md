@@ -762,14 +762,35 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
     * Now hold down **RESET** on the hp85disk board - release RESET and press Enter quickly
       * You have a short Window after releasing RESET to Press Enter
 
+### External programmers
+  * **avrisp** is one of the lowest cost *In System programer* **ISP** avaliable 
+    * Also called **Arduino as ISP** 
+    * This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
+      * See: https://www.arduino.cc/en/tutorial/arduinoISP
+        * Example: Search for **arduino nano 3.0** cost about $10 and has small formfactor.
+        * You do not want the USB version as the software is different
+      * Program your arduino using the **Arduino as ISP example**
+    * Connections to hp85disk ISP header:
+      * Arduino  hp85disk ISP header
+      * **D12 -  1**
+	  * **5V     NC** = Not Connected! see note
+      * **D13 -  3**
+      * **D11 -  4**
+      * **D10 -  5**
+      * **GND -  6**
+         * Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+
 ### Update Firmware with external programmer
   * You will need and AVR programmer supported by **avrdude** (part of avrtools)
     * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **AVRDUDE_PORT** in next [Makefile](Makefile) section
+    * Lets assume 
+      * External programmer is attached as **/dev/ttyS4**
+      * hp85disk is attached as **/dev/ttyS3**
   * **make clean**
   * **make**
   * **make install**
   * **make flash-isp-release* # do not press Enter yet!*
-    * **make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3**
+    * **make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4**
     * OR
   * **make flash-isp**         # do not press Enter yet!
     * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
@@ -778,7 +799,7 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
   * **Note: You can add *term* after *ANY* make flash commands**
   * Examples:
     * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb**
-    * **make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS5**
+    * **make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4**
   * **AVRDUDE_PORT** must be set to the programmer port name
   * **PORT** must be set to the hp85disk emulator serial port name
 
@@ -795,6 +816,7 @@ ___
         * My device works with 0.25 but 5 is safe
     * **AVRDUDE_ISP**
       * You will need and AVR programmer supported by **avrdude** (part of avrtools)
+        * The built in **optiboot* loader is called **arduino**
         * You can list all of the supported programmers using the command **avrdude -c list**
           * Note: **ISP** = *In System Programmer*
           * **avrdude device programmer name as known by avrdude**
@@ -808,10 +830,11 @@ ___
               * FYI: The Arduino installer package includes the source for the Arduino ISP in the Example Programs if you want to make one
           * **Note: JTAG is disabled for this project so you can not use a JTAG programmer**
     * **AVRDUDE_PORT**
-      * Same as **PORT** name, below, for avrisp and arduino
-      * **usb** for **atmelice_isp**
+      * Depends on the emulator and operating system used
+        * Example: on Linux it might be **/dev/ttyUSB1** for a **avrisp** and **arduino**
+        * **usb** for **atmelice_isp** on Linux - the emulator hardware will typically have instructions
     * **PORT** is the hp85disk emulator serial PORT name as detected by your operating system
-      * **/dev/ttyUSB0** on my system
+      * **/dev/ttyUSB0** on my system - Linux
     * **BAUD**  is the hp85disk emulator serial baud rate 
       * **115200** = a safe default that most systems can manage
         * NOTE: My development environment works with 500000 baud but I use 115200 for distribution and this project

@@ -1381,18 +1381,54 @@ README</h1>
 </li>
 </ul>
 <p></b></b></p>
+<p><b><b></p><h3>External programmers</h3>
+<p></b></b></p>
+<p><b><b></p><ul>
+<li><b>avrisp</b> is one of the lowest cost <em>In System programer</em> <b>ISP</b> avaliable<ul>
+<li>Also called <b>Arduino as ISP</b></li>
+<li>This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself<ul>
+<li>See: <a href="https://www.arduino.cc/en/tutorial/arduinoISP">https://www.arduino.cc/en/tutorial/arduinoISP</a><ul>
+<li>Example: Search for <b>arduino nano 3.0</b> cost about $10 and has small formfactor.</li>
+<li>You do not want the USB version as the software is different</li>
+</ul>
+</li>
+<li>Program your arduino using the <b>Arduino as ISP example</b></li>
+</ul>
+</li>
+<li>Connections to hp85disk ISP header:<ul>
+<li>Arduino hp85disk ISP header</li>
+<li><b>D12 - 1</b></li>
+<li><b>5V NC</b> = Not Connected! see note</li>
+<li><b>D13 - 3</b></li>
+<li><b>D11 - 4</b></li>
+<li><b>D10 - 5</b></li>
+<li><b>GND - 6</b><ul>
+<li>Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p></b></b></p>
 <p><b><b></p><h3>Update Firmware with external programmer</h3>
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>You will need and AVR programmer supported by <b>avrdude</b> (part of avrtools)<ul>
 <li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>AVRDUDE_PORT</b> in next [Makefile](Makefile) section</li>
+<li>Lets assume<ul>
+<li>External programmer is attached as **/dev/ttyS4**</li>
+<li>hp85disk is attached as **/dev/ttyS3**</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>make clean</b></li>
 <li><b>make</b></li>
 <li><b>make install</b></li>
 <li><b>make flash-isp-release* # do not press Enter yet!*<ul>
-<li>**make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</li>
+<li>**make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4</li>
 <li>OR</li>
 </ul>
 </b></li>
@@ -1408,7 +1444,7 @@ README</h1>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
 <li>Examples:<ul>
 <li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb</b></li>
-<li><b>make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS5</b></li>
+<li><b>make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4</b></li>
 </ul>
 </li>
 <li><b>AVRDUDE_PORT</b> must be set to the programmer port name</li>
@@ -1435,6 +1471,7 @@ README</h1>
 </li>
 <li><b>AVRDUDE_ISP</b><ul>
 <li>You will need and AVR programmer supported by <b>avrdude</b> (part of avrtools)<ul>
+<li>The built in <b>optiboot* loader is called **arduino</b></li>
 <li>You can list all of the supported programmers using the command <b>avrdude -c list</b><ul>
 <li>Note: <b>ISP</b> = <em>In System Programmer</em></li>
 <li><b>avrdude device programmer name as known by avrdude</b><ul>
@@ -1462,12 +1499,15 @@ README</h1>
 </ul>
 </li>
 <li><b>AVRDUDE_PORT</b><ul>
-<li>Same as <b>PORT</b> name, below, for avrisp and arduino</li>
-<li><b>usb</b> for <b>atmelice_isp</b></li>
+<li>Depends on the emulator and operating system used<ul>
+<li>Example: on Linux it might be **/dev/ttyUSB1** for a <b>avrisp</b> and <b>arduino</b></li>
+<li><b>usb</b> for <b>atmelice_isp</b> on Linux - the emulator hardware will typically have instructions</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><b>PORT</b> is the hp85disk emulator serial PORT name as detected by your operating system<ul>
-<li>**/dev/ttyUSB0** on my system</li>
+<li>**/dev/ttyUSB0** on my system - Linux</li>
 </ul>
 </li>
 <li><b>BAUD</b> is the hp85disk emulator serial baud rate<ul>
@@ -2927,7 +2967,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 14 2020 15:41:59 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 14 2020 16:16:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

@@ -1434,6 +1434,38 @@
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
+{\bfseries {\bfseries \subsubsection*{External programmers}}}
+
+{\bfseries {\bfseries 
+\begin{DoxyItemize}
+\item {\bfseries avrisp} is one of the lowest cost {\itshape In System programer} {\bfseries I\+SP} avaliable
+\begin{DoxyItemize}
+\item Also called {\bfseries Arduino as I\+SP}
+\item This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
+\begin{DoxyItemize}
+\item See\+: \href{https://www.arduino.cc/en/tutorial/arduinoISP}{\tt https\+://www.\+arduino.\+cc/en/tutorial/arduino\+I\+SP}
+\begin{DoxyItemize}
+\item Example\+: Search for {\bfseries arduino nano 3.\+0} cost about \$10 and has small formfactor.
+\item You do not want the U\+SB version as the software is different
+\end{DoxyItemize}
+\item Program your arduino using the {\bfseries Arduino as I\+SP example}
+\end{DoxyItemize}
+\item Connections to hp85disk I\+SP header\+:
+\begin{DoxyItemize}
+\item Arduino hp85disk I\+SP header
+\item {\bfseries D12 -\/ 1}
+\item {\bfseries 5V NC} = Not Connected! see note
+\item {\bfseries D13 -\/ 3}
+\item {\bfseries D11 -\/ 4}
+\item {\bfseries D10 -\/ 5}
+\item {\bfseries G\+ND -\/ 6}
+\begin{DoxyItemize}
+\item Note concerning 5V -\/ since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}}}
+
 {\bfseries {\bfseries \subsubsection*{Update Firmware with external programmer}}}
 
 {\bfseries {\bfseries 
@@ -1441,13 +1473,18 @@
 \item You will need and A\+VR programmer supported by {\bfseries avrdude} (part of avrtools)
 \begin{DoxyItemize}
 \item See \mbox{[}Makefile\mbox{]}(Makefile) keywords {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP} and {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT} in next \mbox{[}Makefile\mbox{]}(Makefile) section
+\item Lets assume
+\begin{DoxyItemize}
+\item External programmer is attached as $\ast$$\ast$/dev/tty\+S4$\ast$$\ast$
+\item hp85disk is attached as $\ast$$\ast$/dev/tty\+S3$\ast$$\ast$
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item {\bfseries make clean}
 \item {\bfseries make}
 \item {\bfseries make install}
 \item {\bfseries make flash-\/isp-\/release$\ast$ \# do not press Enter yet!$\ast$
 \begin{DoxyItemize}
-\item $\ast$$\ast$make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3
+\item $\ast$$\ast$make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S4
 \item OR
 \end{DoxyItemize}}
 \item {\bfseries {\bfseries make flash-\/isp} \# do not press Enter yet!
@@ -1464,7 +1501,7 @@
 \item Examples\+:
 \begin{DoxyItemize}
 \item {\bfseries make flash-\/isp-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp P\+O\+RT=/dev/tty\+U\+S\+B0 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=usb}
-\item {\bfseries make flash-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S5}
+\item {\bfseries make flash-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S4}
 \end{DoxyItemize}
 \item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT} must be set to the programmer port name
 \item {\bfseries P\+O\+RT} must be set to the hp85disk emulator serial port name
@@ -1496,6 +1533,7 @@
 \begin{DoxyItemize}
 \item You will need and A\+VR programmer supported by {\bfseries avrdude} (part of avrtools)
 \begin{DoxyItemize}
+\item The built in {\bfseries optiboot$\ast$ loader is called $\ast$$\ast$arduino}
 \item You can list all of the supported programmers using the command {\bfseries avrdude -\/c list}
 \begin{DoxyItemize}
 \item Note\+: {\bfseries I\+SP} = {\itshape In System Programmer}
@@ -1522,12 +1560,15 @@
 \end{DoxyItemize}
 \item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT}
 \begin{DoxyItemize}
-\item Same as {\bfseries P\+O\+RT} name, below, for avrisp and arduino
-\item {\bfseries usb} for {\bfseries atmelice\+\_\+isp}
+\item Depends on the emulator and operating system used
+\begin{DoxyItemize}
+\item Example\+: on Linux it might be $\ast$$\ast$/dev/tty\+U\+S\+B1$\ast$$\ast$ for a {\bfseries avrisp} and {\bfseries arduino}
+\item {\bfseries usb} for {\bfseries atmelice\+\_\+isp} on Linux -\/ the emulator hardware will typically have instructions
+\end{DoxyItemize}
 \end{DoxyItemize}
 \item {\bfseries P\+O\+RT} is the hp85disk emulator serial P\+O\+RT name as detected by your operating system
 \begin{DoxyItemize}
-\item $\ast$$\ast$/dev/tty\+U\+S\+B0$\ast$$\ast$ on my system
+\item $\ast$$\ast$/dev/tty\+U\+S\+B0$\ast$$\ast$ on my system -\/ Linux
 \end{DoxyItemize}
 \item {\bfseries B\+A\+UD} is the hp85disk emulator serial baud rate
 \begin{DoxyItemize}
