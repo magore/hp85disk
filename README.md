@@ -38,7 +38,7 @@
    * The emulator **RTC** can be used for time stamping plot files and files added into lif images
 
 
-## HP85 Disk Emulator is available at the Tendie store
+## HP85 Disk Emulator is available at the Tindie store
   * https://www.tindie.com/products/hp85disk/hp85disk-disk-emulator-for-hp85-series-computers/
 
 ___ 
@@ -197,7 +197,7 @@ ___
     * See the notes about usings a **PRM-85** to add the required ROMS
   * Copy the [amigo.cfg](sdcard/amigo.cfg) to the SD card and rename it to [hpdisk.cfg](sdcard/hpdisk.cfg)
     * This is an AMIGO drive only configuration
-    * The default amigo.cfg file defines four AMIGO drives to go
+    * The default amigo.cfg file defines four AMIGO drives ready to go
 
 #### HP85B users SD card setup
   * You needs the EMS rom for SS80 drives
@@ -209,7 +209,7 @@ ___
 
 
 ###  Choosing and SD Card for the HP85 emulator PLEASE READ
-  * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify much much larger internal flash page - this can take too long
+  * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify a much much larger internal flash page - this can take too long
     * The **HP85** is sensitive to long read/write delays that some cards can cause problems with
     * You want SD Cards with fast random writes
     * I have found that the SanDisk Extreme and SanDisk Extreme Pro cards work best.
