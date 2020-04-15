@@ -1395,19 +1395,16 @@ README</h1>
 <li>Program your arduino using the <b>Arduino as ISP example</b></li>
 </ul>
 </li>
-<li>Connections to hp85disk ISP header:<ul>
-<li>Arduino hp85disk ISP header</li>
-<li><b>D12 - 1</b></li>
-<li><b>5V NC</b> = Not Connected! see note</li>
-<li><b>D13 - 3</b></li>
-<li><b>D11 - 4</b></li>
-<li><b>D10 - 5</b></li>
-<li><b>GND - 6</b><ul>
-<li>Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>Connections to hp85disk ISP header: <pre>
+       Arduino Pin  hp85disk ISP header Pin
+       D12          1
+       5V           NC = Not Connected! see note
+       D13          3
+       D11          4
+       D10          5
+       GND          6
+Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+</pre></li>
 </ul>
 </li>
 </ul>
@@ -1570,34 +1567,34 @@ README</h1>
 <p><b><b><b></p><h2>make help documentation</h2>
 <p></b></b></b></p>
 <p><b><b><b></p><ul>
-<li><p class="startli"><b>make help</b></p><ul>
-<li>List the common commands to compile/install/flash the code <pre>
-    Building Commands
-        make install           - builds and installs all command line utilities
-        make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-        make release           - builds all code and copies files to the release folder
-        make clean             - cleans all generated files
-        make                   - builds all code</pre></li>
-</ul>
-<pre>    Listing current cunfiguration settings
-        make config</pre><pre>    Overriding any configuration settings
-        You can add configuration values at the end of your make commands like this
-        make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0</pre><pre>    Programming using an 6 wire ISP - installs optiboot
-        make install_optiboot  - install optiboot boot loaded using an ISP
-        make flash-isp         - build and flash the code using an ISP
-        make flash-isp-release - flash the release code using an ISP
-        make verify-isp        - verify code using an ISP
-        make verify-isp-release- verify release code using an ISP</pre><pre>    Programming using the built in optiboot programmer
-        make flash             - build and flash the code using built in optiboot programmer
-        make flash-release     - flash the release code using built in optiboot programmer
-        IMPORTANT - if flashing fails try these steps
-            On your computer type in the make command **without pressing Enter afterwards**
-            Then press **RESET the button on the hp85disk board** and next **press Enter quickly afterwards**</pre><pre>    Programming using an 6 wire ISP - WITHOUT installing optiboot
-        IMPORTANT - you will not be able to use non isp flashing modes later on
-           Makes booting and flashing process slightly faster
-        make flash-isp-noboot         - build and flash the code using an ISP
-        make flash-isp-noboot-release - flash the release code using an ISP</pre><pre>    Note: **you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards**
+<li><b>make help</b><ul>
+<li><p class="startli">List the common commands to compile/install/flash the code </p><pre>
+        Building Commands
+            make install           - builds and installs all command line utilities
+            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+            make release           - builds all code and copies files to the release folder
+            make clean             - cleans all generated files
+            make                   - builds all code</pre><pre>        Listing current cunfiguration settings
+            make config</pre><pre>        Overriding any configuration settings
+            You can add configuration values at the end of your make commands like this
+            make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0</pre><pre>        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes</pre><pre>        Programming using an 6 wire ISP - installs optiboot
+            make install_optiboot  - install optiboot boot loaded using an ISP
+            make flash-isp         - build and flash the code using an ISP
+            make flash-isp-release - flash the release code using an ISP</pre><pre>        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+            make verify-isp        - verify code using an ISP
+            make verify-isp-release- verify release code using an ISP</pre><pre>        Programming using the built in optiboot programmer
+            make flash             - build and flash the code using built in optiboot programmer
+            make flash-release     - flash the release code using built in optiboot programmer
+            IMPORTANT - if flashing fails to start try these steps
+                On your computer type in the "make flash" command without pressing Enter afterwards
+                Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter</pre><pre>        Programming using an 6 wire ISP - WITHOUT installing optiboot
+            IMPORTANT - you will not be able to use non isp flashing modes later on
+               Makes booting and flashing process slightly faster
+            make flash-isp-noboot         - build and flash the code using an ISP
+            make flash-isp-noboot-release - flash the release code using an ISP
 </pre></li>
+</ul>
+</li>
 </ul>
 <p></b></b></b></p>
 <p><b><b><b></p><h2>Example building with Makefile overrides</h2>
@@ -2967,7 +2964,7 @@ README</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 14 2020 16:16:15 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 14 2020 20:29:47 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

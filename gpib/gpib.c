@@ -300,8 +300,8 @@ void gpib_bus_init( )
 
 	// Handshake lines
 	GPIB_PIN_FLOAT_UP(DAV);	// DAV FLOAT PULLUP
-	GPIB_PIN_FLOAT_UP(NRFD);	// SRQ FLOAT PULLUP
-	GPIB_PIN_FLOAT_UP(NDAC);	// SRQ FLOAT PULLUP
+	GPIB_PIN_FLOAT_UP(NRFD);// SRQ FLOAT PULLUP
+	GPIB_PIN_FLOAT_UP(NDAC);// NDAC FLOAT PULLUP
 
 	GPIB_PIN_FLOAT_UP(IFC);	// IFC FLOAT PULLUP
 	GPIB_PIN_FLOAT_UP(REN);	// REN FLOAT PULLUP
@@ -312,7 +312,7 @@ void gpib_bus_init( )
 
 #if BOARD == 2
 	// Switch GBIB driver direction to BUS in
-    GPIB_IO_LOW(SC);   		// REN IN, IFC IN, set LOW ALWAYS unless we are a controller
+    GPIB_IO_LOW(SC);   		// REN IN, IFC IN, SC is set LOW ALWAYS unless we are a controller
     GPIB_IO_LOW(PE);    	// Enable OC GPIB BUS transceivers
     GPIB_IO_LOW(TE);		// BUS IN, DAV IN, NDAC OUT OC, NRFD OUT OC
     GPIB_IO_HI(DC);			// ATN IN, EOI IN, SRQ OUT OC

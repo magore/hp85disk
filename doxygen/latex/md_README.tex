@@ -1450,19 +1450,18 @@
 \end{DoxyItemize}
 \item Program your arduino using the {\bfseries Arduino as I\+SP example}
 \end{DoxyItemize}
-\item Connections to hp85disk I\+SP header\+:
-\begin{DoxyItemize}
-\item Arduino hp85disk I\+SP header
-\item {\bfseries D12 -\/ 1}
-\item {\bfseries 5V NC} = Not Connected! see note
-\item {\bfseries D13 -\/ 3}
-\item {\bfseries D11 -\/ 4}
-\item {\bfseries D10 -\/ 5}
-\item {\bfseries G\+ND -\/ 6}
-\begin{DoxyItemize}
-\item Note concerning 5V -\/ since the hp85disk and arduino have power it would be potentially bad to connect both power sources
-\end{DoxyItemize}
-\end{DoxyItemize}
+\item Connections to hp85disk I\+SP header\+: 
+\begin{DoxyPre}
+       Arduino Pin  hp85disk ISP header Pin
+       D12          1
+       5V           NC = Not Connected! see note
+       D13          3
+       D11          4
+       D10          5
+       GND          6
+Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+\end{DoxyPre}
+
 \end{DoxyItemize}
 \end{DoxyItemize}}}
 
@@ -1635,56 +1634,60 @@
 \begin{DoxyItemize}
 \item List the common commands to compile/install/flash the code 
 \begin{DoxyPre}
-    Building Commands
-        make install           - builds and installs all command line utilities
-        make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-        make release           - builds all code and copies files to the release folder
-        make clean             - cleans all generated files
-        make                   - builds all code\end{DoxyPre}
-
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}    Listing current cunfiguration settings
-        make config\end{DoxyPre}
+        Building Commands
+            make install           - builds and installs all command line utilities
+            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+            make release           - builds all code and copies files to the release folder
+            make clean             - cleans all generated files
+            make                   - builds all code\end{DoxyPre}
 
 
 
-\begin{DoxyPre}    Overriding any configuration settings
-        You can add configuration values at the end of your make commands like this
-        make flash-isp AVRDUDE\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp PORT=/dev/ttyUSB0\end{DoxyPre}
+\begin{DoxyPre}        Listing current cunfiguration settings
+            make config\end{DoxyPre}
 
 
 
-\begin{DoxyPre}    Programming using an 6 wire ISP - installs optiboot
-        make install\_optiboot  - install optiboot boot loaded using an ISP
-        make flash-isp         - build and flash the code using an ISP
-        make flash-isp-release - flash the release code using an ISP
-        make verify-isp        - verify code using an ISP
-        make verify-isp-release- verify release code using an ISP\end{DoxyPre}
+\begin{DoxyPre}        Overriding any configuration settings
+            You can add configuration values at the end of your make commands like this
+            make flash-isp AVRDUDE\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp PORT=/dev/ttyUSB0\end{DoxyPre}
 
 
 
-\begin{DoxyPre}    Programming using the built in optiboot programmer
-        make flash             - build and flash the code using built in optiboot programmer
-        make flash-release     - flash the release code using built in optiboot programmer
-        IMPORTANT - if flashing fails try these steps
-            On your computer type in the make command **without pressing Enter afterwards**
-            Then press **RESET the button on the hp85disk board** and next **press Enter quickly afterwards**\end{DoxyPre}
+\begin{DoxyPre}        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes\end{DoxyPre}
 
 
 
-\begin{DoxyPre}    Programming using an 6 wire ISP - WITHOUT installing optiboot
-        IMPORTANT - you will not be able to use non isp flashing modes later on
-           Makes booting and flashing process slightly faster
-        make flash-isp-noboot         - build and flash the code using an ISP
-        make flash-isp-noboot-release - flash the release code using an ISP\end{DoxyPre}
+\begin{DoxyPre}        Programming using an 6 wire ISP - installs optiboot
+            make install\_optiboot  - install optiboot boot loaded using an ISP
+            make flash-isp         - build and flash the code using an ISP
+            make flash-isp-release - flash the release code using an ISP\end{DoxyPre}
 
 
 
-\begin{DoxyPre}    Note: **you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards**
+\begin{DoxyPre}        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+            make verify-isp        - verify code using an ISP
+            make verify-isp-release- verify release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        Programming using the built in optiboot programmer
+            make flash             - build and flash the code using built in optiboot programmer
+            make flash-release     - flash the release code using built in optiboot programmer
+            IMPORTANT - if flashing fails to start try these steps
+                On your computer type in the "make flash" command without pressing Enter afterwards
+                Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        Programming using an 6 wire ISP - WITHOUT installing optiboot
+            IMPORTANT - you will not be able to use non isp flashing modes later on
+               Makes booting and flashing process slightly faster
+            make flash-isp-noboot         - build and flash the code using an ISP
+            make flash-isp-noboot-release - flash the release code using an ISP
 \end{DoxyPre}
 
+\end{DoxyItemize}
 \end{DoxyItemize}}}}
 
 {\bfseries {\bfseries {\bfseries \subsection*{Example building with Makefile overrides}}}}

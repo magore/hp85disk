@@ -65,9 +65,10 @@ uint8_t reverse_8bits(uint8_t mask)
 
 /// @brief Enable or Disable Parallel Poll Response bits - PPR.
 //
-/// - The hardware implimentation does reversal automatically.
-/// - The software implimentation must have the bits reversed.
-/// - Aside: Software PPR is impractical - timing is sub microsecond.
+/// - V1 hardware reversed bits in hardware. V2 in software
+///
+/// - Aside: Software PPR detection is impractical - timing is sub microsecond.
+///   That is why both V1 and V2 boards you hardware detection
 ///
 /// - Mask Bits.
 ///  - HI  = PPR bus LOW.
@@ -77,6 +78,10 @@ uint8_t reverse_8bits(uint8_t mask)
 ///  - 1 controlls GPIB D7.
 ///  - 2 controlls GPIB D6.
 ///  - 3 controlls GPIB D5.
+///  - 4 controlls GPIB D4.
+///  - 5 controlls GPIB D3.
+///  - 6 controlls GPIB D2.
+///  - 7 controlls GPIB D1.
 ///
 /// @param[in] mask: Parallel Poll Response bits to enable or disable
 ///
@@ -140,6 +145,10 @@ void ppr_init()
 ///  - 1 controlls GPIB D7.
 ///  - 2 controlls GPIB D6.
 ///  - 3 controlls GPIB D5.
+///  - 4 controlls GPIB D4.
+///  - 5 controlls GPIB D3.
+///  - 6 controlls GPIB D2.
+///  - 7 controlls GPIB D1.
 ///
 /// @return  void
 
@@ -161,6 +170,10 @@ void ppr_bit_set(uint8_t bit)
 ///  - 1 controlls GPIB D7.
 ///  - 2 controlls GPIB D6.
 ///  - 3 controlls GPIB D5.
+///  - 4 controlls GPIB D4.
+///  - 5 controlls GPIB D3.
+///  - 6 controlls GPIB D2.
+///  - 7 controlls GPIB D1.
 /// @return  void
 
 void ppr_bit_clr(uint8_t bit)

@@ -482,19 +482,23 @@ help:
 	@echo "    You can add configuration values at the end of your make commands like this"
 	@echo "    make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
 	@echo
+	@echo 'Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes'
+	@echo 
 	@echo 'Programming using an 6 wire ISP - installs optiboot'
 	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
 	@echo "    make flash-isp         - build and flash the code using an ISP"
 	@echo "    make flash-isp-release - flash the release code using an ISP"
+	@echo
+	@echo 'Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file'
 	@echo "    make verify-isp        - verify code using an ISP"
 	@echo "    make verify-isp-release- verify release code using an ISP"
 	@echo
 	@echo 'Programming using the built in optiboot programmer'
 	@echo "    make flash             - build and flash the code using built in optiboot programmer"
 	@echo "    make flash-release     - flash the release code using built in optiboot programmer"
-	@echo '    IMPORTANT - if flashing fails try these steps'
-	@echo '        On your computer type in the make command without pressing Enter afterwards'
-	@echo '        Then press RESET the button on the hp85disk board and next press Enter quickly afterwards'
+	@echo '    IMPORTANT - if flashing fails to start try these steps'
+	@echo '        On your computer type in the "make flash" command without pressing Enter afterwards'
+	@echo '        Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter'
 	@echo
 	@echo 'Programming using an 6 wire ISP - WITHOUT installing optiboot'
 	@echo '    IMPORTANT - you will not be able to use non isp flashing modes later on'
@@ -502,8 +506,6 @@ help:
 	@echo "    make flash-isp-noboot         - build and flash the code using an ISP"
 	@echo "    make flash-isp-noboot-release - flash the release code using an ISP"
 	@echo
-	@echo 'Note: you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards'
-	@echo 
 	@echo 
 
 .PHONY: config

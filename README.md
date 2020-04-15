@@ -771,14 +771,16 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
         * You do not want the USB version as the software is different
       * Program your arduino using the **Arduino as ISP example**
     * Connections to hp85disk ISP header:
-      * Arduino  hp85disk ISP header
-      * **D12 -  1**
-	  * **5V     NC** = Not Connected! see note
-      * **D13 -  3**
-      * **D11 -  4**
-      * **D10 -  5**
-      * **GND -  6**
-         * Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+<pre>
+       Arduino Pin  hp85disk ISP header Pin
+       D12          1
+	   5V           NC = Not Connected! see note
+       D13          3
+       D11          4
+       D10          5
+       GND          6
+Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+</pre>
 
 ### Update Firmware with external programmer
   * You will need and AVR programmer supported by **avrdude** (part of avrtools)
@@ -868,42 +870,45 @@ ___
   * **make help**
     * List the common commands to compile/install/flash the code
 <pre>
-    Building Commands
-        make install           - builds and installs all command line utilities
-        make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-        make release           - builds all code and copies files to the release folder
-        make clean             - cleans all generated files
-        make                   - builds all code
-    
-    Listing current cunfiguration settings
-        make config
-    
-    Overriding any configuration settings
-        You can add configuration values at the end of your make commands like this
-        make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0
-    
-    Programming using an 6 wire ISP - installs optiboot
-        make install_optiboot  - install optiboot boot loaded using an ISP
-        make flash-isp         - build and flash the code using an ISP
-        make flash-isp-release - flash the release code using an ISP
-        make verify-isp        - verify code using an ISP
-        make verify-isp-release- verify release code using an ISP
-    
-    Programming using the built in optiboot programmer
-        make flash             - build and flash the code using built in optiboot programmer
-        make flash-release     - flash the release code using built in optiboot programmer
-        IMPORTANT - if flashing fails try these steps
-            On your computer type in the make command **without pressing Enter afterwards**
-            Then press **RESET the button on the hp85disk board** and next **press Enter quickly afterwards**
-    
-    Programming using an 6 wire ISP - WITHOUT installing optiboot
-        IMPORTANT - you will not be able to use non isp flashing modes later on
-           Makes booting and flashing process slightly faster
-        make flash-isp-noboot         - build and flash the code using an ISP
-        make flash-isp-noboot-release - flash the release code using an ISP
-    
-    Note: **you can add the word "term" after any flash command to launch a terminal to the hp85disk affterwards**
+        Building Commands
+            make install           - builds and installs all command line utilities
+            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+            make release           - builds all code and copies files to the release folder
+            make clean             - cleans all generated files
+            make                   - builds all code
+        
+        Listing current cunfiguration settings
+            make config
+        
+        Overriding any configuration settings
+            You can add configuration values at the end of your make commands like this
+            make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0
+        
+        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes
+        
+        Programming using an 6 wire ISP - installs optiboot
+            make install_optiboot  - install optiboot boot loaded using an ISP
+            make flash-isp         - build and flash the code using an ISP
+            make flash-isp-release - flash the release code using an ISP
+        
+        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+            make verify-isp        - verify code using an ISP
+            make verify-isp-release- verify release code using an ISP
+        
+        Programming using the built in optiboot programmer
+            make flash             - build and flash the code using built in optiboot programmer
+            make flash-release     - flash the release code using built in optiboot programmer
+            IMPORTANT - if flashing fails to start try these steps
+                On your computer type in the "make flash" command without pressing Enter afterwards
+                Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter
+        
+        Programming using an 6 wire ISP - WITHOUT installing optiboot
+            IMPORTANT - you will not be able to use non isp flashing modes later on
+               Makes booting and flashing process slightly faster
+            make flash-isp-noboot         - build and flash the code using an ISP
+            make flash-isp-noboot-release - flash the release code using an ISP
 </pre>
+
 
 ## Example building with Makefile overrides
   * **make flash      AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3**

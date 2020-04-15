@@ -335,9 +335,9 @@ void gpib_init_devices(void)
 {
     gpib_bus_init();	// Not busy - we have to free all pins on the BUS
 
-    // FIXME FIXME what does this break ???
     // Init PPR talking and listening states
-    // gpib_state_init();   
+	// Enable this 14 April 2020 - testing MIke Gore
+    gpib_state_init();   
 
     SS80_init();                                  // SS80 state init
 
