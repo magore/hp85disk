@@ -86,14 +86,14 @@ ___
 
 Anders originally provided me his source code in 2014 and many details of his project *which I am very thankful for.*
 NOTE: 
- I ended up rewritting virtually all of Anders project.
+ I ended up rewriting virtually all of Anders project.
  This was mainly a personal exercise in fully understanding the code and NOT because of any problems with his original work.
  I did this one part at a time as I read the HP documents covering the protocols and specifications.
  Although rewritten I have maintained the basic concept of using  state machines for **GPIB** ,**AMIGO** and **SS80** state tracking.
 
 ## The HPDir project was a vital documentation source for this project
   * <http://www.hp9845.net/9845/projects/hpdir>
-  * I use the **hpdir.ini** of thier project for creating disk images
+  * I use the **hpdir.ini** of their project for creating disk images
 
 ### Other HPDir resources for disk image manipulation
   * [HPDrive project has very useful references an tools for creating HP disk **LIF** images compatible with this project](http://www.hp9845.net/9845/projects/hpdrive)
@@ -172,7 +172,7 @@ ___
 ___ 
 
 
-## Important notes about SD Card requirments for the emulator
+## Important notes about SD Card requirements for the emulator
 
 ### Removing the SD Card from the emulator
   * **ALWAYS POWER OFF THE EMULATOR BEFORE REMOVING -or - INSERTING THE SD CARD**
@@ -193,14 +193,14 @@ ___
     * You should not see the **sdcard** folder on the SD Card itself just the contents of that folder and its subfolders
 
 #### HP85A users SD card setup
-  * Normally you will not be able to access **SS80** drives unless you have versions of the **HP85B** roms installed
-    * See the notes about usings a **PRM-85** to add the required ROMS
+  * Normally you will not be able to access **SS80** drives unless you have versions of the **HP85B** ROMS installed
+    * See the notes about using a **PRM-85** to add the required ROMS
   * Copy the [amigo.cfg](sdcard/amigo.cfg) to the SD card and rename it to [hpdisk.cfg](sdcard/hpdisk.cfg)
     * This is an **AMIGO** drive only configuration
     * The default amigo.cfg file defines four **AMIGO** drives ready to go
 
 #### HP85B users SD card setup
-  * You needs the **EMS** rom for **SS80** drives
+  * You needs the **EMS** ROM for **SS80** drives
     * If you do not have them see the **HP85A** notes above
   * You do not need to make any changes
     * The default [hpdisk.cfg](sdcard/hpdisk.cfg) uses two **AMIGO** drives and two **SS80** drives ready to go
@@ -252,7 +252,7 @@ ___
   * **Windows** insert the Micro SD card into you desktop/laptop Card Reader
     * Windows might detect errors and offer to fix them - answer **yes**
     * You can make Windows Check the drive using the following steps
-      * Open *File Explorer* **Right Click** on the SD card drive and pick **properies**
+      * Open *File Explorer* **Right Click** on the SD card drive and pick **properties**
       * Open the Tools tab
       * Click on Error Checking 
   * **Ubuntu Desktop with GUI** insert the Micro SD card into you desktop/laptop Card Reader
@@ -287,17 +287,17 @@ ___
 
 ## SD Card file manipulation commands 
   * **posix help** displays a list of these SD cards related commands
-    * **NOTE: you do NOT thave to put the "posix" keyword prior to any of these command**
+    * **NOTE: you do NOT have to put the "posix" keyword prior to any of these command**
   * These are very useful for backing up and copying disk images and configuration files
-  * Path names may optionally be fully qualified file names or relitive names
+  * Path names may optionally be fully qualified file names or relative names
   * Directory seperators may be / or \
   * Relative names can include . or ..
     * Examples
        * **..** is previous directory
        * **.** is current directory
-       * **/** or **\** is a directory seperator
+       * **/** or **\** is a directory separator
        * /configs/../amigo0.lif is the same as /amigo0.lif
-  * Note: Wild card pattern matchings is NOT implimented on any of these commands.
+  * Note: Wild card pattern matching is NOT implemented on any of these commands.
 
 ### SD Card file command summary with examples
   * **cd dir**
@@ -381,16 +381,16 @@ ___
     * **lif help**
       * Gives lif commands
   * Summary - List, Create, import, export, translate, copy, rename, delete, etc
-  * NOTE: Each disk image is a single file, encoded in **LIF** format,saved on the SD Card
+  * NOTE: Each disk image is a single file, encoded in **LIF** format, saved on the SD Card
     * **LIF** format is a common the filesystem on series 80 computers.
     * **LIF** format is also a vary common file interchange format for series 80 computers
-      * **LIF** format includes file date,size permissions and other important meta data
+      * **LIF** format includes file date, size permissions and other important meta data
   * Translate between DTA8x (type E010) and plain text files
       * You can add a plain text file, and translate it, into a **LIF** image with file format DTA8x (type E010)
       * You can extract and translate DTA8x (type E010) into a plain text files
   * **Key LIF manipulation features**
     * **dir** display a directory of a **LIF** image
-      * Directory listing of **LIF** images and SSD Card files
+      * Directory listing of **LIF** images and SD Card files
       * If you have an RTC the listing can display file and **LIF** volume date and time
         * Display time stamps if they were set
           * But only if they were created or added with the built in tools
@@ -407,7 +407,7 @@ ___
       * Extracted **LIF** images contain a single file a 256 byte volume header, 256 byte directory followed by a file.
     * **del** delete file in **LIF** image
     * **rename** file in **LIF** image
-    * **create** create a LIF image specifing a label, directory size and overall disk size
+    * **create** create a LIF image specifying a label, directory size and overall disk size
     * **createdisk** create a LIF image specifying a label and drive model name
   * [For more **LIF** documentation](lif/README.md)
 
@@ -429,7 +429,7 @@ ___
     * NOTE: The file paths can include subdirectory paths in the file name. This permits using multiple folders
 
 ## Note about LIF images and [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) disk definitions
-  * To create/modify or update **LIF** images see the section on the LIF utilities supplied with teh emulator
+  * To create/modify or update **LIF** images see the section on the LIF utilities supplied with the emulator
   * It is important that the **LIF** image size match the disk definitions
     * The emulator gets the hard limits for  disk using [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg)
       * The attached computer requests these disk details from the emulator 
@@ -495,7 +495,7 @@ ___
       * **10 DISP "HELLO WORLD"**
       * **20 END**
     * Save this file as **TEST.txt** onto the SD Card and exit your editor 
-      * Unmount the SD Card "eject it" in windows jargon
+      * umount the SD Card "eject it" in windows jargon
       * Reinstall the SD Card in the emulator
   * Turn on the hp85disk emulator FIRST - THEN turn on the **HP85**
     * Trivia - the **HP85 only detects disk at power on or after a RESET** 
@@ -523,7 +523,7 @@ ___
         * In the future you can use **LOAD "TESTB"**
 
 ## Exporting HP85 BASIC programs to ASCII plain text
-  * You must have the hp85disk emulator power ON and atteched to you **HP85**
+  * You must have the hp85disk emulator power ON and attached to you **HP85**
     * Turn on the **HP85**
   * On your **HP85** we will load a binary program called **GETSAVE**
     * **LOADBIN "GETSAVE"**
@@ -567,14 +567,14 @@ ___
 
 ### Windows
   * Windows - Install Python 3.7 from Windows App Store
-    * Open PowerShell window - always use PowerShell under Windows for running Python3
+    * Open Power Shell window - always use Power Shell under Windows for running Python3
   * **pip3 install pySerial**
 
 ___ 
 
 
 ## Discover your serial port name
-  * Make sure you have a miniusb cable handy
+  * Make sure you have a mini usb cable handy
   * Make sure the emulator is not connected to your PC/Mac
 
 ### Linux
@@ -583,7 +583,7 @@ ___
     * **python3 uploader/listports.py**
 
 ### Windows
-  * Open a PowerShell window
+  * Open a Power Shell window
     * Run the following command **python3 uploader\listports.py**
 
 ### Connect the emulator  to discover the port name
@@ -614,7 +614,7 @@ ___
 
 ## Updating hp85disk firmware with built in bootloader
   * Only do this if recommended
-  * Note: The github hp85disk master branch project includes disk images and precompiled firmeare
+  * Note: The github hp85disk master branch project includes disk images and precompiled firmware
     * Compiled Firmware hex file [release/build](release/build) 
     * SD Card Disk Images        [release/sdcard](release/sdcard)
   * [I have provided compiled HEX files under the folder release/build](release/build)
@@ -651,7 +651,7 @@ Note: If you only plan on updating firmware and would rather not compile skip to
 
 ### Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App
 Note: I recommend this as the easiest way to compile and build hp85disk under Windows</br>
-  * Following these steps take less then 10 minutes incuding the software and hp85disk download
+  * Following these steps take less then 10 minutes including the software and hp85disk download
   * Install **WSL - Windows Subsystem for Linux**
     * See: https://docs.microsoft.com/en-us/windows/wsl/install-win10
     * See: https://wiki.ubuntu.com/WSL
@@ -797,7 +797,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
   * **make flash-isp**         # do not press Enter yet!
     * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
 
-### Flashing AND connecting to hp85disk emualtor terminal just after firmware update 
+### Flashing AND connecting to hp85disk emulator terminal just after firmware update 
   * **Note: You can add *term* after *ANY* make flash commands**
   * Examples:
     * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb**
@@ -877,7 +877,7 @@ ___
             make clean             - cleans all generated files
             make                   - builds all code
         
-        Listing current cunfiguration settings
+        Listing current configuration settings
             make config
         
         Overriding any configuration settings
@@ -1128,7 +1128,7 @@ ___
     lif dir lifimage
     lif extract lifimage lifname to_ascii_file
     lif extractbin lifimage lifname to_lif_file
-        extracts a file into a sigle file **LIF** image
+        extracts a file into a single file **LIF** image
     lif rename lifimage oldlifname newlifname
     Use -d after first keyword 'lif' above for **LIF** filesystem debugging
 </pre>
@@ -1151,6 +1151,7 @@ ___
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
  * This also sets the RTC
+  * **NOTE: you may have to issue this command TWICE on the very first initialization**
  * **setdate**
 <pre>
     Enter date YYYY MM DD HH:MM:SS >2020 04 09 16:54:00
@@ -1185,12 +1186,12 @@ ___
       4 **GPIB** command and control byte messages
       8 **GPIB** main loop command data and control line states
      10 TODO DEVICE support states - ie missing code
-     20 DEVICE states, AMIGO,SS80,PRINTER
+     20 DEVICE states, AMIGO, SS80,PRINTER
      40 disk I/O read/write times
-     80 **GPIB** read/write string timeing
+     80 **GPIB** read/write string timing
     100 **GPIB** read / write string byte decode
     200 Parallel Poll bus status debug
-    400 **LIF** utitilites debugging
+    400 **LIF** utilities debugging
 </pre>
 
 ###  hp85disk setting debug examples
@@ -1216,7 +1217,7 @@ ___
     * **gpib debug = 0x3D**
   * In the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file
 <pre>
-    # Most usefull debuggging messages
+    # Most useful debugging messages
     # (1+2+8+10+20)
     DEBUG = 0x3D
 </pre>
@@ -1334,7 +1335,7 @@ ___
      * Copyright © 2010 A. Kückes
 
 
-## *GPIB* Connector pinout by Anders Gustafsson in his hpdisk project
+## *GPIB* Connector pin-out by Anders Gustafsson in his hpdisk project
   * http://www.dalton.ax/hpdisk/
 
 
@@ -1581,7 +1582,7 @@ ___
           * These functions are also part of various hp85disk libraries
       * [lifutils.c](lif/lifutils.c)
       * [lifutils.h](lif/lifutils.h)
-        * **LIF** image functions, directory listing and file adding. extracting,renaming,deleting
+        * **LIF** image functions, directory listing and file adding. extracting, renaming,deleting
       * [td02lif.c](lif/td02lif.c)
       * [td02lif.h](lif/td02lif.h)
         * My TeleDisk to **LIF** translator
