@@ -794,10 +794,10 @@ Note 5V connection - DO NOT CONNECT
   * **make clean**
   * **make**
   * **make install**
-  * **make flash-isp-release* # do not press Enter yet!*
+  * **make flash-isp-release* 
     * **make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4**
     * OR
-  * **make flash-isp**         # do not press Enter yet!
+  * **make flash-isp** 
     * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
 
 ### Flashing AND connecting to hp85disk emulator terminal just after firmware update 
