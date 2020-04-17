@@ -11,7 +11,7 @@
 
 ## Features for the **HP85** in brief
   * **NOTE: Later sections go into more detail**
-  * This project emulates **GPIB drives** and **HPGL printer **
+  * This project emulates **GPIB drives** and **HPGL printer**
     * Each emulated disk image is a **LIF** encoded file on a FAT32 formatted SD CARD.
     * **You MUST have the GPIB module installed in your HP85 in order to connect to the hp85disk emulator**
    * [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) fully defines each disk image on SD Card
@@ -188,8 +188,8 @@ ___
     * Click on the Green **Clone or Download** button
     * Pick download as ZIP
     * You can extract all of the folders and files to a folder of your choid
-    * locate the **sdcard* folder
-  * Copy the **contents* of the **sdcard** folder to the root/home folder of a a FAT32 formatted SD card
+    * locate the **sdcard** folder
+  * Copy the **contents** of the **sdcard** folder to the root/home folder of a a FAT32 formatted SD card
     * You should not see the **sdcard** folder on the SD Card itself just the contents of that folder and its subfolders
 
 #### HP85A users SD card setup
@@ -293,9 +293,9 @@ ___
   * Directory seperators may be / or \
   * Relative names can include . or ..
     * Examples
-       * **..** is previous directory
-       * **.** is current directory
-       * **/** or **\** is a directory separator
+       * .. is previous directory
+       * .  is current directory
+       * / or \ is a directory separator
        * /configs/../amigo0.lif is the same as /amigo0.lif
   * Note: Wild card pattern matching is NOT implemented on any of these commands.
 
@@ -313,7 +313,7 @@ ___
     /configs
 </pre>
 
-  * **ls files and or directories **
+  * **ls files and or directories**
     * You can specify any number of files or directory names or files as arguments
       * This is limited to a total length of 250 characters total
     * File information displayed includes type size date and name 
@@ -488,7 +488,7 @@ ___
   * You can do these examples without out my emulator but requires an extra tools and steps
 
 ## Importing ASCII and plain text as HP85 BASIC programs
-  * Lets import a text file with BASIC statements into one of the emulator images **amigo1.lif **
+  * Lets import a text file with BASIC statements into one of the emulator images **amigo1.lif**
   * Turn off both the **HP85** and emulator - if it is attached
     * Remove the SD Card
   * Create a plain text file with BASIC statements in it **on your Desktop - NOT on HP85**
@@ -592,7 +592,7 @@ ___
     * Linux example:   **/dev/ttyUSB0**
     * Windows Example: **COM3**
   * Note: The emulator uses the following port settings
-    * **BAUD rate 115200 **
+    * **BAUD rate 115200**
     * **Data bits: 8 Data bits NO parity**
     * **Flow control NONE**
 
@@ -819,7 +819,7 @@ ___
         * My device works with 0.25 but 5 is safe
     * **AVRDUDE_ISP**
       * You will need and AVR programmer supported by **avrdude** (part of avrtools)
-        * The built in **optiboot* loader is called **arduino**
+        * The built in **optiboot** loader is called **arduino**
         * You can list all of the supported programmers using the command **avrdude -c list**
           * Note: **ISP** = *In System Programmer*
           * **avrdude device programmer name as known by avrdude**
@@ -996,7 +996,7 @@ ___
   COPY ":D720" TO ":D730"
   # LOAD the GETSAVE binary program very short example
   LOADBIN "GETSAVE"
-  # This program stays in memory until the **HP85** is reset
+  # This program stays in memory until the HP85 is reset
   # See all of the detailed notes earlier in the README 
 </pre>
   * Now on the emulator itself type
@@ -1006,9 +1006,9 @@ ___
 <pre>
   # Lets assume amigo1.lif is defined as device :D700 in the hpdisk.cfg file
   GET "HELLO:D700"
-  # Save as a **HP85** BASIC file in DTA8x (type E010) file
+  # Save as a HP85 BASIC file in DTA8x (type E010) file
   PUT "HELLOA:D700"
-  # Store it as as **HP85** BASIC BAS8x (type E020) file
+  # Store it as as HP85 BASIC BAS8x (type E020) file
   STORE "HELLO2B:D700"
   # Now in the future we can LOAD it 
   LOAD "HELLO2B:D700"
@@ -1098,13 +1098,13 @@ ___
  * Any word that has **help** after it will give help for that command
  * **help**
 <pre>
-    Stand alone version of **LIF** utilities for linux
-    **HP85** Disk and Device Emulator
+    Stand alone version of LIF utilities for linux
+    HP85 Disk and Device Emulator
      (c) 2014-2020 by Mike Gore
      GNU version 3
     -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-04-09 11:59:37.830975998 -0400
-       Last updated file: 2020-04-09 13:12:59.477795767 -0400
+       GIT last pushed:   2020-04-16 10:58:45.842068480 -0400
+       Last updated file: 2020-04-11 00:50:34.784232621 -0400
     
     fatfs help
     posix help
@@ -1116,6 +1116,8 @@ ___
     setdate
     time
     reset
+    
+    OK
 </pre>
 
 ### For lif help type *lif help*
@@ -1129,9 +1131,9 @@ ___
     lif dir lifimage
     lif extract lifimage lifname to_ascii_file
     lif extractbin lifimage lifname to_lif_file
-        extracts a file into a single file **LIF** image
+        extracts a file into a single file LIF image
     lif rename lifimage oldlifname newlifname
-    Use -d after first keyword 'lif' above for **LIF** filesystem debugging
+    Use -d after first keyword 'lif' above for LIF filesystem debugging
 </pre>
 
 ### For posix help type *posix help*
@@ -1180,19 +1182,19 @@ ___
 <pre>
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
-  Warning: Setting too many can cause **HP85** timeouts while displaying messages
-      1 ERRORS - all **GPIB** and device related error message
+  Warning: Setting too many can cause HP85 timeouts while displaying messages
+      1 ERRORS - all GPIB and device related error message
         # Note: Will not suppress Startup and configuration errors
       2 PPR states
-      4 **GPIB** command and control byte messages
-      8 **GPIB** main loop command data and control line states
+      4 GPIB command and control byte messages
+      8 GPIB main loop command data and control line states
      10 TODO DEVICE support states - ie missing code
      20 DEVICE states, AMIGO, SS80,PRINTER
      40 disk I/O read/write times
-     80 **GPIB** read/write string timing
-    100 **GPIB** read / write string byte decode
+     80 GPIB read/write string timing
+    100 GPIB read / write string byte decode
     200 Parallel Poll bus status debug
-    400 **LIF** utilities debugging
+    400 LIF utilities debugging
 </pre>
 
 ###  hp85disk setting debug examples
@@ -1307,7 +1309,7 @@ ___
 
 
 ## GPIB / IEEE 488 Tutorial by Ian Poole
-    * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
+   * <http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php>
    * See [Documents folder](documents)
 
 ___
@@ -1709,7 +1711,7 @@ ___
          -s short hpdisk.cfg format
          -b only display block count, you can can use this with -m
          -d only display computed directory block count, you can use this with -m
-         -f NAME specifies the **LIF** image name for this drive
+         -f NAME specifies the LIF image name for this drive
 </pre>
 
 ### BUILD SCRIPTS
