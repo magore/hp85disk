@@ -1674,7 +1674,13 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 <li>The emulator can passively log all transactions between real hardware on the <b>GPIB</b> bus<ul>
-<li>Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.</li>
+<li>Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.<ul>
+<li><b>NOTE: on V2 boards , due to the GPIB buffers, we can not trace NDAC, NRFD and SRQ currently</b><ul>
+<li>The GPIB buffers prevent looking at all signals at once</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>You can use this to help understand what is sent to and from your real disks.</li>
 <li>I use this feature to help prioritize which commands I first implemented. <hr/>
 </li>
@@ -2685,7 +2691,7 @@ Note 5V connection - DO NOT CONNECT
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 17 2020 15:38:43 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 15:45:54 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

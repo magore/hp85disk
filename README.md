@@ -1085,6 +1085,8 @@ ___
        * See the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) for documentation on the full list of debugging options
      * The emulator can passively log all transactions between real hardware on the **GPIB** bus 
        * Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.
+         * **NOTE: on V2 boards , due to the GPIB buffers, we can not trace NDAC, NRFD and SRQ currently**
+           * The GPIB buffers prevent looking at all signals at once
        * You can use this to help understand what is sent to and from your real disks.
        * I use this feature to help prioritize which commands I first implemented.
 ___
