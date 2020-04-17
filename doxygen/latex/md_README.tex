@@ -1334,7 +1334,10 @@
 \item {\bfseries python3 uploader/listports.\+py}
 \end{DoxyItemize}
 \item The new port that appears in the last step is the Emulator Port name
-\item Optionally edit the hp85disk \mbox{[}Makefile\mbox{]}(Makefile) and change the {\bfseries P\+O\+RT} name near the start of the file to this name
+\item Optionally edit the hp85disk \mbox{[}Makefile\mbox{]}(Makefile)
+\begin{DoxyItemize}
+\item Change the {\bfseries H\+P85\+\_\+\+P\+O\+RT} name near the start of the file to this name
+\end{DoxyItemize}
 \end{DoxyItemize}}}
 
 {\bfseries {\bfseries \subsubsection*{Opening a terminal window to the hp85disk emulator}}}
@@ -1378,8 +1381,8 @@
 \begin{DoxyItemize}
 \item You just tack on settings like this to the end of the make command line
 \begin{DoxyItemize}
-\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S4 P\+O\+RT=/dev/tty\+S3}
-\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3 P\+O\+RT=/dev/tty\+S3}
+\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S4 H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S3 H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Now attached the emulator miniusb port to your computer
@@ -1402,7 +1405,7 @@
 \begin{DoxyItemize}
 \item This installs utilities like lif and mkcfg
 \end{DoxyItemize}
-\item {\bfseries make flash P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\item {\bfseries make flash H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \begin{DoxyItemize}
 \item This overrides the two settings in the Makefile
 \begin{DoxyItemize}
@@ -1411,7 +1414,7 @@
 \end{DoxyItemize}
 \item Note\+: If You want to install the release firmware that I verified and uploaded to github
 \begin{DoxyItemize}
-\item {\bfseries make flash-\/release P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\item {\bfseries make flash-\/release H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3}
 \begin{DoxyItemize}
 \item This overrides the two settings in the Makefile
 \begin{DoxyItemize}
@@ -1471,7 +1474,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 \begin{DoxyItemize}
 \item You will need and A\+VR programmer supported by {\bfseries avrdude} (part of avrtools)
 \begin{DoxyItemize}
-\item See \mbox{[}Makefile\mbox{]}(Makefile) keywords {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP} and {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT} in next \mbox{[}Makefile\mbox{]}(Makefile) section
+\item See \mbox{[}Makefile\mbox{]}(Makefile) keywords {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP} and {\bfseries I\+S\+P\+\_\+\+P\+O\+RT} in next \mbox{[}Makefile\mbox{]}(Makefile) section
 \item Lets assume
 \begin{DoxyItemize}
 \item External programmer is attached as $\ast$$\ast$/dev/tty\+S4$\ast$$\ast$
@@ -1483,7 +1486,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 \item {\bfseries make install}
 \item {\bfseries make flash-\/isp-\/release$\ast$ \# do not press Enter yet!$\ast$
 \begin{DoxyItemize}
-\item $\ast$$\ast$make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S4
+\item $\ast$$\ast$make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S4
 \item OR
 \end{DoxyItemize}}
 \item {\bfseries {\bfseries make flash-\/isp} \# do not press Enter yet!
@@ -1499,11 +1502,11 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 \item {\bfseries Note\+: You can add {\itshape term} after {\itshape A\+NY} make flash commands}
 \item Examples\+:
 \begin{DoxyItemize}
-\item {\bfseries make flash-\/isp-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp P\+O\+RT=/dev/tty\+U\+S\+B0 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=usb}
-\item {\bfseries make flash-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino P\+O\+RT=/dev/tty\+S3 A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S4}
+\item {\bfseries make flash-\/isp-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0 I\+S\+P\+\_\+\+P\+O\+RT=usb}
+\item {\bfseries make flash-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S4}
 \end{DoxyItemize}
-\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT} must be set to the programmer port name
-\item {\bfseries P\+O\+RT} must be set to the hp85disk emulator serial port name
+\item {\bfseries I\+S\+P\+\_\+\+P\+O\+RT} must be set to the programmer port name
+\item {\bfseries H\+P85\+\_\+\+P\+O\+RT} must be set to the hp85disk emulator serial port name
 \end{DoxyItemize}}}}
 
 {\bfseries {\bfseries {\bfseries 
@@ -1515,13 +1518,13 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 {\bfseries {\bfseries {\bfseries 
 \begin{DoxyItemize}
 \item These options apply to original V1 and new V2 boards
-\item Update {\bfseries B\+A\+UD, P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and L\+C\+D\+\_\+\+S\+U\+P\+P\+O\+RT} for your platform
+\item Update {\bfseries B\+A\+UD, H\+P85\+\_\+\+P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and L\+C\+D\+\_\+\+S\+U\+P\+P\+O\+RT} for your platform
 \begin{DoxyItemize}
 \item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE} is the name of A\+VR as it is known by {\bfseries avrdude}
 \begin{DoxyItemize}
 \item {\bfseries m1284}
 \end{DoxyItemize}
-\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+S\+P\+E\+ED} is the programming clock speed used by {\bfseries avrdude}
+\item {\bfseries I\+S\+P\+\_\+\+S\+P\+E\+ED} is the I\+SP programming clock speed supplied by {\bfseries avrdude}
 \begin{DoxyItemize}
 \item {\bfseries 5}
 \begin{DoxyItemize}
@@ -1540,7 +1543,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 \begin{DoxyItemize}
 \item {\bfseries avrdude -\/c list} \# for a list of devices
 \end{DoxyItemize}
-\item See \mbox{[}Makefile\mbox{]}(Makefile) keywords {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP} and {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT}
+\item See \mbox{[}Makefile\mbox{]}(Makefile) keywords {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP} and {\bfseries I\+S\+P\+\_\+\+P\+O\+RT}
 \begin{DoxyItemize}
 \item This is the I\+SP programmer and port names
 \item F\+YI\+: I am using {\bfseries atmelice\+\_\+isp} \mbox{[}Makefile\mbox{]}(Makefile) as the default
@@ -1557,15 +1560,15 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT}
+\item {\bfseries I\+S\+P\+\_\+\+P\+O\+RT}
 \begin{DoxyItemize}
-\item Depends on the emulator and operating system used
+\item Depends on the I\+SP and operating system used
 \begin{DoxyItemize}
 \item Example\+: on Linux it might be $\ast$$\ast$/dev/tty\+U\+S\+B1$\ast$$\ast$ for a {\bfseries avrisp} and {\bfseries arduino}
 \item {\bfseries usb} for {\bfseries atmelice\+\_\+isp} on Linux -\/ the emulator hardware will typically have instructions
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item {\bfseries P\+O\+RT} is the hp85disk emulator serial P\+O\+RT name as detected by your operating system
+\item {\bfseries H\+P85\+\_\+\+P\+O\+RT} is the hp85disk emulator serial H\+P85\+\_\+\+P\+O\+RT name as detected by your operating system
 \begin{DoxyItemize}
 \item $\ast$$\ast$/dev/tty\+U\+S\+B0$\ast$$\ast$ on my system -\/ Linux
 \end{DoxyItemize}
@@ -1650,7 +1653,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 
 \begin{DoxyPre}        Overriding any configuration settings
             You can add configuration values at the end of your make commands like this
-            make flash-isp AVRDUDE\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp PORT=/dev/ttyUSB0\end{DoxyPre}
+            make flash-isp ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
 
 
 
@@ -1694,9 +1697,9 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 
 {\bfseries {\bfseries {\bfseries 
 \begin{DoxyItemize}
-\item {\bfseries make flash A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+S3}
-\item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0}
-\item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp A\+V\+R\+D\+U\+D\+E\+\_\+\+P\+O\+RT=usb}
+\item {\bfseries make flash A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S3}
+\item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0}
+\item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp I\+S\+P\+\_\+\+P\+O\+RT=usb}
 \end{DoxyItemize}}}}
 
 {\bfseries {\bfseries {\bfseries 

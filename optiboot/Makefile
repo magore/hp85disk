@@ -3,10 +3,10 @@
 # These defaults are only assigned if they were not defined when the Makefile was called
 PORT           ?= /dev/ttyUSB0
 DEVICE         ?= atmega1284p
-AVRDUDE_ISP    ?= atmelice_isp
-AVRDUDE_PORT   ?= usb
 AVRDUDE_DEVICE ?= m1284p
-AVRDUDE_SPEED  ?= 0.25
+AVRDUDE_ISP    ?= atmelice_isp
+ISP_PORT       ?= usb
+ISP_SPEED      ?= 0.25
 
 OPTIBOOT_HEX   ?= optiboot_$(DEVICE).hex
 
@@ -26,25 +26,25 @@ install_optiboot: optiboot boot_install
 # Erase the chip including lock bits
 erase_chip:
 	@echo ERASE CHIP
-	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) -e
+	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) -e
 
 # Fuse programming
 # -u disables safe mode to permit updating fuses_optiboot
 fuse_write:
 	@echo FUSE WRITE
-	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -u -F -B $(AVRDUDE_SPEED) $(fuses_optiboot) 
+	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -u -F -B $(ISP_SPEED) $(fuses_optiboot) 
 
 # Install optiboot code 
 # Flash boot loader code using isp
 boot_write: 
 	@echo BOOT WRITE
-	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) -U flash:w:$(OPTIBOOT_HEX):i  
+	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) -U flash:w:$(OPTIBOOT_HEX):i  
 
 # Install optiboot code 
 # Flash boot loader code using isp
 boot_lock: 
 	@echo BOOT LOCK
-	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(AVRDUDE_SPEED) $(fuses_lock)
+	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) $(fuses_lock)
 
 # Install optiboot code with fuses_optiboot after erasing chip
 boot_install:	erase_chip boot_write fuse_write boot_lock
@@ -52,7 +52,7 @@ boot_install:	erase_chip boot_write fuse_write boot_lock
 
 # Read chip status
 info:
-	avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -v
+	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -v
 
 clean:	
 	rm -f optiboot optiboot_$(DEVICE)\.*

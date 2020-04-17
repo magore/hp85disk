@@ -28,14 +28,13 @@ export F_CPU  ?= 20000000
 # NOTE ALL of the variables below assigned with ?
 # Can me set on the make command line
 # Example: 
-#   make AVRDUDE_PORT=/dev/ttyUSB0 PORT=/dev/ttyUSB0
-# The hp85disk serial port is PORT and the Programmer is AVRDUDE_PORT
+#   make ISP_PORT=/dev/ttyUSB0 HP85_PORT=/dev/ttyUSB0
+# The hp85disk serial port is PORT and the Programmer is ISP_PORT
 # These can be the same if we are using the hp85disk boot loader for programmin
 #
 # ==============================================
 ### Serial Port for hp85disk emulator user interface
-export PORT ?= /dev/ttyUSB0
-# export PORT      ?= /dev/ttyUSB0
+export HP85_PORT   ?= /dev/ttyUSB0
 
 # Serial port speed default
 export BAUD ?= 115200
@@ -55,17 +54,17 @@ export AVRDUDE_ISP ?= atmelice_isp
 #   hp85disk built in boot loader
 
 # AVRDUDE ISP PORT default
-export AVRDUDE_PORT ?= usb
+export ISP_PORT ?= usb
 # Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
 #  *usb* only applies to Ubuntu Linux - not supported under Windows WSL
-# AVRDUDE_PORT      ?= /dev/ttyUSB1
-# AVRDUDE_PORT      ?= /dev/ttyS3
+# ISP_PORT      ?= /dev/ttyUSB1
+# ISP_PORT      ?= /dev/ttyS3
 
 # avrdude device name do NOT change
 export AVRDUDE_DEVICE ?= m1284
 
 # avrdude programming speed
-export AVRDUDE_SPEED ?= 5
+export ISP_SPEED ?= 5
 
 # ==============================================
 # optiboot bot loader support
@@ -441,8 +440,8 @@ hardware/baudrate:  hardware/baudrate.c
 # =======================================
 .PHONY: term
 term:   
-	./term $(BAUD) $(PORT)
-	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(PORT) $(BAUD)
+	./term $(BAUD) $(HP85_PORT)
+	# python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 $(HP85_PORT) $(BAUD)
 
 # =======================================
 .PHONE: hogs
@@ -480,9 +479,11 @@ help:
 	@echo
 	@echo 'Overriding any configuration settings'
 	@echo "    You can add configuration values at the end of your make commands like this"
-	@echo "    make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo "    make flash-isp term     ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash term         HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash-release term HP85_PORT=/dev/ttyUSB0"
 	@echo
-	@echo 'Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes'
+	@echo 'Note: Adding "term" after a make command will start a terminal to the hp85disk when finished'
 	@echo 
 	@echo 'Programming using an 6 wire ISP - installs optiboot'
 	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
@@ -514,20 +515,25 @@ config:
 	@echo "Current Configuration Defaults"
 	@echo "    You can override settings by adding assignments at the end of any make command"
 	@echo "    Example:"
-	@echo "             make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0"
+	@echo "             make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0"
 	@echo 
 	@echo "    DEVICE                 = $(DEVICE)"
 	@echo "    F_CPU                  = $(F_CPU)"
 	@echo "    BAUD                   = $(BAUD)"
-	@echo "    PORT                   = $(PORT)"
+	@echo "    HP85_PORT              = $(PORT)"
+	@echo 
 	@echo "    AVRDUDE_DEVICE         = $(AVRDUDE_DEVICE)"
-	@echo "    AVRDUDE_SPEED          = $(AVRDUDE_SPEED)"
+	@echo "    AVRDUDE_ISP            = $(AVRDUDE_ISP)"
+	@echo "    ISP_PORT               = $(ISP_PORT)"
+	@echo "    ISP_SPEED              = $(ISP_SPEED)"
+	@echo 
 	@echo "    OPTIBOOT               = $(OPTIBOOT)"
 	@echo "    BOARD                  = $(BOARD)"
 	@echo "    PPR_REVERSE_BITS       = $(PPR_REVERSE_BITS)"
 	@echo "    I2C_SUPPORT            = $(I2C_SUPPORT)"
 	@echo "    RTC_SUPPORT            = $(RTC_SUPPORT)"
 	@echo "    LCD_SUPPORT            = $(LCD_SUPPORT)"
+	@echo 
 	@echo "    AMIGO                  = $(AMIGO)"
 	@echo "    FATFS_SUPPORT          = $(FATFS_SUPPORT)"
 	@echo "    FATFS_TESTS            = $(FATFS_TESTS)"
@@ -556,19 +562,19 @@ list-builtins:
 # install_optiboot erases the chip
 # install_optiboot sets our fuses!
 flash-isp: all install_optiboot
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(ISP_SPEED) -U flash:w:$(PROJECT).hex:i
 
 flash-isp-fast: all install_optiboot
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -D -F -B 0.25 -D -U flash:w:$(PROJECT).hex:i
 
 flash-isp-release: install_optiboot
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(ISP_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
 
 verify-isp: 
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) -U flash:v:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -F -B $(ISP_SPEED) -U flash:v:$(PROJECT).hex:i
 
 verify-isp-fast: isp
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -U flash:v:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -U flash:v:$(PROJECT).hex:i
 
 # =======================================
 # OPTIBOOT flashing using built in boot loader - arduino protocol
@@ -577,26 +583,26 @@ verify-isp-fast: isp
 #    Suggestion on your computer type in the make command with pressing enter - press reset and then enter quickly after
 # 
 flash: all
-	# ./reset $(BAUD) $(AVRDUDE_PORT)
-	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED)  -U flash:w:$(PROJECT).hex:i
-	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) $(PROJECT).hex
+	# ./reset $(BAUD) $(HP85_PORT)
+	# avrdude -c arduino -P $(HP85_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(ISP_SPEED)  -U flash:w:$(PROJECT).hex:i
+	python3 uploader/flasher.py $(BAUD) $(HP85_PORT) $(PROJECT).hex
 
 flash-release:
-	# ./reset $(BAUD) $(AVRDUDE_PORT)
-	# avrdude -c arduino -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(AVRDUDE_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
-	python3 uploader/flasher.py $(BAUD) $(AVRDUDE_PORT) release/build/$(PROJECT).hex
+	# ./reset $(BAUD) $(HP85_PORT)
+	# avrdude -c arduino -P $(HP85_PORT) -p $(AVRDUDE_DEVICE) -D -F -B $(ISP_SPEED) -U flash:w:release/build/$(PROJECT).hex:i
+	python3 uploader/flasher.py $(BAUD) $(HP85_PORT) release/build/$(PROJECT).hex
 
 # =======================================
 # ISP flashing - NO optiboot!
 # We ALWAYS erase the CHIP before flashing
 flash-isp-noboot: 
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -F -B $(ISP_SPEED) $(fuses) -U flash:w:$(PROJECT).hex:i
 
 flash-isp-noboot-fast: 
-	avrdude -c $(AVRDUDE_ISP) avrdude -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -F -B 0.25 -D $(fuses) -U flash:w:$(PROJECT).hex:i
 
 flash-isp-noboot-release:  
-	avrdude -c $(AVRDUDE_ISP) -P $(AVRDUDE_PORT) -p $(AVRDUDE_DEVICE) -F -B $(AVRDUDE_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
+	avrdude -c $(AVRDUDE_ISP) -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -F -B $(ISP_SPEED) $(fuses) -U flash:w:release/build/$(PROJECT).hex:i
 
 # =======================================
 

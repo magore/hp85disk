@@ -1288,7 +1288,10 @@ README</h1>
 </ul>
 </li>
 <li>The new port that appears in the last step is the Emulator Port name</li>
-<li>Optionally edit the hp85disk [Makefile](Makefile) and change the <b>PORT</b> name near the start of the file to this name</li>
+<li>Optionally edit the hp85disk [Makefile](Makefile)<ul>
+<li>Change the <b>HP85_PORT</b> name near the start of the file to this name</li>
+</ul>
+</li>
 </ul>
 <p></b></b></p>
 <p><b><b></p><h3>Opening a terminal window to the hp85disk emulator</h3>
@@ -1325,8 +1328,8 @@ README</h1>
 <p><b><b></p><ul>
 <li>Note: in the steps below you can override defaults<ul>
 <li>You just tack on settings like this to the end of the make command line<ul>
-<li><b>AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS4 PORT=/dev/ttyS3</b></li>
-<li><b>AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3</b></li>
+<li><b>AVRDUDE_ISP=avrisp ISP_PORT=/dev/ttyS4 HP85_PORT=/dev/ttyS3</b></li>
+<li><b>AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3 HP85_PORT=/dev/ttyS3</b></li>
 </ul>
 </li>
 </ul>
@@ -1350,7 +1353,7 @@ README</h1>
 <li>This installs utilities like lif and mkcfg</li>
 </ul>
 </li>
-<li><b>make flash PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</b><ul>
+<li><b>make flash HP85_PORT=/dev/ttyS3</b><ul>
 <li>This overrides the two settings in the Makefile<ul>
 <li>Alternatively you can edit the Makefile and change the two settings for your setup</li>
 </ul>
@@ -1358,7 +1361,7 @@ README</h1>
 </ul>
 </li>
 <li>Note: If You want to install the release firmware that I verified and uploaded to github<ul>
-<li><b>make flash-release PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3</b><ul>
+<li><b>make flash-release HP85_PORT=/dev/ttyS3</b><ul>
 <li>This overrides the two settings in the Makefile<ul>
 <li>Alternatively you can edit the Makefile and change the two settings for your setup</li>
 </ul>
@@ -1413,7 +1416,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <p></b></b></p>
 <p><b><b></p><ul>
 <li>You will need and AVR programmer supported by <b>avrdude</b> (part of avrtools)<ul>
-<li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>AVRDUDE_PORT</b> in next [Makefile](Makefile) section</li>
+<li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>ISP_PORT</b> in next [Makefile](Makefile) section</li>
 <li>Lets assume<ul>
 <li>External programmer is attached as **/dev/ttyS4**</li>
 <li>hp85disk is attached as **/dev/ttyS3**</li>
@@ -1425,7 +1428,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <li><b>make</b></li>
 <li><b>make install</b></li>
 <li><b>make flash-isp-release* # do not press Enter yet!*<ul>
-<li>**make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4</li>
+<li>**make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</li>
 <li>OR</li>
 </ul>
 </b></li>
@@ -1440,12 +1443,12 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <p><b><b><b></p><ul>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
 <li>Examples:<ul>
-<li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb</b></li>
-<li><b>make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4</b></li>
+<li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp HP85_PORT=/dev/ttyUSB0 ISP_PORT=usb</b></li>
+<li><b>make flash-release term AVRDUDE_ISP=arduino HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</b></li>
 </ul>
 </li>
-<li><b>AVRDUDE_PORT</b> must be set to the programmer port name</li>
-<li><b>PORT</b> must be set to the hp85disk emulator serial port name</li>
+<li><b>ISP_PORT</b> must be set to the programmer port name</li>
+<li><b>HP85_PORT</b> must be set to the hp85disk emulator serial port name</li>
 </ul>
 <p></b></b></b></p>
 <p><b><b><b></p><hr/>
@@ -1454,12 +1457,12 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <p></b></b></b></p>
 <p><b><b><b></p><ul>
 <li>These options apply to original V1 and new V2 boards</li>
-<li>Update <b>BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT</b> for your platform<ul>
+<li>Update <b>BAUD, HP85_PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT</b> for your platform<ul>
 <li><b>AVRDUDE_DEVICE</b> is the name of AVR as it is known by <b>avrdude</b><ul>
 <li><b>m1284</b></li>
 </ul>
 </li>
-<li><b>AVRDUDE_SPEED</b> is the programming clock speed used by <b>avrdude</b><ul>
+<li><b>ISP_SPEED</b> is the ISP programming clock speed supplied by <b>avrdude</b><ul>
 <li><b>5</b><ul>
 <li>My device works with 0.25 but 5 is safe</li>
 </ul>
@@ -1475,7 +1478,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <li><b>avrdude -c list</b> # for a list of devices</li>
 </ul>
 </li>
-<li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>AVRDUDE_PORT</b><ul>
+<li>See [Makefile](Makefile) keywords <b>AVRDUDE_ISP</b> and <b>ISP_PORT</b><ul>
 <li>This is the ISP programmer and port names</li>
 <li>FYI: I am using <b>atmelice_isp</b> [Makefile](Makefile) as the default</li>
 </ul>
@@ -1495,15 +1498,15 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 </li>
 </ul>
 </li>
-<li><b>AVRDUDE_PORT</b><ul>
-<li>Depends on the emulator and operating system used<ul>
+<li><b>ISP_PORT</b><ul>
+<li>Depends on the ISP and operating system used<ul>
 <li>Example: on Linux it might be **/dev/ttyUSB1** for a <b>avrisp</b> and <b>arduino</b></li>
 <li><b>usb</b> for <b>atmelice_isp</b> on Linux - the emulator hardware will typically have instructions</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><b>PORT</b> is the hp85disk emulator serial PORT name as detected by your operating system<ul>
+<li><b>HP85_PORT</b> is the hp85disk emulator serial HP85_PORT name as detected by your operating system<ul>
 <li>**/dev/ttyUSB0** on my system - Linux</li>
 </ul>
 </li>
@@ -1577,7 +1580,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
             make                   - builds all code</pre><pre>        Listing current configuration settings
             make config</pre><pre>        Overriding any configuration settings
             You can add configuration values at the end of your make commands like this
-            make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0</pre><pre>        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes</pre><pre>        Programming using an 6 wire ISP - installs optiboot
+            make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0</pre><pre>        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes</pre><pre>        Programming using an 6 wire ISP - installs optiboot
             make install_optiboot  - install optiboot boot loaded using an ISP
             make flash-isp         - build and flash the code using an ISP
             make flash-isp-release - flash the release code using an ISP</pre><pre>        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
@@ -1600,9 +1603,9 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 <p><b><b><b></p><h2>Example building with Makefile overrides</h2>
 <p></b></b></b></p>
 <p><b><b><b></p><ul>
-<li><b>make flash AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3</b></li>
-<li><b>make flash-isp AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0</b></li>
-<li><b>make flash-isp AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb</b></li>
+<li><b>make flash AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3</b></li>
+<li><b>make flash-isp AVRDUDE_ISP=avrisp ISP_PORT=/dev/ttyUSB0</b></li>
+<li><b>make flash-isp AVRDUDE_ISP=atmelice_isp ISP_PORT=usb</b></li>
 </ul>
 <p></b></b></b></p>
 <p><b><b><b></p><hr/>
@@ -2967,7 +2970,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 16 2020 10:58:45 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 16 2020 20:09:34 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

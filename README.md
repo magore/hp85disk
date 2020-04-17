@@ -712,7 +712,8 @@ ___
   * Run 
     * **python3 uploader/listports.py**
   * The new port that appears in the last step is the Emulator Port name
-  * Optionally edit the hp85disk [Makefile](Makefile) and change the **PORT** name near the start of the file to this name
+  * Optionally edit the hp85disk [Makefile](Makefile) 
+    * Change the **HP85_PORT** name near the start of the file to this name
 
 ### Opening a terminal window to the hp85disk emulator
 NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
@@ -737,8 +738,8 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
 ### Compile and updating Firmware - assumes you have all tools installed
   * Note: in the steps below you can override defaults
     * You just tack on settings like this to the end of the make command line
-      * **AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyS4 PORT=/dev/ttyS3**
-      * **AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3 PORT=/dev/ttyS3**
+      * **AVRDUDE_ISP=avrisp  ISP_PORT=/dev/ttyS4 HP85_PORT=/dev/ttyS3**
+      * **AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3 HP85_PORT=/dev/ttyS3**
   * Now attached the emulator miniusb port to your computer 
     * Make sure you have installed the software in the previous steps and discovered the hp85disk serial port
 
@@ -749,11 +750,11 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
   * **make**
   * **make install**
     * This installs utilities like lif and mkcfg
-  * **make flash PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3**
+  * **make flash HP85_PORT=/dev/ttyS3**
     * This overrides the two settings in the Makefile
       * Alternatively you can edit the Makefile and change the two settings for your setup
   * Note: If You want to install the release firmware that I verified and uploaded to github
-    * **make flash-release  PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS3**
+    * **make flash-release  HP85_PORT=/dev/ttyS3**
       * This overrides the two settings in the Makefile
         * Alternatively you can edit the Makefile and change the two settings for your setup
 
@@ -784,7 +785,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 
 ### Update Firmware with external programmer
   * You will need and AVR programmer supported by **avrdude** (part of avrtools)
-    * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **AVRDUDE_PORT** in next [Makefile](Makefile) section
+    * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **ISP_PORT** in next [Makefile](Makefile) section
     * Lets assume 
       * External programmer is attached as **/dev/ttyS4**
       * hp85disk is attached as **/dev/ttyS3**
@@ -792,7 +793,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
   * **make**
   * **make install**
   * **make flash-isp-release* # do not press Enter yet!*
-    * **make flash-isp-release AVRDUDE_ISP=avrisp PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4**
+    * **make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4**
     * OR
   * **make flash-isp**         # do not press Enter yet!
     * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
@@ -800,20 +801,20 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 ### Flashing AND connecting to hp85disk emulator terminal just after firmware update 
   * **Note: You can add *term* after *ANY* make flash commands**
   * Examples:
-    * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp PORT=/dev/ttyUSB0 AVRDUDE_PORT=usb**
-    * **make flash-release term AVRDUDE_ISP=arduino PORT=/dev/ttyS3 AVRDUDE_PORT=/dev/ttyS4**
-  * **AVRDUDE_PORT** must be set to the programmer port name
-  * **PORT** must be set to the hp85disk emulator serial port name
+    * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp HP85_PORT=/dev/ttyUSB0 ISP_PORT=usb**
+    * **make flash-release term     AVRDUDE_ISP=arduino      HP85_PORT=/dev/ttyS3   ISP_PORT=/dev/ttyS4**
+  * **ISP_PORT** must be set to the programmer port name
+  * **HP85_PORT** must be set to the hp85disk emulator serial port name
 
 ___ 
 
 
 ## Makefile configuration options for hp85disk emulator 
   * These options apply to original V1 and new V2 boards
-  * Update **BAUD, PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT** for your platform
+  * Update **BAUD, HP85_PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT** for your platform
     * **AVRDUDE_DEVICE** is the name of AVR as it is known by **avrdude**
       * **m1284**
-    * **AVRDUDE_SPEED**  is the programming clock speed used by **avrdude**
+    * **ISP_SPEED**  is the ISP programming clock speed supplied by **avrdude**
       * **5**
         * My device works with 0.25 but 5 is safe
     * **AVRDUDE_ISP**
@@ -823,7 +824,7 @@ ___
           * Note: **ISP** = *In System Programmer*
           * **avrdude device programmer name as known by avrdude**
             * **avrdude -c list**  # for a list of devices
-          * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **AVRDUDE_PORT**
+          * See [Makefile](Makefile) keywords **AVRDUDE_ISP** and **ISP_PORT**
             * This is the ISP programmer and port names
             * FYI: I am using **atmelice_isp** [Makefile](Makefile) as the default
           * The cheapest ISP is the Arduino as ISP 
@@ -831,11 +832,11 @@ ___
               * There are many sources that sell this low cost programmer - Amazon has them for about $10 
               * FYI: The Arduino installer package includes the source for the Arduino ISP in the Example Programs if you want to make one
           * **Note: JTAG is disabled for this project so you can not use a JTAG programmer**
-    * **AVRDUDE_PORT**
-      * Depends on the emulator and operating system used
+    * **ISP_PORT**
+      * Depends on the ISP and operating system used
         * Example: on Linux it might be **/dev/ttyUSB1** for a **avrisp** and **arduino**
         * **usb** for **atmelice_isp** on Linux - the emulator hardware will typically have instructions
-    * **PORT** is the hp85disk emulator serial PORT name as detected by your operating system
+    * **HP85_PORT** is the hp85disk emulator serial HP85_PORT name as detected by your operating system
       * **/dev/ttyUSB0** on my system - Linux
     * **BAUD**  is the hp85disk emulator serial baud rate 
       * **115200** = a safe default that most systems can manage
@@ -882,7 +883,7 @@ ___
         
         Overriding any configuration settings
             You can add configuration values at the end of your make commands like this
-            make flash-isp AVRDUDE_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp PORT=/dev/ttyUSB0
+            make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
         
         Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes
         
@@ -911,9 +912,9 @@ ___
 
 
 ## Example building with Makefile overrides
-  * **make flash      AVRDUDE_ISP=arduino AVRDUDE_PORT=/dev/ttyS3**
-  * **make flash-isp  AVRDUDE_ISP=avrisp AVRDUDE_PORT=/dev/ttyUSB0**
-  * **make flash-isp  AVRDUDE_ISP=atmelice_isp AVRDUDE_PORT=usb**
+  * **make flash      AVRDUDE_ISP=arduino      ISP_PORT=/dev/ttyS3**
+  * **make flash-isp  AVRDUDE_ISP=avrisp       ISP_PORT=/dev/ttyUSB0**
+  * **make flash-isp  AVRDUDE_ISP=atmelice_isp ISP_PORT=usb**
 
 ___
 
