@@ -1265,19 +1265,18 @@ Note 5V connection - DO NOT CONNECT
 <li><b>make clean</b></li>
 <li><b>make</b></li>
 <li><b>make install</b></li>
-<li><b>make flash-isp-release*<ul>
-<li>**make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</li>
+<li><b>make flash-isp-release</b><ul>
+<li><b>make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</b></li>
 <li>OR</li>
 </ul>
-</b></li>
-<li><b><b>make flash-isp</b><ul>
+</li>
+<li><b>make flash-isp</b><ul>
 <li>This will use <b>avrdude</b> and your ISP (In System Programmer) to flash the firmware</li>
 </ul>
-</b></li>
+</li>
 </ul>
-<p><b></p><h3>Flashing AND connecting to hp85disk emulator terminal just after firmware update</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>Flashing AND connecting to hp85disk emulator terminal just after firmware update</h3>
+<ul>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
 <li>Examples:<ul>
 <li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp HP85_PORT=/dev/ttyUSB0 ISP_PORT=usb</b></li>
@@ -1287,12 +1286,9 @@ Note 5V connection - DO NOT CONNECT
 <li><b>ISP_PORT</b> must be set to the programmer port name</li>
 <li><b>HP85_PORT</b> must be set to the hp85disk emulator serial port name</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Makefile configuration options for hp85disk emulator</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Makefile configuration options for hp85disk emulator</h2>
+<ul>
 <li>These options apply to original V1 and new V2 boards</li>
 <li>Update <b>BAUD, HP85_PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT</b> for your platform<ul>
 <li><b>AVRDUDE_DEVICE</b> is the name of AVR as it is known by <b>avrdude</b><ul>
@@ -1403,10 +1399,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>make help documentation</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>make help documentation</h2>
+<ul>
 <li><b>make help</b><ul>
 <li><p class="startli">List the common commands to compile/install/flash the code </p><pre>
         Building Commands
@@ -1436,29 +1430,21 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Example building with Makefile overrides</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Example building with Makefile overrides</h2>
+<ul>
 <li><b>make flash AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3</b></li>
 <li><b>make flash-isp AVRDUDE_ISP=avrisp ISP_PORT=/dev/ttyUSB0</b></li>
 <li><b>make flash-isp AVRDUDE_ISP=atmelice_isp ISP_PORT=usb</b></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Building Doxygen documentation for the project - OPTIONAL</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Building Doxygen documentation for the project - OPTIONAL</h2>
+<ul>
 <li><b>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</b></li>
 <li><em>If you omit this you will have to update the [Makefile](Makefile) to omit the steps</em></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Using the hp85disk emulator</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Using the hp85disk emulator</h2>
+<ul>
 <li>Here we focus just on <b>HP85</b> BASIC commands</li>
 <li>See <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> for configuration settings and setting and documentation.<ul>
 <li>Printer capture is configured currently for my HP54645D scope<ul>
@@ -1496,10 +1482,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Testing examples on your HP85</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Testing examples on your HP85</h2>
+<ul>
 <li>Testing was done with an <b>HP85A</b> (with extended EMS ROM)<ul>
 <li>Using the Hewlett-Packard Series 80 - <b>PRM-85</b> by Bill Kotaska</li>
 <li>This makes my <b>HP85A</b> look like and <b>HP85B</b><ul>
@@ -1513,12 +1497,9 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Initializing a disk images</h2>
-<p></b></p>
-<p><b> </p><h2>HP85B only feature or HP88A with <b>PRM-85</b> board</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Initializing a disk images</h2>
+<h2>HP85B only feature or HP88A with <b>PRM-85</b> board</h2>
+<ul>
 <li>IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands</li>
 <li>The <b>HP85B</b> and EMS ROM has extended INITIALIZE attributes<ul>
 <li>If you use the hP85 INITIALIZE commands it erases everything on the emulated image</li>
@@ -1534,17 +1515,14 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>HP85A and HP85B examples</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>HP85A and HP85B examples</h2>
+<ul>
 <li>Note lines with a "#' as the first non blank character are just my comments<ul>
 <li>A bad habit from writing too many bash scripts</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><pre>
+<pre>
   # Listing files:
   # first AMIGO
   CAT ":D700"
@@ -1553,8 +1531,7 @@ Note 5V connection - DO NOT CONNECT
   # first SS80
   CAT ":D720"
   # second SS80
-  CAT ":D730"</pre><p></b></p>
-<p><b></p><pre>  # Loading file from first SS80:
+  CAT ":D730"</pre><pre>  # Loading file from first SS80:
   LOAD "HELLO:D720"
   # Copying file between devices: fist AMIGO to second AMIGO
   COPY "HELLO:D700" TO "HELLO:D710"
@@ -1587,12 +1564,9 @@ Note 5V connection - DO NOT CONNECT
   SCRATCH
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
+<ul>
 <li>While <b>GPIB</b> devices can have address between 0 and 31 you can have no more than 8 disk drives.</li>
 <li>ALL disk drives are required to respond to a <b>PPR</b> query by the (HP85) controller.<ul>
 <li><b>PPR</b> query is done when the controller in charge (HP85) pulls <b>ATN</b> and <b>EOI</b> low.</li>
@@ -1647,10 +1621,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Technical Limitations</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Technical Limitations</h2>
+<ul>
 <li>Multiple drive support is implemented but multiple UNIT support is NOT</li>
 <li>While most <b>AMIGO</b> and <b>SS80</b> feature have been implemented my primary focus was on the <b>HP85A</b> and <b>HP85B</b>.<ul>
 <li>(I do not have access to other computers to test for full compatibility)</li>
@@ -1713,10 +1685,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>hp85disk Terminal Commands</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>hp85disk Terminal Commands</h2>
+<ul>
 <li>Pressing any key will break out of the gpib task loop until a command is entered<ul>
 <li><b>help</b><ul>
 <li>List all available commands</li>
@@ -1727,10 +1697,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>For main help menu type <em>help</em></h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>For main help menu type <em>help</em></h3>
+<ul>
 <li>Any word that has <b>help</b> after it will give help for that command</li>
 <li><p class="startli"><b>help</b> </p><pre>
     Stand alone version of LIF utilities for linux
@@ -1751,10 +1719,8 @@ Note 5V connection - DO NOT CONNECT
     reset</pre><pre>    OK
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>For lif help type <em>lif help</em></h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>For lif help type <em>lif help</em></h3>
+<ul>
 <li><b>lif help</b> <pre>
     lif add lifimage lifname from_ascii_file
     lif addbin lifimage lifname from_lif_file
@@ -1769,10 +1735,8 @@ Note 5V connection - DO NOT CONNECT
     Use -d after first keyword 'lif' above for LIF filesystem debugging
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>For posix help type <em>posix help</em></h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>For posix help type <em>posix help</em></h3>
+<ul>
 <li><b>posix help</b> <pre>
     posix prefix is optional
     posix cat file [-p]
@@ -1787,10 +1751,8 @@ Note 5V connection - DO NOT CONNECT
     posix rename old new
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>For setting the time type <em>setdate</em> it will prompt for the date as shown below</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>For setting the time type <em>setdate</em> it will prompt for the date as shown below</h3>
+<ul>
 <li>This also sets the RTC<ul>
 <li><b>NOTE: you may have to issue this command TWICE on the very first initialization</b></li>
 </ul>
@@ -1803,10 +1765,8 @@ Note 5V connection - DO NOT CONNECT
     clk time:    Thu Apr  9 16:54:00 2020
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><h3>For displaying the time and the rtc time type <em>time</em></h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>For displaying the time and the rtc time type <em>time</em></h3>
+<ul>
 <li><b>time</b> <pre>
     rtc seconds: 1586451317
     rtc time:    Thu Apr  9 16:55:17 2020
@@ -1814,18 +1774,15 @@ Note 5V connection - DO NOT CONNECT
     clk time:    Thu Apr  9 16:55:17 2020
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><h2>hp85disk setting debug options</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>hp85disk setting debug options</h2>
+<ul>
 <li>Debugging is can be controlled in two ways<ul>
 <li>The <b>DEBUG</b> statement in <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a></li>
 <li>Typing the command in interactively</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b>### hp85disk DEBUG truth table </p><pre>
+<p>### hp85disk DEBUG truth table </p><pre>
   You can OR the following values together to add debug processing
   Values in the table are in HEX (base 16)
   Warning: Setting too many can cause HP85 timeouts while displaying messages
@@ -1841,10 +1798,8 @@ Note 5V connection - DO NOT CONNECT
     100 GPIB read / write string byte decode
     200 Parallel Poll bus status debug
     400 LIF utilities debugging
-</pre><p></b></p>
-<p><b></p><h3>hp85disk setting debug examples</h3>
-<p></b></p>
-<p><b></p><ul>
+</pre><h3>hp85disk setting debug examples</h3>
+<ul>
 <li>Interactively<ul>
 <li><b>gpib debug = 0x11</b></li>
 </ul>
@@ -1882,24 +1837,18 @@ Note 5V connection - DO NOT CONNECT
     DEBUG = 0x51
 </pre></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h1>Abbreviations</h1>
-<p></b></p>
-<p><b> Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
+<hr/>
+<h1>Abbreviations</h1>
+<p>Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
 <li><b>SS80</b></li>
 <li><b>CS80</b></li>
 <li><b>A or Amigo</b></li>
 <li><b>HP-IP</b></li>
 <li><b>HP-IP Tutorial</b></li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Documentation References and related sources of information</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Documentation References and related sources of information</h2>
+<ul>
 <li>Web Resources<ul>
 <li><a href="http://www.hp9845.net">http://www.hp9845.net</a></li>
 <li><a href="http://www.hpmuseum.net">http://www.hpmuseum.net</a></li>
@@ -1910,54 +1859,39 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Enhanced version of Tony Duell's lif_utils by Joachim</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Enhanced version of Tony Duell's lif_utils by Joachim</h2>
+<ul>
 <li><a href="https://github.com/bug400/lifutils">https://github.com/bug400/lifutils</a></li>
 <li>Create/Modify <b>LIF</b> images</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>CS80 References: ("CS80" is the short form used in the project)</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>CS80 References: ("CS80" is the short form used in the project)</h2>
+<ul>
 <li>"CS/80 Instruction Set Programming Manual"</li>
 <li>Printed: APR 1983</li>
 <li>HP Part# 5955-3442</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
+<ul>
 <li>"Appendix A of 9895A Flexible Disc Memory Service Manual"</li>
 <li>HP Part# 09895-90030</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>HP-IB</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>HP-IB</h2>
+<ul>
 <li>("HP-IB" is the short form used in the project)</li>
 <li>"Condensed Description of the Hewlett Packard Interface Bus"</li>
 <li>Printed March 1975</li>
 <li>HP Part# 59401-90030</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Tutorial Description of the Hewlett Packard Interface Bus</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Tutorial Description of the Hewlett Packard Interface Bus</h2>
+<ul>
 <li>("HP-IB Tutorial" is the short form used in the project)</li>
 <li><a href="http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf">http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf</a></li>
 <li>Printed January 1983</li>
@@ -1965,41 +1899,29 @@ Note 5V connection - DO NOT CONNECT
 <li>Printed 1987</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>GPIB / IEEE 488 Tutorial by Ian Poole</h2>
+<ul>
 <li><a href="http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php">http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php</a></li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>HP 9133/9134 D/H/L References</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>HP 9133/9134 D/H/L References</h2>
+<ul>
 <li>"HP 9133/9134 D/H/L Service Manual"</li>
 <li>HP Part# 5957-6560</li>
 <li>Printed: APRIL 1985, Edition 2</li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>*LIF* File system Format</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>*LIF* File system Format</h2>
+<ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
 <li>See [Documents folder](documents)</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Useful Utilities</h2>
-<p></b></p>
-<p><b></p><ul>
+<hr/>
+<h2>Useful Utilities</h2>
+<ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">HPDir HP Drive - Disk Image Manipulation</a><ul>
 <li>Copyright © 2010 A. Kückes</li>
 </ul>
@@ -2009,14 +1931,11 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>*GPIB* Connector pin-out by Anders Gustafsson in his hpdisk project</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>*GPIB* Connector pin-out by Anders Gustafsson in his hpdisk project</h2>
+<ul>
 <li><a href="http://www.dalton.ax/hpdisk/">http://www.dalton.ax/hpdisk/</a></li>
 </ul>
-<p></b></p>
-<p><b></p><pre>
+<pre>
     Pin Name   Signal Description       Pin Name   Signal Description 
     1   DIO1   Data Input/Output Bit 1  13  DIO5   Data Input/Output Bit 5 
     2   DIO2   Data Input/Output Bit 2  14  DIO6   Data Input/Output Bit 6 
@@ -2030,12 +1949,9 @@ Note 5V connection - DO NOT CONNECT
     10  SRQ    Service Request          22  Shield Ground (SRQ) 
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
-</pre><p></b></p>
-<p><b></p><hr/>
-<p></b></p>
-<p><b></p><h2>Main project files for hp85disk Project</h2>
-<p></b></p>
-<p><b></p><ul>
+</pre><hr/>
+<h2>Main project files for hp85disk Project</h2>
+<ul>
 <li>Project Main Home Directory<ul>
 <li><a href="main.c">main.c</a></li>
 <li><a href="main.h">main.h</a><ul>
@@ -2089,16 +2005,12 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Compiled firmware release files</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Compiled firmware release files</h2>
+<ul>
 <li>[release](release)</li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Board design file for version 1 and 2 hardware information</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Board design file for version 1 and 2 hardware information</h2>
+<ul>
 <li>[board](board)<ul>
 <li><a href="board/V1">V1</a><ul>
 <li>V1 Board documentation and Release files</li>
@@ -2114,26 +2026,20 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Documents</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Documents</h2>
+<ul>
 <li>[Documents](Documents)</li>
 <li><b>GPIB</b> BUS, HP device, <b>LIF</b> and chips documentation for this project<ul>
 <li>Documents/README.md</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>hp85disk software files</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>hp85disk software files</h2>
+<ul>
 <li>Most of the software in the project was written by me except where noted</li>
 </ul>
-<p></b></p>
-<p><b></p><h2>FatFs</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>FatFs</h2>
+<ul>
 <li>[fatfs](fatfs)<ul>
 <li>R0.14 FatFS code from (C) <b>ChaN</b>, 2019 - With very minimal changes</li>
 <li><a href="fatfs/00history.txt">00history.txt</a></li>
@@ -2194,10 +2100,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>**GPIB** related</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>**GPIB** related</h2>
+<ul>
 <li><a href="gpib/gpib">gpib</a><ul>
 <li>My <b>GPIB</b> code for <b>AMIGO</b>, <b>SS80</b> and <b>PRINTER</b> support</li>
 <li><a href="gpib/amigo.c">amigo.c</a><ul>
@@ -2287,10 +2191,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Hardware CPU specific</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Hardware CPU specific</h2>
+<ul>
 <li>[hardware](hardware)<ul>
 <li>My CPU hardware specific code</li>
 <li><a href="hardware/baudrate.c">baudrate.c</a><ul>
@@ -2373,10 +2275,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Common libraries</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Common libraries</h2>
+<ul>
 <li>[lib](lib)<ul>
 <li>My Library functions</li>
 <li><a href="lib/bcpp.cfg">bcpp.cfg</a><ul>
@@ -2428,10 +2328,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>*LIF* files</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>*LIF* files</h2>
+<ul>
 <li>[lif](lif)<ul>
 <li>My <b>LIF</b> disk image utilities</li>
 <li><a href="lif/lifutils.c">lif/lifutils.c</a></li>
@@ -2492,10 +2390,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>*LIF* teledisk files</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>*LIF* teledisk files</h2>
+<ul>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
 <li>My TELEDISK <b>LIF</b> extractor<ul>
 <li>Note: The TeleDisk image MUST contain a <b>LIF</b> image - we do NOT translate it</li>
@@ -2538,10 +2434,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Posix wrapper - provides Linux file IO functions for Fatfs</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Posix wrapper - provides Linux file IO functions for Fatfs</h2>
+<ul>
 <li>[posix](posix)<ul>
 <li>My POSIX wrappers provide many UNIX POSIX compatible functions by translating fatfs functions</li>
 <li><a href="buffer.c">buffer.c</a></li>
@@ -2562,10 +2456,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>Printf display functions</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>Printf display functions</h2>
+<ul>
 <li>[printf](printf)<ul>
 <li>My Printf and math IO functions</li>
 <li><a href="printf/mathio.c">mathio.c</a><ul>
@@ -2595,10 +2487,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h2>SD Card files for project</h2>
-<p></b></p>
-<p><b></p><ul>
+<h2>SD Card files for project</h2>
+<ul>
 <li>[sdcard](sdcard)</li>
 <li>My <b>HP85</b> <b>AMIGO</b> and <b>SS80</b> disk images<ul>
 <li>Linux bash script to build ALL the disk images<ul>
@@ -2629,10 +2519,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>*AMIGO* disk images</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>*AMIGO* disk images</h3>
+<ul>
 <li><a href="sdcard/amigo0.lif">amigo1.lif</a><ul>
 <li><b>AMIGO</b> disk image</li>
 <li>Has some demo basic programs in it</li>
@@ -2654,10 +2542,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>*SS80* disk images</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>*SS80* disk images</h3>
+<ul>
 <li><a href="sdcard/ss80-0.lif">ss80-1.lif</a><ul>
 <li><b>SS80</b> disk image</li>
 <li>Has some demo basic programs in it</li>
@@ -2679,19 +2565,15 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>SD Card emulator configuration file backups</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>SD Card emulator configuration file backups</h3>
+<ul>
 <li><a href="sdcard/configs">sdcard/configs</a><ul>
 <li>Backup copies of the hp85disk config files</li>
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>Build Drive Configuration</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>Build Drive Configuration</h3>
+<ul>
 <li><a href="sdcard/mkcfg">sdcard/mkcfg</a></li>
 <li>Build a <a href="sdcard/hpdisk.cfg">sdcard/hpdisk.cfg</a> disk record<ul>
 <li>Using <a href="sdcard/notes/hpdir.ini">hpdir.ini</a> database<ul>
@@ -2710,10 +2592,8 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
-<p></b></p>
-<p><b></p><h3>BUILD SCRIPTS</h3>
-<p></b></p>
-<p><b></p><ul>
+<h3>BUILD SCRIPTS</h3>
+<ul>
 <li><a href="sdcard/scripts">sdcard/scripts</a><ul>
 <li>Scripts that help creating <b>LIF</b> images from multiple files</li>
 <li>Used by <a href="sdcard/create_images.sh">create_images.sh</a> <h3>My <em>HP85</em> bus trace files</h3>
@@ -2801,13 +2681,11 @@ Note 5V connection - DO NOT CONNECT
 </li>
 <li>Various notes</li>
 </ul>
-<p></b></p>
-<p><b></p><hr/>
-<p> </b></p>
-</div></div><!-- contents -->
+<hr/>
+ </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 17 2020 15:30:36 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 15:31:35 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>
