@@ -776,7 +776,7 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
 <pre>
        Arduino Pin  hp85disk ISP header Pin
        D12          1
-	   5V           NC = Not Connected! see note
+       5V           NC = Not Connected! see note
        D13          3
        D11          4
        D10          5
