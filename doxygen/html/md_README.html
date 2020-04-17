@@ -166,7 +166,8 @@ README</h1>
 <h2>board/V1/README.md "V1 board readme"</h2>
 <ul>
 <li>My original board design without **GPIB** buffers</li>
-<li>Limited control and BUS drive power<ul>
+<li>Limited control and BUS drive power</li>
+<li>If you are using a <b>V1</b> board changes the update the [Makefile](Makefile) <b>BOARD ?= 1</b><ul>
 <li>About half of the 48Mma drive required by the <b>GPIB</b> spec</li>
 <li>However we can read any pin any time - useful for tracing/debugging</li>
 </ul>
@@ -326,7 +327,7 @@ README</h1>
 <li>There are working copies of disk images under the github sdcard folder</li>
 <li>Open a web browser to <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a><ul>
 <li>Click on the Green <b>Clone or Download</b> button</li>
-<li>Pick download as ZIP</li>
+<li>Pick download as <b>ZIP</b></li>
 <li>You can extract all of the folders and files to a folder of your choid</li>
 <li>locate the <b>sdcard</b> folder</li>
 </ul>
@@ -1244,7 +1245,8 @@ README</h1>
        D11          4
        D10          5
        GND          6
-Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+Note 5V connection - DO NOT CONNECT 
+     Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
 </pre></li>
 </ul>
 </li>
@@ -2805,7 +2807,7 @@ Note concerning 5V - since the hp85disk and arduino have power it would be poten
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 17 2020 15:17:33 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Apr 17 2020 15:27:38 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

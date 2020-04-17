@@ -123,6 +123,7 @@ The emulator will automatically create missing {\bfseries L\+IF} images defined 
 \begin{DoxyItemize}
 \item My original board design without $\ast$$\ast$\+G\+P\+I\+B$\ast$$\ast$ buffers
 \item Limited control and B\+US drive power
+\item If you are using a {\bfseries V1} board changes the update the \mbox{[}Makefile\mbox{]}(Makefile) {\bfseries B\+O\+A\+RD ?= 1}
 \begin{DoxyItemize}
 \item About half of the 48\+Mma drive required by the {\bfseries G\+P\+IB} spec
 \item However we can read any pin any time -\/ useful for tracing/debugging
@@ -329,7 +330,7 @@ Anders originally provided me his source code in 2014 and many details of his pr
 \item Open a web browser to \href{https://github.com/magore/hp85disk}{\tt https\+://github.\+com/magore/hp85disk}
 \begin{DoxyItemize}
 \item Click on the Green {\bfseries Clone or Download} button
-\item Pick download as Z\+IP
+\item Pick download as {\bfseries Z\+IP}
 \item You can extract all of the folders and files to a folder of your choid
 \item locate the {\bfseries sdcard} folder
 \end{DoxyItemize}
@@ -1454,7 +1455,8 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
        D11          4
        D10          5
        GND          6
-Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+Note 5V connection - DO NOT CONNECT 
+     Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
 \end{DoxyPre}
 
 \end{DoxyItemize}

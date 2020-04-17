@@ -72,6 +72,7 @@ ___
 ## [V1 board readme](board/V1/README.md)
   * [My original board design without **GPIB** buffers](board/V1/README.md)
   * Limited control and BUS drive power 
+  * If you are using a **V1** board changes the update the [Makefile](Makefile) **BOARD ?= 1**
     * About half of the 48Mma drive required by the **GPIB** spec
     * However we can read any pin any time - useful for tracing/debugging
   * **RTC** -  **DS1307** for time stamping 
@@ -186,7 +187,7 @@ ___
   * There are working copies of disk images under the github sdcard folder
   * Open a web browser to https://github.com/magore/hp85disk
     * Click on the Green **Clone or Download** button
-    * Pick download as ZIP
+    * Pick download as **ZIP**
     * You can extract all of the folders and files to a folder of your choid
     * locate the **sdcard** folder
   * Copy the **contents** of the **sdcard** folder to the root/home folder of a a FAT32 formatted SD card
@@ -780,7 +781,8 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
        D11          4
        D10          5
        GND          6
-Note concerning 5V - since the hp85disk and arduino have power it would be potentially bad to connect both power sources
+Note 5V connection - DO NOT CONNECT 
+     Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
 </pre>
 
 ### Update Firmware with external programmer
