@@ -42,9 +42,9 @@ struct \hyperlink{struct__uart}{\+\_\+uart}
 void \hyperlink{rs232_8h_ab823b4d83752db47c0852bfa36a59036}{uart\+\_\+rx\+\_\+flush} (uint8\+\_\+t uart)
 \begin{DoxyCompactList}\small\item\em Flush receive ring buffer for specified uart. \end{DoxyCompactList}\item 
 int \hyperlink{rs232_8h_a3e291aed5863354a29aea03c94cc1d5e}{uart0\+\_\+getchar} (void $\ast$f)
-\begin{DoxyCompactList}\small\item\em U\+A\+RT receive character function using avr-\/libc. \end{DoxyCompactList}\item 
+\item 
 int \hyperlink{rs232_8h_ab0bdd8f61d18809268fc58d8871a881b}{uart0\+\_\+putchar} (int c, void $\ast$f)
-\begin{DoxyCompactList}\small\item\em U\+A\+RT transmit character function using avr-\/libc. \end{DoxyCompactList}\item 
+\item 
 uint16\+\_\+t \hyperlink{rs232_8h_acf0f1788a444afef4ccd7c614429df05}{uart\+\_\+ubr} (uint32\+\_\+t baud, int $\ast$u2x, uint32\+\_\+t $\ast$actual)
 \begin{DoxyCompactList}\small\item\em U\+A\+RT baud rate caluculation We compute the best values of baud rate register and prescale. \end{DoxyCompactList}\item 
 uint32\+\_\+t \hyperlink{rs232_8h_aeadb33b98af6eefa927f6d623cd5759e}{uart\+\_\+init} (uint8\+\_\+t uart, uint32\+\_\+t baud)
@@ -253,59 +253,11 @@ Definition at line 418 of file rs232.\+c.
 \subsubsection{\texorpdfstring{uart0\+\_\+getchar()}{uart0\_getchar()}}
 {\footnotesize\ttfamily int uart0\+\_\+getchar (\begin{DoxyParamCaption}\item[{void $\ast$}]{f }\end{DoxyParamCaption})}
 
-
-
-U\+A\+RT receive character function using avr-\/libc. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em f} & unused F\+I\+LE $\ast$stream pointer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uart\+\_\+getchar(0);. 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} from avr-\/libc. 
-\end{DoxySeeAlso}
-
-
-Definition at line 45 of file rs232.\+c.
-
-
-
-Referenced by uart\+\_\+get(), and uart\+\_\+init().
-
 \mbox{\Hypertarget{rs232_8h_ab0bdd8f61d18809268fc58d8871a881b}\label{rs232_8h_ab0bdd8f61d18809268fc58d8871a881b}} 
 \index{rs232.\+h@{rs232.\+h}!uart0\+\_\+putchar@{uart0\+\_\+putchar}}
 \index{uart0\+\_\+putchar@{uart0\+\_\+putchar}!rs232.\+h@{rs232.\+h}}
 \subsubsection{\texorpdfstring{uart0\+\_\+putchar()}{uart0\_putchar()}}
 {\footnotesize\ttfamily int uart0\+\_\+putchar (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{void $\ast$}]{f }\end{DoxyParamCaption})}
-
-
-
-U\+A\+RT transmit character function using avr-\/libc. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em c} & character to send. \\
-\hline
-\mbox{\tt in}  & {\em f} & unused F\+I\+LE $\ast$stream pointer.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-uart\+\_\+putchar(c, 0);. 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} from avr-\/libc. 
-\end{DoxySeeAlso}
-
-
-Definition at line 57 of file rs232.\+c.
-
-
-
-Referenced by uart\+\_\+init(), and uart\+\_\+put().
 
 \mbox{\Hypertarget{rs232_8h_a0f8facdf08ca026788fdd919aacee502}\label{rs232_8h_a0f8facdf08ca026788fdd919aacee502}} 
 \index{rs232.\+h@{rs232.\+h}!uart\+\_\+get@{uart\+\_\+get}}

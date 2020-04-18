@@ -29,14 +29,6 @@ union \hyperlink{unionval__t}{val\+\_\+t}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{drives_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}{V2\+B\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
-\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8c_a2c022c73385ae30c8718a94a07402b18}{V2\+B\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
-\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{drives_8c_aa59f992a9a2b0281dbb4deca60b54a2d}{B2\+V\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
-\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}{B2\+V\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
-\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_adc9af84417d1ea9757b9f0596fd709b3}{find\+\_\+type} (int type)
 \begin{DoxyCompactList}\small\item\em Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type. \end{DoxyCompactList}\item 
 int \hyperlink{drives_8c_a306684070b386e868ed1e647e5172ee0}{count\+\_\+drive\+\_\+types} (uint8\+\_\+t type)
@@ -165,7 +157,7 @@ Devices\mbox{[}\mbox{]} index on sucess or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 473 of file drives.\+c.
+Definition at line 399 of file drives.\+c.
 
 
 
@@ -200,67 +192,7 @@ assigned a value
 
 \end{DoxyItemize}
 
-Definition at line 581 of file drives.\+c.
-
-\mbox{\Hypertarget{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}\label{drives_8c_ab11609290835b2ddc9396b5ed9a6da6e}} 
-\index{drives.\+c@{drives.\+c}!B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}}
-\index{B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{B2\+V\+\_\+\+L\+S\+B()}{B2V\_LSB()}}
-{\footnotesize\ttfamily uint32\+\_\+t B2\+V\+\_\+\+L\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size }\end{DoxyParamCaption})}
-
-
-
-Convert a byte array into a value bytes are L\+SB ... M\+SB order. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em B} & byte array \\
-\hline
-{\em index} & offset into byte array \\
-\hline
-{\em size} & number of bytes to process \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-value 
-\end{DoxyReturn}
-
-
-Definition at line 234 of file drives.\+c.
-
-
-
-Referenced by lif\+\_\+str2dir(), td0\+\_\+read\+\_\+disk(), td0\+\_\+rle(), td0\+\_\+unpack\+\_\+comment\+\_\+header(), td0\+\_\+unpack\+\_\+disk\+\_\+header(), td0\+\_\+unpack\+\_\+sector\+\_\+header(), and td0\+\_\+unpack\+\_\+track\+\_\+header().
-
-\mbox{\Hypertarget{drives_8c_aa59f992a9a2b0281dbb4deca60b54a2d}\label{drives_8c_aa59f992a9a2b0281dbb4deca60b54a2d}} 
-\index{drives.\+c@{drives.\+c}!B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}}
-\index{B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{B2\+V\+\_\+\+M\+S\+B()}{B2V\_MSB()}}
-{\footnotesize\ttfamily uint32\+\_\+t B2\+V\+\_\+\+M\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size }\end{DoxyParamCaption})}
-
-
-
-Convert a byte array into a value bytes are M\+SB ... L\+SB order. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em B} & byte array \\
-\hline
-{\em index} & offset into byte array \\
-\hline
-{\em size} & number of bytes to process \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-value 
-\end{DoxyReturn}
-
-
-Definition at line 215 of file drives.\+c.
-
-
-
-Referenced by lif\+\_\+str2dir(), lif\+\_\+str2vol(), and S\+S80\+\_\+\+Command\+\_\+\+State().
+Definition at line 507 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ac1a2445dba59c3eb47276b37107c6f64}\label{drives_8c_ac1a2445dba59c3eb47276b37107c6f64}} 
 \index{drives.\+c@{drives.\+c}!base\+\_\+to\+\_\+str@{base\+\_\+to\+\_\+str}}
@@ -282,7 +214,7 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 \end{DoxyReturn}
 
 
-Definition at line 294 of file drives.\+c.
+Definition at line 220 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a306684070b386e868ed1e647e5172ee0}\label{drives_8c_a306684070b386e868ed1e647e5172ee0}} 
 \index{drives.\+c@{drives.\+c}!count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}}
@@ -301,7 +233,7 @@ Count number of devices of a sertain type.
 \end{DoxyParams}
 
 
-Definition at line 264 of file drives.\+c.
+Definition at line 190 of file drives.\+c.
 
 
 
@@ -322,7 +254,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1383 of file drives.\+c.
+Definition at line 1309 of file drives.\+c.
 
 
 
@@ -345,7 +277,7 @@ Active Printer Device
 
 Active S\+S80 Device 
 
-Definition at line 1421 of file drives.\+c.
+Definition at line 1347 of file drives.\+c.
 
 
 
@@ -385,7 +317,7 @@ convert to device address
 
 search for device address 
 
-Definition at line 317 of file drives.\+c.
+Definition at line 243 of file drives.\+c.
 
 
 
@@ -406,7 +338,7 @@ Devices\mbox{[}\mbox{]} index of free slot or -\/1
 \end{DoxyReturn}
 
 
-Definition at line 307 of file drives.\+c.
+Definition at line 233 of file drives.\+c.
 
 
 
@@ -429,7 +361,7 @@ Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type.
 \end{DoxyParams}
 
 
-Definition at line 251 of file drives.\+c.
+Definition at line 177 of file drives.\+c.
 
 
 
@@ -450,7 +382,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 1527 of file drives.\+c.
+Definition at line 1453 of file drives.\+c.
 
 
 
@@ -476,7 +408,7 @@ Set Device parameters from hpdir information.
 \end{DoxyReturn}
 
 
-Definition at line 695 of file drives.\+c.
+Definition at line 621 of file drives.\+c.
 
 
 
@@ -504,7 +436,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 753 of file drives.\+c.
+Definition at line 679 of file drives.\+c.
 
 
 
@@ -522,7 +454,7 @@ Init Config Parser Stack Called only durring power up so we do not have to free 
 
 
 
-Definition at line 528 of file drives.\+c.
+Definition at line 454 of file drives.\+c.
 
 
 
@@ -543,7 +475,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 560 of file drives.\+c.
+Definition at line 486 of file drives.\+c.
 
 
 
@@ -564,7 +496,7 @@ void
 \end{DoxyReturn}
 Active S\+S80 Device 
 
-Definition at line 762 of file drives.\+c.
+Definition at line 688 of file drives.\+c.
 
 
 
@@ -592,7 +524,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1370 of file drives.\+c.
+Definition at line 1296 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8c_ab0cc4deddae206c7762399a8d54856e1}} 
 \index{drives.\+c@{drives.\+c}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
@@ -616,7 +548,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1354 of file drives.\+c.
+Definition at line 1280 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8c_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8c_a21b219166399e8a1195b92d6a9872bbe}} 
 \index{drives.\+c@{drives.\+c}!push\+\_\+state@{push\+\_\+state}}
@@ -638,7 +570,7 @@ state
 \end{DoxyReturn}
 
 
-Definition at line 548 of file drives.\+c.
+Definition at line 474 of file drives.\+c.
 
 
 
@@ -666,7 +598,7 @@ Printer Device
 
 S\+S80 Device 
 
-Definition at line 822 of file drives.\+c.
+Definition at line 748 of file drives.\+c.
 
 
 
@@ -692,7 +624,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \end{DoxyReturn}
 We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
 
-Definition at line 346 of file drives.\+c.
+Definition at line 272 of file drives.\+c.
 
 
 
@@ -713,7 +645,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 628 of file drives.\+c.
+Definition at line 554 of file drives.\+c.
 
 
 
@@ -734,7 +666,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 430 of file drives.\+c.
+Definition at line 356 of file drives.\+c.
 
 
 
@@ -760,75 +692,11 @@ string pointer
 \end{DoxyReturn}
 
 
-Definition at line 279 of file drives.\+c.
+Definition at line 205 of file drives.\+c.
 
 
 
 Referenced by alloc\+\_\+device(), and set\+\_\+active\+\_\+device().
-
-\mbox{\Hypertarget{drives_8c_a2c022c73385ae30c8718a94a07402b18}\label{drives_8c_a2c022c73385ae30c8718a94a07402b18}} 
-\index{drives.\+c@{drives.\+c}!V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}}
-\index{V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{V2\+B\+\_\+\+L\+S\+B()}{V2B\_LSB()}}
-{\footnotesize\ttfamily void V2\+B\+\_\+\+L\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
-
-
-
-Convert Value into byte array bytes are L\+SB ... M\+SB order. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em B} & byte array \\
-\hline
-{\em index} & offset into byte array \\
-\hline
-{\em size} & number of bytes to process \\
-\hline
-{\em val} & Value to convert \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 199 of file drives.\+c.
-
-
-
-Referenced by lif\+\_\+dir2str().
-
-\mbox{\Hypertarget{drives_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}\label{drives_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}} 
-\index{drives.\+c@{drives.\+c}!V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}}
-\index{V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}!drives.\+c@{drives.\+c}}
-\subsubsection{\texorpdfstring{V2\+B\+\_\+\+M\+S\+B()}{V2B\_MSB()}}
-{\footnotesize\ttfamily void V2\+B\+\_\+\+M\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
-
-
-
-Convert Value into byte array bytes are M\+SB ... L\+SB order. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em B} & byte array \\
-\hline
-{\em index} & offset into byte array \\
-\hline
-{\em size} & number of bytes to process \\
-\hline
-{\em val} & Value to convert \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 182 of file drives.\+c.
-
-
-
-Referenced by lif\+\_\+dir2str(), lif\+\_\+vol2str(), Send\+\_\+\+Identify(), S\+S80\+\_\+send\+\_\+status(), and V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1().
 
 
 
@@ -873,7 +741,7 @@ Config file line number.
 
 
 
-Definition at line 569 of file drives.\+c.
+Definition at line 495 of file drives.\+c.
 
 
 

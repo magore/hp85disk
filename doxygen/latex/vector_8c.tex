@@ -1,0 +1,196 @@
+\hypertarget{vector_8c}{}\section{gpib/vector.c File Reference}
+\label{vector_8c}\index{gpib/vector.\+c@{gpib/vector.\+c}}
+
+
+Convert between values and byte arrays.  
+
+
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{vector_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}{V2\+B\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
+void \hyperlink{vector_8c_a2c022c73385ae30c8718a94a07402b18}{V2\+B\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size, uint32\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Convert Value into byte array bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{vector_8c_aa59f992a9a2b0281dbb4deca60b54a2d}{B2\+V\+\_\+\+M\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
+\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are M\+SB ... L\+SB order. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{vector_8c_ab11609290835b2ddc9396b5ed9a6da6e}{B2\+V\+\_\+\+L\+SB} (uint8\+\_\+t $\ast$B, int index, int size)
+\begin{DoxyCompactList}\small\item\em Convert a byte array into a value bytes are L\+SB ... M\+SB order. \end{DoxyCompactList}\item 
+void \hyperlink{vector_8c_ad5b8a61a02a9789788b6bec058b4efcf}{B2S} (uint8\+\_\+t $\ast$B, int index, uint8\+\_\+t $\ast$name, int size)
+\begin{DoxyCompactList}\small\item\em Create a string from data that has no E\+OS but known size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Convert between values and byte arrays. 
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file. 
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL}
+
+\end{DoxyParagraph}
+\begin{DoxySeeAlso}{See also}
+\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for Copyright details 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{vector_8c_ad5b8a61a02a9789788b6bec058b4efcf}\label{vector_8c_ad5b8a61a02a9789788b6bec058b4efcf}} 
+\index{vector.\+c@{vector.\+c}!B2S@{B2S}}
+\index{B2S@{B2S}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{B2\+S()}{B2S()}}
+{\footnotesize\ttfamily void B2S (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{uint8\+\_\+t $\ast$}]{name,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Create a string from data that has no E\+OS but known size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$B} & source \\
+\hline
+\mbox{\tt in}  & {\em index} & index offset into source data \\
+\hline
+\mbox{\tt out}  & {\em $\ast$name} & target string \\
+\hline
+\mbox{\tt in}  & {\em size} & size of string to write -\/ not including E\+OS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file vector.\+c.
+
+\mbox{\Hypertarget{vector_8c_ab11609290835b2ddc9396b5ed9a6da6e}\label{vector_8c_ab11609290835b2ddc9396b5ed9a6da6e}} 
+\index{vector.\+c@{vector.\+c}!B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}}
+\index{B2\+V\+\_\+\+L\+SB@{B2\+V\+\_\+\+L\+SB}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{B2\+V\+\_\+\+L\+S\+B()}{B2V\_LSB()}}
+{\footnotesize\ttfamily uint32\+\_\+t B2\+V\+\_\+\+L\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Convert a byte array into a value bytes are L\+SB ... M\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file vector.\+c.
+
+
+
+Referenced by lif\+\_\+str2dir(), td0\+\_\+read\+\_\+disk(), td0\+\_\+rle(), td0\+\_\+unpack\+\_\+comment\+\_\+header(), td0\+\_\+unpack\+\_\+disk\+\_\+header(), td0\+\_\+unpack\+\_\+sector\+\_\+header(), and td0\+\_\+unpack\+\_\+track\+\_\+header().
+
+\mbox{\Hypertarget{vector_8c_aa59f992a9a2b0281dbb4deca60b54a2d}\label{vector_8c_aa59f992a9a2b0281dbb4deca60b54a2d}} 
+\index{vector.\+c@{vector.\+c}!B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}}
+\index{B2\+V\+\_\+\+M\+SB@{B2\+V\+\_\+\+M\+SB}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{B2\+V\+\_\+\+M\+S\+B()}{B2V\_MSB()}}
+{\footnotesize\ttfamily uint32\+\_\+t B2\+V\+\_\+\+M\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Convert a byte array into a value bytes are M\+SB ... L\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+value 
+\end{DoxyReturn}
+
+
+Definition at line 57 of file vector.\+c.
+
+
+
+Referenced by lif\+\_\+str2dir(), lif\+\_\+str2vol(), and S\+S80\+\_\+\+Command\+\_\+\+State().
+
+\mbox{\Hypertarget{vector_8c_a2c022c73385ae30c8718a94a07402b18}\label{vector_8c_a2c022c73385ae30c8718a94a07402b18}} 
+\index{vector.\+c@{vector.\+c}!V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}}
+\index{V2\+B\+\_\+\+L\+SB@{V2\+B\+\_\+\+L\+SB}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{V2\+B\+\_\+\+L\+S\+B()}{V2B\_LSB()}}
+{\footnotesize\ttfamily void V2\+B\+\_\+\+L\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+
+
+Convert Value into byte array bytes are L\+SB ... M\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+{\em val} & Value to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file vector.\+c.
+
+
+
+Referenced by lif\+\_\+dir2str().
+
+\mbox{\Hypertarget{vector_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}\label{vector_8c_ae23890a77c1b77cfd3ed7ad2e5a3fb55}} 
+\index{vector.\+c@{vector.\+c}!V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}}
+\index{V2\+B\+\_\+\+M\+SB@{V2\+B\+\_\+\+M\+SB}!vector.\+c@{vector.\+c}}
+\subsubsection{\texorpdfstring{V2\+B\+\_\+\+M\+S\+B()}{V2B\_MSB()}}
+{\footnotesize\ttfamily void V2\+B\+\_\+\+M\+SB (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{int}]{size,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+
+
+Convert Value into byte array bytes are M\+SB ... L\+SB order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em B} & byte array \\
+\hline
+{\em index} & offset into byte array \\
+\hline
+{\em size} & number of bytes to process \\
+\hline
+{\em val} & Value to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file vector.\+c.
+
+
+
+Referenced by lif\+\_\+dir2str(), lif\+\_\+vol2str(), Send\+\_\+\+Identify(), S\+S80\+\_\+send\+\_\+status(), and V2\+B\+\_\+\+M\+S\+B\+\_\+\+Index1().
+

@@ -154,6 +154,17 @@ POSIX_EXTENDED_TESTS 	?= 0
 LIF_SUPPORT 			?= 1
 
 # ==============================================
+VERBOSE                 ?= 0
+ifeq ("$(VERBOSE)","1")
+    V :=
+    vecho := @echo
+else
+    V := @
+    vecho := @true
+endif
+
+
+# ==============================================
 # Source filess to build the project 
 
 HARDWARE = \
@@ -215,6 +226,7 @@ GPIB   = \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
+    gpib/vector.c \
     gpib/controller.c
 
 POSIX = 
@@ -507,6 +519,9 @@ help:
 	@echo "    make flash-isp-noboot         - build and flash the code using an ISP"
 	@echo "    make flash-isp-noboot-release - flash the release code using an ISP"
 	@echo
+	@echo " GCC Verbose Options - show more detail while compiling"
+	@echo "    VERBOSE                = $(VERBOSE)"
+	@echo 
 	@echo 
 
 .PHONY: config
@@ -520,7 +535,7 @@ config:
 	@echo "    DEVICE                 = $(DEVICE)"
 	@echo "    F_CPU                  = $(F_CPU)"
 	@echo "    BAUD                   = $(BAUD)"
-	@echo "    HP85_PORT              = $(PORT)"
+	@echo "    HP85_PORT              = $(HP85_PORT)"
 	@echo 
 	@echo "    AVRDUDE_DEVICE         = $(AVRDUDE_DEVICE)"
 	@echo "    AVRDUDE_ISP            = $(AVRDUDE_ISP)"
@@ -541,6 +556,9 @@ config:
 	@echo "    POSIX_TESTS            = $(POSIX_TESTS)"
 	@echo "    POSIX_EXTENDED_TESTS   = $(POSIX_EXTENDED_TESTS)"
 	@echo "    LIF_SUPPORT            = $(LIF_SUPPORT)"
+	@echo 
+	@echo " GCC Verbose Options - show more detail while compiling"
+	@echo "    VERBOSE                = $(VERBOSE)"
 	@echo 
 	@echo 
 
@@ -667,7 +685,6 @@ lss: $(PROJECT).lss
 version :
 	@if [ ! -f "update.last" ]; then touch "update.last"; fi
 	@$(CC) --version
-# @echo COBJ: $(COBJ)
 
 # Create final output file (.hex or .bin) from ELF output file.
 %.hex: %.elf
@@ -724,37 +741,38 @@ size:
 
 # Link: create ELF output file from object files.
 %.elf:  $(AOBJ) $(COBJ) $(LIBS)
-	@echo
+	$(V) echo $< :
+	$(vecho)
 	echo Linking ELF File
-	$(CC) $(CFLAGS) $(AOBJ) $(COBJ) $(LIBS) --output $@
+	$(V) $(CC) $(CFLAGS) $(AOBJ) $(COBJ) $(LIBS) --output $@
 
 
 # Compile: create object files from C source files. ARM or Thumb(-2)
 $(COBJ) : %.o : %.c
-	@echo
-	@echo $< :
-	$(CC) -c $(CFLAGS) $< -o $@
-	# $(CC) -c $(CFLAGS) $< -o $@
+	$(V) echo $< :
+	$(vecho)
+	$(V) $(CC) -c $(CFLAGS) $< -o $@
 
 # Assemble: create object files from assembler source files. ARM or Thumb(-2)
 $(AOBJ) : %.o : %.S
-	@echo
-	@echo $< :
-	$(CC) -c $(ALL_ASFLAGS) $< -o $@
+	$(V) echo $< :
+	$(vecho)
+	$(V) $(CC) -c $(ALL_ASFLAGS) $< -o $@
 
 
 ## Compile
 # asm from (hand coded) asm
 %.s: %.S
-	@echo
-	@echo $< :
-	$(CC) -S $(ALL_ASFLAGS) $< -o $@
+	$(V) echo $< :
+	$(vecho)
+	$(V) $(CC) -S $(ALL_ASFLAGS) $< -o $@
 
 
 # object from asm
 .S.o :
-	$(CC) $(ALL_ASFLAGS) -c $< -o $@
-
+	$(V) echo $< :
+	$(vecho)
+	$(V) $(CC) $(ALL_ASFLAGS) -c $< -o $@
 
 
 # Target: clean project.

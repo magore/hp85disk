@@ -15,6 +15,11 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}gpib/amigo.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib/ss80.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{main_8c_a52d21b0c2b1c100472ac0571d94ab0b5}{R\+E\+S\+E\+T\+\_\+t}) (void)
+\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,17 +27,10 @@ void \hyperlink{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}{copyright} ()
 \begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a9926884643efcc16ac36662b381b6bde}{delay\+\_\+tests} ()
 \begin{DoxyCompactList}\small\item\em perform tests on delay functions \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
-\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a66ac220b8fb4c59823fdf116cecda862}{task} (uint8\+\_\+t gpib)
 \begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
 int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 \begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-void($\ast$ \hyperlink{main_8c_a438e8d406e17d032b87f58cac4e6616d}{R\+E\+S\+ET} )(void)=0
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -54,6 +52,31 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 \end{DoxyParagraph}
 
 
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{main_8c_a52d21b0c2b1c100472ac0571d94ab0b5}\label{main_8c_a52d21b0c2b1c100472ac0571d94ab0b5}} 
+\index{main.\+c@{main.\+c}!R\+E\+S\+E\+T\+\_\+t@{R\+E\+S\+E\+T\+\_\+t}}
+\index{R\+E\+S\+E\+T\+\_\+t@{R\+E\+S\+E\+T\+\_\+t}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{R\+E\+S\+E\+T\+\_\+t}{RESET\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ R\+E\+S\+E\+T\+\_\+t) (void)}
+
+
+
+Display the main help menu -\/ calls all other help menus. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib__tests_8c_a4bd85d1cfc93b13cd8cfbac1014224c4}{gpib\+\_\+help()} 
+
+\hyperlink{fatfs__tests_8c_ad16bc1913c19300dba43a07006c9ac52}{fatfs\+\_\+help()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 94 of file main.\+c.
+
+
+
 \subsection{Function Documentation}
 \mbox{\Hypertarget{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}\label{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}} 
 \index{main.\+c@{main.\+c}!copyright@{copyright}}
@@ -72,10 +95,6 @@ void
 
 Definition at line 41 of file main.\+c.
 
-
-
-Referenced by help().
-
 \mbox{\Hypertarget{main_8c_a9926884643efcc16ac36662b381b6bde}\label{main_8c_a9926884643efcc16ac36662b381b6bde}} 
 \index{main.\+c@{main.\+c}!delay\+\_\+tests@{delay\+\_\+tests}}
 \index{delay\+\_\+tests@{delay\+\_\+tests}!main.\+c@{main.\+c}}
@@ -92,32 +111,6 @@ void
 
 
 Definition at line 59 of file main.\+c.
-
-
-
-Referenced by task().
-
-\mbox{\Hypertarget{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}\label{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}} 
-\index{main.\+c@{main.\+c}!help@{help}}
-\index{help@{help}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{help()}{help()}}
-{\footnotesize\ttfamily void help (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-
-
-Display the main help menu -\/ calls all other help menus. 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{gpib__tests_8c_a4bd85d1cfc93b13cd8cfbac1014224c4}{gpib\+\_\+help()} 
-
-\hyperlink{fatfs__tests_8c_ad16bc1913c19300dba43a07006c9ac52}{fatfs\+\_\+help()} 
-\end{DoxySeeAlso}
-
-
-Definition at line 104 of file main.\+c.
 
 
 
@@ -176,7 +169,7 @@ Start main G\+P\+IB state machine
 
 Keep the task running -\/ it exits after every user interaction, ie key press 
 
-Definition at line 248 of file main.\+c.
+Definition at line 252 of file main.\+c.
 
 
 
@@ -202,26 +195,9 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 143 of file main.\+c.
+Definition at line 147 of file main.\+c.
 
 
 
 Referenced by main().
-
-
-
-\subsection{Variable Documentation}
-\mbox{\Hypertarget{main_8c_a438e8d406e17d032b87f58cac4e6616d}\label{main_8c_a438e8d406e17d032b87f58cac4e6616d}} 
-\index{main.\+c@{main.\+c}!R\+E\+S\+ET@{R\+E\+S\+ET}}
-\index{R\+E\+S\+ET@{R\+E\+S\+ET}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{R\+E\+S\+ET}{RESET}}
-{\footnotesize\ttfamily void($\ast$ R\+E\+S\+ET) (void)=0}
-
-
-
-Definition at line 96 of file main.\+c.
-
-
-
-Referenced by delay\+\_\+tests(), and task().
 

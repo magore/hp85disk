@@ -10,6 +10,7 @@ Tele\+Disk decoder library targetting L\+IF format images only.
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$inttypes.\+h$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}lifsup.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}lifutils.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}td02lif.\+h\char`\"{}}\newline
@@ -17,6 +18,12 @@ Tele\+Disk decoder library targetting L\+IF format images only.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{td02lif_8c_a369d6a9b15ee337cfb9e998b3e914f9c}{td0\+\_\+\+B2S} (uint8\+\_\+t $\ast$B, int index, uint8\+\_\+t $\ast$name, int size)
+\begin{DoxyCompactList}\small\item\em Create a string from data that has no E\+OS but known size. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{td02lif_8c_a1e9e20346b224655b6586eb34efe1b5f}{td0\+\_\+crc16} (uint8\+\_\+t $\ast$B, uint16\+\_\+t crc, uint16\+\_\+t poly, int size)
+\begin{DoxyCompactList}\small\item\em Compute C\+R\+C16 of 8bit data. \end{DoxyCompactList}\item 
+void \hyperlink{td02lif_8c_a4d01fdafef7fb089054149fd0c04c75f}{td0\+\_\+hexdump} (uint8\+\_\+t $\ast$data, int size)
+\begin{DoxyCompactList}\small\item\em hex listing of data \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8c_a038d4e9f86f76569a97e443e376a8e11}{td0\+\_\+unpack\+\_\+disk\+\_\+header} (uint8\+\_\+t $\ast$B, \hyperlink{structtd__header__t}{td\+\_\+header\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Extract Tele\+Disk image header data in architecture nutral way. \end{DoxyCompactList}\item 
 int \hyperlink{td02lif_8c_aa2721b8d8bba4008a2b48d1b362b9850}{td0\+\_\+unpack\+\_\+comment\+\_\+header} (uint8\+\_\+t $\ast$B, \hyperlink{structtd__comment__t}{td\+\_\+comment\+\_\+t} $\ast$p)
@@ -112,7 +119,7 @@ L\+IF summary
 
 Close L\+IF file 
 
-Definition at line 1572 of file td02lif.\+c.
+Definition at line 1658 of file td02lif.\+c.
 
 
 
@@ -139,11 +146,43 @@ If the disk had two sides recorded in the header Reject second side if side sect
 \end{DoxyParams}
 
 
-Definition at line 808 of file td02lif.\+c.
+Definition at line 894 of file td02lif.\+c.
 
 
 
 Referenced by td02lif().
+
+\mbox{\Hypertarget{td02lif_8c_a369d6a9b15ee337cfb9e998b3e914f9c}\label{td02lif_8c_a369d6a9b15ee337cfb9e998b3e914f9c}} 
+\index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+\+B2S@{td0\+\_\+\+B2S}}
+\index{td0\+\_\+\+B2S@{td0\+\_\+\+B2S}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection{\texorpdfstring{td0\+\_\+\+B2\+S()}{td0\_B2S()}}
+{\footnotesize\ttfamily void td0\+\_\+\+B2S (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{int}]{index,  }\item[{uint8\+\_\+t $\ast$}]{name,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Create a string from data that has no E\+OS but known size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$B} & source \\
+\hline
+\mbox{\tt in}  & {\em index} & index offset into source data \\
+\hline
+\mbox{\tt out}  & {\em $\ast$name} & target string \\
+\hline
+\mbox{\tt in}  & {\em size} & size of string to write -\/ not including E\+OS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file td02lif.\+c.
+
+
+
+Referenced by td0\+\_\+unpack\+\_\+disk\+\_\+header().
 
 \mbox{\Hypertarget{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}\label{td02lif_8c_a786b280e1ac85ba19bcb2f4ca0d21ee3}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+compressed@{td0\+\_\+compressed}}
@@ -165,11 +204,46 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 162 of file td02lif.\+c.
+Definition at line 248 of file td02lif.\+c.
 
 
 
 Referenced by td0\+\_\+open().
+
+\mbox{\Hypertarget{td02lif_8c_a1e9e20346b224655b6586eb34efe1b5f}\label{td02lif_8c_a1e9e20346b224655b6586eb34efe1b5f}} 
+\index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+crc16@{td0\+\_\+crc16}}
+\index{td0\+\_\+crc16@{td0\+\_\+crc16}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection{\texorpdfstring{td0\+\_\+crc16()}{td0\_crc16()}}
+{\footnotesize\ttfamily uint16\+\_\+t td0\+\_\+crc16 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{B,  }\item[{uint16\+\_\+t}]{crc,  }\item[{uint16\+\_\+t}]{poly,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Compute C\+R\+C16 of 8bit data. 
+
+\begin{DoxySeeAlso}{See also}
+\href{https://en.wikipedia.org/wiki/Cyclic_redundancy_check}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Cyclic\+\_\+redundancy\+\_\+check} F\+YI normal C\+R\+C16 typically use 0x1021 for ploy Note\+: You can do a C\+R\+C16 of data in blocks by passing the result as the crc initial value for the next call 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$B} & 8 bit binary data \\
+\hline
+\mbox{\tt in}  & {\em crc} & initial crc value \\
+\hline
+\mbox{\tt out}  & {\em poly} & ploynomial \\
+\hline
+\mbox{\tt in}  & {\em size} & number of bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+crc16 of result 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file td02lif.\+c.
+
+
+
+Referenced by td0\+\_\+open(), td0\+\_\+read\+\_\+disk(), td0\+\_\+unpack\+\_\+comment\+\_\+header(), td0\+\_\+unpack\+\_\+disk\+\_\+header(), and td0\+\_\+unpack\+\_\+track\+\_\+header().
 
 \mbox{\Hypertarget{td02lif_8c_a48825de35a808127b9c304a764a48439}\label{td02lif_8c_a48825de35a808127b9c304a764a48439}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+density2bitrate@{td0\+\_\+density2bitrate}}
@@ -191,7 +265,7 @@ bitrate
 \end{DoxyReturn}
 
 
-Definition at line 378 of file td02lif.\+c.
+Definition at line 464 of file td02lif.\+c.
 
 \mbox{\Hypertarget{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}\label{td02lif_8c_a26d4f0afc5df75f388d93a9510ab39ee}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+help@{td0\+\_\+help}}
@@ -201,11 +275,36 @@ Definition at line 378 of file td02lif.\+c.
 
 
 
-Definition at line 1478 of file td02lif.\+c.
+Definition at line 1564 of file td02lif.\+c.
 
 
 
 Referenced by lif\+\_\+tests(), and td02lif().
+
+\mbox{\Hypertarget{td02lif_8c_a4d01fdafef7fb089054149fd0c04c75f}\label{td02lif_8c_a4d01fdafef7fb089054149fd0c04c75f}} 
+\index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+hexdump@{td0\+\_\+hexdump}}
+\index{td0\+\_\+hexdump@{td0\+\_\+hexdump}!td02lif.\+c@{td02lif.\+c}}
+\subsubsection{\texorpdfstring{td0\+\_\+hexdump()}{td0\_hexdump()}}
+{\footnotesize\ttfamily void td0\+\_\+hexdump (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{data,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+hex listing of data 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em $\ast$data} & date to dump \\
+\hline
+\mbox{\tt in}  & {\em size} & size of data to dump  void \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 111 of file td02lif.\+c.
+
+
+
+Referenced by td0\+\_\+save\+\_\+lif\+\_\+sector().
 
 \mbox{\Hypertarget{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}\label{td02lif_8c_af8f1231cf42003200a45f8b6828f13c1}} 
 \index{td02lif.\+c@{td02lif.\+c}!td0\+\_\+init\+\_\+liftel@{td0\+\_\+init\+\_\+liftel}}
@@ -219,7 +318,7 @@ Tele\+Disk image Analisis structure Find attributes of L\+IF image stored in Tel
 
 
 
-Definition at line 1498 of file td02lif.\+c.
+Definition at line 1584 of file td02lif.\+c.
 
 
 
@@ -249,7 +348,7 @@ size of dataactually read
 \end{DoxyReturn}
 
 
-Definition at line 1534 of file td02lif.\+c.
+Definition at line 1620 of file td02lif.\+c.
 
 
 
@@ -283,7 +382,7 @@ We only accept Tele\+Disk versions $>$= 10 \&\& version $<$= 21
 
 Time to Unix format 
 
-Definition at line 411 of file td02lif.\+c.
+Definition at line 497 of file td02lif.\+c.
 
 
 
@@ -313,7 +412,7 @@ Read Tele\+Disk image data block Optionally decompress the data if decompression
 \end{DoxyReturn}
 
 
-Definition at line 175 of file td02lif.\+c.
+Definition at line 261 of file td02lif.\+c.
 
 
 
@@ -353,7 +452,7 @@ td0\+\_\+rle does not use len internal data in the buffer does this We limit the
 
 
 
-Definition at line 550 of file td02lif.\+c.
+Definition at line 636 of file td02lif.\+c.
 
 
 
@@ -387,7 +486,7 @@ block size
 
 repeat count 
 
-Definition at line 217 of file td02lif.\+c.
+Definition at line 303 of file td02lif.\+c.
 
 
 
@@ -412,7 +511,7 @@ save remaining sectors as L\+IF data
 \end{DoxyParams}
 
 
-Definition at line 1221 of file td02lif.\+c.
+Definition at line 1307 of file td02lif.\+c.
 
 
 
@@ -439,7 +538,7 @@ Process all sectors on a track from Tele\+Disk image.
 \end{DoxyParams}
 ==================================================== Write sectors from Teledisk track to L\+IF file \subsection*{We continue until the last last file sector }
 
-Definition at line 1285 of file td02lif.\+c.
+Definition at line 1371 of file td02lif.\+c.
 
 
 
@@ -465,7 +564,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 365 of file td02lif.\+c.
+Definition at line 451 of file td02lif.\+c.
 
 
 
@@ -493,7 +592,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 352 of file td02lif.\+c.
+Definition at line 438 of file td02lif.\+c.
 
 
 
@@ -521,7 +620,7 @@ Tele\+Disk comment header size (not structure size)
 \end{DoxyReturn}
 
 
-Definition at line 93 of file td02lif.\+c.
+Definition at line 179 of file td02lif.\+c.
 
 
 
@@ -549,7 +648,7 @@ Tele\+Disk image header size (not structure size)
 \end{DoxyReturn}
 
 
-Definition at line 67 of file td02lif.\+c.
+Definition at line 153 of file td02lif.\+c.
 
 
 
@@ -577,7 +676,7 @@ Tele\+Disk sector header size (not structure size)
 \end{DoxyReturn}
 
 
-Definition at line 145 of file td02lif.\+c.
+Definition at line 231 of file td02lif.\+c.
 
 
 
@@ -605,7 +704,7 @@ Tele\+Disk track header size (not structure size)
 \end{DoxyReturn}
 
 
-Definition at line 115 of file td02lif.\+c.
+Definition at line 201 of file td02lif.\+c.
 
 
 

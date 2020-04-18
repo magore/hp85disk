@@ -1629,63 +1629,77 @@ Note 5V connection - DO NOT CONNECT
 \begin{DoxyItemize}
 \item {\bfseries make help}
 \begin{DoxyItemize}
-\item List the common commands to compile/install/flash the code 
-\begin{DoxyPre}
-        Building Commands
-            make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-            make release           - builds all code and copies files to the release folder
-            make clean             - cleans all generated files
-            make                   - builds all code\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Listing current configuration settings
-            make config\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Overriding any configuration settings
-            You can add configuration values at the end of your make commands like this
-            make flash-isp ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using an 6 wire ISP - installs optiboot
-            make install\_optiboot  - install optiboot boot loaded using an ISP
-            make flash-isp         - build and flash the code using an ISP
-            make flash-isp-release - flash the release code using an ISP\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
-            make verify-isp        - verify code using an ISP
-            make verify-isp-release- verify release code using an ISP\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using the built in optiboot programmer
-            make flash             - build and flash the code using built in optiboot programmer
-            make flash-release     - flash the release code using built in optiboot programmer
-            IMPORTANT - if flashing fails to start try these steps
-                On your computer type in the "make flash" command without pressing Enter afterwards
-                Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        Programming using an 6 wire ISP - WITHOUT installing optiboot
-            IMPORTANT - you will not be able to use non isp flashing modes later on
-               Makes booting and flashing process slightly faster
-            make flash-isp-noboot         - build and flash the code using an ISP
-            make flash-isp-noboot-release - flash the release code using an ISP
-\end{DoxyPre}
+\item List the common commands to compile/install/flash the code
+\item See also {\bfseries make config} section below 
+\begin{DoxyPre}\end{DoxyPre}
 
 \end{DoxyItemize}
 \end{DoxyItemize}
+
+
+\begin{DoxyPre}Building Commands
+    make install           - builds and installs all command line utilities
+    make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+    make release           - builds all code and copies files to the release folder
+    make clean             - cleans all generated files
+    make                   - builds all code\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Listing current cunfiguration settings
+    make config\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Overriding any configuration settings
+    You can add configuration values at the end of your make commands like this
+    make flash-isp term     ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0
+    make flash term         HP85\_PORT=/dev/ttyUSB0
+    make flash-release term HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Note: Adding "term" after a make command will start a terminal to the hp85disk when finished\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Programming using an 6 wire ISP - installs optiboot
+    make install\_optiboot  - install optiboot boot loaded using an ISP
+    make flash-isp         - build and flash the code using an ISP
+    make flash-isp-release - flash the release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+    make verify-isp        - verify code using an ISP
+    make verify-isp-release- verify release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Programming using the built in optiboot programmer
+    make flash             - build and flash the code using built in optiboot programmer
+    make flash-release     - flash the release code using built in optiboot programmer
+    IMPORTANT - if flashing fails to start try these steps
+        On your computer type in the "make flash" command without pressing Enter afterwards
+        Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter\end{DoxyPre}
+
+
+
+\begin{DoxyPre}Programming using an 6 wire ISP - WITHOUT installing optiboot
+    IMPORTANT - you will not be able to use non isp flashing modes later on
+       Makes booting and flashing process slightly faster
+    make flash-isp-noboot         - build and flash the code using an ISP
+    make flash-isp-noboot-release - flash the release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre} GCC Verbose Options - show more detail while compiling
+    VERBOSE                = 0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}\end{DoxyPre}
+
 
 \subsection*{Example building with Makefile overrides}
 
@@ -1695,6 +1709,63 @@ Note 5V connection - DO NOT CONNECT
 \item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0}
 \item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp I\+S\+P\+\_\+\+P\+O\+RT=usb}
 \end{DoxyItemize}
+
+\subsection*{make configuration defaults}
+
+
+\begin{DoxyItemize}
+\item {\bfseries make config}
+\begin{DoxyItemize}
+\item List current configuration defaults
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyPre}
+    Current Configuration Defaults
+        You can override settings by adding assignments at the end of any make command
+        Example:
+                 make flash-isp ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        DEVICE                 = atmega1284p
+        F\_CPU                  = 20000000 
+        BAUD                   = 115200
+        HP85\_PORT              =\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        AVRDUDE\_DEVICE         = m1284
+        AVRDUDE\_ISP            = atmelice\_isp
+        ISP\_PORT               = usb
+        ISP\_SPEED              = 5\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        OPTIBOOT               = 1
+        BOARD                  = 2
+        PPR\_REVERSE\_BITS       = 1
+        I2C\_SUPPORT            = 1
+        RTC\_SUPPORT            = 1
+        LCD\_SUPPORT            = 1\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        AMIGO                  = 1
+        FATFS\_SUPPORT          = 1
+        FATFS\_TESTS            = 1
+        GPIB\_EXTENDED\_TESTS    = 0
+        POSIX\_TESTS            = 1
+        POSIX\_EXTENDED\_TESTS   = 0
+        LIF\_SUPPORT            = 1\end{DoxyPre}
+
+
+
+\begin{DoxyPre}     GCC Verbose Options - show more detail while compiling
+        VERBOSE                = 0
+\end{DoxyPre}
+
 
 
 
@@ -1980,7 +2051,7 @@ Note 5V connection - DO NOT CONNECT
 \end{DoxyItemize}
 \item The emulator can passively log all transactions between real hardware on the {\bfseries G\+P\+IB} bus
 \begin{DoxyItemize}
-\item Use the \char`\"{}gpib trace $\ast$logfile$\ast$\char`\"{} command -\/ pressing any key exits -\/ no emulation is done in this mode.
+\item Use the {\bfseries gpib trace logfile} command -\/ pressing any key exits -\/ no emulation is done in this mode.
 \begin{DoxyItemize}
 \item {\bfseries N\+O\+TE\+: on V2 boards , due to the G\+P\+IB buffers, we can not trace N\+D\+AC, N\+R\+FD and S\+RQ currently}
 \begin{DoxyItemize}

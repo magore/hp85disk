@@ -90,10 +90,14 @@ void delay_tests()
     clock_elapsed_end("delayms(1100)");
 }
 
+/* RunBoot define */
+typedef void (*RESET_t)(void) __attribute__((noreturn));
+
 #ifdef OPTIBOOT
-void(*RESET) (void) = (0x10000-0x400);
+//void (*RESET) (void) = (0x10000-0x400);
+const RESET_t RESET = (RESET_t) (0x10000-0x400);
 #else
-void(*RESET) (void) = 0;
+const RESET_t RESET = (RESET_t) (0);
 #endif
 
 

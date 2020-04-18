@@ -23,6 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "user_config.h"
 
+#include <inttypes.h>
+#include <stdint.h>
+
 #include <string.h>
 #include "parsing.h"
 

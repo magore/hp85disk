@@ -26,7 +26,6 @@
 #include <sys/types.h>
 #include <utime.h>
 
-
 #define MEMSPACE /**/
 #define WEAK_ATR /**/
 typedef struct tm tm_t;
@@ -34,31 +33,12 @@ typedef struct tm tm_t;
 #define safefree(a) free(a)
 #define sync() 
 
-#include "../lib/parsing.h"
-#include "lifutils.h"
-#include "td02lif.h"
-
-void copyright();
-
 /* lifsup.c */
 struct tm *gmtime_r ( const time_t *timep , struct tm *result );
 char *asctime_r ( const struct tm *t , char *buf );
 time_t timegm ( struct tm *a_tm );
-int MATCHARGS ( char *str , char *pat , int min , int argc );
-void trim_tail ( char *str );
-void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
-void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
-uint32_t B2V_MSB ( uint8_t *B , int index , int size );
-uint32_t B2V_LSB ( uint8_t *B , int index , int size );
-void B2S ( uint8_t *B , int index , uint8_t *name , int size );
-void BITSET_LSB ( uint8_t *p , int bit );
-void BITCLR_LSB ( uint8_t *p , int bit );
-int BITTST_LSB ( uint8_t *p , int bit );
-uint16_t crc16 ( uint8_t *B , uint16_t crc , uint16_t poly , int size );
-void hexdump ( uint8_t *data , int size );
 void copyright ( void );
-
-
+int main ( int argc , char *argv []);
 
 #endif
 

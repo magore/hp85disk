@@ -188,7 +188,7 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-	volatile uint8_t D;
+	volatile uint8_t D  __attribute__((unused));
 
 #ifdef SPI_DEBUG
 	printf("SPI0_Init speed:%ld\n",speed);

@@ -265,7 +265,7 @@ void chip_addr_init()
  @param[in] addr: device address
  @return void
 */
-void chip_addr(int addr)
+void chip_addr(int addr  __attribute__((unused)))
 {
 
 #ifdef ADDR_0

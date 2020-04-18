@@ -26,6 +26,7 @@
 #include "gpib_task.h"
 #include "amigo.h"
 #include "ss80.h"
+#include "vector.h"
 
 /// @verbatim
 ///  See LIF filesystem Reference

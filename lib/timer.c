@@ -57,7 +57,7 @@ TIMERS timer_irq[MAX_TIMER_CNT];
 /// @return timer on success.
 /// @return -1 on error.
 MEMSPACE
-int set_timers(void (*handler)(void), int timer)
+int set_timers(void (*handler)(void), int timer  __attribute__((unused)))
 {
     int i;
     int ret = -1;
@@ -326,8 +326,10 @@ void init_timers()
 /// @return 0 on success.
 /// @return -1 on error.
 MEMSPACE
-int clock_getres(clockid_t clk_id, struct timespec *res)
+int clock_getres(clockid_t clk_id  __attribute__((unused)), struct timespec *res)
 {
+    if(clk_id)
+        return(-1);
     res->tv_sec = 0;
     res->tv_nsec = SYSTEM_TASK_TIC_NS;
     return(0);
@@ -342,7 +344,7 @@ int clock_getres(clockid_t clk_id, struct timespec *res)
 ///
 /// @return 0.
 MEMSPACE
-int clock_settime(clockid_t clk_id, const struct timespec *ts)
+int clock_settime(clockid_t clk_id  __attribute__((unused)), const struct timespec *ts)
 {
     if(clk_id)
         return(-1);
@@ -374,8 +376,12 @@ int clock_settime(clockid_t clk_id, const struct timespec *ts)
 /// @return -1 on error.
 //TODO try to use system_get_time() to get microsecond offsets
 MEMSPACE
-int clock_gettime(clockid_t clk_id, struct timespec *ts)
+int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts)
 {
+
+    if(clk_id)
+        return(-1);
+
     ts->tv_nsec = 0;
     ts->tv_sec = 0;
 

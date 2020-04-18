@@ -144,7 +144,7 @@ ISR(TIMER1_COMPA_vect)
 /// @return 0 on success.
 /// @return -1 on error.
 MEMSPACE
-int clock_gettime(clockid_t clk_id, struct timespec *ts)
+int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts)
 {
     uint16_t count1,count2;                       // must be same size as timer register
     uint32_t offset = 0;

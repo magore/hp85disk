@@ -14,9 +14,18 @@
 
 #ifdef LIF_STAND_ALONE
 
+
+#include <unistd.h>
+
+#include "user_config.h"
+
 #include "lifsup.h"
 #include "lifutils.h"
+#include "td02lif.h"
+
 #include "../lib/parsing.c"
+#include "../gpib/vector.c"
+#include "../gpib/drives_sup.c"
 
 int debuglevel = 0x0001;
 
@@ -87,165 +96,6 @@ time_t timegm(struct tm * a_tm)
 
 #endif
 
-
-///@brief Convert Value into byte array
-/// bytes are MSB ... LSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@param val: Value to convert
-///@return void
-void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
-{
-    int i;
-    for(i=size-1;i>=0;--i)
-    {
-        B[index+i] = val & 0xff;
-        val >>= 8;
-    }
-}
-// =============================================
-///@brief Convert Value into byte array
-/// bytes are LSB ... MSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@param val: Value to convert
-///@return void
-void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
-{
-    int i;
-    for(i=0;i<size;++i)
-    {
-        B[index+i] = val & 0xff;
-        val >>= 8;
-    }
-}
-
-
-
-///@brief Convert a byte array into a value
-/// bytes are MSB ... LSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@return value
-uint32_t B2V_MSB(uint8_t *B, int index, int size)
-{
-    int i;
-    uint32_t val = 0;
-
-    for(i=0;i<size;++i)
-    {
-        val <<= 8;
-        val |= (uint8_t) (B[i+index] & 0xff);
-    }
-        return(val);
-}
-
-///@brief Convert a byte array into a value
-/// bytes are LSB ... MSB order
-///@param B: byte array
-///@param index: offset into byte array
-///@param size: number of bytes to process
-///@return value
-uint32_t B2V_LSB(uint8_t *B, int index, int size)
-{
-    int i;
-    uint32_t val = 0;
-
-    for(i=size-1;i>=0;--i)
-    {
-        val <<= 8;
-        val |= (uint8_t) (B[i+index] & 0xff);
-    }
-        return(val);
-}
-
-/// @brief Create a string from data that has no EOS but known size
-/// @param[in] *B: source
-/// @param[in] index: index offset into source data
-/// @param[out] *name: target string
-/// @param[in] size: size of string to write - not including EOS
-/// @return void
-void B2S(uint8_t *B, int index, uint8_t *name, int size)
-{
-    int i;
-    for(i=0;i<size;++i)
-        name[i] = B[index+i];
-    name[i] = 0;
-}
-
-
-    
-/// @brief Compute CRC16 of 8bit data
-/// @see https://en.wikipedia.org/wiki/Cyclic_redundancy_check
-/// FYI normal CRC16 typically use 0x1021 for ploy
-/// Note: You can do a CRC16 of data in blocks by passing the result
-/// as the crc initial value for the next call
-/// @param[in] *B:      8 bit binary data
-/// @param[in] crc: initial crc value
-/// @param[out] poly:   ploynomial
-/// @param[in] size:    number of bytes
-/// @return crc16 of result
-uint16_t crc16(uint8_t *B, uint16_t crc, uint16_t poly, int size)
-{
-    int i,bit;
-    for(i=0; i<size; ++i)
-    {
-        crc ^= (0xff00 & ((uint16_t)B[i] << 8));
-        // Loop for 8 bits per byte
-        for (bit = 0; bit < 8; bit++)
-        {
-            if ((crc & 0x8000) != 0) 
-                crc = (uint16_t) ((crc << 1) ^ poly);
-            else
-                crc <<= 1;
-        }
-    }
-    return (crc);
-}
-
-
-/// @brief hex listing of data
-/// @param[in] *data: date to dump
-/// @param[in] size: size of data to dump
-/// @retrun void
-void hexdump(uint8_t *data, int size)
-{
-    long addr;
-    int i,len;
-
-    addr = 0;
-    while(size > 0)
-    {
-        printf("%08lx : ", addr);
-        len = size > 16 ? 16 : size;
-
-        for(i=0;i<len;++i)
-            printf("%02x ",0xff & data[addr+i]);
-
-        for(;i<16;++i) 
-            printf("   ");
-
-        printf(" : ");
-        for(i=0;i<len;++i)
-        {
-            if(data[addr+i] >= 0x20 && data[addr+i] <= 0x7e)
-                putchar(data[addr+i]);
-            else
-                putchar('.');
-        }
-        for(;i<16;++i)
-            putchar('.');
-
-        printf("\n");
-
-        addr += len;
-        size -= len;
-    }
-    printf("\n");
-}
 
 ///@brief Display Copyright
 ///@return void

@@ -29,7 +29,7 @@ LIBS = -lm
 
 ifeq ($(TELEDISK),1)
 	# Add teledisk support
-	CFLAGS += -I. -Iteledisk
+	CFLAGS += -I. -Iteledisk 
 	CFLAGS += -DTELEDISK
 	CFLAGS += -L${DIR}/teledisk
 	SRC += td02lif.c

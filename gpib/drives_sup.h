@@ -50,9 +50,12 @@ typedef struct {
 	long LIF_DIR_BLOCKS;
 } hpdir_t;
 // =============================================
+
+
 /* drives_sup.c */
 void hpdir_init ( void );
 long lif_dir_count ( long blocks );
-int hpdir_find_drive ( char *model , int list , int verbose);
+int hpdir_find_drive ( char *model , int list , int verbose );
+
 #endif
 

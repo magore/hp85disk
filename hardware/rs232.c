@@ -42,7 +42,7 @@ void uart_rx_flush(uint8_t uart)
 ///
 /// @return  uart_getchar(0);.
 /// @see fdevopen() from avr-libc.
-int uart0_getchar( void *f)
+int uart0_getchar( void *f  __attribute__((unused)))
 {
     return( uart_getchar(0) );
 }
@@ -54,7 +54,7 @@ int uart0_getchar( void *f)
 ///
 /// @return  uart_putchar(c, 0);.
 /// @see fdevopen() from avr-libc.
-int uart0_putchar(int c, void *f)
+int uart0_putchar(int c, void *f  __attribute__((unused)))
 {
     uart_putchar(c, 0);
 	return(c);

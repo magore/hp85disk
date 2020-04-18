@@ -8,11 +8,11 @@
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 */
 
-#include <inttypes.h>
-#include <stdint.h>
+#include "user_config.h"
 
-#include "defines.h"
 #include "drives_sup.h"
+
+
 
 hpdir_t hpdir;
 /// ===========================================================
@@ -213,4 +213,3 @@ int hpdir_find_drive(char *model, int list, int verbose)
 	fclose(cfg);
 	return(found);
 }
-

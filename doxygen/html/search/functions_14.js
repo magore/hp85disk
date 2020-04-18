@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['uart0_5fgetchar',['uart0_getchar',['../rs232_8c.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c'],['../rs232_8h.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.c']]],
-  ['uart0_5fputchar',['uart0_putchar',['../rs232_8c.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c'],['../rs232_8h.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.c']]],
+  ['uart0_5fgetchar',['uart0_getchar',['../rs232_8c.html#aecd9a4cdec74642e030c944d98ee476b',1,'uart0_getchar(void *f __attribute__((unused))):&#160;rs232.c'],['../rs232_8h.html#a3e291aed5863354a29aea03c94cc1d5e',1,'uart0_getchar(void *f):&#160;rs232.h']]],
+  ['uart0_5fputchar',['uart0_putchar',['../rs232_8c.html#a177c94d31d0d8af1bc7a0b160e75ac77',1,'uart0_putchar(int c, void *f __attribute__((unused))):&#160;rs232.c'],['../rs232_8h.html#ab0bdd8f61d18809268fc58d8871a881b',1,'uart0_putchar(int c, void *f):&#160;rs232.h']]],
   ['uart_5fget',['uart_get',['../main_8h.html#aeb5d4f8824840e438ffbcf8d7e15ad77',1,'uart_get(void):&#160;rs232.c'],['../rs232_8c.html#a0f8facdf08ca026788fdd919aacee502',1,'uart_get(void):&#160;rs232.c'],['../rs232_8h.html#a0f8facdf08ca026788fdd919aacee502',1,'uart_get(void):&#160;rs232.c']]],
   ['uart_5fget_5ftail',['uart_get_tail',['../rs232_8c.html#a608ab716311f6b7d674356ec38307593',1,'uart_get_tail(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a608ab716311f6b7d674356ec38307593',1,'uart_get_tail(uint8_t uart):&#160;rs232.c']]],
   ['uart_5fgetchar',['uart_getchar',['../rs232_8c.html#a9364291206d77b83c180ff6832e61c9b',1,'uart_getchar(uint8_t uart):&#160;rs232.c'],['../rs232_8h.html#a9364291206d77b83c180ff6832e61c9b',1,'uart_getchar(uint8_t uart):&#160;rs232.c']]],

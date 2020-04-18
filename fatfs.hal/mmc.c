@@ -90,7 +90,6 @@ BYTE CardType;               /*< Card type flags */
 /* When the target system does not support socket power control, there   */
 /* is nothing to do in these functions and chk_power always returns 1.   */
 
-///@brief power on
 ///@return void
 MEMSPACE
 static
@@ -345,7 +344,13 @@ DSTATUS mmc_disk_initialize (void)
 {
     BYTE n, cmd, ty, ocr[4];
 
-    if (Stat & STA_NODISK) return Stat;         /* No card in the socket */
+
+    power_off();                        /* Turn off the socket power to reset the card */
+    delayms(100);						/* Wait for 100ms */
+
+    if (Stat & STA_NODISK) return Stat; /* No card in the socket? */
+    power_on();                         /* Turn on the socket power */
+
 
     FCLK_SLOW();
 

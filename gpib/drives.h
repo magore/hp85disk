@@ -285,11 +285,8 @@ extern DeviceType Devices[MAX_DEVICES];
 // =============================================
 
 
+
 /* drives.c */
-void V2B_MSB ( uint8_t *B , int index , int size , uint32_t val );
-void V2B_LSB ( uint8_t *B , int index , int size , uint32_t val );
-uint32_t B2V_MSB ( uint8_t *B , int index , int size );
-uint32_t B2V_LSB ( uint8_t *B , int index , int size );
 int find_type ( int type );
 int count_drive_types ( uint8_t type );
 char *type_to_str ( int type );
@@ -302,7 +299,7 @@ int alloc_device ( int type );
 void init_Devices ( void );
 int push_state ( int state );
 int pop_state ( void );
-// bool assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
+bool assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
 void set_Config_Defaults ( void );
 void hpdir_set_device ( int index );
 void hpdir_set_parameters ( int index , char *model );

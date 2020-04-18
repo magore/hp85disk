@@ -295,7 +295,12 @@ typedef struct
 
 extern liftel_t liftel;
 
+
+
 /* td02lif.c */
+void td0_B2S ( uint8_t *B , int index , uint8_t *name , int size );
+uint16_t td0_crc16 ( uint8_t *B , uint16_t crc , uint16_t poly , int size );
+void td0_hexdump ( uint8_t *data , int size );
 int td0_unpack_disk_header ( uint8_t *B , td_header_t *p );
 int td0_unpack_comment_header ( uint8_t *B , td_comment_t *p );
 int td0_unpack_track_header ( uint8_t *B , td_track_t *p );
@@ -315,6 +320,5 @@ void td0_help ( int full );
 void td0_init_liftel ( void );
 void td0_init_sectors ( disk_t *disk );
 int td02lif ( int argc , char *argv []);
-
 
 #endif

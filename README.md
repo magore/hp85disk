@@ -872,44 +872,53 @@ ___
 ## make help documentation
   * **make help**
     * List the common commands to compile/install/flash the code
+    * See also **make config** section below
 <pre>
-        Building Commands
-            make install           - builds and installs all command line utilities
-            make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
-            make release           - builds all code and copies files to the release folder
-            make clean             - cleans all generated files
-            make                   - builds all code
-        
-        Listing current configuration settings
-            make config
-        
-        Overriding any configuration settings
-            You can add configuration values at the end of your make commands like this
-            make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
-        
-        Note: Adding the word "term" after any make command will start a terminal to the hp85disk after make finishes
-        
-        Programming using an 6 wire ISP - installs optiboot
-            make install_optiboot  - install optiboot boot loaded using an ISP
-            make flash-isp         - build and flash the code using an ISP
-            make flash-isp-release - flash the release code using an ISP
-        
-        Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
-            make verify-isp        - verify code using an ISP
-            make verify-isp-release- verify release code using an ISP
-        
-        Programming using the built in optiboot programmer
-            make flash             - build and flash the code using built in optiboot programmer
-            make flash-release     - flash the release code using built in optiboot programmer
-            IMPORTANT - if flashing fails to start try these steps
-                On your computer type in the "make flash" command without pressing Enter afterwards
-                Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter
-        
-        Programming using an 6 wire ISP - WITHOUT installing optiboot
-            IMPORTANT - you will not be able to use non isp flashing modes later on
-               Makes booting and flashing process slightly faster
-            make flash-isp-noboot         - build and flash the code using an ISP
-            make flash-isp-noboot-release - flash the release code using an ISP
+
+
+Building Commands
+    make install           - builds and installs all command line utilities
+    make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
+    make release           - builds all code and copies files to the release folder
+    make clean             - cleans all generated files
+    make                   - builds all code
+
+Listing current cunfiguration settings
+    make config
+
+Overriding any configuration settings
+    You can add configuration values at the end of your make commands like this
+    make flash-isp term     ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
+    make flash term         HP85_PORT=/dev/ttyUSB0
+    make flash-release term HP85_PORT=/dev/ttyUSB0
+
+Note: Adding "term" after a make command will start a terminal to the hp85disk when finished
+
+Programming using an 6 wire ISP - installs optiboot
+    make install_optiboot  - install optiboot boot loaded using an ISP
+    make flash-isp         - build and flash the code using an ISP
+    make flash-isp-release - flash the release code using an ISP
+
+Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+    make verify-isp        - verify code using an ISP
+    make verify-isp-release- verify release code using an ISP
+
+Programming using the built in optiboot programmer
+    make flash             - build and flash the code using built in optiboot programmer
+    make flash-release     - flash the release code using built in optiboot programmer
+    IMPORTANT - if flashing fails to start try these steps
+        On your computer type in the "make flash" command without pressing Enter afterwards
+        Next press RESET on the hp85disk board,  then release RESET, then quickly press Enter
+
+Programming using an 6 wire ISP - WITHOUT installing optiboot
+    IMPORTANT - you will not be able to use non isp flashing modes later on
+       Makes booting and flashing process slightly faster
+    make flash-isp-noboot         - build and flash the code using an ISP
+    make flash-isp-noboot-release - flash the release code using an ISP
+
+ GCC Verbose Options - show more detail while compiling
+    VERBOSE                = 0
+
 </pre>
 
 
@@ -917,6 +926,45 @@ ___
   * **make flash      AVRDUDE_ISP=arduino      ISP_PORT=/dev/ttyS3**
   * **make flash-isp  AVRDUDE_ISP=avrisp       ISP_PORT=/dev/ttyUSB0**
   * **make flash-isp  AVRDUDE_ISP=atmelice_isp ISP_PORT=usb**
+
+## make configuration defaults
+  * **make config**
+    * List current configuration defaults
+
+<pre>
+    Current Configuration Defaults
+        You can override settings by adding assignments at the end of any make command
+        Example:
+                 make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
+    
+        DEVICE                 = atmega1284p
+        F_CPU                  = 20000000 
+        BAUD                   = 115200
+        HP85_PORT              = 
+    
+        AVRDUDE_DEVICE         = m1284
+        AVRDUDE_ISP            = atmelice_isp
+        ISP_PORT               = usb
+        ISP_SPEED              = 5
+    
+        OPTIBOOT               = 1
+        BOARD                  = 2
+        PPR_REVERSE_BITS       = 1
+        I2C_SUPPORT            = 1
+        RTC_SUPPORT            = 1
+        LCD_SUPPORT            = 1
+    
+        AMIGO                  = 1
+        FATFS_SUPPORT          = 1
+        FATFS_TESTS            = 1
+        GPIB_EXTENDED_TESTS    = 0
+        POSIX_TESTS            = 1
+        POSIX_EXTENDED_TESTS   = 0
+        LIF_SUPPORT            = 1
+    
+     GCC Verbose Options - show more detail while compiling
+        VERBOSE                = 0
+</pre>
 
 ___
 
@@ -1084,7 +1132,7 @@ ___
        * Useful if you are trying this on a non **HP85** device
        * See the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) for documentation on the full list of debugging options
      * The emulator can passively log all transactions between real hardware on the **GPIB** bus 
-       * Use the "gpib trace *logfile*" command - pressing any key exits - no emulation is done in this mode.
+       * Use the **gpib trace logfile** command - pressing any key exits - no emulation is done in this mode.
          * **NOTE: on V2 boards , due to the GPIB buffers, we can not trace NDAC, NRFD and SRQ currently**
            * The GPIB buffers prevent looking at all signals at once
        * You can use this to help understand what is sent to and from your real disks.

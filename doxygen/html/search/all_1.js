@@ -63,7 +63,7 @@ var searchData=
   ['amigostatetype',['AMIGOStateType',['../structAMIGOStateType.html',1,'']]],
   ['asctime',['asctime',['../time_8c.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c'],['../time_8h.html#a95735d85f13249a5b329308d27d1f3ee',1,'asctime(tm_t *t):&#160;time.c']]],
   ['asctime_5fr',['asctime_r',['../time_8c.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c'],['../time_8h.html#a7ffc52def0c7fbf70c50248e3f7d6a8a',1,'asctime_r(tm_t *t, char *buf):&#160;time.c']]],
-  ['assign_5fvalue',['assign_value',['../drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1',1,'drives.c']]],
+  ['assign_5fvalue',['assign_value',['../drives_8c.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c'],['../drives_8h.html#a8b0e509b202f29cc333b28da6105f6c1',1,'assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val):&#160;drives.c']]],
   ['ata_5fget_5fmodel',['ATA_GET_MODEL',['../diskio_8h.html#a31f556ab98ab80c39058b38d9283865d',1,'diskio.h']]],
   ['ata_5fget_5frev',['ATA_GET_REV',['../diskio_8h.html#a23f5fff3341e98825ea1f7367fd09f1a',1,'diskio.h']]],
   ['ata_5fget_5fsn',['ATA_GET_SN',['../diskio_8h.html#a469c4f989757ee1ee404134fea3c74ba',1,'diskio.h']]],

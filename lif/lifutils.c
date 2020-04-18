@@ -92,14 +92,13 @@
 #include "user_config.h"
 #include "lifsup.h"
 #include "lifutils.h"
-#include "../gpib/drives_sup.h"
-#include "../gpib/drives_sup.c"
-extern MEMSPACE int td02lif(int argc, char *srgv[]);
+#include "td02lif.h"
 
 #else 
-#include "user_config.h"
-//#include "defines.h"
-#include "drives.h"
+#include "hardware/user_config.h"
+#include "vector.h"
+#include "drives_sup.h"
+#include "lifsup.h"
 #include "lifutils.h"
 #endif
 

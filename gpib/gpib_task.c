@@ -22,9 +22,9 @@
 #include "gpib_task.h"
 #include "amigo.h"
 #include "ss80.h"
+#include "vector.h"
 #include "printer.h"
 
-#include "posix.h"
 
 /// @brief Config file name
 char cfgfile[] = "/hpdisk.cfg";                   

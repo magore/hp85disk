@@ -42,10 +42,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-//#include "types.h"
 #include <inttypes.h>
 
 #include <time.h>
+
+#include "user_config.h"
 #include "lifsup.h"
 #include "lifutils.h"
 #include "td02lif.h"
@@ -53,11 +54,96 @@
 /// @brief Dave Dunfiled LZSS expander
 #include "td0_lzss.h"
 
-
 disk_t disk;
    
 /// @brief Teledisk liftel analysis and user overrides
 liftel_t liftel;
+
+/// @brief Create a string from data that has no EOS but known size
+/// @param[in] *B: source
+/// @param[in] index: index offset into source data
+/// @param[out] *name: target string
+/// @param[in] size: size of string to write - not including EOS
+/// @return void
+void td0_B2S(uint8_t *B, int index, uint8_t *name, int size)
+{
+    int i;
+    for(i=0;i<size;++i)
+        name[i] = B[index+i];
+    name[i] = 0;
+}
+
+
+
+/// @brief Compute CRC16 of 8bit data
+/// @see https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+/// FYI normal CRC16 typically use 0x1021 for ploy
+/// Note: You can do a CRC16 of data in blocks by passing the result
+/// as the crc initial value for the next call
+/// @param[in] *B:      8 bit binary data
+/// @param[in] crc: initial crc value
+/// @param[out] poly:   ploynomial
+/// @param[in] size:    number of bytes
+/// @return crc16 of result
+uint16_t td0_crc16(uint8_t *B, uint16_t crc, uint16_t poly, int size)
+{
+    int i,bit;
+    for(i=0; i<size; ++i)
+    {
+        crc ^= (0xff00 & ((uint16_t)B[i] << 8));
+        // Loop for 8 bits per byte
+        for (bit = 0; bit < 8; bit++)
+        {
+            if ((crc & 0x8000) != 0)
+                crc = (uint16_t) ((crc << 1) ^ poly);
+            else
+                crc <<= 1;
+        }
+    }
+    return (crc);
+}
+
+
+/// @brief hex listing of data
+/// @param[in] *data: date to dump
+/// @param[in] size: size of data to dump
+/// @retrun void
+void td0_hexdump(uint8_t *data, int size)
+{
+    long addr;
+    int i,len;
+
+    addr = 0;
+    while(size > 0)
+    {
+        printf("%08lx : ", addr);
+        len = size > 16 ? 16 : size;
+
+        for(i=0;i<len;++i)
+            printf("%02x ",0xff & data[addr+i]);
+
+        for(;i<16;++i) 
+            printf("   ");
+
+        printf(" : ");
+        for(i=0;i<len;++i)
+        {
+            if(data[addr+i] >= 0x20 && data[addr+i] <= 0x7e)
+                putchar(data[addr+i]);
+            else
+                putchar('.');
+        }
+        for(;i<16;++i)
+            putchar('.');
+
+        printf("\n");
+
+        addr += len;
+        size -= len;
+    }
+    printf("\n");
+}
+
 
 
 /// @brief Extract TeleDisk image header data in architecture nutral way
@@ -69,7 +155,7 @@ int td0_unpack_disk_header(uint8_t *B, td_header_t *p)
     int i;
     uint16_t crc;
 
-    B2S(B, 0, p->Header, 2);
+    td0_B2S(B, 0, p->Header, 2);
     p->VolNO        = B2V_LSB(B,2,1);
     p->ChkSig       = B2V_LSB(B,3,1);
     p->TDVersion    = B2V_LSB(B,4,1);
@@ -80,7 +166,7 @@ int td0_unpack_disk_header(uint8_t *B, td_header_t *p)
     p->Sides        = B2V_LSB(B,9,1);
     p->CRC          = B2V_LSB(B,10,2);
 
-    crc = crc16(B,0, 0xA097, 10);
+    crc = td0_crc16(B,0, 0xA097, 10);
     if(p->CRC != crc)
         printf("TeleDisk error Header CRC16:%04Xh != %04Xh\n", (int)crc, (int)p->CRC);   
     return(TD_HEADER_SIZE);
@@ -104,7 +190,7 @@ int td0_unpack_comment_header(uint8_t *B, td_comment_t *p)
     p->Minute = B2V_LSB(B,8,1);
     p->Second = B2V_LSB(B,9,1);
 
-    crc = crc16(B+2,0,0xA097, 8);
+    crc = td0_crc16(B+2,0,0xA097, 8);
     return(crc);
 }
 
@@ -121,7 +207,7 @@ int td0_unpack_track_header(uint8_t *B, td_track_t *p)
     p->PCyl     = B2V_LSB(B,1,1);
     p->PSide    = B2V_LSB(B,2,1);
     p->CRC      = B2V_LSB(B,3,1);
-    crc = crc16(B,0,0xA097, 3);
+    crc = td0_crc16(B,0,0xA097, 3);
 
     crc &= 0xff;
 
@@ -508,7 +594,7 @@ int td0_open(disk_t *disk, char *name)
             return(0);
         }
 
-        crc = crc16(disk->comment,crc,0xA097,disk->td_comment.Size);
+        crc = td0_crc16(disk->comment,crc,0xA097,disk->td_comment.Size);
         if(disk->td_comment.CRC != crc)
         {
             printf("Warning: Comment CRC16:%04Xh != %04Xh\n", (int)crc, (int)disk->td_comment.CRC);
@@ -748,7 +834,7 @@ int td0_read_disk(disk_t *disk)
                     return (0);
                 }
 
-                crc = crc16(disk->track[t].sectors[index].data,0,0xA097,result);
+                crc = td0_crc16(disk->track[t].sectors[index].data,0,0xA097,result);
                 crc &= 0xff;
                 if(td_sector.CRC != crc)
                 {
@@ -1306,7 +1392,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
     {
  
         case TD0_START:
-             // hexdump(data,size);
+             // td0_hexdump(data,size);
             lif_str2vol(data, LIF);
             LIF->filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
             LIF->sectors = LIF->filestart;
@@ -1317,7 +1403,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                     LIF->name,(long)liftel.writeindex);
                 printf("\t Error: Not a LIF image!\n");
  
-                hexdump(data, size);
+                td0_hexdump(data, size);
                 lif_dump_vol(LIF,"debug");
  
                 liftel.error = 1;
@@ -1386,7 +1472,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                             LIF->name,(long)liftel.writeindex);
                         printf("\t Warning: directory entry is out of order\n");
                         printf("\t Treating as DirectoryEOF\n");
-                        hexdump(data, size);
+                        td0_hexdump(data, size);
         
                         // Update sector data
                         LIF->DIR.FileType = 0xffff;
@@ -1405,7 +1491,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                             LIF->name,(long)liftel.writeindex);
                         printf("\t Warning: bad director entry\n");
                         printf("\t Treating as DirectoryEOF\n");
-                        hexdump(data, size);
+                        td0_hexdump(data, size);
         
                         // Update sector data
                         LIF->DIR.FileType = 0xffff;
@@ -1432,7 +1518,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
             liftel.state = TD0_WAIT_FILE;
  
         case TD0_WAIT_FILE:
- //hexdump(data,size);
+ //td0_hexdump(data,size);
             if( liftel.sectorindex < LIF->filestart)
                 break;
  
@@ -1441,7 +1527,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
             liftel.state = TD0_FILE;
  
         case TD0_FILE:
- //hexdump(data,size);
+ //td0_hexdump(data,size);
             if( liftel.sectorindex < LIF->sectors)
                 break;
  
