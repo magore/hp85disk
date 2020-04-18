@@ -813,6 +813,7 @@ ___
 
 ## Makefile configuration options for hp85disk emulator 
   * These options apply to original V1 and new V2 boards
+  * **make config** will list all of these - example listing in next section
   * Update **BAUD, HP85_PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT** for your platform
     * **AVRDUDE_DEVICE** is the name of AVR as it is known by **avrdude**
       * **m1284**
@@ -866,6 +867,49 @@ ___
     * **F_CPU**  
       * CPU frequency - the firmware and V1/V2 boards use this so do not change it
         * **20000000**
+
+___ 
+
+
+## make configuration display 
+  * **make config**
+    * List current configuration defaults
+
+<pre>
+    Current Configuration Defaults
+        You can override settings by adding assignments at the end of any make command
+        Example:
+                 make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
+    
+        DEVICE                 = atmega1284p
+        F_CPU                  = 20000000 
+        BAUD                   = 115200
+        HP85_PORT              = 
+    
+        AVRDUDE_DEVICE         = m1284
+        AVRDUDE_ISP            = atmelice_isp
+        ISP_PORT               = usb
+        ISP_SPEED              = 5
+    
+        OPTIBOOT               = 1
+        BOARD                  = 2
+        PPR_REVERSE_BITS       = 1
+        I2C_SUPPORT            = 1
+        RTC_SUPPORT            = 1
+        LCD_SUPPORT            = 1
+    
+        AMIGO                  = 1
+        FATFS_SUPPORT          = 1
+        FATFS_TESTS            = 1
+        GPIB_EXTENDED_TESTS    = 0
+        POSIX_TESTS            = 1
+        POSIX_EXTENDED_TESTS   = 0
+        LIF_SUPPORT            = 1
+    
+     GCC Verbose Options - show more detail while compiling
+        VERBOSE                = 0
+</pre>
+
 ___ 
 
 
@@ -926,45 +970,6 @@ Programming using an 6 wire ISP - WITHOUT installing optiboot
   * **make flash      AVRDUDE_ISP=arduino      ISP_PORT=/dev/ttyS3**
   * **make flash-isp  AVRDUDE_ISP=avrisp       ISP_PORT=/dev/ttyUSB0**
   * **make flash-isp  AVRDUDE_ISP=atmelice_isp ISP_PORT=usb**
-
-## make configuration defaults
-  * **make config**
-    * List current configuration defaults
-
-<pre>
-    Current Configuration Defaults
-        You can override settings by adding assignments at the end of any make command
-        Example:
-                 make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
-    
-        DEVICE                 = atmega1284p
-        F_CPU                  = 20000000 
-        BAUD                   = 115200
-        HP85_PORT              = 
-    
-        AVRDUDE_DEVICE         = m1284
-        AVRDUDE_ISP            = atmelice_isp
-        ISP_PORT               = usb
-        ISP_SPEED              = 5
-    
-        OPTIBOOT               = 1
-        BOARD                  = 2
-        PPR_REVERSE_BITS       = 1
-        I2C_SUPPORT            = 1
-        RTC_SUPPORT            = 1
-        LCD_SUPPORT            = 1
-    
-        AMIGO                  = 1
-        FATFS_SUPPORT          = 1
-        FATFS_TESTS            = 1
-        GPIB_EXTENDED_TESTS    = 0
-        POSIX_TESTS            = 1
-        POSIX_EXTENDED_TESTS   = 0
-        LIF_SUPPORT            = 1
-    
-     GCC Verbose Options - show more detail while compiling
-        VERBOSE                = 0
-</pre>
 
 ___
 

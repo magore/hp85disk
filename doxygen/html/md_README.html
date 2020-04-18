@@ -1290,6 +1290,7 @@ Note 5V connection - DO NOT CONNECT
 <h2>Makefile configuration options for hp85disk emulator</h2>
 <ul>
 <li>These options apply to original V1 and new V2 boards</li>
+<li><b>make config</b> will list all of these - example listing in next section</li>
 <li>Update <b>BAUD, HP85_PORT, BOARD, PPR_REVERSE_BITS and LCD_SUPPORT</b> for your platform<ul>
 <li><b>AVRDUDE_DEVICE</b> is the name of AVR as it is known by <b>avrdude</b><ul>
 <li><b>m1284</b></li>
@@ -1390,8 +1391,7 @@ Note 5V connection - DO NOT CONNECT
 </li>
 <li><b>F_CPU</b><ul>
 <li>CPU frequency - the firmware and V1/V2 boards use this so do not change it<ul>
-<li><b>20000000</b> <hr/>
-</li>
+<li><b>20000000</b></li>
 </ul>
 </li>
 </ul>
@@ -1399,6 +1399,38 @@ Note 5V connection - DO NOT CONNECT
 </ul>
 </li>
 </ul>
+<hr/>
+<h2>make configuration display</h2>
+<ul>
+<li><b>make config</b><ul>
+<li>List current configuration defaults</li>
+</ul>
+</li>
+</ul>
+<pre>
+    Current Configuration Defaults
+        You can override settings by adding assignments at the end of any make command
+        Example:
+                 make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0</pre><pre>        DEVICE                 = atmega1284p
+        F_CPU                  = 20000000 
+        BAUD                   = 115200
+        HP85_PORT              =</pre><pre>        AVRDUDE_DEVICE         = m1284
+        AVRDUDE_ISP            = atmelice_isp
+        ISP_PORT               = usb
+        ISP_SPEED              = 5</pre><pre>        OPTIBOOT               = 1
+        BOARD                  = 2
+        PPR_REVERSE_BITS       = 1
+        I2C_SUPPORT            = 1
+        RTC_SUPPORT            = 1
+        LCD_SUPPORT            = 1</pre><pre>        AMIGO                  = 1
+        FATFS_SUPPORT          = 1
+        FATFS_TESTS            = 1
+        GPIB_EXTENDED_TESTS    = 0
+        POSIX_TESTS            = 1
+        POSIX_EXTENDED_TESTS   = 0
+        LIF_SUPPORT            = 1</pre><pre>     GCC Verbose Options - show more detail while compiling
+        VERBOSE                = 0
+</pre><hr/>
 <h2>make help documentation</h2>
 <ul>
 <li><b>make help</b><ul>
@@ -1438,37 +1470,7 @@ Note 5V connection - DO NOT CONNECT
 <li><b>make flash-isp AVRDUDE_ISP=avrisp ISP_PORT=/dev/ttyUSB0</b></li>
 <li><b>make flash-isp AVRDUDE_ISP=atmelice_isp ISP_PORT=usb</b></li>
 </ul>
-<h2>make configuration defaults</h2>
-<ul>
-<li><b>make config</b><ul>
-<li>List current configuration defaults</li>
-</ul>
-</li>
-</ul>
-<pre>
-    Current Configuration Defaults
-        You can override settings by adding assignments at the end of any make command
-        Example:
-                 make flash-isp ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0</pre><pre>        DEVICE                 = atmega1284p
-        F_CPU                  = 20000000 
-        BAUD                   = 115200
-        HP85_PORT              =</pre><pre>        AVRDUDE_DEVICE         = m1284
-        AVRDUDE_ISP            = atmelice_isp
-        ISP_PORT               = usb
-        ISP_SPEED              = 5</pre><pre>        OPTIBOOT               = 1
-        BOARD                  = 2
-        PPR_REVERSE_BITS       = 1
-        I2C_SUPPORT            = 1
-        RTC_SUPPORT            = 1
-        LCD_SUPPORT            = 1</pre><pre>        AMIGO                  = 1
-        FATFS_SUPPORT          = 1
-        FATFS_TESTS            = 1
-        GPIB_EXTENDED_TESTS    = 0
-        POSIX_TESTS            = 1
-        POSIX_EXTENDED_TESTS   = 0
-        LIF_SUPPORT            = 1</pre><pre>     GCC Verbose Options - show more detail while compiling
-        VERBOSE                = 0
-</pre><hr/>
+<hr/>
 <h2>Building Doxygen documentation for the project - OPTIONAL</h2>
 <ul>
 <li><b>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</b></li>
@@ -2723,7 +2725,7 @@ Note 5V connection - DO NOT CONNECT
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 18 2020 19:42:35 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 18 2020 19:50:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

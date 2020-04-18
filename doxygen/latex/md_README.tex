@@ -1512,6 +1512,7 @@ Note 5V connection - DO NOT CONNECT
 
 \begin{DoxyItemize}
 \item These options apply to original V1 and new V2 boards
+\item {\bfseries make config} will list all of these -\/ example listing in next section
 \item Update {\bfseries B\+A\+UD, H\+P85\+\_\+\+P\+O\+RT, B\+O\+A\+RD, P\+P\+R\+\_\+\+R\+E\+V\+E\+R\+S\+E\+\_\+\+B\+I\+TS and L\+C\+D\+\_\+\+S\+U\+P\+P\+O\+RT} for your platform
 \begin{DoxyItemize}
 \item {\bfseries A\+V\+R\+D\+U\+D\+E\+\_\+\+D\+E\+V\+I\+CE} is the name of A\+VR as it is known by {\bfseries avrdude}
@@ -1615,13 +1616,76 @@ Note 5V connection - DO NOT CONNECT
 \begin{DoxyItemize}
 \item C\+PU frequency -\/ the firmware and V1/\+V2 boards use this so do not change it
 \begin{DoxyItemize}
-\item {\bfseries 20000000} 
+\item {\bfseries 20000000}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 
+
+
+
+\subsection*{make configuration display}
+
+
+\begin{DoxyItemize}
+\item {\bfseries make config}
+\begin{DoxyItemize}
+\item List current configuration defaults
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}
+
+
+\begin{DoxyPre}
+    Current Configuration Defaults
+        You can override settings by adding assignments at the end of any make command
+        Example:
+                 make flash-isp ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        DEVICE                 = atmega1284p
+        F\_CPU                  = 20000000 
+        BAUD                   = 115200
+        HP85\_PORT              =\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        AVRDUDE\_DEVICE         = m1284
+        AVRDUDE\_ISP            = atmelice\_isp
+        ISP\_PORT               = usb
+        ISP\_SPEED              = 5\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        OPTIBOOT               = 1
+        BOARD                  = 2
+        PPR\_REVERSE\_BITS       = 1
+        I2C\_SUPPORT            = 1
+        RTC\_SUPPORT            = 1
+        LCD\_SUPPORT            = 1\end{DoxyPre}
+
+
+
+\begin{DoxyPre}        AMIGO                  = 1
+        FATFS\_SUPPORT          = 1
+        FATFS\_TESTS            = 1
+        GPIB\_EXTENDED\_TESTS    = 0
+        POSIX\_TESTS            = 1
+        POSIX\_EXTENDED\_TESTS   = 0
+        LIF\_SUPPORT            = 1\end{DoxyPre}
+
+
+
+\begin{DoxyPre}     GCC Verbose Options - show more detail while compiling
+        VERBOSE                = 0
+\end{DoxyPre}
+
+
+
+
+
 
 \subsection*{make help documentation}
 
@@ -1709,63 +1773,6 @@ Note 5V connection - DO NOT CONNECT
 \item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0}
 \item {\bfseries make flash-\/isp A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp I\+S\+P\+\_\+\+P\+O\+RT=usb}
 \end{DoxyItemize}
-
-\subsection*{make configuration defaults}
-
-
-\begin{DoxyItemize}
-\item {\bfseries make config}
-\begin{DoxyItemize}
-\item List current configuration defaults
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}
-    Current Configuration Defaults
-        You can override settings by adding assignments at the end of any make command
-        Example:
-                 make flash-isp ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        DEVICE                 = atmega1284p
-        F\_CPU                  = 20000000 
-        BAUD                   = 115200
-        HP85\_PORT              =\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        AVRDUDE\_DEVICE         = m1284
-        AVRDUDE\_ISP            = atmelice\_isp
-        ISP\_PORT               = usb
-        ISP\_SPEED              = 5\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        OPTIBOOT               = 1
-        BOARD                  = 2
-        PPR\_REVERSE\_BITS       = 1
-        I2C\_SUPPORT            = 1
-        RTC\_SUPPORT            = 1
-        LCD\_SUPPORT            = 1\end{DoxyPre}
-
-
-
-\begin{DoxyPre}        AMIGO                  = 1
-        FATFS\_SUPPORT          = 1
-        FATFS\_TESTS            = 1
-        GPIB\_EXTENDED\_TESTS    = 0
-        POSIX\_TESTS            = 1
-        POSIX\_EXTENDED\_TESTS   = 0
-        LIF\_SUPPORT            = 1\end{DoxyPre}
-
-
-
-\begin{DoxyPre}     GCC Verbose Options - show more detail while compiling
-        VERBOSE                = 0
-\end{DoxyPre}
-
 
 
 
