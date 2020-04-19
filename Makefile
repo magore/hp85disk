@@ -154,6 +154,7 @@ POSIX_EXTENDED_TESTS 	?= 0
 LIF_SUPPORT 			?= 1
 
 # ==============================================
+# VERBOSE controls how much make displays while compiling
 VERBOSE                 ?= 0
 ifeq ("$(VERBOSE)","1")
     V :=
