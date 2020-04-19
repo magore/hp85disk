@@ -39,8 +39,12 @@ void gpib_help(int full)
     {
         printf("gpib prefix is optional\n"
             "gpib addresses\n"
-            "gpib config\n"
+			"   Display all device GPIB bus addresses and PPR values\n"
+            "gpib config [-v]\n"
+			"   Display current drives configuration\n"
+			"   -v Verbose - show full detail\n"
             "gpib debug N\n"
+			"   debug message reporting see hpdisk.cfg for details\n"
             "gpib elapsed\n"
             "gpib elapsed_reset\n"
             "gpib ifc\n"
@@ -48,6 +52,8 @@ void gpib_help(int full)
             "gpib plot_echo\n"
             "gpib task\n"
             "gpib trace filename.txt [BUS]\n"
+			"   Display activity of GPIB bus and log it\n"
+			"   BUS - include handshake states\n"
             "\n"
 #ifdef GPIB_EXTENDED_TESTS
 			"gpib port read pins   [A-D]\n"
@@ -105,9 +111,13 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"config",(ind+0),argc))
+    if (MATCH(ptr,"config") )
     {
-        display_Config();
+        ptr = argv[ind];
+		if(ptr && *ptr && MATCH(ptr,"-v"))
+			display_Config(1);
+		else
+			display_Config(0);
         return(1);
     }
 

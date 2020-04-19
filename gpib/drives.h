@@ -286,6 +286,8 @@ extern DeviceType Devices[MAX_DEVICES];
 
 
 
+
+
 /* drives.c */
 int find_type ( int type );
 int count_drive_types ( uint8_t type );
@@ -308,7 +310,7 @@ int Read_Config ( char *name );
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
 void display_Addresses ( void );
-void display_Config ( void );
+void display_Config ( int verbose );
 void format_drives ( void );
 
 #endif     // _DRIVES_H

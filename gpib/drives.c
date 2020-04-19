@@ -1344,7 +1344,7 @@ void display_Addresses()
 /// ===============================================
 /// @brief Display current Configuration File values
 /// @return  void
-void display_Config()
+void display_Config( int verbose)
 {
     int i;
     ///@brief Active Printer Device
@@ -1377,31 +1377,43 @@ void display_Config()
             printf("  HEADER\n");
                 print_var("ID", (uint32_t) SS80p->CONFIG.ID);
 			printf("  END\n");
-            printf("  CONTROLLER\n");
-                print_var("UNITS_INSTALLED", (uint32_t) SS80p->CONTROLLER.UNITS_INSTALLED);
-                print_var("TRANSFER_RATE", (uint32_t)  SS80p->CONTROLLER.TRANSFER_RATE);
-                print_var("TYPE", (uint32_t)  SS80p->CONTROLLER.TYPE);
-			printf("  END\n");
+			if(verbose)
+			{
+				printf("  CONTROLLER\n");
+					print_var("UNITS_INSTALLED", (uint32_t) SS80p->CONTROLLER.UNITS_INSTALLED);
+					print_var("TRANSFER_RATE", (uint32_t)  SS80p->CONTROLLER.TRANSFER_RATE);
+					print_var("TYPE", (uint32_t)  SS80p->CONTROLLER.TYPE);
+				printf("  END\n");
+			}
             printf("  UNIT\n");
-                print_var("UNIT_TYPE", (uint32_t)SS80p->UNIT.UNIT_TYPE);
+				if(verbose)
+				{
+					print_var("UNIT_TYPE", (uint32_t)SS80p->UNIT.UNIT_TYPE);
+				}
                 print_var("DEVICE_NUMBER", (uint32_t)SS80p->UNIT.DEVICE_NUMBER);
-                print_var("BYTES_PER_BLOCK", (uint32_t)SS80p->UNIT.BYTES_PER_BLOCK);
-                print_var("BUFFERED_BLOCKS", (uint32_t)SS80p->UNIT.BUFFERED_BLOCKS);
-                print_var("BURST_SIZE", (uint32_t)SS80p->UNIT.BURST_SIZE);
-                print_var("BLOCK_TIME", (uint32_t)SS80p->UNIT.BLOCK_TIME);
-                print_var("CONTINUOUS_TRANSFER_RATE", (uint32_t)SS80p->UNIT.CONTINUOUS_TRANSFER_RATE);
-                print_var("OPTIMAL_RETRY_TIME", (uint32_t)SS80p->UNIT.OPTIMAL_RETRY_TIME);
-                print_var("ACCESS_TIME", (uint32_t)SS80p->UNIT.ACCESS_TIME);
-                print_var("MAXIMUM_INTERLEAVE", (uint32_t)SS80p->UNIT.MAXIMUM_INTERLEAVE);
-                print_var("FIXED_VOLUMES", (uint32_t)SS80p->UNIT.FIXED_VOLUMES);
-                print_var("REMOVABLE_VOLUMES", (uint32_t)SS80p->UNIT.REMOVABLE_VOLUMES);
+				if(verbose)
+				{
+					print_var("BYTES_PER_BLOCK", (uint32_t)SS80p->UNIT.BYTES_PER_BLOCK);
+					print_var("BUFFERED_BLOCKS", (uint32_t)SS80p->UNIT.BUFFERED_BLOCKS);
+					print_var("BURST_SIZE", (uint32_t)SS80p->UNIT.BURST_SIZE);
+					print_var("BLOCK_TIME", (uint32_t)SS80p->UNIT.BLOCK_TIME);
+					print_var("CONTINUOUS_TRANSFER_RATE", (uint32_t)SS80p->UNIT.CONTINUOUS_TRANSFER_RATE);
+					print_var("OPTIMAL_RETRY_TIME", (uint32_t)SS80p->UNIT.OPTIMAL_RETRY_TIME);
+					print_var("ACCESS_TIME", (uint32_t)SS80p->UNIT.ACCESS_TIME);
+					print_var("MAXIMUM_INTERLEAVE", (uint32_t)SS80p->UNIT.MAXIMUM_INTERLEAVE);
+					print_var("FIXED_VOLUMES", (uint32_t)SS80p->UNIT.FIXED_VOLUMES);
+					print_var("REMOVABLE_VOLUMES", (uint32_t)SS80p->UNIT.REMOVABLE_VOLUMES);
+				}
 			printf("  END\n");
             printf("  VOLUME\n");
-                print_var("MAX_CYLINDER", (uint32_t)SS80p->VOLUME.MAX_CYLINDER);
-                print_var("MAX_HEAD", (uint32_t)SS80p->VOLUME.MAX_HEAD);
-                print_var("MAX_SECTOR", (uint32_t)SS80p->VOLUME.MAX_SECTOR);
-                print_var("MAX_BLOCK_NUMBER", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
-                print_var("INTERLEAVE", (uint32_t)SS80p->VOLUME.INTERLEAVE);
+				if(verbose)
+				{
+					print_var("MAX_CYLINDER", (uint32_t)SS80p->VOLUME.MAX_CYLINDER);
+					print_var("MAX_HEAD", (uint32_t)SS80p->VOLUME.MAX_HEAD);
+					print_var("MAX_SECTOR", (uint32_t)SS80p->VOLUME.MAX_SECTOR);
+					print_var("MAX_BLOCK_NUMBER", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
+					print_var("INTERLEAVE", (uint32_t)SS80p->VOLUME.INTERLEAVE);
+				}
                 print_var("# BLOCKS", (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER+1);
 			printf("  END\n");
         } // SS80_TYPE
@@ -1422,10 +1434,13 @@ void display_Config()
                 print_var("ID", (uint32_t) AMIGOp->CONFIG.ID);
 			printf("  END\n");
             printf("  GEOMETRY\n");
-                print_var("BYTES_PER_SECTOR", (uint32_t) AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
-                print_var("SECTORS_PER_TRACK", (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
-                print_var("HEADS", (uint32_t) AMIGOp->GEOMETRY.HEADS);
-                print_var("CYLINDERS", (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
+				if(verbose)
+				{
+					print_var("BYTES_PER_SECTOR", (uint32_t) AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
+					print_var("SECTORS_PER_TRACK", (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
+					print_var("HEADS", (uint32_t) AMIGOp->GEOMETRY.HEADS);
+					print_var("CYLINDERS", (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
+				}
                 print_var("# BLOCKS", (uint32_t)AMIGOp->GEOMETRY.CYLINDERS * AMIGOp->GEOMETRY.SECTORS_PER_TRACK * AMIGOp->GEOMETRY.HEADS );
 			printf("  END\n");
         } 

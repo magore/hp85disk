@@ -174,7 +174,7 @@ HARDWARE = \
 	hardware/rs232.c \
 	hardware/spi.c \
 	hardware/TWI_AVR8.c 
-
+	
 # Evaluate interrupt driven I2C code - compiled bit it is not being used yet
 ifeq ($(I2C_SUPPORT),1)
 	HARDWARE += hardware/i2c.c 
@@ -252,6 +252,7 @@ CSRC = \
 	$(GPIB) \
 	$(LIF) \
 	main.c 
+
 
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
@@ -442,8 +443,6 @@ install_optiboot:
 # .PHONY: date
 # date:
 #	@echo "#define _YEAR_ \"$(DATE)\"" >date.h
-
-main.c:	
 
 # =======================================
 hardware/baudrate:  hardware/baudrate.c
@@ -689,35 +688,37 @@ version :
 # Create final output file (.hex or .bin) from ELF output file.
 %.hex: %.elf
 	@echo
-	echo Making HEX file
+	@echo Making HEX file
 	$(OBJCOPY) -O ihex $(HEX_FLASH_FLAGS)  $< $@
 
 
 %.eep: %.elf
-	echo Making EPP file
+	@echo
+	@echo Making EPP file
 	-$(OBJCOPY) -O ihex $(HEX_EEPROM_FLAGS) $< $@ || exit 0
 
 
 %.lss: %.elf
-	echo Making LSS file
+	@echo
+	@echo Making LSS file
 	avr-objdump -h -S -t $< > $@
 
 
 %.bin: %.elf
 	@echo
-	echo Making BIN file
+	@echo Making BIN file
 	$(OBJCOPY) -O binary $< $@
 
 # Create extended listing file from ELF output file.
 %.lst: %.elf
 	@echo
-	echo Making LST File
+	@echo Making LST File
 	$(OBJDUMP) -h -S -C $< > $@
 
 # Create a symbol table from ELF output file.
 %.sym: %.elf
 	@echo
-	echo Making SYM File
+	@echo Making SYM File
 	$(NM) -n $< > $@
 
 # Display size of file.
@@ -741,21 +742,21 @@ size:
 
 # Link: create ELF output file from object files.
 %.elf:  $(AOBJ) $(COBJ) $(LIBS)
-	$(V) echo $< :
-	$(vecho)
+	@echo
 	echo Linking ELF File
 	$(V) $(CC) $(CFLAGS) $(AOBJ) $(COBJ) $(LIBS) --output $@
 
 
 # Compile: create object files from C source files. ARM or Thumb(-2)
 $(COBJ) : %.o : %.c
-	$(V) echo $< :
+	$(V) echo $<
 	$(vecho)
 	$(V) $(CC) -c $(CFLAGS) $< -o $@
+	
 
 # Assemble: create object files from assembler source files. ARM or Thumb(-2)
 $(AOBJ) : %.o : %.S
-	$(V) echo $< :
+	$(V) echo $<
 	$(vecho)
 	$(V) $(CC) -c $(ALL_ASFLAGS) $< -o $@
 
@@ -763,14 +764,14 @@ $(AOBJ) : %.o : %.S
 ## Compile
 # asm from (hand coded) asm
 %.s: %.S
-	$(V) echo $< :
+	$(V) echo $<
 	$(vecho)
 	$(V) $(CC) -S $(ALL_ASFLAGS) $< -o $@
 
 
 # object from asm
 .S.o :
-	$(V) echo $< :
+	$(V) echo $<
 	$(vecho)
 	$(V) $(CC) $(ALL_ASFLAGS) -c $< -o $@
 

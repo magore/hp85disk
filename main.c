@@ -364,7 +364,7 @@ int main(void)
     sep();
 
     ///@brief Display Configuration
-    display_Config();
+    display_Config(0);
 
     ///@brief Format any drives that do not yet exist
     format_drives();
