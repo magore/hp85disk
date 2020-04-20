@@ -56,8 +56,6 @@ var searchData=
   ['gpib_5funread',['gpib_unread',['../gpib_8c.html#a2fdb3d4996ff399dc2fbfcada417bb1a',1,'gpib_unread(uint16_t ch):&#160;gpib.c'],['../gpib_8h.html#a2fdb3d4996ff399dc2fbfcada417bb1a',1,'gpib_unread(uint16_t ch):&#160;gpib.c']]],
   ['gpib_5fwrite_5fbyte',['gpib_write_byte',['../gpib_8c.html#ac3d50cc1d56705d107e2f8fb00692e68',1,'gpib_write_byte(uint16_t ch):&#160;gpib.c'],['../gpib_8h.html#ac3d50cc1d56705d107e2f8fb00692e68',1,'gpib_write_byte(uint16_t ch):&#160;gpib.c']]],
   ['gpib_5fwrite_5fstr',['gpib_write_str',['../gpib_8c.html#a1bdaac9496e7a0a3523481f2e8a2b9fe',1,'gpib_write_str(uint8_t *buf, int size, uint16_t *status):&#160;gpib.c'],['../gpib_8h.html#a1bdaac9496e7a0a3523481f2e8a2b9fe',1,'gpib_write_str(uint8_t *buf, int size, uint16_t *status):&#160;gpib.c']]],
-  ['gpio16_5fpin_5fdir',['gpio16_pin_dir',['../hal_8h.html#a79f30eff50141a93c341181a9e088a6e',1,'hal.h']]],
   ['gpio_5fpin_5fout',['gpio_pin_out',['../hal_8c.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c'],['../hal_8h.html#a89f38d9e708a2136d2347bd1aff73010',1,'gpio_pin_out(uint8_t pin, uint8_t val):&#160;hal.c']]],
-  ['gpio_5fpin_5frd',['gpio_pin_rd',['../hal_8c.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c'],['../hal_8h.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c']]],
-  ['gpio_5fpin_5fsfr_5fmode',['gpio_pin_sfr_mode',['../hal_8h.html#aae4c3f2e10c806143c255941be7aef16',1,'hal.h']]]
+  ['gpio_5fpin_5frd',['gpio_pin_rd',['../hal_8c.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c'],['../hal_8h.html#a63ffa405ecc5ed74cf654bc8f9b24023',1,'gpio_pin_rd(uint8_t pin):&#160;hal.c']]]
 ];

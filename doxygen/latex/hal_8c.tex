@@ -50,13 +50,21 @@ uint8\+\_\+t \hyperlink{hal_8c_ab29ed55c6eacdff36215e717c9ec19e1}{spi\+\_\+\+RX}
 void \hyperlink{hal_8c_ae1df55cfc018c50c9aec77000eae858c}{spi\+\_\+\+TX} (uint8\+\_\+t data)
 \begin{DoxyCompactList}\small\item\em S\+PI write 1 byte. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{hal_8c_a9617412610d280bbb4886674790d7d3e}{spi\+\_\+\+T\+X\+RX} (uint8\+\_\+t data)
-\begin{DoxyCompactList}\small\item\em S\+PI read and write 1 byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em S\+PI read and write 1 byte. \end{DoxyCompactList}\item 
+void \hyperlink{hal_8c_a75af94e119f15cf88c2a3fe978cb8589}{set\+\_\+error} (uint8\+\_\+t error)
+\begin{DoxyCompactList}\small\item\em Set error condition. \end{DoxyCompactList}\item 
+void \hyperlink{hal_8c_afc021e1f6d5e6619942e33f9d6d63cda}{clear\+\_\+error} ()
+\begin{DoxyCompactList}\small\item\em Set error condition. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{hal_8c_ad3711aaa369f6614551745ffedf25654}{is\+\_\+error} ()
+\begin{DoxyCompactList}\small\item\em is error -\/ test \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \hyperlink{hal_8c_a1d1ec6333b265b4dd659ee605a2421de}{\+\_\+cs\+\_\+pin} = 0xff
 \begin{DoxyCompactList}\small\item\em S\+PI init function Function waits for current tranaction to finish before proceeding. \end{DoxyCompactList}\item 
 uint32\+\_\+t \hyperlink{hal_8c_a3f4bc3feab2b705606ef696eceb93fba}{\+\_\+spi\+\_\+clock} = -\/1L
+\item 
+static uint8\+\_\+t \hyperlink{hal_8c_afef96784db1d5e946b11ee6a13b1b1c0}{error\+\_\+flag} = 0
 \end{DoxyCompactItemize}
 
 
@@ -196,6 +204,27 @@ Definition at line 194 of file hal.\+c.
 
 Referenced by mmc\+\_\+spi\+\_\+init().
 
+\mbox{\Hypertarget{hal_8c_afc021e1f6d5e6619942e33f9d6d63cda}\label{hal_8c_afc021e1f6d5e6619942e33f9d6d63cda}} 
+\index{hal.\+c@{hal.\+c}!clear\+\_\+error@{clear\+\_\+error}}
+\index{clear\+\_\+error@{clear\+\_\+error}!hal.\+c@{hal.\+c}}
+\subsubsection{\texorpdfstring{clear\+\_\+error()}{clear\_error()}}
+{\footnotesize\ttfamily void clear\+\_\+error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Set error condition. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 513 of file hal.\+c.
+
+
+
+Referenced by main().
+
 \mbox{\Hypertarget{hal_8c_a89f38d9e708a2136d2347bd1aff73010}\label{hal_8c_a89f38d9e708a2136d2347bd1aff73010}} 
 \index{hal.\+c@{hal.\+c}!gpio\+\_\+pin\+\_\+out@{gpio\+\_\+pin\+\_\+out}}
 \index{gpio\+\_\+pin\+\_\+out@{gpio\+\_\+pin\+\_\+out}!hal.\+c@{hal.\+c}}
@@ -205,6 +234,8 @@ Referenced by mmc\+\_\+spi\+\_\+init().
 
 
 set G\+P\+IO pin state HI or L\+OW 
+
+A\+VR G\+P\+IO M\+A\+C\+R\+Os.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -241,6 +272,44 @@ read G\+P\+IO pin
 
 
 Definition at line 174 of file hal.\+c.
+
+\mbox{\Hypertarget{hal_8c_ad3711aaa369f6614551745ffedf25654}\label{hal_8c_ad3711aaa369f6614551745ffedf25654}} 
+\index{hal.\+c@{hal.\+c}!is\+\_\+error@{is\+\_\+error}}
+\index{is\+\_\+error@{is\+\_\+error}!hal.\+c@{hal.\+c}}
+\subsubsection{\texorpdfstring{is\+\_\+error()}{is\_error()}}
+{\footnotesize\ttfamily uint8\+\_\+t is\+\_\+error (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+is error -\/ test 
+
+\begin{DoxyReturn}{Returns}
+0 = ok, !0 = error 
+\end{DoxyReturn}
+
+
+Definition at line 521 of file hal.\+c.
+
+\mbox{\Hypertarget{hal_8c_a75af94e119f15cf88c2a3fe978cb8589}\label{hal_8c_a75af94e119f15cf88c2a3fe978cb8589}} 
+\index{hal.\+c@{hal.\+c}!set\+\_\+error@{set\+\_\+error}}
+\index{set\+\_\+error@{set\+\_\+error}!hal.\+c@{hal.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+error()}{set\_error()}}
+{\footnotesize\ttfamily void set\+\_\+error (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{error }\end{DoxyParamCaption})}
+
+
+
+Set error condition. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 505 of file hal.\+c.
+
+
+
+Referenced by mmc\+\_\+task().
 
 \mbox{\Hypertarget{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}\label{hal_8c_acd8b481ba21b545f53061c5ab7ff451e}} 
 \index{hal.\+c@{hal.\+c}!spi\+\_\+begin@{spi\+\_\+begin}}
@@ -545,4 +614,14 @@ Definition at line 326 of file hal.\+c.
 
 
 Definition at line 327 of file hal.\+c.
+
+\mbox{\Hypertarget{hal_8c_afef96784db1d5e946b11ee6a13b1b1c0}\label{hal_8c_afef96784db1d5e946b11ee6a13b1b1c0}} 
+\index{hal.\+c@{hal.\+c}!error\+\_\+flag@{error\+\_\+flag}}
+\index{error\+\_\+flag@{error\+\_\+flag}!hal.\+c@{hal.\+c}}
+\subsubsection{\texorpdfstring{error\+\_\+flag}{error\_flag}}
+{\footnotesize\ttfamily uint8\+\_\+t error\+\_\+flag = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 502 of file hal.\+c.
 

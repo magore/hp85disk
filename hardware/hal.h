@@ -197,16 +197,16 @@ void MEMSPACE gpio16_pin_dir ( uint8_t out );
 #endif                                            // ESP8266
 // =============================================
 
+
+
 /* hal.c */
-void gpio_pin_sfr_mode ( int pin );
-void gpio16_pin_dir ( uint8_t out );
 void gpio_pin_out ( uint8_t pin , uint8_t val );
 uint8_t gpio_pin_rd ( uint8_t pin );
 void chip_select_init ( uint8_t pin );
 void chip_select ( uint8_t pin );
 void chip_deselect ( uint8_t pin );
 void chip_addr_init ( void );
-void chip_addr ( int addr );
+void chip_addr ( int addr __attribute__ ((unused )));
 void spi_waitReady ( void );
 void spi_init ( uint32_t clock , int pin );
 void spi_begin ( uint32_t clock , int pin );
@@ -218,4 +218,8 @@ void spi_TXRX_buffer ( const uint8_t *data , int count );
 uint8_t spi_RX ( void );
 void spi_TX ( uint8_t data );
 uint8_t spi_TXRX ( uint8_t data );
+void set_error ( uint8_t error );
+void clear_error ( void );
+uint8_t is_error ( void );
+
 #endif                                            /* _INCLUDE_HAL_H_ */

@@ -67,8 +67,10 @@ static void mmc_task(void)
 
     _mmc_pre = 0;
 
-    mmc_disk_timerproc();
+	if(!mmc_ins_status())
+		set_error(1);
 
+    mmc_disk_timerproc();
 }
 
 
@@ -220,6 +222,10 @@ int mmc_init(int verbose)
 
     Stat = 0;
 
+	// Card Detect
+	GPIO_PIN_LATCH_LOW(GPIO_C7);
+	GPIO_PIN_DIR_IN(GPIO_C7);
+
     mmc_spi_init();
 
     if( verbose)
@@ -230,8 +236,17 @@ int mmc_init(int verbose)
     if(!mmc_init_flag)
         mmc_install_timer();
 
+	if(!mmc_ins_status())
+	{
+		printf("*** MMC Card NOT Inserted! ***\n");
+		return(RES_NOTRDY);	
+	}
+
+
     if( verbose)
     {
+		printf("MMC Card Inserted\n");
+
 #if defined (FF_USE_LFN)
         printf("LFN Enabled");
 #else
@@ -305,7 +320,9 @@ void mmc_power_off()
 MEMSPACE
 int mmc_ins_status()
 {
-    return (1);
+	// empty is high when card is NOt inserted
+	int empty = GPIO_PIN_RD(GPIO_C7);	
+    return (!empty);
 }
 
 

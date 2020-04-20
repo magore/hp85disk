@@ -7,6 +7,7 @@ AVRDUDE_DEVICE ?= m1284p
 AVRDUDE_ISP    ?= atmelice_isp
 ISP_PORT       ?= usb
 ISP_SPEED      ?= 0.25
+LED            ?= C6
 
 OPTIBOOT_HEX   ?= optiboot_$(DEVICE).hex
 
@@ -18,7 +19,7 @@ fuses_lock       ?= -U lock:w:0xfd:m
 
 
 optiboot: 
-	make -f Makefile.optiboot optiboot atmega1284p AVR_FREQ=20000000L BAUD_RATE=115200 LED=C6 LED_START_FLASHES=2 UART=0 BIGBOOT=1
+	make -f Makefile.optiboot optiboot atmega1284p AVR_FREQ=20000000L BAUD_RATE=115200 LED=$(LED) LED_START_FLASHES=2 UART=0 BIGBOOT=1
 
 install_optiboot: optiboot boot_install
 	@echo OPTIBOOT has been installed

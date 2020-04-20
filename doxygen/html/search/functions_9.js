@@ -18,6 +18,7 @@ var searchData=
   ['install_5ftimers_5fisr',['install_timers_isr',['../timer_8h.html#a49353e09a3623d95083574b87e9aadc5',1,'timer.h']]],
   ['invert',['Invert',['../matrix_8c.html#a7d4a273868c8ba43d51338aee9310b00',1,'Invert(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a7d4a273868c8ba43d51338aee9310b00',1,'Invert(mat_t MatA):&#160;matrix.c']]],
   ['is_5fdst',['is_dst',['../time_8c.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c'],['../time_8h.html#a97ed766c965cf60b39b74a22077caf51',1,'is_dst(time_t epoch):&#160;time.c']]],
+  ['is_5ferror',['is_error',['../hal_8c.html#ad3711aaa369f6614551745ffedf25654',1,'is_error():&#160;hal.c'],['../hal_8h.html#a8e25de59e6718f473a78f7b92af1da8e',1,'is_error(void):&#160;hal.c']]],
   ['is_5fleap',['IS_Leap',['../time_8c.html#a7a6b834817c8071e5e31d3693102a2b0',1,'time.c']]],
   ['isatty',['isatty',['../posix_8c.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c'],['../posix_8h.html#a31986cce890109c211ccb14151aafd0e',1,'isatty(int fileno):&#160;posix.c']]],
   ['isdigit',['isdigit',['../stringsup_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../stringsup_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../mathio_8h.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;stringsup.c'],['../printf_8c.html#a8c33a3f5b4322e705d3403f63d55b0a1',1,'isdigit(int c):&#160;printf.c']]],

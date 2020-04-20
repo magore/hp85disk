@@ -498,3 +498,27 @@ uint8_t spi_TXRX(uint8_t data)
 #endif
     return(data);
 }
+
+static uint8_t error_flag = 0;
+/// @brief Set error condition
+/// @return  void
+void set_error(uint8_t error)
+{
+	error_flag = error;
+    GPIO_PIN_HI(LED2);
+}
+
+/// @brief Set error condition
+/// @return  void
+void clear_error()
+{
+	error_flag = 0;
+    GPIO_PIN_LOW(LED2);
+}
+
+/// @brief is error - test
+/// @return 0 = ok, !0 = error
+uint8_t is_error()
+{
+	return(error_flag);
+}

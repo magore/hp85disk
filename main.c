@@ -49,7 +49,6 @@ void copyright()
     printf("\n");
 }
 
-
 #ifdef DELAY_TESTS
 /// @brief  perform tests on delay functions
 ///
@@ -255,6 +254,10 @@ int main(void)
     ts_t ts;
     uint32_t actual,baud;
 
+	clear_error();		// Clear error state
+
+	GPIO_PIN_LOW(LED1);	// Activity status
+
 ///@ initialize bus state as soon as practical
     gpib_bus_init();
 
@@ -290,23 +293,23 @@ int main(void)
     delayms(200);                                 ///@brief Power up delay
 
 ///@ initialize SPI bus
-    printf("initializing SPI bus\n");
+    printf("Initializing SPI bus\n");
     spi_init(MMC_SLOW,GPIO_B3);
 
 ///@ initialize I2C bus
-    printf("initializing I2C bus\n");
+    printf("Initializing I2C bus\n");
     TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 100000));
     sep();
 
-    printf("initializing RTC\n");
 ///@ initialize clock by RTC if we have it
+    printf("Initializing RTC\n");
     clock_clear();
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
     printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
 
 // Timezone offset
-    initialize_clock(300);
+    initialize_clock(0);
     display_clock();
     sep();
 
@@ -335,8 +338,8 @@ int main(void)
 
 ///@ initialize MMC bus
     printf("MMC initializing start\n");
-    mmc_init(1);
-    printf("MMC initialized\n");
+    if ( !mmc_init(1) )
+		printf("MMC initialized\n");
     sep();
 
 ///@ initialize bus state as soon as practical

@@ -223,8 +223,6 @@ BYTE *buff,                                       /*< Data buffer to store recei
 UINT btr                                          /*< Byte count (must be multiple of 4) */
 )
 {
-    GPIO_PIN_HI(LED1);
-
     BYTE token;
 
     mmc_set_ms_timeout(1000);
@@ -237,8 +235,6 @@ UINT btr                                          /*< Byte count (must be multip
     rcvr_spi_multi(buff, btr);                    /* Receive the data block into buffer */
     xchg_spi(0xFF);                               /* Discard CRC */
     xchg_spi(0xFF);
-
-    GPIO_PIN_LOW(LED1);
 
     return 1;                                     /* Return with success */
 }
@@ -259,8 +255,6 @@ BYTE token                                        /*< Data/Stop token */
 {
     BYTE resp;
 
-    GPIO_PIN_HI(LED2);
-
     if (!wait_ready(1000)) return 0;
 
     xchg_spi(token);                              /* Xmit data token */
@@ -274,8 +268,6 @@ BYTE token                                        /*< Data/Stop token */
         if ((resp & 0x1F) != 0x05)                /* If not accepted, return with error */
             return 0;
     }
-
-    GPIO_PIN_LOW(LED1);
 
     return 1;
 }
@@ -447,6 +439,12 @@ UINT count                                        /*< Sector count (1..128) */
         deselect();
         return RES_NOTRDY;
     }
+    if (Stat & STA_NODISK)
+    {
+        deselect();
+        return RES_NOTRDY;
+	}
+    GPIO_PIN_HI(LED1);
 
     if (!(CardType & CT_BLOCK)) sector *= 512;    /* Convert to byte address if needed */
 
@@ -462,6 +460,7 @@ UINT count                                        /*< Sector count (1..128) */
         if (cmd == CMD18) send_cmd(CMD12, 0);     /* STOP_TRANSMISSION */
     }
     deselect();
+    GPIO_PIN_LOW(LED1);
 
     return count ? RES_ERROR : RES_OK;
 }
@@ -491,11 +490,18 @@ UINT count                                        /* Sector count (1..128) */
         deselect();
         return RES_NOTRDY;
     }
+    if (Stat & STA_NODISK)
+    {
+        deselect();
+        return RES_NOTRDY;
+	}
     if (Stat & STA_PROTECT)
     {
         deselect();
         return RES_WRPRT;
     }
+
+    GPIO_PIN_HI(LED1);
 
     if (!(CardType & CT_BLOCK)) sector *= 512;    /* Convert to byte address if needed */
 
@@ -520,6 +526,7 @@ UINT count                                        /* Sector count (1..128) */
         }
     }
     deselect();
+    GPIO_PIN_LOW(LED1);
 
     return count ? RES_ERROR : RES_OK;
 }
@@ -551,6 +558,11 @@ void *buff                                        /* Buffer to send/receive cont
 
     if (Stat & STA_NOINIT)
         return RES_NOTRDY;
+    if (Stat & STA_NODISK)
+    {
+        deselect();
+        return RES_NOTRDY;
+	}
 
     res = RES_ERROR;
     switch (cmd)
@@ -740,28 +752,30 @@ void *buff                                        /* Buffer to send/receive cont
 void mmc_disk_timerproc (void)
 {
     BYTE n;
-#if DETECT_WP
     BYTE s;
-#endif
 
     n = Timer1;                                   /* 100Hz decrement timer */
     if (n) Timer1 = --n;
     n = Timer2;
     if (n) Timer2 = --n;
 
-#if DETECT_WP
     s = Stat;
 
+#if DETECT_WP
     if (MMC_WP)                                   /* Write protected */
         s |= STA_PROTECT;
     else                                          /* Write enabled */
         s &= ~STA_PROTECT;
+#endif
 
     if (MMC_CD)                                   /* Card inserted */
+	{
         s &= ~STA_NODISK;
+	}
     else                                          /* Socket empty */
+	{	
         s |= (STA_NODISK | STA_NOINIT);
+	}
 
     Stat = s;                                     /* Update MMC status */
-#endif
 }
