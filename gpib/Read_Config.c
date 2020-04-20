@@ -108,7 +108,7 @@ int Read_Config(char *name)
                     else
                     {
                         SS80p = (SS80DiskType *) Devices[index].dev;
-                                                  // Also sets Devices[index].model
+// Also sets Devices[index].model
                         hpdir_set_parameters(index,arg);
                     }
                 }
@@ -126,7 +126,7 @@ int Read_Config(char *name)
                     else
                     {
                         AMIGOp = (AMIGODiskType *) Devices[index].dev;
-                                                  // Also sets Devices[index.model
+// Also sets Devices[index.model
                         hpdir_set_parameters(index,arg);
                     }
                 }

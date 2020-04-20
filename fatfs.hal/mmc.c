@@ -366,7 +366,7 @@ DSTATUS mmc_disk_initialize (void)
 /* Wait for leaving idle state (ACMD41 with HCS bit) */
                 while (!mmc_test_timeout() && send_cmd(ACMD41, 1UL << 30))
                     ;
-                                                  /* Check CCS bit in the OCR */
+/* Check CCS bit in the OCR */
                 if (!mmc_test_timeout() && send_cmd(CMD58, 0) == 0)
                 {
                     for (n = 0; n < 4; n++) ocr[n] = xchg_spi(0xFF);
@@ -389,7 +389,7 @@ DSTATUS mmc_disk_initialize (void)
 /* Wait for leaving idle state */
             while (!mmc_test_timeout() && send_cmd(cmd, 0))
                 ;
-                                                  /* Set R/W block length to 512 */
+/* Set R/W block length to 512 */
             if (mmc_test_timeout() || send_cmd(CMD16, 512) != 0)
                 ty = 0;
         }
@@ -587,7 +587,7 @@ void *buff                                        /* Buffer to send/receive cont
                     xchg_spi(0xFF);
                     if (rcvr_datablock(csd, 16))  /* Read partial block */
                     {
-                                                  /* Purge trailing data */
+/* Purge trailing data */
                         for (n = 64 - 16; n; n--) xchg_spi(0xFF);
                         *(DWORD*)buff = 16UL << (csd[10] >> 4);
                         res = RES_OK;
@@ -596,7 +596,7 @@ void *buff                                        /* Buffer to send/receive cont
             }                                     /* SDv1 or MMCv3 */
             else
             {
-                                                  /* Read CSD */
+/* Read CSD */
                 if ((send_cmd(CMD9, 0) == 0) && rcvr_datablock(csd, 16))
                 {
                     if (CardType & CT_SD1)        /* SDv1 */
@@ -616,17 +616,17 @@ void *buff                                        /* Buffer to send/receive cont
 #if FF_USE_TRIM
         case CTRL_TRIM:                           /* Erase a block of sectors (used when _USE_TRIM in ffconf.h is 1) */
             if (!(CardType & CT_SDC)) break;      /* Check if the card is SDC */
-                                                  /* Get CSD */
+/* Get CSD */
             if (mmc_disk_ioctl(MMC_GET_CSD, csd)) break;
-                                                  /* Check if sector erase can be applied to the card */
+/* Check if sector erase can be applied to the card */
             if (!(csd[0] >> 6) && !(csd[10] & 0x40)) break;
-                                                  /* Load sector block */
+/* Load sector block */
             range = buff; st = (DWORD)range[0]; ed = (DWORD)range[1];
             if (!(CardType & CT_BLOCK))
             {
                 st *= 512; ed *= 512;
             }
-                                                  /* Erase sector block */
+/* Erase sector block */
             if (send_cmd(CMD32, st) == 0 && send_cmd(CMD33, ed) == 0 && send_cmd(CMD38, 0) == 0 && wait_ready(60000))
             {
                 res = RES_OK;                     /* FatFs does not check result of this command */
@@ -644,14 +644,14 @@ void *buff                                        /* Buffer to send/receive cont
             break;
 
         case MMC_GET_CSD :                        /* Receive CSD as a data block (16 bytes) */
-                                                  /* READ_CSD */
+/* READ_CSD */
             if (send_cmd(CMD9, 0) == 0 && rcvr_datablock(ptr, 16))
                 res = RES_OK;
             deselect();
             break;
 
         case MMC_GET_CID :                        /* Receive CID as a data block (16 bytes) */
-                                                  /* READ_CID */
+/* READ_CID */
             if (send_cmd(CMD10, 0) == 0 && rcvr_datablock(ptr, 16))
 
                 res = RES_OK;

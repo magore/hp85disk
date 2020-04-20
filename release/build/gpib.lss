@@ -8515,7 +8515,7 @@ bool LCD_init(uint8_t addr)
     I2C_Send(SPECIAL_COMMAND);                    //Send special command character
     5f64:	61 f1       	breq	.+88     	; 0x5fbe <LCD_init+0x62>
     5f66:	8e ef       	ldi	r24, 0xFE	; 254
-                                                  //Send the display command
+//Send the display command
     I2C_Send(LCD_DISPLAYCONTROL | _displayControl);
     5f68:	5a df       	rcall	.-332    	; 0x5e1e <I2C_Send>
     5f6a:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <_displayControl>
@@ -39601,7 +39601,7 @@ int Read_Config(char *name)
    136b2:	f0 0d       	add	r31, r0
    136b4:	11 24       	eor	r1, r1
    136b6:	e8 54       	subi	r30, 0x48	; 72
-                                                  // Also sets Devices[index].model
+// Also sets Devices[index].model
                             hpdir_set_parameters(index,token);
    136b8:	f1 4e       	sbci	r31, 0xE1	; 225
    136ba:	67 a0       	ldd	r6, Z+39	; 0x27
@@ -39658,7 +39658,7 @@ int Read_Config(char *name)
    136f6:	b0 a5       	ldd	r27, Z+40	; 0x28
    136f8:	c8 5f       	subi	r28, 0xF8	; 248
    136fa:	de 4f       	sbci	r29, 0xFE	; 254
-                                                  // Also sets Devices[index.model
+// Also sets Devices[index.model
                             hpdir_set_parameters(index,token);
    136fc:	b9 83       	std	Y+1, r27	; 0x01
    136fe:	a8 83       	st	Y, r26
@@ -41374,7 +41374,7 @@ void hpdir_init()
    13f9c:	1d 92       	st	X+, r1
    13f9e:	9a 95       	dec	r25
    13fa0:	e9 f7       	brne	.-6      	; 0x13f9c <hpdir_init+0xa>
-                                                  // 2
+// 2
     memset(hpdir.comment,0,sizeof(hpdir.comment) -1);
    13fa2:	9f e3       	ldi	r25, 0x3F	; 63
    13fa4:	ec ed       	ldi	r30, 0xDC	; 220
@@ -41800,7 +41800,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    14228:	a3 83       	std	Z+3, r26	; 0x03
    1422a:	0e 94 a5 45 	call	0x8b4a	; 0x8b4a <printf_P>
 
-                                                  // 1 Model
+// 1 Model
         strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
    1422e:	4e e1       	ldi	r20, 0x1E	; 30
    14230:	50 e0       	ldi	r21, 0x00	; 0
@@ -41809,7 +41809,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    14236:	90 e2       	ldi	r25, 0x20	; 32
    14238:	0e 94 a8 30 	call	0x6150	; 0x6150 <strncpy>
 
-                                                  // =
+// =
         ptr = get_token(ptr, token,     sizeof(token)-2);
    1423c:	4e e7       	ldi	r20, 0x7E	; 126
    1423e:	50 e0       	ldi	r21, 0x00	; 0
@@ -41817,7 +41817,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    14242:	c4 01       	movw	r24, r8
    14244:	0e 94 5d 32 	call	0x64ba	; 0x64ba <get_token>
 
-                                                  // 2 Comment
+// 2 Comment
         ptr = get_token(ptr, hpdir.comment, sizeof(hpdir.comment)-2);
    14248:	4e e3       	ldi	r20, 0x3E	; 62
    1424a:	50 e0       	ldi	r21, 0x00	; 0
@@ -41825,7 +41825,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1424e:	70 e2       	ldi	r23, 0x20	; 32
    14250:	0e 94 5d 32 	call	0x64ba	; 0x64ba <get_token>
 
-                                                  // 3 AMIGO/SS80/CS80
+// 3 AMIGO/SS80/CS80
         ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);
    14254:	4e e1       	ldi	r20, 0x1E	; 30
    14256:	50 e0       	ldi	r21, 0x00	; 0
@@ -41833,7 +41833,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1425a:	71 e2       	ldi	r23, 0x21	; 33
    1425c:	0e 94 5d 32 	call	0x64ba	; 0x64ba <get_token>
 
-                                                  // 4 Identify ID
+// 4 Identify ID
         ptr = get_token(ptr, token,         sizeof(token)-2);
    14260:	4e e7       	ldi	r20, 0x7E	; 126
    14262:	50 e0       	ldi	r21, 0x00	; 0
@@ -41848,7 +41848,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1427a:	80 93 3e 21 	sts	0x213E, r24	; 0x80213e <hpdir+0x82>
    1427e:	90 93 3f 21 	sts	0x213F, r25	; 0x80213f <hpdir+0x83>
 
-                                                  // 5 MASK STAT 2
+// 5 MASK STAT 2
         ptr = get_token(ptr, token,         sizeof(token)-2);
    14282:	4e e7       	ldi	r20, 0x7E	; 126
    14284:	50 e0       	ldi	r21, 0x00	; 0
@@ -41864,7 +41864,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1429e:	80 93 42 21 	sts	0x2142, r24	; 0x802142 <hpdir+0x86>
    142a2:	90 93 43 21 	sts	0x2143, r25	; 0x802143 <hpdir+0x87>
 
-                                                  // 6 STAT2
+// 6 STAT2
         ptr = get_token(ptr, token,         sizeof(token)-2);
    142a6:	4e e7       	ldi	r20, 0x7E	; 126
    142a8:	50 e0       	ldi	r21, 0x00	; 0
@@ -41880,7 +41880,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    142c2:	80 93 46 21 	sts	0x2146, r24	; 0x802146 <hpdir+0x8a>
    142c6:	90 93 47 21 	sts	0x2147, r25	; 0x802147 <hpdir+0x8b>
 
-                                                  // 7 BCD include model number
+// 7 BCD include model number
         ptr = get_token(ptr, token,         sizeof(token)-2);
    142ca:	4e e7       	ldi	r20, 0x7E	; 126
    142cc:	50 e0       	ldi	r21, 0x00	; 0
@@ -41896,7 +41896,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    142e6:	80 93 4a 21 	sts	0x214A, r24	; 0x80214a <hpdir+0x8e>
    142ea:	90 93 4b 21 	sts	0x214B, r25	; 0x80214b <hpdir+0x8f>
 
-                                                  // 8 Units installed
+// 8 Units installed
         ptr = get_token(ptr, token,         sizeof(token)-2);
    142ee:	4e e7       	ldi	r20, 0x7E	; 126
    142f0:	50 e0       	ldi	r21, 0x00	; 0
@@ -41912,7 +41912,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1430a:	80 93 4e 21 	sts	0x214E, r24	; 0x80214e <hpdir+0x92>
    1430e:	90 93 4f 21 	sts	0x214F, r25	; 0x80214f <hpdir+0x93>
 
-                                                  // 9 Cylinders
+// 9 Cylinders
         ptr = get_token(ptr, token,         sizeof(token)-2);
    14312:	4e e7       	ldi	r20, 0x7E	; 126
    14314:	50 e0       	ldi	r21, 0x00	; 0
@@ -41928,7 +41928,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1432e:	80 93 52 21 	sts	0x2152, r24	; 0x802152 <hpdir+0x96>
    14332:	90 93 53 21 	sts	0x2153, r25	; 0x802153 <hpdir+0x97>
 
-                                                  // 10 Heads
+// 10 Heads
         ptr = get_token(ptr, token,         sizeof(token)-2);
    14336:	4e e7       	ldi	r20, 0x7E	; 126
    14338:	50 e0       	ldi	r21, 0x00	; 0
@@ -41944,7 +41944,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    14352:	80 93 56 21 	sts	0x2156, r24	; 0x802156 <hpdir+0x9a>
    14356:	90 93 57 21 	sts	0x2157, r25	; 0x802157 <hpdir+0x9b>
 
-                                                  // 11 Sectors
+// 11 Sectors
         ptr = get_token(ptr, token,         sizeof(token)-2);
    1435a:	4e e7       	ldi	r20, 0x7E	; 126
    1435c:	50 e0       	ldi	r21, 0x00	; 0
@@ -41960,7 +41960,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    14376:	80 93 5a 21 	sts	0x215A, r24	; 0x80215a <hpdir+0x9e>
    1437a:	90 93 5b 21 	sts	0x215B, r25	; 0x80215b <hpdir+0x9f>
 
-                                                  // 12 Bytes Per Block/Sector
+// 12 Bytes Per Block/Sector
         ptr = get_token(ptr, token,         sizeof(token)-2);
    1437e:	4e e7       	ldi	r20, 0x7E	; 126
    14380:	50 e0       	ldi	r21, 0x00	; 0
@@ -41976,7 +41976,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
    1439a:	80 93 5e 21 	sts	0x215E, r24	; 0x80215e <hpdir+0xa2>
    1439e:	90 93 5f 21 	sts	0x215F, r25	; 0x80215f <hpdir+0xa3>
 
-                                                  // 13 Interleave
+// 13 Interleave
         ptr = get_token(ptr, token,         sizeof(token)-2);
    143a2:	4e e7       	ldi	r20, 0x7E	; 126
    143a4:	50 e0       	ldi	r21, 0x00	; 0
@@ -59617,22 +59617,22 @@ int main(void)
    1bddc:	0e 94 6b 31 	call	0x62d6	; 0x62d6 <sep>
 
 ///@brief Display debug level
-    sep();
-   1bde0:	0e 94 6b 31 	call	0x62d6	; 0x62d6 <sep>
     printf("debuglevel   = %04xH\n",(int)debuglevel);
-   1bde4:	80 91 c3 01 	lds	r24, 0x01C3	; 0x8001c3 <debuglevel>
-   1bde8:	90 91 c4 01 	lds	r25, 0x01C4	; 0x8001c4 <debuglevel+0x1>
-   1bdec:	ed b7       	in	r30, 0x3d	; 61
-   1bdee:	fe b7       	in	r31, 0x3e	; 62
-   1bdf0:	95 83       	std	Z+5, r25	; 0x05
-   1bdf2:	84 83       	std	Z+4, r24	; 0x04
-   1bdf4:	86 e3       	ldi	r24, 0x36	; 54
-   1bdf6:	91 e4       	ldi	r25, 0x41	; 65
-   1bdf8:	a0 e0       	ldi	r26, 0x00	; 0
-   1bdfa:	81 83       	std	Z+1, r24	; 0x01
-   1bdfc:	92 83       	std	Z+2, r25	; 0x02
-   1bdfe:	a3 83       	std	Z+3, r26	; 0x03
-   1be00:	0e 94 a5 45 	call	0x8b4a	; 0x8b4a <printf_P>
+   1bde0:	80 91 c3 01 	lds	r24, 0x01C3	; 0x8001c3 <debuglevel>
+   1bde4:	90 91 c4 01 	lds	r25, 0x01C4	; 0x8001c4 <debuglevel+0x1>
+   1bde8:	ed b7       	in	r30, 0x3d	; 61
+   1bdea:	fe b7       	in	r31, 0x3e	; 62
+   1bdec:	95 83       	std	Z+5, r25	; 0x05
+   1bdee:	84 83       	std	Z+4, r24	; 0x04
+   1bdf0:	86 e3       	ldi	r24, 0x36	; 54
+   1bdf2:	91 e4       	ldi	r25, 0x41	; 65
+   1bdf4:	a0 e0       	ldi	r26, 0x00	; 0
+   1bdf6:	81 83       	std	Z+1, r24	; 0x01
+   1bdf8:	92 83       	std	Z+2, r25	; 0x02
+   1bdfa:	a3 83       	std	Z+3, r26	; 0x03
+   1bdfc:	0e 94 a5 45 	call	0x8b4a	; 0x8b4a <printf_P>
+    sep();
+   1be00:	0e 94 6b 31 	call	0x62d6	; 0x62d6 <sep>
 
 ///@brief Format any drives that do not yet exist
     format_drives();

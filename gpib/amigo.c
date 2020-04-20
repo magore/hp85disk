@@ -213,7 +213,7 @@ int amigo_request_logical_address()
 {
 
     AMIGOs->logical_address[0] = 0xff & (AMIGOs->cyl >> 8);
-                                                  //LSB
+//LSB
     AMIGOs->logical_address[1] = 0xff & (AMIGOs->cyl);
     AMIGOs->logical_address[2] = 0xff & (AMIGOs->head);
     AMIGOs->logical_address[3] = 0xff & (AMIGOs->sector);

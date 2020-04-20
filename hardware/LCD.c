@@ -218,7 +218,7 @@ bool LCD_init(uint8_t addr)
         return 0;
 
     I2C_Send(SPECIAL_COMMAND);                    //Send special command character
-                                                  //Send the display command
+//Send the display command
     I2C_Send(LCD_DISPLAYCONTROL | _displayControl);
 
     I2C_Send(SPECIAL_COMMAND);                    //Send special command character

@@ -367,8 +367,8 @@ int main(void)
     sep();
 
 ///@brief Display debug level
-    sep();
     printf("debuglevel   = %04xH\n",(int)debuglevel);
+    sep();
 
 ///@brief Format any drives that do not yet exist
     format_drives();

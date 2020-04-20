@@ -84,7 +84,7 @@ MEMSPACE void install_timers_isr()
 #define TIMER1_PRE_8 (1 << CS11)                  /*< 8 Prescale */
 #define TIMER1_PRE_64 ((1 << CS11) | ( 1 << CS10))/*< 64 Prescale */
 #define TIMER1_PRE_256 (1 << CS12)                /*< 256 Prescale */
-                                                  /*< 1024 Prescape */
+/*< 1024 Prescape */
 #define TIMER1_PRE_1024 ((1 << CS12) | ( 1 << CS10))
 
 /// @brief Disable interrupts

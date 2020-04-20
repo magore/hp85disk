@@ -25,7 +25,7 @@ hpdir_t hpdir;
 void hpdir_init()
 {
     memset(hpdir.model,0,sizeof(hpdir.model) -1); // 1
-                                                  // 2
+// 2
     memset(hpdir.comment,0,sizeof(hpdir.comment) -1);
     memset(hpdir.TYPE,0,sizeof(hpdir.TYPE) -1);   // 3
     hpdir.ID = 0;                                 // 4
@@ -159,55 +159,55 @@ int hpdir_find_drive(char *model, int list, int verbose)
         if(verbose)
             printf("Found Model: %s\n", model);
 
-                                                  // 1 Model
+// 1 Model
         strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
 
-                                                  // =
+// =
         ptr = get_token(ptr, token,     sizeof(token)-2);
 
-                                                  // 2 Comment
+// 2 Comment
         ptr = get_token(ptr, hpdir.comment, sizeof(hpdir.comment)-2);
 
-                                                  // 3 AMIGO/SS80/CS80
+// 3 AMIGO/SS80/CS80
         ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);
 
-                                                  // 4 Identify ID
+// 4 Identify ID
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.ID = get_value(token);
 
-                                                  // 5 MASK STAT 2
+// 5 MASK STAT 2
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.mask_stat2 = get_value(token);
 
-                                                  // 6 STAT2
+// 6 STAT2
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.id_stat2 = get_value(token);
 
-                                                  // 7 BCD include model number
+// 7 BCD include model number
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.DEVICE_NUMBER = get_value(token);
 
-                                                  // 8 Units installed
+// 8 Units installed
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.UNITS_INSTALLED = get_value(token);
 
-                                                  // 9 Cylinders
+// 9 Cylinders
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.CYLINDERS = get_value(token);
 
-                                                  // 10 Heads
+// 10 Heads
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.HEADS = get_value(token);
 
-                                                  // 11 Sectors
+// 11 Sectors
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.SECTORS = get_value(token);
 
-                                                  // 12 Bytes Per Block/Sector
+// 12 Bytes Per Block/Sector
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.BYTES_PER_SECTOR = get_value(token);
 
-                                                  // 13 Interleave
+// 13 Interleave
         ptr = get_token(ptr, token,         sizeof(token)-2);
         hpdir.INTERLEAVE = get_value(token);
 

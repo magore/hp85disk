@@ -738,8 +738,11 @@ size:
 	-@avr-nm -n -S $(PROJECT).elf | grep "__data"
 	-@avr-nm -n -S $(PROJECT).elf | grep "__heap"
 	-@avr-nm -n -S $(PROJECT).elf | grep "__brkval"
-	@echo 
 #-@avr-nm -n -S $(PROJECT).elf | grep "__noinit"
+	@echo 
+	@echo Code size + .text
+	-@avr-nm -n -S $(PROJECT).elf | grep "__data_load_end" 
+	@echo 
 
 # Link: create ELF output file from object files.
 %.elf:  $(AOBJ) $(COBJ) $(LIBS)
