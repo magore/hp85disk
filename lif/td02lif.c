@@ -699,7 +699,7 @@ int td0_read_disk(disk_t *disk)
             break;
         // ====================================================
 
-        if(debuglevel & 0x400)
+        if(debuglevel & LIF_DEBUG)
             printf("Track: Cyl: %02d, Side: %02d, Sectors: %02d\n",
                 (int)td_track.PCyl, (int)td_track.PSide, (int)td_track.PSectors);
 
@@ -1411,7 +1411,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                 return(0);
             }
  
-            if(debuglevel & 0x400)
+            if(debuglevel & LIF_DEBUG)
             {
                 printf("LIF VOL Label:     [%10s]\n", LIF->VOL.Label);
                 printf("LIF VOL Date:      %s\n", lif_lifbcd2timestr(LIF->VOL.date));
@@ -1446,7 +1446,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                     // Directory EOF
                     if(LIF->DIR.FileType == 0xffff)
                     {
-                        if(debuglevel & 0x400)
+                        if(debuglevel & LIF_DEBUG)
                         {
                             printf("LIF file sectors:  [%04lXh]\n", (long) LIF->filesectors);
                             printf("LIF image sectors: [%04lXh]\n", (long) LIF->sectors);
@@ -1501,7 +1501,7 @@ int td0_save_lif_sector(disk_t *disk, uint8_t *data, int size, lif_t *LIF)
                         break;
                     }
         
-                    if(debuglevel & 0x400)
+                    if(debuglevel & LIF_DEBUG)
                     {
                         printf("LIF: [%s] start:%6lXh size:%6lXh %s\n", 
                             LIF->DIR.filename, 

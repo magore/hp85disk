@@ -1167,7 +1167,6 @@ ___
     posix help
     lif help
     gpib help
-    delay_tests
     help
     mem
     setdate
@@ -1196,7 +1195,7 @@ ___
 ### For posix help type *posix help*
  * **posix help**
 <pre>
-    posix prefix is optional
+    Note: posix prefix is optional
     posix cat file [-p]
     posix cd dir
     posix copy file1 file2
@@ -1207,6 +1206,38 @@ ___
     posix rm file
     posix rmdir dir
     posix rename old new
+</pre>
+
+### For gpib help type *gpib help*
+ * **gpib help**
+<pre>
+    Note: gpib prefix is optional
+    gpib addresses
+       Display all device GPIB bus addresses and PPR values
+    gpib config [-v]
+       Display current drives configuration
+       -v Verbose - show full detail
+    gpib debug N
+       debug message reporting see hpdisk.cfg for details
+    gpib elapsed
+    gpib elapsed_reset
+    gpib ifc
+    gpib plot filename.txt
+    gpib plot_echo
+    gpib task
+    gpib trace filename.txt [BUS]
+       Display activity of GPIB bus and log it
+       BUS - include handshake states
+</pre>
+### For fatfs help type *fatfs help*
+ * **fatfs help**
+<pre>
+    Note: fatfs tests MUST start with "fatfs" keyword
+    fatfs help
+    fatfs mmc_test
+    fatfs mmc_init
+    fatfs ls dir
+    fatfs status file
 </pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
@@ -1242,16 +1273,16 @@ ___
   Warning: Setting too many can cause HP85 timeouts while displaying messages
       1 ERRORS - all GPIB and device related error message
         # Note: Will not suppress Startup and configuration errors
-      2 PPR states
-      4 GPIB command and control byte messages
-      8 GPIB main loop command data and control line states
-     10 TODO DEVICE support states - ie missing code
-     20 DEVICE states, AMIGO, SS80,PRINTER
-     40 disk I/O read/write times
+      2 GPIB PPR Parallel Poll Response states
+      4 GPIB BUS level single command byte decoded messages
+      8 GPIB main loop - top level data and controll lines decoded
+     10 GPIB TODO DEVICE missing support code
+     20 GPIB Device Level states such as AMIGO,SS80,PRINTER
+     40 GPIB Disk I/O read/write times
      80 GPIB read/write string timing
-    100 GPIB read / write string byte decode
-    200 Parallel Poll bus status debug
-    400 LIF utilities debugging
+    100 GPIB read/write string byte decode
+    200 GPIB try to detect Parallel Poll BUS state
+    400 LIF utitilites debugging
 </pre>
 
 ###  hp85disk setting debug examples

@@ -15,6 +15,7 @@ G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 {\ttfamily \#include \char`\"{}ss80.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\newline
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
@@ -144,7 +145,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 475 of file gpib.\+c.
+Definition at line 476 of file gpib.\+c.
 
 
 
@@ -169,7 +170,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 495 of file gpib.\+c.
+Definition at line 496 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}\label{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+bus\+\_\+init@{gpib\+\_\+bus\+\_\+init}}
@@ -186,7 +187,7 @@ void
 \end{DoxyReturn}
 F\+I\+X\+ME verify resetting gpib\+\_\+unread\+\_\+f is A\+L\+W\+A\+YS correct when called 
 
-Definition at line 293 of file gpib.\+c.
+Definition at line 294 of file gpib.\+c.
 
 
 
@@ -207,7 +208,7 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity 
 
-Definition at line 542 of file gpib.\+c.
+Definition at line 543 of file gpib.\+c.
 
 
 
@@ -239,7 +240,7 @@ void
 \end{DoxyItemize}
 \end{DoxyItemize}release handshake lines References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11 
 
-Definition at line 234 of file gpib.\+c.
+Definition at line 235 of file gpib.\+c.
 
 
 
@@ -263,7 +264,7 @@ control lines (upper 8 bits)
 \end{DoxySeeAlso}
 
 
-Definition at line 560 of file gpib.\+c.
+Definition at line 561 of file gpib.\+c.
 
 
 
@@ -287,7 +288,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1246 of file gpib.\+c.
+Definition at line 1235 of file gpib.\+c.
 
 
 
@@ -318,7 +319,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1063 of file gpib.\+c.
+Definition at line 1052 of file gpib.\+c.
 
 
 
@@ -361,7 +362,7 @@ debugging -\/ read the ddr data direction bits to determine read/write state
 
 F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode F\+I\+X\+ME We add a test for read/write state ?? 
 
-Definition at line 414 of file gpib.\+c.
+Definition at line 415 of file gpib.\+c.
 
 
 
@@ -385,7 +386,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 381 of file gpib.\+c.
+Definition at line 382 of file gpib.\+c.
 
 
 
@@ -405,7 +406,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 361 of file gpib.\+c.
+Definition at line 362 of file gpib.\+c.
 
 
 
@@ -426,7 +427,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()} functions and return values 
 
-Definition at line 581 of file gpib.\+c.
+Definition at line 582 of file gpib.\+c.
 
 
 
@@ -521,7 +522,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R! 
 \end{DoxyItemize}
 
-Definition at line 872 of file gpib.\+c.
+Definition at line 861 of file gpib.\+c.
 
 
 
@@ -607,7 +608,7 @@ status
 \item[\hyperlink{todo__todo000002}{Todo}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1286 of file gpib.\+c.
+Definition at line 1275 of file gpib.\+c.
 
 
 
@@ -632,7 +633,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 335 of file gpib.\+c.
+Definition at line 336 of file gpib.\+c.
 
 
 
@@ -656,7 +657,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 207 of file gpib.\+c.
+Definition at line 208 of file gpib.\+c.
 
 
 
@@ -680,7 +681,7 @@ Test G\+P\+IB timeout timer for timeout condition.
 \end{DoxyReturn}
 
 
-Definition at line 220 of file gpib.\+c.
+Definition at line 221 of file gpib.\+c.
 
 
 
@@ -701,7 +702,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 133 of file gpib.\+c.
+Definition at line 134 of file gpib.\+c.
 
 
 
@@ -722,7 +723,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 164 of file gpib.\+c.
+Definition at line 165 of file gpib.\+c.
 
 
 
@@ -743,7 +744,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 150 of file gpib.\+c.
+Definition at line 151 of file gpib.\+c.
 
 
 
@@ -768,7 +769,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 190 of file gpib.\+c.
+Definition at line 191 of file gpib.\+c.
 
 
 
@@ -836,7 +837,7 @@ void Note the bits we can read depends on what hardware verions we have V2 hardw
 \end{DoxyReturn}
 
 
-Definition at line 1115 of file gpib.\+c.
+Definition at line 1104 of file gpib.\+c.
 
 
 
@@ -875,7 +876,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 524 of file gpib.\+c.
+Definition at line 525 of file gpib.\+c.
 
 
 
@@ -959,7 +960,7 @@ B\+US
 
 We are in read mode now  for D\+AV to finish float HI -\/ finishing floating HI 
 
-Definition at line 632 of file gpib.\+c.
+Definition at line 633 of file gpib.\+c.
 
 
 
@@ -1038,7 +1039,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1375 of file gpib.\+c.
+Definition at line 1364 of file gpib.\+c.
 
 
 
@@ -1055,7 +1056,7 @@ Referenced by controller\+\_\+send\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\
 
 
 
-Definition at line 95 of file gpib.\+c.
+Definition at line 96 of file gpib.\+c.
 
 
 
@@ -1129,7 +1130,7 @@ common IO buffer for \hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Definition at line 75 of file gpib.\+c.
+Definition at line 76 of file gpib.\+c.
 
 
 
@@ -1162,7 +1163,7 @@ Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\
 \end{DoxyCode}
 
 
-Definition at line 107 of file gpib.\+c.
+Definition at line 108 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_a8f8b0bbe03e4f62aa8e736a9a1f5f609}\label{gpib_8c_a8f8b0bbe03e4f62aa8e736a9a1f5f609}} 
 \index{gpib.\+c@{gpib.\+c}!gpib\+\_\+unread\+\_\+data@{gpib\+\_\+unread\+\_\+data}}
@@ -1176,7 +1177,7 @@ Definition at line 107 of file gpib.\+c.
 
 
 
-Definition at line 80 of file gpib.\+c.
+Definition at line 81 of file gpib.\+c.
 
 
 
@@ -1194,7 +1195,7 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+unread().
 
 
 
-Definition at line 78 of file gpib.\+c.
+Definition at line 79 of file gpib.\+c.
 
 
 
@@ -1212,7 +1213,7 @@ gpib current and last command
 
 
 
-Definition at line 95 of file gpib.\+c.
+Definition at line 96 of file gpib.\+c.
 
 
 
@@ -1230,7 +1231,7 @@ gpib listen address
 
 
 
-Definition at line 88 of file gpib.\+c.
+Definition at line 89 of file gpib.\+c.
 
 
 
@@ -1248,7 +1249,7 @@ gpib last listen address
 
 
 
-Definition at line 90 of file gpib.\+c.
+Definition at line 91 of file gpib.\+c.
 
 
 
@@ -1266,7 +1267,7 @@ gpib secondary
 
 
 
-Definition at line 98 of file gpib.\+c.
+Definition at line 99 of file gpib.\+c.
 
 
 
@@ -1284,7 +1285,7 @@ gpib serial poll status
 
 
 
-Definition at line 93 of file gpib.\+c.
+Definition at line 94 of file gpib.\+c.
 
 
 
@@ -1302,7 +1303,7 @@ gpib talk address
 
 G\+P\+IB B\+US states. 
 
-Definition at line 83 of file gpib.\+c.
+Definition at line 84 of file gpib.\+c.
 
 
 
@@ -1320,7 +1321,7 @@ gpib last talk address
 
 
 
-Definition at line 85 of file gpib.\+c.
+Definition at line 86 of file gpib.\+c.
 
 
 

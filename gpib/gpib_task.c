@@ -24,6 +24,7 @@
 #include "ss80.h"
 #include "vector.h"
 #include "printer.h"
+#include "debug.h"
 
 
 /// @brief Config file name
@@ -276,14 +277,14 @@ uint16_t gpib_error_test(uint16_t val)
         val &= ERROR_MASK;
 
         ///@brief IFC is and important state so display it for most messages
-        if(debuglevel & (2+4+8+0x20))
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
         {
             /// Bus Clear, reseat all states, etc
             if(val & IFC_FLAG)
                 printf("<IFC>\n");
         }
 
-        if(debuglevel & (1+4))
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
         {
             if(val & TIMEOUT_FLAG)
                 printf("<TIMEOUT>\n");
@@ -464,7 +465,7 @@ void gpib_task(void)
         val = gpib_read_byte(NO_TRACE);
 
 #if SDEBUG
-        if(debuglevel & 8)
+        if(debuglevel & GPIB_TOP_LEVEL_BUS_DECODE)
             gpib_decode(val);
 #endif
         status = gpib_error_test(val);
@@ -585,13 +586,13 @@ int Send_Identify(uint8_t ch, uint16_t ID)
     V2B_MSB(tmp,0,2,ID);
     if(gpib_write_str(tmp,2, &status) != 2)
     {
-        if(debuglevel & (1+4))
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[IDENT Unit:%02XH=%04XH FAILED]\n", 
                 (int)ch,(int)ID);
         return(status & ERROR_MASK);
     }
 #if SDEBUG
-    if(debuglevel & 4)
+    if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
         printf("[IDENT Unit:%02XH=%04XH]\n", (int)ch,(int)ID);
 #endif
     return (status & ERROR_MASK);
@@ -616,10 +617,8 @@ int GPIB(uint8_t ch)
     ///TODO
     if(ch == PPC)
     {
-#if SDEBUG
-        if(debuglevel & (4+16))
-            printf("[PPC unsupported]\n");
-#endif
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+            printf("[PPC unsupported TODO]\n");
         spoll = 0;
         return 0;
     }
@@ -627,10 +626,8 @@ int GPIB(uint8_t ch)
     ///TODO
     if(ch == PPU)
     {
-#if SDEBUG
-        if(debuglevel & (4+16))
-            printf("[PPU unsupported]\n");
-#endif
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+            printf("[PPU unsupported TODO]\n");
         spoll = 0;
         return 0;
     }
@@ -641,7 +638,7 @@ int GPIB(uint8_t ch)
     if(ch == SPE)
     {
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
             printf("[SPE]\n");
 #endif
         spoll = 1;
@@ -656,7 +653,7 @@ int GPIB(uint8_t ch)
     if(ch == SPD)
     {
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
             printf("[SPD]\n");
 #endif
         spoll = 0;
@@ -668,7 +665,7 @@ int GPIB(uint8_t ch)
     if(ch == SDC )
     {
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
             printf("[SDC]\n");
 #endif
         if(SS80_is_MLA(listening))
@@ -676,7 +673,7 @@ int GPIB(uint8_t ch)
 ///  Note: Suposed to be unsupported in SS80 - pg 4-2
 ///  CS80 3-4
 #if SDEBUG
-            if(debuglevel & (4+32))
+            if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SDC SS80]\n");
 #endif
             return(SS80_Selected_Device_Clear(SS80s->unitNO) );
@@ -687,7 +684,7 @@ int GPIB(uint8_t ch)
         {
 ///  Note: Suposed to be unsupported in SS80 - pg 4-2
 #if SDEBUG
-            if(debuglevel & (4+32))
+            if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SDC AMIGO]\n");
 #endif
             return( amigo_cmd_clear() );
@@ -702,7 +699,7 @@ int GPIB(uint8_t ch)
     if(ch == DCL )
     {
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
             printf("[DCL]\n");
 #endif
         SS80_Universal_Device_Clear();
@@ -716,8 +713,8 @@ int GPIB(uint8_t ch)
         return( 0 );
     }
 
-    if(debuglevel & (1+4+16))
-        printf("[HPIB (%02XH) not defined]\n", 0xff & ch);
+    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+        printf("[GPIB (%02XH) not defined TODO]\n", 0xff & ch);
     return(0);
 }
 
@@ -744,7 +741,7 @@ int GPIB_LISTEN(uint8_t ch)
         listening = 0;
     
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
         {
             printf("[UNL]\n");
             ///@brief add a line break if we both Untalk and Unlisten
@@ -759,7 +756,7 @@ int GPIB_LISTEN(uint8_t ch)
     if(AMIGO_is_MLA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[LA %02XH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
@@ -769,7 +766,7 @@ int GPIB_LISTEN(uint8_t ch)
     if(SS80_is_MLA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[LA %02XH SS80]\n", 0xff & ch);
 #endif
         return(0);
@@ -778,7 +775,7 @@ int GPIB_LISTEN(uint8_t ch)
     if(PRINTER_is_MLA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[LA %02XH PRINTER]\n", 0xff & ch);
 #endif
         if(talking != UNT)
@@ -789,7 +786,7 @@ int GPIB_LISTEN(uint8_t ch)
         return(0);
     }
 #if SDEBUG
-    if(debuglevel & 4)
+    if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
         printf("[LA %02XH]\n", 0xff & ch);
 #endif
     return(0);
@@ -819,7 +816,7 @@ int GPIB_TALK(uint8_t ch)
     {
         //FIXME talking = 0 ????
 #if SDEBUG
-        if(debuglevel & 4)
+        if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
             printf("[UNT]\n");
 #endif
         return(0);
@@ -829,7 +826,7 @@ int GPIB_TALK(uint8_t ch)
     if(SS80_is_MTA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[TA %02XH SS80]\n", 0xff & ch);
 #endif
 
@@ -844,7 +841,7 @@ int GPIB_TALK(uint8_t ch)
     if(AMIGO_is_MTA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[TA %02XH AMIGO]\n", 0xff & ch);
 #endif
         return(0);
@@ -854,7 +851,7 @@ int GPIB_TALK(uint8_t ch)
     if(PRINTER_is_MTA(ch))
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[TA %02XH PRINTER]\n", 0xff & ch);
 #endif
         return(0);
@@ -862,14 +859,14 @@ int GPIB_TALK(uint8_t ch)
 
     if(PRINTER_is_MLA(listening))
     {
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[PRINTER OPEN]\n");
         printer_open(NULL);
         return(0);
     }
 
 #if SDEBUG
-    if(debuglevel & 4)
+    if(debuglevel & GPIB_BUS_OR_CMD_BYTE_MESSAGES)
         printf("[TA %02XH]\n", 0xff & ch);
 #endif
     return(0);
@@ -896,7 +893,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
     if(SS80_is_MSA(ch) )
     {
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[SA %02XH SS80]\n", 0xff & ch);
 #endif
         ///@brief ch = secondary address
@@ -911,7 +908,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 /// @todo 
 ///     Two identify bytes should be repeated until untalked
 #if SDEBUG
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[SA %02XH AMIGO]\n", 0xff & ch);
 #endif
         ///@brief ch = secondary address
@@ -921,7 +918,7 @@ int GPIB_SECONDARY_ADDRESS(uint8_t ch)
 #endif                      // #ifdef AMIGO
 
 #if SDEBUG
-    if(debuglevel & (4+32))
+    if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
         printf("[SA %02XH, listen:%02XH, talk:%02XH]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
 #endif
@@ -945,7 +942,7 @@ void listen_cleanup()
 
         //We should not set the active device globally
         //FIXME if we have to then printer close should temprarily do so
-        if(debuglevel & (4+32))
+        if(debuglevel & (GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[PRINTER close]\n");
         printer_close();
     }

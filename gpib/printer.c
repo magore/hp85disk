@@ -25,6 +25,7 @@
 #include "posix.h"
 #include "delay.h"
 #include "controller.h"
+#include "debug.h"
 
 ///@brief Plotter file data structure used for saving plot data.
 PRINTERStateType plot = { 0 };
@@ -69,13 +70,13 @@ void printer_open(char *name)
         ptr = name;
     }
 
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("Capturing plot to:%s\n", ptr);
 
     plot.fp = fopen(ptr,"wb");
     if(plot.fp == NULL)
     {
-        if(debuglevel & (1+32))
+        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
         {
             perror("open failed");
             printf("exiting...\n");
@@ -120,7 +121,7 @@ void printer_close()
     if( receive_plot_flush() < 0 )
         plot.error = 1;
 
-    if(debuglevel & (1+32))
+    if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
     {
         if(plot.error)
             printf("ERROR durring write\n");
@@ -129,7 +130,7 @@ void printer_close()
     if(plot.fp)
     {
         fclose(plot.fp);
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("\nDONE: %08ld\n",plot.count);
     }
 
@@ -159,7 +160,7 @@ int receive_plot_flush()
     ret  = fwrite(plot.buf, 1, plot.ind , plot.fp);
     if(ret != plot.ind)
     {
-        if(debuglevel & (1+32))
+        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
         {
             perror("receive_plot_flush");
             printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
@@ -188,7 +189,7 @@ void printer_buffer( uint16_t val )
 
     uint16_t ch;
 
-    if(debuglevel & (1+32))
+    if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
     {
         if( ( plot.count & 255L ) == 0)
             printf("%08ld\r",plot.count);
@@ -232,7 +233,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     if(PRINTER_is_MLA(listening))
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SC PRINTER Listen: %02XH]\n",  0xff & ch );
 #endif
         return(0);
@@ -241,7 +242,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     if(PRINTER_is_MTA(talking))
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SC PRINTER Talk: %02XH]\n",  0xff & ch );
 #endif
         return(0);

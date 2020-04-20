@@ -145,7 +145,8 @@ int lif_tests(int argc, char *argv[])
     int ind=0;
     char *ptr;
 
-#ifdef LIF_DEBUG
+// display arguments for debugging
+#if 0
 	int i;
     for(i=0;i<argc;++i)
         printf("%d:%s\n", i, argv[i]);
@@ -382,7 +383,7 @@ long lif_read(lif_t *LIF, void *buf, long offset, int bytes)
     if( len != bytes)
     {
 
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_read: read:[%s] offset:[%ld] write:[%ld] expected:[%d]\n", 
                 LIF->name, (long)offset, (long)len, (int)bytes);
     }
@@ -409,7 +410,7 @@ int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
     len = fwrite(buf, 1, bytes, LIF->fp);
     if( len != bytes)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_write: Write:[%s] offset:[%ld] write:[%d] expected:[%d]\n", 
                 LIF->name, offset, len, bytes);
     }
@@ -826,35 +827,35 @@ int lif_check_volume(lif_t *LIF)
 
     if( !lif_checkname((char *)LIF->VOL.Label) )
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid Volume Name");
         status = 0;
     }
 
     if(LIF->VOL.System3000LIFid != 0x1000)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid System3000 ID (%04XH) expected 1000H\n", LIF->VOL.System3000LIFid);
         status = 0;
     }
 
     if(LIF->VOL.LIFVersion > 1)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Version: %04XH > 1\n", LIF->VOL.LIFVersion);
         status = 0;
     }
 
     if(LIF->VOL.zero1 != 0)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid bytes at offset 14&15 should be zero\n");
         status = 0;
     }
 
     if(LIF->VOL.zero2 != 0)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid bytes at offset 22&23 should be zero\n");
         status = 0;
     }
@@ -862,14 +863,14 @@ int lif_check_volume(lif_t *LIF)
 
     if(LIF->VOL.DirStartSector < 1)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid start sector:%ld\n", (long)LIF->VOL.DirStartSector);
         status = 0;
     }
 
     if(LIF->VOL.DirSectors < 1)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid Directory Sector Count < 1\n");
         status = 0;
     }
@@ -878,7 +879,7 @@ int lif_check_volume(lif_t *LIF)
     filestart = LIF->VOL.DirStartSector + LIF->VOL.DirSectors;
     if(filestart > LIF->sectors)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Volume invalid file start > image size\n");
         status = 0;
     }
@@ -913,7 +914,7 @@ int lif_check_dir(lif_t *LIF)
     if( !lif_checkname((char *)LIF->DIR.filename) )
     {
         status = 0;
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Directory:[%s] invalid Name\n",LIF->DIR.filename);
     }
 
@@ -922,7 +923,7 @@ int lif_check_dir(lif_t *LIF)
         if(LIF->DIR.FileStartSector < LIF->filestart)
         {
             status = 0;
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
                 printf("LIF Directory:[%s] invalid start sector:%lXh < fie area start:%lXh\n", 
                 LIF->DIR.filename, 
                 (long)LIF->DIR.FileStartSector,
@@ -935,7 +936,7 @@ int lif_check_dir(lif_t *LIF)
         if( (LIF->DIR.FileStartSector + LIF->DIR.FileSectors) > (LIF->sectors) )
         {
             status = 0;
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
             {
                 printf("LIF Directory:[%s] invalid end sector:%lXh > total sectors:%lXh\n", 
                     LIF->DIR.filename,
@@ -948,7 +949,7 @@ int lif_check_dir(lif_t *LIF)
     if(LIF->DIR.VolNumber != 0x8001)
     {
         status = 0;
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Directory:[%s] invalid Volume Number:%Xh\n", LIF->DIR.filename, (int)LIF->DIR.VolNumber);
     }
 
@@ -962,7 +963,7 @@ int lif_check_dir(lif_t *LIF)
             if( lif_bytes2sectors(LIF->DIR.FileBytes) > LIF->DIR.FileSectors )
             {
                 status = 0;
-                if(debuglevel & 1)
+                if(debuglevel & GPIB_PPR)
                     printf("LIF Directory:[%s] invalid FileBytes:%ld as sectors:%ld > FileSectors:%ld\n", 
                         LIF->DIR.filename,
                         (long) LIF->DIR.FileBytes,
@@ -974,14 +975,14 @@ int lif_check_dir(lif_t *LIF)
             // Does this LIF entry have more FileSectors then FileBytes when converted to sectors?
             if( lif_bytes2sectors(LIF->DIR.FileBytes) < LIF->DIR.FileSectors )
             {
-                if(debuglevel & 0x400)
+                if(debuglevel & LIF_DEBUG)
                     printf("LIF Directory:[%s] warning FileBytes:%ld as sectors:%ld < FileSectors:%ld\n", 
                         LIF->DIR.filename,
                         (long) LIF->DIR.FileBytes,
                         (long) lif_bytes2sectors(LIF->DIR.FileBytes),
                         (long) LIF->DIR.FileSectors);
             }
-            if(debuglevel & 1 && LIF->DIR.FileBytes == 0)
+            if(debuglevel & GPIB_PPR && LIF->DIR.FileBytes == 0)
             {
                 status = 0;
                 printf("LIF Directory:[%s] invalid FileBytes == 0\n", 
@@ -994,7 +995,7 @@ int lif_check_dir(lif_t *LIF)
     if(LIF->DIR.SectorSize != LIF_SECTOR_SIZE)
     {
         status = 0;
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("LIF Directory:[%s] invalid sector size:%ld\n", LIF->name, (long)LIF->DIR.SectorSize);
     }
 
@@ -1026,7 +1027,7 @@ lif_t *lif_create_volume(char *imagename, char *liflabel, long dirstart, long di
 	printf("Creating:%s, Label:[%s], Directory Start %ld, Directory Size: %ld, File Sectors:%ld\n",
 		imagename, liflabel, dirstart, dirsectors, filesectors );
 
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
         lif_dump_vol(LIF,"lif_create_volume");
     
     lif_image_clear(LIF);
@@ -1231,7 +1232,7 @@ int lif_checkdirindex(lif_t * LIF, int index)
     if(index < 0 || lif_bytes2sectors((long) index * LIF_DIR_SIZE) > LIF->VOL.DirSectors)
     {
         printf("lif_checkdirindex:[%s] direcory index:[%d] out of bounds\n",LIF->name, index);
-        if(debuglevel & 0x400)
+        if(debuglevel & LIF_DEBUG)
             lif_dump_vol(LIF,"lif_chckdirindex");
         return(0);
     }
@@ -1275,7 +1276,7 @@ int lif_readdirindex(lif_t *LIF, int index)
     if( !lif_check_dir(LIF))
     {
         printf("lif_check_dir: error, index:%d\n", (int)index);
-        if(debuglevel & 0x400)
+        if(debuglevel & LIF_DEBUG)
         {
             lif_dump_vol(LIF,"lif_readdirindex");
         }
@@ -1297,7 +1298,7 @@ int lif_writedirindex(lif_t *LIF, int index)
     // Validate the record
     if(!lif_check_dir(LIF))
     {
-        if(debuglevel & 0x400)
+        if(debuglevel & LIF_DEBUG)
             lif_dump_vol(LIF,"lif_writedirindex");
         return(0);
     }
@@ -1425,7 +1426,7 @@ lif_t *lif_updatefree(lif_t *LIF)
         purgeindex = -1;
         if(start > LIF->DIR.FileStartSector)
         {
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
                 printf("lif_update_free:[%s] error previous record file area overlaps this one:[%s]\n", LIF->name, LIF->DIR.filename);
 
         }
@@ -1518,7 +1519,7 @@ int lif_newdir(lif_t *LIF, long sectors)
                 return(freeindex);
             }
 
-            if(debuglevel & 0x400)
+            if(debuglevel & LIF_DEBUG)
                 printf("lif_newdir: index:[%d] adding at:[%ld]to purged space:[%ld] sectors, free:[%ld]\n", 
                     (int) index,(long)start,(long) sectors, (long)LIF->freesectors);
 
@@ -1603,7 +1604,7 @@ lif_t *lif_open_volume(char *name, char *mode)
     // volume header a directory entry
     if(sp->st_size < (long)LIF_SECTOR_SIZE*2)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_open_volume:[%s] error volume header area too small:[%ld]\n", name, (long)sp->st_size);
         return(NULL);
     }
@@ -1635,7 +1636,7 @@ lif_t *lif_open_volume(char *name, char *mode)
     // Volume header must be it least one sector
     if( lif_read(LIF, buffer, 0, LIF_SECTOR_SIZE) < LIF_SECTOR_SIZE)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_open_volume:[%s] error read volume header failed\n", name);
         lif_closedir(LIF);
         return(NULL);
@@ -1647,7 +1648,7 @@ lif_t *lif_open_volume(char *name, char *mode)
     // Validate basic Volume headers 
     if( !lif_check_volume(LIF) )
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_open_volume:[%s] error volume validate failed\n", LIF->name);
         lif_closedir(LIF);
         return(NULL);
@@ -1665,13 +1666,13 @@ lif_t *lif_open_volume(char *name, char *mode)
 
     if( lif_updatefree(LIF) == NULL)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_open_volume:[%s] error directory check failed\n", LIF->name);
         lif_closedir(LIF);
         return(NULL);
     }
 
-	if(debuglevel &0x400)
+	if(debuglevel &LIF_DEBUG)
 		lif_dump_vol(LIF, "Volume Listing");	
     return( LIF );
 }
@@ -1721,7 +1722,7 @@ void lif_dir(char *lifimagename)
             else
             {
                 warn = '!';
-                if(debuglevel & 0x400)
+                if(debuglevel & LIF_DEBUG)
                 {
                     printf("LIF Directory:[%s] warning FileBytes:%ld as sectors:%ld != FileSectors:%ld\n", 
                         LIF->DIR.filename,
@@ -1769,13 +1770,13 @@ int lif_find_file(lif_t *LIF, char *liflabel)
 
     if( !lif_checkname(liflabel) )
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_find_file:[%s] invalid characters\n", liflabel);
         return(-1);
     }
     if(strlen(liflabel) > 10)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_find_file:[%s] liflabel too big\n", liflabel);
         return(-1);
     }
@@ -1849,7 +1850,7 @@ int lif_e010_pad_sector(long offset, uint8_t *wbuf)
     // Debugging make sure we are at sector boundry
     if(pos)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("lif_e010_dap_sector: expected sector boundry: offset:%d\n", (int) pos);
         return(-1);
     }
@@ -1930,7 +1931,7 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
         // Debugging make sure we are at sector boundry
         if(((offset + (long) ind)  % (long) LIF_SECTOR_SIZE))
         {
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
                 printf("Expected sector boundry, offset:%d\n", (int) ((offset + ind) % LIF_SECTOR_SIZE) );
             return(-1);
         }
@@ -2084,7 +2085,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
         return(-1);
     }
 
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
         printf("LIF image:[%s], LIF name:[%s], user file:[%s]\n", 
             lifimagename, lifname, userfile);
 
@@ -2116,13 +2117,13 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
     LIF->DIR.SectorSize  = 0x100;           // 30
     offset = LIF->DIR.FileStartSector * (long) LIF_SECTOR_SIZE;
 
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
         lif_dump_vol(LIF,"lif_after lif_newdir");
 
     // Write converted file into free space first
     bytes = lif_add_ascii_file_as_e010_wrapper(LIF,offset,userfile);
 
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
     {
         printf("New Directory Information AFTER write\n");
         printf("Name:              %s\n", LIF->DIR.filename);
@@ -2459,7 +2460,7 @@ long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
         return(-1);
     }
 
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
         printf("LIF image:[%s], LIF name:[%s], user file:[%s]\n", 
             lifimagename, lifname, userfile);
 
@@ -2568,7 +2569,7 @@ int lif_del_file(char *lifimagename, char *lifname)
         printf("lif_del_file: lifname is empty\n");
         return(-1);
     }
-    if(debuglevel & 0x400)
+    if(debuglevel & LIF_DEBUG)
         printf("LIF image:[%s], LIF name:[%s]\n", 
             lifimagename, lifname);
 

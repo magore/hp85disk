@@ -27,6 +27,7 @@
 #include "amigo.h"
 #include "ss80.h"
 #include "vector.h"
+#include "debug.h"
 
 /// @verbatim
 ///  See LIF filesystem Reference
@@ -124,11 +125,11 @@ int TD[] =
 void SS80_Test(void)
 {
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Test]\n");
 #endif
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
     {
         printf("[SS80 Test Done]\n");
         sep();
@@ -282,7 +283,7 @@ void SS80_init(void)
             // Power On State
             SS80s->qstat = 2;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 %02XH INIT]\n", Devices[i].ADDRESS);
 #endif
         /// @todo FIXME
@@ -325,7 +326,7 @@ int SS80_Execute_State(void)
             SS80s->estate = EXEC_IDLE;
             break;
         default:
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
                 printf("[SS80 EXEC state:%d error]\n", SS80s->estate);
             SS80s->estate = EXEC_IDLE;
             break;
@@ -385,7 +386,7 @@ int SS80_locate_and_read( void )
 ///  For now we will assume the controller will never do this
 
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Locate and Read at %08lXH(%lXH)]\n", 
             (long) Address, (long) SS80s->Length);
 #endif
@@ -416,41 +417,42 @@ int SS80_locate_and_read( void )
         }
 
 #if SDEBUG
-        if(debuglevel & 64)
+        if(debuglevel & GPIB_DISK_IO_TIMING)
             gpib_timer_elapsed_begin();
 #endif
 
+		// FIXME len != chunk
         len = dbf_open_read(SS80p->HEADER.NAME, Address, gpib_iobuff, chunk, &SS80s->Errors);
 
 #if SDEBUG
-        if(debuglevel & 64)
+        if(debuglevel & GPIB_DISK_IO_TIMING)
             gpib_timer_elapsed_end("Disk Read");
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SS80 Disk Read %02XH bytes]\n", len);
 #endif
         if(len < 0)
         {
             SS80s->qstat = 1;
 /// @return Return
-            if(debuglevel & 1)
+            if(debuglevel & GPIB_PPR)
                 printf("[SS80 Disk Read Error]\n");
             return( SS80_error_return() );
         }
 
 #if SDEBUG
-        if(debuglevel & 64)
+        if(debuglevel & GPIB_RW_STR_TIMING)
             gpib_timer_elapsed_begin();
 #endif
         len = gpib_write_str(gpib_iobuff, chunk, &status);
 #if SDEBUG
-        if(debuglevel & 64)
+        if(debuglevel & GPIB_RW_STR_TIMING)
             gpib_timer_elapsed_end("GPIB Write");
 #endif
         if( len != chunk)
         {
             SS80s->qstat = 1;
-            if(debuglevel & 1)
-                printf("[SS80 GPIB Write Wrror]\n");
+            if(debuglevel & GPIB_PPR)
+                printf("[SS80 GPIB Write Error]\n");
             if(status & ERROR_MASK)
             {
                 SS80s->Errors |= ERR_GPIB;
@@ -465,13 +467,13 @@ int SS80_locate_and_read( void )
 ///  Note: this should not happen unless we exit on errors above
     if(count > 0)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Buffered Read DID NOT FINISH]\n");
     }
     else
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SS80 Buffered Read Total(%lXH) bytes]\n", (long) total_bytes);
 #endif
     }
@@ -506,7 +508,7 @@ int SS80_locate_and_write(void)
     io_skip = 0;
 
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Locate and Write at %08lXH(%lXH)]\n", (long)Address, (long)SS80s->Length);
 #endif
 
@@ -541,13 +543,13 @@ int SS80_locate_and_write(void)
         Mem_Clear(gpib_iobuff);
 
 #if SDEBUG
-        if(debuglevel & 128)
+        if(debuglevel & GPIB_RW_STR_TIMING)
             gpib_timer_elapsed_begin();
 #endif
         len = gpib_read_str(gpib_iobuff, (UINT) chunk, &status);
 
 #if SDEBUG
-        if(debuglevel & 128)
+        if(debuglevel & GPIB_RW_STR_TIMING)
             gpib_timer_elapsed_end("GPIB Read");
 #endif
 
@@ -555,7 +557,7 @@ int SS80_locate_and_write(void)
         {
             if(status & ERROR_MASK)
             {
-                if(debuglevel & 1)
+                if(debuglevel & GPIB_PPR)
                     printf("[GPIB Read Error]\n");
                 SS80s->Errors |= ERR_WRITE;
                 SS80s->qstat = 1;
@@ -572,12 +574,12 @@ int SS80_locate_and_write(void)
             {
                 int len2;
 #if SDEBUG
-                if(debuglevel & 64)
+                if(debuglevel & GPIB_DISK_IO_TIMING)
                     gpib_timer_elapsed_begin();
 #endif
                 len2 = dbf_open_write(SS80p->HEADER.NAME, Address, gpib_iobuff, len, &SS80s->Errors);
 #if SDEBUG
-                if(debuglevel & 64)
+                if(debuglevel & GPIB_DISK_IO_TIMING)
                     gpib_timer_elapsed_end("Disk Write");
 #endif
                 if(len2 != len)
@@ -587,13 +589,13 @@ int SS80_locate_and_write(void)
                         SS80s->Errors |= ERR_WP;
                     SS80s->qstat = 1;
                     io_skip = 1;                  // Stop writing
-                    if(debuglevel & 1)
+                    if(debuglevel & GPIB_PPR)
                         printf("[Disk Write Error]\n");
                 }
                 else
                 {
 #if SDEBUG
-                    if(debuglevel & 32)
+                    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                         printf("[SS80 Locate and Write wrote(%02XH)]\n", len2);
 #endif
                     Address += len;
@@ -614,13 +616,13 @@ int SS80_locate_and_write(void)
 
     if(count > 0)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Locate and Write DID NOT FINISH]\n");
     }
     else
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SS80 Locate and Write Wrote Total(%lxH)]\n", total_bytes);
 #endif
     }
@@ -847,7 +849,7 @@ int SS80_send_status( void )
     uint16_t status;
 
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Send Status]\n");
 #endif
 
@@ -901,7 +903,7 @@ int SS80_send_status( void )
     status = EOI_FLAG;
     if(gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Send Status FAILED]\n");
     }
 
@@ -928,7 +930,7 @@ int SS80_describe( void )
         
 
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Describe]\n");
 #endif
 
@@ -937,7 +939,7 @@ int SS80_describe( void )
     B = SS80ControllerPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Describe Controller FAILED]\n");
         return(status & ERROR_MASK);
     }
@@ -947,7 +949,7 @@ int SS80_describe( void )
     B = SS80UnitPack(&size);
     if(gpib_write_str(B,size, &status) != size)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Describe Unit FAILED]\n");
         return(status & ERROR_MASK);
     }
@@ -956,7 +958,7 @@ int SS80_describe( void )
     B = SS80VolumePack(&size);
     if(gpib_write_str(B,size,&status) != size)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Describe Volume FAILED]\n");
         return(status & ERROR_MASK);
     }
@@ -972,7 +974,7 @@ void SS80_Check_Unit(uint8_t unit)
     if(unit != 0 && unit != 15)
     {
         SS80s->Errors |= ERR_UNIT;
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 UNIT:%d invalid]\n", (int) unit);
     }
     else 
@@ -989,7 +991,7 @@ void SS80_Check_Volume(uint8_t volume)
     if(volume != 0)
     {
         SS80s->Errors |= ERR_UNIT;
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Volume:%d invalid]\n", (int) volume);
     }
     else 
@@ -1050,7 +1052,7 @@ int SS80_Command_State( void )
     if(status & ERROR_MASK)
     {
 /// @todo FIXME
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Command State GPIB Read ERROR]\n");
         return(status & ERROR_MASK);
     }
@@ -1060,7 +1062,7 @@ int SS80_Command_State( void )
 
     if( !(status & EOI_FLAG) )
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[GPIB buffer OVERFLOW!]\n");
     }
 
@@ -1077,7 +1079,7 @@ int SS80_Command_State( void )
             // TODO unit support
 
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set Unit:(%d)]\n", SS80s->unitNO);
 #endif
             continue;
@@ -1089,7 +1091,7 @@ int SS80_Command_State( void )
         {
             SS80_Check_Volume(ch - 0x40);
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set Volume: (%d)]\n", SS80s->volNO);
 #endif
             continue;
@@ -1101,7 +1103,7 @@ int SS80_Command_State( void )
 ///  In Execute state calls  SS80_locate_and_read();
             SS80s->estate = EXEC_LOCATE_AND_READ;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Locate and Read]\n");
 #endif
             break;
@@ -1113,7 +1115,7 @@ int SS80_Command_State( void )
 ///  SS80_locate_and_write();
             SS80s->estate = EXEC_LOCATE_AND_WRITE;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Locate and Write]\n");
 #endif
             break;
@@ -1142,7 +1144,7 @@ int SS80_Command_State( void )
             SS80s->AddressBlocks = B2V_MSB(gpib_iobuff,ind,6);
             ind += 6;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set Address:(%08lXH)]\n", 
                     (long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
@@ -1157,7 +1159,7 @@ int SS80_Command_State( void )
             SS80s->Length = B2V_MSB(gpib_iobuff,ind,4);
             ind += 4;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set Length:(%08lXH)]\n", (long)SS80s->Length);
 #endif
             continue;
@@ -1169,7 +1171,7 @@ int SS80_Command_State( void )
         if(ch == 0x34)
         {
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 NO-OP]\n");
 #endif
             continue;
@@ -1180,7 +1182,7 @@ int SS80_Command_State( void )
         {
             ind += 2;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set RPS NO-OP]\n");
 #endif
             continue;
@@ -1192,7 +1194,7 @@ int SS80_Command_State( void )
         {
             ind++;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Set Release NO-OP]\n");
 #endif
             continue;
@@ -1211,7 +1213,7 @@ int SS80_Command_State( void )
 ///  Skip Parameters
             ind++;
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Set Return Addressing - TODO]\n");
 #endif
             continue;
@@ -1227,7 +1229,7 @@ int SS80_Command_State( void )
 /// @todo FIXME
 ///  Execute NOW
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Locate and Verify - TODO]\n");
 #endif
             break;
@@ -1236,7 +1238,7 @@ int SS80_Command_State( void )
         if(ch == 0x0E)
         {
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Release NO-OP]\n");
 #endif
 /// @todo FIXME
@@ -1246,7 +1248,7 @@ int SS80_Command_State( void )
         if(ch == 0x0F)
         {
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Release Denied NO-OP]\n");
 #endif
 /// @todo FIXME
@@ -1267,7 +1269,7 @@ int SS80_Command_State( void )
 ///  Skip Parameters
             ind += 2;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Validate Key - TODO]\n");
 #endif
             break;
@@ -1277,7 +1279,7 @@ int SS80_Command_State( void )
         {
             SS80s->estate = EXEC_DESCRIBE;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Describe]\n");
 #endif
             break;
@@ -1296,7 +1298,7 @@ int SS80_Command_State( void )
 /// @todo TODO
 /// @todo FIXME
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Initialize Media TODO]\n");
 #endif
             break;
@@ -1313,7 +1315,7 @@ int SS80_Command_State( void )
         {
 /// @todo TODO
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
             {
                 printf("[SS80 Set Status Mask - TODO]\n");
                 SS80_display_extended_status(gpib_iobuff+ind, "TODO Mask these Status Bits");
@@ -1327,7 +1329,7 @@ int SS80_Command_State( void )
         {
 /// @todo TODO
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Door UnLock - TODO]\n");
 #endif
             break;
@@ -1337,7 +1339,7 @@ int SS80_Command_State( void )
         {
 /// @todo TODO
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Door Lock - TODO]\n");
 #endif
             break;
@@ -1347,7 +1349,7 @@ int SS80_Command_State( void )
         {
             SS80s->estate = EXEC_SEND_STATUS;
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Request Status]\n");
 #endif
             break;
@@ -1365,13 +1367,13 @@ int SS80_Command_State( void )
 /// @todo TODO
             ind += 3;
 #if SDEBUG
-            if(debuglevel & (16+32))
-                printf("[SS80 Iniate Diagnostic - TODO]\n");
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
+                printf("[SS80 Initiate Diagnostic - TODO]\n");
 #endif
             break;
         }
 
-        if(debuglevel & 1 )
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Invalid OP Code (%02XH)]\n", ch & 0xff);
 
         break;
@@ -1379,7 +1381,7 @@ int SS80_Command_State( void )
 
     if( ind != len)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Execute Command, Error at (%d) of (%d) OP Codes]\n", 
                 ind, len);
     }
@@ -1454,7 +1456,7 @@ int SS80_Transparent_State( void )
     if(status & ERROR_MASK)
     {
 /// @todo FIXME
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[GPIB Read ERROR]\n");
         return(status & ERROR_MASK);
     }
@@ -1464,7 +1466,7 @@ int SS80_Transparent_State( void )
 
     if( !(status & EOI_FLAG) )
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[GPIB buffer OVERFLOW!]\n");
     }
 
@@ -1487,7 +1489,7 @@ int SS80_Transparent_State( void )
 ///  Skip Paramter
             ind++;
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 HP-IB Parity Checking - TODO]\n");
 #endif
             gpib_enable_PPR(SS80p->HEADER.PPR);
@@ -1504,7 +1506,7 @@ int SS80_Transparent_State( void )
 /// @todo TODO
 ///  DO NOT EPPR
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Read Loopback - TODO]\n");
 #endif
             break;
@@ -1520,7 +1522,7 @@ int SS80_Transparent_State( void )
 /// @todo TODO
 ///  DO NOT EPPR
 #if SDEBUG
-            if(debuglevel & (16+32))
+            if(debuglevel & (GPIB_TODO + GPIB_DEVICE_STATE_MESSAGES))
                 printf("[SS80 Write Loopback - TODO]\n");
 #endif
             break;
@@ -1537,7 +1539,7 @@ int SS80_Transparent_State( void )
         if(ch == 0x08)                            // 0x08 OP Code
         {
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Channel Independent Clear (%d)]\n", SS80s->unitNO);
 #endif
             return(SS80_Channel_Independent_Clear( SS80s->unitNO ));
@@ -1552,7 +1554,7 @@ int SS80_Transparent_State( void )
         if(ch == 0x09)                            // 0x09 OP Code
         {
 #if SDEBUG
-            if(debuglevel & 32)
+            if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[SS80 Cancel (%d)]\n", SS80s->unitNO);
 #endif
             return(SS80_Cancel( ) );
@@ -1560,14 +1562,14 @@ int SS80_Transparent_State( void )
             break;
         }
 
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Invalid OP Code (%02XH)]\n", ch & 0xff);
         break;
     }
 
     if( ind != len)
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Transparent Command, Error at (%d) of (%d) OP Codes]\n", 
                 ind,len);
     }
@@ -1597,14 +1599,14 @@ int SS80_cmd_seek( void )
         SS80s->qstat = 1;
         SS80s->Errors |= ERR_SEEK;
 
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 Seek OVERFLOW at %08lXH]\n", 
                 (long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
         return(1);
     }
 
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Seek:%08lXH]\n", (long)SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
     return (0);
@@ -1645,14 +1647,14 @@ int SS80_Report( void )
     status = EOI_FLAG;
     if( gpib_write_str(tmp, sizeof(tmp), &status) != sizeof(tmp))
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 qstat send FAILED]\n");
         return(status & ERROR_MASK);
     }
     else
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[SS80 qstat %02X]\n", SS80s->qstat);
 #endif
     }
@@ -1808,7 +1810,7 @@ int SS80_Universal_Device_Clear(void)
 int SS80_Selected_Device_Clear( int u )
 {
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 SDC]\n");
 #endif
     Clear_Common( u );
@@ -1833,14 +1835,14 @@ int SS80_Amigo_Clear( void )
     status = 0;
     if( gpib_read_str(parity, sizeof(parity), &status) != sizeof(parity))
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[GPIB Read Error]\n");
         return(status & ERROR_MASK);
     }
     else
     {
 #if SDEBUG
-        if(debuglevel & 32)
+        if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
             printf("[Amigo Clear]\n");
 #endif
     }
@@ -1878,7 +1880,7 @@ int SS80_increment( void )
 {
     SS80s->AddressBlocks += 1L;
 #if SDEBUG
-    if(debuglevel & 32)
+    if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[SS80 Increment to (%lXH)]\n", 
             (long) SS80_Blocks_to_Bytes(SS80s->AddressBlocks));
 #endif
@@ -1903,7 +1905,7 @@ int SS80_error_return( void )
     status = EOI_FLAG;
     if( gpib_write_str(tmp,sizeof(tmp), &status) != sizeof(tmp))
     {
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[GPIB Error Return - Write ERROR]\n");
         return(status & ERROR_MASK);
     }
@@ -1932,7 +1934,7 @@ int SS80_COMMANDS(uint8_t ch)
             if(SS80_is_MLA(listening))
             {
 #if SDEBUG
-                if(debuglevel & 32)
+                if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[SS80 Command State]\n");
 #endif
                 return ( SS80_Command_State() );
@@ -1944,7 +1946,7 @@ int SS80_COMMANDS(uint8_t ch)
         {
             if(SS80_is_MLA(listening)  || SS80_is_MTA(talking))
             {
-                if(debuglevel & 32)
+                if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[SS00 Execute State]\n");
                 return ( SS80_Execute_State() );
 
@@ -1957,7 +1959,7 @@ int SS80_COMMANDS(uint8_t ch)
             if(SS80_is_MTA(talking) )
             {
 #if SDEBUG
-                if(debuglevel & 32)
+                if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[SS80 Report State]\n");
 #endif
                 return( SS80_Report() );
@@ -1966,7 +1968,7 @@ int SS80_COMMANDS(uint8_t ch)
             if(SS80_is_MLA(listening))
             {
 #if SDEBUG
-                if(debuglevel & 32)
+                if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[Amigo Clear]\n");
 #endif
                 gpib_disable_PPR(SS80p->HEADER.PPR);
@@ -1979,19 +1981,19 @@ int SS80_COMMANDS(uint8_t ch)
             if(SS80_is_MLA(listening) )
             {
 #if SDEBUG
-                if(debuglevel & 32)
+                if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[SS80 Transparent]\n");
 #endif
                 return( SS80_Transparent_State() );
             }
         }
-        if(debuglevel & 1)
+        if(debuglevel & GPIB_PPR)
             printf("[SS80 SC Unknown: %02XH, listen:%02XH, talk:%02XH]\n",
                 0xff & ch, 0xff & listening, 0xff & talking);
         return(0);
     }
 
-    if(debuglevel & 1)
+    if(debuglevel & GPIB_PPR)
         printf("[SS80 Unknown SC: %02XH, listen:%02XH, talk:%02XH]\n",
             0xff & ch, 0xff & listening, 0xff & talking);
     return(0);

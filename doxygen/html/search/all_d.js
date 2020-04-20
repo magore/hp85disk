@@ -7,7 +7,7 @@ var searchData=
   ['n_5froot',['n_root',['../structMKFS__PARM.html#a2b8a26b614381e0c2e0ff26f138feea6',1,'MKFS_PARM']]],
   ['n_5frootdir',['n_rootdir',['../structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1',1,'FATFS']]],
   ['n_5fsec_5ftrack',['N_SEC_TRACK',['../ff_8c.html#aa7655ed8fbdcfec3965be1d6f412d0f6',1,'ff.c']]],
-  ['name',['name',['../structgpib__token__t.html#aa47fb36b52bd83dc60e67a54f6e36e09',1,'gpib_token_t::name()'],['../structtoken__t.html#a6280ddf4c14a5d6079686deb5f415dfb',1,'token_t::name()'],['../structlif__t.html#ae6b943f3c26005fc375169960e9049f7',1,'lif_t::name()'],['../structHeaderType.html#a51c3f7025d3bc22c479e44f158471537',1,'HeaderType::NAME()']]],
+  ['name',['name',['../structtoken__t.html#a6280ddf4c14a5d6079686deb5f415dfb',1,'token_t::name()'],['../structgpib__token__t.html#aa47fb36b52bd83dc60e67a54f6e36e09',1,'gpib_token_t::name()'],['../structlif__t.html#ae6b943f3c26005fc375169960e9049f7',1,'lif_t::name()'],['../structHeaderType.html#a51c3f7025d3bc22c479e44f158471537',1,'HeaderType::NAME()']]],
   ['ndac',['NDAC',['../gpib__hal_8h.html#a1ab54a10fda88683f0334ff44ed767b4',1,'gpib_hal.h']]],
   ['ndac_5fflag',['NDAC_FLAG',['../gpib_8h.html#ad1653d0cd48b2a0c72d422ba4aff114f',1,'gpib.h']]],
   ['ndata',['ndata',['../structSDIO__CTRL.html#a44edc7d37688ac4f3a1ba3d66e909767',1,'SDIO_CTRL']]],

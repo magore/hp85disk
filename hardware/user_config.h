@@ -107,14 +107,19 @@ typedef unsigned long int size_t;
 #include "spi.h"
 #include "rtc.h"
 #include "TWI_AVR8.h"
+
 #ifdef I2C_SUPPORT
 #include "i2c.h"
 #endif
+
 #ifdef LCD_SUPPORT
 #include "LCD.h"
 #include "display/lcd_printf.h"
 #endif
+
 #include "posix/posix.h"
+
+#include "gpib/debug.h"
 
 // sys.c defines alternative safe functions
 #ifndef free

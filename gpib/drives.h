@@ -282,13 +282,82 @@ extern AMIGOStateType *AMIGOs;
 #endif
 extern PRINTERDeviceType *PRINTERp;
 extern DeviceType Devices[MAX_DEVICES];
+
+
+typedef union {
+        uint8_t b;
+        uint16_t w;
+        uint32_t l;
+} val_t;
+
+typedef struct 
+{
+	char *name;
+	int  tok;
+} token_t;
+
+enum {
+    TOK_ACCESS_TIME = 0,
+    TOK_ADDRESS,
+    TOK_AMIGO,
+    TOK_BLOCKS,
+    TOK_BLOCK_TIME,
+    TOK_BUFFERED_BLOCKS,
+    TOK_BURST_SIZE,
+    TOK_BYTES_PER_BLOCK,
+    TOK_BYTES_PER_SECTOR,
+    TOK_CONFIG,
+    TOK_CONTINUOUS_TRANSFER_RATE,
+    TOK_CONTROLLER,
+    TOK_CS80,
+    TOK_CYLINDERS,
+    TOK_DEBUG,
+    TOK_DEVICE_NUMBER,
+    TOK_DRIVE,
+    TOK_END,
+    TOK_FILE,
+    TOK_FIXED_VOLUMES,
+    TOK_GEOMETRY,
+    TOK_HEADER,
+    TOK_HEADS,
+    TOK_ID,
+    TOK_INTERLEAVE,
+    TOK_MAX_BLOCK_NUMBER,
+    TOK_MAX_CYLINDER,
+    TOK_MAX_HEAD,
+    TOK_MAXIMUM_INTERLEAVE,
+    TOK_MAX_SECTOR,
+    TOK_OPTIMAL_RETRY_TIME,
+    TOK_PPR,
+    TOK_PRINTER,
+    TOK_REMOVABLE_VOLUMES,
+    TOK_SECTORS_PER_TRACK,
+    TOK_SS80,
+    TOK_SS80_DEFAULT,
+    TOK_TRANSFER_RATE,
+    TOK_TYPE,
+    TOK_UNIT,
+    TOK_UNITS_INSTALLED,
+    TOK_UNIT_TYPE,
+    TOK_VOLUME,
+	TOK_INVALID = -1
+};
+
+
+
 // =============================================
 
-
-
-
-
 /* drives.c */
+void print_var_P ( __memx const char *str , uint32_t val );
+void print_str_P ( __memx const char *str , char *arg );
+int tok_index ( char *str );
+char *tok_name ( uint8_t tok );
+void print_tok_val ( uint8_t tok , uint8_t spaces , uint32_t val );
+void print_tok_str ( uint8_t tok , uint8_t spaces , char *str );
+void print_tok ( uint8_t tok , uint8_t spaces );
+int Read_Config ( char *name );
+void display_Addresses ( int verbose );
+void display_Config ( int verbose );
 int find_type ( int type );
 int count_drive_types ( uint8_t type );
 char *type_to_str ( int type );
@@ -306,11 +375,6 @@ void set_Config_Defaults ( void );
 void hpdir_set_device ( int index );
 void hpdir_set_parameters ( int index , char *model );
 void Post_Config ( void );
-int Read_Config ( char *name );
-void print_var_P ( __memx const char *str , uint32_t val );
-void print_str_P ( __memx const char *str , char *arg );
-void display_Addresses ( void );
-void display_Config ( int verbose );
 void format_drives ( void );
 
 #endif     // _DRIVES_H

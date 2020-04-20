@@ -12,7 +12,6 @@
 #include <sys/types.h>
 #include <utime.h>
 
-
 #define MEMSPACE /**/
 #define WEAK_ATR /**/
 typedef struct tm tm_t;
@@ -23,5 +22,6 @@ typedef struct tm tm_t;
 #include "../lib/parsing.h"
 #include "../gpib/vector.h"
 #include "../gpib/drives_sup.h"
+#include "../gpib/debug.h"
 
 #endif

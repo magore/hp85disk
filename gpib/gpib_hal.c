@@ -18,6 +18,7 @@
 #include "fatfs.h"
 #include "posix.h"
 #include "defines.h"
+#include "debug.h"
 
 gpib_t gpib_timer;
 
@@ -128,7 +129,7 @@ uint8_t ppr_reg()
 void ppr_init()
 {
 #if SDEBUG
-    if(debuglevel & 2 )
+    if(debuglevel & GPIB_PPR)
         printf("[PPR DISABLE ALL]\n");
 #endif
     ppr_set(0);

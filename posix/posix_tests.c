@@ -49,9 +49,7 @@ void posix_help(int full)
     if(full)
     {
         printf(
-#ifdef POSIX_TESTS
-            "posix prefix is optional\n"
-#endif
+         "Note: posix prefix is optional\n"
 #ifdef POSIX_EXTENDED_TESTS
         "posix chmod file NNN\n"
 #endif

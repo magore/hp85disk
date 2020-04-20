@@ -52,6 +52,7 @@ void copyright()
 
 
 
+#ifdef DELAY_TESTS
 /// @brief  perform tests on delay functions
 ///
 /// This included measurement of avr-libc delays
@@ -89,6 +90,7 @@ void delay_tests()
     delayms(1000);
     clock_elapsed_end("delayms(1100)");
 }
+#endif
 
 /* RunBoot define */
 typedef void (*RESET_t)(void) __attribute__((noreturn));
@@ -125,7 +127,9 @@ void help()
     gpib_help(0);
 
     printf(
+#ifdef DELAY_TESTS
         "delay_tests\n"
+#endif
 		"help\n"
         "mem\n"
         "setdate\n"
@@ -179,12 +183,14 @@ void task(uint8_t gpib)
 	{
         result = 1;
 	}
+#ifdef DELAY_TESTS
     else if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
     {
         delay_tests();
         result = 1;
 
     }
+#endif
     else if ( MATCHARGS(ptr,"time",(ind+0),argc))
     {
 		display_clock();
@@ -348,7 +354,6 @@ int main(void)
     printf("Printer initialized\n");
 
     ///@ initialize GPIB timer tasks
-    sep();
     printf("GPIB Timer Setup\n");
     gpib_timer_init();
     printf("GPIB Timer initialized\n");
@@ -363,19 +368,16 @@ int main(void)
     printf("GPIB State init done\n");
     sep();
 
-    ///@brief Display Configuration
-    display_Config(0);
-
-    ///@brief Format any drives that do not yet exist
-    format_drives();
-
     ///@brief Display Address Summary
+    display_Addresses(0);
     sep();
-    display_Addresses();
 
     ///@brief Display debug level
     sep();
     printf("debuglevel   = %04xH\n",(int)debuglevel);
+
+    ///@brief Format any drives that do not yet exist
+    format_drives();
 
 #ifdef LCD_SUPPORT
 	LCD_pos(0,0);
@@ -385,9 +387,7 @@ int main(void)
 	//lcd_printf("Debug: %04xH\n", (int)debuglevel);
 #endif
 
-
     ///@brief Start main GPIB state machine
-    sep();
     printf("Starting GPIB TASK\n");
 
     ///@brief Keep the task running - it exits after every user interaction, ie key press

@@ -25,6 +25,7 @@
 #include "stringsup.h"
 #include "printer.h"
 #include "lifutils.h"
+#include "debug.h"
 
 
 /// @brief 
@@ -37,7 +38,7 @@ void gpib_help(int full)
     printf("gpib help\n");
     if(full)
     {
-        printf("gpib prefix is optional\n"
+        printf("Note: gpib prefix is optional\n"
             "gpib addresses\n"
 			"   Display all device GPIB bus addresses and PPR values\n"
             "gpib config [-v]\n"
@@ -84,15 +85,17 @@ int gpib_tests(int argc, char * argv[])
     ind = 0;
     ptr = argv[ind++];
 
-    // skip optional gpib key word
-    if( !ptr || !MATCH(ptr,"gpib") )
+    if(!ptr)
         return(0);
 
-    ptr = argv[ind++];
-    if ( !ptr || MATCH(ptr,"help") )
+    if( MATCH(ptr,"gpib") )
     {
-        gpib_help(1);
-        return(1);
+        ptr = argv[ind++];
+        if ( !ptr || MATCH(ptr,"help") )
+        {
+            gpib_help(1);
+            return(1);
+        }
     }
 
     if (MATCHI(ptr,"debug") )
@@ -105,13 +108,17 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"addresses",(ind+0),argc))
+    if (MATCHI(ptr,"addresses") )
     {
-        display_Addresses();
+        ptr = argv[ind];
+		if(ptr && *ptr && MATCH(ptr,"-v"))
+			display_Addresses(1);
+		else
+			display_Addresses(0);
         return(1);
     }
 
-    if (MATCH(ptr,"config") )
+    if (MATCHI(ptr,"config") )
     {
         ptr = argv[ind];
 		if(ptr && *ptr && MATCH(ptr,"-v"))
@@ -122,26 +129,26 @@ int gpib_tests(int argc, char * argv[])
     }
 
 
-    if (MATCHARGS(ptr,"elapsed_reset",(ind+0),argc))
+    if (MATCHI(ptr,"elapsed_reset") )
     {
         gpib_timer_elapsed_begin();
         return(1);
     }
 
-    if (MATCHARGS(ptr,"elapsed",(ind+0),argc))
+    if (MATCHI(ptr,"elapsed") )
     {
         gpib_timer_elapsed_end("gpib elapsed:");
         return(1);
     }
 
-    if ( MATCHARGS(ptr, "ifc",(ind+0),argc))
+    if ( MATCHI(ptr, "ifc") )
     {
         gpib_assert_ifc();
         return(1);
 
     }
 
-    if (MATCHARGS(ptr,"task",(ind+0),argc))
+    if (MATCHI(ptr,"task") )
     {
         gpib_task();
         return(1);

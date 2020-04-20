@@ -31,6 +31,7 @@ var searchData=
   ['leave_5fmkfs',['LEAVE_MKFS',['../ff_8c.html#aeeb83ea2531f2af57f2d9fa191ef4531',1,'ff.c']]],
   ['led1',['LED1',['../gpib__hal_8h.html#a8aa85ae9867fabf70ec72cd3bf6fb6b9',1,'gpib_hal.h']]],
   ['led2',['LED2',['../gpib__hal_8h.html#ad09fe5bf321b9a2de26bd5e5b9af6424',1,'gpib_hal.h']]],
+  ['lif_5fdebug',['LIF_DEBUG',['../debug_8h.html#ae6c8b5bdb43726ce084b07d40489b7ae',1,'debug.h']]],
   ['lif_5fdir_5frecords_5fper_5fsector',['LIF_DIR_RECORDS_PER_SECTOR',['../lifutils_8h.html#aa1750b32056b8fbaa729724402d587f2',1,'lifutils.h']]],
   ['lif_5fdir_5fsize',['LIF_DIR_SIZE',['../lifutils_8h.html#a99ad70dd3200a3ee46388bc2c36fe720',1,'lifutils.h']]],
   ['lif_5fsector_5fsize',['LIF_SECTOR_SIZE',['../lifutils_8h.html#a9f32d2537f4daba6a314185cf52b7e56',1,'lifutils.h']]],
