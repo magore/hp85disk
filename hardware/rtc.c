@@ -37,7 +37,6 @@ uint8_t BCDtoBIN(uint8_t data)
 }
 
 
-
 /// @brief Check if the DS1307 device is running.
 ///
 /// - display error if read error occurs.
@@ -143,11 +142,11 @@ uint8_t rtc_init (int force, time_t seconds)
             return 0;
         }
 
-// RAM init fails on non DS1307 chips 
+// RAM init fails on non DS1307 chips
 #if 0
-		uint8_t buf[8];                               /* RTC R/W buffer */
-		uint8_t addr;
-		uint8_t  WriteAddress;
+        uint8_t buf[8];                           /* RTC R/W buffer */
+        uint8_t addr;
+        uint8_t  WriteAddress;
         memset(buf, 0, 8);
         for (addr = 8; addr < 0x3f; addr += 8)
         {
@@ -170,7 +169,6 @@ uint8_t rtc_init (int force, time_t seconds)
     rtc_ok = 1;
     return 1;
 }
-
 
 
 /// @brief  Set DS1307 RTC from POSIX struct tm * structure.
@@ -208,8 +206,8 @@ uint8_t rtc_write(tm_t *t)
     printf("%4x\n", t);
     int i;
     printf("rtc_write buf: ");
-	for(i=0;i<7;++i)
-		printf("%02x ", 0xff & buf[i]);
+    for(i=0;i<7;++i)
+        printf("%02x ", 0xff & buf[i]);
     printf("\n");
 #endif
 
@@ -223,7 +221,6 @@ uint8_t rtc_write(tm_t *t)
 
     return(1);
 }
-
 
 
 /// @brief  Read DS1307 RTC into POSIX struct tm * structure.
@@ -293,7 +290,6 @@ uint8_t rtc_read(tm_t *t)
 /// } RTC;
 /// @endverbatim
 
-
 #if 0
 /// @brief Convert Linux POSIX tm_t * to FAT32 time.
 ///
@@ -313,7 +309,6 @@ uint32_t tm_to_fat(tm_t *t)
     return(fat);
 }
 #endif
-
 
 #if 0
 /// @brief Read DS1307 RTC and convert to FAT32 time.

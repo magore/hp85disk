@@ -18,7 +18,6 @@
 // Timeout in ms
 #define RTC_TIMEOUT 50
 
-
 int rtc_ok;
 
 #define  DS1307_W                       0xd0

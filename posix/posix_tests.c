@@ -42,44 +42,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #else
 #define BUFSIZE 512
 #endif
-MEMSPACE 
+MEMSPACE
 void posix_help(int full)
 {
     printf("posix help\n");
     if(full)
     {
         printf(
-         "Note: posix prefix is optional\n"
-#ifdef POSIX_EXTENDED_TESTS
-        "posix chmod file NNN\n"
-#endif
-        "posix cat file [-p]\n"
-        "posix cd dir\n"
-        "posix copy file1 file2\n"
-#ifdef POSIX_EXTENDED_TESTS
-        "posix hexdump file [-p]\n"
-        "posix log str\n"
-#endif
-        "posix ls dir [-l]\n"
-        "posix mkdir dir\n"
-#ifdef POSIX_EXTENDED_TESTS
-        "posix mkfs\n"
-#endif
-        "posix page NN\n"
-        "posix pwd\n"
-#ifdef POSIX_EXTENDED_TESTS
-        "posix stat file\n"
-        "posix sum file\n"
-#endif
-        "posix rm file\n"
-        "posix rmdir dir\n"
-        "posix rename old new\n"
-#ifdef POSIX_EXTENDED_TESTS
-        "posix upload file\n"
-#endif
-        "\n" );
+            "Note: posix prefix is optional\n"
+    #ifdef POSIX_EXTENDED_TESTS
+            "posix chmod file NNN\n"
+    #endif
+            "posix cat file [-p]\n"
+            "posix cd dir\n"
+            "posix copy file1 file2\n"
+    #ifdef POSIX_EXTENDED_TESTS
+            "posix hexdump file [-p]\n"
+            "posix log str\n"
+    #endif
+            "posix ls dir [-l]\n"
+            "posix mkdir dir\n"
+    #ifdef POSIX_EXTENDED_TESTS
+            "posix mkfs\n"
+    #endif
+            "posix page NN\n"
+            "posix pwd\n"
+    #ifdef POSIX_EXTENDED_TESTS
+            "posix stat file\n"
+            "posix sum file\n"
+    #endif
+            "posix rm file\n"
+            "posix rmdir dir\n"
+            "posix rename old new\n"
+    #ifdef POSIX_EXTENDED_TESTS
+            "posix upload file\n"
+    #endif
+            "\n" );
     }
 }
+
 
 /// @brief POSIX tests
 ///
@@ -122,7 +123,7 @@ int posix_tests(int argc,char *argv[])
         for(i=ind;i<argc;++i)
         {
             if(!MATCH(argv[i],"-p"))
-				cat(argv[ind], page);
+                cat(argv[ind], page);
         }
         return(1);
     }
@@ -144,10 +145,9 @@ int posix_tests(int argc,char *argv[])
     if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         if ( chdir(argv[ind]) != 0)
-			printf("chdir %s failed\n", argv[ind]);
+            printf("chdir %s failed\n", argv[ind]);
         return(1);
     }
-
 
 #ifdef POSIX_EXTENDED_TESTS
     if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
@@ -208,10 +208,10 @@ int posix_tests(int argc,char *argv[])
             mode = strtol(argv[ind+1],NULL,8);
         }
         if ( mkdir(argv[ind],mode) != 0 )
-		{
-			printf("mkdir %s failed\n", argv[ind]);
-			return(0);
-		}
+        {
+            printf("mkdir %s failed\n", argv[ind]);
+            return(0);
+        }
         return(1);
     }
 
@@ -231,20 +231,20 @@ int posix_tests(int argc,char *argv[])
     if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
         if( rename(argv[ind],argv[ind+1]) != 0)
-		{
-			printf("rename %s to %s\n", argv[ind], argv[ind+1]);
-			return(0);
-		}
+        {
+            printf("rename %s to %s\n", argv[ind], argv[ind+1]);
+            return(0);
+        }
         return(1);
     }
 
     if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
         if ( unlink(argv[ind]) != 0)
-		{
-			printf("rm %s failed\n", argv[ind]);
-			return(0);
-		}
+        {
+            printf("rm %s failed\n", argv[ind]);
+            return(0);
+        }
         return(1);
     }
 
@@ -257,8 +257,8 @@ int posix_tests(int argc,char *argv[])
 
     if (MATCHARGS(ptr,"stat", (ind + 1), argc))
     {
-        struct stat p;  
-        stat(argv[ind], &p);                        // POSIX test
+        struct stat p;
+        stat(argv[ind], &p);                      // POSIX test
         dump_stat(&p);
         return(1);
     }
@@ -267,10 +267,10 @@ int posix_tests(int argc,char *argv[])
     if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
         if ( rmdir(argv[ind]) != 0)
-		{
-			printf("rmdir %s failed\n", argv[ind]);
-			return(0);
-		}
+        {
+            printf("rmdir %s failed\n", argv[ind]);
+            return(0);
+        }
         return(1);
     }
 
@@ -284,6 +284,7 @@ int posix_tests(int argc,char *argv[])
 
     return(0);
 }
+
 
 /// @brief  Display the contents of a file
 /// @param[in] name: file name.
@@ -377,8 +378,8 @@ long copy(char *from,char *to)
         size += len;
         printf("Copied: %08ld\r", size);
 #ifdef ESP8266
-            optimistic_yield(1000);
-            wdt_reset();
+        optimistic_yield(1000);
+        wdt_reset();
 #endif
     }
     printf("%lu bytes copied.\n", size);
@@ -387,7 +388,6 @@ long copy(char *from,char *to)
     fclose(fo);
     return(size);
 }
-
 
 
 #ifdef POSIX_EXTENDED_TESTS
@@ -404,7 +404,7 @@ int hexdump(char *name, int dopage)
     char buf[0x20];
 
     fi=fopen(name,"rb");
-    if(fi == NULL) 
+    if(fi == NULL)
     {
         printf("Can' open: %s\n", name);
         return(0);
@@ -412,25 +412,25 @@ int hexdump(char *name, int dopage)
 
     count = 0;
     addr = 0;
-    while( (len = fread(buf,1, 16, fi)) > 0) 
+    while( (len = fread(buf,1, 16, fi)) > 0)
     {
         printf("%08lx : ", addr);
 
-        for(i=0;i<len;++i) 
+        for(i=0;i<len;++i)
             printf("%02x ",0xff & buf[i]);
-        for(;i<16;++i) 
+        for(;i<16;++i)
             printf("   ");
 
         printf(" : ");
 
-        for(i=0;i<len;++i) 
+        for(i=0;i<len;++i)
         {
             if(buf[i] >= 0x20 && buf[i] <= 0x7e)
                 putchar(buf[i]);
             else
                 putchar('.');
         }
-        for(;i<16;++i) 
+        for(;i<16;++i)
             putchar('.');
 
         printf("\n");
@@ -484,10 +484,10 @@ int testpage(int count)
         c = getchar();
         printf("\r");
         if(c == 'q')
-            return(-1);         // quit
+            return(-1);                           // quit
         if(c == '\n')
-            return(_pagesize-1); // single line
-        return(0);              // new page
+            return(_pagesize-1);                  // single line
+        return(0);                                // new page
     }
     return (count);
 }
@@ -506,8 +506,7 @@ int ls_info(char *name, int verbose)
     char *cm = "rwx";
     char attr[12], *p;
 
-
-    if(stat(name, &sp) == -1) 
+    if(stat(name, &sp) == -1)
     {
         printf("can not stat: %s\n", name);
         return(0);
@@ -528,7 +527,7 @@ int ls_info(char *name, int verbose)
     mask = 4 << 6;
     for(i=0;i<9;++i)
     {
-        // User
+// User
         if( sp.st_mode & mask)
             *p++ = cm[ i % 3];
         else
@@ -538,12 +537,13 @@ int ls_info(char *name, int verbose)
     *p = 0;
 
     printf("%s none none %12ld %s %s\n",
-        attr, 
-        (long) sp.st_size, 
+        attr,
+        (long) sp.st_size,
         mctime((time_t)sp.st_mtime),
         basename(name));
     return(1);
 }
+
 
 /// @brief  Directory listing
 /// @param[in] path: file name or directory
@@ -564,8 +564,8 @@ int ls(char *name, int verbose)
     {
         if( !getcwd(fullpath, sizeof(fullpath)-2) )
         {
-            printf("ls: Can't get current directory\n"); 
-            return(0); 
+            printf("ls: Can't get current directory\n");
+            return(0);
 
         }
     }
@@ -575,53 +575,52 @@ int ls(char *name, int verbose)
     }
     len = strlen(fullpath);
 
-
     printf("Listing:[%s]\n",fullpath);
 
-    if (stat(fullpath, &st)) 
-    { 
-        printf("ls: cannot stat [%s]\n", fullpath); 
-        return(0); 
+    if (stat(fullpath, &st))
+    {
+        printf("ls: cannot stat [%s]\n", fullpath);
+        return(0);
     }
 
-    switch (st.st_mode & S_IFMT) 
+    switch (st.st_mode & S_IFMT)
     {
-    case S_IFREG:
-        files = ls_info(fullpath,verbose);
-        break;
-    case S_IFDIR:
-        dirp = opendir(fullpath);
-        if(!dirp)
-        {
-            printf("opendir failed\n");
-            return(0);
-        }
-        while ( (de = readdir(dirp)) ) 
-        {
-            if(de->d_name[0] == 0)
-                break;
-            // FIXME neeed beetter string length tests here
-            len2 = strlen(de->d_name);
-            if(len + len2 >= MAX_NAME_LEN)
+        case S_IFREG:
+            files = ls_info(fullpath,verbose);
+            break;
+        case S_IFDIR:
+            dirp = opendir(fullpath);
+            if(!dirp)
             {
-                printf("name:[%s] too long with full path\n",de->d_name);
-                continue;
+                printf("opendir failed\n");
+                return(0);
             }
-            if(!MATCH(fullpath,"/") )
+            while ( (de = readdir(dirp)) )
             {
-                strcat(fullpath,"/");
-            }
-            strcat(fullpath,de->d_name);
-            files +=ls_info(fullpath,verbose);
-            // restore path
-            fullpath[len] = 0;
+                if(de->d_name[0] == 0)
+                    break;
+// FIXME neeed beetter string length tests here
+                len2 = strlen(de->d_name);
+                if(len + len2 >= MAX_NAME_LEN)
+                {
+                    printf("name:[%s] too long with full path\n",de->d_name);
+                    continue;
+                }
+                if(!MATCH(fullpath,"/") )
+                {
+                    strcat(fullpath,"/");
+                }
+                strcat(fullpath,de->d_name);
+                files +=ls_info(fullpath,verbose);
+// restore path
+                fullpath[len] = 0;
 #ifdef ESP8266
-            optimistic_yield(1000);
-            wdt_reset();
+                optimistic_yield(1000);
+                wdt_reset();
 #endif
-        }
-        closedir(dirp);
-        break;
+            }
+            closedir(dirp);
+            break;
     }
     printf("Files: %d\n", (int)files);
     return(files);
@@ -671,19 +670,19 @@ uint16_t sum(char *name)
     uint8_t buffer[256];
 
     fi=fopen(name,"rb");
-    if(fi == NULL) 
+    if(fi == NULL)
     {
         printf("Can' open: %s\n", name);
         return(0);
     }
     sum = 0;
-    while( (len = fread(buffer,1, 256, fi)) > 0) 
+    while( (len = fread(buffer,1, 256, fi)) > 0)
     {
-        for(i=0;i<len;++i) 
+        for(i=0;i<len;++i)
             sum += (0xff & buffer[i]);
 #ifdef ESP8266
-            optimistic_yield(1000);
-            wdt_reset();
+        optimistic_yield(1000);
+        wdt_reset();
 #endif
     }
     fclose(fi);

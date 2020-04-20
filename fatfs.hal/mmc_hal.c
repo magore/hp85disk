@@ -61,7 +61,7 @@ static void mmc_task(void)
     if(_mmc_timeout)
         _mmc_timeout--;
 
-    // 100HZ
+// 100HZ
     if(_mmc_pre++  < 10)
         return;
 
@@ -70,6 +70,7 @@ static void mmc_task(void)
     mmc_disk_timerproc();
 
 }
+
 
 /// @brief  Install MMC timer task: mmc_task()
 ///
@@ -82,6 +83,7 @@ void mmc_install_timer( void )
     if(set_timers(mmc_task,1) == -1)
         printf("MMC Clock task init failed\n");
 }
+
 
 /// @brief  MMC SPI setup and chip select
 /// @return  void
@@ -99,12 +101,14 @@ void mmc_spi_begin()
     spi_begin(_mmc_clock,MMC_CS);
 }
 
+
 /// @brief  MMC SPI end and chip deselect
 /// @return  void
 void mmc_spi_end()
 {
     spi_end(MMC_CS);
 }
+
 
 /// @brief  MMC set slow SPI bus speed
 /// Only called when deselected
@@ -135,6 +139,7 @@ void mmc_spi_TX_buffer(const uint8_t *data, int count)
     spi_TX_buffer((uint8_t *) data,count);
 }
 
+
 /// @brief SPI read buffer
 /// @param[in] *data: transmit buffer
 /// @param[in] count: number of bytes to write
@@ -143,6 +148,7 @@ void mmc_spi_RX_buffer(const uint8_t *data, int count)
 {
     spi_RX_buffer((uint8_t *) data,count);
 }
+
 
 /// @brief SPI read and write 1 byte
 /// @param[in] data: value to transmit
@@ -165,6 +171,7 @@ void mmc_set_ms_timeout(uint16_t ms)
     mmc_sei();
 }
 
+
 ///@brief Wait for timeout
 ///@return 1 ready
 ///@return 0 timeout
@@ -176,8 +183,8 @@ int  mmc_test_timeout()
         return(1);
 
 #ifdef ESP8266
-        optimistic_yield(1000);
-        wdt_reset();
+    optimistic_yield(1000);
+    wdt_reset();
 #endif
     if(!_mmc_timeout)
     {
@@ -188,6 +195,7 @@ int  mmc_test_timeout()
     return(0);
 }
 
+
 /// @brief Wait for time in milliseconds
 /// @param[in] ms: timeout in Milliseconds
 MEMSPACE
@@ -197,6 +205,7 @@ void mmc_ms_wait(int ms)
     while(!mmc_test_timeout())
         ;
 }
+
 
 /// @brief has the MMC interface been initialized yet ?
 static int mmc_init_flag = 0;
@@ -217,7 +226,7 @@ int mmc_init(int verbose)
     {
         printf("START MMC INIT\n");
     }
-    // we only install timers once!
+// we only install timers once!
     if(!mmc_init_flag)
         mmc_install_timer();
 
@@ -231,7 +240,7 @@ int mmc_init(int verbose)
         printf(", Code page: %u\n", FF_CODE_PAGE);
     }
 
-    rc = disk_initialize(DEV_MMC);    // aliased to mmc_disk_initialize()
+    rc = disk_initialize(DEV_MMC);                // aliased to mmc_disk_initialize()
 
     if( rc != RES_OK  )
         put_rc(rc);
@@ -269,6 +278,7 @@ int mmc_init(int verbose)
     return( rc ) ;
 }
 
+
 /// @brief  MMC Power ON
 ///
 /// @return void
@@ -277,6 +287,7 @@ void mmc_power_on()
 {
 }
 
+
 /// @brief  MMC Power OFF
 ///
 /// @return void
@@ -284,6 +295,7 @@ MEMSPACE
 void mmc_power_off()
 {
 }
+
 
 /// @brief  MMC Card Inserted status
 ///
@@ -295,7 +307,6 @@ int mmc_ins_status()
 {
     return (1);
 }
-
 
 
 /// @brief  MMC Card Write Protect status

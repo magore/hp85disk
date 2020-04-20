@@ -9,18 +9,16 @@
   This is free software: you can redistribute it and/or modify it under the
   terms of the GNU General Public License as published by the Free Software
   Foundation, either version 3 of the License, or (at your option)
-  any later version.
-  
-  This software is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-
 
 #include "user_config.h"
 
@@ -54,10 +52,11 @@ queue_t *queue_new(size_t size)
     return(q);
 }
 
+
 /**
   @brief Delete a ring buffer and free memory
   @param[in] *q: ring buffer pointer
-  @return void 
+  @return void
 */
 void queue_del(queue_t *q)
 {
@@ -66,8 +65,8 @@ void queue_del(queue_t *q)
     if(q->buf)
     {
         safefree(q->buf);
-        // This clear help prevents a freed pointer from being used by mistake
-        // can be removed in production
+// This clear help prevents a freed pointer from being used by mistake
+// can be removed in production
         q->buf = NULL;
         q->in = 0;
         q->out = 0;
@@ -82,7 +81,7 @@ void queue_del(queue_t *q)
 /**
   @brief Flush ring buffer
   @param[in] *q: ring buffer pointer
-  @return void 
+  @return void
 */
 void queue_flush(queue_t *q)
 {
@@ -93,6 +92,7 @@ void queue_flush(queue_t *q)
     q->bytes = 0;
     q->flags = 0;
 }
+
 
 /**
   @brief Find the number of bytes used by the ring buffer
@@ -105,6 +105,7 @@ size_t queue_used(queue_t *q)
         return(0);
     return(q->bytes);
 }
+
 
 /**
   @brief Is the ring buffer empty ?
@@ -120,10 +121,11 @@ size_t queue_empty(queue_t *q)
     return(0);
 }
 
+
 /**
-  @brief Find the amount of free space remaining in the ring buffer 
+  @brief Find the amount of free space remaining in the ring buffer
   @param[in] *q: ring buffer pointer
-  @return bytes remining in ring buffer 
+  @return bytes remining in ring buffer
 */
 size_t queue_space(queue_t *q)
 {
@@ -131,6 +133,7 @@ size_t queue_space(queue_t *q)
         return(0);
     return(q->size - q->bytes);
 }
+
 
 /**
   @brief Is the ring buffer full ?
@@ -144,9 +147,10 @@ size_t queue_full(queue_t *q)
     return(queue_space(q) ? 0 : 1);
 }
 
+
 /**
   @brief Add a data buffer to the ring buffer
-     Note: This function does not wait/block util there is enough free space 
+     Note: This function does not wait/block util there is enough free space
      to meet the request.
      So you must check that the return value matches the size.
   @param[in] *q: ring buffer pointer
@@ -172,6 +176,7 @@ size_t queue_push_buffer(queue_t *q, uint8_t *src, size_t size)
     }
     return(bytes);
 }
+
 
 /**
   @brief Get a data buffer from the ring buffer.
@@ -205,7 +210,7 @@ size_t queue_pop_buffer(queue_t *q, uint8_t *dst, size_t size)
 
 /**
   @brief Add a byte to the ring buffer
-     Note: This function does not wait/block util there is enough free space 
+     Note: This function does not wait/block util there is enough free space
      to meet the request.
      We assume you check queue_full() before calling this function!
      Otherwise you must check that the return value matches 1
@@ -226,16 +231,17 @@ int queue_pushc(queue_t *q, uint8_t c)
     if(q->in >= q->size)
         q->in = 0;
 
-    if(c == '\n')           // st EOL flasg when we see one
+    if(c == '\n')                                 // st EOL flasg when we see one
         q->flags |= QUEUE_EOL;
     q->buf[q->in++] = c;
     ++q->bytes;
     return(1);
 }
 
+
 /**
   @brief Remove a byte from the ring buffer
-    Note: This function does not wait/block util there is data to 
+    Note: This function does not wait/block util there is data to
     meet the request.
     We assume you check queue_empty() before calling this function!
   @param[in] *q: ring buffer pointer
@@ -250,7 +256,7 @@ int queue_popc(queue_t *q)
     if(q->bytes)
     {
         c = q->buf[q->out];
-        if(c == '\n')       // reset EOL flag after a read
+        if(c == '\n')                             // reset EOL flag after a read
             q->flags &= ~QUEUE_EOL;
         if(++q->out >= q->size)
             q->out = 0;

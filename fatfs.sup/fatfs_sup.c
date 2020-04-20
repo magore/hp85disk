@@ -10,8 +10,8 @@
  @par Credit: part of FatFs avr example project (C)ChaN, 2013.
  @par Copyright &copy; 2013 ChaN.
 
- @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
+@par You are free to use this code under the terms of GPL
+please retain a copy of this notice in any code you use it in.
 
 This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -38,9 +38,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "time.h"
 
-
 ///@brief FatFs Drive Volumes
-FATFS Fatfs[FF_VOLUMES];  /* File system object for each logical drive */
+FATFS Fatfs[FF_VOLUMES];                          /* File system object for each logical drive */
 
 #if FF_MULTI_PARTITION != 0
 /// @brief FatFs multiple partition drives
@@ -86,7 +85,6 @@ static const char *err_msg[] =
 };
 #endif
 
-
 /// @brief FAT time structer reference.
 /// @see rtc.h
 /// @see http://lxr.free-electrons.com/source/fs/fat/misc.c
@@ -102,7 +100,6 @@ static const char *err_msg[] =
 ///     BYTE   sec;                                   /* 0..59 */
 /// } RTC;
 /// @endverbatim
-
 
 /// @brief Convert Linux POSIX tm_t * to FAT32 time.
 ///
@@ -122,6 +119,8 @@ uint32_t tm_to_fat(tm_t *t)
         | ((uint32_t)t->tm_sec >> 1);
     return(fat);
 }
+
+
 /// @brief Read time and convert to FAT32 time.
 ///
 /// @return FAT32 time.
@@ -134,6 +133,7 @@ DWORD get_fattime (void)
     time(&t);
     return( tm_to_fat(localtime(&t)));
 }
+
 
 /// @brief  display FatFs return code as ascii string
 ///
@@ -166,16 +166,14 @@ WORD    AccFiles, AccDirs;
 /// @brief  Use were FILINFO structure can be share in many functions
 ///  See: fatfs_alloc_filinfo(), fatfs_scan_files() and fatfs_ls()
 
-
 /// @brief  Allocate FILINFO structure and optional long file name buffer
 ///
 /// @param[in] allocate: If allocate is true use calloc otherwise return static __filinfo
-/// @see fatfs_free_filinfo() 
+/// @see fatfs_free_filinfo()
 /// @see fatfs_scan_files()
 /// @see fatfs_ls()
 /// @return  FILINFO * on success
 /// @return  NULL on error
-
 
 /// @brief  Compute space used, number of directories and files contained under a specified directory
 ///
@@ -183,7 +181,7 @@ WORD    AccFiles, AccDirs;
 ///
 /// @param[in] path:
 /// @see f_opendir()
-/// @see f_readdir() 
+/// @see f_readdir()
 /// @see AccDirs:  Total number of directories
 /// @see AccFiles: Total number of Files
 /// @see AccSize:  Total size of all files
@@ -201,16 +199,21 @@ char* path                                        /* Pointer to the working buff
     FILINFO info;
 
     fr = f_opendir(&dirs, path);
-    if (fr == FR_OK) {
-        while (((fr = f_readdir(&dirs, &info)) == FR_OK) && info.fname[0]) {
-            if (info.fattrib & AM_DIR) {
+    if (fr == FR_OK)
+    {
+        while (((fr = f_readdir(&dirs, &info)) == FR_OK) && info.fname[0])
+        {
+            if (info.fattrib & AM_DIR)
+            {
                 AccDirs++;
                 i = strlen(path);
                 path[i] = '/'; strcpy(path+i+1, info.fname);
                 fr = fatfs_scan_files(path);
                 path[i] = 0;
                 if (fr != FR_OK) break;
-            } else {
+            }
+            else
+            {
 //              xprintf(PSTR("%s/%s\n"), path, info.fname);
                 AccFiles++;
                 AccSize += info.fsize;
@@ -224,6 +227,7 @@ char* path                                        /* Pointer to the working buff
 
     return fr;
 }
+
 
 /// @brief  return a string with the file system type
 /// @param[in] type: file system type
@@ -247,11 +251,12 @@ char *fatfs_fstype(int type)
             ptr = "EXFAT";
             break;
         default:
-             ptr = "UNKNOWN";
+            ptr = "UNKNOWN";
             break;
     }
     return(ptr);
 }
+
 
 /// @brief  Compute space used, number of directories and files contained used by a drive
 ///
@@ -271,7 +276,7 @@ void fatfs_status(char *ptr)
     int res;
     FATFS *fs;
     char label[24+2];
-    DWORD vsn; // volume serial number
+    DWORD vsn;                                    // volume serial number
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
@@ -311,10 +316,10 @@ void fatfs_status(char *ptr)
         return;
     }
     printf("%u files, %lu bytes.\n%u folders.\n"
-                 "%lu KB total disk space.\n%lu KB available.\n",
-            AccFiles, AccSize, AccDirs,
-            (fs->n_fatent - 2) * fs->csize / 2, p2 * fs->csize / 2
-    );
+        "%lu KB total disk space.\n%lu KB available.\n",
+        AccFiles, AccSize, AccDirs,
+        (fs->n_fatent - 2) * fs->csize / 2, p2 * fs->csize / 2
+        );
 
 }
 
@@ -324,8 +329,8 @@ void fatfs_status(char *ptr)
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
 /// - Example:
 /// @verbatim
-/// ----A 2014/10/16 00:39        14    test2.txt  
-/// D---- 2014/10/12 21:29         0          tmp 
+/// ----A 2014/10/16 00:39        14    test2.txt
+/// D---- 2014/10/12 21:29         0          tmp
 /// @endverbatim
 ///
 /// @param[in] : FILINFO pointer

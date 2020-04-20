@@ -1,7 +1,7 @@
 #ifndef _DRIVES_SUP_H
 #define _DRIVES_SUP_H
 /// =================================================
-///@brief Data structure for hpdir.ini HPDir project disk parameters 
+///@brief Data structure for hpdir.ini HPDir project disk parameters
 ///
 /// This structure will containes the parsed and computed
 /// disk parameters from a single hpdir disk entry
@@ -30,32 +30,30 @@
 
 #define MODEL_SIZE 32
 
-typedef struct {
-    char model[MODEL_SIZE];	// 1 HP Model number
-    char comment[64];  		// 2
-	char TYPE[32];     		// 3 SS80,CS80,AMIGO
-    long ID;				// 4 Request Identify ID
-	long mask_stat2;		// 5
-	long id_stat2;			// 6
-	long DEVICE_NUMBER;		// 7 BCD part of model number * 10
-	long UNITS_INSTALLED; 	// 8	ALWAYS 1 , FIXED
-	long CYLINDERS;	    	// 9
-	long HEADS;				// 10
-	long SECTORS;			// 11
-	long BYTES_PER_SECTOR;	// 12
-	long INTERLEAVE;		// 13
-    long FIXED;				// 14 ALWAYS 1
-	// Computed values
-	long BLOCKS;
-	long LIF_DIR_BLOCKS;
+typedef struct
+{
+    char model[MODEL_SIZE];                       // 1 HP Model number
+    char comment[64];                             // 2
+    char TYPE[32];                                // 3 SS80,CS80,AMIGO
+    long ID;                                      // 4 Request Identify ID
+    long mask_stat2;                              // 5
+    long id_stat2;                                // 6
+    long DEVICE_NUMBER;                           // 7 BCD part of model number * 10
+    long UNITS_INSTALLED;                         // 8	ALWAYS 1 , FIXED
+    long CYLINDERS;                               // 9
+    long HEADS;                                   // 10
+    long SECTORS;                                 // 11
+    long BYTES_PER_SECTOR;                        // 12
+    long INTERLEAVE;                              // 13
+    long FIXED;                                   // 14 ALWAYS 1
+// Computed values
+    long BLOCKS;
+    long LIF_DIR_BLOCKS;
 } hpdir_t;
 // =============================================
-
 
 /* drives_sup.c */
 void hpdir_init ( void );
 long lif_dir_count ( long blocks );
 int hpdir_find_drive ( char *model , int list , int verbose );
-
 #endif
-

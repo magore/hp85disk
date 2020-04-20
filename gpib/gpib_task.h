@@ -12,7 +12,6 @@
 
 */
 
-
 #ifndef _GPIB_TASK_H_
 #define _GPIB_TASK_H_
 
@@ -45,5 +44,4 @@ int GPIB_SECONDARY_ADDRESS ( uint8_t ch );
 void listen_cleanup ( void );
 void talk_cleanup ( void );
 void DumpData ( unsigned char *ptr , int length );
-
-#endif  // #ifndef _GPIB_TASK_H_
+#endif                                            // #ifndef _GPIB_TASK_H_

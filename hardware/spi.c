@@ -10,14 +10,13 @@
 
  @copyright GNU Public License.
 
- @author Mike Gore
+@author Mike Gore
 
 */
 
 #include "user_config.h"
 #include <stdlib.h>
 #include "spi.h"
-
 
 ///@brief Saved SPI bus speed
 static uint32_t SPI0_Speed_value = 0;
@@ -51,7 +50,7 @@ void SPI0_Speed(uint32_t speed)
 // Computer Prescale rate - truncate.
 
 #if 1
-    // We only make changes if the speed actually changes
+// We only make changes if the speed actually changes
     if(speed == SPI0_Speed_value)
         return;
 #endif
@@ -60,60 +59,61 @@ void SPI0_Speed(uint32_t speed)
 
     if(rate >= 128)
     {
-		// 128
-		BIT_CLR(SPSR, SPI2X);  
-		BIT_SET(SPCR, SPR1);
-		BIT_SET(SPCR, SPR0);
-	}
+// 128
+        BIT_CLR(SPSR, SPI2X);
+        BIT_SET(SPCR, SPR1);
+        BIT_SET(SPCR, SPR0);
+    }
     else if(rate >= 64)
     {
-        // 64
-		BIT_CLR(SPSR, SPI2X);  
-		BIT_SET(SPCR, SPR1);
-		BIT_SET(SPCR, SPR0);
+// 64
+        BIT_CLR(SPSR, SPI2X);
+        BIT_SET(SPCR, SPR1);
+        BIT_SET(SPCR, SPR0);
     }
     else if(rate >= 32)
     {
-        // 32
-		BIT_SET(SPSR, SPI2X);  
-		BIT_SET(SPCR, SPR1);
-		BIT_CLR(SPCR, SPR0);
+// 32
+        BIT_SET(SPSR, SPI2X);
+        BIT_SET(SPCR, SPR1);
+        BIT_CLR(SPCR, SPR0);
     }
     else if(rate >= 16)
     {
-        // 16
-		BIT_CLR(SPSR, SPI2X);
-		BIT_CLR(SPCR, SPR1);
-		BIT_SET(SPCR, SPR0);
+// 16
+        BIT_CLR(SPSR, SPI2X);
+        BIT_CLR(SPCR, SPR1);
+        BIT_SET(SPCR, SPR0);
     }
     else if(rate >= 8)
     {
-        // 8;
-		BIT_SET(SPSR, SPI2X);
-		BIT_CLR(SPCR, SPR1);
-		BIT_SET(SPCR, SPR0);
+// 8;
+        BIT_SET(SPSR, SPI2X);
+        BIT_CLR(SPCR, SPR1);
+        BIT_SET(SPCR, SPR0);
     }
     else if(rate >= 4)
     {
-        // 4;
-		BIT_CLR(SPSR, SPI2X);
-		BIT_CLR(SPCR, SPR1);
-		BIT_CLR(SPCR, SPR0);
+// 4;
+        BIT_CLR(SPSR, SPI2X);
+        BIT_CLR(SPCR, SPR1);
+        BIT_CLR(SPCR, SPR0);
     }
     else if(rate >= 2)
     {
-        // 2;
-		BIT_SET(SPSR, SPI2X);
-		BIT_CLR(SPCR, SPR1);
-		BIT_CLR(SPCR, SPR0);
+// 2;
+        BIT_SET(SPSR, SPI2X);
+        BIT_CLR(SPCR, SPR1);
+        BIT_CLR(SPCR, SPR0);
     }
-	else {
-		// 2 fastest rate;
-		BIT_SET(SPSR, SPI2X);
-		BIT_CLR(SPCR, SPR1);
-		BIT_CLR(SPCR, SPR0);
-	}
-	/// Save speed value
+    else
+    {
+// 2 fastest rate;
+        BIT_SET(SPSR, SPI2X);
+        BIT_CLR(SPCR, SPR1);
+        BIT_CLR(SPCR, SPR0);
+    }
+/// Save speed value
     SPI0_Speed_value = speed;
 }
 
@@ -188,45 +188,44 @@ static int SPI0_Init_state = 0;
 void SPI0_Init(uint32_t speed)
 {
 
-	volatile uint8_t D  __attribute__((unused));
+    volatile uint8_t D  __attribute__((unused));
 
 #ifdef SPI_DEBUG
-	printf("SPI0_Init speed:%ld\n",speed);
+    printf("SPI0_Init speed:%ld\n",speed);
 #endif
-
 
 #ifdef SPI_DEBUG
-	printf("SS HI\n");
-	printf("Port B DDR:   0x%02x\n", (int) GPIO_PORT_DDR_RD(GPIO_B));
-	printf("Port B LATCH: 0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
-	printf("Port B PINS:  0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+    printf("SS HI\n");
+    printf("Port B DDR:   0x%02x\n", (int) GPIO_PORT_DDR_RD(GPIO_B));
+    printf("Port B LATCH: 0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
+    printf("Port B PINS:  0x%02x\n", (int) GPIO_PORT_LATCH_RD(GPIO_B));
 #endif
 
-	SPCR = 0;				// Clear SPCR in case we are not called after RESET
+    SPCR = 0;                                     // Clear SPCR in case we are not called after RESET
 
-    GPIO_PIN_HI(SCK);       // SCK Output
-    GPIO_PIN_HI(MOSI);                                  // MOSI Output
-    GPIO_PIN_FLOAT(MISO);   // MISO Input, no pull-up
+    GPIO_PIN_HI(SCK);                             // SCK Output
+    GPIO_PIN_HI(MOSI);                            // MOSI Output
+    GPIO_PIN_FLOAT(MISO);                         // MISO Input, no pull-up
 
-	// Warning *** MSTR MUST be set BEFORE SPE!!!! *** otherwise SS will NOT behave as an output
-	GPIO_PIN_LOW(SS); 		// SS Output must be HI prevent slave mode from getting set while initializing
-    BIT_SET(SPCR, MSTR);    // Master Mode
-    BIT_SET(SPCR, SPE);     // Enable SPI
+// Warning *** MSTR MUST be set BEFORE SPE!!!! *** otherwise SS will NOT behave as an output
+    GPIO_PIN_LOW(SS);                             // SS Output must be HI prevent slave mode from getting set while initializing
+    BIT_SET(SPCR, MSTR);                          // Master Mode
+    BIT_SET(SPCR, SPE);                           // Enable SPI
 
-	// SPI Clear any pending interrupt flags
-	D = SPSR;
-	D = SPDR;
+// SPI Clear any pending interrupt flags
+    D = SPSR;
+    D = SPDR;
 
-	/// Set SPI clock mode 0 
-    ///  SPI Mode     CPOL    CPHA            Sample
-    ///  0    0       0       Leading (Rising)   Edge
+/// Set SPI clock mode 0
+///  SPI Mode     CPOL    CPHA            Sample
+///  0    0       0       Leading (Rising)   Edge
     SPI0_Mode(0);
 
-	// Set SPI clock speed
+// Set SPI clock speed
     SPI0_Speed(speed);
 
-    SPI0_TXRX_Byte(0xff);	// Send dummy 0xFF
-	SPI0_Init_state = 1;
+    SPI0_TXRX_Byte(0xff);                         // Send dummy 0xFF
+    SPI0_Init_state = 1;
 
 }
 
@@ -263,11 +262,12 @@ void SPI0_TX(uint8_t *data, int count)
 
     while(count > 0)
     {
-		SPI0_TXRX_Byte(*data);
-		++data;
-		--count;
-	}
+        SPI0_TXRX_Byte(*data);
+        ++data;
+        --count;
+    }
 }
+
 
 /// @brief HSPI write and read using FIFO
 /// @param[in] *data: transmit / receive buffer
@@ -279,11 +279,12 @@ void SPI0_TXRX(uint8_t *data, int count)
 
     while(count > 0)
     {
-		*data = SPI0_TXRX_Byte(*data);
-		++data;
-		--count;
-	}
+        *data = SPI0_TXRX_Byte(*data);
+        ++data;
+        --count;
+    }
 }
+
 
 /// @brief HSPI read using FIFO
 /// @param[in] *data: receive buffer
@@ -294,10 +295,8 @@ void SPI0_RX(uint8_t *data, int count)
 
     while(count > 0)
     {
-		*data = SPI0_TXRX_Byte(0xff);
-		++data;
-		--count;
-	}
+        *data = SPI0_TXRX_Byte(0xff);
+        ++data;
+        --count;
+    }
 }
-
-

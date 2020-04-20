@@ -27,7 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 #include <math.h>
 
-
 window lcd = { 0,0,20,4 };
 
 /// @brief  Clear display to end of line
@@ -35,79 +34,82 @@ window lcd = { 0,0,20,4 };
 MEMSPACE
 void lcd_cleareol()
 {
-	int rem;
-	rem = (lcd.w - 1 - lcd.xpos);
-	while(rem > 0)
-	{
-		LCD_putb(' ');
-		rem--;
-	}
-	LCD_pos(lcd.xpos = lcd.w-1,lcd.ypos);
+    int rem;
+    rem = (lcd.w - 1 - lcd.xpos);
+    while(rem > 0)
+    {
+        LCD_putb(' ');
+        rem--;
+    }
+    LCD_pos(lcd.xpos = lcd.w-1,lcd.ypos);
 }
+
 
 /// @brief  Clear display to end of line
 /// return: void, lcd.x = 0;
 MEMSPACE
 void lcd_clearline()
 {
-	int rem;
-	rem = (lcd.w - 1 - lcd.xpos);
-	while(rem > 0)
-	{
-		LCD_putb(' ');
-		rem--;
-	}
-	LCD_pos(lcd.xpos = 0,lcd.ypos);
+    int rem;
+    rem = (lcd.w - 1 - lcd.xpos);
+    while(rem > 0)
+    {
+        LCD_putb(' ');
+        rem--;
+    }
+    LCD_pos(lcd.xpos = 0,lcd.ypos);
 }
 
-/// @brief  put character 
+
+/// @brief  put character
 /// @param[in] c: character
 /// return: void
 void lcd_putch(int c)
 {
-	int rem;
+    int rem;
 
-	if(c < 0 || c > 0x7e)
-		return;
+    if(c < 0 || c > 0x7e)
+        return;
 
-	// Normal visible characters
-	if(c >= ' ')
-	{
-		rem = (lcd.w - 1 - lcd.xpos);
-		if( rem <= 0 )
-		{
-			LCD_pos(++lcd.ypos,lcd.xpos=0);
-		}
-		(void) LCD_putb(c);
-		// uart_putchar(c,0);
-		lcd.xpos++;
-		return;
-	}
+// Normal visible characters
+    if(c >= ' ')
+    {
+        rem = (lcd.w - 1 - lcd.xpos);
+        if( rem <= 0 )
+        {
+            LCD_pos(++lcd.ypos,lcd.xpos=0);
+        }
+        (void) LCD_putb(c);
+// uart_putchar(c,0);
+        lcd.xpos++;
+        return;
+    }
 
-	// Control characters
-	if(c == '\n')
-	{
-		// uart_putchar(c,0);
-		lcd_cleareol();
-		++lcd.ypos;
-		lcd.ypos &= 3;
-		LCD_pos(lcd.xpos=0,lcd.ypos);
-	}
+// Control characters
+    if(c == '\n')
+    {
+// uart_putchar(c,0);
+        lcd_cleareol();
+        ++lcd.ypos;
+        lcd.ypos &= 3;
+        LCD_pos(lcd.xpos=0,lcd.ypos);
+    }
 
-	if(c == '\f')
-	{
-		LCD_clear();
-		LCD_pos(lcd.xpos=0,lcd.ypos=0);
-	}
+    if(c == '\f')
+    {
+        LCD_clear();
+        LCD_pos(lcd.xpos=0,lcd.ypos=0);
+    }
 }
 
 
 // We do not use the printf structure
 static void _putc_win(struct _printf_t *p, char ch)
 {
-	p->sent++;
-	lcd_putch(ch);
+    p->sent++;
+    lcd_putch(ch);
 }
+
 
 /// @brief lcd_printf function
 /// @param[in] fmt: printf forat string
@@ -128,8 +130,6 @@ int lcd_printf(const char *fmt, ... )
 
     va_end(va);
 
-	return(fn.sent);
+    return(fn.sent);
 
 }
-
-

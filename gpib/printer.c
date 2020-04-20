@@ -1,7 +1,7 @@
 /**
  @file gpib/printer.c
 
- @brief HPGL printer capture code for HP85 disk emulator project for AVR. 
+ @brief HPGL printer capture code for HP85 disk emulator project for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
@@ -171,7 +171,7 @@ int receive_plot_flush()
     fno = fileno( plot.fp );
     if(fno < 0)
         return(-1);
-    ///@brief sync filesystem after every write 
+///@brief sync filesystem after every write
     syncfs( fno );
     return (ret);
 }
@@ -201,8 +201,8 @@ void printer_buffer( uint16_t val )
         if( receive_plot_flush() )
             plot.error = 1;
 
-        //fprintf(plot.fp,"%s\n", ptr);
-        //plot.count += strlen(ptr);
+//fprintf(plot.fp,"%s\n", ptr);
+//plot.count += strlen(ptr);
     }
     else
     {
@@ -228,8 +228,8 @@ void printer_buffer( uint16_t val )
 int PRINTER_COMMANDS(uint8_t ch)
 {
 
-    // We could, for example, use secondaries to set file names, etc
-    // We don not use them yet
+// We could, for example, use secondaries to set file names, etc
+// We don not use them yet
     if(PRINTER_is_MLA(listening))
     {
 #if SDEBUG
@@ -249,6 +249,7 @@ int PRINTER_COMMANDS(uint8_t ch)
     }
     return(0);
 }
+
 
 /// @brief  Instruct Instrument to send Plot data.
 /// - Not finished or working yet - barely started work in progress,
@@ -272,8 +273,8 @@ void plot_echo( int gpib_address)
     while(uart_keyhit(0) )
         putchar( uart_rx_byte(0) );
 
-    //controller_ifc();
-        
+//controller_ifc();
+
 // DEBUGGING
     gpib_decode_header(stdout);
 
@@ -285,8 +286,8 @@ void plot_echo( int gpib_address)
     len = controller_read_str(to, from, line, 256);
     printf("received:[%d] %s\n", len, line);
 
-    //len = controller_send_str(from,to,":PRINt?\n",0);
-    //len = controller_read_str(to, from, line, 256);
+//len = controller_send_str(from,to,":PRINt?\n",0);
+//len = controller_read_str(to, from, line, 256);
 
     len = controller_send_str(from,to,":wav:data?\n",0);
     len = controller_read_trace(to,from);

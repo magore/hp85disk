@@ -40,6 +40,7 @@ void disable_system_task()
     os_timer_disarm(&task_1ms);
 }
 
+
 /// @brief Enable interrupts
 /// @return void.
 MEMSPACE
@@ -48,6 +49,7 @@ void enable_system_task()
     os_timer_arm(&task_1ms, 1, 1);
 }
 
+
 /// @brief Setup main timers ISR - this ISR calls execute_timers() task.
 /// @return void.
 MEMSPACE void install_timers_isr()
@@ -55,7 +57,7 @@ MEMSPACE void install_timers_isr()
     os_timer_disarm(&task_1ms);
     os_timer_setfn(&task_1ms, ( os_timer_func_t *) execute_timers, NULL );
 }
-#endif  // ifdef ESP8266
+#endif                                            // ifdef ESP8266
 // =============================================
 
 // =============================================
@@ -78,11 +80,12 @@ MEMSPACE void install_timers_isr()
 #error TIMER1_COUNTS_PER_TIC too big -- increase TIMER1 Prescale
 #endif
 
-#define TIMER1_PRE_1 (1 << CS10)                        /*< 1 Prescale */
-#define TIMER1_PRE_8 (1 << CS11)                        /*< 8 Prescale */
-#define TIMER1_PRE_64 ((1 << CS11) | ( 1 << CS10))      /*< 64 Prescale */
-#define TIMER1_PRE_256 (1 << CS12)                      /*< 256 Prescale */
-#define TIMER1_PRE_1024 ((1 << CS12) | ( 1 << CS10))    /*< 1024 Prescape */
+#define TIMER1_PRE_1 (1 << CS10)                  /*< 1 Prescale */
+#define TIMER1_PRE_8 (1 << CS11)                  /*< 8 Prescale */
+#define TIMER1_PRE_64 ((1 << CS11) | ( 1 << CS10))/*< 64 Prescale */
+#define TIMER1_PRE_256 (1 << CS12)                /*< 256 Prescale */
+                                                  /*< 1024 Prescape */
+#define TIMER1_PRE_1024 ((1 << CS12) | ( 1 << CS10))
 
 /// @brief Disable interrupts
 /// @return void.
@@ -93,6 +96,7 @@ void disable_system_task()
     cli();
 }
 
+
 /// @brief Enable interrupts
 /// @return void.
 MEMSPACE
@@ -101,15 +105,16 @@ void enable_system_task()
     sei();
 }
 
-/// @brief Setup main timers ISR 
+
+/// @brief Setup main timers ISR
 ///       This ISR calls execute_timers() task.
 ///
 /// - AVR Notes:
 ///  - We attempt to use the largest reload count for a given SYSTEM_HZ interrupt rate.
-///    This permits using hardware counter offset to increase resolution to the best 
+///    This permits using hardware counter offset to increase resolution to the best
 ///    possible amount.
 /// - Assumptions:
-///  - We can divide the CPU frequency EXACTLY with timer/counter 
+///  - We can divide the CPU frequency EXACTLY with timer/counter
 ///    having no fractional remander.
 ///
 /// @see ISR().
@@ -117,12 +122,13 @@ void enable_system_task()
 MEMSPACE void install_timers_isr()
 {
     cli();
-    TCCR1B=(1<<WGM12) | TIMER1_PRE_1;   // No Prescale
+    TCCR1B=(1<<WGM12) | TIMER1_PRE_1;             // No Prescale
     TCCR1A=0;
-    OCR1A=(TIMER1_COUNTS_PER_TIC-1);    // 0 .. count
-    TIMSK1 |= (1<<OCIE1A);              //Enable the Output Compare A interrupt
+    OCR1A=(TIMER1_COUNTS_PER_TIC-1);              // 0 .. count
+    TIMSK1 |= (1<<OCIE1A);                        //Enable the Output Compare A interrupt
     sei();
 }
+
 
 /// @brief AVR Timer Interrupt Vector
 ///
@@ -132,6 +138,7 @@ ISR(TIMER1_COMPA_vect)
 {
     execute_timers();
 }
+
 
 #ifdef HAVE_HIRES_TIMER
 /// @brief Read clock time into struct timepec *ts - POSIX function.
@@ -151,7 +158,7 @@ int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts
     uint8_t pendingf = 0;
     int errorf = 0;
 
-    // disable interrupts
+// disable interrupts
     cli();
 
     count1 = TCNT1;
@@ -168,7 +175,7 @@ int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts
     {
 ///  note: counter2 < count1 implies ISR flag must be set
         if( !pendingf )
-            errorf = -1;    // counter overflow and NO pending is an error!
+            errorf = -1;                          // counter overflow and NO pending is an error!
         offset = TIMER1_COUNTS_PER_TIC;           // overflow
     }
     else
@@ -178,7 +185,7 @@ int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts
     }
     offset += count2;
 
-    // enable interrupts
+// enable interrupts
     sei();
 
     offset *= TIMER1_COUNTER_RES;
@@ -192,8 +199,6 @@ int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts
     }
     return(errorf);
 }
-#endif  // ifdef HAVE_HIRES_TIMER
-
-#endif  // ifdef AVR
+#endif                                            // ifdef HAVE_HIRES_TIMER
+#endif                                            // ifdef AVR
 // =============================================
-

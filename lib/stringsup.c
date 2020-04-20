@@ -1,5 +1,5 @@
 /**
-  @file stringsup.h 
+  @file stringsup.h
 
  @brief Various string and character functions
 
@@ -37,12 +37,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE
 int
 WEAK_ATR
-isdigit(int c) 
+isdigit(int c)
 {
     if(c >= '0' && c <= '9')
         return(1);
     return(0);
 }
+
 
 // =============================================
 ///@brief Is a character upper case
@@ -60,6 +61,7 @@ isupper(int c)
     return(0);
 }
 
+
 // =============================================
 //@brief Is a character lower case
 ///
@@ -75,6 +77,7 @@ islower(int c)
         return(1);
     return(0);
 }
+
 
 // =============================================
 ///@brief Convert character to lower case, only if it is upper case
@@ -92,6 +95,7 @@ tolower(int c)
     return(c);
 }
 
+
 // =============================================
 ///@brief Convert character to upper case, only if it is lower case
 ///
@@ -108,6 +112,7 @@ toupper(int c)
     return(c);
 }
 
+
 /// @brief find a character in a string of maximum size
 /// @param[in] str: string
 /// @param[in] c: character
@@ -119,11 +124,12 @@ void *memchr(const void *str, int c, size_t size)
     const uint8_t *ptr = str;
     while(size--)
     {
-        if (*ptr++ == (uint8_t) c) 
+        if (*ptr++ == (uint8_t) c)
             return (void *) (ptr - 1);
-    } 
+    }
     return NULL;
 }
+
 
 // =============================================
 // String functions
@@ -138,28 +144,30 @@ WEAK_ATR
 strlen(const char *str)
 {
     int len=0;
-    // String length
+// String length
     while(*str++)
         ++len;
     return(len);
 }
 
-/// @brief copy a string 
+
+/// @brief copy a string
 /// @param[in] dest: destination string
 /// @param[in] src: source string
 /// @return destination string
 MEMSPACE
- WEAK_ATR char *
+WEAK_ATR char *
 strcpy(char *dest, const char *src)
 {
     char *ptr = dest;
     while(*src)
     {
         *ptr++ = *src++;
-    } 
+    }
     *ptr ++ = 0;
     return (ptr);
 }
+
 
 /// @brief copy a string of at most N characters
 /// @param[in] dest: destination string
@@ -167,7 +175,7 @@ strcpy(char *dest, const char *src)
 /// @param[in] size: maximum destination size
 /// @return destination string
 MEMSPACE
- WEAK_ATR
+WEAK_ATR
 char * strncpy(char *dest, const char *src, size_t size)
 {
     char *ptr = dest;
@@ -175,14 +183,14 @@ char * strncpy(char *dest, const char *src, size_t size)
     {
         *ptr++ = *src++;
         size--;
-    } 
+    }
     while(size--)
         *ptr++ = 0;
     return (dest);
 }
 
 
-/// @brief Append string 
+/// @brief Append string
 /// @param[in] dest: string
 /// @param[in] src: string
 /// @return string length
@@ -196,6 +204,7 @@ char * strcat(char *dest, const char *src)
     strcpy(ptr,src);
     return(dest);
 }
+
 
 /// @brief Append string of at most N bytes from src
 /// @param[in] dest: string
@@ -212,6 +221,7 @@ char * strncat(char *dest, const char *src, size_t max)
     return(dest);
 }
 
+
 // =============================================
 /// @brief Reverse a string in place
 ///  Example: abcdef -> fedcba
@@ -225,8 +235,8 @@ reverse(char *str)
     char temp;
     int i;
     int len = strlen(str);
-    // Reverse
-    // We only exchange up to half way
+// Reverse
+// We only exchange up to half way
     for (i = 0; i < (len >> 1); i++)
     {
         temp = str[len - i - 1];
@@ -234,6 +244,7 @@ reverse(char *str)
         str[i] = temp;
     }
 }
+
 
 // =============================================
 /// @brief UPPERCASE a string
@@ -278,6 +289,7 @@ strcmp(const char *str, const char *pat)
     return(ret);
 }
 
+
 // =============================================
 ///@brief Compare two strings maximum len bytes in size
 ///
@@ -302,6 +314,7 @@ strncmp(const char *str, const char *pat, size_t len)
     return(ret);
 }
 
+
 // =============================================
 ///@brief Compare two strings without case
 ///
@@ -325,6 +338,8 @@ strcasecmp(const char *str, const char *pat)
     }
     return(ret);
 }
+
+
 ///@brief Compare two strings without case maximum len bytes in size
 ///
 ///@param[in] str: string to match.
@@ -347,6 +362,7 @@ strncasecmp(const char *str, const char *pat, size_t len)
     }
     return(ret);
 }
+
 
 // =============================================
 // String memory allocation functions
@@ -376,6 +392,7 @@ char *strnalloc(char *str, int len)
 
 }
 
+
 // =============================================
 ///@brief Allocate space for string.
 ///
@@ -400,6 +417,3 @@ char *stralloc(char *str)
     strcpy(ptr,str);
     return(ptr);
 }
-
-
-

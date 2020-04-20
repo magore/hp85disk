@@ -24,7 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _MATRIX_H_
 #define _MATRIX_H_
 
-typedef struct _mat {
+typedef struct _mat
+{
     float **data;
     int cols;
     int rows;
@@ -50,6 +51,4 @@ MEMSPACE mat_t PseudoInvert ( mat_t MatA );
 MEMSPACE mat_t MatMul ( mat_t MatA , mat_t MatB );
 MEMSPACE mat_t MatRead ( char *name );
 MEMSPACE int MatWrite ( char *name , mat_t MatW );
-
-
-#endif // _MATRIX_H_
+#endif                                            // _MATRIX_H_

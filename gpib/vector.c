@@ -28,6 +28,8 @@ void V2B_MSB(uint8_t *B, int index, int size, uint32_t val)
         val >>= 8;
     }
 }
+
+
 // =============================================
 ///@brief Convert Value into byte array
 /// bytes are LSB ... MSB order
@@ -47,7 +49,6 @@ void V2B_LSB(uint8_t *B, int index, int size, uint32_t val)
 }
 
 
-
 ///@brief Convert a byte array into a value
 /// bytes are MSB ... LSB order
 ///@param B: byte array
@@ -64,8 +65,9 @@ uint32_t B2V_MSB(uint8_t *B, int index, int size)
         val <<= 8;
         val |= (uint8_t) (B[i+index] & 0xff);
     }
-        return(val);
+    return(val);
 }
+
 
 ///@brief Convert a byte array into a value
 /// bytes are LSB ... MSB order
@@ -83,8 +85,9 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
         val <<= 8;
         val |= (uint8_t) (B[i+index] & 0xff);
     }
-        return(val);
+    return(val);
 }
+
 
 /// @brief Create a string from data that has no EOS but known size
 /// @param[in] *B: source

@@ -12,8 +12,8 @@
 #include <sys/types.h>
 #include <utime.h>
 
-#define MEMSPACE /**/
-#define WEAK_ATR /**/
+#define MEMSPACE                                  /**/
+#define WEAK_ATR                                  /**/
 typedef struct tm tm_t;
 #define safecalloc(a,b) calloc(a,b)
 #define safefree(a) free(a)
@@ -23,5 +23,4 @@ typedef struct tm tm_t;
 #include "../gpib/vector.h"
 #include "../gpib/drives_sup.h"
 #include "../gpib/debug.h"
-
 #endif

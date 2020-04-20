@@ -127,9 +127,9 @@ char *tm_mon_to_ascii(int i)
 /// @warning:   No limit checking.
 ///
 /// @return     1 (leap year), 0 (not a leap year(
-/// @see time_to_tm() 
-/// @see ctime_gm() 
-/// @see gmtime_r() 
+/// @see time_to_tm()
+/// @see ctime_gm()
+/// @see gmtime_r()
 /// @see localtime_r()
 MEMSPACE
 static int IS_Leap(int year)
@@ -148,9 +148,9 @@ static int IS_Leap(int year)
 ///
 /// @return days.
 ///
-/// @see time_to_tm() 
-/// @see ctime_gm() 
-/// @see gmtime_r() 
+/// @see time_to_tm()
+/// @see ctime_gm()
+/// @see gmtime_r()
 /// @see localtime_r()
 MEMSPACE
 static int Leap_Days_Since_1900(int year)
@@ -164,12 +164,12 @@ static int Leap_Days_Since_1900(int year)
 
     sum = (year >> 2);
 
-
     if(year >= 200 )
         --sum;
 
     return(sum);
 }
+
 
 ///@brief return day of week for givenn day, month, year
 /// @param[in] year: year  such as 2016
@@ -182,7 +182,7 @@ int finddayofweek(int year, int month, int day)
     int value;
 
     if ( month < 3 )
-    { 
+    {
         month += 12;
         year -= 1;
     }
@@ -194,7 +194,6 @@ int finddayofweek(int year, int month, int day)
 }
 
 
-
 /// @brief  Find number of days in a given year.
 ///
 /// @param[in] year: valid over 1900..2199.
@@ -203,15 +202,16 @@ int finddayofweek(int year, int month, int day)
 ///
 /// @return days in a given year.
 ///
-/// @see time_to_tm() 
-/// @see ctime_gm() 
-/// @see gmtime_r() 
+/// @see time_to_tm()
+/// @see ctime_gm()
+/// @see gmtime_r()
 /// @see localtime_r()
 MEMSPACE
 static int Days_Per_Year(int year)
 {
     return(IS_Leap(year) ? 366 : 365);
 }
+
 
 /// @brief days in a month
 ///
@@ -224,7 +224,7 @@ int Days_Per_Month(int month, int year)
 {
     int days;
 
-    // Normalize month
+// Normalize month
     while(month >= 12)
     {
         ++year;
@@ -241,6 +241,7 @@ int Days_Per_Month(int month, int year)
     return( days );
 }
 
+
 /// @brief  Converts epoch ( seconds from 1 Jan EPOCH_YEAR UTC), offset seconds, to UNIX tm *t.
 ///  @param[in] epoch:  Seconds elapsed since January 1, EPOCH_YEAR.
 ///  - unsigned long,   range limited to: 0 .. 0xFFFD5D00>
@@ -254,8 +255,8 @@ int Days_Per_Month(int month, int year)
 /// @return epoch: time in seconds, *t has result.
 /// @return -1: error.
 ///
-/// @see ctime_gm() 
-/// @see gmtime_r() 
+/// @see ctime_gm()
+/// @see gmtime_r()
 /// @see localtime_r()
 
 MEMSPACE
@@ -351,10 +352,10 @@ time_t timegm( tm_t *t )
     return (seconds);
 }
 
+
 // =============================================
 /// @todo  implement strftime() and strptime()
 // =============================================
-
 
 /// @brief Convert tm_t *t structure into POSIX asctime() ASCII string *buf.
 ///
@@ -366,7 +367,7 @@ time_t timegm( tm_t *t )
 MEMSPACE
 char *asctime_r(tm_t *t, char *buf)
 {
-    // normaize tm_t before output
+// normaize tm_t before output
     (void) normalize(t,0);
 
     memset(buf,0,32);
@@ -382,7 +383,6 @@ char *asctime_r(tm_t *t, char *buf)
 }
 
 
-
 /// @brief Convert tm_t *t structure into POSIX asctime() ASCII string.
 ///
 /// @param[in] t: struct tm * time input.
@@ -394,7 +394,7 @@ MEMSPACE
 char *asctime(tm_t *t)
 {
     static char buf[32];
-    // acstime_r does tm_t normalization
+// acstime_r does tm_t normalization
     return( asctime_r(t,buf) );
 }
 
@@ -409,7 +409,7 @@ char *asctime(tm_t *t)
 MEMSPACE
 char *ctime_r(time_t *t, char *buf)
 {
-    // acstime_r does tm_t normalization
+// acstime_r does tm_t normalization
     return( asctime_r(localtime(t),buf) );
 }
 
@@ -424,7 +424,7 @@ MEMSPACE
 char *ctime(time_t *tp)
 {
     static char buf[32];
-    // acstime_r does tm_t normalization
+// acstime_r does tm_t normalization
     return( asctime_r( localtime(tp), buf) );
 }
 
@@ -479,16 +479,15 @@ tm_t *gmtime(time_t *tp)
 
 // FIXME localtime
 /* 
- The localtime function converts the calendar time timep to broken-down time representation, expressed relative to the users specified  timezone.   
+ The localtime function converts the calendar time timep to broken-down time representation, expressed relative to the users specified  timezone.
  The function  acts  as if it called tzset(3) and sets the external variables tzname with information about the current timezone, timezone with the difference
        between Coordinated Universal Time (UTC) and local standard time in seconds, and daylight to a nonzero value if daylight savings time rules apply  during
        some  part  of  the year.  The return value points to a statically allocated struct which might be overwritten by subsequent calls to any of the date and
-       time functions.  The localtime_r() function does the same, but stores the data in a user-supplied struct.  It need not set  tzname,  timezone,  and  dayâ€
+       time functions.  The localtime_r() function does the same, but stores the data in a user-supplied struct.  It need not set  tzname,  timezone,  and  dayâ
        light.
 */
 
-
-/// @brief Convert POSIX epoch time_t *tp into POSIX tm_t *result 
+/// @brief Convert POSIX epoch time_t *tp into POSIX tm_t *result
 ///   expressed as local time using timezone and DST corrections.
 ///
 /// @param[in] t: time_t * epoch time input.
@@ -512,6 +511,7 @@ tm_t *localtime_r(time_t *t, tm_t *result)
     return(result);
 }
 
+
 /// @brief Convert POSIX epoch time_t *tp into POSIX tm_t *result.
 ///
 /// @param[in] tp: time_t * epoch time input.
@@ -525,7 +525,8 @@ tm_t *localtime(time_t *tp)
     return( localtime_r(tp, &t) );
 }
 
-/// @brief convert tm_t structure to time_t local time epoch 
+
+/// @brief convert tm_t structure to time_t local time epoch
 ///
 /// @param[in] t: tm_t time input.
 ///
@@ -555,7 +556,7 @@ time_t tm2epoch( tm_t *t )
 
     int year = t->tm_year + 1900;
     int mon = t->tm_mon;                          // 0..11
-    int mday = t->tm_mday - 1;                        // 1..28,29,30,31
+    int mday = t->tm_mday - 1;                    // 1..28,29,30,31
     int hour = t->tm_hour;                        // 0..23
     int min = t->tm_min;                          // 0..59
     int sec = t->tm_sec;                          // 0..59
@@ -670,7 +671,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
 //      int tm_isdst;  /*<  DST.         [-1/0/1] */
 //  };
 
-    // Normalize t->tm_seconds
+// Normalize t->tm_seconds
     while(t->tm_sec >= 60)
     {
         ++t->tm_min;
@@ -682,7 +683,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
         t->tm_sec += 60;
     }
 
-    // Normalize t->tm_miniutes
+// Normalize t->tm_miniutes
     while(t->tm_min >= 60)
     {
         ++t->tm_hour;
@@ -694,7 +695,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
         t->tm_min += 60;
     }
 
-    // Normalize t->tm_hours
+// Normalize t->tm_hours
     while(t->tm_hour >= 24)
     {
         ++t->tm_mday;
@@ -706,7 +707,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
         t->tm_hour += 24;
     }
 
-    // Normalize t->tm_months
+// Normalize t->tm_months
     while(t->tm_mon >= 12)
     {
         ++t->tm_year;
@@ -718,13 +719,13 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
         t->tm_mon += 12;
     }
 
-    // Normalize t->tm_mday
-    // t->tm_mday is 1 based
+// Normalize t->tm_mday
+// t->tm_mday is 1 based
     while(t->tm_mday > Days_Per_Month(t->tm_mon,t->tm_year) )
     {
-        // subtract days in current t->tm_month
+// subtract days in current t->tm_month
         t->tm_mday -= Days_Per_Month(t->tm_mon,t->tm_year);
-        // Keep month normalized
+// Keep month normalized
         if(++t->tm_mon >= 12)
         {
             t->tm_mon -= 12;
@@ -732,27 +733,26 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
         }
     }
 
-    // t->tm_mday is 1 based
+// t->tm_mday is 1 based
     while(t->tm_mday < 1)
     {
-        // Keep month normalized
+// Keep month normalized
         if(--t->tm_mon < 0)
         {
             t->tm_mon += 12;
             --t->tm_year;
         }
-        // add days in previous mount
+// add days in previous mount
         t->tm_mday += Days_Per_Month(t->tm_mon,t->tm_year);
     }
 
-
-    // We can now set the remain values by converting to EPOCH and back again
-    // convert to EPOCH based seconds
+// We can now set the remain values by converting to EPOCH and back again
+// convert to EPOCH based seconds
     epoch = tm2epoch( t );
 #ifdef TIME_DEBUG
     printf("%10lu - epoch-1\n",epoch);
 #endif
-    // Normaize to local timezone with DST
+// Normaize to local timezone with DST
     offset = 0L;
     isdst = 0;
     if(normalize_to_timezone)
@@ -771,7 +771,7 @@ time_t normalize(tm_t *t, int normalize_to_timezone)
     printf("%10lu - epoch-2\n",epoch);
 #endif
 
-    // convert back to TM structure 
+// convert back to TM structure
     epoch = time_to_tm(epoch, offset, t);
     if(isdst)
         t->tm_isdst = 1;
@@ -909,6 +909,7 @@ int setdate (void)
     return(setdate_r(buf));
 }
 
+
 ///@brief Set date and time from string in this format "YYYY MM DD HH:MM:SS".
 ///
 ///@param[in] buf: Date string in this format "YYYY MM DD HH:MM:SS".
@@ -933,32 +934,32 @@ int setdate_r (char *buf)
         &tm.tm_min,
         &tm.tm_sec);
 #else
-    // Year
+// Year
     while(*buf == ' ')
         ++buf;
     tm.tm_year = strtol(buf,&buf,10);
 
-    // Month
+// Month
     while(*buf == ' ')
         ++buf;
     tm.tm_mon = strtol(buf,&buf,10);
 
-    // Day of Month
+// Day of Month
     while(*buf == ' ')
         ++buf;
     tm.tm_mday = strtol(buf,&buf,10);
 
-    // Hour
+// Hour
     while(*buf == ' ')
         ++buf;
     tm.tm_hour = strtol(buf,&buf,10);
 
-    // Minute
+// Minute
     if(*buf && (*buf == ' ' || *buf == ':'))
         ++buf;
     tm.tm_min = strtol(buf,&buf,10);
 
-    // Second
+// Second
     if(*buf && (*buf == ' ' || *buf == ':'))
         ++buf;
     tm.tm_sec = strtol(buf,&buf,10);
@@ -1010,10 +1011,11 @@ int setdate_r (char *buf)
     return(0);
 }
 
+
 /// @brief Calculate GMT seconds of DST transition given LOCAL time start / end time and DST flag
 ///
 /// @param[in] dst:    0 .. 1    DST needs to be applied to the arguments for DST caluclulations
-/// @param[in] epoch:  0 | epoch if non-zero - UTC epoch time used to obtain year of DST calculations 
+/// @param[in] epoch:  0 | epoch if non-zero - UTC epoch time used to obtain year of DST calculations
 /// @param[in] year:   0 | year  if non-zero - UTC year of DST calcululation, if year and epoch are used - ignore epoch
 /// @param[in] month:  0 .. 11,  local time month DST transition
 /// @param[in] weekno: 1 .. 4    localtime dayno count in this month
@@ -1044,49 +1046,48 @@ time_t find_dst(int dst, time_t epoch, int year, int month, int weekno, int dayn
     int32_t offset;
     int days;
 
-    // Get timezone and clock time
+// Get timezone and clock time
     gettimeofday(&tv, &tz);
 
-    // Local time offset in seconds
-    // Get local timezone offset in seconds without DST offset
+// Local time offset in seconds
+// Get local timezone offset in seconds without DST offset
     offset = tz.tz_minuteswest * 60UL;
-    // Add DST offset if DST end time includes DST offset
+// Add DST offset if DST end time includes DST offset
     if(dst)
         offset -= (60UL * 60UL);
 
     if(year)
     {
-        // Year is specified - use it
-        t.tm_year = year - 1900;   // 0 = 1900
+// Year is specified - use it
+        t.tm_year = year - 1900;                  // 0 = 1900
     }
     else
     {
-        // Otherwise, Calculate year from epoch or GMT time
+// Otherwise, Calculate year from epoch or GMT time
         if(!epoch)
             epoch = tv.tv_sec;
-        (void) time_to_tm(epoch, offset, &t);   
+        (void) time_to_tm(epoch, offset, &t);
     }
 
-    // Local time of DST
-    // We compute seconds for start of month in which DST happens
-    // Result from timegm() is in GMT
-    t.tm_mon = month - 1;   // 0..11
-    t.tm_mday = 1;          // 1..28,29,30,31
-    t.tm_hour = hour;       // 0 .. 23
-    t.tm_min =  0;          // 0..59
-    t.tm_sec =  0;          // 0..59
+// Local time of DST
+// We compute seconds for start of month in which DST happens
+// Result from timegm() is in GMT
+    t.tm_mon = month - 1;                         // 0..11
+    t.tm_mday = 1;                                // 1..28,29,30,31
+    t.tm_hour = hour;                             // 0 .. 23
+    t.tm_min =  0;                                // 0..59
+    t.tm_sec =  0;                                // 0..59
 
+// Adjust tm_t to localtime - we can not use normalize as it calls us
 
-    // Adjust tm_t to localtime - we can not use normalize as it calls us
-
-    // local seconds as timegm does not add offset
+// local seconds as timegm does not add offset
     dst_epoch = timegm(&t);
-    
-    // Add offset for localtime
+
+// Add offset for localtime
     dst_epoch += offset;
 
-    // Convert to back to tm_t structure with localtime offsets applied
-    (void) time_to_tm(dst_epoch, 0L, &t);   
+// Convert to back to tm_t structure with localtime offsets applied
+    (void) time_to_tm(dst_epoch, 0L, &t);
 
     dayno = dayno;
     weekno= weekno;
@@ -1102,9 +1103,10 @@ time_t find_dst(int dst, time_t epoch, int year, int month, int weekno, int dayn
         dst_epoch += 86400L;
     }
 
-    // Return GMT
+// Return GMT
     return(dst_epoch);
 }
+
 
 /// @brief Set DST start and end time for the given epoch year
 /// @param[in] 0 - or epoch seconds in GMT used to determin the year to aply DST in
@@ -1116,12 +1118,12 @@ void set_dst(time_t epoch)
     {
         tv_t tv;
         tz_t tz;
-        // Get timezone and clock time
+// Get timezone and clock time
         gettimeofday(&tv, &tz);
         epoch = tv.tv_sec;
     }
 
-    // Cache caclulations so we do not do them more often then once a day
+// Cache caclulations so we do not do them more often then once a day
     if(dst.epoch >= epoch)
     {
         if((dst.epoch - epoch) < 86400L)
@@ -1134,10 +1136,11 @@ void set_dst(time_t epoch)
     }
 
     dst.epoch = epoch;
-    // FIXME think of ways to cache this computation
+// FIXME think of ways to cache this computation
     dst.start = find_dst(0, epoch, 0,  3, 2, 0, 2);
     dst.end   = find_dst(1, epoch, 0, 11, 1, 0, 2);
 }
+
 
 /// @brief Test GMT epoch time to see if DST applies in a local timezone
 /// @param[in] epoch seconds in GMT
@@ -1153,6 +1156,7 @@ int is_dst(time_t epoch)
     return(0);
 }
 
+
 /// @brief print start/stop for DST as localtime for this year
 MEMSPACE
 void print_dst()
@@ -1160,6 +1164,7 @@ void print_dst()
     printf("DST START localtime: %s\n", ctime(&dst.start));
     printf("DST END   localtime: %s\n", ctime(&dst.end));
 }
+
 
 /// @brief print start/stop for DST as GMT for this year
 MEMSPACE
@@ -1169,6 +1174,7 @@ void print_dst_gmt()
     printf("DST END         GMT: %s\n", ctime_gm(&dst.end));
 
 }
+
 
 /// @brief  initialize system time - if we have an RTC use it
 /// @param[in] minwest: your time zone as minute west
@@ -1205,7 +1211,7 @@ void initialize_clock(int minwest)
 #else
     printf("NO RTC\n");
     seconds = 0;
-#endif  // RTC_SUPPORT
+#endif                                        // RTC_SUPPORT
     if(!seconds)
         printf("use setdate command to change time\n");
     tz.tz_minuteswest = minwest;
@@ -1216,6 +1222,7 @@ void initialize_clock(int minwest)
     ts.tv_nsec = 0L;
     clock_settime(0, (ts_t *) &ts);
 }
+
 
 /// @brief  Display system time and optionally RTC time
 ///
@@ -1251,11 +1258,10 @@ void display_clock()
     {
         printf("RTC read failed\n");
     }
-#endif  // RTC_SUPPORT
+#endif                                        // RTC_SUPPORT
 
     clock_gettime(0, (ts_t *) &ts);
     seconds = ts.tv_sec;
     printf("clk seconds: %lu\n",seconds);
     printf("clk time:    %s\n", asctime(gmtime(&seconds)));
 }
-

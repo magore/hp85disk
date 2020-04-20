@@ -17,7 +17,7 @@
 
 // Named address space
 #ifndef MEMSPACE
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 #endif
 
 // Weak attribute
@@ -26,13 +26,13 @@
 #endif
 
 #ifdef ESP8266
-    // FIXME
-    #define mmc_cli() /*< interrupt disable */
-    // FIXME
-    #define mmc_sei() /*< interrupt enable */
+// FIXME
+#define mmc_cli()                                 /*< interrupt disable */
+// FIXME
+#define mmc_sei()                                 /*< interrupt enable */
 #else
-    #define mmc_cli() cli() /*< interrupt disable */
-    #define mmc_sei() sei() /*< interrupt enable */
+#define mmc_cli() cli()                           /*< interrupt disable */
+#define mmc_sei() sei()                           /*< interrupt enable */
 #endif
 
 /* mmc_hal.c */
@@ -53,6 +53,4 @@ MEMSPACE void mmc_power_on ( void );
 MEMSPACE void mmc_power_off ( void );
 MEMSPACE int mmc_ins_status ( void );
 MEMSPACE int mmc_wp_status ( void );
-
-
 #endif                                            // _MMC_HAL_H_

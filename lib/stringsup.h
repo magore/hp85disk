@@ -1,5 +1,5 @@
 /**
- @file stringsup.h 
+ @file stringsup.h
 
  @brief Various string and character functions
 
@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Named address space
 #ifndef MEMSPACE
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 #endif
 
 // Weak attribute
@@ -39,8 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef islower
 #undef tolower
 #undef toupper
-
-
 
 /* stringsup.c */
 MEMSPACE int WEAK_ATR isdigit ( int c );
@@ -62,5 +60,4 @@ MEMSPACE int WEAK_ATR strcasecmp ( const char *str , const char *pat );
 MEMSPACE int WEAK_ATR strncasecmp ( const char *str , const char *pat , size_t len );
 MEMSPACE char *strnalloc ( char *str , int len );
 MEMSPACE char *stralloc ( char *str );
-
 #endif

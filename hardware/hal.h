@@ -9,20 +9,19 @@
   This is free software: you can redistribute it and/or modify it under the
   terms of the GNU General Public License as published by the Free Software
   Foundation, either version 3 of the License, or (at your option)
-  any later version.
-  
-  This software is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #ifndef _INCLUDE_HAL_H_
 #define _INCLUDE_HAL_H_
-
 
 // =============================================
 ///@brief AVR GPIO MACROs
@@ -44,13 +43,12 @@
 
 #define LED1     GPIO_C6
 ///@brief SS MUST be an output in prevent SPI slave mode when the pin is low
-/// SS is set as an output in SPI_init() 
+/// SS is set as an output in SPI_init()
 #define SS       GPIO_B4
 
 #define LED2     GPIO_B4
 
-#define CD       GPIO_C7 /* Card Detect */
-
+#define CD       GPIO_C7                          /* Card Detect */
 
 /// @brief GPIO MACRO notes
 ///   We do not use {} around the macro statements so they behave like functions.
@@ -69,16 +67,16 @@
 #define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR(((pin)>>3),(base) )
 
 /// @brief program SFR to permit normal gpio input/output
-#define GPIO_PIN_MODE(pin)      /* FIXME TODO */
+#define GPIO_PIN_MODE(pin)                        /* FIXME TODO */
 
 /// @brief program input mode
-#define GPIO_PIN_DIR_IN(pin) 	BIT_CLR(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7)) 
-#define GPIO_PIN_TST(pin)   	BIT_TST(GPIO_PIN2SFR(pin,PIN_BASE), ((pin) & 7))
-#define GPIO_PIN_RD(pin)    	(GPIO_PIN_DIR_IN(pin), GPIO_PIN_TST(pin))
+#define GPIO_PIN_DIR_IN(pin)    BIT_CLR(GPIO_PIN2SFR(pin,DDR_BASE), ((pin) & 7))
+#define GPIO_PIN_TST(pin)       BIT_TST(GPIO_PIN2SFR(pin,PIN_BASE), ((pin) & 7))
+#define GPIO_PIN_RD(pin)        (GPIO_PIN_DIR_IN(pin), GPIO_PIN_TST(pin))
 
 /// @brief program output latch
-#define GPIO_PIN_LATCH_LOW(pin) BIT_CLR(GPIO_PIN2SFR(pin,PORT_BASE), ((pin) & 7)) 
-#define GPIO_PIN_LATCH_HI(pin)  BIT_SET(GPIO_PIN2SFR(pin,PORT_BASE), ((pin) & 7)) 
+#define GPIO_PIN_LATCH_LOW(pin) BIT_CLR(GPIO_PIN2SFR(pin,PORT_BASE), ((pin) & 7))
+#define GPIO_PIN_LATCH_HI(pin)  BIT_SET(GPIO_PIN2SFR(pin,PORT_BASE), ((pin) & 7))
 #define GPIO_PIN_LATCH_RD(pin)  BIT_TST(GPIO_PIN2SFR(pin,PORT_BASE), ((pin) & 7))
 
 /// @brief program output mode
@@ -93,7 +91,7 @@
 // #define GPIO_PIN_FLOAT_UP(pin)  (GPIO_PIN_DIR_IN(pin),GPIO_PIN_LATCH_HI(pin))
 
 #define GPIO_PORT_DIR_OUT(port) (GPIO_PORT2SFR(port,DDR_BASE) = 0xff)
-#define GPIO_PORT_DIR_IN(port) 	(GPIO_PORT2SFR(port,DDR_BASE) = 0x00)
+#define GPIO_PORT_DIR_IN(port)  (GPIO_PORT2SFR(port,DDR_BASE) = 0x00)
 
 // GPIB
 #define GPIO_PORT_PINS_RD(port)  (GPIO_PORT2SFR(port,PIN_BASE) & 0xff)
@@ -102,9 +100,8 @@
 #define GPIO_PORT_LATCH_WR(port,val)  (GPIO_PORT2SFR(port,PORT_BASE) = (val))
 #define GPIO_PORT_LATCH_RD(port)       GPIO_PORT2SFR(port,PORT_BASE)
 
-#define GPIO_PORT_RD(port)    	(GPIO_PORT_DIR_IN(port), GPIO_PORT_PINS_RD(port))
+#define GPIO_PORT_RD(port)      (GPIO_PORT_DIR_IN(port), GPIO_PORT_PINS_RD(port))
 #define GPIO_PORT_WR(port,val)  (GPIO_PORT_DIR_OUT(port), GPIO_PORT_LATCH_WR(port,val))
-
 
 ///  @brief Notes about AVR and PIC port BIT differences.
 ///  AVR                             PIC
@@ -113,29 +110,26 @@
 ///  val=PORT, reads LATCH           val=PORT reads PIN state
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
 
-
-
 /*
  FIXME make sure these OLD AVR definitions are not being used
-	GPIO_PIN_DIR_IN(a)
-	GPIO_PIN_DIR_OUT(a)
-	GPIO_PIN_LATCH_LOW(a)
-	GPIO_PIN_LATCH_HI(a)
-	GPIO_PIN_LATCH_RD(a)
-	GPIO_PIN_RD(a)
-	GPIO_PIN_LATCH_HI(a)
-	GPIO_PIN_LATCH_LOW(a)
-	IO_HI(a)
-	IO_LOW(a)
-	IO_RD(a)
-	GPIO_PIN_FLOAT(a)
-	GPIO_PIN_LATCH_RD(a)
-	GPIO_PIN_TST(a)
-	GPIO_PIN_LATCH_LOW(a)
-	GPIO_PIN_LATCH_HI(a)
+    GPIO_PIN_DIR_IN(a)
+    GPIO_PIN_DIR_OUT(a)
+    GPIO_PIN_LATCH_LOW(a)
+    GPIO_PIN_LATCH_HI(a)
+    GPIO_PIN_LATCH_RD(a)
+    GPIO_PIN_RD(a)
+    GPIO_PIN_LATCH_HI(a)
+    GPIO_PIN_LATCH_LOW(a)
+    IO_HI(a)
+IO_LOW(a)
+IO_RD(a)
+GPIO_PIN_FLOAT(a)
+GPIO_PIN_LATCH_RD(a)
+GPIO_PIN_TST(a)
+GPIO_PIN_LATCH_LOW(a)
+GPIO_PIN_LATCH_HI(a)
 */
-
-#endif	// AVR
+#endif                                            // AVR
 // =============================================
 
 // =============================================
@@ -169,7 +163,6 @@
 #define GPIO_PIN_LOW(pin)        GPIO_PIN_LATCH_LOW(pin), GPIO_PIN_DIR_OUT(pin)
 #define GPIO_PIN_WR(pin,val)    (val) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin)
 
-
 // =============================================
 /// @brief GPIO16 pin control
 // GPIO pin 16 is special - it uses the RTC GPIO pin
@@ -184,9 +177,9 @@
 
 /// @brief program output latch
 #define GPIO16_PIN_LATCH_LOW() \
-	WRITE_PERI_REG(RTC_GPIO_OUT, (READ_PERI_REG(RTC_GPIO_OUT)&(uint32_t)0xfffffffe) )
-#define GPIO16_PIN_LATCH_HI()  \
-	WRITE_PERI_REG(RTC_GPIO_OUT, (READ_PERI_REG(RTC_GPIO_OUT)&(uint32_t)0xfffffffe)|(uint32_t)1)
+WRITE_PERI_REG(RTC_GPIO_OUT, (READ_PERI_REG(RTC_GPIO_OUT)&(uint32_t)0xfffffffe) )
+#define GPIO16_PIN_LATCH_HI() \
+WRITE_PERI_REG(RTC_GPIO_OUT, (READ_PERI_REG(RTC_GPIO_OUT)&(uint32_t)0xfffffffe)|(uint32_t)1)
 #define GPIO16_LATCH_RD()  ( READ_PERI_REG(RTC_GPIO_OUT) & 1 )
 
 /// @brief program output mode
@@ -201,10 +194,8 @@
 void MEMSPACE gpio_pin_sfr_mode ( int pin );
 void MEMSPACE gpio16_pin_dir ( uint8_t out );
 // =============================================
-
-#endif	// ESP8266
+#endif                                            // ESP8266
 // =============================================
-
 
 /* hal.c */
 void gpio_pin_sfr_mode ( int pin );
@@ -227,6 +218,4 @@ void spi_TXRX_buffer ( const uint8_t *data , int count );
 uint8_t spi_RX ( void );
 void spi_TX ( uint8_t data );
 uint8_t spi_TXRX ( uint8_t data );
-
-
-#endif    /* _INCLUDE_HAL_H_ */
+#endif                                            /* _INCLUDE_HAL_H_ */

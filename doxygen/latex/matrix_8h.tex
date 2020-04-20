@@ -47,7 +47,7 @@ typedef struct \hyperlink{struct__mat}{\+\_\+mat} \hyperlink{matrix_8h_aff180987
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_a7d4a273868c8ba43d51338aee9310b00}{Invert} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
 \begin{DoxyCompactList}\small\item\em Calculate Matrix Inverse. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_a2217661f847795248eb975a64539488e}{Pseudo\+Invert} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA)
-\begin{DoxyCompactList}\small\item\em Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT Ã— A) Ã— AT. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT Ã A) Ã AT. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_a5539a20ee0f152e7f1e38d36b3dfda20}{Mat\+Mul} (\hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatA, \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} MatB)
 \begin{DoxyCompactList}\small\item\em Multiply two matrix. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{matrix_8h_aff180987da2be77c8864e8c906bf04e6}{mat\+\_\+t} \hyperlink{matrix_8h_ad75902878173dfc33c227a75862c9c10}{Mat\+Read} (char $\ast$name)
@@ -104,7 +104,7 @@ Adjugate or A
 \end{DoxyReturn}
 
 
-Definition at line 325 of file matrix.\+c.
+Definition at line 333 of file matrix.\+c.
 
 
 
@@ -137,7 +137,7 @@ Determinate $\ast$ (-\/1)exp(row + col)
 \end{DoxyReturn}
 
 
-Definition at line 310 of file matrix.\+c.
+Definition at line 317 of file matrix.\+c.
 
 
 
@@ -167,7 +167,7 @@ submatrix
 \end{DoxyReturn}
 
 
-Definition at line 212 of file matrix.\+c.
+Definition at line 216 of file matrix.\+c.
 
 
 
@@ -196,7 +196,7 @@ Determinant or 0
 \end{DoxyReturn}
 
 
-Definition at line 350 of file matrix.\+c.
+Definition at line 358 of file matrix.\+c.
 
 
 
@@ -225,7 +225,7 @@ Inverse of MatA or error
 \end{DoxyReturn}
 
 
-Definition at line 399 of file matrix.\+c.
+Definition at line 408 of file matrix.\+c.
 
 
 
@@ -277,7 +277,7 @@ float $\ast$$\ast$
 \end{DoxyReturn}
 
 
-Definition at line 105 of file matrix.\+c.
+Definition at line 106 of file matrix.\+c.
 
 \mbox{\Hypertarget{matrix_8h_a2b9e8a544e7c2b04934737a30a19c6f6}\label{matrix_8h_a2b9e8a544e7c2b04934737a30a19c6f6}} 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Free@{Mat\+Free}}
@@ -296,7 +296,7 @@ Free a matrix.
 \end{DoxyParams}
 
 
-Definition at line 116 of file matrix.\+c.
+Definition at line 117 of file matrix.\+c.
 
 
 
@@ -321,7 +321,7 @@ Load a matrix.
 \end{DoxyParams}
 
 
-Definition at line 152 of file matrix.\+c.
+Definition at line 154 of file matrix.\+c.
 
 
 
@@ -346,7 +346,7 @@ Load a square matrix.
 \end{DoxyParams}
 
 
-Definition at line 176 of file matrix.\+c.
+Definition at line 179 of file matrix.\+c.
 
 
 
@@ -363,7 +363,7 @@ Referenced by Mat\+Write().
 Multiply two matrix. 
 
 \begin{DoxySeeAlso}{See also}
-\href{https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Matrix\+\_\+multiplication\+\_\+algorithm} C = AB, A is n Ã— m matrix, B is m Ã— p matrix C result n Ã— p matrix (dimensions row size of A, column size of B) Cij = Sum(k=1 .. m) Aik $\ast$ Bik 
+\href{https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm}{\tt https\+://en.\+wikipedia.\+org/wiki/\+Matrix\+\_\+multiplication\+\_\+algorithm} C = AB, A is n Ã m matrix, B is m Ã p matrix C result n Ã p matrix (dimensions row size of A, column size of B) Cij = Sum(k=1 .. m) Aik $\ast$ Bik 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
@@ -377,7 +377,7 @@ MatA $\ast$ MatB Result dimensions is (row size of A, column size of B)
 \end{DoxyReturn}
 
 
-Definition at line 490 of file matrix.\+c.
+Definition at line 500 of file matrix.\+c.
 
 
 
@@ -400,7 +400,7 @@ Print a matrix.
 \end{DoxyParams}
 
 
-Definition at line 187 of file matrix.\+c.
+Definition at line 190 of file matrix.\+c.
 
 
 
@@ -426,7 +426,7 @@ mat\+\_\+t matrix data Note\+: on error rows and cols = 0, data = N\+U\+LL;
 \end{DoxyReturn}
 
 
-Definition at line 527 of file matrix.\+c.
+Definition at line 538 of file matrix.\+c.
 
 \mbox{\Hypertarget{matrix_8h_a6b1e8be5bc0c3a79a81e4254bbd8e6a5}\label{matrix_8h_a6b1e8be5bc0c3a79a81e4254bbd8e6a5}} 
 \index{matrix.\+h@{matrix.\+h}!Mat\+Write@{Mat\+Write}}
@@ -450,7 +450,7 @@ status 1 = success, 0 = fail
 \end{DoxyReturn}
 
 
-Definition at line 605 of file matrix.\+c.
+Definition at line 617 of file matrix.\+c.
 
 \mbox{\Hypertarget{matrix_8h_a37d07d9a07bb5ed06e22ac723e7cd269}\label{matrix_8h_a37d07d9a07bb5ed06e22ac723e7cd269}} 
 \index{matrix.\+h@{matrix.\+h}!Minor@{Minor}}
@@ -479,7 +479,7 @@ Determinate
 \end{DoxyReturn}
 
 
-Definition at line 291 of file matrix.\+c.
+Definition at line 297 of file matrix.\+c.
 
 
 
@@ -493,7 +493,7 @@ Referenced by Cofactor().
 
 
 
-Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT Ã— A) Ã— AT. 
+Calculate Pseudo Matrix Inverse Used for least square fitting of non square matrix with excess solutions Pseudo Inverse matrix(\+A) = 1/(AT Ã A) Ã AT. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -505,7 +505,7 @@ Pseudo Inverse of MatA or error
 \end{DoxyReturn}
 
 
-Definition at line 456 of file matrix.\+c.
+Definition at line 466 of file matrix.\+c.
 
 
 
@@ -534,7 +534,7 @@ Paul Bourke 2002 Test is a matrix is square
 \end{DoxyReturn}
 
 
-Definition at line 37 of file matrix.\+c.
+Definition at line 36 of file matrix.\+c.
 
 \mbox{\Hypertarget{matrix_8h_a69e8069902ef085b6c19b391f3379492}\label{matrix_8h_a69e8069902ef085b6c19b391f3379492}} 
 \index{matrix.\+h@{matrix.\+h}!Transpose@{Transpose}}
@@ -556,7 +556,7 @@ Transpose matrix
 \end{DoxyReturn}
 
 
-Definition at line 263 of file matrix.\+c.
+Definition at line 268 of file matrix.\+c.
 
 
 

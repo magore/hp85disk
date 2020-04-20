@@ -9,15 +9,14 @@
  @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
- @see http://github.com/magore/hp85disk
- @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+@see http://github.com/magore/hp85disk
+@see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
- @par Based on work by Anders Gustafsson.
+@par Based on work by Anders Gustafsson.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+@par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
 */
-
 
 #include "user_config.h"
 
@@ -56,37 +55,36 @@
 ///  L    Buffered Read             0x05    2       A33     Y
 ///  L    Request Physical Address  0x14    2       A21     Y 0x68
 ///             See Send Address A20
-/// 
+///
 ///  0x6B Command Op Codes          OP      bytes
 ///  L    Buffered Read Verify      0x05    2       A37     Y
 ///  L    ID Triggered Read         0x06    2       A41     Y
-/// 
+///
 ///  0x6C Command Op Codes          OP      bytes
 ///  L    Unbuffered Read Verify    0x05    2       A38     Y
 ///  L    Request Physical Address  0x14    2       A21     Y 0x68
 ///  L    Format Request            0x18    2       A50     N
 ///  L    Door Lock                 0x19    2       A30     N
 ///  L    Door Unlock               0x1A    2       A31     N
-/// 
+///
 ///  0x6F Command Op Codes          OP      bytes
 ///  L    Download Controller       ---     1..256  A26     N
-/// 
+///
 ///  0x70 Command Op Codes          OP      bytes
 ///  L    HP-300 Clear              ---     1       A23     N
 ///  T    DSJ                       ---     1       A11     N
-/// 
+///
 ///  0x77 Command Op Codes          OP      bytes
 ///  T/L  HP-IB CRC                 ---     ---     A30     N
-/// 
+///
 ///  0x7E Command Op Codes          OP      bytes
 ///  L    Write Loopback Record     ---     1..256  A25     N
 ///  T    Read Loopback Record      ---     1..256  A14     N
-/// 
+///
 ///  0x7F Command Op Codes          OP      bytes
 ///  T    Read Self Test Results    ---     2       A13     N
 ///  L    Initiat Self Test         ---     2       A24     N
 /// @endverbatim
-
 
 /// @verbatim
 /// Secondary_Commands and OP Code processing
@@ -111,7 +109,7 @@
 /// L    Request Logical Address    0x14    2       A20     Y 0x68
 /// L   End                         0x15    2       A29     N
 /// T    Send Status or Address         ----    4       A20     N
-///         Execute of all Address and Status Requests 
+///         Execute of all Address and Status Requests
 ///         (Y 0x68)
 ///
 /// 0x69 Command Op Codes           OP      bytes
@@ -157,7 +155,6 @@
 extern uint8_t talking;
 extern uint8_t listening;
 
-
 enum AMIGO_states
 {
     AMIGO_IDLE = 0,
@@ -189,7 +186,7 @@ void amigo_init()
             memset(AMIGOs->status,0,sizeof(AMIGOs->status));
             memset(AMIGOs->logical_address,0,sizeof(AMIGOs->logical_address));
 
-            ///TODO we do NOT support multiple units yet
+///TODO we do NOT support multiple units yet
             AMIGOs->unitNO = 0;
 
             AMIGOs->sector = 0;
@@ -199,7 +196,7 @@ void amigo_init()
             AMIGOs->dsj = 2;
             AMIGOs->Errors = 0;
 
-            /// @todo  verify that we always want PPR disabled
+/// @todo  verify that we always want PPR disabled
             gpib_disable_PPR(AMIGOp->HEADER.PPR);
         }
     }
@@ -216,7 +213,8 @@ int amigo_request_logical_address()
 {
 
     AMIGOs->logical_address[0] = 0xff & (AMIGOs->cyl >> 8);
-    AMIGOs->logical_address[1] = 0xff & (AMIGOs->cyl); //LSB
+                                                  //LSB
+    AMIGOs->logical_address[1] = 0xff & (AMIGOs->cyl);
     AMIGOs->logical_address[2] = 0xff & (AMIGOs->head);
     AMIGOs->logical_address[3] = 0xff & (AMIGOs->sector);
     return(0);
@@ -236,40 +234,39 @@ int amigo_request_status()
     if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
         printf("[AMIGO request status]\n");
 #endif
-    AMIGOs->status[0] = 0x00;                       // Status 1
-    ///TODO we do NOT support multiple units yet
-    AMIGOs->status[1] = AMIGOs->unitNO;             // Unit
-    AMIGOs->status[2] = 0x0d;                       // Status 2 (0110 = hp format) << 1, 1=HP9121
-    AMIGOs->status[3] = 0x00;                       //
-
+    AMIGOs->status[0] = 0x00;                     // Status 1
+///TODO we do NOT support multiple units yet
+    AMIGOs->status[1] = AMIGOs->unitNO;           // Unit
+    AMIGOs->status[2] = 0x0d;                     // Status 2 (0110 = hp format) << 1, 1=HP9121
+    AMIGOs->status[3] = 0x00;                     //
 
     if(mmc_wp_status())
     {
-        AMIGOs->status[3] |= 0x40;                  // Write protect 0x40, reserved = 0x20
-        AMIGOs->status[3] |= 0x20;                  // reserved = 0x20 ???
+        AMIGOs->status[3] |= 0x40;                // Write protect 0x40, reserved = 0x20
+        AMIGOs->status[3] |= 0x20;                // reserved = 0x20 ???
     }
 
     if(AMIGOs->dsj == 2)
     {
-        AMIGOs->status[0] = 0b00010011;             // S1 error power on
-        AMIGOs->status[3] |= 0x08;                  // F bit, power up
+        AMIGOs->status[0] = 0b00010011;           // S1 error power on
+        AMIGOs->status[3] |= 0x08;                // F bit, power up
     }
     else if(AMIGOs->Errors || AMIGOs->dsj == 1)
     {
-        //FIXME added invalid unit error
+//FIXME added invalid unit error
         if(AMIGOs->Errors & ERR_UNIT)
-            AMIGOs->status[0] = 0b00010011;         // Unit Error
+            AMIGOs->status[0] = 0b00010011;       // Unit Error
         else if(AMIGOs->Errors & ERR_GPIB)
-            AMIGOs->status[0] = 0b00001010;         // S1 error I/O error
+            AMIGOs->status[0] = 0b00001010;       // S1 error I/O error
         else if(AMIGOs->Errors & ERR_DISK)
-            AMIGOs->status[3] |= 0x03;              // Do disk in drive
+            AMIGOs->status[3] |= 0x03;            // Do disk in drive
         else if(AMIGOs->Errors & ERR_WRITE)
-            AMIGOs->status[0] = 0b00010011;         // S1 error write error
+            AMIGOs->status[0] = 0b00010011;       // S1 error write error
         else if(AMIGOs->Errors & ERR_SEEK)
-            AMIGOs->status[3] |= 0x04;              // Seek
+            AMIGOs->status[3] |= 0x04;            // Seek
 
-        AMIGOs->status[3] |= 0x10;                  // E bit hardware failure
-        AMIGOs->status[2] |= 0x80;                  // Bit 15
+        AMIGOs->status[3] |= 0x10;                // E bit hardware failure
+        AMIGOs->status[2] |= 0x80;                // Bit 15
     }
 
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -434,7 +431,7 @@ int amigo_increment(char *msg)
 /// @param[in] p:  AMIGOStateType (Current Disk Position) pointer.
 ///
 /// @return 0 ok
-/// @return 1 error 
+/// @return 1 error
 
 int amigo_seek( AMIGOStateType *p)
 {
@@ -539,7 +536,7 @@ int amigo_format(uint8_t db)
 #endif
     while( 1 )
     {
-        ///@brief computer logical block
+///@brief computer logical block
         pos = amigo_chs_to_logical(AMIGOs, "Format");
 
         len = dbf_open_write(AMIGOp->HEADER.NAME,
@@ -553,10 +550,10 @@ int amigo_format(uint8_t db)
             break;
         }
 
-        ///@brief increment sector/cyl do not display at overflow (expected)
+///@brief increment sector/cyl do not display at overflow (expected)
         if( amigo_increment(NULL) )
         {
-            // reset sector,head,cyl
+// reset sector,head,cyl
             AMIGOs->sector = 0;
             AMIGOs->head = 0;
             AMIGOs->cyl = 0;
@@ -796,9 +793,9 @@ int amigo_cmd_clear()
     AMIGOs->head = 0;
     AMIGOs->cyl = 0;
 /// @todo FIXME
-/// 
+///
 ///  Clear the DSJ byte that might be 2 after powerup
-/// 
+///
     AMIGOs->dsj = 0;
     AMIGOs->Errors =0;
 
@@ -869,6 +866,7 @@ void amigo_check_unit(uint8_t unit)
         AMIGOs->Errors |= ERR_UNIT;
 }
 
+
 /// @brief  Amigo Command and OP Code Processing functions.
 ///
 /// - We disbale PPR as soon as a valide command is decoded.
@@ -882,7 +880,7 @@ void amigo_check_unit(uint8_t unit)
 /// - Unknown OP Code processing rules.
 ///  - Skip the remaining codes, Wait for Report Phase.
 /// - We enable PPR on exit.
-/// 
+///
 /// @param[in] secondary: command
 ///
 /// @return  0 on sucess
@@ -949,7 +947,6 @@ int Amigo_Command( int secondary )
 
     gpib_disable_PPR(AMIGOp->HEADER.PPR);
 
-
 ///  Note: the function will "unread" any commands and return
 ///  All Data MUST have EOI
 
@@ -989,16 +986,16 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Cold Load Read Command]\n");
 #endif
-            ///TODO we do NOT support multiple units yet
+///TODO we do NOT support multiple units yet
             AMIGOs->unitNO = 0;
             AMIGOs->dsj = 0;
             AMIGOs->Errors = 0;
-            /// Fill in temparary address
+/// Fill in temparary address
             tmp.cyl = 0;
             tmp.head = ( (0xff & *ptr) >> 6) & 0x03;
             tmp.sector = 0x3f & *ptr;
             ++ptr;
-            //update to real address on sucess
+//update to real address on sucess
             amigo_seek((AMIGOStateType *) &tmp);
             AMIGOs->state = AMIGO_COLD_LOAD_READ;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1007,7 +1004,7 @@ int Amigo_Command( int secondary )
         else if(op == 0x02 && len == 5)
         {
 ///  Reference: A27
-/// @brief 
+/// @brief
 ///  Seek 1 byte cylinder
 
             AMIGOStateType tmp;
@@ -1015,15 +1012,15 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Seek len=5]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
 
-            /// Fill in temparary address
+/// Fill in temparary address
             tmp.cyl = 0xff & *ptr++;
             tmp.head = 0xff & *ptr++;
             tmp.sector = 0xff & *ptr++;
-            //update to real address on sucess
+//update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
@@ -1031,7 +1028,7 @@ int Amigo_Command( int secondary )
         else if(op == 0x02 && len == 6)
         {
 ///  Reference: A27
-/// @brief 
+/// @brief
 ///  Seek 2 byte cylinder
 
             AMIGOStateType tmp;
@@ -1039,15 +1036,15 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Seek len=6]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
-            /// Fill in temparary address
+/// Fill in temparary address
             tmp.cyl = (0xff & *ptr++) << 8;       // MSB
             tmp.cyl |= (0xff & *ptr++);           // LSB
             tmp.head = 0xff & *ptr++;
             tmp.sector = 0xff & *ptr++;
-            //update to real address on sucess
+//update to real address on sucess
             amigo_seek((AMIGOStateType *)&tmp);
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
@@ -1059,8 +1056,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Request Status Buffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             amigo_request_status();
             AMIGOs->state = AMIGO_REQUEST_STATUS_BUFFERED;
@@ -1073,8 +1070,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Read Unbuffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_READ_UNBUFFERED;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1087,8 +1084,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Verify]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             sectors = (0xff & *ptr++) << 8;
             sectors |= (0xff & *ptr++);
@@ -1100,8 +1097,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Write Unbuffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_WRITE_UNBUFFERED;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1113,8 +1110,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Initialize Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_INITIALIZE;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1140,8 +1137,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Write Buffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_WRITE_BUFFERED;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1156,8 +1153,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Request Status Unbuffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_REQUEST_STATUS_UNBUFFERED;
             amigo_request_status();
@@ -1169,8 +1166,8 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Read Buffered Command]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_READ_BUFFERED;
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
@@ -1188,11 +1185,11 @@ int Amigo_Command( int secondary )
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                 printf("[AMIGO Format]\n");
 #endif
-            ///TODO we do not support multiple units yet
-            ///FIXME Added unit error
+///TODO we do not support multiple units yet
+///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
-            ++ptr; // override not used
-            ++ptr; // interleave not used
+            ++ptr;                                // override not used
+            ++ptr;                                // interleave not used
             db = 0xff & *ptr++;
             amigo_format(db);
             return(status & ERROR_MASK);
@@ -1215,7 +1212,6 @@ int Amigo_Command( int secondary )
 /// @return  0 on sucess
 /// @return or GPIB error flags on fail
 /// @see  gpib.h ERROR_MASK defines for a full list)
-
 
 int Amigo_Execute( int secondary )
 {
@@ -1337,11 +1333,11 @@ int AMIGO_COMMANDS(uint8_t ch)
 
         if(talking == UNT && AMIGO_is_MLA(listening))
         {
-            // printf("AMIGO COMMANDS %02XH NO TALK ADDRESS!\n", ch);
+// printf("AMIGO COMMANDS %02XH NO TALK ADDRESS!\n", ch);
         }
         if(listening == 0 && AMIGO_is_MTA(talking))
         {
-            // printf("AMIGO COMMANDS %02XH NO LISTEN ADDRESS!\n", ch);
+// printf("AMIGO COMMANDS %02XH NO LISTEN ADDRESS!\n", ch);
         }
 
         if(ch == 0x60 && (AMIGO_is_MTA(talking) || AMIGO_is_MLA(listening)) )
@@ -1354,19 +1350,19 @@ int AMIGO_COMMANDS(uint8_t ch)
             return (Amigo_Execute(ch) );
         }
 
-        if(ch == 0x68 && AMIGO_is_MLA(listening) ) // Single byte command
+        if(ch == 0x68 && AMIGO_is_MLA(listening) )// Single byte command
         {
             return (Amigo_Command(ch) );
         }
-        if(ch == 0x69 && AMIGO_is_MLA(listening) ) // Single byte command
+        if(ch == 0x69 && AMIGO_is_MLA(listening) )// Single byte command
         {
             return (Amigo_Command(ch) );
         }
-        if(ch == 0x6a && AMIGO_is_MLA(listening) ) // Single byte command
+        if(ch == 0x6a && AMIGO_is_MLA(listening) )// Single byte command
         {
             return (Amigo_Command(ch) );
         }
-        if(ch == 0x6c && AMIGO_is_MLA(listening) ) // Single byte command
+        if(ch == 0x6c && AMIGO_is_MLA(listening) )// Single byte command
         {
             return (Amigo_Command(ch) );
         }
@@ -1381,9 +1377,9 @@ int AMIGO_COMMANDS(uint8_t ch)
         }
         if(ch == 0x70 && AMIGO_is_MLA(listening))
         {
-            // NOP
+// NOP
         }
     }
     return(0);
 }
-#endif //ifdef AMIGO
+#endif                                            //ifdef AMIGO

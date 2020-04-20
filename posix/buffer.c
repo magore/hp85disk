@@ -1,7 +1,6 @@
 /**
  @file buffer.h
 
-
  @brief character read buffering wrappers for FatFS
  WHY? Character at a time operation is in FatFS are VERY slow
 
@@ -9,8 +8,8 @@
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for specific Copyright details
 
- @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
+@par You are free to use this code under the terms of GPL
+please retain a copy of this notice in any code you use it in.
 
 This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -26,7 +25,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "user_config.h"
 #include "fatfs.h"
 #include "posix.h"
@@ -35,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///@brief FatFS does not have a f_fgetc() function
 /// Using f_read() of just 1 byte is VERY VERY SLOW
 
-    
 ///@brief buffered read open
 ///@param[in] name: file name
 ///@param[in] buf:  buffer to use when reading
@@ -50,7 +47,7 @@ buffer_t *buffer_read_open(char *name, uint8_t *buf, int size)
 
     p->buf  = buf;
 
-    ///@brief Read and process into image file
+///@brief Read and process into image file
     p->fp = fopen(name,"rb");
     if(p->fp == NULL)
     {
@@ -83,6 +80,7 @@ void buffer_read_close(buffer_t *p)
     p->ungetc = 0;
 }
 
+
 ///@brief buffered ungetc
 ///@param[in] p: buffer structure ppointer
 ///@param[in] c: character to unget
@@ -93,10 +91,10 @@ void buffer_ungetc(buffer_t *p, int c)
     p->ungetc = c;
 }
 
-    
+
 ///@brief buffered getc
 ///@param[in] p: buffer structure ppointer
-///@return character or EOF 
+///@return character or EOF
 int buffer_getc(buffer_t *p)
 {
     int size;
@@ -107,7 +105,7 @@ int buffer_getc(buffer_t *p)
         p->ungetf = 0;
         return(p->ungetc);
     }
-    // Read a new block
+// Read a new block
     if(p->len < 1)
     {
         p->ind = 0;
@@ -137,7 +135,7 @@ uint8_t *buffer_gets(uint8_t *str, int size, buffer_t *p)
     int next;
     int ind = 0;
 
-    // leave room for EOS
+// leave room for EOS
     while(ind < size)
     {
         c = buffer_getc(p);
@@ -150,7 +148,7 @@ uint8_t *buffer_gets(uint8_t *str, int size, buffer_t *p)
             }
             break;
         }
-        // CR NL is end of line
+// CR NL is end of line
         if(c == '\r')
         {
             next = buffer_getc(p);
@@ -159,7 +157,7 @@ uint8_t *buffer_gets(uint8_t *str, int size, buffer_t *p)
             buffer_ungetc(p,next);
             break;
         }
-        // NL is end of line
+// NL is end of line
         if(c == '\n')
             break;
         str[ind++] = c;

@@ -30,15 +30,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Define what memory space the function is located in
 // With ESP8266 we can use this for cached and non-cached code space
 #ifndef MEMSPACE
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 #endif
 
 // With AVR CPU types we can make this a 24bit pointer
 #ifndef AVR
-#define __memx /**/
+#define __memx                                    /**/
 #endif
 
-// Weak attribute 
+// Weak attribute
 //   Allow functions defined here to be overridden by an external ones
 
 #ifndef WEAK_ATR
@@ -65,7 +65,6 @@ MEMSPACE double scale10 ( double num , int *exp );
 MEMSPACE double strtod ( const char *nptr , char **endptr );
 MEMSPACE double atof ( const char *str );
 
-
 // =============================================
 
 #undef atof
@@ -87,16 +86,18 @@ typedef struct _printf_t
 } printf_t;
 
 ///@brief format specifier flags
-typedef union {
-    struct {
-      unsigned short width : 1;
-      unsigned short prec : 1;
-      unsigned short plus : 1;
-      unsigned short left : 1;
-      unsigned short space : 1;
-      unsigned short zero : 1;
-      unsigned short neg: 1;
-      unsigned short alt: 1;
+typedef union
+{
+    struct
+    {
+        unsigned short width : 1;
+        unsigned short prec : 1;
+        unsigned short plus : 1;
+        unsigned short left : 1;
+        unsigned short space : 1;
+        unsigned short zero : 1;
+        unsigned short neg: 1;
+        unsigned short alt: 1;
     } b;
     unsigned short all;
 } f_t;
@@ -128,8 +129,6 @@ MEMSPACE int sprintf_P ( char *str , __memx const char *format , ...);
 MEMSPACE int printf_P ( __memx const char *format , ...);
 #endif
 
-
 /* sscanf.c */
 int sscanf ( const char *strp , const char *fmt , ...);
-
-#endif  // ifndef _MATHIO_H_
+#endif                                            // ifndef _MATHIO_H_

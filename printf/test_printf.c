@@ -38,13 +38,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "mathio.h"
 
-
 /// @brief compare significant digits and exponennt of floating point numbers
 /// We match:
 ///   - String lengths
 ///   - Signs +/-
-///   - Leading spaces 
-/// Skip all matching leading zeros 
+///   - Leading spaces
+/// Skip all matching leading zeros
 /// Skip optional matching decimal point
 ///   If these step succeeed
 ///   Then we collect at most a user specified number of significant digits
@@ -77,18 +76,18 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
     if(max > 64)
         max = 64;
 
-    len1 = strlen(save1);   
-    len2 = strlen(save2);   
+    len1 = strlen(save1);
+    len2 = strlen(save2);
     if(len1 != len2)
     {
-        printf("WARN: length mismatch (%d) != (%d)\n", 
+        printf("WARN: length mismatch (%d) != (%d)\n",
             len1,len2);
         printf("      str1:[%s]\n", save1);
         printf("      str2:[%s]\n", save2);
-        return(-1LL);   
+        return(-1LL);
     }
 
-    // discard leading space,,+/- characters 
+// discard leading space,,+/- characters
     while( (c1 = *str1) && (c2 = *str2) )
     {
         if( isdigit(c1) || isdigit(c2) )
@@ -105,10 +104,10 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
             printf("      str2:[%s]\n", save2);
             printf("      n1:[%s]\n", n1);
             printf("      n2:[%s]\n", n2);
-            return(-1LL);   
+            return(-1LL);
         }
-            
-        // sign an leading zeros
+
+// sign an leading zeros
         if(c1 == '.' || c1 == ' ' || c1 == '-' || c1 == '+')
         {
             ++str1;
@@ -134,10 +133,10 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
 
         if(!nzflag && (c1 != '0' || c2 != '0'))
             nzflag = 1;
-        
+
         if(nzflag)
         {
-            // no more then 16 digits
+// no more then 16 digits
             if(ind1 < max)
             {
                 n1[ind1++] = c1;
@@ -156,7 +155,7 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
 
     if(c1 != c2)
     {
-        printf("WARN: mismatch at (%d) %02X != %02X\n", 
+        printf("WARN: mismatch at (%d) %02X != %02X\n",
             (int) count, (int) c1, (int) c2);
         printf("      str1 offset:%d\n", (int)(str1 - save1));
         printf("      str2 offset:%d\n", (int)(str2 - save2));
@@ -164,7 +163,7 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
         printf("      str2:[%s]\n", save2);
         printf("      n1:[%s]\n", n1);
         printf("      n2:[%s]\n", n2);
-        return(-1LL);   
+        return(-1LL);
     }
     if(c1 == 'e' || c1 == 'E')
     {
@@ -175,7 +174,7 @@ long long numcmp(uint8_t *str1, uint8_t *str2, int max)
             printf("      str2:[%s]\n", save2);
             printf("      n1:[%s]\n", n1);
             printf("      n2:[%s]\n", n2);
-            return(-1LL);   
+            return(-1LL);
         }
     }
 
@@ -199,6 +198,7 @@ static void _putc_fn(struct _printf_t *p, char ch)
     p->sent++;
     putchar(ch);
 }
+
 
 /// @brief Our printf function for testing
 /// @param[in] fmt: printf forat string
@@ -247,7 +247,7 @@ int t_vsnprintf(char* str, size_t size, const char *format, va_list va)
 
     _printf_fn(&fn, format, va);
 
-    // FIXME check size should == fn.size on exit
+// FIXME check size should == fn.size on exit
     len = strlen(save);
     return( len );
 }
@@ -255,9 +255,9 @@ int t_vsnprintf(char* str, size_t size, const char *format, va_list va)
 
 // =============================================
 int display_good = 0;
-long tp_good = 0;   //@brief total good tests
-long tp_bad = 0;    //@brief total bad  tests
-long tp_fmt = 0;    //@brief total empty format string errors
+long tp_good = 0;                                 //@brief total good tests
+long tp_bad = 0;                                  //@brief total bad  tests
+long tp_fmt = 0;                                  //@brief total empty format string errors
 
 /// @brief Manual test of glibc printf vs ours
 /// We test for a worst case error of 1 LSB error at 15digits
@@ -283,7 +283,7 @@ void tp(const char *format, ...)
     memset(str2,sizeof(str2)-1,0);
     memset(fmt,sizeof(fmt)-1,0);
 
-    // We want to save only type and type size specifiers)
+// We want to save only type and type size specifiers)
     find = 0;
     fmt[find++] = '%';
 
@@ -292,7 +292,7 @@ void tp(const char *format, ...)
     {
         ind = len - 1;
     }
-    else 
+    else
     {
         printf("ERROR: empty format\n");
         printf("    G[%s]\n", str1);
@@ -301,20 +301,20 @@ void tp(const char *format, ...)
         ++tp_fmt;
         return;
     }
-    
-    // We may have a size adjustment specifier
-    //FIXME add more as printf gains more type size conversion specifiers
+
+// We may have a size adjustment specifier
+//FIXME add more as printf gains more type size conversion specifiers
     if(ind >= 2)
     {
         f = format[ind-2];
-        if(f == 'l')    
+        if(f == 'l')
             fmt[find++] = f;
     }
     f = format[ind-1];
-    if(f == 'l' || f == 'h')    
+    if(f == 'l' || f == 'h')
         fmt[find++] = f;
-    
-    // This should be the primary conversion type specifier
+
+// This should be the primary conversion type specifier
     if(ind)
     {
         f = format[ind];
@@ -322,35 +322,33 @@ void tp(const char *format, ...)
     }
     fmt[find++] = 0;
 
-    // GLIBC printf in str0 without extra specifiers
+// GLIBC printf in str0 without extra specifiers
     va_start(va, format);
     len = vsnprintf(str0, sizeof(str0)-1, fmt, va);
     va_end(va);
     fflush(stdout);
-        
-    // GLIBC printf in str1
+
+// GLIBC printf in str1
     va_start(va, format);
     len = vsnprintf(str1, sizeof(str1)-1, format, va);
     va_end(va);
     fflush(stdout);
 
-    // Our Printf in str2
+// Our Printf in str2
     va_start(va, format);
     len = t_vsnprintf(str2, sizeof(str2)-1, format, va);
     va_end(va);
     fflush(stdout);
 
-
-
-    //FIXME add more as printf gains more conversion functions
+//FIXME add more as printf gains more conversion functions
     if(f == 'g' || f == 'G' || f == 'e' || f == 'E' || f == 'f' || f == 'F')
     {
-        /*
-         * Single mantissa 24bits   base10 digits   7.22     
-         *      exponent 8bits   base10 exponent 37
-         * Double mantissa 53bits   base10 digits   15.95   
-         *      exponent 11bits  base10 exponent 307
-        */
+/*
+ * Single mantissa 24bits   base10 digits   7.22
+ *      exponent 8bits   base10 exponent 37
+ * Double mantissa 53bits   base10 digits   15.95
+ *      exponent 11bits  base10 exponent 307
+ */
         if(sizeof(double) == 8)
             digits = 16;
         else if(sizeof(double) == 4)
@@ -361,11 +359,11 @@ void tp(const char *format, ...)
             exit(1);
         }
 
-        // Compare results to N digit window
+// Compare results to N digit window
         error = numcmp(str1,str2,digits);
 
-        // A double 1 LSB error would be 10LL
-        // Remember the numbers may be rounded so we use less then 15LL
+// A double 1 LSB error would be 10LL
+// Remember the numbers may be rounded so we use less then 15LL
         if(error < 0 || error > 14LL)
         {
             printf("ERROR: [%s], [%s]\n", format, str0);
@@ -384,7 +382,7 @@ void tp(const char *format, ...)
             }
         }
     }
-    else 
+    else
     {
         if(strcmp(str1,str2) != 0)
         {
@@ -403,11 +401,10 @@ void tp(const char *format, ...)
             }
         }
     }
-    fflush(stdout); 
-        return;
+    fflush(stdout);
+    return;
     fflush(stdout);
 }
-
 
 
 // =============================================
@@ -424,7 +421,7 @@ void random_tests(int flag, char *size)
     long lnum;
     long long llnum;
     double dnum, scale;
-    
+
     int width,prec;
     int exp10;
     int shift;
@@ -439,7 +436,6 @@ void random_tests(int flag, char *size)
 
     memset(format,0,128);
 
-
     if(drand48() >= .5)
         sign = 1.0;
     else
@@ -453,25 +449,25 @@ void random_tests(int flag, char *size)
         dotf = 1;
     else
         dotf = 0;
-    signind = drand48() * 3.99999;  
+    signind = drand48() * 3.99999;
 
-    //printf("num:%ld\n",num);
+//printf("num:%ld\n",num);
 
-    // With f we limit the exponent to +/-2 ** sizeof(long long)
+// With f we limit the exponent to +/-2 ** sizeof(long long)
     if(flag == 'e' || flag == 'f' )
     {
-        /*
-         * Single mantissa 24bits   base10 digits   7.22     
-         *      exponent 8bits   base10 exponent 37
-         * Double mantissa 53bits   base10 digits   15.95   
-         *      exponent 11bits  base10 exponent 307
-        */
+/*
+ * Single mantissa 24bits   base10 digits   7.22
+ *      exponent 8bits   base10 exponent 37
+ * Double mantissa 53bits   base10 digits   15.95
+ *      exponent 11bits  base10 exponent 307
+ */
 
-        // We only test exponent to +/- digits * 2 
-        // If we test numbers greater then (10 ** digits) we start getting
-        // roundoff/truncation errors
-        // 
-        // Glibc printf uses extended precision functions (ie. > double size)
+// We only test exponent to +/- digits * 2
+// If we test numbers greater then (10 ** digits) we start getting
+// roundoff/truncation errors
+//
+// Glibc printf uses extended precision functions (ie. > double size)
 
         if(sizeof(double) == 8)
         {
@@ -492,14 +488,13 @@ void random_tests(int flag, char *size)
             snprintf(format,sizeof(format)-1, "%%%c%d.%d%c", signop[signind], width, prec, flag);
         else
             snprintf(format,sizeof(format)-1, "%%%c%d%c", signop[signind], width, flag);
-        
 
         exp10 = ((drand48() * 2.0) - 1.0) * (double) (digits * 2);
         scale = iexp(10.0, exp10);
         dnum = ( sign * drand48() * scale);
         tp(format, dnum);
     }
-    else    /* ASSUME integer or long arguments */
+    else                                          /* ASSUME integer or long arguments */
     {
         if(strcmp(size,"short") == 0)
         {
@@ -560,6 +555,7 @@ void random_tests(int flag, char *size)
         }
     }
 }
+
 
 // =============================================
 /// @brief Manual printf tests - glibc vc ours
@@ -649,10 +645,10 @@ void tests()
     tp("%+15.13f", 0.85833);
     tp("%+15.13f", 8.5833);
     tp("%+15.13f", 85.833);
-    tp("%+15.13f", 123456789012345678901234567890.159265358979); 
-    tp("%+15.2f", 123456789012345678901234567890.159265358979); 
-    tp("%15.2f", 123456789012345678901234567890.159265358979); 
-    tp("%f", 123456789012345678901234567890.159265358979); 
+    tp("%+15.13f", 123456789012345678901234567890.159265358979);
+    tp("%+15.2f", 123456789012345678901234567890.159265358979);
+    tp("%15.2f", 123456789012345678901234567890.159265358979);
+    tp("%f", 123456789012345678901234567890.159265358979);
     tp("%08.0f", 1.0);
     tp("%08.0f", -1.0);
     tp("%f", 0.0);
@@ -698,7 +694,7 @@ void tests()
     tp("% 015.4e", 314.159265358979e-17);
     tp("%010.5e", 314.159265358979e-17);
     tp("%010.5e", -314.159265358979e-17);
-    tp("%010.5e", 123456789012345678901234567890.159265358979); 
+    tp("%010.5e", 123456789012345678901234567890.159265358979);
     if(display_good)
         printf("\n");
 
@@ -724,17 +720,16 @@ void tests()
     tp("% 08.4e", -314.159265358979);
     tp("%10.5e", 314.159265358979);
     tp("%10.5e", -314.159265358979);
-    tp("%10.5e", 123456789012345678901234567890.159265358979); 
-    tp("%10.10e", 123456789012345678901234567890.159265358979); 
-    tp("%10.15e", 123456789012345678901234567890.159265358979); 
-    tp("%10.20e", 123456789012345678901234567890.159265358979); 
-    tp("%10.20e", 123456789012345678901234567890.159265358979e-50); 
-    tp("%10.20e", 123456789012345678901234567890.159265358979e+50); 
-    tp("%10.20e", 123456789012345678901234567890.159265358979e-100); 
-    tp("%10.20e", 123456789012345678901234567890.159265358979e+100); 
+    tp("%10.5e", 123456789012345678901234567890.159265358979);
+    tp("%10.10e", 123456789012345678901234567890.159265358979);
+    tp("%10.15e", 123456789012345678901234567890.159265358979);
+    tp("%10.20e", 123456789012345678901234567890.159265358979);
+    tp("%10.20e", 123456789012345678901234567890.159265358979e-50);
+    tp("%10.20e", 123456789012345678901234567890.159265358979e+50);
+    tp("%10.20e", 123456789012345678901234567890.159265358979e-100);
+    tp("%10.20e", 123456789012345678901234567890.159265358979e+100);
     if(display_good)
         printf("\n");
-
 
     tp("%c", 'a');
     tp("%-5c", 'a');
@@ -749,6 +744,7 @@ void tests()
     printf("=======================\n");
     printf("\n");
 }
+
 
 /// @brief main printf test programe
 /// Run a number of conversion tests and display good and bad result totals
@@ -789,11 +785,10 @@ int main(int argc, char *argv[])
     printf("=======================\n");
     printf("\n");
 
-
 #ifdef __SIZEOF_INT128__
     printf("=======================\n");
     printf("Start of 128 bit int tests\n");
-    // There are no 128bit int constants in gcc - sigh
+// There are no 128bit int constants in gcc - sigh
     num128 = 1;
     for(i=0;i<128;++i)
     {
@@ -833,7 +828,6 @@ int main(int argc, char *argv[])
     printf("\n\n");
     printf("Start of random tests\n");
 
-
     display_good = 0;
     for(size=0;sizeops[size];++size)
     {
@@ -846,7 +840,7 @@ int main(int argc, char *argv[])
             for(i=0;i<1000000;++i)
                 random_tests(intops[k], sizeops[size]);
             printf("End:  (%c:%s)\n", intops[k], sizeops[size]);
-            printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);    
+            printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);
             printf("=======================\n");
         }
     }
@@ -861,7 +855,7 @@ int main(int argc, char *argv[])
         for(i=0;i<1000000;++i)
             random_tests(floatops[k], "");
         printf("End:  (%c)\n", floatops[k]);
-        printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);    
+        printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);
         printf("=======================\n");
     }
     printf("\n");
@@ -879,7 +873,7 @@ int main(int argc, char *argv[])
         tp("%016lx", lnum);
         tp("%019ld", lnum);
         tp("%022lo", lnum);
-        
+
     }
     printf("=================================\n");
     printf("testing binary trailing 1's\n");
@@ -906,10 +900,10 @@ int main(int argc, char *argv[])
         tp("%022lo", lnum);
         lnum *= 10;
         lnum += 9;
-        
+
     }
     printf("\n");
     printf("=================================\n");
     return(0);
 }
-#endif  
+#endif

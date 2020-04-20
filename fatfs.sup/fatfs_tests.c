@@ -10,8 +10,8 @@
  @par Credit: part of FatFs avr example project (C)ChaN, 2013.
  @par Copyright &copy; 2013 ChaN.
 
- @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
+@par You are free to use this code under the terms of GPL
+please retain a copy of this notice in any code you use it in.
 
 This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -46,45 +46,46 @@ MEMSPACE
 void fatfs_help( int full)
 {
     printf("fatfs help\n");
-    
+
     if(full)
     {
         printf(
-#ifdef POSIX_TESTS
-        "Note: fatfs tests MUST start with \"fatfs\" keyword\n"
-#else
-        "Note: fatfs prefix is optional\n"
-#endif
-        "fatfs help\n"
-#ifdef FATFS_UTILS_FULL
-        "fatfs attrib file p1 p2\n"
-        "fatfs cat file\n"
-        "fatfs cd dir\n"
-        "fatfs copy file1 file2\n"
-        "fatfs create file str\n"
-#endif
-        "fatfs mmc_test\n"
-        "fatfs mmc_init\n"
-        "fatfs ls dir\n"
+    #ifdef POSIX_TESTS
+            "Note: fatfs tests MUST start with \"fatfs\" keyword\n"
+    #else
+            "Note: fatfs prefix is optional\n"
+    #endif
+            "fatfs help\n"
+    #ifdef FATFS_UTILS_FULL
+            "fatfs attrib file p1 p2\n"
+            "fatfs cat file\n"
+            "fatfs cd dir\n"
+            "fatfs copy file1 file2\n"
+            "fatfs create file str\n"
+    #endif
+            "fatfs mmc_test\n"
+            "fatfs mmc_init\n"
+            "fatfs ls dir\n"
 
-#ifdef FATFS_UTILS_FULL
-        "fatfs mkdir dir\n"
-        "fatfs mkfs\n"
-        "fatfs pwd\n"
-#endif
-        "fatfs status file\n"
+    #ifdef FATFS_UTILS_FULL
+            "fatfs mkdir dir\n"
+            "fatfs mkfs\n"
+            "fatfs pwd\n"
+    #endif
+            "fatfs status file\n"
 
-#ifdef FATFS_UTILS_FULL
-        "fatfs stat file\n"
-        "fatfs rm file\n"
-        "fatfs rmdir dir\n"
-        "fatfs rename old new\n"
-#endif
-        "\n"
-        );
+    #ifdef FATFS_UTILS_FULL
+            "fatfs stat file\n"
+            "fatfs rm file\n"
+            "fatfs rmdir dir\n"
+            "fatfs rename old new\n"
+    #endif
+            "\n"
+            );
     }
-        
+
 }
+
 
 /// @brief FatFs test parser
 ///
@@ -102,7 +103,6 @@ int fatfs_tests(int argc,char *argv[])
 {
     char *ptr;
     int ind;
-
 
     ind = 0;
     ptr = argv[ind++];
@@ -135,7 +135,7 @@ int fatfs_tests(int argc,char *argv[])
         printf("ind:%d,argc:%d\n", ind, argc);
         for(i=ind;i<argc;++i)
         {
-            //printf("%d:%s\n", i, argv[i]);
+//printf("%d:%s\n", i, argv[i]);
             fatfs_ls(argv[i]);
             ++args;
         }
@@ -208,13 +208,13 @@ int fatfs_tests(int argc,char *argv[])
         FATFS fs;
         uint8_t *mem;
         int res;
-        /* Register work area to the logical drive 0 */
-        res = f_mount(&fs, "0:", 0);                    
+/* Register work area to the logical drive 0 */
+        res = f_mount(&fs, "0:", 0);
         put_rc(res);
         if (res)
             return(1);
         mem = safemalloc(1024);
-       /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
+/* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
         res = f_mkfs("0:", FM_FAT32, 0, mem, 1024);
         safefree(mem);
         put_rc(res);
@@ -228,9 +228,8 @@ int fatfs_tests(int argc,char *argv[])
         fatfs_pwd();
         return(1);
     }
-#endif // #if FF_FS_RPATH >= 2
-#endif // #if FF_FS_RPATH 
-
+#endif                                        // #if FF_FS_RPATH >= 2
+#endif                                        // #if FF_FS_RPATH
 
     if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
@@ -302,6 +301,7 @@ void mmc_test(void)
     printf("==============================\n");
 }
 
+
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
 ///
@@ -318,7 +318,7 @@ void fatfs_ls(char *name)
     FILINFO fno;
     DIR dirs;                                     /* Directory object */
     FATFS *fs;
-    char buff[256]; 
+    char buff[256];
 
     if(!name || !*name)
     {
@@ -355,7 +355,6 @@ void fatfs_ls(char *name)
     if (f_getfree(buff, (DWORD*)&p1, &fs) == FR_OK)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
 }
-
 
 
 #ifdef FATFS_UTILS_FULL
@@ -412,15 +411,15 @@ void fatfs_cat(char *name)
         size += ret;
         for(i=0;i<ret;++i)
         {
-            //FIXME putchar depends on fdevopen having been called
+//FIXME putchar depends on fdevopen having been called
             if(stdout)
                 putchar(ptr[i]);
             else
                 uart_putc(0,ptr[i]);
         }
 #ifdef ESP8266
-            optimistic_yield(1000);
-            wdt_reset();
+        optimistic_yield(1000);
+        wdt_reset();
 #endif
     }
     printf("\n");
@@ -494,6 +493,7 @@ void fatfs_copy(char *from,char *to)
     f_close(&file2);
 }
 
+
 /// @brief  Create a new file from a user supplied string.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -556,8 +556,6 @@ void fatfs_cd(char *name)
 }
 #endif
 
-
-
 /// @brief  Make a directory.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -572,6 +570,7 @@ void fatfs_mkdir(char *name)
     put_rc(f_mkdir(name));
 
 }
+
 
 #if FF_FS_RPATH >= 2
 /// @brief  Display current working directory.
@@ -612,6 +611,7 @@ void fatfs_rename(const char *oldpath, const char *newpath)
     }
 }
 
+
 /// @brief  Delete a file by name.
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
@@ -626,6 +626,7 @@ void fatfs_rm(char *name)
     printf("rm [%s]\n", name);
     put_rc(f_unlink(name));
 }
+
 
 /// @brief  Delete a directory.
 ///
@@ -667,7 +668,4 @@ void fatfs_stat(char *name)
         put_rc(res);
     }
 }
-
 #endif
-
-

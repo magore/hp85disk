@@ -1,5 +1,5 @@
 /**
-  @file stringsup.h 
+  @file stringsup.h
 
  @brief Various string and character functions
 
@@ -37,6 +37,7 @@ void sep()
     printf("==============================\n");
 }
 
+
 // =============================================
 ///@brief Trim White space and control characters from end of string.
 ///
@@ -47,8 +48,8 @@ void sep()
 MEMSPACE
 void trim_tail(char *str)
 {
-	if(!str)
-		return;
+    if(!str)
+        return;
     int len = strlen(str);
     while(len--)
     {
@@ -57,6 +58,7 @@ void trim_tail(char *str)
         str[len] = 0;
     }
 }
+
 
 // =============================================
 ///@brief Skip white space in a string - tabs and spaces.
@@ -74,6 +76,7 @@ char *skipspaces(char *ptr)
         ++ptr;
     return(ptr);
 }
+
 
 // =============================================
 ///@brief Skip to first white space in a string - tabs and spaces.
@@ -95,6 +98,7 @@ char *nextspace(char *ptr)
     }
     return(ptr);
 }
+
 
 // =============================================
 ///@brief Skip characters defined in user string.
@@ -126,6 +130,7 @@ char *skipchars(char *str, char *pat)
     return(str);
 }
 
+
 // =============================================
 ///@brief Compare two strings.
 ///
@@ -143,6 +148,8 @@ int MATCH(char *str, char *pat)
         return(len);
     return(0);
 }
+
+
 ///@brief Match two strings and compare argument index
 /// Display  message if the number of arguments is too few
 ///@param str: string to test
@@ -181,6 +188,8 @@ int MATCHI(char *str, char *pat)
         return(len);
     return(0);
 }
+
+
 // =============================================
 ///@brief Compare two strings limted to length of pattern.
 ///
@@ -206,6 +215,7 @@ int MATCH_LEN(char *str, char *pat)
     }
     return(0);
 }
+
 
 // =============================================
 ///@brief Compare two strings without case limted to length of pattern.
@@ -233,6 +243,7 @@ int MATCHI_LEN(char *str, char *pat)
     return(0);
 }
 
+
 // =============================================
 ///@brief Split string into arguments stored in argv[]
 ///   We split source string into arguments
@@ -250,13 +261,13 @@ int split_args(char *str, char *argv[], int max)
 {
     int i;
     int count = 0;
-    // NULL ?
+// NULL ?
 
     for(i=0;i<max;++i)
-        argv[i] = NULL; 
+        argv[i] = NULL;
 
-    // You may replace argv[0]
-    // argv[count++] = "main";
+// You may replace argv[0]
+// argv[count++] = "main";
 
     if(!max)
         return(0);
@@ -270,11 +281,11 @@ int split_args(char *str, char *argv[], int max)
         if(!*str)
             break;
 
-        // string processing
+// string processing
         if(*str == '"')
         {
             ++str;
-            // Save string pointer
+// Save string pointer
             argv[count++] = str;
             while(*str && *str != '"')
                 ++str;
@@ -284,7 +295,7 @@ int split_args(char *str, char *argv[], int max)
         }
 
         argv[count++] = str;
-        // Find size of token
+// Find size of token
         while(*str > ' ' && *str <= 0x7e)
             ++str;
         if(!*str)
@@ -294,6 +305,7 @@ int split_args(char *str, char *argv[], int max)
     }
     return(count);
 }
+
 
 // =============================================
 ///@brief return next token
@@ -311,24 +323,25 @@ MEMSPACE
 char *get_token(char *str, char *token, int max)
 {
 
-	*token = 0;
+    *token = 0;
 
     if(!str || *str == 0)
         return(str);
 
-    // Skip beginning spaces
+// Skip beginning spaces
     str = skipspaces(str);
-    // Delete all trailing spaces
+// Delete all trailing spaces
     trim_tail(str);
 
-    while(*str > ' ' && max > 0) {
+    while(*str > ' ' && max > 0)
+    {
 
-        // String processing
-        // A token can be a quoted string
+// String processing
+// A token can be a quoted string
         if(*str == '"')
         {
             ++str;
-            // We are pointing at the body of the quoted string now
+// We are pointing at the body of the quoted string now
             while(*str && *str != '"' && max > 0)
             {
                 *token++ = *str++;
@@ -344,18 +357,18 @@ char *get_token(char *str, char *token, int max)
             break;
         }
 
-        // If we have a comma, outside of a string, break
+// If we have a comma, outside of a string, break
         if(*str == ',' )
             break;
 
-        // copy token
+// copy token
         *token++ = *str++;
         --max;
     }
 
-    // Skip trailing spaces
+// Skip trailing spaces
     str = skipspaces(str);
-    // If we had a trailing comma skip it
+// If we had a trailing comma skip it
     if(*str == ',' )
         ++str;
 
@@ -405,6 +418,8 @@ int token(char *str, char *pat)
         return(len);
     return(0);
 }
+
+
 // =============================================
 
 /// @brief get a number
@@ -415,7 +430,7 @@ int token(char *str, char *pat)
 /// @return  value
 MEMSPACE
 int32_t get_value(char *str)
-{ 
+{
     int base;
     int ret;
     char *ptr;
@@ -427,7 +442,7 @@ int32_t get_value(char *str)
     ptr = skipspaces(str);
     base = 10;
 
-    // convert number base 10, 16, 8 and 2
+// convert number base 10, 16, 8 and 2
     if( (ret = MATCHI_LEN(ptr,"0x")) )
     {
         base = 16;
@@ -445,5 +460,6 @@ int32_t get_value(char *str)
     }
     return(strtol(ptr, (char **)&endptr, base));
 }
+
 
 // =============================================

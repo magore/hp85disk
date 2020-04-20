@@ -22,7 +22,6 @@
 #include "lifutils.h"
 #include "debug.h"
 
-
 extern hpdir_t hpdir;
 
 /// @brief Config Parser Stack
@@ -48,14 +47,13 @@ AMIGOStateType *AMIGOs = NULL;
 ///@brief hpdir.ini file processing
 hpdir_t hpdir;
 
-
 #if defined (SET_DEFAULTS)
 // =============================================
 PRINTERDeviceType PRINTERDeviceDefault =
 {
-    { 
-        2,      // GPIB Address
-        0xff,   // PPR unused
+    {
+        2,                                        // GPIB Address
+        0xff,                                     // PPR unused
         "/printer.txt"
     }
 };
@@ -65,84 +63,83 @@ PRINTERDeviceType PRINTERDeviceDefault =
 ///@brief SS80 HP9122D Disk Definitions
 SS80DiskType SS80DiskDefault =
 {
-    {			// HEADER
-        0,          // GPIB Address
-        0,          // PPR
-        "/ss80.lif"			// File name
+    {                                             // HEADER
+        0,                                        // GPIB Address
+        0,                                        // PPR
+        "/ss80.lif"                               // File name
     },
-    {			// CONFIG
-        0x222   	// ID
+    {                                             // CONFIG
+        0x222                                     // ID
     },
-    {			// CONTROLLER
-        0x8001,     // Installed Units 1 (15 is always on)
-        100,        // GPIB data transfer rate in kB/s on the bus
-        4,          // 5 = SS/80 integrated single-unit controller
+    {                                             // CONTROLLER
+        0x8001,                                   // Installed Units 1 (15 is always on)
+        100,                                      // GPIB data transfer rate in kB/s on the bus
+        4,                                        // 5 = SS/80 integrated single-unit controller
     },
-    {			// UNIT
-        0,          // Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape
-        0x00091220, // BCD Device number XX XX XY, X=Unit, Y=option
-        0x100,      // Bytes per block
-        1,          // Buffered Blocks
-        0,          // Burst size = 0 for SS80
-        2000,       // Block time in microseconds
-        50,         // Continous transfer time in kB/s
-        10000,      // Retry time in 0.01 secods
-        10000,      // Access time in 0.01 seconds
-        31,         // Maximum interleave factor
-        1,          // Fixed volume byte, one bit per volume
-        1           // Removable volume byte, one bit per volume
+    {                                             // UNIT
+        0,                                        // Generic Unit Type, 0 = fixed, 1 = floppy, 2 = tape
+        0x00091220,                               // BCD Device number XX XX XY, X=Unit, Y=option
+        0x100,                                    // Bytes per block
+        1,                                        // Buffered Blocks
+        0,                                        // Burst size = 0 for SS80
+        2000,                                     // Block time in microseconds
+        50,                                       // Continous transfer time in kB/s
+        10000,                                    // Retry time in 0.01 secods
+        10000,                                    // Access time in 0.01 seconds
+        31,                                       // Maximum interleave factor
+        1,                                        // Fixed volume byte, one bit per volume
+        1                                         // Removable volume byte, one bit per volume
     },
-    {			// VOLUME
-        0,          // Maximum Cylinder  - not used
-        0,          // Maximum Head      - not used
-        0,          // Maximum Sector    - not used
-        2463,       // Maximum Block Number
-        1           // Interleave
+    {                                             // VOLUME
+        0,                                        // Maximum Cylinder  - not used
+        0,                                        // Maximum Head      - not used
+        0,                                        // Maximum Sector    - not used
+        2463,                                     // Maximum Block Number
+        1                                         // Interleave
     }
 };
-
-#endif // #if defined(HP9122D)
+#endif                                            // #if defined(HP9122D)
 
 #if defined(HP9134D)
 ///@brief SS80 HP9134D Disk Definitions
 SS80DiskType SS80DiskDefault =
 {
-    {			// HEADER
-        0,          // GPIB Address
-        0,          // PPR
-        "/ss80.lif" // FILE name
+    {                                             // HEADER
+        0,                                        // GPIB Address
+        0,                                        // PPR
+        "/ss80.lif"                               // FILE name
     },
-    {			    // CONFIG
-        0x222       // ID
+    {                                             // CONFIG
+        0x222                                     // ID
     },
-    {			// CONTROLLER
-        0x8001,     // Installed Units 1 (15 is always on)
-        100,        // GPIB data transfer rate in kB/s on the bus
-        4,          // 4 = SS/80 integrated single-unit controller
+    {                                             // CONTROLLER
+        0x8001,                                   // Installed Units 1 (15 is always on)
+        100,                                      // GPIB data transfer rate in kB/s on the bus
+        4,                                        // 4 = SS/80 integrated single-unit controller
     },
-    {			// UNIT
-        0,          // Generic Unit Type, 0 = fixed
-        0x091340,   // BCD Device number XX XX XY, X=Unit, Y=option
-        0x100,      // Bytes per block
-        1,          // Buffered Blocks
-        0,          // Burst size = 0 for SS80
-        2000,       // Block time in microseconds
-        50,         // Continous transfer time in kB/s
-        10000,      // Retry time in 0.01 secods
-        10000,      // Access time in 0.01 seconds
-        31,         // Maximum interleave factor
-        1,          // Fixed volume byte, one bit per volume
-        1           // Removable volume byte, one bit per volume
+    {                                             // UNIT
+        0,                                        // Generic Unit Type, 0 = fixed
+        0x091340,                                 // BCD Device number XX XX XY, X=Unit, Y=option
+        0x100,                                    // Bytes per block
+        1,                                        // Buffered Blocks
+        0,                                        // Burst size = 0 for SS80
+        2000,                                     // Block time in microseconds
+        50,                                       // Continous transfer time in kB/s
+        10000,                                    // Retry time in 0.01 secods
+        10000,                                    // Access time in 0.01 seconds
+        31,                                       // Maximum interleave factor
+        1,                                        // Fixed volume byte, one bit per volume
+        1                                         // Removable volume byte, one bit per volume
     },
-    {			// VOLUME
-        0,          // Maximum Cylinder  - not used
-        0,          // Maximum Head      - not used
-        0,          // Maximum Sector    - not used
-        58175,      // Maximum Block Number
-        1			// Interleave
+    {                                             // VOLUME
+        0,                                        // Maximum Cylinder  - not used
+        0,                                        // Maximum Head      - not used
+        0,                                        // Maximum Sector    - not used
+        58175,                                    // Maximum Block Number
+        1                                         // Interleave
     }
 };
-#endif // #if defined(HP9134D)
+#endif                                            // #if defined(HP9134D)
 
 #ifdef AMIGO
 
@@ -150,26 +147,24 @@ SS80DiskType SS80DiskDefault =
 /// @brief  AMIGO D9121 ident Bytes per sector, sectors per track, heads, cylinders
 AMIGODiskType AMIGODiskDefault =
 {
-    {			// HEADER
-        1,          // GPIB Address
-        1,          // PPR
-        "/amigo.lif"    // FILE name
+    {                                             // HEADER
+        1,                                        // GPIB Address
+        1,                                        // PPR
+        "/amigo.lif"                              // FILE name
     },
-    {			// CONFIG
-        0x0104     // ID
+    {                                             // CONFIG
+        0x0104                                    // ID
     },
-    {			// GEOMETRY
-        256,        // Bytes Per Sector
-        16,         // Sectors Per Track
-        2,          // Sides
-        35          // Cylinders
+    {                                             // GEOMETRY
+        256,                                      // Bytes Per Sector
+        16,                                       // Sectors Per Track
+        2,                                        // Sides
+        35                                        // Cylinders
     }
 };
-#endif // #if defined(HP9121)
-
-#endif // ifdef AMIGO
-
-#endif // SET_DEFAULTS
+#endif                                            // #if defined(HP9121)
+#endif                                            // ifdef AMIGO
+#endif                                            // SET_DEFAULTS
 
 token_t tokens[] =
 {
@@ -233,8 +228,9 @@ void print_var_P(__memx const char *str, uint32_t val)
         tmp[i++] = *str++;
     tmp[i++] = 0;
 
-    printf("    %-25s = %8lxH (%ld)\n", tmp, val, val); 
+    printf("    %-25s = %8lxH (%ld)\n", tmp, val, val);
 }
+
 
 /// ===============================================
 /// @brief Display Configuration File string
@@ -248,7 +244,7 @@ void print_str_P(__memx const char *str, char *arg)
     while( *str && i < 62)
         tmp[i++] = *str++;
     tmp[i++] = 0;
-    printf("    %-25s = \"%s\"\n", tmp, arg);   
+    printf("    %-25s = \"%s\"\n", tmp, arg);
 }
 
 
@@ -258,27 +254,29 @@ void print_str_P(__memx const char *str, char *arg)
 /// @return  int index
 int tok_index(char *str)
 {
-	int i;
-	for (i = 0; (tokens[i].tok != TOK_INVALID) ; ++i )
-	{
-		if( MATCHI(str,tokens[i].name) )
-			return(i);
-	}
-    return(-1); 
+    int i;
+    for (i = 0; (tokens[i].tok != TOK_INVALID) ; ++i )
+    {
+        if( MATCHI(str,tokens[i].name) )
+            return(i);
+    }
+    return(-1);
 }
+
+
 /// ===============================================
 /// @brief return string of matching token
 /// @param tok token
 /// @return  char *ptr;
 char *tok_name(uint8_t tok)
 {
-	int i;
-	for (i = 0; (tokens[i].tok != TOK_INVALID) ; ++i )
-	{
-		if(tok == tokens[i].tok)
-			return(tokens[i].name);
-	}
-    return(""); 
+    int i;
+    for (i = 0; (tokens[i].tok != TOK_INVALID) ; ++i )
+    {
+        if(tok == tokens[i].tok)
+            return(tokens[i].name);
+    }
+    return("");
 }
 
 
@@ -291,10 +289,11 @@ char *tok_name(uint8_t tok)
 void print_tok_val(uint8_t tok, uint8_t spaces, uint32_t val)
 {
     char *ptr = tok_name(tok);
-	while(spaces--)
-		putchar(' ');
-    printf("%-25s = %8lxH (%ld)\n", ptr, val, val); 
+    while(spaces--)
+        putchar(' ');
+    printf("%-25s = %8lxH (%ld)\n", ptr, val, val);
 }
+
 
 /// ===============================================
 /// @brief Display Configuration File variable
@@ -305,10 +304,11 @@ void print_tok_val(uint8_t tok, uint8_t spaces, uint32_t val)
 void print_tok_str(uint8_t tok, uint8_t spaces, char *str)
 {
     char *ptr = tok_name(tok);
-	while(spaces--)
-		putchar(' ');
-    printf("%-25s = %s\n", ptr, str); 
+    while(spaces--)
+        putchar(' ');
+    printf("%-25s = %s\n", ptr, str);
 }
+
 
 /// ===============================================
 /// @brief Display Configuration File variable
@@ -320,15 +320,15 @@ void print_tok_str(uint8_t tok, uint8_t spaces, char *str)
 void print_tok(uint8_t tok, uint8_t spaces)
 {
     char *ptr = tok_name(tok);
-	while(spaces--)
-		putchar(' ');
+    while(spaces--)
+        putchar(' ');
     printf("%s\n",ptr);
 }
 
 
 /// ===============================================
 /// @brief Read and parse a config file using POSIX functions
-/// Set all drive parameters and debuglevel 
+/// Set all drive parameters and debuglevel
 ///
 /// @param name: config file name to process
 /// @return  number of parse errors
@@ -338,21 +338,21 @@ int Read_Config(char *name)
     int state = START_STATE;
     int errors = 0;
 
-    ///@brief Printer Device
+///@brief Printer Device
     PRINTERDeviceType *PRINTERp = NULL;
-    ///@brief SS80 Device
+///@brief SS80 Device
     SS80DiskType *SS80p = NULL;
 
 #ifdef AMIGO
-    ///@brief AMIGO Device
+///@brief AMIGO Device
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
     char *ptr;
-	int index = 0;
-	int ind;
-	val_t val;
-	int tok = TOK_INVALID;
+    int index = 0;
+    int ind;
+    val_t val;
+    int tok = TOK_INVALID;
     int lines = 0;
 
     char str[128];
@@ -360,13 +360,12 @@ int Read_Config(char *name)
 
     init_Devices();
 
-
     printf("Reading: %s\n", name);
     cfg = fopen(name, "rb");
     if(cfg == NULL)
     {
         ++errors;
-        //FIXME
+//FIXME
         perror("Read_Config - open");
         printf("Read_Config: open(%s) failed\n", name);
         set_Config_Defaults();
@@ -377,34 +376,32 @@ int Read_Config(char *name)
     {
         ++lines;
 
-		ptr = get_token(str, token, sizeof(token)-2);
+        ptr = get_token(str, token, sizeof(token)-2);
 
-        // Skip comments
+// Skip comments
         if(token[0] == 0 || token[0]  == '#')
             continue;
 
-		val.l = 0;
-		tok = TOK_INVALID;
+        val.l = 0;
+        tok = TOK_INVALID;
 
-
-		if( ( ind = tok_index(token) )  == -1)
-		{
+        if( ( ind = tok_index(token) )  == -1)
+        {
             printf("Unexpected token: %s, at line:%d\n", token,lines);
-			++errors;
-			continue;
-		}
-		tok = tokens[ind].tok;
+            ++errors;
+            continue;
+        }
+        tok = tokens[ind].tok;
 
-		// get optional argument
-		ptr = get_token(ptr, token, sizeof(token)-2);                       
-		if(MATCH(token,"="))
-			ptr = get_token(ptr, token, sizeof(token)-2);                       
-		val.l = get_value(token);
-		val.w = (uint16_t) 0xFFFF & val.l;
-		val.b = (uint8_t) 0xFF & val.l;
+// get optional argument
+        ptr = get_token(ptr, token, sizeof(token)-2);
+        if(MATCH(token,"="))
+            ptr = get_token(ptr, token, sizeof(token)-2);
+        val.l = get_value(token);
+        val.w = (uint16_t) 0xFFFF & val.l;
+        val.b = (uint8_t) 0xFF & val.l;
 
-
-        //FIXME check for state and last state
+//FIXME check for state and last state
         if(tok == TOK_END )
         {
             state = pop_state();
@@ -413,339 +410,340 @@ int Read_Config(char *name)
 
         switch(state)
         {
-        case START_STATE:
-			switch(tok)
-			{
-				case TOK_SS80_DEFAULT:
-					push_state(state);
-					state = SS80_STATE;
-					index = alloc_device(SS80_DEFAULT_TYPE);
-					if(index == -1)
-						state = START_STATE;
-					else
-						SS80p = (SS80DiskType *) Devices[index].dev;
-					break;
-				case TOK_SS80:
-				case TOK_CS80:
-					push_state(state);
-					state = SS80_STATE;
-					index = alloc_device(SS80_TYPE);
-					if(index == -1)
-					{
-						state = START_STATE;
-					}
-					else
-					{
-						SS80p = (SS80DiskType *) Devices[index].dev;
-						hpdir_set_parameters(index,token);	// Also sets Devices[index].model
-					}
-					break;
+            case START_STATE:
+                switch(tok)
+                {
+                    case TOK_SS80_DEFAULT:
+                        push_state(state);
+                        state = SS80_STATE;
+                        index = alloc_device(SS80_DEFAULT_TYPE);
+                        if(index == -1)
+                            state = START_STATE;
+                        else
+                            SS80p = (SS80DiskType *) Devices[index].dev;
+                        break;
+                    case TOK_SS80:
+                    case TOK_CS80:
+                        push_state(state);
+                        state = SS80_STATE;
+                        index = alloc_device(SS80_TYPE);
+                        if(index == -1)
+                        {
+                            state = START_STATE;
+                        }
+                        else
+                        {
+                            SS80p = (SS80DiskType *) Devices[index].dev;
+                                                  // Also sets Devices[index].model
+                            hpdir_set_parameters(index,token);
+                        }
+                        break;
 #ifdef AMIGO
-				case TOK_AMIGO:
-					push_state(state);
-					state = AMIGO_STATE;
-					index = alloc_device(AMIGO_TYPE);
-					if(index == -1)
-					{
-						state = START_STATE;
-					}
-					else
-					{
-						AMIGOp = (AMIGODiskType *) Devices[index].dev;
-						hpdir_set_parameters(index,token);	// Also sets Devices[index.model
-					}
-					break;
+                    case TOK_AMIGO:
+                        push_state(state);
+                        state = AMIGO_STATE;
+                        index = alloc_device(AMIGO_TYPE);
+                        if(index == -1)
+                        {
+                            state = START_STATE;
+                        }
+                        else
+                        {
+                            AMIGOp = (AMIGODiskType *) Devices[index].dev;
+                                                  // Also sets Devices[index.model
+                            hpdir_set_parameters(index,token);
+                        }
+                        break;
 #endif
-				case TOK_PRINTER:
-					push_state(state);
-					state = PRINTER_STATE;
-					index = alloc_device(PRINTER_TYPE);
-					if(index == -1)
-						state = START_STATE;
-					else
-						PRINTERp = (PRINTERDeviceType *) Devices[index].dev;
-					break;
-				case TOK_DEBUG:
-					debuglevel = val.w;
-					break;
-				default:
-					printf("Unexpected token: %s, at line:%d\n", ptr,lines);
-					errors++;
-					break;
-				}
-				break;
+                    case TOK_PRINTER:
+                        push_state(state);
+                        state = PRINTER_STATE;
+                        index = alloc_device(PRINTER_TYPE);
+                        if(index == -1)
+                            state = START_STATE;
+                        else
+                            PRINTERp = (PRINTERDeviceType *) Devices[index].dev;
+                        break;
+                    case TOK_DEBUG:
+                        debuglevel = val.w;
+                        break;
+                    default:
+                        printf("Unexpected token: %s, at line:%d\n", ptr,lines);
+                        errors++;
+                        break;
+                }
+                break;
 
-        case PRINTER_STATE:
-				if(tok == TOK_CONFIG)
-				{
-					push_state(state);
-					state = PRINTER_CONFIG;
-				}
-				else
-				{
-					printf("Unexpected PRINTER token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-				}
-				break;
+            case PRINTER_STATE:
+                if(tok == TOK_CONFIG)
+                {
+                    push_state(state);
+                    state = PRINTER_CONFIG;
+                }
+                else
+                {
+                    printf("Unexpected PRINTER token: %s, at line:%d\n", ptr,lines);
+                    ++errors;
+                    break;
+                }
+                break;
 
-        case PRINTER_CONFIG:
-			if(tok == TOK_ADDRESS)
-			{
-				Devices[index].ADDRESS = 0x1f & val.b;
-				PRINTERp->HEADER.ADDRESS  = 0x1f & val.b;
-				// NO PPR
-				Devices[index].PPR = 0xff;
-				PRINTERp->HEADER.PPR = 0xff;
-            }
-            else
-            {
-                printf("Unexpected PRINTER CONFIG token: %s, at line:%d\n", ptr,lines);
-                ++errors;
-            }
-            break;
+            case PRINTER_CONFIG:
+                if(tok == TOK_ADDRESS)
+                {
+                    Devices[index].ADDRESS = 0x1f & val.b;
+                    PRINTERp->HEADER.ADDRESS  = 0x1f & val.b;
+// NO PPR
+                    Devices[index].PPR = 0xff;
+                    PRINTERp->HEADER.PPR = 0xff;
+                }
+                else
+                {
+                    printf("Unexpected PRINTER CONFIG token: %s, at line:%d\n", ptr,lines);
+                    ++errors;
+                }
+                break;
 
-        case SS80_STATE:
-			switch(tok)
-			{
-				case TOK_HEADER:
-					push_state(state);
-					state = SS80_HEADER;
-					break;
-                case TOK_CONFIG:
-					push_state(state);
-					state = SS80_CONFIG;
-					break;
-            	case TOK_CONTROLLER:
-					push_state(state);
-					state = SS80_CONTROLLER;
-					break;
-				case TOK_UNIT:
-					push_state(state);
-					state = SS80_UNIT;
-					break;
-            	case TOK_VOLUME:
-					push_state(state);
-					state = SS80_VOLUME;
-					break;
-				default:
-					printf("Unexpected SS80 START token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
+            case SS80_STATE:
+                switch(tok)
+                {
+                    case TOK_HEADER:
+                        push_state(state);
+                        state = SS80_HEADER;
+                        break;
+                    case TOK_CONFIG:
+                        push_state(state);
+                        state = SS80_CONFIG;
+                        break;
+                    case TOK_CONTROLLER:
+                        push_state(state);
+                        state = SS80_CONTROLLER;
+                        break;
+                    case TOK_UNIT:
+                        push_state(state);
+                        state = SS80_UNIT;
+                        break;
+                    case TOK_VOLUME:
+                        push_state(state);
+                        state = SS80_VOLUME;
+                        break;
+                    default:
+                        printf("Unexpected SS80 START token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
-        case SS80_HEADER:
-            switch(tok)
-			{
-				case TOK_ADDRESS:
-					Devices[index].ADDRESS = 0x1f & val.b;
-					SS80p->HEADER.ADDRESS  = 0x1f & val.b;
-					break;
-				case TOK_PPR:
-					Devices[index].PPR = 0x07 & val.b;
-					SS80p->HEADER.PPR = 0x07 & val.b;
-					break;
-            	case TOK_FILE:
-					SS80p->HEADER.NAME = stralloc(token);
-					break;
-				default:
-					printf("Unexpected SS80 CONFIG token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-			}
-            break;
+            case SS80_HEADER:
+                switch(tok)
+                {
+                    case TOK_ADDRESS:
+                        Devices[index].ADDRESS = 0x1f & val.b;
+                        SS80p->HEADER.ADDRESS  = 0x1f & val.b;
+                        break;
+                    case TOK_PPR:
+                        Devices[index].PPR = 0x07 & val.b;
+                        SS80p->HEADER.PPR = 0x07 & val.b;
+                        break;
+                    case TOK_FILE:
+                        SS80p->HEADER.NAME = stralloc(token);
+                        break;
+                    default:
+                        printf("Unexpected SS80 CONFIG token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
-        case SS80_CONFIG:
-            if(tok == TOK_ID )
-            {
-                SS80p->CONFIG.ID = val.w;
-            }
-            else
-            {
-                printf("Unexpected SS80 CONFIG token: %s, at line:%d\n", ptr,lines);
-                ++errors;
-            }
-            break;
+            case SS80_CONFIG:
+                if(tok == TOK_ID )
+                {
+                    SS80p->CONFIG.ID = val.w;
+                }
+                else
+                {
+                    printf("Unexpected SS80 CONFIG token: %s, at line:%d\n", ptr,lines);
+                    ++errors;
+                }
+                break;
 
-        case SS80_CONTROLLER:
-            switch(tok)
-			{
-				case TOK_UNITS_INSTALLED:
-					SS80p->CONTROLLER.UNITS_INSTALLED = val.w;
-					break;
-				case TOK_TRANSFER_RATE:
-					SS80p->CONTROLLER.TRANSFER_RATE = val.w;
-					break;
-            	case TOK_TYPE:
-					SS80p->CONTROLLER.TYPE = val.b;
-					break;
-				default:
-					printf("Unexpected SS80 CONTROLLER token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
+            case SS80_CONTROLLER:
+                switch(tok)
+                {
+                    case TOK_UNITS_INSTALLED:
+                        SS80p->CONTROLLER.UNITS_INSTALLED = val.w;
+                        break;
+                    case TOK_TRANSFER_RATE:
+                        SS80p->CONTROLLER.TRANSFER_RATE = val.w;
+                        break;
+                    case TOK_TYPE:
+                        SS80p->CONTROLLER.TYPE = val.b;
+                        break;
+                    default:
+                        printf("Unexpected SS80 CONTROLLER token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
+            case SS80_UNIT:
+                switch(tok)
+                {
+                    case TOK_UNIT_TYPE:
+                        SS80p->UNIT.UNIT_TYPE = val.b;
+                        break;
+                    case TOK_DEVICE_NUMBER:
+                        SS80p->UNIT.DEVICE_NUMBER = val.l;
+                        break;
+                    case TOK_BYTES_PER_BLOCK:
+                        SS80p->UNIT.BYTES_PER_BLOCK = val.w;
+                        break;
+                    case TOK_BUFFERED_BLOCKS:
+                        SS80p->UNIT.BUFFERED_BLOCKS = 1 & val.b;
+                        break;
+                    case TOK_BURST_SIZE:
+                        SS80p->UNIT.BURST_SIZE = val.b;
+                        break;
+                    case TOK_BLOCK_TIME:
+                        SS80p->UNIT.BLOCK_TIME = val.w;
+                        break;
+                    case TOK_CONTINUOUS_TRANSFER_RATE:
+                        SS80p->UNIT.CONTINUOUS_TRANSFER_RATE = val.w;
+                        break;
+                    case TOK_OPTIMAL_RETRY_TIME:
+                        SS80p->UNIT.OPTIMAL_RETRY_TIME = val.w;
+                        break;
+                    case TOK_ACCESS_TIME:
+                        SS80p->UNIT.ACCESS_TIME = val.w;
+                        break;
+                    case TOK_MAXIMUM_INTERLEAVE:
+                        SS80p->UNIT.MAXIMUM_INTERLEAVE = val.b;
+                        break;
+                    case TOK_FIXED_VOLUMES:
+                        SS80p->UNIT.FIXED_VOLUMES = val.b;
+                        break;
+                    case TOK_REMOVABLE_VOLUMES:
+                        SS80p->UNIT.REMOVABLE_VOLUMES = val.b;
+                        break;
+                    default:
+                        printf("Unexpected SS80 UNIT token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
-        case SS80_UNIT:
-			switch(tok)
-			{
-				case TOK_UNIT_TYPE:
-					SS80p->UNIT.UNIT_TYPE = val.b;
-            		break;
-            	case TOK_DEVICE_NUMBER:
-					SS80p->UNIT.DEVICE_NUMBER = val.l;
-            		break;
-            	case TOK_BYTES_PER_BLOCK:
-					SS80p->UNIT.BYTES_PER_BLOCK = val.w;
-            		break;
-            	case TOK_BUFFERED_BLOCKS:
-					SS80p->UNIT.BUFFERED_BLOCKS = 1 & val.b;
-            		break;
-            	case TOK_BURST_SIZE:
-					SS80p->UNIT.BURST_SIZE = val.b;
-            		break;
-            	case TOK_BLOCK_TIME:
-					SS80p->UNIT.BLOCK_TIME = val.w;
-            		break;
-            	case TOK_CONTINUOUS_TRANSFER_RATE:
-					SS80p->UNIT.CONTINUOUS_TRANSFER_RATE = val.w;
-					break;
-				case TOK_OPTIMAL_RETRY_TIME:
-					SS80p->UNIT.OPTIMAL_RETRY_TIME = val.w;
-            		break;
-            	case TOK_ACCESS_TIME:
-					SS80p->UNIT.ACCESS_TIME = val.w;
-            		break;
-            	case TOK_MAXIMUM_INTERLEAVE:
-					SS80p->UNIT.MAXIMUM_INTERLEAVE = val.b;
-            		break;
-				case TOK_FIXED_VOLUMES:
-					SS80p->UNIT.FIXED_VOLUMES = val.b;
-            		break;
-            	case TOK_REMOVABLE_VOLUMES:
-					SS80p->UNIT.REMOVABLE_VOLUMES = val.b;
-            		break;
-            	default:
-					printf("Unexpected SS80 UNIT token: %s, at line:%d\n", ptr,lines);
-					++errors;
-            		break;
-            }
-            break;
-
-        case SS80_VOLUME:
-			switch(tok)
-			{
-				case TOK_MAX_CYLINDER:
-					SS80p->VOLUME.MAX_CYLINDER = val.l;
-					break;
-            	case TOK_MAX_HEAD:
-					SS80p->VOLUME.MAX_HEAD = val.b;
-					break;
-            	case TOK_MAX_SECTOR:
-					SS80p->VOLUME.MAX_SECTOR = val.w;
-					break;
-            	case TOK_MAX_BLOCK_NUMBER:
-					SS80p->VOLUME.MAX_BLOCK_NUMBER = val.l;
-					break;
-            	case TOK_INTERLEAVE:
-					SS80p->VOLUME.INTERLEAVE = val.b;
-					break;
-				default:
-					printf("Unexpected SS80 VOLUME token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
+            case SS80_VOLUME:
+                switch(tok)
+                {
+                    case TOK_MAX_CYLINDER:
+                        SS80p->VOLUME.MAX_CYLINDER = val.l;
+                        break;
+                    case TOK_MAX_HEAD:
+                        SS80p->VOLUME.MAX_HEAD = val.b;
+                        break;
+                    case TOK_MAX_SECTOR:
+                        SS80p->VOLUME.MAX_SECTOR = val.w;
+                        break;
+                    case TOK_MAX_BLOCK_NUMBER:
+                        SS80p->VOLUME.MAX_BLOCK_NUMBER = val.l;
+                        break;
+                    case TOK_INTERLEAVE:
+                        SS80p->VOLUME.INTERLEAVE = val.b;
+                        break;
+                    default:
+                        printf("Unexpected SS80 VOLUME token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
 #ifdef AMIGO
-        case AMIGO_STATE:
-			switch(tok)
-			{
-				case TOK_HEADER:
-					push_state(state);
-					state = AMIGO_HEADER;
-					break;
-				case TOK_CONFIG:
-					push_state(state);
-					state = AMIGO_CONFIG;
-					break;
-            	case TOK_GEOMETRY:
-					push_state(state);
-					state = AMIGO_GEOMETRY;
-					break;
-            	default:
-					printf("Unexpected AMIGO START token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
+            case AMIGO_STATE:
+                switch(tok)
+                {
+                    case TOK_HEADER:
+                        push_state(state);
+                        state = AMIGO_HEADER;
+                        break;
+                    case TOK_CONFIG:
+                        push_state(state);
+                        state = AMIGO_CONFIG;
+                        break;
+                    case TOK_GEOMETRY:
+                        push_state(state);
+                        state = AMIGO_GEOMETRY;
+                        break;
+                    default:
+                        printf("Unexpected AMIGO START token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
-        case AMIGO_HEADER:
-			switch(tok)
-			{
-            	case TOK_DRIVE:
-					break;
-            	case TOK_ADDRESS:
-					Devices[index].ADDRESS = 0x1f & val.b;
-					AMIGOp->HEADER.ADDRESS = 0x1f & val.b;
-					break;
-            	case TOK_PPR:
-					Devices[index].PPR = 0x07 & val.b;
-					AMIGOp->HEADER.PPR = 0x07 & val.b;
-					break;
-            	case TOK_FILE:
-					AMIGOp->HEADER.NAME = stralloc(token);
-					break;
-				default:
-					printf("Unexpected HEADER CONFIG token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
+            case AMIGO_HEADER:
+                switch(tok)
+                {
+                    case TOK_DRIVE:
+                        break;
+                    case TOK_ADDRESS:
+                        Devices[index].ADDRESS = 0x1f & val.b;
+                        AMIGOp->HEADER.ADDRESS = 0x1f & val.b;
+                        break;
+                    case TOK_PPR:
+                        Devices[index].PPR = 0x07 & val.b;
+                        AMIGOp->HEADER.PPR = 0x07 & val.b;
+                        break;
+                    case TOK_FILE:
+                        AMIGOp->HEADER.NAME = stralloc(token);
+                        break;
+                    default:
+                        printf("Unexpected HEADER CONFIG token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
 
-        case AMIGO_CONFIG:
-            if(tok == TOK_ID )
-			{
-                AMIGOp->CONFIG.ID = val.w;
-			}
-            else
-            {
-                printf("Unexpected AMIGO CONFIG token: %s, at line:%d\n", ptr,lines);
+            case AMIGO_CONFIG:
+                if(tok == TOK_ID )
+                {
+                    AMIGOp->CONFIG.ID = val.w;
+                }
+                else
+                {
+                    printf("Unexpected AMIGO CONFIG token: %s, at line:%d\n", ptr,lines);
+                    ++errors;
+                }
+                break;
+
+            case AMIGO_GEOMETRY:
+                switch(tok)
+                {
+                    case TOK_BYTES_PER_SECTOR:
+                        AMIGOp->GEOMETRY.BYTES_PER_SECTOR = val.w;
+                        break;
+                    case TOK_SECTORS_PER_TRACK:
+                        AMIGOp->GEOMETRY.SECTORS_PER_TRACK = val.w;
+                        break;
+                    case TOK_HEADS:
+                        AMIGOp->GEOMETRY.HEADS = val.w;
+                        break;
+                    case TOK_CYLINDERS:
+                        AMIGOp->GEOMETRY.CYLINDERS = val.w;
+                        break;
+                    default:
+                        printf("Unexpected AMIGO GEMETRY token: %s, at line:%d\n", ptr,lines);
+                        ++errors;
+                        break;
+                }
+                break;
+#endif                                // #ifdef AMIGO
+            default:
+                printf("Unexpected STATE: %s, at line:%d\n", ptr,lines);
                 ++errors;
-            }
-            break;
+                break;
 
-        case AMIGO_GEOMETRY:
-			switch(tok)
-			{
-				case TOK_BYTES_PER_SECTOR:
-					AMIGOp->GEOMETRY.BYTES_PER_SECTOR = val.w;
-					break;
-				case TOK_SECTORS_PER_TRACK:
-					AMIGOp->GEOMETRY.SECTORS_PER_TRACK = val.w;
-					break;
-				case TOK_HEADS:
-					AMIGOp->GEOMETRY.HEADS = val.w;
-					break;
-            	case TOK_CYLINDERS:
-					AMIGOp->GEOMETRY.CYLINDERS = val.w;
-					break;
-            	default:
-					printf("Unexpected AMIGO GEMETRY token: %s, at line:%d\n", ptr,lines);
-					++errors;
-					break;
-            }
-            break;
-#endif // #ifdef AMIGO
-        default:
-            printf("Unexpected STATE: %s, at line:%d\n", ptr,lines);
-			++errors;
-            break;
-
-        } // switch
-    } //while
+        }                                         // switch
+    }                                             //while
     if(state != START_STATE)
     {
         printf("Missing END statement at line:%d\n", lines);
@@ -761,11 +759,12 @@ int Read_Config(char *name)
         ++errors;
     }
 
-	// Post process device values
-	Post_Config();
+// Post process device values
+    Post_Config();
 
     return(errors);
 }
+
 
 /// ===============================================
 /// @brief Display Configuration device address saummary
@@ -781,62 +780,63 @@ void display_Addresses( int verbose )
             continue;
 
         if(Devices[i].TYPE == SS80_TYPE || Devices[i].TYPE == AMIGO_TYPE)
-		{
-			if(Devices[i].TYPE == SS80_TYPE)
-			{
-				SS80p= (SS80DiskType *)Devices[i].dev;
-				printf("SS80 %s\n", Devices[i].model);
+        {
+            if(Devices[i].TYPE == SS80_TYPE)
+            {
+                SS80p= (SS80DiskType *)Devices[i].dev;
+                printf("SS80 %s\n", Devices[i].model);
                 print_tok_str(TOK_FILE, 4, SS80p->HEADER.NAME);
-			}
+            }
 #ifdef AMIGO
-			if(Devices[i].TYPE == AMIGO_TYPE )
-			{
-				AMIGOp= (AMIGODiskType *)Devices[i].dev;
-				printf("AMIGO %s\n", Devices[i].model);
+            if(Devices[i].TYPE == AMIGO_TYPE )
+            {
+                AMIGOp= (AMIGODiskType *)Devices[i].dev;
+                printf("AMIGO %s\n", Devices[i].model);
                 print_tok_str(TOK_FILE, 4, AMIGOp->HEADER.NAME);
-			}
+            }
 #endif
             print_tok_val(TOK_ADDRESS, 4, (uint32_t) Devices[i].ADDRESS);
             print_tok_val(TOK_PPR, 4, (uint32_t) Devices[i].PPR);
             print_tok_val(TOK_BLOCKS, 4, (uint32_t) Devices[i].BLOCKS);
-		}
+        }
         if(Devices[i].TYPE == PRINTER_TYPE )
-		{
-			printf("PRINTER\n");
+        {
+            printf("PRINTER\n");
             print_tok_val(TOK_ADDRESS, 4, (uint32_t) Devices[i].ADDRESS);
-		}
+        }
 
-		if(verbose)
-		{
+        if(verbose)
+        {
 #if 0
-			int address = Devices[i].ADDRESS;
-			if(Devices[i].TYPE == SS80_TYPE)
-			{
-				printf("  SS80_MLA    = %02XH\n",BASE_MLA + address );
-				printf("  SS80_MTA    = %02XH\n",BASE_MTA + address );
-				printf("  SS80_MSA    = %02XH\n",BASE_MSA + address );
-			}
+            int address = Devices[i].ADDRESS;
+            if(Devices[i].TYPE == SS80_TYPE)
+            {
+                printf("  SS80_MLA    = %02XH\n",BASE_MLA + address );
+                printf("  SS80_MTA    = %02XH\n",BASE_MTA + address );
+                printf("  SS80_MSA    = %02XH\n",BASE_MSA + address );
+            }
 #ifdef AMIGO
-			if(Devices[i].TYPE == AMIGO_TYPE )
-			{
-				printf("  AMIGO_MLA   = %02XH\n",BASE_MLA + address );
-				printf("  AMIGO_MTA   = %02XH\n",BASE_MTA + address );
-				printf("  AMIGO_MSA   = %02XH\n",BASE_MSA + address );
-			}
+            if(Devices[i].TYPE == AMIGO_TYPE )
+            {
+                printf("  AMIGO_MLA   = %02XH\n",BASE_MLA + address );
+                printf("  AMIGO_MTA   = %02XH\n",BASE_MTA + address );
+                printf("  AMIGO_MSA   = %02XH\n",BASE_MSA + address );
+            }
 #endif
-			if(Devices[i].TYPE == PRINTER_TYPE )
-			{
-				printf("  PRINTER_MLA = %02XH\n",BASE_MLA + address );
-				printf("  PRINTER_MTA = %02XH\n",BASE_MTA + address );
-				printf("  PRINTER_MSA = %02XH\n",BASE_MSA + address );
-			}
+            if(Devices[i].TYPE == PRINTER_TYPE )
+            {
+                printf("  PRINTER_MLA = %02XH\n",BASE_MLA + address );
+                printf("  PRINTER_MTA = %02XH\n",BASE_MTA + address );
+                printf("  PRINTER_MSA = %02XH\n",BASE_MSA + address );
+            }
 #endif
-		}
-		printf("\n");
+        }
+        printf("\n");
 
     }
     printf("\n");
 }
+
 
 /// ===============================================
 /// @brief Display current Configuration File values
@@ -844,13 +844,13 @@ void display_Addresses( int verbose )
 void display_Config( int verbose)
 {
     int i;
-    ///@brief Active Printer Device
+///@brief Active Printer Device
     PRINTERDeviceType *PRINTERp = NULL;
-    ///@brief Active SS80 Device
+///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
 
 #ifdef AMIGO
-    ///@brief Active AMIGO Device
+///@brief Active AMIGO Device
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
@@ -865,65 +865,65 @@ void display_Config( int verbose)
             SS80p= (SS80DiskType *)Devices[i].dev;
 
             printf("SS80 %s\n", Devices[i].model);
-			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) SS80p->HEADER.ADDRESS);
+            printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) SS80p->HEADER.ADDRESS);
 
             print_tok(TOK_CONFIG,4);
-                print_tok_val(TOK_ADDRESS, 8, (uint32_t) SS80p->HEADER.ADDRESS);
-                print_tok_val(TOK_PPR, 8, (uint32_t) SS80p->HEADER.PPR);
-                print_tok_str(TOK_FILE, 8, SS80p->HEADER.NAME);
+            print_tok_val(TOK_ADDRESS, 8, (uint32_t) SS80p->HEADER.ADDRESS);
+            print_tok_val(TOK_PPR, 8, (uint32_t) SS80p->HEADER.PPR);
+            print_tok_str(TOK_FILE, 8, SS80p->HEADER.NAME);
             print_tok(TOK_END,4);
 
             print_tok(TOK_HEADER,4);
-                print_tok_val(TOK_ID, 8, (uint32_t) SS80p->CONFIG.ID);
+            print_tok_val(TOK_ID, 8, (uint32_t) SS80p->CONFIG.ID);
             print_tok(TOK_END,4);
 
-			// CONTROLLER
-			if(verbose)
-			{
-				print_tok(TOK_CONTROLLER,4);
-					print_tok_val(TOK_UNITS_INSTALLED, 8, (uint32_t) SS80p->CONTROLLER.UNITS_INSTALLED);
-					print_tok_val(TOK_TRANSFER_RATE, 8, (uint32_t)  SS80p->CONTROLLER.TRANSFER_RATE);
-					print_tok_val(TOK_TYPE, 8, (uint32_t)  SS80p->CONTROLLER.TYPE);
-				print_tok(TOK_END,4);
-			}
+// CONTROLLER
+            if(verbose)
+            {
+                print_tok(TOK_CONTROLLER,4);
+                print_tok_val(TOK_UNITS_INSTALLED, 8, (uint32_t) SS80p->CONTROLLER.UNITS_INSTALLED);
+                print_tok_val(TOK_TRANSFER_RATE, 8, (uint32_t)  SS80p->CONTROLLER.TRANSFER_RATE);
+                print_tok_val(TOK_TYPE, 8, (uint32_t)  SS80p->CONTROLLER.TYPE);
+                print_tok(TOK_END,4);
+            }
 
-			// UNIT
-			print_tok(TOK_UNIT,4);
-                if(verbose)
-                {
-                    print_tok_val(TOK_UNIT_TYPE, 8, (uint32_t)SS80p->UNIT.UNIT_TYPE);
-                }
-                print_tok_val(TOK_DEVICE_NUMBER, 8, (uint32_t)SS80p->UNIT.DEVICE_NUMBER);
-                if(verbose)
-                {
-                    print_tok_val(TOK_BYTES_PER_BLOCK, 8, (uint32_t)SS80p->UNIT.BYTES_PER_BLOCK);
-                    print_tok_val(TOK_BUFFERED_BLOCKS, 8, (uint32_t)SS80p->UNIT.BUFFERED_BLOCKS);
-                    print_tok_val(TOK_BURST_SIZE, 8, (uint32_t)SS80p->UNIT.BURST_SIZE);
-                    print_tok_val(TOK_BLOCK_TIME, 8, (uint32_t)SS80p->UNIT.BLOCK_TIME);
-                    print_tok_val(TOK_CONTINUOUS_TRANSFER_RATE, 8, (uint32_t)SS80p->UNIT.CONTINUOUS_TRANSFER_RATE);
-                    print_tok_val(TOK_OPTIMAL_RETRY_TIME, 8, (uint32_t)SS80p->UNIT.OPTIMAL_RETRY_TIME);
-                    print_tok_val(TOK_ACCESS_TIME, 8, (uint32_t)SS80p->UNIT.ACCESS_TIME);
-                    print_tok_val(TOK_MAXIMUM_INTERLEAVE, 8, (uint32_t)SS80p->UNIT.MAXIMUM_INTERLEAVE);
-                    print_tok_val(TOK_FIXED_VOLUMES, 8, (uint32_t)SS80p->UNIT.FIXED_VOLUMES);
-                    print_tok_val(TOK_REMOVABLE_VOLUMES, 8, (uint32_t)SS80p->UNIT.REMOVABLE_VOLUMES);
-                }
-           print_tok(TOK_END,4);
+// UNIT
+            print_tok(TOK_UNIT,4);
+            if(verbose)
+            {
+                print_tok_val(TOK_UNIT_TYPE, 8, (uint32_t)SS80p->UNIT.UNIT_TYPE);
+            }
+            print_tok_val(TOK_DEVICE_NUMBER, 8, (uint32_t)SS80p->UNIT.DEVICE_NUMBER);
+            if(verbose)
+            {
+                print_tok_val(TOK_BYTES_PER_BLOCK, 8, (uint32_t)SS80p->UNIT.BYTES_PER_BLOCK);
+                print_tok_val(TOK_BUFFERED_BLOCKS, 8, (uint32_t)SS80p->UNIT.BUFFERED_BLOCKS);
+                print_tok_val(TOK_BURST_SIZE, 8, (uint32_t)SS80p->UNIT.BURST_SIZE);
+                print_tok_val(TOK_BLOCK_TIME, 8, (uint32_t)SS80p->UNIT.BLOCK_TIME);
+                print_tok_val(TOK_CONTINUOUS_TRANSFER_RATE, 8, (uint32_t)SS80p->UNIT.CONTINUOUS_TRANSFER_RATE);
+                print_tok_val(TOK_OPTIMAL_RETRY_TIME, 8, (uint32_t)SS80p->UNIT.OPTIMAL_RETRY_TIME);
+                print_tok_val(TOK_ACCESS_TIME, 8, (uint32_t)SS80p->UNIT.ACCESS_TIME);
+                print_tok_val(TOK_MAXIMUM_INTERLEAVE, 8, (uint32_t)SS80p->UNIT.MAXIMUM_INTERLEAVE);
+                print_tok_val(TOK_FIXED_VOLUMES, 8, (uint32_t)SS80p->UNIT.FIXED_VOLUMES);
+                print_tok_val(TOK_REMOVABLE_VOLUMES, 8, (uint32_t)SS80p->UNIT.REMOVABLE_VOLUMES);
+            }
+            print_tok(TOK_END,4);
 
-			// VOLUME
-                if(verbose)
-                {
-					print_tok(TOK_VOLUME,4);
-						print_tok_val(TOK_MAX_CYLINDER, 8, (uint32_t)SS80p->VOLUME.MAX_CYLINDER);
-						print_tok_val(TOK_MAX_HEAD, 8, (uint32_t)SS80p->VOLUME.MAX_HEAD);
-						print_tok_val(TOK_MAX_SECTOR, 8, (uint32_t)SS80p->VOLUME.MAX_SECTOR);
-						print_tok_val(TOK_MAX_BLOCK_NUMBER, 8, (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
-						print_tok_val(TOK_INTERLEAVE, 8, (uint32_t)SS80p->VOLUME.INTERLEAVE);
-			        print_tok(TOK_END,4);
-                }
-                printf("    # BLOCKS = %ld\n", (long)SS80p->VOLUME.MAX_BLOCK_NUMBER+1);
+// VOLUME
+            if(verbose)
+            {
+                print_tok(TOK_VOLUME,4);
+                print_tok_val(TOK_MAX_CYLINDER, 8, (uint32_t)SS80p->VOLUME.MAX_CYLINDER);
+                print_tok_val(TOK_MAX_HEAD, 8, (uint32_t)SS80p->VOLUME.MAX_HEAD);
+                print_tok_val(TOK_MAX_SECTOR, 8, (uint32_t)SS80p->VOLUME.MAX_SECTOR);
+                print_tok_val(TOK_MAX_BLOCK_NUMBER, 8, (uint32_t)SS80p->VOLUME.MAX_BLOCK_NUMBER);
+                print_tok_val(TOK_INTERLEAVE, 8, (uint32_t)SS80p->VOLUME.INTERLEAVE);
+                print_tok(TOK_END,4);
+            }
+            printf("    # BLOCKS = %ld\n", (long)SS80p->VOLUME.MAX_BLOCK_NUMBER+1);
 
-			print_tok(TOK_END,0);
-        } // SS80_TYPE
+            print_tok(TOK_END,0);
+        }                                         // SS80_TYPE
 
 #ifdef AMIGO
         if(Devices[i].TYPE == AMIGO_TYPE )
@@ -931,32 +931,32 @@ void display_Config( int verbose)
             AMIGOp= (AMIGODiskType *)Devices[i].dev;
 
             printf("AMIGO %s\n", Devices[i].model);
-			printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) AMIGOp->HEADER.ADDRESS);
-    
-                print_tok(TOK_HEADER,4);
-                    print_tok_val(TOK_ADDRESS, 8, (uint32_t) AMIGOp->HEADER.ADDRESS);
-                    print_tok_val(TOK_PPR, 8, (uint32_t) AMIGOp->HEADER.PPR);
-                    print_tok_str(TOK_FILE, 8, AMIGOp->HEADER.NAME);
-    			print_tok(TOK_END,4);
-    
-                print_tok(TOK_CONFIG,4);
-                    print_tok_val(TOK_ID, 8, (uint32_t) AMIGOp->CONFIG.ID);
-    			print_tok(TOK_END,4);
-    
-    				if(verbose)
-    				{
-						print_tok(TOK_GEOMETRY,4);
-    					print_tok_val(TOK_BYTES_PER_SECTOR, 8, (uint32_t) AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
-    					print_tok_val(TOK_SECTORS_PER_TRACK, 8, (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
-    					print_tok_val(TOK_HEADS, 8, (uint32_t) AMIGOp->GEOMETRY.HEADS);
-    					print_tok_val(TOK_CYLINDERS, 8, (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
-						print_tok(TOK_END,4);
-    				}
-                printf("    # BLOCKS = %ld\n", (long) (AMIGOp->GEOMETRY.CYLINDERS * AMIGOp->GEOMETRY.SECTORS_PER_TRACK * AMIGOp->GEOMETRY.HEADS) );
+            printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) AMIGOp->HEADER.ADDRESS);
 
-			print_tok(TOK_END,0);
-        } 
-#endif // #ifdef AMIGO
+            print_tok(TOK_HEADER,4);
+            print_tok_val(TOK_ADDRESS, 8, (uint32_t) AMIGOp->HEADER.ADDRESS);
+            print_tok_val(TOK_PPR, 8, (uint32_t) AMIGOp->HEADER.PPR);
+            print_tok_str(TOK_FILE, 8, AMIGOp->HEADER.NAME);
+            print_tok(TOK_END,4);
+
+            print_tok(TOK_CONFIG,4);
+            print_tok_val(TOK_ID, 8, (uint32_t) AMIGOp->CONFIG.ID);
+            print_tok(TOK_END,4);
+
+            if(verbose)
+            {
+                print_tok(TOK_GEOMETRY,4);
+                print_tok_val(TOK_BYTES_PER_SECTOR, 8, (uint32_t) AMIGOp->GEOMETRY.BYTES_PER_SECTOR);
+                print_tok_val(TOK_SECTORS_PER_TRACK, 8, (uint32_t) AMIGOp->GEOMETRY.SECTORS_PER_TRACK);
+                print_tok_val(TOK_HEADS, 8, (uint32_t) AMIGOp->GEOMETRY.HEADS);
+                print_tok_val(TOK_CYLINDERS, 8, (uint32_t) AMIGOp->GEOMETRY.CYLINDERS);
+                print_tok(TOK_END,4);
+            }
+            printf("    # BLOCKS = %ld\n", (long) (AMIGOp->GEOMETRY.CYLINDERS * AMIGOp->GEOMETRY.SECTORS_PER_TRACK * AMIGOp->GEOMETRY.HEADS) );
+
+            print_tok(TOK_END,0);
+        }
+#endif                                    // #ifdef AMIGO
 
         if(Devices[i].TYPE == PRINTER_TYPE )
         {
@@ -964,13 +964,13 @@ void display_Config( int verbose)
 
             print_tok(TOK_PRINTER,0);
 
-                print_tok(TOK_CONFIG,4);
-					print_tok_val(TOK_ADDRESS, 8, (uint32_t) PRINTERp->HEADER.ADDRESS);
-    			print_tok(TOK_END,4);
+            print_tok(TOK_CONFIG,4);
+            print_tok_val(TOK_ADDRESS, 8, (uint32_t) PRINTERp->HEADER.ADDRESS);
+            print_tok(TOK_END,4);
 
-			print_tok(TOK_END,0);
+            print_tok(TOK_END,0);
         }
-		printf("\n");
+        printf("\n");
     }
     printf("\n");
 }
@@ -990,19 +990,21 @@ int find_type(int type)
     return(-1);
 }
 
+
 /// @brief Count number of devices of a sertain type
 ///@param type: disk type like SS80_TYPE
 int count_drive_types(uint8_t type)
 {
     int i;
-	int count = 0;
+    int count = 0;
     for(i=0;i<MAX_DEVICES;++i)
     {
         if( Devices[i].TYPE == type )
-			++count;
+            ++count;
     }
-	return(count);
+    return(count);
 }
+
 
 ///@brief Convert a disk type into a string
 ///@param type: disk type like SS80_TYPE
@@ -1019,6 +1021,8 @@ char *type_to_str(int type)
         return("PRINTER_TYPE");
     return("INVALID TYPE");
 }
+
+
 ///@brief Convert base address into a string identifier
 ///@param base: BASE_MAL, BASE_MTA or BASE_MSA only
 ///@return string "MLA", "MTA", "MSA" or error string
@@ -1033,12 +1037,14 @@ char *base_to_str(int base)
     return("*INVALID BASE*");
 }
 
+
 ///@brief Find first free Devices[] slot
 ///@return Devices[] index of free slot or -1
 int find_free()
 {
     return(find_type(NO_TYPE));
 }
+
 
 ///@brief Find a device with matching type AND address
 ///@param type: disk type
@@ -1049,18 +1055,18 @@ int find_device(int type, int address, int base)
 {
     int i;
 
-    ///@skip Only interested in device addresses
+///@skip Only interested in device addresses
     if(address < BASE_MLA || address >(BASE_MSA+30))
         return(-1);
 
-    ///@brief Make sure address is in expected range
+///@brief Make sure address is in expected range
     if(address < base || address > (base+30))
         return(-1);
 
-    ///@brief convert to device address
+///@brief convert to device address
     address -= base;
 
-    ///@brief search for device address
+///@brief search for device address
     for(i=0;i<MAX_DEVICES;++i)
     {
         if(Devices[i].TYPE == type && Devices[i].ADDRESS == address)
@@ -1068,6 +1074,7 @@ int find_device(int type, int address, int base)
     }
     return(-1);
 }
+
 
 ///@brief Set the Active disk or device pointers
 /// Since we can be called multiple times per single GPIB state we do not
@@ -1078,8 +1085,8 @@ int set_active_device(int index)
 {
     int type,address;
 
-    ///@brief We also check for -1 
-    /// So the result of find_device() can be used without additional tests
+///@brief We also check for -1
+/// So the result of find_device() can be used without additional tests
     if(index == -1)
     {
         return(0);
@@ -1104,7 +1111,7 @@ int set_active_device(int index)
     if(Devices[index].dev == NULL)
     {
         if(debuglevel & GPIB_PPR)
-            printf("set_active_device: index:%d type:%d:%s, dev == NULL\n", 
+            printf("set_active_device: index:%d type:%d:%s, dev == NULL\n",
                 index,type,type_to_str(type));
         return(0);
     }
@@ -1112,7 +1119,7 @@ int set_active_device(int index)
     if(type == NO_TYPE)
     {
         if(debuglevel & GPIB_PPR)
-            printf("set_active_device: index %d uninitalized type:%d:%s\n", 
+            printf("set_active_device: index %d uninitalized type:%d:%s\n",
                 index,type,type_to_str(type));
         return(0);
     }
@@ -1123,13 +1130,13 @@ int set_active_device(int index)
         return(1);
     }
 
-    if(type == AMIGO_TYPE || type == SS80_TYPE) 
+    if(type == AMIGO_TYPE || type == SS80_TYPE)
     {
         if(Devices[index].state == NULL)
         {
             if(debuglevel & GPIB_PPR)
                 printf("set_active_device: index: %d type:%d:%s, state == NULL\n",
-                     index,type,type_to_str(type));
+                    index,type,type_to_str(type));
             return(0);
         }
 #ifdef AMIGO
@@ -1148,7 +1155,7 @@ int set_active_device(int index)
         }
     }
     if(debuglevel & GPIB_PPR)
-        printf("set_active_device:(%d) invalid type:%d:%s\n", 
+        printf("set_active_device:(%d) invalid type:%d:%s\n",
             index,type,type_to_str(type));
     return(0);
 }
@@ -1160,43 +1167,42 @@ int set_active_device(int index)
 ///@return void
 void SS80_Set_Defaults(int index)
 {
-	int defindex = find_type(SS80_DEFAULT_TYPE);
-	SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
-	SS80DiskType *SS80DEFAULTp;
+    int defindex = find_type(SS80_DEFAULT_TYPE);
+    SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
+    SS80DiskType *SS80DEFAULTp;
 
-	if(defindex < 0 )
-		return;
+    if(defindex < 0 )
+        return;
 
-	SS80DEFAULTp = (SS80DiskType *) Devices[defindex].dev;
+    SS80DEFAULTp = (SS80DiskType *) Devices[defindex].dev;
 
-	SS80p->HEADER.ADDRESS				= SS80DEFAULTp->HEADER.ADDRESS;
-	SS80p->HEADER.PPR					= SS80DEFAULTp->HEADER.PPR;
-	SS80p->HEADER.NAME = stralloc(SS80DEFAULTp->HEADER.NAME);
+    SS80p->HEADER.ADDRESS               = SS80DEFAULTp->HEADER.ADDRESS;
+    SS80p->HEADER.PPR                   = SS80DEFAULTp->HEADER.PPR;
+    SS80p->HEADER.NAME = stralloc(SS80DEFAULTp->HEADER.NAME);
 
-	SS80p->CONFIG.ID					= SS80DEFAULTp->CONFIG.ID;
-	SS80p->CONTROLLER.UNITS_INSTALLED	= SS80DEFAULTp->CONTROLLER.UNITS_INSTALLED;
-	SS80p->CONTROLLER.TRANSFER_RATE		= SS80DEFAULTp->CONTROLLER.TRANSFER_RATE;
-	SS80p->CONTROLLER.TYPE				= SS80DEFAULTp->CONTROLLER.TYPE;
+    SS80p->CONFIG.ID                    = SS80DEFAULTp->CONFIG.ID;
+    SS80p->CONTROLLER.UNITS_INSTALLED   = SS80DEFAULTp->CONTROLLER.UNITS_INSTALLED;
+    SS80p->CONTROLLER.TRANSFER_RATE     = SS80DEFAULTp->CONTROLLER.TRANSFER_RATE;
+    SS80p->CONTROLLER.TYPE              = SS80DEFAULTp->CONTROLLER.TYPE;
 
-	SS80p->UNIT.UNIT_TYPE				= SS80DEFAULTp->UNIT.UNIT_TYPE;
-	SS80p->UNIT.DEVICE_NUMBER			= SS80DEFAULTp->UNIT.DEVICE_NUMBER;
-	SS80p->UNIT.BYTES_PER_BLOCK			= SS80DEFAULTp->UNIT.BYTES_PER_BLOCK;
-	SS80p->UNIT.BUFFERED_BLOCKS			= SS80DEFAULTp->UNIT.BUFFERED_BLOCKS;
-	SS80p->UNIT.BURST_SIZE				= SS80DEFAULTp->UNIT.BURST_SIZE;
-	SS80p->UNIT.BLOCK_TIME				= SS80DEFAULTp->UNIT.BLOCK_TIME;
-	SS80p->UNIT.CONTINUOUS_TRANSFER_RATE= SS80DEFAULTp->UNIT.CONTINUOUS_TRANSFER_RATE;
-	SS80p->UNIT.OPTIMAL_RETRY_TIME		= SS80DEFAULTp->UNIT.OPTIMAL_RETRY_TIME;
-	SS80p->UNIT.ACCESS_TIME				= SS80DEFAULTp->UNIT.ACCESS_TIME;
-	SS80p->UNIT.MAXIMUM_INTERLEAVE		= SS80DEFAULTp->UNIT.MAXIMUM_INTERLEAVE;
-	SS80p->UNIT.FIXED_VOLUMES			= SS80DEFAULTp->UNIT.FIXED_VOLUMES;
+    SS80p->UNIT.UNIT_TYPE               = SS80DEFAULTp->UNIT.UNIT_TYPE;
+    SS80p->UNIT.DEVICE_NUMBER           = SS80DEFAULTp->UNIT.DEVICE_NUMBER;
+    SS80p->UNIT.BYTES_PER_BLOCK         = SS80DEFAULTp->UNIT.BYTES_PER_BLOCK;
+    SS80p->UNIT.BUFFERED_BLOCKS         = SS80DEFAULTp->UNIT.BUFFERED_BLOCKS;
+    SS80p->UNIT.BURST_SIZE              = SS80DEFAULTp->UNIT.BURST_SIZE;
+    SS80p->UNIT.BLOCK_TIME              = SS80DEFAULTp->UNIT.BLOCK_TIME;
+    SS80p->UNIT.CONTINUOUS_TRANSFER_RATE= SS80DEFAULTp->UNIT.CONTINUOUS_TRANSFER_RATE;
+    SS80p->UNIT.OPTIMAL_RETRY_TIME      = SS80DEFAULTp->UNIT.OPTIMAL_RETRY_TIME;
+    SS80p->UNIT.ACCESS_TIME             = SS80DEFAULTp->UNIT.ACCESS_TIME;
+    SS80p->UNIT.MAXIMUM_INTERLEAVE      = SS80DEFAULTp->UNIT.MAXIMUM_INTERLEAVE;
+    SS80p->UNIT.FIXED_VOLUMES           = SS80DEFAULTp->UNIT.FIXED_VOLUMES;
 
-	SS80p->VOLUME.MAX_CYLINDER			= SS80DEFAULTp->VOLUME.MAX_CYLINDER;
-	SS80p->VOLUME.MAX_HEAD				= SS80DEFAULTp->VOLUME.MAX_HEAD;
-	SS80p->VOLUME.MAX_SECTOR			= SS80DEFAULTp->VOLUME.MAX_SECTOR;
-	SS80p->VOLUME.MAX_BLOCK_NUMBER		= SS80DEFAULTp->VOLUME.MAX_BLOCK_NUMBER;
-	SS80p->VOLUME.INTERLEAVE			= SS80DEFAULTp->VOLUME.INTERLEAVE;
+    SS80p->VOLUME.MAX_CYLINDER          = SS80DEFAULTp->VOLUME.MAX_CYLINDER;
+    SS80p->VOLUME.MAX_HEAD              = SS80DEFAULTp->VOLUME.MAX_HEAD;
+    SS80p->VOLUME.MAX_SECTOR            = SS80DEFAULTp->VOLUME.MAX_SECTOR;
+    SS80p->VOLUME.MAX_BLOCK_NUMBER      = SS80DEFAULTp->VOLUME.MAX_BLOCK_NUMBER;
+    SS80p->VOLUME.INTERLEAVE            = SS80DEFAULTp->VOLUME.INTERLEAVE;
 };
-
 
 ///@brief Allocate a Device structure for a disk or printer
 ///@param type: disk type
@@ -1206,7 +1212,7 @@ int alloc_device(int type)
     int ind;
     int index = -1;
 
-    // Find a free slot
+// Find a free slot
     ind = find_free();
     if(ind == -1)
     {
@@ -1217,7 +1223,7 @@ int alloc_device(int type)
 
     switch(type)
     {
-		// Same as SS80 type but sets initial defaults for any remaining SS80 drives
+// Same as SS80 type but sets initial defaults for any remaining SS80 drives
         case SS80_DEFAULT_TYPE:
             Devices[ind].TYPE = type;
             Devices[ind].dev = safecalloc(sizeof(SS80DiskType)+7,1);
@@ -1229,7 +1235,7 @@ int alloc_device(int type)
             Devices[ind].dev = safecalloc(sizeof(SS80DiskType)+7,1);
             Devices[ind].state = safecalloc(sizeof(SS80StateType)+7,1);
             index = ind;
-			SS80_Set_Defaults(index);	// Set any defaults we may have
+            SS80_Set_Defaults(index);             // Set any defaults we may have
             break;
 #ifdef AMIGO
         case AMIGO_TYPE:
@@ -1253,6 +1259,7 @@ int alloc_device(int type)
     return(index);
 }
 
+
 // =============================================
 /// @brief Init Config Parser Stack
 /// Called only durring power up so we do not have to free memory
@@ -1272,6 +1279,7 @@ void init_Devices()
     }
 }
 
+
 /// ===============================================
 /// @brief Push Parser State
 /// @param state: parser state
@@ -1285,6 +1293,7 @@ int push_state(int state)
     return(state);
 }
 
+
 /// ===============================================
 /// @brief Pop Parser State
 /// @return state
@@ -1295,6 +1304,7 @@ int pop_state()
     else
         return(START_STATE);
 }
+
 
 ///@brief Config file line number
 int lines = 0;
@@ -1315,13 +1325,13 @@ bool assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
     int bad = 0;
     char *ptr;
 
-    // Skip spaces before assignment
+// Skip spaces before assignment
     ptr = skipspaces(str);
-    // Skip optional '='
+// Skip optional '='
     if(*ptr == '=')
     {
         ++ptr;
-        // skip spaces after assignment
+// skip spaces after assignment
         ptr = skipspaces(ptr);
     }
     if(!*ptr)
@@ -1332,7 +1342,7 @@ bool assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
     }
     if(!bad)
     {
-        // FIXME detect bad numbers
+// FIXME detect bad numbers
         tmp = get_value(ptr);
         *val = tmp;
         if((minval && (tmp < minval)))
@@ -1361,7 +1371,7 @@ void set_Config_Defaults()
 #if defined(SET_DEFAULTS)
     int index;
 
-    ///@brief Add optional hard coded devices for any that are missing
+///@brief Add optional hard coded devices for any that are missing
     if(find_type(SS80_TYPE) == -1)
     {
 #if defined(HP9122D)
@@ -1381,7 +1391,7 @@ void set_Config_Defaults()
         }
     }
 #ifdef AMIGO
-    // Make sure we have a AMIGO defined
+// Make sure we have a AMIGO defined
     if(find_type(AMIGO_TYPE) == -1)
     {
 #if defined(HP9121)
@@ -1397,9 +1407,9 @@ void set_Config_Defaults()
             Devices[index].state = safecalloc(sizeof(AMIGOStateType)+7,1);
         }
     }
-#endif //#ifdef AMIGO
+#endif                                        //#ifdef AMIGO
 
-    // Make sure we have a PRINTER defined
+// Make sure we have a PRINTER defined
     if(find_type(PRINTER_TYPE) == -1)
     {
         printf("set_Config_Defaults:  Using default PRINTER settings\n");
@@ -1413,9 +1423,10 @@ void set_Config_Defaults()
             Devices[index].state = NULL;
         }
     }
-#endif // SET_DEFAULTS
+#endif                                        // SET_DEFAULTS
 
 }
+
 
 /// ===============================================
 ///@brief Set Device parameters from hpdir information
@@ -1425,42 +1436,43 @@ void set_Config_Defaults()
 ///@return 1 on sucess or 0 on fail
 void hpdir_set_device(int index)
 {
-	if(Devices[index].TYPE == SS80_TYPE)
-	{
-		SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
-		SS80p->CONFIG.ID 				= hpdir.ID;
-		SS80p->UNIT.DEVICE_NUMBER 		= hpdir.DEVICE_NUMBER;
-		SS80p->UNIT.BYTES_PER_BLOCK 	= hpdir.BYTES_PER_SECTOR;
+    if(Devices[index].TYPE == SS80_TYPE)
+    {
+        SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
+        SS80p->CONFIG.ID                = hpdir.ID;
+        SS80p->UNIT.DEVICE_NUMBER       = hpdir.DEVICE_NUMBER;
+        SS80p->UNIT.BYTES_PER_BLOCK     = hpdir.BYTES_PER_SECTOR;
 
-		// CHS NOT used in this emulator!
-		SS80p->VOLUME.MAX_CYLINDER 		= 0;	// hpdir.CYLINDERS-1;
-		SS80p->VOLUME.MAX_HEAD 			= 0;	// hpdir.HEADS-1;
-		SS80p->VOLUME.MAX_SECTOR 		= 0;	// hpdir.SECTORS-1;
+// CHS NOT used in this emulator!
+        SS80p->VOLUME.MAX_CYLINDER      = 0;      // hpdir.CYLINDERS-1;
+        SS80p->VOLUME.MAX_HEAD          = 0;      // hpdir.HEADS-1;
+        SS80p->VOLUME.MAX_SECTOR        = 0;      // hpdir.SECTORS-1;
 
-		SS80p->VOLUME.MAX_BLOCK_NUMBER 	= hpdir.BLOCKS-1;
-		Devices[index].BLOCKS = hpdir.BLOCKS;
-		strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
-	}
+        SS80p->VOLUME.MAX_BLOCK_NUMBER  = hpdir.BLOCKS-1;
+        Devices[index].BLOCKS = hpdir.BLOCKS;
+        strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
+    }
 
 #ifdef AMIGO
-	else if(Devices[index].TYPE == AMIGO_TYPE)
-	{
-		AMIGODiskType *AMIGOp = (AMIGODiskType *) Devices[index].dev;
-		AMIGOp->CONFIG.ID = hpdir.ID;
-		AMIGOp->GEOMETRY.BYTES_PER_SECTOR = hpdir.BYTES_PER_SECTOR;
-		AMIGOp->GEOMETRY.SECTORS_PER_TRACK = hpdir.SECTORS;
-		AMIGOp->GEOMETRY.HEADS = hpdir.HEADS;
-		AMIGOp->GEOMETRY.CYLINDERS = hpdir.CYLINDERS;
-		Devices[index].BLOCKS = hpdir.BLOCKS;
-		strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
-	}
+    else if(Devices[index].TYPE == AMIGO_TYPE)
+    {
+        AMIGODiskType *AMIGOp = (AMIGODiskType *) Devices[index].dev;
+        AMIGOp->CONFIG.ID = hpdir.ID;
+        AMIGOp->GEOMETRY.BYTES_PER_SECTOR = hpdir.BYTES_PER_SECTOR;
+        AMIGOp->GEOMETRY.SECTORS_PER_TRACK = hpdir.SECTORS;
+        AMIGOp->GEOMETRY.HEADS = hpdir.HEADS;
+        AMIGOp->GEOMETRY.CYLINDERS = hpdir.CYLINDERS;
+        Devices[index].BLOCKS = hpdir.BLOCKS;
+        strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
+    }
 #endif
-	else
-	{
-		printf("hpdir_parameters invalid TYPE\n");
-	}
+    else
+    {
+        printf("hpdir_parameters invalid TYPE\n");
+    }
 
 }
+
 
 /// ===============================================
 ///@brief Lookup model in and set drive parameters if found
@@ -1471,9 +1483,10 @@ void hpdir_set_device(int index)
 ///@return void
 void hpdir_set_parameters(int index, char *model)
 {
-	if ( hpdir_find_drive( model, 0 ,1) )
-		hpdir_set_device(index);
+    if ( hpdir_find_drive( model, 0 ,1) )
+        hpdir_set_device(index);
 }
+
 
 /// ===============================================
 /// @brief Post Process COnfiguration file after reading
@@ -1483,11 +1496,11 @@ void Post_Config()
     int i;
     long sectors;
 
-    ///@brief Active SS80 Device
+///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
 
 #ifdef AMIGO
-    ///@brief Active AMIGO Device
+///@brief Active AMIGO Device
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
@@ -1499,30 +1512,30 @@ void Post_Config()
         if(Devices[i].TYPE == SS80_TYPE)
         {
             SS80p= (SS80DiskType *)Devices[i].dev;
-			if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
-			{
-				// SS80p->UNIT.BYTES_PER_BLOCK = 256;
-				printf("Warning: %s BYTES_PER_BLOCK != 256, Adjusting to 256\n", Devices[i].model);
-			}
-			sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER+1;
-			Devices[i].BLOCKS = sectors;
-        } // SS80_TYPE
+            if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
+            {
+// SS80p->UNIT.BYTES_PER_BLOCK = 256;
+                printf("Warning: %s BYTES_PER_BLOCK != 256, Adjusting to 256\n", Devices[i].model);
+            }
+            sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER+1;
+            Devices[i].BLOCKS = sectors;
+        }                                         // SS80_TYPE
 
 #ifdef AMIGO
         if(Devices[i].TYPE == AMIGO_TYPE )
         {
             AMIGOp = (AMIGODiskType *)Devices[i].dev;
-			if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
-			{
-				AMIGOp->GEOMETRY.BYTES_PER_SECTOR = 256;
-				printf("Warning: %s BYTES_PER_SECTOR != 256, Adjusting to 256\n", Devices[i].model);
-			}
-			sectors = AMIGOp->GEOMETRY.SECTORS_PER_TRACK
-				 * AMIGOp->GEOMETRY.HEADS
-				 * AMIGOp->GEOMETRY.CYLINDERS;
-			Devices[i].BLOCKS = sectors;
-        } 
-#endif // #ifdef AMIGO
+            if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
+            {
+                AMIGOp->GEOMETRY.BYTES_PER_SECTOR = 256;
+                printf("Warning: %s BYTES_PER_SECTOR != 256, Adjusting to 256\n", Devices[i].model);
+            }
+            sectors = AMIGOp->GEOMETRY.SECTORS_PER_TRACK
+                * AMIGOp->GEOMETRY.HEADS
+                * AMIGOp->GEOMETRY.CYLINDERS;
+            Devices[i].BLOCKS = sectors;
+        }
+#endif                                    // #ifdef AMIGO
     }
 }
 
@@ -1537,14 +1550,14 @@ void format_drives()
     long sectors;
     char label[32];
     int count =0;
-	int ss80 = 0;
-	int amigo = 0;
+    int ss80 = 0;
+    int amigo = 0;
 
-    ///@brief Active SS80 Device
+///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
 
 #ifdef AMIGO
-    ///@brief Active AMIGO Device
+///@brief Active AMIGO Device
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
@@ -1557,38 +1570,38 @@ void format_drives()
         {
             SS80p= (SS80DiskType *)Devices[i].dev;
 
-            if(stat(SS80p->HEADER.NAME, &st) == -1) 
+            if(stat(SS80p->HEADER.NAME, &st) == -1)
             {
                 if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
                 {
                     printf("Can not use non 256 byte sectors\n");
                     continue;
                 }
-                //SS80p->VOLUME.MAX_CYLINDER;
-                //SS80p->VOLUME.MAX_HEAD;
-                //SS80p->VOLUME.MAX_SECTOR;
+//SS80p->VOLUME.MAX_CYLINDER;
+//SS80p->VOLUME.MAX_HEAD;
+//SS80p->VOLUME.MAX_SECTOR;
                 sectors = Devices[i].BLOCKS;
-				printf("formating %s %ld sectors\n", SS80p->HEADER.NAME, (long) sectors);
+                printf("formating %s %ld sectors\n", SS80p->HEADER.NAME, (long) sectors);
                 sprintf(label,"SS80-%d", ss80);
 #ifdef LIF_SUPPORT
                 lif_create_image(SS80p->HEADER.NAME,
                     label,
-                    lif_dir_count(sectors), 
+                    lif_dir_count(sectors),
                     sectors);
 #else
                 printf("please create a SS80 LIF image with %ld sectors and 128 directory sectors\n", sectors);
 #endif
-				++count;
-				++ss80;
+                ++count;
+                ++ss80;
 
             }
-        } // SS80_TYPE
+        }                                         // SS80_TYPE
 
 #ifdef AMIGO
         if(Devices[i].TYPE == AMIGO_TYPE )
         {
             AMIGOp= (AMIGODiskType *)Devices[i].dev;
-            if(stat(AMIGOp->HEADER.NAME, &st) == -1) 
+            if(stat(AMIGOp->HEADER.NAME, &st) == -1)
             {
                 if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
                 {
@@ -1596,22 +1609,22 @@ void format_drives()
                     continue;
                 }
                 sectors = Devices[i].BLOCKS;
-				printf("formating %s %ld sectors\n", AMIGOp->HEADER.NAME, (long) sectors);
+                printf("formating %s %ld sectors\n", AMIGOp->HEADER.NAME, (long) sectors);
                 sprintf(label,"AMIGO%d", amigo);
 #ifdef LIF_SUPPORT
                 lif_create_image(AMIGOp->HEADER.NAME,
                     label,
-                    lif_dir_count(sectors), 
+                    lif_dir_count(sectors),
                     sectors);
 #else
                 printf("please create a AMIGO LIF image with %ld sectors and 15 directory sectors\n", sectors);
 #endif
-				++count;
-				++amigo;
+                ++count;
+                ++amigo;
             }
-        } 
-#endif // #ifdef AMIGO
+        }
+#endif                                    // #ifdef AMIGO
     }
-	if(count)
-		sep();
+    if(count)
+        sep();
 }

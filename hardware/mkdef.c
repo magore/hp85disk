@@ -11,15 +11,15 @@ int main(int argc, char *argv[])
 #define PORTA _SFR_IO8(0x02)
 #endif
 
-	int p,pin;
-	for(p='A';p<'H';++p)
-	{
-		for(pin=0;pin<8;++pin)
-		{
-			printf("#define GPIO_%c%d %d\n", p,pin, (p-'A')*8 + pin );
-		}
-		printf("\n");
-	}
-	printf("\n");
+    int p,pin;
+    for(p='A';p<'H';++p)
+    {
+        for(pin=0;pin<8;++pin)
+        {
+            printf("#define GPIO_%c%d %d\n", p,pin, (p-'A')*8 + pin );
+        }
+        printf("\n");
+    }
+    printf("\n");
 
 }

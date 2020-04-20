@@ -9,15 +9,14 @@
  @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
- @see http://github.com/magore/hp85disk
- @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+@see http://github.com/magore/hp85disk
+@see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
- @par Based on work by Anders Gustafsson.
+@par Based on work by Anders Gustafsson.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+@par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
 */
-
 
 #ifndef _AMIGO_H_
 #define _AMIGO_H_
@@ -37,7 +36,6 @@
 #define PPC     0x05                              // Parallell poll configure
 #define GET     0x08                              // Group execute trigger
 #define TCT     0x09                              // Take control
-
 
 /* amigo.c */
 void amigo_init ( void );
@@ -60,6 +58,4 @@ void amigo_check_unit( uint8_t unit );
 int Amigo_Command ( int secondary );
 int Amigo_Execute ( int secondary );
 int AMIGO_COMMANDS ( uint8_t ch );
-
-
-#endif // #ifndef _AMIGO_H_
+#endif                                            // #ifndef _AMIGO_H_

@@ -12,7 +12,6 @@
 
 */
 
-
 #ifndef _GPIB_HAL_H_
 #define _GPIB_HAL_H_
 
@@ -35,7 +34,6 @@ typedef struct _gpib_t
 extern gpib_t gpib_timer;
 void gpib_clock_task( void );
 
-
 ///  Notes:
 ///   "EOI" gets convereted into the required DDR and BIT definitions.
 ///   We use the comma operator to return the PIN test.
@@ -50,8 +48,6 @@ void gpib_clock_task( void );
 ///  do stuff
 ///      }
 
-
-
 ///  Notes about AVR and PIC differences
 ///     Your CPU mave have other differences
 ///  AVR                             PIC
@@ -59,7 +55,6 @@ void gpib_clock_task( void );
 ///  PORT=val same as LATCH=val      PORT=val same as LATCH=val
 ///  val=PORT, reads LATCH           val=PORT reads PIN state
 ///  val=PIN,  reads PIN state       val=LATCH reads latch
-
 
 // control pins are the same on V1 and V2 hardware
 #define EOI     GPIO_B0
@@ -76,7 +71,7 @@ void gpib_clock_task( void );
 #define TE       GPIO_C2
 #define PE       GPIO_C3
 #define DC       GPIO_C4
-#define SC		 GPIO_C5
+#define SC       GPIO_C5
 #define LED1     GPIO_C6
 #define LED2     GPIO_C7
 
@@ -127,7 +122,6 @@ void gpib_clock_task( void );
 
 ///@brief Read the pin latch state without changing read/write mode
 #define GPIB_LATCH_RD(a)    GPIO_PIN_LATCH_RD(a)
-
 
 ///@brief We attempt to detect PPR states for logging only
 /// PPR is handled in hardware - but useful if we can detect for logging
@@ -192,7 +186,6 @@ void gpib_clock_task( void );
 #error GPIB_PIN_TST is not defined
 #endif
 
-
 /* gpib_hal.c */
 void gpib_timer_init ( void );
 uint8_t reverse_8bits ( uint8_t mask );
@@ -210,6 +203,4 @@ FRESULT dbf_lseek ( FIL *fp , DWORD ofs );
 FRESULT dbf_close ( FIL *fp );
 int dbf_open_read ( char *name , uint32_t pos , void *buff , int size , int *errors );
 int dbf_open_write ( char *name , uint32_t pos , void *buff , int size , int *errors );
-
-
-#endif  // #ifndef _GPIB_HAL_H_
+#endif                                            // #ifndef _GPIB_HAL_H_

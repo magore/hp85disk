@@ -47,6 +47,7 @@ int uart0_getchar( void *f  __attribute__((unused)))
     return( uart_getchar(0) );
 }
 
+
 /// @brief  UART transmit character function using avr-libc.
 ///
 /// @param[in] c: character to send.
@@ -57,7 +58,7 @@ int uart0_getchar( void *f  __attribute__((unused)))
 int uart0_putchar(int c, void *f  __attribute__((unused)))
 {
     uart_putchar(c, 0);
-	return(c);
+    return(c);
 }
 
 
@@ -71,39 +72,40 @@ int uart0_putchar(int c, void *f  __attribute__((unused)))
 /// @see fdevopen() avr-libc function that attaches uart functions to getchar and putchar POSIX functions.
 uint16_t uart_ubr(uint32_t baud, int *u2x, uint32_t *actual)
 {
-	double div;
-	uint32_t ubr_regi;
+    double div;
+    uint32_t ubr_regi;
 
-	// Calculating Baud Rate
-	// (U2X = 0) 
-	// BAUD = Fosc/(16*(UBRn+1))
-	// UBRn = Fosc/(16*Baud) -1
-	// (U2X = 1) 
-	// BAUD = Fosc/(8*(UBRn+1))
-	// UBRn = Fosc/(8*Baud) -1
+// Calculating Baud Rate
+// (U2X = 0)
+// BAUD = Fosc/(16*(UBRn+1))
+// UBRn = Fosc/(16*Baud) -1
+// (U2X = 1)
+// BAUD = Fosc/(8*(UBRn+1))
+// UBRn = Fosc/(8*Baud) -1
 
-	///@brief Use 8 prescale as a default
-	*u2x = 1;
-	div = 8;
-	ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
+///@brief Use 8 prescale as a default
+    *u2x = 1;
+    div = 8;
+    ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
 
-	// For lower baud rates use 16 divider if the UBRR register overflows
-	// URBRR register is only a 12 bit register!
-	if(ubr_regi > 4095)
-	{
-		///@brief Use 16 prescale f we have a low baud rate
-		*u2x = 0;
-		div = 16.0;
-		ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
-	}
-	//overflow, baud rate was too low - so we clip to maximum allowed
-	if(ubr_regi > 4095)
-		ubr_regi = 4095;
+// For lower baud rates use 16 divider if the UBRR register overflows
+// URBRR register is only a 12 bit register!
+    if(ubr_regi > 4095)
+    {
+///@brief Use 16 prescale f we have a low baud rate
+        *u2x = 0;
+        div = 16.0;
+        ubr_regi = round( ((double)F_CPU/(div*(double)baud)) - 1.0 );
+    }
+//overflow, baud rate was too low - so we clip to maximum allowed
+    if(ubr_regi > 4095)
+        ubr_regi = 4095;
 
-	*actual = ((double)F_CPU/(div*((double)(ubr_regi+1))));
+    *actual = ((double)F_CPU/(div*((double)(ubr_regi+1))));
 
-	return(ubr_regi);
+    return(ubr_regi);
 }
+
 
 /// @brief  UART initialization function that works with avr-libc functions.
 ///
@@ -115,9 +117,8 @@ uint16_t uart_ubr(uint32_t baud, int *u2x, uint32_t *actual)
 uint32_t uart_init(uint8_t uart, uint32_t baud)
 {
     uint16_t ubr_register;
-	uint32_t actual;
-	int u2x = 0;
-
+    uint32_t actual;
+    int u2x = 0;
 
     if(uart >= UARTS)
         return(0);
@@ -137,15 +138,15 @@ uint32_t uart_init(uint8_t uart, uint32_t baud)
 
         UCSR0B = (1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0);
 
-		if(u2x)
-			UCSR0A = (1<<U2X0);
+        if(u2x)
+            UCSR0A = (1<<U2X0);
 
         UBRR0H = (uint8_t) 0xff & (ubr_register >> 8);
         UBRR0L = (uint8_t) 0xff & (ubr_register);
 
         sei();
 
-		//@brief see posix.c this attaches uart functions to putchar() and getchar()
+//@brief see posix.c this attaches uart functions to putchar() and getchar()
         fdevopen((void *)uart0_putchar, (void *)uart0_getchar);
     }
 #if UARTS > 1
@@ -162,19 +163,19 @@ uint32_t uart_init(uint8_t uart, uint32_t baud)
 
         UCSR1B = (1<<RXCIE1)|(1<<RXEN1)|(1<<TXEN1);
 
-		if(u2x)
-			UCSR1A = (1<<U2X1);
+        if(u2x)
+            UCSR1A = (1<<U2X1);
 
         UBRR1H = (uint8_t) 0xff & (ubr_register >> 8);
         UBRR1L = (uint8_t) 0xff & (ubr_register);
 
         sei();
 
-		//@brief see posix.c this attaches uart functions to putchar() and getchar()
+//@brief see posix.c this attaches uart functions to putchar() and getchar()
         fdevopen((void *)uart1_putchar, (void *)uart1_getchar);
     }
 #endif
-	///@brief actual baud rate
+///@brief actual baud rate
     return(actual);
 }
 
@@ -209,8 +210,8 @@ void uart_rx_interrupt(uint8_t uart, uint8_t data)
     {
         uarts[uart].rx_buf[uarts[uart].rx_head++] = data;
         uarts[uart].rx_count++;
-		if (uarts[uart].rx_head >= RX_BUF_SIZE )
-			uarts[uart].rx_head = 0;
+        if (uarts[uart].rx_head >= RX_BUF_SIZE )
+            uarts[uart].rx_head = 0;
     }
     else                                          // Overflow
     {
@@ -249,12 +250,12 @@ int uart_get_tail(uint8_t uart)
     uint8_t c;
 
     if (uart >= UARTS)
-	{
+    {
         return(EOF);
-	}
+    }
 
-	while(uart_rx_count(uart) < 1)
-		;
+    while(uart_rx_count(uart) < 1)
+        ;
 
     cli();
     c = uarts[uart].rx_buf[uarts[uart].rx_tail++];
@@ -325,12 +326,12 @@ int uart_getchar(uint8_t uart)
         c = '\n';
 #endif
     c = uart_rx_byte(uart);
-	uart_tx_byte(c, uart);
+    uart_tx_byte(c, uart);
     if(c == '\r')
-	{
+    {
         c = '\n';
-		uart_tx_byte(c, uart);
-	}
+        uart_tx_byte(c, uart);
+    }
 //FIXME ECHO
     return (c);
 }
@@ -349,7 +350,7 @@ int uart_tx_byte(int c, uint8_t uart)
         while (!BIT_TST(UCSR0A, UDRE0))
             ;
         UDR0 = c & 0x7f;
-		return(c);
+        return(c);
     }
 #ifdef UARTS > 1
     if(uart == 1)
@@ -357,10 +358,10 @@ int uart_tx_byte(int c, uint8_t uart)
         while (!BIT_TST(UCSR1A, UDRE1))
             ;
         UDR1 = c & 0x7f;
-		return(c);
+        return(c);
     }
 #endif
-	return(EOF);
+    return(EOF);
 }
 
 
@@ -378,7 +379,7 @@ int uart_putchar(int c, int uart)
     if( c == '\n' )
         uart_tx_byte('\r', uart);
 
-	return(c);
+    return(c);
 }
 
 
@@ -403,6 +404,7 @@ int uart_put(int c)
     return( uart0_putchar(c,0) );
 }
 
+
 /// @brief  Receive a character from UART 0
 /// @return  character
 int uart_get(void)
@@ -420,18 +422,18 @@ int get_line (char *buff, int len)
     int c;
     int i = 0;
 
-	memset(buff,0,len);
+    memset(buff,0,len);
     while(1)
     {
         c = uart_get() & 0x7f;
-		uart_put(c);
+        uart_put(c);
         if (c == '\n' || c == '\r')
             break;
 
         if (c == '\b')
         {
-			if(i > 0)
-				i--;
+            if(i > 0)
+                i--;
             buff[i] = 0;
             continue;
         }
@@ -440,14 +442,13 @@ int get_line (char *buff, int len)
         {
             buff[i++] = c;
         }
-		else
-		{
-			break;
-		}
+        else
+        {
+            break;
+        }
     }
-	buff[i++] = 0;
+    buff[i++] = 0;
     uart_put('\n');
 
-	return(strlen(buff));
+    return(strlen(buff));
 }
-

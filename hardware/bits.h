@@ -36,7 +36,5 @@
 #define BIT13   13
 #define BIT14   14
 #define BIT15   15
-#endif	// AVR
-
-
-#endif // ifndef _BITS_H_
+#endif                                            // AVR
+#endif                                            // ifndef _BITS_H_

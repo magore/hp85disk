@@ -1,9 +1,9 @@
 #ifndef _IOM1284P_H_
 #define _IOM1284P_H_
 
-#define PIN_BASE 	0
-#define DDR_BASE 	1
-#define PORT_BASE 	2
+#define PIN_BASE    0
+#define DDR_BASE    1
+#define PORT_BASE   2
 
 /// @brief AVR GPIO pin definitions
 #define GPIO_A  0
@@ -75,5 +75,4 @@
 #define GPIO_G5 53
 #define GPIO_G6 54
 #define GPIO_G7 55
-
-#endif // _IOM1284P_H_
+#endif                                            // _IOM1284P_H_

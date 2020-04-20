@@ -25,34 +25,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "sort.h"
 
- 
 MEMSPACE
 void heapify(int *v, int size, int root)
 {
     int largest = root;
-    int left  = (root<<1) + 1;  
-    int right = (root<<1) + 2; 
+    int left  = (root<<1) + 1;
+    int right = (root<<1) + 2;
     int tmp;
- 
-    // If left child is larger than root
+
+// If left child is larger than root
     if (left < size && v[left] > v[largest])
         largest = left;
- 
-    // If right child is larger than largest so far
+
+// If right child is larger than largest so far
     if (right < size && v[right] > v[largest])
         largest = right;
- 
-    // If largest is not root
+
+// If largest is not root
     if (largest != root)
     {
-        // swap
+// swap
         tmp = v[root];
         v[root] = v[largest];
         v[largest] = tmp;
         heapify(v, size, largest);
     }
 }
- 
+
+
 MEMSPACE
 void heapsort(int *v, int size)
 {
@@ -63,11 +63,11 @@ void heapsort(int *v, int size)
     {
         heapify(v, size, root);
     }
- 
-    // One by one extract an element from heap
+
+// One by one extract an element from heap
     for (root=size-1; root>=0; --root)
     {
-        // swap
+// swap
         tmp = v[0];
         v[0] = v[root];
         v[root] = tmp;
@@ -75,17 +75,18 @@ void heapsort(int *v, int size)
     }
 }
 
+
 MEMSPACE
-void insert_sort(uint16_t *v, int size) 
+void insert_sort(uint16_t *v, int size)
 {
-  int i,j;
-  uint16_t tmp;
-  
-  for (i = 1; i < size; ++i) 
-  {
-    tmp = v[i];
-    for (j = i; j >= 1 && tmp < v[j - 1]; --j)
-      v[j] = v[j - 1];
-    v[j] = tmp; 
-  }
+    int i,j;
+    uint16_t tmp;
+
+    for (i = 1; i < size; ++i)
+    {
+        tmp = v[i];
+        for (j = i; j >= 1 && tmp < v[j - 1]; --j)
+            v[j] = v[j - 1];
+        v[j] = tmp;
+    }
 }

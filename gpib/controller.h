@@ -9,9 +9,9 @@
  @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL
  @see http://github.com/magore/hp85disk
- @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
- @see http://github.com/magore/hp85disk
- @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+@see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
+@see http://github.com/magore/hp85disk
+@see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
 */
 
@@ -25,5 +25,4 @@ int controller_send_str ( uint8_t from , uint8_t to , char *str , int len );
 int controller_read_str ( uint8_t from , uint8_t to , char *str , int len );
 int controller_read_trace ( uint8_t from , uint8_t to );
 void controller_ifc ( void );
-
-#endif  // #ifndef _CONTROLLER_H
+#endif                                            // #ifndef _CONTROLLER_H

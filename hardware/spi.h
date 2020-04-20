@@ -20,7 +20,6 @@
 #define SPI0_MODE2  2
 #define SPI0_MODE3  3
 
-
 /* spi.c */
 void SPI0_cs_enable ( uint8_t cs );
 void SPI0_cs_disable ( uint8_t cs );
@@ -33,5 +32,4 @@ uint8_t SPI0_TXRX_Byte ( uint8_t Data );
 void SPI0_TX ( uint8_t *data , int count );
 void SPI0_TXRX ( uint8_t *data , int count );
 void SPI0_RX ( uint8_t *data , int count );
-
 #endif

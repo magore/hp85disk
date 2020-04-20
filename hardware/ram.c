@@ -82,6 +82,7 @@ void PrintFree()
 
 }
 
+
 /// @brief Safe Alloc -  Display Error message if Calloc fails
 ///
 ///  - We check if the pointer was in the heap.
@@ -90,13 +91,14 @@ void PrintFree()
 /// @return  void.
 void *safecalloc(int size, int elements)
 {
-	void *p = calloc(size, elements);
-	if(!p)
-	{
-		printf("safecalloc(%d,%d) failed!\n", size, elements);
-	}
-	return(p);
+    void *p = calloc(size, elements);
+    if(!p)
+    {
+        printf("safecalloc(%d,%d) failed!\n", size, elements);
+    }
+    return(p);
 }
+
 
 /// @brief Safe Malloc -  Display Error message if Malloc fails
 ///
@@ -113,6 +115,7 @@ void *safemalloc(size_t size)
     }
     return(p);
 }
+
 
 /// @brief Safe free -  Only free a pointer if it is in malloc memory range.
 ///

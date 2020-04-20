@@ -22,14 +22,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef TIME_H
 #define TIME_H
 
-#define EPOCH_YEAR    1970    /*< Thursday Jan 1 1970 */
-#define EPOCH_DAY        4    /*< Sunday = 0 ... Saturday = 6 */
-#define EPOCH            0    /*< Zero seconds */
-#define EPOCH_2000 946684800  /*< Sat, 01 Jan 2000 00:00:00 GMT */
+#define EPOCH_YEAR    1970                        /*< Thursday Jan 1 1970 */
+#define EPOCH_DAY        4                        /*< Sunday = 0 ... Saturday = 6 */
+#define EPOCH            0                        /*< Zero seconds */
+#define EPOCH_2000 946684800                      /*< Sat, 01 Jan 2000 00:00:00 GMT */
 
 ///@brief type of EPOCH result.
 typedef uint32_t time_t;
@@ -38,19 +37,19 @@ typedef uint32_t time_t;
 typedef uint16_t clockid_t;
 
 ///@brief POSIX struct tm.
-struct tm 
+struct tm
 {
-    int tm_sec;    /*<  Seconds.     [0-60] (1 leap second) */
-    int tm_min;    /*<  Minutes.     [0-59] */ 
-    int tm_hour;   /*<  Hours.       [0-23] */
-    int tm_mday;   /*<  Day.         [1-31] */
-    int tm_mon;    /*<  Month.       [0-11] */
-    int tm_year;   /*<  Year - 1900. */
-    int tm_wday;   /*<  Day of week. [0-6] */
-    int tm_yday;   /*<  Days in year.[0-365] */
-    int tm_isdst;  /*<  DST.         [-1/0/1] */
-    int32_t tm_gmtoff; /*<  GMT offset in seconds */
-};  
+    int tm_sec;                                   /*<  Seconds.     [0-60] (1 leap second) */
+    int tm_min;                                   /*<  Minutes.     [0-59] */
+    int tm_hour;                                  /*<  Hours.       [0-23] */
+    int tm_mday;                                  /*<  Day.         [1-31] */
+    int tm_mon;                                   /*<  Month.       [0-11] */
+    int tm_year;                                  /*<  Year - 1900. */
+    int tm_wday;                                  /*<  Day of week. [0-6] */
+    int tm_yday;                                  /*<  Days in year.[0-365] */
+    int tm_isdst;                                 /*<  DST.         [-1/0/1] */
+    int32_t tm_gmtoff;                            /*<  GMT offset in seconds */
+};
 
 /**
  tm_isdst value notes
@@ -59,16 +58,14 @@ struct tm
 -1 DST Unknown status
 */
 
-
 ///@brief POSIX struct tm typedef.
 typedef struct tm tm_t;
-
 
 ///@brief POSIX timeval.
 struct timeval
 {
-    time_t       tv_sec;   /*< seconds */
-    uint32_t     tv_usec;  /*< microseconds */
+    time_t       tv_sec;                          /*< seconds */
+    uint32_t     tv_usec;                         /*< microseconds */
 };
 
 ///@brief POSIX timeval typedef.
@@ -77,8 +74,8 @@ typedef struct timeval tv_t;
 ///@brief POSIX timezone.
 struct timezone
 {
-    int tz_minuteswest;  /*< minutes west of Greenwich */
-    int tz_dsttime;      /*< type of DST correction */
+    int tz_minuteswest;                           /*< minutes west of Greenwich */
+    int tz_dsttime;                               /*< type of DST correction */
 };
 
 ///@brief POSIX timezone typedef.
@@ -87,8 +84,8 @@ typedef struct timezone tz_t;
 ///@brief POSIX timespec.
 struct timespec
 {
-    time_t   tv_sec;   /*< seconds */
-    long     tv_nsec;  /*< nanoseconds */
+    time_t   tv_sec;                              /*< seconds */
+    long     tv_nsec;                             /*< nanoseconds */
 };
 
 ///@brief POSIX timespec typedef.
@@ -100,12 +97,12 @@ extern volatile ts_t __clock;
 /// @brief  System Time Zone
 extern tz_t __tzone;
 
-
 ///@brief  DST structure
-typedef struct {
-    time_t start;   ///@brief Start of local DST in GMT
-    time_t end;     ///@brief End of local DST in GMT
-    time_t epoch;   ///@brief epoch used to determine the year of DST start and end caluclulation - for caching
+typedef struct
+{
+    time_t start;                                 ///@brief Start of local DST in GMT
+    time_t end;                                   ///@brief End of local DST in GMT
+    time_t epoch;                                 ///@brief epoch used to determine the year of DST start and end caluclulation - for caching
 } dst_t;
 
 /* time.c */
@@ -141,8 +138,4 @@ MEMSPACE void print_dst ( void );
 MEMSPACE void print_dst_gmt ( void );
 MEMSPACE void initialize_clock ( int minwest );
 MEMSPACE void display_clock ( void );
-
-
-
-
 #endif

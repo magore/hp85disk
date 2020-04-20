@@ -13,9 +13,8 @@
 #ifndef _USER_CONFIG_H_
 #define _USER_CONFIG_H_
 
-
 #define AVR 1
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 
 #define SYSTEM_TASK_HZ 1000L
 #define HAVE_HIRES_TIMER 1
@@ -24,14 +23,13 @@
 #ifdef AVR
 
 #ifndef MMC_SLOW
-  #define MMC_SLOW (500000UL)
+#define MMC_SLOW (500000UL)
 #endif
 
 #ifndef MMC_FAST
-  #define MMC_FAST (2500000UL)
+#define MMC_FAST (2500000UL)
 #endif
-
-#endif  // AVR
+#endif                                            // AVR
 
 #define NO_SCANF
 
@@ -51,13 +49,11 @@
 #include <stdarg.h>
 #include <ctype.h>
 
-
 #include <avr/pgmspace.h>
 #include <avr/portpins.h>
 #include <avr/io.h>
 #include <assert.h>
 #include <avr/interrupt.h>
-
 
 #include "hardware/gpio-1284p.h"
 #include "hardware/hal.h"
@@ -85,12 +81,12 @@ void copyright( void );
 
 #include "fatfs.sup/fatfs.h"
 
-
 #ifndef NULL
 #define NULL        ((void *) 0)
 #endif
 
-typedef enum { false, true } bool;
+typedef enum { false, true }
+bool;
 
 #ifndef _SIZE_T
 #define _SIZE_T
@@ -123,13 +119,12 @@ typedef unsigned long int size_t;
 
 // sys.c defines alternative safe functions
 #ifndef free
-	#define free(p) safefree(p)
+#define free(p) safefree(p)
 #endif
 #ifndef calloc
-	#define calloc(n,s) safecalloc(n,s)
+#define calloc(n,s) safecalloc(n,s)
 #endif
 #ifndef malloc
-	#define malloc(s) safemalloc(s)
+#define malloc(s) safemalloc(s)
 #endif
-
 #endif

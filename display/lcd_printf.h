@@ -21,21 +21,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #ifndef _LCD_PRINTF_H_
 #define _LCD_PRINTF_H
 
 typedef struct
 {
-    int16_t xpos;       // x pos
-    int16_t ypos;       // y pos
+    int16_t xpos;                                 // x pos
+    int16_t ypos;                                 // y pos
     int16_t w;
     int16_t h;
 } window;
 
 #ifndef MEMSPACE
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 #endif
 
 // Weak attribute
@@ -52,6 +50,4 @@ MEMSPACE void lcd_cleareol ( void );
 MEMSPACE void lcd_clearline ( void );
 void lcd_putch ( int c );
 MEMSPACE int lcd_printf ( const char *fmt , ...);
-
-
 #endif

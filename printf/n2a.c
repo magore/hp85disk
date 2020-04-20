@@ -24,7 +24,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifdef PRINTF_TEST
 
 #include <stdio.h>
@@ -35,7 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 
 #include "mathio.h"
-
 
 void test10(long long max)
 {
@@ -53,7 +51,6 @@ void test10(long long max)
 }
 
 
-
 int main(int argc, char *argv[])
 {
 
@@ -65,7 +62,6 @@ int main(int argc, char *argv[])
     long long val;
     __int128_t val2;
 
-
     printf("sizeof(long) = %d\n", (int) sizeof(long));
     printf("sizeof(long long) = %d\n", (int) sizeof(long long));
     printf("sizeof(val) = %d\n", (int) sizeof(val));
@@ -74,7 +70,8 @@ int main(int argc, char *argv[])
 
     test10(1000000LL);
 
-    while(1) {
+    while(1)
+    {
         printf("Enter a number or ENTER to quit:");
         fgets(line, 1020,stdin);
         len = strlen(line);
@@ -90,11 +87,11 @@ int main(int argc, char *argv[])
         val2 = strto128(line, NULL, 10);
         if(val2 < (__int128_t) 0)
         {
-            sign_ch = '-'; 
+            sign_ch = '-';
             val2 = -val2;
         }
         size = bin2num(numresult, 1022, 1, 10, (uint8_t *) &val2, sizeof(val2), sign_ch);
-        //dump(numresult,size);
+//dump(numresult,size);
         printf("numresult[%s]\n",numresult);
     }
 }

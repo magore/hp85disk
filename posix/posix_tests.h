@@ -40,4 +40,3 @@ MEMSPACE int ls ( char *name , int verbose );
 MEMSPACE long logfile ( char *name , char *str );
 MEMSPACE uint16_t sum ( char *name );
 MEMSPACE long upload ( char *name );
-

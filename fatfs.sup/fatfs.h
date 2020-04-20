@@ -23,5 +23,4 @@
 
 // FATFS user tests and user interface
 #include "fatfs_tests.h"
-
 #endif

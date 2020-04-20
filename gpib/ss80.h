@@ -1,7 +1,7 @@
 /**
  @file gpib/ss80.h
 
- @brief SS80 disk emulator for HP85 disk emulator project for AVR. 
+ @brief SS80 disk emulator for HP85 disk emulator project for AVR.
 
  @par Edit History
  - [1.0]   [Mike Gore]  Initial revision of file.
@@ -10,12 +10,11 @@
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
- @par Based on work by Anders Gustafsson.
+@par Based on work by Anders Gustafsson.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+@par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
 */
-
 
 #ifndef _SS80_H_
 #define _SS80_H_
@@ -54,5 +53,4 @@ int SS80_Cancel ( void );
 int SS80_increment ( void );
 int SS80_error_return ( void );
 int SS80_COMMANDS ( uint8_t ch );
-
-#endif // #ifndef _SS80_H_
+#endif                                            // #ifndef _SS80_H_

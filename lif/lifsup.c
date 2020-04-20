@@ -14,7 +14,6 @@
 
 #ifdef LIF_STAND_ALONE
 
-
 #include <unistd.h>
 
 #include "user_config.h"
@@ -37,6 +36,7 @@ struct tm *gmtime_r(const time_t *timep, struct tm *result)
     *result = *g;
     return(result);
 }
+
 
 ///@brief Short Name of each Day in a week.
 ///
@@ -64,8 +64,8 @@ const char *__Month[]= \
 /// @return buf string pointer.
 char *asctime_r(const struct tm *t, char *buf)
 {
-    // normaize t before output
-    //(void) normalize(t,0);
+// normaize t before output
+//(void) normalize(t,0);
 
     memset(buf,0,32);
     snprintf(buf,32,"%s %s %2d %02d:%02d:%02d %4d",
@@ -78,6 +78,7 @@ char *asctime_r(const struct tm *t, char *buf)
         (int)t->tm_year + 1900);
     return(buf);
 }
+
 
 struct tm *_gmtime64 (const __time64_t *);
 
@@ -93,9 +94,7 @@ time_t timegm(struct tm * a_tm)
     time_t utc = mktime(a_tm) - offset * 3600;
     return utc;
 }
-
 #endif
-
 
 ///@brief Display Copyright
 ///@return void
@@ -111,11 +110,12 @@ void copyright()
     printf("\n");
 }
 
+
 int main(int argc, char *argv[])
 {
 
     int i;
-	int verbose = 0;
+    int verbose = 0;
     char *ptr;
 
     if(argc <= 1)
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
         lif_help(1);
 #ifdef TELEDISK
         td0_help(1);
-		return(0);
+        return(0);
 #endif
     }
     if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
@@ -140,5 +140,4 @@ int main(int argc, char *argv[])
     }
 #endif
 }
-
 #endif

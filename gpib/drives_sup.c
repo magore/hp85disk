@@ -12,8 +12,6 @@
 
 #include "drives_sup.h"
 
-
-
 hpdir_t hpdir;
 /// ===========================================================
 ///@brief hpdir.ini file processing
@@ -26,22 +24,23 @@ hpdir_t hpdir;
 ///@return void
 void hpdir_init()
 {
-    memset(hpdir.model,0,sizeof(hpdir.model) -1);		// 1
-    memset(hpdir.comment,0,sizeof(hpdir.comment) -1);	// 2
-    memset(hpdir.TYPE,0,sizeof(hpdir.TYPE) -1);		// 3
-    hpdir.ID = 0;						// 4
-	hpdir.mask_stat2 = 0;				// 5
-	hpdir.id_stat2 = 0;					// 6
-	hpdir.DEVICE_NUMBER = 0;			// 7
-	hpdir.UNITS_INSTALLED = 0x8001;		// 8
-	hpdir.CYLINDERS = 0;  				// 9
-	hpdir.HEADS= 0;	     				// 10
-	hpdir.SECTORS= 0;    				// 11
-	hpdir.BYTES_PER_SECTOR = 0;			// 12
-	hpdir.INTERLEAVE = 0;				// 13
-    hpdir.FIXED = 1;					// 14 ALWAYS 1
+    memset(hpdir.model,0,sizeof(hpdir.model) -1); // 1
+                                                  // 2
+    memset(hpdir.comment,0,sizeof(hpdir.comment) -1);
+    memset(hpdir.TYPE,0,sizeof(hpdir.TYPE) -1);   // 3
+    hpdir.ID = 0;                                 // 4
+    hpdir.mask_stat2 = 0;                         // 5
+    hpdir.id_stat2 = 0;                           // 6
+    hpdir.DEVICE_NUMBER = 0;                      // 7
+    hpdir.UNITS_INSTALLED = 0x8001;               // 8
+    hpdir.CYLINDERS = 0;                          // 9
+    hpdir.HEADS= 0;                               // 10
+    hpdir.SECTORS= 0;                             // 11
+    hpdir.BYTES_PER_SECTOR = 0;                   // 12
+    hpdir.INTERLEAVE = 0;                         // 13
+    hpdir.FIXED = 1;                              // 14 ALWAYS 1
 
-	// Computed values
+// Computed values
     hpdir.BLOCKS = 0;
 }
 
@@ -49,26 +48,27 @@ void hpdir_init()
 // =============================================
 ///@brief LIF Directory blocks ~= sqrt(blocks);
 ///
-/// We simplify 
-///  BITS = MSB bit number of block count 
+/// We simplify
+///  BITS = MSB bit number of block count
 ///  Directory size = BITS / 2
 ///@param[in] blocks: size of LIF image in total
 ///
 ///@return Size of LIF directory in blocks
 long lif_dir_count(long blocks)
 {
-	int scale = 0;
-	long num = 1;
-	while(blocks)
-	{
-		scale++;
- 		blocks >>= 1;
-	}
-	scale>>=1;
-	while(scale--)
-		num <<=1;
-	return(num);
+    int scale = 0;
+    long num = 1;
+    while(blocks)
+    {
+        scale++;
+        blocks >>= 1;
+    }
+    scale>>=1;
+    while(scale--)
+        num <<=1;
+    return(num);
 }
+
 
 /// ===============================================
 ///@brief Find drive parameters in hpdir.ini file
@@ -82,22 +82,22 @@ int hpdir_find_drive(char *model, int list, int verbose)
     int errors = 0;
     int driveinfo=0;
     int found = 0;
-	FILE *cfg;
-	char *ptr;
+    FILE *cfg;
+    char *ptr;
     char str[256];
     char token[128];
 
-	hpdir_init();
+    hpdir_init();
 
-	cfg = fopen("hpdir.ini","rb");
+    cfg = fopen("hpdir.ini","rb");
 
 #ifndef LIF_STAND_ALONE
-	if(cfg == NULL)
-		cfg = fopen("/hpdir.ini","rb");
+    if(cfg == NULL)
+        cfg = fopen("/hpdir.ini","rb");
 #else
     if(cfg == NULL)
     {
-		char name[2048];
+        char name[2048];
         len = readlink("/proc/self/exe", name, sizeof(name) -2);
         dirname (name);
         strcat  (name, "/hpdir.ini");
@@ -105,18 +105,18 @@ int hpdir_find_drive(char *model, int list, int verbose)
     }
 #endif
 
-	if(cfg == NULL)
-	{
-		if(verbose)
-			printf("Error: hpdir.ini not found!\n");
-		return(0);
-	}
+    if(cfg == NULL)
+    {
+        if(verbose)
+            printf("Error: hpdir.ini not found!\n");
+        return(0);
+    }
 
-	// printf("Searching /hpdir.ini for model:%s\n", model);
+// printf("Searching /hpdir.ini for model:%s\n", model);
 
     while( (ptr = fgets(str, sizeof(str)-2, cfg)) != NULL)
     {
-		errors = 0;
+        errors = 0;
         ptr = str;
 
         trim_tail(ptr);
@@ -126,24 +126,24 @@ int hpdir_find_drive(char *model, int list, int verbose)
         if(!len)
             continue;
 
-        // Skip comments
+// Skip comments
         if(*ptr == ';' || *ptr == '#' )
             continue;
 
-		if(*ptr == '[' && driveinfo == 1 )
-                break;
+        if(*ptr == '[' && driveinfo == 1 )
+            break;
 
-		// MODEL something else
-		ptr = get_token(ptr, token, 	sizeof(token)-2);
+// MODEL something else
+        ptr = get_token(ptr, token,     sizeof(token)-2);
 
         if(MATCHI(token,"[driveinfo]"))
         {
-			driveinfo = 1;
+            driveinfo = 1;
             continue;
         }
 
-		if( driveinfo != 1)
-			continue;
+        if( driveinfo != 1)
+            continue;
 
         if(list)
         {
@@ -151,65 +151,79 @@ int hpdir_find_drive(char *model, int list, int verbose)
             continue;
         }
 
-		if ( ! MATCHI(model,token) )
-			continue;
+        if ( ! MATCHI(model,token) )
+            continue;
 
-		hpdir_init();
+        hpdir_init();
 
-		if(verbose)
-			printf("Found Model: %s\n", model);
+        if(verbose)
+            printf("Found Model: %s\n", model);
 
-		strncpy(hpdir.model,token,sizeof(hpdir.model)-2);				// 1 Model
+                                                  // 1 Model
+        strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
 
-		ptr = get_token(ptr, token, 	sizeof(token)-2);				// =
+                                                  // =
+        ptr = get_token(ptr, token,     sizeof(token)-2);
 
-		ptr = get_token(ptr, hpdir.comment, sizeof(hpdir.comment)-2);	// 2 Comment
+                                                  // 2 Comment
+        ptr = get_token(ptr, hpdir.comment, sizeof(hpdir.comment)-2);
 
-		ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);		// 3 AMIGO/SS80/CS80
+                                                  // 3 AMIGO/SS80/CS80
+        ptr = get_token(ptr, hpdir.TYPE,  sizeof(hpdir.TYPE)-2);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 4 Identify ID
-		hpdir.ID = get_value(token);
+                                                  // 4 Identify ID
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.ID = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 5 MASK STAT 2
-		hpdir.mask_stat2 = get_value(token);
+                                                  // 5 MASK STAT 2
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.mask_stat2 = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 6 STAT2
-		hpdir.id_stat2 = get_value(token);
+                                                  // 6 STAT2
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.id_stat2 = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 7 BCD include model number
-		hpdir.DEVICE_NUMBER = get_value(token);
+                                                  // 7 BCD include model number
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.DEVICE_NUMBER = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 8 Units installed
-		hpdir.UNITS_INSTALLED = get_value(token);
+                                                  // 8 Units installed
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.UNITS_INSTALLED = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 9 Cylinders
-		hpdir.CYLINDERS = get_value(token);
+                                                  // 9 Cylinders
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.CYLINDERS = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 10 Heads
-		hpdir.HEADS = get_value(token);
+                                                  // 10 Heads
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.HEADS = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 11 Sectors
-		hpdir.SECTORS = get_value(token);
+                                                  // 11 Sectors
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.SECTORS = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 12 Bytes Per Block/Sector
-		hpdir.BYTES_PER_SECTOR = get_value(token);
+                                                  // 12 Bytes Per Block/Sector
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.BYTES_PER_SECTOR = get_value(token);
 
-		ptr = get_token(ptr, token, 		sizeof(token)-2);			// 13 Interleave
-		hpdir.INTERLEAVE = get_value(token);
+                                                  // 13 Interleave
+        ptr = get_token(ptr, token,         sizeof(token)-2);
+        hpdir.INTERLEAVE = get_value(token);
 
-		// Computed values
-		hpdir.BLOCKS = ( hpdir.CYLINDERS * hpdir.HEADS * hpdir.SECTORS );
+// Computed values
+        hpdir.BLOCKS = ( hpdir.CYLINDERS * hpdir.HEADS * hpdir.SECTORS );
 
-		if(errors)
-		{
-			if(verbose)
-				printf("Error /hpdir.ini parsing\n");
-			break;
-		}
-		found = 1;
-		break;
+        if(errors)
+        {
+            if(verbose)
+                printf("Error /hpdir.ini parsing\n");
+            break;
+        }
+        found = 1;
+        break;
 
-	}	// while
-	fclose(cfg);
-	return(found);
+    }                                             // while
+    fclose(cfg);
+    return(found);
 }

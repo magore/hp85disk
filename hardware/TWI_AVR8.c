@@ -30,7 +30,6 @@ arising out of or in connection with the use or performance of
 this software.
 */
 
-
 /** \file
  *  \brief TWI Peripheral Driver (AVR8)
  *
@@ -40,7 +39,6 @@ this software.
 d as needed by the TWI driver
  *        dispatch header located in LUFA/Drivers/Peripheral/TWI.h.
  */
-
 
 #include "user_config.h"
 
@@ -53,8 +51,8 @@ d as needed by the TWI driver
 void TWI_Init(const uint8_t Prescale, const uint8_t BitLength)
 {
 
-    GPIO_PIN_LATCH_HI(SCL);                   // Pull Up on
-    GPIO_PIN_LATCH_HI(SDA);                   // Pull Up on
+    GPIO_PIN_LATCH_HI(SCL);                       // Pull Up on
+    GPIO_PIN_LATCH_HI(SDA);                       // Pull Up on
 
     BIT_SET(TWCR,TWEN);
 

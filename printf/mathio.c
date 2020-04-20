@@ -1,6 +1,6 @@
 
 /**
- @file mathio.c 
+ @file mathio.c
 
  @brief String to number conversions with floating point support
 
@@ -53,20 +53,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @param[in] radix: radix
 /// @return radix based digit , or -1
 /// @see strtol
-MEMSPACE 
+MEMSPACE
 int
 atodigit(int c,int radix)
 {
     int ret = -1;
     if(c >= '0' && c <= '9')
-            ret = c - '0';
+        ret = c - '0';
     else if(c >= 'A' && c <= 'F')
-            ret = c - 'A' + 10;
+        ret = c - 'A' + 10;
     else if(c >= 'a' && c <= 'f')
-            ret = c - 'a' + 10;
+        ret = c - 'a' + 10;
     else return (-1);
     return((ret >= radix) ? -1 : ret);
 }
+
 
 // =============================================
 ///@brief Convert ASCII hex string to long integer.
@@ -99,8 +100,9 @@ aton(char *str, int base)
     return(num);
 }
 
+
 // =============================================
-/// @brief Fast multiply number of any size by 10 
+/// @brief Fast multiply number of any size by 10
 /// @param[in] str: string
 /// @param[in] size: string size
 /// @return non-zero on overflow , 0 if ok
@@ -125,13 +127,14 @@ int mul10str(uint8_t *str, int size)
     return(carry);
 }
 
+
 // =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
 /// @param[in] base: radix
 /// @return long value
-MEMSPACE 
+MEMSPACE
 long
 strtol(const char *nptr, char **endptr, int base)
 {
@@ -142,16 +145,16 @@ strtol(const char *nptr, char **endptr, int base)
     while(*nptr == ' ' || *nptr == '\t')
         ++nptr;
     sign = 0;
-    if(*nptr == '-' ) 
+    if(*nptr == '-' )
     {
         sign = 1;
         ++nptr;
-    } 
+    }
     else if(*nptr == '+' )
-        {
-            ++nptr;
-        }
-    // skip leading zeros
+    {
+        ++nptr;
+    }
+// skip leading zeros
     while(*nptr == '0')
         ++nptr;
     num = 0;
@@ -172,13 +175,14 @@ strtol(const char *nptr, char **endptr, int base)
     return(num);
 }
 
+
 // =============================================
 /// @brief Convert ASCII string to number in a given base
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
 /// @param[in] base: radix
 /// @return long long
-MEMSPACE 
+MEMSPACE
 long long
 strtoll(const char *nptr, char **endptr, int base)
 {
@@ -195,10 +199,10 @@ strtoll(const char *nptr, char **endptr, int base)
         ++nptr;
     }
     else if(*nptr == '+' )
-        {
-            ++nptr;
-        }
-    // skip leading zeros
+    {
+        ++nptr;
+    }
+// skip leading zeros
     while(*nptr == '0')
         ++nptr;
 
@@ -244,11 +248,11 @@ strto128(const char *nptr, char **endptr, int base)
         ++nptr;
     }
     else if(*nptr == '+' )
-        {
-            ++nptr;
-        }
+    {
+        ++nptr;
+    }
 
-    // skip leading zeros
+// skip leading zeros
     while(*nptr == '0')
         ++nptr;
 
@@ -268,15 +272,14 @@ strto128(const char *nptr, char **endptr, int base)
         *endptr = (char *) nptr;
     return(num);
 }
-  
-#endif 
+#endif
 
 // =============================================
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
 /// @return int value
 /// @see strtol
-MEMSPACE 
+MEMSPACE
 int
 atoi(const char *str)
 {
@@ -285,12 +288,13 @@ atoi(const char *str)
     return((int)num);
 }
 
+
 // =============================================
 /// @brief Convert ASCII string to number in base 10
 /// @param[in] str: string
 /// @return long value
 /// @see strtol
-MEMSPACE 
+MEMSPACE
 long
 atol(const char *str)
 {
@@ -299,11 +303,12 @@ atol(const char *str)
     return(num);
 }
 
+
 // =============================================
 // Floating point I/O helper functions
 // =============================================
 #ifdef FLOATIO
-/// @brief Raise number to integer exponent power 
+/// @brief Raise number to integer exponent power
 /// The process is much like a bitwise multiply - and reduces operatiosn required
 /// @param[in] num: number
 /// @param[in] exp:  interger exponent
@@ -335,12 +340,13 @@ iexp(double num, int exp)
     return(num);
 }
 
+
 // =============================================
 /// @brief Scale a number to range 1.0 .. 9.99999... and return exponent
 /// @param[in] num: number
 /// @param[out] *exp: interger power of 10 for scale factor
 /// @return scaled number
-MEMSPACE 
+MEMSPACE
 double
 scale10(double num, int *exp)
 {
@@ -361,25 +367,25 @@ scale10(double num, int *exp)
         num = -num;
         sign = 1;
     }
-        
-    // extract exponent
+
+// extract exponent
     frexp(num, &exp2);
-    // aproximate exponent in base 10
+// aproximate exponent in base 10
     exp10 = ((double) exp2) / (double) 3.321928095;
 
-    // convert scale to 10.0**exp10
+// convert scale to 10.0**exp10
     scale = iexp((double)10.0, exp10);
 
-    // remove scale
+// remove scale
     num /= scale;
 
-    // correct for over/under
-    while(num >= (double)10.0) 
+// correct for over/under
+    while(num >= (double)10.0)
     {
         num /= (double) 10.0;
         ++exp10;
     }
-    while(num < (double) 1.0) 
+    while(num < (double) 1.0)
     {
         num *= (double) 10.0;
         --exp10;
@@ -391,8 +397,9 @@ scale10(double num, int *exp)
     return(num);
 }
 
+
 // =============================================
-/// @brief Convert ASCII string to a double 
+/// @brief Convert ASCII string to a double
 /// @param[in] nptr: string
 /// @param[in] endptr: pointer to string pointer return value
 /// @return double
@@ -418,23 +425,23 @@ strtod(const char *nptr, char **endptr)
     {
         ++nptr;
     }
-    // skip leading zeros
+// skip leading zeros
     while(*nptr == '0')
         ++nptr;
-    num = 0.0; 
-    while(*nptr && isdigit(*nptr)) 
+    num = 0.0;
+    while(*nptr && isdigit(*nptr))
     {
-        num *= 10.0;    // make room for new digit
+        num *= 10.0;                              // make room for new digit
         digit = (*nptr - '0');
         num += (double) digit;
         nptr++;
     }
 
-    if(*nptr == '.') 
+    if(*nptr == '.')
     {
         ++nptr;
         frac = 0.1;
-        while(*nptr && isdigit(*nptr)) 
+        while(*nptr && isdigit(*nptr))
         {
             digit = (*nptr - '0');
             tmp = (double) digit;
@@ -446,25 +453,25 @@ strtod(const char *nptr, char **endptr)
     if(sign == -1)
         num = -num;
 
-    if(*nptr == 'E' || *nptr == 'e') 
+    if(*nptr == 'E' || *nptr == 'e')
     {
         nptr++;
         sign = (*nptr == '-') ? -1 : 1;
-        if(sign == -1 || *nptr == '+') 
+        if(sign == -1 || *nptr == '+')
             nptr++;
         power=0;
-        while(isdigit(*nptr)) 
+        while(isdigit(*nptr))
         {
             power *= 10.0;
             digit = (*nptr - '0');
-            power += (double) digit; 
+            power += (double) digit;
             nptr++;
         }
         if(num)
         {
             if(sign<0)
                 power = -power;
-            // iexp - number to integer power
+// iexp - number to integer power
             num *= iexp(10.0, power);
         }
     }
@@ -473,11 +480,12 @@ strtod(const char *nptr, char **endptr)
     return(num);
 }
 
+
 // =============================================
 /// @brief atof ASCII to float
 /// @param[in] str: string
 /// @return number
-MEMSPACE 
+MEMSPACE
 double
 atof(const char *str)
 {
@@ -485,6 +493,4 @@ atof(const char *str)
     num = strtod(str, NULL);
     return(num);
 }
-  
-#endif // ifdef FLOATIO
-
+#endif                                            // ifdef FLOATIO

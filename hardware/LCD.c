@@ -105,21 +105,23 @@ bool LCD_ok = 1;
 bool I2C_Start(uint8_t addr)
 {
     if ( TWI_StartTransmission(addr, 20) == 0 )
-		LCD_ok = 1;
-	else
-		LCD_ok = 0;
-	return(LCD_ok);
-} //I2C_Start
+        LCD_ok = 1;
+    else
+        LCD_ok = 0;
+    return(LCD_ok);
+}                                                 //I2C_Start
+
 
 /*
  * Begin transmission to the device
  */
 void I2C_Stop()
 {
-	if(!LCD_ok)
-		return;
-	TWI_StopTransmission();
-} //I2C_Start
+    if(!LCD_ok)
+        return;
+    TWI_StopTransmission();
+}                                                 //I2C_Start
+
 
 /*
  * Send data to the device
@@ -128,10 +130,10 @@ void I2C_Stop()
  */
 bool I2C_Send(uint8_t data)
 {
-	if(!LCD_ok)
-		return(0);
-	return( TWI_SendByte(data) == 0 ? 1 : 0 );
-} //I2C_Send
+    if(!LCD_ok)
+        return(0);
+    return( TWI_SendByte(data) == 0 ? 1 : 0 );
+}                                                 //I2C_Send
 
 
 /*
@@ -140,16 +142,17 @@ bool I2C_Send(uint8_t data)
  */
 bool I2C_SendMessage(uint8_t addr, const uint8_t *buffer, size_t size)
 {
-  if( !I2C_Start(addr) )
-	return 0;
-  while (size--)
-  {
-	if(!TWI_SendByte(*buffer++) )
-		return 0;
-  }                  
-  I2C_Stop(); 			//Stop transmission
-  return (1);
+    if( !I2C_Start(addr) )
+        return 0;
+    while (size--)
+    {
+        if(!TWI_SendByte(*buffer++) )
+            return 0;
+    }
+    I2C_Stop();                                   //Stop transmission
+    return (1);
 }
+
 
 // ===============================================
 /*
@@ -158,13 +161,14 @@ bool I2C_SendMessage(uint8_t addr, const uint8_t *buffer, size_t size)
  */
 bool LCD_putb(uint8_t b)
 {
-  if( !I2C_Start(LCD_ADDR) )
-	return 0;
-  if(!I2C_Send(b))
-	return 0;
-  I2C_Stop(); //Stop transmission
-  return(1);
-} // write
+    if( !I2C_Start(LCD_ADDR) )
+        return 0;
+    if(!I2C_Send(b))
+        return 0;
+    I2C_Stop();                                   //Stop transmission
+    return(1);
+}                                                 // write
+
 
 /*
  * Write a character buffer to the display.
@@ -172,10 +176,11 @@ bool LCD_putb(uint8_t b)
  */
 bool LCD_write(const uint8_t *buffer, size_t size)
 {
-  bool status;
-  status = I2C_SendMessage(LCD_ADDR, buffer, size);
-  return (status);
-} //write
+    bool status;
+    status = I2C_SendMessage(LCD_ADDR, buffer, size);
+    return (status);
+}                                                 //write
+
 
 /*
  * Write a character buffer to the display.
@@ -183,8 +188,9 @@ bool LCD_write(const uint8_t *buffer, size_t size)
  */
 void LCD_puts(const uint8_t *buffer)
 {
-  LCD_write(buffer,strlen((const char *) buffer));
+    LCD_write(buffer,strlen((const char *) buffer));
 }
+
 
 ///  ====================================
 /// @brief Character and String functions
@@ -196,6 +202,7 @@ void LCD_pos(uint8_t x, uint8_t y)
     LCD_setCursor(x,y);
 }
 
+
 // ===============================================
 ///@brief end of I2C HAL for hp85disk
 // ===============================================
@@ -206,54 +213,57 @@ void LCD_pos(uint8_t x, uint8_t y)
  */
 bool LCD_init(uint8_t addr)
 {
-  
-  if( !I2C_Start(lcd_address = addr) )
-	return 0;
 
-  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
-  I2C_Send(LCD_DISPLAYCONTROL | _displayControl); //Send the display command
+    if( !I2C_Start(lcd_address = addr) )
+        return 0;
 
-  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
-  I2C_Send(LCD_ENTRYMODESET | _displayMode);      //Send the entry mode command
+    I2C_Send(SPECIAL_COMMAND);                    //Send special command character
+                                                  //Send the display command
+    I2C_Send(LCD_DISPLAYCONTROL | _displayControl);
 
-  I2C_Send(SETTING_COMMAND);                      //Put LCD into setting mode
-  I2C_Send(CLEAR_COMMAND);                        //Send clear display command
+    I2C_Send(SPECIAL_COMMAND);                    //Send special command character
+    I2C_Send(LCD_ENTRYMODESET | _displayMode);    //Send the entry mode command
 
-  I2C_Send(SETTING_COMMAND);                      //Send special command character
-  I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY);       //Send the set '.' character
+    I2C_Send(SETTING_COMMAND);                    //Put LCD into setting mode
+    I2C_Send(CLEAR_COMMAND);                      //Send clear display command
 
-  I2C_Send(SPECIAL_COMMAND);                      //Send special command character
-  I2C_Send(LCD_SETDDRAMADDR | 0);				// HOME 0,0
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY);     //Send the set '.' character
 
-  I2C_Stop();
-  delayms(50);                                      //let things settle a bit
+    I2C_Send(SPECIAL_COMMAND);                    //Send special command character
+    I2C_Send(LCD_SETDDRAMADDR | 0);               // HOME 0,0
 
-  LCD_setFastBacklightRGB ( 0xC0, 0xC0, 0xC0 );
+    I2C_Stop();
+    delayms(50);                                  //let things settle a bit
 
-  lcd.xpos = 0;
-  lcd.ypos = 0;
+    LCD_setFastBacklightRGB ( 0xC0, 0xC0, 0xC0 );
 
-  return(1);
-} //init
-                                                   
+    lcd.xpos = 0;
+    lcd.ypos = 0;
+
+    return(1);
+}                                                 //init
+
+
 // ===============================================
 
 /*
-  * Send a command to the display.
-  * Used by other functions.
-  *
-  * byte command to send
-  */
+ * Send a command to the display.
+ * Used by other functions.
+ *
+ * byte command to send
+ */
 void LCD_command(byte command)
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND); //Put LCD into setting mode
-  I2C_Send(command);         //Send the command code
-  I2C_Stop();         //Stop transmission
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Put LCD into setting mode
+    I2C_Send(command);                            //Send the command code
+    I2C_Stop();                                   //Stop transmission
 
-  delayms(10); //Hang out for a bit
+    delayms(10);                                  //Hang out for a bit
 }
+
 
 /*
  * Send a special command to the display.  Used by other functions.
@@ -262,14 +272,15 @@ void LCD_command(byte command)
  */
 void LCD_specialCommand(byte command)
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SPECIAL_COMMAND); //Send special command character
-  I2C_Send(command);         //Send the command code
-  I2C_Stop();         //Stop transmission
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SPECIAL_COMMAND);                    //Send special command character
+    I2C_Send(command);                            //Send the command code
+    I2C_Stop();                                   //Stop transmission
 
-  delayms(50); //Wait a bit longer for special display commands
+    delayms(50);                                  //Wait a bit longer for special display commands
 }
+
 
 /*
  * Send multiple special commands to the display.
@@ -280,18 +291,19 @@ void LCD_specialCommand(byte command)
  */
 void LCD_specialCommandCount(byte command, byte count)
 {
-  if( !I2C_Start(lcd_address) )
-	return;
+    if( !I2C_Start(lcd_address) )
+        return;
 
-  for (int i = 0; i < count; i++)
-  {
-    I2C_Send(SPECIAL_COMMAND); //Send special command character
-    I2C_Send(command);         //Send command code
-  }                            // for
-  I2C_Stop();           //Stop transmission
+    for (int i = 0; i < count; i++)
+    {
+        I2C_Send(SPECIAL_COMMAND);                //Send special command character
+        I2C_Send(command);                        //Send command code
+    }                                             // for
+    I2C_Stop();                                   //Stop transmission
 
-  delayms(50); //Wait a bit longer for special display commands
+    delayms(50);                                  //Wait a bit longer for special display commands
 }
+
 
 /*
  * Send the clear command to the display.  This clears the
@@ -300,10 +312,11 @@ void LCD_specialCommandCount(byte command, byte count)
  */
 void LCD_clear()
 {
-  LCD_command(CLEAR_COMMAND);
-  LCD_pos(0,0);
-  delayms(10); // a little extra delay after clear
+    LCD_command(CLEAR_COMMAND);
+    LCD_pos(0,0);
+    delayms(10);                                  // a little extra delay after clear
 }
+
 
 /*
  * Send the home command to the display.  This returns the cursor
@@ -312,7 +325,7 @@ void LCD_clear()
  */
 void LCD_home()
 {
-  LCD_specialCommand(LCD_RETURNHOME);
+    LCD_specialCommand(LCD_RETURNHOME);
 }
 
 
@@ -326,17 +339,18 @@ void LCD_home()
  */
 void LCD_setCursor(byte col, byte row)
 {
-	int row_offsets[] = {0x00, 0x40, 0x14, 0x54};
+    int row_offsets[] = {0x00, 0x40, 0x14, 0x54};
 
-  //keep variables in bounds
-  // row is unsigned - no need to test < 0
-	if(row > (MAX_ROWS-1) )
-		row = MAX_ROWS-1;
+//keep variables in bounds
+// row is unsigned - no need to test < 0
+    if(row > (MAX_ROWS-1) )
+        row = MAX_ROWS-1;
 
-  //send the command
-  LCD_specialCommand(LCD_SETDDRAMADDR | (col + row_offsets[row]));
+//send the command
+    LCD_specialCommand(LCD_SETDDRAMADDR | (col + row_offsets[row]));
 
-} // setCursor
+}                                                 // setCursor
+
 
 /*
  * Create a customer character
@@ -345,19 +359,20 @@ void LCD_setCursor(byte col, byte row)
  */
 void LCD_createChar(byte location, byte charmap[])
 {
-  location &= 0x7; // we only have 8 locations 0-7
-  if( !I2C_Start(lcd_address) )
-	return;
-  //Send request to create a customer character
-  I2C_Send(SETTING_COMMAND); //Put LCD into setting mode
-  I2C_Send(27 + location);
-  for (int i = 0; i < 8; i++)
-  {
-    I2C_Send(charmap[i]);
-  } // for
-  I2C_Stop();
-  delayms(50); //This takes a bit longer
+    location &= 0x7;                              // we only have 8 locations 0-7
+    if( !I2C_Start(lcd_address) )
+        return;
+//Send request to create a customer character
+    I2C_Send(SETTING_COMMAND);                    //Put LCD into setting mode
+    I2C_Send(27 + location);
+    for (int i = 0; i < 8; i++)
+    {
+        I2C_Send(charmap[i]);
+    }                                             // for
+    I2C_Stop();
+    delayms(50);                                  //This takes a bit longer
 }
+
 
 /*
  * Write a customer character to the display
@@ -366,63 +381,70 @@ void LCD_createChar(byte location, byte charmap[])
  */
 void LCD_writeChar(byte location)
 {
-  location &= 0x7; // we only have 8 locations 0-7
-  LCD_command(35 + location);
+    location &= 0x7;                              // we only have 8 locations 0-7
+    LCD_command(35 + location);
 }
 
+
 /*
-  * Turn the display off quickly.
-  */
+ * Turn the display off quickly.
+ */
 void LCD_noDisplay()
 {
-  _displayControl &= ~LCD_DISPLAYON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // noDisplay
+    _displayControl &= ~LCD_DISPLAYON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // noDisplay
+
 
 /*
  * Turn the display on quickly.
  */
 void LCD_display()
 {
-  _displayControl |= LCD_DISPLAYON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // display
+    _displayControl |= LCD_DISPLAYON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // display
+
 
 /*
-  * Turn the underline cursor off.
-  */
+ * Turn the underline cursor off.
+ */
 void LCD_noCursor()
 {
-  _displayControl &= ~LCD_CURSORON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // noCursor
+    _displayControl &= ~LCD_CURSORON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // noCursor
+
 
 /*
  * Turn the underline cursor on.
  */
 void LCD_cursor()
 {
-  _displayControl |= LCD_CURSORON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // cursor
+    _displayControl |= LCD_CURSORON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // cursor
+
 
 /*
-  * Turn the blink cursor off.
-  */
+ * Turn the blink cursor off.
+ */
 void LCD_noBlink()
 {
-  _displayControl &= ~LCD_BLINKON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // noBlink
+    _displayControl &= ~LCD_BLINKON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // noBlink
+
 
 /*
  * Turn the blink cursor on.
  */
 void LCD_blink()
 {
-  _displayControl |= LCD_BLINKON;
-  LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
-} // blink
+    _displayControl |= LCD_BLINKON;
+    LCD_specialCommand(LCD_DISPLAYCONTROL | _displayControl);
+}                                                 // blink
+
 
 /*
  * Scroll the display multiple characters to the left, without
@@ -432,8 +454,9 @@ void LCD_blink()
  */
 void LCD_scrollDisplayLeftCount(byte count)
 {
-  LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVELEFT, count);
-} // scrollDisplayLeft
+    LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVELEFT, count);
+}                                                 // scrollDisplayLeft
+
 
 /*
  * Scroll the display one character to the left, without
@@ -441,8 +464,9 @@ void LCD_scrollDisplayLeftCount(byte count)
  */
 void LCD_scrollDisplayLeft()
 {
-	LCD_scrollDisplayLeftCount(1);
-} // scrollDisplayLeft
+    LCD_scrollDisplayLeftCount(1);
+}                                                 // scrollDisplayLeft
+
 
 /*
  * Scroll the display multiple characters to the right, without
@@ -452,8 +476,9 @@ void LCD_scrollDisplayLeft()
  */
 void LCD_scrollDisplayRightCOunt(byte count)
 {
-  LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVERIGHT, count);
-} // scrollDisplayRight
+    LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVERIGHT, count);
+}                                                 // scrollDisplayRight
+
 
 /*
  * Scroll the display one character to the right, without
@@ -461,8 +486,9 @@ void LCD_scrollDisplayRightCOunt(byte count)
  */
 void LCD_scrollDisplayRight()
 {
-	LCD_scrollDisplayRightCOunt(1);
-} // scrollDisplayRight
+    LCD_scrollDisplayRightCOunt(1);
+}                                                 // scrollDisplayRight
+
 
 /*
  *  Move the cursor multiple characters to the left.
@@ -471,8 +497,8 @@ void LCD_scrollDisplayRight()
  */
 void LCD_moveCursorLeftCount(byte count)
 {
-  LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_CURSORMOVE | LCD_MOVELEFT, count);
-} // moveCursorLeft
+    LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_CURSORMOVE | LCD_MOVELEFT, count);
+}                                                 // moveCursorLeft
 
 
 /*
@@ -480,8 +506,9 @@ void LCD_moveCursorLeftCount(byte count)
  */
 void LCD_moveCursorLeft()
 {
-	LCD_moveCursorLeftCount(1);
-} // moveCursorLeft
+    LCD_moveCursorLeftCount(1);
+}                                                 // moveCursorLeft
+
 
 /*
  *  Move the cursor multiple characters to the right.
@@ -490,101 +517,109 @@ void LCD_moveCursorLeft()
  */
 void LCD_moveCursorRightCount(byte count)
 {
-  LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_CURSORMOVE | LCD_MOVERIGHT, count);
-} // moveCursorRight
+    LCD_specialCommandCount(LCD_CURSORSHIFT | LCD_CURSORMOVE | LCD_MOVERIGHT, count);
+}                                                 // moveCursorRight
+
 
 /*
  *  Move the cursor one character to the right.
  */
 void LCD_moveCursorRight()
 {
-	LCD_moveCursorRightCount(1);
-} // moveCursorRight
+    LCD_moveCursorRightCount(1);
+}                                                 // moveCursorRight
 
 
 //New command - set backlight with LCD messages or delaymss
 void LCD_setFastBacklightRGB(byte r, byte g, byte b)
 {
-  //send commands to the display to set backlights
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND); //Send special command character
-  I2C_Send(SET_RGB_COMMAND); //Send the set RGB character '+' or plus
-  I2C_Send(r);               //Send the red value
-  I2C_Send(g);               //Send the green value
-  I2C_Send(b);               //Send the blue value
-  I2C_Stop();         //Stop transmission
-  delayms(10);
-} // setFastBacklight
+//send commands to the display to set backlights
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(SET_RGB_COMMAND);                    //Send the set RGB character '+' or plus
+    I2C_Send(r);                                  //Send the red value
+    I2C_Send(g);                                  //Send the green value
+    I2C_Send(b);                                  //Send the blue value
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
+}                                                 // setFastBacklight
+
 
 // New backlight function
 void LCD_setFastBacklight(unsigned long rgb)
 {
-  // convert from hex triplet to byte values
-  byte r = (rgb >> 16) & 0x0000FF;
-  byte g = (rgb >> 8) & 0x0000FF;
-  byte b = rgb & 0x0000FF;
-  LCD_setFastBacklightRGB(r, g, b);
+// convert from hex triplet to byte values
+    byte r = (rgb >> 16) & 0x0000FF;
+    byte g = (rgb >> 8) & 0x0000FF;
+    byte b = rgb & 0x0000FF;
+    LCD_setFastBacklightRGB(r, g, b);
 }
+
 
 //Enable system messages
 //This allows user to see printing messages like 'UART: 57600' and 'Contrast: 5'
 void LCD_enableSystemMessages()
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);               //Send special command character
-  I2C_Send(ENABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
-  I2C_Stop();                       //Stop transmission
-  delayms(10);
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(ENABLE_SYSTEM_MESSAGE_DISPLAY);      //Send the set '.' character
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
 }
+
 
 //Disable system messages
 //This allows user to disable printing messages like 'UART: 57600' and 'Contrast: 5'
 void LCD_disableSystemMessages()
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);                //Send special command character
-  I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY); //Send the set '.' character
-  I2C_Stop();                        //Stop transmission
-  delayms(10);
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(DISABLE_SYSTEM_MESSAGE_DISPLAY);     //Send the set '.' character
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
 }
+
 
 //Enable splash screen at power on
 void LCD_enableSplash()
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);       //Send special command character
-  I2C_Send(ENABLE_SPLASH_DISPLAY); //Send the set '.' character
-  I2C_Stop();               //Stop transmission
-  delayms(10);
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(ENABLE_SPLASH_DISPLAY);              //Send the set '.' character
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
 }
+
 
 //Disable splash screen at power on
 void LCD_disableSplash()
 {
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);        //Send special command character
-  I2C_Send(DISABLE_SPLASH_DISPLAY); //Send the set '.' character
-  I2C_Stop();                //Stop transmission
-  delayms(10);
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(DISABLE_SPLASH_DISPLAY);             //Send the set '.' character
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
 }
+
 
 //Save the current display as the splash
 void LCD_saveSplash()
 {
-  //Save whatever is currently being displayed into EEPROM
-  //This will be displayed at next power on as the splash screen
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);                //Send special command character
-  I2C_Send(SAVE_CURRENT_DISPLAY_AS_SPLASH); //Send the set Ctrl+j character
-  I2C_Stop();                        //Stop transmission
-  delayms(10);
+//Save whatever is currently being displayed into EEPROM
+//This will be displayed at next power on as the splash screen
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send special command character
+    I2C_Send(SAVE_CURRENT_DISPLAY_AS_SPLASH);     //Send the set Ctrl+j character
+    I2C_Stop();                                   //Stop transmission
+    delayms(10);
 }
+
 
 /*
  * Set the text to flow from left to right.  This is the direction
@@ -592,18 +627,20 @@ void LCD_saveSplash()
  */
 void LCD_leftToRight()
 {
-  _displayMode |= LCD_ENTRYLEFT;
-  LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
-} // leftToRight
+    _displayMode |= LCD_ENTRYLEFT;
+    LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
+}                                                 // leftToRight
+
 
 /*
  * Set the text to flow from right to left.
  */
 void LCD_rightToLeft()
 {
-  _displayMode &= ~LCD_ENTRYLEFT;
-  LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
-} //rightToLeft
+    _displayMode &= ~LCD_ENTRYLEFT;
+    LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
+}                                                 //rightToLeft
+
 
 /*
  * Turn autoscrolling on. This will 'right justify' text from
@@ -611,18 +648,20 @@ void LCD_rightToLeft()
  */
 void LCD_autoscroll()
 {
-  _displayMode |= LCD_ENTRYSHIFTINCREMENT;
-  LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
-} //autoscroll
+    _displayMode |= LCD_ENTRYSHIFTINCREMENT;
+    LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
+}                                                 //autoscroll
+
 
 /*
  * Turn autoscrolling off.
  */
 void LCD_noAutoscroll()
 {
-  _displayMode &= ~LCD_ENTRYSHIFTINCREMENT;
-  LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
-} //noAutoscroll
+    _displayMode &= ~LCD_ENTRYSHIFTINCREMENT;
+    LCD_specialCommand(LCD_ENTRYMODESET | _displayMode);
+}                                                 //noAutoscroll
+
 
 /*
  * Change the contrast from 0 to 255. 120 is default.
@@ -631,16 +670,17 @@ void LCD_noAutoscroll()
  */
 void LCD_setContrast(byte new_val)
 {
-  //send commands to the display to set backlights
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND);  //Send contrast command
-  I2C_Send(CONTRAST_COMMAND); //0x18
-  I2C_Send(new_val);          //Send new contrast value
-  I2C_Stop();          //Stop transmission
+//send commands to the display to set backlights
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send contrast command
+    I2C_Send(CONTRAST_COMMAND);                   //0x18
+    I2C_Send(new_val);                            //Send new contrast value
+    I2C_Stop();                                   //Stop transmission
 
-  delayms(10); //Wait a little bit
-} //setContrast
+    delayms(10);                                  //Wait a little bit
+}                                                 //setContrast
+
 
 /*
  * Change the I2C Address. 0x72 is the default.
@@ -652,16 +692,16 @@ void LCD_setContrast(byte new_val)
  */
 void LCD_setAddress(byte new_addr)
 {
-  //send commands to the display to set backlights
-  if( !I2C_Start(lcd_address) )
-	return;
-  I2C_Send(SETTING_COMMAND); //Send contrast command
-  I2C_Send(ADDRESS_COMMAND); //0x19
-  I2C_Send(new_addr);        //Send new contrast value
-  I2C_Stop();         //Stop transmission
+//send commands to the display to set backlights
+    if( !I2C_Start(lcd_address) )
+        return;
+    I2C_Send(SETTING_COMMAND);                    //Send contrast command
+    I2C_Send(ADDRESS_COMMAND);                    //0x19
+    I2C_Send(new_addr);                           //Send new contrast value
+    I2C_Stop();                                   //Stop transmission
 
-  //Update our own address so we can still talk to the display
-   lcd_address = new_addr;
+//Update our own address so we can still talk to the display
+    lcd_address = new_addr;
 
-  delayms(50); //This may take awhile
-} //setContrast
+    delayms(50);                                  //This may take awhile
+}                                                 //setContrast

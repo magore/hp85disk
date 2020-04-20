@@ -64,5 +64,4 @@ int uart_keyhit ( uint8_t uart );
 int uart_put ( int c );
 int uart_get ( void );
 int get_line ( char *buff , int len );
-
 #endif                                            // _RS232_H_

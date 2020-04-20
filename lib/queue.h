@@ -9,37 +9,37 @@
   This is free software: you can redistribute it and/or modify it under the
   terms of the GNU General Public License as published by the Free Software
   Foundation, either version 3 of the License, or (at your option)
-  any later version.
-  
-  This software is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+any later version.
 
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
 // Named address space
 #ifndef MEMSPACE
-#define MEMSPACE /**/
+#define MEMSPACE                                  /**/
 #endif
 
 #define QUEUE_OVERRUN       1
 #define QUEUE_EOL           2
 
 /// @brief queue structure
-typedef struct {
-    char *buf;      /* Ring buffer */
-    uint8_t flags;  /* flags */
-    size_t in;      /* input offset */
-    size_t out;     /* output offset */
-    size_t bytes;   /* bytes used */
-    size_t size;    /* Ring buffer size */
+typedef struct
+{
+    char *buf;                                    /* Ring buffer */
+    uint8_t flags;                                /* flags */
+    size_t in;                                    /* input offset */
+    size_t out;                                   /* output offset */
+    size_t bytes;                                 /* bytes used */
+    size_t size;                                  /* Ring buffer size */
 } queue_t;
 
 /* queue.c */
@@ -54,6 +54,4 @@ size_t queue_push_buffer ( queue_t *q , uint8_t *src , size_t size );
 size_t queue_pop_buffer ( queue_t *q , uint8_t *dst , size_t size );
 int queue_pushc ( queue_t *q , uint8_t c );
 int queue_popc ( queue_t *q );
-
 #endif
-

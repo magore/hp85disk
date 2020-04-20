@@ -79,5 +79,4 @@ extern MEMSPACE int clock_gettime ( clockid_t clk_id , struct timespec *ts );
 MEMSPACE void disable_system_task ( void );
 MEMSPACE void enable_system_task ( void );
 MEMSPACE void install_timers_isr ( void );
-
-#endif   // _TIMER_H_
+#endif                                            // _TIMER_H_

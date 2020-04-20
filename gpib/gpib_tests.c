@@ -12,7 +12,6 @@
 
 */
 
-
 #include "user_config.h"
 
 #include "defines.h"
@@ -27,8 +26,7 @@
 #include "lifutils.h"
 #include "debug.h"
 
-
-/// @brief 
+/// @brief
 ///  Help Menu for User invoked GPIB functions and tasks
 ///  See: int gpib_tests(char *str)
 /// @return  void
@@ -40,12 +38,12 @@ void gpib_help(int full)
     {
         printf("Note: gpib prefix is optional\n"
             "gpib addresses\n"
-			"   Display all device GPIB bus addresses and PPR values\n"
+            "   Display all device GPIB bus addresses and PPR values\n"
             "gpib config [-v]\n"
-			"   Display current drives configuration\n"
-			"   -v Verbose - show full detail\n"
+            "   Display current drives configuration\n"
+            "   -v Verbose - show full detail\n"
             "gpib debug N\n"
-			"   debug message reporting see hpdisk.cfg for details\n"
+            "   debug message reporting see hpdisk.cfg for details\n"
             "gpib elapsed\n"
             "gpib elapsed_reset\n"
             "gpib ifc\n"
@@ -53,20 +51,20 @@ void gpib_help(int full)
             "gpib plot_echo\n"
             "gpib task\n"
             "gpib trace filename.txt [BUS]\n"
-			"   Display activity of GPIB bus and log it\n"
-			"   BUS - include handshake states\n"
+            "   Display activity of GPIB bus and log it\n"
+            "   BUS - include handshake states\n"
             "\n"
-#ifdef GPIB_EXTENDED_TESTS
-			"gpib port read pins   [A-D]\n"
-			"gpib port read latch  [A-D]\n"
-			"gpib port read ddr    [A-D]\n"
-			"gpib port write latch [A-D] val\n"
-			"gpib port write pins  [A-D] val\n"
+    #ifdef GPIB_EXTENDED_TESTS
+            "gpib port read pins   [A-D]\n"
+            "gpib port read latch  [A-D]\n"
+            "gpib port read ddr    [A-D]\n"
+            "gpib port write latch [A-D] val\n"
+            "gpib port write pins  [A-D] val\n"
             "gpib ppr_init\n"
             "gpib ppr_bit_on N\n"
             "gpib ppr_bit_off N\n"
             "gpib ppr_set XX\n"
-#endif
+    #endif
             "\n"
             );
     }
@@ -101,8 +99,8 @@ int gpib_tests(int argc, char * argv[])
     if (MATCHI(ptr,"debug") )
     {
         ptr = argv[ind];
-		if(*ptr == '=')
-			++ind;
+        if(*ptr == '=')
+            ++ind;
         debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
         return(1);
@@ -111,23 +109,22 @@ int gpib_tests(int argc, char * argv[])
     if (MATCHI(ptr,"addresses") )
     {
         ptr = argv[ind];
-		if(ptr && *ptr && MATCH(ptr,"-v"))
-			display_Addresses(1);
-		else
-			display_Addresses(0);
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Addresses(1);
+        else
+            display_Addresses(0);
         return(1);
     }
 
     if (MATCHI(ptr,"config") )
     {
         ptr = argv[ind];
-		if(ptr && *ptr && MATCH(ptr,"-v"))
-			display_Config(1);
-		else
-			display_Config(0);
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Config(1);
+        else
+            display_Config(0);
         return(1);
     }
-
 
     if (MATCHI(ptr,"elapsed_reset") )
     {
@@ -194,170 +191,170 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-	// port read
+// port read
     if (MATCHARGS(ptr,"port",(ind+3),argc))
     {
         if( MATCHI(argv[ind],"read") )
-		{
-			if( MATCHI(argv[ind+1],"pins") )
-			{   
-				if( MATCHI(argv[ind+2],"A")) 
-				{
-					printf("Port pins A RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTA) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					printf("Port pins B RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTB) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					printf("Port pins C RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTC) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					printf("Port pins D RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTD) );
-					return (1);
-				}
-			}
-			if( MATCHI(argv[ind+1],"latch") )
-			{   
-				if( MATCHI(argv[ind+2],"A"))
-				{
-					printf("Port latch A RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTA) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					printf("Port latch B RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTB) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					printf("Port latch C RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTC) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					printf("Port latch D RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTD) );
-					return (1);
-				}
-			}
-			if( MATCHI(argv[ind+1],"ddr") )
-			{   
-				if( MATCHI(argv[ind+2],"A"))
-				{
-					printf("Port ddr A RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTA) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					printf("Port ddr B RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTB) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					printf("Port ddr C RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTC) );
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					printf("Port ddr D RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTD) );
-					return (1);
-				}
-			}
-		}
-	} // port read 
+        {
+            if( MATCHI(argv[ind+1],"pins") )
+            {
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    printf("Port pins A RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTA) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    printf("Port pins B RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTB) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    printf("Port pins C RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTC) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    printf("Port pins D RD:[%02XH]\n",  0xff & GPIO_PORT_PINS_RD(PORTD) );
+                    return (1);
+                }
+            }
+            if( MATCHI(argv[ind+1],"latch") )
+            {
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    printf("Port latch A RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTA) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    printf("Port latch B RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTB) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    printf("Port latch C RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTC) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    printf("Port latch D RD:[%02XH]\n",  0xff & GPIO_PORT_LATCH_RD(PORTD) );
+                    return (1);
+                }
+            }
+            if( MATCHI(argv[ind+1],"ddr") )
+            {
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    printf("Port ddr A RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTA) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    printf("Port ddr B RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTB) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    printf("Port ddr C RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTC) );
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    printf("Port ddr D RD:[%02XH]\n",  0xff & GPIO_PORT_DDR_RD(PORTD) );
+                    return (1);
+                }
+            }
+        }
+    }                                             // port read
 
-	// port write
+// port write
     if (MATCHARGS(ptr,"port",(ind+4),argc))
     {
-		if( MATCHI(argv[ind],"write") )
-		{
-			uint8_t val;
-			if( MATCHI(argv[ind+1],"pins") )
-			{   
-				val = get_value(argv[ind+3]);
+        if( MATCHI(argv[ind],"write") )
+        {
+            uint8_t val;
+            if( MATCHI(argv[ind+1],"pins") )
+            {
+                val = get_value(argv[ind+3]);
 
-				if( MATCHI(argv[ind+2],"A"))
-				{
-					GPIO_PORT_WR(PORTA,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					GPIO_PORT_WR(PORTB,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					GPIO_PORT_WR(PORTC,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					GPIO_PORT_WR(PORTD,val);
-					return (1);
-				}
-			}
-			if( MATCHI(argv[ind+1],"latch") )
-			{   
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    GPIO_PORT_WR(PORTA,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    GPIO_PORT_WR(PORTB,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    GPIO_PORT_WR(PORTC,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    GPIO_PORT_WR(PORTD,val);
+                    return (1);
+                }
+            }
+            if( MATCHI(argv[ind+1],"latch") )
+            {
 
-				val = get_value(argv[ind+3]);
+                val = get_value(argv[ind+3]);
 
-				if( MATCHI(argv[ind+2],"A"))
-				{
-					GPIO_PORT_LATCH_WR(PORTA,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					GPIO_PORT_LATCH_WR(PORTB,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					GPIO_PORT_LATCH_WR(PORTC,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					GPIO_PORT_LATCH_WR(PORTD,val);
-					return (1);
-				}
-			}
-			if( MATCHI(argv[ind+1],"ddr") )
-			{   
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    GPIO_PORT_LATCH_WR(PORTA,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    GPIO_PORT_LATCH_WR(PORTB,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    GPIO_PORT_LATCH_WR(PORTC,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    GPIO_PORT_LATCH_WR(PORTD,val);
+                    return (1);
+                }
+            }
+            if( MATCHI(argv[ind+1],"ddr") )
+            {
 
-				val = get_value(argv[ind+3]);
+                val = get_value(argv[ind+3]);
 
-				if( MATCHI(argv[ind+2],"A"))
-				{
-					GPIO_PORT_DDR_WR(PORTA,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"B"))
-				{
-					GPIO_PORT_DDR_WR(PORTB,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"C"))
-				{
-					GPIO_PORT_DDR_WR(PORTC,val);
-					return (1);
-				}
-				if( MATCHI(argv[ind+2],"D"))
-				{
-					GPIO_PORT_DDR_WR(PORTD,val);
-					return (1);
-				}
-			}
-		}
+                if( MATCHI(argv[ind+2],"A"))
+                {
+                    GPIO_PORT_DDR_WR(PORTA,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"B"))
+                {
+                    GPIO_PORT_DDR_WR(PORTB,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"C"))
+                {
+                    GPIO_PORT_DDR_WR(PORTC,val);
+                    return (1);
+                }
+                if( MATCHI(argv[ind+2],"D"))
+                {
+                    GPIO_PORT_DDR_WR(PORTD,val);
+                    return (1);
+                }
+            }
+        }
 
-	} // port write 
-#endif  // #ifdef GPIB_EXTENDED_TESTS
+    }                                             // port write
+#endif                                        // #ifdef GPIB_EXTENDED_TESTS
 
     return(0);
 }

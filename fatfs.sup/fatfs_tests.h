@@ -1,6 +1,6 @@
 /**
  @file fatfs/fatfs_utils.h
- 
+
  @brief fatfs test utilities with user interface
 
  @par Copyright &copy; 2014-2020 Mike Gore, All rights reserved. GPL  License
@@ -10,8 +10,8 @@
  @par Credit: part of FatFs avr example project (C)ChaN, 2013.
  @par Copyright &copy; 2013 ChaN.
 
- @par You are free to use this code under the terms of GPL
-   please retain a copy of this notice in any code you use it in.
+@par You are free to use this code under the terms of GPL
+please retain a copy of this notice in any code you use it in.
 
 This is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -45,5 +45,4 @@ MEMSPACE void fatfs_rename ( const char *oldpath , const char *newpath );
 MEMSPACE void fatfs_rm ( char *name );
 MEMSPACE void fatfs_rmdir ( char *name );
 MEMSPACE void fatfs_stat ( char *name );
-
 #endif

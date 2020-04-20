@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifdef ESP8266
 #include "user_config.h"
 #include "fatfs.h"
@@ -48,18 +47,18 @@ void mysrand(int seed)
     __seed = seed;
 }
 
+
 MEMSPACE
 int myrand(int start, int end)
 {
     long k,s;
-
 
     int val;
     double fval,begin,span;
 
     if(end > start)
     {
-        begin = (double) start; 
+        begin = (double) start;
         span = (double) (end - start);
     }
     else
@@ -80,7 +79,7 @@ int myrand(int start, int end)
 
     __seed = (unsigned int)s;
 
-    // force s into 0 .. 0x7fffffffUL positive 
+// force s into 0 .. 0x7fffffffUL positive
     s &= 0x7fffffffUL;
 
     fval = (double) s / (double) 0x7fffffffL;
@@ -149,23 +148,23 @@ int timetests(char *str, int check)
             tm.tm_sec = myrand(-90,90);
 
             fprintf(fp,"test: %d\n", i);
-            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n", 
-                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday, 
+            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n",
+                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday,
                 (int)tm.tm_hour, (int)tm.tm_min, (int)tm.tm_sec);
 
-            // express val as local time
+// express val as local time
             epoch = mktime(&tm);
 
             fprintf(fp,"%10lu, %s\n", (long) epoch, asctime_r(&tm, buf));
-            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n", 
-                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday, 
+            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n",
+                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday,
                 (int)tm.tm_hour, (int)tm.tm_min, (int)tm.tm_sec);
 
             localtime_r(&epoch, &tm);
 
             fprintf(fp,"%10lu, %s\n", (long) epoch, asctime_r(&tm, buf));
-            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n", 
-                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday, 
+            fprintf(fp,"%4d,%2d,%2d, %02d:%02d:%2d\n",
+                (int)tm.tm_year+1900, (int)tm.tm_mon, (int)tm.tm_mday,
                 (int)tm.tm_hour, (int)tm.tm_min, (int)tm.tm_sec);
             fprintf(fp,"\n");
 

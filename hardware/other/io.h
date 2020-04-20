@@ -18,8 +18,6 @@
 ///  do stuff
 ///      }
 
-
-
 #define AVR_DIR_IN(a)       BIT_CLR( a ## _DDR,  a ## _BIT)
 #define AVR_DIR_OUT(a)      BIT_SET( a ## _DDR,  a ## _BIT)
 
@@ -42,7 +40,6 @@
 
 #define IO_LATCH_RD(a)          ( AVR_LATCH_RD(a) )
 
-
 #define IO_JUST_RD(a)           ( PIN_RD(a))
 #define IO_JUST_LOW(a)          ( AVR_LATCH_LOW(a) )
 #define IO_JUST_HI(a)           ( AVR_LATCH_HI(a) )
@@ -51,7 +48,6 @@
 ///  If you have a pull up always on or off just alter the
 ///  base macros. If you MUST switch it that other will have
 ///  to add hardware if thier CPU does not support it.
-
 
 #ifdef atmega1284p
 
@@ -105,4 +101,3 @@
 #else
 #error define I2C, RS232, SPI, MMC pins
 #endif
-

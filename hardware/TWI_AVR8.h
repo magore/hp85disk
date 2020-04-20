@@ -264,5 +264,4 @@ bool TWI_SendByte ( const uint8_t Byte );
 bool TWI_ReceiveByte ( uint8_t *const Byte , const bool LastByte );
 uint8_t TWI_ReadPacket ( const uint8_t SlaveAddress , const uint8_t TimeoutMS , const uint8_t *InternalAddress , uint8_t InternalAddressLen , uint8_t *Buffer , uint8_t Length );
 uint8_t TWI_WritePacket ( const uint8_t SlaveAddress , const uint8_t TimeoutMS , const uint8_t *InternalAddress , uint8_t InternalAddressLen , const uint8_t *Buffer , uint8_t Length );
-
 #endif

@@ -14,7 +14,7 @@
 
 // CPU Frequency
 #ifndef F_CPU
-#error F_CPU undefined 
+#error F_CPU undefined
 #endif
 
 /// @brief  Delay microseconds using AVR acr-libc _delay_us() function.

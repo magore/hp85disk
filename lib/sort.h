@@ -28,5 +28,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE void heapify ( int *v , int size , int root );
 MEMSPACE void heapsort ( int *v , int size );
 MEMSPACE void insert_sort ( uint16_t *v , int size );
-
-#endif // _SORT_H_
+#endif                                            // _SORT_H_

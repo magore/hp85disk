@@ -25,5 +25,4 @@ int receive_plot_flush ( void );
 void printer_buffer ( uint16_t val );
 int PRINTER_COMMANDS ( uint8_t ch );
 void plot_echo ( int gpib_address );
-
-#endif  // #ifndef _PRINTER_H
+#endif                                            // #ifndef _PRINTER_H

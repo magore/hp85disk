@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef AVR
 #include <stdlib.h>
-#define HAVE_HIRES_TIMER /*< We can read a high resolution hardware timer */
+#define HAVE_HIRES_TIMER                          /*< We can read a high resolution hardware timer */
 #endif
 
 #include "mathio.h"
@@ -45,7 +45,6 @@ static int timers_configured = 0;
 
 /// @brief  array or user timers
 TIMERS timer_irq[MAX_TIMER_CNT];
-
 
 /// @brief  Install a user timer task.
 ///
@@ -68,15 +67,15 @@ int set_timers(void (*handler)(void), int timer  __attribute__((unused)))
     for(i=0;i<MAX_TIMER_CNT;++i)
     {
 
-        // already assigned
+// already assigned
         if(timer_irq[i].user_timer_handler == handler)
             ret = i;
 
         if(!timer_irq[i].user_timer_handler)
         {
-            timer_irq[i].timer = 0;   // Set to disable
+            timer_irq[i].timer = 0;               // Set to disable
             timer_irq[i].user_timer_handler = handler;
-            timer_irq[i].timer = 1;      // Set if enabled, 0 if not
+            timer_irq[i].timer = 1;               // Set if enabled, 0 if not
             ret = i;
             break;
         }
@@ -158,6 +157,7 @@ char * ts_to_str(ts_t *val)
     return( _ts_to_str );
 }
 
+
 /// @brief  timespec structure in seconds.nanoseconds.
 ///
 /// @param[in] val: timespec struct we want to display.
@@ -211,6 +211,7 @@ void clock_elapsed_end(char *msg)
         printf("[Time:%s]\n", ts_to_str((ts_t *) &current) );
 }
 
+
 /// @brief  clear time and timezone to 0.
 ///
 /// @see clock_settime().
@@ -228,6 +229,7 @@ void clock_clear()
     __tzone.tz_dsttime = 0;
 }
 
+
 /// @brief  Disable all timer tasks
 ///
 /// @return  void
@@ -241,6 +243,7 @@ void disable_timers()
     }
 }
 
+
 /// @brief  Enable timer tasks
 ///
 /// @return  void
@@ -253,6 +256,7 @@ void enable_timers()
         timers_enabled = 1;
     }
 }
+
 
 /// @brief  Execute all user timers at SYSTEM_HZ rate.
 ///  Called by system task
@@ -269,6 +273,7 @@ void execute_timers()
     }
 }
 
+
 /**
  @brief 1000HZ timer task
  @return void
@@ -282,6 +287,7 @@ void clock_task(void)
         __clock.tv_nsec = 0;
     }
 }
+
 
 /// @brief  Setup all timers tasksi and enable interrupts
 ///
@@ -362,8 +368,9 @@ int clock_settime(clockid_t clk_id  __attribute__((unused)), const struct timesp
     return(0);
 }
 
-#if ! defined(HAVE_HIRES_TIMER) 
-/// Generic clock_gettime() function WITHOUT high resolution 
+
+#if ! defined(HAVE_HIRES_TIMER)
+/// Generic clock_gettime() function WITHOUT high resolution
 
 /// @brief Read clock time into struct timepec *ts - POSIX function.
 ///
@@ -395,5 +402,4 @@ int clock_gettime(clockid_t clk_id  __attribute__((unused)), struct timespec *ts
     }
     return(0);
 }
-
 #endif

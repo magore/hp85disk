@@ -1,6 +1,6 @@
 /**
  @file gpib/gpib.h
- 
+
  @brief GPIB emulator for HP85 disk emulator project for AVR.
 
  @par Edit History
@@ -10,9 +10,9 @@
  @see http://github.com/magore/hp85disk
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
- @par Based on work by Anders Gustafsson.
+@par Based on work by Anders Gustafsson.
 
- @par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
+@par Copyright &copy; 2014 Anders Gustafsson All rights reserved..
 
 */
 
@@ -27,7 +27,6 @@
 #define GPIB_BUS_SETTLE_DELAY 2
 /// @brief This is the default BUS timeout of 0.5 Seconds in Microseconds
 #define HTIMEOUT (500000L / GPIB_TASK_TIC_US)
-
 
 ///@brief bus flags
 #define EOI_FLAG 0x0100
@@ -54,15 +53,16 @@
 #define STATUS_MASK 0xff00
 
 ///@brief GPIB read trace states
-enum {
-    TRACE_DISABLE,  // normal read
-    TRACE_READ,     // trace read
-    TRACE_BUS       // trace bus handshake
+enum
+{
+    TRACE_DISABLE,                                // normal read
+    TRACE_READ,                                   // trace read
+    TRACE_BUS                                     // trace bus handshake
 };
 
 ///@brief arguments to gpib_read_byte
-#define TRACE_ALL   1   /* trace all bus states durring a read */
-#define NO_TRACE    0   /* do not trace bus states durring a read */
+#define TRACE_ALL   1                             /* trace all bus states durring a read */
+#define NO_TRACE    0                             /* do not trace bus states durring a read */
 
 enum
 {
@@ -98,7 +98,7 @@ enum
     GPIB_PP_DETECTED
 };
 
-#define GPIB_IOBUFF_LEN     512 /* Max length of RX/TX GPIB string */
+#define GPIB_IOBUFF_LEN     512                   /* Max length of RX/TX GPIB string */
 extern uint8_t gpib_iobuff[GPIB_IOBUFF_LEN];
 
 extern int debuglevel;
@@ -139,5 +139,4 @@ void gpib_trace_display ( uint16_t status , int trace_state );
 void gpib_decode ( uint16_t ch );
 int gpib_read_str ( uint8_t *buf , int size , uint16_t *status );
 int gpib_write_str ( uint8_t *buf , int size , uint16_t *status );
-
 #endif                                            // GPIB_H_

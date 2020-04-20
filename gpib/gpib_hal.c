@@ -1,6 +1,6 @@
 /**
  @file gpib/gpib_hal.c
- 
+
  @brief GPIB emulator hardwware layer for HP85 disk emulator project for AVR.
 
  @par Edit History
@@ -11,7 +11,6 @@
  @see http://github.com/magore/hp85disk/COPYRIGHT.md for Copyright details
 
 */
-
 
 #include "gpib_hal.h"
 #include "gpib.h"
@@ -36,12 +35,10 @@ void gpib_timer_init()
 }
 
 
-
-
 ///@brief Parallel Poll Response bit mask.
 static uint8_t _ppr_reg;
 
-/// @brief  Reverse the bits in an 8 bit value 
+/// @brief  Reverse the bits in an 8 bit value
 ///
 /// - GPIB Parallel poll response bits are reversed.
 /// - GPIB D8 controls first device.
