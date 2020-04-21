@@ -221,6 +221,7 @@ int mmc_init(int verbose)
     int rc;
 
     Stat = 0;
+	clear_error();
 
 	// Card Detect
 	GPIO_PIN_LATCH_LOW(GPIO_C7);
@@ -290,6 +291,9 @@ int mmc_init(int verbose)
     }
     mmc_init_flag = 1;
 
+	if(rc != RES_OK)
+		set_error(1);
+
     return( rc ) ;
 }
 
@@ -320,9 +324,11 @@ void mmc_power_off()
 MEMSPACE
 int mmc_ins_status()
 {
-	// empty is high when card is NOt inserted
-	int empty = GPIO_PIN_RD(GPIO_C7);	
-    return (!empty);
+	// HI when card is NOT inserted
+	if( GPIO_PIN_RD(GPIO_C7) )
+		return (0);
+	else
+		return(1);;	
 }
 
 

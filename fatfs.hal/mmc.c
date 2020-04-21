@@ -434,6 +434,10 @@ UINT count                                        /*< Sector count (1..128) */
         deselect();
         return RES_PARERR;
     }
+
+	if( Stat )
+		set_error(1);
+
     if (Stat & STA_NOINIT)
     {
         deselect();
@@ -485,6 +489,10 @@ UINT count                                        /* Sector count (1..128) */
         deselect();
         return RES_PARERR;
     }
+
+	if( Stat )
+		set_error(1);
+
     if (Stat & STA_NOINIT)
     {
         deselect();
@@ -558,6 +566,7 @@ void *buff                                        /* Buffer to send/receive cont
 
     if (Stat & STA_NOINIT)
         return RES_NOTRDY;
+
     if (Stat & STA_NODISK)
     {
         deselect();
@@ -775,6 +784,7 @@ void mmc_disk_timerproc (void)
     else                                          /* Socket empty */
 	{	
         s |= (STA_NODISK | STA_NOINIT);
+		set_error(1);
 	}
 
     Stat = s;                                     /* Update MMC status */
