@@ -192,7 +192,7 @@ void i2c_lcd_test()
 	cli();
 	if(!mmc_ins_status())
 	{
-		sprintf((char *) _line2,"%-16", "SD Card Fault");
+		sprintf((char *) _line2,"%-16s", "SD Card Fault");
 	}
 	else
 	{
