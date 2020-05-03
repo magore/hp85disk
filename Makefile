@@ -683,7 +683,7 @@ lss: $(PROJECT).lss
 
 # Display compiler version information.
 version :
-	@if [ ! -f "update.last" ]; then touch "update.last"; fi
+	@if [ ! -f "update.last" ]; then date > "update.last"; fi
 	@$(CC) --version
 
 # Create final output file (.hex or .bin) from ELF output file.
