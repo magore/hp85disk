@@ -141,6 +141,7 @@ void help()
 
 #ifdef LCD_SUPPORT
 
+//uint8_t  _cmd1[2] = { 0x7f, 45 };
 uint8_t  _cmd1[2] = { 0xfe, 0x80 };
 uint8_t _line1 [21] = { ' ' };
 uint8_t  _cmd2[2] = { 0xfe, 0xC0 };
@@ -160,20 +161,43 @@ void lcd_task()
 }
 
 #ifdef LCD_SUPPORT
+/// @brief Convert tm_t *t structure into POSIX asctime() ASCII string *buf.
+///
+/// @param[in] t: tm_t structure pointer.
+/// @param[out] buf: user buffer for POSIX asctime() string result.
+/// - Example output: "Thu Dec  8 21:45:05 EST 2011".
+///
+/// @return buf string pointer.
+MEMSPACE
+char *lcd_time(tm_t *t, char *buf, int max)
+{
+// normaize tm_t before output
+    (void) normalize(t,0);
+    memset(buf,0,max);
+    snprintf(buf,max-1,"%s %2d %02d:%02d:%02d",
+        tm_mon_to_ascii(t->tm_mon),
+        (int)t->tm_mday,
+        (int)t->tm_hour,
+        (int)t->tm_min,
+        (int)t->tm_sec);
+    return(buf);
+}
+
 void i2c_lcd_test()
 {
+	char buf[32];
 	uint8_t sreg=SREG;
     ts_t ts;
 
 	cli();
 	if(!mmc_ins_status())
 	{
-		sprintf((char *) _line2,"%-20s", "SD Card Fault");
+		sprintf((char *) _line2,"%-16", "SD Card Fault");
 	}
 	else
 	{
 		clock_gettime(0, (ts_t *) &ts);
-		sprintf((char *) _line2, "%-20s", asctime(gmtime(&(ts.tv_sec))) );
+		sprintf((char *) _line2, "%-16s", lcd_time(gmtime(&(ts.tv_sec)),buf,sizeof(buf)-1) );
 		// sprintf((char *) _line2,"%16ld.%03ld", (long) ts.tv_sec, (long) ts.tv_nsec / 1000000UL);
 	}
 	SREG=sreg;
@@ -198,13 +222,13 @@ void setup_lcd()
 	cli();
 	i2c_init(100000);
 
-    sprintf((char *) _line1, "%-20s", "HP85Disk Emulator V2");
-    sprintf((char *) _line2, "%-20s", "(C)Mike Gore");
+    sprintf((char *) _line1, "%-16s", "HP85Disk V2");
+    sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
 
 	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd1, 2);
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line1, 20);
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line1, 16);
 	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd2, 2);
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line2, 20);
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line2, 16);
 
 	SREG = sreg;
 
@@ -474,11 +498,11 @@ int main(void)
     format_drives();
 
 #ifdef LCD_SUPPORT
-	sprintf((char *) tmp, "HP85 DRIVES S=%d A=%d",
+	sprintf((char *) tmp, "SS80=%d AMIGO=%d",
 		(int) count_drive_types(SS80_TYPE),
 		(int) count_drive_types(AMIGO_TYPE) );
-	sprintf((char *) _line1, "%-20s", tmp);
-	sprintf((char *) _line2, "%-20s", "(C)Mike Gore ");
+	sprintf((char *) _line1, "%-16s", tmp);
+	sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
 	i2c_post();
 	delayms(1000);
     if(!i2c_done() || !i2c_ok())
