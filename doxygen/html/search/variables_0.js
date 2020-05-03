@@ -18,7 +18,6 @@ var searchData=
   ['_5fmmc_5fpre',['_mmc_pre',['../mmc__hal_8c.html#adc0a07c5ad80e8ecbabee0cf04a1564e',1,'mmc_hal.c']]],
   ['_5fmmc_5ftimeout',['_mmc_timeout',['../mmc__hal_8c.html#abf71973875545f3b42702ac99d5d87ef',1,'mmc_hal.c']]],
   ['_5fpagesize',['_pagesize',['../posix__tests_8c.html#a8103355735500cb8d1c1eea35e352cda',1,'posix_tests.c']]],
-  ['_5fpch',['_pch',['../printf_8c.html#aa1e6944673f3194dc3fe8ba626deec55',1,'printf.c']]],
   ['_5fppr_5freg',['_ppr_reg',['../gpib__hal_8c.html#a1dd7c6f7ad15314b697849542f85b4a3',1,'gpib_hal.c']]],
   ['_5fspi_5fclock',['_spi_clock',['../hal_8c.html#a3f4bc3feab2b705606ef696eceb93fba',1,'hal.c']]],
   ['_5fts_5fto_5fstr',['_ts_to_str',['../timer_8c.html#a3b37602023ba3cdbbe1394f43abbef2c',1,'timer.c']]]

@@ -274,7 +274,8 @@ uint8_t rtc_read(tm_t *t)
 }
 
 
-/// @brief FAT time structer reference.
+/// These are defined in my FatFS code support
+/// @brief FAT time structure reference.
 /// @see rtc.h
 /// @see http://lxr.free-electrons.com/source/fs/fat/misc.c
 /// @verbatim

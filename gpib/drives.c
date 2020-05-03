@@ -180,6 +180,7 @@ token_t tokens[] =
     {"CONFIG",                    TOK_CONFIG},
     {"CONTINUOUS_TRANSFER_RATE",  TOK_CONTINUOUS_TRANSFER_RATE},
     {"CONTINOUS_TRANSFER_RATE",   TOK_CONTINUOUS_TRANSFER_RATE},
+    {"CONTINIOUS_TRANSFER_RATE",  TOK_CONTINUOUS_TRANSFER_RATE},
     {"CONTROLLER",                TOK_CONTROLLER},
     {"CS80",                      TOK_CS80},
     {"CYLINDERS",                 TOK_CYLINDERS},
@@ -1094,7 +1095,7 @@ int set_active_device(int index)
 
     if(index < 0 || index >= MAX_DEVICES)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("set_active_device:(%d) out of range\n", index);
         return(0);
     }
@@ -1103,14 +1104,14 @@ int set_active_device(int index)
     address = Devices[index].ADDRESS;
     if(address < 0 || address > 30)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("set_active_device: index:%d address: %02XH out of range\n", index,address);
         return(0);
     }
 
     if(Devices[index].dev == NULL)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("set_active_device: index:%d type:%d:%s, dev == NULL\n",
                 index,type,type_to_str(type));
         return(0);
@@ -1118,7 +1119,7 @@ int set_active_device(int index)
 
     if(type == NO_TYPE)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("set_active_device: index %d uninitalized type:%d:%s\n",
                 index,type,type_to_str(type));
         return(0);
@@ -1134,7 +1135,7 @@ int set_active_device(int index)
     {
         if(Devices[index].state == NULL)
         {
-            if(debuglevel & GPIB_PPR)
+            if(debuglevel & GPIB_ERR)
                 printf("set_active_device: index: %d type:%d:%s, state == NULL\n",
                     index,type,type_to_str(type));
             return(0);
@@ -1154,7 +1155,7 @@ int set_active_device(int index)
             return(1);
         }
     }
-    if(debuglevel & GPIB_PPR)
+    if(debuglevel & GPIB_ERR)
         printf("set_active_device:(%d) invalid type:%d:%s\n",
             index,type,type_to_str(type));
     return(0);
@@ -1216,7 +1217,7 @@ int alloc_device(int type)
     ind = find_free();
     if(ind == -1)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("alloc_device: Device table is full\n", type);
         return(ind);
     }
@@ -1252,7 +1253,7 @@ int alloc_device(int type)
             index = ind;
             break;
         default:
-            if(debuglevel & GPIB_PPR)
+            if(debuglevel & GPIB_ERR)
                 printf("alloc_device: invalid type:%d:%s\n", type,type_to_str(type));
             break;
     }
@@ -1336,7 +1337,7 @@ bool assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
     }
     if(!*ptr)
     {
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("line:%d, missing value\n", lines);
         bad = 1;
     }

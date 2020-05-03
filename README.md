@@ -1622,7 +1622,7 @@ ___
       * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
     * [i2c.c](hardware/i2c.c)
     * [i2c.h](hardware/i2c.h)
-      * I2C code in testing - not yet used - Copyright (c) 2014 Pieter Noordhuis https://github.com/pietern/avr-i2c
+      * I2C code for display updates
     * [user_config.h](hardware/user_config.h)
       * Main include file MMC SLOW and FATS frequency and CPU frequency settings
 

@@ -222,7 +222,8 @@ void gpib_trace_task( char *name , int detail)
         gpib_log_fp = stdout;
     }
 
-    gpib_state_init();                            // Init PPR talking and listening states
+    // gpib_state_init();                            // Init PPR talking and listening states
+	// gpib_state_init is in gpib_init_devices()
     gpib_init_devices();
 
     gpib_decode_header(gpib_log_fp);
@@ -281,14 +282,14 @@ uint16_t gpib_error_test(uint16_t val)
         val &= ERROR_MASK;
 
 ///@brief IFC is and important state so display it for most messages
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
         {
 /// Bus Clear, reseat all states, etc
             if(val & IFC_FLAG)
                 printf("<IFC>\n");
         }
 
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TOP_LEVEL_BUS_DECODE + GPIB_DEVICE_STATE_MESSAGES))
         {
             if(val & TIMEOUT_FLAG)
                 printf("<TIMEOUT>\n");
@@ -458,13 +459,15 @@ void gpib_task(void)
     uint8_t ch;
     uint16_t status;
 
-    gpib_state_init();                            // Init PPR talking and listening states
     gpib_init_devices();                          // Init devices
+	// gpib_state_init() is now done in gpib_init_devices
+    // gpib_state_init();                            // Init PPR talking and listening states
 
     gpib_log_fp = NULL;
 
     while(1)
     {
+
 
         val = gpib_read_byte(NO_TRACE);
 
@@ -588,7 +591,7 @@ int Send_Identify(uint8_t ch, uint16_t ID)
     V2B_MSB(tmp,0,2,ID);
     if(gpib_write_str(tmp,2, &status) != 2)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_DEVICE_STATE_MESSAGES))
             printf("[IDENT Unit:%02XH=%04XH FAILED]\n",
                 (int)ch,(int)ID);
         return(status & ERROR_MASK);
@@ -619,7 +622,7 @@ int GPIB(uint8_t ch)
 ///TODO
     if(ch == PPC)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+        if(debuglevel & (GPIB_ERR + GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
             printf("[PPC unsupported TODO]\n");
         spoll = 0;
         return 0;
@@ -628,7 +631,7 @@ int GPIB(uint8_t ch)
 ///TODO
     if(ch == PPU)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+        if(debuglevel & (GPIB_ERR + GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
             printf("[PPU unsupported TODO]\n");
         spoll = 0;
         return 0;
@@ -715,7 +718,7 @@ int GPIB(uint8_t ch)
         return( 0 );
     }
 
-    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
+    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES + GPIB_TODO))
         printf("[GPIB (%02XH) not defined TODO]\n", 0xff & ch);
     return(0);
 }

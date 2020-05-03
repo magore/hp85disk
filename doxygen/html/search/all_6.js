@@ -177,7 +177,7 @@ var searchData=
   ['fixed',['FIXED',['../structhpdir__t.html#a69855da74bcc15b10039a51e3680a994',1,'hpdir_t']]],
   ['fixed_5fvolumes',['FIXED_VOLUMES',['../structSS80UnitType.html#ae1d52bfc5a9bdb8f6f26ba6dffd7c2f6',1,'SS80UnitType']]],
   ['flag',['flag',['../structFIL.html#ac409508881f5a16f2998ae675072b376',1,'FIL']]],
-  ['flags',['Flags',['../structtd__sector__t.html#ad30cfc0c6589ff25f8456ada5b352efa',1,'td_sector_t::Flags()'],['../structi2c__txn.html#ab100decf3b628b0ae6f92a71735bef8b',1,'i2c_txn::flags()'],['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()']]],
+  ['flags',['flags',['../structi2c__op__t.html#a99ce5c1c16cf8a7b8293f5b96ac74c27',1,'i2c_op_t::flags()'],['../structqueue__t.html#a2a516773a572c746d461c9df3cb30387',1,'queue_t::flags()'],['../struct____file.html#a8d11df8679502efee09740f97d7c277b',1,'__file::flags()'],['../structtd__sector__t.html#ad30cfc0c6589ff25f8456ada5b352efa',1,'td_sector_t::Flags()']]],
   ['fm_5fany',['FM_ANY',['../ff_8h.html#a701ab2eee8c2d9b5b445aadc8f14df4d',1,'ff.h']]],
   ['fm_5fexfat',['FM_EXFAT',['../ff_8h.html#a9348c28116bc29e88195b23f6945f81d',1,'ff.h']]],
   ['fm_5ffat',['FM_FAT',['../ff_8h.html#a8bd205b7d09147e55169d3713f46e9ea',1,'ff.h']]],

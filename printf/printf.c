@@ -209,28 +209,18 @@ int bin2num(uint8_t *str, int strmax, int nummin, int base, uint8_t *nump, int n
 
 
 // =============================================
-/// @brief Data structure for character buffer with limits
-typedef struct
-{
-    char *str;                                    ///@brief base of string to write to
-    int ind;                                      ///@brief current string index
-    int max;                                      ///@brief maximum string size including EOS
-} p_ch_t;
-
-/// @brief Define data structure for character buffer with limits
-p_ch_t _pch;
 
 /// @brief Initialize character buffer with limits
 /// @param[in] str: string
 /// @param[in] max: maximum number of characters plus EOS
 /// @return void
 MEMSPACE
-void pch_init(char *str, int max)
+void pch_init(p_ch_t *p, char *str, int max)
 {
-    _pch.str = str;                               ///@brief base of string to write to
-    _pch.ind = 0;                                 ///@brief current string index
-    _pch.max = max-1;                             ///@brief maximum string size including EOS
-    _pch.str[0] = 0;
+    p->str = str;                               ///@brief base of string to write to
+    p->ind = 0;                                 ///@brief current string index
+    p->max = max-1;                             ///@brief maximum string size including EOS
+    p->str[0] = 0;
 }
 
 
@@ -240,32 +230,32 @@ void pch_init(char *str, int max)
 /// @See init_p_ch
 /// @return void
 MEMSPACE
-int pch(char ch)
+int pch(p_ch_t *p, char ch)
 {
 // Add the character while ther is room
-    if(_pch.ind < _pch.max)
-        _pch.str[_pch.ind++] = ch;
+    if(p->ind < p->max)
+        p->str[p->ind++] = ch;
     else
-        _pch.str[_pch.ind] = 0;                   // Add EOS when limit exceeded
-    return(_pch.ind);
+        p->str[p->ind] = 0;                   // Add EOS when limit exceeded
+    return(p->ind);
 }
 
 
 /// @brief Return current index of character buffer with limits
 /// @return Buffer index
 MEMSPACE
-int pch_ind()
+int pch_ind(p_ch_t *p)
 {
-    return(_pch.ind);
+    return(p->ind);
 }
 
 
 /// @brief Return maximum valid index for character buffer
 /// @return Buffer index
 MEMSPACE
-int pch_max_ind()
+int pch_max_ind(p_ch_t *p)
 {
-    return(_pch.max);
+    return(p->max);
 }
 
 
@@ -396,8 +386,9 @@ int p_ftoa(double val, char *str, int max, int width, int prec, f_t f)
     double fscale;
     int idigits, digits;
     int digit;
-
-    pch_init(str,max);
+	p_ch_t _pch;
+	p_ch_t *p = (p_ch_t *) &_pch;
+    pch_init(p, str,max);
 
 /* 
 FIXME
@@ -416,11 +407,11 @@ ERROR: [% 15.1f], [-10252956608208.250000]
         f.b.neg = 1;
     }
     if(f.b.neg)
-        pch('-');
+        pch(p,'-');
     else if(f.b.plus)
-        pch('+');
+        pch(p,'+');
     else if(f.b.space)
-        pch(' ');
+        pch(p,' ');
 
 // prec only applies to fractional digits
     if(prec < 0)
@@ -460,13 +451,13 @@ ERROR: [% 15.1f], [-10252956608208.250000]
     if(f.b.zero && !f.b.left)
     {
         if(f.b.prec && prec)
-            digits = width - idigits - pch_ind() - prec -1;
+            digits = width - idigits - pch_ind(p) - prec -1;
         else
-            digits = width - idigits - pch_ind();
+            digits = width - idigits - pch_ind(p);
 
         while(digits > 0)
         {
-            pch('0');
+            pch(p,'0');
             --digits;
         }
     }
@@ -476,7 +467,7 @@ ERROR: [% 15.1f], [-10252956608208.250000]
     {
         digit = val;
 //printf("ival:%.16e, int:%d\n", ival, digit);
-        pch(digit + '0');
+        pch(p,digit + '0');
         val -= (double) digit;
         --idigits;
         val *= 10.0;
@@ -484,18 +475,18 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 // display fractional part
     if(f.b.prec && prec > 0 )
     {
-        pch('.');
+        pch(p,'.');
         while(prec > 0 )
         {
             digit = val;
             val -= (double) digit;
             digit += '0';
-            pch(digit);
+            pch(p,digit);
             --prec;
             val *= 10.0;
         }
     }
-    pch(0);
+    pch(p,0);
     return(strlen(save));
 }
 
@@ -517,8 +508,9 @@ int p_etoa(double val,char *str, int max, int width, int prec, f_t f)
     int  expsize;
     int i;
     int sign_ch;
-
-    pch_init(str,max);
+	p_ch_t _pch;
+	p_ch_t *p = (p_ch_t *) &_pch;
+    pch_init(p, str,max);
 
 /* FIXME
 Notice rounding - testing will be tricky
@@ -536,11 +528,11 @@ ERROR: [% 15.1f], [-10252956608208.250000]
         f.b.neg = 1;
     }
     if(f.b.neg)
-        pch('-');
+        pch(p,'-');
     else if(f.b.plus)
-        pch('+');
+        pch(p,'+');
     else if(f.b.space)
-        pch(' ');
+        pch(p,' ');
 
 // prec only applies to fractional digits
     if(prec < 0)
@@ -632,14 +624,14 @@ ERROR: [% 15.1f], [-10252956608208.250000]
     if(f.b.zero && !f.b.left)
     {
         if(f.b.prec && prec)
-            digits = width - pch_ind() - prec - 6;
+            digits = width - pch_ind(p) - prec - 6;
         else
-            digits = width - pch_ind() - 5;
+            digits = width - pch_ind(p) - 5;
         if(expsize > 3)
             --digits;
         while(digits > 0)
         {
-            pch('0');
+            pch(p,'0');
             --digits;
         }
     }
@@ -647,29 +639,29 @@ ERROR: [% 15.1f], [-10252956608208.250000]
 // Number
     digit = val;
 //printf("ival:%.16e, int:%d\n", ival, digit);
-    pch(digit + '0');
+    pch(p,digit + '0');
     val -= (double) digit;
     val *= 10.0;
 
 // display fractional part
     if(f.b.prec && prec > 0 )
     {
-        pch('.');
+        pch(p,'.');
         while(prec > 0 )
         {
             digit = val;
             val -= (double) digit;
             digit += '0';
-            pch(digit);
+            pch(p,digit);
             val *= 10.0;
             --prec;
         }
     }
 
     for(i=0;exp10_str[i];++i)
-        pch(exp10_str[i]);
+        pch(p,exp10_str[i]);
 
-    pch(0);
+    pch(p,0);
     return(strlen(str));
 }
 #endif
@@ -834,7 +826,7 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
         }
 
 /** Calling Variadic Functions
-  - exceprt from https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html
+  - excerpt from https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html
 Since the prototype doesnât specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va_arg (ap, int).
 */
 

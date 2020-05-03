@@ -76,7 +76,7 @@ void printer_open(char *name)
     plot.fp = fopen(ptr,"wb");
     if(plot.fp == NULL)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
         {
             perror("open failed");
             printf("exiting...\n");
@@ -121,7 +121,7 @@ void printer_close()
     if( receive_plot_flush() < 0 )
         plot.error = 1;
 
-    if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
+    if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
     {
         if(plot.error)
             printf("ERROR durring write\n");
@@ -160,7 +160,7 @@ int receive_plot_flush()
     ret  = fwrite(plot.buf, 1, plot.ind , plot.fp);
     if(ret != plot.ind)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
         {
             perror("receive_plot_flush");
             printf("write failed: wanted %d, got:%d\n", plot.ind, ret);
@@ -189,7 +189,7 @@ void printer_buffer( uint16_t val )
 
     uint16_t ch;
 
-    if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
+    if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
     {
         if( ( plot.count & 255L ) == 0)
             printf("%08ld\r",plot.count);

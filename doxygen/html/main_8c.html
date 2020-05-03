@@ -71,6 +71,7 @@ $(function() {
 <p>Main for GPIB emulator for HP85 disk emulator project for AVR.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;user_config.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="i2c_8h_source.html">hardware/i2c.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="defines_8h_source.html">gpib/defines.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gpib__hal_8h_source.html">gpib/gpib_hal.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gpib_8h_source.html">gpib/gpib.h</a>&quot;</code><br />
@@ -94,8 +95,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ada2555fd3159dbf04e0738fe9c50e22c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c">copyright</a> ()</td></tr>
 <tr class="memdesc:ada2555fd3159dbf04e0738fe9c50e22c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Copyright.  <a href="#ada2555fd3159dbf04e0738fe9c50e22c">More...</a><br /></td></tr>
 <tr class="separator:ada2555fd3159dbf04e0738fe9c50e22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8824827cf2979219e9a65ead803647e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8824827cf2979219e9a65ead803647e6">gpib_user_task</a> ()</td></tr>
+<tr class="memdesc:a8824827cf2979219e9a65ead803647e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">======================================  <a href="#a8824827cf2979219e9a65ead803647e6">More...</a><br /></td></tr>
+<tr class="separator:a8824827cf2979219e9a65ead803647e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66ac220b8fb4c59823fdf116cecda862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a66ac220b8fb4c59823fdf116cecda862">task</a> (uint8_t gpib)</td></tr>
-<tr class="memdesc:a66ac220b8fb4c59823fdf116cecda862"><td class="mdescLeft">&#160;</td><td class="mdescRight">User command handler - called as main task.  <a href="#a66ac220b8fb4c59823fdf116cecda862">More...</a><br /></td></tr>
+<tr class="memdesc:a66ac220b8fb4c59823fdf116cecda862"><td class="mdescLeft">&#160;</td><td class="mdescRight">======================================  <a href="#a66ac220b8fb4c59823fdf116cecda862">More...</a><br /></td></tr>
 <tr class="separator:a66ac220b8fb4c59823fdf116cecda862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main() for gpib project ">main()</a> for gpib project  <a href="#a840291bc02cba5474a4cb46a9b9566fe">More...</a><br /></td></tr>
@@ -132,7 +136,7 @@ Functions</h2></td></tr>
 <dd>
 <a class="el" href="fatfs__tests_8c.html#ad16bc1913c19300dba43a07006c9ac52" title="Display FatFs test diagnostics help menu. ">fatfs_help()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00093">93</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00096">96</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 </div>
 </div>
@@ -156,7 +160,31 @@ Functions</h2></td></tr>
 <p>Display Copyright. </p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00040">40</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00043">43</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a8824827cf2979219e9a65ead803647e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8824827cf2979219e9a65ead803647e6">&#9670;&nbsp;</a></span>gpib_user_task()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gpib_user_task </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>====================================== </p>
+<p>====================================== ====================================== </p>
+
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00236">236</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="gpib_8c_source.html#l00886">gpib_read_byte()</a>.</p>
 
 </div>
 </div>
@@ -196,9 +224,9 @@ Functions</h2></td></tr>
 <p>Display debug level</p>
 <p>Format any drives that do not yet exist</p>
 <p>Start main GPIB state machine</p>
-<p>Keep the task running - it exits after every user interaction, ie key press </p>
+<p>Keep the task running task does not exit unless a keypress occurs When it restarts ALL GPIB states are reset </p>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00252">252</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00366">366</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="matrix_8c_source.html#l00617">MatWrite()</a>.</p>
 
@@ -220,7 +248,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>User command handler - called as main task. </p>
+<p>====================================== </p>
+<p>User command handler - called as main task</p>
 <p>If a keypress is detected read a line from the uart parse the result and call various user functions. ? will return a list of fuctions and paramters permitted </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gpib</td><td>- if non-zero run gpib while there are no user commands </td></tr>
@@ -229,16 +258,16 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00146">146</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00254">254</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00252">main()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00366">main()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 20 2020 20:49:06 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 2 2020 20:21:11 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

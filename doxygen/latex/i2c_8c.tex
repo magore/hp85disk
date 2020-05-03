@@ -1,79 +1,169 @@
 \hypertarget{i2c_8c}{}\section{hardware/i2c.c File Reference}
 \label{i2c_8c}\index{hardware/i2c.\+c@{hardware/i2c.\+c}}
+
+
+I2C Interrupt driven driver Total rewrite Reference A\+V\+R315 for technical details.  
+
+
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{i2c_8c_abdadca107006b76760250a99ebec6b0d}{T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT}~(\+\_\+\+BV(T\+W\+EA) $\vert$ \+\_\+\+BV(T\+W\+EN) $\vert$ \+\_\+\+BV(T\+W\+IE))
+\#define \hyperlink{i2c_8c_aea37a184f7981f8f1dac5e970ce234b7}{I2\+C\+\_\+\+O\+PS}~16
 \item 
-\#define \hyperlink{i2c_8c_afbc9cda27f9fca0c6c1f52ce97c56e38}{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK}~(\+\_\+\+BV(T\+W\+I\+NT) $\vert$ \+\_\+\+BV(T\+W\+EN) $\vert$ \+\_\+\+BV(T\+W\+IE))
-\item 
-\#define \hyperlink{i2c_8c_a45cc456d02fbaa42f67aa37d9c781440}{T\+W\+C\+R\+\_\+\+A\+CK}~(\hyperlink{i2c_8c_afbc9cda27f9fca0c6c1f52ce97c56e38}{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK} $\vert$ \+\_\+\+BV(T\+W\+EA))
+\#define \hyperlink{i2c_8c_afa3215f0aa766367f5d34bee80929152}{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~20
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+uint8\+\_\+t \hyperlink{i2c_8c_a9e5c49e41f659fa15a300d70043c96b6}{i2c\+\_\+check\+\_\+op} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Check if I2C structure pointer is valid. \end{DoxyCompactList}\item 
+void \hyperlink{i2c_8c_a42b4df1656fc079ee8ae7bdcd85bca53}{i2c\+\_\+free\+\_\+ops} ()
+\begin{DoxyCompactList}\small\item\em Free all allocated memory for i2c\+\_\+\mbox{[}\mbox{]} pointers N\+O\+TE\+: We A\+S\+S\+U\+ME all i2c\+\_\+op\mbox{[}\mbox{]}.buf are statically allocated. \end{DoxyCompactList}\item 
+\hyperlink{structi2c__op__t}{i2c\+\_\+op\+\_\+t} $\ast$ \hyperlink{i2c_8c_a18ace1dafc6919056d222e71ec8c9967}{i2c\+\_\+op\+\_\+add} (uint8\+\_\+t address, uint8\+\_\+t mode, uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em I2C setup new OP but do not run it yet. \end{DoxyCompactList}\item 
+void \hyperlink{i2c_8c_a3ec9787994957af45b200d156757bf8f}{i2c\+\_\+task} ()
+\begin{DoxyCompactList}\small\item\em I2C timer task -\/ check for operation timeouts The I\+SR will correctly handle any cleanup. \end{DoxyCompactList}\item 
 void \hyperlink{i2c_8c_ae27eba4746ad7d3ebdcb0096c78fe6a6}{i2c\+\_\+init} (uint32\+\_\+t speed)
-\item 
-void \hyperlink{i2c_8c_a40302666ae1c326c82c26226176f78d9}{i2c\+\_\+post} (\hyperlink{i2c_8h_ad720fd049856cb8f6c7a5319e3a40a7f}{i2c\+\_\+txn\+\_\+t} $\ast$t)
-\item 
-\hyperlink{i2c_8c_ab22a4d4ccc56b31d28669ca1290cde30}{I\+SR} (T\+W\+I\+\_\+vect, I\+S\+R\+\_\+\+B\+L\+O\+CK)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em I2C initialize Clear all i2c\+\_\+op\mbox{[}\mbox{]} pointers and disables I2C tasks. \end{DoxyCompactList}\item 
+void \hyperlink{i2c_8c_a4c8f20839debfa225ba608315ea44b97}{i2c\+\_\+post} ()
+\begin{DoxyCompactList}\small\item\em Run all valid i2c\+\_\+op\mbox{[}\mbox{]} tasks. \end{DoxyCompactList}\item 
+int \hyperlink{i2c_8c_ad5790ff529063a2c43b9710c9be3e002}{i2c\+\_\+done} ()
+\begin{DoxyCompactList}\small\item\em Are all i2c\+\_\+op\mbox{[}\mbox{]} pointers done sending/receiving ? \end{DoxyCompactList}\item 
+int \hyperlink{i2c_8c_aa7c8b4212b484775b042e06ac787aa01}{i2c\+\_\+ok} ()
+\begin{DoxyCompactList}\small\item\em check if I2C trasnaction detected an error \end{DoxyCompactList}\item 
+static void \hyperlink{i2c_8c_accdd986c9ec687ab3fcb4fe7c0b8757d}{i2c\+\_\+next\+\_\+op} ()
+\begin{DoxyCompactList}\small\item\em check if I2C trasnaction detected an error \end{DoxyCompactList}\item 
+\hyperlink{i2c_8c_a474f42eedbdc093683fdb4b88be3c48f}{I\+SR} (T\+W\+I\+\_\+vect)
+\begin{DoxyCompactList}\small\item\em I2C I\+SR for send/receive. \end{DoxyCompactList}\item 
+void \hyperlink{i2c_8c_a0a42005b00cb6c097196c7350c4c4200}{i2c\+\_\+print\+\_\+error} (uint8\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Display Errors for i2c\+\_\+op\mbox{[}index\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static volatile \hyperlink{i2c_8h_ad720fd049856cb8f6c7a5319e3a40a7f}{i2c\+\_\+txn\+\_\+t} $\ast$ \hyperlink{i2c_8c_a6087bb393b9b2096e8680f43ac19747b}{txn}
+\hyperlink{structi2c__t}{i2c\+\_\+t} \hyperlink{i2c_8c_a469a308e25a41faf8db01a34d1bb1301}{i2c} = \{ 0,0,0,0 \}
 \item 
-static volatile \hyperlink{i2c_8h_a25bc93ee01faf7c1af736aec86c94507}{i2c\+\_\+op\+\_\+t} $\ast$ \hyperlink{i2c_8c_af5644668635b71f1b321d70120837177}{op}
+\hyperlink{structi2c__op__t}{i2c\+\_\+op\+\_\+t} $\ast$ \hyperlink{i2c_8c_a287fc3a6f15301552ab5cd19fa523c60}{i2c\+\_\+op} \mbox{[}\hyperlink{i2c_8h_aea37a184f7981f8f1dac5e970ce234b7}{I2\+C\+\_\+\+O\+PS}\mbox{]} = \{ \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL} \}
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+I2C Interrupt driven driver Total rewrite Reference A\+V\+R315 for technical details. 
+
+I2C Interrupt driven driver.
+
+\begin{DoxyParagraph}{Edit History}
+
+\begin{DoxyItemize}
+\item \mbox{[}1.\+0\mbox{]} \mbox{[}Mike Gore\mbox{]} Initial revision of file.
+\end{DoxyItemize}
+\end{DoxyParagraph}
+\begin{DoxyCopyright}{Copyright}
+Copyright \copyright{} 2014-\/2020 Mike Gore, Inc. All rights reserved.
+
+G\+NU Public License.
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Mike Gore 
+\end{DoxyAuthor}
+
+
 \subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{i2c_8c_a45cc456d02fbaa42f67aa37d9c781440}\label{i2c_8c_a45cc456d02fbaa42f67aa37d9c781440}} 
-\index{i2c.\+c@{i2c.\+c}!T\+W\+C\+R\+\_\+\+A\+CK@{T\+W\+C\+R\+\_\+\+A\+CK}}
-\index{T\+W\+C\+R\+\_\+\+A\+CK@{T\+W\+C\+R\+\_\+\+A\+CK}!i2c.\+c@{i2c.\+c}}
-\subsubsection{\texorpdfstring{T\+W\+C\+R\+\_\+\+A\+CK}{TWCR\_ACK}}
-{\footnotesize\ttfamily \#define T\+W\+C\+R\+\_\+\+A\+CK~(\hyperlink{i2c_8c_afbc9cda27f9fca0c6c1f52ce97c56e38}{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK} $\vert$ \+\_\+\+BV(T\+W\+EA))}
+\mbox{\Hypertarget{i2c_8c_aea37a184f7981f8f1dac5e970ce234b7}\label{i2c_8c_aea37a184f7981f8f1dac5e970ce234b7}} 
+\index{i2c.\+c@{i2c.\+c}!I2\+C\+\_\+\+O\+PS@{I2\+C\+\_\+\+O\+PS}}
+\index{I2\+C\+\_\+\+O\+PS@{I2\+C\+\_\+\+O\+PS}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+O\+PS}{I2C\_OPS}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+O\+PS~16}
 
 
 
-Definition at line 40 of file i2c.\+c.
+Definition at line 24 of file i2c.\+c.
 
 
 
-Referenced by I\+S\+R().
+Referenced by i2c\+\_\+check\+\_\+op(), i2c\+\_\+free\+\_\+ops(), i2c\+\_\+init(), i2c\+\_\+next\+\_\+op(), i2c\+\_\+op\+\_\+add(), and i2c\+\_\+post().
 
-\mbox{\Hypertarget{i2c_8c_abdadca107006b76760250a99ebec6b0d}\label{i2c_8c_abdadca107006b76760250a99ebec6b0d}} 
-\index{i2c.\+c@{i2c.\+c}!T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT@{T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT}}
-\index{T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT@{T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT}!i2c.\+c@{i2c.\+c}}
-\subsubsection{\texorpdfstring{T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT}{TWCR\_DEFAULT}}
-{\footnotesize\ttfamily \#define T\+W\+C\+R\+\_\+\+D\+E\+F\+A\+U\+LT~(\+\_\+\+BV(T\+W\+EA) $\vert$ \+\_\+\+BV(T\+W\+EN) $\vert$ \+\_\+\+BV(T\+W\+IE))}
-
-
-
-Definition at line 37 of file i2c.\+c.
+\mbox{\Hypertarget{i2c_8c_afa3215f0aa766367f5d34bee80929152}\label{i2c_8c_afa3215f0aa766367f5d34bee80929152}} 
+\index{i2c.\+c@{i2c.\+c}!I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}}
+\index{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}{I2C\_TIMEOUT}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT~20}
 
 
 
-Referenced by i2c\+\_\+init(), i2c\+\_\+post(), and I\+S\+R().
-
-\mbox{\Hypertarget{i2c_8c_afbc9cda27f9fca0c6c1f52ce97c56e38}\label{i2c_8c_afbc9cda27f9fca0c6c1f52ce97c56e38}} 
-\index{i2c.\+c@{i2c.\+c}!T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK@{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK}}
-\index{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK@{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK}!i2c.\+c@{i2c.\+c}}
-\subsubsection{\texorpdfstring{T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK}{TWCR\_NOT\_ACK}}
-{\footnotesize\ttfamily \#define T\+W\+C\+R\+\_\+\+N\+O\+T\+\_\+\+A\+CK~(\+\_\+\+BV(T\+W\+I\+NT) $\vert$ \+\_\+\+BV(T\+W\+EN) $\vert$ \+\_\+\+BV(T\+W\+IE))}
+Definition at line 26 of file i2c.\+c.
 
 
 
-Definition at line 39 of file i2c.\+c.
-
-
-
-Referenced by I\+S\+R().
+Referenced by i2c\+\_\+op\+\_\+add(), and i2c\+\_\+post().
 
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{i2c_8c_a9e5c49e41f659fa15a300d70043c96b6}\label{i2c_8c_a9e5c49e41f659fa15a300d70043c96b6}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+check\+\_\+op@{i2c\+\_\+check\+\_\+op}}
+\index{i2c\+\_\+check\+\_\+op@{i2c\+\_\+check\+\_\+op}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+check\+\_\+op()}{i2c\_check\_op()}}
+{\footnotesize\ttfamily uint8\+\_\+t i2c\+\_\+check\+\_\+op (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Check if I2C structure pointer is valid. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index of i2c\+\_\+op\mbox{[}\mbox{]} array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if OK, 0 if N\+OT 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file i2c.\+c.
+
+
+
+Referenced by i2c\+\_\+next\+\_\+op(), i2c\+\_\+post(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+task(), and I\+S\+R().
+
+\mbox{\Hypertarget{i2c_8c_ad5790ff529063a2c43b9710c9be3e002}\label{i2c_8c_ad5790ff529063a2c43b9710c9be3e002}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+done@{i2c\+\_\+done}}
+\index{i2c\+\_\+done@{i2c\+\_\+done}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+done()}{i2c\_done()}}
+{\footnotesize\ttfamily int i2c\+\_\+done (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Are all i2c\+\_\+op\mbox{[}\mbox{]} pointers done sending/receiving ? 
+
+\begin{DoxyReturn}{Returns}
+1 D\+O\+NE, 0 N\+OT D\+O\+NE 
+\end{DoxyReturn}
+
+
+Definition at line 300 of file i2c.\+c.
+
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{i2c_8c_a42b4df1656fc079ee8ae7bdcd85bca53}\label{i2c_8c_a42b4df1656fc079ee8ae7bdcd85bca53}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+free\+\_\+ops@{i2c\+\_\+free\+\_\+ops}}
+\index{i2c\+\_\+free\+\_\+ops@{i2c\+\_\+free\+\_\+ops}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+free\+\_\+ops()}{i2c\_free\_ops()}}
+{\footnotesize\ttfamily void i2c\+\_\+free\+\_\+ops (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Free all allocated memory for i2c\+\_\+\mbox{[}\mbox{]} pointers N\+O\+TE\+: We A\+S\+S\+U\+ME all i2c\+\_\+op\mbox{[}\mbox{]}.buf are statically allocated. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file i2c.\+c.
+
 \mbox{\Hypertarget{i2c_8c_ae27eba4746ad7d3ebdcb0096c78fe6a6}\label{i2c_8c_ae27eba4746ad7d3ebdcb0096c78fe6a6}} 
 \index{i2c.\+c@{i2c.\+c}!i2c\+\_\+init@{i2c\+\_\+init}}
 \index{i2c\+\_\+init@{i2c\+\_\+init}!i2c.\+c@{i2c.\+c}}
@@ -82,60 +172,190 @@ Referenced by I\+S\+R().
 
 
 
-Definition at line 42 of file i2c.\+c.
+I2C initialize Clear all i2c\+\_\+op\mbox{[}\mbox{]} pointers and disables I2C tasks. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 186 of file i2c.\+c.
+
+\mbox{\Hypertarget{i2c_8c_accdd986c9ec687ab3fcb4fe7c0b8757d}\label{i2c_8c_accdd986c9ec687ab3fcb4fe7c0b8757d}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+next\+\_\+op@{i2c\+\_\+next\+\_\+op}}
+\index{i2c\+\_\+next\+\_\+op@{i2c\+\_\+next\+\_\+op}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+next\+\_\+op()}{i2c\_next\_op()}}
+{\footnotesize\ttfamily static void i2c\+\_\+next\+\_\+op (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Referenced by i2c\+\_\+txn\+\_\+init().
+check if I2C trasnaction detected an error 
 
-\mbox{\Hypertarget{i2c_8c_a40302666ae1c326c82c26226176f78d9}\label{i2c_8c_a40302666ae1c326c82c26226176f78d9}} 
+Did we get an error durring any i2c\+\_\+op\mbox{[}\mbox{]} seand/receive operations
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 324 of file i2c.\+c.
+
+
+
+Referenced by I\+S\+R().
+
+\mbox{\Hypertarget{i2c_8c_aa7c8b4212b484775b042e06ac787aa01}\label{i2c_8c_aa7c8b4212b484775b042e06ac787aa01}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+ok@{i2c\+\_\+ok}}
+\index{i2c\+\_\+ok@{i2c\+\_\+ok}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+ok()}{i2c\_ok()}}
+{\footnotesize\ttfamily int i2c\+\_\+ok (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+check if I2C trasnaction detected an error 
+
+Did we get an error durring any i2c\+\_\+op\mbox{[}\mbox{]} seand/receive operations
+
+\begin{DoxyReturn}{Returns}
+1 OK, 0 N\+OT OK 
+\end{DoxyReturn}
+
+
+Definition at line 312 of file i2c.\+c.
+
+
+
+Referenced by main().
+
+\mbox{\Hypertarget{i2c_8c_a18ace1dafc6919056d222e71ec8c9967}\label{i2c_8c_a18ace1dafc6919056d222e71ec8c9967}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+op\+\_\+add@{i2c\+\_\+op\+\_\+add}}
+\index{i2c\+\_\+op\+\_\+add@{i2c\+\_\+op\+\_\+add}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+op\+\_\+add()}{i2c\_op\_add()}}
+{\footnotesize\ttfamily \hyperlink{structi2c__op__t}{i2c\+\_\+op\+\_\+t}$\ast$ i2c\+\_\+op\+\_\+add (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{mode,  }\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+I2C setup new OP but do not run it yet. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em address} & I2C address \\
+\hline
+\mbox{\tt in}  & {\em mode} & T\+W\+\_\+\+R\+E\+AD or T\+W\+\_\+\+W\+R\+I\+TE \\
+\hline
+\mbox{\tt in}  & {\em $\ast$buf} & pointer to buffer for send or receive \\
+\hline
+\mbox{\tt in}  & {\em len} & size of buffer to read or write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structi2c__op__t}{i2c\+\_\+op\+\_\+t} $\ast$ pointer 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file i2c.\+c.
+
+\mbox{\Hypertarget{i2c_8c_a4c8f20839debfa225ba608315ea44b97}\label{i2c_8c_a4c8f20839debfa225ba608315ea44b97}} 
 \index{i2c.\+c@{i2c.\+c}!i2c\+\_\+post@{i2c\+\_\+post}}
 \index{i2c\+\_\+post@{i2c\+\_\+post}!i2c.\+c@{i2c.\+c}}
 \subsubsection{\texorpdfstring{i2c\+\_\+post()}{i2c\_post()}}
-{\footnotesize\ttfamily void i2c\+\_\+post (\begin{DoxyParamCaption}\item[{\hyperlink{i2c_8h_ad720fd049856cb8f6c7a5319e3a40a7f}{i2c\+\_\+txn\+\_\+t} $\ast$}]{t }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void i2c\+\_\+post (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Definition at line 88 of file i2c.\+c.
+Run all valid i2c\+\_\+op\mbox{[}\mbox{]} tasks. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file i2c.\+c.
 
 
 
-Referenced by i2c\+\_\+txn\+\_\+init().
+Referenced by main().
 
-\mbox{\Hypertarget{i2c_8c_ab22a4d4ccc56b31d28669ca1290cde30}\label{i2c_8c_ab22a4d4ccc56b31d28669ca1290cde30}} 
+\mbox{\Hypertarget{i2c_8c_a0a42005b00cb6c097196c7350c4c4200}\label{i2c_8c_a0a42005b00cb6c097196c7350c4c4200}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+print\+\_\+error@{i2c\+\_\+print\+\_\+error}}
+\index{i2c\+\_\+print\+\_\+error@{i2c\+\_\+print\+\_\+error}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+print\+\_\+error()}{i2c\_print\_error()}}
+{\footnotesize\ttfamily void i2c\+\_\+print\+\_\+error (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+
+
+Display Errors for i2c\+\_\+op\mbox{[}index\mbox{]}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & index of i2c\+\_\+op\mbox{[}\mbox{]} array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 522 of file i2c.\+c.
+
+\mbox{\Hypertarget{i2c_8c_a3ec9787994957af45b200d156757bf8f}\label{i2c_8c_a3ec9787994957af45b200d156757bf8f}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+task@{i2c\+\_\+task}}
+\index{i2c\+\_\+task@{i2c\+\_\+task}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+task()}{i2c\_task()}}
+{\footnotesize\ttfamily void i2c\+\_\+task (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+I2C timer task -\/ check for operation timeouts The I\+SR will correctly handle any cleanup. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file i2c.\+c.
+
+
+
+Referenced by i2c\+\_\+free\+\_\+ops(), and i2c\+\_\+init().
+
+\mbox{\Hypertarget{i2c_8c_a474f42eedbdc093683fdb4b88be3c48f}\label{i2c_8c_a474f42eedbdc093683fdb4b88be3c48f}} 
 \index{i2c.\+c@{i2c.\+c}!I\+SR@{I\+SR}}
 \index{I\+SR@{I\+SR}!i2c.\+c@{i2c.\+c}}
 \subsubsection{\texorpdfstring{I\+S\+R()}{ISR()}}
-{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{T\+W\+I\+\_\+vect}]{,  }\item[{I\+S\+R\+\_\+\+B\+L\+O\+CK}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{T\+W\+I\+\_\+vect}]{ }\end{DoxyParamCaption})}
 
 
 
-Definition at line 130 of file i2c.\+c.
+I2C I\+SR for send/receive. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 361 of file i2c.\+c.
 
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{i2c_8c_af5644668635b71f1b321d70120837177}\label{i2c_8c_af5644668635b71f1b321d70120837177}} 
-\index{i2c.\+c@{i2c.\+c}!op@{op}}
-\index{op@{op}!i2c.\+c@{i2c.\+c}}
-\subsubsection{\texorpdfstring{op}{op}}
-{\footnotesize\ttfamily volatile \hyperlink{i2c_8h_a25bc93ee01faf7c1af736aec86c94507}{i2c\+\_\+op\+\_\+t}$\ast$ op\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{i2c_8c_a469a308e25a41faf8db01a34d1bb1301}\label{i2c_8c_a469a308e25a41faf8db01a34d1bb1301}} 
+\index{i2c.\+c@{i2c.\+c}!i2c@{i2c}}
+\index{i2c@{i2c}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c}{i2c}}
+{\footnotesize\ttfamily \hyperlink{structi2c__t}{i2c\+\_\+t} i2c = \{ 0,0,0,0 \}}
 
 
 
-Definition at line 29 of file i2c.\+c.
+Definition at line 21 of file i2c.\+c.
 
-\mbox{\Hypertarget{i2c_8c_a6087bb393b9b2096e8680f43ac19747b}\label{i2c_8c_a6087bb393b9b2096e8680f43ac19747b}} 
-\index{i2c.\+c@{i2c.\+c}!txn@{txn}}
-\index{txn@{txn}!i2c.\+c@{i2c.\+c}}
-\subsubsection{\texorpdfstring{txn}{txn}}
-{\footnotesize\ttfamily volatile \hyperlink{i2c_8h_ad720fd049856cb8f6c7a5319e3a40a7f}{i2c\+\_\+txn\+\_\+t}$\ast$ txn\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{i2c_8c_a287fc3a6f15301552ab5cd19fa523c60}\label{i2c_8c_a287fc3a6f15301552ab5cd19fa523c60}} 
+\index{i2c.\+c@{i2c.\+c}!i2c\+\_\+op@{i2c\+\_\+op}}
+\index{i2c\+\_\+op@{i2c\+\_\+op}!i2c.\+c@{i2c.\+c}}
+\subsubsection{\texorpdfstring{i2c\+\_\+op}{i2c\_op}}
+{\footnotesize\ttfamily \hyperlink{structi2c__op__t}{i2c\+\_\+op\+\_\+t}$\ast$ i2c\+\_\+op\mbox{[}\hyperlink{i2c_8h_aea37a184f7981f8f1dac5e970ce234b7}{I2\+C\+\_\+\+O\+PS}\mbox{]} = \{ \hyperlink{hardware_2user__config_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{N\+U\+LL} \}}
 
 
 
 Definition at line 28 of file i2c.\+c.
-
-
-
-Referenced by i2c\+\_\+post().
 

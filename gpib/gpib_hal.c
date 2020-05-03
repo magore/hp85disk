@@ -353,6 +353,13 @@ int dbf_open_read(char *name, uint32_t pos, void *buff, int size, int *errors)
         *errors = flags;
         return( -1 );
     }
+
+
+#if 0
+// test timeout - this works ok
+	delayms(500); 
+#endif
+
     return(bytes);
 }
 
@@ -411,5 +418,11 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
         *errors = flags;
         return( -1 );
     }
+
+#if 0
+// test timeout - this causes timeout
+	delayms(200); 
+#endif
+
     return(bytes);
 }

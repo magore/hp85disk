@@ -236,6 +236,7 @@ void gpib_bus_read_init(int busy)
 // Avoid setting any GPIB BUS/Control LOW unintensionally, while switching, even for a moment
 // Notes - when all GPIB bus control lines are HIGH they are basically inactive
 // Release IFC and REN
+
     GPIB_PIN_FLOAT_UP(IFC);                       // IFC FLOAT PULLUP
     GPIB_PIN_FLOAT_UP(REN);                       // REN FLOAT PULLUP
 
@@ -445,7 +446,11 @@ uint8_t gpib_detect_PP()
         while(GPIB_PIN_TST(ATN) == 0 && GPIB_PIN_TST(EOI) == 0 )
         {
             if(uart_keyhit(0))
-                break;
+			{
+				if(debuglevel & GPIB_ERR)
+					printf("gpib_detect_PP: ATN=0 EOI=0\n");
+				break;
+			}
 
 // IFC is always in for a device
             if(GPIB_PIN_TST(IFC) == 0)
@@ -453,6 +458,8 @@ uint8_t gpib_detect_PP()
 // IFC test and gpib_bus_init() is tested in every state machine loop
 // So not needed here
 // gpib_bus_init();
+				if(debuglevel & GPIB_ERR)
+					printf("gpib_detect_PP: IFC\n");
                 break;
             }
         }
@@ -531,7 +538,7 @@ uint16_t gpib_unread(uint16_t ch)
     }
     else
     {
-        if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
             printf("gpib_unread: error, can only be called once!\n");
     }
     return(ch);
@@ -637,6 +644,7 @@ uint16_t gpib_write_byte(uint16_t ch)
 
 // Wait for DAV to be released before starting
 // Read state for DAV
+///@brief NRFD,NDAC SRQ are outputs
     gpib_bus_read_init(0);
 
 // Bus read init sets the following states
@@ -648,8 +656,12 @@ uint16_t gpib_write_byte(uint16_t ch)
 
     while(tx_state != GPIB_TX_DONE )
     {
-        if(uart_keyhit(0))
-            break;
+		if(uart_keyhit(0))
+		{
+			if(debuglevel & GPIB_ERR)
+				printf("gpib_write_byte: KEY state=%d\n", tx_state);
+			break;
+		}
 
 #if 0
 // FIXME - this is disabled as it breaks write
@@ -662,6 +674,8 @@ uint16_t gpib_write_byte(uint16_t ch)
         if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
+			if(debuglevel & GPIB_ERR)
+				printf("gpib_write_byte: IFC state=%d\n", tx_state);
             gpib_bus_init();
             break;
         }
@@ -674,7 +688,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 if(GPIB_PIN_TST(DAV) == 1)
                 {
 #if BOARD == 2
-// We arive here in Read Mode - see gpib_bus_read_init(0);
+// We arrive here in Read Mode - see gpib_bus_read_init(0);
 
 // Switch GBIB driver direction to Write
 // CPU has BUS already set IN with pullups = 0xff - see gpib_bus_read_init(0);
@@ -686,14 +700,18 @@ uint16_t gpib_write_byte(uint16_t ch)
                     if(ch & ATN_FLAG)
                         GPIB_IO_LOW(ATN);         // FYI: SS80 never sends ATN from a device
                     else
+#if BOARD == 2
+                        GPIB_IO_HI(ATN); 
+#else
                         GPIB_PIN_FLOAT_UP(ATN);
+#endif
 
                     gpib_timeout_set(HTIMEOUT);
                     tx_state = GPIB_TX_WAIT_READY;
                 }
                 if (gpib_timeout_test())
                 {
-                    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                         printf("<BUS waiting for DAV==1>\n");
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
@@ -710,7 +728,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 }
                 if (gpib_timeout_test())
                 {
-                    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                         printf("<BUS waiting for NRFD==1 && NDAC == 0>\n");
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
@@ -723,7 +741,11 @@ uint16_t gpib_write_byte(uint16_t ch)
                 if(ch & EOI_FLAG)
                     GPIB_IO_LOW(EOI);
                 else
+#if BOARD == 2
+                    GPIB_IO_HI(EOI);
+#else
                     GPIB_PIN_FLOAT_UP(EOI);
+#endif
 
                 GPIB_BUS_WR((ch & 0xff) ^ 0xff);  // Write Data inverted
 #if BOARD == 2
@@ -754,7 +776,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
-                    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                         printf("<BUS waiting for NRFD==0>\n");
                     break;
                 }
@@ -771,7 +793,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
-                    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                         printf("<BUS waiting for NDAC==1>\n");
                     break;
                 }
@@ -779,7 +801,11 @@ uint16_t gpib_write_byte(uint16_t ch)
 
 ///@release BUS
             case GPIB_TX_SET_DAV_HI:
+#if BOARD == 2
+                GPIB_IO_HI(DAV);
+#else
                 GPIB_PIN_FLOAT_UP(DAV);
+#endif
                 GPIB_BUS_SETTLE();                // give some time
 
                 gpib_bus_read_init(0);            // Free BUS, NOT busy
@@ -800,7 +826,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 {
                     ch |= TIMEOUT_FLAG;
                     tx_state = GPIB_TX_ERROR;
-                    if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                    if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                         printf("<BUS waiting for DAV==1>\n");
 
                 }
@@ -811,7 +837,7 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_ERROR:
-                if(debuglevel & (GPIB_PPR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
+                if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                     printf("<NRFD=%d,NDAV=%d>\n", GPIB_PIN_TST(NRFD),GPIB_PIN_TST(NDAC));
 // Free BUS, BUSY on error
                 gpib_bus_read_init(1);
@@ -864,9 +890,11 @@ uint16_t gpib_read_byte(int trace)
     uint16_t bus, control, control_last;
     extern uint8_t gpib_unread_f;
     extern uint16_t gpib_unread_data;
+	extern void gpib_user_task();
 
     ch = 0;
     control_last = 0;
+
 
 // If we have an unread state it has already been traced!
     if(gpib_unread_f)
@@ -880,6 +908,7 @@ uint16_t gpib_read_byte(int trace)
 ///@brief V2 boards can NOT read all bits on the control bus at once
 /// FIXME We could add a test for read/write state ??
 ///@brief NRFD,NDAC SRQ are outputs
+
     if(trace)
     {
         control_last = gpib_control_pin_read();
@@ -890,8 +919,14 @@ uint16_t gpib_read_byte(int trace)
     rx_state = GPIB_RX_START;
     while(rx_state != GPIB_RX_DONE)
     {
+gpib_user_task();
+
         if(uart_keyhit(0))
+		{
+			if(debuglevel & GPIB_ERR)
+				printf("gpib_read_byte: state=%d\n", rx_state);
             break;
+		}
 
 // Try to detect PPR - only for debugging
 /// FIXME only enabled on V1 hardware
@@ -904,6 +939,8 @@ uint16_t gpib_read_byte(int trace)
         if(GPIB_PIN_TST(IFC) == 0)
         {
             ch |= IFC_FLAG;
+			if(debuglevel & GPIB_ERR)
+				printf("gpib_read_byte: IFC state=%d\n", rx_state);
             gpib_bus_init();
             break;
         }
@@ -912,7 +949,11 @@ uint16_t gpib_read_byte(int trace)
         {
             case GPIB_RX_START:
 ///@brief Signal that we are ready to ready
+#if BOARD == 2
+                GPIB_IO_HI(NRFD);
+#else
                 GPIB_PIN_FLOAT_UP(NRFD);
+#endif
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 rx_state = GPIB_RX_WAIT_FOR_DAV_LOW;
                 break;
@@ -945,10 +986,14 @@ uint16_t gpib_read_byte(int trace)
                     gpib_trace_display(bus | control_last, TRACE_READ);
                 }
 
+#if BOARD == 2
+                GPIB_IO_HI(NDAC);
+#else
                 GPIB_PIN_FLOAT_UP(NDAC);
+#endif
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
                 gpib_timeout_set(HTIMEOUT);
-#if BOARD == 2
+#if BOARD == 3
 /// FIXME do we want to keep the next state ?
                 rx_state = GPIB_RX_WAIT_FOR_DAV_HI;
 #else
@@ -1281,7 +1326,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
 
     if(!size)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
             printf("gpib_read_str: size = 0\n");
     }
 
@@ -1300,7 +1345,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
 
         if((*status & ATN_FLAG) != (val & ATN_FLAG))
         {
-            if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
+            if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
                 printf("gpib_read_str(ind:%d): ATN %02XH unexpected\n",ind, 0xff & val);
             gpib_unread(val);
             break;
@@ -1325,7 +1370,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
     }
     if ( ind != size )
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
             printf("[gpib_read_str read(%d) expected(%d)]\n", ind , size);
     }
     return(ind);
@@ -1370,7 +1415,7 @@ int gpib_write_str(uint8_t *buf, int size, uint16_t *status)
 
     if(!size)
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
             printf("gpib_write_str: size = 0\n");
     }
 
@@ -1403,7 +1448,7 @@ int gpib_write_str(uint8_t *buf, int size, uint16_t *status)
     }                                             // while(ind < size)
     if ( ind != size )
     {
-        if(debuglevel & (GPIB_PPR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
+        if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES + GPIB_RW_STR_BUS_DECODE))
             printf("[gpib_write_str sent(%d) expected(%d)]\n", ind,size);
     }
     return(ind);

@@ -299,7 +299,7 @@ int amigo_send_logical_address()
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
@@ -334,7 +334,7 @@ int amigo_send_status()
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
@@ -390,7 +390,7 @@ static int amigo_overflow_check(AMIGOStateType *p, char *msg)
             if (p->cyl >= AMIGOp->GEOMETRY.CYLINDERS)
             {
                 stat = 1;
-                if(debuglevel & GPIB_PPR && msg != NULL)
+                if(debuglevel & GPIB_ERR && msg != NULL)
                     printf("[AMIGO %s pos OVERFLOW]\n", msg);
             }
         }
@@ -487,7 +487,7 @@ int amigo_verify(uint16_t sectors)
 
 #if SDEBUG
         if(debuglevel & GPIB_DISK_IO_TIMING)
-            gpib_timer_elapsed_end("Disk Read");
+            gpib_timer_elapsed_end("disk READ ");
 #endif
         if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
         {
@@ -574,6 +574,7 @@ int amigo_format(uint8_t db)
 }
 
 
+#if 0
 /// @brief  Do a buffered read of the current sector.
 ///
 /// - Reference: A33.
@@ -586,9 +587,11 @@ int amigo_buffered_read()
     int len;
     DWORD pos;
 
+//READ SECTOR
     pos = amigo_chs_to_logical(AMIGOs, "Buffered Read");
-
 #if SDEBUG
+	if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
+		printf("AMIGOs->state:%d\n", AMIGOs->state);
     if(debuglevel & GPIB_DISK_IO_TIMING)
         gpib_timer_elapsed_begin();
 #endif
@@ -597,7 +600,7 @@ int amigo_buffered_read()
 
 #if SDEBUG
     if(debuglevel & GPIB_DISK_IO_TIMING)
-        gpib_timer_elapsed_end("Disk Read");
+        gpib_timer_elapsed_end("disk READ ");
 #endif
     if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
     {
@@ -609,6 +612,8 @@ int amigo_buffered_read()
     if(debuglevel & GPIB_RW_STR_TIMING)
         gpib_timer_elapsed_begin();
 #endif
+
+// WRITE DATA
     status = EOI_FLAG;
     len = gpib_write_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
 #if SDEBUG
@@ -619,7 +624,9 @@ int amigo_buffered_read()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-        if(debuglevel & GPIB_PPR)
+    	if ( len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+			AMIGOs->Errors |= ERR_READ;
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
@@ -636,10 +643,98 @@ int amigo_buffered_read()
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(0);
 }
+#endif
+
+// ====================================================
+/// TESTING SPLIT BUFFERED READ
+/// @brief  Do a buffered read of the current sector.
+///
+/// - Reference: A33.
+/// @return 0 ok
+/// @return GPIB Errors status,Sets dsj and Amigo_errors
+
+int amigo_buffered_read_command()
+{
+    int len;
+    DWORD pos;
+
+//READ SECTOR
+    pos = amigo_chs_to_logical(AMIGOs, "Buffered Read");
+#if SDEBUG
+	if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
+		printf("AMIGOs->state:%d\n", AMIGOs->state);
+    if(debuglevel & GPIB_DISK_IO_TIMING)
+        gpib_timer_elapsed_begin();
+#endif
+
+    len = dbf_open_read(AMIGOp->HEADER.NAME, pos, gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
+
+#if SDEBUG
+    if(debuglevel & GPIB_DISK_IO_TIMING)
+        gpib_timer_elapsed_end("disk READ ");
+#endif
+
+    if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+    {
+        AMIGOs->dsj = 1;
+		AMIGOs->Errors |= ERR_READ;
+        return(0);
+    }
+
+/// @todo  Do we fail on overflow ?
+///  currently djs is set - do we want to report that now ?
+    if( amigo_increment("Buffered Read") )        //overflow
+    {
+        AMIGOs->dsj = 1;
+        AMIGOs->Errors |= ERR_SEEK;
+    }
+
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
+    return(0);
+}
+
+/// @brief  Send the buffered read data 
+///
+/// - Reference: A33.
+/// @return 0 ok
+/// @return GPIB Errors status,Sets dsj and Amigo_errors
+
+int amigo_buffered_read_execute()
+{
+    uint16_t status;
+    int len;
+
+#if SDEBUG
+    if(debuglevel & GPIB_RW_STR_TIMING)
+        gpib_timer_elapsed_begin();
+#endif
+
+// WRITE DATA
+    status = EOI_FLAG;
+    len = gpib_write_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
+
+#if SDEBUG
+    if(debuglevel & GPIB_RW_STR_TIMING)
+        gpib_timer_elapsed_end("GPIB write");
+#endif
+
+    if(status & ERROR_MASK || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR )
+    {
+        AMIGOs->dsj = 1;
+        AMIGOs->Errors |= ERR_GPIB;
+        if(debuglevel & GPIB_ERR)
+            printf("[AMIGO GPIB write error]\n");
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
+        return(status & ERROR_MASK);
+    }
+
+    gpib_enable_PPR(AMIGOp->HEADER.PPR);
+    return(0);
+}
+
 
 
 /// @brief  Do a buffered write of the current sector.
-
 /// - Reference: A43.
 /// @return 0 ok
 /// @return GPIB Errors status,Sets dsj and Amigo_errors
@@ -660,16 +755,19 @@ int amigo_buffered_write()
     status = 0;
     len = gpib_read_str(gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &status);
 
+
 #if SDEBUG
+	if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
+		printf("AMIGOs->state:%d\n", AMIGOs->state);
     if(debuglevel & GPIB_RW_STR_TIMING)
-        gpib_timer_elapsed_end("GPIB read str");
+        gpib_timer_elapsed_end("GPIB read");
 #endif
 
     if(status & ERROR_MASK || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO Write GPIB read error]\n");
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
@@ -684,7 +782,7 @@ int amigo_buffered_write()
 
 #if SDEBUG
     if(debuglevel & GPIB_DISK_IO_TIMING)
-        gpib_timer_elapsed_end("Disk Write");
+        gpib_timer_elapsed_end("disk WRITE");
 #endif
 
     if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
@@ -697,7 +795,9 @@ int amigo_buffered_write()
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_SEEK;
     }
+
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
+
     return(status & ERROR_MASK);
 }
 
@@ -725,7 +825,7 @@ int amigo_cmd_dsj()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AIMGO: DSJ send failed]\n");
         return(status & ERROR_MASK);
     }
@@ -767,7 +867,7 @@ int amigo_cmd_wakeup()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
     }
 /// @todo FIXME
@@ -911,7 +1011,7 @@ int Amigo_Command( int secondary )
         {
             AMIGOs->dsj = 1;
             AMIGOs->Errors |= ERR_GPIB;
-            if(debuglevel & GPIB_PPR)
+            if(debuglevel & GPIB_ERR)
                 printf("[AMIGO_Command:GPIB write error]\n");
         }
         return(status & ERROR_MASK);
@@ -929,14 +1029,14 @@ int Amigo_Command( int secondary )
         len = gpib_read_str(gpib_iobuff, GPIB_IOBUFF_LEN, &status);
 #if SDEBUG
         if(debuglevel & GPIB_RW_STR_TIMING)
-            gpib_timer_elapsed_end("GPIB read str");
+            gpib_timer_elapsed_end("GPIB read");
 #endif
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         if(status & ERROR_MASK)
         {
             AMIGOs->dsj = 1;
             AMIGOs->Errors |= ERR_GPIB;
-            if(debuglevel & GPIB_PPR)
+            if(debuglevel & GPIB_ERR)
                 printf("[AMIGO Command:GPIB read error]\n");
         }
         return(status & ERROR_MASK);
@@ -956,7 +1056,7 @@ int Amigo_Command( int secondary )
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-        if(debuglevel & GPIB_PPR)
+        if(debuglevel & GPIB_ERR)
             printf("[AMIGO Command:GPIB read error]\n");
         return(status & ERROR_MASK);
     }
@@ -1074,8 +1174,13 @@ int Amigo_Command( int secondary )
 ///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_READ_UNBUFFERED;
+			
+#if 0
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
+#else
+			return( amigo_buffered_read_command() );
+#endif
         }
         else if(op == 0x07 && len == 4)
         {
@@ -1170,8 +1275,13 @@ int Amigo_Command( int secondary )
 ///FIXME Added unit error
             amigo_check_unit(0xff & *ptr++);
             AMIGOs->state = AMIGO_READ_BUFFERED;
+
+#if 0
             gpib_enable_PPR(AMIGOp->HEADER.PPR);
             return(status & ERROR_MASK);
+#else
+			return( amigo_buffered_read_command() );
+#endif
         }
     }
     else if (secondary == 0x6C)
@@ -1243,19 +1353,19 @@ int Amigo_Execute( int secondary )
                 if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[AMIGO Execute Cold Load Read]\n");
 #endif
-                return ( amigo_buffered_read() );
+                return ( amigo_buffered_read_execute() );
             case AMIGO_READ_UNBUFFERED:
 #if SDEBUG
                 if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[AMIGO Execute Read Unbuffered]\n");
 #endif
-                return ( amigo_buffered_read() );
+                return ( amigo_buffered_read_execute() );
             case AMIGO_READ_BUFFERED:
 #if SDEBUG
                 if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
                     printf("[AMIGO Execute Read Buffered]\n");
 #endif
-                return ( amigo_buffered_read() );
+                return ( amigo_buffered_read_execute() );
             case AMIGO_WRITE_UNBUFFERED:
 #if SDEBUG
                 if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)

@@ -96,6 +96,7 @@ var searchData=
   ['display_5fclock',['display_clock',['../time_8c.html#a45581e089f65467887592224ccb75612',1,'display_clock():&#160;time.c'],['../time_8h.html#abfb6a874f26825f5b1b82edcd614bc86',1,'display_clock(void):&#160;time.c']]],
   ['display_5fconfig',['display_Config',['../drives_8c.html#a226919985bc5fcb9a6fc250d94e5a393',1,'display_Config(int verbose):&#160;drives.c'],['../drives_8h.html#a226919985bc5fcb9a6fc250d94e5a393',1,'display_Config(int verbose):&#160;drives.c']]],
   ['display_5fts',['display_ts',['../timer_8c.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c'],['../timer_8h.html#a6802af23bc1fe764b975683a0b37fc91',1,'display_ts(ts_t *val):&#160;timer.c']]],
+  ['done',['done',['../structi2c__op__t.html#a281b1e75543e100e4bac1f48d35ecd91',1,'i2c_op_t::done()'],['../structi2c__t.html#af3d87db9ab7b8e36414e02664577ba65',1,'i2c_t::done()']]],
   ['dosmode',['DosMode',['../structtd__header__t.html#acb0710bd6f98290ea2490ce678b63894',1,'td_header_t']]],
   ['down_5fcounter',['down_counter',['../struct__gpib__t.html#a21ed3be06f76b0a5237b5e64bc2e8793',1,'_gpib_t']]],
   ['down_5fcounter_5fdone',['down_counter_done',['../struct__gpib__t.html#af2622dd8668ecb24c42a2da2d8956538',1,'_gpib_t']]],

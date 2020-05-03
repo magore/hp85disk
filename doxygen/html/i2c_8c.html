@@ -72,91 +72,193 @@ $(function() {
 <div class="title">i2c.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>I2C Interrupt driven driver Total rewrite Reference AVR315 for technical details.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="hardware_2user__config_8h_source.html">user_config.h</a>&quot;</code><br />
 </div>
 <p><a href="i2c_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:abdadca107006b76760250a99ebec6b0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#abdadca107006b76760250a99ebec6b0d">TWCR_DEFAULT</a>&#160;&#160;&#160;(_BV(TWEA) | _BV(TWEN) | _BV(TWIE))</td></tr>
-<tr class="separator:abdadca107006b76760250a99ebec6b0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbc9cda27f9fca0c6c1f52ce97c56e38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#afbc9cda27f9fca0c6c1f52ce97c56e38">TWCR_NOT_ACK</a>&#160;&#160;&#160;(_BV(TWINT) | _BV(TWEN) | _BV(TWIE))</td></tr>
-<tr class="separator:afbc9cda27f9fca0c6c1f52ce97c56e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45cc456d02fbaa42f67aa37d9c781440"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a45cc456d02fbaa42f67aa37d9c781440">TWCR_ACK</a>&#160;&#160;&#160;(<a class="el" href="i2c_8c.html#afbc9cda27f9fca0c6c1f52ce97c56e38">TWCR_NOT_ACK</a> | _BV(TWEA))</td></tr>
-<tr class="separator:a45cc456d02fbaa42f67aa37d9c781440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea37a184f7981f8f1dac5e970ce234b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#aea37a184f7981f8f1dac5e970ce234b7">I2C_OPS</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:aea37a184f7981f8f1dac5e970ce234b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3215f0aa766367f5d34bee80929152"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#afa3215f0aa766367f5d34bee80929152">I2C_TIMEOUT</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:afa3215f0aa766367f5d34bee80929152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9e5c49e41f659fa15a300d70043c96b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a9e5c49e41f659fa15a300d70043c96b6">i2c_check_op</a> (uint8_t index)</td></tr>
+<tr class="memdesc:a9e5c49e41f659fa15a300d70043c96b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if I2C structure pointer is valid.  <a href="#a9e5c49e41f659fa15a300d70043c96b6">More...</a><br /></td></tr>
+<tr class="separator:a9e5c49e41f659fa15a300d70043c96b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b4df1656fc079ee8ae7bdcd85bca53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a42b4df1656fc079ee8ae7bdcd85bca53">i2c_free_ops</a> ()</td></tr>
+<tr class="memdesc:a42b4df1656fc079ee8ae7bdcd85bca53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free all allocated memory for i2c_[] pointers NOTE: We ASSUME all i2c_op[].buf are statically allocated.  <a href="#a42b4df1656fc079ee8ae7bdcd85bca53">More...</a><br /></td></tr>
+<tr class="separator:a42b4df1656fc079ee8ae7bdcd85bca53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ace1dafc6919056d222e71ec8c9967"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structi2c__op__t.html">i2c_op_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a18ace1dafc6919056d222e71ec8c9967">i2c_op_add</a> (uint8_t address, uint8_t mode, uint8_t *buf, uint8_t len)</td></tr>
+<tr class="memdesc:a18ace1dafc6919056d222e71ec8c9967"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C setup new OP but do not run it yet.  <a href="#a18ace1dafc6919056d222e71ec8c9967">More...</a><br /></td></tr>
+<tr class="separator:a18ace1dafc6919056d222e71ec8c9967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec9787994957af45b200d156757bf8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a3ec9787994957af45b200d156757bf8f">i2c_task</a> ()</td></tr>
+<tr class="memdesc:a3ec9787994957af45b200d156757bf8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C timer task - check for operation timeouts The ISR will correctly handle any cleanup.  <a href="#a3ec9787994957af45b200d156757bf8f">More...</a><br /></td></tr>
+<tr class="separator:a3ec9787994957af45b200d156757bf8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae27eba4746ad7d3ebdcb0096c78fe6a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#ae27eba4746ad7d3ebdcb0096c78fe6a6">i2c_init</a> (uint32_t speed)</td></tr>
+<tr class="memdesc:ae27eba4746ad7d3ebdcb0096c78fe6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C initialize Clear all i2c_op[] pointers and disables I2C tasks.  <a href="#ae27eba4746ad7d3ebdcb0096c78fe6a6">More...</a><br /></td></tr>
 <tr class="separator:ae27eba4746ad7d3ebdcb0096c78fe6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40302666ae1c326c82c26226176f78d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a40302666ae1c326c82c26226176f78d9">i2c_post</a> (<a class="el" href="i2c_8h.html#ad720fd049856cb8f6c7a5319e3a40a7f">i2c_txn_t</a> *t)</td></tr>
-<tr class="separator:a40302666ae1c326c82c26226176f78d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab22a4d4ccc56b31d28669ca1290cde30"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#ab22a4d4ccc56b31d28669ca1290cde30">ISR</a> (TWI_vect, ISR_BLOCK)</td></tr>
-<tr class="separator:ab22a4d4ccc56b31d28669ca1290cde30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8f20839debfa225ba608315ea44b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a4c8f20839debfa225ba608315ea44b97">i2c_post</a> ()</td></tr>
+<tr class="memdesc:a4c8f20839debfa225ba608315ea44b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run all valid i2c_op[] tasks.  <a href="#a4c8f20839debfa225ba608315ea44b97">More...</a><br /></td></tr>
+<tr class="separator:a4c8f20839debfa225ba608315ea44b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5790ff529063a2c43b9710c9be3e002"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#ad5790ff529063a2c43b9710c9be3e002">i2c_done</a> ()</td></tr>
+<tr class="memdesc:ad5790ff529063a2c43b9710c9be3e002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Are all i2c_op[] pointers done sending/receiving ?  <a href="#ad5790ff529063a2c43b9710c9be3e002">More...</a><br /></td></tr>
+<tr class="separator:ad5790ff529063a2c43b9710c9be3e002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c8b4212b484775b042e06ac787aa01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#aa7c8b4212b484775b042e06ac787aa01">i2c_ok</a> ()</td></tr>
+<tr class="memdesc:aa7c8b4212b484775b042e06ac787aa01"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if I2C trasnaction detected an error  <a href="#aa7c8b4212b484775b042e06ac787aa01">More...</a><br /></td></tr>
+<tr class="separator:aa7c8b4212b484775b042e06ac787aa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accdd986c9ec687ab3fcb4fe7c0b8757d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#accdd986c9ec687ab3fcb4fe7c0b8757d">i2c_next_op</a> ()</td></tr>
+<tr class="memdesc:accdd986c9ec687ab3fcb4fe7c0b8757d"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if I2C trasnaction detected an error  <a href="#accdd986c9ec687ab3fcb4fe7c0b8757d">More...</a><br /></td></tr>
+<tr class="separator:accdd986c9ec687ab3fcb4fe7c0b8757d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474f42eedbdc093683fdb4b88be3c48f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a474f42eedbdc093683fdb4b88be3c48f">ISR</a> (TWI_vect)</td></tr>
+<tr class="memdesc:a474f42eedbdc093683fdb4b88be3c48f"><td class="mdescLeft">&#160;</td><td class="mdescRight">I2C ISR for send/receive.  <a href="#a474f42eedbdc093683fdb4b88be3c48f">More...</a><br /></td></tr>
+<tr class="separator:a474f42eedbdc093683fdb4b88be3c48f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a42005b00cb6c097196c7350c4c4200"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a0a42005b00cb6c097196c7350c4c4200">i2c_print_error</a> (uint8_t index)</td></tr>
+<tr class="memdesc:a0a42005b00cb6c097196c7350c4c4200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display Errors for i2c_op[index].  <a href="#a0a42005b00cb6c097196c7350c4c4200">More...</a><br /></td></tr>
+<tr class="separator:a0a42005b00cb6c097196c7350c4c4200"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6087bb393b9b2096e8680f43ac19747b"><td class="memItemLeft" align="right" valign="top">static volatile <a class="el" href="i2c_8h.html#ad720fd049856cb8f6c7a5319e3a40a7f">i2c_txn_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a6087bb393b9b2096e8680f43ac19747b">txn</a></td></tr>
-<tr class="separator:a6087bb393b9b2096e8680f43ac19747b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5644668635b71f1b321d70120837177"><td class="memItemLeft" align="right" valign="top">static volatile <a class="el" href="i2c_8h.html#a25bc93ee01faf7c1af736aec86c94507">i2c_op_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#af5644668635b71f1b321d70120837177">op</a></td></tr>
-<tr class="separator:af5644668635b71f1b321d70120837177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a469a308e25a41faf8db01a34d1bb1301"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structi2c__t.html">i2c_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a469a308e25a41faf8db01a34d1bb1301">i2c</a> = { 0,0,0,0 }</td></tr>
+<tr class="separator:a469a308e25a41faf8db01a34d1bb1301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a287fc3a6f15301552ab5cd19fa523c60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structi2c__op__t.html">i2c_op_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="i2c_8c.html#a287fc3a6f15301552ab5cd19fa523c60">i2c_op</a> [<a class="el" href="i2c_8h.html#aea37a184f7981f8f1dac5e970ce234b7">I2C_OPS</a>] = { <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> }</td></tr>
+<tr class="separator:a287fc3a6f15301552ab5cd19fa523c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a45cc456d02fbaa42f67aa37d9c781440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45cc456d02fbaa42f67aa37d9c781440">&#9670;&nbsp;</a></span>TWCR_ACK</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>I2C Interrupt driven driver Total rewrite Reference AVR315 for technical details. </p>
+<p>I2C Interrupt driven driver.</p>
+<dl class="section user"><dt>Edit History</dt><dd><ul>
+<li>[1.0] [Mike Gore] Initial revision of file.</li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright &copy; 2014-2020 Mike Gore, Inc. All rights reserved.</dd>
+<dd>
+GNU Public License.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Mike Gore </dd></dl>
+
+<p class="definition">Definition in file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aea37a184f7981f8f1dac5e970ce234b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea37a184f7981f8f1dac5e970ce234b7">&#9670;&nbsp;</a></span>I2C_OPS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TWCR_ACK&#160;&#160;&#160;(<a class="el" href="i2c_8c.html#afbc9cda27f9fca0c6c1f52ce97c56e38">TWCR_NOT_ACK</a> | _BV(TWEA))</td>
+          <td class="memname">#define I2C_OPS&#160;&#160;&#160;16</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00040">40</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00024">24</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00130">ISR()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00035">i2c_check_op()</a>, <a class="el" href="i2c_8c_source.html#l00064">i2c_free_ops()</a>, <a class="el" href="i2c_8c_source.html#l00186">i2c_init()</a>, <a class="el" href="i2c_8c_source.html#l00324">i2c_next_op()</a>, <a class="el" href="i2c_8c_source.html#l00115">i2c_op_add()</a>, and <a class="el" href="i2c_8c_source.html#l00236">i2c_post()</a>.</p>
 
 </div>
 </div>
-<a id="abdadca107006b76760250a99ebec6b0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdadca107006b76760250a99ebec6b0d">&#9670;&nbsp;</a></span>TWCR_DEFAULT</h2>
+<a id="afa3215f0aa766367f5d34bee80929152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa3215f0aa766367f5d34bee80929152">&#9670;&nbsp;</a></span>I2C_TIMEOUT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define TWCR_DEFAULT&#160;&#160;&#160;(_BV(TWEA) | _BV(TWEN) | _BV(TWIE))</td>
+          <td class="memname">#define I2C_TIMEOUT&#160;&#160;&#160;20</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00037">37</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00026">26</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00042">i2c_init()</a>, <a class="el" href="i2c_8c_source.html#l00088">i2c_post()</a>, and <a class="el" href="i2c_8c_source.html#l00130">ISR()</a>.</p>
-
-</div>
-</div>
-<a id="afbc9cda27f9fca0c6c1f52ce97c56e38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbc9cda27f9fca0c6c1f52ce97c56e38">&#9670;&nbsp;</a></span>TWCR_NOT_ACK</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TWCR_NOT_ACK&#160;&#160;&#160;(_BV(TWINT) | _BV(TWEN) | _BV(TWIE))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00039">39</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00130">ISR()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00115">i2c_op_add()</a>, and <a class="el" href="i2c_8c_source.html#l00236">i2c_post()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9e5c49e41f659fa15a300d70043c96b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5c49e41f659fa15a300d70043c96b6">&#9670;&nbsp;</a></span>i2c_check_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t i2c_check_op </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if I2C structure pointer is valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>index of i2c_op[] array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if OK, 0 if NOT </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00035">35</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00324">i2c_next_op()</a>, <a class="el" href="i2c_8c_source.html#l00236">i2c_post()</a>, <a class="el" href="i2c_8c_source.html#l00522">i2c_print_error()</a>, <a class="el" href="i2c_8c_source.html#l00154">i2c_task()</a>, and <a class="el" href="i2c_8c_source.html#l00361">ISR()</a>.</p>
+
+</div>
+</div>
+<a id="ad5790ff529063a2c43b9710c9be3e002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5790ff529063a2c43b9710c9be3e002">&#9670;&nbsp;</a></span>i2c_done()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int i2c_done </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Are all i2c_op[] pointers done sending/receiving ? </p>
+<dl class="section return"><dt>Returns</dt><dd>1 DONE, 0 NOT DONE </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00300">300</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00366">main()</a>.</p>
+
+</div>
+</div>
+<a id="a42b4df1656fc079ee8ae7bdcd85bca53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b4df1656fc079ee8ae7bdcd85bca53">&#9670;&nbsp;</a></span>i2c_free_ops()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_free_ops </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free all allocated memory for i2c_[] pointers NOTE: We ASSUME all i2c_op[].buf are statically allocated. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00064">64</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+</div>
+</div>
 <a id="ae27eba4746ad7d3ebdcb0096c78fe6a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae27eba4746ad7d3ebdcb0096c78fe6a6">&#9670;&nbsp;</a></span>i2c_init()</h2>
 
@@ -173,51 +275,101 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00042">42</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p>I2C initialize Clear all i2c_op[] pointers and disables I2C tasks. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="i2c_8h_source.html#l00078">i2c_txn_init()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00186">186</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
 
 </div>
 </div>
-<a id="a40302666ae1c326c82c26226176f78d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40302666ae1c326c82c26226176f78d9">&#9670;&nbsp;</a></span>i2c_post()</h2>
+<a id="accdd986c9ec687ab3fcb4fe7c0b8757d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accdd986c9ec687ab3fcb4fe7c0b8757d">&#9670;&nbsp;</a></span>i2c_next_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void i2c_next_op </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>check if I2C trasnaction detected an error </p>
+<p>Did we get an error durring any i2c_op[] seand/receive operations</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00324">324</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00361">ISR()</a>.</p>
+
+</div>
+</div>
+<a id="aa7c8b4212b484775b042e06ac787aa01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7c8b4212b484775b042e06ac787aa01">&#9670;&nbsp;</a></span>i2c_ok()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void i2c_post </td>
+          <td class="memname">int i2c_ok </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="i2c_8h.html#ad720fd049856cb8f6c7a5319e3a40a7f">i2c_txn_t</a> *&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00088">88</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p>check if I2C trasnaction detected an error </p>
+<p>Did we get an error durring any i2c_op[] seand/receive operations</p>
+<dl class="section return"><dt>Returns</dt><dd>1 OK, 0 NOT OK </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="i2c_8h_source.html#l00078">i2c_txn_init()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00312">312</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00366">main()</a>.</p>
 
 </div>
 </div>
-<a id="ab22a4d4ccc56b31d28669ca1290cde30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab22a4d4ccc56b31d28669ca1290cde30">&#9670;&nbsp;</a></span>ISR()</h2>
+<a id="a18ace1dafc6919056d222e71ec8c9967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ace1dafc6919056d222e71ec8c9967">&#9670;&nbsp;</a></span>i2c_op_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ISR </td>
+          <td class="memname"><a class="el" href="structi2c__op__t.html">i2c_op_t</a>* i2c_op_add </td>
           <td>(</td>
-          <td class="paramtype">TWI_vect&#160;</td>
-          <td class="paramname">, </td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ISR_BLOCK&#160;</td>
-          <td class="paramname">&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -227,65 +379,161 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00130">130</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p>I2C setup new OP but do not run it yet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">address</td><td>I2C address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>TW_READ or TW_WRITE </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">*buf</td><td>pointer to buffer for send or receive </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">len</td><td>size of buffer to read or write </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structi2c__op__t.html">i2c_op_t</a> * pointer </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00115">115</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+</div>
+</div>
+<a id="a4c8f20839debfa225ba608315ea44b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c8f20839debfa225ba608315ea44b97">&#9670;&nbsp;</a></span>i2c_post()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_post </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run all valid i2c_op[] tasks. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00236">236</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="main_8c_source.html#l00366">main()</a>.</p>
+
+</div>
+</div>
+<a id="a0a42005b00cb6c097196c7350c4c4200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a42005b00cb6c097196c7350c4c4200">&#9670;&nbsp;</a></span>i2c_print_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_print_error </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Display Errors for i2c_op[index]. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>index of i2c_op[] array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00522">522</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+</div>
+</div>
+<a id="a3ec9787994957af45b200d156757bf8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec9787994957af45b200d156757bf8f">&#9670;&nbsp;</a></span>i2c_task()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void i2c_task </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C timer task - check for operation timeouts The ISR will correctly handle any cleanup. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00154">154</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00064">i2c_free_ops()</a>, and <a class="el" href="i2c_8c_source.html#l00186">i2c_init()</a>.</p>
+
+</div>
+</div>
+<a id="a474f42eedbdc093683fdb4b88be3c48f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474f42eedbdc093683fdb4b88be3c48f">&#9670;&nbsp;</a></span>ISR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ISR </td>
+          <td>(</td>
+          <td class="paramtype">TWI_vect&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I2C ISR for send/receive. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00361">361</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af5644668635b71f1b321d70120837177"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5644668635b71f1b321d70120837177">&#9670;&nbsp;</a></span>op</h2>
+<a id="a469a308e25a41faf8db01a34d1bb1301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469a308e25a41faf8db01a34d1bb1301">&#9670;&nbsp;</a></span>i2c</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile <a class="el" href="i2c_8h.html#a25bc93ee01faf7c1af736aec86c94507">i2c_op_t</a>* op</td>
+          <td class="memname"><a class="el" href="structi2c__t.html">i2c_t</a> i2c = { 0,0,0,0 }</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00029">29</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00021">21</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
 
 </div>
 </div>
-<a id="a6087bb393b9b2096e8680f43ac19747b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6087bb393b9b2096e8680f43ac19747b">&#9670;&nbsp;</a></span>txn</h2>
+<a id="a287fc3a6f15301552ab5cd19fa523c60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a287fc3a6f15301552ab5cd19fa523c60">&#9670;&nbsp;</a></span>i2c_op</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">volatile <a class="el" href="i2c_8h.html#ad720fd049856cb8f6c7a5319e3a40a7f">i2c_txn_t</a>* txn</td>
+          <td class="memname"><a class="el" href="structi2c__op__t.html">i2c_op_t</a>* i2c_op[<a class="el" href="i2c_8h.html#aea37a184f7981f8f1dac5e970ce234b7">I2C_OPS</a>] = { <a class="el" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> }</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="i2c_8c_source.html#l00028">28</a> of file <a class="el" href="i2c_8c_source.html">i2c.c</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="i2c_8c_source.html#l00088">i2c_post()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 20 2020 20:49:06 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 2 2020 20:21:10 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.13
 </small></address>

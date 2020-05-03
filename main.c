@@ -12,6 +12,9 @@
 */
 
 #include <user_config.h>
+#include "hardware/i2c.h"
+
+
 
 #ifndef _IOM1284P_H_
 #error _IOM1284P_H_
@@ -134,7 +137,112 @@ void help()
         "\n"
         );
 }
+/// ======================================
 
+#ifdef LCD_SUPPORT
+
+uint8_t  _cmd1[2] = { 0xfe, 0x80 };
+uint8_t _line1 [21] = { ' ' };
+uint8_t  _cmd2[2] = { 0xfe, 0xC0 };
+uint8_t _line2 [21] = { ' ' };
+ 
+#endif	// LCD_SUPPORT
+
+/// ======================================
+#ifdef LCD_SUPPORT
+
+time_t _seconds = 0;
+static int _display_cnt = 0;
+
+void lcd_task()
+{
+	++_display_cnt;
+}
+
+#ifdef LCD_SUPPORT
+void i2c_lcd_test()
+{
+	uint8_t sreg=SREG;
+    ts_t ts;
+
+	cli();
+	if(!mmc_ins_status())
+	{
+		sprintf((char *) _line2,"%-20s", "SD Card Fault");
+	}
+	else
+	{
+		clock_gettime(0, (ts_t *) &ts);
+		sprintf((char *) _line2, "%-20s", asctime(gmtime(&(ts.tv_sec))) );
+		// sprintf((char *) _line2,"%16ld.%03ld", (long) ts.tv_sec, (long) ts.tv_nsec / 1000000UL);
+	}
+	SREG=sreg;
+
+    i2c_post();
+}
+#endif	// LCD_SUPPORT
+
+
+///@ initialize Optional I2C LCD
+void setup_lcd()
+{
+	int ind = 0;
+    uint8_t sreg = SREG;
+	extern i2c_op_t *i2c_op[];
+
+    printf("I2C LCD initialization start\n");
+
+	if(set_timers(lcd_task,1) == -1)
+        printf("lcd_task init failed\n");
+
+	cli();
+	i2c_init(100000);
+
+    sprintf((char *) _line1, "%-20s", "HP85Disk Emulator V2");
+    sprintf((char *) _line2, "%-20s", "(C)Mike Gore");
+
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd1, 2);
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line1, 20);
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd2, 2);
+	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line2, 20);
+
+	SREG = sreg;
+
+    i2c_post();
+    delayms(1000);
+    if(!i2c_done() || !i2c_ok())
+        printf("I2C LCD is NOT attached!\n");
+    sep();
+}
+#endif	// LCD_SUPPORT
+
+/// ======================================
+#ifdef LCD_SUPPORT
+void gpib_user_task()
+{
+	uint8_t sreg = SREG;
+
+	cli();
+	if(_display_cnt > 100) // 10HZ
+	{
+		_display_cnt = 0;
+		SREG = sreg;
+		i2c_lcd_test();
+		return;
+	}
+	SREG = sreg;
+}
+#else // LCD_SUPPORT
+void gpib_user_task()
+{
+}
+#endif	// LCD_SUPPORT
+
+
+
+
+
+/// ======================================
 
 /// @brief  User command handler - called as main task
 ///
@@ -151,6 +259,7 @@ void task(uint8_t gpib)
     int result = 0;
     char *argv[50];
     char line[256];
+
 
     if(gpib)
         gpib_task();
@@ -179,41 +288,46 @@ void task(uint8_t gpib)
         result = 1;
     }
 #ifdef DELAY_TESTS
-    else if (MATCHARGS(ptr,"delay_tests",(ind+0),argc))
+    else if (MATCHI(ptr,"delay_tests") )
     {
         delay_tests();
         result = 1;
 
     }
 #endif
-    else if ( MATCHARGS(ptr,"time",(ind+0),argc))
+    else if ( MATCHI(ptr,"time") )
     {
         display_clock();
         result = 1;
     }
-    else if ( MATCHARGS(ptr,"reset",(ind+0),argc))
+    else if ( MATCHI(ptr,"lcd") )
+    {
+		i2c_lcd_test();
+        result = 1;
+    }
+    else if ( MATCHI(ptr,"reset") )
     {
         cli();
         uart_rx_flush(0);
         cli();
         MCUSR = (1 << EXTRF);
         RESET();
-// should not return!
+		// should not return!
         result = 1;
     }
-    else if ( MATCHARGS(ptr,"setdate",(ind+0),argc))
+    else if ( MATCHI(ptr,"setdate" ) )
     {
         setdate();
         display_clock();
         result = 1;
     }
-    else if ( MATCHARGS(ptr,"mem",(ind+0),argc))
+    else if ( MATCH(ptr,"mem") )
     {
         PrintFree();
         result = 1;
 
     }
-    else if ( MATCHARGS(ptr,"help",(ind+0),argc) || MATCHARGS(ptr,"?",(ind+0),argc))
+    else if ( MATCHI(ptr,"help") || MATCHI(ptr,"?") )
     {
         help();
         result = 1;
@@ -253,6 +367,7 @@ int main(void)
 {
     ts_t ts;
     uint32_t actual,baud;
+	char tmp[32];
 
 	clear_error();		// Clear error state
 
@@ -315,25 +430,7 @@ int main(void)
 
 ///@ initialize Optional I2C LCD
 #ifdef LCD_SUPPORT
-    printf("I2C LCD initialization start\n");
-    if ( LCD_init(LCD_ADDR) )
-    {
-// Display LCD firmware version
-// LCD_command(',');
-// delayms(1000);
-
-        LCD_pos(0,0);
-        lcd_printf("hp85disk V2.0\n");
-        lcd_printf("(C)Mike Gore ");
-// SparkFun V1.1 firmware loses the last character when the LCD goes to sleep
-
-        printf("I2C LCD initialization Done\n");
-    }
-    else
-    {
-        printf("I2C LCD is NOT attached!\n");
-    }
-    sep();
+	setup_lcd();
 #endif
 
 ///@ initialize MMC bus
@@ -377,27 +474,24 @@ int main(void)
     format_drives();
 
 #ifdef LCD_SUPPORT
-    LCD_pos(0,0);
-	if(!is_error())
-	{
-		lcd_printf("SS80  Drives:%d\n",(int) count_drive_types(SS80_TYPE));
-		lcd_printf("AMIGO Drives:%d ",(int) count_drive_types(AMIGO_TYPE));
-	}
-	else
-	{
-		lcd_printf("SD Card fault\n");
-		if(!mmc_ins_status())
-			lcd_printf("Not inserted\n");
-	}
-// lcd_printf("Baud:%ld\n",baud);
-//lcd_printf("Debug: %04xH\n", (int)debuglevel);
+	sprintf((char *) tmp, "HP85 DRIVES S=%d A=%d",
+		(int) count_drive_types(SS80_TYPE),
+		(int) count_drive_types(AMIGO_TYPE) );
+	sprintf((char *) _line1, "%-20s", tmp);
+	sprintf((char *) _line2, "%-20s", "(C)Mike Gore ");
+	i2c_post();
+	delayms(1000);
+    if(!i2c_done() || !i2c_ok())
+		printf("I2C LCD is NOT attached!\n");
 #endif
 
 ///@brief Start main GPIB state machine
     printf("Starting GPIB TASK\n");
 
-///@brief Keep the task running - it exits after every user interaction, ie key press
-    while (1)
+///@brief Keep the task running 
+/// task does not exit unless a keypress occurs
+/// When it restarts ALL GPIB states are reset 
+    while ( 1)
     {
         task(1);
     }

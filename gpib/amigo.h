@@ -37,6 +37,7 @@
 #define GET     0x08                              // Group execute trigger
 #define TCT     0x09                              // Take control
 
+
 /* amigo.c */
 void amigo_init ( void );
 int amigo_request_logical_address ( void );
@@ -48,14 +49,18 @@ int amigo_seek ( AMIGOStateType *p );
 int amigo_verify ( uint16_t sectors );
 int amigo_format ( uint8_t db );
 int amigo_buffered_read ( void );
+int amigo_buffered_read_command ( void );
+int amigo_buffered_read_execute ( void );
 int amigo_buffered_write ( void );
 int amigo_cmd_dsj ( void );
 int amigo_cmd_wakeup ( void );
 int amigo_cmd_clear ( void );
 int amigo_todo_op ( uint8_t secondary , uint8_t opcode , int len );
 int amigo_todo ( uint8_t secondary );
-void amigo_check_unit( uint8_t unit );
+void amigo_check_unit ( uint8_t unit );
 int Amigo_Command ( int secondary );
 int Amigo_Execute ( int secondary );
 int AMIGO_COMMANDS ( uint8_t ch );
+
+
 #endif                                            // #ifndef _AMIGO_H_

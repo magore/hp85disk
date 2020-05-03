@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /// @brief program SFR to permit normal GPIO mode
 
 #define GPIO_PORT2SFR(port,base) _SFR_IO8( (((port) * 3) + (base)) )
-#define GPIO_PIN2SFR(pin,base) GPIO_PORT2SFR(((pin)>>3),(base) )
+#define GPIO_PIN2SFR(pin,base)   GPIO_PORT2SFR(((pin)>>3),(base) )
 
 /// @brief program SFR to permit normal gpio input/output
 #define GPIO_PIN_MODE(pin)                        /* FIXME TODO */

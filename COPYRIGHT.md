@@ -147,15 +147,6 @@ ___
 ___
 
 
-##  I2C code in testing 
-    * [i2c.c](hardware/i2c.c)
-    * [i2c.h](hardware/i2c.h)
-  * Not beeing used yet
-  * Copyright (c) 2014 Pieter Noordhuis https://github.com/pietern/avr-i2c
-
-___
-
-
 ## SParkFun I2C,SPI,Serial LCD
     * [LCD.c](hardware/LCD.c)
     * [LCD.h](hardware/LCD.h)

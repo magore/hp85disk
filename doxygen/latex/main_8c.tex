@@ -6,6 +6,7 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 
 
 {\ttfamily \#include $<$user\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hardware/i2c.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib/defines.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib/gpib\+\_\+hal.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}gpib/gpib.\+h\char`\"{}}\newline
@@ -25,8 +26,10 @@ typedef void($\ast$ \hyperlink{main_8c_a52d21b0c2b1c100472ac0571d94ab0b5}{R\+E\+
 \item 
 void \hyperlink{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}{copyright} ()
 \begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a8824827cf2979219e9a65ead803647e6}{gpib\+\_\+user\+\_\+task} ()
+\begin{DoxyCompactList}\small\item\em ====================================== \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a66ac220b8fb4c59823fdf116cecda862}{task} (uint8\+\_\+t gpib)
-\begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em ====================================== \end{DoxyCompactList}\item 
 int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 \begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -71,7 +74,7 @@ void
 \end{DoxySeeAlso}
 
 
-Definition at line 93 of file main.\+c.
+Definition at line 96 of file main.\+c.
 
 
 
@@ -91,7 +94,25 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 40 of file main.\+c.
+Definition at line 43 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a8824827cf2979219e9a65ead803647e6}\label{main_8c_a8824827cf2979219e9a65ead803647e6}} 
+\index{main.\+c@{main.\+c}!gpib\+\_\+user\+\_\+task@{gpib\+\_\+user\+\_\+task}}
+\index{gpib\+\_\+user\+\_\+task@{gpib\+\_\+user\+\_\+task}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{gpib\+\_\+user\+\_\+task()}{gpib\_user\_task()}}
+{\footnotesize\ttfamily void gpib\+\_\+user\+\_\+task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+====================================== 
+
+====================================== ====================================== 
+
+Definition at line 236 of file main.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte().
 
 \mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
 \index{main.\+c@{main.\+c}!main@{main}}
@@ -142,9 +163,9 @@ Format any drives that do not yet exist
 
 Start main G\+P\+IB state machine
 
-Keep the task running -\/ it exits after every user interaction, ie key press 
+Keep the task running task does not exit unless a keypress occurs When it restarts A\+LL G\+P\+IB states are reset 
 
-Definition at line 252 of file main.\+c.
+Definition at line 366 of file main.\+c.
 
 
 
@@ -158,7 +179,9 @@ Referenced by Mat\+Write().
 
 
 
-User command handler -\/ called as main task. 
+====================================== 
+
+User command handler -\/ called as main task
 
 If a keypress is detected read a line from the uart parse the result and call various user functions. ? will return a list of fuctions and paramters permitted 
 \begin{DoxyParams}[1]{Parameters}
@@ -170,7 +193,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 146 of file main.\+c.
+Definition at line 254 of file main.\+c.
 
 
 

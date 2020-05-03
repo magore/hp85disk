@@ -102,16 +102,25 @@ typedef union
     unsigned short all;
 } f_t;
 
+// =============================================
+/// @brief Data structure for character buffer with limits
+typedef struct
+{
+    char *str;                                    ///@brief base of string to write to
+    int ind;                                      ///@brief current string index
+    int max;                                      ///@brief maximum string size including EOS
+} p_ch_t;
+
 /* printf.c */
 MEMSPACE size_t WEAK_ATR strlen ( const char *str );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
 MEMSPACE int bin2num ( uint8_t *str , int strmax , int nummin , int base , uint8_t *nump , int numsize , int sign_ch );
-MEMSPACE void pch_init ( char *str , int max );
-MEMSPACE int pch ( char ch );
-MEMSPACE int pch_ind ( void );
-MEMSPACE int pch_max_ind ( void );
+MEMSPACE void pch_init ( p_ch_t *p, char *str , int max );
+MEMSPACE int pch ( p_ch_t *p, char ch );
+MEMSPACE int pch_ind ( p_ch_t *p);
+MEMSPACE int pch_max_ind ( p_ch_t *p);
 MEMSPACE void print_flags ( f_t f );
 MEMSPACE int p_ntoa ( uint8_t *nump , int numsize , char *str , int strmax , int radix , int width , int prec , f_t f );
 MEMSPACE int p_ftoa ( double val , char *str , int max , int width , int prec , f_t f );

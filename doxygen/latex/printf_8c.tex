@@ -10,11 +10,6 @@ Small printf, and verious conversion code with floating point support.
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}mathio.\+h\char`\"{}}\newline
-\subsection*{Data Structures}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
-\begin{DoxyCompactList}\small\item\em Data structure for character buffer with limits. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,13 +23,13 @@ struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
 \begin{DoxyCompactList}\small\item\em U\+P\+P\+E\+R\+C\+A\+SE a string. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_aa95ef42dcc41a90255c084e0e1a9bcde}{bin2num} (uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)
 \begin{DoxyCompactList}\small\item\em Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_ab10e941ecf6d7512649e377e97d28fac}{pch\+\_\+init} (char $\ast$str, int max)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_aa04d728cf95fd1e17eee35344d1265a8}{pch\+\_\+init} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p, char $\ast$str, int max)
 \begin{DoxyCompactList}\small\item\em Initialize character buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}{pch} (char ch)
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a2aba4f2deee9be598dc579d760991e8f}{pch} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p, char ch)
 \begin{DoxyCompactList}\small\item\em Put character in buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}{pch\+\_\+ind} ()
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a11e9cd585ecc573a04deeddb31ef8f94}{pch\+\_\+ind} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Return current index of character buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a4188dbfea9bea20687558f35bc34c00d}{pch\+\_\+max\+\_\+ind} ()
+\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_abdd1f988f152fcbc6fdbf960c9958a12}{pch\+\_\+max\+\_\+ind} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Return maximum valid index for character buffer. \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}{print\+\_\+flags} (\hyperlink{unionf__t}{f\+\_\+t} f)
 \begin{DoxyCompactList}\small\item\em print flags set in t\+\_\+t structure \end{DoxyCompactList}\item 
@@ -50,11 +45,6 @@ struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
 \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{printf_8c_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, const char $\ast$format,...)
 \begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} \hyperlink{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}{\+\_\+pch}
-\begin{DoxyCompactList}\small\item\em Define data structure for character buffer with limits. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -102,10 +92,10 @@ size of string
 \end{DoxyReturn}
 Calling Variadic Functions
 \begin{DoxyItemize}
-\item exceprt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\tt https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html} Since the prototype doesnât specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
+\item excerpt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\tt https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html} Since the prototype doesnât specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
 \end{DoxyItemize}
 
-Definition at line 741 of file printf.\+c.
+Definition at line 733 of file printf.\+c.
 
 
 
@@ -133,7 +123,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1101 of file printf.\+c.
+Definition at line 1093 of file printf.\+c.
 
 
 
@@ -147,7 +137,7 @@ Referenced by snprintf(), and vsnprintf().
 
 
 
-Definition at line 687 of file printf.\+c.
+Definition at line 679 of file printf.\+c.
 
 
 
@@ -250,17 +240,17 @@ Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Num
 \end{DoxyParams}
 
 
-Definition at line 324 of file printf.\+c.
+Definition at line 314 of file printf.\+c.
 
 
 
 Referenced by \+\_\+printf\+\_\+fn().
 
-\mbox{\Hypertarget{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}\label{printf_8c_ab454b0d961c8dc93406cc75379c8a1f5}} 
+\mbox{\Hypertarget{printf_8c_a2aba4f2deee9be598dc579d760991e8f}\label{printf_8c_a2aba4f2deee9be598dc579d760991e8f}} 
 \index{printf.\+c@{printf.\+c}!pch@{pch}}
 \index{pch@{pch}!printf.\+c@{printf.\+c}}
 \subsubsection{\texorpdfstring{pch()}{pch()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch (\begin{DoxyParamCaption}\item[{char}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})}
 
 
 
@@ -278,17 +268,17 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 243 of file printf.\+c.
+Definition at line 233 of file printf.\+c.
 
 
 
 Referenced by p\+\_\+ntoa().
 
-\mbox{\Hypertarget{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}\label{printf_8c_a642ddbb02955bf5cb540f7a2f0f09aae}} 
+\mbox{\Hypertarget{printf_8c_a11e9cd585ecc573a04deeddb31ef8f94}\label{printf_8c_a11e9cd585ecc573a04deeddb31ef8f94}} 
 \index{printf.\+c@{printf.\+c}!pch\+\_\+ind@{pch\+\_\+ind}}
 \index{pch\+\_\+ind@{pch\+\_\+ind}!printf.\+c@{printf.\+c}}
 \subsubsection{\texorpdfstring{pch\+\_\+ind()}{pch\_ind()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+ind (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+ind (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -299,17 +289,17 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 257 of file printf.\+c.
+Definition at line 247 of file printf.\+c.
 
 
 
 Referenced by p\+\_\+ntoa().
 
-\mbox{\Hypertarget{printf_8c_ab10e941ecf6d7512649e377e97d28fac}\label{printf_8c_ab10e941ecf6d7512649e377e97d28fac}} 
+\mbox{\Hypertarget{printf_8c_aa04d728cf95fd1e17eee35344d1265a8}\label{printf_8c_aa04d728cf95fd1e17eee35344d1265a8}} 
 \index{printf.\+c@{printf.\+c}!pch\+\_\+init@{pch\+\_\+init}}
 \index{pch\+\_\+init@{pch\+\_\+init}!printf.\+c@{printf.\+c}}
 \subsubsection{\texorpdfstring{pch\+\_\+init()}{pch\_init()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void pch\+\_\+init (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{max }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void pch\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p,  }\item[{char $\ast$}]{str,  }\item[{int}]{max }\end{DoxyParamCaption})}
 
 
 
@@ -331,17 +321,17 @@ current string index
 
 maximum string size including E\+OS 
 
-Definition at line 228 of file printf.\+c.
+Definition at line 218 of file printf.\+c.
 
 
 
 Referenced by p\+\_\+ntoa().
 
-\mbox{\Hypertarget{printf_8c_a4188dbfea9bea20687558f35bc34c00d}\label{printf_8c_a4188dbfea9bea20687558f35bc34c00d}} 
+\mbox{\Hypertarget{printf_8c_abdd1f988f152fcbc6fdbf960c9958a12}\label{printf_8c_abdd1f988f152fcbc6fdbf960c9958a12}} 
 \index{printf.\+c@{printf.\+c}!pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}}
 \index{pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}!printf.\+c@{printf.\+c}}
 \subsubsection{\texorpdfstring{pch\+\_\+max\+\_\+ind()}{pch\_max\_ind()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+max\+\_\+ind (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+max\+\_\+ind (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -352,7 +342,7 @@ Buffer index
 \end{DoxyReturn}
 
 
-Definition at line 266 of file printf.\+c.
+Definition at line 256 of file printf.\+c.
 
 \mbox{\Hypertarget{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}\label{printf_8c_a9c08c55e823a7532f2344a77ef296b4e}} 
 \index{printf.\+c@{printf.\+c}!print\+\_\+flags@{print\+\_\+flags}}
@@ -374,7 +364,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 279 of file printf.\+c.
+Definition at line 269 of file printf.\+c.
 
 \mbox{\Hypertarget{printf_8c_a00b9d97be21e4f3f5df1019a803c05a6}\label{printf_8c_a00b9d97be21e4f3f5df1019a803c05a6}} 
 \index{printf.\+c@{printf.\+c}!reverse@{reverse}}
@@ -428,7 +418,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1164 of file printf.\+c.
+Definition at line 1156 of file printf.\+c.
 
 \mbox{\Hypertarget{printf_8c_a895ea3a2f9901e4c962806cc15271339}\label{printf_8c_a895ea3a2f9901e4c962806cc15271339}} 
 \index{printf.\+c@{printf.\+c}!strlen@{strlen}}
@@ -508,26 +498,9 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1134 of file printf.\+c.
+Definition at line 1126 of file printf.\+c.
 
 
 
 Referenced by snprintf().
-
-
-
-\subsection{Variable Documentation}
-\mbox{\Hypertarget{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}\label{printf_8c_aa1e6944673f3194dc3fe8ba626deec55}} 
-\index{printf.\+c@{printf.\+c}!\+\_\+pch@{\+\_\+pch}}
-\index{\+\_\+pch@{\+\_\+pch}!printf.\+c@{printf.\+c}}
-\subsubsection{\texorpdfstring{\+\_\+pch}{\_pch}}
-{\footnotesize\ttfamily \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} \+\_\+pch}
-
-
-
-Define data structure for character buffer with limits. 
-
-
-
-Definition at line 221 of file printf.\+c.
 

@@ -3,6 +3,8 @@ var searchData=
   ['adjugate',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['alloc_5fdevice',['alloc_device',['../drives_8c.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c'],['../drives_8h.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c']]],
   ['amigo_5fbuffered_5fread',['amigo_buffered_read',['../amigo_8h.html#a4934ae332e168979dbb865a9948de88b',1,'amigo.h']]],
+  ['amigo_5fbuffered_5fread_5fcommand',['amigo_buffered_read_command',['../amigo_8h.html#a6a2cbc9396d5afbc7ef0f0f57dfb8688',1,'amigo.h']]],
+  ['amigo_5fbuffered_5fread_5fexecute',['amigo_buffered_read_execute',['../amigo_8h.html#a5a143cf39ffc00cb4e4da01e4f8b0342',1,'amigo.h']]],
   ['amigo_5fbuffered_5fwrite',['amigo_buffered_write',['../amigo_8h.html#ae9c3505761b1afba4f47a6b593527583',1,'amigo.h']]],
   ['amigo_5fcheck_5funit',['amigo_check_unit',['../amigo_8h.html#a4ddec624752d4e4dfb4b339667d7033b',1,'amigo.h']]],
   ['amigo_5fcmd_5fclear',['amigo_cmd_clear',['../amigo_8h.html#ae61925e6fb971862b8b0390c67bc164c',1,'amigo.h']]],
