@@ -54,5 +54,11 @@ var searchData=
   ['trace_5fbus',['TRACE_BUS',['../gpib_8h.html#a99fb83031ce9923c84392b4e92f956b5ad31617c6a0d0b675927d4332c18f084d',1,'gpib.h']]],
   ['trace_5fdisable',['TRACE_DISABLE',['../gpib_8h.html#a99fb83031ce9923c84392b4e92f956b5a22947fdc26f7eb645d6a741ff2f3e3a0',1,'gpib.h']]],
   ['trace_5fread',['TRACE_READ',['../gpib_8h.html#a99fb83031ce9923c84392b4e92f956b5a498933b128852cbe066c04ea9ec8edbc',1,'gpib.h']]],
-  ['true',['true',['../hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b',1,'user_config.h']]]
+  ['true',['true',['../hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1a08f175a5505a10b9ed657defeb050e4b',1,'user_config.h']]],
+  ['twi_5ferror_5fbuscapturetimeout',['TWI_ERROR_BusCaptureTimeout',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520a7942c47d1a9d60d19e31371ee6defc0b',1,'TWI_AVR8.h']]],
+  ['twi_5ferror_5fbusfault',['TWI_ERROR_BusFault',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520ac055e06f40a6b25442e28d8dc0287ae7',1,'TWI_AVR8.h']]],
+  ['twi_5ferror_5fnoerror',['TWI_ERROR_NoError',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9',1,'TWI_AVR8.h']]],
+  ['twi_5ferror_5fslavenak',['TWI_ERROR_SlaveNAK',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520a7a11faa42bc0e96aa663fb7d9b0a2121',1,'TWI_AVR8.h']]],
+  ['twi_5ferror_5fslavenotready',['TWI_ERROR_SlaveNotReady',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520ab755c011159dfc7d055e1f8acb0aca2a',1,'TWI_AVR8.h']]],
+  ['twi_5ferror_5fslaveresponsetimeout',['TWI_ERROR_SlaveResponseTimeout',['../group__Group__TWI__AVR8.html#ggabf76003d83264d2805d52d2149620520ab5ddfc69796e2727f135e3c48f0352b3',1,'TWI_AVR8.h']]]
 ];

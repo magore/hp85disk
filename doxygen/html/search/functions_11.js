@@ -13,8 +13,8 @@ var searchData=
   ['rewind',['rewind',['../posix_8c.html#a35e6a58f44d4651951ecfeb97f369884',1,'rewind(FILE *stream):&#160;posix.c'],['../posix_8h.html#a35e6a58f44d4651951ecfeb97f369884',1,'rewind(FILE *stream):&#160;posix.c']]],
   ['rmdir',['rmdir',['../posix_8c.html#a6080dee579486f132062435577b77d10',1,'rmdir(const char *pathname):&#160;posix.c'],['../posix_8h.html#a6080dee579486f132062435577b77d10',1,'rmdir(const char *pathname):&#160;posix.c']]],
   ['rtc_5finit',['rtc_init',['../rtc_8c.html#aca651806fd67e4d5345fc45f70b35814',1,'rtc_init(int force, time_t seconds):&#160;rtc.c'],['../rtc_8h.html#aca651806fd67e4d5345fc45f70b35814',1,'rtc_init(int force, time_t seconds):&#160;rtc.c']]],
-  ['rtc_5fread',['rtc_read',['../rtc_8c.html#a3794738edaf3a42409aa1d9e12be60c3',1,'rtc_read(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a13dd224642e709b435d15f4ea2c58a3e',1,'rtc_read(struct tm *t):&#160;rtc.c']]],
-  ['rtc_5frun',['rtc_run',['../rtc_8c.html#a18a3db53342227574822a9b6b9c0386b',1,'rtc.c']]],
-  ['rtc_5frun_5ftest',['rtc_run_test',['../rtc_8c.html#a4cc3a3f4decdc4ef7cfb28227e10c36d',1,'rtc.c']]],
-  ['rtc_5fwrite',['rtc_write',['../rtc_8c.html#a9ba6382e802fb431c0460599c191763f',1,'rtc_write(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a27a133715802f5a78c9dfac7d987b35d',1,'rtc_write(struct tm *t):&#160;rtc.c']]]
+  ['rtc_5fread',['rtc_read',['../rtc_8c.html#a3794738edaf3a42409aa1d9e12be60c3',1,'rtc_read(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a3794738edaf3a42409aa1d9e12be60c3',1,'rtc_read(tm_t *t):&#160;rtc.c']]],
+  ['rtc_5frun',['rtc_run',['../rtc_8c.html#a18a3db53342227574822a9b6b9c0386b',1,'rtc_run(int run):&#160;rtc.c'],['../rtc_8h.html#a18a3db53342227574822a9b6b9c0386b',1,'rtc_run(int run):&#160;rtc.c']]],
+  ['rtc_5frun_5ftest',['rtc_run_test',['../rtc_8c.html#a4cc3a3f4decdc4ef7cfb28227e10c36d',1,'rtc_run_test():&#160;rtc.c'],['../rtc_8h.html#aa4e884598c090bd900bb77a683ecfd20',1,'rtc_run_test(void):&#160;rtc.c']]],
+  ['rtc_5fwrite',['rtc_write',['../rtc_8c.html#a9ba6382e802fb431c0460599c191763f',1,'rtc_write(tm_t *t):&#160;rtc.c'],['../rtc_8h.html#a9ba6382e802fb431c0460599c191763f',1,'rtc_write(tm_t *t):&#160;rtc.c']]]
 ];

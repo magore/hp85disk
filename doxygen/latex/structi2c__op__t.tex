@@ -17,9 +17,9 @@ uint8\+\_\+t \hyperlink{structi2c__op__t_a99ce5c1c16cf8a7b8293f5b96ac74c27}{flag
 \item 
 uint16\+\_\+t \hyperlink{structi2c__op__t_a1b20cc2c470b03ecc097a1cd792bbffb}{timeout}
 \item 
-uint8\+\_\+t \hyperlink{structi2c__op__t_a15938288603b868319e12027d5b0853b}{len}
+int8\+\_\+t \hyperlink{structi2c__op__t_ac7d21b50f84a0d18d28ad36987c9e56a}{len}
 \item 
-uint8\+\_\+t \hyperlink{structi2c__op__t_acad1e9f50a862e2c96c8a62a1ff1694a}{ind}
+int8\+\_\+t \hyperlink{structi2c__op__t_a628b6ac83f7303b4dab9a9d86b6167a0}{ind}
 \item 
 uint8\+\_\+t $\ast$ \hyperlink{structi2c__op__t_a1b38c7b78966e4464cfb858f223bf89a}{buf}
 \end{DoxyCompactItemize}
@@ -45,7 +45,7 @@ Definition at line 42 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+op\+\_\+add(), and I\+S\+R().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+task\+\_\+op\+\_\+add(), and I\+S\+R().
 
 \mbox{\Hypertarget{structi2c__op__t_a1b38c7b78966e4464cfb858f223bf89a}\label{structi2c__op__t_a1b38c7b78966e4464cfb858f223bf89a}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!buf@{buf}}
@@ -59,7 +59,7 @@ Definition at line 49 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+op\+\_\+add(), and I\+S\+R().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+op\+\_\+add(), and I\+S\+R().
 
 \mbox{\Hypertarget{structi2c__op__t_a281b1e75543e100e4bac1f48d35ecd91}\label{structi2c__op__t_a281b1e75543e100e4bac1f48d35ecd91}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!done@{done}}
@@ -73,7 +73,7 @@ Definition at line 44 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+next\+\_\+op(), i2c\+\_\+op\+\_\+add(), i2c\+\_\+post(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+task(), and I\+S\+R().
+Referenced by i2c\+\_\+done(), i2c\+\_\+fn(), i2c\+\_\+init(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+send\+\_\+start(), i2c\+\_\+send\+\_\+stop(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+next\+\_\+op(), i2c\+\_\+task\+\_\+op\+\_\+add(), i2c\+\_\+task\+\_\+run(), i2c\+\_\+timer(), and I\+S\+R().
 
 \mbox{\Hypertarget{structi2c__op__t_a482a75434d75a91f2c3b4c8f37dbe201}\label{structi2c__op__t_a482a75434d75a91f2c3b4c8f37dbe201}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!enable@{enable}}
@@ -87,7 +87,7 @@ Definition at line 43 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+next\+\_\+op(), i2c\+\_\+op\+\_\+add(), i2c\+\_\+post(), i2c\+\_\+task(), and I\+S\+R().
+Referenced by i2c\+\_\+done(), i2c\+\_\+fn(), i2c\+\_\+init(), i2c\+\_\+send\+\_\+start(), i2c\+\_\+send\+\_\+stop(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+next\+\_\+op(), i2c\+\_\+task\+\_\+op\+\_\+add(), i2c\+\_\+task\+\_\+run(), i2c\+\_\+timer(), and I\+S\+R().
 
 \mbox{\Hypertarget{structi2c__op__t_a99ce5c1c16cf8a7b8293f5b96ac74c27}\label{structi2c__op__t_a99ce5c1c16cf8a7b8293f5b96ac74c27}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!flags@{flags}}
@@ -101,13 +101,13 @@ Definition at line 45 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+op\+\_\+add(), i2c\+\_\+post(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+task(), and I\+S\+R().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+ok(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+next\+\_\+op(), i2c\+\_\+task\+\_\+op\+\_\+add(), i2c\+\_\+task\+\_\+run(), and I\+S\+R().
 
-\mbox{\Hypertarget{structi2c__op__t_acad1e9f50a862e2c96c8a62a1ff1694a}\label{structi2c__op__t_acad1e9f50a862e2c96c8a62a1ff1694a}} 
+\mbox{\Hypertarget{structi2c__op__t_a628b6ac83f7303b4dab9a9d86b6167a0}\label{structi2c__op__t_a628b6ac83f7303b4dab9a9d86b6167a0}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!ind@{ind}}
 \index{ind@{ind}!i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}}
 \subsubsection{\texorpdfstring{ind}{ind}}
-{\footnotesize\ttfamily uint8\+\_\+t i2c\+\_\+op\+\_\+t\+::ind}
+{\footnotesize\ttfamily int8\+\_\+t i2c\+\_\+op\+\_\+t\+::ind}
 
 
 
@@ -115,13 +115,13 @@ Definition at line 48 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+op\+\_\+add(), i2c\+\_\+post(), and I\+S\+R().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+next\+\_\+op(), i2c\+\_\+task\+\_\+op\+\_\+add(), i2c\+\_\+task\+\_\+run(), and I\+S\+R().
 
-\mbox{\Hypertarget{structi2c__op__t_a15938288603b868319e12027d5b0853b}\label{structi2c__op__t_a15938288603b868319e12027d5b0853b}} 
+\mbox{\Hypertarget{structi2c__op__t_ac7d21b50f84a0d18d28ad36987c9e56a}\label{structi2c__op__t_ac7d21b50f84a0d18d28ad36987c9e56a}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!len@{len}}
 \index{len@{len}!i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}}
 \subsubsection{\texorpdfstring{len}{len}}
-{\footnotesize\ttfamily uint8\+\_\+t i2c\+\_\+op\+\_\+t\+::len}
+{\footnotesize\ttfamily int8\+\_\+t i2c\+\_\+op\+\_\+t\+::len}
 
 
 
@@ -129,7 +129,7 @@ Definition at line 47 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+op\+\_\+add(), and I\+S\+R().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+task\+\_\+op\+\_\+add(), and I\+S\+R().
 
 \mbox{\Hypertarget{structi2c__op__t_a1b20cc2c470b03ecc097a1cd792bbffb}\label{structi2c__op__t_a1b20cc2c470b03ecc097a1cd792bbffb}} 
 \index{i2c\+\_\+op\+\_\+t@{i2c\+\_\+op\+\_\+t}!timeout@{timeout}}
@@ -143,7 +143,7 @@ Definition at line 46 of file i2c.\+h.
 
 
 
-Referenced by i2c\+\_\+free\+\_\+ops(), i2c\+\_\+op\+\_\+add(), i2c\+\_\+post(), and i2c\+\_\+task().
+Referenced by i2c\+\_\+fn(), i2c\+\_\+send\+\_\+start(), i2c\+\_\+task\+\_\+free\+\_\+ops(), i2c\+\_\+task\+\_\+next\+\_\+op(), i2c\+\_\+task\+\_\+op\+\_\+add(), i2c\+\_\+task\+\_\+run(), i2c\+\_\+timer(), and I\+S\+R().
 
 
 

@@ -1,5 +1,55 @@
 \hypertarget{group__Group__TWI__AVR8}{}\section{T\+WI Peripheral Driver (A\+V\+R8)}
 \label{group__Group__TWI__AVR8}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_gaed9e1e1d80a4dd73f43f91ebee131031}{\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+}
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_gafdb1cc962976222df2cbc04641721578}{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD}~0x01
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE}~0x00
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_ga035ba93ded6691ea12f11a99bec8fca2}{T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}~0x\+FE
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_ga66bdf320ad96921bf13c90352bdd5a9a}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1}~((0 $<$$<$ T\+W\+P\+S1) $\vert$ (0 $<$$<$ T\+W\+P\+S0))
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_gaa66fd4788095ee03a24bb65fa65ccc5b}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4}~((0 $<$$<$ T\+W\+P\+S1) $\vert$ (1 $<$$<$ T\+W\+P\+S0))
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_ga215532624ce3ebbe9298dbb8a2b77b14}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16}~((1 $<$$<$ T\+W\+P\+S1) $\vert$ (0 $<$$<$ T\+W\+P\+S0))
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_ga1bf676344c39a2f32822034648295ad1}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64}~((1 $<$$<$ T\+W\+P\+S1) $\vert$ (1 $<$$<$ T\+W\+P\+S0))
+\item 
+\#define \hyperlink{group__Group__TWI__AVR8_ga4761abd051f4daf7da07f886bf6df770}{T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ}(Prescale,  Frequency)~((((F\+\_\+\+C\+PU / (Prescale)) / (Frequency)) -\/ 16) / 2)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t} \{ \newline
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error} = 0, 
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ac055e06f40a6b25442e28d8dc0287ae7}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault} = 1, 
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7942c47d1a9d60d19e31371ee6defc0b}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout} = 2, 
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab5ddfc69796e2727f135e3c48f0352b3}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout} = 3, 
+\newline
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab755c011159dfc7d055e1f8acb0aca2a}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready} = 4, 
+\hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7a11faa42bc0e96aa663fb7d9b0a2121}{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK} = 5
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}{T\+W\+I\+\_\+\+Start\+Transmission} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS)
+\begin{DoxyCompactList}\small\item\em Start I2C transmission. \end{DoxyCompactList}\item 
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{T\+W\+I\+\_\+\+Send\+Byte} (const uint8\+\_\+t Byte)
+\begin{DoxyCompactList}\small\item\em T\+WI send byte. \end{DoxyCompactList}\item 
+\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}{T\+W\+I\+\_\+\+Receive\+Byte} (uint8\+\_\+t $\ast$const Byte, const \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} Last\+Byte)
+\item 
+uint8\+\_\+t \hyperlink{group__Group__TWI__AVR8_gaea02d723a16ed7f11d485c24175d8117}{T\+W\+I\+\_\+\+Read\+Packet} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS, const uint8\+\_\+t $\ast$Internal\+Address, uint8\+\_\+t Internal\+Address\+Len, uint8\+\_\+t $\ast$Buffer, uint8\+\_\+t Length)
+\begin{DoxyCompactList}\small\item\em T\+WI read packet. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__Group__TWI__AVR8_ga7a9c708e4d9fbe6ed807f582bcbded0e}{T\+W\+I\+\_\+\+Write\+Packet} (const uint8\+\_\+t Slave\+Address, const uint8\+\_\+t Timeout\+MS, const uint8\+\_\+t $\ast$Internal\+Address, uint8\+\_\+t Internal\+Address\+Len, const uint8\+\_\+t $\ast$Buffer, uint8\+\_\+t Length)
+\begin{DoxyCompactList}\small\item\em T\+WI write packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
 \hypertarget{group__Group__TWI__AVR8_Sec_ModDescription}{}\subsection{Module Description}\label{group__Group__TWI__AVR8_Sec_ModDescription}
 Master mode T\+WI driver for the 8-\/bit A\+VR microcontrollers which contain a hardware T\+WI module.
 
@@ -12,35 +62,39 @@ The following snippet is an example of how this module may be used within a typi
 {\bfseries Low Level A\+PI Example\+:} 
 \begin{DoxyCode}
 \textcolor{comment}{// Initialize the TWI driver before first use at 200KHz}
-\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(TWI\_BIT\_PRESCALE\_1, TWI\_BITLENGTH\_FROM\_FREQ(1, 200000));
+\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(\hyperlink{group__Group__TWI__AVR8_ga66bdf320ad96921bf13c90352bdd5a9a}{TWI\_BIT\_PRESCALE\_1}, \hyperlink{group__Group__TWI__AVR8_ga4761abd051f4daf7da07f886bf6df770}{TWI\_BITLENGTH\_FROM\_FREQ}(1, 20
+      0000));
 
 \textcolor{comment}{// Start a write session to device at device address 0xA0, internal address 0xDC with a 10ms timeout}
-\textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_WRITE, 10) == TWI\_ERROR\_NoError)
+\textcolor{keywordflow}{if} (\hyperlink{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | \hyperlink{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}{TWI\_ADDRESS\_WRITE}, 10) == 
+      \hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}{TWI\_ERROR\_NoError})
 \{
-    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
+    \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
 
-    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x01);
-    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x02);
-    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x03);
+    \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x01);
+    \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x02);
+    \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0x03);
 
     \textcolor{comment}{// Must stop transmission afterwards to release the bus}
     \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
 \}
 
 \textcolor{comment}{// Start a read session to device at address 0xA0, internal address 0xDC with a 10ms timeout}
-\textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_WRITE, 10) == TWI\_ERROR\_NoError)
+\textcolor{keywordflow}{if} (\hyperlink{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | \hyperlink{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}{TWI\_ADDRESS\_WRITE}, 10) == 
+      \hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}{TWI\_ERROR\_NoError})
 \{
-    \hyperlink{TWI__AVR8_8c_a57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
+    \hyperlink{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}{TWI\_SendByte}(0xDC);
     \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
 
-    \textcolor{keywordflow}{if} (\hyperlink{TWI__AVR8_8c_a5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | TWI\_ADDRESS\_READ, 10) == TWI\_ERROR\_NoError)
+    \textcolor{keywordflow}{if} (\hyperlink{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}{TWI\_StartTransmission}(0xA0 | \hyperlink{group__Group__TWI__AVR8_gafdb1cc962976222df2cbc04641721578}{TWI\_ADDRESS\_READ}, 10) == 
+      \hyperlink{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}{TWI\_ERROR\_NoError})
     \{
         uint8\_t Byte1, Byte2, Byte3;
 
         \textcolor{comment}{// Read three bytes, acknowledge after the third byte is received}
-        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte1, \textcolor{keyword}{false});
-        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte2, \textcolor{keyword}{false});
-        \hyperlink{TWI__AVR8_8c_a551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte3, \textcolor{keyword}{true});
+        \hyperlink{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte1, \textcolor{keyword}{false});
+        \hyperlink{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte2, \textcolor{keyword}{false});
+        \hyperlink{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}{TWI\_ReceiveByte}(&Byte3, \textcolor{keyword}{true});
 
         \textcolor{comment}{// Must stop transmission afterwards to release the bus}
         \hyperlink{TWI__AVR8_8c_a053f3f8c0c05407d204375de911dcbbb}{TWI\_StopTransmission}();
@@ -52,20 +106,398 @@ The following snippet is an example of how this module may be used within a typi
 {\bfseries High Level A\+PI Example\+:} 
 \begin{DoxyCode}
 \textcolor{comment}{// Initialize the TWI driver before first use at 200KHz}
-\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(TWI\_BIT\_PRESCALE\_1, TWI\_BITLENGTH\_FROM\_FREQ(1, 200000));
+\hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{TWI\_Init}(\hyperlink{group__Group__TWI__AVR8_ga66bdf320ad96921bf13c90352bdd5a9a}{TWI\_BIT\_PRESCALE\_1}, \hyperlink{group__Group__TWI__AVR8_ga4761abd051f4daf7da07f886bf6df770}{TWI\_BITLENGTH\_FROM\_FREQ}(1, 20
+      0000));
 
 \textcolor{comment}{// Start a write session to device at device address 0xA0, internal address 0xDC with a 10ms timeout}
 uint8\_t InternalWriteAddress = 0xDC;
 uint8\_t WritePacket[3] = \{0x01, 0x02, 0x03\};
 
-\hyperlink{TWI__AVR8_8c_a7a9c708e4d9fbe6ed807f582bcbded0e}{TWI\_WritePacket}(0xA0, 10, &InternalWriteAddress, \textcolor{keyword}{sizeof}(InternalWriteAddress),
+\hyperlink{group__Group__TWI__AVR8_ga7a9c708e4d9fbe6ed807f582bcbded0e}{TWI\_WritePacket}(0xA0, 10, &InternalWriteAddress, \textcolor{keyword}{sizeof}(InternalWriteAddress),
                 &WritePacket, \textcolor{keyword}{sizeof}(WritePacket);
 
 \textcolor{comment}{// Start a read session to device at address 0xA0, internal address 0xDC with a 10ms timeout}
 uint8\_t InternalReadAddress = 0xDC;
 uint8\_t ReadPacket[3];
 
-\hyperlink{TWI__AVR8_8c_aea02d723a16ed7f11d485c24175d8117}{TWI\_ReadPacket}(0xA0, 10, &InternalReadAddress, \textcolor{keyword}{sizeof}(InternalReadAddress),
+\hyperlink{group__Group__TWI__AVR8_gaea02d723a16ed7f11d485c24175d8117}{TWI\_ReadPacket}(0xA0, 10, &InternalReadAddress, \textcolor{keyword}{sizeof}(InternalReadAddress),
                &ReadPacket, \textcolor{keyword}{sizeof}(ReadPacket);
 \end{DoxyCode}
  
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gaed9e1e1d80a4dd73f43f91ebee131031}\label{group__Group__TWI__AVR8_gaed9e1e1d80a4dd73f43f91ebee131031}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+@{\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+@{\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+}{\_\_TWI\_AVR8\_H\_\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+T\+W\+I\+\_\+\+A\+V\+R8\+\_\+\+H\+\_\+\+\_\+}
+
+
+
+Definition at line 121 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gafdb1cc962976222df2cbc04641721578}\label{group__Group__TWI__AVR8_gafdb1cc962976222df2cbc04641721578}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD@{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD}}
+\index{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD@{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD}{TWI\_ADDRESS\_READ}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD~0x01}
+
+T\+WI slave device address mask for a read session. Mask with a slave device base address to obtain the correct T\+WI bus address for the slave device when reading data from it. 
+
+Definition at line 128 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+
+
+Referenced by T\+W\+I\+\_\+\+Read\+Packet().
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}\label{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE@{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE}}
+\index{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE@{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE}{TWI\_ADDRESS\_WRITE}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE~0x00}
+
+T\+WI slave device address mask for a write session. Mask with a slave device base address to obtain the correct T\+WI bus address for the slave device when writing data to it. 
+
+Definition at line 133 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+
+
+Referenced by T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga66bdf320ad96921bf13c90352bdd5a9a}\label{group__Group__TWI__AVR8_ga66bdf320ad96921bf13c90352bdd5a9a}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1}}
+\index{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1}{TWI\_BIT\_PRESCALE\_1}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+1~((0 $<$$<$ T\+W\+P\+S1) $\vert$ (0 $<$$<$ T\+W\+P\+S0))}
+
+Bit length prescaler for \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()}. This mask multiplies the T\+WI bit length prescaler by 1. 
+
+Definition at line 141 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga215532624ce3ebbe9298dbb8a2b77b14}\label{group__Group__TWI__AVR8_ga215532624ce3ebbe9298dbb8a2b77b14}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16}}
+\index{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16}{TWI\_BIT\_PRESCALE\_16}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+16~((1 $<$$<$ T\+W\+P\+S1) $\vert$ (0 $<$$<$ T\+W\+P\+S0))}
+
+Bit length prescaler for \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()}. This mask multiplies the T\+WI bit length prescaler by 16. 
+
+Definition at line 147 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gaa66fd4788095ee03a24bb65fa65ccc5b}\label{group__Group__TWI__AVR8_gaa66fd4788095ee03a24bb65fa65ccc5b}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4}}
+\index{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4}{TWI\_BIT\_PRESCALE\_4}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+4~((0 $<$$<$ T\+W\+P\+S1) $\vert$ (1 $<$$<$ T\+W\+P\+S0))}
+
+Bit length prescaler for \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()}. This mask multiplies the T\+WI bit length prescaler by 4. 
+
+Definition at line 144 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga1bf676344c39a2f32822034648295ad1}\label{group__Group__TWI__AVR8_ga1bf676344c39a2f32822034648295ad1}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64}}
+\index{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64@{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64}{TWI\_BIT\_PRESCALE\_64}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+64~((1 $<$$<$ T\+W\+P\+S1) $\vert$ (1 $<$$<$ T\+W\+P\+S0))}
+
+Bit length prescaler for \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()}. This mask multiplies the T\+WI bit length prescaler by 64. 
+
+Definition at line 150 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga4761abd051f4daf7da07f886bf6df770}\label{group__Group__TWI__AVR8_ga4761abd051f4daf7da07f886bf6df770}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ@{T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ}}
+\index{T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ@{T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ}{TWI\_BITLENGTH\_FROM\_FREQ}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+B\+I\+T\+L\+E\+N\+G\+T\+H\+\_\+\+F\+R\+O\+M\+\_\+\+F\+R\+EQ(\begin{DoxyParamCaption}\item[{}]{Prescale,  }\item[{}]{Frequency }\end{DoxyParamCaption})~((((F\+\_\+\+C\+PU / (Prescale)) / (Frequency)) -\/ 16) / 2)}
+
+Calculates the length of each bit on the T\+WI bus for a given target frequency. This may be used with the \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()} function to convert a bus frequency to a number of clocks for the {\ttfamily Bit\+Length} parameter.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Prescale} & Prescaler set on the T\+WI bus. \\
+\hline
+\mbox{\tt in}  & {\em Frequency} & Desired T\+WI bus frequency in Hz.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bit length in clocks for the given T\+WI bus frequency at the given prescaler value. 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga035ba93ded6691ea12f11a99bec8fca2}\label{group__Group__TWI__AVR8_ga035ba93ded6691ea12f11a99bec8fca2}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK@{T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}}
+\index{T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK@{T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK}{TWI\_DEVICE\_ADDRESS\_MASK}}
+{\footnotesize\ttfamily \#define T\+W\+I\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+M\+A\+SK~0x\+FE}
+
+Mask to retrieve the base address for a T\+WI device, which can then be O\+Red with \hyperlink{group__Group__TWI__AVR8_gafdb1cc962976222df2cbc04641721578}{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+R\+E\+AD} or \hyperlink{group__Group__TWI__AVR8_gaa2e5a453a4ef4b0c5fe8b96df1c8389f}{T\+W\+I\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+W\+R\+I\+TE} to obtain the device\textquotesingle{}s read and write address respectively. 
+
+Definition at line 138 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+
+
+Referenced by T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}\label{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Error\+Codes\+\_\+t@{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t}}
+\index{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t@{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t}{TWI\_ErrorCodes\_t}}
+{\footnotesize\ttfamily enum \hyperlink{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t}}
+
+Enum for the possible return codes of the T\+WI transfer start routine and other dependant T\+WI functions. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a98f4084b31baaaa14fa1b1b0ba9f93c9}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error&Indicates that the command completed successfully. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ac055e06f40a6b25442e28d8dc0287ae7}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ac055e06f40a6b25442e28d8dc0287ae7}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Fault&A T\+WI bus fault occurred while attempting to capture the bus. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7942c47d1a9d60d19e31371ee6defc0b}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7942c47d1a9d60d19e31371ee6defc0b}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Bus\+Capture\+Timeout&A timeout occurred whilst waiting for the bus to be ready. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab5ddfc69796e2727f135e3c48f0352b3}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab5ddfc69796e2727f135e3c48f0352b3}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Response\+Timeout&No A\+CK received at the nominated slave address within the timeout period. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab755c011159dfc7d055e1f8acb0aca2a}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520ab755c011159dfc7d055e1f8acb0aca2a}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+Not\+Ready&Slave N\+A\+Ked the T\+WI bus S\+T\+A\+RT condition. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK@{T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK}}}\mbox{\Hypertarget{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7a11faa42bc0e96aa663fb7d9b0a2121}\label{group__Group__TWI__AVR8_ggabf76003d83264d2805d52d2149620520a7a11faa42bc0e96aa663fb7d9b0a2121}} 
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+Slave\+N\+AK&Slave N\+A\+Ked whilst attempting to send data to the device. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 165 of file T\+W\+I\+\_\+\+A\+V\+R8.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__Group__TWI__AVR8_gaea02d723a16ed7f11d485c24175d8117}\label{group__Group__TWI__AVR8_gaea02d723a16ed7f11d485c24175d8117}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Read\+Packet@{T\+W\+I\+\_\+\+Read\+Packet}}
+\index{T\+W\+I\+\_\+\+Read\+Packet@{T\+W\+I\+\_\+\+Read\+Packet}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Read\+Packet()}{TWI\_ReadPacket()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Read\+Packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS,  }\item[{const uint8\+\_\+t $\ast$}]{Internal\+Address,  }\item[{uint8\+\_\+t}]{Internal\+Address\+Len,  }\item[{uint8\+\_\+t $\ast$}]{Buffer,  }\item[{uint8\+\_\+t}]{Length }\end{DoxyParamCaption})}
+
+
+
+T\+WI read packet. 
+
+High level function to perform a complete packet transfer over the T\+WI bus to the specified device.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & Base address of the T\+WI slave device to communicate with. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout for bus capture and slave S\+T\+A\+RT A\+CK, in milliseconds. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Pointer to a location where the internal slave read start address is stored. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Size of the internal device address, in bytes. \\
+\hline
+\mbox{\tt in}  & {\em Buffer} & Pointer to a buffer where the read packet data is to be stored. \\
+\hline
+\mbox{\tt in}  & {\em Length} & Size of the packet to read, in bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value from the \hyperlink{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t} enum.
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & T\+WI sleave address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Our Address. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Our Address Length. \\
+\hline
+\mbox{\tt out}  & {\em Buffer} & Buffer to Read Data into. \\
+\hline
+\mbox{\tt in}  & {\em Length} & Length of data to read.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+Error code on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}\label{group__Group__TWI__AVR8_ga551074dff05c93c7317440b55278aa1b}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Receive\+Byte@{T\+W\+I\+\_\+\+Receive\+Byte}}
+\index{T\+W\+I\+\_\+\+Receive\+Byte@{T\+W\+I\+\_\+\+Receive\+Byte}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Receive\+Byte()}{TWI\_ReceiveByte()}}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} T\+W\+I\+\_\+\+Receive\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$const}]{Byte,  }\item[{const \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool}}]{Last\+Byte }\end{DoxyParamCaption})}
+
+Receives a byte from the currently addressed device on the T\+WI bus.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Byte} & Location where the read byte is to be stored. \\
+\hline
+\mbox{\tt in}  & {\em Last\+Byte} & Indicates if the byte should be A\+C\+Ked if false, N\+A\+Ked if true.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean {\ttfamily true} if the byte reception successfully completed, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by T\+W\+I\+\_\+\+Read\+Packet().
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}\label{group__Group__TWI__AVR8_ga57d8ffa11749c0ba97d52c2a6e246d65}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Send\+Byte@{T\+W\+I\+\_\+\+Send\+Byte}}
+\index{T\+W\+I\+\_\+\+Send\+Byte@{T\+W\+I\+\_\+\+Send\+Byte}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Send\+Byte()}{TWI\_SendByte()}}
+{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} T\+W\+I\+\_\+\+Send\+Byte (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Byte }\end{DoxyParamCaption})}
+
+
+
+T\+WI send byte. 
+
+Sends a byte to the currently addressed device on the T\+WI bus.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Byte} & Byte to send to the currently addressed device\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean {\ttfamily true} if the recipient A\+C\+Ked the byte, {\ttfamily false} otherwise
+
+1 if Acknowledge. 
+
+0 on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Send(), I2\+C\+\_\+\+Send\+Message(), T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}\label{group__Group__TWI__AVR8_ga5e9fac0280a2414490f628071c0073c2}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Start\+Transmission@{T\+W\+I\+\_\+\+Start\+Transmission}}
+\index{T\+W\+I\+\_\+\+Start\+Transmission@{T\+W\+I\+\_\+\+Start\+Transmission}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Start\+Transmission()}{TWI\_StartTransmission()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Start\+Transmission (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS }\end{DoxyParamCaption})}
+
+
+
+Start I2C transmission. 
+
+Initializes the T\+WI hardware into master mode, ready for data transmission and reception. This must be before any other T\+WI operations.
+
+The generated S\+CL frequency will be according to the formula 
+\begin{DoxyPre}F\_CPU / (16 + 2 * BitLength + 4 ^ Prescale)\end{DoxyPre}
+.
+
+\begin{DoxyNote}{Note}
+The value of the {\ttfamily Bit\+Length} parameter should not be set below 10 or invalid bus conditions may occur, as indicated in the A\+V\+R8 microcontroller datasheet.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Prescale} & Prescaler to use when determining the bus frequency, a {\ttfamily T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+P\+R\+E\+S\+C\+A\+L\+E\+\_\+$\ast$} value. \\
+\hline
+\mbox{\tt in}  & {\em Bit\+Length} & Length of the bits sent on the bus.\+Turns off the T\+WI driver hardware. If this is called, any further T\+WI operations will require a call to \hyperlink{TWI__AVR8_8c_a08e1eb463ce4ec168f2c1cb9b4039cae}{T\+W\+I\+\_\+\+Init()} before the T\+WI can be used again.\+Begins a master mode T\+WI bus communication with the given slave device address.\\
+\hline
+\mbox{\tt in}  & {\em Slave\+Address} & Address of the slave T\+WI device to communicate with. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout period within which the slave must respond, in milliseconds.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value from the \hyperlink{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t} enum.
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & I2C Address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+W\+I\+\_\+\+E\+R\+R\+O\+R\+\_\+\+No\+Error on success. 
+
+T\+WI error value on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+
+
+
+Referenced by I2\+C\+\_\+\+Start(), T\+W\+I\+\_\+\+Read\+Packet(), and T\+W\+I\+\_\+\+Write\+Packet().
+
+\mbox{\Hypertarget{group__Group__TWI__AVR8_ga7a9c708e4d9fbe6ed807f582bcbded0e}\label{group__Group__TWI__AVR8_ga7a9c708e4d9fbe6ed807f582bcbded0e}} 
+\index{T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}!T\+W\+I\+\_\+\+Write\+Packet@{T\+W\+I\+\_\+\+Write\+Packet}}
+\index{T\+W\+I\+\_\+\+Write\+Packet@{T\+W\+I\+\_\+\+Write\+Packet}!T\+W\+I Peripheral Driver (\+A\+V\+R8)@{T\+W\+I Peripheral Driver (\+A\+V\+R8)}}
+\subsubsection{\texorpdfstring{T\+W\+I\+\_\+\+Write\+Packet()}{TWI\_WritePacket()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Write\+Packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{Slave\+Address,  }\item[{const uint8\+\_\+t}]{Timeout\+MS,  }\item[{const uint8\+\_\+t $\ast$}]{Internal\+Address,  }\item[{uint8\+\_\+t}]{Internal\+Address\+Len,  }\item[{const uint8\+\_\+t $\ast$}]{Buffer,  }\item[{uint8\+\_\+t}]{Length }\end{DoxyParamCaption})}
+
+
+
+T\+WI write packet. 
+
+High level function to perform a complete packet transfer over the T\+WI bus from the specified device.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & Base address of the T\+WI slave device to communicate with \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout for bus capture and slave S\+T\+A\+RT A\+CK, in milliseconds \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Pointer to a location where the internal slave write start address is stored \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Size of the internal device address, in bytes \\
+\hline
+\mbox{\tt in}  & {\em Buffer} & Pointer to a buffer where the packet data to send is stored \\
+\hline
+\mbox{\tt in}  & {\em Length} & Size of the packet to send, in bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value from the \hyperlink{group__Group__TWI__AVR8_gabf76003d83264d2805d52d2149620520}{T\+W\+I\+\_\+\+Error\+Codes\+\_\+t} enum.
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Slave\+Address} & T\+WI sleave address. \\
+\hline
+\mbox{\tt in}  & {\em Timeout\+MS} & Timeout in Milliseconds. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address} & Our Address. \\
+\hline
+\mbox{\tt in}  & {\em Internal\+Address\+Len} & Our Address Length. \\
+\hline
+\mbox{\tt in}  & {\em Buffer} & Buffer to Write. \\
+\hline
+\mbox{\tt in}  & {\em Length} & Length of data to write.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success. 
+
+Error code on fail. 
+\end{DoxyReturn}
+
+
+Definition at line 250 of file T\+W\+I\+\_\+\+A\+V\+R8.\+c.
+

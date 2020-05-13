@@ -91,7 +91,7 @@ var searchData=
   ['bufsize',['BUFSIZE',['../posix__tests_8c.html#aeca034f67218340ecb2261a22c2f3dcd',1,'posix_tests.c']]],
   ['burst_5fsize',['BURST_SIZE',['../structSS80UnitType.html#a4bc66bc02c06dbfe279be6d2af808a04',1,'SS80UnitType']]],
   ['bus_5ferror_5fflag',['BUS_ERROR_FLAG',['../gpib_8h.html#a89e9767fc024095e7d73f7bd468b8118',1,'gpib.h']]],
-  ['byte',['byte',['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h'],['../ff_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;ff.h']]],
+  ['byte',['BYTE',['../ff_8h.html#a4ae1dab0fb4b072a66584546209e7d58',1,'BYTE():&#160;ff.h'],['../LCD_8h.html#ab8ef12fab634c171394422d0ee8baf94',1,'byte():&#160;LCD.h']]],
   ['bytes',['bytes',['../structqueue__t.html#a58398d4ee60bc90ffba2bc3488fe185b',1,'queue_t']]],
   ['bytes_5fper_5fblock',['BYTES_PER_BLOCK',['../structSS80UnitType.html#a18a5f03be6bea14c6c4a1f9b952bb160',1,'SS80UnitType']]],
   ['bytes_5fper_5fsector',['BYTES_PER_SECTOR',['../structAMIGOGeometryType.html#a446d9194981ebd7af3c1b11cdbdf0cfd',1,'AMIGOGeometryType::BYTES_PER_SECTOR()'],['../structhpdir__t.html#a18355478edba37fb7b2b0bca2448d247',1,'hpdir_t::BYTES_PER_SECTOR()']]]

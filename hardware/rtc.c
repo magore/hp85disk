@@ -13,6 +13,10 @@
 #include "user_config.h"
 #include "time.h"
 
+
+/// ================================================================================
+///@brief RTC BCD conversion functions
+
 /// @brief Convert number >= 0 and <= 99 to BCD.
 ///
 ///  - BCD format has each hex nibble has a digit 0 .. 9
@@ -37,139 +41,74 @@ uint8_t BCDtoBIN(uint8_t data)
 }
 
 
-/// @brief Check if the DS1307 device is running.
-///
-/// - display error if read error occurs.
-///
-/// @return 1 if running.
-/// @return 0 if not running.
-int8_t rtc_run_test()
-{
-    uint8_t  ReadAddress;
-    uint8_t b = 0;
 
-    ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
-        (uint8_t*)&b, 1) != TWI_ERROR_NoError)
-    {
-        printf("rtc_run_test read error\n");
-        return -1;
+/// ================================================================================
+///@brief RTC HAL
+
+///@brief RTC I2C WRITE function
+///@param[in]  address: DS1307 I2C address
+///@param[in]  index:   DS1307 internal address index pointer
+///@param[out] buf:     write buffer
+///@param[in]  len:     buffer length
+///
+///@return 1 = OK, 0 = ERROR
+int8_t i2c_rtc_write(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
+{
+	int8_t i;
+	uint8_t reg[DS1307_REG_SIZE+1];
+
+	if(len < 1 || len > DS1307_REG_SIZE)
+		return(0);
+
+	reg[0] = index; 	/// DS1307 internal Address Pointer
+	for(i=0;i<len;++i)
+		reg[i+1] = buf[i];
+
+    if ( !i2c_fn(address, TW_WRITE, reg, len+1) )
+	{
+        printf("i2c_rtc_write data error\n");
+        return(0);
     }
-    if(b & 8)
-        return 0;
-    return 1;
+	return(1);
+}
+
+///@brief RTC I2C READ function
+///@param[in]  address: DS1307 I2C address
+///@param[in]  index:   DS1307 internal address index pointer
+///@param[out] buf:     read buffer
+///@param[in]  len:     buffer length
+///
+///@return 1 = OK, 0 = ERROR
+int8_t i2c_rtc_read(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
+{
+	if(len < 1 || len > DS1307_REG_SIZE)
+		return(0);
+
+    if ( !i2c_fn(address, TW_WRITE, (uint8_t *) &index, sizeof(index)) )
+	{
+        printf("i2c_rtc_read address error\n");
+        return(0);
+    }
+
+    if ( !i2c_fn(address, TW_READ, buf,len) )
+	{
+        printf("i2c_rtc_read data error\n");
+        return(0);
+    }
+	return(1);
+}
+
+///@brief RTC I2C initialization code
+///
+///@return void
+void i2c_rtc_init()
+{
+	i2c_init(100000);
 }
 
 
-/// @brief Set DS1307 run state.
-/// @param[in] run state.
-///  - 1 = run.
-///  - 0 = stop.
-///  - -1 = check run state.
-///
-/// @return  run state 0/1 on success.
-/// @return -1 on error.
-int rtc_run(int run)
-{
-    uint8_t  WriteAddress;
-    uint8_t  ReadAddress;
-    uint8_t b = 0;
-
-    ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
-        (uint8_t*)&b, 1) != TWI_ERROR_NoError)
-    {
-        printf("rtc_run read status error\n");
-        return -1;
-    }
-
-    if(run == -1)
-        return ((b & 0x80) ? 0 : 1);
-
-    b = ( b  & 0x7f) | (run ? 0 : 0x80);
-
-    WriteAddress = 0;
-    if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
-        (uint8_t*)&b, 1) != TWI_ERROR_NoError)
-    {
-        printf("rtc_run - write status error\n");
-        return(-1);
-    }
-    return(run);
-}
-
-
-/// @brief Initialize DS1307 rtc if not initialied - or if forced.
-///
-/// @param[in] force: force initialiation flag.
-/// - If 1 then alwasy force initialiation.
-/// @param[in] seconds: POSIX EPOCH time in seconds.
-///
-/// @return  1 on success.
-/// @return 0 on fail.
-uint8_t rtc_init (int force, time_t seconds)
-{
-    int8_t    state;
-
-    tm_t *tmp;
-
-    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 100000));
-
-    if(!force)
-    {
-        state = rtc_run(-1);
-        if(state < 0)
-        {
-            rtc_ok = 0;
-            return 0;
-        }
-        if(state == 0)                            // stopped
-            force = 1;
-    }
-
-    if(force)                                     // INIT
-    {
-        if(rtc_run(0) < 0)                        // STOP RTC
-        {
-            rtc_ok = 0;                           // Fail
-            return 0;
-        }
-        tmp = gmtime(&seconds);
-        if(!rtc_write(tmp))
-        {
-            printf("rtc_init  write epoch failed\n");
-            rtc_ok = 0;
-            return 0;
-        }
-
-// RAM init fails on non DS1307 chips
-#if 0
-        uint8_t buf[8];                           /* RTC R/W buffer */
-        uint8_t addr;
-        uint8_t  WriteAddress;
-        memset(buf, 0, 8);
-        for (addr = 8; addr < 0x3f; addr += 8)
-        {
-            WriteAddress = addr;
-            if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
-                (uint8_t*)buf, 8) != TWI_ERROR_NoError)
-            {
-                printf("rtc_init ram - write error at %d\n", (int) addr);
-                return(0);
-            }
-        }
-#endif
-
-        if(rtc_run(1) < 0)                        // START RTC
-        {
-            rtc_ok = 0;                           // Fail
-            return 0;
-        }
-    }
-    rtc_ok = 1;
-    return 1;
-}
-
+/// ================================================================================
+/// @brief RTC functions
 
 /// @brief  Set DS1307 RTC from POSIX struct tm * structure.
 ///
@@ -179,8 +118,7 @@ uint8_t rtc_init (int force, time_t seconds)
 /// @return 0 on fail.
 uint8_t rtc_write(tm_t *t)
 {
-    uint8_t buf[8];
-    uint8_t WriteAddress;
+    uint8_t buf[DS1307_REG_SIZE];
 
     buf[0] =  BINtoBCD(t->tm_sec) & 0x7f;
     buf[1] =  BINtoBCD(t->tm_min) & 0x7f;
@@ -211,16 +149,17 @@ uint8_t rtc_write(tm_t *t)
     printf("\n");
 #endif
 
-    WriteAddress = 0;
-    if (TWI_WritePacket(DS1307_W, RTC_TIMEOUT, &WriteAddress, sizeof(WriteAddress),
-        (uint8_t*)buf, 8) != TWI_ERROR_NoError)
-    {
+
+	if( !i2c_rtc_write(DS1307, 0, buf, sizeof(buf)) )
+	{
         printf("rtc_write error\n");
-        return(0);
+        return (0);
     }
 
     return(1);
 }
+
+
 
 
 /// @brief  Read DS1307 RTC into POSIX struct tm * structure.
@@ -230,16 +169,12 @@ uint8_t rtc_write(tm_t *t)
 /// @return 0 on fail.
 uint8_t rtc_read(tm_t *t)
 {
-    uint8_t buf[8];
+    uint8_t buf[DS1307_REG_SIZE];
 
-    uint8_t ReadAddress = 0;
-
-    ReadAddress = 0;
-    if (TWI_ReadPacket(DS1307_R, RTC_TIMEOUT, &ReadAddress, sizeof(ReadAddress),
-        (uint8_t*)buf, 8) != TWI_ERROR_NoError)
-    {
+	if( !i2c_rtc_read(DS1307, 0, buf, sizeof(buf)) )
+	{
         printf("rtc_read error\n");
-        return 0;
+        return (0);
     }
 
 #ifdef RTC_DEBUG
@@ -272,6 +207,108 @@ uint8_t rtc_read(tm_t *t)
 
     return 1;
 }
+
+
+
+/// @brief Set DS1307 run state.
+/// @param[in] run state.
+///  - 1 = run.
+///  - 0 = stop.
+///  - -1 = check run state.
+///
+/// @return  run state 0/1 on success.
+/// @return -1 on error.
+int rtc_run(int run)
+{
+	uint8_t reg;
+
+	if( !i2c_rtc_read(DS1307, 0, (uint8_t *) &reg, sizeof(reg)) )
+	{
+        printf("rtc_run read error\n");
+        return -1;
+    }
+
+    if(run == -1)
+        return ((reg & 0x80) ? 0 : 1);
+
+    reg = ( reg & 0x7f) | (run ? 0 : 0x80);
+
+	if( !i2c_rtc_write(DS1307, 0, (uint8_t *) &reg, sizeof(reg)) )
+	{
+        printf("rtc_run write error\n");
+        return -1;
+    }
+    return(run);
+}
+
+/// @brief DS1307 run test
+///
+/// - display error if read error occurs.
+///
+/// @return 1 if running.
+/// @return 0 if not running.
+/// @return -1 ERROR
+int8_t rtc_run_test()
+{
+	return ( rtc_run(-1) );
+}
+
+
+/// @brief Initialize DS1307 rtc if not initialied - or if forced.
+///
+/// @param[in] force: force initialiation flag.
+/// - If 1 then alwasy force initialiation.
+/// @param[in] seconds: POSIX EPOCH time in seconds.
+///
+/// @return  run state 0 = STOP, 1 = RUN
+/// @return -1 = ERROR
+uint8_t rtc_init (int force, time_t seconds)
+{
+    int8_t    state;
+
+    tm_t *tmp;
+
+    i2c_rtc_init();
+
+    if(!force)
+    {
+        state = rtc_run(-1);
+        if(state < 0)
+        {
+            rtc_ok = 0;
+            return 0;
+        }
+        if(state == 0)                            // stopped
+            force = 1;
+    }
+
+    if(force)                                     // INIT
+    {
+        if(rtc_run(0) < 0)                        // STOP RTC
+        {
+            rtc_ok = 0;                           // Fail
+            return 0;
+        }
+
+        tmp = gmtime(&seconds);
+
+        if(tmp == NULL || !rtc_write(tmp))
+        {
+            printf("rtc_init  write epoch failed\n");
+            rtc_ok = 0;
+            return 0;
+        }
+
+        if(rtc_run(1) < 0)                        // START RTC
+        {
+            rtc_ok = 0;                           // Fail
+            return 0;
+        }
+    }
+    rtc_ok = 1;
+    return 1;
+}
+
 
 
 /// These are defined in my FatFS code support

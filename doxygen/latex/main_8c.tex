@@ -20,16 +20,16 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 \begin{DoxyCompactItemize}
 \item 
 typedef void($\ast$ \hyperlink{main_8c_a52d21b0c2b1c100472ac0571d94ab0b5}{R\+E\+S\+E\+T\+\_\+t}) (void)
-\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}{copyright} ()
-\begin{DoxyCompactList}\small\item\em Display Copyright. \end{DoxyCompactList}\item 
 void \hyperlink{main_8c_a8824827cf2979219e9a65ead803647e6}{gpib\+\_\+user\+\_\+task} ()
 \begin{DoxyCompactList}\small\item\em ====================================== \end{DoxyCompactList}\item 
-void \hyperlink{main_8c_a66ac220b8fb4c59823fdf116cecda862}{task} (uint8\+\_\+t gpib)
-\begin{DoxyCompactList}\small\item\em ====================================== \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}{help} ()
+\begin{DoxyCompactList}\small\item\em Display the main help menu -\/ calls all other help menus. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a60bde6d5d7a2cb6c56e942f0fa898dcb}{user\+\_\+task} (uint8\+\_\+t gpib)
+\begin{DoxyCompactList}\small\item\em User command handler -\/ called as main task. \end{DoxyCompactList}\item 
 int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
 \begin{DoxyCompactList}\small\item\em \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main()} for gpib project \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -62,31 +62,6 @@ Main for G\+P\+IB emulator for H\+P85 disk emulator project for A\+VR.
 
 
 
-Display the main help menu -\/ calls all other help menus. 
-
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{gpib__tests_8c_a4bd85d1cfc93b13cd8cfbac1014224c4}{gpib\+\_\+help()} 
-
-\hyperlink{fatfs__tests_8c_ad16bc1913c19300dba43a07006c9ac52}{fatfs\+\_\+help()} 
-\end{DoxySeeAlso}
-
-
-Definition at line 96 of file main.\+c.
-
-
-
-\subsection{Function Documentation}
-\mbox{\Hypertarget{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}\label{main_8c_ada2555fd3159dbf04e0738fe9c50e22c}} 
-\index{main.\+c@{main.\+c}!copyright@{copyright}}
-\index{copyright@{copyright}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{copyright()}{copyright()}}
-{\footnotesize\ttfamily void copyright (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-
-
 Display Copyright. 
 
 \begin{DoxyReturn}{Returns}
@@ -94,8 +69,11 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 43 of file main.\+c.
+Definition at line 42 of file main.\+c.
 
+
+
+\subsection{Function Documentation}
 \mbox{\Hypertarget{main_8c_a8824827cf2979219e9a65ead803647e6}\label{main_8c_a8824827cf2979219e9a65ead803647e6}} 
 \index{main.\+c@{main.\+c}!gpib\+\_\+user\+\_\+task@{gpib\+\_\+user\+\_\+task}}
 \index{gpib\+\_\+user\+\_\+task@{gpib\+\_\+user\+\_\+task}!main.\+c@{main.\+c}}
@@ -108,11 +86,39 @@ Definition at line 43 of file main.\+c.
 
 ====================================== ====================================== 
 
-Definition at line 260 of file main.\+c.
+Definition at line 208 of file main.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}\label{main_8c_a97ee70a8770dc30d06c744b24eb2fcfc}} 
+\index{main.\+c@{main.\+c}!help@{help}}
+\index{help@{help}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{help()}{help()}}
+{\footnotesize\ttfamily void help (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Display the main help menu -\/ calls all other help menus. 
+
+\subsection*{====================================== }
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{gpib__tests_8c_a4bd85d1cfc93b13cd8cfbac1014224c4}{gpib\+\_\+help()} 
+
+\hyperlink{fatfs__tests_8c_ad16bc1913c19300dba43a07006c9ac52}{fatfs\+\_\+help()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 264 of file main.\+c.
+
+
+
+Referenced by user\+\_\+task().
 
 \mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
 \index{main.\+c@{main.\+c}!main@{main}}
@@ -130,8 +136,6 @@ should never return!
 @ initialize bus state as soon as practical
 
 @ Initialize U\+A\+RT early Returns actual B\+A\+UD rate -\/ possible with hardware -\/ may differ slightly
-
-Power up delay
 
 Power up delay
 
@@ -165,23 +169,21 @@ Start main G\+P\+IB state machine
 
 Keep the task running task does not exit unless a keypress occurs When it restarts A\+LL G\+P\+IB states are reset 
 
-Definition at line 390 of file main.\+c.
+Definition at line 420 of file main.\+c.
 
 
 
 Referenced by Mat\+Write().
 
-\mbox{\Hypertarget{main_8c_a66ac220b8fb4c59823fdf116cecda862}\label{main_8c_a66ac220b8fb4c59823fdf116cecda862}} 
-\index{main.\+c@{main.\+c}!task@{task}}
-\index{task@{task}!main.\+c@{main.\+c}}
-\subsubsection{\texorpdfstring{task()}{task()}}
-{\footnotesize\ttfamily void task (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{gpib }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{main_8c_a60bde6d5d7a2cb6c56e942f0fa898dcb}\label{main_8c_a60bde6d5d7a2cb6c56e942f0fa898dcb}} 
+\index{main.\+c@{main.\+c}!user\+\_\+task@{user\+\_\+task}}
+\index{user\+\_\+task@{user\+\_\+task}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{user\+\_\+task()}{user\_task()}}
+{\footnotesize\ttfamily void user\+\_\+task (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{gpib }\end{DoxyParamCaption})}
 
 
 
-====================================== 
-
-User command handler -\/ called as main task
+User command handler -\/ called as main task. 
 
 If a keypress is detected read a line from the uart parse the result and call various user functions. ? will return a list of fuctions and paramters permitted 
 \begin{DoxyParams}[1]{Parameters}
@@ -193,7 +195,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 278 of file main.\+c.
+Definition at line 306 of file main.\+c.
 
 
 

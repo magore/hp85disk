@@ -102,14 +102,14 @@ typedef unsigned long int size_t;
 #include "rs232.h"
 #include "spi.h"
 #include "rtc.h"
-#include "TWI_AVR8.h"
+// #include "TWI_AVR8.h"
 
 #ifdef I2C_SUPPORT
 #include "i2c.h"
 #endif
 
 #ifdef LCD_SUPPORT
-#include "LCD.h"
+// #include "LCD.h"
 #include "display/lcd_printf.h"
 #endif
 

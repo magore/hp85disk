@@ -15,19 +15,23 @@
 
 #include "user_config.h"
 
-// Timeout in ms
-#define RTC_TIMEOUT 50
-
 int rtc_ok;
 
-#define  DS1307_W                       0xd0
-#define  DS1307_R                       0xd1
+#define  DS1307 0x68
+#define  DS1307_REG_SIZE 8
 
 /* rtc.c */
 uint8_t BINtoBCD ( uint8_t data );
 uint8_t BCDtoBIN ( uint8_t data );
-uint8_t rtc_init ( int force , time_t seconds);
-uint8_t rtc_write ( struct tm *t );
-uint8_t rtc_read ( struct tm *t );
-uint32_t get_fattime ( void );
+int8_t i2c_rtc_write ( uint8_t address , uint8_t ind , uint8_t *buf , uint8_t len );
+int8_t i2c_rtc_read ( uint8_t address , uint8_t ind , uint8_t *buf , uint8_t len );
+void i2c_rtc_init ( void );
+uint8_t rtc_write ( tm_t *t );
+uint8_t rtc_read ( tm_t *t );
+int rtc_run ( int run );
+int8_t rtc_run_test ( void );
+uint8_t rtc_init ( int force , time_t seconds );
+// uint32_t tm_to_fat ( tm_t *t );
+// uint32_t get_fattime ( void );
+
 #endif

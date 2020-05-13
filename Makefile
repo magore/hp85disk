@@ -174,7 +174,7 @@ HARDWARE = \
 	hardware/delay.c \
 	hardware/rs232.c \
 	hardware/spi.c \
-	hardware/TWI_AVR8.c 
+	# hardware/TWI_AVR8.c 
 	
 # Evaluate interrupt driven I2C code - compiled bit it is not being used yet
 ifeq ($(I2C_SUPPORT),1)
@@ -188,8 +188,8 @@ endif
 
 # Do we have an I2C LCD
 ifeq ($(LCD_SUPPORT),1)
-	HARDWARE += hardware/LCD.c 
-	HARDWARE += display/lcd_printf.c
+	# HARDWARE += hardware/LCD.c 
+	# HARDWARE += display/lcd_printf.c
 endif
 
 LIB = \

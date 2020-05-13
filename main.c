@@ -38,6 +38,16 @@
 
 #include <math.h>
 
+/* RunBoot define */
+typedef void (*RESET_t)(void) __attribute__((noreturn));
+
+#ifdef OPTIBOOT
+//void (*RESET) (void) = (0x10000-0x400);
+const RESET_t RESET = (RESET_t) (0x10000-0x400);
+#else
+const RESET_t RESET = (RESET_t) (0);
+#endif
+
 ///@brief Display Copyright
 ///@return void
 void copyright()
@@ -51,6 +61,158 @@ void copyright()
     printf("   Last updated file: %s\n", LOCAL_MOD);
     printf("\n");
 }
+
+
+
+/// ======================================
+
+#ifdef LCD_SUPPORT
+
+///@brief TWO line display structure
+/// These four structures are updated by the lcd_display_task() function
+/// The data itself is all set in the background by interrupt driven I2C code
+/// _cmd1 sequence positions at the beginning of line 1
+/// _cmd2 sequence positions at the beginning of line 2
+/// _line1 and _line two take ascii data 
+uint8_t  _cmd1[2] = { 0xfe, 0x80 };
+uint8_t _line1 [21] = { ' ' };
+uint8_t  _cmd2[2] = { 0xfe, 0xC0 };
+uint8_t _line2 [21] = { ' ' };
+#endif	// LCD_SUPPORT
+
+/// ======================================
+#ifdef LCD_SUPPORT
+
+///@brief LCD timer counter incremented at 1000HZ
+static int16_t lcd_display_time = 0;
+
+///@brief LCD timer function called at 1000HZ
+void lcd_task()
+{
+	++lcd_display_time;
+}
+
+/// @brief Convert tm_t *t structure into POSIX asctime() ASCII string *buf.
+///
+/// @param[in] t: tm_t structure pointer.
+/// @param[out] buf: user buffer for POSIX asctime() string result.
+/// - Example output: "Thu Dec  8 21:45:05 EST 2011".
+///
+/// @return buf string pointer.
+MEMSPACE
+char *lcd_time(tm_t *t, char *buf, int max)
+{
+// normaize tm_t before output
+    (void) normalize(t,0);
+    memset(buf,0,max);
+    snprintf(buf,max-1,"%s %2d %02d:%02d:%02d",
+        tm_mon_to_ascii(t->tm_mon),
+        (int)t->tm_mday,
+        (int)t->tm_hour,
+        (int)t->tm_min,
+        (int)t->tm_sec);
+    return(buf);
+}
+
+///@brief LCD setup code
+/// For a SparkFun SERLCD 2x16 display
+/// Initializes the I2C task structure 
+/// Passes the structures to the interrupt handler
+void setup_lcd()
+{
+	int ind = 0;
+    uint8_t sreg = SREG;
+
+    printf("I2C LCD initialization start\n");
+
+	if(set_timers(lcd_task,1) == -1)
+        printf("lcd_task init failed\n");
+
+	i2c_init(100000);
+
+	cli();
+
+	i2c_task_init();
+
+	// Default startup message
+    sprintf((char *) _line1, "%-16s", "HP85Disk V2");
+    sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
+
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd1, 2);
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _line1, 16);
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd2, 2);
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _line2, 16);
+
+	SREG = sreg;
+
+    i2c_task_run();
+    delayms(1000);
+	
+    if(!i2c_task_done())
+	{
+		i2c_display_task_errors();
+        printf("I2C LCD is NOT attached!\n");
+	}
+
+    sep();
+}
+
+
+///@brief Update the LCD wile the system is running
+/// Display SD card fault status and the current time
+void i2c_lcd_task()
+{
+	char buf[32];
+	uint8_t sreg=SREG;
+    ts_t ts;
+
+	cli();
+	if(!mmc_ins_status())
+	{
+		sprintf((char *) _line2,"%-16s", "SD Card Fault");
+	}
+	else
+	{
+		clock_gettime(0, (ts_t *) &ts);
+		sprintf((char *) _line2, "%-16s", lcd_time(gmtime(&(ts.tv_sec)),buf,sizeof(buf)-1) );
+		// sprintf((char *) _line2,"%16ld.%03ld", (long) ts.tv_sec, (long) ts.tv_nsec / 1000000UL);
+	}
+	SREG=sreg;
+
+    i2c_task_run();
+}
+
+
+#endif	// LCD_SUPPORT
+
+/// ======================================
+#ifdef LCD_SUPPORT
+///@brief GPIB callback from gpib_read_byte()
+/// This function gets called evry time trough the read loop
+/// This task run in the forground - is not an interrupt task
+void gpib_user_task()
+{
+	uint8_t sreg = SREG;
+
+	cli();
+	if(lcd_display_time > 100) // increments at 1000HZ
+	{
+		lcd_display_time = 0;
+		SREG = sreg;
+		i2c_lcd_task();
+		return;
+	}
+	SREG = sreg;
+}
+#else // LCD_SUPPORT
+void gpib_user_task()
+{
+}
+
+#endif	// LCD_SUPPORT
+/// ======================================
+/// ======================================
+
 
 #ifdef DELAY_TESTS
 /// @brief  perform tests on delay functions
@@ -92,16 +254,9 @@ void delay_tests()
 }
 #endif
 
-/* RunBoot define */
-typedef void (*RESET_t)(void) __attribute__((noreturn));
 
-#ifdef OPTIBOOT
-//void (*RESET) (void) = (0x10000-0x400);
-const RESET_t RESET = (RESET_t) (0x10000-0x400);
-#else
-const RESET_t RESET = (RESET_t) (0);
-#endif
 
+/// ======================================
 /// @brief  Display the main help menu - calls all other help menus
 /// @return  void
 /// @see gpib_help()
@@ -126,10 +281,13 @@ void help()
     gpib_help(0);
 
     printf(
-    #ifdef DELAY_TESTS
+#ifdef DELAY_TESTS
         "delay_tests\n"
-    #endif
+#endif
         "help\n"
+#ifdef LCD_SUPPORT
+        "led\n"
+#endif
         "mem\n"
         "setdate\n"
         "time\n"
@@ -137,136 +295,6 @@ void help()
         "\n"
         );
 }
-/// ======================================
-
-#ifdef LCD_SUPPORT
-
-//uint8_t  _cmd1[2] = { 0x7f, 45 };
-uint8_t  _cmd1[2] = { 0xfe, 0x80 };
-uint8_t _line1 [21] = { ' ' };
-uint8_t  _cmd2[2] = { 0xfe, 0xC0 };
-uint8_t _line2 [21] = { ' ' };
- 
-#endif	// LCD_SUPPORT
-
-/// ======================================
-#ifdef LCD_SUPPORT
-
-time_t _seconds = 0;
-static int _display_cnt = 0;
-
-void lcd_task()
-{
-	++_display_cnt;
-}
-
-#ifdef LCD_SUPPORT
-/// @brief Convert tm_t *t structure into POSIX asctime() ASCII string *buf.
-///
-/// @param[in] t: tm_t structure pointer.
-/// @param[out] buf: user buffer for POSIX asctime() string result.
-/// - Example output: "Thu Dec  8 21:45:05 EST 2011".
-///
-/// @return buf string pointer.
-MEMSPACE
-char *lcd_time(tm_t *t, char *buf, int max)
-{
-// normaize tm_t before output
-    (void) normalize(t,0);
-    memset(buf,0,max);
-    snprintf(buf,max-1,"%s %2d %02d:%02d:%02d",
-        tm_mon_to_ascii(t->tm_mon),
-        (int)t->tm_mday,
-        (int)t->tm_hour,
-        (int)t->tm_min,
-        (int)t->tm_sec);
-    return(buf);
-}
-
-void i2c_lcd_test()
-{
-	char buf[32];
-	uint8_t sreg=SREG;
-    ts_t ts;
-
-	cli();
-	if(!mmc_ins_status())
-	{
-		sprintf((char *) _line2,"%-16s", "SD Card Fault");
-	}
-	else
-	{
-		clock_gettime(0, (ts_t *) &ts);
-		sprintf((char *) _line2, "%-16s", lcd_time(gmtime(&(ts.tv_sec)),buf,sizeof(buf)-1) );
-		// sprintf((char *) _line2,"%16ld.%03ld", (long) ts.tv_sec, (long) ts.tv_nsec / 1000000UL);
-	}
-	SREG=sreg;
-
-    i2c_post();
-}
-#endif	// LCD_SUPPORT
-
-
-///@ initialize Optional I2C LCD
-void setup_lcd()
-{
-	int ind = 0;
-    uint8_t sreg = SREG;
-	extern i2c_op_t *i2c_op[];
-
-    printf("I2C LCD initialization start\n");
-
-	if(set_timers(lcd_task,1) == -1)
-        printf("lcd_task init failed\n");
-
-	cli();
-	i2c_init(100000);
-
-    sprintf((char *) _line1, "%-16s", "HP85Disk V2");
-    sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
-
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd1, 2);
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line1, 16);
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _cmd2, 2);
-	i2c_op[ind++] = i2c_op_add(0x72, TW_WRITE, _line2, 16);
-
-	SREG = sreg;
-
-    i2c_post();
-    delayms(1000);
-    if(!i2c_done() || !i2c_ok())
-        printf("I2C LCD is NOT attached!\n");
-    sep();
-}
-#endif	// LCD_SUPPORT
-
-/// ======================================
-#ifdef LCD_SUPPORT
-void gpib_user_task()
-{
-	uint8_t sreg = SREG;
-
-	cli();
-	if(_display_cnt > 100) // 10HZ
-	{
-		_display_cnt = 0;
-		SREG = sreg;
-		i2c_lcd_test();
-		return;
-	}
-	SREG = sreg;
-}
-#else // LCD_SUPPORT
-void gpib_user_task()
-{
-}
-#endif	// LCD_SUPPORT
-
-
-
-
-
-/// ======================================
 
 /// @brief  User command handler - called as main task
 ///
@@ -275,7 +303,7 @@ void gpib_user_task()
 /// ? will return a list of fuctions and paramters permitted
 /// @param[in] gpib - if non-zero run gpib while there are no user commands
 /// @return  void
-void task(uint8_t gpib)
+void user_task(uint8_t gpib)
 {
     char *ptr;
     int ind;
@@ -324,11 +352,13 @@ void task(uint8_t gpib)
         display_clock();
         result = 1;
     }
+#ifdef LCD_SUPPORT
     else if ( MATCHI(ptr,"lcd") )
     {
-		i2c_lcd_test();
+		i2c_lcd_task();
         result = 1;
     }
+#endif
     else if ( MATCHI(ptr,"reset") )
     {
         cli();
@@ -429,7 +459,7 @@ int main(void)
     PrintFree();
 
     sep();
-    delayms(200);                                 ///@brief Power up delay
+    // delayms(200);                                 ///@brief Power up delay
 
 ///@ initialize SPI bus
     printf("Initializing SPI bus\n");
@@ -437,7 +467,7 @@ int main(void)
 
 ///@ initialize I2C bus
     printf("Initializing I2C bus\n");
-    TWI_Init(TWI_BIT_PRESCALE_4, TWI_BITLENGTH_FROM_FREQ(4, 100000));
+	i2c_init(100000);
     sep();
 
 ///@ initialize clock by RTC if we have it
@@ -445,9 +475,9 @@ int main(void)
     clock_clear();
     printf("Clock cleared\n");
     clock_getres(0, (ts_t *) &ts);
-    printf("SYSTEM_TASK_COUNTER_RES:%ld\n", (uint32_t) ts.tv_nsec);
+    printf("System Task Interrupt Rate: %ld Nano Seconds\n", (long) ts.tv_nsec);
 
-// Timezone offset
+// Timezone offset we just use local time
     initialize_clock(0);
     display_clock();
     sep();
@@ -503,10 +533,14 @@ int main(void)
 		(int) count_drive_types(AMIGO_TYPE) );
 	sprintf((char *) _line1, "%-16s", tmp);
 	sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
-	i2c_post();
+
+	i2c_task_run();
 	delayms(1000);
-    if(!i2c_done() || !i2c_ok())
+    if(!i2c_task.done || i2c_task.error )
+	{
+		i2c_display_task_errors();
 		printf("I2C LCD is NOT attached!\n");
+	}
 #endif
 
 ///@brief Start main GPIB state machine
@@ -517,6 +551,6 @@ int main(void)
 /// When it restarts ALL GPIB states are reset 
     while ( 1)
     {
-        task(1);
+        user_task(1);
     }
 }

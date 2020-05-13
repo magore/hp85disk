@@ -9,27 +9,33 @@ D\+S1307 R\+TC Driver A\+V\+R8.
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{rtc_8h_aa6c9d6b88ad3cfce15282812d6ac9a0b}{R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~50
+\#define \hyperlink{rtc_8h_a3925233b7b37e63f8555ec63d941c847}{D\+S1307}~0x68
 \item 
-\#define \hyperlink{rtc_8h_aa7571989952421946d1ecd5575584100}{D\+S1307\+\_\+W}~0xd0
-\item 
-\#define \hyperlink{rtc_8h_a4281d4baba9be3ab3ed9156d89f72fc5}{D\+S1307\+\_\+R}~0xd1
+\#define \hyperlink{rtc_8h_a6d3e4a0c5571bf61e7acb8399a735469}{D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE}~8
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \hyperlink{rtc_8h_a221016815913bd1b20c9b619900b40b8}{B\+I\+Nto\+B\+CD} (uint8\+\_\+t data)
-\begin{DoxyCompactList}\small\item\em Convert number $>$= 0 and $<$= 99 to B\+CD. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em R\+TC B\+CD conversion functions. \end{DoxyCompactList}\item 
 uint8\+\_\+t \hyperlink{rtc_8h_a2487d4ced293cbe6f2779960032e30c2}{B\+C\+Dto\+B\+IN} (uint8\+\_\+t data)
 \begin{DoxyCompactList}\small\item\em Convert two \char`\"{}digit\char`\"{} B\+CD number to binary. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{rtc_8h_aca651806fd67e4d5345fc45f70b35814}{rtc\+\_\+init} (int force, \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} seconds)
-\begin{DoxyCompactList}\small\item\em Initialize D\+S1307 rtc if not initialied -\/ or if forced. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{rtc_8h_a27a133715802f5a78c9dfac7d987b35d}{rtc\+\_\+write} (struct \hyperlink{structtm}{tm} $\ast$t)
-\begin{DoxyCompactList}\small\item\em Set D\+S1307 R\+TC from P\+O\+S\+IX struct tm $\ast$ structure. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}{rtc\+\_\+read} (struct \hyperlink{structtm}{tm} $\ast$t)
+int8\+\_\+t \hyperlink{rtc_8h_a5838fb934d7e35fcd257d777b75faba8}{i2c\+\_\+rtc\+\_\+write} (uint8\+\_\+t address, uint8\+\_\+t ind, uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em R\+TC H\+AL. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{rtc_8h_a8092c3d5695d288cf48cf92483c8f9fb}{i2c\+\_\+rtc\+\_\+read} (uint8\+\_\+t address, uint8\+\_\+t ind, uint8\+\_\+t $\ast$buf, uint8\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em R\+TC I2C R\+E\+AD function. \end{DoxyCompactList}\item 
+void \hyperlink{rtc_8h_a48dd2c77e27ab039e69d3b00fa145196}{i2c\+\_\+rtc\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em R\+TC I2C initialization code. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{rtc_8h_a9ba6382e802fb431c0460599c191763f}{rtc\+\_\+write} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\+\_\+t} $\ast$t)
+\begin{DoxyCompactList}\small\item\em R\+TC functions. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{rtc_8h_a3794738edaf3a42409aa1d9e12be60c3}{rtc\+\_\+read} (\hyperlink{time_8h_a2fea857c30e2c901566fcf45fac68ac5}{tm\+\_\+t} $\ast$t)
 \begin{DoxyCompactList}\small\item\em Read D\+S1307 R\+TC into P\+O\+S\+IX struct tm $\ast$ structure. \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{rtc_8h_a90d310b1f92cf36ef427b8d639e55405}{get\+\_\+fattime} (void)
-\begin{DoxyCompactList}\small\item\em Read time and convert to F\+A\+T32 time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \hyperlink{rtc_8h_a18a3db53342227574822a9b6b9c0386b}{rtc\+\_\+run} (int run)
+\begin{DoxyCompactList}\small\item\em Set D\+S1307 run state. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{rtc_8h_aa4e884598c090bd900bb77a683ecfd20}{rtc\+\_\+run\+\_\+test} (void)
+\begin{DoxyCompactList}\small\item\em D\+S1307 run test. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{rtc_8h_aca651806fd67e4d5345fc45f70b35814}{rtc\+\_\+init} (int force, \hyperlink{time_8h_a3346b04b0420b32ccf6b706551b70762}{time\+\_\+t} seconds)
+\begin{DoxyCompactList}\small\item\em Initialize D\+S1307 rtc if not initialied -\/ or if forced. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -52,47 +58,33 @@ D\+S1307 R\+TC Driver A\+V\+R8.
 
 
 \subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{rtc_8h_a4281d4baba9be3ab3ed9156d89f72fc5}\label{rtc_8h_a4281d4baba9be3ab3ed9156d89f72fc5}} 
-\index{rtc.\+h@{rtc.\+h}!D\+S1307\+\_\+R@{D\+S1307\+\_\+R}}
-\index{D\+S1307\+\_\+R@{D\+S1307\+\_\+R}!rtc.\+h@{rtc.\+h}}
-\subsubsection{\texorpdfstring{D\+S1307\+\_\+R}{DS1307\_R}}
-{\footnotesize\ttfamily \#define D\+S1307\+\_\+R~0xd1}
+\mbox{\Hypertarget{rtc_8h_a3925233b7b37e63f8555ec63d941c847}\label{rtc_8h_a3925233b7b37e63f8555ec63d941c847}} 
+\index{rtc.\+h@{rtc.\+h}!D\+S1307@{D\+S1307}}
+\index{D\+S1307@{D\+S1307}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{D\+S1307}{DS1307}}
+{\footnotesize\ttfamily \#define D\+S1307~0x68}
 
 
 
-Definition at line 24 of file rtc.\+h.
+Definition at line 20 of file rtc.\+h.
 
 
 
-Referenced by rtc\+\_\+read(), rtc\+\_\+run(), and rtc\+\_\+run\+\_\+test().
+Referenced by rtc\+\_\+read(), rtc\+\_\+run(), and rtc\+\_\+write().
 
-\mbox{\Hypertarget{rtc_8h_aa7571989952421946d1ecd5575584100}\label{rtc_8h_aa7571989952421946d1ecd5575584100}} 
-\index{rtc.\+h@{rtc.\+h}!D\+S1307\+\_\+W@{D\+S1307\+\_\+W}}
-\index{D\+S1307\+\_\+W@{D\+S1307\+\_\+W}!rtc.\+h@{rtc.\+h}}
-\subsubsection{\texorpdfstring{D\+S1307\+\_\+W}{DS1307\_W}}
-{\footnotesize\ttfamily \#define D\+S1307\+\_\+W~0xd0}
-
-
-
-Definition at line 23 of file rtc.\+h.
+\mbox{\Hypertarget{rtc_8h_a6d3e4a0c5571bf61e7acb8399a735469}\label{rtc_8h_a6d3e4a0c5571bf61e7acb8399a735469}} 
+\index{rtc.\+h@{rtc.\+h}!D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE@{D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE}}
+\index{D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE@{D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE}{DS1307\_REG\_SIZE}}
+{\footnotesize\ttfamily \#define D\+S1307\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE~8}
 
 
 
-Referenced by rtc\+\_\+init(), rtc\+\_\+run(), and rtc\+\_\+write().
-
-\mbox{\Hypertarget{rtc_8h_aa6c9d6b88ad3cfce15282812d6ac9a0b}\label{rtc_8h_aa6c9d6b88ad3cfce15282812d6ac9a0b}} 
-\index{rtc.\+h@{rtc.\+h}!R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT}}
-\index{R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT@{R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT}!rtc.\+h@{rtc.\+h}}
-\subsubsection{\texorpdfstring{R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT}{RTC\_TIMEOUT}}
-{\footnotesize\ttfamily \#define R\+T\+C\+\_\+\+T\+I\+M\+E\+O\+UT~50}
+Definition at line 21 of file rtc.\+h.
 
 
 
-Definition at line 19 of file rtc.\+h.
-
-
-
-Referenced by rtc\+\_\+init(), rtc\+\_\+read(), rtc\+\_\+run(), rtc\+\_\+run\+\_\+test(), and rtc\+\_\+write().
+Referenced by i2c\+\_\+rtc\+\_\+read(), i2c\+\_\+rtc\+\_\+write(), rtc\+\_\+read(), and rtc\+\_\+write().
 
 
 
@@ -120,7 +112,7 @@ Binary value.
 \end{DoxyReturn}
 
 
-Definition at line 34 of file rtc.\+c.
+Definition at line 38 of file rtc.\+c.
 
 
 
@@ -134,7 +126,9 @@ Referenced by rtc\+\_\+read().
 
 
 
-Convert number $>$= 0 and $<$= 99 to B\+CD. 
+R\+TC B\+CD conversion functions. 
+
+================================================================================Convert number $>$= 0 and $<$= 99 to B\+CD.
 
 
 \begin{DoxyItemize}
@@ -154,35 +148,96 @@ we assume the number is in range.
 \end{DoxyWarning}
 
 
-Definition at line 23 of file rtc.\+c.
+Definition at line 27 of file rtc.\+c.
 
 
 
 Referenced by rtc\+\_\+write().
 
-\mbox{\Hypertarget{rtc_8h_a90d310b1f92cf36ef427b8d639e55405}\label{rtc_8h_a90d310b1f92cf36ef427b8d639e55405}} 
-\index{rtc.\+h@{rtc.\+h}!get\+\_\+fattime@{get\+\_\+fattime}}
-\index{get\+\_\+fattime@{get\+\_\+fattime}!rtc.\+h@{rtc.\+h}}
-\subsubsection{\texorpdfstring{get\+\_\+fattime()}{get\_fattime()}}
-{\footnotesize\ttfamily uint32\+\_\+t get\+\_\+fattime (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{rtc_8h_a48dd2c77e27ab039e69d3b00fa145196}\label{rtc_8h_a48dd2c77e27ab039e69d3b00fa145196}} 
+\index{rtc.\+h@{rtc.\+h}!i2c\+\_\+rtc\+\_\+init@{i2c\+\_\+rtc\+\_\+init}}
+\index{i2c\+\_\+rtc\+\_\+init@{i2c\+\_\+rtc\+\_\+init}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{i2c\+\_\+rtc\+\_\+init()}{i2c\_rtc\_init()}}
+{\footnotesize\ttfamily void i2c\+\_\+rtc\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
-Read time and convert to F\+A\+T32 time. 
+R\+TC I2C initialization code. 
 
 \begin{DoxyReturn}{Returns}
-F\+A\+T32 time. 
+void 
 \end{DoxyReturn}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{fatfs__sup_8c_ae7b9417320aaaa1c1dfb229cad6669d8}{tm\+\_\+to\+\_\+fat()}. 
-\end{DoxySeeAlso}
 
 
-Definition at line 129 of file fatfs\+\_\+sup.\+c.
+Definition at line 104 of file rtc.\+c.
 
 
 
-Referenced by rtc\+\_\+read().
+Referenced by rtc\+\_\+init().
+
+\mbox{\Hypertarget{rtc_8h_a8092c3d5695d288cf48cf92483c8f9fb}\label{rtc_8h_a8092c3d5695d288cf48cf92483c8f9fb}} 
+\index{rtc.\+h@{rtc.\+h}!i2c\+\_\+rtc\+\_\+read@{i2c\+\_\+rtc\+\_\+read}}
+\index{i2c\+\_\+rtc\+\_\+read@{i2c\+\_\+rtc\+\_\+read}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{i2c\+\_\+rtc\+\_\+read()}{i2c\_rtc\_read()}}
+{\footnotesize\ttfamily int8\+\_\+t i2c\+\_\+rtc\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+R\+TC I2C R\+E\+AD function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em address} & D\+S1307 I2C address \\
+\hline
+\mbox{\tt in}  & {\em index} & D\+S1307 internal address index pointer \\
+\hline
+\mbox{\tt out}  & {\em buf} & read buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & buffer length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 = OK, 0 = E\+R\+R\+OR 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file rtc.\+c.
+
+
+
+Referenced by rtc\+\_\+read(), and rtc\+\_\+run().
+
+\mbox{\Hypertarget{rtc_8h_a5838fb934d7e35fcd257d777b75faba8}\label{rtc_8h_a5838fb934d7e35fcd257d777b75faba8}} 
+\index{rtc.\+h@{rtc.\+h}!i2c\+\_\+rtc\+\_\+write@{i2c\+\_\+rtc\+\_\+write}}
+\index{i2c\+\_\+rtc\+\_\+write@{i2c\+\_\+rtc\+\_\+write}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{i2c\+\_\+rtc\+\_\+write()}{i2c\_rtc\_write()}}
+{\footnotesize\ttfamily int8\+\_\+t i2c\+\_\+rtc\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{index,  }\item[{uint8\+\_\+t $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+R\+TC H\+AL. 
+
+================================================================================R\+TC I2C W\+R\+I\+TE function 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em address} & D\+S1307 I2C address \\
+\hline
+\mbox{\tt in}  & {\em index} & D\+S1307 internal address index pointer \\
+\hline
+\mbox{\tt out}  & {\em buf} & write buffer \\
+\hline
+\mbox{\tt in}  & {\em len} & buffer length\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 = OK, 0 = E\+R\+R\+OR 
+\end{DoxyReturn}
+D\+S1307 internal Address Pointer 
+
+Definition at line 55 of file rtc.\+c.
+
+
+
+Referenced by rtc\+\_\+run(), and rtc\+\_\+write().
 
 \mbox{\Hypertarget{rtc_8h_aca651806fd67e4d5345fc45f70b35814}\label{rtc_8h_aca651806fd67e4d5345fc45f70b35814}} 
 \index{rtc.\+h@{rtc.\+h}!rtc\+\_\+init@{rtc\+\_\+init}}
@@ -205,19 +260,19 @@ Initialize D\+S1307 rtc if not initialied -\/ or if forced.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-1 on success. 
+run state 0 = S\+T\+OP, 1 = R\+UN 
 
-0 on fail. 
+-\/1 = E\+R\+R\+OR 
 \end{DoxyReturn}
 
 
-Definition at line 110 of file rtc.\+c.
+Definition at line 265 of file rtc.\+c.
 
 
 
 Referenced by initialize\+\_\+clock(), and setdate\+\_\+r().
 
-\mbox{\Hypertarget{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}\label{rtc_8h_a13dd224642e709b435d15f4ea2c58a3e}} 
+\mbox{\Hypertarget{rtc_8h_a3794738edaf3a42409aa1d9e12be60c3}\label{rtc_8h_a3794738edaf3a42409aa1d9e12be60c3}} 
 \index{rtc.\+h@{rtc.\+h}!rtc\+\_\+read@{rtc\+\_\+read}}
 \index{rtc\+\_\+read@{rtc\+\_\+read}!rtc.\+h@{rtc.\+h}}
 \subsubsection{\texorpdfstring{rtc\+\_\+read()}{rtc\_read()}}
@@ -239,13 +294,72 @@ Read D\+S1307 R\+TC into P\+O\+S\+IX struct tm $\ast$ structure.
 \end{DoxyReturn}
 
 
-Definition at line 231 of file rtc.\+c.
+Definition at line 170 of file rtc.\+c.
 
 
 
-Referenced by display\+\_\+clock(), initialize\+\_\+clock(), and rtc\+\_\+read().
+Referenced by display\+\_\+clock(), initialize\+\_\+clock(), and rtc\+\_\+init().
 
-\mbox{\Hypertarget{rtc_8h_a27a133715802f5a78c9dfac7d987b35d}\label{rtc_8h_a27a133715802f5a78c9dfac7d987b35d}} 
+\mbox{\Hypertarget{rtc_8h_a18a3db53342227574822a9b6b9c0386b}\label{rtc_8h_a18a3db53342227574822a9b6b9c0386b}} 
+\index{rtc.\+h@{rtc.\+h}!rtc\+\_\+run@{rtc\+\_\+run}}
+\index{rtc\+\_\+run@{rtc\+\_\+run}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{rtc\+\_\+run()}{rtc\_run()}}
+{\footnotesize\ttfamily int rtc\+\_\+run (\begin{DoxyParamCaption}\item[{int}]{run }\end{DoxyParamCaption})}
+
+
+
+Set D\+S1307 run state. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em run} & state.
+\begin{DoxyItemize}
+\item 1 = run.
+\item 0 = stop.
+\item -\/1 = check run state.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+run state 0/1 on success. 
+
+-\/1 on error. 
+\end{DoxyReturn}
+
+
+Definition at line 221 of file rtc.\+c.
+
+
+
+Referenced by rtc\+\_\+init(), and rtc\+\_\+run\+\_\+test().
+
+\mbox{\Hypertarget{rtc_8h_aa4e884598c090bd900bb77a683ecfd20}\label{rtc_8h_aa4e884598c090bd900bb77a683ecfd20}} 
+\index{rtc.\+h@{rtc.\+h}!rtc\+\_\+run\+\_\+test@{rtc\+\_\+run\+\_\+test}}
+\index{rtc\+\_\+run\+\_\+test@{rtc\+\_\+run\+\_\+test}!rtc.\+h@{rtc.\+h}}
+\subsubsection{\texorpdfstring{rtc\+\_\+run\+\_\+test()}{rtc\_run\_test()}}
+{\footnotesize\ttfamily int8\+\_\+t rtc\+\_\+run\+\_\+test (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+D\+S1307 run test. 
+
+
+\begin{DoxyItemize}
+\item display error if read error occurs.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+1 if running. 
+
+0 if not running. 
+
+-\/1 E\+R\+R\+OR 
+\end{DoxyReturn}
+
+
+Definition at line 251 of file rtc.\+c.
+
+\mbox{\Hypertarget{rtc_8h_a9ba6382e802fb431c0460599c191763f}\label{rtc_8h_a9ba6382e802fb431c0460599c191763f}} 
 \index{rtc.\+h@{rtc.\+h}!rtc\+\_\+write@{rtc\+\_\+write}}
 \index{rtc\+\_\+write@{rtc\+\_\+write}!rtc.\+h@{rtc.\+h}}
 \subsubsection{\texorpdfstring{rtc\+\_\+write()}{rtc\_write()}}
@@ -253,7 +367,9 @@ Referenced by display\+\_\+clock(), initialize\+\_\+clock(), and rtc\+\_\+read()
 
 
 
-Set D\+S1307 R\+TC from P\+O\+S\+IX struct tm $\ast$ structure. 
+R\+TC functions. 
+
+================================================================================Set D\+S1307 R\+TC from P\+O\+S\+IX struct tm $\ast$ structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -267,7 +383,7 @@ Set D\+S1307 R\+TC from P\+O\+S\+IX struct tm $\ast$ structure.
 \end{DoxyReturn}
 
 
-Definition at line 180 of file rtc.\+c.
+Definition at line 119 of file rtc.\+c.
 
 
 
@@ -284,7 +400,7 @@ Referenced by rtc\+\_\+init().
 
 
 
-Definition at line 21 of file rtc.\+h.
+Definition at line 18 of file rtc.\+h.
 
 
 

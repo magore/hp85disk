@@ -81,7 +81,7 @@ var searchData=
   ['controller_5fstate',['CONTROLLER_STATE',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2',1,'drives.h']]],
   ['controller_5funit',['CONTROLLER_UNIT',['../drives_8h.html#a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428',1,'drives.h']]],
   ['copy',['copy',['../posix__tests_8c.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c'],['../posix__tests_8h.html#aa20d1cbe580573b96d08f9429a08fcd3',1,'copy(char *from, char *to):&#160;posix_tests.c']]],
-  ['copyright',['copyright',['../main_8c.html#ada2555fd3159dbf04e0738fe9c50e22c',1,'copyright():&#160;main.c'],['../hardware_2user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'copyright(void):&#160;main.c']]],
+  ['copyright',['copyright',['../hardware_2user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'user_config.h']]],
   ['copyright_2emd',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
   ['count_5fdrive_5ftypes',['count_drive_types',['../drives_8c.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c'],['../drives_8h.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c']]],

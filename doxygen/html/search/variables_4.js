@@ -19,7 +19,7 @@ var searchData=
   ['dirsectors',['DirSectors',['../structlifvol__t.html#aceac3bc67cda1f79d91c002411e33897',1,'lifvol_t']]],
   ['dirstartsector',['DirStartSector',['../structlifvol__t.html#a89b86c990a7843cfa2addfff9a775137',1,'lifvol_t']]],
   ['disk',['disk',['../td02lif_8c.html#affcceda12b139f26819f4929be705eb1',1,'td02lif.c']]],
-  ['done',['done',['../structi2c__op__t.html#a281b1e75543e100e4bac1f48d35ecd91',1,'i2c_op_t::done()'],['../structi2c__t.html#af3d87db9ab7b8e36414e02664577ba65',1,'i2c_t::done()']]],
+  ['done',['done',['../structi2c__op__t.html#a281b1e75543e100e4bac1f48d35ecd91',1,'i2c_op_t::done()'],['../structi2c__task__t.html#a644426e1f2db835f6868b249c1323cf8',1,'i2c_task_t::done()']]],
   ['dosmode',['DosMode',['../structtd__header__t.html#acb0710bd6f98290ea2490ce678b63894',1,'td_header_t']]],
   ['down_5fcounter',['down_counter',['../struct__gpib__t.html#a21ed3be06f76b0a5237b5e64bc2e8793',1,'_gpib_t']]],
   ['down_5fcounter_5fdone',['down_counter_done',['../struct__gpib__t.html#af2622dd8668ecb24c42a2da2d8956538',1,'_gpib_t']]],

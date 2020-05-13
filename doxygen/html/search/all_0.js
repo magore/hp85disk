@@ -17,6 +17,7 @@ var searchData=
   ['_5f_5fsstr',['__SSTR',['../posix_8h.html#a7934343459dfe68ced51599a7b9a316f',1,'posix.h']]],
   ['_5f_5fsunget',['__SUNGET',['../posix_8h.html#ad541703cea6b378290dcf2ea448d2879',1,'posix.h']]],
   ['_5f_5fswr',['__SWR',['../posix_8h.html#af08f227b04a8833c49ce8b798ca7f403',1,'posix.h']]],
+  ['_5f_5ftwi_5favr8_5fh_5f_5f',['__TWI_AVR8_H__',['../group__Group__TWI__AVR8.html#gaed9e1e1d80a4dd73f43f91ebee131031',1,'TWI_AVR8.h']]],
   ['_5f_5ftzone',['__tzone',['../time_8c.html#a9ac29ed71adf6807175d24ab1fa622a7',1,'__tzone():&#160;time.c'],['../time_8h.html#a9ac29ed71adf6807175d24ab1fa622a7',1,'__tzone():&#160;time.c'],['../timer_8c.html#a9ac29ed71adf6807175d24ab1fa622a7',1,'__tzone():&#160;timer.c']]],
   ['_5f_5fwday',['__WDay',['../time_8c.html#a6403bf32bcba7c1ca0fe395d8b30e542',1,'time.c']]],
   ['_5fcs_5fpin',['_cs_pin',['../hal_8c.html#a1d1ec6333b265b4dd659ee605a2421de',1,'hal.c']]],

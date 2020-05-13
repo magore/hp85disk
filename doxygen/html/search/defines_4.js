@@ -27,6 +27,6 @@ var searchData=
   ['disable_5fsplash_5fdisplay',['DISABLE_SPLASH_DISPLAY',['../LCD_8h.html#a88bf8ef5acd0c507a01bd5887e492f44',1,'LCD.h']]],
   ['disable_5fsystem_5fmessage_5fdisplay',['DISABLE_SYSTEM_MESSAGE_DISPLAY',['../LCD_8h.html#a035fd1aafb0b58e9bd8d4a98b42c126c',1,'LCD.h']]],
   ['display_5faddress1',['DISPLAY_ADDRESS1',['../LCD_8h.html#a855ec04b8fa71f0fc6488ca767aa1b20',1,'LCD.h']]],
-  ['ds1307_5fr',['DS1307_R',['../rtc_8h.html#a4281d4baba9be3ab3ed9156d89f72fc5',1,'rtc.h']]],
-  ['ds1307_5fw',['DS1307_W',['../rtc_8h.html#aa7571989952421946d1ecd5575584100',1,'rtc.h']]]
+  ['ds1307',['DS1307',['../rtc_8h.html#a3925233b7b37e63f8555ec63d941c847',1,'rtc.h']]],
+  ['ds1307_5freg_5fsize',['DS1307_REG_SIZE',['../rtc_8h.html#a6d3e4a0c5571bf61e7acb8399a735469',1,'rtc.h']]]
 ];

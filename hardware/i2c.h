@@ -42,31 +42,54 @@ typedef struct
     uint8_t  address;
     uint8_t  enable;
     uint8_t  done;
-    uint8_t flags;
+    uint8_t  flags;
     uint16_t timeout;
-    uint8_t  len;
-    uint8_t  ind;
+    int8_t  len;
+    int8_t  ind;
     uint8_t  *buf;
 } i2c_op_t;
 
 typedef struct {
     uint8_t enable;
-    uint8_t ind;
+    int8_t ind;
     uint8_t done;
     uint8_t error;
-} i2c_t;
+} i2c_task_t;
+
+///@ brief I2C callback function
+/// Used when automattically sending several transactions
+typedef int8_t (*i2c_callback_t)(void);
+
+///@brief I2C interrupt state registers
+extern i2c_op_t i2c;
+
+extern i2c_callback_t i2c_callback;
+
+///@brief I2C task state
+extern i2c_task_t i2c_task;
+
+///@brief I2C task list
+extern i2c_op_t *i2c_task_op[I2C_OPS];
+
 
 
 /* i2c.c */
-uint8_t i2c_check_op ( uint8_t index );
-void i2c_free_ops ( void );
-i2c_op_t *i2c_op_add ( uint8_t address , uint8_t mode , uint8_t *buf , uint8_t len );
-void i2c_task ( void );
+uint8_t i2c_check_op ( int8_t index );
+void i2c_task_init ( void );
+void i2c_task_free_ops ( void );
+i2c_op_t *i2c_task_op_add ( uint8_t address , uint8_t mode , uint8_t *buf , uint8_t len );
+int8_t i2c_task_next_op ( void );
+void i2c_task_run ( void );
 void i2c_init ( uint32_t speed );
-void i2c_post ( void );
-int i2c_done ( void );
-int i2c_ok ( void );
+int8_t i2c_ok ( void );
+int8_t i2c_done ( void );
+int8_t i2c_task_done ( void );
+uint8_t i2c_fn ( uint8_t address , uint8_t mode , uint8_t *buf , uint8_t len );
+void i2c_send_start ( void );
+void i2c_send_stop ( void );
+void i2c_timer ( void );
 // int ISR ( int TWI_vect );
-void i2c_print_error ( uint8_t index );
+void i2c_print_error ( i2c_op_t *o );
+void i2c_display_task_errors ( void );
 
 #endif

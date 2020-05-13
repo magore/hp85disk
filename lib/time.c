@@ -904,7 +904,7 @@ int setdate (void)
     extern MEMSPACE char *fgets ( char *str , int size , FILE *stream );
 
     printf("Enter date YYYY MM DD HH:MM:SS >");
-    fgets(buf,39,stdin);
+    fgets(buf,sizeof(buf)-2,stdin);
 
     return(setdate_r(buf));
 }
