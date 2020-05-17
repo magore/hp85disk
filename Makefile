@@ -375,7 +375,8 @@ AOBJ      = $(ASRC:.S=.o)
 # COMMON = -Wl,--section-start,.data=0x801100,--defsym=__heap_end=0x807fff
 
 ## Options common to compile, link and assembly rules
-COMMON = -Wl,-u,vfprintf -lprintf_flt -lm
+# COMMON = -Wl,-u,vfprintf -lprintf_flt -lm
+COMMON = -Wl,-u -lm
 
 # Flags for C files
 CFLAGS = $(COMMON)
