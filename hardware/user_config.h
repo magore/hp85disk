@@ -110,7 +110,7 @@ typedef unsigned long int size_t;
 
 #ifdef LCD_SUPPORT
 // #include "LCD.h"
-#include "display/lcd_printf.h"
+// #include "display/lcd_printf.h"
 #endif
 
 #include "posix/posix.h"

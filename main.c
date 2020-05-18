@@ -48,6 +48,7 @@ const RESET_t RESET = (RESET_t) (0x10000-0x400);
 const RESET_t RESET = (RESET_t) (0);
 #endif
 
+
 ///@brief Display Copyright
 ///@return void
 void copyright()
@@ -545,6 +546,12 @@ int main(void)
 
 ///@brief Start main GPIB state machine
     printf("Starting GPIB TASK\n");
+
+#if 0
+	// Test new printf S string type
+	printf("memx printf:%S\n", PSTR("This is a program memory message" ) );
+	printf("memx printf:%S\n", PSTR_X("This is a __memx program memory message") );
+#endif
 
 ///@brief Keep the task running 
 /// task does not exit unless a keypress occurs

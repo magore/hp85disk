@@ -1,5 +1,5 @@
-\hypertarget{queue_8c}{}\section{lib/queue.c File Reference}
-\label{queue_8c}\index{lib/queue.\+c@{lib/queue.\+c}}
+\hypertarget{queue_8c}{}\doxysection{lib/queue.c File Reference}
+\label{queue_8c}\index{lib/queue.c@{lib/queue.c}}
 
 
 Ring buffer code.  
@@ -7,34 +7,34 @@ Ring buffer code.
 
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\newline
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$ \hyperlink{queue_8c_a9bdc538e328e481eb5f5b52ba10d36b9}{queue\+\_\+new} (\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$ \mbox{\hyperlink{queue_8c_a9bdc538e328e481eb5f5b52ba10d36b9}{queue\+\_\+new}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \begin{DoxyCompactList}\small\item\em Create a ring buffer of a given size. \end{DoxyCompactList}\item 
-void \hyperlink{queue_8c_a6bac5e705b44fd0b677b9ff9b3a19a23}{queue\+\_\+del} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+void \mbox{\hyperlink{queue_8c_a6bac5e705b44fd0b677b9ff9b3a19a23}{queue\+\_\+del}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Delete a ring buffer and free memory. \end{DoxyCompactList}\item 
-void \hyperlink{queue_8c_af654fe25b559b820fabf86f0a685e57a}{queue\+\_\+flush} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+void \mbox{\hyperlink{queue_8c_af654fe25b559b820fabf86f0a685e57a}{queue\+\_\+flush}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Flush ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_a3d73971b8454e29803ddc0763a2413c6}{queue\+\_\+used} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_a3d73971b8454e29803ddc0763a2413c6}{queue\+\_\+used}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Find the number of bytes used by the ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Is the ring buffer empty ? \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_a6309ae001025faf270eb01c0f78c2cba}{queue\+\_\+space} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_a6309ae001025faf270eb01c0f78c2cba}{queue\+\_\+space}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Find the amount of free space remaining in the ring buffer. \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
 \begin{DoxyCompactList}\small\item\em Is the ring buffer full ? \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_a69e47095291acc128fa52906bfe5cebf}{queue\+\_\+push\+\_\+buffer} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q, uint8\+\_\+t $\ast$src, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_a69e47095291acc128fa52906bfe5cebf}{queue\+\_\+push\+\_\+buffer}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q, uint8\+\_\+t $\ast$src, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \begin{DoxyCompactList}\small\item\em Add a data buffer to the ring buffer Note\+: This function does not wait/block util there is enough free space to meet the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{queue_8c_aff31d44fd9a36c7e59740485c6142f4f}{queue\+\_\+pop\+\_\+buffer} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q, uint8\+\_\+t $\ast$\hyperlink{time_8c_a5a388b2bb2a2a9914c7d68ed3d09f7e9}{dst}, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{queue_8c_aff31d44fd9a36c7e59740485c6142f4f}{queue\+\_\+pop\+\_\+buffer}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q, uint8\+\_\+t $\ast$\mbox{\hyperlink{time_8c_a5a388b2bb2a2a9914c7d68ed3d09f7e9}{dst}}, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \begin{DoxyCompactList}\small\item\em Get a data buffer from the ring buffer. Note\+: This function does not wait/block until there is enough data to fill the request. So you must check that the return value matches the size. \end{DoxyCompactList}\item 
-int \hyperlink{queue_8c_a918e9bab1d67104964e167722a4d3793}{queue\+\_\+pushc} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q, uint8\+\_\+t c)
-\begin{DoxyCompactList}\small\item\em Add a byte to the ring buffer Note\+: This function does not wait/block util there is enough free space to meet the request. We assume you check \hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full()} before calling this function! Otherwise you must check that the return value matches 1. \end{DoxyCompactList}\item 
-int \hyperlink{queue_8c_adc939b887e06d9c92507c37fa6a87cb8}{queue\+\_\+popc} (\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$q)
-\begin{DoxyCompactList}\small\item\em Remove a byte from the ring buffer Note\+: This function does not wait/block util there is data to meet the request. We assume you check \hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty()} before calling this function! \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{queue_8c_a918e9bab1d67104964e167722a4d3793}{queue\+\_\+pushc}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q, uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Add a byte to the ring buffer Note\+: This function does not wait/block util there is enough free space to meet the request. We assume you check \mbox{\hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full()}} before calling this function! Otherwise you must check that the return value matches 1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{queue_8c_adc939b887e06d9c92507c37fa6a87cb8}{queue\+\_\+popc}} (\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$q)
+\begin{DoxyCompactList}\small\item\em Remove a byte from the ring buffer Note\+: This function does not wait/block util there is data to meet the request. We assume you check \mbox{\hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty()}} before calling this function! \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Ring buffer code. 
 
 \begin{DoxyParagraph}{Copyright \copyright{} 2015 Mike Gore, G\+PL License}
@@ -47,14 +47,14 @@ This is free software\+: you can redistribute it and/or modify it under the term
 
 This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
 
-You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\texttt{ http\+://www.\+gnu.\+org/licenses/}}. 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{queue_8c_a6bac5e705b44fd0b677b9ff9b3a19a23}\label{queue_8c_a6bac5e705b44fd0b677b9ff9b3a19a23}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+del@{queue\+\_\+del}}
-\index{queue\+\_\+del@{queue\+\_\+del}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+del()}{queue\_del()}}
-{\footnotesize\ttfamily void queue\+\_\+del (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_del@{queue\_del}}
+\index{queue\_del@{queue\_del}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_del()}{queue\_del()}}
+{\footnotesize\ttfamily void queue\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -62,7 +62,7 @@ Delete a ring buffer and free memory.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -73,10 +73,10 @@ void
 Definition at line 61 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}\label{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+empty@{queue\+\_\+empty}}
-\index{queue\+\_\+empty@{queue\+\_\+empty}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+empty()}{queue\_empty()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+empty (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_empty@{queue\_empty}}
+\index{queue\_empty@{queue\_empty}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_empty()}{queue\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -84,7 +84,7 @@ Is the ring buffer empty ?
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -95,10 +95,10 @@ Is the ring buffer empty ?
 Definition at line 115 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_af654fe25b559b820fabf86f0a685e57a}\label{queue_8c_af654fe25b559b820fabf86f0a685e57a}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+flush@{queue\+\_\+flush}}
-\index{queue\+\_\+flush@{queue\+\_\+flush}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+flush()}{queue\_flush()}}
-{\footnotesize\ttfamily void queue\+\_\+flush (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_flush@{queue\_flush}}
+\index{queue\_flush@{queue\_flush}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_flush()}{queue\_flush()}}
+{\footnotesize\ttfamily void queue\+\_\+flush (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -106,7 +106,7 @@ Flush ring buffer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -117,10 +117,10 @@ void
 Definition at line 86 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}\label{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+full@{queue\+\_\+full}}
-\index{queue\+\_\+full@{queue\+\_\+full}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+full()}{queue\_full()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+full (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_full@{queue\_full}}
+\index{queue\_full@{queue\_full}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_full()}{queue\_full()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -128,7 +128,7 @@ Is the ring buffer full ?
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -139,10 +139,10 @@ Is the ring buffer full ?
 Definition at line 143 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_a9bdc538e328e481eb5f5b52ba10d36b9}\label{queue_8c_a9bdc538e328e481eb5f5b52ba10d36b9}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+new@{queue\+\_\+new}}
-\index{queue\+\_\+new@{queue\+\_\+new}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+new()}{queue\_new()}}
-{\footnotesize\ttfamily \hyperlink{structqueue__t}{queue\+\_\+t}$\ast$ queue\+\_\+new (\begin{DoxyParamCaption}\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_new@{queue\_new}}
+\index{queue\_new@{queue\_new}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_new()}{queue\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structqueue__t}{queue\+\_\+t}}$\ast$ queue\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -150,7 +150,7 @@ Create a ring buffer of a given size.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em size} & size of rin buffer \\
+\mbox{\texttt{ in}}  & {\em size} & size of rin buffer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -161,10 +161,10 @@ popinter to ring buffer structure
 Definition at line 36 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_aff31d44fd9a36c7e59740485c6142f4f}\label{queue_8c_aff31d44fd9a36c7e59740485c6142f4f}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+pop\+\_\+buffer@{queue\+\_\+pop\+\_\+buffer}}
-\index{queue\+\_\+pop\+\_\+buffer@{queue\+\_\+pop\+\_\+buffer}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+pop\+\_\+buffer()}{queue\_pop\_buffer()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+pop\+\_\+buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q,  }\item[{uint8\+\_\+t $\ast$}]{dst,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_pop\_buffer@{queue\_pop\_buffer}}
+\index{queue\_pop\_buffer@{queue\_pop\_buffer}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_pop\_buffer()}{queue\_pop\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+pop\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q,  }\item[{uint8\+\_\+t $\ast$}]{dst,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -172,11 +172,11 @@ Get a data buffer from the ring buffer. Note\+: This function does not wait/bloc
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
-\mbox{\tt in}  & {\em $\ast$dst} & outout buffer \\
+\mbox{\texttt{ in}}  & {\em $\ast$dst} & outout buffer \\
 \hline
-\mbox{\tt in}  & {\em size} & size of input buffer \\
+\mbox{\texttt{ in}}  & {\em size} & size of input buffer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -187,18 +187,18 @@ number of bytes actually added to the buffer -\/ may not be size!
 Definition at line 191 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_adc939b887e06d9c92507c37fa6a87cb8}\label{queue_8c_adc939b887e06d9c92507c37fa6a87cb8}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+popc@{queue\+\_\+popc}}
-\index{queue\+\_\+popc@{queue\+\_\+popc}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+popc()}{queue\_popc()}}
-{\footnotesize\ttfamily int queue\+\_\+popc (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_popc@{queue\_popc}}
+\index{queue\_popc@{queue\_popc}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_popc()}{queue\_popc()}}
+{\footnotesize\ttfamily int queue\+\_\+popc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
-Remove a byte from the ring buffer Note\+: This function does not wait/block util there is data to meet the request. We assume you check \hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty()} before calling this function! 
+Remove a byte from the ring buffer Note\+: This function does not wait/block util there is data to meet the request. We assume you check \mbox{\hyperlink{queue_8c_a5c47c1a42dc50ea36aab9629c4378b37}{queue\+\_\+empty()}} before calling this function! 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -209,10 +209,10 @@ byte , or 0 if ring buffer was empty (user error)
 Definition at line 250 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_a69e47095291acc128fa52906bfe5cebf}\label{queue_8c_a69e47095291acc128fa52906bfe5cebf}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+push\+\_\+buffer@{queue\+\_\+push\+\_\+buffer}}
-\index{queue\+\_\+push\+\_\+buffer@{queue\+\_\+push\+\_\+buffer}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+push\+\_\+buffer()}{queue\_push\_buffer()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+push\+\_\+buffer (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q,  }\item[{uint8\+\_\+t $\ast$}]{src,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_push\_buffer@{queue\_push\_buffer}}
+\index{queue\_push\_buffer@{queue\_push\_buffer}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_push\_buffer()}{queue\_push\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+push\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q,  }\item[{uint8\+\_\+t $\ast$}]{src,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -220,11 +220,11 @@ Add a data buffer to the ring buffer Note\+: This function does not wait/block u
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
-\mbox{\tt in}  & {\em $\ast$src} & input buffer \\
+\mbox{\texttt{ in}}  & {\em $\ast$src} & input buffer \\
 \hline
-\mbox{\tt in}  & {\em size} & size of input buffer \\
+\mbox{\texttt{ in}}  & {\em size} & size of input buffer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -235,20 +235,20 @@ number of bytes actually added to the buffer -\/ may not be size!
 Definition at line 161 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_a918e9bab1d67104964e167722a4d3793}\label{queue_8c_a918e9bab1d67104964e167722a4d3793}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+pushc@{queue\+\_\+pushc}}
-\index{queue\+\_\+pushc@{queue\+\_\+pushc}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+pushc()}{queue\_pushc()}}
-{\footnotesize\ttfamily int queue\+\_\+pushc (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q,  }\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_pushc@{queue\_pushc}}
+\index{queue\_pushc@{queue\_pushc}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_pushc()}{queue\_pushc()}}
+{\footnotesize\ttfamily int queue\+\_\+pushc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q,  }\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
 
 
 
-Add a byte to the ring buffer Note\+: This function does not wait/block util there is enough free space to meet the request. We assume you check \hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full()} before calling this function! Otherwise you must check that the return value matches 1. 
+Add a byte to the ring buffer Note\+: This function does not wait/block util there is enough free space to meet the request. We assume you check \mbox{\hyperlink{queue_8c_ace76ddf1f8e6b6b0d836ff6ac0255311}{queue\+\_\+full()}} before calling this function! Otherwise you must check that the return value matches 1. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
-\mbox{\tt in}  & {\em c} & vyte to add \\
+\mbox{\texttt{ in}}  & {\em c} & vyte to add \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -259,10 +259,10 @@ number of bytes actually added to the buffer -\/ may not be 1!
 Definition at line 221 of file queue.\+c.
 
 \mbox{\Hypertarget{queue_8c_a6309ae001025faf270eb01c0f78c2cba}\label{queue_8c_a6309ae001025faf270eb01c0f78c2cba}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+space@{queue\+\_\+space}}
-\index{queue\+\_\+space@{queue\+\_\+space}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+space()}{queue\_space()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+space (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_space@{queue\_space}}
+\index{queue\_space@{queue\_space}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_space()}{queue\_space()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -270,7 +270,7 @@ Find the amount of free space remaining in the ring buffer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -285,10 +285,10 @@ Definition at line 130 of file queue.\+c.
 Referenced by queue\+\_\+full(), and queue\+\_\+push\+\_\+buffer().
 
 \mbox{\Hypertarget{queue_8c_a3d73971b8454e29803ddc0763a2413c6}\label{queue_8c_a3d73971b8454e29803ddc0763a2413c6}} 
-\index{queue.\+c@{queue.\+c}!queue\+\_\+used@{queue\+\_\+used}}
-\index{queue\+\_\+used@{queue\+\_\+used}!queue.\+c@{queue.\+c}}
-\subsubsection{\texorpdfstring{queue\+\_\+used()}{queue\_used()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} queue\+\_\+used (\begin{DoxyParamCaption}\item[{\hyperlink{structqueue__t}{queue\+\_\+t} $\ast$}]{q }\end{DoxyParamCaption})}
+\index{queue.c@{queue.c}!queue\_used@{queue\_used}}
+\index{queue\_used@{queue\_used}!queue.c@{queue.c}}
+\doxysubsubsection{\texorpdfstring{queue\_used()}{queue\_used()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} queue\+\_\+used (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structqueue__t}{queue\+\_\+t}} $\ast$}]{q }\end{DoxyParamCaption})}
 
 
 
@@ -296,7 +296,7 @@ Find the number of bytes used by the ring buffer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$q} & ring buffer pointer \\
+\mbox{\texttt{ in}}  & {\em $\ast$q} & ring buffer pointer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

@@ -1,114 +1,116 @@
-\hypertarget{mathio_8h}{}\section{printf/mathio.h File Reference}
-\label{mathio_8h}\index{printf/mathio.\+h@{printf/mathio.\+h}}
+\hypertarget{mathio_8h}{}\doxysection{printf/mathio.h File Reference}
+\label{mathio_8h}\index{printf/mathio.h@{printf/mathio.h}}
 
 
 Math IO functions, and verious conversion code with floating point support.  
 
 
-\subsection*{Data Structures}
+\doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}
+struct \mbox{\hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}}
 \begin{DoxyCompactList}\small\item\em undefine any potential macro version of these functions \end{DoxyCompactList}\item 
-union \hyperlink{unionf__t}{f\+\_\+t}
+union \mbox{\hyperlink{unionf__t}{f\+\_\+t}}
 \begin{DoxyCompactList}\small\item\em format specifier flags \end{DoxyCompactList}\item 
-struct \hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}
+struct \mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}}
 \begin{DoxyCompactList}\small\item\em Data structure for character buffer with limits. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{mathio_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}
+\#define \mbox{\hyperlink{mathio_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}}
 \item 
-\#define \hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}
+\#define \mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}}
 \item 
-\#define \hyperlink{mathio_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}~\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak))
+\#define \mbox{\hyperlink{mathio_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}}~\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak))
+\item 
+\#define \mbox{\hyperlink{mathio_8h_a7cc4289120f673a232eb6a0ebb20999a}{P\+S\+T\+R\+\_\+X}}(a)~((\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$) P\+S\+TR(a) )
 \end{DoxyCompactItemize}
-\subsection*{Typedefs}
+\doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} \hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t}
+typedef struct \mbox{\hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}} \mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}}
 \begin{DoxyCompactList}\small\item\em undefine any potential macro version of these functions \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{mathio_8h_af4de2514b7778805db3815e8dd6cf09a}{putchar} (int c)
-\begin{DoxyCompactList}\small\item\em put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_a8c0b521d598596dde4e31d56f672ad76}{atodigit} (int c, int radix)
+int \mbox{\hyperlink{mathio_8h_af4de2514b7778805db3815e8dd6cf09a}{putchar}} (int c)
+\begin{DoxyCompactList}\small\item\em put a character to stdout See \mbox{\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()}} sets stream-\/$>$put get for T\+TY devices \end{DoxyCompactList}\item 
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_a8c0b521d598596dde4e31d56f672ad76}{atodigit}} (int c, int radix)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II character to radix based digit , or -\/1. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{atoh} (const char $\ast$p)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long \mbox{\hyperlink{mathio_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}{atoh}} (const char $\ast$p)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II hex string to long integer. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_a5fb184d7bd50561c60bf64b7cda0eb62}{aton} (char $\ast$str, int base)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long \mbox{\hyperlink{mathio_8h_a5fb184d7bd50561c60bf64b7cda0eb62}{aton}} (char $\ast$str, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_aee46e805a6a25105661e6486a419fdc3}{mul10str} (uint8\+\_\+t $\ast$str, int size)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_aee46e805a6a25105661e6486a419fdc3}{mul10str}} (uint8\+\_\+t $\ast$str, int size)
 \begin{DoxyCompactList}\small\item\em Fast multiply number of any size by 10. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long \mbox{\hyperlink{mathio_8h_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol}} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long long \hyperlink{mathio_8h_a00a26430103adfe060136c98afc39cab}{strtoll} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long long \mbox{\hyperlink{mathio_8h_a00a26430103adfe060136c98afc39cab}{strtoll}} (const char $\ast$nptr, char $\ast$$\ast$endptr, int base)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in a given base. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_ae640e0202e5f4904efa121a07af97c5e}{atoi} (const char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_ae640e0202e5f4904efa121a07af97c5e}{atoi}} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in base 10. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long \hyperlink{mathio_8h_ae952cb1ae6aec6b2b6c02ae67e9ea87b}{atol} (const char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long \mbox{\hyperlink{mathio_8h_ae952cb1ae6aec6b2b6c02ae67e9ea87b}{atol}} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Convert A\+S\+C\+II string to number in base 10. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{mathio_8h_a29526ba629435aeaee7e3201242a9234}{iexp} (double num, int exp)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double \mbox{\hyperlink{mathio_8h_a29526ba629435aeaee7e3201242a9234}{iexp}} (double num, int exp)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{mathio_8h_a52658cd34151fad98aa1294a2acafa02}{scale10} (double num, int $\ast$exp)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double \mbox{\hyperlink{mathio_8h_a52658cd34151fad98aa1294a2acafa02}{scale10}} (double num, int $\ast$exp)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{mathio_8h_a581d4eb5e2c88dd6a011ed595bf413f8}{strtod} (const char $\ast$nptr, char $\ast$$\ast$endptr)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double \mbox{\hyperlink{mathio_8h_a581d4eb5e2c88dd6a011ed595bf413f8}{strtod}} (const char $\ast$nptr, char $\ast$$\ast$endptr)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double \hyperlink{mathio_8h_a7e733f84057711222341263fe2f0bd15}{atof} (const char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double \mbox{\hyperlink{mathio_8h_a7e733f84057711222341263fe2f0bd15}{atof}} (const char $\ast$str)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{mathio_8h_a895ea3a2f9901e4c962806cc15271339}{strlen} (const char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} \mbox{\hyperlink{mathio_8h_a895ea3a2f9901e4c962806cc15271339}{strlen}} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em String Length. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{mathio_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{isdigit} (int c)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} \mbox{\hyperlink{mathio_8h_a8c33a3f5b4322e705d3403f63d55b0a1}{isdigit}} (int c)
 \begin{DoxyCompactList}\small\item\em test if a character is a digit \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{mathio_8h_a00b9d97be21e4f3f5df1019a803c05a6}{reverse} (char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} \mbox{\hyperlink{mathio_8h_a00b9d97be21e4f3f5df1019a803c05a6}{reverse}} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Reverse a string in place Example\+: abcdef -\/$>$ fedcba. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} \hyperlink{mathio_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper} (char $\ast$str)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} \mbox{\hyperlink{mathio_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}{strupper}} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em U\+P\+P\+E\+R\+C\+A\+SE a string. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}{bin2num} (uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}{bin2num}} (uint8\+\_\+t $\ast$str, int strmax, int nummin, int base, uint8\+\_\+t $\ast$nump, int numsize, int sign\+\_\+ch)
 \begin{DoxyCompactList}\small\item\em Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified base Notes\+: No limit except available memory on number size. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_aa04d728cf95fd1e17eee35344d1265a8}{pch\+\_\+init} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p, char $\ast$str, int max)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mathio_8h_aa04d728cf95fd1e17eee35344d1265a8}{pch\+\_\+init}} (\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$p, char $\ast$str, int max)
 \begin{DoxyCompactList}\small\item\em Initialize character buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_a2aba4f2deee9be598dc579d760991e8f}{pch} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p, char ch)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_a2aba4f2deee9be598dc579d760991e8f}{pch}} (\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$p, char ch)
 \begin{DoxyCompactList}\small\item\em Put character in buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_a11e9cd585ecc573a04deeddb31ef8f94}{pch\+\_\+ind} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_a11e9cd585ecc573a04deeddb31ef8f94}{pch\+\_\+ind}} (\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Return current index of character buffer with limits. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_abdd1f988f152fcbc6fdbf960c9958a12}{pch\+\_\+max\+\_\+ind} (\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$p)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_abdd1f988f152fcbc6fdbf960c9958a12}{pch\+\_\+max\+\_\+ind}} (\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$p)
 \begin{DoxyCompactList}\small\item\em Return maximum valid index for character buffer. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_a9c08c55e823a7532f2344a77ef296b4e}{print\+\_\+flags} (\hyperlink{unionf__t}{f\+\_\+t} f)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mathio_8h_a9c08c55e823a7532f2344a77ef296b4e}{print\+\_\+flags}} (\mbox{\hyperlink{unionf__t}{f\+\_\+t}} f)
 \begin{DoxyCompactList}\small\item\em print flags set in t\+\_\+t structure \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_ab538bcf34e0347b5c0329666ab58d0e2}{p\+\_\+ntoa} (uint8\+\_\+t $\ast$nump, int numsize, char $\ast$str, int strmax, int radix, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_ab538bcf34e0347b5c0329666ab58d0e2}{p\+\_\+ntoa}} (uint8\+\_\+t $\ast$nump, int numsize, char $\ast$str, int strmax, int radix, int width, int prec, \mbox{\hyperlink{unionf__t}{f\+\_\+t}} f)
 \begin{DoxyCompactList}\small\item\em Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Numbers can be any number of digits long -\/ limited only by memory available To print negative numbers convert to positive before calling this function and set f.\+b.\+neg 2) Warning\+: as with printf width and prec are only minimum sizes -\/ results can be bigger We assume all numbers are positive\+: \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_af35d59e537ce4cc2895dc4e00ada5977}{p\+\_\+ftoa} (double val, char $\ast$str, int max, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_af35d59e537ce4cc2895dc4e00ada5977}{p\+\_\+ftoa}} (double val, char $\ast$str, int max, int width, int prec, \mbox{\hyperlink{unionf__t}{f\+\_\+t}} f)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_ae3e3ca7828e11c31adc999b44d2f2bb1}{p\+\_\+etoa} (double val, char $\ast$str, int max, int width, int prec, \hyperlink{unionf__t}{f\+\_\+t} f)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_ae3e3ca7828e11c31adc999b44d2f2bb1}{p\+\_\+etoa}} (double val, char $\ast$str, int max, int width, int prec, \mbox{\hyperlink{unionf__t}{f\+\_\+t}} f)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}{\+\_\+puts\+\_\+pad} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, char $\ast$s, int width, int count, int left)
-\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_a1c2762f15e2ae4dea9b52ee9e3532372}{\+\_\+printf\+\_\+fn} (\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$fn, \hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$fmt, va\+\_\+list va)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}{\+\_\+puts\+\_\+pad}} (\mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}} $\ast$fn, char $\ast$s, int width, int count, int left)
+\begin{DoxyCompactList}\small\item\em put string, via user function, count bytes long, padded up to width, left or right aligned \end{DoxyCompactList}\item 
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mathio_8h_a1c2762f15e2ae4dea9b52ee9e3532372}{\+\_\+printf\+\_\+fn}} (\mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}} $\ast$fn, \mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$fmt, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mathio_8h_a9b6f7fa030ba96220b734d45d737805a}{\+\_\+putc\+\_\+buffer\+\_\+fn} (struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$p, char ch)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mathio_8h_a9b6f7fa030ba96220b734d45d737805a}{\+\_\+putc\+\_\+buffer\+\_\+fn}} (struct \mbox{\hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}} $\ast$p, char ch)
 \begin{DoxyCompactList}\small\item\em \+\_\+putc\+\_\+buffer\+\_\+fn -\/ character output to a string buffer Used by snprintf and vsnprintf You can make \+\_\+printf\+\_\+fn call this helper for each character \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf} (char $\ast$str, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, const char $\ast$format, va\+\_\+list va)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}{vsnprintf}} (char $\ast$str, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size, const char $\ast$format, va\+\_\+list va)
 \begin{DoxyCompactList}\small\item\em vsnprintf function \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_a278630a290b34d009b2e3ad7bf1fc996}{snprintf} (char $\ast$str, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size, const char $\ast$format,...)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_a278630a290b34d009b2e3ad7bf1fc996}{snprintf}} (char $\ast$str, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size, const char $\ast$format,...)
 \begin{DoxyCompactList}\small\item\em snprintf function \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mathio_8h_ad6078f8da2d30ecaef99e0c2d250c0c8}{printf} (const char $\ast$format,...)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mathio_8h_ad6078f8da2d30ecaef99e0c2d250c0c8}{printf}} (const char $\ast$format,...)
 \item 
-int \hyperlink{mathio_8h_a79c7a2e931845b0fb6b2fa6d63939de4}{sscanf} (const char $\ast$strp, const char $\ast$fmt,...)
+int \mbox{\hyperlink{mathio_8h_a79c7a2e931845b0fb6b2fa6d63939de4}{sscanf}} (const char $\ast$strp, const char $\ast$fmt,...)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Math IO functions, and verious conversion code with floating point support. 
 
 \begin{DoxyParagraph}{Copyright \copyright{} 2014-\/2020 Mike Gore, All rights reserved. G\+PL License}
 
 \end{DoxyParagraph}
 \begin{DoxySeeAlso}{See also}
-\href{http://github.com/magore/hp85disk}{\tt http\+://github.\+com/magore/hp85disk} 
+\href{http://github.com/magore/hp85disk}{\texttt{ http\+://github.\+com/magore/hp85disk}} 
 
-\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\tt http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md} for specific Copyright details
+\href{http://github.com/magore/hp85disk/COPYRIGHT.md}{\texttt{ http\+://github.\+com/magore/hp85disk/\+C\+O\+P\+Y\+R\+I\+G\+H\+T.\+md}} for specific Copyright details
 \end{DoxySeeAlso}
 \begin{DoxyParagraph}{You are free to use this code under the terms of G\+PL}
 please retain a copy of this notice in any code you use it in.
@@ -117,37 +119,43 @@ This is free software\+: you can redistribute it and/or modify it under the term
 
 This software is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
 
-You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\texttt{ http\+://www.\+gnu.\+org/licenses/}}. 
 
-\subsection{Macro Definition Documentation}
+\doxysubsection{Macro Definition Documentation}
 \mbox{\Hypertarget{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}\label{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}} 
-\index{mathio.\+h@{mathio.\+h}!\+\_\+\+\_\+memx@{\+\_\+\+\_\+memx}}
-\index{\+\_\+\+\_\+memx@{\+\_\+\+\_\+memx}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+memx}{\_\_memx}}
+\index{mathio.h@{mathio.h}!\_\_memx@{\_\_memx}}
+\index{\_\_memx@{\_\_memx}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{\_\_memx}{\_\_memx}}
 {\footnotesize\ttfamily \#define \+\_\+\+\_\+memx}
 
 
 
 Definition at line 38 of file mathio.\+h.
 
-
-
-Referenced by \+\_\+printf\+\_\+fn(), and snprintf().
-
 \mbox{\Hypertarget{mathio_8h_ad0fe97585b8891f5e4f2b9a6426330a4}\label{mathio_8h_ad0fe97585b8891f5e4f2b9a6426330a4}} 
-\index{mathio.\+h@{mathio.\+h}!M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}}
-\index{M\+E\+M\+S\+P\+A\+CE@{M\+E\+M\+S\+P\+A\+CE}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{M\+E\+M\+S\+P\+A\+CE}{MEMSPACE}}
+\index{mathio.h@{mathio.h}!MEMSPACE@{MEMSPACE}}
+\index{MEMSPACE@{MEMSPACE}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{MEMSPACE}{MEMSPACE}}
 {\footnotesize\ttfamily \#define M\+E\+M\+S\+P\+A\+CE}
 
 
 
 Definition at line 33 of file mathio.\+h.
 
+\mbox{\Hypertarget{mathio_8h_a7cc4289120f673a232eb6a0ebb20999a}\label{mathio_8h_a7cc4289120f673a232eb6a0ebb20999a}} 
+\index{mathio.h@{mathio.h}!PSTR\_X@{PSTR\_X}}
+\index{PSTR\_X@{PSTR\_X}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{PSTR\_X}{PSTR\_X}}
+{\footnotesize\ttfamily \#define P\+S\+T\+R\+\_\+X(\begin{DoxyParamCaption}\item[{}]{a }\end{DoxyParamCaption})~((\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$) P\+S\+TR(a) )}
+
+
+
+Definition at line 115 of file mathio.\+h.
+
 \mbox{\Hypertarget{mathio_8h_a399da2caab82ec1bb3d5a8fbc5306768}\label{mathio_8h_a399da2caab82ec1bb3d5a8fbc5306768}} 
-\index{mathio.\+h@{mathio.\+h}!W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}}
-\index{W\+E\+A\+K\+\_\+\+A\+TR@{W\+E\+A\+K\+\_\+\+A\+TR}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{W\+E\+A\+K\+\_\+\+A\+TR}{WEAK\_ATR}}
+\index{mathio.h@{mathio.h}!WEAK\_ATR@{WEAK\_ATR}}
+\index{WEAK\_ATR@{WEAK\_ATR}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{WEAK\_ATR}{WEAK\_ATR}}
 {\footnotesize\ttfamily \#define W\+E\+A\+K\+\_\+\+A\+TR~\+\_\+\+\_\+attribute\+\_\+\+\_\+((weak))}
 
 
@@ -156,12 +164,12 @@ Definition at line 45 of file mathio.\+h.
 
 
 
-\subsection{Typedef Documentation}
-\mbox{\Hypertarget{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}\label{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}} 
-\index{mathio.\+h@{mathio.\+h}!printf\+\_\+t@{printf\+\_\+t}}
-\index{printf\+\_\+t@{printf\+\_\+t}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{printf\+\_\+t}{printf\_t}}
-{\footnotesize\ttfamily typedef struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}  \hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t}}
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}\label{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}} 
+\index{mathio.h@{mathio.h}!printf\_t@{printf\_t}}
+\index{printf\_t@{printf\_t}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{printf\_t}{printf\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}} \mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}}}
 
 
 
@@ -169,12 +177,12 @@ undefine any potential macro version of these functions
 
 We let printf use user defined I/O functions 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{mathio_8h_a1c2762f15e2ae4dea9b52ee9e3532372}\label{mathio_8h_a1c2762f15e2ae4dea9b52ee9e3532372}} 
-\index{mathio.\+h@{mathio.\+h}!\+\_\+printf\+\_\+fn@{\+\_\+printf\+\_\+fn}}
-\index{\+\_\+printf\+\_\+fn@{\+\_\+printf\+\_\+fn}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{\+\_\+printf\+\_\+fn()}{\_printf\_fn()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \+\_\+printf\+\_\+fn (\begin{DoxyParamCaption}\item[{\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$}]{fn,  }\item[{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$}]{fmt,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!\_printf\_fn@{\_printf\_fn}}
+\index{\_printf\_fn@{\_printf\_fn}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{\_printf\_fn()}{\_printf\_fn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \+\_\+printf\+\_\+fn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}} $\ast$}]{fn,  }\item[{\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$}]{fmt,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
 
 
 
@@ -182,11 +190,11 @@ vsnprintf function
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em fn} & output character function pointer \\
+\mbox{\texttt{ out}}  & {\em fn} & output character function pointer \\
 \hline
-\mbox{\tt in}  & {\em fmt} & printf forat string \\
+\mbox{\texttt{ in}}  & {\em fmt} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em va} & va\+\_\+list arguments \\
+\mbox{\texttt{ in}}  & {\em va} & va\+\_\+list arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -194,20 +202,20 @@ size of string
 \end{DoxyReturn}
 Calling Variadic Functions
 \begin{DoxyItemize}
-\item excerpt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\tt https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html} Since the prototype doesnât specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
+\item excerpt from \href{https://www.gnu.org/software/libc/manual/html_node/Calling-Variadics.html}{\texttt{ https\+://www.\+gnu.\+org/software/libc/manual/html\+\_\+node/\+Calling-\/\+Variadics.\+html}} Since the prototype doesnât specify types for optional arguments, in a call to a variadic function the default argument promotions are performed on the optional argument values. This means the objects of type char or short int (whether signed or not) are promoted to either int or unsigned int, as appropriate; and that objects of type float are promoted to type double. So, if the caller passes a char as an optional argument, it is promoted to an int, and the function can access it with va\+\_\+arg (ap, int).
 \end{DoxyItemize}
 
-Definition at line 733 of file printf.\+c.
+Definition at line 806 of file printf.\+c.
 
 
 
-Referenced by fprintf(), snprintf(), and vsnprintf().
+Referenced by fprintf(), and vsnprintf().
 
 \mbox{\Hypertarget{mathio_8h_a9b6f7fa030ba96220b734d45d737805a}\label{mathio_8h_a9b6f7fa030ba96220b734d45d737805a}} 
-\index{mathio.\+h@{mathio.\+h}!\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}}
-\index{\+\_\+putc\+\_\+buffer\+\_\+fn@{\+\_\+putc\+\_\+buffer\+\_\+fn}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{\+\_\+putc\+\_\+buffer\+\_\+fn()}{\_putc\_buffer\_fn()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \+\_\+putc\+\_\+buffer\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!\_putc\_buffer\_fn@{\_putc\_buffer\_fn}}
+\index{\_putc\_buffer\_fn@{\_putc\_buffer\_fn}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{\_putc\_buffer\_fn()}{\_putc\_buffer\_fn()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \+\_\+putc\+\_\+buffer\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct__printf__t}{\+\_\+printf\+\_\+t}} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})}
 
 
 
@@ -215,9 +223,9 @@ Referenced by fprintf(), snprintf(), and vsnprintf().
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em $\ast$p} & structure with pointers and buffer to be written to \\
+\mbox{\texttt{ in}}  & {\em $\ast$p} & structure with pointers and buffer to be written to \\
 \hline
-\mbox{\tt in}  & {\em ch} & character to place in buffer \\
+\mbox{\texttt{ in}}  & {\em ch} & character to place in buffer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -225,31 +233,48 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1093 of file printf.\+c.
+Definition at line 1187 of file printf.\+c.
 
 
 
-Referenced by snprintf(), and vsnprintf().
+Referenced by vsnprintf().
 
 \mbox{\Hypertarget{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}\label{mathio_8h_ab713fa5c01f315bdf67d18a6dbcb4ff5}} 
-\index{mathio.\+h@{mathio.\+h}!\+\_\+puts\+\_\+pad@{\+\_\+puts\+\_\+pad}}
-\index{\+\_\+puts\+\_\+pad@{\+\_\+puts\+\_\+pad}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{\+\_\+puts\+\_\+pad()}{\_puts\_pad()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \+\_\+puts\+\_\+pad (\begin{DoxyParamCaption}\item[{\hyperlink{mathio_8h_a1efdee46bf8e5af45e76e461e8db9c09}{printf\+\_\+t} $\ast$}]{fn,  }\item[{char $\ast$}]{s,  }\item[{int}]{width,  }\item[{int}]{count,  }\item[{int}]{left }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!\_puts\_pad@{\_puts\_pad}}
+\index{\_puts\_pad@{\_puts\_pad}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{\_puts\_pad()}{\_puts\_pad()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \+\_\+puts\+\_\+pad (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{mathio_8h_a1d27b5977632e0955aeaa4eb9b0fdfa5}{printf\+\_\+t}} $\ast$}]{fn,  }\item[{char $\ast$}]{s,  }\item[{int}]{width,  }\item[{int}]{count,  }\item[{int}]{left }\end{DoxyParamCaption})}
 
 
 
-Definition at line 679 of file printf.\+c.
+put string, via user function, count bytes long, padded up to width, left or right aligned 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em fn} & output character function pointer \\
+\hline
+\mbox{\texttt{ in}}  & {\em s} & string \\
+\hline
+\mbox{\texttt{ in}}  & {\em width} & of characters to pad up to -\/ if needed \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & number of characters to copy from buff \\
+\hline
+\mbox{\texttt{ in}}  & {\em left} & string is left aligned \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 678 of file printf.\+c.
 
 
 
 Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_a8c0b521d598596dde4e31d56f672ad76}\label{mathio_8h_a8c0b521d598596dde4e31d56f672ad76}} 
-\index{mathio.\+h@{mathio.\+h}!atodigit@{atodigit}}
-\index{atodigit@{atodigit}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{atodigit()}{atodigit()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int atodigit (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int}]{radix }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!atodigit@{atodigit}}
+\index{atodigit@{atodigit}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{atodigit()}{atodigit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int atodigit (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{int}]{radix }\end{DoxyParamCaption})}
 
 
 
@@ -257,16 +282,16 @@ Convert A\+S\+C\+II character to radix based digit , or -\/1.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em c} & character \\
+\mbox{\texttt{ in}}  & {\em c} & character \\
 \hline
-\mbox{\tt in}  & {\em radix} & radix \\
+\mbox{\texttt{ in}}  & {\em radix} & radix \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 radix based digit , or -\/1 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\mbox{\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol}} 
 \end{DoxySeeAlso}
 
 
@@ -277,20 +302,16 @@ Definition at line 58 of file mathio.\+c.
 Referenced by strtol(), and strtoll().
 
 \mbox{\Hypertarget{mathio_8h_a7e733f84057711222341263fe2f0bd15}\label{mathio_8h_a7e733f84057711222341263fe2f0bd15}} 
-\index{mathio.\+h@{mathio.\+h}!atof@{atof}}
-\index{atof@{atof}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{atof()}{atof()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double atof (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
-
-
-
-Referenced by atol().
+\index{mathio.h@{mathio.h}!atof@{atof}}
+\index{atof@{atof}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{atof()}{atof()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double atof (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mathio_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}\label{mathio_8h_a65e529a87a8bcaf0b2cb9b6edc3a8fde}} 
-\index{mathio.\+h@{mathio.\+h}!atoh@{atoh}}
-\index{atoh@{atoh}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{atoh()}{atoh()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long atoh (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!atoh@{atoh}}
+\index{atoh@{atoh}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{atoh()}{atoh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long atoh (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -298,14 +319,14 @@ Convert A\+S\+C\+II hex string to long integer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em p} & String to convert.\\
+\mbox{\texttt{ in}}  & {\em p} & String to convert.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 long integer result. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol()} for return overflow and underflow results. 
+\mbox{\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol()}} for return overflow and underflow results. 
 \end{DoxySeeAlso}
 
 
@@ -316,10 +337,10 @@ Definition at line 80 of file mathio.\+c.
 Referenced by gpib\+\_\+tests().
 
 \mbox{\Hypertarget{mathio_8h_ae640e0202e5f4904efa121a07af97c5e}\label{mathio_8h_ae640e0202e5f4904efa121a07af97c5e}} 
-\index{mathio.\+h@{mathio.\+h}!atoi@{atoi}}
-\index{atoi@{atoi}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{atoi()}{atoi()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int atoi (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!atoi@{atoi}}
+\index{atoi@{atoi}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{atoi()}{atoi()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int atoi (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
 
@@ -327,14 +348,14 @@ Convert A\+S\+C\+II string to number in base 10.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 int value 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\mbox{\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol}} 
 \end{DoxySeeAlso}
 
 
@@ -345,10 +366,10 @@ Definition at line 284 of file mathio.\+c.
 Referenced by gpib\+\_\+tests(), posix\+\_\+tests(), and td02lif().
 
 \mbox{\Hypertarget{mathio_8h_ae952cb1ae6aec6b2b6c02ae67e9ea87b}\label{mathio_8h_ae952cb1ae6aec6b2b6c02ae67e9ea87b}} 
-\index{mathio.\+h@{mathio.\+h}!atol@{atol}}
-\index{atol@{atol}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{atol()}{atol()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long atol (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!atol@{atol}}
+\index{atol@{atol}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{atol()}{atol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long atol (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
 
@@ -356,14 +377,14 @@ Convert A\+S\+C\+II string to number in base 10.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 long value 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\mbox{\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol}} 
 \end{DoxySeeAlso}
 
 
@@ -374,10 +395,10 @@ Definition at line 299 of file mathio.\+c.
 Referenced by fatfs\+\_\+tests(), lif\+\_\+tests(), and main().
 
 \mbox{\Hypertarget{mathio_8h_a5fb184d7bd50561c60bf64b7cda0eb62}\label{mathio_8h_a5fb184d7bd50561c60bf64b7cda0eb62}} 
-\index{mathio.\+h@{mathio.\+h}!aton@{aton}}
-\index{aton@{aton}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{aton()}{aton()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long aton (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{base }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!aton@{aton}}
+\index{aton@{aton}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{aton()}{aton()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long aton (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{int}]{base }\end{DoxyParamCaption})}
 
 
 
@@ -385,26 +406,26 @@ Convert A\+S\+C\+II string to number in a given base.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
-\mbox{\tt in}  & {\em base} & radix \\
+\mbox{\texttt{ in}}  & {\em base} & radix \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 long value 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol} 
+\mbox{\hyperlink{mathio_8c_ae7a25f0631dd53c026fd8636e8bcb42e}{strtol}} 
 \end{DoxySeeAlso}
 
 
 Definition at line 94 of file mathio.\+c.
 
 \mbox{\Hypertarget{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}\label{mathio_8h_aa95ef42dcc41a90255c084e0e1a9bcde}} 
-\index{mathio.\+h@{mathio.\+h}!bin2num@{bin2num}}
-\index{bin2num@{bin2num}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{bin2num()}{bin2num()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int bin2num (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{str,  }\item[{int}]{strmax,  }\item[{int}]{nummin,  }\item[{int}]{base,  }\item[{uint8\+\_\+t $\ast$}]{nump,  }\item[{int}]{numsize,  }\item[{int}]{sign\+\_\+ch }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!bin2num@{bin2num}}
+\index{bin2num@{bin2num}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{bin2num()}{bin2num()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int bin2num (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{str,  }\item[{int}]{strmax,  }\item[{int}]{nummin,  }\item[{int}]{base,  }\item[{uint8\+\_\+t $\ast$}]{nump,  }\item[{int}]{numsize,  }\item[{int}]{sign\+\_\+ch }\end{DoxyParamCaption})}
 
 
 
@@ -416,17 +437,17 @@ Convert an unsigned number (numsize bytes in size) to A\+S\+C\+II in specified b
 \item To get the result add each table entry, in the base, that corresponds to each 1 bit in the binary number.
 \item Now instead of a table we can start with 1 and multiple by 2 contraining each digit into the base we want -\/ this is the same as using the table except we build it on the fly 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em str} & A\+S\+C\+II number string result \\
+\mbox{\texttt{ out}}  & {\em str} & A\+S\+C\+II number string result \\
 \hline
-\mbox{\tt in}  & {\em strmax} & maximum size of str in bytes \\
+\mbox{\texttt{ in}}  & {\em strmax} & maximum size of str in bytes \\
 \hline
-\mbox{\tt in}  & {\em nummin} & minimum number of digits to display \\
+\mbox{\texttt{ in}}  & {\em nummin} & minimum number of digits to display \\
 \hline
-\mbox{\tt in}  & {\em $\ast$nump} & Pointer to binary number \\
+\mbox{\texttt{ in}}  & {\em $\ast$nump} & Pointer to binary number \\
 \hline
-\mbox{\tt in}  & {\em numsize} & size of binary number in bytes \\
+\mbox{\texttt{ in}}  & {\em numsize} & size of binary number in bytes \\
 \hline
-\mbox{\tt in}  & {\em sign\+\_\+ch} & sign of binary number return converted number string numsize in bytes \\
+\mbox{\texttt{ in}}  & {\em sign\+\_\+ch} & sign of binary number return converted number string numsize in bytes \\
 \hline
 \end{DoxyParams}
 
@@ -439,20 +460,16 @@ Definition at line 143 of file printf.\+c.
 Referenced by p\+\_\+ntoa().
 
 \mbox{\Hypertarget{mathio_8h_a29526ba629435aeaee7e3201242a9234}\label{mathio_8h_a29526ba629435aeaee7e3201242a9234}} 
-\index{mathio.\+h@{mathio.\+h}!iexp@{iexp}}
-\index{iexp@{iexp}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{iexp()}{iexp()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double iexp (\begin{DoxyParamCaption}\item[{double}]{num,  }\item[{int}]{exp }\end{DoxyParamCaption})}
-
-
-
-Referenced by atol().
+\index{mathio.h@{mathio.h}!iexp@{iexp}}
+\index{iexp@{iexp}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{iexp()}{iexp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double iexp (\begin{DoxyParamCaption}\item[{double}]{num,  }\item[{int}]{exp }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mathio_8h_a8c33a3f5b4322e705d3403f63d55b0a1}\label{mathio_8h_a8c33a3f5b4322e705d3403f63d55b0a1}} 
-\index{mathio.\+h@{mathio.\+h}!isdigit@{isdigit}}
-\index{isdigit@{isdigit}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{isdigit()}{isdigit()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} isdigit (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!isdigit@{isdigit}}
+\index{isdigit@{isdigit}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{isdigit()}{isdigit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} isdigit (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
 
 
 
@@ -462,7 +479,7 @@ undo any existing macros
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em c} & character \\
+\mbox{\texttt{ in}}  & {\em c} & character \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -474,13 +491,13 @@ Definition at line 40 of file stringsup.\+c.
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), and atol().
+Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_aee46e805a6a25105661e6486a419fdc3}\label{mathio_8h_aee46e805a6a25105661e6486a419fdc3}} 
-\index{mathio.\+h@{mathio.\+h}!mul10str@{mul10str}}
-\index{mul10str@{mul10str}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{mul10str()}{mul10str()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int mul10str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{str,  }\item[{int}]{size }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!mul10str@{mul10str}}
+\index{mul10str@{mul10str}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{mul10str()}{mul10str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int mul10str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{str,  }\item[{int}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -488,9 +505,9 @@ Fast multiply number of any size by 10.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
-\mbox{\tt in}  & {\em size} & string size \\
+\mbox{\texttt{ in}}  & {\em size} & string size \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -501,30 +518,30 @@ non-\/zero on overflow , 0 if ok
 Definition at line 110 of file mathio.\+c.
 
 \mbox{\Hypertarget{mathio_8h_ae3e3ca7828e11c31adc999b44d2f2bb1}\label{mathio_8h_ae3e3ca7828e11c31adc999b44d2f2bb1}} 
-\index{mathio.\+h@{mathio.\+h}!p\+\_\+etoa@{p\+\_\+etoa}}
-\index{p\+\_\+etoa@{p\+\_\+etoa}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{p\+\_\+etoa()}{p\_etoa()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int p\+\_\+etoa (\begin{DoxyParamCaption}\item[{double}]{val,  }\item[{char $\ast$}]{str,  }\item[{int}]{max,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\hyperlink{unionf__t}{f\+\_\+t}}]{f }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!p\_etoa@{p\_etoa}}
+\index{p\_etoa@{p\_etoa}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{p\_etoa()}{p\_etoa()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int p\+\_\+etoa (\begin{DoxyParamCaption}\item[{double}]{val,  }\item[{char $\ast$}]{str,  }\item[{int}]{max,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\mbox{\hyperlink{unionf__t}{f\+\_\+t}}}]{f }\end{DoxyParamCaption})}
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), and p\+\_\+ntoa().
+Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_af35d59e537ce4cc2895dc4e00ada5977}\label{mathio_8h_af35d59e537ce4cc2895dc4e00ada5977}} 
-\index{mathio.\+h@{mathio.\+h}!p\+\_\+ftoa@{p\+\_\+ftoa}}
-\index{p\+\_\+ftoa@{p\+\_\+ftoa}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{p\+\_\+ftoa()}{p\_ftoa()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ftoa (\begin{DoxyParamCaption}\item[{double}]{val,  }\item[{char $\ast$}]{str,  }\item[{int}]{max,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\hyperlink{unionf__t}{f\+\_\+t}}]{f }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!p\_ftoa@{p\_ftoa}}
+\index{p\_ftoa@{p\_ftoa}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{p\_ftoa()}{p\_ftoa()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int p\+\_\+ftoa (\begin{DoxyParamCaption}\item[{double}]{val,  }\item[{char $\ast$}]{str,  }\item[{int}]{max,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\mbox{\hyperlink{unionf__t}{f\+\_\+t}}}]{f }\end{DoxyParamCaption})}
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), and p\+\_\+ntoa().
+Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_ab538bcf34e0347b5c0329666ab58d0e2}\label{mathio_8h_ab538bcf34e0347b5c0329666ab58d0e2}} 
-\index{mathio.\+h@{mathio.\+h}!p\+\_\+ntoa@{p\+\_\+ntoa}}
-\index{p\+\_\+ntoa@{p\+\_\+ntoa}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{p\+\_\+ntoa()}{p\_ntoa()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int p\+\_\+ntoa (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{nump,  }\item[{int}]{numsize,  }\item[{char $\ast$}]{str,  }\item[{int}]{strmax,  }\item[{int}]{radix,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\hyperlink{unionf__t}{f\+\_\+t}}]{f }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!p\_ntoa@{p\_ntoa}}
+\index{p\_ntoa@{p\_ntoa}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{p\_ntoa()}{p\_ntoa()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int p\+\_\+ntoa (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{nump,  }\item[{int}]{numsize,  }\item[{char $\ast$}]{str,  }\item[{int}]{strmax,  }\item[{int}]{radix,  }\item[{int}]{width,  }\item[{int}]{prec,  }\item[{\mbox{\hyperlink{unionf__t}{f\+\_\+t}}}]{f }\end{DoxyParamCaption})}
 
 
 
@@ -532,21 +549,21 @@ Convert number an base 2 .. 16 to A\+S\+C\+II with optional sign Notes\+: 1) Num
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nump} & number pointer \\
+\mbox{\texttt{ in}}  & {\em nump} & number pointer \\
 \hline
-\mbox{\tt in}  & {\em numsize} & number size in bytes \\
+\mbox{\texttt{ in}}  & {\em numsize} & number size in bytes \\
 \hline
-\mbox{\tt out}  & {\em $\ast$str} & string result \\
+\mbox{\texttt{ out}}  & {\em $\ast$str} & string result \\
 \hline
-\mbox{\tt in}  & {\em strmax} & strmaximum length of string result \\
+\mbox{\texttt{ in}}  & {\em strmax} & strmaximum length of string result \\
 \hline
-\mbox{\tt in}  & {\em radix} & Radix may be 2 .. 16 \\
+\mbox{\texttt{ in}}  & {\em radix} & Radix may be 2 .. 16 \\
 \hline
-\mbox{\tt in}  & {\em width} & Width of result padded if needed \\
+\mbox{\texttt{ in}}  & {\em width} & Width of result padded if needed \\
 \hline
-\mbox{\tt in}  & {\em prec} & minumum number of digits, zero padded if needed \\
+\mbox{\texttt{ in}}  & {\em prec} & minumum number of digits, zero padded if needed \\
 \hline
-\mbox{\tt in}  & {\em f} & flags f.\+b.\+left justify left f.\+b.\+plus display + for positive number, -\/ for negative numbers f.\+b.\+space display \textquotesingle{} \textquotesingle{} for positive, -\/ for negative f.\+b.\+zero pad with zeros if needed f.\+b.\+alt Alternate display form -\/ work in progress f.\+b.\+width Width of result -\/ pad if required f.\+b.\+prec Zero padd to prec if sepcified f.\+b.\+neg Sign of number is negative \\
+\mbox{\texttt{ in}}  & {\em f} & flags f.\+b.\+left justify left f.\+b.\+plus display + for positive number, -\/ for negative numbers f.\+b.\+space display \textquotesingle{} \textquotesingle{} for positive, -\/ for negative f.\+b.\+zero pad with zeros if needed f.\+b.\+alt Alternate display form -\/ work in progress f.\+b.\+width Width of result -\/ pad if required f.\+b.\+prec Zero padd to prec if sepcified f.\+b.\+neg Sign of number is negative \\
 \hline
 \end{DoxyParams}
 
@@ -558,10 +575,10 @@ Definition at line 314 of file printf.\+c.
 Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_a2aba4f2deee9be598dc579d760991e8f}\label{mathio_8h_a2aba4f2deee9be598dc579d760991e8f}} 
-\index{mathio.\+h@{mathio.\+h}!pch@{pch}}
-\index{pch@{pch}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{pch()}{pch()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!pch@{pch}}
+\index{pch@{pch}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{pch()}{pch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int pch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$}]{p,  }\item[{char}]{ch }\end{DoxyParamCaption})}
 
 
 
@@ -569,9 +586,9 @@ Put character in buffer with limits.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
-\mbox{\tt in}  & {\em max} & maximum number of characters plus E\+OS  init\+\_\+p\+\_\+ch \\
+\mbox{\texttt{ in}}  & {\em max} & maximum number of characters plus E\+OS @\+See init\+\_\+p\+\_\+ch \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -581,15 +598,11 @@ void
 
 Definition at line 233 of file printf.\+c.
 
-
-
-Referenced by p\+\_\+ntoa().
-
 \mbox{\Hypertarget{mathio_8h_a11e9cd585ecc573a04deeddb31ef8f94}\label{mathio_8h_a11e9cd585ecc573a04deeddb31ef8f94}} 
-\index{mathio.\+h@{mathio.\+h}!pch\+\_\+ind@{pch\+\_\+ind}}
-\index{pch\+\_\+ind@{pch\+\_\+ind}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{pch\+\_\+ind()}{pch\_ind()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+ind (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!pch\_ind@{pch\_ind}}
+\index{pch\_ind@{pch\_ind}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{pch\_ind()}{pch\_ind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int pch\+\_\+ind (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -602,15 +615,11 @@ Buffer index
 
 Definition at line 247 of file printf.\+c.
 
-
-
-Referenced by p\+\_\+ntoa().
-
 \mbox{\Hypertarget{mathio_8h_aa04d728cf95fd1e17eee35344d1265a8}\label{mathio_8h_aa04d728cf95fd1e17eee35344d1265a8}} 
-\index{mathio.\+h@{mathio.\+h}!pch\+\_\+init@{pch\+\_\+init}}
-\index{pch\+\_\+init@{pch\+\_\+init}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{pch\+\_\+init()}{pch\_init()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void pch\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p,  }\item[{char $\ast$}]{str,  }\item[{int}]{max }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!pch\_init@{pch\_init}}
+\index{pch\_init@{pch\_init}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{pch\_init()}{pch\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void pch\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$}]{p,  }\item[{char $\ast$}]{str,  }\item[{int}]{max }\end{DoxyParamCaption})}
 
 
 
@@ -618,9 +627,9 @@ Initialize character buffer with limits.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
-\mbox{\tt in}  & {\em max} & maximum number of characters plus E\+OS \\
+\mbox{\texttt{ in}}  & {\em max} & maximum number of characters plus E\+OS \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -630,19 +639,15 @@ base of string to write to
 
 current string index
 
-maximum string size including E\+OS 
+maximum string size including E\+OS
 
 Definition at line 218 of file printf.\+c.
 
-
-
-Referenced by p\+\_\+ntoa().
-
 \mbox{\Hypertarget{mathio_8h_abdd1f988f152fcbc6fdbf960c9958a12}\label{mathio_8h_abdd1f988f152fcbc6fdbf960c9958a12}} 
-\index{mathio.\+h@{mathio.\+h}!pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}}
-\index{pch\+\_\+max\+\_\+ind@{pch\+\_\+max\+\_\+ind}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{pch\+\_\+max\+\_\+ind()}{pch\_max\_ind()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int pch\+\_\+max\+\_\+ind (\begin{DoxyParamCaption}\item[{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!pch\_max\_ind@{pch\_max\_ind}}
+\index{pch\_max\_ind@{pch\_max\_ind}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{pch\_max\_ind()}{pch\_max\_ind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int pch\+\_\+max\+\_\+ind (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structp__ch__t}{p\+\_\+ch\+\_\+t}} $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
@@ -656,10 +661,10 @@ Buffer index
 Definition at line 256 of file printf.\+c.
 
 \mbox{\Hypertarget{mathio_8h_a9c08c55e823a7532f2344a77ef296b4e}\label{mathio_8h_a9c08c55e823a7532f2344a77ef296b4e}} 
-\index{mathio.\+h@{mathio.\+h}!print\+\_\+flags@{print\+\_\+flags}}
-\index{print\+\_\+flags@{print\+\_\+flags}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+flags()}{print\_flags()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void print\+\_\+flags (\begin{DoxyParamCaption}\item[{\hyperlink{unionf__t}{f\+\_\+t}}]{f }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!print\_flags@{print\_flags}}
+\index{print\_flags@{print\_flags}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{print\_flags()}{print\_flags()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void print\+\_\+flags (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionf__t}{f\+\_\+t}}}]{f }\end{DoxyParamCaption})}
 
 
 
@@ -667,7 +672,7 @@ print flags set in t\+\_\+t structure
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em f} & \hyperlink{unionf__t}{f\+\_\+t} flags structure \\
+\mbox{\texttt{ in}}  & {\em f} & \mbox{\hyperlink{unionf__t}{f\+\_\+t}} flags structure \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -678,24 +683,24 @@ void
 Definition at line 269 of file printf.\+c.
 
 \mbox{\Hypertarget{mathio_8h_ad6078f8da2d30ecaef99e0c2d250c0c8}\label{mathio_8h_ad6078f8da2d30ecaef99e0c2d250c0c8}} 
-\index{mathio.\+h@{mathio.\+h}!printf@{printf}}
-\index{printf@{printf}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{printf()}{printf()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int printf (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!printf@{printf}}
+\index{printf@{printf}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{printf()}{printf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int printf (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
 
-Referenced by alloc\+\_\+device(), assign\+\_\+value(), buffer\+\_\+read\+\_\+open(), cat(), clock\+\_\+elapsed\+\_\+end(), copy(), dbf\+\_\+close(), dbf\+\_\+lseek(), dbf\+\_\+open(), dbf\+\_\+read(), dbf\+\_\+write(), Delete\+Row\+Col(), Determinant(), display\+\_\+\+Addresses(), display\+\_\+clock(), display\+\_\+\+Config(), display\+\_\+ts(), dump\+\_\+stat(), Dump\+Data(), fatfs\+\_\+filinfo\+\_\+list(), fatfs\+\_\+help(), fatfs\+\_\+ls(), fatfs\+\_\+status(), fatfs\+\_\+tests(), fgetc(), format\+\_\+drives(), fputc(), G\+P\+I\+B(), gpib\+\_\+assert\+\_\+ifc(), gpib\+\_\+assert\+\_\+ren(), gpib\+\_\+bus\+\_\+init(), gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+disable\+\_\+\+P\+P\+R(), gpib\+\_\+enable\+\_\+\+P\+P\+R(), gpib\+\_\+error\+\_\+test(), gpib\+\_\+file\+\_\+init(), gpib\+\_\+help(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), gpib\+\_\+state\+\_\+init(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+tests(), gpib\+\_\+timer\+\_\+elapsed\+\_\+end(), gpib\+\_\+timer\+\_\+init(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+unread(), gpib\+\_\+user\+\_\+task(), gpib\+\_\+write\+\_\+byte(), gpib\+\_\+write\+\_\+str(), help(), hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+set\+\_\+device(), i2c\+\_\+check\+\_\+op(), i2c\+\_\+display\+\_\+task\+\_\+errors(), i2c\+\_\+fn(), i2c\+\_\+init(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+rtc\+\_\+read(), i2c\+\_\+rtc\+\_\+write(), init\+\_\+timers(), initialize\+\_\+clock(), Invert(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+calloc(), lif\+\_\+check\+\_\+dir(), lif\+\_\+check\+\_\+volume(), lif\+\_\+checkdirindex(), lif\+\_\+create\+\_\+image(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+e010\+\_\+pad\+\_\+sector(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+free(), lif\+\_\+help(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+read(), lif\+\_\+readdirindex(), lif\+\_\+rename\+\_\+file(), lif\+\_\+seek\+\_\+msg(), lif\+\_\+stat(), lif\+\_\+tests(), lif\+\_\+updatefree(), lif\+\_\+write(), listen\+\_\+cleanup(), ls(), ls\+\_\+info(), lseek(), main(), Mat\+Alloc(), M\+A\+T\+C\+H\+A\+R\+G\+S(), Mat\+Free(), Mat\+Mul(), Mat\+Print(), Mat\+Read(), Mat\+Write(), mkfs(), mmc\+\_\+init(), mmc\+\_\+install\+\_\+timer(), mmc\+\_\+test(), mmc\+\_\+test\+\_\+timeout(), normalize(), perror(), plot\+\_\+echo(), posix\+\_\+help(), posix\+\_\+tests(), Post\+\_\+\+Config(), ppr\+\_\+init(), print\+\_\+dst(), print\+\_\+dst\+\_\+gmt(), print\+\_\+flags(), print\+\_\+str\+\_\+\+P(), print\+\_\+tok(), print\+\_\+tok\+\_\+str(), print\+\_\+tok\+\_\+val(), print\+\_\+var\+\_\+\+P(), printer\+\_\+buffer(), printer\+\_\+close(), P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), printer\+\_\+open(), Print\+Free(), put\+\_\+rc(), Read\+\_\+\+Config(), receive\+\_\+plot\+\_\+flush(), rtc\+\_\+init(), rtc\+\_\+read(), rtc\+\_\+run(), rtc\+\_\+write(), safecalloc(), safefree(), safemalloc(), select(), Send\+\_\+\+Identify(), sep(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), set\+\_\+timers(), setdate(), setdate\+\_\+r(), snprintf(), S\+P\+I0\+\_\+\+Init(), S\+P\+I0\+\_\+\+Mode(), spi\+\_\+begin(), spi\+\_\+end(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Check\+\_\+\+Unit(), S\+S80\+\_\+\+Check\+\_\+\+Volume(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+describe(), S\+S80\+\_\+display\+\_\+extended\+\_\+status(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+increment(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+send\+\_\+status(), S\+S80\+\_\+\+Test(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), td02lif(), td0\+\_\+analize\+\_\+format(), td0\+\_\+help(), td0\+\_\+hexdump(), td0\+\_\+open(), td0\+\_\+read\+\_\+disk(), td0\+\_\+rle(), td0\+\_\+save\+\_\+lif(), td0\+\_\+save\+\_\+lif\+\_\+sector(), td0\+\_\+sectorinfo(), td0\+\_\+trackinfo(), td0\+\_\+unpack\+\_\+disk\+\_\+header(), td0\+\_\+unpack\+\_\+track\+\_\+header(), testpage(), timetests(), tm2epoch(), and user\+\_\+task().
+Referenced by alloc\+\_\+device(), assign\+\_\+value(), buffer\+\_\+read\+\_\+open(), cat(), clock\+\_\+elapsed\+\_\+end(), copy(), dbf\+\_\+close(), dbf\+\_\+lseek(), dbf\+\_\+open(), dbf\+\_\+read(), dbf\+\_\+write(), Delete\+Row\+Col(), Determinant(), display\+\_\+\+Addresses(), display\+\_\+clock(), display\+\_\+\+Config(), display\+\_\+ts(), dump\+\_\+stat(), Dump\+Data(), fatfs\+\_\+filinfo\+\_\+list(), fatfs\+\_\+help(), fatfs\+\_\+ls(), fatfs\+\_\+status(), fatfs\+\_\+tests(), fgetc(), format\+\_\+drives(), fputc(), G\+P\+I\+B(), gpib\+\_\+assert\+\_\+ifc(), gpib\+\_\+assert\+\_\+ren(), gpib\+\_\+bus\+\_\+init(), gpib\+\_\+detect\+\_\+\+P\+P(), gpib\+\_\+disable\+\_\+\+P\+P\+R(), gpib\+\_\+enable\+\_\+\+P\+P\+R(), gpib\+\_\+error\+\_\+test(), gpib\+\_\+file\+\_\+init(), gpib\+\_\+help(), G\+P\+I\+B\+\_\+\+L\+I\+S\+T\+E\+N(), gpib\+\_\+read\+\_\+byte(), gpib\+\_\+read\+\_\+str(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), gpib\+\_\+state\+\_\+init(), G\+P\+I\+B\+\_\+\+T\+A\+L\+K(), gpib\+\_\+tests(), gpib\+\_\+timer\+\_\+elapsed\+\_\+end(), gpib\+\_\+timer\+\_\+init(), gpib\+\_\+trace\+\_\+task(), gpib\+\_\+unread(), gpib\+\_\+write\+\_\+byte(), gpib\+\_\+write\+\_\+str(), help(), hpdir\+\_\+find\+\_\+drive(), hpdir\+\_\+set\+\_\+device(), i2c\+\_\+check\+\_\+op(), i2c\+\_\+display\+\_\+task\+\_\+errors(), i2c\+\_\+fn(), i2c\+\_\+init(), i2c\+\_\+print\+\_\+error(), i2c\+\_\+rtc\+\_\+read(), i2c\+\_\+rtc\+\_\+write(), init\+\_\+timers(), initialize\+\_\+clock(), Invert(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010(), lif\+\_\+add\+\_\+ascii\+\_\+file\+\_\+as\+\_\+e010\+\_\+wrapper(), lif\+\_\+add\+\_\+lif\+\_\+file(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+calloc(), lif\+\_\+check\+\_\+dir(), lif\+\_\+check\+\_\+volume(), lif\+\_\+checkdirindex(), lif\+\_\+create\+\_\+image(), lif\+\_\+create\+\_\+volume(), lif\+\_\+del\+\_\+file(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+e010\+\_\+pad\+\_\+sector(), lif\+\_\+extract\+\_\+e010\+\_\+as\+\_\+ascii(), lif\+\_\+extract\+\_\+lif\+\_\+as\+\_\+lif(), lif\+\_\+find\+\_\+file(), lif\+\_\+free(), lif\+\_\+help(), lif\+\_\+newdir(), lif\+\_\+open(), lif\+\_\+open\+\_\+volume(), lif\+\_\+read(), lif\+\_\+readdirindex(), lif\+\_\+rename\+\_\+file(), lif\+\_\+seek\+\_\+msg(), lif\+\_\+stat(), lif\+\_\+tests(), lif\+\_\+updatefree(), lif\+\_\+write(), listen\+\_\+cleanup(), ls(), ls\+\_\+info(), lseek(), main(), Mat\+Alloc(), M\+A\+T\+C\+H\+A\+R\+G\+S(), Mat\+Free(), Mat\+Mul(), Mat\+Print(), Mat\+Read(), mkfs(), mmc\+\_\+init(), mmc\+\_\+install\+\_\+timer(), mmc\+\_\+test(), mmc\+\_\+test\+\_\+timeout(), normalize(), perror(), plot\+\_\+echo(), posix\+\_\+help(), posix\+\_\+tests(), Post\+\_\+\+Config(), ppr\+\_\+init(), print\+\_\+dst(), print\+\_\+dst\+\_\+gmt(), print\+\_\+flags(), print\+\_\+str\+\_\+\+P(), print\+\_\+tok(), print\+\_\+tok\+\_\+str(), print\+\_\+tok\+\_\+val(), print\+\_\+var\+\_\+\+P(), printer\+\_\+buffer(), printer\+\_\+close(), P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), printer\+\_\+open(), Print\+Free(), put\+\_\+rc(), Read\+\_\+\+Config(), receive\+\_\+plot\+\_\+flush(), rtc\+\_\+init(), rtc\+\_\+read(), rtc\+\_\+run(), rtc\+\_\+write(), safecalloc(), safefree(), safemalloc(), select(), Send\+\_\+\+Identify(), sep(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), set\+\_\+timers(), setdate(), setdate\+\_\+r(), S\+P\+I0\+\_\+\+Init(), S\+P\+I0\+\_\+\+Mode(), spi\+\_\+begin(), spi\+\_\+end(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Check\+\_\+\+Unit(), S\+S80\+\_\+\+Check\+\_\+\+Volume(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+describe(), S\+S80\+\_\+display\+\_\+extended\+\_\+status(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+increment(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+send\+\_\+status(), S\+S80\+\_\+\+Test(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), td02lif(), td0\+\_\+analize\+\_\+format(), td0\+\_\+help(), td0\+\_\+hexdump(), td0\+\_\+open(), td0\+\_\+read\+\_\+disk(), td0\+\_\+rle(), td0\+\_\+save\+\_\+lif(), td0\+\_\+save\+\_\+lif\+\_\+sector(), td0\+\_\+sectorinfo(), td0\+\_\+trackinfo(), td0\+\_\+unpack\+\_\+disk\+\_\+header(), td0\+\_\+unpack\+\_\+track\+\_\+header(), testpage(), timetests(), tm2epoch(), and user\+\_\+task().
 
 \mbox{\Hypertarget{mathio_8h_af4de2514b7778805db3815e8dd6cf09a}\label{mathio_8h_af4de2514b7778805db3815e8dd6cf09a}} 
-\index{mathio.\+h@{mathio.\+h}!putchar@{putchar}}
-\index{putchar@{putchar}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{putchar()}{putchar()}}
+\index{mathio.h@{mathio.h}!putchar@{putchar}}
+\index{putchar@{putchar}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{putchar()}{putchar()}}
 {\footnotesize\ttfamily int putchar (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
 
 
 
-put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()} sets stream-\/$>$put get for T\+TY devices 
+put a character to stdout See \mbox{\hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084573}{fdevopen()}} sets stream-\/$>$put get for T\+TY devices 
 
 
 \begin{DoxyItemize}
@@ -704,7 +709,7 @@ put a character to stdout See \hyperlink{posix_8c_ab814cff71bcbcc3a72a6c399e5084
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
+\mbox{\texttt{ in}}  & {\em stream} & P\+O\+S\+IX stream pointer.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -716,13 +721,13 @@ Definition at line 363 of file posix.\+c.
 
 
 
-Referenced by copy(), fatfs\+\_\+ls(), plot\+\_\+echo(), print\+\_\+tok(), print\+\_\+tok\+\_\+str(), print\+\_\+tok\+\_\+val(), snprintf(), and td0\+\_\+hexdump().
+Referenced by plot\+\_\+echo(), print\+\_\+tok(), print\+\_\+tok\+\_\+str(), print\+\_\+tok\+\_\+val(), and td0\+\_\+hexdump().
 
 \mbox{\Hypertarget{mathio_8h_a00b9d97be21e4f3f5df1019a803c05a6}\label{mathio_8h_a00b9d97be21e4f3f5df1019a803c05a6}} 
-\index{mathio.\+h@{mathio.\+h}!reverse@{reverse}}
-\index{reverse@{reverse}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{reverse()}{reverse()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} reverse (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!reverse@{reverse}}
+\index{reverse@{reverse}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{reverse()}{reverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} reverse (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
 
@@ -730,7 +735,7 @@ Reverse a string in place Example\+: abcdef -\/$>$ fedcba.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -745,20 +750,16 @@ Definition at line 233 of file stringsup.\+c.
 Referenced by bin2num().
 
 \mbox{\Hypertarget{mathio_8h_a52658cd34151fad98aa1294a2acafa02}\label{mathio_8h_a52658cd34151fad98aa1294a2acafa02}} 
-\index{mathio.\+h@{mathio.\+h}!scale10@{scale10}}
-\index{scale10@{scale10}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{scale10()}{scale10()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double scale10 (\begin{DoxyParamCaption}\item[{double}]{num,  }\item[{int $\ast$}]{exp }\end{DoxyParamCaption})}
-
-
-
-Referenced by atol().
+\index{mathio.h@{mathio.h}!scale10@{scale10}}
+\index{scale10@{scale10}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{scale10()}{scale10()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double scale10 (\begin{DoxyParamCaption}\item[{double}]{num,  }\item[{int $\ast$}]{exp }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mathio_8h_a278630a290b34d009b2e3ad7bf1fc996}\label{mathio_8h_a278630a290b34d009b2e3ad7bf1fc996}} 
-\index{mathio.\+h@{mathio.\+h}!snprintf@{snprintf}}
-\index{snprintf@{snprintf}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{snprintf()}{snprintf()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int snprintf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!snprintf@{snprintf}}
+\index{snprintf@{snprintf}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{snprintf()}{snprintf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int snprintf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
 
@@ -766,13 +767,13 @@ snprintf function
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em str} & string buffer for result \\
+\mbox{\texttt{ out}}  & {\em str} & string buffer for result \\
 \hline
-\mbox{\tt in}  & {\em size} & maximum length of converted string \\
+\mbox{\texttt{ in}}  & {\em size} & maximum length of converted string \\
 \hline
-\mbox{\tt in}  & {\em format} & printf forat string \\
+\mbox{\texttt{ in}}  & {\em format} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em ...} & list of arguments \\
+\mbox{\texttt{ in}}  & {\em ...} & list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -780,12 +781,12 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1156 of file printf.\+c.
+Definition at line 1250 of file printf.\+c.
 
 \mbox{\Hypertarget{mathio_8h_a79c7a2e931845b0fb6b2fa6d63939de4}\label{mathio_8h_a79c7a2e931845b0fb6b2fa6d63939de4}} 
-\index{mathio.\+h@{mathio.\+h}!sscanf@{sscanf}}
-\index{sscanf@{sscanf}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{sscanf()}{sscanf()}}
+\index{mathio.h@{mathio.h}!sscanf@{sscanf}}
+\index{sscanf@{sscanf}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{sscanf()}{sscanf()}}
 {\footnotesize\ttfamily int sscanf (\begin{DoxyParamCaption}\item[{const char $\ast$}]{strp,  }\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
 
 
@@ -793,10 +794,10 @@ Definition at line 1156 of file printf.\+c.
 Referenced by Mat\+Read(), and setdate\+\_\+r().
 
 \mbox{\Hypertarget{mathio_8h_a895ea3a2f9901e4c962806cc15271339}\label{mathio_8h_a895ea3a2f9901e4c962806cc15271339}} 
-\index{mathio.\+h@{mathio.\+h}!strlen@{strlen}}
-\index{strlen@{strlen}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{strlen()}{strlen()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strlen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!strlen@{strlen}}
+\index{strlen@{strlen}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{strlen()}{strlen()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} strlen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
 
@@ -804,7 +805,7 @@ String Length.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -816,23 +817,23 @@ Definition at line 144 of file stringsup.\+c.
 
 
 
-Referenced by \+\_\+printf\+\_\+fn(), cat(), controller\+\_\+send\+\_\+str(), fatfs\+\_\+ls(), fatfs\+\_\+scan\+\_\+files(), get\+\_\+line(), gpib\+\_\+trace\+\_\+display(), hpdir\+\_\+find\+\_\+drive(), L\+C\+D\+\_\+puts(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+find\+\_\+file(), lif\+\_\+fixname(), lif\+\_\+stralloc(), ls(), M\+A\+T\+C\+H(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), p\+\_\+ntoa(), readdir(), reverse(), snprintf(), stralloc(), td02lif(), token(), trim\+\_\+tail(), and vsnprintf().
+Referenced by \+\_\+printf\+\_\+fn(), cat(), controller\+\_\+send\+\_\+str(), fatfs\+\_\+scan\+\_\+files(), get\+\_\+line(), gpib\+\_\+trace\+\_\+display(), hpdir\+\_\+find\+\_\+drive(), lif\+\_\+ascii\+\_\+string\+\_\+to\+\_\+e010(), lif\+\_\+find\+\_\+file(), lif\+\_\+fixname(), lif\+\_\+stralloc(), ls(), M\+A\+T\+C\+H(), M\+A\+T\+C\+H\+\_\+\+L\+E\+N(), M\+A\+T\+C\+H\+I(), M\+A\+T\+C\+H\+I\+\_\+\+L\+E\+N(), mctime(), readdir(), reverse(), stralloc(), td02lif(), token(), trim\+\_\+tail(), and vsnprintf().
 
 \mbox{\Hypertarget{mathio_8h_a581d4eb5e2c88dd6a011ed595bf413f8}\label{mathio_8h_a581d4eb5e2c88dd6a011ed595bf413f8}} 
-\index{mathio.\+h@{mathio.\+h}!strtod@{strtod}}
-\index{strtod@{strtod}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{strtod()}{strtod()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} double strtod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!strtod@{strtod}}
+\index{strtod@{strtod}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{strtod()}{strtod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} double strtod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr }\end{DoxyParamCaption})}
 
 
 
-Referenced by atol(), and Mat\+Read().
+Referenced by Mat\+Read().
 
 \mbox{\Hypertarget{mathio_8h_ae7a25f0631dd53c026fd8636e8bcb42e}\label{mathio_8h_ae7a25f0631dd53c026fd8636e8bcb42e}} 
-\index{mathio.\+h@{mathio.\+h}!strtol@{strtol}}
-\index{strtol@{strtol}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{strtol()}{strtol()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long strtol (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr,  }\item[{int}]{base }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!strtol@{strtol}}
+\index{strtol@{strtol}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{strtol()}{strtol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long strtol (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr,  }\item[{int}]{base }\end{DoxyParamCaption})}
 
 
 
@@ -840,11 +841,11 @@ Convert A\+S\+C\+II string to number in a given base.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nptr} & string \\
+\mbox{\texttt{ in}}  & {\em nptr} & string \\
 \hline
-\mbox{\tt in}  & {\em endptr} & pointer to string pointer return value \\
+\mbox{\texttt{ in}}  & {\em endptr} & pointer to string pointer return value \\
 \hline
-\mbox{\tt in}  & {\em base} & radix \\
+\mbox{\texttt{ in}}  & {\em base} & radix \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -859,10 +860,10 @@ Definition at line 139 of file mathio.\+c.
 Referenced by atoh(), atoi(), atol(), aton(), get\+\_\+value(), posix\+\_\+tests(), and setdate\+\_\+r().
 
 \mbox{\Hypertarget{mathio_8h_a00a26430103adfe060136c98afc39cab}\label{mathio_8h_a00a26430103adfe060136c98afc39cab}} 
-\index{mathio.\+h@{mathio.\+h}!strtoll@{strtoll}}
-\index{strtoll@{strtoll}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{strtoll()}{strtoll()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} long long strtoll (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr,  }\item[{int}]{base }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!strtoll@{strtoll}}
+\index{strtoll@{strtoll}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{strtoll()}{strtoll()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} long long strtoll (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nptr,  }\item[{char $\ast$$\ast$}]{endptr,  }\item[{int}]{base }\end{DoxyParamCaption})}
 
 
 
@@ -870,11 +871,11 @@ Convert A\+S\+C\+II string to number in a given base.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em nptr} & string \\
+\mbox{\texttt{ in}}  & {\em nptr} & string \\
 \hline
-\mbox{\tt in}  & {\em endptr} & pointer to string pointer return value \\
+\mbox{\texttt{ in}}  & {\em endptr} & pointer to string pointer return value \\
 \hline
-\mbox{\tt in}  & {\em base} & radix \\
+\mbox{\texttt{ in}}  & {\em base} & radix \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -885,10 +886,10 @@ long long
 Definition at line 187 of file mathio.\+c.
 
 \mbox{\Hypertarget{mathio_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}\label{mathio_8h_a25ac5a1dbdfa1d06d55448cd7b665d1d}} 
-\index{mathio.\+h@{mathio.\+h}!strupper@{strupper}}
-\index{strupper@{strupper}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{strupper()}{strupper()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR} strupper (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!strupper@{strupper}}
+\index{strupper@{strupper}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{strupper()}{strupper()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc__hal_8h_a399da2caab82ec1bb3d5a8fbc5306768}{W\+E\+A\+K\+\_\+\+A\+TR}} strupper (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
 
@@ -896,7 +897,7 @@ U\+P\+P\+E\+R\+C\+A\+SE a string.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string \\
+\mbox{\texttt{ in}}  & {\em str} & string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -911,10 +912,10 @@ Definition at line 256 of file stringsup.\+c.
 Referenced by \+\_\+printf\+\_\+fn().
 
 \mbox{\Hypertarget{mathio_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}\label{mathio_8h_a7a6349b4ca3388a0cb82fc3d1d85a6b5}} 
-\index{mathio.\+h@{mathio.\+h}!vsnprintf@{vsnprintf}}
-\index{vsnprintf@{vsnprintf}!mathio.\+h@{mathio.\+h}}
-\subsubsection{\texorpdfstring{vsnprintf()}{vsnprintf()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int vsnprintf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size,  }\item[{const char $\ast$}]{format,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
+\index{mathio.h@{mathio.h}!vsnprintf@{vsnprintf}}
+\index{vsnprintf@{vsnprintf}!mathio.h@{mathio.h}}
+\doxysubsubsection{\texorpdfstring{vsnprintf()}{vsnprintf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int vsnprintf (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size,  }\item[{const char $\ast$}]{format,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})}
 
 
 
@@ -922,13 +923,13 @@ vsnprintf function
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em str} & string buffer for result \\
+\mbox{\texttt{ out}}  & {\em str} & string buffer for result \\
 \hline
-\mbox{\tt in}  & {\em size} & maximum length of converted string \\
+\mbox{\texttt{ in}}  & {\em size} & maximum length of converted string \\
 \hline
-\mbox{\tt in}  & {\em format} & printf forat string \\
+\mbox{\texttt{ in}}  & {\em format} & printf forat string \\
 \hline
-\mbox{\tt in}  & {\em va} & va\+\_\+list list of arguments \\
+\mbox{\texttt{ in}}  & {\em va} & va\+\_\+list list of arguments \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -936,7 +937,7 @@ string size
 \end{DoxyReturn}
 
 
-Definition at line 1126 of file printf.\+c.
+Definition at line 1220 of file printf.\+c.
 
 
 

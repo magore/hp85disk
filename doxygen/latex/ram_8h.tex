@@ -1,32 +1,32 @@
-\hypertarget{ram_8h}{}\section{hardware/ram.h File Reference}
-\label{ram_8h}\index{hardware/ram.\+h@{hardware/ram.\+h}}
+\hypertarget{ram_8h}{}\doxysection{hardware/ram.h File Reference}
+\label{ram_8h}\index{hardware/ram.h@{hardware/ram.h}}
 
 
 Memory Utilities and safe free for A\+VR.  
 
 
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc} (\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void $\ast$ \mbox{\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void $\ast$ \hyperlink{ram_8h_ae148919146e88c7c40c7e2f781649b31}{calloc} (\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} nmemb, \hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void $\ast$ \mbox{\hyperlink{ram_8h_ae148919146e88c7c40c7e2f781649b31}{calloc}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} nmemb, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{free} (void $\ast$p)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{free}} (void $\ast$p)
 \item 
-uint16\+\_\+t \hyperlink{ram_8h_af87fa722b545868277fe412e4786fa96}{free\+Ram} (void)
+uint16\+\_\+t \mbox{\hyperlink{ram_8h_af87fa722b545868277fe412e4786fa96}{free\+Ram}} (void)
 \begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
-void \hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\+Free} (void)
+void \mbox{\hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\+Free}} (void)
 \begin{DoxyCompactList}\small\item\em Display A\+VR free memory of each type$>$ \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc} (int size, int elements)
+void $\ast$ \mbox{\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}} (int size, int elements)
 \begin{DoxyCompactList}\small\item\em Safe Alloc -\/ Display Error message if Calloc fails. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc} (\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t} size)
+void $\ast$ \mbox{\hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemalloc}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
 \begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
-void \hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree} (void $\ast$p)
+void \mbox{\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Memory Utilities and safe free for A\+VR. 
 
 \begin{DoxyParagraph}{Edit History}
@@ -40,38 +40,42 @@ Memory Utilities and safe free for A\+VR.
 \end{DoxyParagraph}
 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{ram_8h_ae148919146e88c7c40c7e2f781649b31}\label{ram_8h_ae148919146e88c7c40c7e2f781649b31}} 
-\index{ram.\+h@{ram.\+h}!calloc@{calloc}}
-\index{calloc@{calloc}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{calloc()}{calloc()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void$\ast$ calloc (\begin{DoxyParamCaption}\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{nmemb,  }\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!calloc@{calloc}}
+\index{calloc@{calloc}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{calloc()}{calloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void$\ast$ calloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{nmemb,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 
 
 Referenced by printer\+\_\+open(), safecalloc(), safemalloc(), td0\+\_\+analize\+\_\+format(), td0\+\_\+open(), and td0\+\_\+read\+\_\+disk().
 
 \mbox{\Hypertarget{ram_8h_a0f8c52d1c359b700088f8417b48e467b}\label{ram_8h_a0f8c52d1c359b700088f8417b48e467b}} 
-\index{ram.\+h@{ram.\+h}!free@{free}}
-\index{free@{free}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{free()}{free()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void free (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!free@{free}}
+\index{free@{free}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void free (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
 
 
 
 Referenced by safefree(), and td0\+\_\+analize\+\_\+format().
 
 \mbox{\Hypertarget{ram_8h_af87fa722b545868277fe412e4786fa96}\label{ram_8h_af87fa722b545868277fe412e4786fa96}} 
-\index{ram.\+h@{ram.\+h}!free\+Ram@{free\+Ram}}
-\index{free\+Ram@{free\+Ram}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{free\+Ram()}{freeRam()}}
-{\footnotesize\ttfamily uint16\+\_\+t free\+Ram (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!freeRam@{freeRam}}
+\index{freeRam@{freeRam}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{freeRam()}{freeRam()}}
+{\footnotesize\ttfamily uint16\+\_\+t free\+Ram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 calloc may be aliased to safecalloc 
 
-free may be aliased to safefree malloc may be aliased to safecalloc Return A\+VR Free memory for Malloc.
+free may be aliased to safefree
+
+malloc may be aliased to safecalloc
+
+Return A\+VR Free memory for Malloc.
 
 
 \begin{DoxyItemize}
@@ -82,7 +86,7 @@ free may be aliased to safefree malloc may be aliased to safecalloc Return A\+VR
 free memory in bytes. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc()}. 
+\mbox{\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc()}}. 
 \end{DoxySeeAlso}
 
 
@@ -93,16 +97,16 @@ Definition at line 27 of file ram.\+c.
 Referenced by Print\+Free().
 
 \mbox{\Hypertarget{ram_8h_a22b308551dea873face80619301d5618}\label{ram_8h_a22b308551dea873face80619301d5618}} 
-\index{ram.\+h@{ram.\+h}!malloc@{malloc}}
-\index{malloc@{malloc}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{malloc()}{malloc()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void$\ast$ malloc (\begin{DoxyParamCaption}\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!malloc@{malloc}}
+\index{malloc@{malloc}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void$\ast$ malloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}\label{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}} 
-\index{ram.\+h@{ram.\+h}!Print\+Free@{Print\+Free}}
-\index{Print\+Free@{Print\+Free}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{Print\+Free()}{PrintFree()}}
-{\footnotesize\ttfamily void Print\+Free (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!PrintFree@{PrintFree}}
+\index{PrintFree@{PrintFree}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{PrintFree()}{PrintFree()}}
+{\footnotesize\ttfamily void Print\+Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -126,9 +130,9 @@ Definition at line 51 of file ram.\+c.
 Referenced by main(), safefree(), and user\+\_\+task().
 
 \mbox{\Hypertarget{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}\label{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}} 
-\index{ram.\+h@{ram.\+h}!safecalloc@{safecalloc}}
-\index{safecalloc@{safecalloc}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{safecalloc()}{safecalloc()}}
+\index{ram.h@{ram.h}!safecalloc@{safecalloc}}
+\index{safecalloc@{safecalloc}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{safecalloc()}{safecalloc()}}
 {\footnotesize\ttfamily void$\ast$ safecalloc (\begin{DoxyParamCaption}\item[{int}]{size,  }\item[{int}]{elements }\end{DoxyParamCaption})}
 
 
@@ -150,12 +154,12 @@ Definition at line 92 of file ram.\+c.
 
 
 
-Referenced by alloc\+\_\+device(), copy(), fatfs\+\_\+ls(), fdevopen(), i2c\+\_\+task\+\_\+op\+\_\+add(), lif\+\_\+calloc(), Mat\+Alloc(), new\+\_\+file\+\_\+descriptor(), queue\+\_\+new(), set\+\_\+\+Config\+\_\+\+Defaults(), stralloc(), and strnalloc().
+Referenced by alloc\+\_\+device(), copy(), fdevopen(), i2c\+\_\+task\+\_\+op\+\_\+add(), lif\+\_\+calloc(), Mat\+Alloc(), new\+\_\+file\+\_\+descriptor(), queue\+\_\+new(), set\+\_\+\+Config\+\_\+\+Defaults(), stralloc(), and strnalloc().
 
 \mbox{\Hypertarget{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}\label{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}} 
-\index{ram.\+h@{ram.\+h}!safefree@{safefree}}
-\index{safefree@{safefree}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{safefree()}{safefree()}}
+\index{ram.h@{ram.h}!safefree@{safefree}}
+\index{safefree@{safefree}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{safefree()}{safefree()}}
 {\footnotesize\ttfamily void safefree (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
 
 
@@ -170,7 +174,7 @@ Safe free -\/ Only free a pointer if it is in malloc memory range.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em p} & pointer to free.\\
+\mbox{\texttt{ in}}  & {\em p} & pointer to free.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -182,13 +186,13 @@ Definition at line 128 of file ram.\+c.
 
 
 
-Referenced by copy(), fatfs\+\_\+ls(), fatfs\+\_\+tests(), ff\+\_\+memfree(), free\+\_\+file\+\_\+descriptor(), i2c\+\_\+task\+\_\+free\+\_\+ops(), lif\+\_\+free(), Mat\+Free(), mkfs(), new\+\_\+file\+\_\+descriptor(), printer\+\_\+close(), queue\+\_\+del(), and queue\+\_\+new().
+Referenced by copy(), fatfs\+\_\+tests(), ff\+\_\+memfree(), free\+\_\+file\+\_\+descriptor(), i2c\+\_\+task\+\_\+free\+\_\+ops(), lif\+\_\+free(), Mat\+Free(), mkfs(), new\+\_\+file\+\_\+descriptor(), printer\+\_\+close(), queue\+\_\+del(), and queue\+\_\+new().
 
 \mbox{\Hypertarget{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}\label{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}} 
-\index{ram.\+h@{ram.\+h}!safemalloc@{safemalloc}}
-\index{safemalloc@{safemalloc}!ram.\+h@{ram.\+h}}
-\subsubsection{\texorpdfstring{safemalloc()}{safemalloc()}}
-{\footnotesize\ttfamily void$\ast$ safemalloc (\begin{DoxyParamCaption}\item[{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}]{size }\end{DoxyParamCaption})}
+\index{ram.h@{ram.h}!safemalloc@{safemalloc}}
+\index{safemalloc@{safemalloc}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{safemalloc()}{safemalloc()}}
+{\footnotesize\ttfamily void$\ast$ safemalloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
 
 
 
@@ -199,7 +203,7 @@ Safe Malloc -\/ Display Error message if Malloc fails.
 \item We check if the pointer was in the heap.
 \item Otherwise it may have been statically defined -\/ display error. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em size} & size \\
+\mbox{\texttt{ in}}  & {\em size} & size \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

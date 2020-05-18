@@ -1,220 +1,220 @@
-\hypertarget{drives_8h}{}\section{gpib/drives.h File Reference}
-\label{drives_8h}\index{gpib/drives.\+h@{gpib/drives.\+h}}
+\hypertarget{drives_8h}{}\doxysection{gpib/drives.h File Reference}
+\label{drives_8h}\index{gpib/drives.h@{gpib/drives.h}}
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}posix.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}drives\+\_\+sup.\+h\char`\"{}}\newline
-\subsection*{Data Structures}
+\doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structHeaderType}{Header\+Type}
+struct \mbox{\hyperlink{structHeaderType}{Header\+Type}}
 \item 
-struct \hyperlink{structConfigType}{Config\+Type}
+struct \mbox{\hyperlink{structConfigType}{Config\+Type}}
 \item 
-struct \hyperlink{structAMIGOStateType}{A\+M\+I\+G\+O\+State\+Type}
+struct \mbox{\hyperlink{structAMIGOStateType}{A\+M\+I\+G\+O\+State\+Type}}
 \begin{DoxyCompactList}\small\item\em A\+M\+I\+GO emulator state machine index. \end{DoxyCompactList}\item 
-struct \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}
+struct \mbox{\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}}
 \begin{DoxyCompactList}\small\item\em Printer structure. \end{DoxyCompactList}\item 
-struct \hyperlink{structPRINTERStateType}{P\+R\+I\+N\+T\+E\+R\+State\+Type}
+struct \mbox{\hyperlink{structPRINTERStateType}{P\+R\+I\+N\+T\+E\+R\+State\+Type}}
 \begin{DoxyCompactList}\small\item\em Plotter file data structure definition used for saving plot data. \end{DoxyCompactList}\item 
-struct \hyperlink{structAMIGOGeometryType}{A\+M\+I\+G\+O\+Geometry\+Type}
+struct \mbox{\hyperlink{structAMIGOGeometryType}{A\+M\+I\+G\+O\+Geometry\+Type}}
 \item 
-struct \hyperlink{structAMIGODiskType}{A\+M\+I\+G\+O\+Disk\+Type}
+struct \mbox{\hyperlink{structAMIGODiskType}{A\+M\+I\+G\+O\+Disk\+Type}}
 \begin{DoxyCompactList}\small\item\em A\+M\+I\+GO Disk structure -\/ ID bytes and layout. \end{DoxyCompactList}\item 
-struct \hyperlink{structSS80ControllerType}{S\+S80\+Controller\+Type}
+struct \mbox{\hyperlink{structSS80ControllerType}{S\+S80\+Controller\+Type}}
 \begin{DoxyCompactList}\small\item\em S\+S80 Controller. \end{DoxyCompactList}\item 
-struct \hyperlink{structSS80UnitType}{S\+S80\+Unit\+Type}
+struct \mbox{\hyperlink{structSS80UnitType}{S\+S80\+Unit\+Type}}
 \begin{DoxyCompactList}\small\item\em S\+S80 Unit. \end{DoxyCompactList}\item 
-struct \hyperlink{structSS80VolumeType}{S\+S80\+Volume\+Type}
+struct \mbox{\hyperlink{structSS80VolumeType}{S\+S80\+Volume\+Type}}
 \begin{DoxyCompactList}\small\item\em Volume Information Structure. \end{DoxyCompactList}\item 
-struct \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}
+struct \mbox{\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}}
 \begin{DoxyCompactList}\small\item\em Disk Information Structure. \end{DoxyCompactList}\item 
-struct \hyperlink{structSS80StateType}{S\+S80\+State\+Type}
+struct \mbox{\hyperlink{structSS80StateType}{S\+S80\+State\+Type}}
 \begin{DoxyCompactList}\small\item\em S\+S80 Emulated disk state information. \end{DoxyCompactList}\item 
-struct \hyperlink{structDeviceType}{Device\+Type}
+struct \mbox{\hyperlink{structDeviceType}{Device\+Type}}
 \begin{DoxyCompactList}\small\item\em Device Type. \end{DoxyCompactList}\item 
-union \hyperlink{unionval__t}{val\+\_\+t}
+union \mbox{\hyperlink{unionval__t}{val\+\_\+t}}
 \item 
-struct \hyperlink{structtoken__t}{token\+\_\+t}
+struct \mbox{\hyperlink{structtoken__t}{token\+\_\+t}}
 \end{DoxyCompactItemize}
-\subsection*{Macros}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{drives_8h_acbb3c06e9315e4230f5097bd9e89faf0}{H\+P9134L}
+\#define \mbox{\hyperlink{drives_8h_acbb3c06e9315e4230f5097bd9e89faf0}{H\+P9134L}}
 \begin{DoxyCompactList}\small\item\em defulats if not drives defined in sdcard config file \end{DoxyCompactList}\item 
-\#define \hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}~12
+\#define \mbox{\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}}~12
 \begin{DoxyCompactList}\small\item\em Maximum number of emulated devices. \end{DoxyCompactList}\item 
-\#define \hyperlink{drives_8h_a78f400f61a9a345a22df811a5b3ddc63}{print\+\_\+var}(format,  args...)~\hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P}(P\+S\+TR(format), \#\#args)
-\begin{DoxyCompactList}\small\item\em print\+\_\+var strings into \+\_\+\+\_\+memx space \end{DoxyCompactList}\item 
-\#define \hyperlink{drives_8h_a39fe89f113f9ddf062c4bdc0bb5a781b}{print\+\_\+str}(format,  args...)~\hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P}(P\+S\+TR(format), \#\#args)
-\begin{DoxyCompactList}\small\item\em print\+\_\+var strings into \+\_\+\+\_\+memx space \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Enumerations}
+\#define \mbox{\hyperlink{drives_8h_a78f400f61a9a345a22df811a5b3ddc63}{print\+\_\+var}}(format,  args...)~\mbox{\hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P}}(P\+S\+TR(format), \#\#args)
+\begin{DoxyCompactList}\small\item\em @convert print\+\_\+var strings into \+\_\+\+\_\+memx space \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{drives_8h_a39fe89f113f9ddf062c4bdc0bb5a781b}{print\+\_\+str}}(format,  args...)~\mbox{\hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P}}(P\+S\+TR(format), \#\#args)
+\begin{DoxyCompactList}\small\item\em @convert print\+\_\+var strings into \+\_\+\+\_\+memx space \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6}{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES} \{ \newline
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}{S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}{S\+S80\+\_\+\+S\+T\+A\+TE}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}{S\+S80\+\_\+\+H\+E\+A\+D\+ER}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}{S\+S80\+\_\+\+C\+O\+N\+F\+IG}, 
+enum \mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6}{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}} \{ \newline
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}{S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}{S\+S80\+\_\+\+S\+T\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}{S\+S80\+\_\+\+H\+E\+A\+D\+ER}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}{S\+S80\+\_\+\+C\+O\+N\+F\+IG}}, 
 \newline
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}{S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}{S\+S80\+\_\+\+U\+N\+IT}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}{S\+S80\+\_\+\+V\+O\+L\+U\+ME}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}{S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}{S\+S80\+\_\+\+U\+N\+IT}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}{S\+S80\+\_\+\+V\+O\+L\+U\+ME}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE}}, 
 \newline
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}{A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}{A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}{A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}{A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER}}, 
 \newline
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}{A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}{A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}{P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE}, 
-\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG}
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}{A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}{A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}{P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG}}
  \}
 \item 
-enum \hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1a}{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES} \{ \newline
-\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}{N\+O\+\_\+\+T\+Y\+PE}, 
-\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}{A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE}, 
-\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE}, 
-\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}{S\+S80\+\_\+\+T\+Y\+PE}, 
+enum \mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1a}{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}} \{ \newline
+\mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}{N\+O\+\_\+\+T\+Y\+PE}}, 
+\mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}{A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE}}, 
+\mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE}}, 
+\mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}{S\+S80\+\_\+\+T\+Y\+PE}}, 
 \newline
-\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}{P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE}
+\mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}{P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE}}
  \}
 \item 
 enum \{ \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}{T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME} = 0, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}{T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}{T\+O\+K\+\_\+\+A\+M\+I\+GO}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}{T\+O\+K\+\_\+\+B\+L\+O\+C\+KS}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}{T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME}} = 0, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}{T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}{T\+O\+K\+\_\+\+A\+M\+I\+GO}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}{T\+O\+K\+\_\+\+B\+L\+O\+C\+KS}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}{T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}{T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}{T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}{T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}{T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}{T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}{T\+O\+K\+\_\+\+C\+O\+N\+F\+IG}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}{T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}{T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}{T\+O\+K\+\_\+\+C\+O\+N\+F\+IG}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}{T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}{T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}{T\+O\+K\+\_\+\+C\+S80}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}{T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}{T\+O\+K\+\_\+\+D\+E\+B\+UG}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}{T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}{T\+O\+K\+\_\+\+C\+S80}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}{T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}{T\+O\+K\+\_\+\+D\+E\+B\+UG}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}{T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}{T\+O\+K\+\_\+\+D\+R\+I\+VE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}{T\+O\+K\+\_\+\+E\+ND}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}{T\+O\+K\+\_\+\+F\+I\+LE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}{T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}{T\+O\+K\+\_\+\+D\+R\+I\+VE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}{T\+O\+K\+\_\+\+E\+ND}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}{T\+O\+K\+\_\+\+F\+I\+LE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}{T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}{T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}{T\+O\+K\+\_\+\+H\+E\+A\+D\+ER}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}{T\+O\+K\+\_\+\+H\+E\+A\+DS}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}{T\+O\+K\+\_\+\+ID}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}{T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}{T\+O\+K\+\_\+\+H\+E\+A\+D\+ER}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}{T\+O\+K\+\_\+\+H\+E\+A\+DS}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}{T\+O\+K\+\_\+\+ID}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}{T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}{T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}{T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}{T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}{T\+O\+K\+\_\+\+P\+PR}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}{T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}{T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}{T\+O\+K\+\_\+\+P\+PR}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}{T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}{T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}{T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}{T\+O\+K\+\_\+\+S\+S80}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}{T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}{T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}{T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}{T\+O\+K\+\_\+\+S\+S80}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}{T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}{T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}{T\+O\+K\+\_\+\+T\+Y\+PE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}{T\+O\+K\+\_\+\+U\+N\+IT}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}{T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}{T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}{T\+O\+K\+\_\+\+T\+Y\+PE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}{T\+O\+K\+\_\+\+U\+N\+IT}}, 
 \newline
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}{T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}{T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}{T\+O\+K\+\_\+\+V\+O\+L\+U\+ME}, 
-\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}{T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID} = -\/1
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}{T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}{T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}{T\+O\+K\+\_\+\+V\+O\+L\+U\+ME}}, 
+\mbox{\hyperlink{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}{T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID}} = -\/1
  \}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P} (\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$str, uint32\+\_\+t val)
+void \mbox{\hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P}} (\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$str, uint32\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em Display Configuration File variable. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P} (\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$str, char $\ast$arg)
+void \mbox{\hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P}} (\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$str, char $\ast$arg)
 \begin{DoxyCompactList}\small\item\em Display Configuration File string. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_a9dc8359329d4b0227a1fcb5bc764e67e}{tok\+\_\+index} (char $\ast$str)
+int \mbox{\hyperlink{drives_8h_a9dc8359329d4b0227a1fcb5bc764e67e}{tok\+\_\+index}} (char $\ast$str)
 \begin{DoxyCompactList}\small\item\em return the tokens index of the matching string \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{drives_8h_a6494bcb31d494b6522598cbe1a293c9e}{tok\+\_\+name} (uint8\+\_\+t tok)
+char $\ast$ \mbox{\hyperlink{drives_8h_a6494bcb31d494b6522598cbe1a293c9e}{tok\+\_\+name}} (uint8\+\_\+t tok)
 \begin{DoxyCompactList}\small\item\em return string of matching token \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a939e51554e79e0a0871299a063b04cd0}{print\+\_\+tok\+\_\+val} (uint8\+\_\+t tok, uint8\+\_\+t spaces, uint32\+\_\+t val)
+void \mbox{\hyperlink{drives_8h_a939e51554e79e0a0871299a063b04cd0}{print\+\_\+tok\+\_\+val}} (uint8\+\_\+t tok, uint8\+\_\+t spaces, uint32\+\_\+t val)
 \begin{DoxyCompactList}\small\item\em Display Configuration File variable. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a0420433bf4bbb957a00a4aa83bdcf02a}{print\+\_\+tok\+\_\+str} (uint8\+\_\+t tok, uint8\+\_\+t spaces, char $\ast$str)
+void \mbox{\hyperlink{drives_8h_a0420433bf4bbb957a00a4aa83bdcf02a}{print\+\_\+tok\+\_\+str}} (uint8\+\_\+t tok, uint8\+\_\+t spaces, char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Display Configuration File variable. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a5a42638642898b6c3433591e1ae5e8c3}{print\+\_\+tok} (uint8\+\_\+t tok, uint8\+\_\+t spaces)
-\begin{DoxyCompactList}\small\item\em \subsection*{Display Configuration File variable }\end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}{Read\+\_\+\+Config} (char $\ast$name)
+void \mbox{\hyperlink{drives_8h_a5a42638642898b6c3433591e1ae5e8c3}{print\+\_\+tok}} (uint8\+\_\+t tok, uint8\+\_\+t spaces)
+\begin{DoxyCompactList}\small\item\em Display Configuration File variable. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{drives_8h_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}{Read\+\_\+\+Config}} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Read and parse a config file using P\+O\+S\+IX functions Set all drive parameters and debuglevel. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a31147d548df5d8a7674b0a50f35accac}{display\+\_\+\+Addresses} (int verbose)
+void \mbox{\hyperlink{drives_8h_a31147d548df5d8a7674b0a50f35accac}{display\+\_\+\+Addresses}} (int verbose)
 \begin{DoxyCompactList}\small\item\em Display Configuration device address saummary. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}{display\+\_\+\+Config} (int verbose)
+void \mbox{\hyperlink{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}{display\+\_\+\+Config}} (int verbose)
 \begin{DoxyCompactList}\small\item\em Display current Configuration File values. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_adc9af84417d1ea9757b9f0596fd709b3}{find\+\_\+type} (int type)
+int \mbox{\hyperlink{drives_8h_adc9af84417d1ea9757b9f0596fd709b3}{find\+\_\+type}} (int type)
 \begin{DoxyCompactList}\small\item\em Seach Devices\mbox{[}\mbox{]} for A\+NY definitions of a disk type. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_a306684070b386e868ed1e647e5172ee0}{count\+\_\+drive\+\_\+types} (uint8\+\_\+t type)
+int \mbox{\hyperlink{drives_8h_a306684070b386e868ed1e647e5172ee0}{count\+\_\+drive\+\_\+types}} (uint8\+\_\+t type)
 \begin{DoxyCompactList}\small\item\em Count number of devices of a sertain type. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{drives_8h_aa43e282b0ff4a2e5b2ce59f0fce3fb68}{type\+\_\+to\+\_\+str} (int type)
+char $\ast$ \mbox{\hyperlink{drives_8h_aa43e282b0ff4a2e5b2ce59f0fce3fb68}{type\+\_\+to\+\_\+str}} (int type)
 \begin{DoxyCompactList}\small\item\em Convert a disk type into a string. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{drives_8h_ac1a2445dba59c3eb47276b37107c6f64}{base\+\_\+to\+\_\+str} (int base)
+char $\ast$ \mbox{\hyperlink{drives_8h_ac1a2445dba59c3eb47276b37107c6f64}{base\+\_\+to\+\_\+str}} (int base)
 \begin{DoxyCompactList}\small\item\em Convert base address into a string identifier. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_aa2cf846e25affda2e38d0035ad46bcdb}{find\+\_\+free} (void)
+int \mbox{\hyperlink{drives_8h_aa2cf846e25affda2e38d0035ad46bcdb}{find\+\_\+free}} (void)
 \begin{DoxyCompactList}\small\item\em Find first free Devices\mbox{[}\mbox{]} slot. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device} (int type, int address, int base)
+int \mbox{\hyperlink{drives_8h_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device}} (int type, int address, int base)
 \begin{DoxyCompactList}\small\item\em Find a device with matching type A\+ND address. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_aece04902efa99dc0e1578dda79437a75}{set\+\_\+active\+\_\+device} (int index)
+int \mbox{\hyperlink{drives_8h_aece04902efa99dc0e1578dda79437a75}{set\+\_\+active\+\_\+device}} (int index)
 \begin{DoxyCompactList}\small\item\em Set the Active disk or device pointers Since we can be called multiple times per single G\+P\+IB state we do not display state changes here. Other code displays the active state. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_ac6ec9e422c7122cc7d3513fd33d686a8}{S\+S80\+\_\+\+Set\+\_\+\+Defaults} (int index)
+void \mbox{\hyperlink{drives_8h_ac6ec9e422c7122cc7d3513fd33d686a8}{S\+S80\+\_\+\+Set\+\_\+\+Defaults}} (int index)
 \begin{DoxyCompactList}\small\item\em Set Default Values for a new S\+S80 Device IF defaults have been defined Most values in the C\+O\+N\+T\+R\+O\+L\+ER and U\+N\+IT are defaults that should not need to be specified Note all of the values are zeroed on allocation including strings. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_a779f57c67af69afdde92e28cb4ee9adb}{alloc\+\_\+device} (int type)
+int \mbox{\hyperlink{drives_8h_a779f57c67af69afdde92e28cb4ee9adb}{alloc\+\_\+device}} (int type)
 \begin{DoxyCompactList}\small\item\em Allocate a Device structure for a disk or printer. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a31361bab0d441c06afb14a7af1d657c9}{init\+\_\+\+Devices} (void)
+void \mbox{\hyperlink{drives_8h_a31361bab0d441c06afb14a7af1d657c9}{init\+\_\+\+Devices}} (void)
 \begin{DoxyCompactList}\small\item\em Init Config Parser Stack Called only durring power up so we do not have to free memory. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_a21b219166399e8a1195b92d6a9872bbe}{push\+\_\+state} (int state)
+int \mbox{\hyperlink{drives_8h_a21b219166399e8a1195b92d6a9872bbe}{push\+\_\+state}} (int state)
 \begin{DoxyCompactList}\small\item\em Push Parser State. \end{DoxyCompactList}\item 
-int \hyperlink{drives_8h_a8848ed41fc10bb2ac57676522df757f4}{pop\+\_\+state} (void)
+int \mbox{\hyperlink{drives_8h_a8848ed41fc10bb2ac57676522df757f4}{pop\+\_\+state}} (void)
 \begin{DoxyCompactList}\small\item\em Pop Parser State. \end{DoxyCompactList}\item 
-\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} \hyperlink{drives_8h_a8b0e509b202f29cc333b28da6105f6c1}{assign\+\_\+value} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
+\mbox{\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} \mbox{\hyperlink{drives_8h_a8b0e509b202f29cc333b28da6105f6c1}{assign\+\_\+value}} (char $\ast$str, uint32\+\_\+t minval, uint32\+\_\+t maxval, uint32\+\_\+t $\ast$val)
 \begin{DoxyCompactList}\small\item\em assigned a value \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_ac849d9d72ff959c1d25ad3514a6237ac}{set\+\_\+\+Config\+\_\+\+Defaults} (void)
+void \mbox{\hyperlink{drives_8h_ac849d9d72ff959c1d25ad3514a6237ac}{set\+\_\+\+Config\+\_\+\+Defaults}} (void)
 \begin{DoxyCompactList}\small\item\em Set Defaults for any missing disk or printer devices These are only used if the Config file omits them or is empty. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a7cc2e9f068997d98d19e10ef305fe5bb}{hpdir\+\_\+set\+\_\+device} (int index)
+void \mbox{\hyperlink{drives_8h_a7cc2e9f068997d98d19e10ef305fe5bb}{hpdir\+\_\+set\+\_\+device}} (int index)
 \begin{DoxyCompactList}\small\item\em Set Device parameters from hpdir information. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a899ab6043e756943a7f38022900ff998}{hpdir\+\_\+set\+\_\+parameters} (int index, char $\ast$model)
+void \mbox{\hyperlink{drives_8h_a899ab6043e756943a7f38022900ff998}{hpdir\+\_\+set\+\_\+parameters}} (int index, char $\ast$model)
 \begin{DoxyCompactList}\small\item\em Lookup model in and set drive parameters if found. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_a46d5f926340e6fb3f4b27fee0f59dcc4}{Post\+\_\+\+Config} (void)
+void \mbox{\hyperlink{drives_8h_a46d5f926340e6fb3f4b27fee0f59dcc4}{Post\+\_\+\+Config}} (void)
 \begin{DoxyCompactList}\small\item\em Post Process C\+Onfiguration file after reading. \end{DoxyCompactList}\item 
-void \hyperlink{drives_8h_ae5e26f65c0c469c7ad467201a7591fad}{format\+\_\+drives} (void)
+void \mbox{\hyperlink{drives_8h_ae5e26f65c0c469c7ad467201a7591fad}{format\+\_\+drives}} (void)
 \begin{DoxyCompactList}\small\item\em Format devices that have no image file. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
+\doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type} $\ast$ \hyperlink{drives_8h_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p}
+\mbox{\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}} $\ast$ \mbox{\hyperlink{drives_8h_ae2b90e5f9a8ae9e5df3fdee98a215939}{S\+S80p}}
 \begin{DoxyCompactList}\small\item\em Active S\+S80 Device. \end{DoxyCompactList}\item 
-\hyperlink{structSS80StateType}{S\+S80\+State\+Type} $\ast$ \hyperlink{drives_8h_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s}
+\mbox{\hyperlink{structSS80StateType}{S\+S80\+State\+Type}} $\ast$ \mbox{\hyperlink{drives_8h_a26e0264b8581231a3a90fbb418f5812a}{S\+S80s}}
 \item 
-\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type} $\ast$ \hyperlink{drives_8h_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp}
+\mbox{\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}} $\ast$ \mbox{\hyperlink{drives_8h_abe5ffe9f7c96ad748b695ed5b45d6e52}{P\+R\+I\+N\+T\+E\+Rp}}
 \begin{DoxyCompactList}\small\item\em Active Printer Device. \end{DoxyCompactList}\item 
-\hyperlink{structDeviceType}{Device\+Type} \hyperlink{drives_8h_acfedc9290d5356e240da3373bb0ebdbd}{Devices} \mbox{[}\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}\mbox{]}
+\mbox{\hyperlink{structDeviceType}{Device\+Type}} \mbox{\hyperlink{drives_8h_acfedc9290d5356e240da3373bb0ebdbd}{Devices}} \mbox{[}\mbox{\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}}\mbox{]}
 \end{DoxyCompactItemize}
 
 
-\subsection{Macro Definition Documentation}
+\doxysubsection{Macro Definition Documentation}
 \mbox{\Hypertarget{drives_8h_acbb3c06e9315e4230f5097bd9e89faf0}\label{drives_8h_acbb3c06e9315e4230f5097bd9e89faf0}} 
-\index{drives.\+h@{drives.\+h}!H\+P9134L@{H\+P9134L}}
-\index{H\+P9134L@{H\+P9134L}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{H\+P9134L}{HP9134L}}
+\index{drives.h@{drives.h}!HP9134L@{HP9134L}}
+\index{HP9134L@{HP9134L}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{HP9134L}{HP9134L}}
 {\footnotesize\ttfamily \#define H\+P9134L}
 
 
@@ -226,9 +226,9 @@ defulats if not drives defined in sdcard config file
 Definition at line 33 of file drives.\+h.
 
 \mbox{\Hypertarget{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}\label{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}} 
-\index{drives.\+h@{drives.\+h}!M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES@{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}}
-\index{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES@{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}{MAX\_DEVICES}}
+\index{drives.h@{drives.h}!MAX\_DEVICES@{MAX\_DEVICES}}
+\index{MAX\_DEVICES@{MAX\_DEVICES}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_DEVICES}{MAX\_DEVICES}}
 {\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES~12}
 
 
@@ -239,33 +239,29 @@ Maximum number of emulated devices.
 
 Definition at line 37 of file drives.\+h.
 
-
-
-Referenced by count\+\_\+drive\+\_\+types(), display\+\_\+\+Addresses(), display\+\_\+\+Config(), find\+\_\+device(), find\+\_\+type(), format\+\_\+drives(), init\+\_\+\+Devices(), Post\+\_\+\+Config(), set\+\_\+active\+\_\+device(), and S\+S80\+\_\+init().
-
 \mbox{\Hypertarget{drives_8h_a39fe89f113f9ddf062c4bdc0bb5a781b}\label{drives_8h_a39fe89f113f9ddf062c4bdc0bb5a781b}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+str@{print\+\_\+str}}
-\index{print\+\_\+str@{print\+\_\+str}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+str}{print\_str}}
-{\footnotesize\ttfamily \#define print\+\_\+str(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~\hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P}(P\+S\+TR(format), \#\#args)}
+\index{drives.h@{drives.h}!print\_str@{print\_str}}
+\index{print\_str@{print\_str}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_str}{print\_str}}
+{\footnotesize\ttfamily \#define print\+\_\+str(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~\mbox{\hyperlink{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}{print\+\_\+str\+\_\+P}}(P\+S\+TR(format), \#\#args)}
 
 
 
-print\+\_\+var strings into \+\_\+\+\_\+memx space 
+@convert print\+\_\+var strings into \+\_\+\+\_\+memx space 
 
 
 
 Definition at line 270 of file drives.\+h.
 
 \mbox{\Hypertarget{drives_8h_a78f400f61a9a345a22df811a5b3ddc63}\label{drives_8h_a78f400f61a9a345a22df811a5b3ddc63}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+var@{print\+\_\+var}}
-\index{print\+\_\+var@{print\+\_\+var}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+var}{print\_var}}
-{\footnotesize\ttfamily \#define print\+\_\+var(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~\hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P}(P\+S\+TR(format), \#\#args)}
+\index{drives.h@{drives.h}!print\_var@{print\_var}}
+\index{print\_var@{print\_var}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_var}{print\_var}}
+{\footnotesize\ttfamily \#define print\+\_\+var(\begin{DoxyParamCaption}\item[{}]{format,  }\item[{}]{args... }\end{DoxyParamCaption})~\mbox{\hyperlink{drives_8h_ab0cc4deddae206c7762399a8d54856e1}{print\+\_\+var\+\_\+P}}(P\+S\+TR(format), \#\#args)}
 
 
 
-print\+\_\+var strings into \+\_\+\+\_\+memx space 
+@convert print\+\_\+var strings into \+\_\+\+\_\+memx space 
 
 
 
@@ -273,185 +269,185 @@ Definition at line 268 of file drives.\+h.
 
 
 
-\subsection{Enumeration Type Documentation}
+\doxysubsection{Enumeration Type Documentation}
 \mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7}} 
-\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_ACCESS\_TIME@{TOK\_ACCESS\_TIME}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_ACCESS\_TIME@{TOK\_ACCESS\_TIME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a9c1cd1ad5753f37e21e532a237ed6481}} 
 T\+O\+K\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+T\+I\+ME&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS@{T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS@{T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_ADDRESS@{TOK\_ADDRESS}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_ADDRESS@{TOK\_ADDRESS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a082de8799aba57f5b52464d4f7163674}} 
 T\+O\+K\+\_\+\+A\+D\+D\+R\+E\+SS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+A\+M\+I\+GO@{T\+O\+K\+\_\+\+A\+M\+I\+GO}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+A\+M\+I\+GO@{T\+O\+K\+\_\+\+A\+M\+I\+GO}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_AMIGO@{TOK\_AMIGO}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_AMIGO@{TOK\_AMIGO}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d0e74b853d2fe0c678283660d93d2a7}} 
 T\+O\+K\+\_\+\+A\+M\+I\+GO&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+L\+O\+C\+KS@{T\+O\+K\+\_\+\+B\+L\+O\+C\+KS}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+L\+O\+C\+KS@{T\+O\+K\+\_\+\+B\+L\+O\+C\+KS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BLOCKS@{TOK\_BLOCKS}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BLOCKS@{TOK\_BLOCKS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aebb29e8d9a11b5f5dbcd02a94e6b1319}} 
 T\+O\+K\+\_\+\+B\+L\+O\+C\+KS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BLOCK\_TIME@{TOK\_BLOCK\_TIME}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BLOCK\_TIME@{TOK\_BLOCK\_TIME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6d1245480d1f2753c55cd2bc0caf8fda}} 
 T\+O\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+T\+I\+ME&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS@{T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS@{T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BUFFERED\_BLOCKS@{TOK\_BUFFERED\_BLOCKS}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BUFFERED\_BLOCKS@{TOK\_BUFFERED\_BLOCKS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a4e9b46dee1115b5004102504fcc00876}} 
 T\+O\+K\+\_\+\+B\+U\+F\+F\+E\+R\+E\+D\+\_\+\+B\+L\+O\+C\+KS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE@{T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE@{T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BURST\_SIZE@{TOK\_BURST\_SIZE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BURST\_SIZE@{TOK\_BURST\_SIZE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af4896d42d6e521f120e230898d7b76d5}} 
 T\+O\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+S\+I\+ZE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK@{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK@{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BYTES\_PER\_BLOCK@{TOK\_BYTES\_PER\_BLOCK}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BYTES\_PER\_BLOCK@{TOK\_BYTES\_PER\_BLOCK}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d595bd9320a09907d5e796c45013038}} 
 T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR@{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR@{T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_BYTES\_PER\_SECTOR@{TOK\_BYTES\_PER\_SECTOR}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_BYTES\_PER\_SECTOR@{TOK\_BYTES\_PER\_SECTOR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab0eabdbea58f93a7e6ade673b47d5ea7}} 
 T\+O\+K\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+C\+O\+N\+F\+IG@{T\+O\+K\+\_\+\+C\+O\+N\+F\+IG}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+C\+O\+N\+F\+IG@{T\+O\+K\+\_\+\+C\+O\+N\+F\+IG}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_CONFIG@{TOK\_CONFIG}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_CONFIG@{TOK\_CONFIG}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a272dcd5ff322524763af896c7ed10e93}} 
 T\+O\+K\+\_\+\+C\+O\+N\+F\+IG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE@{T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE@{T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_CONTINUOUS\_TRANSFER\_RATE@{TOK\_CONTINUOUS\_TRANSFER\_RATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_CONTINUOUS\_TRANSFER\_RATE@{TOK\_CONTINUOUS\_TRANSFER\_RATE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ab174aa0027c3b51ea33da9cc7c79260d}} 
 T\+O\+K\+\_\+\+C\+O\+N\+T\+I\+N\+U\+O\+U\+S\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_CONTROLLER@{TOK\_CONTROLLER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_CONTROLLER@{TOK\_CONTROLLER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a187ccb3b9dfae775ee98e9df11d3d471}} 
 T\+O\+K\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+C\+S80@{T\+O\+K\+\_\+\+C\+S80}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+C\+S80@{T\+O\+K\+\_\+\+C\+S80}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_CS80@{TOK\_CS80}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_CS80@{TOK\_CS80}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a57a5241e46e161dbdddd33c748716736}} 
 T\+O\+K\+\_\+\+C\+S80&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS@{T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS@{T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_CYLINDERS@{TOK\_CYLINDERS}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_CYLINDERS@{TOK\_CYLINDERS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3b7ed5749b4a925866ca383d9b14693e}} 
 T\+O\+K\+\_\+\+C\+Y\+L\+I\+N\+D\+E\+RS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+D\+E\+B\+UG@{T\+O\+K\+\_\+\+D\+E\+B\+UG}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+D\+E\+B\+UG@{T\+O\+K\+\_\+\+D\+E\+B\+UG}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_DEBUG@{TOK\_DEBUG}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_DEBUG@{TOK\_DEBUG}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a581c64cb7cf2a5d9a3406d92b6c5e186}} 
 T\+O\+K\+\_\+\+D\+E\+B\+UG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_DEVICE\_NUMBER@{TOK\_DEVICE\_NUMBER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_DEVICE\_NUMBER@{TOK\_DEVICE\_NUMBER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae574dbd7f13c86e0bd98eba3331479b2}} 
 T\+O\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+N\+U\+M\+B\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+D\+R\+I\+VE@{T\+O\+K\+\_\+\+D\+R\+I\+VE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+D\+R\+I\+VE@{T\+O\+K\+\_\+\+D\+R\+I\+VE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_DRIVE@{TOK\_DRIVE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_DRIVE@{TOK\_DRIVE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a48cab16bb3154bbc8e885931ddc6bf86}} 
 T\+O\+K\+\_\+\+D\+R\+I\+VE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+E\+ND@{T\+O\+K\+\_\+\+E\+ND}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+E\+ND@{T\+O\+K\+\_\+\+E\+ND}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_END@{TOK\_END}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_END@{TOK\_END}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aff129834bc4016845b837946c1e955fc}} 
 T\+O\+K\+\_\+\+E\+ND&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+F\+I\+LE@{T\+O\+K\+\_\+\+F\+I\+LE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+F\+I\+LE@{T\+O\+K\+\_\+\+F\+I\+LE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_FILE@{TOK\_FILE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_FILE@{TOK\_FILE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7afa6f81a76c49c6dd02d9f3caa36bcd51}} 
 T\+O\+K\+\_\+\+F\+I\+LE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES@{T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES@{T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_FIXED\_VOLUMES@{TOK\_FIXED\_VOLUMES}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_FIXED\_VOLUMES@{TOK\_FIXED\_VOLUMES}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a779eca584e753a9770aae9eb63365d51}} 
 T\+O\+K\+\_\+\+F\+I\+X\+E\+D\+\_\+\+V\+O\+L\+U\+M\+ES&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY@{T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY@{T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_GEOMETRY@{TOK\_GEOMETRY}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_GEOMETRY@{TOK\_GEOMETRY}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad3ae97be205973c32cd934ce4d8fe170}} 
 T\+O\+K\+\_\+\+G\+E\+O\+M\+E\+T\+RY&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+H\+E\+A\+D\+ER@{T\+O\+K\+\_\+\+H\+E\+A\+D\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+H\+E\+A\+D\+ER@{T\+O\+K\+\_\+\+H\+E\+A\+D\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_HEADER@{TOK\_HEADER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_HEADER@{TOK\_HEADER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a225baf89ba2bfaaa37db4740c044b922}} 
 T\+O\+K\+\_\+\+H\+E\+A\+D\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+H\+E\+A\+DS@{T\+O\+K\+\_\+\+H\+E\+A\+DS}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+H\+E\+A\+DS@{T\+O\+K\+\_\+\+H\+E\+A\+DS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_HEADS@{TOK\_HEADS}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_HEADS@{TOK\_HEADS}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ae5184b54b567771dbaeff24f14426ce8}} 
 T\+O\+K\+\_\+\+H\+E\+A\+DS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+ID@{T\+O\+K\+\_\+\+ID}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+ID@{T\+O\+K\+\_\+\+ID}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_ID@{TOK\_ID}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_ID@{TOK\_ID}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7ab6a53757cfe2a0fc35ee646bd1cbeb}} 
 T\+O\+K\+\_\+\+ID&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE@{T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE@{T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_INTERLEAVE@{TOK\_INTERLEAVE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_INTERLEAVE@{TOK\_INTERLEAVE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7822fa05f0c7a509093a00dc3091bfca}} 
 T\+O\+K\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_MAX\_BLOCK\_NUMBER@{TOK\_MAX\_BLOCK\_NUMBER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_MAX\_BLOCK\_NUMBER@{TOK\_MAX\_BLOCK\_NUMBER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a6b9f7402f1524477cac146e07f8da80d}} 
 T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+B\+L\+O\+C\+K\+\_\+\+N\+U\+M\+B\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_MAX\_CYLINDER@{TOK\_MAX\_CYLINDER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_MAX\_CYLINDER@{TOK\_MAX\_CYLINDER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a5c416d3628b4e5b7a56d8f6e04dba69c}} 
 T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+C\+Y\+L\+I\+N\+D\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_MAX\_HEAD@{TOK\_MAX\_HEAD}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_MAX\_HEAD@{TOK\_MAX\_HEAD}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a597abf081215d4f2b1db5c295fd9da68}} 
 T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+H\+E\+AD&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE@{T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE@{T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_MAXIMUM\_INTERLEAVE@{TOK\_MAXIMUM\_INTERLEAVE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_MAXIMUM\_INTERLEAVE@{TOK\_MAXIMUM\_INTERLEAVE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a424bf2af05da05d7e86354dfcf25aa4b}} 
 T\+O\+K\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+I\+N\+T\+E\+R\+L\+E\+A\+VE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR@{T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_MAX\_SECTOR@{TOK\_MAX\_SECTOR}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_MAX\_SECTOR@{TOK\_MAX\_SECTOR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ad864f68adf437007387b3dca4c247cff}} 
 T\+O\+K\+\_\+\+M\+A\+X\+\_\+\+S\+E\+C\+T\+OR&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME@{T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_OPTIMAL\_RETRY\_TIME@{TOK\_OPTIMAL\_RETRY\_TIME}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_OPTIMAL\_RETRY\_TIME@{TOK\_OPTIMAL\_RETRY\_TIME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ace72d1cdfba4705584bb439407a3f008}} 
 T\+O\+K\+\_\+\+O\+P\+T\+I\+M\+A\+L\+\_\+\+R\+E\+T\+R\+Y\+\_\+\+T\+I\+ME&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+P\+PR@{T\+O\+K\+\_\+\+P\+PR}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+P\+PR@{T\+O\+K\+\_\+\+P\+PR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_PPR@{TOK\_PPR}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_PPR@{TOK\_PPR}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7ac66d2bff965ef79eb4db23bb6cbbd20f}} 
 T\+O\+K\+\_\+\+P\+PR&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER@{T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER@{T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_PRINTER@{TOK\_PRINTER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_PRINTER@{TOK\_PRINTER}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af56438fe26b838feb6862d682d590ab5}} 
 T\+O\+K\+\_\+\+P\+R\+I\+N\+T\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES@{T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES@{T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_REMOVABLE\_VOLUMES@{TOK\_REMOVABLE\_VOLUMES}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_REMOVABLE\_VOLUMES@{TOK\_REMOVABLE\_VOLUMES}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a8d4c354a7b64b9b7c49183c3fa6e99ec}} 
 T\+O\+K\+\_\+\+R\+E\+M\+O\+V\+A\+B\+L\+E\+\_\+\+V\+O\+L\+U\+M\+ES&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK@{T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK@{T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_SECTORS\_PER\_TRACK@{TOK\_SECTORS\_PER\_TRACK}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_SECTORS\_PER\_TRACK@{TOK\_SECTORS\_PER\_TRACK}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a32456b3d0c5177f48c5a1af245e5043e}} 
 T\+O\+K\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+S\+S80@{T\+O\+K\+\_\+\+S\+S80}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+S\+S80@{T\+O\+K\+\_\+\+S\+S80}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_SS80@{TOK\_SS80}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_SS80@{TOK\_SS80}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7af5558c462a824d9a4ef994e7190d3aae}} 
 T\+O\+K\+\_\+\+S\+S80&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT@{T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT@{T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_SS80\_DEFAULT@{TOK\_SS80\_DEFAULT}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_SS80\_DEFAULT@{TOK\_SS80\_DEFAULT}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7c33e210136f34f1d24a26ecb1a8dab4}} 
 T\+O\+K\+\_\+\+S\+S80\+\_\+\+D\+E\+F\+A\+U\+LT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE@{T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE@{T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_TRANSFER\_RATE@{TOK\_TRANSFER\_RATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_TRANSFER\_RATE@{TOK\_TRANSFER\_RATE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aa167ecec653994c928cfff50ea5c3523}} 
 T\+O\+K\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+R\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+T\+Y\+PE@{T\+O\+K\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+T\+Y\+PE@{T\+O\+K\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_TYPE@{TOK\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_TYPE@{TOK\_TYPE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a7455bce9ab563e25b2e477de57ef8eaf}} 
 T\+O\+K\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+U\+N\+IT@{T\+O\+K\+\_\+\+U\+N\+IT}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+U\+N\+IT@{T\+O\+K\+\_\+\+U\+N\+IT}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_UNIT@{TOK\_UNIT}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_UNIT@{TOK\_UNIT}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a439bf8e62687b4745630570fa825a00b}} 
 T\+O\+K\+\_\+\+U\+N\+IT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED@{T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED@{T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_UNITS\_INSTALLED@{TOK\_UNITS\_INSTALLED}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_UNITS\_INSTALLED@{TOK\_UNITS\_INSTALLED}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7aab3899619cc9f1da22f798f4757ff88b}} 
 T\+O\+K\+\_\+\+U\+N\+I\+T\+S\+\_\+\+I\+N\+S\+T\+A\+L\+L\+ED&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE@{T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE@{T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_UNIT\_TYPE@{TOK\_UNIT\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_UNIT\_TYPE@{TOK\_UNIT\_TYPE}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3d3ca08602bdfdfd252d7b64cdd73293}} 
 T\+O\+K\+\_\+\+U\+N\+I\+T\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+V\+O\+L\+U\+ME@{T\+O\+K\+\_\+\+V\+O\+L\+U\+ME}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+V\+O\+L\+U\+ME@{T\+O\+K\+\_\+\+V\+O\+L\+U\+ME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_VOLUME@{TOK\_VOLUME}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_VOLUME@{TOK\_VOLUME}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7a3e097716c596b6d7a64a25923c124be6}} 
 T\+O\+K\+\_\+\+V\+O\+L\+U\+ME&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID@{T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID@{T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOK\_INVALID@{TOK\_INVALID}!drives.h@{drives.h}}\index{drives.h@{drives.h}!TOK\_INVALID@{TOK\_INVALID}}}\mbox{\Hypertarget{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}\label{drives_8h_adf764cbdea00d65edcd07bb9953ad2b7abbdda049b6794c615ad18f3f95ee913e}} 
 T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID&\\
 \hline
 
@@ -461,29 +457,29 @@ T\+O\+K\+\_\+\+I\+N\+V\+A\+L\+ID&\\
 Definition at line 294 of file drives.\+h.
 
 \mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1a}\label{drives_8h_a33196bc0cea31797e73e711c29786d1a}} 
-\index{drives.\+h@{drives.\+h}!D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES@{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}}
-\index{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES@{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}{DEVICE\_TYPES}}
-{\footnotesize\ttfamily enum \hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1a}{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}}
+\index{drives.h@{drives.h}!DEVICE\_TYPES@{DEVICE\_TYPES}}
+\index{DEVICE\_TYPES@{DEVICE\_TYPES}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_TYPES}{DEVICE\_TYPES}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{drives_8h_a33196bc0cea31797e73e711c29786d1a}{D\+E\+V\+I\+C\+E\+\_\+\+T\+Y\+P\+ES}}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+O\+\_\+\+T\+Y\+PE@{N\+O\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!N\+O\+\_\+\+T\+Y\+PE@{N\+O\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NO\_TYPE@{NO\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!NO\_TYPE@{NO\_TYPE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aab7edd9ce665944b457c9862d412f80cc}} 
 N\+O\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE@{A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE@{A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AMIGO\_TYPE@{AMIGO\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!AMIGO\_TYPE@{AMIGO\_TYPE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aac6fe6171d238afd06d0c529566efdc9d}} 
 A\+M\+I\+G\+O\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE@{S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_DEFAULT\_TYPE@{SS80\_DEFAULT\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_DEFAULT\_TYPE@{SS80\_DEFAULT\_TYPE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aab0d33b3e36c87ddded72c7cd6b0f6c60}} 
 S\+S80\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+T\+Y\+PE@{S\+S80\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+T\+Y\+PE@{S\+S80\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_TYPE@{SS80\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_TYPE@{SS80\_TYPE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aacb996483428777ee59e84678fc35cd07}} 
 S\+S80\+\_\+\+T\+Y\+PE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE@{P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE@{P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRINTER\_TYPE@{PRINTER\_TYPE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!PRINTER\_TYPE@{PRINTER\_TYPE}}}\mbox{\Hypertarget{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}\label{drives_8h_a33196bc0cea31797e73e711c29786d1aa746fb6ec7189ce1273b8003eef262aca}} 
 P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE&\\
 \hline
 
@@ -493,73 +489,73 @@ P\+R\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+PE&\\
 Definition at line 245 of file drives.\+h.
 
 \mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6}} 
-\index{drives.\+h@{drives.\+h}!P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES@{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}}
-\index{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES@{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}{PARSE\_STATES}}
-{\footnotesize\ttfamily enum \hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6}{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}}
+\index{drives.h@{drives.h}!PARSE\_STATES@{PARSE\_STATES}}
+\index{PARSE\_STATES@{PARSE\_STATES}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{PARSE\_STATES}{PARSE\_STATES}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{drives_8h_a6aaab673dab68a8c345bd813dae926c6}{P\+A\+R\+S\+E\+\_\+\+S\+T\+A\+T\+ES}}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE@{S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE@{S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{START\_STATE@{START\_STATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!START\_STATE@{START\_STATE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a399c982a0c65189d8b619a10443b9a8e}} 
 S\+T\+A\+R\+T\+\_\+\+S\+T\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+S\+T\+A\+TE@{S\+S80\+\_\+\+S\+T\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+S\+T\+A\+TE@{S\+S80\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_STATE@{SS80\_STATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_STATE@{SS80\_STATE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6ae405c5ce2ba4fc8c3e90a5e6920210cc}} 
 S\+S80\+\_\+\+S\+T\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+H\+E\+A\+D\+ER@{S\+S80\+\_\+\+H\+E\+A\+D\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+H\+E\+A\+D\+ER@{S\+S80\+\_\+\+H\+E\+A\+D\+ER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_HEADER@{SS80\_HEADER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_HEADER@{SS80\_HEADER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a57f5404927e4cc0a4a313481962498ff}} 
 S\+S80\+\_\+\+H\+E\+A\+D\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+C\+O\+N\+F\+IG@{S\+S80\+\_\+\+C\+O\+N\+F\+IG}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+C\+O\+N\+F\+IG@{S\+S80\+\_\+\+C\+O\+N\+F\+IG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_CONFIG@{SS80\_CONFIG}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_CONFIG@{SS80\_CONFIG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a626dbff17ca8e5089ba4e99049661e80}} 
 S\+S80\+\_\+\+C\+O\+N\+F\+IG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_CONTROLLER@{SS80\_CONTROLLER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_CONTROLLER@{SS80\_CONTROLLER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6abe53e47f5e4bc19ef2da1ddc8e33a106}} 
 S\+S80\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+U\+N\+IT@{S\+S80\+\_\+\+U\+N\+IT}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+U\+N\+IT@{S\+S80\+\_\+\+U\+N\+IT}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_UNIT@{SS80\_UNIT}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_UNIT@{SS80\_UNIT}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a4827dc32d3209a11bba2cf7777f20533}} 
 S\+S80\+\_\+\+U\+N\+IT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+S80\+\_\+\+V\+O\+L\+U\+ME@{S\+S80\+\_\+\+V\+O\+L\+U\+ME}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+V\+O\+L\+U\+ME@{S\+S80\+\_\+\+V\+O\+L\+U\+ME}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SS80\_VOLUME@{SS80\_VOLUME}!drives.h@{drives.h}}\index{drives.h@{drives.h}!SS80\_VOLUME@{SS80\_VOLUME}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a9f181137ab8d58c3e17df8aecf3ddaad}} 
 S\+S80\+\_\+\+V\+O\+L\+U\+ME&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONTROLLER\_STATE@{CONTROLLER\_STATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!CONTROLLER\_STATE@{CONTROLLER\_STATE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6aa1b5cb09e3009bf3b0c823cdfa71cad2}} 
 C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONTROLLER\_CONTROLLER@{CONTROLLER\_CONTROLLER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!CONTROLLER\_CONTROLLER@{CONTROLLER\_CONTROLLER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a3e797c091a7c3dbb14603eea06f33c41}} 
 C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONTROLLER\_UNIT@{CONTROLLER\_UNIT}!drives.h@{drives.h}}\index{drives.h@{drives.h}!CONTROLLER\_UNIT@{CONTROLLER\_UNIT}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af98b2e7927d929879de4196d6a584428}} 
 C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+U\+N\+IT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE@{A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE@{A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AMIGO\_STATE@{AMIGO\_STATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!AMIGO\_STATE@{AMIGO\_STATE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a2d669a19a1e7ee7c3ba165136ee73f11}} 
 A\+M\+I\+G\+O\+\_\+\+S\+T\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER@{A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER@{A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AMIGO\_HEADER@{AMIGO\_HEADER}!drives.h@{drives.h}}\index{drives.h@{drives.h}!AMIGO\_HEADER@{AMIGO\_HEADER}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a64aa2e2bccef05b7960f9d23514e1aa3}} 
 A\+M\+I\+G\+O\+\_\+\+H\+E\+A\+D\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG@{A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG@{A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AMIGO\_CONFIG@{AMIGO\_CONFIG}!drives.h@{drives.h}}\index{drives.h@{drives.h}!AMIGO\_CONFIG@{AMIGO\_CONFIG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af2dafb7397e350987c613df37ecee2d4}} 
 A\+M\+I\+G\+O\+\_\+\+C\+O\+N\+F\+IG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY@{A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY@{A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AMIGO\_GEOMETRY@{AMIGO\_GEOMETRY}!drives.h@{drives.h}}\index{drives.h@{drives.h}!AMIGO\_GEOMETRY@{AMIGO\_GEOMETRY}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6af67ced9f95bdf0555101a0290c5f0ffa}} 
 A\+M\+I\+G\+O\+\_\+\+G\+E\+O\+M\+E\+T\+RY&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE@{P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE@{P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRINTER\_STATE@{PRINTER\_STATE}!drives.h@{drives.h}}\index{drives.h@{drives.h}!PRINTER\_STATE@{PRINTER\_STATE}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a6ee1158608e3d7bdad4d1ed662ccd760}} 
 P\+R\+I\+N\+T\+E\+R\+\_\+\+S\+T\+A\+TE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG@{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG}!drives.\+h@{drives.\+h}}\index{drives.\+h@{drives.\+h}!P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG@{P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRINTER\_CONFIG@{PRINTER\_CONFIG}!drives.h@{drives.h}}\index{drives.h@{drives.h}!PRINTER\_CONFIG@{PRINTER\_CONFIG}}}\mbox{\Hypertarget{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}\label{drives_8h_a6aaab673dab68a8c345bd813dae926c6a5b25b1570ff10fa4c4cd5885ea82d903}} 
 P\+R\+I\+N\+T\+E\+R\+\_\+\+C\+O\+N\+F\+IG&\\
 \hline
 
@@ -570,11 +566,11 @@ Definition at line 223 of file drives.\+h.
 
 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{drives_8h_a779f57c67af69afdde92e28cb4ee9adb}\label{drives_8h_a779f57c67af69afdde92e28cb4ee9adb}} 
-\index{drives.\+h@{drives.\+h}!alloc\+\_\+device@{alloc\+\_\+device}}
-\index{alloc\+\_\+device@{alloc\+\_\+device}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{alloc\+\_\+device()}{alloc\_device()}}
+\index{drives.h@{drives.h}!alloc\_device@{alloc\_device}}
+\index{alloc\_device@{alloc\_device}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{alloc\_device()}{alloc\_device()}}
 {\footnotesize\ttfamily int alloc\+\_\+device (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})}
 
 
@@ -598,10 +594,10 @@ Definition at line 1211 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a8b0e509b202f29cc333b28da6105f6c1}\label{drives_8h_a8b0e509b202f29cc333b28da6105f6c1}} 
-\index{drives.\+h@{drives.\+h}!assign\+\_\+value@{assign\+\_\+value}}
-\index{assign\+\_\+value@{assign\+\_\+value}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{assign\+\_\+value()}{assign\_value()}}
-{\footnotesize\ttfamily \hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool} assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!assign\_value@{assign\_value}}
+\index{assign\_value@{assign\_value}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{assign\_value()}{assign\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_af6a258d8f3ee5206d682d799316314b1}{bool}} assign\+\_\+value (\begin{DoxyParamCaption}\item[{char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{minval,  }\item[{uint32\+\_\+t}]{maxval,  }\item[{uint32\+\_\+t $\ast$}]{val }\end{DoxyParamCaption})}
 
 
 
@@ -611,13 +607,13 @@ assigned a value
 \begin{DoxyItemize}
 \item Used only for debugging 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em str} & string to examine \\
+\mbox{\texttt{ in}}  & {\em str} & string to examine \\
 \hline
-\mbox{\tt in}  & {\em minval} & minimum value \\
+\mbox{\texttt{ in}}  & {\em minval} & minimum value \\
 \hline
-\mbox{\tt in}  & {\em maxval} & maximum value \\
+\mbox{\texttt{ in}}  & {\em maxval} & maximum value \\
 \hline
-\mbox{\tt in}  & {\em $\ast$val} & value to set\\
+\mbox{\texttt{ in}}  & {\em $\ast$val} & value to set\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -629,9 +625,9 @@ assigned a value
 Definition at line 1323 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_ac1a2445dba59c3eb47276b37107c6f64}\label{drives_8h_ac1a2445dba59c3eb47276b37107c6f64}} 
-\index{drives.\+h@{drives.\+h}!base\+\_\+to\+\_\+str@{base\+\_\+to\+\_\+str}}
-\index{base\+\_\+to\+\_\+str@{base\+\_\+to\+\_\+str}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{base\+\_\+to\+\_\+str()}{base\_to\_str()}}
+\index{drives.h@{drives.h}!base\_to\_str@{base\_to\_str}}
+\index{base\_to\_str@{base\_to\_str}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{base\_to\_str()}{base\_to\_str()}}
 {\footnotesize\ttfamily char$\ast$ base\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{int}]{base }\end{DoxyParamCaption})}
 
 
@@ -651,9 +647,9 @@ string \char`\"{}\+M\+L\+A\char`\"{}, \char`\"{}\+M\+T\+A\char`\"{}, \char`\"{}\
 Definition at line 1030 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a306684070b386e868ed1e647e5172ee0}\label{drives_8h_a306684070b386e868ed1e647e5172ee0}} 
-\index{drives.\+h@{drives.\+h}!count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}}
-\index{count\+\_\+drive\+\_\+types@{count\+\_\+drive\+\_\+types}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{count\+\_\+drive\+\_\+types()}{count\_drive\_types()}}
+\index{drives.h@{drives.h}!count\_drive\_types@{count\_drive\_types}}
+\index{count\_drive\_types@{count\_drive\_types}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{count\_drive\_types()}{count\_drive\_types()}}
 {\footnotesize\ttfamily int count\+\_\+drive\+\_\+types (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})}
 
 
@@ -674,9 +670,9 @@ Definition at line 997 of file drives.\+c.
 Referenced by main().
 
 \mbox{\Hypertarget{drives_8h_a31147d548df5d8a7674b0a50f35accac}\label{drives_8h_a31147d548df5d8a7674b0a50f35accac}} 
-\index{drives.\+h@{drives.\+h}!display\+\_\+\+Addresses@{display\+\_\+\+Addresses}}
-\index{display\+\_\+\+Addresses@{display\+\_\+\+Addresses}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{display\+\_\+\+Addresses()}{display\_Addresses()}}
+\index{drives.h@{drives.h}!display\_Addresses@{display\_Addresses}}
+\index{display\_Addresses@{display\_Addresses}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{display\_Addresses()}{display\_Addresses()}}
 {\footnotesize\ttfamily void display\+\_\+\+Addresses (\begin{DoxyParamCaption}\item[{int}]{verbose }\end{DoxyParamCaption})}
 
 
@@ -695,9 +691,9 @@ Definition at line 773 of file drives.\+c.
 Referenced by gpib\+\_\+tests(), and main().
 
 \mbox{\Hypertarget{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}\label{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}} 
-\index{drives.\+h@{drives.\+h}!display\+\_\+\+Config@{display\+\_\+\+Config}}
-\index{display\+\_\+\+Config@{display\+\_\+\+Config}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{display\+\_\+\+Config()}{display\_Config()}}
+\index{drives.h@{drives.h}!display\_Config@{display\_Config}}
+\index{display\_Config@{display\_Config}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{display\_Config()}{display\_Config()}}
 {\footnotesize\ttfamily void display\+\_\+\+Config (\begin{DoxyParamCaption}\item[{int}]{verbose }\end{DoxyParamCaption})}
 
 
@@ -709,7 +705,7 @@ void
 \end{DoxyReturn}
 Active Printer Device
 
-Active S\+S80 Device 
+Active S\+S80 Device
 
 Definition at line 845 of file drives.\+c.
 
@@ -718,9 +714,9 @@ Definition at line 845 of file drives.\+c.
 Referenced by gpib\+\_\+tests().
 
 \mbox{\Hypertarget{drives_8h_ab339aa60e0bd99e09f10d0732f10b26e}\label{drives_8h_ab339aa60e0bd99e09f10d0732f10b26e}} 
-\index{drives.\+h@{drives.\+h}!find\+\_\+device@{find\+\_\+device}}
-\index{find\+\_\+device@{find\+\_\+device}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{find\+\_\+device()}{find\_device()}}
+\index{drives.h@{drives.h}!find\_device@{find\_device}}
+\index{find\_device@{find\_device}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{find\_device()}{find\_device()}}
 {\footnotesize\ttfamily int find\+\_\+device (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int}]{address,  }\item[{int}]{base }\end{DoxyParamCaption})}
 
 
@@ -740,7 +736,7 @@ Find a device with matching type A\+ND address.
 index of Devices\mbox{[}\mbox{]} or -\/1 if not found 
 \end{DoxyReturn}
 
-\begin{DoxyCodeInclude}
+\begin{DoxyCodeInclude}{0}
 
 \end{DoxyCodeInclude}
 
@@ -749,7 +745,7 @@ Make sure address is in expected range
 
 convert to device address
 
-search for device address 
+search for device address
 
 Definition at line 1055 of file drives.\+c.
 
@@ -758,10 +754,10 @@ Definition at line 1055 of file drives.\+c.
 Referenced by listen\+\_\+cleanup(), P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+L\+A(), P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+S\+A(), P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+T\+A(), S\+S80\+\_\+is\+\_\+\+M\+L\+A(), S\+S80\+\_\+is\+\_\+\+M\+S\+A(), and S\+S80\+\_\+is\+\_\+\+M\+T\+A().
 
 \mbox{\Hypertarget{drives_8h_aa2cf846e25affda2e38d0035ad46bcdb}\label{drives_8h_aa2cf846e25affda2e38d0035ad46bcdb}} 
-\index{drives.\+h@{drives.\+h}!find\+\_\+free@{find\+\_\+free}}
-\index{find\+\_\+free@{find\+\_\+free}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{find\+\_\+free()}{find\_free()}}
-{\footnotesize\ttfamily int find\+\_\+free (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!find\_free@{find\_free}}
+\index{find\_free@{find\_free}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{find\_free()}{find\_free()}}
+{\footnotesize\ttfamily int find\+\_\+free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -779,9 +775,9 @@ Definition at line 1044 of file drives.\+c.
 Referenced by alloc\+\_\+device(), and set\+\_\+\+Config\+\_\+\+Defaults().
 
 \mbox{\Hypertarget{drives_8h_adc9af84417d1ea9757b9f0596fd709b3}\label{drives_8h_adc9af84417d1ea9757b9f0596fd709b3}} 
-\index{drives.\+h@{drives.\+h}!find\+\_\+type@{find\+\_\+type}}
-\index{find\+\_\+type@{find\+\_\+type}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{find\+\_\+type()}{find\_type()}}
+\index{drives.h@{drives.h}!find\_type@{find\_type}}
+\index{find\_type@{find\_type}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{find\_type()}{find\_type()}}
 {\footnotesize\ttfamily int find\+\_\+type (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})}
 
 
@@ -802,10 +798,10 @@ Definition at line 983 of file drives.\+c.
 Referenced by find\+\_\+free(), plot\+\_\+echo(), set\+\_\+\+Config\+\_\+\+Defaults(), and S\+S80\+\_\+\+Set\+\_\+\+Defaults().
 
 \mbox{\Hypertarget{drives_8h_ae5e26f65c0c469c7ad467201a7591fad}\label{drives_8h_ae5e26f65c0c469c7ad467201a7591fad}} 
-\index{drives.\+h@{drives.\+h}!format\+\_\+drives@{format\+\_\+drives}}
-\index{format\+\_\+drives@{format\+\_\+drives}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{format\+\_\+drives()}{format\_drives()}}
-{\footnotesize\ttfamily void format\+\_\+drives (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!format\_drives@{format\_drives}}
+\index{format\_drives@{format\_drives}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{format\_drives()}{format\_drives()}}
+{\footnotesize\ttfamily void format\+\_\+drives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -814,7 +810,7 @@ Format devices that have no image file.
 =============================================== \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Active S\+S80 Device 
+Active S\+S80 Device
 
 Definition at line 1547 of file drives.\+c.
 
@@ -823,9 +819,9 @@ Definition at line 1547 of file drives.\+c.
 Referenced by main().
 
 \mbox{\Hypertarget{drives_8h_a7cc2e9f068997d98d19e10ef305fe5bb}\label{drives_8h_a7cc2e9f068997d98d19e10ef305fe5bb}} 
-\index{drives.\+h@{drives.\+h}!hpdir\+\_\+set\+\_\+device@{hpdir\+\_\+set\+\_\+device}}
-\index{hpdir\+\_\+set\+\_\+device@{hpdir\+\_\+set\+\_\+device}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{hpdir\+\_\+set\+\_\+device()}{hpdir\_set\_device()}}
+\index{drives.h@{drives.h}!hpdir\_set\_device@{hpdir\_set\_device}}
+\index{hpdir\_set\_device@{hpdir\_set\_device}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{hpdir\_set\_device()}{hpdir\_set\_device()}}
 {\footnotesize\ttfamily void hpdir\+\_\+set\+\_\+device (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
 
 
@@ -834,7 +830,7 @@ Set Device parameters from hpdir information.
 
 =============================================== 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em model} & model string\\
+\mbox{\texttt{ in}}  & {\em model} & model string\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -849,9 +845,9 @@ Definition at line 1438 of file drives.\+c.
 Referenced by hpdir\+\_\+set\+\_\+parameters().
 
 \mbox{\Hypertarget{drives_8h_a899ab6043e756943a7f38022900ff998}\label{drives_8h_a899ab6043e756943a7f38022900ff998}} 
-\index{drives.\+h@{drives.\+h}!hpdir\+\_\+set\+\_\+parameters@{hpdir\+\_\+set\+\_\+parameters}}
-\index{hpdir\+\_\+set\+\_\+parameters@{hpdir\+\_\+set\+\_\+parameters}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{hpdir\+\_\+set\+\_\+parameters()}{hpdir\_set\_parameters()}}
+\index{drives.h@{drives.h}!hpdir\_set\_parameters@{hpdir\_set\_parameters}}
+\index{hpdir\_set\_parameters@{hpdir\_set\_parameters}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{hpdir\_set\_parameters()}{hpdir\_set\_parameters()}}
 {\footnotesize\ttfamily void hpdir\+\_\+set\+\_\+parameters (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{char $\ast$}]{model }\end{DoxyParamCaption})}
 
 
@@ -860,9 +856,9 @@ Lookup model in and set drive parameters if found.
 
 =============================================== 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em index} & Devices index \\
+\mbox{\texttt{ in}}  & {\em index} & Devices index \\
 \hline
-\mbox{\tt in}  & {\em model} & model string\\
+\mbox{\texttt{ in}}  & {\em model} & model string\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -877,9 +873,9 @@ Definition at line 1485 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a31361bab0d441c06afb14a7af1d657c9}\label{drives_8h_a31361bab0d441c06afb14a7af1d657c9}} 
-\index{drives.\+h@{drives.\+h}!init\+\_\+\+Devices@{init\+\_\+\+Devices}}
-\index{init\+\_\+\+Devices@{init\+\_\+\+Devices}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{init\+\_\+\+Devices()}{init\_Devices()}}
+\index{drives.h@{drives.h}!init\_Devices@{init\_Devices}}
+\index{init\_Devices@{init\_Devices}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{init\_Devices()}{init\_Devices()}}
 {\footnotesize\ttfamily void init\+\_\+\+Devices (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
@@ -895,10 +891,10 @@ Definition at line 1267 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a8848ed41fc10bb2ac57676522df757f4}\label{drives_8h_a8848ed41fc10bb2ac57676522df757f4}} 
-\index{drives.\+h@{drives.\+h}!pop\+\_\+state@{pop\+\_\+state}}
-\index{pop\+\_\+state@{pop\+\_\+state}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{pop\+\_\+state()}{pop\_state()}}
-{\footnotesize\ttfamily int pop\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!pop\_state@{pop\_state}}
+\index{pop\_state@{pop\_state}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{pop\_state()}{pop\_state()}}
+{\footnotesize\ttfamily int pop\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -916,10 +912,10 @@ Definition at line 1301 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a46d5f926340e6fb3f4b27fee0f59dcc4}\label{drives_8h_a46d5f926340e6fb3f4b27fee0f59dcc4}} 
-\index{drives.\+h@{drives.\+h}!Post\+\_\+\+Config@{Post\+\_\+\+Config}}
-\index{Post\+\_\+\+Config@{Post\+\_\+\+Config}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{Post\+\_\+\+Config()}{Post\_Config()}}
-{\footnotesize\ttfamily void Post\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!Post\_Config@{Post\_Config}}
+\index{Post\_Config@{Post\_Config}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{Post\_Config()}{Post\_Config()}}
+{\footnotesize\ttfamily void Post\+\_\+\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -928,7 +924,7 @@ Post Process C\+Onfiguration file after reading.
 =============================================== \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Active S\+S80 Device 
+Active S\+S80 Device
 
 Definition at line 1495 of file drives.\+c.
 
@@ -937,10 +933,10 @@ Definition at line 1495 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}\label{drives_8h_a3da86aaab90b0d4bb14f79e296a155bb}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+str\+\_\+P@{print\+\_\+str\+\_\+P}}
-\index{print\+\_\+str\+\_\+P@{print\+\_\+str\+\_\+P}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+str\+\_\+\+P()}{print\_str\_P()}}
-{\footnotesize\ttfamily void print\+\_\+str\+\_\+P (\begin{DoxyParamCaption}\item[{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$}]{str,  }\item[{char $\ast$}]{arg }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!print\_str\_P@{print\_str\_P}}
+\index{print\_str\_P@{print\_str\_P}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_str\_P()}{print\_str\_P()}}
+{\footnotesize\ttfamily void print\+\_\+str\+\_\+P (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$}]{str,  }\item[{char $\ast$}]{arg }\end{DoxyParamCaption})}
 
 
 
@@ -961,16 +957,17 @@ void
 Definition at line 241 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a5a42638642898b6c3433591e1ae5e8c3}\label{drives_8h_a5a42638642898b6c3433591e1ae5e8c3}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+tok@{print\+\_\+tok}}
-\index{print\+\_\+tok@{print\+\_\+tok}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+tok()}{print\_tok()}}
+\index{drives.h@{drives.h}!print\_tok@{print\_tok}}
+\index{print\_tok@{print\_tok}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_tok()}{print\_tok()}}
 {\footnotesize\ttfamily void print\+\_\+tok (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tok,  }\item[{uint8\+\_\+t}]{spaces }\end{DoxyParamCaption})}
 
 
 
-\subsection*{Display Configuration File variable }
+Display Configuration File variable. 
 
-=============================================== Display Configuration File variable 
+=============================================== \hypertarget{drives_8h_autotoc_md156}{}\doxysubsection{@brief Display Configuration File variable}\label{drives_8h_autotoc_md156}
+
 \begin{DoxyParams}{Parameters}
 {\em str} & title \\
 \hline
@@ -989,9 +986,9 @@ Definition at line 321 of file drives.\+c.
 Referenced by display\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a0420433bf4bbb957a00a4aa83bdcf02a}\label{drives_8h_a0420433bf4bbb957a00a4aa83bdcf02a}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+tok\+\_\+str@{print\+\_\+tok\+\_\+str}}
-\index{print\+\_\+tok\+\_\+str@{print\+\_\+tok\+\_\+str}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+tok\+\_\+str()}{print\_tok\_str()}}
+\index{drives.h@{drives.h}!print\_tok\_str@{print\_tok\_str}}
+\index{print\_tok\_str@{print\_tok\_str}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_tok\_str()}{print\_tok\_str()}}
 {\footnotesize\ttfamily void print\+\_\+tok\+\_\+str (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tok,  }\item[{uint8\+\_\+t}]{spaces,  }\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
@@ -1019,9 +1016,9 @@ Definition at line 305 of file drives.\+c.
 Referenced by display\+\_\+\+Addresses(), and display\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a939e51554e79e0a0871299a063b04cd0}\label{drives_8h_a939e51554e79e0a0871299a063b04cd0}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+tok\+\_\+val@{print\+\_\+tok\+\_\+val}}
-\index{print\+\_\+tok\+\_\+val@{print\+\_\+tok\+\_\+val}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+tok\+\_\+val()}{print\_tok\_val()}}
+\index{drives.h@{drives.h}!print\_tok\_val@{print\_tok\_val}}
+\index{print\_tok\_val@{print\_tok\_val}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_tok\_val()}{print\_tok\_val()}}
 {\footnotesize\ttfamily void print\+\_\+tok\+\_\+val (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tok,  }\item[{uint8\+\_\+t}]{spaces,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
 
 
@@ -1049,10 +1046,10 @@ Definition at line 290 of file drives.\+c.
 Referenced by display\+\_\+\+Addresses(), and display\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_ab0cc4deddae206c7762399a8d54856e1}\label{drives_8h_ab0cc4deddae206c7762399a8d54856e1}} 
-\index{drives.\+h@{drives.\+h}!print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}}
-\index{print\+\_\+var\+\_\+P@{print\+\_\+var\+\_\+P}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{print\+\_\+var\+\_\+\+P()}{print\_var\_P()}}
-{\footnotesize\ttfamily void print\+\_\+var\+\_\+P (\begin{DoxyParamCaption}\item[{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx} const char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!print\_var\_P@{print\_var\_P}}
+\index{print\_var\_P@{print\_var\_P}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{print\_var\_P()}{print\_var\_P()}}
+{\footnotesize\ttfamily void print\+\_\+var\+\_\+P (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{mathio_8h_a9306b0c3083933632aca02ebb1fe14d5}{\+\_\+\+\_\+memx}} const char $\ast$}]{str,  }\item[{uint32\+\_\+t}]{val }\end{DoxyParamCaption})}
 
 
 
@@ -1073,9 +1070,9 @@ void
 Definition at line 224 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a21b219166399e8a1195b92d6a9872bbe}\label{drives_8h_a21b219166399e8a1195b92d6a9872bbe}} 
-\index{drives.\+h@{drives.\+h}!push\+\_\+state@{push\+\_\+state}}
-\index{push\+\_\+state@{push\+\_\+state}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{push\+\_\+state()}{push\_state()}}
+\index{drives.h@{drives.h}!push\_state@{push\_state}}
+\index{push\_state@{push\_state}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{push\_state()}{push\_state()}}
 {\footnotesize\ttfamily int push\+\_\+state (\begin{DoxyParamCaption}\item[{int}]{state }\end{DoxyParamCaption})}
 
 
@@ -1099,9 +1096,9 @@ Definition at line 1288 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}\label{drives_8h_ab0ea5b4d5a144a8ab1c1d2c9b08aa21f}} 
-\index{drives.\+h@{drives.\+h}!Read\+\_\+\+Config@{Read\+\_\+\+Config}}
-\index{Read\+\_\+\+Config@{Read\+\_\+\+Config}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{Read\+\_\+\+Config()}{Read\_Config()}}
+\index{drives.h@{drives.h}!Read\_Config@{Read\_Config}}
+\index{Read\_Config@{Read\_Config}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{Read\_Config()}{Read\_Config()}}
 {\footnotesize\ttfamily int Read\+\_\+\+Config (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
 
 
@@ -1118,7 +1115,7 @@ number of parse errors
 \end{DoxyReturn}
 Printer Device
 
-S\+S80 Device 
+S\+S80 Device
 
 Definition at line 336 of file drives.\+c.
 
@@ -1127,9 +1124,9 @@ Definition at line 336 of file drives.\+c.
 Referenced by gpib\+\_\+file\+\_\+init().
 
 \mbox{\Hypertarget{drives_8h_aece04902efa99dc0e1578dda79437a75}\label{drives_8h_aece04902efa99dc0e1578dda79437a75}} 
-\index{drives.\+h@{drives.\+h}!set\+\_\+active\+\_\+device@{set\+\_\+active\+\_\+device}}
-\index{set\+\_\+active\+\_\+device@{set\+\_\+active\+\_\+device}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{set\+\_\+active\+\_\+device()}{set\_active\_device()}}
+\index{drives.h@{drives.h}!set\_active\_device@{set\_active\_device}}
+\index{set\_active\_device@{set\_active\_device}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{set\_active\_device()}{set\_active\_device()}}
 {\footnotesize\ttfamily int set\+\_\+active\+\_\+device (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
 
 
@@ -1144,7 +1141,7 @@ Set the Active disk or device pointers Since we can be called multiple times per
 \begin{DoxyReturn}{Returns}
 1 on success or 0 on fail 
 \end{DoxyReturn}
-We also check for -\/1 So the result of \hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()} can be used without additional tests 
+We also check for -\/1 So the result of \mbox{\hyperlink{drives_8c_ab339aa60e0bd99e09f10d0732f10b26e}{find\+\_\+device()}} can be used without additional tests
 
 Definition at line 1085 of file drives.\+c.
 
@@ -1153,10 +1150,10 @@ Definition at line 1085 of file drives.\+c.
 Referenced by P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+L\+A(), P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+S\+A(), P\+R\+I\+N\+T\+E\+R\+\_\+is\+\_\+\+M\+T\+A(), S\+S80\+\_\+init(), S\+S80\+\_\+is\+\_\+\+M\+L\+A(), S\+S80\+\_\+is\+\_\+\+M\+S\+A(), and S\+S80\+\_\+is\+\_\+\+M\+T\+A().
 
 \mbox{\Hypertarget{drives_8h_ac849d9d72ff959c1d25ad3514a6237ac}\label{drives_8h_ac849d9d72ff959c1d25ad3514a6237ac}} 
-\index{drives.\+h@{drives.\+h}!set\+\_\+\+Config\+\_\+\+Defaults@{set\+\_\+\+Config\+\_\+\+Defaults}}
-\index{set\+\_\+\+Config\+\_\+\+Defaults@{set\+\_\+\+Config\+\_\+\+Defaults}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{set\+\_\+\+Config\+\_\+\+Defaults()}{set\_Config\_Defaults()}}
-{\footnotesize\ttfamily void set\+\_\+\+Config\+\_\+\+Defaults (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{drives.h@{drives.h}!set\_Config\_Defaults@{set\_Config\_Defaults}}
+\index{set\_Config\_Defaults@{set\_Config\_Defaults}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{set\_Config\_Defaults()}{set\_Config\_Defaults()}}
+{\footnotesize\ttfamily void set\+\_\+\+Config\+\_\+\+Defaults (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -1174,9 +1171,9 @@ Definition at line 1370 of file drives.\+c.
 Referenced by gpib\+\_\+file\+\_\+init(), and Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_ac6ec9e422c7122cc7d3513fd33d686a8}\label{drives_8h_ac6ec9e422c7122cc7d3513fd33d686a8}} 
-\index{drives.\+h@{drives.\+h}!S\+S80\+\_\+\+Set\+\_\+\+Defaults@{S\+S80\+\_\+\+Set\+\_\+\+Defaults}}
-\index{S\+S80\+\_\+\+Set\+\_\+\+Defaults@{S\+S80\+\_\+\+Set\+\_\+\+Defaults}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{S\+S80\+\_\+\+Set\+\_\+\+Defaults()}{SS80\_Set\_Defaults()}}
+\index{drives.h@{drives.h}!SS80\_Set\_Defaults@{SS80\_Set\_Defaults}}
+\index{SS80\_Set\_Defaults@{SS80\_Set\_Defaults}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{SS80\_Set\_Defaults()}{SS80\_Set\_Defaults()}}
 {\footnotesize\ttfamily void S\+S80\+\_\+\+Set\+\_\+\+Defaults (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
 
 
@@ -1195,9 +1192,9 @@ Definition at line 1169 of file drives.\+c.
 Referenced by alloc\+\_\+device().
 
 \mbox{\Hypertarget{drives_8h_a9dc8359329d4b0227a1fcb5bc764e67e}\label{drives_8h_a9dc8359329d4b0227a1fcb5bc764e67e}} 
-\index{drives.\+h@{drives.\+h}!tok\+\_\+index@{tok\+\_\+index}}
-\index{tok\+\_\+index@{tok\+\_\+index}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{tok\+\_\+index()}{tok\_index()}}
+\index{drives.h@{drives.h}!tok\_index@{tok\_index}}
+\index{tok\_index@{tok\_index}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{tok\_index()}{tok\_index()}}
 {\footnotesize\ttfamily int tok\+\_\+index (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
 
 
@@ -1221,9 +1218,9 @@ Definition at line 256 of file drives.\+c.
 Referenced by Read\+\_\+\+Config().
 
 \mbox{\Hypertarget{drives_8h_a6494bcb31d494b6522598cbe1a293c9e}\label{drives_8h_a6494bcb31d494b6522598cbe1a293c9e}} 
-\index{drives.\+h@{drives.\+h}!tok\+\_\+name@{tok\+\_\+name}}
-\index{tok\+\_\+name@{tok\+\_\+name}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{tok\+\_\+name()}{tok\_name()}}
+\index{drives.h@{drives.h}!tok\_name@{tok\_name}}
+\index{tok\_name@{tok\_name}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{tok\_name()}{tok\_name()}}
 {\footnotesize\ttfamily char$\ast$ tok\+\_\+name (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{tok }\end{DoxyParamCaption})}
 
 
@@ -1247,9 +1244,9 @@ Definition at line 272 of file drives.\+c.
 Referenced by print\+\_\+tok(), print\+\_\+tok\+\_\+str(), and print\+\_\+tok\+\_\+val().
 
 \mbox{\Hypertarget{drives_8h_aa43e282b0ff4a2e5b2ce59f0fce3fb68}\label{drives_8h_aa43e282b0ff4a2e5b2ce59f0fce3fb68}} 
-\index{drives.\+h@{drives.\+h}!type\+\_\+to\+\_\+str@{type\+\_\+to\+\_\+str}}
-\index{type\+\_\+to\+\_\+str@{type\+\_\+to\+\_\+str}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{type\+\_\+to\+\_\+str()}{type\_to\_str()}}
+\index{drives.h@{drives.h}!type\_to\_str@{type\_to\_str}}
+\index{type\_to\_str@{type\_to\_str}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{type\_to\_str()}{type\_to\_str()}}
 {\footnotesize\ttfamily char$\ast$ type\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})}
 
 
@@ -1274,12 +1271,12 @@ Referenced by alloc\+\_\+device(), and set\+\_\+active\+\_\+device().
 
 
 
-\subsection{Variable Documentation}
+\doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{drives_8h_acfedc9290d5356e240da3373bb0ebdbd}\label{drives_8h_acfedc9290d5356e240da3373bb0ebdbd}} 
-\index{drives.\+h@{drives.\+h}!Devices@{Devices}}
-\index{Devices@{Devices}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{Devices}{Devices}}
-{\footnotesize\ttfamily \hyperlink{structDeviceType}{Device\+Type} Devices\mbox{[}\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}\mbox{]}}
+\index{drives.h@{drives.h}!Devices@{Devices}}
+\index{Devices@{Devices}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{Devices}{Devices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structDeviceType}{Device\+Type}} Devices\mbox{[}\mbox{\hyperlink{drives_8h_a4e132cfaa78353e3af1474a86b2dd535}{M\+A\+X\+\_\+\+D\+E\+V\+I\+C\+ES}}\mbox{]}}
 
 
 
@@ -1287,13 +1284,13 @@ Definition at line 32 of file drives.\+c.
 
 
 
-Referenced by S\+S80\+\_\+init().
+Referenced by alloc\+\_\+device(), count\+\_\+drive\+\_\+types(), display\+\_\+\+Addresses(), display\+\_\+\+Config(), find\+\_\+device(), find\+\_\+type(), format\+\_\+drives(), hpdir\+\_\+set\+\_\+device(), init\+\_\+\+Devices(), Post\+\_\+\+Config(), Read\+\_\+\+Config(), set\+\_\+active\+\_\+device(), set\+\_\+\+Config\+\_\+\+Defaults(), S\+S80\+\_\+init(), and S\+S80\+\_\+\+Set\+\_\+\+Defaults().
 
 \mbox{\Hypertarget{drives_8h_abe5ffe9f7c96ad748b695ed5b45d6e52}\label{drives_8h_abe5ffe9f7c96ad748b695ed5b45d6e52}} 
-\index{drives.\+h@{drives.\+h}!P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}}
-\index{P\+R\+I\+N\+T\+E\+Rp@{P\+R\+I\+N\+T\+E\+Rp}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{P\+R\+I\+N\+T\+E\+Rp}{PRINTERp}}
-{\footnotesize\ttfamily \hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}$\ast$ P\+R\+I\+N\+T\+E\+Rp}
+\index{drives.h@{drives.h}!PRINTERp@{PRINTERp}}
+\index{PRINTERp@{PRINTERp}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{PRINTERp}{PRINTERp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPRINTERDeviceType}{P\+R\+I\+N\+T\+E\+R\+Device\+Type}}$\ast$ P\+R\+I\+N\+T\+E\+Rp}
 
 
 
@@ -1303,11 +1300,15 @@ Active Printer Device.
 
 Definition at line 35 of file drives.\+c.
 
+
+
+Referenced by display\+\_\+\+Config(), Read\+\_\+\+Config(), and set\+\_\+active\+\_\+device().
+
 \mbox{\Hypertarget{drives_8h_ae2b90e5f9a8ae9e5df3fdee98a215939}\label{drives_8h_ae2b90e5f9a8ae9e5df3fdee98a215939}} 
-\index{drives.\+h@{drives.\+h}!S\+S80p@{S\+S80p}}
-\index{S\+S80p@{S\+S80p}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{S\+S80p}{SS80p}}
-{\footnotesize\ttfamily \hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}$\ast$ S\+S80p}
+\index{drives.h@{drives.h}!SS80p@{SS80p}}
+\index{SS80p@{SS80p}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{SS80p}{SS80p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSS80DiskType}{S\+S80\+Disk\+Type}}$\ast$ S\+S80p}
 
 
 
@@ -1319,13 +1320,13 @@ Definition at line 38 of file drives.\+c.
 
 
 
-Referenced by G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
+Referenced by display\+\_\+\+Addresses(), display\+\_\+\+Config(), format\+\_\+drives(), G\+P\+I\+B\+\_\+\+S\+E\+C\+O\+N\+D\+A\+R\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S(), hpdir\+\_\+set\+\_\+device(), Post\+\_\+\+Config(), Read\+\_\+\+Config(), set\+\_\+active\+\_\+device(), S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Blocks\+\_\+to\+\_\+\+Bytes(), S\+S80\+\_\+\+Bytes\+\_\+to\+\_\+\+Blocks(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Channel\+\_\+\+Independent\+\_\+\+Clear(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Selected\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+\_\+\+Set\+\_\+\+Defaults(), S\+S80\+\_\+\+Transparent\+\_\+\+State(), S\+S80\+\_\+\+Universal\+\_\+\+Device\+\_\+\+Clear(), S\+S80\+Controller\+Pack(), S\+S80\+Unit\+Pack(), and S\+S80\+Volume\+Pack().
 
 \mbox{\Hypertarget{drives_8h_a26e0264b8581231a3a90fbb418f5812a}\label{drives_8h_a26e0264b8581231a3a90fbb418f5812a}} 
-\index{drives.\+h@{drives.\+h}!S\+S80s@{S\+S80s}}
-\index{S\+S80s@{S\+S80s}!drives.\+h@{drives.\+h}}
-\subsubsection{\texorpdfstring{S\+S80s}{SS80s}}
-{\footnotesize\ttfamily \hyperlink{structSS80StateType}{S\+S80\+State\+Type}$\ast$ S\+S80s}
+\index{drives.h@{drives.h}!SS80s@{SS80s}}
+\index{SS80s@{SS80s}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{SS80s}{SS80s}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSS80StateType}{S\+S80\+State\+Type}}$\ast$ S\+S80s}
 
 
 
@@ -1333,5 +1334,5 @@ Definition at line 39 of file drives.\+c.
 
 
 
-Referenced by Clear\+\_\+\+Common(), G\+P\+I\+B(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Check\+\_\+\+Unit(), S\+S80\+\_\+\+Check\+\_\+\+Volume(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+increment(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+Referenced by Clear\+\_\+\+Common(), G\+P\+I\+B(), set\+\_\+active\+\_\+device(), S\+S80\+\_\+\+Cancel(), S\+S80\+\_\+\+Check\+\_\+\+Unit(), S\+S80\+\_\+\+Check\+\_\+\+Volume(), S\+S80\+\_\+cmd\+\_\+seek(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+error\+\_\+return(), S\+S80\+\_\+\+Execute\+\_\+\+State(), S\+S80\+\_\+increment(), S\+S80\+\_\+init(), S\+S80\+\_\+locate\+\_\+and\+\_\+read(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), S\+S80\+\_\+\+Report(), S\+S80\+\_\+send\+\_\+status(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
 

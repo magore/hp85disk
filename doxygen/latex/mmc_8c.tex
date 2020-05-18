@@ -1,257 +1,217 @@
-\hypertarget{mmc_8c}{}\section{fatfs.\+hal/mmc.c File Reference}
-\label{mmc_8c}\index{fatfs.\+hal/mmc.\+c@{fatfs.\+hal/mmc.\+c}}
+\hypertarget{mmc_8c}{}\doxysection{fatfs.\+hal/mmc.c File Reference}
+\label{mmc_8c}\index{fatfs.hal/mmc.c@{fatfs.hal/mmc.c}}
 {\ttfamily \#include \char`\"{}user\+\_\+config.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}mmc\+\_\+hal.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}mathio.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}fatfs.\+h\char`\"{}}\newline
-\subsection*{Macros}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{mmc_8c_ab6b224028ee993b43049cd45010ec00f}{C\+S\+\_\+\+L\+OW}()~\hyperlink{mmc__hal_8h_abdc5ab6358ed33bc5a98a11fde82b704}{mmc\+\_\+spi\+\_\+begin}()           /$\ast$ Set M\+M\+C\+\_\+\+CS = low $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_ab6b224028ee993b43049cd45010ec00f}{C\+S\+\_\+\+L\+OW}}()~\mbox{\hyperlink{mmc__hal_8h_abdc5ab6358ed33bc5a98a11fde82b704}{mmc\+\_\+spi\+\_\+begin}}()           /$\ast$ Set M\+M\+C\+\_\+\+CS = low $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_af67a5c0216de0cfadf059fa4cf05d65d}{C\+S\+\_\+\+H\+I\+GH}()~\hyperlink{mmc__hal_8h_a4963fd4e3ba8fabe799b88073aea0499}{mmc\+\_\+spi\+\_\+end}()             /$\ast$ Set M\+M\+C\+\_\+\+CS = high $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_af67a5c0216de0cfadf059fa4cf05d65d}{C\+S\+\_\+\+H\+I\+GH}}()~\mbox{\hyperlink{mmc__hal_8h_a4963fd4e3ba8fabe799b88073aea0499}{mmc\+\_\+spi\+\_\+end}}()             /$\ast$ Set M\+M\+C\+\_\+\+CS = high $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a3f7233f98c6f4abb0cdea809c39bcf68}{M\+M\+C\+\_\+\+CD}~\hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status}()          /$\ast$ Test if card detected.   yes\+:true, no\+:false, default\+:true $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a3f7233f98c6f4abb0cdea809c39bcf68}{M\+M\+C\+\_\+\+CD}}~\mbox{\hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status}}()          /$\ast$ Test if card detected.   yes\+:true, no\+:false, default\+:true $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a5736fa0032458e3579bccfc2b363e8ba}{M\+M\+C\+\_\+\+WP}~\hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status}()           /$\ast$ Test if \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} protected. yes\+:true, no\+:false, default\+:false $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a5736fa0032458e3579bccfc2b363e8ba}{M\+M\+C\+\_\+\+WP}}~\mbox{\hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status}}()           /$\ast$ Test if \mbox{\hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write}} protected. yes\+:true, no\+:false, default\+:false $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_ae3d9176798d1718d779e2db397de4bb5}{F\+C\+L\+K\+\_\+\+S\+L\+OW}()~\hyperlink{mmc__hal_8h_a03e4e29ebb0844123378d72b41bf3575}{mmc\+\_\+slow}()                /$\ast$ Set S\+PI slow clock (100-\/400k\+Hz) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_ae3d9176798d1718d779e2db397de4bb5}{F\+C\+L\+K\+\_\+\+S\+L\+OW}}()~\mbox{\hyperlink{mmc__hal_8h_a03e4e29ebb0844123378d72b41bf3575}{mmc\+\_\+slow}}()                /$\ast$ Set S\+PI slow clock (100-\/400k\+Hz) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a1ffcdd6f111fd9b4229f49a5e37046b7}{F\+C\+L\+K\+\_\+\+F\+A\+ST}()~\hyperlink{mmc__hal_8h_afd5747681a788dc27943f736e57eeb54}{mmc\+\_\+fast}()                /$\ast$ Set S\+PI fast clock (20\+M\+Hz max) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a1ffcdd6f111fd9b4229f49a5e37046b7}{F\+C\+L\+K\+\_\+\+F\+A\+ST}}()~\mbox{\hyperlink{mmc__hal_8h_afd5747681a788dc27943f736e57eeb54}{mmc\+\_\+fast}}()                /$\ast$ Set S\+PI fast clock (20\+M\+Hz max) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}{C\+M\+D0}~(0)                               /$\ast$ G\+O\+\_\+\+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}{C\+M\+D0}}~(0)                               /$\ast$ G\+O\+\_\+\+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_aca9979f299fa78c1128d778084478673}{C\+M\+D1}~(1)                               /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (M\+MC) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_aca9979f299fa78c1128d778084478673}{C\+M\+D1}}~(1)                               /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (M\+MC) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}{A\+C\+M\+D41}~(0x80+41)                         /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+N\+D (\+S\+D\+C) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}{A\+C\+M\+D41}}~(0x80+41)                         /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}{C\+M\+D8}~(8)                               /$\ast$ S\+E\+N\+D\+\_\+\+I\+F\+\_\+\+C\+O\+ND $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}{C\+M\+D8}}~(8)                               /$\ast$ S\+E\+N\+D\+\_\+\+I\+F\+\_\+\+C\+O\+ND $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}{C\+M\+D9}~(9)                               /$\ast$ S\+E\+N\+D\+\_\+\+C\+SD $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}{C\+M\+D9}}~(9)                               /$\ast$ S\+E\+N\+D\+\_\+\+C\+SD $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}{C\+M\+D10}~(10)                              /$\ast$ S\+E\+N\+D\+\_\+\+C\+ID $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}{C\+M\+D10}}~(10)                              /$\ast$ S\+E\+N\+D\+\_\+\+C\+ID $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}{C\+M\+D12}~(12)                              /$\ast$ S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+ON $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}{C\+M\+D12}}~(12)                              /$\ast$ S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+ON $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a4be8f501d86d24b02923846db618fc71}{A\+C\+M\+D13}~(0x80+13)                         /$\ast$ S\+D\+\_\+\+S\+T\+A\+T\+U\+S (\+S\+D\+C) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a4be8f501d86d24b02923846db618fc71}{A\+C\+M\+D13}}~(0x80+13)                         /$\ast$ S\+D\+\_\+\+S\+T\+A\+T\+US (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}{C\+M\+D16}~(16)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+L\+EN $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}{C\+M\+D16}}~(16)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+L\+EN $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}{C\+M\+D17}~(17)                              /$\ast$ R\+E\+A\+D\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}{C\+M\+D17}}~(17)                              /$\ast$ R\+E\+A\+D\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a3d32c27a6be061b865ba539127278f14}{C\+M\+D18}~(18)                              /$\ast$ R\+E\+A\+D\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a3d32c27a6be061b865ba539127278f14}{C\+M\+D18}}~(18)                              /$\ast$ R\+E\+A\+D\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}{C\+M\+D23}~(23)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+O\+U\+NT (M\+MC) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}{C\+M\+D23}}~(23)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+O\+U\+NT (M\+MC) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_aa38144d651e2880f92c65bb683621f78}{A\+C\+M\+D23}~(0x80+23)                         /$\ast$ S\+E\+T\+\_\+\+W\+R\+\_\+\+B\+L\+K\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+O\+U\+N\+T (\+S\+D\+C) $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_aa38144d651e2880f92c65bb683621f78}{A\+C\+M\+D23}}~(0x80+23)                         /$\ast$ S\+E\+T\+\_\+\+W\+R\+\_\+\+B\+L\+K\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+O\+U\+NT (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a252300302c6f7960df547a7f5c25be85}{C\+M\+D24}~(24)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+CK $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a252300302c6f7960df547a7f5c25be85}{C\+M\+D24}}~(24)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+CK $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_aee2c673fba987178f4642531fdeefe9e}{C\+M\+D25}~(25)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_aee2c673fba987178f4642531fdeefe9e}{C\+M\+D25}}~(25)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}{C\+M\+D32}~(32)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+S\+T\+A\+RT $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}{C\+M\+D32}}~(32)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+S\+T\+A\+RT $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a309d932899cca7255395821dc32dace0}{C\+M\+D33}~(33)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+E\+ND $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a309d932899cca7255395821dc32dace0}{C\+M\+D33}}~(33)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+E\+ND $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}{C\+M\+D38}~(38)                              /$\ast$ E\+R\+A\+SE $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}{C\+M\+D38}}~(38)                              /$\ast$ E\+R\+A\+SE $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_af784857da94febad94e1d63dcd5a0f57}{C\+M\+D48}~(48)                              /$\ast$ R\+E\+A\+D\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_af784857da94febad94e1d63dcd5a0f57}{C\+M\+D48}}~(48)                              /$\ast$ R\+E\+A\+D\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a862b9a426aa33dd253b919d2313b3e45}{C\+M\+D49}~(49)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a862b9a426aa33dd253b919d2313b3e45}{C\+M\+D49}}~(49)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_a78289a7a85ffcfddd626694105dc0780}{C\+M\+D55}~(55)                              /$\ast$ A\+P\+P\+\_\+\+C\+MD $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_a78289a7a85ffcfddd626694105dc0780}{C\+M\+D55}}~(55)                              /$\ast$ A\+P\+P\+\_\+\+C\+MD $\ast$/
 \item 
-\#define \hyperlink{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}{C\+M\+D58}~(58)                              /$\ast$ R\+E\+A\+D\+\_\+\+O\+CR $\ast$/
+\#define \mbox{\hyperlink{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}{C\+M\+D58}}~(58)                              /$\ast$ R\+E\+A\+D\+\_\+\+O\+CR $\ast$/
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc_8c_aa2280c6de741431ee6eaecc9a3254874}{power\+\_\+on} (void)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc_8c_aa2280c6de741431ee6eaecc9a3254874}{power\+\_\+on}} (void)
 \item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc_8c_aeb5620f777b0f4aa1d4f0baed62998a9}{power\+\_\+off} (void)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc_8c_aeb5620f777b0f4aa1d4f0baed62998a9}{power\+\_\+off}} (void)
 \begin{DoxyCompactList}\small\item\em power off \end{DoxyCompactList}\item 
-static \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_a38f29ae10012d1cdd2e694aa2c340e22}{xchg\+\_\+spi} (\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} dat)
+static \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} \mbox{\hyperlink{mmc_8c_a38f29ae10012d1cdd2e694aa2c340e22}{xchg\+\_\+spi}} (\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} dat)
 \begin{DoxyCompactList}\small\item\em send/receive a S\+PI byte \end{DoxyCompactList}\item 
-static void \hyperlink{mmc_8c_a50ff2f4928f652f9968097d326623808}{rcvr\+\_\+spi\+\_\+multi} (\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$p, \hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} cnt)
+static void \mbox{\hyperlink{mmc_8c_a50ff2f4928f652f9968097d326623808}{rcvr\+\_\+spi\+\_\+multi}} (\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$p, \mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}} cnt)
 \begin{DoxyCompactList}\small\item\em Receive a data block fast. \end{DoxyCompactList}\item 
-static void \hyperlink{mmc_8c_a8c2f6f09ffb61f5c8d4b7474fc9ac744}{xmit\+\_\+spi\+\_\+multi} (const \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$p, \hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} cnt)
+static void \mbox{\hyperlink{mmc_8c_a8c2f6f09ffb61f5c8d4b7474fc9ac744}{xmit\+\_\+spi\+\_\+multi}} (const \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$p, \mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}} cnt)
 \begin{DoxyCompactList}\small\item\em Send a data block fast. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\+\_\+ready} (\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} wt)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}{wait\+\_\+ready}} (\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}} wt)
 \begin{DoxyCompactList}\small\item\em wait for card ready \end{DoxyCompactList}\item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void \hyperlink{mmc_8c_af7ba69856a88eef56eabe1d777239392}{deselect} (void)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{mmc_8c_af7ba69856a88eef56eabe1d777239392}{deselect}} (void)
 \begin{DoxyCompactList}\small\item\em Deselect the card and release S\+PI bus. \end{DoxyCompactList}\item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_aa25e843f96b6052ed79d3c70bc013935}{select} (void)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mmc_8c_aa25e843f96b6052ed79d3c70bc013935}{select}} (void)
 \begin{DoxyCompactList}\small\item\em Select the card and wait for ready. \end{DoxyCompactList}\item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int \hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\+\_\+datablock} (\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} btr)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}{rcvr\+\_\+datablock}} (\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$buff, \mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}} btr)
 \begin{DoxyCompactList}\small\item\em Receive a data packet from M\+MC. \end{DoxyCompactList}\item 
-static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\+\_\+cmd} (\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} cmd, \hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} arg)
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} \mbox{\hyperlink{mmc_8c_afd47154c84441f723909d5875aa64efd}{send\+\_\+cmd}} (\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} cmd, \mbox{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}} arg)
 \begin{DoxyCompactList}\small\item\em Send a data packet to M\+MC. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_af4049fbbcf364fc59886118c79895507}{mmc\+\_\+disk\+\_\+initialize} (void)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} \mbox{\hyperlink{mmc_8c_af4049fbbcf364fc59886118c79895507}{mmc\+\_\+disk\+\_\+initialize}} (void)
 \begin{DoxyCompactList}\small\item\em Public Functions. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_ac14ea06e6b2ce5ad9808db3c205db5e6}{mmc\+\_\+disk\+\_\+status} (void)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} \mbox{\hyperlink{mmc_8c_ac14ea06e6b2ce5ad9808db3c205db5e6}{mmc\+\_\+disk\+\_\+status}} (void)
 \begin{DoxyCompactList}\small\item\em Get Disk Status. \end{DoxyCompactList}\item 
-\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} \hyperlink{mmc_8c_a41eabb26301eb16450258417ed137d67}{mmc\+\_\+disk\+\_\+read} (\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$buff, \hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD} sector, \hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT} count)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT}} \mbox{\hyperlink{mmc_8c_a41eabb26301eb16450258417ed137d67}{mmc\+\_\+disk\+\_\+read}} (\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$buff, \mbox{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}} sector, \mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}} count)
 \begin{DoxyCompactList}\small\item\em Read Sector(s) \end{DoxyCompactList}\item 
-void \hyperlink{mmc_8c_a34555655fe13a47c95b35a2c13b85847}{mmc\+\_\+disk\+\_\+timerproc} (void)
+void \mbox{\hyperlink{mmc_8c_a34555655fe13a47c95b35a2c13b85847}{mmc\+\_\+disk\+\_\+timerproc}} (void)
 \begin{DoxyCompactList}\small\item\em Write Sector(s) \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
+\doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-volatile \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} \hyperlink{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}{Stat} = \hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}
+volatile \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} \mbox{\hyperlink{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}{Stat}} = \mbox{\hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}
 \item 
-static volatile \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_aac69c67bd452589205cafb4b54cfe3be}{Timer1}
+static volatile \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} \mbox{\hyperlink{mmc_8c_aac69c67bd452589205cafb4b54cfe3be}{Timer1}}
 \item 
-static volatile \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_af010d7e43aa304973d38d164078ff6e1}{Timer2}
+static volatile \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} \mbox{\hyperlink{mmc_8c_af010d7e43aa304973d38d164078ff6e1}{Timer2}}
 \item 
-static \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} \hyperlink{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}{Card\+Type}
+static \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} \mbox{\hyperlink{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}{Card\+Type}}
 \end{DoxyCompactItemize}
 
 
-\subsection{Macro Definition Documentation}
+\doxysubsection{Macro Definition Documentation}
 \mbox{\Hypertarget{mmc_8c_a4be8f501d86d24b02923846db618fc71}\label{mmc_8c_a4be8f501d86d24b02923846db618fc71}} 
-\index{mmc.\+c@{mmc.\+c}!A\+C\+M\+D13@{A\+C\+M\+D13}}
-\index{A\+C\+M\+D13@{A\+C\+M\+D13}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{A\+C\+M\+D13}{ACMD13}}
-{\footnotesize\ttfamily \#define A\+C\+M\+D13~(0x80+13)                         /$\ast$ S\+D\+\_\+\+S\+T\+A\+T\+U\+S (\+S\+D\+C) $\ast$/}
+\index{mmc.c@{mmc.c}!ACMD13@{ACMD13}}
+\index{ACMD13@{ACMD13}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{ACMD13}{ACMD13}}
+{\footnotesize\ttfamily \#define A\+C\+M\+D13~(0x80+13)                         /$\ast$ S\+D\+\_\+\+S\+T\+A\+T\+US (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/}
 
 
 
 Definition at line 61 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_aa38144d651e2880f92c65bb683621f78}\label{mmc_8c_aa38144d651e2880f92c65bb683621f78}} 
-\index{mmc.\+c@{mmc.\+c}!A\+C\+M\+D23@{A\+C\+M\+D23}}
-\index{A\+C\+M\+D23@{A\+C\+M\+D23}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{A\+C\+M\+D23}{ACMD23}}
-{\footnotesize\ttfamily \#define A\+C\+M\+D23~(0x80+23)                         /$\ast$ S\+E\+T\+\_\+\+W\+R\+\_\+\+B\+L\+K\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+O\+U\+N\+T (\+S\+D\+C) $\ast$/}
+\index{mmc.c@{mmc.c}!ACMD23@{ACMD23}}
+\index{ACMD23@{ACMD23}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{ACMD23}{ACMD23}}
+{\footnotesize\ttfamily \#define A\+C\+M\+D23~(0x80+23)                         /$\ast$ S\+E\+T\+\_\+\+W\+R\+\_\+\+B\+L\+K\+\_\+\+E\+R\+A\+S\+E\+\_\+\+C\+O\+U\+NT (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/}
 
 
 
 Definition at line 66 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}\label{mmc_8c_a9b6fdfed1b57ac31269b6b9987e0761b}} 
-\index{mmc.\+c@{mmc.\+c}!A\+C\+M\+D41@{A\+C\+M\+D41}}
-\index{A\+C\+M\+D41@{A\+C\+M\+D41}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{A\+C\+M\+D41}{ACMD41}}
-{\footnotesize\ttfamily \#define A\+C\+M\+D41~(0x80+41)                         /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+N\+D (\+S\+D\+C) $\ast$/}
+\index{mmc.c@{mmc.c}!ACMD41@{ACMD41}}
+\index{ACMD41@{ACMD41}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{ACMD41}{ACMD41}}
+{\footnotesize\ttfamily \#define A\+C\+M\+D41~(0x80+41)                         /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (\mbox{\hyperlink{defines_8h_a26ebbac1e849f9c61421e7279c597f2b}{S\+DC}}) $\ast$/}
 
 
 
 Definition at line 56 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
-
 \mbox{\Hypertarget{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}\label{mmc_8c_a938c1466755f12fb04ac0d1b775584d1}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D0@{C\+M\+D0}}
-\index{C\+M\+D0@{C\+M\+D0}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D0}{CMD0}}
+\index{mmc.c@{mmc.c}!CMD0@{CMD0}}
+\index{CMD0@{CMD0}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD0}{CMD0}}
 {\footnotesize\ttfamily \#define C\+M\+D0~(0)                               /$\ast$ G\+O\+\_\+\+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE $\ast$/}
 
 
 
 Definition at line 54 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and send\+\_\+cmd().
-
 \mbox{\Hypertarget{mmc_8c_aca9979f299fa78c1128d778084478673}\label{mmc_8c_aca9979f299fa78c1128d778084478673}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D1@{C\+M\+D1}}
-\index{C\+M\+D1@{C\+M\+D1}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D1}{CMD1}}
+\index{mmc.c@{mmc.c}!CMD1@{CMD1}}
+\index{CMD1@{CMD1}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD1}{CMD1}}
 {\footnotesize\ttfamily \#define C\+M\+D1~(1)                               /$\ast$ S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND (M\+MC) $\ast$/}
 
 
 
 Definition at line 55 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
-
 \mbox{\Hypertarget{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}\label{mmc_8c_ae7b800ed8e7bd52e6f570a5ce72b8104}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D10@{C\+M\+D10}}
-\index{C\+M\+D10@{C\+M\+D10}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D10}{CMD10}}
+\index{mmc.c@{mmc.c}!CMD10@{CMD10}}
+\index{CMD10@{CMD10}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD10}{CMD10}}
 {\footnotesize\ttfamily \#define C\+M\+D10~(10)                              /$\ast$ S\+E\+N\+D\+\_\+\+C\+ID $\ast$/}
 
 
 
 Definition at line 59 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}\label{mmc_8c_a8d6283c9b060afbaa0e6d1ff7e5ea7b8}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D12@{C\+M\+D12}}
-\index{C\+M\+D12@{C\+M\+D12}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D12}{CMD12}}
+\index{mmc.c@{mmc.c}!CMD12@{CMD12}}
+\index{CMD12@{CMD12}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD12}{CMD12}}
 {\footnotesize\ttfamily \#define C\+M\+D12~(12)                              /$\ast$ S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+ON $\ast$/}
 
 
 
 Definition at line 60 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read(), and send\+\_\+cmd().
-
 \mbox{\Hypertarget{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}\label{mmc_8c_aaeab261b94f2031ba41a1d4d857c3541}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D16@{C\+M\+D16}}
-\index{C\+M\+D16@{C\+M\+D16}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D16}{CMD16}}
+\index{mmc.c@{mmc.c}!CMD16@{CMD16}}
+\index{CMD16@{CMD16}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD16}{CMD16}}
 {\footnotesize\ttfamily \#define C\+M\+D16~(16)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+L\+EN $\ast$/}
 
 
 
 Definition at line 62 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
-
 \mbox{\Hypertarget{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}\label{mmc_8c_a6bbfe7dc16a19b7f40efcf554b5666ad}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D17@{C\+M\+D17}}
-\index{C\+M\+D17@{C\+M\+D17}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D17}{CMD17}}
+\index{mmc.c@{mmc.c}!CMD17@{CMD17}}
+\index{CMD17@{CMD17}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD17}{CMD17}}
 {\footnotesize\ttfamily \#define C\+M\+D17~(17)                              /$\ast$ R\+E\+A\+D\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}
 
 
 
 Definition at line 63 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a3d32c27a6be061b865ba539127278f14}\label{mmc_8c_a3d32c27a6be061b865ba539127278f14}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D18@{C\+M\+D18}}
-\index{C\+M\+D18@{C\+M\+D18}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D18}{CMD18}}
+\index{mmc.c@{mmc.c}!CMD18@{CMD18}}
+\index{CMD18@{CMD18}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD18}{CMD18}}
 {\footnotesize\ttfamily \#define C\+M\+D18~(18)                              /$\ast$ R\+E\+A\+D\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}
 
 
 
 Definition at line 64 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}\label{mmc_8c_a14506e981f38b6177bc36f72c2ca18b1}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D23@{C\+M\+D23}}
-\index{C\+M\+D23@{C\+M\+D23}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D23}{CMD23}}
+\index{mmc.c@{mmc.c}!CMD23@{CMD23}}
+\index{CMD23@{CMD23}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD23}{CMD23}}
 {\footnotesize\ttfamily \#define C\+M\+D23~(23)                              /$\ast$ S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+O\+U\+NT (M\+MC) $\ast$/}
 
 
@@ -259,234 +219,170 @@ Referenced by mmc\+\_\+disk\+\_\+read().
 Definition at line 65 of file mmc.\+c.
 
 \mbox{\Hypertarget{mmc_8c_a252300302c6f7960df547a7f5c25be85}\label{mmc_8c_a252300302c6f7960df547a7f5c25be85}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D24@{C\+M\+D24}}
-\index{C\+M\+D24@{C\+M\+D24}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D24}{CMD24}}
+\index{mmc.c@{mmc.c}!CMD24@{CMD24}}
+\index{CMD24@{CMD24}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD24}{CMD24}}
 {\footnotesize\ttfamily \#define C\+M\+D24~(24)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+CK $\ast$/}
 
 
 
 Definition at line 67 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_aee2c673fba987178f4642531fdeefe9e}\label{mmc_8c_aee2c673fba987178f4642531fdeefe9e}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D25@{C\+M\+D25}}
-\index{C\+M\+D25@{C\+M\+D25}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D25}{CMD25}}
+\index{mmc.c@{mmc.c}!CMD25@{CMD25}}
+\index{CMD25@{CMD25}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD25}{CMD25}}
 {\footnotesize\ttfamily \#define C\+M\+D25~(25)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK $\ast$/}
 
 
 
 Definition at line 68 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}\label{mmc_8c_af822a2ff9987b3a48982731fa4ba5f7b}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D32@{C\+M\+D32}}
-\index{C\+M\+D32@{C\+M\+D32}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D32}{CMD32}}
+\index{mmc.c@{mmc.c}!CMD32@{CMD32}}
+\index{CMD32@{CMD32}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD32}{CMD32}}
 {\footnotesize\ttfamily \#define C\+M\+D32~(32)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+S\+T\+A\+RT $\ast$/}
 
 
 
 Definition at line 69 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a309d932899cca7255395821dc32dace0}\label{mmc_8c_a309d932899cca7255395821dc32dace0}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D33@{C\+M\+D33}}
-\index{C\+M\+D33@{C\+M\+D33}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D33}{CMD33}}
+\index{mmc.c@{mmc.c}!CMD33@{CMD33}}
+\index{CMD33@{CMD33}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD33}{CMD33}}
 {\footnotesize\ttfamily \#define C\+M\+D33~(33)                              /$\ast$ E\+R\+A\+S\+E\+\_\+\+E\+R\+\_\+\+B\+L\+K\+\_\+\+E\+ND $\ast$/}
 
 
 
 Definition at line 70 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}\label{mmc_8c_a6af4991146dfb0a47c4aa6f166efb046}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D38@{C\+M\+D38}}
-\index{C\+M\+D38@{C\+M\+D38}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D38}{CMD38}}
+\index{mmc.c@{mmc.c}!CMD38@{CMD38}}
+\index{CMD38@{CMD38}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD38}{CMD38}}
 {\footnotesize\ttfamily \#define C\+M\+D38~(38)                              /$\ast$ E\+R\+A\+SE $\ast$/}
 
 
 
 Definition at line 71 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_af784857da94febad94e1d63dcd5a0f57}\label{mmc_8c_af784857da94febad94e1d63dcd5a0f57}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D48@{C\+M\+D48}}
-\index{C\+M\+D48@{C\+M\+D48}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D48}{CMD48}}
+\index{mmc.c@{mmc.c}!CMD48@{CMD48}}
+\index{CMD48@{CMD48}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD48}{CMD48}}
 {\footnotesize\ttfamily \#define C\+M\+D48~(48)                              /$\ast$ R\+E\+A\+D\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/}
 
 
 
 Definition at line 72 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a862b9a426aa33dd253b919d2313b3e45}\label{mmc_8c_a862b9a426aa33dd253b919d2313b3e45}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D49@{C\+M\+D49}}
-\index{C\+M\+D49@{C\+M\+D49}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D49}{CMD49}}
+\index{mmc.c@{mmc.c}!CMD49@{CMD49}}
+\index{CMD49@{CMD49}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD49}{CMD49}}
 {\footnotesize\ttfamily \#define C\+M\+D49~(49)                              /$\ast$ W\+R\+I\+T\+E\+\_\+\+E\+X\+T\+R\+\_\+\+S\+I\+N\+G\+LE $\ast$/}
 
 
 
 Definition at line 73 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_a78289a7a85ffcfddd626694105dc0780}\label{mmc_8c_a78289a7a85ffcfddd626694105dc0780}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D55@{C\+M\+D55}}
-\index{C\+M\+D55@{C\+M\+D55}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D55}{CMD55}}
+\index{mmc.c@{mmc.c}!CMD55@{CMD55}}
+\index{CMD55@{CMD55}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD55}{CMD55}}
 {\footnotesize\ttfamily \#define C\+M\+D55~(55)                              /$\ast$ A\+P\+P\+\_\+\+C\+MD $\ast$/}
 
 
 
 Definition at line 74 of file mmc.\+c.
 
-
-
-Referenced by send\+\_\+cmd().
-
 \mbox{\Hypertarget{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}\label{mmc_8c_aa7a26b2cf17e1ff5967820a1fa41a7aa}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D58@{C\+M\+D58}}
-\index{C\+M\+D58@{C\+M\+D58}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D58}{CMD58}}
+\index{mmc.c@{mmc.c}!CMD58@{CMD58}}
+\index{CMD58@{CMD58}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD58}{CMD58}}
 {\footnotesize\ttfamily \#define C\+M\+D58~(58)                              /$\ast$ R\+E\+A\+D\+\_\+\+O\+CR $\ast$/}
 
 
 
 Definition at line 75 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}\label{mmc_8c_ac75b3e0ad1fb013ea946fb49bbe65668}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D8@{C\+M\+D8}}
-\index{C\+M\+D8@{C\+M\+D8}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D8}{CMD8}}
+\index{mmc.c@{mmc.c}!CMD8@{CMD8}}
+\index{CMD8@{CMD8}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD8}{CMD8}}
 {\footnotesize\ttfamily \#define C\+M\+D8~(8)                               /$\ast$ S\+E\+N\+D\+\_\+\+I\+F\+\_\+\+C\+O\+ND $\ast$/}
 
 
 
 Definition at line 57 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and send\+\_\+cmd().
-
 \mbox{\Hypertarget{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}\label{mmc_8c_a1fac6a251d7e7dc204d21639bf521459}} 
-\index{mmc.\+c@{mmc.\+c}!C\+M\+D9@{C\+M\+D9}}
-\index{C\+M\+D9@{C\+M\+D9}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+M\+D9}{CMD9}}
+\index{mmc.c@{mmc.c}!CMD9@{CMD9}}
+\index{CMD9@{CMD9}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CMD9}{CMD9}}
 {\footnotesize\ttfamily \#define C\+M\+D9~(9)                               /$\ast$ S\+E\+N\+D\+\_\+\+C\+SD $\ast$/}
 
 
 
 Definition at line 58 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+read().
-
 \mbox{\Hypertarget{mmc_8c_af67a5c0216de0cfadf059fa4cf05d65d}\label{mmc_8c_af67a5c0216de0cfadf059fa4cf05d65d}} 
-\index{mmc.\+c@{mmc.\+c}!C\+S\+\_\+\+H\+I\+GH@{C\+S\+\_\+\+H\+I\+GH}}
-\index{C\+S\+\_\+\+H\+I\+GH@{C\+S\+\_\+\+H\+I\+GH}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+S\+\_\+\+H\+I\+GH}{CS\_HIGH}}
-{\footnotesize\ttfamily \#define C\+S\+\_\+\+H\+I\+GH(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\hyperlink{mmc__hal_8h_a4963fd4e3ba8fabe799b88073aea0499}{mmc\+\_\+spi\+\_\+end}()             /$\ast$ Set M\+M\+C\+\_\+\+CS = high $\ast$/}
+\index{mmc.c@{mmc.c}!CS\_HIGH@{CS\_HIGH}}
+\index{CS\_HIGH@{CS\_HIGH}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CS\_HIGH}{CS\_HIGH}}
+{\footnotesize\ttfamily \#define C\+S\+\_\+\+H\+I\+GH(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{mmc__hal_8h_a4963fd4e3ba8fabe799b88073aea0499}{mmc\+\_\+spi\+\_\+end}}()             /$\ast$ Set M\+M\+C\+\_\+\+CS = high $\ast$/}
 
 
 
 Definition at line 40 of file mmc.\+c.
 
-
-
-Referenced by deselect().
-
 \mbox{\Hypertarget{mmc_8c_ab6b224028ee993b43049cd45010ec00f}\label{mmc_8c_ab6b224028ee993b43049cd45010ec00f}} 
-\index{mmc.\+c@{mmc.\+c}!C\+S\+\_\+\+L\+OW@{C\+S\+\_\+\+L\+OW}}
-\index{C\+S\+\_\+\+L\+OW@{C\+S\+\_\+\+L\+OW}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{C\+S\+\_\+\+L\+OW}{CS\_LOW}}
-{\footnotesize\ttfamily \#define C\+S\+\_\+\+L\+OW(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\hyperlink{mmc__hal_8h_abdc5ab6358ed33bc5a98a11fde82b704}{mmc\+\_\+spi\+\_\+begin}()           /$\ast$ Set M\+M\+C\+\_\+\+CS = low $\ast$/}
+\index{mmc.c@{mmc.c}!CS\_LOW@{CS\_LOW}}
+\index{CS\_LOW@{CS\_LOW}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CS\_LOW}{CS\_LOW}}
+{\footnotesize\ttfamily \#define C\+S\+\_\+\+L\+OW(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{mmc__hal_8h_abdc5ab6358ed33bc5a98a11fde82b704}{mmc\+\_\+spi\+\_\+begin}}()           /$\ast$ Set M\+M\+C\+\_\+\+CS = low $\ast$/}
 
 
 
 Definition at line 39 of file mmc.\+c.
 
-
-
-Referenced by select().
-
 \mbox{\Hypertarget{mmc_8c_a1ffcdd6f111fd9b4229f49a5e37046b7}\label{mmc_8c_a1ffcdd6f111fd9b4229f49a5e37046b7}} 
-\index{mmc.\+c@{mmc.\+c}!F\+C\+L\+K\+\_\+\+F\+A\+ST@{F\+C\+L\+K\+\_\+\+F\+A\+ST}}
-\index{F\+C\+L\+K\+\_\+\+F\+A\+ST@{F\+C\+L\+K\+\_\+\+F\+A\+ST}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{F\+C\+L\+K\+\_\+\+F\+A\+ST}{FCLK\_FAST}}
-{\footnotesize\ttfamily \#define F\+C\+L\+K\+\_\+\+F\+A\+ST(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\hyperlink{mmc__hal_8h_afd5747681a788dc27943f736e57eeb54}{mmc\+\_\+fast}()                /$\ast$ Set S\+PI fast clock (20\+M\+Hz max) $\ast$/}
+\index{mmc.c@{mmc.c}!FCLK\_FAST@{FCLK\_FAST}}
+\index{FCLK\_FAST@{FCLK\_FAST}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{FCLK\_FAST}{FCLK\_FAST}}
+{\footnotesize\ttfamily \#define F\+C\+L\+K\+\_\+\+F\+A\+ST(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{mmc__hal_8h_afd5747681a788dc27943f736e57eeb54}{mmc\+\_\+fast}}()                /$\ast$ Set S\+PI fast clock (20\+M\+Hz max) $\ast$/}
 
 
 
 Definition at line 45 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
-
 \mbox{\Hypertarget{mmc_8c_ae3d9176798d1718d779e2db397de4bb5}\label{mmc_8c_ae3d9176798d1718d779e2db397de4bb5}} 
-\index{mmc.\+c@{mmc.\+c}!F\+C\+L\+K\+\_\+\+S\+L\+OW@{F\+C\+L\+K\+\_\+\+S\+L\+OW}}
-\index{F\+C\+L\+K\+\_\+\+S\+L\+OW@{F\+C\+L\+K\+\_\+\+S\+L\+OW}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{F\+C\+L\+K\+\_\+\+S\+L\+OW}{FCLK\_SLOW}}
-{\footnotesize\ttfamily \#define F\+C\+L\+K\+\_\+\+S\+L\+OW(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\hyperlink{mmc__hal_8h_a03e4e29ebb0844123378d72b41bf3575}{mmc\+\_\+slow}()                /$\ast$ Set S\+PI slow clock (100-\/400k\+Hz) $\ast$/}
+\index{mmc.c@{mmc.c}!FCLK\_SLOW@{FCLK\_SLOW}}
+\index{FCLK\_SLOW@{FCLK\_SLOW}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{FCLK\_SLOW}{FCLK\_SLOW}}
+{\footnotesize\ttfamily \#define F\+C\+L\+K\+\_\+\+S\+L\+OW(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{mmc__hal_8h_a03e4e29ebb0844123378d72b41bf3575}{mmc\+\_\+slow}}()                /$\ast$ Set S\+PI slow clock (100-\/400k\+Hz) $\ast$/}
 
 
 
 Definition at line 44 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+initialize().
-
 \mbox{\Hypertarget{mmc_8c_a3f7233f98c6f4abb0cdea809c39bcf68}\label{mmc_8c_a3f7233f98c6f4abb0cdea809c39bcf68}} 
-\index{mmc.\+c@{mmc.\+c}!M\+M\+C\+\_\+\+CD@{M\+M\+C\+\_\+\+CD}}
-\index{M\+M\+C\+\_\+\+CD@{M\+M\+C\+\_\+\+CD}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{M\+M\+C\+\_\+\+CD}{MMC\_CD}}
-{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+CD~\hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status}()          /$\ast$ Test if card detected.   yes\+:true, no\+:false, default\+:true $\ast$/}
+\index{mmc.c@{mmc.c}!MMC\_CD@{MMC\_CD}}
+\index{MMC\_CD@{MMC\_CD}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{MMC\_CD}{MMC\_CD}}
+{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+CD~\mbox{\hyperlink{mmc__hal_8h_ab9dae194babcfe774428305a575556cc}{mmc\+\_\+ins\+\_\+status}}()          /$\ast$ Test if card detected.   yes\+:true, no\+:false, default\+:true $\ast$/}
 
 
 
 Definition at line 42 of file mmc.\+c.
 
-
-
-Referenced by mmc\+\_\+disk\+\_\+timerproc().
-
 \mbox{\Hypertarget{mmc_8c_a5736fa0032458e3579bccfc2b363e8ba}\label{mmc_8c_a5736fa0032458e3579bccfc2b363e8ba}} 
-\index{mmc.\+c@{mmc.\+c}!M\+M\+C\+\_\+\+WP@{M\+M\+C\+\_\+\+WP}}
-\index{M\+M\+C\+\_\+\+WP@{M\+M\+C\+\_\+\+WP}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{M\+M\+C\+\_\+\+WP}{MMC\_WP}}
-{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+WP~\hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status}()           /$\ast$ Test if \hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write} protected. yes\+:true, no\+:false, default\+:false $\ast$/}
+\index{mmc.c@{mmc.c}!MMC\_WP@{MMC\_WP}}
+\index{MMC\_WP@{MMC\_WP}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{MMC\_WP}{MMC\_WP}}
+{\footnotesize\ttfamily \#define M\+M\+C\+\_\+\+WP~\mbox{\hyperlink{mmc__hal_8h_a5d4cd1450305a6f9ad8ebd1a19a606c5}{mmc\+\_\+wp\+\_\+status}}()           /$\ast$ Test if \mbox{\hyperlink{posix_8h_a072435300ac99e8d7c3749f45166e797}{write}} protected. yes\+:true, no\+:false, default\+:false $\ast$/}
 
 
 
@@ -494,16 +390,12 @@ Definition at line 43 of file mmc.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+timerproc().
-
-
-
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{mmc_8c_af7ba69856a88eef56eabe1d777239392}\label{mmc_8c_af7ba69856a88eef56eabe1d777239392}} 
-\index{mmc.\+c@{mmc.\+c}!deselect@{deselect}}
-\index{deselect@{deselect}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{deselect()}{deselect()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void deselect (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!deselect@{deselect}}
+\index{deselect@{deselect}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{deselect()}{deselect()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void deselect (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -521,10 +413,10 @@ Definition at line 186 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), select(), and send\+\_\+cmd().
 
 \mbox{\Hypertarget{mmc_8c_af4049fbbcf364fc59886118c79895507}\label{mmc_8c_af4049fbbcf364fc59886118c79895507}} 
-\index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+initialize@{mmc\+\_\+disk\+\_\+initialize}}
-\index{mmc\+\_\+disk\+\_\+initialize@{mmc\+\_\+disk\+\_\+initialize}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{mmc\+\_\+disk\+\_\+initialize()}{mmc\_disk\_initialize()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} mmc\+\_\+disk\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{mmc.c@{mmc.c}!mmc\_disk\_initialize@{mmc\_disk\_initialize}}
+\index{mmc\_disk\_initialize@{mmc\_disk\_initialize}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{mmc\_disk\_initialize()}{mmc\_disk\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} mmc\+\_\+disk\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
@@ -542,10 +434,10 @@ Definition at line 334 of file mmc.\+c.
 Referenced by disk\+\_\+initialize().
 
 \mbox{\Hypertarget{mmc_8c_a41eabb26301eb16450258417ed137d67}\label{mmc_8c_a41eabb26301eb16450258417ed137d67}} 
-\index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}}
-\index{mmc\+\_\+disk\+\_\+read@{mmc\+\_\+disk\+\_\+read}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{mmc\+\_\+disk\+\_\+read()}{mmc\_disk\_read()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT} mmc\+\_\+disk\+\_\+read (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$}]{buff,  }\item[{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}}]{sector,  }\item[{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{count }\end{DoxyParamCaption})}
+\index{mmc.c@{mmc.c}!mmc\_disk\_read@{mmc\_disk\_read}}
+\index{mmc\_disk\_read@{mmc\_disk\_read}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{mmc\_disk\_read()}{mmc\_disk\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_aacdfef1dad6565f65c26d12fe0ea4b2b}{D\+R\+E\+S\+U\+LT}} mmc\+\_\+disk\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$}]{buff,  }\item[{\mbox{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}}}]{sector,  }\item[{\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}}]{count }\end{DoxyParamCaption})}
 
 
 
@@ -553,11 +445,11 @@ Read Sector(s)
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em buff} & read buffer \\
+\mbox{\texttt{ in}}  & {\em buff} & read buffer \\
 \hline
-\mbox{\tt in}  & {\em sector} & start sector number \\
+\mbox{\texttt{ in}}  & {\em sector} & start sector number \\
 \hline
-\mbox{\tt in}  & {\em count} & sector count \\
+\mbox{\texttt{ in}}  & {\em count} & sector count \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -574,10 +466,10 @@ Definition at line 424 of file mmc.\+c.
 Referenced by disk\+\_\+read().
 
 \mbox{\Hypertarget{mmc_8c_ac14ea06e6b2ce5ad9808db3c205db5e6}\label{mmc_8c_ac14ea06e6b2ce5ad9808db3c205db5e6}} 
-\index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}}
-\index{mmc\+\_\+disk\+\_\+status@{mmc\+\_\+disk\+\_\+status}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{mmc\+\_\+disk\+\_\+status()}{mmc\_disk\_status()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} mmc\+\_\+disk\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\index{mmc.c@{mmc.c}!mmc\_disk\_status@{mmc\_disk\_status}}
+\index{mmc\_disk\_status@{mmc\_disk\_status}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{mmc\_disk\_status()}{mmc\_disk\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} mmc\+\_\+disk\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
 
@@ -597,9 +489,9 @@ Definition at line 411 of file mmc.\+c.
 Referenced by disk\+\_\+status().
 
 \mbox{\Hypertarget{mmc_8c_a34555655fe13a47c95b35a2c13b85847}\label{mmc_8c_a34555655fe13a47c95b35a2c13b85847}} 
-\index{mmc.\+c@{mmc.\+c}!mmc\+\_\+disk\+\_\+timerproc@{mmc\+\_\+disk\+\_\+timerproc}}
-\index{mmc\+\_\+disk\+\_\+timerproc@{mmc\+\_\+disk\+\_\+timerproc}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{mmc\+\_\+disk\+\_\+timerproc()}{mmc\_disk\_timerproc()}}
+\index{mmc.c@{mmc.c}!mmc\_disk\_timerproc@{mmc\_disk\_timerproc}}
+\index{mmc\_disk\_timerproc@{mmc\_disk\_timerproc}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{mmc\_disk\_timerproc()}{mmc\_disk\_timerproc()}}
 {\footnotesize\ttfamily void mmc\+\_\+disk\+\_\+timerproc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 
@@ -608,29 +500,29 @@ Write Sector(s)
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em buff} & write buffer \\
+\mbox{\texttt{ out}}  & {\em buff} & write buffer \\
 \hline
-\mbox{\tt in}  & {\em sector} & start sector number \\
+\mbox{\texttt{ in}}  & {\em sector} & start sector number \\
 \hline
-\mbox{\tt in}  & {\em count} & sector count \\
+\mbox{\texttt{ in}}  & {\em count} & sector count \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 0 ok 
 
-non zero error Miscellaneous Functions 
+non zero error
 \end{DoxyReturn}
-
+Miscellaneous Functions 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em cmd} & Control code \\
+\mbox{\texttt{ in}}  & {\em cmd} & Control code \\
 \hline
  & {\em \mbox{[}in$\vert$out\mbox{]}} & buff\+: Send/\+Receive buffer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-result mmc timer processes 
+result
 \end{DoxyReturn}
-
+mmc timer processes 
 
 Definition at line 761 of file mmc.\+c.
 
@@ -639,10 +531,10 @@ Definition at line 761 of file mmc.\+c.
 Referenced by disk\+\_\+timerproc(), and mmc\+\_\+task().
 
 \mbox{\Hypertarget{mmc_8c_aeb5620f777b0f4aa1d4f0baed62998a9}\label{mmc_8c_aeb5620f777b0f4aa1d4f0baed62998a9}} 
-\index{mmc.\+c@{mmc.\+c}!power\+\_\+off@{power\+\_\+off}}
-\index{power\+\_\+off@{power\+\_\+off}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{power\+\_\+off()}{power\_off()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void power\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!power\_off@{power\_off}}
+\index{power\_off@{power\_off}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{power\_off()}{power\_off()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void power\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -657,13 +549,13 @@ Definition at line 108 of file mmc.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
+Referenced by mmc\+\_\+disk\+\_\+initialize().
 
 \mbox{\Hypertarget{mmc_8c_aa2280c6de741431ee6eaecc9a3254874}\label{mmc_8c_aa2280c6de741431ee6eaecc9a3254874}} 
-\index{mmc.\+c@{mmc.\+c}!power\+\_\+on@{power\+\_\+on}}
-\index{power\+\_\+on@{power\+\_\+on}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{power\+\_\+on()}{power\_on()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} void power\+\_\+on (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!power\_on@{power\_on}}
+\index{power\_on@{power\_on}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{power\_on()}{power\_on()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void power\+\_\+on (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \begin{DoxyReturn}{Returns}
 void 
@@ -677,10 +569,10 @@ Definition at line 95 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+initialize().
 
 \mbox{\Hypertarget{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}\label{mmc_8c_a59275a8f1cc0f0d24c6f9f1ae578775a}} 
-\index{mmc.\+c@{mmc.\+c}!rcvr\+\_\+datablock@{rcvr\+\_\+datablock}}
-\index{rcvr\+\_\+datablock@{rcvr\+\_\+datablock}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{rcvr\+\_\+datablock()}{rcvr\_datablock()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int rcvr\+\_\+datablock (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$}]{buff,  }\item[{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{btr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!rcvr\_datablock@{rcvr\_datablock}}
+\index{rcvr\_datablock@{rcvr\_datablock}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{rcvr\_datablock()}{rcvr\_datablock()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int rcvr\+\_\+datablock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$}]{buff,  }\item[{\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}}]{btr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -688,9 +580,9 @@ Receive a data packet from M\+MC.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em buff} & Data buffer to read data into \\
+\mbox{\texttt{ in}}  & {\em buff} & Data buffer to read data into \\
 \hline
-\mbox{\tt in}  & {\em btr} & Bytes to read \\
+\mbox{\texttt{ in}}  & {\em btr} & Bytes to read \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -707,10 +599,10 @@ Definition at line 221 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+read().
 
 \mbox{\Hypertarget{mmc_8c_a50ff2f4928f652f9968097d326623808}\label{mmc_8c_a50ff2f4928f652f9968097d326623808}} 
-\index{mmc.\+c@{mmc.\+c}!rcvr\+\_\+spi\+\_\+multi@{rcvr\+\_\+spi\+\_\+multi}}
-\index{rcvr\+\_\+spi\+\_\+multi@{rcvr\+\_\+spi\+\_\+multi}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{rcvr\+\_\+spi\+\_\+multi()}{rcvr\_spi\_multi()}}
-{\footnotesize\ttfamily static void rcvr\+\_\+spi\+\_\+multi (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$}]{p,  }\item[{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{cnt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!rcvr\_spi\_multi@{rcvr\_spi\_multi}}
+\index{rcvr\_spi\_multi@{rcvr\_spi\_multi}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{rcvr\_spi\_multi()}{rcvr\_spi\_multi()}}
+{\footnotesize\ttfamily static void rcvr\+\_\+spi\+\_\+multi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}}]{cnt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -718,9 +610,9 @@ Receive a data block fast.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em p} & Data block to be read \\
+\mbox{\texttt{ in}}  & {\em p} & Data block to be read \\
 \hline
-\mbox{\tt in}  & {\em cnt} & Bytes to read \\
+\mbox{\texttt{ in}}  & {\em cnt} & Bytes to read \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -735,10 +627,10 @@ Definition at line 139 of file mmc.\+c.
 Referenced by rcvr\+\_\+datablock().
 
 \mbox{\Hypertarget{mmc_8c_aa25e843f96b6052ed79d3c70bc013935}\label{mmc_8c_aa25e843f96b6052ed79d3c70bc013935}} 
-\index{mmc.\+c@{mmc.\+c}!select@{select}}
-\index{select@{select}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{select()}{select()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int select (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!select@{select}}
+\index{select@{select}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int select (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -755,13 +647,13 @@ Definition at line 199 of file mmc.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+read(), and send\+\_\+cmd().
+Referenced by send\+\_\+cmd().
 
 \mbox{\Hypertarget{mmc_8c_afd47154c84441f723909d5875aa64efd}\label{mmc_8c_afd47154c84441f723909d5875aa64efd}} 
-\index{mmc.\+c@{mmc.\+c}!send\+\_\+cmd@{send\+\_\+cmd}}
-\index{send\+\_\+cmd@{send\+\_\+cmd}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{send\+\_\+cmd()}{send\_cmd()}}
-{\footnotesize\ttfamily static \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} send\+\_\+cmd (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}}]{cmd,  }\item[{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!send\_cmd@{send\_cmd}}
+\index{send\_cmd@{send\_cmd}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{send\_cmd()}{send\_cmd()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} send\+\_\+cmd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}}}]{cmd,  }\item[{\mbox{\hyperlink{ff_8h_ad342ac907eb044443153a22f964bf0af}{D\+W\+O\+RD}}}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -769,27 +661,27 @@ Send a data packet to M\+MC.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em buff} & Data buffer to write \\
+\mbox{\texttt{ in}}  & {\em buff} & Data buffer to write \\
 \hline
-\mbox{\tt in}  & {\em btr} & Bytes to write \\
+\mbox{\texttt{ in}}  & {\em btr} & Bytes to write \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 1 Successful 
 
-0 Error Send a command packet to M\+MC 
+0 Error
 \end{DoxyReturn}
-
+Send a command packet to M\+MC 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em send\+\_\+cmd} & Commend Index \\
+\mbox{\texttt{ in}}  & {\em send\+\_\+cmd} & Commend Index \\
 \hline
-\mbox{\tt in}  & {\em cmd} & Argument \\
+\mbox{\texttt{ in}}  & {\em cmd} & Argument \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 R1 resp 
 
-bit7==1\+Send failed 
+bit7==1Send failed 
 \end{DoxyReturn}
 
 
@@ -800,10 +692,10 @@ Definition at line 283 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
 
 \mbox{\Hypertarget{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}\label{mmc_8c_ab7771efbbd1a015b449d838d7f09959a}} 
-\index{mmc.\+c@{mmc.\+c}!wait\+\_\+ready@{wait\+\_\+ready}}
-\index{wait\+\_\+ready@{wait\+\_\+ready}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{wait\+\_\+ready()}{wait\_ready()}}
-{\footnotesize\ttfamily \hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE} int wait\+\_\+ready (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{wt }\end{DoxyParamCaption})}
+\index{mmc.c@{mmc.c}!wait\_ready@{wait\_ready}}
+\index{wait\_ready@{wait\_ready}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{wait\_ready()}{wait\_ready()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int wait\+\_\+ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}}]{wt }\end{DoxyParamCaption})}
 
 
 
@@ -811,7 +703,7 @@ wait for card ready
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em wt} & ms to wait \\
+\mbox{\texttt{ in}}  & {\em wt} & ms to wait \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -825,13 +717,13 @@ Definition at line 168 of file mmc.\+c.
 
 
 
-Referenced by mmc\+\_\+disk\+\_\+read(), rcvr\+\_\+datablock(), and select().
+Referenced by select().
 
 \mbox{\Hypertarget{mmc_8c_a38f29ae10012d1cdd2e694aa2c340e22}\label{mmc_8c_a38f29ae10012d1cdd2e694aa2c340e22}} 
-\index{mmc.\+c@{mmc.\+c}!xchg\+\_\+spi@{xchg\+\_\+spi}}
-\index{xchg\+\_\+spi@{xchg\+\_\+spi}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{xchg\+\_\+spi()}{xchg\_spi()}}
-{\footnotesize\ttfamily static \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} xchg\+\_\+spi (\begin{DoxyParamCaption}\item[{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}}]{dat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!xchg\_spi@{xchg\_spi}}
+\index{xchg\_spi@{xchg\_spi}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{xchg\_spi()}{xchg\_spi()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} xchg\+\_\+spi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}}}]{dat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -839,7 +731,7 @@ send/receive a S\+PI byte
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em dat} & data to send \\
+\mbox{\texttt{ in}}  & {\em dat} & data to send \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -851,13 +743,13 @@ Definition at line 125 of file mmc.\+c.
 
 
 
-Referenced by deselect(), mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), rcvr\+\_\+datablock(), select(), send\+\_\+cmd(), and wait\+\_\+ready().
+Referenced by deselect(), mmc\+\_\+disk\+\_\+initialize(), rcvr\+\_\+datablock(), select(), send\+\_\+cmd(), and wait\+\_\+ready().
 
 \mbox{\Hypertarget{mmc_8c_a8c2f6f09ffb61f5c8d4b7474fc9ac744}\label{mmc_8c_a8c2f6f09ffb61f5c8d4b7474fc9ac744}} 
-\index{mmc.\+c@{mmc.\+c}!xmit\+\_\+spi\+\_\+multi@{xmit\+\_\+spi\+\_\+multi}}
-\index{xmit\+\_\+spi\+\_\+multi@{xmit\+\_\+spi\+\_\+multi}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{xmit\+\_\+spi\+\_\+multi()}{xmit\_spi\_multi()}}
-{\footnotesize\ttfamily static void xmit\+\_\+spi\+\_\+multi (\begin{DoxyParamCaption}\item[{const \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} $\ast$}]{p,  }\item[{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}]{cnt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!xmit\_spi\_multi@{xmit\_spi\_multi}}
+\index{xmit\_spi\_multi@{xmit\_spi\_multi}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{xmit\_spi\_multi()}{xmit\_spi\_multi()}}
+{\footnotesize\ttfamily static void xmit\+\_\+spi\+\_\+multi (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{ff_8h_a36cb3b01d81ffd844bbbfb54003e06ec}{U\+I\+NT}}}]{cnt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -865,9 +757,9 @@ Send a data block fast.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em p} & Data block to be sent \\
+\mbox{\texttt{ out}}  & {\em p} & Data block to be sent \\
 \hline
-\mbox{\tt in}  & {\em cnt} & Bytes to send \\
+\mbox{\texttt{ in}}  & {\em cnt} & Bytes to send \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -879,16 +771,12 @@ Definition at line 153 of file mmc.\+c.
 
 
 
-Referenced by rcvr\+\_\+datablock().
-
-
-
-\subsection{Variable Documentation}
+\doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}\label{mmc_8c_ae9edfbb60df250acb70f5f287eb1497a}} 
-\index{mmc.\+c@{mmc.\+c}!Card\+Type@{Card\+Type}}
-\index{Card\+Type@{Card\+Type}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{Card\+Type}{CardType}}
-{\footnotesize\ttfamily \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} Card\+Type\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!CardType@{CardType}}
+\index{CardType@{CardType}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{CardType}{CardType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} Card\+Type\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -899,10 +787,10 @@ Definition at line 84 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+initialize(), and mmc\+\_\+disk\+\_\+read().
 
 \mbox{\Hypertarget{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}\label{mmc_8c_a014a1e17b21e3c0b80fe0afc0106976f}} 
-\index{mmc.\+c@{mmc.\+c}!Stat@{Stat}}
-\index{Stat@{Stat}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{Stat}{Stat}}
-{\footnotesize\ttfamily volatile \hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US} Stat = \hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}
+\index{mmc.c@{mmc.c}!Stat@{Stat}}
+\index{Stat@{Stat}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{Stat}{Stat}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{diskio_8h_adba6790898ce4029c20a34b898ce73c1}{D\+S\+T\+A\+T\+US}} Stat = \mbox{\hyperlink{diskio_8h_abd6503c70d862b979a3f7080a59e9acd}{S\+T\+A\+\_\+\+N\+O\+I\+N\+IT}}}
 
 
 
@@ -913,10 +801,10 @@ Definition at line 78 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+initialize(), mmc\+\_\+disk\+\_\+read(), mmc\+\_\+disk\+\_\+status(), mmc\+\_\+disk\+\_\+timerproc(), mmc\+\_\+init(), and mmc\+\_\+test\+\_\+timeout().
 
 \mbox{\Hypertarget{mmc_8c_aac69c67bd452589205cafb4b54cfe3be}\label{mmc_8c_aac69c67bd452589205cafb4b54cfe3be}} 
-\index{mmc.\+c@{mmc.\+c}!Timer1@{Timer1}}
-\index{Timer1@{Timer1}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{Timer1}{Timer1}}
-{\footnotesize\ttfamily volatile \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} Timer1\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!Timer1@{Timer1}}
+\index{Timer1@{Timer1}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{Timer1}{Timer1}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} Timer1\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -927,10 +815,10 @@ Definition at line 81 of file mmc.\+c.
 Referenced by mmc\+\_\+disk\+\_\+timerproc().
 
 \mbox{\Hypertarget{mmc_8c_af010d7e43aa304973d38d164078ff6e1}\label{mmc_8c_af010d7e43aa304973d38d164078ff6e1}} 
-\index{mmc.\+c@{mmc.\+c}!Timer2@{Timer2}}
-\index{Timer2@{Timer2}!mmc.\+c@{mmc.\+c}}
-\subsubsection{\texorpdfstring{Timer2}{Timer2}}
-{\footnotesize\ttfamily volatile \hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE} Timer2\hspace{0.3cm}{\ttfamily [static]}}
+\index{mmc.c@{mmc.c}!Timer2@{Timer2}}
+\index{Timer2@{Timer2}!mmc.c@{mmc.c}}
+\doxysubsubsection{\texorpdfstring{Timer2}{Timer2}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{ff_8h_a4ae1dab0fb4b072a66584546209e7d58}{B\+Y\+TE}} Timer2\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

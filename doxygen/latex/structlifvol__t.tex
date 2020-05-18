@@ -1,5 +1,5 @@
-\hypertarget{structlifvol__t}{}\section{lifvol\+\_\+t Struct Reference}
-\label{structlifvol__t}\index{lifvol\+\_\+t@{lifvol\+\_\+t}}
+\hypertarget{structlifvol__t}{}\doxysection{lifvol\+\_\+t Struct Reference}
+\label{structlifvol__t}\index{lifvol\_t@{lifvol\_t}}
 
 
 Disk Layout.  
@@ -9,59 +9,60 @@ Disk Layout.
 
 {\ttfamily \#include $<$lifutils.\+h$>$}
 
-\subsection*{Data Fields}
+\doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \hyperlink{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}{L\+I\+Fid}
+uint16\+\_\+t \mbox{\hyperlink{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}{L\+I\+Fid}}
 \item 
-uint8\+\_\+t \hyperlink{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}{Label} \mbox{[}6+1\mbox{]}
+uint8\+\_\+t \mbox{\hyperlink{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}{Label}} \mbox{[}6+1\mbox{]}
 \item 
-uint32\+\_\+t \hyperlink{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}{Dir\+Start\+Sector}
+uint32\+\_\+t \mbox{\hyperlink{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}{Dir\+Start\+Sector}}
 \item 
-uint16\+\_\+t \hyperlink{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}{System3000\+L\+I\+Fid}
+uint16\+\_\+t \mbox{\hyperlink{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}{System3000\+L\+I\+Fid}}
 \item 
-uint16\+\_\+t \hyperlink{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}{zero1}
+uint16\+\_\+t \mbox{\hyperlink{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}{zero1}}
 \item 
-uint32\+\_\+t \hyperlink{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}{Dir\+Sectors}
+uint32\+\_\+t \mbox{\hyperlink{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}{Dir\+Sectors}}
 \item 
-uint16\+\_\+t \hyperlink{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}{L\+I\+F\+Version}
+uint16\+\_\+t \mbox{\hyperlink{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}{L\+I\+F\+Version}}
 \item 
-uint16\+\_\+t \hyperlink{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}{zero2}
+uint16\+\_\+t \mbox{\hyperlink{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}{zero2}}
 \item 
-uint32\+\_\+t \hyperlink{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}{tracks\+\_\+per\+\_\+side}
+uint32\+\_\+t \mbox{\hyperlink{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}{tracks\+\_\+per\+\_\+side}}
 \item 
-uint32\+\_\+t \hyperlink{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}{sides}
+uint32\+\_\+t \mbox{\hyperlink{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}{sides}}
 \item 
-uint32\+\_\+t \hyperlink{structlifvol__t_ad245f7419e180934262f53acd9b4349c}{sectors\+\_\+per\+\_\+track}
+uint32\+\_\+t \mbox{\hyperlink{structlifvol__t_ad245f7419e180934262f53acd9b4349c}{sectors\+\_\+per\+\_\+track}}
 \item 
-uint8\+\_\+t \hyperlink{structlifvol__t_a41f630e7211326270dc6e72a55f94516}{date} \mbox{[}6\mbox{]}
+uint8\+\_\+t \mbox{\hyperlink{structlifvol__t_a41f630e7211326270dc6e72a55f94516}{date}} \mbox{[}6\mbox{]}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Disk Layout. 
 
 \begin{DoxySeeAlso}{See also}
-\href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\tt https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}
+\href{https://groups.io/g/hpseries80/wiki/HP-85-Program-Control-Block-(BASIC-header),-Tape-directory-layout,-Disk-directory-layout}{\texttt{ https\+://groups.\+io/g/hpseries80/wiki/\+H\+P-\/85-\/\+Program-\/\+Control-\/\+Block-\/(\+B\+A\+S\+I\+C-\/header),-\/\+Tape-\/directory-\/layout,-\/\+Disk-\/directory-\/layout}}
 \end{DoxySeeAlso}
 D\+I\+SK L\+A\+Y\+O\+UT The H\+P-\/85 disks used the L\+IF (Logical Interchange Format) disk layout. The first 2 sectors on the disk (cylinder 0, head 0, sector 0-\/1) contained the V\+O\+L\+U\+ME sectors. The important things in the V\+O\+L\+U\+ME S\+E\+C\+T\+O\+RS were thus\+:
 
-B\+Y\+T\+ES D\+E\+S\+C\+R\+I\+P\+T\+I\+ON 
+B\+Y\+T\+ES D\+E\+S\+C\+R\+I\+P\+T\+I\+ON
 
+\DoxyHorRuler{0}
  0-\/1 L\+IF identifier, must be 0x8000 M\+SB first 2-\/7 6-\/character volume L\+A\+B\+EL 8-\/11 directory start block always 0x00000002 M\+SB first 12-\/13 L\+IF identifer for System 3000 machines always 0x1000 M\+SB first 14-\/15 always 0x0000 M\+SB first 16-\/19 \# of sectors in D\+I\+R\+E\+C\+T\+O\+RY M\+SB first 20-\/21 L\+IF version number always 0x0001 M\+SB first 22-\/23 always 0x0000 M\+SB first 24-\/27 number of tracks per surface M\+SB first 28-\/31 number of surfaces M\+SB first 32-\/35 number of sectors per track M\+SB first 36-\/41 time volume was initialized in B\+CD (YY,MM,DD,HH,mm,SS) L\+IF formating structures \begin{DoxySeeAlso}{See also}
-format.\+c L\+IF \hyperlink{td02lif_8c_affcceda12b139f26819f4929be705eb1}{disk} label record 
+format.\+c
 \end{DoxySeeAlso}
-
+L\+IF disk label record 
 
 Definition at line 58 of file lifutils.\+h.
 
 
 
-\subsection{Field Documentation}
+\doxysubsection{Field Documentation}
 \mbox{\Hypertarget{structlifvol__t_a41f630e7211326270dc6e72a55f94516}\label{structlifvol__t_a41f630e7211326270dc6e72a55f94516}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!date@{date}}
-\index{date@{date}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{date}{date}}
+\index{lifvol\_t@{lifvol\_t}!date@{date}}
+\index{date@{date}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{date}{date}}
 {\footnotesize\ttfamily uint8\+\_\+t lifvol\+\_\+t\+::date\mbox{[}6\mbox{]}}
 
 
@@ -73,9 +74,9 @@ Definition at line 71 of file lifutils.\+h.
 Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+str2vol(), lif\+\_\+vol2str(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
 
 \mbox{\Hypertarget{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}\label{structlifvol__t_aceac3bc67cda1f79d91c002411e33897}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Dir\+Sectors@{Dir\+Sectors}}
-\index{Dir\+Sectors@{Dir\+Sectors}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{Dir\+Sectors}{DirSectors}}
+\index{lifvol\_t@{lifvol\_t}!DirSectors@{DirSectors}}
+\index{DirSectors@{DirSectors}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{DirSectors}{DirSectors}}
 {\footnotesize\ttfamily uint32\+\_\+t lifvol\+\_\+t\+::\+Dir\+Sectors}
 
 
@@ -87,9 +88,9 @@ Definition at line 65 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), lif\+\_\+checkdirindex(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+open\+\_\+volume(), lif\+\_\+str2vol(), lif\+\_\+vol2str(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
 
 \mbox{\Hypertarget{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}\label{structlifvol__t_a89b86c990a7843cfa2addfff9a775137}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Dir\+Start\+Sector@{Dir\+Start\+Sector}}
-\index{Dir\+Start\+Sector@{Dir\+Start\+Sector}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{Dir\+Start\+Sector}{DirStartSector}}
+\index{lifvol\_t@{lifvol\_t}!DirStartSector@{DirStartSector}}
+\index{DirStartSector@{DirStartSector}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{DirStartSector}{DirStartSector}}
 {\footnotesize\ttfamily uint32\+\_\+t lifvol\+\_\+t\+::\+Dir\+Start\+Sector}
 
 
@@ -101,9 +102,9 @@ Definition at line 62 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+open\+\_\+volume(), lif\+\_\+readdirindex(), lif\+\_\+str2vol(), lif\+\_\+vol2str(), lif\+\_\+writedirindex(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
 
 \mbox{\Hypertarget{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}\label{structlifvol__t_abbccb2f637812a31d24aa1f6725194be}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!Label@{Label}}
-\index{Label@{Label}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{Label}{Label}}
+\index{lifvol\_t@{lifvol\_t}!Label@{Label}}
+\index{Label@{Label}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{Label}{Label}}
 {\footnotesize\ttfamily uint8\+\_\+t lifvol\+\_\+t\+::\+Label\mbox{[}6+1\mbox{]}}
 
 
@@ -115,9 +116,9 @@ Definition at line 61 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dir(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+str2vol(), lif\+\_\+vol2str(), and td0\+\_\+save\+\_\+lif\+\_\+sector().
 
 \mbox{\Hypertarget{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}\label{structlifvol__t_adb6a0c2fff5b765eb12c3eb5db6d5bad}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!L\+I\+Fid@{L\+I\+Fid}}
-\index{L\+I\+Fid@{L\+I\+Fid}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{L\+I\+Fid}{LIFid}}
+\index{lifvol\_t@{lifvol\_t}!LIFid@{LIFid}}
+\index{LIFid@{LIFid}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{LIFid}{LIFid}}
 {\footnotesize\ttfamily uint16\+\_\+t lifvol\+\_\+t\+::\+L\+I\+Fid}
 
 
@@ -129,9 +130,9 @@ Definition at line 60 of file lifutils.\+h.
 Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}\label{structlifvol__t_afffd824a7b0ce6aa8410fa243733475f}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!L\+I\+F\+Version@{L\+I\+F\+Version}}
-\index{L\+I\+F\+Version@{L\+I\+F\+Version}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{L\+I\+F\+Version}{LIFVersion}}
+\index{lifvol\_t@{lifvol\_t}!LIFVersion@{LIFVersion}}
+\index{LIFVersion@{LIFVersion}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{LIFVersion}{LIFVersion}}
 {\footnotesize\ttfamily uint16\+\_\+t lifvol\+\_\+t\+::\+L\+I\+F\+Version}
 
 
@@ -143,9 +144,9 @@ Definition at line 66 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_ad245f7419e180934262f53acd9b4349c}\label{structlifvol__t_ad245f7419e180934262f53acd9b4349c}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}}
-\index{sectors\+\_\+per\+\_\+track@{sectors\+\_\+per\+\_\+track}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{sectors\+\_\+per\+\_\+track}{sectors\_per\_track}}
+\index{lifvol\_t@{lifvol\_t}!sectors\_per\_track@{sectors\_per\_track}}
+\index{sectors\_per\_track@{sectors\_per\_track}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{sectors\_per\_track}{sectors\_per\_track}}
 {\footnotesize\ttfamily uint32\+\_\+t lifvol\+\_\+t\+::sectors\+\_\+per\+\_\+track}
 
 
@@ -157,9 +158,9 @@ Definition at line 70 of file lifutils.\+h.
 Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}\label{structlifvol__t_a5b8ecfb441b010f69cb90b923cc50719}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!sides@{sides}}
-\index{sides@{sides}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{sides}{sides}}
+\index{lifvol\_t@{lifvol\_t}!sides@{sides}}
+\index{sides@{sides}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{sides}{sides}}
 {\footnotesize\ttfamily uint32\+\_\+t lifvol\+\_\+t\+::sides}
 
 
@@ -171,9 +172,9 @@ Definition at line 69 of file lifutils.\+h.
 Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}\label{structlifvol__t_a98097f8c951448cbab6019b7b703e4d0}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!System3000\+L\+I\+Fid@{System3000\+L\+I\+Fid}}
-\index{System3000\+L\+I\+Fid@{System3000\+L\+I\+Fid}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{System3000\+L\+I\+Fid}{System3000LIFid}}
+\index{lifvol\_t@{lifvol\_t}!System3000LIFid@{System3000LIFid}}
+\index{System3000LIFid@{System3000LIFid}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{System3000LIFid}{System3000LIFid}}
 {\footnotesize\ttfamily uint16\+\_\+t lifvol\+\_\+t\+::\+System3000\+L\+I\+Fid}
 
 
@@ -185,9 +186,9 @@ Definition at line 63 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), lif\+\_\+create\+\_\+volume(), lif\+\_\+dump\+\_\+vol(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}\label{structlifvol__t_aae9e5135f98b80312eb785ac3747fc31}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!tracks\+\_\+per\+\_\+side@{tracks\+\_\+per\+\_\+side}}
-\index{tracks\+\_\+per\+\_\+side@{tracks\+\_\+per\+\_\+side}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{tracks\+\_\+per\+\_\+side}{tracks\_per\_side}}
+\index{lifvol\_t@{lifvol\_t}!tracks\_per\_side@{tracks\_per\_side}}
+\index{tracks\_per\_side@{tracks\_per\_side}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{tracks\_per\_side}{tracks\_per\_side}}
 {\footnotesize\ttfamily uint32\+\_\+t lifvol\+\_\+t\+::tracks\+\_\+per\+\_\+side}
 
 
@@ -199,9 +200,9 @@ Definition at line 68 of file lifutils.\+h.
 Referenced by lif\+\_\+create\+\_\+volume(), lif\+\_\+str2vol(), and lif\+\_\+vol2str().
 
 \mbox{\Hypertarget{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}\label{structlifvol__t_a5e749ae4bff79deaa813966cff04f431}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!zero1@{zero1}}
-\index{zero1@{zero1}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{zero1}{zero1}}
+\index{lifvol\_t@{lifvol\_t}!zero1@{zero1}}
+\index{zero1@{zero1}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{zero1}{zero1}}
 {\footnotesize\ttfamily uint16\+\_\+t lifvol\+\_\+t\+::zero1}
 
 
@@ -213,9 +214,9 @@ Definition at line 64 of file lifutils.\+h.
 Referenced by lif\+\_\+check\+\_\+volume(), and lif\+\_\+str2vol().
 
 \mbox{\Hypertarget{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}\label{structlifvol__t_ac05fef8e2c908110de7083d7afbfdb37}} 
-\index{lifvol\+\_\+t@{lifvol\+\_\+t}!zero2@{zero2}}
-\index{zero2@{zero2}!lifvol\+\_\+t@{lifvol\+\_\+t}}
-\subsubsection{\texorpdfstring{zero2}{zero2}}
+\index{lifvol\_t@{lifvol\_t}!zero2@{zero2}}
+\index{zero2@{zero2}!lifvol\_t@{lifvol\_t}}
+\doxysubsubsection{\texorpdfstring{zero2}{zero2}}
 {\footnotesize\ttfamily uint16\+\_\+t lifvol\+\_\+t\+::zero2}
 
 
@@ -230,4 +231,4 @@ Referenced by lif\+\_\+check\+\_\+volume(), and lif\+\_\+str2vol().
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-lif/\hyperlink{lifutils_8h}{lifutils.\+h}\end{DoxyCompactItemize}
+lif/\mbox{\hyperlink{lifutils_8h}{lifutils.\+h}}\end{DoxyCompactItemize}

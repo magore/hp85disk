@@ -1596,11 +1596,6 @@ ___
       * GPIO functions, spi hardware abstraction layer and chip select logic
     * [iom1284p.h](hardware/iom1284p.h)
       * GPIO map for ATEMEGA 1284p
-    * [LCD.c](hardware/LCD.c)
-    * [LCD.h](hardware/LCD.h)
-      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
-      * https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
-        * Modified for this project
     * [mkdef.c](hardware/mkdef.c)
       * Not used
     * [pins.txt](hardware/pins.txt)
@@ -1617,9 +1612,7 @@ ___
     * [spi.c](hardware/spi.c)
     * [spi.h](hardware/spi.h)
       * SPI BUS code
-    * [TWI_AVR8.c](hardware/TWI_AVR8.c)
-    * [TWI_AVR8.h](hardware/TWI_AVR8.h)
-      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
+      * Unused
     * [i2c.c](hardware/i2c.c)
     * [i2c.h](hardware/i2c.h)
       * I2C code for display updates
@@ -1655,6 +1648,22 @@ ___
       * Timer task hardware abstraction layer
     * [timetests.c](lib/timetests.c)
       * Time and timer test code
+
+## Unused code
+  * [unused](unused)
+    * Everything under this directory is currently unused
+    * [LCD.c](unused/LCD.c)
+    * [LCD.h](unused/LCD.h)
+      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
+      * https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
+        * Modified for this project
+    * [lcd_printf.c](unused/lcd_printf.c)
+    * [lcd_printf.h](unused/lcd_printf.h)
+      * My LCD printf wrapper for SparkFun LCD functions
+    * [TWI_AVR8.c](unused/TWI_AVR8.c)
+    * [TWI_AVR8.h](unused/TWI_AVR8.h)
+      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
+
 
 ## *LIF* files
   * [lif](lif)

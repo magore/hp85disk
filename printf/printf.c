@@ -664,17 +664,16 @@ ERROR: [% 15.1f], [-10252956608208.250000]
     pch(p,0);
     return(strlen(str));
 }
-#endif
+#endif // FLOATIO
+
 
 // =============================================
-// _puts_pad
-//   Put string count bytes long, padded up to width, left or right aligned
-// Padding is always done with spaces
-//
-// count number of characters to copy from buff
-// width number of characters to pad up to - if needed
-// left string is left aligned
-//_puts(buff, width, count, left);
+/// @brief put string, via user function,  count bytes long, padded up to width, left or right aligned
+/// @param[out] fn: output character function pointer
+/// @param[in] s: string
+/// @param[in] width of characters to pad up to - if needed
+/// @param[in] count number of characters to copy from buff
+/// @param[in] left string is left aligned
 MEMSPACE
 void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 {
@@ -723,6 +722,80 @@ void _puts_pad(printf_t *fn, char *s, int width, int count, int left)
 //printf("_puts_pad:size:%d\n", size);
 }                                                 // _puts_pad()
 
+#ifdef AVR
+// =============================================
+/// @brief put __flash string, via user function,  count bytes long, padded up to width, left or right aligned
+/// @param[out] fn: output character function pointer
+/// @param[in] s: __flash string
+/// @param[in] width of characters to pad up to - if needed
+/// @param[in] count number of characters to copy from buff
+/// @param[in] left string is left aligned
+/// @return void
+MEMSPACE
+void _puts_pad_X(printf_t *fn, __memx const char *s, int width, int count, int left)
+{
+    int size = 0;
+    int pad = 0;
+
+// note - if width > count we pad
+//        if width <= count we do not pad
+    if(width > count)
+    {
+        pad = width - count;
+    }
+
+//printf("_puts_pad:(%s) width:%d, count:%d, left:%d, pad:%d, len:%d\n", s, width, count, left, pad, len);
+
+// left padding ?
+    if(!left)
+    {
+//printf("_puts_pad:pad:%d\n", pad);
+        while(pad--)
+        {
+            fn->put(fn,' ');
+            ++size;
+        }
+    }
+//printf("_puts_pad:count:%d\n", count);
+
+// string
+    while(*s && count--)
+    {
+        fn->put(fn,*s);
+        ++s;
+        ++size;
+    }
+// right padding
+    if(left)
+    {
+//printf("_puts_pad:pad:%d\n", pad);
+
+        while(pad--)
+        {
+            fn->put(fn,' ');
+            ++size;
+        }
+    }
+//printf("_puts_pad:size:%d\n", size);
+}                                                 // _puts_pad()
+
+/// @brief return length of __flash string
+/// @param[in] str: __flash string
+/// @return size of string
+MEMSPACE
+size_t
+WEAK_ATR
+strlen_X(__memx const char *str)
+{
+    int len=0;
+// String length
+    while(*str++)
+        ++len;
+    return(len);
+}
+
+#endif
+
 
 /// @brief vsnprintf function
 /// @param[out] fn: output character function pointer
@@ -754,6 +827,8 @@ void _printf_fn(printf_t *fn, __memx const char *fmt, va_list va)
     char chartmp[2];
     char *ptr;
     __memx const char *fmtptr;
+	__memx const char *Xptr;
+
 
 // buff has to be at least as big at the largest converted number
 // in this case base 2 long long with sign and end of string
@@ -988,6 +1063,9 @@ Since the prototype doesnât specify types for optional arguments, in a call to a
             case 's':
                 ++fmt;
                 break;
+            case 'S':
+                ++fmt;
+                break;
             case 'c':
                 ++fmt;
                 break;
@@ -1050,7 +1128,8 @@ Since the prototype doesnât specify types for optional arguments, in a call to a
             case 's':
             case 'c':
                 ptr = NULL;                       // stops bogus error that ptr may be uninitalized
-                if(spec == 's')
+    
+                if(spec == 's') 
                 {
                     ptr = va_arg(va, char *);
                     if(!ptr)
@@ -1068,8 +1147,23 @@ Since the prototype doesnât specify types for optional arguments, in a call to a
                 if(count > width && width != 0)
                     count = width;
 //printf("width:%d,count:%d,left:%d\n", width, count, f.b.left);
-                _puts_pad(fn,ptr, width, count, f.b.left);
+                _puts_pad(fn, ptr, width, count, f.b.left);
                 break;
+// Added string in program memory - testing
+#ifdef AVR
+            case 'S':
+                // Xptr = va_arg(va, __memx const char *);
+                Xptr = va_arg(va, __flash const char *);
+                if(!Xptr)
+                    Xptr = (__memx const char *) "(null)";
+                count = strlen_X(Xptr);
+                if(prec)
+                    count = prec;
+                if(count > width && width != 0)
+                    count = width;
+                _puts_pad_X(fn, Xptr, width, count, f.b.left);
+                break;
+#endif
             default:
                 while(fmtptr <= fmt && *fmtptr)
                     fn->put(fn, *fmtptr++);

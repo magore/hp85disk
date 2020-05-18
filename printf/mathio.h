@@ -111,16 +111,20 @@ typedef struct
     int max;                                      ///@brief maximum string size including EOS
 } p_ch_t;
 
+
+#define PSTR_X(a) ((__memx const char *) PSTR(a) )
+
+
 /* printf.c */
 MEMSPACE size_t WEAK_ATR strlen ( const char *str );
 MEMSPACE int WEAK_ATR isdigit ( int c );
 MEMSPACE void WEAK_ATR reverse ( char *str );
 MEMSPACE void WEAK_ATR strupper ( char *str );
 MEMSPACE int bin2num ( uint8_t *str , int strmax , int nummin , int base , uint8_t *nump , int numsize , int sign_ch );
-MEMSPACE void pch_init ( p_ch_t *p, char *str , int max );
-MEMSPACE int pch ( p_ch_t *p, char ch );
-MEMSPACE int pch_ind ( p_ch_t *p);
-MEMSPACE int pch_max_ind ( p_ch_t *p);
+MEMSPACE void pch_init ( p_ch_t *p , char *str , int max );
+MEMSPACE int pch ( p_ch_t *p , char ch );
+MEMSPACE int pch_ind ( p_ch_t *p );
+MEMSPACE int pch_max_ind ( p_ch_t *p );
 MEMSPACE void print_flags ( f_t f );
 MEMSPACE int p_ntoa ( uint8_t *nump , int numsize , char *str , int strmax , int radix , int width , int prec , f_t f );
 MEMSPACE int p_ftoa ( double val , char *str , int max , int width , int prec , f_t f );
@@ -131,7 +135,10 @@ MEMSPACE void _putc_buffer_fn ( struct _printf_t *p , char ch );
 MEMSPACE int vsnprintf ( char *str , size_t size , const char *format , va_list va );
 MEMSPACE int snprintf ( char *str , size_t size , const char *format , ...);
 MEMSPACE int printf ( const char *format , ...);
+
 #ifdef AVR
+MEMSPACE void _puts_pad_X ( printf_t *fn , __memx const char *s , int width , int count , int left );
+MEMSPACE size_t WEAK_ATR strlen_X ( __memx const char *str );
 MEMSPACE int vsnprintf_P ( char *str , size_t size , __memx const char *format , va_list va );
 MEMSPACE int snprintf_P ( char *str , size_t size , __memx const char *format , ...);
 MEMSPACE int sprintf_P ( char *str , __memx const char *format , ...);
