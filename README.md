@@ -1155,25 +1155,24 @@ ___
  * Any word that has **help** after it will give help for that command
  * **help**
 <pre>
-    Stand alone version of LIF utilities for linux
-    HP85 Disk and Device Emulator
-     (c) 2014-2020 by Mike Gore
-     GNU version 3
-    -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-04-16 10:58:45.842068480 -0400
-       Last updated file: 2020-04-11 00:50:34.784232621 -0400
-    
-    fatfs help
-    posix help
-    lif help
-    gpib help
-    help
-    mem
-    setdate
-    time
-    reset
-    
-    OK
+	Stand alone version of LIF utilities for linux
+	HP85 Disk and Device Emulator
+	 (c) 2014-2020 by Mike Gore
+	 GNU version 3
+	-> https://github.com/magore/hp85disk
+	   GIT last pushed:   2020-05-02 20:34:55.273012659 -0400
+	   Last updated file: 2020-04-11 00:50:34.784232621 -0400
+
+	fatfs help
+	posix help
+	lif help
+	gpib help
+	backlight 0xRRGGBB
+	help
+	mem
+	reset
+	setdate
+	time
 </pre>
 
 ### For lif help type *lif help*
