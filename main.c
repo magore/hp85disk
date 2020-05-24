@@ -69,6 +69,7 @@ void copyright()
 
 #ifdef LCD_SUPPORT
 
+
 ///@brief TWO line display structure
 /// These four structures are updated by the lcd_display_task() function
 /// The data itself is all set in the background by interrupt driven I2C code
@@ -115,11 +116,31 @@ char *lcd_time(tm_t *t, char *buf, int max)
     return(buf);
 }
 
+
+///@brief lcd_backlight LCD Backlight settings
+/// @param[in] rgb: hex value 0xRRGGBB, RR,GG,BB values are 0 to 255
+uint8_t  _backlight[5] = { 0x7c, '+', 0x80, 0x80, 0x80 };	/* Backlight half bright */
+uint8_t lcd_backlight(uint32_t rgb)
+{
+
+	_backlight[2] = 0xff & (rgb >> 16);
+	_backlight[3] = 0xff & (rgb >> 8);
+	_backlight[4] = 0xff & (rgb );
+
+	if(! i2c_fn(0x72, TW_WRITE, _backlight, sizeof(_backlight)) )
+	{
+		i2c_display_task_errors();
+        printf("I2C LCD is NOT attached!\n");
+		return(0);
+	}
+	return(1);
+}
+
 ///@brief LCD setup code
 /// For a SparkFun SERLCD 2x16 display
-/// Initializes the I2C task structure 
+/// Initializes the I2C deiplay update task structure 
 /// Passes the structures to the interrupt handler
-void setup_lcd()
+void lcd_setup()
 {
 	int ind = 0;
     uint8_t sreg = SREG;
@@ -131,24 +152,26 @@ void setup_lcd()
 
 	i2c_init(100000);
 
-	cli();
-
 	i2c_task_init();
+
+	cli();
 
 	// Default startup message
     sprintf((char *) _line1, "%-16s", "HP85Disk V2");
     sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
 
-	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd1, 2);
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd1, sizeof(_cmd1));
 	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _line1, 16);
-	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd2, 2);
+	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _cmd2, sizeof(_cmd2));
 	i2c_task_op[ind++] = i2c_task_op_add(0x72, TW_WRITE, _line2, 16);
 
 	SREG = sreg;
 
     i2c_task_run();
+	// wait long enough for us to see the startup message
     delayms(1000);
 	
+	// Verify the task finished - it normally takes < 30mS
     if(!i2c_task_done())
 	{
 		i2c_display_task_errors();
@@ -282,17 +305,18 @@ void help()
     gpib_help(0);
 
     printf(
+#ifdef LCD_SUPPORT
+        "backlight 0xRRGGBB\n"
+#endif
+
 #ifdef DELAY_TESTS
         "delay_tests\n"
 #endif
         "help\n"
-#ifdef LCD_SUPPORT
-        "led\n"
-#endif
         "mem\n"
+        "reset\n"
         "setdate\n"
         "time\n"
-        "reset\n"
         "\n"
         );
 }
@@ -348,18 +372,25 @@ void user_task(uint8_t gpib)
 
     }
 #endif
-    else if ( MATCHI(ptr,"time") )
-    {
-        display_clock();
-        result = 1;
-    }
+
 #ifdef LCD_SUPPORT
-    else if ( MATCHI(ptr,"lcd") )
+    else if (MATCHI(ptr,"backlight") )
     {
-		i2c_lcd_task();
-        result = 1;
+		uint32_t rgb;
+        ptr = argv[ind];
+        if(*ptr == '=')
+            ++ind;
+        rgb = get_value(argv[ind]);
+		result = lcd_backlight(rgb);
     }
 #endif
+
+    else if ( MATCH(ptr,"mem") )
+    {
+        PrintFree();
+        result = 1;
+
+    }
     else if ( MATCHI(ptr,"reset") )
     {
         cli();
@@ -376,11 +407,10 @@ void user_task(uint8_t gpib)
         display_clock();
         result = 1;
     }
-    else if ( MATCH(ptr,"mem") )
+    else if ( MATCHI(ptr,"time") )
     {
-        PrintFree();
+        display_clock();
         result = 1;
-
     }
     else if ( MATCHI(ptr,"help") || MATCHI(ptr,"?") )
     {
@@ -485,7 +515,7 @@ int main(void)
 
 ///@ initialize Optional I2C LCD
 #ifdef LCD_SUPPORT
-	setup_lcd();
+	lcd_setup();
 #endif
 
 ///@ initialize MMC bus
