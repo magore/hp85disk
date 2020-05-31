@@ -167,10 +167,25 @@ ___
     * You will see LED1 flash several times while the system is reading the configuration file and detecting disk images
     * If LED2 turns on there is an error reading the SD Card - see **SD Card problems** section
 
+
+### Host computer requirements for serial debugging and firmware updating
+  * You have either
+    * **Ubuntu Linux desktop**
+    * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
+    * **Mac OS**
+  * All Text and configuration files used with the emulator MUST plain text format only (8 bit ASCII) 
+     * Please NO Unicode - both file names and file formats!
+  * You have a serial terminal program installed - for example minicom 
+  * You need a FAT32 format blank SD Card
+    * Copy of the hp85disk, github master branch, sdcard folder contents onto the SD Card
+      * Make sure you only copy the contents and NOT folder AND contents
+        * The emulator assumes the SD card home directory contains the images and configuration files
+
 ### Testing the emulator with the HP85
   * Turn on your HP85 - once the cursor is visable type the command **CAT**
     * You should see a directory listing, otherwise go to the bext section **initial troubleshooting**
   * If you have a directory listing see section called **HP85A and HP85B examples** for more examples
+
 
 ### Initial troubleshooting - if CAT gives a time-out error 
   * Your device my not be attached to the GPIB BUS
@@ -506,20 +521,6 @@ ___
     * You need to copy the **GETSAVE** program to your **HP85** some how
   * Specific details steps are documented later in the README
 
-## Initial setup of the hp85disk ASSUMPTIONS and Requirements 
-  * You have the hp85disk emulator attached to your **HP85** with a **GPIB** cable
-    * Strongly advise having no other devices attached just durring setup/testing
-      * This is to avoid other **GPIB** bus address conflicts initially - you can update addresses later
-  * You have either
-    * **Ubuntu Linux desktop**
-    * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
-  * All Text and configuration files used with the emulator MUST plain text format only (8 bit ASCII) 
-     * Please NO Unicode - both file names and file formats!
-  * You have a serial terminal program installed - for example minicom 
-  * You need a FAT32 format blank SD Card
-    * Copy of the hp85disk, github master branch, sdcard folder contents onto the SD Card
-      * Make sure you only copy the contents and NOT folder AND contents
-        * The emulator assumes the SD card home directory contains the images and configuration files
 
 ___ 
 
