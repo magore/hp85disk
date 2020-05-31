@@ -155,27 +155,60 @@ NOTE:
 ___
 
 
+## Initial Setup of HP85 disk V2 PCB by Jay Hamlin
+### Setup checklist
+  * **You must an HP85 82937A GPIB card installed[See document](Documents/82937AHP-IBInterface-InstallationAndTheoryOfOperationManual-82937-90007-56pages-Oct80)
+    * **You must also have the required HP 82937A option roms installed**
+      * **Mass Storage ROM** [Mass Storage ROM Manual](Documents/HP85-MassStorage.pdf)
+      * **NOTE** I use the **PRM-85** with the HP85A super ROM - in my unit as it has all of the option ROMs included
+  * Connect the GPIB plug from your HP85 GPIB card to the emulator - for initial testing make sure it is the only GPIB device attached
+  * **NOTE:** The Emulator must be powered up and attached **before your HP85 is turned on** (the HP85 only detects disks after power-on or reset)
+  * Attach the Power Supply with 2.1mm jack - suggest 7.5V to 9V DC regulated adapter with negative outside, positive center
+    * You will see LED1 flash several times while the system is reading the configuration file and detecting disk images
+    * If LED2 turns on there is an error reading the SD Card - see **SD Card problems** section
 
+### Testing the emulator with the HP85
+  * Turn on your HP85 - once the cursor is visable type the command **CAT**
+    * You should see a directory listing, otherwise go to the bext section **initial troubleshooting**
+  * If you have a directory listing see section called **HP85A and HP85B examples** for more examples
+
+### Initial troubleshooting - if CAT gives a time-out error 
+  * Your device my not be attached to the GPIB BUS
+  * You might not have the required option **ROMs** installed in your **HP85** for the HP85 GPIB interface card
+  * The SD Card is missing the configuration file, disk images or the filesystem is corrupt.
+  * See **SD Card problems** section
+  * **NOTE** I would also suggest connecting your computer to the USB connector for more detailed disagnostics
+  * USB Connection Summary
+    * Attach USB cable from emulator to your computer using a serial terminal program
+    * Read starting with section **Firmware updating and connecting to the hp85disk emulator with MINIMAL software install**
+    * Read down to section **Connecting to hp85disk interactive serial port**
+    * Read section **Command interface notes**
+  * See section **hp85disk troubleshooting with serial terminal and DEBUG option** to verify your HP85 is communicating with your emulator
+  * With the serial terminal connected type **help** you should see a help menu
+    * To make sure there are files on the SD Card type **fatfs ls* [example result](fatfs-ls.txt) for windows like director listing or **ls** for a Linux like directory listing
+  * Enter the serail terminal command **cat hpdisk.cfg** to see if you can read the main configuration file
+  * Turn on debugging with the **DEBUG =** command
+  * References
+    * **hp85disk troubleshooting with serial terminal and DEBUG option**
+    * **hp85disk DEBUG truth table**
+    * **hp85disk setting debug examples**
+
+### Status DEBUG LEDs
+  * **LED2** goes on for error conditions - this is the LED nearest the GPIB connector
+    * If this turns on you have an SDCARD problem - either missing card or filesystem issue
+    * This LED will only go off after a reset and if no SD Card problems are detected
+  * **LED1** is on when the SD Card is being read or written to
 
 ## Detailed information about tools and features 
 
 ## Built in command processor with many tools
 ### Accessing the hp85disk command interface with a serial terminal
   * Used to access the hp85disk command interface
-  * Access it via the USB cable attached to your computer using a serial terminal program
-  * See section called Configuring the serial communication program 
   
 ### Command interface notes
   * When typing **any character** to the hp85disk emulator will stop disk emulation and display:
     * \<INTERRUPT>
   * After you type **Enter** the command processor will execute the command and return to disk emulation automatically
-
-### Status LEDs
-  * **LED2** is for error conditions - this is the LED nearest the GPIB connector
-    * If this turns on you have an SDCARD problem - either missing card or filesystem issue
-    * See **SD Card Problems** and **SD Card filesystem repair** sections below
-  * **LED1** is on when the SD Card is being read or written to
-
 
 ___ 
 
@@ -1328,8 +1361,48 @@ ___
     DEBUG = 0x51
 </pre>
 
-___ 
 
+### hp85disk troubleshooting with serial terminal and DEBUG option
+  * Power on your HP85 - you should see
+<pre>
+	gpib_read_byte: IFC state=4
+	<IFC>
+	gpib_read_byte: IFC state=1
+	<IFC>
+</pre>
+  * Enable GPIB BUS and Command debugging 
+  * Enter the command **debug 0x3f** and press enter. 
+    * You should see something like this - if you have more then 4 disks configured you will see a few extra DPPR messages
+<pre>
+	<INTERRUPT>
+	>debug 0x3f
+	debug=003FH
+	[GPIB BUS_INIT]
+	[GPIB STATE INIT]
+	[PPR DISABLE ALL]
+	[SS80 03H INIT]
+	[DPPR bit:3, mask:00H]
+	[SS80 02H INIT]
+	[DPPR bit:2, mask:00H]
+	[DPPR bit:1, mask:00H]
+	[DPPR bit:0, mask:00H]
+	OK
+	[GPIB BUS_INIT]
+	[GPIB STATE INIT]
+	[PPR DISABLE ALL]
+	[SS80 03H INIT]
+	[DPPR bit:3, mask:00H]
+	[SS80 02H INIT]
+	[DPPR bit:2, mask:00H]
+	[DPPR bit:1, mask:00H]
+	[DPPR bit:0, mask:00H]
+</pre>
+  * Turn on your HP85 - you should see something like this
+    [HP85 Power On GPIB BUS Debug Trace](trace/poweron-trace.txt)
+  * Type **CAT** followed by RETURN on your HP85 you should see something like this
+    [CAT GPIB BUS Debug Trace](trace/cat-trace.txt)
+
+___ 
 
 
 # Abbreviations
