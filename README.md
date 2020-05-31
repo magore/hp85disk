@@ -1328,7 +1328,7 @@ ___
 </pre>
 
 ###  hp85disk setting debug examples
-  * Interactively
+  * Interactively - **NOTE the spaces between the keyword, assignment and value**
     * **gpib debug = 0x11**
   * In the [sdcard/hpdisk.cfg](sdcard/hpdisk.cfg) file
 <pre>
