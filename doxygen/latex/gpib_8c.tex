@@ -24,6 +24,8 @@ struct \mbox{\hyperlink{structgpib__token__t}{gpib\+\_\+token\+\_\+t}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{gpib_8c_a8824827cf2979219e9a65ead803647e6}{gpib\+\_\+user\+\_\+task}} ()
+\begin{DoxyCompactList}\small\item\em user task called in G\+P\+IB read/write byte functions \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gpib_8c_a6a3c1941e17626338b878123677ae797}{gpib\+\_\+timer\+\_\+elapsed\+\_\+begin}} (void)
 \begin{DoxyCompactList}\small\item\em Start measuring time -\/ used with hpib\+\_\+timer\+\_\+elapsed\+\_\+end() \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gpib_8c_abe05115c27148ec7013e6f62dc94ae78}{gpib\+\_\+timer\+\_\+reset}} (void)
@@ -145,7 +147,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 482 of file gpib.\+c.
+Definition at line 485 of file gpib.\+c.
 
 
 
@@ -170,7 +172,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 502 of file gpib.\+c.
+Definition at line 505 of file gpib.\+c.
 
 \mbox{\Hypertarget{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}\label{gpib_8c_ac28f9b1b4f9a2755255b880b63876593}} 
 \index{gpib.c@{gpib.c}!gpib\_bus\_init@{gpib\_bus\_init}}
@@ -187,7 +189,7 @@ void
 \end{DoxyReturn}
 F\+I\+X\+ME verify resetting gpib\+\_\+unread\+\_\+f is A\+L\+W\+A\+YS correct when called
 
-Definition at line 293 of file gpib.\+c.
+Definition at line 296 of file gpib.\+c.
 
 
 
@@ -208,7 +210,7 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity
 
-Definition at line 550 of file gpib.\+c.
+Definition at line 553 of file gpib.\+c.
 
 
 
@@ -240,7 +242,7 @@ void
 \end{DoxyItemize}
 \end{DoxyItemize}release handshake lines References\+: H\+P-\/\+IB Tutorial pg 12,13 H\+P-\/\+IB pg 8-\/11
 
-Definition at line 232 of file gpib.\+c.
+Definition at line 235 of file gpib.\+c.
 
 
 
@@ -264,7 +266,7 @@ control lines (upper 8 bits)
 \end{DoxySeeAlso}
 
 
-Definition at line 568 of file gpib.\+c.
+Definition at line 571 of file gpib.\+c.
 
 
 
@@ -288,7 +290,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1279 of file gpib.\+c.
+Definition at line 1288 of file gpib.\+c.
 
 
 
@@ -319,7 +321,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1095 of file gpib.\+c.
+Definition at line 1104 of file gpib.\+c.
 
 
 
@@ -362,7 +364,7 @@ debugging -\/ read the ddr data direction bits to determine read/write state
 
 F\+I\+X\+ME we can only read E\+OI in bus R\+E\+AD mode F\+I\+X\+ME We add a test for read/write state ??
 
-Definition at line 415 of file gpib.\+c.
+Definition at line 418 of file gpib.\+c.
 
 
 
@@ -386,7 +388,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 382 of file gpib.\+c.
+Definition at line 385 of file gpib.\+c.
 
 
 
@@ -406,7 +408,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 362 of file gpib.\+c.
+Definition at line 365 of file gpib.\+c.
 
 
 
@@ -427,7 +429,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \mbox{\hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()}} functions and return values
 
-Definition at line 589 of file gpib.\+c.
+Definition at line 592 of file gpib.\+c.
 
 
 
@@ -520,7 +522,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R!
 \end{DoxyItemize}
 
-Definition at line 886 of file gpib.\+c.
+Definition at line 894 of file gpib.\+c.
 
 
 
@@ -606,7 +608,7 @@ status
 \item[\mbox{\hyperlink{todo__todo000002}{Todo}}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1320 of file gpib.\+c.
+Definition at line 1329 of file gpib.\+c.
 
 
 
@@ -631,7 +633,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 335 of file gpib.\+c.
+Definition at line 338 of file gpib.\+c.
 
 
 
@@ -655,7 +657,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 204 of file gpib.\+c.
+Definition at line 207 of file gpib.\+c.
 
 
 
@@ -679,7 +681,7 @@ Test G\+P\+IB timeout timer for timeout condition.
 \end{DoxyReturn}
 
 
-Definition at line 217 of file gpib.\+c.
+Definition at line 220 of file gpib.\+c.
 
 
 
@@ -700,7 +702,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 130 of file gpib.\+c.
+Definition at line 133 of file gpib.\+c.
 
 
 
@@ -721,7 +723,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 161 of file gpib.\+c.
+Definition at line 164 of file gpib.\+c.
 
 
 
@@ -742,7 +744,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 147 of file gpib.\+c.
+Definition at line 150 of file gpib.\+c.
 
 
 
@@ -767,7 +769,7 @@ void
 
 \end{DoxyItemize}
 
-Definition at line 187 of file gpib.\+c.
+Definition at line 190 of file gpib.\+c.
 
 
 
@@ -835,7 +837,7 @@ void Note the bits we can read depends on what hardware verions we have V2 hardw
 \end{DoxyReturn}
 
 
-Definition at line 1148 of file gpib.\+c.
+Definition at line 1157 of file gpib.\+c.
 
 
 
@@ -874,11 +876,89 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 532 of file gpib.\+c.
+Definition at line 535 of file gpib.\+c.
 
 
 
 Referenced by G\+P\+I\+B\+\_\+\+C\+O\+M\+M\+A\+N\+D\+S(), and gpib\+\_\+read\+\_\+str().
+
+\mbox{\Hypertarget{gpib_8c_a8824827cf2979219e9a65ead803647e6}\label{gpib_8c_a8824827cf2979219e9a65ead803647e6}} 
+\index{gpib.c@{gpib.c}!gpib\_user\_task@{gpib\_user\_task}}
+\index{gpib\_user\_task@{gpib\_user\_task}!gpib.c@{gpib.c}}
+\doxysubsubsection{\texorpdfstring{gpib\_user\_task()}{gpib\_user\_task()}}
+{\footnotesize\ttfamily void gpib\+\_\+user\+\_\+task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+user task called in G\+P\+IB read/write byte functions 
+
+
+\begin{DoxyItemize}
+\item References\+: Documenation and related sources of information
+\begin{DoxyItemize}
+\item Web Resources\+:
+\begin{DoxyItemize}
+\item \href{http://www.hp9845.net}{\texttt{ http\+://www.\+hp9845.\+net}}
+\item \href{http://www.hpmuseum.net}{\texttt{ http\+://www.\+hpmuseum.\+net}}
+\item \href{http://www.hpmusuem.org}{\texttt{ http\+://www.\+hpmusuem.\+org}}
+\item \href{http://bitsavers.trailing-edge.com}{\texttt{ http\+://bitsavers.\+trailing-\/edge.\+com}}
+\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item S\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+S\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+Subset 80 from Fixed and flexible disc drives\char`\"{}
+\item Printed November, 1985
+\item HP Part\# 5958-\/4129
+\end{DoxyItemize}
+\item C\+S80 References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+C\+S80\char`\"{} is the short form used in the project
+\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
+\item Printed\+: A\+PR 1983
+\item HP Part\# 5955-\/3442
+\end{DoxyItemize}
+\item Amigo References\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Amigo\char`\"{} is the short form used in the project
+\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
+\item HP Part\# 09895-\/90030
+\end{DoxyItemize}
+\item H\+P-\/\+IB
+\begin{DoxyItemize}
+\item \char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project
+\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
+\item Printed March 1975
+\item HP Part\# 59401-\/90030
+\end{DoxyItemize}
+\item Tutorial Description of The Hewllet Packard Interface Bus\char`\"{}
+  -\/ \char`\"{}H\+P-\/\+IB Tutorial" is the short form used in the project
+\begin{DoxyItemize}
+\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\texttt{ http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}}
+\begin{DoxyItemize}
+\item Printed January 1983
+\end{DoxyItemize}
+\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\texttt{ http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}}
+\begin{DoxyItemize}
+\item Printed 1987
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole
+\begin{DoxyItemize}
+\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\texttt{ http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+user task called in G\+P\+IB read/write byte functions
+
+====================================== ====================================== 
+
+Definition at line 232 of file main.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+write\+\_\+byte().
 
 \mbox{\Hypertarget{gpib_8c_ac3d50cc1d56705d107e2f8fb00692e68}\label{gpib_8c_ac3d50cc1d56705d107e2f8fb00692e68}} 
 \index{gpib.c@{gpib.c}!gpib\_write\_byte@{gpib\_write\_byte}}
@@ -960,7 +1040,7 @@ A\+LL devices are ready
 
 We are in read mode now @wait for D\+AV to finish float HI -\/ finishing floating HI
 
-Definition at line 641 of file gpib.\+c.
+Definition at line 644 of file gpib.\+c.
 
 
 
@@ -1039,7 +1119,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1409 of file gpib.\+c.
+Definition at line 1418 of file gpib.\+c.
 
 
 
@@ -1056,7 +1136,7 @@ Referenced by controller\+\_\+send\+\_\+str(), Send\+\_\+\+Identify(), S\+S80\+\
 
 
 
-Definition at line 94 of file gpib.\+c.
+Definition at line 97 of file gpib.\+c.
 
 
 
@@ -1073,64 +1153,8 @@ Referenced by clock\+\_\+elapsed\+\_\+end(), gpib\+\_\+read\+\_\+byte(), and gpi
 common IO buffer for \mbox{\hyperlink{gpib_8c_a67f7cdca85091b3eb0eea0051a200fbe}{gpib\+\_\+read\+\_\+str()}} and \mbox{\hyperlink{gpib_8c_a1bdaac9496e7a0a3523481f2e8a2b9fe}{gpib\+\_\+write\+\_\+str()}} 
 
 
-\begin{DoxyItemize}
-\item References\+: Documenation and related sources of information
-\begin{DoxyItemize}
-\item Web Resources\+:
-\begin{DoxyItemize}
-\item \href{http://www.hp9845.net}{\texttt{ http\+://www.\+hp9845.\+net}}
-\item \href{http://www.hpmuseum.net}{\texttt{ http\+://www.\+hpmuseum.\+net}}
-\item \href{http://www.hpmusuem.org}{\texttt{ http\+://www.\+hpmusuem.\+org}}
-\item \href{http://bitsavers.trailing-edge.com}{\texttt{ http\+://bitsavers.\+trailing-\/edge.\+com}}
-\item \href{http://en.wikipedia.org/wiki/IEEE-488}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+I\+E\+E\+E-\/488}}
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item S\+S80 References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+S\+S80\char`\"{} is the short form used in the project
-\item \char`\"{}\+Subset 80 from Fixed and flexible disc drives\char`\"{}
-\item Printed November, 1985
-\item HP Part\# 5958-\/4129
-\end{DoxyItemize}
-\item C\+S80 References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+C\+S80\char`\"{} is the short form used in the project
-\item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
-\item Printed\+: A\+PR 1983
-\item HP Part\# 5955-\/3442
-\end{DoxyItemize}
-\item Amigo References\+:
-\begin{DoxyItemize}
-\item \char`\"{}\+Amigo\char`\"{} is the short form used in the project
-\item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
-\item HP Part\# 09895-\/90030
-\end{DoxyItemize}
-\item H\+P-\/\+IB
-\begin{DoxyItemize}
-\item \char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project
-\item \char`\"{}\+Condensed Description of the Hewlett Packard Interface Bus\char`\"{}
-\item Printed March 1975
-\item HP Part\# 59401-\/90030
-\end{DoxyItemize}
-\item Tutorial Description of The Hewllet Packard Interface Bus\char`\"{}
-  -\/ \char`\"{}H\+P-\/\+IB Tutorial" is the short form used in the project
-\begin{DoxyItemize}
-\item \href{http://www.hpmemory.org/an/pdf/hp-ib_tutorial_1980.pdf}{\texttt{ http\+://www.\+hpmemory.\+org/an/pdf/hp-\/ib\+\_\+tutorial\+\_\+1980.\+pdf}}
-\begin{DoxyItemize}
-\item Printed January 1983
-\end{DoxyItemize}
-\item \href{http://www.ko4bb.com/Manuals/HP_Agilent/HPIB_tutorial_HP.pdf}{\texttt{ http\+://www.\+ko4bb.\+com/\+Manuals/\+H\+P\+\_\+\+Agilent/\+H\+P\+I\+B\+\_\+tutorial\+\_\+\+H\+P.\+pdf}}
-\begin{DoxyItemize}
-\item Printed 1987
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item G\+P\+IB / I\+E\+EE 488 Tutorial by Ian Poole
-\begin{DoxyItemize}
-\item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\texttt{ http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}} 
-\end{DoxyItemize}
-\end{DoxyItemize}
 
-Definition at line 74 of file gpib.\+c.
+Definition at line 77 of file gpib.\+c.
 
 
 
@@ -1164,7 +1188,7 @@ Referenced by S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\
 \end{DoxyCode}
 
 
-Definition at line 106 of file gpib.\+c.
+Definition at line 109 of file gpib.\+c.
 
 
 
@@ -1182,7 +1206,7 @@ Referenced by gpib\+\_\+trace\+\_\+display().
 
 
 
-Definition at line 79 of file gpib.\+c.
+Definition at line 82 of file gpib.\+c.
 
 
 
@@ -1200,7 +1224,7 @@ Referenced by gpib\+\_\+read\+\_\+byte(), and gpib\+\_\+unread().
 
 
 
-Definition at line 77 of file gpib.\+c.
+Definition at line 80 of file gpib.\+c.
 
 
 
@@ -1218,7 +1242,7 @@ gpib current and last command
 
 
 
-Definition at line 94 of file gpib.\+c.
+Definition at line 97 of file gpib.\+c.
 
 
 
@@ -1236,7 +1260,7 @@ gpib listen address
 
 
 
-Definition at line 87 of file gpib.\+c.
+Definition at line 90 of file gpib.\+c.
 
 
 
@@ -1254,7 +1278,7 @@ gpib last listen address
 
 
 
-Definition at line 89 of file gpib.\+c.
+Definition at line 92 of file gpib.\+c.
 
 
 
@@ -1272,7 +1296,7 @@ gpib secondary
 
 
 
-Definition at line 97 of file gpib.\+c.
+Definition at line 100 of file gpib.\+c.
 
 
 
@@ -1290,7 +1314,7 @@ gpib serial poll status
 
 
 
-Definition at line 92 of file gpib.\+c.
+Definition at line 95 of file gpib.\+c.
 
 
 
@@ -1308,7 +1332,7 @@ gpib talk address
 
 G\+P\+IB B\+US states. 
 
-Definition at line 82 of file gpib.\+c.
+Definition at line 85 of file gpib.\+c.
 
 
 
@@ -1326,7 +1350,7 @@ gpib last talk address
 
 
 
-Definition at line 84 of file gpib.\+c.
+Definition at line 87 of file gpib.\+c.
 
 
 

@@ -170,6 +170,13 @@ ___
     * \<INTERRUPT>
   * After you type **Enter** the command processor will execute the command and return to disk emulation automatically
 
+### Status LEDs
+  * **LED2** is for error conditions - this is the LED nearest the GPIB connector
+    * If this turns on you have an SDCARD problem - either missing card or filesystem issue
+    * See **SD Card Problems** and **SD Card filesystem repair** sections below
+  * **LED1** is on when the SD Card is being read or written to
+
+
 ___ 
 
 
@@ -188,7 +195,7 @@ ___
   * Open a web browser to https://github.com/magore/hp85disk
     * Click on the Green **Clone or Download** button
     * Pick download as **ZIP**
-    * You can extract all of the folders and files to a folder of your choid
+    * You can extract all of the folders and files to a folder of your choice
     * locate the **sdcard** folder
   * Copy the **contents** of the **sdcard** folder to the root/home folder of a a FAT32 formatted SD card
     * You should not see the **sdcard** folder on the SD Card itself just the contents of that folder and its subfolders
@@ -485,7 +492,7 @@ ___
 
 
 
-## FULL example step by step translating bewteen plain text files and HP86 BASIC programs
+## FULL example step by step translating bewteen plain text files and HP85 BASIC programs
   * You can do these examples without out my emulator but requires an extra tools and steps
 
 ## Importing ASCII and plain text as HP85 BASIC programs

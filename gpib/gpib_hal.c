@@ -387,7 +387,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
     if( rc != FR_OK)
     {
         flags |= ERR_DISK;
-        flags |= ERR_READ;
+        flags |= ERR_WRITE;
         *errors = flags;
         return( -1 );
     }
@@ -397,7 +397,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
     if( rc != FR_OK)
     {
         flags |= ERR_SEEK;
-        flags |= ERR_READ;
+        flags |= ERR_WRITE;
         *errors = flags;
         dbf_close(&fp);
         return( -1 );
@@ -406,7 +406,7 @@ int dbf_open_write(char *name, uint32_t pos, void *buff, int size, int *errors)
     rc = dbf_write(&fp, buff,size,&bytes);
     if( rc != FR_OK || (UINT) size != bytes)
     {
-        flags |= ERR_READ;
+        flags |= ERR_WRITE;
         *errors = flags;
         dbf_close(&fp);
         return( -1 );

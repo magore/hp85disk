@@ -70,6 +70,9 @@
 /// - GPIB / IEEE 488 Tutorial by Ian Poole
 ///   - http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php
 
+///@brief user task called in GPIB read/write byte functions
+extern void gpib_user_task();
+
 /// @brief common IO buffer for  gpib_read_str() and gpib_write_str()
 uint8_t gpib_iobuff[GPIB_IOBUFF_LEN];
 
@@ -656,6 +659,9 @@ uint16_t gpib_write_byte(uint16_t ch)
 
     while(tx_state != GPIB_TX_DONE )
     {
+        // User task that is called while waiting for commands
+        gpib_user_task();
+
 		if(uart_keyhit(0))
 		{
 			if(debuglevel & GPIB_ERR)
@@ -808,7 +814,8 @@ uint16_t gpib_write_byte(uint16_t ch)
 #endif
                 GPIB_BUS_SETTLE();                // give some time
 
-                gpib_bus_read_init(0);            // Free BUS, NOT busy
+                // FIXME ?
+                gpib_bus_read_init(1);            // Free BUS busy
 
                 gpib_timeout_set(HTIMEOUT);
                 tx_state = GPIB_TX_WAIT_FOR_DAV_HI;
@@ -837,10 +844,11 @@ uint16_t gpib_write_byte(uint16_t ch)
                 break;
 
             case GPIB_TX_ERROR:
+                gpib_bus_read_init(1);
+
                 if(debuglevel & (GPIB_ERR + GPIB_BUS_OR_CMD_BYTE_MESSAGES))
                     printf("<NRFD=%d,NDAV=%d>\n", GPIB_PIN_TST(NRFD),GPIB_PIN_TST(NDAC));
 // Free BUS, BUSY on error
-                gpib_bus_read_init(1);
                 tx_state = GPIB_TX_DONE;
                 break;
 
@@ -890,7 +898,6 @@ uint16_t gpib_read_byte(int trace)
     uint16_t bus, control, control_last;
     extern uint8_t gpib_unread_f;
     extern uint16_t gpib_unread_data;
-	extern void gpib_user_task();
 
     ch = 0;
     control_last = 0;
@@ -919,7 +926,9 @@ uint16_t gpib_read_byte(int trace)
     rx_state = GPIB_RX_START;
     while(rx_state != GPIB_RX_DONE)
     {
-gpib_user_task();
+
+        // User task that is called while waiting for commands
+        gpib_user_task();
 
         if(uart_keyhit(0))
 		{
@@ -1368,7 +1377,7 @@ int gpib_read_str(uint8_t *buf, int size, uint16_t *status)
             break;
         }
     }
-    if ( ind != size )
+    if ( ind != size ) 
     {
         if(debuglevel & (GPIB_ERR + GPIB_DEVICE_STATE_MESSAGES))
             printf("[gpib_read_str read(%d) expected(%d)]\n", ind , size);

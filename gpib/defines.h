@@ -76,6 +76,7 @@ typedef struct stat stat_t;
 #define BASE_MTA     0x40                         //<  Base talk address = 0 (0+0x40)
 #define BASE_MSA     0x60                         //<  Base seconday address = 0 (0+0x60)
 
+// Used for AMIGO and SS80 error reporting
 #define ERR_READ   0b00000001                     //< Read Error
 #define ERR_WRITE  0b00000010                     //< Write Error
 #define ERR_SEEK   0b00000100                     //< Seek Error

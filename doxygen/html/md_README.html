@@ -328,20 +328,30 @@ Command interface notes</h3>
 </li>
 <li>After you type <b>Enter</b> the command processor will execute the command and return to disk emulation automatically</li>
 </ul>
+<h3><a class="anchor" id="autotoc_md40"></a>
+Status LEDs</h3>
+<ul>
+<li><b>LED2</b> is for error conditions - this is the LED nearest the GPIB connector<ul>
+<li>If this turns on you have an SDCARD problem - either missing card or filesystem issue</li>
+<li>See <b>SD Card Problems</b> and <b>SD Card filesystem repair</b> sections below</li>
+</ul>
+</li>
+<li><b>LED1</b> is on when the SD Card is being read or written to</li>
+</ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md41"></a>
 Important notes about SD Card requirements for the emulator</h2>
-<h3><a class="anchor" id="autotoc_md41"></a>
+<h3><a class="anchor" id="autotoc_md42"></a>
 Removing the SD Card from the emulator</h3>
 <ul>
 <li><b>ALWAYS POWER OFF THE EMULATOR BEFORE REMOVING -or - INSERTING THE SD CARD</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md42"></a>
+<h3><a class="anchor" id="autotoc_md43"></a>
 Formatting a new SD Card</h3>
 <ul>
 <li>Must be formatted <b>FAT32</b> not FAT32x</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md43"></a>
+<h3><a class="anchor" id="autotoc_md44"></a>
 Using the SD Card images on your HP85</h3>
 <ul>
 <li>We provide the emulator with an SD card with images already installed<ul>
@@ -352,7 +362,7 @@ Using the SD Card images on your HP85</h3>
 <li>Open a web browser to <a href="https://github.com/magore/hp85disk">https://github.com/magore/hp85disk</a><ul>
 <li>Click on the Green <b>Clone or Download</b> button</li>
 <li>Pick download as <b>ZIP</b></li>
-<li>You can extract all of the folders and files to a folder of your choid</li>
+<li>You can extract all of the folders and files to a folder of your choice</li>
 <li>locate the <b>sdcard</b> folder</li>
 </ul>
 </li>
@@ -361,7 +371,7 @@ Using the SD Card images on your HP85</h3>
 </ul>
 </li>
 </ul>
-<h4><a class="anchor" id="autotoc_md44"></a>
+<h4><a class="anchor" id="autotoc_md45"></a>
 HP85A users SD card setup</h4>
 <ul>
 <li>Normally you will not be able to access <b>SS80</b> drives unless you have versions of the <b>HP85B</b> ROMS installed<ul>
@@ -374,7 +384,7 @@ HP85A users SD card setup</h4>
 </ul>
 </li>
 </ul>
-<h4><a class="anchor" id="autotoc_md45"></a>
+<h4><a class="anchor" id="autotoc_md46"></a>
 HP85B users SD card setup</h4>
 <ul>
 <li>You needs the <b>EMS</b> ROM for <b>SS80</b> drives<ul>
@@ -387,7 +397,7 @@ HP85B users SD card setup</h4>
 </li>
 </ul>
 <hr  />
-<h3><a class="anchor" id="autotoc_md46"></a>
+<h3><a class="anchor" id="autotoc_md47"></a>
 Choosing and SD Card for the HP85 emulator PLEASE READ</h3>
 <ul>
 <li>Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify a much much larger internal flash page - this can take too long<ul>
@@ -446,7 +456,7 @@ Choosing and SD Card for the HP85 emulator PLEASE READ</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md47"></a>
+<h3><a class="anchor" id="autotoc_md48"></a>
 SD Card problems</h3>
 <ul>
 <li>The the file system on the SD card might get corrupted if it was powered on while removing the card<ul>
@@ -463,7 +473,7 @@ SD Card problems</h3>
 <li>When powering on the emulator it will report a details about the SD Card - you will see very obvious errors if it can not read the SD Card</li>
 <li>If the emulator says it can not open the card then go to the <b>SD Card filesystem repair sections</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md48"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 SD Card filesystem repair</h3>
 <ul>
 <li><b>Windows</b> insert the Micro SD card into you desktop/laptop Card Reader<ul>
@@ -522,7 +532,7 @@ SD Card filesystem repair</h3>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md49"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 SD Card file manipulation commands</h2>
 <ul>
 <li><b>posix help</b> displays a list of these SD cards related commands<ul>
@@ -544,7 +554,7 @@ SD Card file manipulation commands</h2>
 </li>
 <li>Note: Wild card pattern matching is NOT implemented on any of these commands.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md50"></a>
+<h3><a class="anchor" id="autotoc_md51"></a>
 SD Card file command summary with examples</h3>
 <ul>
 <li><b>cd dir</b><ul>
@@ -633,7 +643,7 @@ SD Card file command summary with examples</h3>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md51"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 LIF tools are built into emulator firmware</h2>
 <ul>
 <li>Built in help<ul>
@@ -696,7 +706,7 @@ LIF tools are built into emulator firmware</h2>
 </li>
 <li><a class="el" href="md_lif_README.html">For more **LIF** documentation</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md52"></a>
+<h2><a class="anchor" id="autotoc_md53"></a>
 TeleDisk to LIF conversion tool (updated) - see @ref lif/README.md "LIF README.md"</h2>
 <ul>
 <li><a href="lif/t202lif">td02lif</a> <a href="lif/85-SS80.TD0">85-SS80.TD0</a> <a href="lif/85-SS80.LIF">85-SS80.LIF</a></li>
@@ -715,7 +725,7 @@ TeleDisk to LIF conversion tool (updated) - see @ref lif/README.md "LIF README.m
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 Disk images and default configuration file for the hp85disk project</h2>
 <ul>
 <li>[sdcard folder has premade <b>LIF</b> disk images](sdcard)<ul>
@@ -727,7 +737,7 @@ Disk images and default configuration file for the hp85disk project</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md54"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 Note about LIF images and &lt;a href="sdcard/hpdisk.cfg"&gt;sdcard/hpdisk.cfg&lt;/a&gt; disk definitions</h2>
 <ul>
 <li>To create/modify or update <b>LIF</b> images see the section on the LIF utilities supplied with the emulator</li>
@@ -754,7 +764,7 @@ Note about LIF images and &lt;a href="sdcard/hpdisk.cfg"&gt;sdcard/hpdisk.cfg&lt
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md55"></a>
+<h2><a class="anchor" id="autotoc_md56"></a>
 Specific details for Translating between plain text and HP85 BASIC programs using hp85disk</h2>
 <ul>
 <li>Requirements<ul>
@@ -772,7 +782,7 @@ Specific details for Translating between plain text and HP85 BASIC programs usin
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md56"></a>
+<h2><a class="anchor" id="autotoc_md57"></a>
 GETSAV is called GETSAVE inside my LIF disk images</h2>
 <ul>
 <li>Here is a direct link to <em>GETSAVE.LIF</em> - which is encoded as a <b>LIF</b> file: <a href="sdcard/LIF-files/GETSAVE.LIF">sdcard/LIF-files/GETSAVE.LIF</a><ul>
@@ -788,7 +798,7 @@ GETSAV is called GETSAVE inside my LIF disk images</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md58"></a>
 Translating between plain text and HP85 BASIC programs WITHOUT hp85disk</h2>
 <ul>
 <li>You must compile and install the stand alone lif tools found under the project [lif](lif) folder</li>
@@ -798,7 +808,7 @@ Translating between plain text and HP85 BASIC programs WITHOUT hp85disk</h2>
 </li>
 <li>Specific details steps are documented later in the README</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 Initial setup of the hp85disk ASSUMPTIONS and Requirements</h2>
 <ul>
 <li>You have the hp85disk emulator attached to your <b>HP85</b> with a <b>GPIB</b> cable<ul>
@@ -830,12 +840,12 @@ Initial setup of the hp85disk ASSUMPTIONS and Requirements</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md59"></a>
-FULL example step by step translating bewteen plain text files and HP86 BASIC programs</h2>
+<h2><a class="anchor" id="autotoc_md60"></a>
+FULL example step by step translating bewteen plain text files and HP85 BASIC programs</h2>
 <ul>
 <li>You can do these examples without out my emulator but requires an extra tools and steps</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md60"></a>
+<h2><a class="anchor" id="autotoc_md61"></a>
 Importing ASCII and plain text as HP85 BASIC programs</h2>
 <ul>
 <li>Lets import a text file with BASIC statements into one of the emulator images <b>amigo1.lif</b></li>
@@ -899,7 +909,7 @@ Importing ASCII and plain text as HP85 BASIC programs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md61"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 Exporting HP85 BASIC programs to ASCII plain text</h2>
 <ul>
 <li>You must have the hp85disk emulator power ON and attached to you <b>HP85</b><ul>
@@ -953,23 +963,23 @@ Exporting HP85 BASIC programs to ASCII plain text</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md62"></a>
+<h2><a class="anchor" id="autotoc_md63"></a>
 Tested Operating systems</h2>
-<h3><a class="anchor" id="autotoc_md63"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Linux</h3>
 <ul>
 <li>I used <b>Ubuntu 18.04,16.04LTS and 14.04LTS</b> when developing the code</li>
 <li>I have instructions for flashing the firmware below </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md64"></a>
+<h3><a class="anchor" id="autotoc_md65"></a>
 Windows</h3>
 <ul>
 <li><b>Windows 10</b> running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md65"></a>
+<h2><a class="anchor" id="autotoc_md66"></a>
 Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</h2>
-<h3><a class="anchor" id="autotoc_md66"></a>
+<h3><a class="anchor" id="autotoc_md67"></a>
 Linux</h3>
 <ul>
 <li><b>apt-get install python3</b><ul>
@@ -978,7 +988,7 @@ Linux</h3>
 </li>
 <li><b>pip3 install pySerial</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md67"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 Windows</h3>
 <ul>
 <li>Windows - Install Python 3.7 from Windows App Store<ul>
@@ -988,13 +998,13 @@ Windows</h3>
 <li><b>pip3 install pySerial</b></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md68"></a>
+<h2><a class="anchor" id="autotoc_md69"></a>
 Discover your serial port name</h2>
 <ul>
 <li>Make sure you have a mini usb cable handy</li>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md69"></a>
+<h3><a class="anchor" id="autotoc_md70"></a>
 Linux</h3>
 <ul>
 <li>Open a terminal window<ul>
@@ -1003,7 +1013,7 @@ Linux</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md70"></a>
+<h3><a class="anchor" id="autotoc_md71"></a>
 Windows</h3>
 <ul>
 <li>Open a Power Shell window<ul>
@@ -1011,7 +1021,7 @@ Windows</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md71"></a>
+<h3><a class="anchor" id="autotoc_md72"></a>
 Connect the emulator  to discover the port name</h3>
 <ul>
 <li>Attach the miniusb cable to your computer and rerun the <b>listports.py</b></li>
@@ -1028,7 +1038,7 @@ Connect the emulator  to discover the port name</h3>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md72"></a>
+<h2><a class="anchor" id="autotoc_md73"></a>
 Connecting to hp85disk interactive serial port</h2>
 <ul>
 <li>Note: Use the same port name as with the flashing example</li>
@@ -1046,7 +1056,7 @@ Connecting to hp85disk interactive serial port</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md73"></a>
+<h2><a class="anchor" id="autotoc_md74"></a>
 Updating hp85disk firmware with built in bootloader</h2>
 <ul>
 <li>Only do this if recommended</li>
@@ -1060,22 +1070,22 @@ Updating hp85disk firmware with built in bootloader</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md74"></a>
+<h3><a class="anchor" id="autotoc_md75"></a>
 Linux firmware update example</h3>
 <ul>
 <li><b>python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md75"></a>
+<h3><a class="anchor" id="autotoc_md76"></a>
 Windows firmware update example</h3>
 <ul>
 <li><b>python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md76"></a>
+<h3><a class="anchor" id="autotoc_md77"></a>
 Mac firmware update example</h3>
 <ul>
 <li><b>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</b></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md77"></a>
+<h3><a class="anchor" id="autotoc_md78"></a>
 Firmware update problems - if you get a failure during updating</h3>
 <ul>
 <li>Type in the flashing command, see above, but <em>without</em> pressing Enter yet<ul>
@@ -1087,7 +1097,7 @@ Firmware update problems - if you get a failure during updating</h3>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md78"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 Requirements for compiling and flashing the FULL hp85disk project</h2>
 <ul>
 <li>These steps, below, are required ONLY if:<ul>
@@ -1101,10 +1111,10 @@ Requirements for compiling and flashing the FULL hp85disk project</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md79"></a>
+<h2><a class="anchor" id="autotoc_md80"></a>
 Full installation Ubuntu and Windows software for building hp85disk and building related applications</h2>
 <p>Note: If you only plan on updating firmware and would rather not compile skip to Firmware updating below</p>
-<h3><a class="anchor" id="autotoc_md80"></a>
+<h3><a class="anchor" id="autotoc_md81"></a>
 Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h3>
 <p>Note: I recommend this as the easiest way to compile and build hp85disk under Windows</p><ul>
 <li>Following these steps take less then 10 minutes including the software and hp85disk download</li>
@@ -1146,7 +1156,7 @@ Windows 10 install Ubuntu Subsystem for Linux and Ubuntu App</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3><a class="anchor" id="autotoc_md82"></a>
 Ubuntu 18.04 LTS or later</h3>
 <p>Note: For Windows install the WSL and Ubuntu App - see previous section</p><ul>
 <li>If you are installing Ubuntu on a new machine<ul>
@@ -1154,7 +1164,7 @@ Ubuntu 18.04 LTS or later</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md82"></a>
+<h3><a class="anchor" id="autotoc_md83"></a>
 Automated software install and hp85disk github project download</h3>
 <p>Note: For Windows install the WSL and Ubuntu App first - see previous section</p><ul>
 <li>Open a terminal Window<ul>
@@ -1170,16 +1180,16 @@ Automated software install and hp85disk github project download</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md83"></a>
-Updating hp85disk github project at any time using git</h3>
 <h3><a class="anchor" id="autotoc_md84"></a>
+Updating hp85disk github project at any time using git</h3>
+<h3><a class="anchor" id="autotoc_md85"></a>
 Linux</h3>
 <ul>
 <li>Open a <b>terminal window</b></li>
 <li><b>cd hp85disk</b></li>
 <li><b>git pull</b> </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md85"></a>
+<h3><a class="anchor" id="autotoc_md86"></a>
 Windows</h3>
 <ul>
 <li>Open <b>Ubuntu App</b></li>
@@ -1187,9 +1197,9 @@ Windows</h3>
 <li><b>git pull</b></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md86"></a>
+<h2><a class="anchor" id="autotoc_md87"></a>
 Connecting to hp85disk emulator</h2>
-<h3><a class="anchor" id="autotoc_md87"></a>
+<h3><a class="anchor" id="autotoc_md88"></a>
 Find the serial port device name for the hp85disk emulator</h3>
 <ul>
 <li>Make sure the emulator is not connected to your PC/Mac</li>
@@ -1213,7 +1223,7 @@ Find the serial port device name for the hp85disk emulator</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md88"></a>
+<h3><a class="anchor" id="autotoc_md89"></a>
 Opening a terminal window to the hp85disk emulator</h3>
 <p>NOTE: Find the serial port name first - lets assume it was /dev/ttyS3</p><ul>
 <li><b>cd hp85disk</b></li>
@@ -1229,7 +1239,7 @@ Opening a terminal window to the hp85disk emulator</h3>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md89"></a>
+<h2><a class="anchor" id="autotoc_md90"></a>
 Compile Firmware</h2>
 <p>Note: Change into the hp85disk folder created by the install.sh script</p><ul>
 <li><b>make clean</b></li>
@@ -1239,7 +1249,7 @@ Compile Firmware</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md90"></a>
+<h3><a class="anchor" id="autotoc_md91"></a>
 Compile and updating Firmware - assumes you have all tools installed</h3>
 <ul>
 <li>Note: in the steps below you can override defaults<ul>
@@ -1255,7 +1265,7 @@ Compile and updating Firmware - assumes you have all tools installed</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md91"></a>
+<h3><a class="anchor" id="autotoc_md92"></a>
 Flash with Internal optiboot</h3>
 <ul>
 <li>Note: in this example assume the hp85disk serial port is /dev/ttyS3<ul>
@@ -1286,7 +1296,7 @@ Flash with Internal optiboot</h3>
 </ul>
 </li>
 </ul>
-<h4><a class="anchor" id="autotoc_md92"></a>
+<h4><a class="anchor" id="autotoc_md93"></a>
 If you have a firmware update problems - if you get a failure during updating</h4>
 <ul>
 <li>Type in the flashing command, see above, but <b>without pressing Enter yet</b><ul>
@@ -1297,7 +1307,7 @@ If you have a firmware update problems - if you get a failure during updating</h
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md93"></a>
+<h3><a class="anchor" id="autotoc_md94"></a>
 External programmers</h3>
 <ul>
 <li><b>avrisp</b> is one of the lowest cost <em>In System programer</em> <b>ISP</b> avaliable<ul>
@@ -1326,7 +1336,7 @@ Note 5V connection - DO NOT CONNECT
 </li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 Update Firmware with external programmer</h2>
 <ul>
 <li>You will need and AVR programmer supported by <b>avrdude</b> (part of avrtools)<ul>
@@ -1351,7 +1361,7 @@ Update Firmware with external programmer</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md95"></a>
+<h3><a class="anchor" id="autotoc_md96"></a>
 Flashing AND connecting to hp85disk emulator terminal just after firmware update</h3>
 <ul>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
@@ -1364,7 +1374,7 @@ Flashing AND connecting to hp85disk emulator terminal just after firmware update
 <li><b>HP85_PORT</b> must be set to the hp85disk emulator serial port name</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md96"></a>
+<h2><a class="anchor" id="autotoc_md97"></a>
 Makefile configuration options for hp85disk emulator</h2>
 <ul>
 <li>These options apply to original V1 and new V2 boards</li>
@@ -1480,7 +1490,7 @@ Makefile configuration options for hp85disk emulator</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md97"></a>
+<h2><a class="anchor" id="autotoc_md98"></a>
 make configuration display</h2>
 <ul>
 <li><b>make config</b><ul>
@@ -1512,7 +1522,7 @@ make configuration display</h2>
         LIF_SUPPORT            = 1</pre><pre>     GCC Verbose Options - show more detail while compiling
         VERBOSE                = 0
 </pre><p>___</p>
-<h2><a class="anchor" id="autotoc_md98"></a>
+<h2><a class="anchor" id="autotoc_md99"></a>
 make help documentation</h2>
 <ul>
 <li><b>make help</b><ul>
@@ -1546,7 +1556,7 @@ make help documentation</h2>
        Makes booting and flashing process slightly faster
     make flash-isp-noboot         - build and flash the code using an ISP
     make flash-isp-noboot-release - flash the release code using an ISP</pre><pre> GCC Verbose Options - show more detail while compiling
-    VERBOSE                = 0</pre><pre></pre><h2><a class="anchor" id="autotoc_md99"></a>
+    VERBOSE                = 0</pre><pre></pre><h2><a class="anchor" id="autotoc_md100"></a>
 Example building with Makefile overrides</h2>
 <ul>
 <li><b>make flash AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3</b></li>
@@ -1554,14 +1564,14 @@ Example building with Makefile overrides</h2>
 <li><b>make flash-isp AVRDUDE_ISP=atmelice_isp ISP_PORT=usb</b></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md100"></a>
+<h2><a class="anchor" id="autotoc_md101"></a>
 Building Doxygen documentation for the project - OPTIONAL</h2>
 <ul>
 <li><b>aptitude install &ndash;with-recommends doxygen doxygen-doc doxygen-gui doxygen-latex</b></li>
 <li><em>If you omit this you will have to update the [Makefile](Makefile) to omit the steps</em></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md101"></a>
+<h2><a class="anchor" id="autotoc_md102"></a>
 Using the hp85disk emulator</h2>
 <ul>
 <li>Here we focus just on <b>HP85</b> BASIC commands</li>
@@ -1601,7 +1611,7 @@ Using the hp85disk emulator</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md102"></a>
+<h2><a class="anchor" id="autotoc_md103"></a>
 Testing examples on your HP85</h2>
 <ul>
 <li>Testing was done with an <b>HP85A</b> (with extended EMS ROM)<ul>
@@ -1617,9 +1627,9 @@ Testing examples on your HP85</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md103"></a>
-Initializing a disk images</h2>
 <h2><a class="anchor" id="autotoc_md104"></a>
+Initializing a disk images</h2>
+<h2><a class="anchor" id="autotoc_md105"></a>
 HP85B only feature or HP88A with &lt;strong&gt;PRM-85&lt;/strong&gt; board</h2>
 <ul>
 <li>IMPORTANT NOTE: formatting is done automatically by the hp85disk lif image creation commands</li>
@@ -1637,7 +1647,7 @@ HP85B only feature or HP88A with &lt;strong&gt;PRM-85&lt;/strong&gt; board</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md105"></a>
+<h2><a class="anchor" id="autotoc_md106"></a>
 HP85A and HP85B examples</h2>
 <ul>
 <li>Note lines with a "#' as the first non blank character are just my comments<ul>
@@ -1688,7 +1698,7 @@ HP85A and HP85B examples</h2>
 </pre></li>
 </ul>
 <p>___</p>
-<h2><a class="anchor" id="autotoc_md106"></a>
+<h2><a class="anchor" id="autotoc_md107"></a>
 Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A vs HP85B</h2>
 <ul>
 <li>While <b>GPIB</b> devices can have address between 0 and 31 you can have no more than 8 disk drives.</li>
@@ -1745,7 +1755,7 @@ Understanding Drive GPIB BUS addressing and Parallel Poll Response (PPR) - HP85A
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md107"></a>
+<h2><a class="anchor" id="autotoc_md108"></a>
 Technical Limitations</h2>
 <ul>
 <li>Multiple drive support is implemented but multiple UNIT support is NOT</li>
@@ -1816,7 +1826,7 @@ Technical Limitations</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md108"></a>
+<h2><a class="anchor" id="autotoc_md109"></a>
 hp85disk Terminal Commands</h2>
 <ul>
 <li>Pressing any key will break out of the gpib task loop until a command is entered<ul>
@@ -1829,7 +1839,7 @@ hp85disk Terminal Commands</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md109"></a>
+<h3><a class="anchor" id="autotoc_md110"></a>
 For main help menu type &lt;em&gt;help&lt;/em&gt;</h3>
 <ul>
 <li>Any word that has <b>help</b> after it will give help for that command</li>
@@ -1853,7 +1863,7 @@ For main help menu type &lt;em&gt;help&lt;/em&gt;</h3>
 </pre></li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md110"></a>
+<h2><a class="anchor" id="autotoc_md111"></a>
 For lif help type &lt;em&gt;lif help&lt;/em&gt;</h2>
 <ul>
 <li><b>lif help</b> <pre>
@@ -1871,7 +1881,7 @@ For lif help type &lt;em&gt;lif help&lt;/em&gt;</h2>
 </pre></li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md111"></a>
+<h2><a class="anchor" id="autotoc_md112"></a>
 For posix help type &lt;em&gt;posix help&lt;/em&gt;</h2>
 <ul>
 <li><b>posix help</b> <pre>
@@ -1889,7 +1899,7 @@ For posix help type &lt;em&gt;posix help&lt;/em&gt;</h2>
 </pre></li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md112"></a>
+<h2><a class="anchor" id="autotoc_md113"></a>
 For gpib help type &lt;em&gt;gpib help&lt;/em&gt;</h2>
 <ul>
 <li><b>gpib help</b> <pre>
@@ -1912,7 +1922,7 @@ For gpib help type &lt;em&gt;gpib help&lt;/em&gt;</h2>
        BUS - include handshake states
 </pre> ##</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md113"></a>
+<h1><a class="anchor" id="autotoc_md114"></a>
 For fatfs help type &lt;em&gt;fatfs help&lt;/em&gt;</h1>
 <ul>
 <li><b>fatfs help</b> <pre>
@@ -1924,7 +1934,7 @@ For fatfs help type &lt;em&gt;fatfs help&lt;/em&gt;</h1>
     fatfs status file
 </pre></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md114"></a>
+<h3><a class="anchor" id="autotoc_md115"></a>
 For setting the time type &lt;em&gt;setdate&lt;/em&gt; it will prompt for the date as shown below</h3>
 <ul>
 <li>This also sets the RTC<ul>
@@ -1940,7 +1950,7 @@ For setting the time type &lt;em&gt;setdate&lt;/em&gt; it will prompt for the da
 </pre></li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md115"></a>
+<h2><a class="anchor" id="autotoc_md116"></a>
 For displaying the time and the rtc time type &lt;em&gt;time&lt;/em&gt;</h2>
 <ul>
 <li><b>time</b> <pre>
@@ -1951,7 +1961,7 @@ For displaying the time and the rtc time type &lt;em&gt;time&lt;/em&gt;</h2>
 </pre></li>
 </ul>
 <p>#</p>
-<h1><a class="anchor" id="autotoc_md116"></a>
+<h1><a class="anchor" id="autotoc_md117"></a>
 hp85disk setting debug options</h1>
 <ul>
 <li>Debugging is can be controlled in two ways<ul>
@@ -1960,7 +1970,7 @@ hp85disk setting debug options</h1>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md117"></a>
+<h3><a class="anchor" id="autotoc_md118"></a>
 hp85disk DEBUG truth table</h3>
 <pre>
   You can OR the following values together to add debug processing
@@ -1979,7 +1989,7 @@ hp85disk DEBUG truth table</h3>
     200 GPIB try to detect Parallel Poll BUS state
     400 LIF utitilites debugging
 </pre><p>#</p>
-<h2><a class="anchor" id="autotoc_md118"></a>
+<h2><a class="anchor" id="autotoc_md119"></a>
 hp85disk setting debug examples</h2>
 <ul>
 <li>Interactively<ul>
@@ -2020,7 +2030,7 @@ hp85disk setting debug examples</h2>
 </pre></li>
 </ul>
 <p>___</p>
-<h1><a class="anchor" id="autotoc_md119"></a>
+<h1><a class="anchor" id="autotoc_md120"></a>
 Abbreviations</h1>
 <p>Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page# reference to these works.</p><ul>
 <li><b>SS80</b></li>
@@ -2030,7 +2040,7 @@ Abbreviations</h1>
 <li><b>HP-IP Tutorial</b></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md120"></a>
+<h2><a class="anchor" id="autotoc_md121"></a>
 Documentation References and related sources of information</h2>
 <ul>
 <li>Web Resources<ul>
@@ -2044,14 +2054,14 @@ Documentation References and related sources of information</h2>
 </li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md121"></a>
+<h2><a class="anchor" id="autotoc_md122"></a>
 Enhanced version of Tony Duell's lif_utils by Joachim</h2>
 <ul>
 <li><a href="https://github.com/bug400/lifutils">https://github.com/bug400/lifutils</a></li>
 <li>Create/Modify <b>LIF</b> images</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md122"></a>
+<h2><a class="anchor" id="autotoc_md123"></a>
 CS80 References: ("CS80" is the short form used in the project)</h2>
 <ul>
 <li>"CS/80 Instruction Set Programming Manual"</li>
@@ -2060,7 +2070,7 @@ CS80 References: ("CS80" is the short form used in the project)</h2>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md123"></a>
+<h2><a class="anchor" id="autotoc_md124"></a>
 Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
 <ul>
 <li>"Appendix A of 9895A Flexible Disc Memory Service Manual"</li>
@@ -2068,7 +2078,7 @@ Amigo References: ("A" or "Amigo") is the short form used in the project</h2>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md124"></a>
+<h2><a class="anchor" id="autotoc_md125"></a>
 HP-IB</h2>
 <ul>
 <li>("HP-IB" is the short form used in the project)</li>
@@ -2078,7 +2088,7 @@ HP-IB</h2>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md125"></a>
+<h2><a class="anchor" id="autotoc_md126"></a>
 Tutorial Description of the Hewlett Packard Interface Bus</h2>
 <ul>
 <li>("HP-IB Tutorial" is the short form used in the project)</li>
@@ -2089,14 +2099,14 @@ Tutorial Description of the Hewlett Packard Interface Bus</h2>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md126"></a>
+<h2><a class="anchor" id="autotoc_md127"></a>
 GPIB / IEEE 488 Tutorial by Ian Poole</h2>
 <ul>
 <li><a href="http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php">http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php</a></li>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md127"></a>
+<h2><a class="anchor" id="autotoc_md128"></a>
 HP 9133/9134 D/H/L References</h2>
 <ul>
 <li>"HP 9133/9134 D/H/L Service Manual"</li>
@@ -2105,14 +2115,14 @@ HP 9133/9134 D/H/L References</h2>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md128"></a>
+<h2><a class="anchor" id="autotoc_md129"></a>
 &lt;em&gt;LIF&lt;/em&gt; File system Format</h2>
 <ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem">http://www.hp9845.net/9845/projects/hpdir/#lif_filesystem</a></li>
 <li>See [Documents folder](documents)</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md129"></a>
+<h2><a class="anchor" id="autotoc_md130"></a>
 Useful Utilities</h2>
 <ul>
 <li><a href="http://www.hp9845.net/9845/projects/hpdir">HPDir HP Drive - Disk Image Manipulation</a><ul>
@@ -2124,7 +2134,7 @@ Useful Utilities</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md130"></a>
+<h2><a class="anchor" id="autotoc_md131"></a>
 &lt;em&gt;GPIB&lt;/em&gt; Connector pin-out by Anders Gustafsson in his hpdisk project</h2>
 <ul>
 <li><a href="http://www.dalton.ax/hpdisk/">http://www.dalton.ax/hpdisk/</a></li>
@@ -2144,7 +2154,7 @@ Useful Utilities</h2>
     11  ATN    Attention                23  Shield Ground (ATN) 
     12  Shield Chassis Ground           24  Single GND Single Ground
 </pre><p>___</p>
-<h2><a class="anchor" id="autotoc_md131"></a>
+<h2><a class="anchor" id="autotoc_md132"></a>
 Main project files for hp85disk Project</h2>
 <ul>
 <li>Project Main Home Directory<ul>
@@ -2200,12 +2210,12 @@ Main project files for hp85disk Project</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md132"></a>
+<h2><a class="anchor" id="autotoc_md133"></a>
 Compiled firmware release files</h2>
 <ul>
 <li>[release](release)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md133"></a>
+<h2><a class="anchor" id="autotoc_md134"></a>
 Board design file for version 1 and 2 hardware information</h2>
 <ul>
 <li>[board](board)<ul>
@@ -2223,7 +2233,7 @@ Board design file for version 1 and 2 hardware information</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md134"></a>
+<h2><a class="anchor" id="autotoc_md135"></a>
 Documents</h2>
 <ul>
 <li>[Documents](Documents)</li>
@@ -2232,12 +2242,12 @@ Documents</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md135"></a>
+<h2><a class="anchor" id="autotoc_md136"></a>
 hp85disk software files</h2>
 <ul>
 <li>Most of the software in the project was written by me except where noted</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md136"></a>
+<h2><a class="anchor" id="autotoc_md137"></a>
 FatFs</h2>
 <ul>
 <li>[fatfs](fatfs)<ul>
@@ -2300,7 +2310,7 @@ FatFs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md137"></a>
+<h2><a class="anchor" id="autotoc_md138"></a>
 &lt;strong&gt;GPIB&lt;/strong&gt; related</h2>
 <ul>
 <li><a href="gpib/gpib">gpib</a><ul>
@@ -2392,7 +2402,7 @@ FatFs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md138"></a>
+<h2><a class="anchor" id="autotoc_md139"></a>
 Hardware CPU specific</h2>
 <ul>
 <li>[hardware](hardware)<ul>
@@ -2464,7 +2474,7 @@ Hardware CPU specific</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md139"></a>
+<h2><a class="anchor" id="autotoc_md140"></a>
 Common libraries</h2>
 <ul>
 <li>[lib](lib)<ul>
@@ -2518,7 +2528,7 @@ Common libraries</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md140"></a>
+<h2><a class="anchor" id="autotoc_md141"></a>
 Unused code</h2>
 <ul>
 <li>[unused](unused)<ul>
@@ -2545,7 +2555,7 @@ Unused code</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md141"></a>
+<h2><a class="anchor" id="autotoc_md142"></a>
 &lt;em&gt;LIF&lt;/em&gt; files</h2>
 <ul>
 <li>[lif](lif)<ul>
@@ -2609,7 +2619,7 @@ Unused code</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md142"></a>
+<h2><a class="anchor" id="autotoc_md143"></a>
 &lt;em&gt;LIF&lt;/em&gt; teledisk files</h2>
 <ul>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
@@ -2654,7 +2664,7 @@ Unused code</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md143"></a>
+<h2><a class="anchor" id="autotoc_md144"></a>
 Posix wrapper - provides Linux file IO functions for Fatfs</h2>
 <ul>
 <li>[posix](posix)<ul>
@@ -2677,7 +2687,7 @@ Posix wrapper - provides Linux file IO functions for Fatfs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md144"></a>
+<h2><a class="anchor" id="autotoc_md145"></a>
 Printf display functions</h2>
 <ul>
 <li>[printf](printf)<ul>
@@ -2709,7 +2719,7 @@ Printf display functions</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md145"></a>
+<h2><a class="anchor" id="autotoc_md146"></a>
 SD Card files for project</h2>
 <ul>
 <li>[sdcard](sdcard)</li>
@@ -2742,7 +2752,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md146"></a>
+<h3><a class="anchor" id="autotoc_md147"></a>
 &lt;em&gt;AMIGO&lt;/em&gt; disk images</h3>
 <ul>
 <li><a href="sdcard/amigo0.lif">amigo1.lif</a><ul>
@@ -2766,7 +2776,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md147"></a>
+<h3><a class="anchor" id="autotoc_md148"></a>
 &lt;em&gt;SS80&lt;/em&gt; disk images</h3>
 <ul>
 <li><a href="sdcard/ss80-0.lif">ss80-1.lif</a><ul>
@@ -2790,7 +2800,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md148"></a>
+<h3><a class="anchor" id="autotoc_md149"></a>
 SD Card emulator configuration file backups</h3>
 <ul>
 <li><a href="sdcard/configs">sdcard/configs</a><ul>
@@ -2798,7 +2808,7 @@ SD Card emulator configuration file backups</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md149"></a>
+<h3><a class="anchor" id="autotoc_md150"></a>
 Build Drive Configuration</h3>
 <ul>
 <li><a href="sdcard/mkcfg">sdcard/mkcfg</a></li>
@@ -2820,7 +2830,7 @@ Build Drive Configuration</h3>
 </li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md150"></a>
+<h2><a class="anchor" id="autotoc_md151"></a>
 BUILD SCRIPTS</h2>
 <ul>
 <li><a href="sdcard/scripts">sdcard/scripts</a><ul>
@@ -2829,7 +2839,7 @@ BUILD SCRIPTS</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md151"></a>
+<h3><a class="anchor" id="autotoc_md152"></a>
 My &lt;em&gt;HP85&lt;/em&gt; bus trace files</h3>
 <ul>
 <li><a href="sdcard/traces">sdcard/traces</a><ul>
@@ -2846,7 +2856,7 @@ My &lt;em&gt;HP85&lt;/em&gt; bus trace files</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md152"></a>
+<h3><a class="anchor" id="autotoc_md153"></a>
 My &lt;em&gt;HP85&lt;/em&gt; plot capture files</h3>
 <ul>
 <li>[plots](sdcard/plots]<ul>
@@ -2855,7 +2865,7 @@ My &lt;em&gt;HP85&lt;/em&gt; plot capture files</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md153"></a>
+<h3><a class="anchor" id="autotoc_md154"></a>
 ASCII Basic files - in text format for easy editing</h3>
 <ul>
 <li><a href="sdcard/ASCII-files">ASCII-files</a><ul>
@@ -2882,7 +2892,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md154"></a>
+<h3><a class="anchor" id="autotoc_md155"></a>
 &lt;em&gt;LIF&lt;/em&gt; images with a single program in them</h3>
 <ul>
 <li><a href="sdcard/LIF-files">LIF-files</a><ul>
@@ -2914,7 +2924,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md155"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 &lt;em&gt;GETSAV&lt;/em&gt; documentation</h3>
 <ul>
 <li><a href="sdcard/notes">notes</a><ul>
@@ -2932,7 +2942,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat May 23 2020 21:44:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat May 30 2020 20:17:18 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

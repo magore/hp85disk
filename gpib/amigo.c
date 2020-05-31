@@ -293,16 +293,13 @@ int amigo_send_logical_address()
 #endif
     status = EOI_FLAG;
     len = gpib_write_str(AMIGOs->logical_address,4,&status);
-    if(status & ERROR_MASK)
-        AMIGOs->Errors |= ERR_GPIB;
-    if( len != 4)
+
+    if(status & ERROR_MASK || len != 4)
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
         if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
-        gpib_enable_PPR(AMIGOp->HEADER.PPR);
-        return(status & ERROR_MASK);
     }
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(status & ERROR_MASK);
@@ -328,19 +325,18 @@ int amigo_send_status()
 #endif
     status = EOI_FLAG;
     len = gpib_write_str(AMIGOs->status,4,&status);
-    if(status & ERROR_MASK)
-        AMIGOs->Errors |= ERR_GPIB;
-    if( len != 4)
+    if(status & ERROR_MASK || len != 4)
     {
         AMIGOs->Errors |= ERR_GPIB;
         AMIGOs->dsj = 1;
         if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
-        gpib_enable_PPR(AMIGOp->HEADER.PPR);
-        return(status & ERROR_MASK);
     }
-    AMIGOs->Errors = 0;
-    AMIGOs->dsj = 0;
+    else
+    {
+        AMIGOs->Errors = 0;
+        AMIGOs->dsj = 0;
+    }
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
     return(status & ERROR_MASK);
 }
@@ -483,16 +479,16 @@ int amigo_verify(uint16_t sectors)
             gpib_timer_elapsed_begin();
 #endif
 
+        // dbf_open_read sets error conditions like ERROR_READ, etc
         len = dbf_open_read(AMIGOp->HEADER.NAME, pos, gpib_iobuff, AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
 
 #if SDEBUG
         if(debuglevel & GPIB_DISK_IO_TIMING)
             gpib_timer_elapsed_end("disk READ ");
 #endif
-        if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+        if(AMIGOs->Errors || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR )
         {
             AMIGOs->dsj = 1;
-            AMIGOs->Errors |= ERR_READ;
             stat = 1;
             break;
         }
@@ -542,7 +538,7 @@ int amigo_format(uint8_t db)
         len = dbf_open_write(AMIGOp->HEADER.NAME,
             pos, gpib_iobuff,AMIGOp->GEOMETRY.BYTES_PER_SECTOR, &AMIGOs->Errors);
 
-        if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+        if(AMIGOs->Errors || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
         {
             AMIGOs->Errors |= ERR_WRITE;
             AMIGOs->dsj = 1;
@@ -602,9 +598,13 @@ int amigo_buffered_read()
     if(debuglevel & GPIB_DISK_IO_TIMING)
         gpib_timer_elapsed_end("disk READ ");
 #endif
-    if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+    if(AMIGOs->Errors)
     {
+        // Any AMIGOs->Errors errors were set in the dbf_pen_read() call
         AMIGOs->dsj = 1;
+        if(debuglevel & GPIB_ERR)
+            printf("[AMIGO GPIB disk read error]\n");
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(0);
     }
 
@@ -624,10 +624,8 @@ int amigo_buffered_read()
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
-    	if ( len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
-			AMIGOs->Errors |= ERR_READ;
         if(debuglevel & GPIB_ERR)
-            printf("[AMIGO GPIB write error]\n");
+            printf("[AMIGO GPIB bus write error]\n");
         gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(status & ERROR_MASK);
     }
@@ -674,10 +672,10 @@ int amigo_buffered_read_command()
         gpib_timer_elapsed_end("disk READ ");
 #endif
 
-    if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+    if(AMIGOs->Errors || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOs->dsj = 1;
-		AMIGOs->Errors |= ERR_READ;
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(0);
     }
 
@@ -718,18 +716,16 @@ int amigo_buffered_read_execute()
         gpib_timer_elapsed_end("GPIB write");
 #endif
 
-    if(status & ERROR_MASK || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR )
+    if(status & ERROR_MASK || len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
         if(debuglevel & GPIB_ERR)
             printf("[AMIGO GPIB write error]\n");
-        gpib_enable_PPR(AMIGOp->HEADER.PPR);
-        return(status & ERROR_MASK);
     }
 
     gpib_enable_PPR(AMIGOp->HEADER.PPR);
-    return(0);
+    return(status);
 }
 
 
@@ -785,11 +781,15 @@ int amigo_buffered_write()
         gpib_timer_elapsed_end("disk WRITE");
 #endif
 
-    if(len != AMIGOp->GEOMETRY.BYTES_PER_SECTOR)
+    if(AMIGOs->Errors)
     {
         AMIGOs->dsj = 1;
+        if(debuglevel & GPIB_ERR)
+            printf("[AMIGO Write disk write error]\n");
+        gpib_enable_PPR(AMIGOp->HEADER.PPR);
         return(0);
     }
+
     if( amigo_increment("Buffered Write") )       //overflow
     {
         AMIGOs->dsj = 1;
@@ -819,9 +819,7 @@ int amigo_cmd_dsj()
 
     status = EOI_FLAG;
     len = gpib_write_str(tmp, sizeof(tmp), &status);
-    if(status & ERROR_MASK)
-        AMIGOs->Errors |= ERR_GPIB;
-    if(len != sizeof(tmp))
+    if(status & ERROR_MASK || len != sizeof(tmp) )
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
@@ -861,9 +859,7 @@ int amigo_cmd_wakeup()
 #endif
     tmp[0] = AMIGOs->dsj;
     len = gpib_write_str(tmp, 1, &status);
-    if(status & ERROR_MASK)
-        AMIGOs->Errors |= ERR_GPIB;
-    if( len != 1)
+    if(status & ERROR_MASK || len != 1)
     {
         AMIGOs->dsj = 1;
         AMIGOs->Errors |= ERR_GPIB;
