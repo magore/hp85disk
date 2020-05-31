@@ -227,6 +227,20 @@ ___
     * \<INTERRUPT>
   * After you type **Enter** the command processor will execute the command and return to disk emulation automatically
 
+### Summary Getting files into and out of the emulator
+  * The emulator uses a standard FAT32 formatted SD card accessable by standard Windows/Mac/Linux desktops.
+    * This means you can removed the SD card and attach it to your desttop PC with a card reader
+      * **ALWAYS POWER OFF the EMULATOR when inserting or removing the SD card**
+  * Emulator disk images are single FAT32 files that are internally fomatted as LIF images - the format used by the HP85
+  * This design allows you to copy files to/from the SD Card with your desktop PC
+  * The hp85disk project includes tools for your desktop PC that can add/extract files from LIF disk images
+    * These file and LIF image tools are also built into the emulator firmware - see references
+      * [File manipulation commands built into the emulator](README.md#sd-card-file-manipulation-commands)
+      * [LIF tools refrence](README.md#lif-tools-are-built-into-emulator-firmware)
+      * [LIF - Importing TEXT files into LIF images](README.md#importing-ascii-and-plain-text-as-hp85-basic-programs)
+      * [LIF - Exporting TEXT files from LIF images](README.md#exporting-hp85-basic-programs-to-ascii-plain-text)
+      * [LIF - command](README.md#for-lif-help-type-lif-help)
+    
 ___ 
 
 
