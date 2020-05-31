@@ -157,7 +157,7 @@ ___
 
 ## Initial Setup of HP85 disk V2 PCB by Jay Hamlin
 ### Setup checklist
-  * **You must an HP85 82937A GPIB card installed[See document](Documents/82937AHP-IBInterface-InstallationAndTheoryOfOperationManual-82937-90007-56pages-Oct80)
+  * **You must an HP85 82937A GPIB card installed** [See document](Documents/82937AHP-IBInterface-InstallationAndTheoryOfOperationManual-82937-90007-56pages-Oct80)
     * **You must also have the required HP 82937A option roms installed**
       * **Mass Storage ROM** [Mass Storage ROM Manual](Documents/HP85-MassStorage.pdf)
       * **NOTE** I use the **PRM-85** with the HP85A super ROM - in my unit as it has all of the option ROMs included
@@ -200,7 +200,9 @@ ___
     * Read section **Command interface notes**
   * See section **hp85disk troubleshooting with serial terminal and DEBUG option** to verify your HP85 is communicating with your emulator
   * With the serial terminal connected type **help** you should see a help menu
-    * To make sure there are files on the SD Card type **fatfs ls* [example result](fatfs-ls.txt) for windows like director listing or **ls** for a Linux like directory listing
+    * To make sure there are files on the SD Card type one of these commands
+      * **fatfs ls** for windows like director listing [example result](fatfs-ls.txt)  
+      * **ls** for a Linux like directory listing [example result](trace/ls.txt)
   * Enter the serail terminal command **cat hpdisk.cfg** to see if you can read the main configuration file
   * Turn on debugging with the **DEBUG =** command
   * References
