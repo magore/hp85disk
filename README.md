@@ -777,11 +777,7 @@ ___
 NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
   * **cd hp85disk**
   * **./term 115200 /dev/ttyS3**
-  * The term script starts a program called **minicom**
-    * To Exit the minicom terminal emulator
-      * **Ctrl a**   (hold Ctrl down and press a key and release both keys)
-      * **x**        (press the x key and release)
-      * Answer **Yes** to leave Minicom
+  * The **./term** script starts a program called **minicom** and uses a profile it creates
 
 ___ 
 
