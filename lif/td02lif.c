@@ -1668,7 +1668,7 @@ int td02lif(int argc, char *argv[])
     if(!ptr)
         return(0);
 
-    if(argc <= 1)
+    if(argc <= 1 || MATCHI(argv[1],"help") )
     {
         td0_help(1);
         return(1);

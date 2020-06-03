@@ -1239,17 +1239,18 @@ ___
 ### For lif help type *lif help*
  * **lif help**
 <pre>
-    lif add lifimage lifname from_ascii_file
-    lif addbin lifimage lifname from_lif_file
-    lif create lifimage label directory_sectors sectors
-    lif createdisk lifimage label model
-    lif del lifimage name
-    lif dir lifimage
-    lif extract lifimage lifname to_ascii_file
-    lif extractbin lifimage lifname to_lif_file
-        extracts a file into a single file LIF image
-    lif rename lifimage oldlifname newlifname
-    Use -d after first keyword 'lif' above for LIF filesystem debugging
+	lif help
+	lif add lifimage lifname from_ascii_file
+	lif addbin lifimage lifname from_lif_file
+	lif create lifimage label directory_sectors sectors
+	lif createdisk lifimage label model
+	lif del lifimage name
+	lif dir lifimage
+	lif extract lifimage lifname to_ascii_file
+	lif extractbin lifimage lifname to_lif_file
+		extracts a file into a sigle file LIF image
+	lif rename lifimage oldlifname newlifname
+	Use -d  after 'lif' keyword to enable LIF filesystem debugging
 </pre>
 
 ### For posix help type *posix help*
@@ -1292,12 +1293,13 @@ ___
 ### For fatfs help type *fatfs help*
  * **fatfs help**
 <pre>
-    Note: fatfs tests MUST start with "fatfs" keyword
-    fatfs help
-    fatfs mmc_test
-    fatfs mmc_init
-    fatfs ls dir
-    fatfs status file
+	fatfs help
+	Note: fatfs tests MUST start with "fatfs" keyword
+	fatfs help
+	fatfs mmc_test
+	fatfs mmc_init
+	fatfs ls dir
+	fatfs status file
 </pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
