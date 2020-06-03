@@ -1382,7 +1382,7 @@ If you have a firmware update problems - if you get a failure during updating</h
 <h3><a class="anchor" id="autotoc_md99"></a>
 External programmers</h3>
 <ul>
-<li><b>avrisp</b> is one of the lowest cost <em>In System programer</em> <b>ISP</b> avaliable<ul>
+<li><b>avrisp</b> is a very low cost arduino based <em>In System programer</em> <b>ISP</b><ul>
 <li>Also called <b>Arduino as ISP</b></li>
 <li>This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself<ul>
 <li>See: <a href="https://www.arduino.cc/en/tutorial/arduinoISP">https://www.arduino.cc/en/tutorial/arduinoISP</a><ul>
@@ -1403,6 +1403,9 @@ External programmers</h3>
        GND          6
 Note 5V connection - DO NOT CONNECT 
      Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
+  * **avrispv2** is another very low cost *In System programer* **ISP** about $10
+    * Low cost Pololu USB AVR Programmer V2.1 
+    * <a href="https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html">https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html</a>
 </pre></li>
 </ul>
 </li>
@@ -1423,8 +1426,10 @@ Update Firmware with external programmer</h2>
 <li><b>make clean</b></li>
 <li><b>make</b></li>
 <li><b>make install</b></li>
-<li><b>make flash-isp-release</b><ul>
+<li><b>make flash-isp-release</b></li>
+<li>Examples with other programmers<ul>
 <li><b>make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</b></li>
+<li><b>make flash-isp-release AVRDUDE_ISP=avrispv2 HP85_PORT=/dev/ttyUSB0 ISP_PORT=/dev/ttyACM0</b></li>
 <li>OR</li>
 </ul>
 </li>
@@ -1438,8 +1443,8 @@ Flashing AND connecting to hp85disk emulator terminal just after firmware update
 <ul>
 <li><b>Note: You can add <em>term</em> after <em>ANY</em> make flash commands</b></li>
 <li>Examples:<ul>
-<li><b>make flash-isp-release term AVRDUDE_ISP=atmelice_isp HP85_PORT=/dev/ttyUSB0 ISP_PORT=usb</b></li>
-<li><b>make flash-release term AVRDUDE_ISP=arduino HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4</b></li>
+<li><b>make flash-release term</b></li>
+<li><b>make flash-isp-release term AVRDUDE_ISP=avrispv2 HP85_PORT=/dev/ttyUSB0 ISP_PORT=/dev/ttyACM0</b></li>
 </ul>
 </li>
 <li><b>ISP_PORT</b> must be set to the programmer port name</li>
@@ -1599,24 +1604,29 @@ make help documentation</h2>
 <ul>
 <li><b>make help</b><ul>
 <li>List the common commands to compile/install/flash the code</li>
-<li>See also <b>make config</b> section below <pre></pre></li>
-</ul>
-</li>
-</ul>
-<pre>Building Commands
+<li>See also <b>make config</b> section below <pre>
+Building Commands
     make install           - builds and installs all command line utilities
     make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
     make release           - builds all code and copies files to the release folder
     make clean             - cleans all generated files
-    make                   - builds all code</pre><pre>Listing current cunfiguration settings
+    make                   - builds all code</pre></li>
+</ul>
+</li>
+</ul>
+<pre>Listing current cunfiguration settings
     make config</pre><pre>Overriding any configuration settings
     You can add configuration values at the end of your make commands like this
-    make flash-isp term     ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
-    make flash term         HP85_PORT=/dev/ttyUSB0
-    make flash-release term HP85_PORT=/dev/ttyUSB0</pre><pre>Note: Adding "term" after a make command will start a terminal to the hp85disk when finished</pre><pre>Programming using an 6 wire ISP - installs optiboot
+    make flash-isp term         ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp   HP85_PORT=/dev/ttyUSB0
+    make flash-isp-release term ISP_PORT=/dev/ttyACM0 AVRDUDE_ISP=avrispv2 HP85_PORT=/dev/ttyUSB0
+    make flash term             HP85_PORT=/dev/ttyUSB0
+    make flash-release term     HP85_PORT=/dev/ttyUSB0</pre><pre>Note: Adding "term" after a make command will start a terminal to the hp85disk when finished</pre><pre>Programming using an 6 wire ISP - installs optiboot
     make install_optiboot  - install optiboot boot loaded using an ISP
     make flash-isp         - build and flash the code using an ISP
-    make flash-isp-release - flash the release code using an ISP</pre><pre>Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
+    make flash-isp-release - flash the release code using an ISP</pre><pre>ISP Programmer suggestions
+    arduino                - This ISP is built into all recent hp85disk firmware using optiboot
+    avrisp                 - Low cost arduino as ISP - see README.md
+    avrispv2               - Low cost USB AVR ISP - such as Pololu USB AVR Programmer V2.1 - see README.md</pre><pre>Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
     make verify-isp        - verify code using an ISP
     make verify-isp-release- verify release code using an ISP</pre><pre>Programming using the built in optiboot programmer
     make flash             - build and flash the code using built in optiboot programmer
@@ -1628,7 +1638,8 @@ make help documentation</h2>
        Makes booting and flashing process slightly faster
     make flash-isp-noboot         - build and flash the code using an ISP
     make flash-isp-noboot-release - flash the release code using an ISP</pre><pre> GCC Verbose Options - show more detail while compiling
-    VERBOSE                = 0</pre><pre></pre><h2><a class="anchor" id="autotoc_md105"></a>
+    VERBOSE                = 0
+</pre><h2><a class="anchor" id="autotoc_md105"></a>
 Example building with Makefile overrides</h2>
 <ul>
 <li><b>make flash AVRDUDE_ISP=arduino ISP_PORT=/dev/ttyS3</b></li>
@@ -3054,7 +3065,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 2 2020 13:58:45 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 2 2020 20:19:58 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

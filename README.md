@@ -818,7 +818,7 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
       * You have a short Window after releasing RESET to Press Enter
 
 ### External programmers
-  * **avrisp** is one of the lowest cost *In System programer* **ISP** avaliable 
+  * **avrisp** is a very low cost arduino based *In System programer* **ISP** 
     * Also called **Arduino as ISP** 
     * This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
       * See: https://www.arduino.cc/en/tutorial/arduinoISP
@@ -836,6 +836,9 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
        GND          6
 Note 5V connection - DO NOT CONNECT 
      Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
+  * **avrispv2** is another very low cost *In System programer* **ISP** about $10
+    * Low cost Pololu USB AVR Programmer V2.1 
+    * https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html
 </pre>
 
 ### Update Firmware with external programmer
@@ -848,7 +851,9 @@ Note 5V connection - DO NOT CONNECT
   * **make**
   * **make install**
   * **make flash-isp-release**
-    * **make flash-isp-release AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyS3 ISP_PORT=/dev/ttyS4**
+  * Examples with other programmers
+    * **make flash-isp-release AVRDUDE_ISP=avrisp 	HP85_PORT=/dev/ttyS3   ISP_PORT=/dev/ttyS4**
+    * **make flash-isp-release AVRDUDE_ISP=avrispv2	HP85_PORT=/dev/ttyUSB0 ISP_PORT=/dev/ttyACM0**
     * OR
   * **make flash-isp** 
     * This will use **avrdude** and your ISP (In System Programmer) to flash the firmware
@@ -856,8 +861,8 @@ Note 5V connection - DO NOT CONNECT
 ### Flashing AND connecting to hp85disk emulator terminal just after firmware update 
   * **Note: You can add *term* after *ANY* make flash commands**
   * Examples:
-    * **make flash-isp-release term AVRDUDE_ISP=atmelice_isp HP85_PORT=/dev/ttyUSB0 ISP_PORT=usb**
-    * **make flash-release term     AVRDUDE_ISP=arduino      HP85_PORT=/dev/ttyS3   ISP_PORT=/dev/ttyS4**
+    * **make flash-release     term**
+    * **make flash-isp-release term AVRDUDE_ISP=avrispv2     HP85_PORT=/dev/ttyUSB0 ISP_PORT=/dev/ttyACM0**
   * **ISP_PORT** must be set to the programmer port name
   * **HP85_PORT** must be set to the hp85disk emulator serial port name
 
@@ -971,8 +976,6 @@ ___
     * List the common commands to compile/install/flash the code
     * See also **make config** section below
 <pre>
-
-
 Building Commands
     make install           - builds and installs all command line utilities
     make sdcard            - builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
@@ -985,9 +988,10 @@ Listing current cunfiguration settings
 
 Overriding any configuration settings
     You can add configuration values at the end of your make commands like this
-    make flash-isp term     ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0
-    make flash term         HP85_PORT=/dev/ttyUSB0
-    make flash-release term HP85_PORT=/dev/ttyUSB0
+    make flash-isp term         ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp   HP85_PORT=/dev/ttyUSB0
+    make flash-isp-release term ISP_PORT=/dev/ttyACM0 AVRDUDE_ISP=avrispv2 HP85_PORT=/dev/ttyUSB0
+    make flash term             HP85_PORT=/dev/ttyUSB0
+    make flash-release term     HP85_PORT=/dev/ttyUSB0
 
 Note: Adding "term" after a make command will start a terminal to the hp85disk when finished
 
@@ -995,6 +999,11 @@ Programming using an 6 wire ISP - installs optiboot
     make install_optiboot  - install optiboot boot loaded using an ISP
     make flash-isp         - build and flash the code using an ISP
     make flash-isp-release - flash the release code using an ISP
+
+ISP Programmer suggestions
+    arduino                - This ISP is built into all recent hp85disk firmware using optiboot
+    avrisp                 - Low cost arduino as ISP - see README.md
+    avrispv2               - Low cost USB AVR ISP - such as Pololu USB AVR Programmer V2.1 - see README.md
 
 Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file
     make verify-isp        - verify code using an ISP
@@ -1015,7 +1024,6 @@ Programming using an 6 wire ISP - WITHOUT installing optiboot
 
  GCC Verbose Options - show more detail while compiling
     VERBOSE                = 0
-
 </pre>
 
 

@@ -1298,7 +1298,7 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md99}{}\doxysubsubsection{External programmers}\label{md_README_autotoc_md99}
 
 \begin{DoxyItemize}
-\item {\bfseries{avrisp}} is one of the lowest cost {\itshape In System programer} {\bfseries{I\+SP}} avaliable
+\item {\bfseries{avrisp}} is a very low cost arduino based {\itshape In System programer} {\bfseries{I\+SP}}
 \begin{DoxyItemize}
 \item Also called {\bfseries{Arduino as I\+SP}}
 \item This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
@@ -1321,6 +1321,9 @@ Note\+: Change into the hp85disk folder created by the install.\+sh script
        GND          6
 Note 5V connection -\/ DO NOT CONNECT 
      Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
+  * **avrispv2** is another very low cost *In System programer* **ISP** about \$10
+    * Low cost Pololu USB AVR Programmer V2.1 
+    * \href{https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html}{\texttt{ https://www.robotshop.com/ca/en/pololu-\/usb-\/avr-\/programmer-\/v21.html}}
 \end{DoxyPre}
 
 \end{DoxyItemize}
@@ -1342,8 +1345,10 @@ Note 5V connection -\/ DO NOT CONNECT
 \item {\bfseries{make}}
 \item {\bfseries{make install}}
 \item {\bfseries{make flash-\/isp-\/release}}
+\item Examples with other programmers
 \begin{DoxyItemize}
 \item {\bfseries{make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrisp H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S4}}
+\item {\bfseries{make flash-\/isp-\/release A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrispv2 H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+A\+C\+M0}}
 \item OR
 \end{DoxyItemize}
 \item {\bfseries{make flash-\/isp}}
@@ -1356,8 +1361,8 @@ Note 5V connection -\/ DO NOT CONNECT
 \item {\bfseries{Note\+: You can add {\itshape term} after {\itshape A\+NY} make flash commands}}
 \item Examples\+:
 \begin{DoxyItemize}
-\item {\bfseries{make flash-\/isp-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=atmelice\+\_\+isp H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0 I\+S\+P\+\_\+\+P\+O\+RT=usb}}
-\item {\bfseries{make flash-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=arduino H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+S3 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+S4}}
+\item {\bfseries{make flash-\/release term}}
+\item {\bfseries{make flash-\/isp-\/release term A\+V\+R\+D\+U\+D\+E\+\_\+\+I\+SP=avrispv2 H\+P85\+\_\+\+P\+O\+RT=/dev/tty\+U\+S\+B0 I\+S\+P\+\_\+\+P\+O\+RT=/dev/tty\+A\+C\+M0}}
 \end{DoxyItemize}
 \item {\bfseries{I\+S\+P\+\_\+\+P\+O\+RT}} must be set to the programmer port name
 \item {\bfseries{H\+P85\+\_\+\+P\+O\+RT}} must be set to the hp85disk emulator serial port name
@@ -1544,19 +1549,16 @@ Note 5V connection -\/ DO NOT CONNECT
 \begin{DoxyItemize}
 \item List the common commands to compile/install/flash the code
 \item See also {\bfseries{make config}} section below 
-\begin{DoxyPre}\end{DoxyPre}
-
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-
-\begin{DoxyPre}Building Commands
+\begin{DoxyPre}
+Building Commands
     make install           -\/ builds and installs all command line utilities
     make sdcard            -\/ builds all sdcard images and creates default hpdisk.cfg and amigo.cfg files
     make release           -\/ builds all code and copies files to the release folder
     make clean             -\/ cleans all generated files
     make                   -\/ builds all code\end{DoxyPre}
 
+\end{DoxyItemize}
+\end{DoxyItemize}
 
 
 \begin{DoxyPre}Listing current cunfiguration settings
@@ -1566,9 +1568,10 @@ Note 5V connection -\/ DO NOT CONNECT
 
 \begin{DoxyPre}Overriding any configuration settings
     You can add configuration values at the end of your make commands like this
-    make flash-\/isp term     ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp HP85\_PORT=/dev/ttyUSB0
-    make flash term         HP85\_PORT=/dev/ttyUSB0
-    make flash-\/release term HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
+    make flash-\/isp term         ISP\_PORT=/dev/ttyUSB0 AVRDUDE\_ISP=avrisp   HP85\_PORT=/dev/ttyUSB0
+    make flash-\/isp-\/release term ISP\_PORT=/dev/ttyACM0 AVRDUDE\_ISP=avrispv2 HP85\_PORT=/dev/ttyUSB0
+    make flash term             HP85\_PORT=/dev/ttyUSB0
+    make flash-\/release term     HP85\_PORT=/dev/ttyUSB0\end{DoxyPre}
 
 
 
@@ -1580,6 +1583,13 @@ Note 5V connection -\/ DO NOT CONNECT
     make install\_optiboot  -\/ install optiboot boot loaded using an ISP
     make flash-\/isp         -\/ build and flash the code using an ISP
     make flash-\/isp-\/release -\/ flash the release code using an ISP\end{DoxyPre}
+
+
+
+\begin{DoxyPre}ISP Programmer suggestions
+    arduino                -\/ This ISP is built into all recent hp85disk firmware using optiboot
+    avrisp                 -\/ Low cost arduino as ISP -\/ see README.md
+    avrispv2               -\/ Low cost USB AVR ISP -\/ such as Pololu USB AVR Programmer V2.1 -\/ see README.md\end{DoxyPre}
 
 
 
@@ -1607,11 +1617,8 @@ Note 5V connection -\/ DO NOT CONNECT
 
 
 \begin{DoxyPre} GCC Verbose Options -\/ show more detail while compiling
-    VERBOSE                = 0\end{DoxyPre}
-
-
-
-\begin{DoxyPre}\end{DoxyPre}
+    VERBOSE                = 0
+\end{DoxyPre}
 \hypertarget{md_README_autotoc_md105}{}\doxysubsection{Example building with Makefile overrides}\label{md_README_autotoc_md105}
 
 \begin{DoxyItemize}

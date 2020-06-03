@@ -46,8 +46,7 @@ export BAUD ?= 115200
 
 # AVRDUDE_ISP programmer default
 export AVRDUDE_ISP ?= atmelice_isp
-# Note: *arduino* or *avrisp* are supported under Windows WSL Ubuntu *atmel_ice* is NOT
-
+# Note: tested values **arduino, avrisp, avrispv2** are supported under Windows WSL Ubuntu *atmel_ice* is NOT
 # export AVRDUDE_ISP ?= avrisp
 #   avrisp is a low cost arduino bases ISP that costs around $10
 # export AVRDUDE_ISP ?= arduino
@@ -492,9 +491,10 @@ help:
 	@echo
 	@echo 'Overriding any configuration settings'
 	@echo "    You can add configuration values at the end of your make commands like this"
-	@echo "    make flash-isp term     ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp HP85_PORT=/dev/ttyUSB0"
-	@echo "    make flash term         HP85_PORT=/dev/ttyUSB0"
-	@echo "    make flash-release term HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash-isp term         ISP_PORT=/dev/ttyUSB0 AVRDUDE_ISP=avrisp   HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash-isp-release term ISP_PORT=/dev/ttyACM0 AVRDUDE_ISP=avrispv2 HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash term             HP85_PORT=/dev/ttyUSB0"
+	@echo "    make flash-release term     HP85_PORT=/dev/ttyUSB0"
 	@echo
 	@echo 'Note: Adding "term" after a make command will start a terminal to the hp85disk when finished'
 	@echo 
@@ -502,6 +502,11 @@ help:
 	@echo "    make install_optiboot  - install optiboot boot loaded using an ISP"
 	@echo "    make flash-isp         - build and flash the code using an ISP"
 	@echo "    make flash-isp-release - flash the release code using an ISP"
+	@echo
+	@echo "ISP Programmer suggestions"
+	@echo "    arduino                - This ISP is built into all recent hp85disk firmware using optiboot"
+	@echo "    avrisp                 - Low cost arduino as ISP - see README.md"
+	@echo "    avrispv2               - Low cost USB AVR ISP - such as Pololu USB AVR Programmer V2.1 - see README.md"
 	@echo
 	@echo 'Verify code using an 6 wire ISP - Just does a code verify against the gpib.hex file'
 	@echo "    make verify-isp        - verify code using an ISP"
