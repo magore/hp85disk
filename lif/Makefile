@@ -50,7 +50,7 @@ all:	$(BIN) $(LIB)
 
 install:	all
 	install -s lif /usr/local/bin/lif
-	install -s td02lif /usr/local/bin/lif
+	install -s td02lif /usr/local/bin/td02lif
 
 td02lif:    ${SRC}
 	gcc ${CFLAGS} -o td02lif ${SRC} ${LIBS}

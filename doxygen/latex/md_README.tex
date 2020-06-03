@@ -2172,10 +2172,98 @@ Building Commands
 \end{DoxyItemize}
 \item Turn on your H\+P85 -\/ you should see something like this \href{trace/poweron-trace.txt}{\texttt{ H\+P85 Power On G\+P\+IB B\+US Debug Trace}}
 \item Type {\bfseries{C\+AT}} followed by R\+E\+T\+U\+RN on your H\+P85 you should see something like this \href{trace/cat-trace.txt}{\texttt{ C\+AT G\+P\+IB B\+US Debug Trace}}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md126}{}\doxysubsection{Desktop Utility Commands}\label{md_README_autotoc_md126}
+
+\begin{DoxyItemize}
+\item There are three standalone desktop utilities
+\item {\bfseries{lif}} is the same as the {\bfseries{lif}} command in the hp85disk firmware
+\item {\bfseries{td2lif}} is the teledisk conversion utility
+\item {\bfseries{mkcfg}} displays a disk configuration in hpdisk.\+cfg format
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md127}{}\doxysubsubsection{mkcf -\/ display a disk configuration section in hpdisk.\+cfg format}\label{md_README_autotoc_md127}
+
+\begin{DoxyItemize}
+\item Display disk configuration that you can use in the hpdisk.\+cfg file 
+\begin{DoxyPre}
+    mkcfg [-\/list]| [-\/m model [-\/b]|[-\/d]] [-\/a address]
+       -\/list lists all of the drives in the hpdir.ini file
+       -\/a hpdir address 0..7
+       -\/m model only, list hphpdir.cfg format hpdir configuration
+       -\/s short hphpdir.cfg format
+       -\/b only display block count, you can can use this with -\/m
+       -\/d only display computed directory block count, you can use this with -\/m
+       -\/f NAME specifies the LIF image name for this drive
+\end{DoxyPre}
+
+\item Example\+: Say you wanted to add a 9121 disk with address 0 and parallel poll bit 0
+\item Then run\+: {\bfseries{mkcfg -\/s -\/m 9121 -\/f /amigo\$\+D.\+lif -\/a 0 -\/p 0}}
+\item Copy the result into your hpdisk.\+cfg file -\/ just make sure you have no conflicts 
+\begin{DoxyPre}
+    \# HP9121 dual 270K AMIGO floppy disc
+    \# HP85 BASIC ADDRESS :D700
+    AMIGO 9121
+        HEADER
+                \# GPIB Address
+            ADDRESS                 = 0
+                \# Parallel Poll Reponse Bit
+            PPR                     = 0
+                \# LIF image file name
+            FILE                    = /amigo.lif
+        END
+    END
+\end{DoxyPre}
+
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md128}{}\doxysubsubsection{lif utilities}\label{md_README_autotoc_md128}
+
+\begin{DoxyItemize}
+\item {\bfseries{lif}} is the same as the {\bfseries{lif}} command in the hp85disk firmware
+\item {\bfseries{lif help}} 
+\begin{DoxyPre}
+    lif help
+    lif add lifimage lifname from\_ascii\_file
+    lif addbin lifimage lifname from\_lif\_file
+    lif create lifimage label directory\_sectors sectors
+    lif createdisk lifimage label model
+    lif del lifimage name
+    lif dir lifimage
+    lif extract lifimage lifname to\_ascii\_file
+    lif extractbin lifimage lifname to\_lif\_file
+        extracts a file into a sigle file LIF image
+    lif rename lifimage oldlifname newlifname
+    lif td02lif [options] image.td0 image.lif
+    Use -\/d  after 'lif' keyword to enable LIF filesystem debugging\end{DoxyPre}
+
+
+
+\begin{DoxyPre}    td02lif help
+    Usage: td02lif [options] file.td0 file.lif
+           td02lif help
+    tdo2lif options:
+    Notes: for any option that is NOT specified it is automatically detected
+         -\/s256|512 | -\/s 256|512 -\/ force sector size
+         -\/h1|2 | -\/h 1|2 -\/ force heads/surfaces
+         -\/tNN | -\/t NN  -\/ force tracks
+\end{DoxyPre}
+
+\item Note\+: the td02lif commands can be run inside the lif command or standalone
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md129}{}\doxysubsubsection{td02lif  -\/ Teledisk to L\+I\+F translator}\label{md_README_autotoc_md129}
+
+\begin{DoxyItemize}
+\item {\bfseries{td2lif}} is the teledisk conversion utility
+\item {\bfseries{td02lif help}} 
+\begin{DoxyPre}
+    td02lif help
+    Usage: td02lif [options] file.td0 file.lif
+           td02lif help
+    tdo2lif options:
+    Notes: for any option that is NOT specified it is automatically detected
+         -\/s256|512 | -\/s 256|512 -\/ force sector size
+         -\/h1|2 | -\/h 1|2 -\/ force heads/surfaces
+         -\/tNN | -\/t NN  -\/ force tracks
+\end{DoxyPre}
+
 \end{DoxyItemize}
 
-\DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md126}{}\doxysection{Abbreviations}\label{md_README_autotoc_md126}
+\+\_\+\+\_\+\+\_\+\hypertarget{md_README_autotoc_md130}{}\doxysection{Abbreviations}\label{md_README_autotoc_md130}
 Within this project I have attempted to provide detailed references to manuals, listed below. I have included short quotes and section and page\# reference to these works.
 \begin{DoxyItemize}
 \item {\bfseries{S\+S80}}
@@ -2186,7 +2274,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md127}{}\doxysubsection{Documentation References and related sources of information}\label{md_README_autotoc_md127}
+\hypertarget{md_README_autotoc_md131}{}\doxysubsection{Documentation References and related sources of information}\label{md_README_autotoc_md131}
 
 \begin{DoxyItemize}
 \item Web Resources
@@ -2201,7 +2289,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md128}{}\doxysubsection{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}\label{md_README_autotoc_md128}
+\hypertarget{md_README_autotoc_md132}{}\doxysubsection{Enhanced version of Tony Duell\textquotesingle{}s lif\+\_\+utils by Joachim}\label{md_README_autotoc_md132}
 
 \begin{DoxyItemize}
 \item \href{https://github.com/bug400/lifutils}{\texttt{ https\+://github.\+com/bug400/lifutils}}
@@ -2209,7 +2297,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md129}{}\doxysubsection{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}\label{md_README_autotoc_md129}
+\hypertarget{md_README_autotoc_md133}{}\doxysubsection{C\+S80 References\+: (\char`\"{}\+C\+S80\char`\"{} is the short form used in the project)}\label{md_README_autotoc_md133}
 
 \begin{DoxyItemize}
 \item \char`\"{}\+C\+S/80 Instruction Set Programming Manual\char`\"{}
@@ -2219,7 +2307,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md130}{}\doxysubsection{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{}) is the short form used in the project}\label{md_README_autotoc_md130}
+\hypertarget{md_README_autotoc_md134}{}\doxysubsection{Amigo References\+: (\char`\"{}\+A\char`\"{} or \char`\"{}\+Amigo\char`\"{}) is the short form used in the project}\label{md_README_autotoc_md134}
 
 \begin{DoxyItemize}
 \item \char`\"{}\+Appendix A of 9895\+A Flexible Disc Memory Service Manual\char`\"{}
@@ -2228,7 +2316,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md131}{}\doxysubsection{H\+P-\/\+IB}\label{md_README_autotoc_md131}
+\hypertarget{md_README_autotoc_md135}{}\doxysubsection{H\+P-\/\+IB}\label{md_README_autotoc_md135}
 
 \begin{DoxyItemize}
 \item (\char`\"{}\+H\+P-\/\+I\+B\char`\"{} is the short form used in the project)
@@ -2239,7 +2327,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md132}{}\doxysubsection{Tutorial Description of the Hewlett Packard Interface Bus}\label{md_README_autotoc_md132}
+\hypertarget{md_README_autotoc_md136}{}\doxysubsection{Tutorial Description of the Hewlett Packard Interface Bus}\label{md_README_autotoc_md136}
 
 \begin{DoxyItemize}
 \item (\char`\"{}\+H\+P-\/\+I\+B Tutorial\char`\"{} is the short form used in the project)
@@ -2251,7 +2339,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md133}{}\doxysubsection{G\+P\+I\+B / I\+E\+E\+E 488 Tutorial by Ian Poole}\label{md_README_autotoc_md133}
+\hypertarget{md_README_autotoc_md137}{}\doxysubsection{G\+P\+I\+B / I\+E\+E\+E 488 Tutorial by Ian Poole}\label{md_README_autotoc_md137}
 
 \begin{DoxyItemize}
 \item \href{http://www.radio-electronics.com/info/t_and_m/gpib/ieee488-basics-tutorial.php}{\texttt{ http\+://www.\+radio-\/electronics.\+com/info/t\+\_\+and\+\_\+m/gpib/ieee488-\/basics-\/tutorial.\+php}}
@@ -2259,7 +2347,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md134}{}\doxysubsection{H\+P 9133/9134 D/\+H/\+L References}\label{md_README_autotoc_md134}
+\hypertarget{md_README_autotoc_md138}{}\doxysubsection{H\+P 9133/9134 D/\+H/\+L References}\label{md_README_autotoc_md138}
 
 \begin{DoxyItemize}
 \item \char`\"{}\+H\+P 9133/9134 D/\+H/\+L Service Manual\char`\"{}
@@ -2269,7 +2357,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md135}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ File system Format}\label{md_README_autotoc_md135}
+\hypertarget{md_README_autotoc_md139}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ File system Format}\label{md_README_autotoc_md139}
 
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir/\#lif_filesystem}{\texttt{ http\+://www.\+hp9845.\+net/9845/projects/hpdir/\#lif\+\_\+filesystem}}
@@ -2277,7 +2365,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{md_README_autotoc_md136}{}\doxysubsection{Useful Utilities}\label{md_README_autotoc_md136}
+\hypertarget{md_README_autotoc_md140}{}\doxysubsection{Useful Utilities}\label{md_README_autotoc_md140}
 
 \begin{DoxyItemize}
 \item \href{http://www.hp9845.net/9845/projects/hpdir}{\texttt{ H\+P\+Dir HP Drive -\/ Disk Image Manipulation}}
@@ -2288,7 +2376,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item Copyright © 2010 A. Kückes
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md137}{}\doxysubsection{$<$em$>$\+G\+P\+I\+B$<$/em$>$ Connector pin-\/out by Anders Gustafsson in his hpdisk project}\label{md_README_autotoc_md137}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md141}{}\doxysubsection{$<$em$>$\+G\+P\+I\+B$<$/em$>$ Connector pin-\/out by Anders Gustafsson in his hpdisk project}\label{md_README_autotoc_md141}
 
 \begin{DoxyItemize}
 \item \href{http://www.dalton.ax/hpdisk/}{\texttt{ http\+://www.\+dalton.\+ax/hpdisk/}}
@@ -2312,7 +2400,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyPre}
 
 
-\+\_\+\+\_\+\+\_\+\hypertarget{md_README_autotoc_md138}{}\doxysubsection{Main project files for hp85disk Project}\label{md_README_autotoc_md138}
+\+\_\+\+\_\+\+\_\+\hypertarget{md_README_autotoc_md142}{}\doxysubsection{Main project files for hp85disk Project}\label{md_README_autotoc_md142}
 
 \begin{DoxyItemize}
 \item Project Main Home Directory
@@ -2367,11 +2455,11 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Project Copyrights
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md139}{}\doxysubsection{Compiled firmware release files}\label{md_README_autotoc_md139}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md143}{}\doxysubsection{Compiled firmware release files}\label{md_README_autotoc_md143}
 
 \begin{DoxyItemize}
 \item \mbox{[}release\mbox{]}(release)
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md140}{}\doxysubsection{Board design file for version 1 and 2 hardware information}\label{md_README_autotoc_md140}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md144}{}\doxysubsection{Board design file for version 1 and 2 hardware information}\label{md_README_autotoc_md144}
 
 \begin{DoxyItemize}
 \item \mbox{[}board\mbox{]}(board)
@@ -2388,7 +2476,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item {\bfseries{Jay Hamlin version 2 circuit board design using G\+P\+IB buffers}}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md141}{}\doxysubsection{Documents}\label{md_README_autotoc_md141}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md145}{}\doxysubsection{Documents}\label{md_README_autotoc_md145}
 
 \begin{DoxyItemize}
 \item \mbox{[}Documents\mbox{]}(Documents)
@@ -2396,11 +2484,11 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item Documents/\+R\+E\+A\+D\+ME.md
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md142}{}\doxysubsection{hp85disk software files}\label{md_README_autotoc_md142}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md146}{}\doxysubsection{hp85disk software files}\label{md_README_autotoc_md146}
 
 \begin{DoxyItemize}
 \item Most of the software in the project was written by me except where noted
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md143}{}\doxysubsection{Fat\+Fs}\label{md_README_autotoc_md143}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md147}{}\doxysubsection{Fat\+Fs}\label{md_README_autotoc_md147}
 
 \begin{DoxyItemize}
 \item \mbox{[}fatfs\mbox{]}(fatfs)
@@ -2462,7 +2550,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Fat\+FS user test functions
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md144}{}\doxysubsection{$<$strong$>$\+G\+P\+I\+B$<$/strong$>$ related}\label{md_README_autotoc_md144}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md148}{}\doxysubsection{$<$strong$>$\+G\+P\+I\+B$<$/strong$>$ related}\label{md_README_autotoc_md148}
 
 \begin{DoxyItemize}
 \item \href{gpib/gpib}{\texttt{ gpib}}
@@ -2553,7 +2641,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item My notes on {\bfseries{G\+P\+IB}} bus states as it relates to the project
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md145}{}\doxysubsection{Hardware C\+P\+U specific}\label{md_README_autotoc_md145}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md149}{}\doxysubsection{Hardware C\+P\+U specific}\label{md_README_autotoc_md149}
 
 \begin{DoxyItemize}
 \item \mbox{[}hardware\mbox{]}(hardware)
@@ -2624,7 +2712,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequency settings
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md146}{}\doxysubsection{Common libraries}\label{md_README_autotoc_md146}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md150}{}\doxysubsection{Common libraries}\label{md_README_autotoc_md150}
 
 \begin{DoxyItemize}
 \item \mbox{[}lib\mbox{]}(lib)
@@ -2677,7 +2765,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Time and timer test code
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md147}{}\doxysubsection{Unused code}\label{md_README_autotoc_md147}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md151}{}\doxysubsection{Unused code}\label{md_README_autotoc_md151}
 
 \begin{DoxyItemize}
 \item \mbox{[}unused\mbox{]}(unused)
@@ -2703,7 +2791,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item I2C code L\+U\+FA Library Copyright (hardware/C) Dean Camera, 2011.
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md148}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ files}\label{md_README_autotoc_md148}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md152}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ files}\label{md_README_autotoc_md152}
 
 \begin{DoxyItemize}
 \item \mbox{[}lif\mbox{]}(lif)
@@ -2766,7 +2854,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md149}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ teledisk files}\label{md_README_autotoc_md149}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md153}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ teledisk files}\label{md_README_autotoc_md153}
 
 \begin{DoxyItemize}
 \item \href{lif/teledisk}{\texttt{ lif/teledisk}}
@@ -2810,7 +2898,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md150}{}\doxysubsection{Posix wrapper -\/ provides Linux file I\+O functions for Fatfs}\label{md_README_autotoc_md150}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md154}{}\doxysubsection{Posix wrapper -\/ provides Linux file I\+O functions for Fatfs}\label{md_README_autotoc_md154}
 
 \begin{DoxyItemize}
 \item \mbox{[}posix\mbox{]}(posix)
@@ -2832,7 +2920,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item P\+O\+S\+IX user tests
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md151}{}\doxysubsection{Printf display functions}\label{md_README_autotoc_md151}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md155}{}\doxysubsection{Printf display functions}\label{md_README_autotoc_md155}
 
 \begin{DoxyItemize}
 \item \mbox{[}printf\mbox{]}(printf)
@@ -2863,7 +2951,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md152}{}\doxysubsection{S\+D Card files for project}\label{md_README_autotoc_md152}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md156}{}\doxysubsection{S\+D Card files for project}\label{md_README_autotoc_md156}
 
 \begin{DoxyItemize}
 \item \mbox{[}sdcard\mbox{]}(sdcard)
@@ -2895,7 +2983,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md153}{}\doxysubsubsection{$<$em$>$\+A\+M\+I\+G\+O$<$/em$>$ disk images}\label{md_README_autotoc_md153}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md157}{}\doxysubsubsection{$<$em$>$\+A\+M\+I\+G\+O$<$/em$>$ disk images}\label{md_README_autotoc_md157}
 
 \begin{DoxyItemize}
 \item \href{sdcard/amigo0.lif}{\texttt{ amigo1.\+lif}}
@@ -2918,7 +3006,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item {\bfseries{A\+M\+I\+GO}} disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md154}{}\doxysubsubsection{$<$em$>$\+S\+S80$<$/em$>$ disk images}\label{md_README_autotoc_md154}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md158}{}\doxysubsubsection{$<$em$>$\+S\+S80$<$/em$>$ disk images}\label{md_README_autotoc_md158}
 
 \begin{DoxyItemize}
 \item \href{sdcard/ss80-0.lif}{\texttt{ ss80-\/1.\+lif}}
@@ -2941,14 +3029,14 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item {\bfseries{S\+S80}} disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md155}{}\doxysubsubsection{S\+D Card emulator configuration file backups}\label{md_README_autotoc_md155}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md159}{}\doxysubsubsection{S\+D Card emulator configuration file backups}\label{md_README_autotoc_md159}
 
 \begin{DoxyItemize}
 \item \href{sdcard/configs}{\texttt{ sdcard/configs}}
 \begin{DoxyItemize}
 \item Backup copies of the hp85disk config files
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md156}{}\doxysubsubsection{Build Drive Configuration}\label{md_README_autotoc_md156}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md160}{}\doxysubsubsection{Build Drive Configuration}\label{md_README_autotoc_md160}
 
 \begin{DoxyItemize}
 \item \href{sdcard/mkcfg}{\texttt{ sdcard/mkcfg}}
@@ -2972,7 +3060,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\#\hypertarget{md_README_autotoc_md157}{}\doxysubsection{B\+U\+I\+L\+D S\+C\+R\+I\+P\+TS}\label{md_README_autotoc_md157}
+\#\hypertarget{md_README_autotoc_md161}{}\doxysubsection{B\+U\+I\+L\+D S\+C\+R\+I\+P\+TS}\label{md_README_autotoc_md161}
 
 \begin{DoxyItemize}
 \item \href{sdcard/scripts}{\texttt{ sdcard/scripts}}
@@ -2980,7 +3068,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Scripts that help creating {\bfseries{L\+IF}} images from multiple files
 \item Used by \href{sdcard/create_images.sh}{\texttt{ create\+\_\+images.\+sh}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md158}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ bus trace files}\label{md_README_autotoc_md158}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md162}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ bus trace files}\label{md_README_autotoc_md162}
 
 \begin{DoxyItemize}
 \item \href{sdcard/traces}{\texttt{ sdcard/traces}}
@@ -2996,7 +3084,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item {\bfseries{G\+P\+IB}} transaction trace when connected to {\bfseries{H\+P85}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md159}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ plot capture files}\label{md_README_autotoc_md159}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md163}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ plot capture files}\label{md_README_autotoc_md163}
 
 \begin{DoxyItemize}
 \item \mbox{[}plots\mbox{]}(sdcard/plots\mbox{]}
@@ -3004,7 +3092,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item \href{sdcard/plots/plot1.plt}{\texttt{ plot1.\+plt}}
 \item \href{sdcard/plots/plot2.plt}{\texttt{ plot2.\+plt}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md160}{}\doxysubsubsection{A\+S\+C\+I\+I Basic files -\/ in text format for easy editing}\label{md_README_autotoc_md160}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md164}{}\doxysubsubsection{A\+S\+C\+I\+I Basic files -\/ in text format for easy editing}\label{md_README_autotoc_md164}
 
 \begin{DoxyItemize}
 \item \href{sdcard/ASCII-files}{\texttt{ A\+S\+C\+I\+I-\/files}}
@@ -3030,7 +3118,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item \href{sdcard/TREK85/trek.lif}{\texttt{ trek.\+lif}} 
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md161}{}\doxysubsubsection{$<$em$>$\+L\+I\+F$<$/em$>$ images with a single program in them}\label{md_README_autotoc_md161}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md165}{}\doxysubsubsection{$<$em$>$\+L\+I\+F$<$/em$>$ images with a single program in them}\label{md_README_autotoc_md165}
 
 \begin{DoxyItemize}
 \item \href{sdcard/LIF-files}{\texttt{ L\+I\+F-\/files}}
@@ -3061,7 +3149,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item \href{sdcard/ASCII-files/85-SS80.LIF}{\texttt{ 85-\/\+S\+S80.\+L\+IF}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md162}{}\doxysubsubsection{$<$em$>$\+G\+E\+T\+S\+A\+V$<$/em$>$ documentation}\label{md_README_autotoc_md162}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md166}{}\doxysubsubsection{$<$em$>$\+G\+E\+T\+S\+A\+V$<$/em$>$ documentation}\label{md_README_autotoc_md166}
 
 \begin{DoxyItemize}
 \item \href{sdcard/notes}{\texttt{ notes}}

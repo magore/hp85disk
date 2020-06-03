@@ -1205,6 +1205,7 @@ ___
        * I use this feature to help prioritize which commands I first implemented.
 ___
 
+
 ## hp85disk Terminal Commands
  * Pressing any key will break out of the gpib task loop until a command is entered
    * **help**
@@ -1424,6 +1425,88 @@ ___
     [HP85 Power On GPIB BUS Debug Trace](trace/poweron-trace.txt)
   * Type **CAT** followed by RETURN on your HP85 you should see something like this
     [CAT GPIB BUS Debug Trace](trace/cat-trace.txt)
+
+
+
+## Desktop Utility Commands
+  * There are three standalone desktop utilities
+  * **lif** is the same as the **lif** command in the hp85disk firmware
+  * **td2lif** is the teledisk conversion utility
+  * **mkcfg** displays a disk configuration in hpdisk.cfg format
+
+### mkcf - display a disk configuration section in hpdisk.cfg format
+  * Display disk configuration that you can use in the hpdisk.cfg file
+<pre>
+	mkcfg [-list]| [-m model [-b]|[-d]] [-a address]
+	   -list lists all of the drives in the hpdir.ini file
+	   -a hpdir address 0..7
+	   -m model only, list hphpdir.cfg format hpdir configuration
+	   -s short hphpdir.cfg format
+	   -b only display block count, you can can use this with -m
+	   -d only display computed directory block count, you can use this with -m
+	   -f NAME specifies the LIF image name for this drive
+</pre>
+  * Example: Say you wanted to add a 9121 disk with address 0 and parallel poll bit 0
+  * Then run: **mkcfg -s -m 9121 -f /amigo$D.lif -a 0 -p 0**
+  * Copy the result into your hpdisk.cfg file - just make sure you have no conflicts
+<pre>
+	# HP9121 dual 270K AMIGO floppy disc
+	# HP85 BASIC ADDRESS :D700
+	AMIGO 9121
+		HEADER
+				# GPIB Address
+			ADDRESS                 = 0
+				# Parallel Poll Reponse Bit
+			PPR                     = 0
+				# LIF image file name
+			FILE                    = /amigo.lif
+		END
+	END
+</pre>
+
+
+### lif utilities
+  * **lif** is the same as the **lif** command in the hp85disk firmware
+  * **lif help**
+<pre>
+	lif help
+	lif add lifimage lifname from_ascii_file
+	lif addbin lifimage lifname from_lif_file
+	lif create lifimage label directory_sectors sectors
+	lif createdisk lifimage label model
+	lif del lifimage name
+	lif dir lifimage
+	lif extract lifimage lifname to_ascii_file
+	lif extractbin lifimage lifname to_lif_file
+		extracts a file into a sigle file LIF image
+	lif rename lifimage oldlifname newlifname
+	lif td02lif [options] image.td0 image.lif
+	Use -d  after 'lif' keyword to enable LIF filesystem debugging
+
+	td02lif help
+	Usage: td02lif [options] file.td0 file.lif
+		   td02lif help
+	tdo2lif options:
+	Notes: for any option that is NOT specified it is automatically detected
+		 -s256|512 | -s 256|512 - force sector size
+		 -h1|2 | -h 1|2 - force heads/surfaces
+		 -tNN | -t NN  - force tracks
+</pre>
+  * Note: the td02lif commands can be run inside the lif command or standalone
+
+### td02lif  - Teledisk to LIF translator
+  * **td2lif** is the teledisk conversion utility
+  * **td02lif help**
+<pre>
+	td02lif help
+	Usage: td02lif [options] file.td0 file.lif
+		   td02lif help
+	tdo2lif options:
+	Notes: for any option that is NOT specified it is automatically detected
+		 -s256|512 | -s 256|512 - force sector size
+		 -h1|2 | -h 1|2 - force heads/surfaces
+		 -tNN | -t NN  - force tracks
+</pre>
 
 ___ 
 
