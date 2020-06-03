@@ -128,7 +128,7 @@ void lif_help(int full)
     #ifdef LIF_STAND_ALONE
             "lif td02lif [options] image.td0 image.lif\n"
     #endif
-            "Use -d after first keyword 'lif' above for LIF filesystem debugging\n"
+            "Use -d  after 'lif' keyword to enable LIF filesystem debugging\n"
             "\n"
             );
     }
@@ -177,10 +177,10 @@ int lif_tests(int argc, char *argv[])
 
 // Turn one debugging
 // in the future we can add tests for specific messages
+	debuglevel &= ~0x400;
     if (MATCHARGS(ptr,"-d", (ind + 0) ,argc))
     {
-        debuglevel = 0xffff;
-        return(1);
+        debuglevel |= 0x400;
         ptr = argv[ind++];
     }
 
@@ -190,6 +190,7 @@ int lif_tests(int argc, char *argv[])
 
         return(1);
     }
+
     if (MATCHARGS(ptr,"add", (ind + 3) ,argc))
     {
         lif_add_ascii_file_as_e010(argv[ind],argv[ind+1],argv[ind+2]);
