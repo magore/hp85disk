@@ -81,7 +81,7 @@ lif extract /amigo1.lif HELLO3 /HELLO3.BAS
  * Convert TeleDIsk LIF encoded disk into pure LIF file
  * Uses code from external HxCFloppyEmulator library to decode TELEDISK format
  * The HxCFloppyEmulator library is Copyright (C) 2006-2014 Jean-Franâois DEL NERO
- * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+ * See: https://github.com/xXorAa/hxc-software/tree/master/HxCFloppyEmulator/libhxcfe/trunk/sources/loaders/teledisk_loader
 
  */
 

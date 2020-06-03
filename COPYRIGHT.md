@@ -105,7 +105,7 @@ ___
 ## Teledisk Code and Documentation
  @Credits
  * We use stripped down version of teledisk_loader reader code to decode TELEDISK format
-   * See: https://github.com/jfdelnero/libhxcfe/tree/master/sources/loaders/teledisk_loader
+   * See: https://github.com/xXorAa/hxc-software/tree/master/HxCFloppyEmulator/libhxcfe/trunk/sources/loaders/teledisk_loader
      * Part of HxCFloppyEmulator project Copyright (C) 2006-2014 Jean-Franois DEL NERO
      * LZSS and Teledisk Documention Copyright 2007-2008 Dave Dunfield All rights reserved.
      * CRC code By Ashley Roll Digital Nemesis Pty Ltd www.digitalnemesis.com
