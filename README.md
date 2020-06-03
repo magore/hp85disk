@@ -836,10 +836,10 @@ Note: Change into the hp85disk folder created by the install.sh script</br>
        GND          6
 Note 5V connection - DO NOT CONNECT 
      Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect them
+</pre>
   * **avrispv2** is another very low cost *In System programer* **ISP** about $10
     * Low cost Pololu USB AVR Programmer V2.1 
     * https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html
-</pre>
 
 ### Update Firmware with external programmer
   * You will need and AVR programmer supported by **avrdude** (part of avrtools)
