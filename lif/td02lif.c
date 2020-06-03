@@ -1562,9 +1562,9 @@ void td0_help(int full)
             "Usage: td02lif [options] file.td0 file.lif\n"
             "       td02lif help\n"
             "tdo2lif options:\n"
-            "Notes: for any option that is NOT specified it is automattically detected\n"
+            "Notes: for any option that is NOT specified it is automatically detected\n"
             "\t -s256|512 | -s 256|512 - force sector size\n"
-            "\t -h1|2 | -h 1|2 - force heads/serfaces\n"
+            "\t -h1|2 | -h 1|2 - force heads/surfaces\n"
             "\t -tNN | -t NN  - force tracks\n"
             "\n"
             );
