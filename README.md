@@ -634,6 +634,7 @@ ___
 ### Download the following files
   * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/listports.py
   * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/flasher.py
+  * https://raw.githubusercontent.com/magore/hp85disk/master/release/build/gpib.hex
 ___ 
 
 
