@@ -694,12 +694,12 @@ ___
 ## Updating hp85disk firmware with built in bootloader
   * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
     * You can download them using the direct links in the previous section 
+    * **MAKE sure you download these files in github RAW formwat**
   * Only do this if recommended
   * Note: The github hp85disk master branch project includes disk images and precompiled firmware
     * Compiled Firmware hex file [release/build](release/build) 
     * SD Card Disk Images        [release/sdcard](release/sdcard)
   * [I have provided compiled HEX files under the folder release/build](release/build)
-    * You just need to flash the files 
   * References:
     * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
     * [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
