@@ -622,7 +622,7 @@ ___
 
 ## Firmware updating and connecting to the hp85disk emulator with MINIMAL software install
   * **NOTE: The examples below refer to files that are part of this hp85disk project**
-  * You can download them using these direct links **listports.py, flasher.py and gpib.hex** 
+  * You need the follwing files **listports.py, flasher.py and gpib.hex** - here are the links
     * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/listports.py
     * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/flasher.py
     * https://raw.githubusercontent.com/magore/hp85disk/master/release/build/gpib.hex
