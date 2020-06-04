@@ -625,9 +625,15 @@ ___
 
 ### Windows
   * Windows - Install Python 3.7 from Windows App Store
-    * Open Power Shell window - always use Power Shell under Windows for running Python3
-  * **pip3 install pySerial**
+  * Note: if the python install fails to run and you get an error **VCRUNTIME140.dll**
+    * You have a problem with the Visual C++ runtime files 
+    * For a solution: https://www.winhelponline.com/blog/fix-vcruntime140-dll-missing-error-windows/
+  * Open Power Shell window - always use Power Shell under Windows for running Python3
+    * **pip3 install pySerial**
 
+### Download the following files
+  * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/listports.py
+  * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/flasher.py
 ___ 
 
 
@@ -636,13 +642,16 @@ ___
   * Make sure the emulator is not connected to your PC/Mac
 
 ### Linux
+  * Note where you have saved **listports.py** and update the path below to suit
   * Open a terminal window
     * Run the following command 
     * **python3 uploader/listports.py**
 
 ### Windows
+  * Note where you have saved **listports.py** and update the path below to suit
   * Open a Power Shell window
-    * Run the following command **python3 uploader\listports.py**
+    * Run the following command 
+    * **python3 uploader\listports.py**
 
 ### Connect the emulator  to discover the port name
   * Attach the miniusb cable to your computer and rerun the **listports.py**
@@ -679,13 +688,19 @@ ___
     * You just need to flash the files - see MINIMAL notes above
 
 ### Linux firmware update example
-  * **python3 uploader/flasher.py 115200 /dev/ttyUSB0 release/build/gpib.hex**
+  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Run the following command 
+    * **python3 uploader/flasher.py 115200 /dev/ttyUSB0 release/build/gpib.hex**
 
 ### Windows firmware update example
-  * **python3 uploader/flasher.py 115200 COM3 release/build/gpib.hex**
+  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Run the following command 
+    * **python3 uploader/flasher.py 115200 COM3 release/build/gpib.hex**
 
 ### Mac firmware update example
-  * **python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex**
+  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Run the following command 
+    * **python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex**
 
 ### Firmware update problems - if you get a failure during updating
   * Type in the flashing command, see  above, but *without* pressing Enter yet
