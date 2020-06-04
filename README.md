@@ -171,7 +171,7 @@ ___
 ### Host computer requirements for serial debugging and firmware updating
   * You have either
     * **Ubuntu Linux desktop**
-    * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
+    * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft App store
     * **Mac OS**
   * All Text and configuration files used with the emulator MUST plain text format only (8 bit ASCII) 
      * Please NO Unicode - both file names and file formats!
@@ -612,12 +612,23 @@ ___
   * I used **Ubuntu 18.04,16.04LTS and 14.04LTS** when developing the code
   * I have instructions for flashing the firmware below
 ### Windows
-  * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft store
+  * **Windows 10** running Windows Subsystem for Linux (Called WSL ) and the Ubuntu App from the Microsoft App store
+-OR-
+  * **Windows 10** with the Python 3.7 Microsoft App store
+
 
 ___ 
 
 
 ## Firmware updating and connecting to the hp85disk emulator with MINIMAL software install
+  * **NOTE: The examples below refer to files that are part of this hp85disk project**
+  * You can download them using these direct links **listports.py, flasher.py and gpib.hex** 
+    * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/listports.py
+    * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/flasher.py
+    * https://raw.githubusercontent.com/magore/hp85disk/master/release/build/gpib.hex
+  * **Please update any paths to suit where you download them to**
+
+## Software requirments
 ### Linux
   * **apt-get install python3**
     * Most modern Linux systems have Python3
@@ -630,13 +641,6 @@ ___
     * For a solution: https://www.winhelponline.com/blog/fix-vcruntime140-dll-missing-error-windows/
   * Open Power Shell window - always use Power Shell under Windows for running Python3
     * **pip3 install pySerial**
-
-### Download the following files
-  * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/listports.py
-  * https://raw.githubusercontent.com/magore/hp85disk/master/uploader/flasher.py
-  * https://raw.githubusercontent.com/magore/hp85disk/master/release/build/gpib.hex
-___ 
-
 
 ## Discover your serial port name
   * Make sure you have a mini usb cable handy
@@ -664,13 +668,11 @@ ___
     * **Data bits: 8 Data bits NO parity**
     * **Flow control NONE**
 
-___ 
-
-
 ## Connecting to hp85disk interactive serial port
   * Note: Use the same port name as with the flashing example
   * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
-    * Note: **serial.tools.miniterm** does **NOT work on Windows WSL Ubuntu** - yet so use the term script
+    * Windows users can use the the standalone Python 3.7 from the Microsoft App store with Python package pySerial installed
+    * Note: **serial.tools.miniterm** does **NOT work on Windows WSL Ubuntu** - yet so use the term script found in the hp85disk github main folder
   * For a help menu type **help**
     * Most of the commands listed by help also have help of there own 
       * Example: **lif help**
@@ -679,8 +681,9 @@ ___
 ___ 
 
 
-
 ## Updating hp85disk firmware with built in bootloader
+  * **NOTE: The examples below refer to files that are part of this hp85disk project**
+    * You can download them using the direct links in the previous section **listports.py, flasher.py and gpib.hex** 
   * Only do this if recommended
   * Note: The github hp85disk master branch project includes disk images and precompiled firmware
     * Compiled Firmware hex file [release/build](release/build) 
@@ -769,31 +772,6 @@ Note: For Windows install the WSL and Ubuntu App first - see previous section
   * Open **Ubuntu App**
   * **cd hp85disk**
   * **git pull**
-
-___ 
-
- 
-## Connecting to hp85disk emulator 
-
-### Find the serial port device name for the hp85disk emulator
-  * Make sure the emulator is not connected to your PC/Mac
-  * Open a **terminal window** on **Ubuntu**
-    * **Ubuntu App** under **Windows**
-  * Run 
-    * **cd hp85disk**
-    * **python3 uploader/listports.py**
-  * Attach the hp85disk emulator with the miniusb to your computer
-  * Run 
-    * **python3 uploader/listports.py**
-  * The new port that appears in the last step is the Emulator Port name
-  * Optionally edit the hp85disk [Makefile](Makefile) 
-    * Change the **HP85_PORT** name near the start of the file to this name
-
-### Opening a terminal window to the hp85disk emulator
-NOTE: Find the serial port name first - lets assume it was /dev/ttyS3
-  * **cd hp85disk**
-  * **./term 115200 /dev/ttyS3**
-  * The **./term** script starts a program called **minicom** and uses a profile it creates
 
 ___ 
 
