@@ -188,17 +188,19 @@ ___
 
 
 ### Initial troubleshooting - if CAT gives a time-out error 
-  * Your device my not be attached to the GPIB BUS
+  * Make sure your device is the ONLY DEVICE attached to the HP 82937A controller of your HP85
   * You might not have the required option **ROMs** installed in your **HP85** for the HP85 GPIB interface card
-  * The SD Card is missing the configuration file, disk images or the filesystem is corrupt.
+  * The SD Card is missing the configuration file or disk images
+  * The SD Card filesystem is corrupt.
   * See **SD Card problems** section
   * **NOTE** I would also suggest connecting your computer to the USB connector for more detailed disagnostics
   * USB Connection Summary
     * Attach USB cable from emulator to your computer using a serial terminal program
-    * Read starting with section **Firmware updating and connecting to the hp85disk emulator with MINIMAL software install**
-    * Read down to section **Connecting to hp85disk interactive serial port**
-    * Read section **Command interface notes**
-  * See section **hp85disk troubleshooting with serial terminal and DEBUG option** to verify your HP85 is communicating with your emulator
+    * Read starting with section 
+      * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
+      * Read down to section [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
+      * Read section [Command interface notes}(#command-interface-notes)
+    * See section [hp85disk troubleshooting with serial terminal and DEBUG option](#hp85disk-troubleshooting-with-serial-terminal-and-debug-option) to verify your HP85 is communicating with your emulator
   * With the serial terminal connected type **help** you should see a help menu
     * To make sure there are files on the SD Card type one of these commands
       * **fatfs ls** for windows like director listing [example result](fatfs-ls.txt)  
@@ -206,9 +208,9 @@ ___
   * Enter the serail terminal command **cat hpdisk.cfg** to see if you can read the main configuration file
   * Turn on debugging with the **DEBUG =** command
   * References
-    * **hp85disk troubleshooting with serial terminal and DEBUG option**
-    * **hp85disk DEBUG truth table**
-    * **hp85disk setting debug examples**
+    * [hp85disk troubleshooting with serial terminal and DEBUG option](#hp85disk-troubleshooting-with-serial-terminal-and-debug-option)
+    * [hp85disk DEBUG truth table](#hp85disk-debug-truth-table)
+    * hp85disk setting debug examples](#hp85disk-setting-debug-examples)
 
 ### Status DEBUG LEDs
   * **LED2** goes on for error conditions - this is the LED nearest the GPIB connector
@@ -681,6 +683,11 @@ ___
     * Most of the commands listed by help also have help of there own 
       * Example: **lif help**
     * There is a full list of the commands later in this README
+  * References
+    * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
+    * Read down to section [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
+    * Read section [Command interface notes}(#command-interface-notes)
+    * See section [hp85disk troubleshooting with serial terminal and DEBUG option](#hp85disk-troubleshooting-with-serial-terminal-and-debug-option) to verify your HP85 is communicating with your emulator
 
 ___ 
 
@@ -1678,6 +1685,25 @@ ___
 
 ## hp85disk software files
   * Most of the software in the project was written by me except where noted
+  **NOTE - if you download any files from these links MAKE SURE YOU USE the github RAW viewing tab**
+    * **If you do NOT use the RAW viewing tab yuou will download an anotated/markup version of the files**
+
+## Compiled firmware release files
+  * Has compiled firmware files and release SD Card images
+    * [release firmware](release/build)
+      * **gpib.hex** firmware
+    * [release sdcard](release/sdcard)
+      * A snapshot of the [sdcard](sdcard) folder at time of firmware release
+
+## Uploader
+  * Used for detecting serial ports and flashing firmware
+  * [uploader](uploader)
+    * [flasher.py](uploader/flasher.py)
+      * Firmware flasher Python code
+    * [flasher.sh](uploader/flasher.sh)
+      * Firmware flasher shell wrapper - verifies parameters and HEX file exeistance
+    * [listports.py](uploader/listports.py)
+      * List serial ports - used for detecting the hp85disk emulator USB port
   
 ## FatFs
   * [fatfs](fatfs)
@@ -1689,7 +1715,7 @@ ___
     * [ff.h](fatfs/ff.h)
     * [integer.h](fatfs/integer.h)
 
-  * [fatfs.hal](fatfs.hal/fatfs.hal)
+  * [fatfs.hal](fatfs.hal)
     * R0.14 FatFS code from (C) **ChaN**, 2019 with changes
       * Hardware abstraction layer based on example AVR project
     * [diskio.c](fatfs.hal/diskio.c)
@@ -1705,7 +1731,7 @@ ___
     * [mmc_hal.h](fatfs.hal/mmc_hal.h)
       * My Hardware abstraction layer code
   
-  * [fatfs.sup](fatfs.sup/fatfs.sup)
+  * [fatfs.sup](fatfs.sup)
     * My fatfs support utility and POSIX wrapper test functions
     * [fatfs.h](fatfs.sup/fatfs.h)
       * FatFS header files
@@ -1717,7 +1743,7 @@ ___
       * FatFS user test functions
 
 ## **GPIB** related
-  * [gpib](gpib/gpib)
+  * [gpib](gpib)
     * My **GPIB** code for **AMIGO**, **SS80** and **PRINTER** support
     * [amigo.c](gpib/amigo.c)
       * **AMIGO** parser
@@ -1831,21 +1857,6 @@ ___
       * Timer task hardware abstraction layer
     * [timetests.c](lib/timetests.c)
       * Time and timer test code
-
-## Unused code
-  * [unused](unused)
-    * Everything under this directory is currently unused
-    * [LCD.c](unused/LCD.c)
-    * [LCD.h](unused/LCD.h)
-      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
-      * https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
-        * Modified for this project
-    * [lcd_printf.c](unused/lcd_printf.c)
-    * [lcd_printf.h](unused/lcd_printf.h)
-      * My LCD printf wrapper for SparkFun LCD functions
-    * [TWI_AVR8.c](unused/TWI_AVR8.c)
-    * [TWI_AVR8.h](unused/TWI_AVR8.h)
-      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
 
 
 ## *LIF* files
@@ -2047,5 +2058,23 @@ ___
 	  * This can be installed on your **HP85** with this command LOADBIN "GETSAVE"
       * NOTE: my LIF utilities can translate between ASCII files and files in GET/SAVE format 
   * Various notes 
+
+
+
+## Unused code
+  * [unused](unused)
+    * Everything under this directory is currently unused
+    * [LCD.c](unused/LCD.c)
+    * [LCD.h](unused/LCD.h)
+      * SparkFun LCD-14072,LCD-14073,LCD-14074 support code
+      * https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library
+        * Modified for this project
+    * [lcd_printf.c](unused/lcd_printf.c)
+    * [lcd_printf.h](unused/lcd_printf.h)
+      * My LCD printf wrapper for SparkFun LCD functions
+    * [TWI_AVR8.c](unused/TWI_AVR8.c)
+    * [TWI_AVR8.h](unused/TWI_AVR8.h)
+      * I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.
+
 
 ___

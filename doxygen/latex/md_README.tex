@@ -284,19 +284,23 @@ Anders originally provided me his source code in 2014 and many details of his pr
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md40}{}\doxysubsubsection{Initial troubleshooting -\/ if C\+A\+T gives a time-\/out error}\label{md_README_autotoc_md40}
 
 \begin{DoxyItemize}
-\item Your device my not be attached to the G\+P\+IB B\+US
+\item Make sure your device is the O\+N\+LY D\+E\+V\+I\+CE attached to the HP 82937A controller of your H\+P85
 \item You might not have the required option {\bfseries{R\+O\+Ms}} installed in your {\bfseries{H\+P85}} for the H\+P85 G\+P\+IB interface card
-\item The SD Card is missing the configuration file, disk images or the filesystem is corrupt.
+\item The SD Card is missing the configuration file or disk images
+\item The SD Card filesystem is corrupt.
 \item See {\bfseries{SD Card problems}} section
 \item {\bfseries{N\+O\+TE}} I would also suggest connecting your computer to the U\+SB connector for more detailed disagnostics
 \item U\+SB Connection Summary
 \begin{DoxyItemize}
 \item Attach U\+SB cable from emulator to your computer using a serial terminal program
-\item Read starting with section {\bfseries{Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}}
-\item Read down to section {\bfseries{Connecting to hp85disk interactive serial port}}
-\item Read section {\bfseries{Command interface notes}}
+\item Read starting with section
+\begin{DoxyItemize}
+\item \href{\#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install}{\texttt{ Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}}
+\item Read down to section \href{\#connecting-to-hp85disk-interactive-serial-port}{\texttt{ Connecting to hp85disk interactive serial port}}
+\item Read section \mbox{[}Command interface notes\}(\#command-\/interface-\/notes)
 \end{DoxyItemize}
-\item See section {\bfseries{hp85disk troubleshooting with serial terminal and D\+E\+B\+UG option}} to verify your H\+P85 is communicating with your emulator
+\item See section \href{\#hp85disk-troubleshooting-with-serial-terminal-and-debug-option}{\texttt{ hp85disk troubleshooting with serial terminal and D\+E\+B\+UG option}} to verify your H\+P85 is communicating with your emulator
+\end{DoxyItemize}
 \item With the serial terminal connected type {\bfseries{help}} you should see a help menu
 \begin{DoxyItemize}
 \item To make sure there are files on the SD Card type one of these commands
@@ -310,9 +314,9 @@ Anders originally provided me his source code in 2014 and many details of his pr
 \item Turn on debugging with the {\bfseries{D\+E\+B\+UG =}} command
 \item References
 \begin{DoxyItemize}
-\item {\bfseries{hp85disk troubleshooting with serial terminal and D\+E\+B\+UG option}}
-\item {\bfseries{hp85disk D\+E\+B\+UG truth table}}
-\item {\bfseries{hp85disk setting debug examples}}
+\item \href{\#hp85disk-troubleshooting-with-serial-terminal-and-debug-option}{\texttt{ hp85disk troubleshooting with serial terminal and D\+E\+B\+UG option}}
+\item \href{\#hp85disk-debug-truth-table}{\texttt{ hp85disk D\+E\+B\+UG truth table}}
+\item hp85disk setting debug examples\mbox{]}(\#hp85disk-\/setting-\/debug-\/examples)
 \end{DoxyItemize}
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md41}{}\doxysubsubsection{Status D\+E\+B\+U\+G L\+E\+Ds}\label{md_README_autotoc_md41}
 
@@ -1083,6 +1087,13 @@ On the {\bfseries{H\+P85}} type
 \item Example\+: {\bfseries{lif help}}
 \end{DoxyItemize}
 \item There is a full list of the commands later in this R\+E\+A\+D\+ME
+\end{DoxyItemize}
+\item References
+\begin{DoxyItemize}
+\item \href{\#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install}{\texttt{ Firmware updating and connecting to the hp85disk emulator with M\+I\+N\+I\+M\+AL software install}}
+\item Read down to section \href{\#connecting-to-hp85disk-interactive-serial-port}{\texttt{ Connecting to hp85disk interactive serial port}}
+\item Read section \mbox{[}Command interface notes\}(\#command-\/interface-\/notes)
+\item See section \href{\#hp85disk-troubleshooting-with-serial-terminal-and-debug-option}{\texttt{ hp85disk troubleshooting with serial terminal and D\+E\+B\+UG option}} to verify your H\+P85 is communicating with your emulator
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -2490,8 +2501,44 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md144}{}\doxysubsection{hp85disk software files}\label{md_README_autotoc_md144}
 
 \begin{DoxyItemize}
-\item Most of the software in the project was written by me except where noted
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md145}{}\doxysubsection{Fat\+Fs}\label{md_README_autotoc_md145}
+\item Most of the software in the project was written by me except where noted {\bfseries{N\+O\+TE -\/ if you download any files from these links M\+A\+KE S\+U\+RE Y\+OU U\+SE the github R\+AW viewing tab}}
+\begin{DoxyItemize}
+\item {\bfseries{If you do N\+OT use the R\+AW viewing tab yuou will download an anotated/markup version of the files}}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md145}{}\doxysubsection{Compiled firmware release files}\label{md_README_autotoc_md145}
+
+\begin{DoxyItemize}
+\item Has compiled firmware files and release SD Card images
+\begin{DoxyItemize}
+\item \href{release/build}{\texttt{ release firmware}}
+\begin{DoxyItemize}
+\item {\bfseries{gpib.\+hex}} firmware
+\end{DoxyItemize}
+\item \href{release/sdcard}{\texttt{ release sdcard}}
+\begin{DoxyItemize}
+\item A snapshot of the \mbox{[}sdcard\mbox{]}(sdcard) folder at time of firmware release
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md146}{}\doxysubsection{Uploader}\label{md_README_autotoc_md146}
+
+\begin{DoxyItemize}
+\item Used for detecting serial ports and flashing firmware
+\item \mbox{[}uploader\mbox{]}(uploader)
+\begin{DoxyItemize}
+\item \href{uploader/flasher.py}{\texttt{ flasher.\+py}}
+\begin{DoxyItemize}
+\item Firmware flasher Python code
+\end{DoxyItemize}
+\item \href{uploader/flasher.sh}{\texttt{ flasher.\+sh}}
+\begin{DoxyItemize}
+\item Firmware flasher shell wrapper -\/ verifies parameters and H\+EX file exeistance
+\end{DoxyItemize}
+\item \href{uploader/listports.py}{\texttt{ listports.\+py}}
+\begin{DoxyItemize}
+\item List serial ports -\/ used for detecting the hp85disk emulator U\+SB port
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md147}{}\doxysubsection{Fat\+Fs}\label{md_README_autotoc_md147}
 
 \begin{DoxyItemize}
 \item \mbox{[}fatfs\mbox{]}(fatfs)
@@ -2504,7 +2551,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item \href{fatfs/ff.h}{\texttt{ ff.\+h}}
 \item \href{fatfs/integer.h}{\texttt{ integer.\+h}}
 \end{DoxyItemize}
-\item \href{fatfs.hal/fatfs.hal}{\texttt{ fatfs.\+hal}}
+\item \href{fatfs.hal}{\texttt{ fatfs.\+hal}}
 \begin{DoxyItemize}
 \item R0.\+14 Fat\+FS code from (C) {\bfseries{ChaN}}, 2019 with changes
 \begin{DoxyItemize}
@@ -2535,7 +2582,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item My Hardware abstraction layer code
 \end{DoxyItemize}
 \end{DoxyItemize}
-\item \href{fatfs.sup/fatfs.sup}{\texttt{ fatfs.\+sup}}
+\item \href{fatfs.sup}{\texttt{ fatfs.\+sup}}
 \begin{DoxyItemize}
 \item My fatfs support utility and P\+O\+S\+IX wrapper test functions
 \item \href{fatfs.sup/fatfs.h}{\texttt{ fatfs.\+h}}
@@ -2553,10 +2600,10 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Fat\+FS user test functions
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md146}{}\doxysubsection{$<$strong$>$\+G\+P\+I\+B$<$/strong$>$ related}\label{md_README_autotoc_md146}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md148}{}\doxysubsection{$<$strong$>$\+G\+P\+I\+B$<$/strong$>$ related}\label{md_README_autotoc_md148}
 
 \begin{DoxyItemize}
-\item \href{gpib/gpib}{\texttt{ gpib}}
+\item \mbox{[}gpib\mbox{]}(gpib)
 \begin{DoxyItemize}
 \item My {\bfseries{G\+P\+IB}} code for {\bfseries{A\+M\+I\+GO}}, {\bfseries{S\+S80}} and {\bfseries{P\+R\+I\+N\+T\+ER}} support
 \item \href{gpib/amigo.c}{\texttt{ amigo.\+c}}
@@ -2644,7 +2691,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item My notes on {\bfseries{G\+P\+IB}} bus states as it relates to the project
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md147}{}\doxysubsection{Hardware C\+P\+U specific}\label{md_README_autotoc_md147}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md149}{}\doxysubsection{Hardware C\+P\+U specific}\label{md_README_autotoc_md149}
 
 \begin{DoxyItemize}
 \item \mbox{[}hardware\mbox{]}(hardware)
@@ -2715,7 +2762,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Main include file M\+MC S\+L\+OW and F\+A\+TS frequency and C\+PU frequency settings
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md148}{}\doxysubsection{Common libraries}\label{md_README_autotoc_md148}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md150}{}\doxysubsection{Common libraries}\label{md_README_autotoc_md150}
 
 \begin{DoxyItemize}
 \item \mbox{[}lib\mbox{]}(lib)
@@ -2768,33 +2815,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Time and timer test code
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md149}{}\doxysubsection{Unused code}\label{md_README_autotoc_md149}
-
-\begin{DoxyItemize}
-\item \mbox{[}unused\mbox{]}(unused)
-\begin{DoxyItemize}
-\item Everything under this directory is currently unused
-\item \href{unused/LCD.c}{\texttt{ L\+C\+D.\+c}}
-\item \href{unused/LCD.h}{\texttt{ L\+C\+D.\+h}}
-\begin{DoxyItemize}
-\item Spark\+Fun L\+C\+D-\/14072,L\+C\+D-\/14073,L\+C\+D-\/14074 support code
-\item \href{https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library}{\texttt{ https\+://github.\+com/sparkfun/\+Spark\+Fun\+\_\+\+Ser\+L\+C\+D\+\_\+\+Arduino\+\_\+\+Library}}
-\begin{DoxyItemize}
-\item Modified for this project
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item \href{unused/lcd_printf.c}{\texttt{ lcd\+\_\+printf.\+c}}
-\item \href{unused/lcd_printf.h}{\texttt{ lcd\+\_\+printf.\+h}}
-\begin{DoxyItemize}
-\item My L\+CD printf wrapper for Spark\+Fun L\+CD functions
-\end{DoxyItemize}
-\item \href{unused/TWI_AVR8.c}{\texttt{ T\+W\+I\+\_\+\+A\+V\+R8.\+c}}
-\item \href{unused/TWI_AVR8.h}{\texttt{ T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
-\begin{DoxyItemize}
-\item I2C code L\+U\+FA Library Copyright (hardware/C) Dean Camera, 2011.
-\end{DoxyItemize}
-\end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md150}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ files}\label{md_README_autotoc_md150}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md151}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ files}\label{md_README_autotoc_md151}
 
 \begin{DoxyItemize}
 \item \mbox{[}lif\mbox{]}(lif)
@@ -2857,7 +2878,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md151}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ teledisk files}\label{md_README_autotoc_md151}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md152}{}\doxysubsection{$<$em$>$\+L\+I\+F$<$/em$>$ teledisk files}\label{md_README_autotoc_md152}
 
 \begin{DoxyItemize}
 \item \href{lif/teledisk}{\texttt{ lif/teledisk}}
@@ -2901,7 +2922,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md152}{}\doxysubsection{Posix wrapper -\/ provides Linux file I\+O functions for Fatfs}\label{md_README_autotoc_md152}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md153}{}\doxysubsection{Posix wrapper -\/ provides Linux file I\+O functions for Fatfs}\label{md_README_autotoc_md153}
 
 \begin{DoxyItemize}
 \item \mbox{[}posix\mbox{]}(posix)
@@ -2923,7 +2944,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item P\+O\+S\+IX user tests
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md153}{}\doxysubsection{Printf display functions}\label{md_README_autotoc_md153}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md154}{}\doxysubsection{Printf display functions}\label{md_README_autotoc_md154}
 
 \begin{DoxyItemize}
 \item \mbox{[}printf\mbox{]}(printf)
@@ -2954,7 +2975,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Test my printf against glibs 1,000,000 tests per data type
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md154}{}\doxysubsection{S\+D Card files for project}\label{md_README_autotoc_md154}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md155}{}\doxysubsection{S\+D Card files for project}\label{md_README_autotoc_md155}
 
 \begin{DoxyItemize}
 \item \mbox{[}sdcard\mbox{]}(sdcard)
@@ -2986,7 +3007,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md155}{}\doxysubsubsection{$<$em$>$\+A\+M\+I\+G\+O$<$/em$>$ disk images}\label{md_README_autotoc_md155}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md156}{}\doxysubsubsection{$<$em$>$\+A\+M\+I\+G\+O$<$/em$>$ disk images}\label{md_README_autotoc_md156}
 
 \begin{DoxyItemize}
 \item \href{sdcard/amigo0.lif}{\texttt{ amigo1.\+lif}}
@@ -3009,7 +3030,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item {\bfseries{A\+M\+I\+GO}} disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md156}{}\doxysubsubsection{$<$em$>$\+S\+S80$<$/em$>$ disk images}\label{md_README_autotoc_md156}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md157}{}\doxysubsubsection{$<$em$>$\+S\+S80$<$/em$>$ disk images}\label{md_README_autotoc_md157}
 
 \begin{DoxyItemize}
 \item \href{sdcard/ss80-0.lif}{\texttt{ ss80-\/1.\+lif}}
@@ -3032,14 +3053,14 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item {\bfseries{S\+S80}} disk image
 \item Has some demo basic programs in it
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md157}{}\doxysubsubsection{S\+D Card emulator configuration file backups}\label{md_README_autotoc_md157}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md158}{}\doxysubsubsection{S\+D Card emulator configuration file backups}\label{md_README_autotoc_md158}
 
 \begin{DoxyItemize}
 \item \href{sdcard/configs}{\texttt{ sdcard/configs}}
 \begin{DoxyItemize}
 \item Backup copies of the hp85disk config files
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md158}{}\doxysubsubsection{Build Drive Configuration}\label{md_README_autotoc_md158}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md159}{}\doxysubsubsection{Build Drive Configuration}\label{md_README_autotoc_md159}
 
 \begin{DoxyItemize}
 \item \href{sdcard/mkcfg}{\texttt{ sdcard/mkcfg}}
@@ -3063,7 +3084,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-\#\hypertarget{md_README_autotoc_md159}{}\doxysubsection{B\+U\+I\+L\+D S\+C\+R\+I\+P\+TS}\label{md_README_autotoc_md159}
+\#\hypertarget{md_README_autotoc_md160}{}\doxysubsection{B\+U\+I\+L\+D S\+C\+R\+I\+P\+TS}\label{md_README_autotoc_md160}
 
 \begin{DoxyItemize}
 \item \href{sdcard/scripts}{\texttt{ sdcard/scripts}}
@@ -3071,7 +3092,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item Scripts that help creating {\bfseries{L\+IF}} images from multiple files
 \item Used by \href{sdcard/create_images.sh}{\texttt{ create\+\_\+images.\+sh}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md160}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ bus trace files}\label{md_README_autotoc_md160}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md161}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ bus trace files}\label{md_README_autotoc_md161}
 
 \begin{DoxyItemize}
 \item \href{sdcard/traces}{\texttt{ sdcard/traces}}
@@ -3087,7 +3108,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item {\bfseries{G\+P\+IB}} transaction trace when connected to {\bfseries{H\+P85}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md161}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ plot capture files}\label{md_README_autotoc_md161}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md162}{}\doxysubsubsection{My $<$em$>$\+H\+P85$<$/em$>$ plot capture files}\label{md_README_autotoc_md162}
 
 \begin{DoxyItemize}
 \item \mbox{[}plots\mbox{]}(sdcard/plots\mbox{]}
@@ -3095,7 +3116,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item \href{sdcard/plots/plot1.plt}{\texttt{ plot1.\+plt}}
 \item \href{sdcard/plots/plot2.plt}{\texttt{ plot2.\+plt}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md162}{}\doxysubsubsection{A\+S\+C\+I\+I Basic files -\/ in text format for easy editing}\label{md_README_autotoc_md162}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md163}{}\doxysubsubsection{A\+S\+C\+I\+I Basic files -\/ in text format for easy editing}\label{md_README_autotoc_md163}
 
 \begin{DoxyItemize}
 \item \href{sdcard/ASCII-files}{\texttt{ A\+S\+C\+I\+I-\/files}}
@@ -3121,7 +3142,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \item \href{sdcard/TREK85/trek.lif}{\texttt{ trek.\+lif}} 
 \end{DoxyItemize}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md163}{}\doxysubsubsection{$<$em$>$\+L\+I\+F$<$/em$>$ images with a single program in them}\label{md_README_autotoc_md163}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md164}{}\doxysubsubsection{$<$em$>$\+L\+I\+F$<$/em$>$ images with a single program in them}\label{md_README_autotoc_md164}
 
 \begin{DoxyItemize}
 \item \href{sdcard/LIF-files}{\texttt{ L\+I\+F-\/files}}
@@ -3152,7 +3173,7 @@ Within this project I have attempted to provide detailed references to manuals, 
 \begin{DoxyItemize}
 \item \href{sdcard/ASCII-files/85-SS80.LIF}{\texttt{ 85-\/\+S\+S80.\+L\+IF}} 
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md164}{}\doxysubsubsection{$<$em$>$\+G\+E\+T\+S\+A\+V$<$/em$>$ documentation}\label{md_README_autotoc_md164}
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md165}{}\doxysubsubsection{$<$em$>$\+G\+E\+T\+S\+A\+V$<$/em$>$ documentation}\label{md_README_autotoc_md165}
 
 \begin{DoxyItemize}
 \item \href{sdcard/notes}{\texttt{ notes}}
@@ -3164,6 +3185,32 @@ Within this project I have attempted to provide detailed references to manuals, 
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Various notes
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md166}{}\doxysubsection{Unused code}\label{md_README_autotoc_md166}
+
+\begin{DoxyItemize}
+\item \mbox{[}unused\mbox{]}(unused)
+\begin{DoxyItemize}
+\item Everything under this directory is currently unused
+\item \href{unused/LCD.c}{\texttt{ L\+C\+D.\+c}}
+\item \href{unused/LCD.h}{\texttt{ L\+C\+D.\+h}}
+\begin{DoxyItemize}
+\item Spark\+Fun L\+C\+D-\/14072,L\+C\+D-\/14073,L\+C\+D-\/14074 support code
+\item \href{https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library}{\texttt{ https\+://github.\+com/sparkfun/\+Spark\+Fun\+\_\+\+Ser\+L\+C\+D\+\_\+\+Arduino\+\_\+\+Library}}
+\begin{DoxyItemize}
+\item Modified for this project
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item \href{unused/lcd_printf.c}{\texttt{ lcd\+\_\+printf.\+c}}
+\item \href{unused/lcd_printf.h}{\texttt{ lcd\+\_\+printf.\+h}}
+\begin{DoxyItemize}
+\item My L\+CD printf wrapper for Spark\+Fun L\+CD functions
+\end{DoxyItemize}
+\item \href{unused/TWI_AVR8.c}{\texttt{ T\+W\+I\+\_\+\+A\+V\+R8.\+c}}
+\item \href{unused/TWI_AVR8.h}{\texttt{ T\+W\+I\+\_\+\+A\+V\+R8.\+h}}
+\begin{DoxyItemize}
+\item I2C code L\+U\+FA Library Copyright (hardware/C) Dean Camera, 2011.
+\end{DoxyItemize}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}

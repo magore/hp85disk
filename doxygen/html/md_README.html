@@ -366,19 +366,23 @@ Testing the emulator with the HP85</h3>
 <h3><a class="anchor" id="autotoc_md40"></a>
 Initial troubleshooting - if CAT gives a time-out error</h3>
 <ul>
-<li>Your device my not be attached to the GPIB BUS</li>
+<li>Make sure your device is the ONLY DEVICE attached to the HP 82937A controller of your HP85</li>
 <li>You might not have the required option <b>ROMs</b> installed in your <b>HP85</b> for the HP85 GPIB interface card</li>
-<li>The SD Card is missing the configuration file, disk images or the filesystem is corrupt.</li>
+<li>The SD Card is missing the configuration file or disk images</li>
+<li>The SD Card filesystem is corrupt.</li>
 <li>See <b>SD Card problems</b> section</li>
 <li><b>NOTE</b> I would also suggest connecting your computer to the USB connector for more detailed disagnostics</li>
 <li>USB Connection Summary<ul>
 <li>Attach USB cable from emulator to your computer using a serial terminal program</li>
-<li>Read starting with section <b>Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</b></li>
-<li>Read down to section <b>Connecting to hp85disk interactive serial port</b></li>
-<li>Read section <b>Command interface notes</b></li>
+<li>Read starting with section<ul>
+<li><a href="#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install">Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</a></li>
+<li>Read down to section <a href="#connecting-to-hp85disk-interactive-serial-port">Connecting to hp85disk interactive serial port</a></li>
+<li>Read section [Command interface notes}(#command-interface-notes)</li>
 </ul>
 </li>
-<li>See section <b>hp85disk troubleshooting with serial terminal and DEBUG option</b> to verify your HP85 is communicating with your emulator</li>
+<li>See section <a href="#hp85disk-troubleshooting-with-serial-terminal-and-debug-option">hp85disk troubleshooting with serial terminal and DEBUG option</a> to verify your HP85 is communicating with your emulator</li>
+</ul>
+</li>
 <li>With the serial terminal connected type <b>help</b> you should see a help menu<ul>
 <li>To make sure there are files on the SD Card type one of these commands<ul>
 <li><b>fatfs ls</b> for windows like director listing <a href="fatfs-ls.txt">example result</a> <br  />
@@ -391,9 +395,9 @@ Initial troubleshooting - if CAT gives a time-out error</h3>
 <li>Enter the serail terminal command <b>cat hpdisk.cfg</b> to see if you can read the main configuration file</li>
 <li>Turn on debugging with the <b>DEBUG =</b> command</li>
 <li>References<ul>
-<li><b>hp85disk troubleshooting with serial terminal and DEBUG option</b></li>
-<li><b>hp85disk DEBUG truth table</b></li>
-<li><b>hp85disk setting debug examples</b></li>
+<li><a href="#hp85disk-troubleshooting-with-serial-terminal-and-debug-option">hp85disk troubleshooting with serial terminal and DEBUG option</a></li>
+<li><a href="#hp85disk-debug-truth-table">hp85disk DEBUG truth table</a></li>
+<li>hp85disk setting debug examples](#hp85disk-setting-debug-examples)</li>
 </ul>
 </li>
 </ul>
@@ -1155,6 +1159,13 @@ Connecting to hp85disk interactive serial port</h2>
 </ul>
 </li>
 <li>There is a full list of the commands later in this README</li>
+</ul>
+</li>
+<li>References<ul>
+<li><a href="#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install">Firmware updating and connecting to the hp85disk emulator with MINIMAL software install</a></li>
+<li>Read down to section <a href="#connecting-to-hp85disk-interactive-serial-port">Connecting to hp85disk interactive serial port</a></li>
+<li>Read section [Command interface notes}(#command-interface-notes)</li>
+<li>See section <a href="#hp85disk-troubleshooting-with-serial-terminal-and-debug-option">hp85disk troubleshooting with serial terminal and DEBUG option</a> to verify your HP85 is communicating with your emulator</li>
 </ul>
 </li>
 </ul>
@@ -2457,9 +2468,47 @@ Documents</h2>
 <h2><a class="anchor" id="autotoc_md144"></a>
 hp85disk software files</h2>
 <ul>
-<li>Most of the software in the project was written by me except where noted</li>
+<li>Most of the software in the project was written by me except where noted <b>NOTE - if you download any files from these links MAKE SURE YOU USE the github RAW viewing tab</b><ul>
+<li><b>If you do NOT use the RAW viewing tab yuou will download an anotated/markup version of the files</b></li>
+</ul>
+</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md145"></a>
+Compiled firmware release files</h2>
+<ul>
+<li>Has compiled firmware files and release SD Card images<ul>
+<li><a href="release/build">release firmware</a><ul>
+<li><b>gpib.hex</b> firmware</li>
+</ul>
+</li>
+<li><a href="release/sdcard">release sdcard</a><ul>
+<li>A snapshot of the [sdcard](sdcard) folder at time of firmware release</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md146"></a>
+Uploader</h2>
+<ul>
+<li>Used for detecting serial ports and flashing firmware</li>
+<li>[uploader](uploader)<ul>
+<li><a href="uploader/flasher.py">flasher.py</a><ul>
+<li>Firmware flasher Python code</li>
+</ul>
+</li>
+<li><a href="uploader/flasher.sh">flasher.sh</a><ul>
+<li>Firmware flasher shell wrapper - verifies parameters and HEX file exeistance</li>
+</ul>
+</li>
+<li><a href="uploader/listports.py">listports.py</a><ul>
+<li>List serial ports - used for detecting the hp85disk emulator USB port</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md147"></a>
 FatFs</h2>
 <ul>
 <li>[fatfs](fatfs)<ul>
@@ -2472,7 +2521,7 @@ FatFs</h2>
 <li><a href="fatfs/integer.h">integer.h</a></li>
 </ul>
 </li>
-<li><a href="fatfs.hal/fatfs.hal">fatfs.hal</a><ul>
+<li><a href="fatfs.hal">fatfs.hal</a><ul>
 <li>R0.14 FatFS code from (C) <b>ChaN</b>, 2019 with changes<ul>
 <li>Hardware abstraction layer based on example AVR project</li>
 </ul>
@@ -2503,7 +2552,7 @@ FatFs</h2>
 </li>
 </ul>
 </li>
-<li><a href="fatfs.sup/fatfs.sup">fatfs.sup</a><ul>
+<li><a href="fatfs.sup">fatfs.sup</a><ul>
 <li>My fatfs support utility and POSIX wrapper test functions</li>
 <li><a href="fatfs.sup/fatfs.h">fatfs.h</a><ul>
 <li>FatFS header files</li>
@@ -2522,10 +2571,10 @@ FatFs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md146"></a>
+<h2><a class="anchor" id="autotoc_md148"></a>
 &lt;strong&gt;GPIB&lt;/strong&gt; related</h2>
 <ul>
-<li><a href="gpib/gpib">gpib</a><ul>
+<li>[gpib](gpib)<ul>
 <li>My <b>GPIB</b> code for <b>AMIGO</b>, <b>SS80</b> and <b>PRINTER</b> support</li>
 <li><a href="gpib/amigo.c">amigo.c</a><ul>
 <li><b>AMIGO</b> parser</li>
@@ -2614,7 +2663,7 @@ FatFs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md147"></a>
+<h2><a class="anchor" id="autotoc_md149"></a>
 Hardware CPU specific</h2>
 <ul>
 <li>[hardware](hardware)<ul>
@@ -2686,7 +2735,7 @@ Hardware CPU specific</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md148"></a>
+<h2><a class="anchor" id="autotoc_md150"></a>
 Common libraries</h2>
 <ul>
 <li>[lib](lib)<ul>
@@ -2740,34 +2789,7 @@ Common libraries</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md149"></a>
-Unused code</h2>
-<ul>
-<li>[unused](unused)<ul>
-<li>Everything under this directory is currently unused</li>
-<li><a href="unused/LCD.c">LCD.c</a></li>
-<li><a href="unused/LCD.h">LCD.h</a><ul>
-<li>SparkFun LCD-14072,LCD-14073,LCD-14074 support code</li>
-<li><a href="https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library">https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library</a><ul>
-<li>Modified for this project</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="unused/lcd_printf.c">lcd_printf.c</a></li>
-<li><a href="unused/lcd_printf.h">lcd_printf.h</a><ul>
-<li>My LCD printf wrapper for SparkFun LCD functions</li>
-</ul>
-</li>
-<li><a href="unused/TWI_AVR8.c">TWI_AVR8.c</a></li>
-<li><a href="unused/TWI_AVR8.h">TWI_AVR8.h</a><ul>
-<li>I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md150"></a>
+<h2><a class="anchor" id="autotoc_md151"></a>
 &lt;em&gt;LIF&lt;/em&gt; files</h2>
 <ul>
 <li>[lif](lif)<ul>
@@ -2831,7 +2853,7 @@ Unused code</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md151"></a>
+<h2><a class="anchor" id="autotoc_md152"></a>
 &lt;em&gt;LIF&lt;/em&gt; teledisk files</h2>
 <ul>
 <li><a href="lif/teledisk">lif/teledisk</a><ul>
@@ -2876,7 +2898,7 @@ Unused code</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md152"></a>
+<h2><a class="anchor" id="autotoc_md153"></a>
 Posix wrapper - provides Linux file IO functions for Fatfs</h2>
 <ul>
 <li>[posix](posix)<ul>
@@ -2899,7 +2921,7 @@ Posix wrapper - provides Linux file IO functions for Fatfs</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md153"></a>
+<h2><a class="anchor" id="autotoc_md154"></a>
 Printf display functions</h2>
 <ul>
 <li>[printf](printf)<ul>
@@ -2931,7 +2953,7 @@ Printf display functions</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md154"></a>
+<h2><a class="anchor" id="autotoc_md155"></a>
 SD Card files for project</h2>
 <ul>
 <li>[sdcard](sdcard)</li>
@@ -2964,7 +2986,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md155"></a>
+<h3><a class="anchor" id="autotoc_md156"></a>
 &lt;em&gt;AMIGO&lt;/em&gt; disk images</h3>
 <ul>
 <li><a href="sdcard/amigo0.lif">amigo1.lif</a><ul>
@@ -2988,7 +3010,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md156"></a>
+<h3><a class="anchor" id="autotoc_md157"></a>
 &lt;em&gt;SS80&lt;/em&gt; disk images</h3>
 <ul>
 <li><a href="sdcard/ss80-0.lif">ss80-1.lif</a><ul>
@@ -3012,7 +3034,7 @@ SD Card files for project</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md157"></a>
+<h3><a class="anchor" id="autotoc_md158"></a>
 SD Card emulator configuration file backups</h3>
 <ul>
 <li><a href="sdcard/configs">sdcard/configs</a><ul>
@@ -3020,7 +3042,7 @@ SD Card emulator configuration file backups</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md158"></a>
+<h3><a class="anchor" id="autotoc_md159"></a>
 Build Drive Configuration</h3>
 <ul>
 <li><a href="sdcard/mkcfg">sdcard/mkcfg</a></li>
@@ -3042,7 +3064,7 @@ Build Drive Configuration</h3>
 </li>
 </ul>
 <p>#</p>
-<h2><a class="anchor" id="autotoc_md159"></a>
+<h2><a class="anchor" id="autotoc_md160"></a>
 BUILD SCRIPTS</h2>
 <ul>
 <li><a href="sdcard/scripts">sdcard/scripts</a><ul>
@@ -3051,7 +3073,7 @@ BUILD SCRIPTS</h2>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md160"></a>
+<h3><a class="anchor" id="autotoc_md161"></a>
 My &lt;em&gt;HP85&lt;/em&gt; bus trace files</h3>
 <ul>
 <li><a href="sdcard/traces">sdcard/traces</a><ul>
@@ -3068,7 +3090,7 @@ My &lt;em&gt;HP85&lt;/em&gt; bus trace files</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md161"></a>
+<h3><a class="anchor" id="autotoc_md162"></a>
 My &lt;em&gt;HP85&lt;/em&gt; plot capture files</h3>
 <ul>
 <li>[plots](sdcard/plots]<ul>
@@ -3077,7 +3099,7 @@ My &lt;em&gt;HP85&lt;/em&gt; plot capture files</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md162"></a>
+<h3><a class="anchor" id="autotoc_md163"></a>
 ASCII Basic files - in text format for easy editing</h3>
 <ul>
 <li><a href="sdcard/ASCII-files">ASCII-files</a><ul>
@@ -3104,7 +3126,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md163"></a>
+<h3><a class="anchor" id="autotoc_md164"></a>
 &lt;em&gt;LIF&lt;/em&gt; images with a single program in them</h3>
 <ul>
 <li><a href="sdcard/LIF-files">LIF-files</a><ul>
@@ -3136,7 +3158,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md164"></a>
+<h3><a class="anchor" id="autotoc_md165"></a>
 &lt;em&gt;GETSAV&lt;/em&gt; documentation</h3>
 <ul>
 <li><a href="sdcard/notes">notes</a><ul>
@@ -3149,12 +3171,39 @@ ASCII Basic files - in text format for easy editing</h3>
 </li>
 <li>Various notes</li>
 </ul>
+<h2><a class="anchor" id="autotoc_md166"></a>
+Unused code</h2>
+<ul>
+<li>[unused](unused)<ul>
+<li>Everything under this directory is currently unused</li>
+<li><a href="unused/LCD.c">LCD.c</a></li>
+<li><a href="unused/LCD.h">LCD.h</a><ul>
+<li>SparkFun LCD-14072,LCD-14073,LCD-14074 support code</li>
+<li><a href="https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library">https://github.com/sparkfun/SparkFun_SerLCD_Arduino_Library</a><ul>
+<li>Modified for this project</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="unused/lcd_printf.c">lcd_printf.c</a></li>
+<li><a href="unused/lcd_printf.h">lcd_printf.h</a><ul>
+<li>My LCD printf wrapper for SparkFun LCD functions</li>
+</ul>
+</li>
+<li><a href="unused/TWI_AVR8.c">TWI_AVR8.c</a></li>
+<li><a href="unused/TWI_AVR8.h">TWI_AVR8.h</a><ul>
+<li>I2C code LUFA Library Copyright (hardware/C) Dean Camera, 2011.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr  />
  </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 4 2020 11:23:23 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 4 2020 15:20:25 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
