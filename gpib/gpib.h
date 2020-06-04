@@ -25,6 +25,7 @@
 #include "posix.h"
 
 #define GPIB_BUS_SETTLE_DELAY 2
+//#define GPIB_BUS_SETTLE_DELAY 5
 /// @brief This is the default BUS timeout of 0.5 Seconds in Microseconds
 #define HTIMEOUT (500000L / GPIB_TASK_TIC_US)
 

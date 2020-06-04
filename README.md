@@ -659,7 +659,7 @@ ___
 
 ## Connecting to hp85disk interactive serial port
   * Note: Use the same port name as with the flashing example
-  * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 1152000**
+  * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
     * Note: **serial.tools.miniterm** does **NOT work on Windows WSL Ubuntu** - yet so use the term script
   * For a help menu type **help**
     * Most of the commands listed by help also have help of there own 
@@ -679,10 +679,10 @@ ___
     * You just need to flash the files - see MINIMAL notes above
 
 ### Linux firmware update example
-  * **python3 uploader/flasher.py 1152000 /dev/ttyUSB0 release/build/gpib.hex**
+  * **python3 uploader/flasher.py 115200 /dev/ttyUSB0 release/build/gpib.hex**
 
 ### Windows firmware update example
-  * **python3 uploader/flasher.py 1152000 COM3 release/build/gpib.hex**
+  * **python3 uploader/flasher.py 115200 COM3 release/build/gpib.hex**
 
 ### Mac firmware update example
   * **python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex**
