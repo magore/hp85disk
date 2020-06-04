@@ -1032,7 +1032,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md76}{}\doxysubsubsection{Linux}\label{md_README_autotoc_md76}
 
 \begin{DoxyItemize}
-\item Note where you have saved {\bfseries{listports.\+py}} and update the path below to suit
+\item Note where you have saved \href{uploader/listports.py}{\texttt{ listports.\+py}} and update the path below to suit
 \item Open a terminal window
 \begin{DoxyItemize}
 \item Run the following command
@@ -1041,7 +1041,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md77}{}\doxysubsubsection{Windows}\label{md_README_autotoc_md77}
 
 \begin{DoxyItemize}
-\item Note where you have saved {\bfseries{listports.\+py}} and update the path below to suit
+\item Note where you have saved \href{uploader/listports.py}{\texttt{ listports.\+py}} and update the path below to suit
 \item Open a Power Shell window
 \begin{DoxyItemize}
 \item Run the following command
@@ -1050,7 +1050,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md78}{}\doxysubsubsection{Connect the emulator  to discover the port name}\label{md_README_autotoc_md78}
 
 \begin{DoxyItemize}
-\item Attach the miniusb cable to your computer and rerun the {\bfseries{listports.\+py}}
+\item Attach the miniusb cable to your computer and rerun the \href{uploader/listports.py}{\texttt{ listports.\+py}}
 \item The new port that appeared is the emulator port
 \begin{DoxyItemize}
 \item Linux example\+: $\ast$$\ast$/dev/tty\+U\+S\+B0$\ast$$\ast$
@@ -1062,12 +1062,17 @@ On the {\bfseries{H\+P85}} type
 \item {\bfseries{Data bits\+: 8 Data bits NO parity}}
 \item {\bfseries{Flow control N\+O\+NE}}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_README_autotoc_md79}{}\doxysubsection{Connecting to hp85disk interactive serial port}\label{md_README_autotoc_md79}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_README_autotoc_md79}{}\doxysubsection{Connecting to hp85disk interactive serial port}\label{md_README_autotoc_md79}
 
 \begin{DoxyItemize}
-\item Note\+: Use the same port name as with the flashing example
+\item Note\+: Use the port discovered in the previos section
+\item You will need the Python {\bfseries{py\+Serial}} package documented in the previous steps
 \item {\bfseries{python3 -\/m serial.\+tools.\+miniterm --parity N --rts 0 --dtr 0 /dev/tty\+U\+S\+B0 115200}}
 \begin{DoxyItemize}
+\item {\bfseries{serial.\+tools.\+miniterm}} does not need a beginning directory path -\/ when the package is installed Python knows where to look
 \item Windows users can use the the standalone Python 3.\+7 from the Microsoft App store with Python package py\+Serial installed
 \item Note\+: {\bfseries{serial.\+tools.\+miniterm}} does {\bfseries{N\+OT work on Windows W\+SL Ubuntu}} -\/ yet so use the term script found in the hp85disk github main folder
 \end{DoxyItemize}
@@ -1085,9 +1090,9 @@ On the {\bfseries{H\+P85}} type
 \hypertarget{md_README_autotoc_md80}{}\doxysubsection{Updating hp85disk firmware with built in bootloader}\label{md_README_autotoc_md80}
 
 \begin{DoxyItemize}
-\item {\bfseries{N\+O\+TE\+: The examples below refer to files that are part of this hp85disk project}}
+\item Note where you have saved \href{uploader/flasher.py}{\texttt{ flasher.\+py}} and \href{release/build/gpib.hex}{\texttt{ gpib.\+hex}} and update the path below to suit
 \begin{DoxyItemize}
-\item You can download them using the direct links in the previous section {\bfseries{listports.\+py, flasher.\+py and gpib.\+hex}}
+\item You can download them using the direct links in the previous section
 \end{DoxyItemize}
 \item Only do this if recommended
 \item Note\+: The github hp85disk master branch project includes disk images and precompiled firmware
@@ -1102,7 +1107,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md81}{}\doxysubsubsection{Linux firmware update example}\label{md_README_autotoc_md81}
 
 \begin{DoxyItemize}
-\item Note where you have saved {\bfseries{flasher.\+py}} and {\bfseries{gpib.\+hex}} and update the path below to suit
+\item Note where you have saved \href{uploader/flasher.py}{\texttt{ flasher.\+py}} and \href{release/build/gpib.hex}{\texttt{ gpib.\+hex}} and update the path below to suit
 \item Run the following command
 \begin{DoxyItemize}
 \item {\bfseries{python3 uploader/flasher.\+py 115200 /dev/tty\+U\+S\+B0 release/build/gpib.\+hex}}
@@ -1110,7 +1115,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md82}{}\doxysubsubsection{Windows firmware update example}\label{md_README_autotoc_md82}
 
 \begin{DoxyItemize}
-\item Note where you have saved {\bfseries{flasher.\+py}} and {\bfseries{gpib.\+hex}} and update the path below to suit
+\item Note where you have saved \href{uploader/flasher.py}{\texttt{ flasher.\+py}} and \href{release/build/gpib.hex}{\texttt{ gpib.\+hex}} and update the path below to suit
 \item Run the following command
 \begin{DoxyItemize}
 \item {\bfseries{python3 uploader/flasher.\+py 115200 C\+O\+M3 release/build/gpib.\+hex}}
@@ -1118,7 +1123,7 @@ On the {\bfseries{H\+P85}} type
 \end{DoxyItemize}\hypertarget{md_README_autotoc_md83}{}\doxysubsubsection{Mac firmware update example}\label{md_README_autotoc_md83}
 
 \begin{DoxyItemize}
-\item Note where you have saved {\bfseries{flasher.\+py}} and {\bfseries{gpib.\+hex}} and update the path below to suit
+\item Note where you have saved \href{uploader/flasher.py}{\texttt{ flasher.\+py}} and \href{release/build/gpib.hex}{\texttt{ gpib.\+hex}} and update the path below to suit
 \item Run the following command
 \begin{DoxyItemize}
 \item {\bfseries{python3 flasher.\+py /dev/tty.usbserial-\/\+A\+B0\+K\+M\+Q\+CH gpib.\+hex}}

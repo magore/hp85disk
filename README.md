@@ -647,19 +647,19 @@ ___
   * Make sure the emulator is not connected to your PC/Mac
 
 ### Linux
-  * Note where you have saved **listports.py** and update the path below to suit
+  * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
   * Open a terminal window
     * Run the following command 
     * **python3 uploader/listports.py**
 
 ### Windows
-  * Note where you have saved **listports.py** and update the path below to suit
+  * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
   * Open a Power Shell window
     * Run the following command 
     * **python3 uploader\listports.py**
 
 ### Connect the emulator  to discover the port name
-  * Attach the miniusb cable to your computer and rerun the **listports.py**
+  * Attach the miniusb cable to your computer and rerun the [listports.py](uploader/listports.py)
   * The new port that appeared is the emulator port
     * Linux example:   **/dev/ttyUSB0**
     * Windows Example: **COM3**
@@ -668,9 +668,13 @@ ___
     * **Data bits: 8 Data bits NO parity**
     * **Flow control NONE**
 
+___ 
+
 ## Connecting to hp85disk interactive serial port
-  * Note: Use the same port name as with the flashing example
+  * Note: Use the port discovered in the previos section
+  * You will need the Python **pySerial** package documented in the previous steps
   * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
+    * **serial.tools.miniterm** does not need a beginning directory path - when the package is installed Python knows where to look
     * Windows users can use the the standalone Python 3.7 from the Microsoft App store with Python package pySerial installed
     * Note: **serial.tools.miniterm** does **NOT work on Windows WSL Ubuntu** - yet so use the term script found in the hp85disk github main folder
   * For a help menu type **help**
@@ -682,8 +686,8 @@ ___
 
 
 ## Updating hp85disk firmware with built in bootloader
-  * **NOTE: The examples below refer to files that are part of this hp85disk project**
-    * You can download them using the direct links in the previous section **listports.py, flasher.py and gpib.hex** 
+  * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
+    * You can download them using the direct links in the previous section 
   * Only do this if recommended
   * Note: The github hp85disk master branch project includes disk images and precompiled firmware
     * Compiled Firmware hex file [release/build](release/build) 
@@ -692,17 +696,17 @@ ___
     * You just need to flash the files - see MINIMAL notes above
 
 ### Linux firmware update example
-  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
   * Run the following command 
     * **python3 uploader/flasher.py 115200 /dev/ttyUSB0 release/build/gpib.hex**
 
 ### Windows firmware update example
-  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
   * Run the following command 
     * **python3 uploader/flasher.py 115200 COM3 release/build/gpib.hex**
 
 ### Mac firmware update example
-  * Note where you have saved **flasher.py**  and **gpib.hex** and update the path below to suit
+  * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
   * Run the following command 
     * **python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex**
 

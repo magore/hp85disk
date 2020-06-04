@@ -1104,7 +1104,7 @@ Discover your serial port name</h2>
 <h3><a class="anchor" id="autotoc_md76"></a>
 Linux</h3>
 <ul>
-<li>Note where you have saved <b>listports.py</b> and update the path below to suit</li>
+<li>Note where you have saved <a href="uploader/listports.py">listports.py</a> and update the path below to suit</li>
 <li>Open a terminal window<ul>
 <li>Run the following command</li>
 <li><b>python3 uploader/listports.py</b></li>
@@ -1114,7 +1114,7 @@ Linux</h3>
 <h3><a class="anchor" id="autotoc_md77"></a>
 Windows</h3>
 <ul>
-<li>Note where you have saved <b>listports.py</b> and update the path below to suit</li>
+<li>Note where you have saved <a href="uploader/listports.py">listports.py</a> and update the path below to suit</li>
 <li>Open a Power Shell window<ul>
 <li>Run the following command</li>
 <li>**python3 uploader\listports.py**</li>
@@ -1124,7 +1124,7 @@ Windows</h3>
 <h3><a class="anchor" id="autotoc_md78"></a>
 Connect the emulator  to discover the port name</h3>
 <ul>
-<li>Attach the miniusb cable to your computer and rerun the <b>listports.py</b></li>
+<li>Attach the miniusb cable to your computer and rerun the <a href="uploader/listports.py">listports.py</a></li>
 <li>The new port that appeared is the emulator port<ul>
 <li>Linux example: **/dev/ttyUSB0**</li>
 <li>Windows Example: <b>COM3</b></li>
@@ -1137,11 +1137,14 @@ Connect the emulator  to discover the port name</h3>
 </ul>
 </li>
 </ul>
+<hr  />
 <h2><a class="anchor" id="autotoc_md79"></a>
 Connecting to hp85disk interactive serial port</h2>
 <ul>
-<li>Note: Use the same port name as with the flashing example</li>
+<li>Note: Use the port discovered in the previos section</li>
+<li>You will need the Python <b>pySerial</b> package documented in the previous steps</li>
 <li><b>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 115200</b><ul>
+<li><b>serial.tools.miniterm</b> does not need a beginning directory path - when the package is installed Python knows where to look</li>
 <li>Windows users can use the the standalone Python 3.7 from the Microsoft App store with Python package pySerial installed</li>
 <li>Note: <b>serial.tools.miniterm</b> does <b>NOT work on Windows WSL Ubuntu</b> - yet so use the term script found in the hp85disk github main folder</li>
 </ul>
@@ -1159,8 +1162,8 @@ Connecting to hp85disk interactive serial port</h2>
 <h2><a class="anchor" id="autotoc_md80"></a>
 Updating hp85disk firmware with built in bootloader</h2>
 <ul>
-<li><b>NOTE: The examples below refer to files that are part of this hp85disk project</b><ul>
-<li>You can download them using the direct links in the previous section <b>listports.py, flasher.py and gpib.hex</b></li>
+<li>Note where you have saved <a href="uploader/flasher.py">flasher.py</a> and <a href="release/build/gpib.hex">gpib.hex</a> and update the path below to suit<ul>
+<li>You can download them using the direct links in the previous section</li>
 </ul>
 </li>
 <li>Only do this if recommended</li>
@@ -1177,7 +1180,7 @@ Updating hp85disk firmware with built in bootloader</h2>
 <h3><a class="anchor" id="autotoc_md81"></a>
 Linux firmware update example</h3>
 <ul>
-<li>Note where you have saved <b>flasher.py</b> and <b>gpib.hex</b> and update the path below to suit</li>
+<li>Note where you have saved <a href="uploader/flasher.py">flasher.py</a> and <a href="release/build/gpib.hex">gpib.hex</a> and update the path below to suit</li>
 <li>Run the following command<ul>
 <li><b>python3 uploader/flasher.py 115200 /dev/ttyUSB0 release/build/gpib.hex</b></li>
 </ul>
@@ -1186,7 +1189,7 @@ Linux firmware update example</h3>
 <h3><a class="anchor" id="autotoc_md82"></a>
 Windows firmware update example</h3>
 <ul>
-<li>Note where you have saved <b>flasher.py</b> and <b>gpib.hex</b> and update the path below to suit</li>
+<li>Note where you have saved <a href="uploader/flasher.py">flasher.py</a> and <a href="release/build/gpib.hex">gpib.hex</a> and update the path below to suit</li>
 <li>Run the following command<ul>
 <li><b>python3 uploader/flasher.py 115200 COM3 release/build/gpib.hex</b></li>
 </ul>
@@ -1195,7 +1198,7 @@ Windows firmware update example</h3>
 <h3><a class="anchor" id="autotoc_md83"></a>
 Mac firmware update example</h3>
 <ul>
-<li>Note where you have saved <b>flasher.py</b> and <b>gpib.hex</b> and update the path below to suit</li>
+<li>Note where you have saved <a href="uploader/flasher.py">flasher.py</a> and <a href="release/build/gpib.hex">gpib.hex</a> and update the path below to suit</li>
 <li>Run the following command<ul>
 <li><b>python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex</b></li>
 </ul>
@@ -3151,7 +3154,7 @@ ASCII Basic files - in text format for easy editing</h3>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 4 2020 11:05:32 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 4 2020 11:17:36 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
