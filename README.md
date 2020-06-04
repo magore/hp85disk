@@ -318,7 +318,7 @@ ___
     * **Symptoms - the hp85disk will not detect any drives**
       * This is because the small FatFS file system code I used can not self repair any filesystem errors
   * If you suspect this the easy way to check is to connect the emulator to a desktop/laptop computer
-    * See this section for details: **Firmware updating and connecting to the hp85disk emulator with MINIMAL software install**
+    * See [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
   * When powering on the emulator it will report a details about the SD Card - you will see very obvious errors if it can not read the SD Card
   * If the emulator says it can not open the card then go to the **SD Card filesystem repair sections**
 
@@ -685,9 +685,8 @@ ___
     * There is a full list of the commands later in this README
   * References
     * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
-    * Read down to section [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
-    * Read section [Command interface notes}(#command-interface-notes)
-    * See section [hp85disk troubleshooting with serial terminal and DEBUG option](#hp85disk-troubleshooting-with-serial-terminal-and-debug-option) to verify your HP85 is communicating with your emulator
+    * [Command interface notes}(#command-interface-notes)
+    * [hp85disk troubleshooting with serial terminal and DEBUG option](#hp85disk-troubleshooting-with-serial-terminal-and-debug-option) to verify your HP85 is communicating with your emulator
 
 ___ 
 
@@ -700,7 +699,10 @@ ___
     * Compiled Firmware hex file [release/build](release/build) 
     * SD Card Disk Images        [release/sdcard](release/sdcard)
   * [I have provided compiled HEX files under the folder release/build](release/build)
-    * You just need to flash the files - see MINIMAL notes above
+    * You just need to flash the files 
+  * References:
+    * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
+    * [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
 
 ### Linux firmware update example
   * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
