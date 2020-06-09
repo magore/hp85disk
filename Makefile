@@ -226,8 +226,7 @@ GPIB   = \
 	gpib/ss80.c \
 	gpib/amigo.c \
 	gpib/printer.c \
-    gpib/vector.c \
-    gpib/controller.c
+    gpib/vector.c 
 
 POSIX = 
 	POSIX += posix/posix.c

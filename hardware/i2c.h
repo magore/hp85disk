@@ -26,8 +26,8 @@
 
 // 16 I2C send/receive buffered operations
 #define I2C_OPS 			16
-// 20ms timeout per transaction
-#define I2C_TIMEOUT 		20
+// 10ms timeout per transaction
+#define I2C_TIMEOUT 		10
 
 #define I2C_OP_TIMEOUT      _BV(0)
 #define I2C_OP_LEN          _BV(1)

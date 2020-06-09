@@ -5,27 +5,22 @@
 
  @par Edit History - [1.0]   [Mike Gore]  Initial revision of file.
 
- @par Copyright &copy; 2017 Mike Gore, Inc. All rights reserved.
+ @par Copyright &copy; 2017-2020 Mike Gore, Inc. All rights reserved.
 */
 
 
 debug level bit mask truth table
-	1 ERRORS - note always include these
 
-	2 PPR states
+#define GPIB_ERR                         1        /* GPIB error messages */
+#define GPIB_PPR                         2        /* GPIB PPR Parallel Poll Response states */
+#define GPIB_BUS_OR_CMD_BYTE_MESSAGES    4        /* GPIB BUS level single command byte decoded messages */
+#define GPIB_TOP_LEVEL_BUS_DECODE        8        /* GPIB main loop - top level data and controll lines decoded */
+#define GPIB_TODO                       16        /* GPIB TODO DEVICE missing support code */
+#define GPIB_DEVICE_STATE_MESSAGES      32        /* GPIB Device Level states such as AMIGO,SS80,PRINTER */
+#define GPIB_DISK_IO_TIMING             64        /* GPIB Disk I/O read/write times */
+#define GPIB_RW_STR_TIMING             128        /* GPIB read/write string timing */
+#define GPIB_RW_STR_BUS_DECODE         256        /* GPIB read/write string byte decode */
+#define GPIB_PP_BUS_STATUS             512        /* GPIB try to detect Parallel Poll BUS state */
+#define LIF_DEBUG                     1024        /* LIF utitilites debugging */
+#endif
 
-	4 GPIB command and control byte messages
-
-	8 GPIB main loop command data and control line states
-
-	16 TODO DEVICE support states - ie missing code
-
-	32 DEVICE states, AMIGO,SS80,PRINTER
-
-	64 disk I/O read/write times
-
-	128 GPIB read/write string timeing
-
-	256 GPIB read / write string byte decode
-
-	512 Parallel Poll bus status debug

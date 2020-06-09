@@ -86,9 +86,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GPIO_PIN_WR(pin,level)  ((level) ? GPIO_PIN_HI(pin) : GPIO_PIN_LOW(pin))
 
 #define GPIO_PIN_FLOAT(pin)     GPIO_PIN_DIR_IN(pin)
-// FLOAT pullup
-#define GPIO_PIN_FLOAT_UP(pin)  GPIO_PIN_DIR_IN(pin)
-// #define GPIO_PIN_FLOAT_UP(pin)  (GPIO_PIN_DIR_IN(pin),GPIO_PIN_LATCH_HI(pin))
+//MG 5June2020 active pull up was disable - now enabled
+//#define GPIO_PIN_FLOAT_UP(pin)  GPIO_PIN_DIR_IN(pin)
+#define GPIO_PIN_FLOAT_UP(pin)  (GPIO_PIN_DIR_IN(pin),GPIO_PIN_LATCH_HI(pin))
 
 #define GPIO_PORT_DIR_OUT(port) (GPIO_PORT2SFR(port,DDR_BASE) = 0xff)
 #define GPIO_PORT_DIR_IN(port)  (GPIO_PORT2SFR(port,DDR_BASE) = 0x00)

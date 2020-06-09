@@ -24,7 +24,6 @@
 #include "printer.h"
 #include "posix.h"
 #include "delay.h"
-#include "controller.h"
 #include "debug.h"
 
 ///@brief Plotter file data structure used for saving plot data.
@@ -248,48 +247,4 @@ int PRINTER_COMMANDS(uint8_t ch)
         return(0);
     }
     return(0);
-}
-
-
-/// @brief  Instruct Instrument to send Plot data.
-/// - Not finished or working yet - barely started work in progress,
-/// @return  void
-void plot_echo( int gpib_address)
-{
-    char line[256];
-
-    int from = find_type(PRINTER_TYPE);
-    int to = gpib_address;
-    int len;
-
-    if(from == -1)
-    {
-        printf("printer not defined\n");
-        return;
-    }
-
-    printer_close();
-
-    while(uart_keyhit(0) )
-        putchar( uart_rx_byte(0) );
-
-//controller_ifc();
-
-// DEBUGGING
-    gpib_decode_header(stdout);
-
-    len = controller_send_str(from,to,"*idn?\n",0);
-    len = controller_read_str(to,from, line, 256 );
-    printf("received:[%d] %s\n", len, line);
-
-    len = controller_send_str(from,to,":HARDcopy:DEVice?\n",0);
-    len = controller_read_str(to, from, line, 256);
-    printf("received:[%d] %s\n", len, line);
-
-//len = controller_send_str(from,to,":PRINt?\n",0);
-//len = controller_read_str(to, from, line, 256);
-
-    len = controller_send_str(from,to,":wav:data?\n",0);
-    len = controller_read_trace(to,from);
-    printf("received:[%d] bytes\n", len);
 }

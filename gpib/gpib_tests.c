@@ -138,13 +138,6 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
-    if ( MATCHI(ptr, "ifc") )
-    {
-        gpib_assert_ifc();
-        return(1);
-
-    }
-
     if (MATCHI(ptr,"task") )
     {
         gpib_task();
