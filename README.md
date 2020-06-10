@@ -736,6 +736,13 @@ MAXADDR: 0x01e148, OFFSETADDR: 0x000000, BASEADDR: 0x010000
 program size: 123208
 
 [STK500] Load address 000000
+...
+<deleted content>
+...
+[STK500] Load address 01e100
+[STK500] Load address 01e200
+[STK500] Leaving programming mode
+
 </pre>
 
 ### Linux firmware update example
