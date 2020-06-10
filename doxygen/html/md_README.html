@@ -1128,6 +1128,7 @@ Windows</h3>
 <h3><a class="anchor" id="autotoc_md78"></a>
 Connect the emulator  to discover the port name</h3>
 <ul>
+<li>Note where you have saved <a href="uploader/listports.py">listports.py</a> and update the path below to suit</li>
 <li>Attach the miniusb cable to your computer and rerun the <a href="uploader/listports.py">listports.py</a></li>
 <li>The new port that appeared is the emulator port<ul>
 <li>Linux example: **/dev/ttyUSB0**</li>
@@ -1146,6 +1147,7 @@ Connect the emulator  to discover the port name</h3>
 Connecting to hp85disk interactive serial port</h2>
 <ul>
 <li>Note: Use the port discovered in the previos section</li>
+<li><b>Note: serial.tools.miniterm is a library installed by pySerial - you do not need to specify a path to it</b></li>
 <li>You will need the Python <b>pySerial</b> package documented in the previous steps</li>
 <li><b>python3 -m serial.tools.miniterm &ndash;parity N &ndash;rts 0 &ndash;dtr 0 /dev/ttyUSB0 115200</b><ul>
 <li><b>serial.tools.miniterm</b> does not need a beginning directory path - when the package is installed Python knows where to look</li>
@@ -3205,7 +3207,7 @@ Unused code</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 9 2020 19:50:39 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 10 2020 14:21:52 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

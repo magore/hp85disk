@@ -661,6 +661,7 @@ ___
     * **python3 uploader\listports.py**
 
 ### Connect the emulator  to discover the port name
+  * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
   * Attach the miniusb cable to your computer and rerun the [listports.py](uploader/listports.py)
   * The new port that appeared is the emulator port
     * Linux example:   **/dev/ttyUSB0**
@@ -674,6 +675,7 @@ ___
 
 ## Connecting to hp85disk interactive serial port
   * Note: Use the port discovered in the previos section
+  * **Note: serial.tools.miniterm is a library installed by pySerial - you do not need to specify a path to it**
   * You will need the Python **pySerial** package documented in the previous steps
   * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
     * **serial.tools.miniterm** does not need a beginning directory path - when the package is installed Python knows where to look
