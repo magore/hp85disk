@@ -838,7 +838,6 @@ void display_Addresses( int verbose )
     printf("\n");
 }
 
-
 /// ===============================================
 /// @brief Display current Configuration File values
 /// @return  void
@@ -975,6 +974,8 @@ void display_Config( int verbose)
     }
     printf("\n");
 }
+
+
 
 
 ///@brief Seach Devices[] for ANY definitions of a disk type
@@ -1629,3 +1630,51 @@ void format_drives()
     if(count)
         sep();
 }
+
+
+/// ===============================================
+/// @brief Display current Configuration File values
+/// @return  void
+void display_mount( )
+{
+    int i;
+
+///@brief Active Printer Device
+    PRINTERDeviceType *PRINTERp = NULL;
+///@brief Active SS80 Device
+    SS80DiskType *SS80p = NULL;
+
+#ifdef AMIGO
+///@brief Active AMIGO Device
+    AMIGODiskType *AMIGOp = NULL;
+#endif
+
+    for(i=0;i<MAX_DEVICES;++i)
+    {
+        if(Devices[i].TYPE == NO_TYPE)
+            continue;
+
+        if(Devices[i].TYPE == SS80_TYPE)
+        {
+            SS80p= (SS80DiskType *)Devices[i].dev;
+
+            printf("%-16s SS80  %2d %s\n", Devices[i].model, (int) SS80p->HEADER.ADDRESS, SS80p->HEADER.NAME);
+		}
+
+#ifdef AMIGO
+        if(Devices[i].TYPE == AMIGO_TYPE )
+        {
+            AMIGOp= (AMIGODiskType *)Devices[i].dev;
+            printf("%-16s AMIGO %2d %s\n", Devices[i].model, (int) AMIGOp->HEADER.ADDRESS, AMIGOp->HEADER.NAME);
+        }
+#endif                                    // #ifdef AMIGO
+
+        if(Devices[i].TYPE == PRINTER_TYPE )
+        {
+            PRINTERp= (PRINTERDeviceType *)Devices[i].dev;
+            printf("%-16s       %2d\n", "PRINTER", (int) PRINTERp->HEADER.ADDRESS);
+		}
+    }
+    printf("\n");
+}
+

@@ -646,13 +646,15 @@ ___
 
 ## Discover your serial port name
   * Make sure you have a mini usb cable handy
-  * Make sure the emulator is not connected to your PC/Mac
+  * **Make sure the emulator mini-usb cable is NOT connected to your PC/Mac yet**
+  * **Make sure the hp85disk is powered on**
 
 ### Linux
   * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
   * Open a terminal window
     * Run the following command 
     * **python3 uploader/listports.py**
+    * Attach the emulator and rerun the command 
 
 ### Windows
   * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
@@ -662,8 +664,9 @@ ___
 
 ### Connect the emulator  to discover the port name
   * Note where you have saved [listports.py](uploader/listports.py) and update the path below to suit
-  * Attach the miniusb cable to your computer and rerun the [listports.py](uploader/listports.py)
-  * The new port that appeared is the emulator port
+  * **Make sure the hp85disk is powered on**
+  * Attach the hp85disk miniusb cable to your computer and rerun the [listports.py](uploader/listports.py)
+  * **Note: The new port that appeared is the emulator port**
     * Linux example:   **/dev/ttyUSB0**
     * Windows Example: **COM3**
   * Note: The emulator uses the following port settings
@@ -706,6 +709,33 @@ ___
     * [Firmware updating and connecting to the hp85disk emulator with MINIMAL software install](#firmware-updating-and-connecting-to-the-hp85disk-emulator-with-minimal-software-install)
     * [Connecting to hp85disk interactive serial port](#connecting-to-hp85disk-interactive-serial-port)
 
+### Flashing notes
+  * In the following update example you should see messages similar to message below 
+  * **It is not that uncommon that you will have to try more then once**
+    * **If you have problems please see the "Firmware update problems" sections below**
+  * Here is what you should expect to see as flashing starts
+  * Example flashing messages: python3 flasher.py 115200 /dev/ttyUSB0 gpib.hex
+   * Update your port name to suit your OS, and update the paths to the flasher.py and gpib.hex if needed
+<pre>
+[STK500] Get sync
+Connected to bootloader
+[STK500] Get parameter 81
+Major: 8
+[STK500] Get parameter 82
+Minor: 1
+[STK500] Read signature
+Signature: 0x1e9705
+MAXADDR: 0x010000, OFFSETADDR: 0x000000, BASEADDR: 0x010000
+
+data[0]: 0x10, data[1]: 0x00
+
+MAXADDR: 0x01e148, OFFSETADDR: 0x000000, BASEADDR: 0x010000
+
+program size: 123208
+
+[STK500] Load address 000000
+</pre>
+
 ### Linux firmware update example
   * Note where you have saved [flasher.py](uploader/flasher.py) and [gpib.hex](release/build/gpib.hex) and update the path below to suit
   * Run the following command 
@@ -722,9 +752,11 @@ ___
     * **python3 flasher.py /dev/tty.usbserial-AB0KMQCH gpib.hex**
 
 ### Firmware update problems - if you get a failure during updating
+  * **ALways try the flasher.py script at least twice before attempting this proccedure**
   * Type in the flashing command, see  above, but *without* pressing Enter yet
     * **Now hold down RESET on the hp85disk board - now release RESET and press Enter quickly**
-      * **You have a short Window after releasing RESET to Press Enter**
+      * **You have a short window (about a second) after releasing RESET to Press Enter**
+      * ** You may have to try this a few times to get the timing right**
 
 ___ 
 

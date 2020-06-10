@@ -106,6 +106,17 @@ int gpib_tests(int argc, char * argv[])
         return(1);
     }
 
+    if (MATCHI(ptr,"mount") )
+    {
+        ptr = argv[ind];
+		if(!ptr)
+		{
+			display_mount();
+			return(1);
+		}
+	
+    }
+
     if (MATCHI(ptr,"addresses") )
     {
         ptr = argv[ind];

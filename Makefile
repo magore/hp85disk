@@ -256,9 +256,9 @@ CSRC = \
 # Use GIT last modify time if we have it 
 # GIT_VERSION := $(shell git log -1 2>&1 | grep "^Date:")
 # update.last is safer to use, the file is touched by my git commit script
-GIT_VERSION := $(shell stat -c%x update.last 2>/dev/null)
-#LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%x)
-LOCAL_MOD := $(shell ls -rt */*[ch] | tail -1 | xargs stat -c%x)
+GIT_VERSION := $(shell stat -c%y update.last 2>/dev/null)
+#LOCAL_MOD := $(shell ls -rt $(CSRC) | tail -1 | xargs stat -c%y)
+LOCAL_MOD := $(shell ls -rt *\.c */*\.[ch] | tail -1 | xargs stat -c%y)
 
 # Assembler sources
 ASRC    = 
@@ -469,10 +469,10 @@ sdcard: install
 .PHONY: release
 release: all install
 	# Save the results under release
-	cp -p $(PROJECT).*   release/build
-	cp -p sdcard/*\.lif  release/sdcard
-	cp -p sdcard/*\.cfg  release/sdcard
-	cp -p sdcard/*\.ini  release/sdcard
+	cp -pf $(PROJECT).*   release/build
+	cp -pf sdcard/*\.lif  release/sdcard
+	cp -pf sdcard/*\.cfg  release/sdcard
+	cp -pf sdcard/*\.ini  release/sdcard
 
 # =======================================
 .PHONY: help
