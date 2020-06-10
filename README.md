@@ -680,6 +680,7 @@ ___
   * Note: Use the port discovered in the previos section
   * **Note: serial.tools.miniterm is a library installed by pySerial - you do not need to specify a path to it**
   * You will need the Python **pySerial** package documented in the previous steps
+  * Replace the **/dev/ttyUSB0** port with the one you discovered previously
   * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
     * **serial.tools.miniterm** does not need a beginning directory path - when the package is installed Python knows where to look
     * Windows users can use the the standalone Python 3.7 from the Microsoft App store with Python package pySerial installed

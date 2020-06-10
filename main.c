@@ -346,6 +346,8 @@ void user_task(uint8_t gpib)
 
     printf("\n>");
 
+	memset(line,0,sizeof(line)-1);
+
     fgets(line,sizeof(line)-2,stdin);
     trim_tail(line);
     argc = split_args(line,argv,50);
