@@ -208,7 +208,8 @@ void uart_rx_interrupt(uint8_t uart, uint8_t data)
 {
     if (uarts[uart].rx_count < RX_BUF_SIZE )
     {
-        uarts[uart].rx_buf[uarts[uart].rx_head++] = data;
+// MG 10 June 2020 mask off bit 7
+        uarts[uart].rx_buf[uarts[uart].rx_head++] = data & 0x7f;
         uarts[uart].rx_count++;
         if (uarts[uart].rx_head >= RX_BUF_SIZE )
             uarts[uart].rx_head = 0;
