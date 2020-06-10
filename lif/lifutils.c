@@ -154,7 +154,7 @@ int lif_tests(int argc, char *argv[])
 
 // Nothing to do ?
     if(argc < 2)
-        return (1);
+        return (0);
 
 // Argument 1
     ind = 1;

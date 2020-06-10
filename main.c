@@ -360,6 +360,7 @@ void user_task(uint8_t gpib)
 #endif
 
     ind = 0;
+	result = 0;
     ptr = argv[ind++];
 
     if(!ptr || argc < 1)
@@ -429,17 +430,23 @@ void user_task(uint8_t gpib)
 
 #ifdef POSIX_TESTS
     else if(posix_tests(argc,argv))
+	{
         result = 1;
+	}
 #endif
 
 #ifdef FATFS_TESTS
     else if(fatfs_tests(argc,argv))
+	{
         result = 1;
+	}
 #endif
 
 #ifdef LIF_SUPPORT
     else if(lif_tests(argc,argv))
+	{
         result = 1;
+	}
 #endif
     if(result)
         printf("OK\n");
