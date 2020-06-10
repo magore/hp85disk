@@ -96,7 +96,20 @@ int posix_tests(int argc,char *argv[])
     int ind;
 
     ind = 0;
+	if(argc < 1)
+		return(0);
+
     ptr = argv[ind++];
+
+#if 0
+int i;
+printf("posix\n");
+for(i=0;i<argc;++i)
+{
+	printf("argv[%d]=%s\n",(int)i, argv[i]);
+}
+#endif
+
 
     if(!ptr)
         return(0);
@@ -129,20 +142,20 @@ int posix_tests(int argc,char *argv[])
     }
 
 #ifdef POSIX_EXTENDED_TESTS
-    if (MATCHARGS(ptr,"chmod",(ind+2),argc))
+    else if (MATCHARGS(ptr,"chmod",(ind+2),argc))
     {
         chmod( argv[ind],strtol(argv[ind+1],NULL,8));
         return(1);
     }
 #endif
 
-    if (MATCHARGS(ptr,"copy", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
         copy(argv[ind],argv[ind+1]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"cd", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         if ( chdir(argv[ind]) != 0)
             printf("chdir %s failed\n", argv[ind]);
@@ -150,7 +163,7 @@ int posix_tests(int argc,char *argv[])
     }
 
 #ifdef POSIX_EXTENDED_TESTS
-    if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"hexdump", (ind + 1), argc))
     {
         int i;
         int page = 0;
@@ -167,21 +180,27 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"log", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"log", (ind + 2), argc))
     {
         logfile(argv[ind],argv[ind+1]);
         return(1);
     }
 #endif
 
-    if (MATCHARGS(ptr,"ls", (ind + 0), argc))
+    else if (MATCHI(ptr,"ls") )
     {
         int i;
         int args = 0;
         for(i=ind;i<argc;++i)
         {
-            if(!MATCH(argv[i],"-l"))
-                ls(argv[i],1);
+			if(!argv[i])
+			{
+				printf("ls: null argument # %d\n", i);
+				continue;
+			}
+            if(MATCH(argv[i],"-l"))	// skip long format test - we always use long format
+				continue;
+			ls(argv[i],1);
             ++args;
         }
         if(!args)
@@ -192,7 +211,7 @@ int posix_tests(int argc,char *argv[])
     }
 
 #ifdef POSIX_EXTENDED_TESTS
-    if (MATCHARGS(ptr,"mkfs", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"mkfs", (ind + 1), argc))
     {
 
         mkfs(argv[ind++]);
@@ -200,7 +219,7 @@ int posix_tests(int argc,char *argv[])
     }
 #endif
 
-    if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
     {
         int mode = 0777;
         if((ind+2) <= argc)
@@ -215,20 +234,20 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"page", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"page", (ind + 1), argc))
     {
         setpage(atoi(argv[ind]));
         return(1);
     }
 
-    if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
+    else if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
         char path[256];
         printf("%s\n", getcwd(path, sizeof(path)-2));
         return(1);
     }
 
-    if (MATCHARGS(ptr,"rename", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
         if( rename(argv[ind],argv[ind+1]) != 0)
         {
@@ -238,7 +257,7 @@ int posix_tests(int argc,char *argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"rm", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
         if ( unlink(argv[ind]) != 0)
         {
@@ -249,13 +268,13 @@ int posix_tests(int argc,char *argv[])
     }
 
 #ifdef POSIX_EXTENDED_TESTS
-    if (MATCHARGS(ptr,"sum", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"sum", (ind + 1), argc))
     {
         sum(argv[ind]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"stat", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"stat", (ind + 1), argc))
     {
         struct stat p;
         stat(argv[ind], &p);                      // POSIX test
@@ -264,7 +283,7 @@ int posix_tests(int argc,char *argv[])
     }
 #endif
 
-    if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
         if ( rmdir(argv[ind]) != 0)
         {
@@ -275,7 +294,7 @@ int posix_tests(int argc,char *argv[])
     }
 
 #ifdef POSIX_EXTENDED_TESTS
-    if (MATCHARGS(ptr,"upload", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"upload", (ind + 1), argc))
     {
         upload(argv[ind]);
         return(1);

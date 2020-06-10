@@ -72,7 +72,7 @@ void fatfs_help( int full)
             "fatfs mkfs\n"
             "fatfs pwd\n"
     #endif
-            "fatfs status file\n"
+            "fatfs status\n"
 
     #ifdef FATFS_UTILS_FULL
             "fatfs stat file\n"
@@ -128,11 +128,11 @@ int fatfs_tests(int argc,char *argv[])
     }
 #endif
 
-    if (MATCHARGS(ptr,"ls", (ind + 0), argc))
+    if (MATCHI(ptr,"ls") )
     {
         int i;
         int args = 0;
-        printf("ind:%d,argc:%d\n", ind, argc);
+// printf("ind:%d,argc:%d\n", ind, argc);
         for(i=ind;i<argc;++i)
         {
 //printf("%d:%s\n", i, argv[i]);
@@ -146,64 +146,64 @@ int fatfs_tests(int argc,char *argv[])
         return(1);
     }
 
-    if (MATCHARGS(ptr,"mmc_test",(ind+0),argc ))
+    else if (MATCHARGS(ptr,"mmc_test",(ind+0),argc ))
     {
         mmc_test();
         return(1);
     }
 
-    if (MATCHARGS(ptr,"mmc_init",(ind+0),argc))
+    else if (MATCHARGS(ptr,"mmc_init",(ind+0),argc))
     {
         mmc_init(1);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"status", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"status", (ind + 1), argc))
     {
         fatfs_status(argv[ind]);
         return(1);
     }
 
 #ifdef FATFS_UTILS_FULL
-    if (MATCHARGS(ptr,"attrib",(ind+3),argc))
+    else if (MATCHARGS(ptr,"attrib",(ind+3),argc))
     {
         put_rc( f_chmod(argv[ind],atol(argv[ind+1]),atol(argv[ind+2])) );
         return(1);
     }
 
-    if (MATCHARGS(ptr,"cat", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"cat", (ind + 1), argc))
     {
         fatfs_cat(argv[ind]);
         return(1);
     }
 
 #if FF_FS_RPATH
-    if (MATCHARGS(ptr,"cd", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         fatfs_cd(argv[ind]);
         return(1);
     }
 #endif
 
-    if (MATCHARGS(ptr,"copy", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
         fatfs_copy(argv[ind],argv[ind+1]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"create", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"create", (ind + 2), argc))
     {
         fatfs_create(argv[ind],argv[ind+1]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
     {
         fatfs_mkdir(argv[ind]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"mkfs", (ind + 0), argc))
+    else if (MATCHARGS(ptr,"mkfs", (ind + 0), argc))
     {
         FATFS fs;
         uint8_t *mem;
@@ -223,7 +223,7 @@ int fatfs_tests(int argc,char *argv[])
 
 #if FF_FS_RPATH
 #if FF_FS_RPATH >= 2
-    if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
+    else if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
         fatfs_pwd();
         return(1);
@@ -231,25 +231,25 @@ int fatfs_tests(int argc,char *argv[])
 #endif                                        // #if FF_FS_RPATH >= 2
 #endif                                        // #if FF_FS_RPATH
 
-    if (MATCHARGS(ptr,"rename", (ind + 2), argc))
+    else if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
         fatfs_rename(argv[ind],argv[ind+1]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
         fatfs_rmdir(argv[ind]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"rm", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
         fatfs_rm(argv[ind]);
         return(1);
     }
 
-    if (MATCHARGS(ptr,"stat", (ind + 1), argc))
+    else if (MATCHARGS(ptr,"stat", (ind + 1), argc))
     {
         fatfs_stat(argv[ind]);
         return(1);
@@ -282,8 +282,6 @@ void mmc_test(void)
     fatfs_create("test.txt","this is a test");
     fatfs_cat("test.txt");
     fatfs_ls("/");
-    fatfs_create("test.txt","this is a test");
-    fatfs_cat("test.txt");
     fatfs_copy("test.txt","test2.txt");
     fatfs_cat("test2.txt");
 #if FF_FS_RPATH
@@ -319,6 +317,8 @@ void fatfs_ls(char *name)
     DIR dirs;                                     /* Directory object */
     FATFS *fs;
     char buff[256];
+
+	memset(buff,0,sizeof(buff)-1);
 
     if(!name || !*name)
     {

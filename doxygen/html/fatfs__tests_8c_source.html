@@ -115,7 +115,7 @@ $(function() {
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="stringliteral">&quot;fatfs mkfs\n&quot;</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="stringliteral">&quot;fatfs pwd\n&quot;</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    #endif</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="stringliteral">&quot;fatfs status file\n&quot;</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="stringliteral">&quot;fatfs status\n&quot;</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    #ifdef FATFS_UTILS_FULL</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="stringliteral">&quot;fatfs stat file\n&quot;</span></div>
@@ -160,11 +160,11 @@ $(function() {
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;ls&quot;</span>, (ind + 0), argc))</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#a158b18efacfbaf45bf46e03f355cf101">MATCHI</a>(ptr,<span class="stringliteral">&quot;ls&quot;</span>) )</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    {</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keywordtype">int</span> i;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordtype">int</span> args = 0;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;ind:%d,argc:%d\n&quot;</span>, ind, argc);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">// printf(&quot;ind:%d,argc:%d\n&quot;, ind, argc);</span></div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">for</span>(i=ind;i&lt;argc;++i)</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        {</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">//printf(&quot;%d:%s\n&quot;, i, argv[i]);</span></div>
@@ -178,64 +178,64 @@ $(function() {
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mmc_test&quot;</span>,(ind+0),argc ))</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mmc_test&quot;</span>,(ind+0),argc ))</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    {</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="fatfs__tests_8c.html#ad5fed10f1507f55cfea45f5e3cb8c5d5">mmc_test</a>();</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    }</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mmc_init&quot;</span>,(ind+0),argc))</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mmc_init&quot;</span>,(ind+0),argc))</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    {</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="mmc__hal_8c.html#ad417477e66c88b40dcce683fd6a5c47a">mmc_init</a>(1);</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;status&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;status&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    {</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ad7d2063fab39190a7288bfa7cb647b46">fatfs_status</a>(argv[ind]);</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#ifdef FATFS_UTILS_FULL</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;attrib&quot;</span>,(ind+3),argc))</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;attrib&quot;</span>,(ind+3),argc))</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    {</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>( <a class="code" href="ff_8c.html#a9ee7e560eec8d82755c636ae41e702cd">f_chmod</a>(argv[ind],<a class="code" href="mathio_8c.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b">atol</a>(argv[ind+1]),<a class="code" href="mathio_8c.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b">atol</a>(argv[ind+2])) );</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    }</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;cat&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;cat&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    {</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(argv[ind]);</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#if FF_FS_RPATH</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;cd&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;cd&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a13b052da94097b8b93c3d9f1e564463d">fatfs_cd</a>(argv[ind]);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;copy&quot;</span>, (ind + 2), argc))</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;copy&quot;</span>, (ind + 2), argc))</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    {</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a23a2f537fbb0a757d6f98a5a60824a4d">fatfs_copy</a>(argv[ind],argv[ind+1]);</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;create&quot;</span>, (ind + 2), argc))</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;create&quot;</span>, (ind + 2), argc))</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    {</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="fatfs__tests_8h.html#ad2debe3eb75bb1a6f65329659eedb706">fatfs_create</a>(argv[ind],argv[ind+1]);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mkdir&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mkdir&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    {</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a4aa62d8de2bcffc328877256c6b71223">fatfs_mkdir</a>(argv[ind]);</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mkfs&quot;</span>, (ind + 0), argc))</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;mkfs&quot;</span>, (ind + 0), argc))</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    {</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <a class="code" href="structFATFS.html">FATFS</a> fs;</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        uint8_t *mem;</div>
@@ -255,7 +255,7 @@ $(function() {
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#if FF_FS_RPATH</span></div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#if FF_FS_RPATH &gt;= 2</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;pwd&quot;</span>, (ind + 0), argc))</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;pwd&quot;</span>, (ind + 0), argc))</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    {</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a1c1f6b5746c5bd08bdf645c951c5421f">fatfs_pwd</a>();</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keywordflow">return</span>(1);</div>
@@ -263,25 +263,25 @@ $(function() {
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#endif                                        // #if FF_FS_RPATH &gt;= 2</span></div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#endif                                        // #if FF_FS_RPATH</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rename&quot;</span>, (ind + 2), argc))</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rename&quot;</span>, (ind + 2), argc))</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    {</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <a class="code" href="fatfs__tests_8h.html#ace47a8763a0dc6a96cc8f8abb4bf3a7a">fatfs_rename</a>(argv[ind],argv[ind+1]);</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    }</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rmdir&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rmdir&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    {</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="fatfs__tests_8h.html#ab138ae7a3df0a7affe8e27236e8b70c3">fatfs_rmdir</a>(argv[ind]);</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rm&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;rm&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    {</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a40de2d35f2fcb56e6c0c3f8674bab818">fatfs_rm</a>(argv[ind]);</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="keywordflow">return</span>(1);</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    }</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;stat&quot;</span>, (ind + 1), argc))</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="parsing_8c.html#ae330bc7e8f9c442404f44ca0187b27d3">MATCHARGS</a>(ptr,<span class="stringliteral">&quot;stat&quot;</span>, (ind + 1), argc))</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    {</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="fatfs__tests_8h.html#a2f1bfd0aaac56da99b1898a21a2b73e9">fatfs_stat</a>(argv[ind]);</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">return</span>(1);</div>
@@ -308,36 +308,36 @@ $(function() {
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <a class="code" href="fatfs__tests_8h.html#ad2debe3eb75bb1a6f65329659eedb706">fatfs_create</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;this is a test&quot;</span>);</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="code" href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a>(<span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="fatfs__tests_8h.html#ad2debe3eb75bb1a6f65329659eedb706">fatfs_create</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;this is a test&quot;</span>);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a23a2f537fbb0a757d6f98a5a60824a4d">fatfs_copy</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;test2.txt&quot;</span>);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test2.txt&quot;</span>);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#if FF_FS_RPATH</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a4aa62d8de2bcffc328877256c6b71223">fatfs_mkdir</a>(<span class="stringliteral">&quot;/tmp&quot;</span>);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a23a2f537fbb0a757d6f98a5a60824a4d">fatfs_copy</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;tmp/test3.txt&quot;</span>);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;tmp/test3.txt&quot;</span>);</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a13b052da94097b8b93c3d9f1e564463d">fatfs_cd</a>(<span class="stringliteral">&quot;/tmp&quot;</span>);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a1c1f6b5746c5bd08bdf645c951c5421f">fatfs_pwd</a>();</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test3.txt&quot;</span>);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;END MMC TEST\n&quot;</span>);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;==============================\n&quot;</span>);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;}</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="fatfs__tests_8h.html#a5306e261e84e6700704633a53153857c">  313</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a>(<span class="keywordtype">char</span> *name)</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;{</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">long</span> p1;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> s1, s2;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordtype">int</span> res;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <a class="code" href="structFILINFO.html">FILINFO</a> fno;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <a class="code" href="structDIR.html">DIR</a> dirs;                                     <span class="comment">/* Directory object */</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <a class="code" href="structFATFS.html">FATFS</a> *fs;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordtype">char</span> buff[256];</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a23a2f537fbb0a757d6f98a5a60824a4d">fatfs_copy</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;test2.txt&quot;</span>);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test2.txt&quot;</span>);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#if FF_FS_RPATH</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a4aa62d8de2bcffc328877256c6b71223">fatfs_mkdir</a>(<span class="stringliteral">&quot;/tmp&quot;</span>);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a23a2f537fbb0a757d6f98a5a60824a4d">fatfs_copy</a>(<span class="stringliteral">&quot;test.txt&quot;</span>,<span class="stringliteral">&quot;tmp/test3.txt&quot;</span>);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;tmp/test3.txt&quot;</span>);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a13b052da94097b8b93c3d9f1e564463d">fatfs_cd</a>(<span class="stringliteral">&quot;/tmp&quot;</span>);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a1c1f6b5746c5bd08bdf645c951c5421f">fatfs_pwd</a>();</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <a class="code" href="fatfs__tests_8h.html#a97a2409a53057e1a63537f196ff00a50">fatfs_cat</a>(<span class="stringliteral">&quot;test3.txt&quot;</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;END MMC TEST\n&quot;</span>);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;==============================\n&quot;</span>);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;}</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="fatfs__tests_8h.html#a5306e261e84e6700704633a53153857c">  311</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a>(<span class="keywordtype">char</span> *name)</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;{</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordtype">long</span> p1;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> s1, s2;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordtype">int</span> res;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <a class="code" href="structFILINFO.html">FILINFO</a> fno;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <a class="code" href="structDIR.html">DIR</a> dirs;                                     <span class="comment">/* Directory object */</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <a class="code" href="structFATFS.html">FATFS</a> *fs;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keywordtype">char</span> buff[256];</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    memset(buff,0,<span class="keyword">sizeof</span>(buff)-1);</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">if</span>(!name || !*name)</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    {</div>
@@ -625,6 +625,7 @@ $(function() {
 <div class="ttc" id="amathio_8c_html_ae952cb1ae6aec6b2b6c02ae67e9ea87b"><div class="ttname"><a href="mathio_8c.html#ae952cb1ae6aec6b2b6c02ae67e9ea87b">atol</a></div><div class="ttdeci">MEMSPACE long atol(const char *str)</div><div class="ttdoc">Convert ASCII string to number in base 10.</div><div class="ttdef"><b>Definition:</b> <a href="mathio_8c_source.html#l00299">mathio.c:299</a></div></div>
 <div class="ttc" id="aparsing_8c_html_a9fb9c5c9b25cdf504152f7610f0d118c"><div class="ttname"><a href="parsing_8c.html#a9fb9c5c9b25cdf504152f7610f0d118c">MATCH</a></div><div class="ttdeci">MEMSPACE int MATCH(char *str, char *pat)</div><div class="ttdoc">Compare two strings.</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8c_source.html#l00143">parsing.c:143</a></div></div>
 <div class="ttc" id="aff_8c_html_abe1f60daab5c7d11170c334fb832c798"><div class="ttname"><a href="ff_8c.html#abe1f60daab5c7d11170c334fb832c798">f_stat</a></div><div class="ttdeci">FRESULT f_stat(const TCHAR *path, FILINFO *fno)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l04754">ff.c:4754</a></div></div>
+<div class="ttc" id="aparsing_8c_html_a158b18efacfbaf45bf46e03f355cf101"><div class="ttname"><a href="parsing_8c.html#a158b18efacfbaf45bf46e03f355cf101">MATCHI</a></div><div class="ttdeci">MEMSPACE int MATCHI(char *str, char *pat)</div><div class="ttdoc">Compare two strings without case.</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8c_source.html#l00183">parsing.c:183</a></div></div>
 <div class="ttc" id="aff_8c_html_aa775b9b024acfeb3a66523cab497d142"><div class="ttname"><a href="ff_8c.html#aa775b9b024acfeb3a66523cab497d142">f_rename</a></div><div class="ttdeci">FRESULT f_rename(const TCHAR *path_old, const TCHAR *path_new)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l05107">ff.c:5107</a></div></div>
 <div class="ttc" id="aff_8h_html_afa366963220c89b882c0361794020c14"><div class="ttname"><a href="ff_8h.html#afa366963220c89b882c0361794020c14">FA_WRITE</a></div><div class="ttdeci">#define FA_WRITE</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00391">ff.h:391</a></div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00017">user_config.h:17</a></div></div>
@@ -670,7 +671,7 @@ $(function() {
 <div class="ttc" id="afatfs__tests_8h_html_a1c1f6b5746c5bd08bdf645c951c5421f"><div class="ttname"><a href="fatfs__tests_8h.html#a1c1f6b5746c5bd08bdf645c951c5421f">fatfs_pwd</a></div><div class="ttdeci">MEMSPACE void fatfs_pwd(void)</div></div>
 <div class="ttc" id="astructFILINFO_html_a9e5b78ed7190f73de3ebcbdfbd6d1844"><div class="ttname"><a href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">FILINFO::fsize</a></div><div class="ttdeci">FSIZE_t fsize</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00248">ff.h:248</a></div></div>
 <div class="ttc" id="afatfs__tests_8c_html_ad16bc1913c19300dba43a07006c9ac52"><div class="ttname"><a href="fatfs__tests_8c.html#ad16bc1913c19300dba43a07006c9ac52">fatfs_help</a></div><div class="ttdeci">MEMSPACE void fatfs_help(int full)</div><div class="ttdoc">Display FatFs test diagnostics help menu.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__tests_8c_source.html#l00046">fatfs_tests.c:46</a></div></div>
-<div class="ttc" id="afatfs__tests_8c_html_a5306e261e84e6700704633a53153857c"><div class="ttname"><a href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a></div><div class="ttdeci">MEMSPACE void fatfs_ls(char *name)</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__tests_8c_source.html#l00313">fatfs_tests.c:313</a></div></div>
+<div class="ttc" id="afatfs__tests_8c_html_a5306e261e84e6700704633a53153857c"><div class="ttname"><a href="fatfs__tests_8c.html#a5306e261e84e6700704633a53153857c">fatfs_ls</a></div><div class="ttdeci">MEMSPACE void fatfs_ls(char *name)</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__tests_8c_source.html#l00311">fatfs_tests.c:311</a></div></div>
 <div class="ttc" id="afatfs__tests_8h_html_a4aa62d8de2bcffc328877256c6b71223"><div class="ttname"><a href="fatfs__tests_8h.html#a4aa62d8de2bcffc328877256c6b71223">fatfs_mkdir</a></div><div class="ttdeci">MEMSPACE void fatfs_mkdir(char *name)</div></div>
 <div class="ttc" id="afatfs__tests_8h_html_ad2debe3eb75bb1a6f65329659eedb706"><div class="ttname"><a href="fatfs__tests_8h.html#ad2debe3eb75bb1a6f65329659eedb706">fatfs_create</a></div><div class="ttdeci">MEMSPACE void fatfs_create(char *name, char *str)</div></div>
 <div class="ttc" id="amathio_8h_html"><div class="ttname"><a href="mathio_8h.html">mathio.h</a></div><div class="ttdoc">Math IO functions, and verious conversion code with floating point support.</div></div>
@@ -687,7 +688,7 @@ $(function() {
 <div class="ttc" id="afatfs__tests_8h_html_a40de2d35f2fcb56e6c0c3f8674bab818"><div class="ttname"><a href="fatfs__tests_8h.html#a40de2d35f2fcb56e6c0c3f8674bab818">fatfs_rm</a></div><div class="ttdeci">MEMSPACE void fatfs_rm(char *name)</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 10 2020 18:13:10 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 10 2020 19:03:58 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

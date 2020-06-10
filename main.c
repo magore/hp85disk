@@ -334,7 +334,7 @@ void user_task(uint8_t gpib)
     int ind;
     int argc;
     int result = 0;
-    char *argv[50];
+    char *argv[51];
     char line[256];
 
 
