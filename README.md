@@ -682,6 +682,7 @@ ___
   * You will need the Python **pySerial** package documented in the previous steps
   * Replace the **/dev/ttyUSB0** port with the one you discovered previously
   * **python3  -m serial.tools.miniterm --parity N --rts 0 --dtr 0 /dev/ttyUSB0 115200**
+    **Ctrl+]** - will exit **hold down Ctrl and press ]**
     * **serial.tools.miniterm** does not need a beginning directory path - when the package is installed Python knows where to look
     * Windows users can use the the standalone Python 3.7 from the Microsoft App store with Python package pySerial installed
     * Note: **serial.tools.miniterm** does **NOT work on Windows WSL Ubuntu** - yet so use the term script found in the hp85disk github main folder
