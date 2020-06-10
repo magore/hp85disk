@@ -737,7 +737,7 @@ program size: 123208
 
 [STK500] Load address 000000
 ...
-<deleted content>
+And so on until the end
 ...
 [STK500] Load address 01e100
 [STK500] Load address 01e200
