@@ -362,8 +362,7 @@ void user_task(uint8_t gpib)
 
 	if(debug_input)
 	{
-		printf("Arguments:\n");
-		printf("   argc = %d\n", argc);
+        printf("Argument count = %d\n", argc);
 		for(i=0;i<argc;++i)
 			printf("   [%s]\n", argv[i]);
 	}
@@ -436,7 +435,7 @@ void user_task(uint8_t gpib)
         result = 1;
     }
 
-    else if(gpib_tests(argc,argv))
+    if(gpib_tests(argc,argv))
     {
 // Restore GPIB BUS states
         gpib_init_devices();
@@ -444,21 +443,21 @@ void user_task(uint8_t gpib)
     }
 
 #ifdef POSIX_TESTS
-    else if(posix_tests(argc,argv))
+    if(posix_tests(argc,argv))
 	{
         result = 1;
 	}
 #endif
 
 #ifdef FATFS_TESTS
-    else if(fatfs_tests(argc,argv))
+    if(fatfs_tests(argc,argv))
 	{
         result = 1;
 	}
 #endif
 
 #ifdef LIF_SUPPORT
-    else if(lif_tests(argc,argv))
+    if(lif_tests(argc,argv))
 	{
         result = 1;
 	}
@@ -466,7 +465,11 @@ void user_task(uint8_t gpib)
     if(result)
         printf("OK\n");
     else
-        printf("Error:[%s]\n",line);
+	{
+        printf("Error: Argument count = %d\n", argc);
+		for(i=0;i<argc;++i)
+			printf("   [%s]\n", argv[i]);
+	}
 }
 
 
