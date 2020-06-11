@@ -1633,9 +1633,20 @@ void format_drives()
 
 
 /// ===============================================
-/// @brief Display current Configuration File values
+/// @brief mount disks - testing
 /// @return  void
-void display_mount( )
+void mount(int argc, char *argv[])
+{
+	int i;
+	for(i = 1;i< argc;++i)
+	{
+		printf("argv[%d] = %s\n", (int) i, argv[i]);
+
+	}
+	display_mounts();
+}
+
+void display_mounts( )
 {
     int i;
 

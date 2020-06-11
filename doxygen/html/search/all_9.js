@@ -72,5 +72,5 @@ var searchData=
   ['issurrogate_1078',['IsSurrogate',['../ff_8c.html#a1678f40df73ed6cd30ed3e837b3558e7',1,'ff.c']]],
   ['issurrogateh_1079',['IsSurrogateH',['../ff_8c.html#ad148073d4a74bdff0f86f2b18284b569',1,'ff.c']]],
   ['issurrogatel_1080',['IsSurrogateL',['../ff_8c.html#a7a67adc6a71fa08dbbe481ad756849c4',1,'ff.c']]],
-  ['isupper_1081',['IsUpper',['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c'],['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c']]]
+  ['isupper_1081',['isupper',['../stringsup_8c.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../stringsup_8h.html#aa1caa55b6624cc08af06c04cbfe6c02a',1,'isupper(int c):&#160;stringsup.c'],['../ff_8c.html#a89b2514198590e139dd064c5d534f302',1,'IsUpper():&#160;ff.c']]]
 ];

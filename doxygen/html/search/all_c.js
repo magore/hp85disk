@@ -111,10 +111,11 @@ var searchData=
   ['model_5fsize_1305',['MODEL_SIZE',['../drives__sup_8h.html#a3f11d81c1e6d925611a9bdd5115064a0',1,'drives_sup.h']]],
   ['modtime_1306',['modtime',['../structutimbuf.html#a7588ffe699a9eda52e94aa593bf7d6d8',1,'utimbuf']]],
   ['month_1307',['Month',['../structtd__comment__t.html#ac926fbfad0e3544bb45bb05b7cd66c49',1,'td_comment_t']]],
-  ['mount_5fvolume_1308',['mount_volume',['../ff_8c.html#a36cd06cbee94b40df8f415ac7e1cb56c',1,'ff.c']]],
-  ['move_5fwindow_1309',['move_window',['../ff_8c.html#a324c71e5b952dff3a420d72358e5168b',1,'ff.c']]],
-  ['msg_1310',['msg',['../structfault__t.html#a9037306efc26edf60b59bc1ee6843c69',1,'fault_t']]],
-  ['mul10str_1311',['mul10str',['../mathio_8c.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c'],['../mathio_8h.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c']]],
-  ['myrand_1312',['myrand',['../timetests_8c.html#a66b9965f3aebbd59ff4d3a6c9ca0040e',1,'timetests.c']]],
-  ['mysrand_1313',['mysrand',['../timetests_8c.html#ae3c957237ef10b1dd9d634b6d3ddb0b0',1,'timetests.c']]]
+  ['mount_1308',['mount',['../drives_8c.html#a61a679728975f9e00555cf78f5f88f9a',1,'mount(int argc, char *argv[]):&#160;drives.c'],['../drives_8h.html#a61a679728975f9e00555cf78f5f88f9a',1,'mount(int argc, char *argv[]):&#160;drives.c']]],
+  ['mount_5fvolume_1309',['mount_volume',['../ff_8c.html#a36cd06cbee94b40df8f415ac7e1cb56c',1,'ff.c']]],
+  ['move_5fwindow_1310',['move_window',['../ff_8c.html#a324c71e5b952dff3a420d72358e5168b',1,'ff.c']]],
+  ['msg_1311',['msg',['../structfault__t.html#a9037306efc26edf60b59bc1ee6843c69',1,'fault_t']]],
+  ['mul10str_1312',['mul10str',['../mathio_8c.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c'],['../mathio_8h.html#aee46e805a6a25105661e6486a419fdc3',1,'mul10str(uint8_t *str, int size):&#160;mathio.c']]],
+  ['myrand_1313',['myrand',['../timetests_8c.html#a66b9965f3aebbd59ff4d3a6c9ca0040e',1,'timetests.c']]],
+  ['mysrand_1314',['mysrand',['../timetests_8c.html#ae3c957237ef10b1dd9d634b6d3ddb0b0',1,'timetests.c']]]
 ];

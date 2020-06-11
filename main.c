@@ -48,6 +48,7 @@ const RESET_t RESET = (RESET_t) (0x10000-0x400);
 const RESET_t RESET = (RESET_t) (0);
 #endif
 
+int8_t debug_input = 0;
 
 ///@brief Display Copyright
 ///@return void
@@ -313,10 +314,16 @@ void help()
         "delay_tests\n"
 #endif
         "help\n"
+        "input\n"
+        "   - toggle input debugging\n"
         "mem\n"
+        "   - display free memory\n"
         "reset\n"
+        "   - reset emulator\n"
         "setdate\n"
+        "   - set date\n"
         "time\n"
+        "   - display current time\n"
         "\n"
         );
 }
@@ -332,6 +339,7 @@ void user_task(uint8_t gpib)
 {
     char *ptr;
     int ind;
+	int i;
     int argc;
     int result = 0;
     char *argv[51];
@@ -352,12 +360,13 @@ void user_task(uint8_t gpib)
     trim_tail(line);
     argc = split_args(line,argv,50);
 
-#if 0
-    printf("Arguments:\n");
-    printf("   argc = %d\n", argc);
-    for(i=0;i<argc;++i)
-        printf("   [%s]\n", argv[i]);
-#endif
+	if(debug_input)
+	{
+		printf("Arguments:\n");
+		printf("   argc = %d\n", argc);
+		for(i=0;i<argc;++i)
+			printf("   [%s]\n", argv[i]);
+	}
 
     ind = 0;
 	result = 0;
@@ -365,6 +374,11 @@ void user_task(uint8_t gpib)
 
     if(!ptr || argc < 1)
     {
+        result = 1;
+    }
+    else if (MATCHI(ptr,"input") )
+    {
+        debug_input = !debug_input;
         result = 1;
     }
 #ifdef DELAY_TESTS
