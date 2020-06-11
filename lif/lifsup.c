@@ -118,26 +118,31 @@ int main(int argc, char *argv[])
     int verbose = 0;
     char *ptr;
 
-    if(argc <= 1)
-    {
-        copyright();
-        lif_help(1);
-#ifdef TELEDISK
-        td0_help(1);
-        return(0);
-#endif
-    }
-    if( MATCH(basename(argv[0]),"lif") || MATCH(basename(argv[0]),"lif.exe") )
+    if( MATCHI(basename(argv[0]),"lif") || MATCHI(basename(argv[0]),"lif.exe") )
     {
         argv[0] = "lif";
+		if(argc <= 1)
+		{
+			copyright();
+			lif_help(1);
+			return(0);
+		}
         return( !lif_tests(argc, argv) );
     }
-#ifdef TELEDISK
-    if( MATCH(basename(argv[0]),"td02lif") || MATCH(basename(argv[0]),"td02lif.exe") )
+    if( MATCHI(basename(argv[0]),"td02lif") || MATCHI(basename(argv[0]),"td02lif.exe") )
     {
+#ifdef TELEDISK
         argv[0] = "td02lif";
+		if(argc <= 1)
+		{
+			copyright();
+			td0_help(1);
+			return(0);
+		}
         return ( !td02lif(argc, argv) );
-    }
+#else
+		printf("td02lif not enabled\n");
 #endif
+    }
 }
 #endif

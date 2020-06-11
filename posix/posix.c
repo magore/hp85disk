@@ -1974,7 +1974,7 @@ int mkfs(char *name)
     len = MATCH(name,"/dev/sd");
     if(!len)
     {
-        printf("Expected /dev/sda .. /dev/sdj\n");
+        printf("mkfs expected /dev/sda .. /dev/sdj\n");
         return(0);
     }
 // Convert /dev/sd[a-j] to 0: .. 9:
@@ -1989,21 +1989,24 @@ int mkfs(char *name)
     res = f_mount(&fs, dev, 0);
     if(!res)
     {
-        put_rc(res);
+        printf("mkfs f_mount failed\n");
         return(0);
     }
 
 // Allocate memory for mkfs function
     mem = safemalloc(1024);
     if(!mem)
+	{
+        printf("mkfs calloc failed\n");
         return(0);
+	}
 
 // Create FAT volume on the logical drive 0
 // 2nd argument is ignored. */
     res = f_mkfs(dev, opt, mem, 1024);
     if(res)
     {
-        put_rc(res);
+        printf("mkfs f_mkfs failed\n");
         safefree(mem);
         return(0);
     }

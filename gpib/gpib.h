@@ -113,6 +113,7 @@ extern uint16_t current,lastcmd;
 extern uint8_t secondary;
 extern uint8_t device;
 
+
 /* gpib.c */
 void gpib_timer_elapsed_begin ( void );
 void gpib_timer_reset ( void );
@@ -120,14 +121,13 @@ void gpib_timer_elapsed_end ( char *msg );
 void gpib_timer_task ( void );
 void gpib_timeout_set ( uint32_t time );
 uint8_t gpib_timeout_test ( void );
-void gpib_bus_read_init ( int busy);
 void gpib_bus_init ( void );
+void gpib_rx_init ( uint8_t busy );
+void gpib_tx_init ( void );
 void gpib_state_init ( void );
 void gpib_enable_PPR ( int bit );
 void gpib_disable_PPR ( int bit );
 uint8_t gpib_detect_PP ( void );
-void gpib_assert_ifc ( void );
-void gpib_assert_ren ( unsigned char state );
 uint16_t gpib_unread ( uint16_t ch );
 uint8_t gpib_bus_read ( void );
 uint16_t gpib_control_pin_read ( void );
@@ -139,4 +139,5 @@ void gpib_trace_display ( uint16_t status , int trace_state );
 void gpib_decode ( uint16_t ch );
 int gpib_read_str ( uint8_t *buf , int size , uint16_t *status );
 int gpib_write_str ( uint8_t *buf , int size , uint16_t *status );
+
 #endif                                            // GPIB_H_

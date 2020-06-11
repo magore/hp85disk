@@ -268,9 +268,9 @@ char *fatfs_fstype(int type)
 /// @see AccDirs:  Total number of directories
 /// @see AccFiles: Total number of Files
 /// @see AccSize:  Total size of all files
-/// @return  void
+/// @return  1 on success 0 on error
 MEMSPACE
-void fatfs_status(char *ptr)
+int fatfs_status(char *ptr)
 {
     long p2;
     int res;
@@ -284,8 +284,8 @@ void fatfs_status(char *ptr)
     res = f_getfree(ptr, (DWORD*)&p2, &fs);
     if (res)
     {
-        put_rc(res);
-        return;
+        printf("fatfs_status f_getfree failed\n");
+        return(0);
     }
     printf("FAT type                = %s\n",  fatfs_fstype(fs->fs_type));
     printf("Bytes/Cluster           = %lu\n", (DWORD)fs->csize * 512);
@@ -301,8 +301,8 @@ void fatfs_status(char *ptr)
     res = f_getlabel(ptr, label, (DWORD*)&vsn);
     if (res)
     {
-        put_rc(res);
-        return;
+        printf("fatfs_status f_getlabel failed\n");
+        return(0);
     }
     printf("Volume name             = %s\n", label[0] ? label : "<blank>");
     printf("Volume S/N              = %04X-%04X\n", (WORD)((DWORD)vsn >> 16), (WORD)(vsn & 0xFFFF));
@@ -312,15 +312,15 @@ void fatfs_status(char *ptr)
     res = fatfs_scan_files(ptr);
     if (res)
     {
-        put_rc(res);
-        return;
+        printf("fatfs_status fatfs_scan_files failed\n");
+        return(0);
     }
     printf("%u files, %lu bytes.\n%u folders.\n"
         "%lu KB total disk space.\n%lu KB available.\n",
         AccFiles, AccSize, AccDirs,
         (fs->n_fatent - 2) * fs->csize / 2, p2 * fs->csize / 2
         );
-
+	return(1);
 }
 
 

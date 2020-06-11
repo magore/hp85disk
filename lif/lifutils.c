@@ -110,7 +110,7 @@ extern hpdir_t hpdir;
 MEMSPACE
 void lif_help(int full)
 {
-    printf( "lif help\n" );
+    printf( "lif   help\n" );
 
     if(full)
     {
@@ -171,6 +171,8 @@ int lif_tests(int argc, char *argv[])
 #ifdef TELEDISK
         if(MATCHI_LEN(argv[0],"td02lif"))
 			td0_help(1);
+#else
+		printf("td02lif not included in firmware\n");
 #endif
         return(1);
     }

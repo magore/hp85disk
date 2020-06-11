@@ -314,16 +314,11 @@ void help()
         "delay_tests\n"
 #endif
         "help\n"
-        "input\n"
-        "   - toggle input debugging\n"
-        "mem\n"
-        "   - display free memory\n"
-        "reset\n"
-        "   - reset emulator\n"
-        "setdate\n"
-        "   - set date\n"
-        "time\n"
-        "   - display current time\n"
+        "input   - toggle input debugging\n"
+        "mem     - display free memory\n"
+        "reset   - reset emulator\n"
+        "setdate - set date\n"
+        "time    - display current time\n"
         "\n"
         );
 }
@@ -342,6 +337,7 @@ void user_task(uint8_t gpib)
 	int i;
     int argc;
     int result = 0;
+	int ret;
     char *argv[51];
     char line[256];
 
@@ -435,38 +431,53 @@ void user_task(uint8_t gpib)
         result = 1;
     }
 
-    if(gpib_tests(argc,argv))
+	if( (ret = gpib_tests(argc,argv)) )
     {
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
 // Restore GPIB BUS states
         gpib_init_devices();
-        result = 1;
     }
 
 #ifdef POSIX_TESTS
-    if(posix_tests(argc,argv))
+    else if( (ret = posix_tests(argc,argv)) )
 	{
-        result = 1;
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
 	}
 #endif
 
 #ifdef FATFS_TESTS
-    if(fatfs_tests(argc,argv))
+    if( (ret = fatfs_tests(argc,argv) ))
 	{
-        result = 1;
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
 	}
 #endif
 
 #ifdef LIF_SUPPORT
-    if(lif_tests(argc,argv))
+    if( (ret = lif_tests(argc,argv)) )
 	{
-        result = 1;
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
 	}
 #endif
-    if(result)
+    if(result == 1)
         printf("OK\n");
+	else if(result == -1)
+        printf("Command FAILED\n");
     else
 	{
-        printf("Error: Argument count = %d\n", argc);
+        printf("Invalid Command\n");
+        printf("Argument count = %d\n", argc);
 		for(i=0;i<argc;++i)
 			printf("   [%s]\n", argv[i]);
 	}

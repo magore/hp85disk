@@ -110,10 +110,12 @@ void \mbox{\hyperlink{gpib_8h_a687395337dd5c6604a775e3ffd3f006f}{gpib\+\_\+timeo
 \begin{DoxyCompactList}\small\item\em Set G\+P\+IB timeout timer in units of G\+P\+I\+B\+\_\+\+T\+A\+S\+K\+\_\+\+T\+I\+C\+\_\+\+US. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{gpib_8h_a2096a86f435acacb3165a9bdb0af076b}{gpib\+\_\+timeout\+\_\+test}} (void)
 \begin{DoxyCompactList}\small\item\em Test G\+P\+IB timeout timer for timeout condition. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}{gpib\+\_\+bus\+\_\+read\+\_\+init}} (int busy)
-\item 
 void \mbox{\hyperlink{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}{gpib\+\_\+bus\+\_\+init}} (void)
 \begin{DoxyCompactList}\small\item\em Initialize/\+Release G\+P\+IB Bus control lines Used for Power ON, Reset or I\+FC L\+OW reset conditions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gpib_8h_a354056604783f9020f1494c1e3c6fb64}{gpib\+\_\+rx\+\_\+init}} (uint8\+\_\+t busy)
+\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for R\+E\+AD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gpib_8h_af93bccd3a2f44bc2c2ae84a3f4d2c053}{gpib\+\_\+tx\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize G\+P\+IB Bus control lines for W\+R\+I\+TE. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}{gpib\+\_\+state\+\_\+init}} (void)
 \begin{DoxyCompactList}\small\item\em Reset G\+P\+IB states and related variables. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gpib_8h_adac78c8b4bd167b97a37e9fe7e9e395d}{gpib\+\_\+enable\+\_\+\+P\+PR}} (int bit)
@@ -122,10 +124,6 @@ void \mbox{\hyperlink{gpib_8h_ae7cace97c893474b3e6c672539a65041}{gpib\+\_\+disab
 \begin{DoxyCompactList}\small\item\em Disable P\+PR (Parallel Poll Response) for a device. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{gpib_8h_adb8803762af598f3a52cea7cde04eaae}{gpib\+\_\+detect\+\_\+\+PP}} (void)
 \begin{DoxyCompactList}\small\item\em Attempt to detect the Parallel Poll Reposnse state Used only for debugging -\/ it is unlikely that we will catch this state V2 hardware -\/ this does not work unless reading B\+US. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}{gpib\+\_\+assert\+\_\+ifc}} (void)
-\item 
-void \mbox{\hyperlink{gpib_8h_ae826d722b789698ce9217758fe55fdcb}{gpib\+\_\+assert\+\_\+ren}} (unsigned char state)
-\item 
 uint16\+\_\+t \mbox{\hyperlink{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}{gpib\+\_\+unread}} (uint16\+\_\+t ch)
 \begin{DoxyCompactList}\small\item\em G\+P\+IB ungets one character and all status states. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{gpib_8h_aaf877e1057ef73855045f2436ff99cdc}{gpib\+\_\+bus\+\_\+read}} (void)
@@ -579,18 +577,6 @@ Definition at line 95 of file gpib.\+h.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}\label{gpib_8h_a01eaf30370a0b43263d19ebaa2fa4a38}} 
-\index{gpib.h@{gpib.h}!gpib\_assert\_ifc@{gpib\_assert\_ifc}}
-\index{gpib\_assert\_ifc@{gpib\_assert\_ifc}!gpib.h@{gpib.h}}
-\doxysubsubsection{\texorpdfstring{gpib\_assert\_ifc()}{gpib\_assert\_ifc()}}
-{\footnotesize\ttfamily void gpib\+\_\+assert\+\_\+ifc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{gpib_8h_ae826d722b789698ce9217758fe55fdcb}\label{gpib_8h_ae826d722b789698ce9217758fe55fdcb}} 
-\index{gpib.h@{gpib.h}!gpib\_assert\_ren@{gpib\_assert\_ren}}
-\index{gpib\_assert\_ren@{gpib\_assert\_ren}!gpib.h@{gpib.h}}
-\doxysubsubsection{\texorpdfstring{gpib\_assert\_ren()}{gpib\_assert\_ren()}}
-{\footnotesize\ttfamily void gpib\+\_\+assert\+\_\+ren (\begin{DoxyParamCaption}\item[{unsigned char}]{state }\end{DoxyParamCaption})}
-
 \mbox{\Hypertarget{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}\label{gpib_8h_a1668e8693374859ed4be1a5e7cbcdf41}} 
 \index{gpib.h@{gpib.h}!gpib\_bus\_init@{gpib\_bus\_init}}
 \index{gpib\_bus\_init@{gpib\_bus\_init}!gpib.h@{gpib.h}}
@@ -627,17 +613,11 @@ bus (lower 8 bits)
 \end{DoxyReturn}
 if a command byte (A\+TN low) then strip partity
 
-Definition at line 560 of file gpib.\+c.
+Definition at line 562 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+read\+\_\+byte().
-
-\mbox{\Hypertarget{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}\label{gpib_8h_a5c66b240b23263cc8b3d6771659bf460}} 
-\index{gpib.h@{gpib.h}!gpib\_bus\_read\_init@{gpib\_bus\_read\_init}}
-\index{gpib\_bus\_read\_init@{gpib\_bus\_read\_init}!gpib.h@{gpib.h}}
-\doxysubsubsection{\texorpdfstring{gpib\_bus\_read\_init()}{gpib\_bus\_read\_init()}}
-{\footnotesize\ttfamily void gpib\+\_\+bus\+\_\+read\+\_\+init (\begin{DoxyParamCaption}\item[{int}]{busy }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{gpib_8h_ab39377861a160a9128cc759523d26b53}\label{gpib_8h_ab39377861a160a9128cc759523d26b53}} 
 \index{gpib.h@{gpib.h}!gpib\_control\_pin\_read@{gpib\_control\_pin\_read}}
@@ -657,7 +637,7 @@ control lines (upper 8 bits)
 \end{DoxySeeAlso}
 
 
-Definition at line 578 of file gpib.\+c.
+Definition at line 580 of file gpib.\+c.
 
 
 
@@ -681,7 +661,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 1260 of file gpib.\+c.
+Definition at line 1266 of file gpib.\+c.
 
 
 
@@ -712,7 +692,7 @@ void
 \end{DoxyParams}
 
 
-Definition at line 1076 of file gpib.\+c.
+Definition at line 1082 of file gpib.\+c.
 
 
 
@@ -820,7 +800,7 @@ handshake lines (upper 8 bits)
 \end{DoxyReturn}
 for tracing we can reuse the error flag bit values for D\+AV,N\+R\+FD and N\+D\+AC F\+YI\+: This has no impact on the \mbox{\hyperlink{gpib_8c_a81625ecfb43b4df7691a80c9e2ebb837}{gpib\+\_\+read\+\_\+byte()}} functions and return values
 
-Definition at line 599 of file gpib.\+c.
+Definition at line 601 of file gpib.\+c.
 
 
 
@@ -901,7 +881,7 @@ Note\+: see\+: H\+P-\/\+IB Tutorial pg 13
 \item G\+P\+IB TX state expects N\+R\+FD L\+OW on entry or it is an E\+R\+R\+O\+R!
 \end{DoxyItemize}
 
-Definition at line 871 of file gpib.\+c.
+Definition at line 875 of file gpib.\+c.
 
 
 
@@ -987,11 +967,43 @@ status
 \item[\mbox{\hyperlink{todo__todo000002}{Todo}}]T\+O\+DO decode this state -\/ for now I just set the E\+O\+I\+\_\+\+F\+L\+AG \end{DoxyRefDesc}
 
 
-Definition at line 1301 of file gpib.\+c.
+Definition at line 1307 of file gpib.\+c.
 
 
 
 Referenced by S\+S80\+\_\+\+Amigo\+\_\+\+Clear(), S\+S80\+\_\+\+Command\+\_\+\+State(), S\+S80\+\_\+locate\+\_\+and\+\_\+write(), and S\+S80\+\_\+\+Transparent\+\_\+\+State().
+
+\mbox{\Hypertarget{gpib_8h_a354056604783f9020f1494c1e3c6fb64}\label{gpib_8h_a354056604783f9020f1494c1e3c6fb64}} 
+\index{gpib.h@{gpib.h}!gpib\_rx\_init@{gpib\_rx\_init}}
+\index{gpib\_rx\_init@{gpib\_rx\_init}!gpib.h@{gpib.h}}
+\doxysubsubsection{\texorpdfstring{gpib\_rx\_init()}{gpib\_rx\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+rx\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{busy }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+P\+IB Bus control lines for R\+E\+AD. 
+
+
+\begin{DoxyItemize}
+\item Set busy = 0 after powerup everying floating or high
+\begin{DoxyItemize}
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC are set to busy low
+\end{DoxyItemize}
+\item References\+:
+\begin{DoxyItemize}
+\item H\+P-\/\+IB Tutorial
+\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Definition at line 307 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+read\+\_\+byte(), gpib\+\_\+write\+\_\+byte(), and gpib\+\_\+write\+\_\+str().
 
 \mbox{\Hypertarget{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}\label{gpib_8h_a32d2476eec2bbdf15e7db1b901c5a671}} 
 \index{gpib.h@{gpib.h}!gpib\_state\_init@{gpib\_state\_init}}
@@ -1216,11 +1228,43 @@ void Note the bits we can read depends on what hardware verions we have V2 hardw
 \end{DoxyReturn}
 
 
-Definition at line 1129 of file gpib.\+c.
+Definition at line 1135 of file gpib.\+c.
 
 
 
 Referenced by gpib\+\_\+decode(), and gpib\+\_\+read\+\_\+byte().
+
+\mbox{\Hypertarget{gpib_8h_af93bccd3a2f44bc2c2ae84a3f4d2c053}\label{gpib_8h_af93bccd3a2f44bc2c2ae84a3f4d2c053}} 
+\index{gpib.h@{gpib.h}!gpib\_tx\_init@{gpib\_tx\_init}}
+\index{gpib\_tx\_init@{gpib\_tx\_init}!gpib.h@{gpib.h}}
+\doxysubsubsection{\texorpdfstring{gpib\_tx\_init()}{gpib\_tx\_init()}}
+{\footnotesize\ttfamily void gpib\+\_\+tx\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+P\+IB Bus control lines for W\+R\+I\+TE. 
+
+
+\begin{DoxyItemize}
+\item Set busy = 0 after powerup everying floating or high
+\begin{DoxyItemize}
+\item If busy = 1 N\+R\+F\+D/\+N\+D\+AC are set to busy low
+\end{DoxyItemize}
+\item References\+:
+\begin{DoxyItemize}
+\item H\+P-\/\+IB Tutorial
+\item H\+P-\/\+IB pg 8-\/11 \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Definition at line 364 of file gpib.\+c.
+
+
+
+Referenced by gpib\+\_\+write\+\_\+byte().
 
 \mbox{\Hypertarget{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}\label{gpib_8h_a2fdb3d4996ff399dc2fbfcada417bb1a}} 
 \index{gpib.h@{gpib.h}!gpib\_unread@{gpib\_unread}}
@@ -1255,7 +1299,7 @@ ch
 \end{DoxyReturn}
 
 
-Definition at line 542 of file gpib.\+c.
+Definition at line 544 of file gpib.\+c.
 
 
 
@@ -1336,7 +1380,7 @@ A\+LL devices are ready
 
 @release B\+US
 
-Definition at line 653 of file gpib.\+c.
+Definition at line 655 of file gpib.\+c.
 
 
 
@@ -1415,7 +1459,7 @@ Returns
 \end{DoxyReturn}
 
 
-Definition at line 1390 of file gpib.\+c.
+Definition at line 1396 of file gpib.\+c.
 
 
 

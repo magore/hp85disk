@@ -25,8 +25,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#endif
-
 /* posix_tests.c */
 MEMSPACE void posix_help ( int full );
 MEMSPACE int posix_tests ( int argc , char *argv []);
@@ -40,3 +38,5 @@ MEMSPACE int ls ( char *name , int verbose );
 MEMSPACE long logfile ( char *name , char *str );
 MEMSPACE uint16_t sum ( char *name );
 MEMSPACE long upload ( char *name );
+
+#endif

@@ -65,7 +65,7 @@ void fatfs_help( int full)
     #endif
             "fatfs mmc_test\n"
             "fatfs mmc_init\n"
-            "fatfs ls dir\n"
+            "fatfs ls directory\n"
 
     #ifdef FATFS_UTILS_FULL
             "fatfs mkdir dir\n"
@@ -128,20 +128,26 @@ int fatfs_tests(int argc,char *argv[])
     }
 #endif
 
-    if (MATCHI(ptr,"ls") )
+    if (MATCHI(ptr,"ls") || MATCHI(ptr,"dir") )
     {
         int i;
         int args = 0;
-// printf("ind:%d,argc:%d\n", ind, argc);
+//printf("argc:%d\n", argc);
         for(i=ind;i<argc;++i)
         {
 //printf("%d:%s\n", i, argv[i]);
-            fatfs_ls(argv[i]);
+            if(fatfs_ls(argv[i]) == 0)
+			{
+				return(-1);
+			}
             ++args;
         }
         if(!args)
         {
-            fatfs_ls("");
+            if(fatfs_ls("") == 0)
+			{
+				return(-1);
+			}
         }
         return(1);
     }
@@ -160,46 +166,74 @@ int fatfs_tests(int argc,char *argv[])
 
     else if (MATCHARGS(ptr,"status", (ind + 1), argc))
     {
-        fatfs_status(argv[ind]);
+        if(fatfs_status(argv[ind]) == 0)
+		{
+			return(-1);
+		}
         return(1);
     }
 
 #ifdef FATFS_UTILS_FULL
     else if (MATCHARGS(ptr,"attrib",(ind+3),argc))
     {
-        put_rc( f_chmod(argv[ind],atol(argv[ind+1]),atol(argv[ind+2])) );
+		int res;
+        res = f_chmod(argv[ind],atol(argv[ind+1]),atol(argv[ind+2]));
+        if(res)
+		{
+			printf("fatfs attribute failed\n");
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"cat", (ind + 1), argc))
     {
-        fatfs_cat(argv[ind]);
+        if( fatfs_cat(argv[ind]) < 0)
+		{
+			return(-1);
+		}
         return(1);
     }
 
 #if FF_FS_RPATH
     else if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
-        fatfs_cd(argv[ind]);
+        if( fatfs_cd(argv[ind]) == 0)
+		{
+			printf("fatfs cd %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 #endif
 
     else if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
-        fatfs_copy(argv[ind],argv[ind+1]);
+        if( fatfs_copy(argv[ind],argv[ind+1]) < 0)
+		{
+			printf("fatfs copy failed\n");
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"create", (ind + 2), argc))
     {
-        fatfs_create(argv[ind],argv[ind+1]);
+        if( fatfs_create(argv[ind],argv[ind+1]) < 0)
+		{
+			printf("fatfs create failed\n");
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"mkdir", (ind + 1), argc))
     {
-        fatfs_mkdir(argv[ind]);
+        if( fatfs_mkdir(argv[ind]) ==  0)
+		{
+			printf("fatfs mkdir %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
@@ -210,14 +244,20 @@ int fatfs_tests(int argc,char *argv[])
         int res;
 /* Register work area to the logical drive 0 */
         res = f_mount(&fs, "0:", 0);
-        put_rc(res);
         if (res)
-            return(1);
+		{
+			printf("fatfs mkfs f_mount failed\n");
+            return(-1);
+		}
         mem = safemalloc(1024);
 /* Create FAT volume on the logical drive 0. 2nd argument is ignored. */
         res = f_mkfs("0:", FM_FAT32, 0, mem, 1024);
         safefree(mem);
-        put_rc(res);
+		if(res)
+		{
+			printf("fatfs mkfs f_mkfs failed\n");
+			return(-1);
+		}
         return(1);
     }
 
@@ -225,7 +265,11 @@ int fatfs_tests(int argc,char *argv[])
 #if FF_FS_RPATH >= 2
     else if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
-        fatfs_pwd();
+        if( fatfs_pwd() == 0)
+		{
+			printf("fatfs pwd failed\n");
+			return(-1);
+		}
         return(1);
     }
 #endif                                        // #if FF_FS_RPATH >= 2
@@ -233,25 +277,41 @@ int fatfs_tests(int argc,char *argv[])
 
     else if (MATCHARGS(ptr,"rename", (ind + 2), argc))
     {
-        fatfs_rename(argv[ind],argv[ind+1]);
+        if( fatfs_rename(argv[ind],argv[ind+1]) == 0)
+		{
+			printf("fatfs mkdir %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"rmdir", (ind + 1), argc))
     {
-        fatfs_rmdir(argv[ind]);
+        if( fatfs_rmdir(argv[ind]) == 0)
+		{
+			printf("fatfs rmdir %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"rm", (ind + 1), argc))
     {
-        fatfs_rm(argv[ind]);
+        if( fatfs_rm(argv[ind]) == 0)
+		{
+			printf("fatfs rm %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"stat", (ind + 1), argc))
     {
-        fatfs_stat(argv[ind]);
+        if( fatfs_stat(argv[ind]) == 0)
+		{
+			printf("fatfs stat %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 #endif
@@ -306,9 +366,9 @@ void mmc_test(void)
 /// @param[in] ptr: pathname of directory to list
 ///
 /// @see fatfs_filinfo_list().
-/// @return  void.
+/// @return  1 on success or 0 on error
 MEMSPACE
-void fatfs_ls(char *name)
+int fatfs_ls(char *name)
 {
     long p1;
     UINT s1, s2;
@@ -331,12 +391,18 @@ void fatfs_ls(char *name)
     printf("Listing:[%s]\n",buff);
 
     res = f_opendir(&dirs, buff);
-    if (res) { put_rc(res); return; }
+    if (res != FR_OK) 
+	{ 
+		return(0); 
+	}
     p1 = s1 = s2 = 0;
     while(1)
     {
         res = f_readdir(&dirs, &fno);
-        if ((res != FR_OK) || !fno.fname[0]) break;
+        if (res != FR_OK) 
+			break;
+		if(!fno.fname[0]) 
+			break;
         if (fno.fattrib & AM_DIR)
         {
             s2++;
@@ -351,9 +417,13 @@ void fatfs_ls(char *name)
         wdt_reset();
 #endif
     }
+	f_closedir(&dirs);
     printf("%4u File(s),%10lu bytes total\n%4u Dir(s)", s1, p1, s2);
     if (f_getfree(buff, (DWORD*)&p1, &fs) == FR_OK)
         printf(", %10luK bytes free\n", p1 * fs->csize / 2);
+	if(res)
+		return(-1);
+	return(1);
 }
 
 
@@ -364,9 +434,9 @@ void fatfs_ls(char *name)
 ///
 /// @param[in] name: file name.
 ///
-/// @return  void.
+/// @return  sizae  on sucess -1 on error
 MEMSPACE
-void fatfs_cat(char *name)
+long fatfs_cat(char *name)
 {
     UINT s1;
     FIL fp;
@@ -381,8 +451,8 @@ void fatfs_cat(char *name)
     if (res)
     {
         printf("cat error\n");
-        put_rc(res);
         f_close(&fp);
+		return(0);
     }
 
     ptr = safecalloc(512,1);
@@ -390,6 +460,7 @@ void fatfs_cat(char *name)
     {
         printf("Calloc failed!\n");
         f_close(&fp);
+		return(0);
     }
 
     size = 0;
@@ -400,7 +471,7 @@ void fatfs_cat(char *name)
         if(res)
         {
             printf("cat read error\n");
-            put_rc(res);
+			return(0);
             break;
         }
         ret = s1;
@@ -426,6 +497,7 @@ void fatfs_cat(char *name)
     f_close(&fp);
     safefree(ptr);
     printf("%lu bytes\n", size);
+	return(size);
 }
 
 
@@ -436,10 +508,10 @@ void fatfs_cat(char *name)
 /// @param[in] from: source file.
 /// @param[in] to:   destination file.
 ///
-/// @return  void.
+/// @return  size on success -1 on error
 
 MEMSPACE
-void fatfs_copy(char *from,char *to)
+long fatfs_copy(char *from,char *to)
 {
     UINT s1, s2;
     FIL file1,file2;
@@ -455,42 +527,57 @@ void fatfs_copy(char *from,char *to)
     res = f_open(&file1, from, FA_OPEN_EXISTING | FA_READ);
     if (res)
     {
-        put_rc(res);
-        return;
+        printf("f_open %s failed\n", from);
+        return(-1);
     }
     printf("Creating %s\n", to);
     res = f_open(&file2, to, FA_CREATE_ALWAYS | FA_WRITE);
     if (res)
     {
-        put_rc(res);
+        printf("f_open %s failed\n", to);
         f_close(&file1);
-        return;
+        return(-1);
     }
     ptr = safecalloc(MSIZE,1);
     if(!ptr)
     {
-        printf("Calloc failed!\n");
+        printf("f_open calloc failed!\n");
         f_close(&file1);
         f_close(&file2);
-        return;
+        return(-1);
     }
     printf("\nCopying...\n");
     size = 0;
     for (;;)
     {
         res = f_read(&file1, ptr, MSIZE, &s1);
-        if (res || s1 == 0) break;                /* error or eof */
+        if (res )	// error
+		{
+			printf("fatfs copy read %s error\n",from);
+			break;
+		}
+		if(s1 == 0) 
+			break;                /* eof */
         res = f_write(&file2, ptr, s1, &s2);
+        if (res )	// error
+		{
+			printf("fatfs copy %s write\n",to);
+			break;
+		}
         size += s2;
         printf("Copied: %08ld\r", size);
-        if (res || s2 < s1) break;                /* error or disk full */
+        if (res )	// error
+			break;
+		if(s2 == 0) 
+			break;                /* write error */
     }
-    if (res)
-        put_rc(res);
-    printf("%lu bytes copied.\n", size);
     safefree(ptr);
     f_close(&file1);
     f_close(&file2);
+    printf("%lu bytes copied.\n", size);
+    if (res)
+		return(-1);
+	return(size);
 }
 
 
@@ -501,9 +588,9 @@ void fatfs_copy(char *from,char *to)
 /// @param[in] name: name of file to create.
 /// @param[in] str: string containing file contents.
 ///
-/// @return  void.
+/// @return  size on success -1 on error
 MEMSPACE
-void fatfs_create(char *name, char *str)
+int fatfs_create(char *name, char *str)
 {
     UINT s1;
     UINT len;
@@ -514,10 +601,9 @@ void fatfs_create(char *name, char *str)
     res = f_open(&fp, name, FA_CREATE_ALWAYS | FA_WRITE);
     if (res)
     {
-        printf("Create error\n");
-        put_rc(res);
+        printf("fatfs_create f_open error\n");
         f_close(&fp);
-        return;
+        return(-1);
     }
 
     len = strlen(str);
@@ -525,18 +611,17 @@ void fatfs_create(char *name, char *str)
 
     if (res)
     {
-        printf("Write error\n");
-        put_rc(res);
-        return;
+        printf("fatfs_create f_write error\n");
+        return(-1);
     }
     if (len != s1)
     {
-        printf("Write error - wanted(%d) got(%d)\n",s1,len);
-        put_rc(res);
-        return;
+        printf("fatfs_create f_write error - wanted(%d) got(%d)\n",s1,len);
+        return(-1);
     }
 
     f_close(&fp);
+	return((long) s1);
 }
 
 
@@ -547,12 +632,19 @@ void fatfs_create(char *name, char *str)
 ///
 /// @param[in] name: Directory name.
 ///
-/// @return  void.
+/// @return   on success 0 on fail
 MEMSPACE
-void fatfs_cd(char *name)
+int fatfs_cd(char *name)
 {
-    printf("cd [%s]\n", name);
-    put_rc(f_chdir(name));
+	int res;
+    printf("fatfs cd [%s]\n", name);
+    res = f_chdir(name);
+	if(res)
+	{
+		printf("fatfs_cd %s failed\n",name);
+		return(0);
+	}
+	return(1);
 }
 #endif
 
@@ -564,11 +656,18 @@ void fatfs_cd(char *name)
 ///
 /// @return  void
 MEMSPACE
-void fatfs_mkdir(char *name)
+int fatfs_mkdir(char *name)
 {
-    printf("mkdir [%s]\n", name);
-    put_rc(f_mkdir(name));
+	int res;
 
+    printf("fatfs mkdir [%s]\n", name);
+    res = f_mkdir(name);
+	if(res)
+	{
+		printf("mkdir %s failed\n",name);
+		return(0);
+	}
+	return(1);
 }
 
 
@@ -577,17 +676,20 @@ void fatfs_mkdir(char *name)
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
 ///
-/// @return  void.
+/// @return  1 on success 0 on fail
 MEMSPACE
-void fatfs_pwd(void)
+int fatfs_pwd(void)
 {
     int res;
     char str[128];
     res = f_getcwd(str, sizeof(str)-2);
     if (res)
-        put_rc(res);
-    else
-        printf("pwd [%s]\n", str);
+	{
+		printf("fatfs pwd failed\n");
+		return(0);
+	}
+	printf("fatfs pwd [%s]\n", str);
+	return(1);
 }
 #endif
 
@@ -598,17 +700,20 @@ void fatfs_pwd(void)
 /// @param[in] oldpath: old name.
 /// @param[in] newpath: new name.
 ///
-/// @return  void
+/// @return  1 on success 0 on ERROR
 MEMSPACE
-void fatfs_rename(const char *oldpath, const char *newpath)
+int fatfs_rename(const char *oldpath, const char *newpath)
 {
 /* Rename an object */
-    int rc;
-    rc = f_rename(oldpath, newpath);
-    if(rc)
-    {
-        put_rc(rc);
-    }
+    int res;
+    printf("fatfs rename [%s] to [%s]\n", oldpath,newpath);
+    res = f_rename(oldpath, newpath);
+    if (res)
+	{
+		printf("fatfs rename failed\n");
+		return(0);
+	}
+	return(1);
 }
 
 
@@ -621,10 +726,17 @@ void fatfs_rename(const char *oldpath, const char *newpath)
 /// @return  void.
 
 MEMSPACE
-void fatfs_rm(char *name)
+int fatfs_rm(char *name)
 {
-    printf("rm [%s]\n", name);
-    put_rc(f_unlink(name));
+    int res;
+    printf("fatfs rm [%s]\n", name);
+    res = f_unlink(name);
+    if (res)
+	{
+		printf("fatfs_rm %s failed\n", name);
+		return(0);
+	}
+	return(1);
 }
 
 
@@ -636,10 +748,17 @@ void fatfs_rm(char *name)
 ///
 /// @return  void.
 MEMSPACE
-void fatfs_rmdir(char *name)
+int fatfs_rmdir(char *name)
 {
-    printf("rmdir [%s]\n", name);
-    put_rc(f_unlink(name));
+    int res;
+    printf("fatfs rmdir [%s]\n", name);
+    res = f_unlink(name);
+    if (res)
+	{
+		printf("fatfs rmdir %s failed\n", name);
+		return(0);
+	}
+	return(1);
 }
 
 
@@ -652,20 +771,19 @@ void fatfs_rmdir(char *name)
 /// @return  void
 
 MEMSPACE
-void fatfs_stat(char *name)
+int fatfs_stat(char *name)
 {
     FILINFO info;
     int res;
 
-    printf("stat [%s]\n", name);
+    printf("fatfs stat [%s]\n", name);
     res = f_stat(name, &info);
-    if(res == FR_OK)
+    if(res != FR_OK)
     {
-        fatfs_filinfo_list(&info);
-    }
-    else
-    {
-        put_rc(res);
-    }
+		printf("fatfs f_stat %s failed\n",name);
+		return(0);
+	}
+	fatfs_filinfo_list(&info);
+	return(1);
 }
 #endif

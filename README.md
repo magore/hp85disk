@@ -1267,31 +1267,26 @@ ___
  * Any word that has **help** after it will give help for that command
  * **help**
 <pre>
-    help
+    >help
     Stand alone version of LIF utilities for linux
     HP85 Disk and Device Emulator
      (c) 2014-2020 by Mike Gore
      GNU version 3
     -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-06-10 19:04:35.614942295 -0400
-       Last updated file: 2020-06-10 20:16:51.284612515 -0400
+       GIT last pushed:   2020-06-10 23:10:27.976391741 -0400
+       Last updated file: 2020-06-11 02:35:27.648140790 -0400
     
     fatfs help
     posix help
-    lif help
-    gpib help
+    lif   help
+    gpib  help
     backlight 0xRRGGBB
     help
-    input
-       - toggle input debugging
-    mem
-       - display free memory
-    reset
-       - reset emulator
-    setdate
-       - set date
-    time
-       - display current time
+    input   - toggle input debugging
+    mem     - display free memory
+    reset   - reset emulator
+    setdate - set date
+    time    - display current time
     
     OK
 </pre>
@@ -1311,6 +1306,20 @@ ___
 		extracts a file into a sigle file LIF image
 	lif rename lifimage oldlifname newlifname
 	Use -d  after 'lif' keyword to enable LIF filesystem debugging
+</pre>
+
+
+### For td02lif help type *td02lif help*
+  * **NOTE: td02lif support is only available on the command line utility - NOT in firmware - too big**
+<pre>
+    td02lif help
+    Usage: td02lif [options] file.td0 file.lif
+           td02lif help
+    tdo2lif options:
+    Notes: for any option that is NOT specified it is automatically detected
+             -s256|512 | -s 256|512 - force sector size
+             -h1|2 | -h 1|2 - force heads/surfaces
+             -tNN | -t NN  - force tracks
 </pre>
 
 ### For posix help type *posix help*

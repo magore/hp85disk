@@ -93,9 +93,8 @@ MEMSPACE
 int posix_tests(int argc,char *argv[])
 {
     char *ptr;
-    int ind;
+    int ind = 0;
 
-    ind = 0;
 	if(argc < 1)
 		return(0);
 
@@ -112,7 +111,7 @@ for(i=0;i<argc;++i)
 
 
     if(!ptr)
-        return(0);
+        return(0);	// nothing no match
 
     if( MATCH(ptr,"posix") )
     {
@@ -136,7 +135,10 @@ for(i=0;i<argc;++i)
         for(i=ind;i<argc;++i)
         {
             if(!MATCH(argv[i],"-p"))
+			{
+				// displays its own errors
                 cat(argv[ind], page);
+			}
         }
         return(1);
     }
@@ -144,21 +146,29 @@ for(i=0;i<argc;++i)
 #ifdef POSIX_EXTENDED_TESTS
     else if (MATCHARGS(ptr,"chmod",(ind+2),argc))
     {
-        chmod( argv[ind],strtol(argv[ind+1],NULL,8));
+        if( chmod( argv[ind],strtol(argv[ind+1],NULL,8) < 0 )
+		{
+			printf("chmod: %s %s - FAILED\n",argv[ind],argv[ind+1]);
+			return(-1);
+		}
         return(1);
     }
 #endif
 
     else if (MATCHARGS(ptr,"copy", (ind + 2), argc))
     {
-        copy(argv[ind],argv[ind+1]);
+		if( copy(argv[ind],argv[ind+1]) < 0)
+			return(-1);
         return(1);
     }
 
     else if (MATCHARGS(ptr,"cd", (ind + 1), argc))
     {
         if ( chdir(argv[ind]) != 0)
+		{
             printf("chdir %s failed\n", argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
@@ -175,14 +185,21 @@ for(i=0;i<argc;++i)
         for(i=ind;i<argc;++i)
         {
             if(!MATCH(argv[i],"-p"))
-                hexdump(argv[ind], page);
+			{
+                if( hexdump(argv[ind], page) ==0 )
+				{
+					printf("hexdump failed\n");
+					return(-1);;
+				}
+			}
         }
         return(1);
     }
 
     else if (MATCHARGS(ptr,"log", (ind + 2), argc))
     {
-        logfile(argv[ind],argv[ind+1]);
+        if( logfile(argv[ind],argv[ind+1]) < 0)
+			return(-1);
         return(1);
     }
 #endif
@@ -200,12 +217,18 @@ for(i=0;i<argc;++i)
 			}
             if(MATCH(argv[i],"-l"))	// skip long format test - we always use long format
 				continue;
-			ls(argv[i],1);
+			if( ls(argv[i],1) < 0)
+			{
+				return(-1);
+			};
             ++args;
         }
         if(!args)
         {
-            ls("",1);
+            if( ls("",1) < 0)
+			{
+				return(-1);
+			};
         }
         return(1);
     }
@@ -214,7 +237,11 @@ for(i=0;i<argc;++i)
     else if (MATCHARGS(ptr,"mkfs", (ind + 1), argc))
     {
 
-        mkfs(argv[ind++]);
+        if ( mkfs(argv[ind]) == 0)
+		{
+			printf("mkfs %s FAILED\n");
+			return(-1);
+		}
         return(1);
     }
 #endif
@@ -229,7 +256,7 @@ for(i=0;i<argc;++i)
         if ( mkdir(argv[ind],mode) != 0 )
         {
             printf("mkdir %s failed\n", argv[ind]);
-            return(0);
+            return(-1);
         }
         return(1);
     }
@@ -243,7 +270,13 @@ for(i=0;i<argc;++i)
     else if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
         char path[256];
-        printf("%s\n", getcwd(path, sizeof(path)-2));
+		char *ptr = getcwd(path, sizeof(path)-2);
+		if(ptr == NULL)
+		{
+			printf("pwd FAILED\n");
+			return(-1);
+		}
+        printf("%s\n", ptr);
         return(1);
     }
 
@@ -252,7 +285,7 @@ for(i=0;i<argc;++i)
         if( rename(argv[ind],argv[ind+1]) != 0)
         {
             printf("rename %s to %s\n", argv[ind], argv[ind+1]);
-            return(0);
+            return(-1);
         }
         return(1);
     }
@@ -262,7 +295,7 @@ for(i=0;i<argc;++i)
         if ( unlink(argv[ind]) != 0)
         {
             printf("rm %s failed\n", argv[ind]);
-            return(0);
+            return(-1);
         }
         return(1);
     }
@@ -270,14 +303,23 @@ for(i=0;i<argc;++i)
 #ifdef POSIX_EXTENDED_TESTS
     else if (MATCHARGS(ptr,"sum", (ind + 1), argc))
     {
-        sum(argv[ind]);
+        if( sum(argv[ind]) < 0)
+		{
+			printf("sum %s FAILED\n",argv[ind]);
+			return(-1);
+		}
         return(1);
     }
 
     else if (MATCHARGS(ptr,"stat", (ind + 1), argc))
     {
         struct stat p;
-        stat(argv[ind], &p);                      // POSIX test
+		// POSIX test
+		if( stat(argv[ind], &p) < 0)
+		{
+			printf("stat %s FAILED\n", argv[ind]);
+			return(-1);
+		}
         dump_stat(&p);
         return(1);
     }
@@ -288,7 +330,7 @@ for(i=0;i<argc;++i)
         if ( rmdir(argv[ind]) != 0)
         {
             printf("rmdir %s failed\n", argv[ind]);
-            return(0);
+            return(-1);
         }
         return(1);
     }
@@ -308,7 +350,7 @@ for(i=0;i<argc;++i)
 /// @brief  Display the contents of a file
 /// @param[in] name: file name.
 /// @param[in] option: --p page display
-/// @return  void.
+/// @return  number of characters in file or -1 on error
 MEMSPACE
 long cat(char *name, int dopage)
 {
@@ -321,7 +363,7 @@ long cat(char *name, int dopage)
     if (!fp)
     {
         printf("Can't open: %s\n", name);
-        return(0);
+        return(-1);
     }
     while(fgets(line,sizeof(line)-2,fp) != NULL)
     {
@@ -351,7 +393,7 @@ long cat(char *name, int dopage)
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013.
 /// @param[in] from: source file.
 /// @param[in] to:   destination file.
-/// @return  bytes written
+/// @return  bytes written or -1 on error
 MEMSPACE
 long copy(char *from,char *to)
 {
@@ -366,7 +408,7 @@ long copy(char *from,char *to)
     if (fi == NULL)
     {
         printf("Can't open: %s\n", from);
-        return(0);
+        return(-1);
     }
 
     printf("Creating %s\n", to);
@@ -375,7 +417,7 @@ long copy(char *from,char *to)
     {
         printf("Can't open: %s\n", to);
         fclose(fo);
-        return(0);
+        return(-1);
     }
 
     buf = safecalloc(BUFSIZE,1);
@@ -383,7 +425,7 @@ long copy(char *from,char *to)
     {
         fclose(fi);
         fclose(fo);
-        return(0);
+        return(-1);
     }
 
     printf("\nCopying...\n");
@@ -567,7 +609,7 @@ int ls_info(char *name, int verbose)
 /// @brief  Directory listing
 /// @param[in] path: file name or directory
 /// @param[in] option: -l for detail
-/// @return  number of files
+/// @return  number of files or -1 on error
 MEMSPACE
 int ls(char *name, int verbose)
 {
@@ -584,7 +626,7 @@ int ls(char *name, int verbose)
         if( !getcwd(fullpath, sizeof(fullpath)-2) )
         {
             printf("ls: Can't get current directory\n");
-            return(0);
+            return(-1);
 
         }
     }
@@ -594,13 +636,13 @@ int ls(char *name, int verbose)
     }
     len = strlen(fullpath);
 
-    printf("Listing:[%s]\n",fullpath);
 
     if (stat(fullpath, &st))
     {
         printf("ls: cannot stat [%s]\n", fullpath);
-        return(0);
+        return(-1);
     }
+    printf("Listing:[%s]\n",fullpath);
 
     switch (st.st_mode & S_IFMT)
     {
@@ -612,7 +654,7 @@ int ls(char *name, int verbose)
             if(!dirp)
             {
                 printf("opendir failed\n");
-                return(0);
+                return(-1);
             }
             while ( (de = readdir(dirp)) )
             {
@@ -661,7 +703,7 @@ long logfile(char *name, char *str)
     if (fo)
     {
         printf("Can't open: %s\n", name);
-        return(0);
+        return(-1);
     }
 
     size = strlen(str);
@@ -692,7 +734,7 @@ uint16_t sum(char *name)
     if(fi == NULL)
     {
         printf("Can' open: %s\n", name);
-        return(0);
+        return(-1);
     }
     sum = 0;
     while( (len = fread(buffer,1, 256, fi)) > 0)

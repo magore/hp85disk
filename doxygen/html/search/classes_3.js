@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['configtype_2101',['ConfigType',['../structConfigType.html',1,'']]]
+  ['configtype_2098',['ConfigType',['../structConfigType.html',1,'']]]
 ];

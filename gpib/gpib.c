@@ -361,7 +361,7 @@ void gpib_rx_init(uint8_t busy)
 // TX if TE = 1, ATN = 1
 // RX if TE = 1, ATN = 0
 // NOTE: IF ATN goes low when writing when should abort!
-void gpib_tx_init(uint8_t busy)
+void gpib_tx_init()
 {
 	uint8_t sreg = SREG;
 	cli();
@@ -502,8 +502,10 @@ uint8_t gpib_detect_PP()
         {
             if(uart_keyhit(0))
 			{
+#if 0
 				if(debuglevel & GPIB_ERR)
 					printf("gpib_detect_PP: ATN=0 EOI=0\n");
+#endif
 				break;
 			}
 
@@ -672,8 +674,10 @@ uint16_t gpib_write_byte(uint16_t ch)
 
 		if(uart_keyhit(0))
 		{
+#if 0
 			if(debuglevel & GPIB_ERR)
 				printf("gpib_write_byte: KEY state=%d\n", tx_state);
+#endif
 			break;
 		}
 
@@ -699,7 +703,7 @@ uint16_t gpib_write_byte(uint16_t ch)
         {
 			// DAV == 1 the bus is ready
             case GPIB_TX_START:
-				gpib_tx_init(0);
+				gpib_tx_init();
 				GPIB_PIN_FLOAT_UP(DAV);
                 GPIB_BUS_SETTLE();                // Let Data BUS settle
 
@@ -918,8 +922,10 @@ uint16_t gpib_read_byte(int trace)
 
         if(uart_keyhit(0))
 		{
+#if 0
 			if(debuglevel & GPIB_ERR)
 				printf("gpib_read_byte: state=%d\n", rx_state);
+#endif
             break;
 		}
 

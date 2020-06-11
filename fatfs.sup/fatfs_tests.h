@@ -34,15 +34,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE void fatfs_help ( int full );
 MEMSPACE int fatfs_tests ( int argc , char *argv []);
 MEMSPACE void mmc_test ( void );
-MEMSPACE void fatfs_cat ( char *name );
-MEMSPACE void fatfs_copy ( char *from , char *to );
-MEMSPACE void fatfs_create ( char *name , char *str );
-MEMSPACE void fatfs_cd ( char *name );
-MEMSPACE void fatfs_ls ( char *name );
-MEMSPACE void fatfs_mkdir ( char *name );
-MEMSPACE void fatfs_pwd ( void );
-MEMSPACE void fatfs_rename ( const char *oldpath , const char *newpath );
-MEMSPACE void fatfs_rm ( char *name );
-MEMSPACE void fatfs_rmdir ( char *name );
-MEMSPACE void fatfs_stat ( char *name );
+MEMSPACE int fatfs_ls ( char *name );
+MEMSPACE long fatfs_cat ( char *name );
+MEMSPACE long fatfs_copy ( char *from , char *to );
+MEMSPACE int fatfs_create ( char *name , char *str );
+MEMSPACE int fatfs_cd ( char *name );
+MEMSPACE int fatfs_mkdir ( char *name );
+MEMSPACE int fatfs_pwd ( void );
+MEMSPACE int fatfs_rename ( const char *oldpath , const char *newpath );
+MEMSPACE int fatfs_rm ( char *name );
+MEMSPACE int fatfs_rmdir ( char *name );
+MEMSPACE int fatfs_stat ( char *name );
+
 #endif

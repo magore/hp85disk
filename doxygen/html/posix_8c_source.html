@@ -1438,7 +1438,7 @@ $(function() {
 <div class="line"><a name="l01974"></a><span class="lineno"> 1974</span>&#160;    len = <a class="code" href="parsing_8c.html#a9fb9c5c9b25cdf504152f7610f0d118c">MATCH</a>(name,<span class="stringliteral">&quot;/dev/sd&quot;</span>);</div>
 <div class="line"><a name="l01975"></a><span class="lineno"> 1975</span>&#160;    <span class="keywordflow">if</span>(!len)</div>
 <div class="line"><a name="l01976"></a><span class="lineno"> 1976</span>&#160;    {</div>
-<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Expected /dev/sda .. /dev/sdj\n&quot;</span>);</div>
+<div class="line"><a name="l01977"></a><span class="lineno"> 1977</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;mkfs expected /dev/sda .. /dev/sdj\n&quot;</span>);</div>
 <div class="line"><a name="l01978"></a><span class="lineno"> 1978</span>&#160;        <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l01979"></a><span class="lineno"> 1979</span>&#160;    }</div>
 <div class="line"><a name="l01980"></a><span class="lineno"> 1980</span>&#160;<span class="comment">// Convert /dev/sd[a-j] to 0: .. 9:</span></div>
@@ -1453,441 +1453,444 @@ $(function() {
 <div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;    res = <a class="code" href="ff_8c.html#a16a934c2bbfa2160295810adc49d5509">f_mount</a>(&amp;fs, dev, 0);</div>
 <div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;    <span class="keywordflow">if</span>(!res)</div>
 <div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;    {</div>
-<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>(res);</div>
+<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;mkfs f_mount failed\n&quot;</span>);</div>
 <div class="line"><a name="l01993"></a><span class="lineno"> 1993</span>&#160;        <span class="keywordflow">return</span>(0);</div>
 <div class="line"><a name="l01994"></a><span class="lineno"> 1994</span>&#160;    }</div>
 <div class="line"><a name="l01995"></a><span class="lineno"> 1995</span>&#160; </div>
 <div class="line"><a name="l01996"></a><span class="lineno"> 1996</span>&#160;<span class="comment">// Allocate memory for mkfs function</span></div>
 <div class="line"><a name="l01997"></a><span class="lineno"> 1997</span>&#160;    mem = <a class="code" href="ram_8c.html#adefba2d5cc5425b0deeaaaee6d9a384e">safemalloc</a>(1024);</div>
 <div class="line"><a name="l01998"></a><span class="lineno"> 1998</span>&#160;    <span class="keywordflow">if</span>(!mem)</div>
-<div class="line"><a name="l01999"></a><span class="lineno"> 1999</span>&#160;        <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l02000"></a><span class="lineno"> 2000</span>&#160; </div>
-<div class="line"><a name="l02001"></a><span class="lineno"> 2001</span>&#160;<span class="comment">// Create FAT volume on the logical drive 0</span></div>
-<div class="line"><a name="l02002"></a><span class="lineno"> 2002</span>&#160;<span class="comment">// 2nd argument is ignored. */</span></div>
-<div class="line"><a name="l02003"></a><span class="lineno"> 2003</span>&#160;    res = <a class="code" href="ff_8c.html#a983f0614033bd7cf587eb56d3054a91c">f_mkfs</a>(dev, opt, mem, 1024);</div>
-<div class="line"><a name="l02004"></a><span class="lineno"> 2004</span>&#160;    <span class="keywordflow">if</span>(res)</div>
-<div class="line"><a name="l02005"></a><span class="lineno"> 2005</span>&#160;    {</div>
-<div class="line"><a name="l02006"></a><span class="lineno"> 2006</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>(res);</div>
-<div class="line"><a name="l02007"></a><span class="lineno"> 2007</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(mem);</div>
-<div class="line"><a name="l02008"></a><span class="lineno"> 2008</span>&#160;        <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l02009"></a><span class="lineno"> 2009</span>&#160;    }</div>
-<div class="line"><a name="l02010"></a><span class="lineno"> 2010</span>&#160;    <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(mem);</div>
-<div class="line"><a name="l02011"></a><span class="lineno"> 2011</span>&#160;    <span class="keywordflow">return</span>(1);</div>
-<div class="line"><a name="l02012"></a><span class="lineno"> 2012</span>&#160;}</div>
-<div class="line"><a name="l02013"></a><span class="lineno"> 2013</span>&#160; </div>
-<div class="line"><a name="l02014"></a><span class="lineno"> 2014</span>&#160; </div>
-<div class="line"><a name="l02027"></a><span class="lineno"> 2027</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02028"></a><span class="lineno"><a class="line" href="posix_8h.html#a5811041feb43c22c6e609a8875475abc"> 2028</a></span>&#160;<span class="keywordtype">int</span>  <a class="code" href="posix_8c.html#a5811041feb43c22c6e609a8875475abc">fatfs_getc</a>(<a class="code" href="struct____file.html">FILE</a> *stream)</div>
-<div class="line"><a name="l02029"></a><span class="lineno"> 2029</span>&#160;{</div>
-<div class="line"><a name="l02030"></a><span class="lineno"> 2030</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
-<div class="line"><a name="l02031"></a><span class="lineno"> 2031</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> size;</div>
-<div class="line"><a name="l02032"></a><span class="lineno"> 2032</span>&#160;    <span class="keywordtype">int</span> res;</div>
-<div class="line"><a name="l02033"></a><span class="lineno"> 2033</span>&#160;    uint8_t c;</div>
-<div class="line"><a name="l02034"></a><span class="lineno"> 2034</span>&#160;    <span class="keywordtype">long</span> pos;</div>
-<div class="line"><a name="l02035"></a><span class="lineno"> 2035</span>&#160; </div>
-<div class="line"><a name="l02036"></a><span class="lineno"> 2036</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = 0;</div>
-<div class="line"><a name="l02037"></a><span class="lineno"> 2037</span>&#160; </div>
-<div class="line"><a name="l02038"></a><span class="lineno"> 2038</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02039"></a><span class="lineno"> 2039</span>&#160;    {</div>
-<div class="line"><a name="l02040"></a><span class="lineno"> 2040</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
-<div class="line"><a name="l02041"></a><span class="lineno"> 2041</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02042"></a><span class="lineno"> 2042</span>&#160;    }</div>
-<div class="line"><a name="l02043"></a><span class="lineno"> 2043</span>&#160; </div>
-<div class="line"><a name="l02044"></a><span class="lineno"> 2044</span>&#160;    fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
-<div class="line"><a name="l02045"></a><span class="lineno"> 2045</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02046"></a><span class="lineno"> 2046</span>&#160;    {</div>
-<div class="line"><a name="l02047"></a><span class="lineno"> 2047</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
-<div class="line"><a name="l02048"></a><span class="lineno"> 2048</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02049"></a><span class="lineno"> 2049</span>&#160;    }</div>
-<div class="line"><a name="l02050"></a><span class="lineno"> 2050</span>&#160; </div>
-<div class="line"><a name="l02051"></a><span class="lineno"> 2051</span>&#160;    res = <a class="code" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *) &amp;size);</div>
-<div class="line"><a name="l02052"></a><span class="lineno"> 2052</span>&#160;    <span class="keywordflow">if</span>( res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
-<div class="line"><a name="l02053"></a><span class="lineno"> 2053</span>&#160;    {</div>
-<div class="line"><a name="l02054"></a><span class="lineno"> 2054</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>(res);</div>
-<div class="line"><a name="l02055"></a><span class="lineno"> 2055</span>&#160;        stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> |= <a class="code" href="posix_8h.html#a63f42c2888ed9bd0f00ee25002ee3b02">__SEOF</a>;</div>
-<div class="line"><a name="l02056"></a><span class="lineno"> 2056</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02057"></a><span class="lineno"> 2057</span>&#160;    }</div>
-<div class="line"><a name="l02058"></a><span class="lineno"> 2058</span>&#160; </div>
-<div class="line"><a name="l02059"></a><span class="lineno"> 2059</span>&#160;<span class="comment">// AUTOMATIC end of line METHOD detection</span></div>
-<div class="line"><a name="l02060"></a><span class="lineno"> 2060</span>&#160;<span class="comment">// ALWAYS return &#39;\n&#39; for ALL methods</span></div>
-<div class="line"><a name="l02061"></a><span class="lineno"> 2061</span>&#160;<span class="comment">// History: End of line (EOL) characters sometimes differ, mostly legacy systems, and modern UNIX (which uses just &#39;\n&#39;)</span></div>
-<div class="line"><a name="l02062"></a><span class="lineno"> 2062</span>&#160;<span class="comment">//    &#39;\r&#39; ONLY</span></div>
-<div class="line"><a name="l02063"></a><span class="lineno"> 2063</span>&#160;<span class="comment">//    &#39;\r\n&#39;</span></div>
-<div class="line"><a name="l02064"></a><span class="lineno"> 2064</span>&#160;<span class="comment">//    &#39;\n&#39;</span></div>
-<div class="line"><a name="l02065"></a><span class="lineno"> 2065</span>&#160;<span class="comment">// The difference was mostly from the way old mechanical printers were controlled.</span></div>
-<div class="line"><a name="l02066"></a><span class="lineno"> 2066</span>&#160;<span class="comment">//    &#39;\n&#39; (New Line = NL) advanced the line</span></div>
-<div class="line"><a name="l02067"></a><span class="lineno"> 2067</span>&#160;<span class="comment">//    &#39;\r&#39; (Charage Return = CR) moved the print head to start of line</span></div>
-<div class="line"><a name="l02068"></a><span class="lineno"> 2068</span>&#160;<span class="comment">//    &#39;\t&#39; (Tabstop = TAB)</span></div>
-<div class="line"><a name="l02069"></a><span class="lineno"> 2069</span>&#160;<span class="comment">//    &#39;\f&#39; (Form feed = FF)</span></div>
-<div class="line"><a name="l02070"></a><span class="lineno"> 2070</span>&#160;<span class="comment">// The problem with mechanical devices is that each had differing control and time delays to deal with.</span></div>
-<div class="line"><a name="l02071"></a><span class="lineno"> 2071</span>&#160;<span class="comment">//  (TAB, CR, NL and FF) did different things and took differing times depending on the device.</span></div>
-<div class="line"><a name="l02072"></a><span class="lineno"> 2072</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l02073"></a><span class="lineno"> 2073</span>&#160;<span class="comment">// Long before DOS UNIX took the position that controlling physical devices must be a device drivers problem only.</span></div>
-<div class="line"><a name="l02074"></a><span class="lineno"> 2074</span>&#160;<span class="comment">// They reasoned if users had to worry about all the ugly controll and timing issues no code would be portable.</span></div>
-<div class="line"><a name="l02075"></a><span class="lineno"> 2075</span>&#160;<span class="comment">// Therefore they made NL just a SYMBOL for the driver to determine what to do.</span></div>
-<div class="line"><a name="l02076"></a><span class="lineno"> 2076</span>&#160;<span class="comment">// This design philosophy argued if you needed better control its better to use a real designed purposed tool for it.</span></div>
-<div class="line"><a name="l02077"></a><span class="lineno"> 2077</span>&#160;<span class="comment">// (ie. like curses or termcap).</span></div>
-<div class="line"><a name="l02078"></a><span class="lineno"> 2078</span>&#160; </div>
-<div class="line"><a name="l02079"></a><span class="lineno"> 2079</span>&#160;<span class="comment">// Here to deal with those other old ugly stupid pointless EOL methods we convert to just a symbol &#39;\n&#39;</span></div>
-<div class="line"><a name="l02080"></a><span class="lineno"> 2080</span>&#160;<span class="comment">// FROM &#39;\n&#39; OR &#39;\r&#39;char OR &#39;\r\n&#39; TO &#39;\n&#39;</span></div>
-<div class="line"><a name="l02081"></a><span class="lineno"> 2081</span>&#160;<span class="comment">// Note: char != &#39;\n&#39;</span></div>
-<div class="line"><a name="l02082"></a><span class="lineno"> 2082</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\r&#39;</span>)</div>
-<div class="line"><a name="l02083"></a><span class="lineno"> 2083</span>&#160;    {</div>
-<div class="line"><a name="l02084"></a><span class="lineno"> 2084</span>&#160;<span class="comment">// PEEK forward 1 character</span></div>
-<div class="line"><a name="l02085"></a><span class="lineno"> 2085</span>&#160;        pos = <a class="code" href="ff_8h.html#a5e1daca7ce13cdc277e42185f7f9124f">f_tell</a>(fh);</div>
-<div class="line"><a name="l02086"></a><span class="lineno"> 2086</span>&#160;<span class="comment">// Check for trailing &#39;\n&#39; or EOF</span></div>
-<div class="line"><a name="l02087"></a><span class="lineno"> 2087</span>&#160;        res = <a class="code" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *) &amp;size);</div>
-<div class="line"><a name="l02088"></a><span class="lineno"> 2088</span>&#160;        <span class="keywordflow">if</span>(res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
-<div class="line"><a name="l02089"></a><span class="lineno"> 2089</span>&#160;        {</div>
-<div class="line"><a name="l02090"></a><span class="lineno"> 2090</span>&#160;<span class="comment">// &#39;\r&#39; with EOF impiles &#39;\n&#39;</span></div>
-<div class="line"><a name="l02091"></a><span class="lineno"> 2091</span>&#160;            <span class="keywordflow">return</span>(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l02092"></a><span class="lineno"> 2092</span>&#160;        }</div>
-<div class="line"><a name="l02093"></a><span class="lineno"> 2093</span>&#160;<span class="comment">// This file must be &#39;\r&#39; ONLY for end of line</span></div>
-<div class="line"><a name="l02094"></a><span class="lineno"> 2094</span>&#160;        <span class="keywordflow">if</span>(c != <span class="charliteral">&#39;\n&#39;</span>)</div>
-<div class="line"><a name="l02095"></a><span class="lineno"> 2095</span>&#160;        {</div>
-<div class="line"><a name="l02096"></a><span class="lineno"> 2096</span>&#160;<span class="comment">// Not &#39;\n&#39; or EOF o move file pointer back to just after the &#39;\r&#39;</span></div>
-<div class="line"><a name="l02097"></a><span class="lineno"> 2097</span>&#160;            <a class="code" href="ff_8c.html#a7c4bcf81d9122f0b5376852ec6a8c3eb">f_lseek</a>(fh, pos);</div>
-<div class="line"><a name="l02098"></a><span class="lineno"> 2098</span>&#160;            <span class="keywordflow">return</span>(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l02099"></a><span class="lineno"> 2099</span>&#160;        }</div>
-<div class="line"><a name="l02100"></a><span class="lineno"> 2100</span>&#160;        c = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l02101"></a><span class="lineno"> 2101</span>&#160;    }</div>
-<div class="line"><a name="l02102"></a><span class="lineno"> 2102</span>&#160;    <span class="keywordflow">return</span>(c &amp; 0xff);</div>
-<div class="line"><a name="l02103"></a><span class="lineno"> 2103</span>&#160;}</div>
-<div class="line"><a name="l02104"></a><span class="lineno"> 2104</span>&#160; </div>
-<div class="line"><a name="l02105"></a><span class="lineno"> 2105</span>&#160; </div>
-<div class="line"><a name="l02118"></a><span class="lineno"> 2118</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02119"></a><span class="lineno"><a class="line" href="posix_8h.html#adfd015ed8dbac3473269d1a068bf5904"> 2119</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#adfd015ed8dbac3473269d1a068bf5904">fatfs_putc</a>(<span class="keywordtype">char</span> c, <a class="code" href="struct____file.html">FILE</a> *stream)</div>
-<div class="line"><a name="l02120"></a><span class="lineno"> 2120</span>&#160;{</div>
-<div class="line"><a name="l02121"></a><span class="lineno"> 2121</span>&#160;    <span class="keywordtype">int</span> res;</div>
-<div class="line"><a name="l02122"></a><span class="lineno"> 2122</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
-<div class="line"><a name="l02123"></a><span class="lineno"> 2123</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> size;</div>
-<div class="line"><a name="l02124"></a><span class="lineno"> 2124</span>&#160; </div>
-<div class="line"><a name="l02125"></a><span class="lineno"> 2125</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = 0;</div>
-<div class="line"><a name="l02126"></a><span class="lineno"> 2126</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02127"></a><span class="lineno"> 2127</span>&#160;    {</div>
-<div class="line"><a name="l02128"></a><span class="lineno"> 2128</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
-<div class="line"><a name="l02129"></a><span class="lineno"> 2129</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02130"></a><span class="lineno"> 2130</span>&#160;    }</div>
-<div class="line"><a name="l02131"></a><span class="lineno"> 2131</span>&#160; </div>
-<div class="line"><a name="l02132"></a><span class="lineno"> 2132</span>&#160;    fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
-<div class="line"><a name="l02133"></a><span class="lineno"> 2133</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02134"></a><span class="lineno"> 2134</span>&#160;    {</div>
-<div class="line"><a name="l02135"></a><span class="lineno"> 2135</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
-<div class="line"><a name="l02136"></a><span class="lineno"> 2136</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02137"></a><span class="lineno"> 2137</span>&#160;    }</div>
-<div class="line"><a name="l02138"></a><span class="lineno"> 2138</span>&#160; </div>
-<div class="line"><a name="l02139"></a><span class="lineno"> 2139</span>&#160;    res = <a class="code" href="ff_8c.html#ae6a4dfae8a9e308bdb2283a37ef680f2">f_write</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *)  &amp;size);</div>
-<div class="line"><a name="l02140"></a><span class="lineno"> 2140</span>&#160;    <span class="keywordflow">if</span>( res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
-<div class="line"><a name="l02141"></a><span class="lineno"> 2141</span>&#160;    {</div>
-<div class="line"><a name="l02142"></a><span class="lineno"> 2142</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>(res);</div>
-<div class="line"><a name="l02143"></a><span class="lineno"> 2143</span>&#160;        stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> |= <a class="code" href="posix_8h.html#a63f42c2888ed9bd0f00ee25002ee3b02">__SEOF</a>;</div>
-<div class="line"><a name="l02144"></a><span class="lineno"> 2144</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
-<div class="line"><a name="l02145"></a><span class="lineno"> 2145</span>&#160;    }</div>
-<div class="line"><a name="l02146"></a><span class="lineno"> 2146</span>&#160;    <span class="keywordflow">return</span>(c);</div>
-<div class="line"><a name="l02147"></a><span class="lineno"> 2147</span>&#160;}</div>
-<div class="line"><a name="l02148"></a><span class="lineno"> 2148</span>&#160; </div>
-<div class="line"><a name="l02149"></a><span class="lineno"> 2149</span>&#160; </div>
-<div class="line"><a name="l02159"></a><span class="lineno"> 2159</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02160"></a><span class="lineno"><a class="line" href="posix_8h.html#ac20f0fc565c27bbbb900bde3337b09b9"> 2160</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>( <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result )</div>
-<div class="line"><a name="l02161"></a><span class="lineno"> 2161</span>&#160;{</div>
-<div class="line"><a name="l02162"></a><span class="lineno"> 2162</span>&#160;    <span class="keywordflow">switch</span>( Result )</div>
-<div class="line"><a name="l02163"></a><span class="lineno"> 2163</span>&#160;    {</div>
-<div class="line"><a name="l02164"></a><span class="lineno"> 2164</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>:                               <span class="comment">/* FatFS (0) Succeeded */</span></div>
-<div class="line"><a name="l02165"></a><span class="lineno"> 2165</span>&#160;            <span class="keywordflow">return</span> (0);                           <span class="comment">/* POSIX OK */</span></div>
-<div class="line"><a name="l02166"></a><span class="lineno"> 2166</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca97dee4a6b485dc8f91f37486092dfe34">FR_DISK_ERR</a>:                         <span class="comment">/* FatFS (1) A hard error occurred in the low level disk I/O layer */</span></div>
-<div class="line"><a name="l02167"></a><span class="lineno"> 2167</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa6d2c32b1730ea078f2802b34b1258a4c">EIO</a>);                         <span class="comment">/* POSIX Input/output error (POSIX.1) */</span></div>
-<div class="line"><a name="l02168"></a><span class="lineno"> 2168</span>&#160; </div>
-<div class="line"><a name="l02169"></a><span class="lineno"> 2169</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cab6c9903af6e9bffbb7a288705f4a6a76">FR_INT_ERR</a>:                          <span class="comment">/* FatFS (2) Assertion failed */</span></div>
-<div class="line"><a name="l02170"></a><span class="lineno"> 2170</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267">EPERM</a>);                       <span class="comment">/* POSIX Operation not permitted (POSIX.1) */</span></div>
+<div class="line"><a name="l01999"></a><span class="lineno"> 1999</span>&#160;    {</div>
+<div class="line"><a name="l02000"></a><span class="lineno"> 2000</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;mkfs calloc failed\n&quot;</span>);</div>
+<div class="line"><a name="l02001"></a><span class="lineno"> 2001</span>&#160;        <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l02002"></a><span class="lineno"> 2002</span>&#160;    }</div>
+<div class="line"><a name="l02003"></a><span class="lineno"> 2003</span>&#160; </div>
+<div class="line"><a name="l02004"></a><span class="lineno"> 2004</span>&#160;<span class="comment">// Create FAT volume on the logical drive 0</span></div>
+<div class="line"><a name="l02005"></a><span class="lineno"> 2005</span>&#160;<span class="comment">// 2nd argument is ignored. */</span></div>
+<div class="line"><a name="l02006"></a><span class="lineno"> 2006</span>&#160;    res = <a class="code" href="ff_8c.html#a983f0614033bd7cf587eb56d3054a91c">f_mkfs</a>(dev, opt, mem, 1024);</div>
+<div class="line"><a name="l02007"></a><span class="lineno"> 2007</span>&#160;    <span class="keywordflow">if</span>(res)</div>
+<div class="line"><a name="l02008"></a><span class="lineno"> 2008</span>&#160;    {</div>
+<div class="line"><a name="l02009"></a><span class="lineno"> 2009</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;mkfs f_mkfs failed\n&quot;</span>);</div>
+<div class="line"><a name="l02010"></a><span class="lineno"> 2010</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(mem);</div>
+<div class="line"><a name="l02011"></a><span class="lineno"> 2011</span>&#160;        <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l02012"></a><span class="lineno"> 2012</span>&#160;    }</div>
+<div class="line"><a name="l02013"></a><span class="lineno"> 2013</span>&#160;    <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(mem);</div>
+<div class="line"><a name="l02014"></a><span class="lineno"> 2014</span>&#160;    <span class="keywordflow">return</span>(1);</div>
+<div class="line"><a name="l02015"></a><span class="lineno"> 2015</span>&#160;}</div>
+<div class="line"><a name="l02016"></a><span class="lineno"> 2016</span>&#160; </div>
+<div class="line"><a name="l02017"></a><span class="lineno"> 2017</span>&#160; </div>
+<div class="line"><a name="l02030"></a><span class="lineno"> 2030</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02031"></a><span class="lineno"><a class="line" href="posix_8h.html#a5811041feb43c22c6e609a8875475abc"> 2031</a></span>&#160;<span class="keywordtype">int</span>  <a class="code" href="posix_8c.html#a5811041feb43c22c6e609a8875475abc">fatfs_getc</a>(<a class="code" href="struct____file.html">FILE</a> *stream)</div>
+<div class="line"><a name="l02032"></a><span class="lineno"> 2032</span>&#160;{</div>
+<div class="line"><a name="l02033"></a><span class="lineno"> 2033</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
+<div class="line"><a name="l02034"></a><span class="lineno"> 2034</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> size;</div>
+<div class="line"><a name="l02035"></a><span class="lineno"> 2035</span>&#160;    <span class="keywordtype">int</span> res;</div>
+<div class="line"><a name="l02036"></a><span class="lineno"> 2036</span>&#160;    uint8_t c;</div>
+<div class="line"><a name="l02037"></a><span class="lineno"> 2037</span>&#160;    <span class="keywordtype">long</span> pos;</div>
+<div class="line"><a name="l02038"></a><span class="lineno"> 2038</span>&#160; </div>
+<div class="line"><a name="l02039"></a><span class="lineno"> 2039</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = 0;</div>
+<div class="line"><a name="l02040"></a><span class="lineno"> 2040</span>&#160; </div>
+<div class="line"><a name="l02041"></a><span class="lineno"> 2041</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02042"></a><span class="lineno"> 2042</span>&#160;    {</div>
+<div class="line"><a name="l02043"></a><span class="lineno"> 2043</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
+<div class="line"><a name="l02044"></a><span class="lineno"> 2044</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02045"></a><span class="lineno"> 2045</span>&#160;    }</div>
+<div class="line"><a name="l02046"></a><span class="lineno"> 2046</span>&#160; </div>
+<div class="line"><a name="l02047"></a><span class="lineno"> 2047</span>&#160;    fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
+<div class="line"><a name="l02048"></a><span class="lineno"> 2048</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02049"></a><span class="lineno"> 2049</span>&#160;    {</div>
+<div class="line"><a name="l02050"></a><span class="lineno"> 2050</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
+<div class="line"><a name="l02051"></a><span class="lineno"> 2051</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02052"></a><span class="lineno"> 2052</span>&#160;    }</div>
+<div class="line"><a name="l02053"></a><span class="lineno"> 2053</span>&#160; </div>
+<div class="line"><a name="l02054"></a><span class="lineno"> 2054</span>&#160;    res = <a class="code" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *) &amp;size);</div>
+<div class="line"><a name="l02055"></a><span class="lineno"> 2055</span>&#160;    <span class="keywordflow">if</span>( res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
+<div class="line"><a name="l02056"></a><span class="lineno"> 2056</span>&#160;    {</div>
+<div class="line"><a name="l02057"></a><span class="lineno"> 2057</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>(res);</div>
+<div class="line"><a name="l02058"></a><span class="lineno"> 2058</span>&#160;        stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> |= <a class="code" href="posix_8h.html#a63f42c2888ed9bd0f00ee25002ee3b02">__SEOF</a>;</div>
+<div class="line"><a name="l02059"></a><span class="lineno"> 2059</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02060"></a><span class="lineno"> 2060</span>&#160;    }</div>
+<div class="line"><a name="l02061"></a><span class="lineno"> 2061</span>&#160; </div>
+<div class="line"><a name="l02062"></a><span class="lineno"> 2062</span>&#160;<span class="comment">// AUTOMATIC end of line METHOD detection</span></div>
+<div class="line"><a name="l02063"></a><span class="lineno"> 2063</span>&#160;<span class="comment">// ALWAYS return &#39;\n&#39; for ALL methods</span></div>
+<div class="line"><a name="l02064"></a><span class="lineno"> 2064</span>&#160;<span class="comment">// History: End of line (EOL) characters sometimes differ, mostly legacy systems, and modern UNIX (which uses just &#39;\n&#39;)</span></div>
+<div class="line"><a name="l02065"></a><span class="lineno"> 2065</span>&#160;<span class="comment">//    &#39;\r&#39; ONLY</span></div>
+<div class="line"><a name="l02066"></a><span class="lineno"> 2066</span>&#160;<span class="comment">//    &#39;\r\n&#39;</span></div>
+<div class="line"><a name="l02067"></a><span class="lineno"> 2067</span>&#160;<span class="comment">//    &#39;\n&#39;</span></div>
+<div class="line"><a name="l02068"></a><span class="lineno"> 2068</span>&#160;<span class="comment">// The difference was mostly from the way old mechanical printers were controlled.</span></div>
+<div class="line"><a name="l02069"></a><span class="lineno"> 2069</span>&#160;<span class="comment">//    &#39;\n&#39; (New Line = NL) advanced the line</span></div>
+<div class="line"><a name="l02070"></a><span class="lineno"> 2070</span>&#160;<span class="comment">//    &#39;\r&#39; (Charage Return = CR) moved the print head to start of line</span></div>
+<div class="line"><a name="l02071"></a><span class="lineno"> 2071</span>&#160;<span class="comment">//    &#39;\t&#39; (Tabstop = TAB)</span></div>
+<div class="line"><a name="l02072"></a><span class="lineno"> 2072</span>&#160;<span class="comment">//    &#39;\f&#39; (Form feed = FF)</span></div>
+<div class="line"><a name="l02073"></a><span class="lineno"> 2073</span>&#160;<span class="comment">// The problem with mechanical devices is that each had differing control and time delays to deal with.</span></div>
+<div class="line"><a name="l02074"></a><span class="lineno"> 2074</span>&#160;<span class="comment">//  (TAB, CR, NL and FF) did different things and took differing times depending on the device.</span></div>
+<div class="line"><a name="l02075"></a><span class="lineno"> 2075</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l02076"></a><span class="lineno"> 2076</span>&#160;<span class="comment">// Long before DOS UNIX took the position that controlling physical devices must be a device drivers problem only.</span></div>
+<div class="line"><a name="l02077"></a><span class="lineno"> 2077</span>&#160;<span class="comment">// They reasoned if users had to worry about all the ugly controll and timing issues no code would be portable.</span></div>
+<div class="line"><a name="l02078"></a><span class="lineno"> 2078</span>&#160;<span class="comment">// Therefore they made NL just a SYMBOL for the driver to determine what to do.</span></div>
+<div class="line"><a name="l02079"></a><span class="lineno"> 2079</span>&#160;<span class="comment">// This design philosophy argued if you needed better control its better to use a real designed purposed tool for it.</span></div>
+<div class="line"><a name="l02080"></a><span class="lineno"> 2080</span>&#160;<span class="comment">// (ie. like curses or termcap).</span></div>
+<div class="line"><a name="l02081"></a><span class="lineno"> 2081</span>&#160; </div>
+<div class="line"><a name="l02082"></a><span class="lineno"> 2082</span>&#160;<span class="comment">// Here to deal with those other old ugly stupid pointless EOL methods we convert to just a symbol &#39;\n&#39;</span></div>
+<div class="line"><a name="l02083"></a><span class="lineno"> 2083</span>&#160;<span class="comment">// FROM &#39;\n&#39; OR &#39;\r&#39;char OR &#39;\r\n&#39; TO &#39;\n&#39;</span></div>
+<div class="line"><a name="l02084"></a><span class="lineno"> 2084</span>&#160;<span class="comment">// Note: char != &#39;\n&#39;</span></div>
+<div class="line"><a name="l02085"></a><span class="lineno"> 2085</span>&#160;    <span class="keywordflow">if</span>(c == <span class="charliteral">&#39;\r&#39;</span>)</div>
+<div class="line"><a name="l02086"></a><span class="lineno"> 2086</span>&#160;    {</div>
+<div class="line"><a name="l02087"></a><span class="lineno"> 2087</span>&#160;<span class="comment">// PEEK forward 1 character</span></div>
+<div class="line"><a name="l02088"></a><span class="lineno"> 2088</span>&#160;        pos = <a class="code" href="ff_8h.html#a5e1daca7ce13cdc277e42185f7f9124f">f_tell</a>(fh);</div>
+<div class="line"><a name="l02089"></a><span class="lineno"> 2089</span>&#160;<span class="comment">// Check for trailing &#39;\n&#39; or EOF</span></div>
+<div class="line"><a name="l02090"></a><span class="lineno"> 2090</span>&#160;        res = <a class="code" href="ff_8c.html#ac4c3dcb6869ca252888eebabe39727b3">f_read</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *) &amp;size);</div>
+<div class="line"><a name="l02091"></a><span class="lineno"> 2091</span>&#160;        <span class="keywordflow">if</span>(res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
+<div class="line"><a name="l02092"></a><span class="lineno"> 2092</span>&#160;        {</div>
+<div class="line"><a name="l02093"></a><span class="lineno"> 2093</span>&#160;<span class="comment">// &#39;\r&#39; with EOF impiles &#39;\n&#39;</span></div>
+<div class="line"><a name="l02094"></a><span class="lineno"> 2094</span>&#160;            <span class="keywordflow">return</span>(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l02095"></a><span class="lineno"> 2095</span>&#160;        }</div>
+<div class="line"><a name="l02096"></a><span class="lineno"> 2096</span>&#160;<span class="comment">// This file must be &#39;\r&#39; ONLY for end of line</span></div>
+<div class="line"><a name="l02097"></a><span class="lineno"> 2097</span>&#160;        <span class="keywordflow">if</span>(c != <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><a name="l02098"></a><span class="lineno"> 2098</span>&#160;        {</div>
+<div class="line"><a name="l02099"></a><span class="lineno"> 2099</span>&#160;<span class="comment">// Not &#39;\n&#39; or EOF o move file pointer back to just after the &#39;\r&#39;</span></div>
+<div class="line"><a name="l02100"></a><span class="lineno"> 2100</span>&#160;            <a class="code" href="ff_8c.html#a7c4bcf81d9122f0b5376852ec6a8c3eb">f_lseek</a>(fh, pos);</div>
+<div class="line"><a name="l02101"></a><span class="lineno"> 2101</span>&#160;            <span class="keywordflow">return</span>(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l02102"></a><span class="lineno"> 2102</span>&#160;        }</div>
+<div class="line"><a name="l02103"></a><span class="lineno"> 2103</span>&#160;        c = <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l02104"></a><span class="lineno"> 2104</span>&#160;    }</div>
+<div class="line"><a name="l02105"></a><span class="lineno"> 2105</span>&#160;    <span class="keywordflow">return</span>(c &amp; 0xff);</div>
+<div class="line"><a name="l02106"></a><span class="lineno"> 2106</span>&#160;}</div>
+<div class="line"><a name="l02107"></a><span class="lineno"> 2107</span>&#160; </div>
+<div class="line"><a name="l02108"></a><span class="lineno"> 2108</span>&#160; </div>
+<div class="line"><a name="l02121"></a><span class="lineno"> 2121</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02122"></a><span class="lineno"><a class="line" href="posix_8h.html#adfd015ed8dbac3473269d1a068bf5904"> 2122</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#adfd015ed8dbac3473269d1a068bf5904">fatfs_putc</a>(<span class="keywordtype">char</span> c, <a class="code" href="struct____file.html">FILE</a> *stream)</div>
+<div class="line"><a name="l02123"></a><span class="lineno"> 2123</span>&#160;{</div>
+<div class="line"><a name="l02124"></a><span class="lineno"> 2124</span>&#160;    <span class="keywordtype">int</span> res;</div>
+<div class="line"><a name="l02125"></a><span class="lineno"> 2125</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
+<div class="line"><a name="l02126"></a><span class="lineno"> 2126</span>&#160;    <a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> size;</div>
+<div class="line"><a name="l02127"></a><span class="lineno"> 2127</span>&#160; </div>
+<div class="line"><a name="l02128"></a><span class="lineno"> 2128</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = 0;</div>
+<div class="line"><a name="l02129"></a><span class="lineno"> 2129</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02130"></a><span class="lineno"> 2130</span>&#160;    {</div>
+<div class="line"><a name="l02131"></a><span class="lineno"> 2131</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
+<div class="line"><a name="l02132"></a><span class="lineno"> 2132</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02133"></a><span class="lineno"> 2133</span>&#160;    }</div>
+<div class="line"><a name="l02134"></a><span class="lineno"> 2134</span>&#160; </div>
+<div class="line"><a name="l02135"></a><span class="lineno"> 2135</span>&#160;    fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
+<div class="line"><a name="l02136"></a><span class="lineno"> 2136</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02137"></a><span class="lineno"> 2137</span>&#160;    {</div>
+<div class="line"><a name="l02138"></a><span class="lineno"> 2138</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;                            <span class="comment">// Bad File Number</span></div>
+<div class="line"><a name="l02139"></a><span class="lineno"> 2139</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02140"></a><span class="lineno"> 2140</span>&#160;    }</div>
+<div class="line"><a name="l02141"></a><span class="lineno"> 2141</span>&#160; </div>
+<div class="line"><a name="l02142"></a><span class="lineno"> 2142</span>&#160;    res = <a class="code" href="ff_8c.html#ae6a4dfae8a9e308bdb2283a37ef680f2">f_write</a>(fh, &amp;c, 1, (<a class="code" href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a> *)  &amp;size);</div>
+<div class="line"><a name="l02143"></a><span class="lineno"> 2143</span>&#160;    <span class="keywordflow">if</span>( res != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a> || size != 1)</div>
+<div class="line"><a name="l02144"></a><span class="lineno"> 2144</span>&#160;    {</div>
+<div class="line"><a name="l02145"></a><span class="lineno"> 2145</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>(res);</div>
+<div class="line"><a name="l02146"></a><span class="lineno"> 2146</span>&#160;        stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> |= <a class="code" href="posix_8h.html#a63f42c2888ed9bd0f00ee25002ee3b02">__SEOF</a>;</div>
+<div class="line"><a name="l02147"></a><span class="lineno"> 2147</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="ff_8h.html#a59adc4c82490d23754cd39c2fb99b0da">EOF</a>);</div>
+<div class="line"><a name="l02148"></a><span class="lineno"> 2148</span>&#160;    }</div>
+<div class="line"><a name="l02149"></a><span class="lineno"> 2149</span>&#160;    <span class="keywordflow">return</span>(c);</div>
+<div class="line"><a name="l02150"></a><span class="lineno"> 2150</span>&#160;}</div>
+<div class="line"><a name="l02151"></a><span class="lineno"> 2151</span>&#160; </div>
+<div class="line"><a name="l02152"></a><span class="lineno"> 2152</span>&#160; </div>
+<div class="line"><a name="l02162"></a><span class="lineno"> 2162</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02163"></a><span class="lineno"><a class="line" href="posix_8h.html#ac20f0fc565c27bbbb900bde3337b09b9"> 2163</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a>( <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> Result )</div>
+<div class="line"><a name="l02164"></a><span class="lineno"> 2164</span>&#160;{</div>
+<div class="line"><a name="l02165"></a><span class="lineno"> 2165</span>&#160;    <span class="keywordflow">switch</span>( Result )</div>
+<div class="line"><a name="l02166"></a><span class="lineno"> 2166</span>&#160;    {</div>
+<div class="line"><a name="l02167"></a><span class="lineno"> 2167</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>:                               <span class="comment">/* FatFS (0) Succeeded */</span></div>
+<div class="line"><a name="l02168"></a><span class="lineno"> 2168</span>&#160;            <span class="keywordflow">return</span> (0);                           <span class="comment">/* POSIX OK */</span></div>
+<div class="line"><a name="l02169"></a><span class="lineno"> 2169</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca97dee4a6b485dc8f91f37486092dfe34">FR_DISK_ERR</a>:                         <span class="comment">/* FatFS (1) A hard error occurred in the low level disk I/O layer */</span></div>
+<div class="line"><a name="l02170"></a><span class="lineno"> 2170</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa6d2c32b1730ea078f2802b34b1258a4c">EIO</a>);                         <span class="comment">/* POSIX Input/output error (POSIX.1) */</span></div>
 <div class="line"><a name="l02171"></a><span class="lineno"> 2171</span>&#160; </div>
-<div class="line"><a name="l02172"></a><span class="lineno"> 2172</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cac9894bed3e8632ede8d2712235fa8e45">FR_NOT_READY</a>:                        <span class="comment">/* FatFS (3) The physical drive cannot work */</span></div>
-<div class="line"><a name="l02173"></a><span class="lineno"> 2173</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a>);                       <span class="comment">/* POSIX Device or resource busy (POSIX.1) */</span></div>
+<div class="line"><a name="l02172"></a><span class="lineno"> 2172</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cab6c9903af6e9bffbb7a288705f4a6a76">FR_INT_ERR</a>:                          <span class="comment">/* FatFS (2) Assertion failed */</span></div>
+<div class="line"><a name="l02173"></a><span class="lineno"> 2173</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267">EPERM</a>);                       <span class="comment">/* POSIX Operation not permitted (POSIX.1) */</span></div>
 <div class="line"><a name="l02174"></a><span class="lineno"> 2174</span>&#160; </div>
-<div class="line"><a name="l02175"></a><span class="lineno"> 2175</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca97da8f98fc2e66d8fa7847f9ebb19b8c">FR_NO_FILE</a>:                          <span class="comment">/* FatFS (4) Could not find the file */</span></div>
-<div class="line"><a name="l02176"></a><span class="lineno"> 2176</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a">ENOENT</a>);                      <span class="comment">/* POSIX No such file or directory (POSIX.1) */</span></div>
+<div class="line"><a name="l02175"></a><span class="lineno"> 2175</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cac9894bed3e8632ede8d2712235fa8e45">FR_NOT_READY</a>:                        <span class="comment">/* FatFS (3) The physical drive cannot work */</span></div>
+<div class="line"><a name="l02176"></a><span class="lineno"> 2176</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a>);                       <span class="comment">/* POSIX Device or resource busy (POSIX.1) */</span></div>
 <div class="line"><a name="l02177"></a><span class="lineno"> 2177</span>&#160; </div>
-<div class="line"><a name="l02178"></a><span class="lineno"> 2178</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cae4529c8cc8b59783d6efc9ba4f574532">FR_NO_PATH</a>:                          <span class="comment">/* FatFS (5) Could not find the path */</span></div>
+<div class="line"><a name="l02178"></a><span class="lineno"> 2178</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca97da8f98fc2e66d8fa7847f9ebb19b8c">FR_NO_FILE</a>:                          <span class="comment">/* FatFS (4) Could not find the file */</span></div>
 <div class="line"><a name="l02179"></a><span class="lineno"> 2179</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a">ENOENT</a>);                      <span class="comment">/* POSIX No such file or directory (POSIX.1) */</span></div>
 <div class="line"><a name="l02180"></a><span class="lineno"> 2180</span>&#160; </div>
-<div class="line"><a name="l02181"></a><span class="lineno"> 2181</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca83e45a4b579558c57192c0a391b9bb45">FR_INVALID_NAME</a>:                     <span class="comment">/* FatFS (6) The path name format is invalid */</span></div>
-<div class="line"><a name="l02182"></a><span class="lineno"> 2182</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02181"></a><span class="lineno"> 2181</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cae4529c8cc8b59783d6efc9ba4f574532">FR_NO_PATH</a>:                          <span class="comment">/* FatFS (5) Could not find the path */</span></div>
+<div class="line"><a name="l02182"></a><span class="lineno"> 2182</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa996f6f948b613bccc738ff8517413c1a">ENOENT</a>);                      <span class="comment">/* POSIX No such file or directory (POSIX.1) */</span></div>
 <div class="line"><a name="l02183"></a><span class="lineno"> 2183</span>&#160; </div>
-<div class="line"><a name="l02184"></a><span class="lineno"> 2184</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca897e9f2dd7629a80f48af242d8bc1a3d">FR_DENIED</a>:                           <span class="comment">/* FatFS (7) Access denied due to prohibited access or directory full */</span></div>
-<div class="line"><a name="l02185"></a><span class="lineno"> 2185</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98">EACCES</a>);                      <span class="comment">/* POSIX Permission denied (POSIX.1) */</span></div>
-<div class="line"><a name="l02186"></a><span class="lineno"> 2186</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca0d8f024d256df76e84782b95018a2450">FR_EXIST</a>:                            <span class="comment">/* FatFS (8) Access denied due to prohibited access */</span></div>
-<div class="line"><a name="l02187"></a><span class="lineno"> 2187</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98">EACCES</a>);                      <span class="comment">/* POSIX Permission denied (POSIX.1) */</span></div>
-<div class="line"><a name="l02188"></a><span class="lineno"> 2188</span>&#160; </div>
-<div class="line"><a name="l02189"></a><span class="lineno"> 2189</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3dec4eba481cdf5e99d7cd6009e6dcf8">FR_INVALID_OBJECT</a>:                   <span class="comment">/* FatFS (9) The file/directory object is invalid */</span></div>
-<div class="line"><a name="l02190"></a><span class="lineno"> 2190</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02184"></a><span class="lineno"> 2184</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca83e45a4b579558c57192c0a391b9bb45">FR_INVALID_NAME</a>:                     <span class="comment">/* FatFS (6) The path name format is invalid */</span></div>
+<div class="line"><a name="l02185"></a><span class="lineno"> 2185</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02186"></a><span class="lineno"> 2186</span>&#160; </div>
+<div class="line"><a name="l02187"></a><span class="lineno"> 2187</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca897e9f2dd7629a80f48af242d8bc1a3d">FR_DENIED</a>:                           <span class="comment">/* FatFS (7) Access denied due to prohibited access or directory full */</span></div>
+<div class="line"><a name="l02188"></a><span class="lineno"> 2188</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98">EACCES</a>);                      <span class="comment">/* POSIX Permission denied (POSIX.1) */</span></div>
+<div class="line"><a name="l02189"></a><span class="lineno"> 2189</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca0d8f024d256df76e84782b95018a2450">FR_EXIST</a>:                            <span class="comment">/* FatFS (8) Access denied due to prohibited access */</span></div>
+<div class="line"><a name="l02190"></a><span class="lineno"> 2190</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa5fa7d65262e81125cecb27e80a26ce98">EACCES</a>);                      <span class="comment">/* POSIX Permission denied (POSIX.1) */</span></div>
 <div class="line"><a name="l02191"></a><span class="lineno"> 2191</span>&#160; </div>
-<div class="line"><a name="l02192"></a><span class="lineno"> 2192</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cac3afbb423b1d4497229416812aff383b">FR_WRITE_PROTECTED</a>:                  <span class="comment">/* FatFS (10) The physical drive is write protected */</span></div>
-<div class="line"><a name="l02193"></a><span class="lineno"> 2193</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31">EROFS</a>);                        <span class="comment">/* POSIX Read-only filesystem (POSIX.1) */</span></div>
+<div class="line"><a name="l02192"></a><span class="lineno"> 2192</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3dec4eba481cdf5e99d7cd6009e6dcf8">FR_INVALID_OBJECT</a>:                   <span class="comment">/* FatFS (9) The file/directory object is invalid */</span></div>
+<div class="line"><a name="l02193"></a><span class="lineno"> 2193</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
 <div class="line"><a name="l02194"></a><span class="lineno"> 2194</span>&#160; </div>
-<div class="line"><a name="l02195"></a><span class="lineno"> 2195</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca487844af77de15f6932a3b41ef3a2d65">FR_INVALID_DRIVE</a>:                    <span class="comment">/* FatFS (11) The logical drive number is invalid */</span></div>
-<div class="line"><a name="l02196"></a><span class="lineno"> 2196</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb">ENXIO</a>);                        <span class="comment">/* POSIX No such device or address (POSIX.1) */</span></div>
+<div class="line"><a name="l02195"></a><span class="lineno"> 2195</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cac3afbb423b1d4497229416812aff383b">FR_WRITE_PROTECTED</a>:                  <span class="comment">/* FatFS (10) The physical drive is write protected */</span></div>
+<div class="line"><a name="l02196"></a><span class="lineno"> 2196</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31">EROFS</a>);                        <span class="comment">/* POSIX Read-only filesystem (POSIX.1) */</span></div>
 <div class="line"><a name="l02197"></a><span class="lineno"> 2197</span>&#160; </div>
-<div class="line"><a name="l02198"></a><span class="lineno"> 2198</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cafc56605c68aaffab4a428339a8bd600d">FR_NOT_ENABLED</a>:                      <span class="comment">/* FatFS (12) The volume has no work area */</span></div>
-<div class="line"><a name="l02199"></a><span class="lineno"> 2199</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb">ENOSPC</a>);                      <span class="comment">/* POSIX No space left on device (POSIX.1) */</span></div>
+<div class="line"><a name="l02198"></a><span class="lineno"> 2198</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca487844af77de15f6932a3b41ef3a2d65">FR_INVALID_DRIVE</a>:                    <span class="comment">/* FatFS (11) The logical drive number is invalid */</span></div>
+<div class="line"><a name="l02199"></a><span class="lineno"> 2199</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb">ENXIO</a>);                        <span class="comment">/* POSIX No such device or address (POSIX.1) */</span></div>
 <div class="line"><a name="l02200"></a><span class="lineno"> 2200</span>&#160; </div>
-<div class="line"><a name="l02201"></a><span class="lineno"> 2201</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca086154b5fee763f28c49fd0e2c1cb463">FR_NO_FILESYSTEM</a>:                    <span class="comment">/* FatFS (13) There is no valid FAT volume */</span></div>
-<div class="line"><a name="l02202"></a><span class="lineno"> 2202</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb">ENXIO</a>);                        <span class="comment">/* POSIX No such device or address (POSIX.1) */</span></div>
+<div class="line"><a name="l02201"></a><span class="lineno"> 2201</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cafc56605c68aaffab4a428339a8bd600d">FR_NOT_ENABLED</a>:                      <span class="comment">/* FatFS (12) The volume has no work area */</span></div>
+<div class="line"><a name="l02202"></a><span class="lineno"> 2202</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb">ENOSPC</a>);                      <span class="comment">/* POSIX No space left on device (POSIX.1) */</span></div>
 <div class="line"><a name="l02203"></a><span class="lineno"> 2203</span>&#160; </div>
-<div class="line"><a name="l02204"></a><span class="lineno"> 2204</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca4b02760f758f5b1a89f445244fe9fbca">FR_MKFS_ABORTED</a>:                     <span class="comment">/* FatFS (14) The f_mkfs() aborted due to any parameter error */</span></div>
-<div class="line"><a name="l02205"></a><span class="lineno"> 2205</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02204"></a><span class="lineno"> 2204</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca086154b5fee763f28c49fd0e2c1cb463">FR_NO_FILESYSTEM</a>:                    <span class="comment">/* FatFS (13) There is no valid FAT volume */</span></div>
+<div class="line"><a name="l02205"></a><span class="lineno"> 2205</span>&#160;            <span class="keywordflow">return</span>(<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa1c0d17ac093eff038b479dba021361bb">ENXIO</a>);                        <span class="comment">/* POSIX No such device or address (POSIX.1) */</span></div>
 <div class="line"><a name="l02206"></a><span class="lineno"> 2206</span>&#160; </div>
-<div class="line"><a name="l02207"></a><span class="lineno"> 2207</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3f8ca7e51af8b129d14328de7243c5d4">FR_TIMEOUT</a>:                          <span class="comment">/* FatFS (15) Could not get a grant to access the volume within defined period */</span></div>
-<div class="line"><a name="l02208"></a><span class="lineno"> 2208</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a>);                       <span class="comment">/* POSIX Device or resource busy (POSIX.1) */</span></div>
+<div class="line"><a name="l02207"></a><span class="lineno"> 2207</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca4b02760f758f5b1a89f445244fe9fbca">FR_MKFS_ABORTED</a>:                     <span class="comment">/* FatFS (14) The f_mkfs() aborted due to any parameter error */</span></div>
+<div class="line"><a name="l02208"></a><span class="lineno"> 2208</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
 <div class="line"><a name="l02209"></a><span class="lineno"> 2209</span>&#160; </div>
-<div class="line"><a name="l02210"></a><span class="lineno"> 2210</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca7db5afaaa2af591bd4a208b2967075d7">FR_LOCKED</a>:                           <span class="comment">/* FatFS (16) The operation is rejected according to the file sharing policy */</span></div>
+<div class="line"><a name="l02210"></a><span class="lineno"> 2210</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3f8ca7e51af8b129d14328de7243c5d4">FR_TIMEOUT</a>:                          <span class="comment">/* FatFS (15) Could not get a grant to access the volume within defined period */</span></div>
 <div class="line"><a name="l02211"></a><span class="lineno"> 2211</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a>);                       <span class="comment">/* POSIX Device or resource busy (POSIX.1) */</span></div>
 <div class="line"><a name="l02212"></a><span class="lineno"> 2212</span>&#160; </div>
-<div class="line"><a name="l02213"></a><span class="lineno"> 2213</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44caf56a76a86602cbdeb2c4f3d00cfad21c">FR_NOT_ENOUGH_CORE</a>:                  <span class="comment">/* FatFS (17) LFN working buffer could not be allocated */</span></div>
-<div class="line"><a name="l02214"></a><span class="lineno"> 2214</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>);                      <span class="comment">/* POSIX Not enough space (POSIX.1) */</span></div>
+<div class="line"><a name="l02213"></a><span class="lineno"> 2213</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca7db5afaaa2af591bd4a208b2967075d7">FR_LOCKED</a>:                           <span class="comment">/* FatFS (16) The operation is rejected according to the file sharing policy */</span></div>
+<div class="line"><a name="l02214"></a><span class="lineno"> 2214</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a>);                       <span class="comment">/* POSIX Device or resource busy (POSIX.1) */</span></div>
 <div class="line"><a name="l02215"></a><span class="lineno"> 2215</span>&#160; </div>
-<div class="line"><a name="l02216"></a><span class="lineno"> 2216</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca50dd3c3c274ccebb2cfbddde9d065bb9">FR_TOO_MANY_OPEN_FILES</a>:              <span class="comment">/* FatFS (18) Number of open files &gt; _FS_SHARE */</span></div>
-<div class="line"><a name="l02217"></a><span class="lineno"> 2217</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf">EMFILE</a>);                      <span class="comment">/* POSIX Too many open files (POSIX.1) */</span></div>
+<div class="line"><a name="l02216"></a><span class="lineno"> 2216</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44caf56a76a86602cbdeb2c4f3d00cfad21c">FR_NOT_ENOUGH_CORE</a>:                  <span class="comment">/* FatFS (17) LFN working buffer could not be allocated */</span></div>
+<div class="line"><a name="l02217"></a><span class="lineno"> 2217</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>);                      <span class="comment">/* POSIX Not enough space (POSIX.1) */</span></div>
 <div class="line"><a name="l02218"></a><span class="lineno"> 2218</span>&#160; </div>
-<div class="line"><a name="l02219"></a><span class="lineno"> 2219</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3b89faeceab64db277d0fcdeaaa315d6">FR_INVALID_PARAMETER</a>:                <span class="comment">/* FatFS (19) Given parameter is invalid */</span></div>
-<div class="line"><a name="l02220"></a><span class="lineno"> 2220</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02219"></a><span class="lineno"> 2219</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca50dd3c3c274ccebb2cfbddde9d065bb9">FR_TOO_MANY_OPEN_FILES</a>:              <span class="comment">/* FatFS (18) Number of open files &gt; _FS_SHARE */</span></div>
+<div class="line"><a name="l02220"></a><span class="lineno"> 2220</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa0191be5a8b35e30991789c9fe4b2c4cf">EMFILE</a>);                      <span class="comment">/* POSIX Too many open files (POSIX.1) */</span></div>
 <div class="line"><a name="l02221"></a><span class="lineno"> 2221</span>&#160; </div>
-<div class="line"><a name="l02222"></a><span class="lineno"> 2222</span>&#160;    }</div>
-<div class="line"><a name="l02223"></a><span class="lineno"> 2223</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa952ba8aa5afef31b7893ed91ae13a56c">EBADMSG</a>);                             <span class="comment">/* POSIX Bad message (POSIX.1) */</span></div>
-<div class="line"><a name="l02224"></a><span class="lineno"> 2224</span>&#160;}</div>
-<div class="line"><a name="l02225"></a><span class="lineno"> 2225</span>&#160; </div>
-<div class="line"><a name="l02226"></a><span class="lineno"> 2226</span>&#160; </div>
-<div class="line"><a name="l02234"></a><span class="lineno"> 2234</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02235"></a><span class="lineno"><a class="line" href="posix_8h.html#a81f14429660ca6a685676d6ceaf5350c"> 2235</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a>(<a class="code" href="structFIL.html">FIL</a> *fh)</div>
-<div class="line"><a name="l02236"></a><span class="lineno"> 2236</span>&#160;{</div>
-<div class="line"><a name="l02237"></a><span class="lineno"> 2237</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l02238"></a><span class="lineno"> 2238</span>&#160; </div>
-<div class="line"><a name="l02239"></a><span class="lineno"> 2239</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
-<div class="line"><a name="l02240"></a><span class="lineno"> 2240</span>&#160; </div>
-<div class="line"><a name="l02241"></a><span class="lineno"> 2241</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02242"></a><span class="lineno"> 2242</span>&#160;    {</div>
-<div class="line"><a name="l02243"></a><span class="lineno"> 2243</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
-<div class="line"><a name="l02244"></a><span class="lineno"> 2244</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02245"></a><span class="lineno"> 2245</span>&#160;    }</div>
-<div class="line"><a name="l02246"></a><span class="lineno"> 2246</span>&#160; </div>
-<div class="line"><a name="l02247"></a><span class="lineno"> 2247</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>;++i)</div>
-<div class="line"><a name="l02248"></a><span class="lineno"> 2248</span>&#160;    {</div>
-<div class="line"><a name="l02249"></a><span class="lineno"> 2249</span>&#160;        stream = <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i];</div>
-<div class="line"><a name="l02250"></a><span class="lineno"> 2250</span>&#160;        <span class="keywordflow">if</span>(stream)</div>
-<div class="line"><a name="l02251"></a><span class="lineno"> 2251</span>&#160;        {</div>
-<div class="line"><a name="l02252"></a><span class="lineno"> 2252</span>&#160;            <span class="keywordflow">if</span>( fh == (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream) )</div>
-<div class="line"><a name="l02253"></a><span class="lineno"> 2253</span>&#160;                <span class="keywordflow">return</span>(i);</div>
-<div class="line"><a name="l02254"></a><span class="lineno"> 2254</span>&#160;        }</div>
-<div class="line"><a name="l02255"></a><span class="lineno"> 2255</span>&#160;    }</div>
-<div class="line"><a name="l02256"></a><span class="lineno"> 2256</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
-<div class="line"><a name="l02257"></a><span class="lineno"> 2257</span>&#160;    <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02258"></a><span class="lineno"> 2258</span>&#160;}</div>
-<div class="line"><a name="l02259"></a><span class="lineno"> 2259</span>&#160; </div>
-<div class="line"><a name="l02260"></a><span class="lineno"> 2260</span>&#160; </div>
-<div class="line"><a name="l02272"></a><span class="lineno"> 2272</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02273"></a><span class="lineno"><a class="line" href="posix_8h.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5"> 2273</a></span>&#160;<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> <a class="code" href="posix_8c.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a>(uint16_t date, uint16_t <a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</div>
-<div class="line"><a name="l02274"></a><span class="lineno"> 2274</span>&#160;{</div>
-<div class="line"><a name="l02275"></a><span class="lineno"> 2275</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtm.html">tm</a> tp;</div>
-<div class="line"><a name="l02276"></a><span class="lineno"> 2276</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> unix;</div>
-<div class="line"><a name="l02277"></a><span class="lineno"> 2277</span>&#160; </div>
-<div class="line"><a name="l02278"></a><span class="lineno"> 2278</span>&#160;    memset(&amp;tp, 0, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structtm.html">tm</a>));</div>
-<div class="line"><a name="l02279"></a><span class="lineno"> 2279</span>&#160; </div>
-<div class="line"><a name="l02280"></a><span class="lineno"> 2280</span>&#160;    tp.<a class="code" href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a> = (<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &lt;&lt; 1) &amp; 0x3e;               <span class="comment">// 2 second resolution</span></div>
-<div class="line"><a name="l02281"></a><span class="lineno"> 2281</span>&#160;    tp.<a class="code" href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm_min</a> = ((<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &gt;&gt; 5) &amp; 0x3f);</div>
-<div class="line"><a name="l02282"></a><span class="lineno"> 2282</span>&#160;    tp.<a class="code" href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a> = ((<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &gt;&gt; 11) &amp; 0x1f);</div>
-<div class="line"><a name="l02283"></a><span class="lineno"> 2283</span>&#160;    tp.<a class="code" href="structtm.html#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a> = (date &amp; 0x1f);</div>
-<div class="line"><a name="l02284"></a><span class="lineno"> 2284</span>&#160;    tp.<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a> = ((date &gt;&gt; 5) &amp; 0x0f) - 1;</div>
-<div class="line"><a name="l02285"></a><span class="lineno"> 2285</span>&#160;    tp.<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a> = ((date &gt;&gt; 9) &amp; 0x7f) + 80;</div>
-<div class="line"><a name="l02286"></a><span class="lineno"> 2286</span>&#160;    unix = <a class="code" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5">timegm</a>( &amp;tp );</div>
-<div class="line"><a name="l02287"></a><span class="lineno"> 2287</span>&#160;    <span class="keywordflow">return</span>( unix );</div>
-<div class="line"><a name="l02288"></a><span class="lineno"> 2288</span>&#160;}</div>
-<div class="line"><a name="l02289"></a><span class="lineno"> 2289</span>&#160; </div>
-<div class="line"><a name="l02290"></a><span class="lineno"> 2290</span>&#160; </div>
-<div class="line"><a name="l02298"></a><span class="lineno"> 2298</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02299"></a><span class="lineno"><a class="line" href="posix_8h.html#aa5666c514336f78c6d1ab6bc35c74ae0"> 2299</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0">unix_time_to_fat</a>(<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> epoch, uint16_t *date, uint16_t *<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</div>
-<div class="line"><a name="l02300"></a><span class="lineno"> 2300</span>&#160;{</div>
-<div class="line"><a name="l02301"></a><span class="lineno"> 2301</span>&#160;    <a class="code" href="structtm.html">tm_t</a> *t = <a class="code" href="time_8c.html#a10fe08d03c4c3da23d1e1c059f4cf3a5">gmtime</a>((<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *) &amp;epoch);</div>
-<div class="line"><a name="l02302"></a><span class="lineno"> 2302</span>&#160; </div>
-<div class="line"><a name="l02303"></a><span class="lineno"> 2303</span>&#160;<span class="comment">/* Pack date and time into a uint32_t variable */</span></div>
-<div class="line"><a name="l02304"></a><span class="lineno"> 2304</span>&#160;    *date = ((uint16_t)(t-&gt;<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a> - 80) &lt;&lt; 9)</div>
-<div class="line"><a name="l02305"></a><span class="lineno"> 2305</span>&#160;        | (((uint16_t)t-&gt;<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a>+1) &lt;&lt; 5)</div>
-<div class="line"><a name="l02306"></a><span class="lineno"> 2306</span>&#160;        | (((uint16_t)t-&gt;<a class="code" href="structtm.html#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a>));</div>
-<div class="line"><a name="l02307"></a><span class="lineno"> 2307</span>&#160; </div>
-<div class="line"><a name="l02308"></a><span class="lineno"> 2308</span>&#160;    *<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> = ((uint16_t)t-&gt;<a class="code" href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a> &lt;&lt; 11)</div>
-<div class="line"><a name="l02309"></a><span class="lineno"> 2309</span>&#160;        | ((uint16_t)t-&gt;<a class="code" href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm_min</a> &lt;&lt; 5)</div>
-<div class="line"><a name="l02310"></a><span class="lineno"> 2310</span>&#160;        | ((uint16_t)t-&gt;<a class="code" href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a> &gt;&gt; 1);</div>
-<div class="line"><a name="l02311"></a><span class="lineno"> 2311</span>&#160;}</div>
-<div class="line"><a name="l02312"></a><span class="lineno"> 2312</span>&#160; </div>
-<div class="line"><a name="l02313"></a><span class="lineno"> 2313</span>&#160; </div>
-<div class="line"><a name="l02323"></a><span class="lineno"> 2323</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02324"></a><span class="lineno"><a class="line" href="posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5"> 2324</a></span>&#160;<a class="code" href="structFIL.html">FIL</a> *<a class="code" href="posix_8c.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a>(<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</div>
-<div class="line"><a name="l02325"></a><span class="lineno"> 2325</span>&#160;{</div>
-<div class="line"><a name="l02326"></a><span class="lineno"> 2326</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
-<div class="line"><a name="l02327"></a><span class="lineno"> 2327</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
-<div class="line"><a name="l02328"></a><span class="lineno"> 2328</span>&#160; </div>
-<div class="line"><a name="l02329"></a><span class="lineno"> 2329</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>( <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> ))</div>
-<div class="line"><a name="l02330"></a><span class="lineno"> 2330</span>&#160;    {</div>
-<div class="line"><a name="l02331"></a><span class="lineno"> 2331</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
-<div class="line"><a name="l02332"></a><span class="lineno"> 2332</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l02333"></a><span class="lineno"> 2333</span>&#160;    }</div>
-<div class="line"><a name="l02334"></a><span class="lineno"> 2334</span>&#160; </div>
-<div class="line"><a name="l02335"></a><span class="lineno"> 2335</span>&#160;<span class="comment">// checks if fileno out of bounds</span></div>
-<div class="line"><a name="l02336"></a><span class="lineno"> 2336</span>&#160;    stream = <a class="code" href="posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
-<div class="line"><a name="l02337"></a><span class="lineno"> 2337</span>&#160;    <span class="keywordflow">if</span>( stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> )</div>
-<div class="line"><a name="l02338"></a><span class="lineno"> 2338</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l02339"></a><span class="lineno"> 2339</span>&#160; </div>
-<div class="line"><a name="l02340"></a><span class="lineno"> 2340</span>&#160;    fh = <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
-<div class="line"><a name="l02341"></a><span class="lineno"> 2341</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02342"></a><span class="lineno"> 2342</span>&#160;    {</div>
-<div class="line"><a name="l02343"></a><span class="lineno"> 2343</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
-<div class="line"><a name="l02344"></a><span class="lineno"> 2344</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
-<div class="line"><a name="l02345"></a><span class="lineno"> 2345</span>&#160;    }</div>
-<div class="line"><a name="l02346"></a><span class="lineno"> 2346</span>&#160;    <span class="keywordflow">return</span>(fh);</div>
-<div class="line"><a name="l02347"></a><span class="lineno"> 2347</span>&#160;}</div>
-<div class="line"><a name="l02348"></a><span class="lineno"> 2348</span>&#160; </div>
-<div class="line"><a name="l02349"></a><span class="lineno"> 2349</span>&#160; </div>
-<div class="line"><a name="l02357"></a><span class="lineno"> 2357</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02358"></a><span class="lineno"><a class="line" href="posix_8h.html#a38496612f759733234128893e4c60a89"> 2358</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a>(<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</div>
-<div class="line"><a name="l02359"></a><span class="lineno"> 2359</span>&#160;{</div>
-<div class="line"><a name="l02360"></a><span class="lineno"> 2360</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
-<div class="line"><a name="l02361"></a><span class="lineno"> 2361</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
-<div class="line"><a name="l02362"></a><span class="lineno"> 2362</span>&#160; </div>
-<div class="line"><a name="l02363"></a><span class="lineno"> 2363</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>( <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> ))</div>
-<div class="line"><a name="l02364"></a><span class="lineno"> 2364</span>&#160;    {</div>
-<div class="line"><a name="l02365"></a><span class="lineno"> 2365</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
-<div class="line"><a name="l02366"></a><span class="lineno"> 2366</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02367"></a><span class="lineno"> 2367</span>&#160;    }</div>
-<div class="line"><a name="l02368"></a><span class="lineno"> 2368</span>&#160; </div>
-<div class="line"><a name="l02369"></a><span class="lineno"> 2369</span>&#160;<span class="comment">// checks if fileno out of bounds</span></div>
-<div class="line"><a name="l02370"></a><span class="lineno"> 2370</span>&#160;    stream = <a class="code" href="posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
-<div class="line"><a name="l02371"></a><span class="lineno"> 2371</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02372"></a><span class="lineno"> 2372</span>&#160;    {</div>
-<div class="line"><a name="l02373"></a><span class="lineno"> 2373</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02374"></a><span class="lineno"> 2374</span>&#160;    }</div>
-<div class="line"><a name="l02375"></a><span class="lineno"> 2375</span>&#160; </div>
-<div class="line"><a name="l02376"></a><span class="lineno"> 2376</span>&#160;    fh = <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
-<div class="line"><a name="l02377"></a><span class="lineno"> 2377</span>&#160; </div>
-<div class="line"><a name="l02378"></a><span class="lineno"> 2378</span>&#160;    <span class="keywordflow">if</span>(fh != <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02379"></a><span class="lineno"> 2379</span>&#160;    {</div>
-<div class="line"><a name="l02380"></a><span class="lineno"> 2380</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(fh);</div>
-<div class="line"><a name="l02381"></a><span class="lineno"> 2381</span>&#160;    }</div>
-<div class="line"><a name="l02382"></a><span class="lineno"> 2382</span>&#160; </div>
-<div class="line"><a name="l02383"></a><span class="lineno"> 2383</span>&#160;    <span class="keywordflow">if</span>(stream-&gt;<a class="code" href="struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46">buf</a> != <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> &amp;&amp; stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> &amp; <a class="code" href="posix_8h.html#a910f0d9b3aff8a868393ce38fe91cc7d">__SMALLOC</a>)</div>
-<div class="line"><a name="l02384"></a><span class="lineno"> 2384</span>&#160;    {</div>
-<div class="line"><a name="l02385"></a><span class="lineno"> 2385</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream-&gt;<a class="code" href="struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46">buf</a>);</div>
-<div class="line"><a name="l02386"></a><span class="lineno"> 2386</span>&#160;    }</div>
-<div class="line"><a name="l02387"></a><span class="lineno"> 2387</span>&#160; </div>
-<div class="line"><a name="l02388"></a><span class="lineno"> 2388</span>&#160;    <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>]  = <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
-<div class="line"><a name="l02389"></a><span class="lineno"> 2389</span>&#160;    <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream);</div>
-<div class="line"><a name="l02390"></a><span class="lineno"> 2390</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
-<div class="line"><a name="l02391"></a><span class="lineno"> 2391</span>&#160;}</div>
-<div class="line"><a name="l02392"></a><span class="lineno"> 2392</span>&#160; </div>
-<div class="line"><a name="l02393"></a><span class="lineno"> 2393</span>&#160; </div>
-<div class="line"><a name="l02394"></a><span class="lineno"> 2394</span>&#160;<span class="comment">// =============================================</span></div>
-<div class="line"><a name="l02400"></a><span class="lineno"> 2400</span>&#160;<span class="comment"></span><a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02401"></a><span class="lineno"><a class="line" href="posix_8h.html#abab788c42cce343cde2f5b8f90015229"> 2401</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a>( <span class="keywordtype">void</span> )</div>
-<div class="line"><a name="l02402"></a><span class="lineno"> 2402</span>&#160;{</div>
-<div class="line"><a name="l02403"></a><span class="lineno"> 2403</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l02404"></a><span class="lineno"> 2404</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
-<div class="line"><a name="l02405"></a><span class="lineno"> 2405</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
-<div class="line"><a name="l02406"></a><span class="lineno"> 2406</span>&#160; </div>
-<div class="line"><a name="l02407"></a><span class="lineno"> 2407</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>;++i)</div>
-<div class="line"><a name="l02408"></a><span class="lineno"> 2408</span>&#160;    {</div>
-<div class="line"><a name="l02409"></a><span class="lineno"> 2409</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>(i))</div>
-<div class="line"><a name="l02410"></a><span class="lineno"> 2410</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l02411"></a><span class="lineno"> 2411</span>&#160;        <span class="keywordflow">if</span>( <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i] == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02412"></a><span class="lineno"> 2412</span>&#160;        {</div>
-<div class="line"><a name="l02413"></a><span class="lineno"> 2413</span>&#160;            stream = (<a class="code" href="struct____file.html">FILE</a> *) <a class="code" href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="struct____file.html">FILE</a>),1);</div>
-<div class="line"><a name="l02414"></a><span class="lineno"> 2414</span>&#160;            <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02415"></a><span class="lineno"> 2415</span>&#160;            {</div>
-<div class="line"><a name="l02416"></a><span class="lineno"> 2416</span>&#160;                <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>;</div>
-<div class="line"><a name="l02417"></a><span class="lineno"> 2417</span>&#160;                <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02418"></a><span class="lineno"> 2418</span>&#160;            }</div>
-<div class="line"><a name="l02419"></a><span class="lineno"> 2419</span>&#160;            fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="structFIL.html">FIL</a>),1);</div>
-<div class="line"><a name="l02420"></a><span class="lineno"> 2420</span>&#160;            <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
-<div class="line"><a name="l02421"></a><span class="lineno"> 2421</span>&#160;            {</div>
-<div class="line"><a name="l02422"></a><span class="lineno"> 2422</span>&#160;                <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream);</div>
-<div class="line"><a name="l02423"></a><span class="lineno"> 2423</span>&#160;                <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>;</div>
-<div class="line"><a name="l02424"></a><span class="lineno"> 2424</span>&#160;                <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02425"></a><span class="lineno"> 2425</span>&#160;            }</div>
-<div class="line"><a name="l02426"></a><span class="lineno"> 2426</span>&#160; </div>
-<div class="line"><a name="l02427"></a><span class="lineno"> 2427</span>&#160;            <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i]  = stream;</div>
-<div class="line"><a name="l02428"></a><span class="lineno"> 2428</span>&#160;            <a class="code" href="posix_8h.html#a793fcb8f10b6b8746d4186012929ddf1">fdev_set_udata</a>(stream, (<span class="keywordtype">void</span> *) fh);</div>
-<div class="line"><a name="l02429"></a><span class="lineno"> 2429</span>&#160;            <span class="keywordflow">return</span>(i);</div>
-<div class="line"><a name="l02430"></a><span class="lineno"> 2430</span>&#160;        }</div>
-<div class="line"><a name="l02431"></a><span class="lineno"> 2431</span>&#160;    }</div>
-<div class="line"><a name="l02432"></a><span class="lineno"> 2432</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8">ENFILE</a>;</div>
-<div class="line"><a name="l02433"></a><span class="lineno"> 2433</span>&#160;    <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02434"></a><span class="lineno"> 2434</span>&#160;}</div>
-<div class="line"><a name="l02435"></a><span class="lineno"> 2435</span>&#160; </div>
-<div class="line"><a name="l02436"></a><span class="lineno"> 2436</span>&#160; </div>
-<div class="line"><a name="l02464"></a><span class="lineno"> 2464</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02465"></a><span class="lineno"><a class="line" href="posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc"> 2465</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *mode)</div>
-<div class="line"><a name="l02466"></a><span class="lineno"> 2466</span>&#160;{</div>
-<div class="line"><a name="l02467"></a><span class="lineno"> 2467</span>&#160;    <span class="keywordtype">int</span> flag = 0;</div>
-<div class="line"><a name="l02468"></a><span class="lineno"> 2468</span>&#160; </div>
-<div class="line"><a name="l02469"></a><span class="lineno"> 2469</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;r&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;rb&quot;</span>))</div>
-<div class="line"><a name="l02470"></a><span class="lineno"> 2470</span>&#160;    {</div>
-<div class="line"><a name="l02471"></a><span class="lineno"> 2471</span>&#160;        flag = <a class="code" href="posix_8h.html#a7a68c9ffaac7dbcd652225dd7c06a54b">O_RDONLY</a>;</div>
-<div class="line"><a name="l02472"></a><span class="lineno"> 2472</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
-<div class="line"><a name="l02473"></a><span class="lineno"> 2473</span>&#160;    }</div>
-<div class="line"><a name="l02474"></a><span class="lineno"> 2474</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;r+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;r+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;rb+&quot;</span> ))</div>
-<div class="line"><a name="l02475"></a><span class="lineno"> 2475</span>&#160;    {</div>
-<div class="line"><a name="l02476"></a><span class="lineno"> 2476</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
-<div class="line"><a name="l02477"></a><span class="lineno"> 2477</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
-<div class="line"><a name="l02478"></a><span class="lineno"> 2478</span>&#160;    }</div>
-<div class="line"><a name="l02479"></a><span class="lineno"> 2479</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;w&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;wb&quot;</span>))</div>
-<div class="line"><a name="l02480"></a><span class="lineno"> 2480</span>&#160;    {</div>
-<div class="line"><a name="l02481"></a><span class="lineno"> 2481</span>&#160;        flag = <a class="code" href="posix_8h.html#a11b644a8526139c4cc1850dac1271ced">O_WRONLY</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
-<div class="line"><a name="l02482"></a><span class="lineno"> 2482</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
-<div class="line"><a name="l02483"></a><span class="lineno"> 2483</span>&#160;    }</div>
-<div class="line"><a name="l02484"></a><span class="lineno"> 2484</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;w+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;w+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;wb+&quot;</span> ))</div>
-<div class="line"><a name="l02485"></a><span class="lineno"> 2485</span>&#160;    {</div>
-<div class="line"><a name="l02486"></a><span class="lineno"> 2486</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
-<div class="line"><a name="l02487"></a><span class="lineno"> 2487</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
-<div class="line"><a name="l02488"></a><span class="lineno"> 2488</span>&#160;    }</div>
-<div class="line"><a name="l02489"></a><span class="lineno"> 2489</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;a&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;ab&quot;</span>))</div>
-<div class="line"><a name="l02490"></a><span class="lineno"> 2490</span>&#160;    {</div>
-<div class="line"><a name="l02491"></a><span class="lineno"> 2491</span>&#160;        flag = <a class="code" href="posix_8h.html#a11b644a8526139c4cc1850dac1271ced">O_WRONLY</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>;</div>
-<div class="line"><a name="l02492"></a><span class="lineno"> 2492</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
-<div class="line"><a name="l02493"></a><span class="lineno"> 2493</span>&#160;    }</div>
-<div class="line"><a name="l02494"></a><span class="lineno"> 2494</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;a+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;a+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;ab+&quot;</span> ))</div>
-<div class="line"><a name="l02495"></a><span class="lineno"> 2495</span>&#160;    {</div>
-<div class="line"><a name="l02496"></a><span class="lineno"> 2496</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>;</div>
-<div class="line"><a name="l02497"></a><span class="lineno"> 2497</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
-<div class="line"><a name="l02498"></a><span class="lineno"> 2498</span>&#160;    }</div>
-<div class="line"><a name="l02499"></a><span class="lineno"> 2499</span>&#160;    <span class="keywordflow">return</span>(-1);                                   <span class="comment">// nvalid mode</span></div>
-<div class="line"><a name="l02500"></a><span class="lineno"> 2500</span>&#160;}</div>
-<div class="line"><a name="l02501"></a><span class="lineno"> 2501</span>&#160; </div>
-<div class="line"><a name="l02502"></a><span class="lineno"> 2502</span>&#160; </div>
-<div class="line"><a name="l02503"></a><span class="lineno"> 2503</span>&#160;<span class="comment">// =============================================</span></div>
-<div class="line"><a name="l02504"></a><span class="lineno"> 2504</span>&#160;<span class="comment">// =============================================</span></div>
-<div class="line"><a name="l02506"></a><span class="lineno"> 2506</span>&#160;<span class="comment"></span><span class="comment">// =============================================</span></div>
+<div class="line"><a name="l02222"></a><span class="lineno"> 2222</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3b89faeceab64db277d0fcdeaaa315d6">FR_INVALID_PARAMETER</a>:                <span class="comment">/* FatFS (19) Given parameter is invalid */</span></div>
+<div class="line"><a name="l02223"></a><span class="lineno"> 2223</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa7bfd237190819a0a272db7b0aa61d5c8">EINVAL</a>);                      <span class="comment">/* POSIX Invalid argument (POSIX.1) */</span></div>
+<div class="line"><a name="l02224"></a><span class="lineno"> 2224</span>&#160; </div>
+<div class="line"><a name="l02225"></a><span class="lineno"> 2225</span>&#160;    }</div>
+<div class="line"><a name="l02226"></a><span class="lineno"> 2226</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa952ba8aa5afef31b7893ed91ae13a56c">EBADMSG</a>);                             <span class="comment">/* POSIX Bad message (POSIX.1) */</span></div>
+<div class="line"><a name="l02227"></a><span class="lineno"> 2227</span>&#160;}</div>
+<div class="line"><a name="l02228"></a><span class="lineno"> 2228</span>&#160; </div>
+<div class="line"><a name="l02229"></a><span class="lineno"> 2229</span>&#160; </div>
+<div class="line"><a name="l02237"></a><span class="lineno"> 2237</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02238"></a><span class="lineno"><a class="line" href="posix_8h.html#a81f14429660ca6a685676d6ceaf5350c"> 2238</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a>(<a class="code" href="structFIL.html">FIL</a> *fh)</div>
+<div class="line"><a name="l02239"></a><span class="lineno"> 2239</span>&#160;{</div>
+<div class="line"><a name="l02240"></a><span class="lineno"> 2240</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l02241"></a><span class="lineno"> 2241</span>&#160; </div>
+<div class="line"><a name="l02242"></a><span class="lineno"> 2242</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
+<div class="line"><a name="l02243"></a><span class="lineno"> 2243</span>&#160; </div>
+<div class="line"><a name="l02244"></a><span class="lineno"> 2244</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02245"></a><span class="lineno"> 2245</span>&#160;    {</div>
+<div class="line"><a name="l02246"></a><span class="lineno"> 2246</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
+<div class="line"><a name="l02247"></a><span class="lineno"> 2247</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02248"></a><span class="lineno"> 2248</span>&#160;    }</div>
+<div class="line"><a name="l02249"></a><span class="lineno"> 2249</span>&#160; </div>
+<div class="line"><a name="l02250"></a><span class="lineno"> 2250</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>;++i)</div>
+<div class="line"><a name="l02251"></a><span class="lineno"> 2251</span>&#160;    {</div>
+<div class="line"><a name="l02252"></a><span class="lineno"> 2252</span>&#160;        stream = <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i];</div>
+<div class="line"><a name="l02253"></a><span class="lineno"> 2253</span>&#160;        <span class="keywordflow">if</span>(stream)</div>
+<div class="line"><a name="l02254"></a><span class="lineno"> 2254</span>&#160;        {</div>
+<div class="line"><a name="l02255"></a><span class="lineno"> 2255</span>&#160;            <span class="keywordflow">if</span>( fh == (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream) )</div>
+<div class="line"><a name="l02256"></a><span class="lineno"> 2256</span>&#160;                <span class="keywordflow">return</span>(i);</div>
+<div class="line"><a name="l02257"></a><span class="lineno"> 2257</span>&#160;        }</div>
+<div class="line"><a name="l02258"></a><span class="lineno"> 2258</span>&#160;    }</div>
+<div class="line"><a name="l02259"></a><span class="lineno"> 2259</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
+<div class="line"><a name="l02260"></a><span class="lineno"> 2260</span>&#160;    <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02261"></a><span class="lineno"> 2261</span>&#160;}</div>
+<div class="line"><a name="l02262"></a><span class="lineno"> 2262</span>&#160; </div>
+<div class="line"><a name="l02263"></a><span class="lineno"> 2263</span>&#160; </div>
+<div class="line"><a name="l02275"></a><span class="lineno"> 2275</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02276"></a><span class="lineno"><a class="line" href="posix_8h.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5"> 2276</a></span>&#160;<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> <a class="code" href="posix_8c.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a>(uint16_t date, uint16_t <a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</div>
+<div class="line"><a name="l02277"></a><span class="lineno"> 2277</span>&#160;{</div>
+<div class="line"><a name="l02278"></a><span class="lineno"> 2278</span>&#160;    <span class="keyword">struct </span><a class="code" href="structtm.html">tm</a> tp;</div>
+<div class="line"><a name="l02279"></a><span class="lineno"> 2279</span>&#160;    <a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> unix;</div>
+<div class="line"><a name="l02280"></a><span class="lineno"> 2280</span>&#160; </div>
+<div class="line"><a name="l02281"></a><span class="lineno"> 2281</span>&#160;    memset(&amp;tp, 0, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structtm.html">tm</a>));</div>
+<div class="line"><a name="l02282"></a><span class="lineno"> 2282</span>&#160; </div>
+<div class="line"><a name="l02283"></a><span class="lineno"> 2283</span>&#160;    tp.<a class="code" href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a> = (<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &lt;&lt; 1) &amp; 0x3e;               <span class="comment">// 2 second resolution</span></div>
+<div class="line"><a name="l02284"></a><span class="lineno"> 2284</span>&#160;    tp.<a class="code" href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm_min</a> = ((<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &gt;&gt; 5) &amp; 0x3f);</div>
+<div class="line"><a name="l02285"></a><span class="lineno"> 2285</span>&#160;    tp.<a class="code" href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a> = ((<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> &gt;&gt; 11) &amp; 0x1f);</div>
+<div class="line"><a name="l02286"></a><span class="lineno"> 2286</span>&#160;    tp.<a class="code" href="structtm.html#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a> = (date &amp; 0x1f);</div>
+<div class="line"><a name="l02287"></a><span class="lineno"> 2287</span>&#160;    tp.<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a> = ((date &gt;&gt; 5) &amp; 0x0f) - 1;</div>
+<div class="line"><a name="l02288"></a><span class="lineno"> 2288</span>&#160;    tp.<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a> = ((date &gt;&gt; 9) &amp; 0x7f) + 80;</div>
+<div class="line"><a name="l02289"></a><span class="lineno"> 2289</span>&#160;    unix = <a class="code" href="time_8c.html#a8386ff819a39512ea00cfc78ce5a27d5">timegm</a>( &amp;tp );</div>
+<div class="line"><a name="l02290"></a><span class="lineno"> 2290</span>&#160;    <span class="keywordflow">return</span>( unix );</div>
+<div class="line"><a name="l02291"></a><span class="lineno"> 2291</span>&#160;}</div>
+<div class="line"><a name="l02292"></a><span class="lineno"> 2292</span>&#160; </div>
+<div class="line"><a name="l02293"></a><span class="lineno"> 2293</span>&#160; </div>
+<div class="line"><a name="l02301"></a><span class="lineno"> 2301</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02302"></a><span class="lineno"><a class="line" href="posix_8h.html#aa5666c514336f78c6d1ab6bc35c74ae0"> 2302</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0">unix_time_to_fat</a>(<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> epoch, uint16_t *date, uint16_t *<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a>)</div>
+<div class="line"><a name="l02303"></a><span class="lineno"> 2303</span>&#160;{</div>
+<div class="line"><a name="l02304"></a><span class="lineno"> 2304</span>&#160;    <a class="code" href="structtm.html">tm_t</a> *t = <a class="code" href="time_8c.html#a10fe08d03c4c3da23d1e1c059f4cf3a5">gmtime</a>((<a class="code" href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a> *) &amp;epoch);</div>
+<div class="line"><a name="l02305"></a><span class="lineno"> 2305</span>&#160; </div>
+<div class="line"><a name="l02306"></a><span class="lineno"> 2306</span>&#160;<span class="comment">/* Pack date and time into a uint32_t variable */</span></div>
+<div class="line"><a name="l02307"></a><span class="lineno"> 2307</span>&#160;    *date = ((uint16_t)(t-&gt;<a class="code" href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm_year</a> - 80) &lt;&lt; 9)</div>
+<div class="line"><a name="l02308"></a><span class="lineno"> 2308</span>&#160;        | (((uint16_t)t-&gt;<a class="code" href="structtm.html#a112ac36fa2f593777138a417cf031e17">tm_mon</a>+1) &lt;&lt; 5)</div>
+<div class="line"><a name="l02309"></a><span class="lineno"> 2309</span>&#160;        | (((uint16_t)t-&gt;<a class="code" href="structtm.html#ab8d8904bad43b0c8b96e61941c5b5310">tm_mday</a>));</div>
+<div class="line"><a name="l02310"></a><span class="lineno"> 2310</span>&#160; </div>
+<div class="line"><a name="l02311"></a><span class="lineno"> 2311</span>&#160;    *<a class="code" href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a> = ((uint16_t)t-&gt;<a class="code" href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm_hour</a> &lt;&lt; 11)</div>
+<div class="line"><a name="l02312"></a><span class="lineno"> 2312</span>&#160;        | ((uint16_t)t-&gt;<a class="code" href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm_min</a> &lt;&lt; 5)</div>
+<div class="line"><a name="l02313"></a><span class="lineno"> 2313</span>&#160;        | ((uint16_t)t-&gt;<a class="code" href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm_sec</a> &gt;&gt; 1);</div>
+<div class="line"><a name="l02314"></a><span class="lineno"> 2314</span>&#160;}</div>
+<div class="line"><a name="l02315"></a><span class="lineno"> 2315</span>&#160; </div>
+<div class="line"><a name="l02316"></a><span class="lineno"> 2316</span>&#160; </div>
+<div class="line"><a name="l02326"></a><span class="lineno"> 2326</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02327"></a><span class="lineno"><a class="line" href="posix_8h.html#a9b859123258b36eb57f4f71d2606d8a5"> 2327</a></span>&#160;<a class="code" href="structFIL.html">FIL</a> *<a class="code" href="posix_8c.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a>(<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</div>
+<div class="line"><a name="l02328"></a><span class="lineno"> 2328</span>&#160;{</div>
+<div class="line"><a name="l02329"></a><span class="lineno"> 2329</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
+<div class="line"><a name="l02330"></a><span class="lineno"> 2330</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
+<div class="line"><a name="l02331"></a><span class="lineno"> 2331</span>&#160; </div>
+<div class="line"><a name="l02332"></a><span class="lineno"> 2332</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>( <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> ))</div>
+<div class="line"><a name="l02333"></a><span class="lineno"> 2333</span>&#160;    {</div>
+<div class="line"><a name="l02334"></a><span class="lineno"> 2334</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
+<div class="line"><a name="l02335"></a><span class="lineno"> 2335</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l02336"></a><span class="lineno"> 2336</span>&#160;    }</div>
+<div class="line"><a name="l02337"></a><span class="lineno"> 2337</span>&#160; </div>
+<div class="line"><a name="l02338"></a><span class="lineno"> 2338</span>&#160;<span class="comment">// checks if fileno out of bounds</span></div>
+<div class="line"><a name="l02339"></a><span class="lineno"> 2339</span>&#160;    stream = <a class="code" href="posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
+<div class="line"><a name="l02340"></a><span class="lineno"> 2340</span>&#160;    <span class="keywordflow">if</span>( stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> )</div>
+<div class="line"><a name="l02341"></a><span class="lineno"> 2341</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l02342"></a><span class="lineno"> 2342</span>&#160; </div>
+<div class="line"><a name="l02343"></a><span class="lineno"> 2343</span>&#160;    fh = <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
+<div class="line"><a name="l02344"></a><span class="lineno"> 2344</span>&#160;    <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02345"></a><span class="lineno"> 2345</span>&#160;    {</div>
+<div class="line"><a name="l02346"></a><span class="lineno"> 2346</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
+<div class="line"><a name="l02347"></a><span class="lineno"> 2347</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a name="l02348"></a><span class="lineno"> 2348</span>&#160;    }</div>
+<div class="line"><a name="l02349"></a><span class="lineno"> 2349</span>&#160;    <span class="keywordflow">return</span>(fh);</div>
+<div class="line"><a name="l02350"></a><span class="lineno"> 2350</span>&#160;}</div>
+<div class="line"><a name="l02351"></a><span class="lineno"> 2351</span>&#160; </div>
+<div class="line"><a name="l02352"></a><span class="lineno"> 2352</span>&#160; </div>
+<div class="line"><a name="l02360"></a><span class="lineno"> 2360</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02361"></a><span class="lineno"><a class="line" href="posix_8h.html#a38496612f759733234128893e4c60a89"> 2361</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a>(<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>)</div>
+<div class="line"><a name="l02362"></a><span class="lineno"> 2362</span>&#160;{</div>
+<div class="line"><a name="l02363"></a><span class="lineno"> 2363</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
+<div class="line"><a name="l02364"></a><span class="lineno"> 2364</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
+<div class="line"><a name="l02365"></a><span class="lineno"> 2365</span>&#160; </div>
+<div class="line"><a name="l02366"></a><span class="lineno"> 2366</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>( <a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a> ))</div>
+<div class="line"><a name="l02367"></a><span class="lineno"> 2367</span>&#160;    {</div>
+<div class="line"><a name="l02368"></a><span class="lineno"> 2368</span>&#160;        <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa87d4476eed38f45439e257081c9de369">EBADF</a>;</div>
+<div class="line"><a name="l02369"></a><span class="lineno"> 2369</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02370"></a><span class="lineno"> 2370</span>&#160;    }</div>
+<div class="line"><a name="l02371"></a><span class="lineno"> 2371</span>&#160; </div>
+<div class="line"><a name="l02372"></a><span class="lineno"> 2372</span>&#160;<span class="comment">// checks if fileno out of bounds</span></div>
+<div class="line"><a name="l02373"></a><span class="lineno"> 2373</span>&#160;    stream = <a class="code" href="posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
+<div class="line"><a name="l02374"></a><span class="lineno"> 2374</span>&#160;    <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02375"></a><span class="lineno"> 2375</span>&#160;    {</div>
+<div class="line"><a name="l02376"></a><span class="lineno"> 2376</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02377"></a><span class="lineno"> 2377</span>&#160;    }</div>
+<div class="line"><a name="l02378"></a><span class="lineno"> 2378</span>&#160; </div>
+<div class="line"><a name="l02379"></a><span class="lineno"> 2379</span>&#160;    fh = <a class="code" href="posix_8h.html#ac04f5faa8e86a4ce4ae084d85386af40">fdev_get_udata</a>(stream);</div>
+<div class="line"><a name="l02380"></a><span class="lineno"> 2380</span>&#160; </div>
+<div class="line"><a name="l02381"></a><span class="lineno"> 2381</span>&#160;    <span class="keywordflow">if</span>(fh != <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02382"></a><span class="lineno"> 2382</span>&#160;    {</div>
+<div class="line"><a name="l02383"></a><span class="lineno"> 2383</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(fh);</div>
+<div class="line"><a name="l02384"></a><span class="lineno"> 2384</span>&#160;    }</div>
+<div class="line"><a name="l02385"></a><span class="lineno"> 2385</span>&#160; </div>
+<div class="line"><a name="l02386"></a><span class="lineno"> 2386</span>&#160;    <span class="keywordflow">if</span>(stream-&gt;<a class="code" href="struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46">buf</a> != <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> &amp;&amp; stream-&gt;<a class="code" href="struct____file.html#a8d11df8679502efee09740f97d7c277b">flags</a> &amp; <a class="code" href="posix_8h.html#a910f0d9b3aff8a868393ce38fe91cc7d">__SMALLOC</a>)</div>
+<div class="line"><a name="l02387"></a><span class="lineno"> 2387</span>&#160;    {</div>
+<div class="line"><a name="l02388"></a><span class="lineno"> 2388</span>&#160;        <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream-&gt;<a class="code" href="struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46">buf</a>);</div>
+<div class="line"><a name="l02389"></a><span class="lineno"> 2389</span>&#160;    }</div>
+<div class="line"><a name="l02390"></a><span class="lineno"> 2390</span>&#160; </div>
+<div class="line"><a name="l02391"></a><span class="lineno"> 2391</span>&#160;    <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>]  = <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a name="l02392"></a><span class="lineno"> 2392</span>&#160;    <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream);</div>
+<div class="line"><a name="l02393"></a><span class="lineno"> 2393</span>&#160;    <span class="keywordflow">return</span>(<a class="code" href="posix_8c.html#aceb657a1b3c10d576aed287714bfd5d1">fileno</a>);</div>
+<div class="line"><a name="l02394"></a><span class="lineno"> 2394</span>&#160;}</div>
+<div class="line"><a name="l02395"></a><span class="lineno"> 2395</span>&#160; </div>
+<div class="line"><a name="l02396"></a><span class="lineno"> 2396</span>&#160; </div>
+<div class="line"><a name="l02397"></a><span class="lineno"> 2397</span>&#160;<span class="comment">// =============================================</span></div>
+<div class="line"><a name="l02403"></a><span class="lineno"> 2403</span>&#160;<span class="comment"></span><a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02404"></a><span class="lineno"><a class="line" href="posix_8h.html#abab788c42cce343cde2f5b8f90015229"> 2404</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a>( <span class="keywordtype">void</span> )</div>
+<div class="line"><a name="l02405"></a><span class="lineno"> 2405</span>&#160;{</div>
+<div class="line"><a name="l02406"></a><span class="lineno"> 2406</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l02407"></a><span class="lineno"> 2407</span>&#160;    <a class="code" href="struct____file.html">FILE</a> *stream;</div>
+<div class="line"><a name="l02408"></a><span class="lineno"> 2408</span>&#160;    <a class="code" href="structFIL.html">FIL</a> *fh;</div>
+<div class="line"><a name="l02409"></a><span class="lineno"> 2409</span>&#160; </div>
+<div class="line"><a name="l02410"></a><span class="lineno"> 2410</span>&#160;    <span class="keywordflow">for</span>(i=0;i&lt;<a class="code" href="posix_8h.html#a2c5eecb22513a88c24ae5831a3265e54">MAX_FILES</a>;++i)</div>
+<div class="line"><a name="l02411"></a><span class="lineno"> 2411</span>&#160;    {</div>
+<div class="line"><a name="l02412"></a><span class="lineno"> 2412</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="posix_8c.html#a31986cce890109c211ccb14151aafd0e">isatty</a>(i))</div>
+<div class="line"><a name="l02413"></a><span class="lineno"> 2413</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l02414"></a><span class="lineno"> 2414</span>&#160;        <span class="keywordflow">if</span>( <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i] == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02415"></a><span class="lineno"> 2415</span>&#160;        {</div>
+<div class="line"><a name="l02416"></a><span class="lineno"> 2416</span>&#160;            stream = (<a class="code" href="struct____file.html">FILE</a> *) <a class="code" href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="struct____file.html">FILE</a>),1);</div>
+<div class="line"><a name="l02417"></a><span class="lineno"> 2417</span>&#160;            <span class="keywordflow">if</span>(stream == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02418"></a><span class="lineno"> 2418</span>&#160;            {</div>
+<div class="line"><a name="l02419"></a><span class="lineno"> 2419</span>&#160;                <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>;</div>
+<div class="line"><a name="l02420"></a><span class="lineno"> 2420</span>&#160;                <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02421"></a><span class="lineno"> 2421</span>&#160;            }</div>
+<div class="line"><a name="l02422"></a><span class="lineno"> 2422</span>&#160;            fh = (<a class="code" href="structFIL.html">FIL</a> *) <a class="code" href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a>(<span class="keyword">sizeof</span>(<a class="code" href="structFIL.html">FIL</a>),1);</div>
+<div class="line"><a name="l02423"></a><span class="lineno"> 2423</span>&#160;            <span class="keywordflow">if</span>(fh == <a class="code" href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>)</div>
+<div class="line"><a name="l02424"></a><span class="lineno"> 2424</span>&#160;            {</div>
+<div class="line"><a name="l02425"></a><span class="lineno"> 2425</span>&#160;                <a class="code" href="ram_8c.html#a9dc7d99df87239df4577b5b45ec6300c">safefree</a>(stream);</div>
+<div class="line"><a name="l02426"></a><span class="lineno"> 2426</span>&#160;                <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaec0aa1bb79e2e55ed6d8c165e0611eca">ENOMEM</a>;</div>
+<div class="line"><a name="l02427"></a><span class="lineno"> 2427</span>&#160;                <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02428"></a><span class="lineno"> 2428</span>&#160;            }</div>
+<div class="line"><a name="l02429"></a><span class="lineno"> 2429</span>&#160; </div>
+<div class="line"><a name="l02430"></a><span class="lineno"> 2430</span>&#160;            <a class="code" href="posix_8c.html#aae2f027325f7e73c3aa5e7dc990bd90d">__iob</a>[i]  = stream;</div>
+<div class="line"><a name="l02431"></a><span class="lineno"> 2431</span>&#160;            <a class="code" href="posix_8h.html#a793fcb8f10b6b8746d4186012929ddf1">fdev_set_udata</a>(stream, (<span class="keywordtype">void</span> *) fh);</div>
+<div class="line"><a name="l02432"></a><span class="lineno"> 2432</span>&#160;            <span class="keywordflow">return</span>(i);</div>
+<div class="line"><a name="l02433"></a><span class="lineno"> 2433</span>&#160;        }</div>
+<div class="line"><a name="l02434"></a><span class="lineno"> 2434</span>&#160;    }</div>
+<div class="line"><a name="l02435"></a><span class="lineno"> 2435</span>&#160;    <a class="code" href="posix_8c.html#ad65a8842cc674e3ddf69355898c0ecbf">errno</a> = <a class="code" href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aaf8ee28f2eeab568a1b641f6ffc1f90a8">ENFILE</a>;</div>
+<div class="line"><a name="l02436"></a><span class="lineno"> 2436</span>&#160;    <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02437"></a><span class="lineno"> 2437</span>&#160;}</div>
+<div class="line"><a name="l02438"></a><span class="lineno"> 2438</span>&#160; </div>
+<div class="line"><a name="l02439"></a><span class="lineno"> 2439</span>&#160; </div>
+<div class="line"><a name="l02467"></a><span class="lineno"> 2467</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02468"></a><span class="lineno"><a class="line" href="posix_8h.html#a607feb06d296e0ff60d5a19538bd17fc"> 2468</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *mode)</div>
+<div class="line"><a name="l02469"></a><span class="lineno"> 2469</span>&#160;{</div>
+<div class="line"><a name="l02470"></a><span class="lineno"> 2470</span>&#160;    <span class="keywordtype">int</span> flag = 0;</div>
+<div class="line"><a name="l02471"></a><span class="lineno"> 2471</span>&#160; </div>
+<div class="line"><a name="l02472"></a><span class="lineno"> 2472</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;r&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;rb&quot;</span>))</div>
+<div class="line"><a name="l02473"></a><span class="lineno"> 2473</span>&#160;    {</div>
+<div class="line"><a name="l02474"></a><span class="lineno"> 2474</span>&#160;        flag = <a class="code" href="posix_8h.html#a7a68c9ffaac7dbcd652225dd7c06a54b">O_RDONLY</a>;</div>
+<div class="line"><a name="l02475"></a><span class="lineno"> 2475</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
+<div class="line"><a name="l02476"></a><span class="lineno"> 2476</span>&#160;    }</div>
+<div class="line"><a name="l02477"></a><span class="lineno"> 2477</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;r+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;r+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;rb+&quot;</span> ))</div>
+<div class="line"><a name="l02478"></a><span class="lineno"> 2478</span>&#160;    {</div>
+<div class="line"><a name="l02479"></a><span class="lineno"> 2479</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
+<div class="line"><a name="l02480"></a><span class="lineno"> 2480</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
+<div class="line"><a name="l02481"></a><span class="lineno"> 2481</span>&#160;    }</div>
+<div class="line"><a name="l02482"></a><span class="lineno"> 2482</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;w&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;wb&quot;</span>))</div>
+<div class="line"><a name="l02483"></a><span class="lineno"> 2483</span>&#160;    {</div>
+<div class="line"><a name="l02484"></a><span class="lineno"> 2484</span>&#160;        flag = <a class="code" href="posix_8h.html#a11b644a8526139c4cc1850dac1271ced">O_WRONLY</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
+<div class="line"><a name="l02485"></a><span class="lineno"> 2485</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
+<div class="line"><a name="l02486"></a><span class="lineno"> 2486</span>&#160;    }</div>
+<div class="line"><a name="l02487"></a><span class="lineno"> 2487</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;w+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;w+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;wb+&quot;</span> ))</div>
+<div class="line"><a name="l02488"></a><span class="lineno"> 2488</span>&#160;    {</div>
+<div class="line"><a name="l02489"></a><span class="lineno"> 2489</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a>;</div>
+<div class="line"><a name="l02490"></a><span class="lineno"> 2490</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
+<div class="line"><a name="l02491"></a><span class="lineno"> 2491</span>&#160;    }</div>
+<div class="line"><a name="l02492"></a><span class="lineno"> 2492</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;a&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;ab&quot;</span>))</div>
+<div class="line"><a name="l02493"></a><span class="lineno"> 2493</span>&#160;    {</div>
+<div class="line"><a name="l02494"></a><span class="lineno"> 2494</span>&#160;        flag = <a class="code" href="posix_8h.html#a11b644a8526139c4cc1850dac1271ced">O_WRONLY</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>;</div>
+<div class="line"><a name="l02495"></a><span class="lineno"> 2495</span>&#160;        <span class="keywordflow">return</span>(flag);</div>
+<div class="line"><a name="l02496"></a><span class="lineno"> 2496</span>&#160;    }</div>
+<div class="line"><a name="l02497"></a><span class="lineno"> 2497</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode,<span class="stringliteral">&quot;a+&quot;</span>) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;a+b&quot;</span> ) || <a class="code" href="posix_8h.html#a28002092a0615e21c9943a426e81015f">modecmp</a>(mode, <span class="stringliteral">&quot;ab+&quot;</span> ))</div>
+<div class="line"><a name="l02498"></a><span class="lineno"> 2498</span>&#160;    {</div>
+<div class="line"><a name="l02499"></a><span class="lineno"> 2499</span>&#160;        flag = <a class="code" href="posix_8h.html#abb0586253488ee61072b73557eeb873b">O_RDWR</a> | <a class="code" href="posix_8h.html#a1cf6b1de1fffedaa1d26b189e9a8d2cc">O_CREAT</a> | <a class="code" href="posix_8h.html#ae036f789407d21f07b211552d67b3214">O_APPEND</a>;</div>
+<div class="line"><a name="l02500"></a><span class="lineno"> 2500</span>&#160;        <span class="keywordflow">return</span>(-1);</div>
+<div class="line"><a name="l02501"></a><span class="lineno"> 2501</span>&#160;    }</div>
+<div class="line"><a name="l02502"></a><span class="lineno"> 2502</span>&#160;    <span class="keywordflow">return</span>(-1);                                   <span class="comment">// nvalid mode</span></div>
+<div class="line"><a name="l02503"></a><span class="lineno"> 2503</span>&#160;}</div>
+<div class="line"><a name="l02504"></a><span class="lineno"> 2504</span>&#160; </div>
+<div class="line"><a name="l02505"></a><span class="lineno"> 2505</span>&#160; </div>
+<div class="line"><a name="l02506"></a><span class="lineno"> 2506</span>&#160;<span class="comment">// =============================================</span></div>
 <div class="line"><a name="l02507"></a><span class="lineno"> 2507</span>&#160;<span class="comment">// =============================================</span></div>
-<div class="line"><a name="l02508"></a><span class="lineno"> 2508</span>&#160; </div>
-<div class="line"><a name="l02513"></a><span class="lineno"> 2513</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02514"></a><span class="lineno"><a class="line" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2"> 2514</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a>(<span class="keyword">struct</span> <a class="code" href="struct__printf__t.html">_printf_t</a> *p, <span class="keywordtype">char</span> ch)</div>
-<div class="line"><a name="l02515"></a><span class="lineno"> 2515</span>&#160;{</div>
-<div class="line"><a name="l02516"></a><span class="lineno"> 2516</span>&#160;    p-&gt;<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a>++;</div>
-<div class="line"><a name="l02517"></a><span class="lineno"> 2517</span>&#160;    <a class="code" href="posix_8c.html#a6bdef0a37397953c3b0f14c4d5d0eb10">fputc</a>(ch, (<a class="code" href="struct____file.html">FILE</a> *) p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>);</div>
-<div class="line"><a name="l02518"></a><span class="lineno"> 2518</span>&#160;}</div>
-<div class="line"><a name="l02519"></a><span class="lineno"> 2519</span>&#160; </div>
-<div class="line"><a name="l02520"></a><span class="lineno"> 2520</span>&#160; </div>
-<div class="line"><a name="l02528"></a><span class="lineno"> 2528</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l02529"></a><span class="lineno"> 2529</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l02530"></a><span class="lineno"><a class="line" href="posix_8h.html#a91ade11061b9b43b1edd37ff32f76591"> 2530</a></span>&#160;<a class="code" href="posix_8c.html#a91ade11061b9b43b1edd37ff32f76591">fprintf</a>(<a class="code" href="struct____file.html">FILE</a> *fp, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...)</div>
-<div class="line"><a name="l02531"></a><span class="lineno"> 2531</span>&#160;{</div>
-<div class="line"><a name="l02532"></a><span class="lineno"> 2532</span>&#160;    <a class="code" href="struct__printf__t.html">printf_t</a> fn;</div>
-<div class="line"><a name="l02533"></a><span class="lineno"> 2533</span>&#160;    va_list va;</div>
-<div class="line"><a name="l02534"></a><span class="lineno"> 2534</span>&#160; </div>
-<div class="line"><a name="l02535"></a><span class="lineno"> 2535</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a3ef8eb0143b93d4446b04c6ce9313be7">put</a> = <a class="code" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a>;</div>
-<div class="line"><a name="l02536"></a><span class="lineno"> 2536</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a> = 0;</div>
-<div class="line"><a name="l02537"></a><span class="lineno"> 2537</span>&#160;    fn.<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) fp;</div>
-<div class="line"><a name="l02538"></a><span class="lineno"> 2538</span>&#160; </div>
-<div class="line"><a name="l02539"></a><span class="lineno"> 2539</span>&#160;    va_start(va, format);</div>
-<div class="line"><a name="l02540"></a><span class="lineno"> 2540</span>&#160;    <a class="code" href="mathio_8h.html#a1c2762f15e2ae4dea9b52ee9e3532372">_printf_fn</a>(&amp;fn, format, va);</div>
-<div class="line"><a name="l02541"></a><span class="lineno"> 2541</span>&#160;    va_end(va);</div>
-<div class="line"><a name="l02542"></a><span class="lineno"> 2542</span>&#160; </div>
-<div class="line"><a name="l02543"></a><span class="lineno"> 2543</span>&#160;    <span class="keywordflow">return</span> ((<span class="keywordtype">int</span>)fn.<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a>);</div>
-<div class="line"><a name="l02544"></a><span class="lineno"> 2544</span>&#160;}</div>
+<div class="line"><a name="l02509"></a><span class="lineno"> 2509</span>&#160;<span class="comment"></span><span class="comment">// =============================================</span></div>
+<div class="line"><a name="l02510"></a><span class="lineno"> 2510</span>&#160;<span class="comment">// =============================================</span></div>
+<div class="line"><a name="l02511"></a><span class="lineno"> 2511</span>&#160; </div>
+<div class="line"><a name="l02516"></a><span class="lineno"> 2516</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02517"></a><span class="lineno"><a class="line" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2"> 2517</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a>(<span class="keyword">struct</span> <a class="code" href="struct__printf__t.html">_printf_t</a> *p, <span class="keywordtype">char</span> ch)</div>
+<div class="line"><a name="l02518"></a><span class="lineno"> 2518</span>&#160;{</div>
+<div class="line"><a name="l02519"></a><span class="lineno"> 2519</span>&#160;    p-&gt;<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a>++;</div>
+<div class="line"><a name="l02520"></a><span class="lineno"> 2520</span>&#160;    <a class="code" href="posix_8c.html#a6bdef0a37397953c3b0f14c4d5d0eb10">fputc</a>(ch, (<a class="code" href="struct____file.html">FILE</a> *) p-&gt;<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a>);</div>
+<div class="line"><a name="l02521"></a><span class="lineno"> 2521</span>&#160;}</div>
+<div class="line"><a name="l02522"></a><span class="lineno"> 2522</span>&#160; </div>
+<div class="line"><a name="l02523"></a><span class="lineno"> 2523</span>&#160; </div>
+<div class="line"><a name="l02531"></a><span class="lineno"> 2531</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l02532"></a><span class="lineno"> 2532</span>&#160;<span class="keywordtype">int</span></div>
+<div class="line"><a name="l02533"></a><span class="lineno"><a class="line" href="posix_8h.html#a91ade11061b9b43b1edd37ff32f76591"> 2533</a></span>&#160;<a class="code" href="posix_8c.html#a91ade11061b9b43b1edd37ff32f76591">fprintf</a>(<a class="code" href="struct____file.html">FILE</a> *fp, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...)</div>
+<div class="line"><a name="l02534"></a><span class="lineno"> 2534</span>&#160;{</div>
+<div class="line"><a name="l02535"></a><span class="lineno"> 2535</span>&#160;    <a class="code" href="struct__printf__t.html">printf_t</a> fn;</div>
+<div class="line"><a name="l02536"></a><span class="lineno"> 2536</span>&#160;    va_list va;</div>
+<div class="line"><a name="l02537"></a><span class="lineno"> 2537</span>&#160; </div>
+<div class="line"><a name="l02538"></a><span class="lineno"> 2538</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a3ef8eb0143b93d4446b04c6ce9313be7">put</a> = <a class="code" href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a>;</div>
+<div class="line"><a name="l02539"></a><span class="lineno"> 2539</span>&#160;    fn.<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a> = 0;</div>
+<div class="line"><a name="l02540"></a><span class="lineno"> 2540</span>&#160;    fn.<a class="code" href="struct__printf__t.html#ad35884151d0be6667caafad8caacc76f">buffer</a> = (<span class="keywordtype">void</span> *) fp;</div>
+<div class="line"><a name="l02541"></a><span class="lineno"> 2541</span>&#160; </div>
+<div class="line"><a name="l02542"></a><span class="lineno"> 2542</span>&#160;    va_start(va, format);</div>
+<div class="line"><a name="l02543"></a><span class="lineno"> 2543</span>&#160;    <a class="code" href="mathio_8h.html#a1c2762f15e2ae4dea9b52ee9e3532372">_printf_fn</a>(&amp;fn, format, va);</div>
+<div class="line"><a name="l02544"></a><span class="lineno"> 2544</span>&#160;    va_end(va);</div>
+<div class="line"><a name="l02545"></a><span class="lineno"> 2545</span>&#160; </div>
+<div class="line"><a name="l02546"></a><span class="lineno"> 2546</span>&#160;    <span class="keywordflow">return</span> ((<span class="keywordtype">int</span>)fn.<a class="code" href="struct__printf__t.html#a872716fd701166cd57bd3fffb7b77706">sent</a>);</div>
+<div class="line"><a name="l02547"></a><span class="lineno"> 2547</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astruct____file_html_a3e5a85ae919a90efbb7cb44ccb54fe46"><div class="ttname"><a href="struct____file.html#a3e5a85ae919a90efbb7cb44ccb54fe46">__file::buf</a></div><div class="ttdeci">char * buf</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00160">posix.h:160</a></div></div>
 <div class="ttc" id="astructFATFS_html"><div class="ttname"><a href="structFATFS.html">FATFS</a></div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00132">ff.h:132</a></div></div>
@@ -1902,7 +1905,7 @@ $(function() {
 <div class="ttc" id="aposix_8h_html_a132917c782a0ba854c3ae9abe57c3b12"><div class="ttname"><a href="posix_8h.html#a132917c782a0ba854c3ae9abe57c3b12">_FDEV_ERR</a></div><div class="ttdeci">#define _FDEV_ERR</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00300">posix.h:300</a></div></div>
 <div class="ttc" id="aposix_8h_html_ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b"><div class="ttname"><a href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa9e2f813a51a5763a892f4b1783778e4b">EBUSY</a></div><div class="ttdeci">@ EBUSY</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00079">posix.h:79</a></div></div>
 <div class="ttc" id="astructstat_html"><div class="ttname"><a href="structstat.html">stat</a></div><div class="ttdoc">POSIX stat structure.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00105">posix.h:105</a></div></div>
-<div class="ttc" id="aposix_8c_html_a2b4462e4e183cf38f0e7c3674be496e2"><div class="ttname"><a href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a></div><div class="ttdeci">static MEMSPACE void _fprintf_putc(struct _printf_t *p, char ch)</div><div class="ttdoc">fprintf character write function</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02514">posix.c:2514</a></div></div>
+<div class="ttc" id="aposix_8c_html_a2b4462e4e183cf38f0e7c3674be496e2"><div class="ttname"><a href="posix_8c.html#a2b4462e4e183cf38f0e7c3674be496e2">_fprintf_putc</a></div><div class="ttdeci">static MEMSPACE void _fprintf_putc(struct _printf_t *p, char ch)</div><div class="ttdoc">fprintf character write function</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02517">posix.c:2517</a></div></div>
 <div class="ttc" id="aposix_8c_html_a9c74403d1a11692bcab2c9ab7de4b0d3"><div class="ttname"><a href="posix_8c.html#a9c74403d1a11692bcab2c9ab7de4b0d3">chdir</a></div><div class="ttdeci">MEMSPACE int chdir(const char *pathname)</div><div class="ttdoc">POSIX change directory.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01512">posix.c:1512</a></div></div>
 <div class="ttc" id="aposix_8c_html_ae59fd612372df957f59fb3cdcbd8b9e9"><div class="ttname"><a href="posix_8c.html#ae59fd612372df957f59fb3cdcbd8b9e9">putc</a></div><div class="ttdeci">MEMSPACE int putc(int c, FILE *stream)</div><div class="ttdoc">Put a character to a stream See fdevopen() sets stream-&gt;put get for TTY devices.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00414">posix.c:414</a></div></div>
 <div class="ttc" id="astructstat_html_a77e235090f8cb6897f1c0ce65689006b"><div class="ttname"><a href="structstat.html#a77e235090f8cb6897f1c0ce65689006b">stat::st_mtime</a></div><div class="ttdeci">time_t st_mtime</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00118">posix.h:118</a></div></div>
@@ -1920,7 +1923,7 @@ $(function() {
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44ca3dec4eba481cdf5e99d7cd6009e6dcf8"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca3dec4eba481cdf5e99d7cd6009e6dcf8">FR_INVALID_OBJECT</a></div><div class="ttdeci">@ FR_INVALID_OBJECT</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00286">ff.h:286</a></div></div>
 <div class="ttc" id="aposix_8h_html_ad541703cea6b378290dcf2ea448d2879"><div class="ttname"><a href="posix_8h.html#ad541703cea6b378290dcf2ea448d2879">__SUNGET</a></div><div class="ttdeci">#define __SUNGET</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00169">posix.h:169</a></div></div>
 <div class="ttc" id="astructtm_html_af414eb7c86cc3099595211eee4d4211b"><div class="ttname"><a href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm::tm_min</a></div><div class="ttdeci">int tm_min</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00043">time.h:43</a></div></div>
-<div class="ttc" id="aposix_8c_html_a178d5d21b21c0f60d6ff8dfbbc0d86f5"><div class="ttname"><a href="posix_8c.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a></div><div class="ttdeci">MEMSPACE time_t fat_time_to_unix(uint16_t date, uint16_t time)</div><div class="ttdoc">Convert FatFs file date and time to POSIX epoch seconds. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02273">posix.c:2273</a></div></div>
+<div class="ttc" id="aposix_8c_html_a178d5d21b21c0f60d6ff8dfbbc0d86f5"><div class="ttname"><a href="posix_8c.html#a178d5d21b21c0f60d6ff8dfbbc0d86f5">fat_time_to_unix</a></div><div class="ttdeci">MEMSPACE time_t fat_time_to_unix(uint16_t date, uint16_t time)</div><div class="ttdoc">Convert FatFs file date and time to POSIX epoch seconds. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02276">posix.c:2276</a></div></div>
 <div class="ttc" id="astruct____file_html_a01c8b217e42cc11b6a7f8429114e9d46"><div class="ttname"><a href="struct____file.html#a01c8b217e42cc11b6a7f8429114e9d46">__file::put</a></div><div class="ttdeci">int(* put)(char, struct __file *)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00180">posix.h:180</a></div></div>
 <div class="ttc" id="aposix_8c_html_a39eea0b104438afa9ca0500c2e8d6887"><div class="ttname"><a href="posix_8c.html#a39eea0b104438afa9ca0500c2e8d6887">mctime</a></div><div class="ttdeci">MEMSPACE char * mctime(time_t timev)</div><div class="ttdoc">Display Ascii formatted time from timev seconds NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01346">posix.c:1346</a></div></div>
 <div class="ttc" id="astructFIL_html"><div class="ttname"><a href="structFIL.html">FIL</a></div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00205">ff.h:205</a></div></div>
@@ -1940,7 +1943,7 @@ $(function() {
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44ca97da8f98fc2e66d8fa7847f9ebb19b8c"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca97da8f98fc2e66d8fa7847f9ebb19b8c">FR_NO_FILE</a></div><div class="ttdeci">@ FR_NO_FILE</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00281">ff.h:281</a></div></div>
 <div class="ttc" id="astringsup_8c_html_a1825e0085bbbce998b39f9ff2682173c"><div class="ttname"><a href="stringsup_8c.html#a1825e0085bbbce998b39f9ff2682173c">tolower</a></div><div class="ttdeci">MEMSPACE int WEAK_ATR tolower(int c)</div><div class="ttdoc">Convert character to lower case, only if it is upper case.</div><div class="ttdef"><b>Definition:</b> <a href="stringsup_8c_source.html#l00091">stringsup.c:91</a></div></div>
 <div class="ttc" id="aff_8h_html_afa366963220c89b882c0361794020c14"><div class="ttname"><a href="ff_8h.html#afa366963220c89b882c0361794020c14">FA_WRITE</a></div><div class="ttdeci">#define FA_WRITE</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00391">ff.h:391</a></div></div>
-<div class="ttc" id="aposix_8c_html_adfd015ed8dbac3473269d1a068bf5904"><div class="ttname"><a href="posix_8c.html#adfd015ed8dbac3473269d1a068bf5904">fatfs_putc</a></div><div class="ttdeci">MEMSPACE int fatfs_putc(char c, FILE *stream)</div><div class="ttdoc">Private FatFs function called by fputc() to put a byte from file stream NOT POSIX open() assigns stre...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02119">posix.c:2119</a></div></div>
+<div class="ttc" id="aposix_8c_html_adfd015ed8dbac3473269d1a068bf5904"><div class="ttname"><a href="posix_8c.html#adfd015ed8dbac3473269d1a068bf5904">fatfs_putc</a></div><div class="ttdeci">MEMSPACE int fatfs_putc(char c, FILE *stream)</div><div class="ttdoc">Private FatFs function called by fputc() to put a byte from file stream NOT POSIX open() assigns stre...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02122">posix.c:2122</a></div></div>
 <div class="ttc" id="aposix_8h_html_ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267"><div class="ttname"><a href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa156dcc38d9ba0765c6150544963ed267">EPERM</a></div><div class="ttdeci">@ EPERM</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00064">posix.h:64</a></div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_ad0fe97585b8891f5e4f2b9a6426330a4"><div class="ttname"><a href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div><div class="ttdeci">#define MEMSPACE</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00017">user_config.h:17</a></div></div>
 <div class="ttc" id="aposix_8c_html_a072435300ac99e8d7c3749f45166e797"><div class="ttname"><a href="posix_8c.html#a072435300ac99e8d7c3749f45166e797">write</a></div><div class="ttdeci">MEMSPACE ssize_t write(int fd, const void *buf, size_t count)</div><div class="ttdoc">POSIX Write count bytes from *buf to fileno fd.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01202">posix.c:1202</a></div></div>
@@ -1951,10 +1954,10 @@ $(function() {
 <div class="ttc" id="aram_8c_html_a23863723b09c3a4f836a5c10e1ecaa82"><div class="ttname"><a href="ram_8c.html#a23863723b09c3a4f836a5c10e1ecaa82">safecalloc</a></div><div class="ttdeci">void * safecalloc(int size, int elements)</div><div class="ttdoc">Safe Alloc - Display Error message if Calloc fails.</div><div class="ttdef"><b>Definition:</b> <a href="ram_8c_source.html#l00092">ram.c:92</a></div></div>
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44cae4529c8cc8b59783d6efc9ba4f574532"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cae4529c8cc8b59783d6efc9ba4f574532">FR_NO_PATH</a></div><div class="ttdeci">@ FR_NO_PATH</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00282">ff.h:282</a></div></div>
 <div class="ttc" id="aposix_8c_html_a3759827e157badd49d076bd157f508d9"><div class="ttname"><a href="posix_8c.html#a3759827e157badd49d076bd157f508d9">fgets</a></div><div class="ttdeci">MEMSPACE char * fgets(char *str, int size, FILE *stream)</div><div class="ttdoc">get a string from stdin See fdevopen() sets stream-&gt;put get for TTY devices</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00432">posix.c:432</a></div></div>
-<div class="ttc" id="aposix_8c_html_abab788c42cce343cde2f5b8f90015229"><div class="ttname"><a href="posix_8c.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a></div><div class="ttdeci">MEMSPACE int new_file_descriptor(void)</div><div class="ttdoc">Allocate a POSIX FILE descriptor. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02401">posix.c:2401</a></div></div>
+<div class="ttc" id="aposix_8c_html_abab788c42cce343cde2f5b8f90015229"><div class="ttname"><a href="posix_8c.html#abab788c42cce343cde2f5b8f90015229">new_file_descriptor</a></div><div class="ttdeci">MEMSPACE int new_file_descriptor(void)</div><div class="ttdoc">Allocate a POSIX FILE descriptor. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02404">posix.c:2404</a></div></div>
 <div class="ttc" id="aposix_8c_html_a6bdef0a37397953c3b0f14c4d5d0eb10"><div class="ttname"><a href="posix_8c.html#a6bdef0a37397953c3b0f14c4d5d0eb10">fputc</a></div><div class="ttdeci">MEMSPACE int fputc(int c, FILE *stream)</div><div class="ttdoc">Put a byte to TTY device or FatFs file stream open() or fopen() sets stream-&gt;put = fatfs_outc() for F...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00287">posix.c:287</a></div></div>
 <div class="ttc" id="aposix_8c_html_aaeac2b41e8c2c3a5f91c9bd511a8c0a6"><div class="ttname"><a href="posix_8c.html#aaeac2b41e8c2c3a5f91c9bd511a8c0a6">closedir</a></div><div class="ttdeci">int closedir(DIR *dirp)</div><div class="ttdoc">POSIX closedir.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01748">posix.c:1748</a></div></div>
-<div class="ttc" id="aposix_8c_html_a91ade11061b9b43b1edd37ff32f76591"><div class="ttname"><a href="posix_8c.html#a91ade11061b9b43b1edd37ff32f76591">fprintf</a></div><div class="ttdeci">MEMSPACE int fprintf(FILE *fp, const char *format,...)</div><div class="ttdoc">fprintf function Example user defined printf function using fputc for I/O This method allows I/O to d...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02530">posix.c:2530</a></div></div>
+<div class="ttc" id="aposix_8c_html_a91ade11061b9b43b1edd37ff32f76591"><div class="ttname"><a href="posix_8c.html#a91ade11061b9b43b1edd37ff32f76591">fprintf</a></div><div class="ttdeci">MEMSPACE int fprintf(FILE *fp, const char *format,...)</div><div class="ttdoc">fprintf function Example user defined printf function using fputc for I/O This method allows I/O to d...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02533">posix.c:2533</a></div></div>
 <div class="ttc" id="aff_8c_html_aefdef7126128d99d0b3bd82c28e54d80"><div class="ttname"><a href="ff_8c.html#aefdef7126128d99d0b3bd82c28e54d80">f_open</a></div><div class="ttdeci">FRESULT f_open(FIL *fp, const TCHAR *path, BYTE mode)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l03696">ff.c:3696</a></div></div>
 <div class="ttc" id="aposix_8c_html_a03baa4d851a2a855656081a4b7c8d72c"><div class="ttname"><a href="posix_8c.html#a03baa4d851a2a855656081a4b7c8d72c">clrerror</a></div><div class="ttdeci">MEMSPACE void clrerror(FILE *stream)</div><div class="ttdoc">clrerror resets stream EOF and error flags</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01820">posix.c:1820</a></div></div>
 <div class="ttc" id="aposix_8c_html_ae5badb2fbda49f0741042e68c364532b"><div class="ttname"><a href="posix_8c.html#ae5badb2fbda49f0741042e68c364532b">_dp</a></div><div class="ttdeci">static DIR _dp</div><div class="ttdoc">POSIX opendir.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01767">posix.c:1767</a></div></div>
@@ -1970,9 +1973,9 @@ $(function() {
 <div class="ttc" id="aposix_8h_html_ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31"><div class="ttname"><a href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa56198247acea7520ae5c6005fbe76a31">EROFS</a></div><div class="ttdeci">@ EROFS</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00093">posix.h:93</a></div></div>
 <div class="ttc" id="aposix_8h_html_aad0f32c2c182238f2ff71c83e6ab65a0"><div class="ttname"><a href="posix_8h.html#aad0f32c2c182238f2ff71c83e6ab65a0">S_ISREG</a></div><div class="ttdeci">#define S_ISREG(mode)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00222">posix.h:222</a></div></div>
 <div class="ttc" id="aff_8c_html_a983f0614033bd7cf587eb56d3054a91c"><div class="ttname"><a href="ff_8c.html#a983f0614033bd7cf587eb56d3054a91c">f_mkfs</a></div><div class="ttdeci">FRESULT f_mkfs(const TCHAR *path, const MKFS_PARM *opt, void *work, UINT len)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l05837">ff.c:5837</a></div></div>
-<div class="ttc" id="aposix_8c_html_a38496612f759733234128893e4c60a89"><div class="ttname"><a href="posix_8c.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a></div><div class="ttdeci">MEMSPACE int free_file_descriptor(int fileno)</div><div class="ttdoc">Free POSIX fileno FILE descriptor. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02358">posix.c:2358</a></div></div>
+<div class="ttc" id="aposix_8c_html_a38496612f759733234128893e4c60a89"><div class="ttname"><a href="posix_8c.html#a38496612f759733234128893e4c60a89">free_file_descriptor</a></div><div class="ttdeci">MEMSPACE int free_file_descriptor(int fileno)</div><div class="ttdoc">Free POSIX fileno FILE descriptor. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02361">posix.c:2361</a></div></div>
 <div class="ttc" id="aposix_8c_html_a48dc1df1627501d3faed4bf1f9801759"><div class="ttname"><a href="posix_8c.html#a48dc1df1627501d3faed4bf1f9801759">close</a></div><div class="ttdeci">MEMSPACE int close(int fileno)</div><div class="ttdoc">POSIX Close a file with fileno handel.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00701">posix.c:701</a></div></div>
-<div class="ttc" id="aposix_8c_html_a81f14429660ca6a685676d6ceaf5350c"><div class="ttname"><a href="posix_8c.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a></div><div class="ttdeci">MEMSPACE int fatfs_to_fileno(FIL *fh)</div><div class="ttdoc">Convert FatFS file handle to POSIX fileno. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02235">posix.c:2235</a></div></div>
+<div class="ttc" id="aposix_8c_html_a81f14429660ca6a685676d6ceaf5350c"><div class="ttname"><a href="posix_8c.html#a81f14429660ca6a685676d6ceaf5350c">fatfs_to_fileno</a></div><div class="ttdeci">MEMSPACE int fatfs_to_fileno(FIL *fh)</div><div class="ttdoc">Convert FatFS file handle to POSIX fileno. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02238">posix.c:2238</a></div></div>
 <div class="ttc" id="astructtm_html_a4d098a9a5c03a00b2ee61e10851de81e"><div class="ttname"><a href="structtm.html#a4d098a9a5c03a00b2ee61e10851de81e">tm::tm_sec</a></div><div class="ttdeci">int tm_sec</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00042">time.h:42</a></div></div>
 <div class="ttc" id="aposix_8c_html_ada8cc8f9394cf54db8f338838a9fa7ce"><div class="ttname"><a href="posix_8c.html#ada8cc8f9394cf54db8f338838a9fa7ce">rename</a></div><div class="ttdeci">MEMSPACE int rename(const char *oldpath, const char *newpath)</div><div class="ttdoc">POSIX rename a file by name.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01677">posix.c:1677</a></div></div>
 <div class="ttc" id="aposix_8c_html_a148630cbecc0822d9395f002691ffe75"><div class="ttname"><a href="posix_8c.html#a148630cbecc0822d9395f002691ffe75">fwrite</a></div><div class="ttdeci">MEMSPACE size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)</div><div class="ttdoc">POSIX write nmemb elements from buf, size bytes each, to the stream fd.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00890">posix.c:890</a></div></div>
@@ -1991,7 +1994,7 @@ $(function() {
 <div class="ttc" id="aposix_8h_html_ad70001754261c15a1bdc8e876c6d09d7"><div class="ttname"><a href="posix_8h.html#ad70001754261c15a1bdc8e876c6d09d7">S_IWUSR</a></div><div class="ttdeci">#define S_IWUSR</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00226">posix.h:226</a></div></div>
 <div class="ttc" id="aposix_8c_html_a6080dee579486f132062435577b77d10"><div class="ttname"><a href="posix_8c.html#a6080dee579486f132062435577b77d10">rmdir</a></div><div class="ttdeci">MEMSPACE int rmdir(const char *pathname)</div><div class="ttdoc">POSIX delete a directory.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01701">posix.c:1701</a></div></div>
 <div class="ttc" id="aff_8c_html_a2858167fcd0bced48e9be434b3895efe"><div class="ttname"><a href="ff_8c.html#a2858167fcd0bced48e9be434b3895efe">f_unlink</a></div><div class="ttdeci">FRESULT f_unlink(const TCHAR *path)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l04929">ff.c:4929</a></div></div>
-<div class="ttc" id="aposix_8c_html_aa5666c514336f78c6d1ab6bc35c74ae0"><div class="ttname"><a href="posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0">unix_time_to_fat</a></div><div class="ttdeci">MEMSPACE void unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)</div><div class="ttdoc">Convert Linux POSIX time_t to FAT32 date and time. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02299">posix.c:2299</a></div></div>
+<div class="ttc" id="aposix_8c_html_aa5666c514336f78c6d1ab6bc35c74ae0"><div class="ttname"><a href="posix_8c.html#aa5666c514336f78c6d1ab6bc35c74ae0">unix_time_to_fat</a></div><div class="ttdeci">MEMSPACE void unix_time_to_fat(time_t epoch, uint16_t *date, uint16_t *time)</div><div class="ttdoc">Convert Linux POSIX time_t to FAT32 date and time. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02302">posix.c:2302</a></div></div>
 <div class="ttc" id="aff_8h_html_a36cb3b01d81ffd844bbbfb54003e06ec"><div class="ttname"><a href="ff_8h.html#a36cb3b01d81ffd844bbbfb54003e06ec">UINT</a></div><div class="ttdeci">unsigned int UINT</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00053">ff.h:53</a></div></div>
 <div class="ttc" id="astructtm_html_a3e7ca4e37f1abcaf56b8a916c38eb9fe"><div class="ttname"><a href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm::tm_hour</a></div><div class="ttdeci">int tm_hour</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00044">time.h:44</a></div></div>
 <div class="ttc" id="astruct____file_html_a2d816b077c3af0425344fe4b283dad33"><div class="ttname"><a href="struct____file.html#a2d816b077c3af0425344fe4b283dad33">__file::get</a></div><div class="ttdeci">int(* get)(struct __file *)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00181">posix.h:181</a></div></div>
@@ -2016,9 +2019,8 @@ $(function() {
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44cafc56605c68aaffab4a428339a8bd600d"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cafc56605c68aaffab4a428339a8bd600d">FR_NOT_ENABLED</a></div><div class="ttdeci">@ FR_NOT_ENABLED</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00289">ff.h:289</a></div></div>
 <div class="ttc" id="aposix_8h_html_ad1d67e453fb3031f40f8cd3403773813"><div class="ttname"><a href="posix_8h.html#ad1d67e453fb3031f40f8cd3403773813">O_TRUNC</a></div><div class="ttdeci">#define O_TRUNC</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00198">posix.h:198</a></div></div>
 <div class="ttc" id="astruct____file_html_aff4a1ca8b6a12460812928afae81248d"><div class="ttname"><a href="struct____file.html#aff4a1ca8b6a12460812928afae81248d">__file::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00178">posix.h:178</a></div></div>
-<div class="ttc" id="aposix_8c_html_a607feb06d296e0ff60d5a19538bd17fc"><div class="ttname"><a href="posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a></div><div class="ttdeci">MEMSPACE int posix_fopen_modes_to_open(const char *mode)</div><div class="ttdoc">Convert POSIX fopen mode to POSIX open mode flags. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02465">posix.c:2465</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_ab3509aecf1844c84f1797e5b567d531c"><div class="ttname"><a href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a></div><div class="ttdeci">MEMSPACE void put_rc(int rc)</div><div class="ttdoc">display FatFs return code as ascii string</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00145">fatfs_sup.c:145</a></div></div>
-<div class="ttc" id="aposix_8c_html_a5811041feb43c22c6e609a8875475abc"><div class="ttname"><a href="posix_8c.html#a5811041feb43c22c6e609a8875475abc">fatfs_getc</a></div><div class="ttdeci">MEMSPACE int fatfs_getc(FILE *stream)</div><div class="ttdoc">Private FatFs function called by fgetc() to get a byte from file stream FIXME buffer this function ca...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02028">posix.c:2028</a></div></div>
+<div class="ttc" id="aposix_8c_html_a607feb06d296e0ff60d5a19538bd17fc"><div class="ttname"><a href="posix_8c.html#a607feb06d296e0ff60d5a19538bd17fc">posix_fopen_modes_to_open</a></div><div class="ttdeci">MEMSPACE int posix_fopen_modes_to_open(const char *mode)</div><div class="ttdoc">Convert POSIX fopen mode to POSIX open mode flags. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02468">posix.c:2468</a></div></div>
+<div class="ttc" id="aposix_8c_html_a5811041feb43c22c6e609a8875475abc"><div class="ttname"><a href="posix_8c.html#a5811041feb43c22c6e609a8875475abc">fatfs_getc</a></div><div class="ttdeci">MEMSPACE int fatfs_getc(FILE *stream)</div><div class="ttdoc">Private FatFs function called by fgetc() to get a byte from file stream FIXME buffer this function ca...</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02031">posix.c:2031</a></div></div>
 <div class="ttc" id="aposix_8c_html_a30a4070a8b1719d53cb01dd4b2a65069"><div class="ttname"><a href="posix_8c.html#a30a4070a8b1719d53cb01dd4b2a65069">fputs</a></div><div class="ttdeci">MEMSPACE int fputs(const char *str, FILE *stream)</div><div class="ttdoc">put a string to stdout See fdevopen() sets stream-&gt;put get for TTY devices</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00470">posix.c:470</a></div></div>
 <div class="ttc" id="aposix_8c_html_a2c01fe0e0aa550b2a8b4dcc326983b57"><div class="ttname"><a href="posix_8c.html#a2c01fe0e0aa550b2a8b4dcc326983b57">fileno_to_stream</a></div><div class="ttdeci">MEMSPACE FILE * fileno_to_stream(int fileno)</div><div class="ttdoc">Convert POSIX fileno to POSIX FILE stream pointer. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00772">posix.c:772</a></div></div>
 <div class="ttc" id="astruct____file_html"><div class="ttname"><a href="struct____file.html">__file</a></div><div class="ttdoc">FILE type structure.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00158">posix.h:158</a></div></div>
@@ -2069,7 +2071,7 @@ $(function() {
 <div class="ttc" id="aposix_8c_html_a73a95c4a93875be906e573c00b30c5ea"><div class="ttname"><a href="posix_8c.html#a73a95c4a93875be906e573c00b30c5ea">truncate</a></div><div class="ttdeci">MEMSPACE int truncate(const char *path, off_t length)</div><div class="ttdoc">POSIX truncate named file to length.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01164">posix.c:1164</a></div></div>
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44cab6c9903af6e9bffbb7a288705f4a6a76"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44cab6c9903af6e9bffbb7a288705f4a6a76">FR_INT_ERR</a></div><div class="ttdeci">@ FR_INT_ERR</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00279">ff.h:279</a></div></div>
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44c"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a></div><div class="ttdeci">FRESULT</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00276">ff.h:276</a></div></div>
-<div class="ttc" id="aposix_8c_html_ac20f0fc565c27bbbb900bde3337b09b9"><div class="ttname"><a href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a></div><div class="ttdeci">MEMSPACE int fatfs_to_errno(FRESULT Result)</div><div class="ttdoc">Convert FafFs error result to POSIX errno. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02160">posix.c:2160</a></div></div>
+<div class="ttc" id="aposix_8c_html_ac20f0fc565c27bbbb900bde3337b09b9"><div class="ttname"><a href="posix_8c.html#ac20f0fc565c27bbbb900bde3337b09b9">fatfs_to_errno</a></div><div class="ttdeci">MEMSPACE int fatfs_to_errno(FRESULT Result)</div><div class="ttdoc">Convert FafFs error result to POSIX errno. NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02163">posix.c:2163</a></div></div>
 <div class="ttc" id="aposix_8h_html_ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb"><div class="ttname"><a href="posix_8h.html#ac29db18b9f0e7e7d5c43d558ccffea6aa2b5265f4c8556b15ec913f61caade1eb">ENOSPC</a></div><div class="ttdeci">@ ENOSPC</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00091">posix.h:91</a></div></div>
 <div class="ttc" id="astructDIR_html"><div class="ttname"><a href="structDIR.html">DIR</a></div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00228">ff.h:228</a></div></div>
 <div class="ttc" id="aposix_8c_html_a6411298bb01166960f5a0378ac0fdb82"><div class="ttname"><a href="posix_8c.html#a6411298bb01166960f5a0378ac0fdb82">getcwd</a></div><div class="ttdeci">MEMSPACE char * getcwd(char *pathname, int len)</div><div class="ttdoc">POSIX get current working directory.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01623">posix.c:1623</a></div></div>
@@ -2097,7 +2099,7 @@ $(function() {
 <div class="ttc" id="astructtm_html_a33adf78fd6476b2120ce3b9c4a852053"><div class="ttname"><a href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm::tm_year</a></div><div class="ttdeci">int tm_year</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00047">time.h:47</a></div></div>
 <div class="ttc" id="astructFILINFO_html_a9e5b78ed7190f73de3ebcbdfbd6d1844"><div class="ttname"><a href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">FILINFO::fsize</a></div><div class="ttdeci">FSIZE_t fsize</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00248">ff.h:248</a></div></div>
 <div class="ttc" id="aposix_8c_html_ab814cff71bcbcc3a72a6c399e5084573"><div class="ttname"><a href="posix_8c.html#ab814cff71bcbcc3a72a6c399e5084573">fdevopen</a></div><div class="ttdeci">MEMSPACE FILE * fdevopen(int(*put)(char, FILE *), int(*get)(FILE *))</div><div class="ttdoc">Device open functions.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01912">posix.c:1912</a></div></div>
-<div class="ttc" id="aposix_8c_html_a9b859123258b36eb57f4f71d2606d8a5"><div class="ttname"><a href="posix_8c.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a></div><div class="ttdeci">MEMSPACE FIL * fileno_to_fatfs(int fileno)</div><div class="ttdoc">Convert POSIX fileno to FatFS handle NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02324">posix.c:2324</a></div></div>
+<div class="ttc" id="aposix_8c_html_a9b859123258b36eb57f4f71d2606d8a5"><div class="ttname"><a href="posix_8c.html#a9b859123258b36eb57f4f71d2606d8a5">fileno_to_fatfs</a></div><div class="ttdeci">MEMSPACE FIL * fileno_to_fatfs(int fileno)</div><div class="ttdoc">Convert POSIX fileno to FatFS handle NOT POSIX.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l02327">posix.c:2327</a></div></div>
 <div class="ttc" id="atime_8h_html_a3346b04b0420b32ccf6b706551b70762"><div class="ttname"><a href="time_8h.html#a3346b04b0420b32ccf6b706551b70762">time_t</a></div><div class="ttdeci">uint32_t time_t</div><div class="ttdoc">type of EPOCH result.</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00034">time.h:34</a></div></div>
 <div class="ttc" id="aposix_8c_html_aa964d662c19b2021d9cfd0c71bc686bd"><div class="ttname"><a href="posix_8c.html#aa964d662c19b2021d9cfd0c71bc686bd">unlink</a></div><div class="ttdeci">MEMSPACE int unlink(const char *pathname)</div><div class="ttdoc">POSIX delete a file.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l01723">posix.c:1723</a></div></div>
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44ca83e45a4b579558c57192c0a391b9bb45"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca83e45a4b579558c57192c0a391b9bb45">FR_INVALID_NAME</a></div><div class="ttdeci">@ FR_INVALID_NAME</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00283">ff.h:283</a></div></div>
@@ -2138,7 +2140,7 @@ $(function() {
 <div class="ttc" id="aposix_8h_html_a910f0d9b3aff8a868393ce38fe91cc7d"><div class="ttname"><a href="posix_8h.html#a910f0d9b3aff8a868393ce38fe91cc7d">__SMALLOC</a></div><div class="ttdeci">#define __SMALLOC</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00170">posix.h:170</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 10 2020 23:10:27 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 11 2020 02:42:21 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
