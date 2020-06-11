@@ -760,7 +760,7 @@ int main(int argc, char *argv[])
 
 // =============================
 // test Adjugate
-    printf("==========================================\n");
+    sep();
     MatA = MatLoad(AJ,3,3);
     printf("MatA\n");
     MatPrint(MatA);
@@ -769,12 +769,12 @@ int main(int argc, char *argv[])
     MatPrint(MatAdj);
     MatFree(MatAdj);
     MatFree(MatA);
-    printf("==========================================\n");
+    sep();
     printf("\n");
 
 // =============================
 // test MatMul
-    printf("==========================================\n");
+    sep();
     MatC = MatLoadSQ(C,3);
     printf("MatC\n");
     MatPrint(MatC);
@@ -787,7 +787,7 @@ int main(int argc, char *argv[])
     MatFree(MatC);
     MatFree(MatD);
     MatFree(MatR);
-    printf("==========================================\n");
+    sep();
     printf("\n");
 
 // ===============================================================
@@ -795,7 +795,7 @@ int main(int argc, char *argv[])
 // Test functions required for 3 point screen calibration
 // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
 //      Calibration in touch-screen systems
-    printf("==========================================\n");
+    sep();
     printf("Set of three display positions\n");
     MatX = MatLoad(X3,3,1);
     printf("X\n");
@@ -832,7 +832,7 @@ int main(int argc, char *argv[])
     MatFree(MatY);
 
     MatFree(MatI);
-    printf("==========================================\n");
+    sep();
     printf("\n");
 
 // ===============================================================
@@ -841,7 +841,7 @@ int main(int argc, char *argv[])
 // Use least square solution by Pseudo Invert method
 // See: https://www.maximintegrated.com/en/app-notes/index.mvp/id/5296
 //      Calibration in touch-screen systems
-    printf("==========================================\n");
+    sep();
     printf("Set of five display positions\n");
     MatX = MatLoad(X5,5,1);
     printf("X\n");
@@ -879,7 +879,7 @@ int main(int argc, char *argv[])
 
     MatFree(MatPI);
 
-    printf("==========================================\n");
+    sep();
     printf("\n");
 
 }

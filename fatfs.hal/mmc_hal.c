@@ -220,6 +220,8 @@ int mmc_init(int verbose)
 {
     int rc;
 
+    char buff[MAX_NAME_LEN+1];
+
     Stat = 0;
 	clear_error();
 
@@ -284,7 +286,8 @@ int mmc_init(int verbose)
             }
             if( rc == RES_OK)
             {
-                fatfs_status("/");
+                strcpy(buff,"/");
+                fatfs_status(buff);
             }
         }
         printf("END MMC INIT\n");

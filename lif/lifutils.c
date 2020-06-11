@@ -143,8 +143,10 @@ int lif_tests(int argc, char *argv[])
     char *ptr;
 
 // display arguments for debugging
-#if 0
+#ifdef TELEDISK
     int i;
+#endif
+#if 0
     for(i=0;i<argc;++i)
         printf("%d:%s\n", i, argv[i]);
     printf("\n");
@@ -250,7 +252,6 @@ int lif_tests(int argc, char *argv[])
 
 	if(MATCHI_LEN(argv[0],"td02lif"))
 	{
-        int i;
 		if(MATCHI(ptr,"help") || MATCHI(ptr,"-help") || MATCHI(ptr,"-?") )
 		{
 #ifdef TELEDISK

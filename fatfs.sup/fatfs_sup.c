@@ -229,6 +229,7 @@ char* path                                        /* Pointer to the working buff
 }
 
 
+
 /// @brief  return a string with the file system type
 /// @param[in] type: file system type
 /// @return string with file system type
@@ -280,6 +281,7 @@ int fatfs_status(char *ptr)
 
     while(*ptr == ' ' || *ptr == '\t')
         ++ptr;
+
     printf("fatfs status:%s\n",ptr);
     res = f_getfree(ptr, (DWORD*)&p2, &fs);
     if (res)

@@ -209,12 +209,14 @@ FATFS = \
 	fatfs/ffunicode.c \
 	fatfs.hal/diskio.c  \
 	fatfs.hal/mmc.c  \
-	fatfs.hal/mmc_hal.c  \
-	fatfs.sup/fatfs_sup.c  
+	fatfs.hal/mmc_hal.c 
+
+	FATFS += fatfs.sup/fatfs_sup.c  
 
 ifeq ($(FATFS_TESTS),1)
-	FATFS += fatfs.sup/fatfs_tests.c  
+	FATFS += fatfs.sup/fatfs_tests.c 
 endif
+
 
 GPIB   = \
 	gpib/gpib_hal.c \
@@ -403,7 +405,7 @@ CFLAGS += -maccumulate-args
 CFLAGS += -mstrict-X
 CFLAGS += -nodevicelib
 CFLAGS += -fdata-sections
-#CFLAGS += -mshort-calls
+##CFLAGS += -mshort-calls
 
 # Assembler flags
 ASFLAGS += $(COMMON)

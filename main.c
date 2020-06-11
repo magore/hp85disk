@@ -480,9 +480,9 @@ void user_task(uint8_t gpib)
     else
 	{
         printf("Invalid Command\n");
-        printf("Argument count = %d\n", argc);
+        printf("    Argument count = %d\n", argc);
 		for(i=0;i<argc;++i)
-			printf("   [%s]\n", argv[i]);
+			printf("       [%s]\n", argv[i]);
 	}
 }
 

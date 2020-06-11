@@ -253,6 +253,12 @@ int t_vsnprintf(char* str, size_t size, const char *format, va_list va)
 }
 
 
+/// @brief print seperator
+void sep()
+{
+	printf("==============================\n");
+}
+
 // =============================================
 int display_good = 0;
 long tp_good = 0;                                 //@brief total good tests
@@ -566,7 +572,7 @@ void tests()
     int i1 = -1;
     int l1 = -1L;
 
-    printf("=======================\n");
+    sep();
     printf("Start of Manual tests\n");
     tp("%-0d", 0);
     tp("%-0u", 0);
@@ -741,7 +747,7 @@ void tests()
     if(display_good)
         printf("\n");
     printf("End of Manual tests\n");
-    printf("=======================\n");
+    sep();
     printf("\n");
 }
 
@@ -768,7 +774,7 @@ int main(int argc, char *argv[])
     char *sizeops[] = { "short", "int", "long", "long long", NULL };
     char *floatops = "fe";
 
-    printf("=======================\n");
+    sep();
     printf("Start of Manual tests\n");
 
 // Test basic type sizes
@@ -782,11 +788,11 @@ int main(int argc, char *argv[])
     t_printf("sizeof (short) = %d\n", sizeof (short) );
     t_printf("sizeof (int) = %d\n", sizeof (int ) );
     t_printf("sizeof (char) = %d\n", sizeof (char ) );
-    printf("=======================\n");
+    sep();
     printf("\n");
 
 #ifdef __SIZEOF_INT128__
-    printf("=======================\n");
+    sep();
     printf("Start of 128 bit int tests\n");
 // There are no 128bit int constants in gcc - sigh
     num128 = 1;
@@ -796,9 +802,9 @@ int main(int argc, char *argv[])
         fflush(stdout);
         num128 <<= 1;
     }
-    printf("=======================\n");
+    sep();
     printf("\n");
-    printf("=======================\n");
+    sep();
     printf("Start of 128 bit int tests - 40 field width\n");
     num128 = 1;
     for(i=0;i<128;++i)
@@ -807,9 +813,9 @@ int main(int argc, char *argv[])
         fflush(stdout);
         num128 <<= 1;
     }
-    printf("=======================\n");
+    sep();
     printf("\n");
-    printf("=======================\n");
+    sep();
     printf("Start of 128 bit int tests - 40 field width and leading 0's\n");
     num128 = 1;
     for(i=0;i<128;++i)
@@ -818,7 +824,7 @@ int main(int argc, char *argv[])
         fflush(stdout);
         num128 <<= 1;
     }
-    printf("=======================\n");
+    sep();
     printf("\n");
 #endif
 
@@ -835,13 +841,13 @@ int main(int argc, char *argv[])
         {
             tp_good = 0;
             tp_bad = 0;
-            printf("=======================\n");
+    sep();
             printf("Start:(%c:%s)\n", intops[k], sizeops[size]);
             for(i=0;i<1000000;++i)
                 random_tests(intops[k], sizeops[size]);
             printf("End:  (%c:%s)\n", intops[k], sizeops[size]);
             printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);
-            printf("=======================\n");
+    sep();
         }
     }
 
@@ -850,18 +856,18 @@ int main(int argc, char *argv[])
     {
         tp_good = 0;
         tp_bad = 0;
-        printf("=======================\n");
+    sep();
         printf("Start:(%c)\n", floatops[k]);
         for(i=0;i<1000000;++i)
             random_tests(floatops[k], "");
         printf("End:  (%c)\n", floatops[k]);
         printf("Good:%ld, Bad:%ld, fmt:%ld\n", tp_good, tp_bad, tp_fmt);
-        printf("=======================\n");
+    sep();
     }
     printf("\n");
     printf("Random done\n");
 
-    printf("=======================\n");
+    sep();
     printf("testing binary leading 1's\n");
     lnum = 0;
     lnum = ~lnum;
@@ -875,7 +881,7 @@ int main(int argc, char *argv[])
         tp("%022lo", lnum);
 
     }
-    printf("=================================\n");
+    sep();
     printf("testing binary trailing 1's\n");
     lnum = 0;
     mask = 1;
@@ -888,7 +894,7 @@ int main(int argc, char *argv[])
         tp("%022lo", lnum);
     }
 
-    printf("=================================\n");
+    sep();
     printf("testing base 10 9's\n");
     lnum = 9;
     while(1)
@@ -903,7 +909,7 @@ int main(int argc, char *argv[])
 
     }
     printf("\n");
-    printf("=================================\n");
+    sep();
     return(0);
 }
 #endif

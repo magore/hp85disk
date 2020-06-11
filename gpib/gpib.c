@@ -1084,7 +1084,7 @@ void gpib_decode_header( FILE *fo)
     if(fo == NULL)
         fo = stdout;
 
-    fprintf(fo,"===========================================\n");
+    fprintf(fo,"==============================\n");
     fprintf(fo,"GPIB bus state\n");
     fprintf(fo,"HH . AESRPITB gpib\n");
     fprintf(fo,"HH = Hex value of Command or Data\n");

@@ -38,48 +38,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "time.h"
 #include "stringsup.h"
 
-#include "mathio.h"
 
 /// @brief Display FatFs test diagnostics help menu.
 /// @return  void
 MEMSPACE
 void fatfs_help( int full)
 {
-    printf("fatfs help\n");
-
     if(full)
     {
         printf(
-    #ifdef POSIX_TESTS
+#ifdef POSIX_TESTS
             "Note: fatfs tests MUST start with \"fatfs\" keyword\n"
-    #else
+#else
             "Note: fatfs prefix is optional\n"
-    #endif
+#endif
             "fatfs help\n"
-    #ifdef FATFS_UTILS_FULL
+#ifdef FATFS_UTILS_FULL
             "fatfs attrib file p1 p2\n"
             "fatfs cat file\n"
             "fatfs cd dir\n"
             "fatfs copy file1 file2\n"
             "fatfs create file str\n"
-    #endif
+#endif
             "fatfs mmc_test\n"
             "fatfs mmc_init\n"
             "fatfs ls directory\n"
 
-    #ifdef FATFS_UTILS_FULL
+#ifdef FATFS_UTILS_FULL
             "fatfs mkdir dir\n"
             "fatfs mkfs\n"
             "fatfs pwd\n"
-    #endif
+#endif
             "fatfs status\n"
 
-    #ifdef FATFS_UTILS_FULL
+#ifdef FATFS_UTILS_FULL
             "fatfs stat file\n"
             "fatfs rm file\n"
             "fatfs rmdir dir\n"
             "fatfs rename old new\n"
-    #endif
+#endif
             "\n"
             );
     }
@@ -104,23 +101,26 @@ int fatfs_tests(int argc,char *argv[])
     char *ptr;
     int ind;
 
+    char buff[MAX_NAME_LEN+1];
+
     ind = 0;
-    ptr = argv[ind++];
+    ptr = argv[ind];
 
     if(!ptr)
         return(0);
 
 // If we have POSIX_TESTS we MUST prefix each test with "fatfs" keyword to avoid name clashing
 
-    if( MATCH(ptr,"fatfs") )
+    if( MATCHI(ptr,"fatfs") )
     {
-        ptr = argv[ind++];
-        if ( !ptr || MATCH(ptr,"help") )
+        ptr = argv[++ind];
+        if ( !ptr || MATCHI(ptr,"help") )
         {
             fatfs_help(1);
             return(1);
         }
     }
+
 #ifdef POSIX_TESTS
     else
     {
@@ -132,10 +132,8 @@ int fatfs_tests(int argc,char *argv[])
     {
         int i;
         int args = 0;
-//printf("argc:%d\n", argc);
-        for(i=ind;i<argc;++i)
+        for(i=ind+1;i<argc;++i)
         {
-//printf("%d:%s\n", i, argv[i]);
             if(fatfs_ls(argv[i]) == 0)
 			{
 				return(-1);
@@ -166,6 +164,7 @@ int fatfs_tests(int argc,char *argv[])
 
     else if (MATCHARGS(ptr,"status", (ind + 1), argc))
     {
+        strcpy(buff,argv[ind]);
         if(fatfs_status(argv[ind]) == 0)
 		{
 			return(-1);
@@ -329,9 +328,12 @@ int fatfs_tests(int argc,char *argv[])
 MEMSPACE
 void mmc_test(void)
 {
-    printf("==============================\n");
+    char buff[MAX_NAME_LEN+1];
+
+    sep();
     printf("START MMC TEST\n");
-    fatfs_status("/");
+    strcpy(buff,"/");
+    fatfs_status(buff);
     printf("MMC Directory List\n");
     fatfs_ls("/");
 
@@ -356,7 +358,7 @@ void mmc_test(void)
 #endif
 
     printf("END MMC TEST\n");
-    printf("==============================\n");
+    sep();
 }
 
 
@@ -376,7 +378,7 @@ int fatfs_ls(char *name)
     FILINFO fno;
     DIR dirs;                                     /* Directory object */
     FATFS *fs;
-    char buff[512];
+    char buff[MAX_NAME_LEN+1];
 
 	memset(buff,0,sizeof(buff)-1);
 

@@ -219,119 +219,123 @@ $(function() {
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;{</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">int</span> rc;</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="code" href="mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f">Stat</a> = 0;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="hal_8c.html#afc021e1f6d5e6619942e33f9d6d63cda">clear_error</a>();</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="comment">// Card Detect</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    GPIO_PIN_LATCH_LOW(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    GPIO_PIN_DIR_IN(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="mmc__hal_8c.html#ae9d8b33ee8fd54f03d5d6946d6022df9">mmc_spi_init</a>();</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">char</span> buff[<a class="code" href="posix_8h.html#afd709f201d7643c3909621f620ea648a">MAX_NAME_LEN</a>+1];</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <a class="code" href="mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f">Stat</a> = 0;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="hal_8c.html#afc021e1f6d5e6619942e33f9d6d63cda">clear_error</a>();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="comment">// Card Detect</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    GPIO_PIN_LATCH_LOW(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    GPIO_PIN_DIR_IN(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>);</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">if</span>( verbose)</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;START MMC INIT\n&quot;</span>);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">// we only install timers once!</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4">mmc_init_flag</a>)</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <a class="code" href="mmc__hal_8c.html#a35434a6e722b07d8fee213c2256391be">mmc_install_timer</a>();</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a>())</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;*** MMC Card NOT Inserted! ***\n&quot;</span>);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d">RES_NOTRDY</a>); </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">if</span>( verbose)</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    {</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Card Inserted\n&quot;</span>);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="preprocessor">#if defined (FF_USE_LFN)</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;LFN Enabled&quot;</span>);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;LFN Disabled&quot;</span>);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;, Code page: %u\n&quot;</span>, <a class="code" href="ffconf_8h.html#a56bf522419025961acdfaf6388f40402">FF_CODE_PAGE</a>);</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    rc = <a class="code" href="diskio_8c.html#a09cdaa6f36fa409bdf002727bff98eb1">disk_initialize</a>(<a class="code" href="diskio_8c.html#afb573038812261a67140d1c63f57dd3e">DEV_MMC</a>);                <span class="comment">// aliased to mmc_disk_initialize()</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <a class="code" href="mmc__hal_8c.html#ae9d8b33ee8fd54f03d5d6946d6022df9">mmc_spi_init</a>();</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">if</span>( verbose)</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;START MMC INIT\n&quot;</span>);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">// we only install timers once!</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4">mmc_init_flag</a>)</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <a class="code" href="mmc__hal_8c.html#a35434a6e722b07d8fee213c2256391be">mmc_install_timer</a>();</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a>())</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;*** MMC Card NOT Inserted! ***\n&quot;</span>);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">return</span>(<a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2baad64c27c69eb1ff39ae67c5f77bb2b1d">RES_NOTRDY</a>); </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">if</span>( verbose)</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    {</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Card Inserted\n&quot;</span>);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#if defined (FF_USE_LFN)</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;LFN Enabled&quot;</span>);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;LFN Disabled&quot;</span>);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;, Code page: %u\n&quot;</span>, <a class="code" href="ffconf_8h.html#a56bf522419025961acdfaf6388f40402">FF_CODE_PAGE</a>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    }</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>  )</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>(rc);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">if</span>( rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        rc = <a class="code" href="ff_8c.html#a16a934c2bbfa2160295810adc49d5509">f_mount</a>(&amp;<a class="code" href="fatfs__sup_8c.html#aa08e4ae96880851b0a33de880d12cfd2">Fatfs</a>[0],<span class="stringliteral">&quot;/&quot;</span>, 0);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a> || verbose)</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>( rc );</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160; </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">if</span> (verbose )</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> blksize = 0;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">if</span>(rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        {</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            rc = <a class="code" href="diskio_8c.html#ab00fa450a811dbdabe3c655c1a36fab4">disk_ioctl</a> ( <a class="code" href="diskio_8c.html#afb573038812261a67140d1c63f57dd3e">DEV_MMC</a>, <a class="code" href="diskio_8h.html#aec3bb4dfe075d0ba2f3b07b300a95500">GET_BLOCK_SIZE</a>, (<span class="keywordtype">void</span> *) &amp;blksize);</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            {</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>( rc );</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Block Size - read failed\n&quot;</span>);</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            }</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            {</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Block Size: %ld\n&quot;</span>, blksize);</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            }</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <span class="keywordflow">if</span>( rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            {</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a>(<span class="stringliteral">&quot;/&quot;</span>);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        }</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;END MMC INIT\n&quot;</span>);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    }</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4">mmc_init_flag</a> = 1;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordflow">if</span>(rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <a class="code" href="hal_8c.html#a75af94e119f15cf88c2a3fe978cb8589">set_error</a>(1);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    rc = <a class="code" href="diskio_8c.html#a09cdaa6f36fa409bdf002727bff98eb1">disk_initialize</a>(<a class="code" href="diskio_8c.html#afb573038812261a67140d1c63f57dd3e">DEV_MMC</a>);                <span class="comment">// aliased to mmc_disk_initialize()</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>  )</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>(rc);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordflow">if</span>( rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        rc = <a class="code" href="ff_8c.html#a16a934c2bbfa2160295810adc49d5509">f_mount</a>(&amp;<a class="code" href="fatfs__sup_8c.html#aa08e4ae96880851b0a33de880d12cfd2">Fatfs</a>[0],<span class="stringliteral">&quot;/&quot;</span>, 0);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a> || verbose)</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>( rc );</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">if</span> (verbose )</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> blksize = 0;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">if</span>(rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            rc = <a class="code" href="diskio_8c.html#ab00fa450a811dbdabe3c655c1a36fab4">disk_ioctl</a> ( <a class="code" href="diskio_8c.html#afb573038812261a67140d1c63f57dd3e">DEV_MMC</a>, <a class="code" href="diskio_8h.html#aec3bb4dfe075d0ba2f3b07b300a95500">GET_BLOCK_SIZE</a>, (<span class="keywordtype">void</span> *) &amp;blksize);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">if</span>( rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            {</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <a class="code" href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a>( rc );</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Block Size - read failed\n&quot;</span>);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            }</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;MMC Block Size: %ld\n&quot;</span>, blksize);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            }</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">if</span>( rc == <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                <a class="code" href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a>(buff,<span class="stringliteral">&quot;/&quot;</span>);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a>(buff);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        }</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;END MMC INIT\n&quot;</span>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4">mmc_init_flag</a> = 1;</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordflow">return</span>( rc ) ;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;}</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordflow">if</span>(rc != <a class="code" href="diskio_8h.html#aacdfef1dad6565f65c26d12fe0ea4b2ba2ea4b6ef3fffc17dd1d38ab5c2837737">RES_OK</a>)</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <a class="code" href="hal_8c.html#a75af94e119f15cf88c2a3fe978cb8589">set_error</a>(1);</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00305"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#a8b718faa35b9304193cd0c074b542f8a">  305</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mmc__hal_8c.html#a5ebdcf7dd5b0f47163d20481a5d09e00">mmc_power_on</a>()</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;{</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;}</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#ac9deae120e9c3b519ea62bf4c486e2ea">  314</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mmc__hal_8c.html#af1357b405b44e70bd22a537e67fc56db">mmc_power_off</a>()</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;{</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;}</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160; </div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#ab9dae194babcfe774428305a575556cc">  325</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a>()</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;{</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="comment">// HI when card is NOT inserted</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">if</span>( GPIO_PIN_RD(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>) )</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keywordflow">return</span> (0);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="keywordflow">return</span>(1);; </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;}</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160; </div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#a5d4cd1450305a6f9ad8ebd1a19a606c5">  341</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="mmc__hal_8c.html#acbc9faece423623a86f62b50ac59b312">mmc_wp_status</a>()</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;{</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">return</span> (0);</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;}</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">return</span>( rc ) ;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;}</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00308"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#a8b718faa35b9304193cd0c074b542f8a">  308</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mmc__hal_8c.html#a5ebdcf7dd5b0f47163d20481a5d09e00">mmc_power_on</a>()</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;{</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;}</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160; </div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#ac9deae120e9c3b519ea62bf4c486e2ea">  317</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mmc__hal_8c.html#af1357b405b44e70bd22a537e67fc56db">mmc_power_off</a>()</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;{</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;}</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#ab9dae194babcfe774428305a575556cc">  328</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a>()</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;{</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="comment">// HI when card is NOT inserted</span></div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="keywordflow">if</span>( GPIO_PIN_RD(<a class="code" href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a>) )</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="keywordflow">return</span> (0);</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="keywordflow">return</span>(1);; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;}</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00344"></a><span class="lineno"><a class="line" href="mmc__hal_8h.html#a5d4cd1450305a6f9ad8ebd1a19a606c5">  344</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="mmc__hal_8c.html#acbc9faece423623a86f62b50ac59b312">mmc_wp_status</a>()</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;{</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">return</span> (0);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="ammc__hal_8c_html_a530d484dee6be1fc954f32f677add7c4"><div class="ttname"><a href="mmc__hal_8c.html#a530d484dee6be1fc954f32f677add7c4">mmc_init_flag</a></div><div class="ttdeci">static int mmc_init_flag</div><div class="ttdoc">has the MMC interface been initialized yet ?</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00213">mmc_hal.c:213</a></div></div>
 <div class="ttc" id="afatfs_8h_html"><div class="ttname"><a href="fatfs_8h.html">fatfs.h</a></div></div>
+<div class="ttc" id="aposix_8h_html_afd709f201d7643c3909621f620ea648a"><div class="ttname"><a href="posix_8h.html#afd709f201d7643c3909621f620ea648a">MAX_NAME_LEN</a></div><div class="ttdeci">#define MAX_NAME_LEN</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00133">posix.h:133</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_a6baca506fd7fb368a968a82e9093b4a0"><div class="ttname"><a href="mmc__hal_8c.html#a6baca506fd7fb368a968a82e9093b4a0">mmc_spi_begin</a></div><div class="ttdeci">void mmc_spi_begin()</div><div class="ttdoc">MMC SPI setup and chip select.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00101">mmc_hal.c:101</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_a008950e7432465c490d3c74cf0ebacc7"><div class="ttname"><a href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a></div><div class="ttdeci">MEMSPACE int fatfs_status(char *ptr)</div><div class="ttdoc">Compute space used, number of directories and files contained used by a drive.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00273">fatfs_sup.c:273</a></div></div>
+<div class="ttc" id="afatfs__sup_8c_html_a008950e7432465c490d3c74cf0ebacc7"><div class="ttname"><a href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a></div><div class="ttdeci">MEMSPACE int fatfs_status(char *ptr)</div><div class="ttdoc">Compute space used, number of directories and files contained used by a drive.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00274">fatfs_sup.c:274</a></div></div>
 <div class="ttc" id="amathio_8h_html_ad6078f8da2d30ecaef99e0c2d250c0c8"><div class="ttname"><a href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a></div><div class="ttdeci">MEMSPACE int printf(const char *format,...)</div></div>
 <div class="ttc" id="ahal_8c_html_a9617412610d280bbb4886674790d7d3e"><div class="ttname"><a href="hal_8c.html#a9617412610d280bbb4886674790d7d3e">spi_TXRX</a></div><div class="ttdeci">uint8_t spi_TXRX(uint8_t data)</div><div class="ttdoc">SPI read and write 1 byte.</div><div class="ttdef"><b>Definition:</b> <a href="hal_8c_source.html#l00491">hal.c:491</a></div></div>
 <div class="ttc" id="adiskio_8h_html_adba6790898ce4029c20a34b898ce73c1"><div class="ttname"><a href="diskio_8h.html#adba6790898ce4029c20a34b898ce73c1">DSTATUS</a></div><div class="ttdeci">BYTE DSTATUS</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8h_source.html#l00026">diskio.h:26</a></div></div>
@@ -346,16 +350,17 @@ $(function() {
 <div class="ttc" id="ahardware_2user__config_8h_html_a0fc3621fbfd7c2ba408bcbd05b27fbf3"><div class="ttname"><a href="hardware_2user__config_8h.html#a0fc3621fbfd7c2ba408bcbd05b27fbf3">MMC_SLOW</a></div><div class="ttdeci">#define MMC_SLOW</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00026">user_config.h:26</a></div></div>
 <div class="ttc" id="affconf_8h_html_a56bf522419025961acdfaf6388f40402"><div class="ttname"><a href="ffconf_8h.html#a56bf522419025961acdfaf6388f40402">FF_CODE_PAGE</a></div><div class="ttdeci">#define FF_CODE_PAGE</div><div class="ttdef"><b>Definition:</b> <a href="ffconf_8h_source.html#l00071">ffconf.h:71</a></div></div>
 <div class="ttc" id="agpio-1284p_8h_html_a9ed5ca1a49ddd458564feb79748cda4d"><div class="ttname"><a href="gpio-1284p_8h.html#a9ed5ca1a49ddd458564feb79748cda4d">GPIO_C7</a></div><div class="ttdeci">#define GPIO_C7</div><div class="ttdef"><b>Definition:</b> <a href="gpio-1284p_8h_source.html#l00037">gpio-1284p.h:37</a></div></div>
-<div class="ttc" id="ammc__hal_8c_html_acbc9faece423623a86f62b50ac59b312"><div class="ttname"><a href="mmc__hal_8c.html#acbc9faece423623a86f62b50ac59b312">mmc_wp_status</a></div><div class="ttdeci">MEMSPACE int mmc_wp_status()</div><div class="ttdoc">MMC Card Write Protect status.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00341">mmc_hal.c:341</a></div></div>
+<div class="ttc" id="ammc__hal_8c_html_acbc9faece423623a86f62b50ac59b312"><div class="ttname"><a href="mmc__hal_8c.html#acbc9faece423623a86f62b50ac59b312">mmc_wp_status</a></div><div class="ttdeci">MEMSPACE int mmc_wp_status()</div><div class="ttdoc">MMC Card Write Protect status.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00344">mmc_hal.c:344</a></div></div>
 <div class="ttc" id="ahal_8c_html_a445c14cf602a0b3dd085ee963a7986a0"><div class="ttname"><a href="hal_8c.html#a445c14cf602a0b3dd085ee963a7986a0">spi_TX_buffer</a></div><div class="ttdeci">void spi_TX_buffer(const uint8_t *data, int count)</div><div class="ttdoc">SPI write buffer.</div><div class="ttdef"><b>Definition:</b> <a href="hal_8c_source.html#l00418">hal.c:418</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_abf71973875545f3b42702ac99d5d87ef"><div class="ttname"><a href="mmc__hal_8c.html#abf71973875545f3b42702ac99d5d87ef">_mmc_timeout</a></div><div class="ttdeci">uint16_t _mmc_timeout</div><div class="ttdoc">MMC timeout counter in ms.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00047">mmc_hal.c:47</a></div></div>
+<div class="ttc" id="astringsup_8c_html_ad88a87f58b2b4a12f6644aa46ecc1baa"><div class="ttname"><a href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a></div><div class="ttdeci">MEMSPACE WEAK_ATR char * strcpy(char *dest, const char *src)</div><div class="ttdoc">copy a string</div><div class="ttdef"><b>Definition:</b> <a href="stringsup_8c_source.html#l00160">stringsup.c:160</a></div></div>
 <div class="ttc" id="adiskio_8c_html_a09cdaa6f36fa409bdf002727bff98eb1"><div class="ttname"><a href="diskio_8c.html#a09cdaa6f36fa409bdf002727bff98eb1">disk_initialize</a></div><div class="ttdeci">DSTATUS disk_initialize(BYTE pdrv)</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8c_source.html#l00078">diskio.c:78</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_a120c1501f6694e4947cb37f09679dda9"><div class="ttname"><a href="mmc__hal_8c.html#a120c1501f6694e4947cb37f09679dda9">mmc_slow</a></div><div class="ttdeci">void mmc_slow()</div><div class="ttdoc">MMC set slow SPI bus speed Only called when deselected.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00119">mmc_hal.c:119</a></div></div>
 <div class="ttc" id="afatfs__sup_8c_html_ab3509aecf1844c84f1797e5b567d531c"><div class="ttname"><a href="fatfs__sup_8c.html#ab3509aecf1844c84f1797e5b567d531c">put_rc</a></div><div class="ttdeci">MEMSPACE void put_rc(int rc)</div><div class="ttdoc">display FatFs return code as ascii string</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00145">fatfs_sup.c:145</a></div></div>
 <div class="ttc" id="atimer_8h_html"><div class="ttname"><a href="timer_8h.html">timer.h</a></div><div class="ttdoc">timer functions</div></div>
 <div class="ttc" id="adiskio_8h_html_aec625080763d6cf487e550a6c9a2dd19"><div class="ttname"><a href="diskio_8h.html#aec625080763d6cf487e550a6c9a2dd19">STA_NODISK</a></div><div class="ttdeci">#define STA_NODISK</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8h_source.html#l00061">diskio.h:61</a></div></div>
 <div class="ttc" id="atime_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">Common Linux/POSIX time functions.</div></div>
-<div class="ttc" id="ammc__hal_8c_html_a5ebdcf7dd5b0f47163d20481a5d09e00"><div class="ttname"><a href="mmc__hal_8c.html#a5ebdcf7dd5b0f47163d20481a5d09e00">mmc_power_on</a></div><div class="ttdeci">MEMSPACE void mmc_power_on()</div><div class="ttdoc">MMC Power ON.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00305">mmc_hal.c:305</a></div></div>
+<div class="ttc" id="ammc__hal_8c_html_a5ebdcf7dd5b0f47163d20481a5d09e00"><div class="ttname"><a href="mmc__hal_8c.html#a5ebdcf7dd5b0f47163d20481a5d09e00">mmc_power_on</a></div><div class="ttdeci">MEMSPACE void mmc_power_on()</div><div class="ttdoc">MMC Power ON.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00308">mmc_hal.c:308</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_ae9d8b33ee8fd54f03d5d6946d6022df9"><div class="ttname"><a href="mmc__hal_8c.html#ae9d8b33ee8fd54f03d5d6946d6022df9">mmc_spi_init</a></div><div class="ttdeci">void mmc_spi_init()</div><div class="ttdoc">MMC SPI setup and chip select.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00092">mmc_hal.c:92</a></div></div>
 <div class="ttc" id="ahal_8c_html_afc021e1f6d5e6619942e33f9d6d63cda"><div class="ttname"><a href="hal_8c.html#afc021e1f6d5e6619942e33f9d6d63cda">clear_error</a></div><div class="ttdeci">void clear_error()</div><div class="ttdoc">Set error condition.</div><div class="ttdef"><b>Definition:</b> <a href="hal_8c_source.html#l00513">hal.c:513</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_a850895a4f23c495249a3074fd2dafbcb"><div class="ttname"><a href="mmc__hal_8c.html#a850895a4f23c495249a3074fd2dafbcb">mmc_spi_TX_buffer</a></div><div class="ttdeci">void mmc_spi_TX_buffer(const uint8_t *data, int count)</div><div class="ttdoc">SPI write buffer.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00139">mmc_hal.c:139</a></div></div>
@@ -363,12 +368,12 @@ $(function() {
 <div class="ttc" id="ammc__hal_8c_html_a5e05b0c3f7ba56fa9c23be08c497eb9f"><div class="ttname"><a href="mmc__hal_8c.html#a5e05b0c3f7ba56fa9c23be08c497eb9f">Stat</a></div><div class="ttdeci">DSTATUS Stat</div><div class="ttdef"><b>Definition:</b> <a href="mmc_8c_source.html#l00078">mmc.c:78</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_a7d41efb1efa51ca4c815ee275553ecae"><div class="ttname"><a href="mmc__hal_8c.html#a7d41efb1efa51ca4c815ee275553ecae">mmc_fast</a></div><div class="ttdeci">void mmc_fast()</div><div class="ttdoc">MMC fast SPI bus speed Only called when deselected.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00129">mmc_hal.c:129</a></div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_a1cf90afdd82046f772117bb46a9849e6"><div class="ttname"><a href="hardware_2user__config_8h.html#a1cf90afdd82046f772117bb46a9849e6">MMC_FAST</a></div><div class="ttdeci">#define MMC_FAST</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00030">user_config.h:30</a></div></div>
-<div class="ttc" id="ammc__hal_8c_html_a76337667431fa723bc6d50503a52f8e0"><div class="ttname"><a href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a></div><div class="ttdeci">MEMSPACE int mmc_ins_status()</div><div class="ttdoc">MMC Card Inserted status.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00325">mmc_hal.c:325</a></div></div>
+<div class="ttc" id="ammc__hal_8c_html_a76337667431fa723bc6d50503a52f8e0"><div class="ttname"><a href="mmc__hal_8c.html#a76337667431fa723bc6d50503a52f8e0">mmc_ins_status</a></div><div class="ttdeci">MEMSPACE int mmc_ins_status()</div><div class="ttdoc">MMC Card Inserted status.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00328">mmc_hal.c:328</a></div></div>
 <div class="ttc" id="adiskio_8h_html_abd6503c70d862b979a3f7080a59e9acd"><div class="ttname"><a href="diskio_8h.html#abd6503c70d862b979a3f7080a59e9acd">STA_NOINIT</a></div><div class="ttdeci">#define STA_NOINIT</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8h_source.html#l00060">diskio.h:60</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_ad417477e66c88b40dcce683fd6a5c47a"><div class="ttname"><a href="mmc__hal_8c.html#ad417477e66c88b40dcce683fd6a5c47a">mmc_init</a></div><div class="ttdeci">MEMSPACE int mmc_init(int verbose)</div><div class="ttdoc">Initialize MMC and FatFs interface, display diagnostics.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00219">mmc_hal.c:219</a></div></div>
 <div class="ttc" id="ammc__hal_8c_html_a3371d3911fed5af510a9b6e313773171"><div class="ttname"><a href="mmc__hal_8c.html#a3371d3911fed5af510a9b6e313773171">mmc_task</a></div><div class="ttdeci">static void mmc_task(void)</div><div class="ttdoc">1000HZ timer task</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00059">mmc_hal.c:59</a></div></div>
 <div class="ttc" id="ahal_8c_html_a9eaae771107e6e01ef45ebe31ca99fdb"><div class="ttname"><a href="hal_8c.html#a9eaae771107e6e01ef45ebe31ca99fdb">chip_select_init</a></div><div class="ttdeci">void chip_select_init(uint8_t pin)</div><div class="ttdoc">CHIP select HAL.</div><div class="ttdef"><b>Definition:</b> <a href="hal_8c_source.html#l00194">hal.c:194</a></div></div>
-<div class="ttc" id="ammc__hal_8c_html_af1357b405b44e70bd22a537e67fc56db"><div class="ttname"><a href="mmc__hal_8c.html#af1357b405b44e70bd22a537e67fc56db">mmc_power_off</a></div><div class="ttdeci">MEMSPACE void mmc_power_off()</div><div class="ttdoc">MMC Power OFF.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00314">mmc_hal.c:314</a></div></div>
+<div class="ttc" id="ammc__hal_8c_html_af1357b405b44e70bd22a537e67fc56db"><div class="ttname"><a href="mmc__hal_8c.html#af1357b405b44e70bd22a537e67fc56db">mmc_power_off</a></div><div class="ttdeci">MEMSPACE void mmc_power_off()</div><div class="ttdoc">MMC Power OFF.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00317">mmc_hal.c:317</a></div></div>
 <div class="ttc" id="adiskio_8c_html_ab00fa450a811dbdabe3c655c1a36fab4"><div class="ttname"><a href="diskio_8c.html#ab00fa450a811dbdabe3c655c1a36fab4">disk_ioctl</a></div><div class="ttdeci">DRESULT disk_ioctl(BYTE pdrv, BYTE cmd, void *buff)</div><div class="ttdef"><b>Definition:</b> <a href="diskio_8c_source.html#l00181">diskio.c:181</a></div></div>
 <div class="ttc" id="aff_8c_html_a16a934c2bbfa2160295810adc49d5509"><div class="ttname"><a href="ff_8c.html#a16a934c2bbfa2160295810adc49d5509">f_mount</a></div><div class="ttdeci">FRESULT f_mount(FATFS *fs, const TCHAR *path, BYTE opt)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l03648">ff.c:3648</a></div></div>
 <div class="ttc" id="ahal_8c_html_a1fca48fcdb736ef3af2179ae8b10d963"><div class="ttname"><a href="hal_8c.html#a1fca48fcdb736ef3af2179ae8b10d963">spi_RX_buffer</a></div><div class="ttdeci">void spi_RX_buffer(const uint8_t *data, int count)</div><div class="ttdoc">SPI read buffer.</div><div class="ttdef"><b>Definition:</b> <a href="hal_8c_source.html#l00433">hal.c:433</a></div></div>
@@ -389,7 +394,7 @@ $(function() {
 <div class="ttc" id="ammc__hal_8c_html_abb3b85d2e3abc4df68487df05510bb55"><div class="ttname"><a href="mmc__hal_8c.html#abb3b85d2e3abc4df68487df05510bb55">mmc_ms_wait</a></div><div class="ttdeci">MEMSPACE void mmc_ms_wait(int ms)</div><div class="ttdoc">Wait for time in milliseconds.</div><div class="ttdef"><b>Definition:</b> <a href="mmc__hal_8c_source.html#l00204">mmc_hal.c:204</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 11 2020 03:08:02 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 11 2020 16:17:19 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
