@@ -125,9 +125,7 @@ void lif_help(int full)
             "lif extractbin lifimage lifname to_lif_file\n"
             "    extracts a file into a sigle file LIF image\n"
             "lif rename lifimage oldlifname newlifname\n"
-    #ifdef LIF_STAND_ALONE
-            "lif td02lif [options] image.td0 image.lif\n"
-    #endif
+
             "Use -d  after 'lif' keyword to enable LIF filesystem debugging\n"
             "\n"
             );
@@ -168,9 +166,11 @@ int lif_tests(int argc, char *argv[])
 
     if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
     {
-        lif_help(1);
+        if(MATCHI_LEN(argv[0],"lif"))
+			lif_help(1);
 #ifdef TELEDISK
-        td0_help(1);
+        if(MATCHI_LEN(argv[0],"td02lif"))
+			td0_help(1);
 #endif
         return(1);
     }
@@ -250,7 +250,7 @@ int lif_tests(int argc, char *argv[])
     }
 
 #ifdef TELEDISK
-    if (MATCHARGS(ptr,"td02lif", (ind + 0) ,argc))
+    if (MATCHI_LEN(ptr,"td02lif") )
     {
         int i;
 // shift the arguments down by 1

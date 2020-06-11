@@ -316,7 +316,7 @@ void fatfs_ls(char *name)
     FILINFO fno;
     DIR dirs;                                     /* Directory object */
     FATFS *fs;
-    char buff[256];
+    char buff[512];
 
 	memset(buff,0,sizeof(buff)-1);
 

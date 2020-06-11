@@ -128,9 +128,9 @@ typedef struct utimbuf
 } utime_t;
 
 #if FF_USE_LFN != 0
-#define MAX_NAME_LEN FF_MAX_LFN
+#define MAX_NAME_LEN ((FF_MAX_LFN*2)+1)
 #else
-#define MAX_NAME_LEN 13
+#define MAX_NAME_LEN ((13*2)+1)
 #endif
 
 struct dirent
