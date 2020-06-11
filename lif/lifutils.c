@@ -164,18 +164,15 @@ int lif_tests(int argc, char *argv[])
     if(!ptr || !*ptr)
         return(1);
 
-    if(MATCH(ptr,"help") || MATCH(ptr,"-help") || MATCH(ptr,"-?") )
-    {
-        if(MATCHI_LEN(argv[0],"lif"))
+
+	if(MATCHI_LEN(argv[0],"lif"))
+	{
+		if(MATCHI(ptr,"help") || MATCHI(ptr,"-help") || MATCHI(ptr,"-?") )
+		{
 			lif_help(1);
-#ifdef TELEDISK
-        if(MATCHI_LEN(argv[0],"td02lif"))
-			td0_help(1);
-#else
-		printf("td02lif not included in firmware\n");
-#endif
-        return(1);
-    }
+			return(1);
+		}
+	}
 
 // Turn one debugging
 // in the future we can add tests for specific messages
@@ -251,10 +248,20 @@ int lif_tests(int argc, char *argv[])
         return(1);
     }
 
-#ifdef TELEDISK
-    if (MATCHI_LEN(ptr,"td02lif") )
-    {
+	if(MATCHI_LEN(argv[0],"td02lif"))
+	{
         int i;
+		if(MATCHI(ptr,"help") || MATCHI(ptr,"-help") || MATCHI(ptr,"-?") )
+		{
+#ifdef TELEDISK
+			td0_help(1);
+			return(1);
+#else
+		    printf("td02lif support not enabled\n");
+			return(1);
+#endif
+		}
+#ifdef TELEDISK
 // shift the arguments down by 1
         for(i=1;i<argc;++i)
         {
@@ -264,8 +271,8 @@ int lif_tests(int argc, char *argv[])
 
         td02lif(argc,argv);
         return(1);
-    }
 #endif
+    }
     return(0);
 }
 
