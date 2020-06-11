@@ -379,6 +379,7 @@ void user_task(uint8_t gpib)
     else if (MATCHI(ptr,"input") )
     {
         debug_input = !debug_input;
+		printf("Input debugging: %s\n", debug_input ? "ON" : "OFF");
         result = 1;
     }
 #ifdef DELAY_TESTS
