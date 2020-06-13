@@ -805,8 +805,8 @@ Note: I recommend this as the easiest way to compile and build hp85disk under Wi
         * **Click on Properties -> Open the Options Tab**
           * **Enable Ctrl+Shift+C/V Copy Paste**
 
-### Ubuntu 18.04 LTS only - d NOT use 20.04 WSL yet
-Note: **20.04 Version of WSL is not working yet for this project**
+### Ubuntu 18.04 LTS only - do NOT use the Ubuntu 20.04 App under WSL yet
+Note: **Please use the 18.04 Ubuntu App - NOT the 20.04 - as it is issues**
 Note: For Windows install the WSL and Ubuntu App - see previous section
   * If you are installing Ubuntu on a new machine
     * See https://ubuntu.com/download/desktop
