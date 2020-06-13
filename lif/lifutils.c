@@ -210,6 +210,7 @@ int lif_tests(int argc, char *argv[])
         {
             dir = lif_dir_count(hpdir.BLOCKS);
             sectors = hpdir.BLOCKS;
+			// NOTE: we could grab the directory size for non 0 entries in the hpdir.ini file - I use a computed value which is also fine
             lif_create_image(name, label, dir, sectors);
             return(1);
         }
