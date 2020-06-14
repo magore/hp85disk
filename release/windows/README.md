@@ -24,7 +24,8 @@
   * Keep you command prompt open for the following steps
    
 ### Listing ISPs that avrdude supports
-  * Note: the avrdude.exe binary and support DLL were obtained from an Arduino installation hppt://arduino.cc
+  * Note: the avrdude.exe binary and support DLL were obtained from an Arduino installation
+    * See: https://www.arduino.cc/en/Main/Software 
   * Open a Command Prompt (search cmd.exe and open)
     * Unless you have one open from the previous steps
   * avrdude.exe -c list
