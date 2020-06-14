@@ -644,6 +644,10 @@ ___
   * Open Power Shell window - always use Power Shell under Windows for running Python3
     * **pip3 install pySerial**
 
+### Windows users that have an external ISP
+  * You can also follow the notes under [build/windows/README.md](build/windows/README.md)
+  * [build/windows](build/windows) includeds avrdude and the required scripts for minimal flashing of the firmware
+   
 ## Discover your serial port name
   * Make sure you have a mini usb cable handy
   * **Make sure the emulator mini-usb cable is NOT connected to your PC/Mac yet**
@@ -793,40 +797,51 @@ Note: I recommend this as the easiest way to compile and build hp85disk under Wi
       * Select **Windows Subsystem for Linux**
       * Click **OK**
       * Restart your computer when prompted
-    * Open **Windows Store**
-      * Install **Ubuntu App**
+
+### Installing Ubuntu 18.04 LTS App
+Note: **Please use the 18.04 Ubuntu App - NOT the 20.04 - as it is issues**
+  * Open **Windows Store**
+    * Install **Ubuntu 18.04 App**
+      * Say NO use use App accross all of your devices
         * Note: you DO NOT have to sign in to the Windows Store to install this, although that may not be obvious
-         * If you just **X** out of the sign in prompt the software will still install
-    * Search **Ubuntu**
-      * **Launch Ubuntu App**
-        * This will take a few minutes the first time depending on your network speed 
+        * If you just **X** out of the sign in prompt the software will still install
+  * Configure Ubuntu 18.04 App: Search **Ubuntu** 
+    * **Launch Ubuntu 18.04 App**
+      * **Note: When launching the Ubuntu App for the very first time**
+        * It will take a few minutes the first time depending on your network speed 
         * It will ask for a userid and password for a new user
+    * Configure Ubuntu App
       * **Right Click on the very top of the Ubuntu App window**
         * **Click on Properties -> Open the Options Tab**
-          * **Enable Ctrl+Shift+C/V Copy Paste**
+        * **Enable Ctrl+Shift+C/V Copy Paste**
+        * **Close and Reopen Ubuntu App for the new settings to take effect**
 
-### Ubuntu 18.04 LTS only - do NOT use the Ubuntu 20.04 App under WSL yet
-Note: **Please use the 18.04 Ubuntu App - NOT the 20.04 - as it is issues**
-Note: For Windows install the WSL and Ubuntu App - see previous section
-  * If you are installing Ubuntu on a new machine
-    * See https://ubuntu.com/download/desktop
 
 ### Automated software install and hp85disk github project download
-Note: For Windows install the WSL and Ubuntu App first - see previous section
-  * Open a terminal Window
+Note: Depends on Windows WSL install and and Ubuntu 18.04 App install - see previous section
+  * Open a Ubuntu 18.04 App terminal window
     * **Ubuntu App** under Windows
-  * You can download a script to do this
-    *  https://raw.githubusercontent.com/magore/hp85disk/master/install_hp85disk.sh
+  * You can download an install script I create to do everything for you called **install_hp85disk,sh**
+    * It will install all of the required software tools and download a copy of the github hp85disk project
+    * Copy and Paste this command into your open Ubuntu App Terminal WIndows
+    *  **wget https://raw.githubusercontent.com/magore/hp85disk/master/install_hp85disk.sh**
+  * Running the **install_hp85disk.sh** script
   * **bash ./install_hp85disk.sh**
-    * The script will ask you once for your login password so the script can run the installation as root using sudo
+    * **Note: The install script will ask you for your login password**
+      * This is the same password you just create when installing the Ubuntu App
+      * **WHy? This is permits the script to install required software inside the Ubuntu App as the Administrator/root user**
+    * **Note: This script may take 5 to 15 minutes depending on how slow your network and computer are**
+  * You now have a directory called **hp85disk**
+    * This directory is a full copy of the **hp85disk github project**
 
 ### Updating hp85disk github project at any time using git
-### Linux
+#### Linux
   * Open a **terminal window**
   * **cd hp85disk**
   * **git pull**
-### Windows
-  * Open **Ubuntu App**
+
+#### Windows
+  * Open a **Ubuntu App terminal window**
   * **cd hp85disk**
   * **git pull**
 

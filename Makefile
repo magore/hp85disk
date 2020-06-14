@@ -472,9 +472,15 @@ sdcard: install
 release: all install
 	# Save the results under release
 	cp -pf $(PROJECT).*   release/build
+	cp -pf optiboot/optiboot_atmega1284p.hex release/build
 	cp -pf sdcard/*\.lif  release/sdcard
 	cp -pf sdcard/*\.cfg  release/sdcard
 	cp -pf sdcard/*\.ini  release/sdcard
+	cp -pf $(PROJECT).hex release/windows
+	# Windows Release
+	cp -pf optiboot/optiboot_atmega1284p.hex release/windows
+	cp -pf uploader/*.py release/windows
+	cd release; rm -f windows.zip; zip -r windows.zip windows
 
 # =======================================
 .PHONY: help

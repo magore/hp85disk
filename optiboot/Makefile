@@ -15,7 +15,7 @@ OPTIBOOT_HEX   ?= optiboot_$(DEVICE).hex
 fuses_optiboot   ?= -U lfuse:w:0xd6:m -U hfuse:w:0xda:m -U efuse:w:0xff:m 
 
 # Enable boot protect
-fuses_lock       ?= -U lock:w:0xfd:m
+fuses_lock       ?= -U lock:w:0x3d:m
 
 
 optiboot: 

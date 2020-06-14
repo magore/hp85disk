@@ -58845,6 +58845,7 @@ int lif_tests(int argc, char *argv[])
    1b808:	9b 01       	movw	r18, r22
    1b80a:	ac 01       	movw	r20, r24
             sectors = hpdir.BLOCKS;
+			// NOTE: we could grab the directory size for non 0 entries in the hpdir.ini file - I use a computed value which is also fine
             lif_create_image(name, label, dir, sectors);
    1b80c:	e0 90 a4 21 	lds	r14, 0x21A4	; 0x8021a4 <hpdir+0xac>
    1b810:	f0 90 a5 21 	lds	r15, 0x21A5	; 0x8021a5 <hpdir+0xad>
