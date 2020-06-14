@@ -645,8 +645,8 @@ ___
     * **pip3 install pySerial**
 
 ### Windows users that have an external ISP
-  * You can also follow the notes under [build/windows/README.md](build/windows/README.md)
-  * [build/windows](build/windows) includeds avrdude and the required scripts for minimal flashing of the firmware
+  * You can also follow the notes under [release/build/windows/README.md](release/windows/README.md)
+  * [release/windows](release/windows) includes avrdude and the required scripts for minimal flashing of the firmware
    
 ## Discover your serial port name
   * Make sure you have a mini usb cable handy
