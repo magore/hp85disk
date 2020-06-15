@@ -81,7 +81,7 @@ export OPTIBOOT      ?= 1
 
 fuses=-U lfuse:w:0xd6:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
 optiboot_fuses ?= $(fuses)
-optiboot_lock  ?= -U lock:w:0xfd:m
+optiboot_lock  ?= -U lock:w:0x3d:m
 
 # Export all FUSES
 export fuses

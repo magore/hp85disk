@@ -45,7 +45,7 @@ boot_write:
 # Flash boot loader code using isp
 boot_lock: 
 	@echo BOOT LOCK
-	avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) $(fuses_lock)
+	-avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) $(fuses_lock)
 
 # Install optiboot code with fuses_optiboot after erasing chip
 boot_install:	erase_chip boot_write fuse_write boot_lock

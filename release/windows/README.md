@@ -23,13 +23,6 @@
     * cd Desktop\windows
   * Keep you command prompt open for the following steps
    
-### Listing ISPs that avrdude supports
-  * Note: the avrdude.exe binary and support DLL were obtained from an Arduino installation
-    * See: https://www.arduino.cc/en/Main/Software 
-  * Open a Command Prompt (search cmd.exe and open)
-    * Unless you have one open from the previous steps
-  * avrdude.exe -c list
-  
 ### Detecting serial ports for the hp85disk and ISP
   **Make sure your ISP and hp85disk are NOT attached yet**
   * Hint: Make sure you are network connected so Windows update can automatuically install any drivers
@@ -51,49 +44,95 @@
 ### ISP connection to the hp85disk
   * Attach the 6-wire ISP connector to the hp85disk board
     * **Make sure you have PIN 1 connected to PIN on the hp85disk ISP header**
-    * With the hp85disk GPIB connector facing your left, pin 1 is the 1 in the diagram below
-<pre>
-GPIB connector is on your left 
-ISP header top View
-        O O O
-        1 O O
-PCB edge facing you
-</pre>
-   * Some ISP cable connectors have a small arrow symbol on PIN 1
-   * Some have a read or black mark on the PIN 1 side of the cable
+  * **ISP header on the hp85disk PCB
+    * Orient the hp85disk PCB with GPIB connector facing your left and power connector on your right
+  * **hp85disk ISP header TOP View**
+    <pre>
+    hp85disk PCB top view of ISP header
+    <== GPIB                                    ==> Power
+    | connector                                connector |
+    |                2  4  6                             |
+    |            Pin 1  3  5                             |
+    ================= hp85disk PCB card EDGE =============
+    </pre>
 
+  * **TOP X-RAY view of ISP programmer connector that is plugged into hp85disk**
+    * Most ISP programmer cable connectors have a small arrow symbol on PIN 1
+    * Many ISP programmer cables have a KEY sticking out on the side of the connector
+    * Additionally there may be a RED or BLACK mark on the PIN 1 wire of the ISP progremmer header
+    <pre>
+    TOP X-RAY view of ISP programmer connector that is plugged into hp85disk
+      We are looking through the connector from the cable side plugged into the hp85disk
+    Note the arrow V  sympbol on the ISP plug
+    Note some ISP connectors have a KEY sticking out near pin 3
+    ===========
+    |  2  4  6 |
+    |  1  3  5 |
+    =V==|  |====
+        ====
+    </pre>
+
+    
 ## flashing the hp85disk and optiboot bootloader
   * NOTE: You can always get updated HEX files from the release/build folder
   * Make sure your hp85disk is power on
   * Open a Command Prompt (search cmd.exe and open)
     * Unless you have one open from the previous steps
-  * replace the COM port ISP name to your own
-  * **flash_release.bat avrispv2 COM8 115200**
-   * If you get errors retry a few times 
+  * Discover ISP COM port
+    * Attach the ISP programmer USB port to your computer 
+    * Use listports.py as documentedand above to find the port
+  * Example programming with **Arduino as ISP**
+    * **flash_release.bat avrisp COM3 115200**
+  * Example programming with **Pololu USB AVR Programmer V2.1**
+    * **flash_release.bat avrispv2 COM3 115200**
+  * **Note: If you get errors retry a few times**
 
 ### Troubleshooting
   * Make sure your ISP header is connected the correct way
   * Make sure you have the correct baud rate
   * Make sure you have the correct come port - rerun python3 listports.py
+  * It might take some time for WIndows to detect and install a new COM port
+    * Try waiting a few minutes
 
 ### avrisp home made ISP details
   * You need the **Arduino Platform** http://arduino.cc
   * See: https://www.arduino.cc/en/tutorial/arduinoISP
     * This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
-    * Search for **arduino nano 3.0** cost about $10 and has small formfactor and has boot loader
-  * Configureing
+    * Search for **arduino nano 3.0** cost about $10 and has small formfactor and has an arduino boot loader
+  * Instructions: https://www.arduino.cc/en/Tutorial/ArduinoISP
+  * Notes:
+    * Open Arduino Platform
     * **FILE -> Examples -> ArduinoISP**
       * This project is often referred to as **Arduino as ISP** 
-    * **NOTE: the default BAUD rate is 19200 you have to update the BAUD to this value when programming**
-  * Connections to hp85disk ISP header:
+      * Find word **BAUDRATE** using search
+        * You will see a line that says **#define BAUDRATE	19200** around line 140 in the file
+        * **Change this to 115200**
+        * This will speed up programming of the hP85disk project
+    * Pick the Arduino Baord you have - example **Arduino Nano 3.0**
+      * **Tools -> Board ->Arduino Nano**
+    * Continue with sutup and programming Instructions: https://www.arduino.cc/en/Tutorial/ArduinoISP
+
+  * Arduino as ISP header pinout
+    * When connecting the pin numbers must match
+    * **Hint** if you are using a 6 wire connector instead of jumpters wires they typically have an arrow marking pin 1
 <pre>
        Arduino Pin  hp85disk ISP header Pin
        D12          1
-       5V           NC = Not Connected! see note
+       5V           NC = MUST NOT BE CONNECTED! see note for details
        D13          3
        D11          4
        D10          5
        GND          6
 Note 5V connection - DO NOT CONNECT
-     Given the hp85disk and arduino are both powered with their own supplies it would be bad to connect ther 5V connections together
+     The hp85disk and arduino are both powered with their own supplies 
+     If one supply is just slightly different in voltage power could flow back though one of the devices
+     This could even cause damage to one of the devices - so please leave the 5V connections disconnected
 </pre>
+
+### Listing supported In System Programmers (ISP)s that avrdude supports
+  * Note: the avrdude.exe binary and support DLL were obtained from an Arduino installation
+    * See: https://www.arduino.cc/en/Main/Software 
+  * Open a Command Prompt (search cmd.exe and open)
+    * Unless you have one open from the previous steps
+  * avrdude.exe -c list
+  
