@@ -1,9 +1,10 @@
 ## Minimal Windows 6-wire ISP based flashing
   * **You MUST have an external In System Programmer (ISP) to use these steps**
+  * **I expect very few users will need these instructions unless their firmware becomes corrected in some yet unforeseen way**
 
 ### ISP options
   * See **Listing ISPs that avrdude supports** below after installing software in next step
-  * **avrispv2** is a very low cost USB based *In System programer* **ISP** about $10
+  * **avrispv2** is a very low cost USB based *In System programmer* **ISP** about $10
     * Low cost Pololu USB AVR Programmer V2.1
     * https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html
   * **avrisp** is also a very low cost arduino based *In System programer* **ISP** you can make yourself
@@ -44,7 +45,7 @@
 ### ISP connection to the hp85disk
   * Attach the 6-wire ISP connector to the hp85disk board
     * **Make sure you have PIN 1 connected to PIN on the hp85disk ISP header**
-  * **ISP header on the hp85disk PCB
+  * **ISP header on the hp85disk PCB**
     * Orient the hp85disk PCB with GPIB connector facing your left and power connector on your right
   * **hp85disk ISP header TOP View**
     <pre>
