@@ -1,6 +1,6 @@
 ## Minimal Windows 6-wire ISP based flashing
   * **You MUST have an external In System Programmer (ISP) to use these steps**
-  * **I expect very few users will need these instructions unless their firmware becomes corrected in some yet unforeseen way**
+  * **I expect very few users will need these instructions unless their firmware becomes corrupted in some yet unforeseen way**
 
 ### ISP options
   * See **Listing ISPs that avrdude supports** below after installing software in next step
