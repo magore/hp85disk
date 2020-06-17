@@ -302,6 +302,7 @@ void help()
 #ifdef LIF_SUPPORT
     lif_help(0);
 #endif
+
 #ifdef TELEDISK
     td0_help(0);
 #endif

@@ -1289,9 +1289,10 @@ ___
      (c) 2014-2020 by Mike Gore
      GNU version 3
     -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-06-16 14:29:55.060689891 -0400
-       Last updated file: 2020-06-16 22:10:23.989248726 -0400
+       GIT last pushed:   2020-06-17 11:45:19.532242738 -0400
+       Last updated file: 2020-06-17 18:35:44.724985380 -0400
     
+    fatfs help
     posix help
     lif   help
     gpib  help
@@ -1303,8 +1304,6 @@ ___
     reset   - reset emulator
     setdate - set date
     time    - display current time
-    
-    OK
 </pre>
 
 ### For lif help type *lif help*

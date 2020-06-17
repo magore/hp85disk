@@ -7,12 +7,12 @@
   * **avrispv2** is a very low cost USB based *In System programmer* **ISP** about $10
     * Low cost Pololu USB AVR Programmer V2.1
     * https://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v21.html
-  * **avrisp** is also a very low cost arduino based *In System programer* **ISP** you can make yourself
+  * **avrisp** is also a very low cost arduino based *In System programmer* **ISP** you can make yourself
     * Details are at the end of this README
 
 ### Windows Software Installation instructions - very MINIMAL
   **Make sure your ISP and hp85disk are NOT attached yet**
-  * Hint: Make sure you are network connected so Windows update can automatuically install any drivers
+  * Hint: Make sure you are network connected so Windows update can automatically install any drivers
   * **Make sure you start these steps without the ISP or hp85disk attached**
   * Install **Windows 10 Python 3.7 App* from the Microsoft App Store
   * Download [windows.zip](https://raw.githubusercontent.com/magore/hp85disk/master/release/windows.zip) 
@@ -26,12 +26,12 @@
    
 ### Detecting serial ports for the hp85disk and ISP
   **Make sure your ISP and hp85disk are NOT attached yet**
-  * Hint: Make sure you are network connected so Windows update can automatuically install any drivers
+  * Hint: Make sure you are network connected so Windows update can automatically install any drivers
   * Open a Command Prompt (search cmd.exe and open)
     * Unless you have one open from the previous steps
   * Run the following command
     * **python3 listports.py**
-  * Attach the hp85disk to your computer and attach power addapter for the hp85disk board
+  * Attach the hp85disk to your computer and attach power adapter for the hp85disk board
     * Wait until windows finishes installing the FTDI serial drivers this can take a minute
   * Re-Run 
     * **python3 listports.py**
@@ -81,7 +81,7 @@
     * Unless you have one open from the previous steps
   * Discover ISP COM port
     * Attach the ISP programmer USB port to your computer 
-    * Use listports.py as documentedand above to find the port
+    * Use listports.py as documented and above to find the port
   * Example programming with **Arduino as ISP**
     * **flash_release.bat avrisp COM3 115200**
   * Example programming with **Pololu USB AVR Programmer V2.1**
@@ -92,14 +92,14 @@
   * Make sure your ISP header is connected the correct way
   * Make sure you have the correct baud rate
   * Make sure you have the correct come port - rerun python3 listports.py
-  * It might take some time for WIndows to detect and install a new COM port
+  * It might take some time for Windows to detect and install a new COM port
     * Try waiting a few minutes
 
 ### avrisp home made ISP details
   * You need the **Arduino Platform** http://arduino.cc
   * See: https://www.arduino.cc/en/tutorial/arduinoISP
     * This uses a low cost arduino atmega328P and has source code provided with the Arduino platform itself
-    * Search for **arduino nano 3.0** cost about $10 and has small formfactor and has an arduino boot loader
+    * Search for **arduino nano 3.0** cost about $10 and has small form factor and has an arduino boot loader
   * Instructions: https://www.arduino.cc/en/Tutorial/ArduinoISP
   * Notes:
     * Open Arduino Platform
@@ -109,13 +109,13 @@
         * You will see a line that says **#define BAUDRATE	19200** around line 140 in the file
         * **Change this to 115200**
         * This will speed up programming of the hP85disk project
-    * Pick the Arduino Baord you have - example **Arduino Nano 3.0**
+    * Pick the Arduino Board you have - example **Arduino Nano 3.0**
       * **Tools -> Board ->Arduino Nano**
-    * Continue with sutup and programming Instructions: https://www.arduino.cc/en/Tutorial/ArduinoISP
+    * Continue with setup and programming Instructions: https://www.arduino.cc/en/Tutorial/ArduinoISP
 
-  * Arduino as ISP header pinout
+  * Arduino as ISP header pin-out
     * When connecting the pin numbers must match
-    * **Hint** if you are using a 6 wire connector instead of jumpters wires they typically have an arrow marking pin 1
+    * **Hint** if you are using a 6 wire connector instead of jumpers wires they typically have an arrow marking pin 1
 <pre>
        Arduino Pin  hp85disk ISP header Pin
        D12          1
@@ -137,3 +137,4 @@ Note 5V connection - DO NOT CONNECT
     * Unless you have one open from the previous steps
   * avrdude.exe -c list
   
+

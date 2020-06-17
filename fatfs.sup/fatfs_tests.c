@@ -80,6 +80,10 @@ void fatfs_help( int full)
             "\n"
             );
     }
+	else
+	{
+		printf("fatfs help\n");
+	}
 
 }
 
