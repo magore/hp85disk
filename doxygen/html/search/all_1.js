@@ -16,7 +16,7 @@ var searchData=
   ['adjugate_62',['Adjugate',['../matrix_8c.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c'],['../matrix_8h.html#a5140bc12eedbf802992531ca0ef3f0a8',1,'Adjugate(mat_t MatA):&#160;matrix.c']]],
   ['align_63',['align',['../structMKFS__PARM.html#af244e017c4cb2c821e5e819fff7db710',1,'MKFS_PARM']]],
   ['all_64',['all',['../unionf__t.html#aab0615c9ada80b0f986b58639ea8c480',1,'f_t']]],
-  ['alloc_5fdevice_65',['alloc_device',['../drives_8c.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c'],['../drives_8h.html#a779f57c67af69afdde92e28cb4ee9adb',1,'alloc_device(int type):&#160;drives.c']]],
+  ['alloc_5fdevice_65',['alloc_device',['../drives_8c.html#a3558d65506a66b177ad42b64e4a557b3',1,'alloc_device(int type):&#160;drives.c'],['../drives_8h.html#a3558d65506a66b177ad42b64e4a557b3',1,'alloc_device(int type):&#160;drives.c']]],
   ['alt_66',['alt',['../unionf__t.html#a907a8d8af4803c9a18bc0586d22d6881',1,'f_t']]],
   ['altname_67',['altname',['../structFILINFO.html#ab2a4c2f1ec81c11897c37bf0da4f9856',1,'FILINFO']]],
   ['am_5farc_68',['AM_ARC',['../ff_8h.html#ae8174d00798e34e7c9e95898cb9e1a09',1,'ff.h']]],

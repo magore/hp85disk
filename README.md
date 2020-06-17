@@ -1289,15 +1289,15 @@ ___
      (c) 2014-2020 by Mike Gore
      GNU version 3
     -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-06-10 23:10:27.976391741 -0400
-       Last updated file: 2020-06-11 02:35:27.648140790 -0400
+       GIT last pushed:   2020-06-16 14:29:55.060689891 -0400
+       Last updated file: 2020-06-16 22:10:23.989248726 -0400
     
-    fatfs help
     posix help
     lif   help
     gpib  help
     backlight 0xRRGGBB
     help
+    dir directories or file list
     input   - toggle input debugging
     mem     - display free memory
     reset   - reset emulator
@@ -1357,6 +1357,7 @@ ___
 ### For gpib help type *gpib help*
  * **gpib help**
 <pre>
+    gpib  help
     Note: gpib prefix is optional
     gpib addresses
        Display all device GPIB bus addresses and PPR values
@@ -1374,6 +1375,14 @@ ___
     gpib trace filename.txt [BUS]
        Display activity of GPIB bus and log it
        BUS - include handshake states
+    
+    
+    gpib mount AMIGO|SS80 model address file
+         Example: gpib mount 9121  6 /amigo6.lif
+         Example: gpib mount 9134D 2 /amigo2.lif
+    gpib mount PRINTER address
+         Example: gpib mount PRINTER 5
+    gpib umount address     Example: gpib umount 6
 </pre>
 ### For fatfs help type *fatfs help*
  * **fatfs help**

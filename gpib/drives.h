@@ -42,7 +42,8 @@ typedef struct
     uint8_t ADDRESS;                              //< GPIB Address
     uint8_t PPR;                                  //< Parallel Poll Response Bit
 ///@brief Maximun lengh of device file name
-    char     *NAME;                               // Filename of emulated image
+    char     *NAME;                               // File name of emulated image
+    char     *model;                              // Model name of emulated device
 } HeaderType;
 
 //@brief Identify Bytes for Drives
@@ -258,7 +259,6 @@ typedef struct
     uint8_t  ADDRESS;                             // ADDRESS
     uint8_t  PPR;                                 // PPR
     uint32_t BLOCKS;                              // Disk Blocks
-    char     model[MODEL_SIZE];
     void     *dev;                                // Disk or Printer Structure
     void     *state;                              // Disk or Printer State Structure
 } DeviceType;
@@ -342,11 +342,10 @@ enum
 // =============================================
 
 
-
 /* drives.c */
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
-int tok_index ( char *str );
+int8_t tok_index ( char *str );
 char *tok_name ( uint8_t tok );
 void print_tok_val ( uint8_t tok , uint8_t spaces , uint32_t val );
 void print_tok_str ( uint8_t tok , uint8_t spaces , char *str );
@@ -354,26 +353,34 @@ void print_tok ( uint8_t tok , uint8_t spaces );
 int Read_Config ( char *name );
 void display_Addresses ( int verbose );
 void display_Config ( int verbose );
-int find_type ( int type );
-int count_drive_types ( uint8_t type );
+int8_t find_type ( int type );
+int8_t count_drive_types ( uint8_t type );
 char *type_to_str ( int type );
 char *base_to_str ( int base );
-int find_free ( void );
-int find_device ( int type , int address , int base );
-int set_active_device ( int index );
-void SS80_Set_Defaults ( int index );
-int alloc_device ( int type );
+int8_t find_free ( void );
+int8_t find_device ( int type , int address , int base );
+int8_t set_active_device ( int8_t index );
+void SS80_Set_Defaults ( int8_t index );
+void free_device ( int8_t index );
+int8_t alloc_device ( int type );
 void init_Devices ( void );
 int push_state ( int state );
 int pop_state ( void );
 bool assign_value ( char *str , uint32_t minval , uint32_t maxval , uint32_t *val );
 void set_Config_Defaults ( void );
-void hpdir_set_device ( int index );
-void hpdir_set_parameters ( int index , char *model );
-void Post_Config ( void );
+int8_t hpdir_set_device ( int8_t index );
+int8_t hpdir_set_parameters ( int8_t index , char *model );
+int8_t verify_device ( int8_t index );
+void verify_devices ( void );
 void format_drives ( void );
-void mount ( int argc , char *argv []);
+void mount_usage ( void );
+int8_t index_address ( int8_t address );
+int8_t test_address ( int8_t address );
+int8_t index_ppr ( int8_t ppr );
+int8_t test_ppr ( int8_t ppr );
+int8_t umount ( int argc , char *argv []);
+int8_t mount ( int argc , char *argv []);
+void display_mount ( int8_t index );
 void display_mounts ( void );
-
 
 #endif                                            // _DRIVES_H

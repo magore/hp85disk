@@ -46,6 +46,8 @@ boot_write:
 boot_lock: 
 	@echo BOOT LOCK
 	-avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) $(fuses_lock)
+	@echo "NOTE **** 0x3d boot_lock might read as 0xfd - this is OK! ****"
+	@echo
 
 # Install optiboot code with fuses_optiboot after erasing chip
 boot_install:	erase_chip boot_write fuse_write boot_lock

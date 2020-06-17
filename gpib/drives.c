@@ -252,10 +252,10 @@ void print_str_P(__memx const char *str, char *arg)
 /// ===============================================
 /// @brief return the tokens index of the matching string
 /// @param str string tro match
-/// @return  int index
-int tok_index(char *str)
+/// @return  index
+int8_t tok_index(char *str)
 {
-    int i;
+    int8_t i;
     for (i = 0; (tokens[i].tok != TOK_INVALID) ; ++i )
     {
         if( MATCHI(str,tokens[i].name) )
@@ -350,11 +350,13 @@ int Read_Config(char *name)
 #endif
 
     char *ptr;
-    int index = 0;
-    int ind;
+    int8_t index = 0;
+    int8_t ind;
     val_t val;
     int tok = TOK_INVALID;
     int lines = 0;
+	int8_t ppr;
+	int8_t address;
 
     char str[128];
     char token[128];
@@ -435,8 +437,7 @@ int Read_Config(char *name)
                         else
                         {
                             SS80p = (SS80DiskType *) Devices[index].dev;
-// Also sets Devices[index].model
-                            hpdir_set_parameters(index,token);
+                            hpdir_set_parameters(index,token); // also SS80p->HEADER.model
                         }
                         break;
 #ifdef AMIGO
@@ -451,8 +452,7 @@ int Read_Config(char *name)
                         else
                         {
                             AMIGOp = (AMIGODiskType *) Devices[index].dev;
-// Also sets Devices[index.model
-                            hpdir_set_parameters(index,token);
+                            hpdir_set_parameters(index,token); // also sets AMIGOp->HEADER.model
                         }
                         break;
 #endif
@@ -492,8 +492,9 @@ int Read_Config(char *name)
             case PRINTER_CONFIG:
                 if(tok == TOK_ADDRESS)
                 {
-                    Devices[index].ADDRESS = 0x1f & val.b;
-                    PRINTERp->HEADER.ADDRESS  = 0x1f & val.b;
+					address = val.b;
+                    Devices[index].ADDRESS = address;
+                    PRINTERp->HEADER.ADDRESS  = address;
 // NO PPR
                     Devices[index].PPR = 0xff;
                     PRINTERp->HEADER.PPR = 0xff;
@@ -539,12 +540,14 @@ int Read_Config(char *name)
                 switch(tok)
                 {
                     case TOK_ADDRESS:
-                        Devices[index].ADDRESS = 0x1f & val.b;
-                        SS80p->HEADER.ADDRESS  = 0x1f & val.b;
+						address = val.b;
+                        Devices[index].ADDRESS = address;
+                        SS80p->HEADER.ADDRESS  = address;
                         break;
                     case TOK_PPR:
-                        Devices[index].PPR = 0x07 & val.b;
-                        SS80p->HEADER.PPR = 0x07 & val.b;
+						ppr = val.b;
+                        Devices[index].PPR = ppr;
+                        SS80p->HEADER.PPR = ppr;
                         break;
                     case TOK_FILE:
                         SS80p->HEADER.NAME = stralloc(token);
@@ -687,12 +690,14 @@ int Read_Config(char *name)
                     case TOK_DRIVE:
                         break;
                     case TOK_ADDRESS:
-                        Devices[index].ADDRESS = 0x1f & val.b;
-                        AMIGOp->HEADER.ADDRESS = 0x1f & val.b;
+						address =  val.b;
+                        Devices[index].ADDRESS = address;
+                        AMIGOp->HEADER.ADDRESS = address;
                         break;
                     case TOK_PPR:
-                        Devices[index].PPR = 0x07 & val.b;
-                        AMIGOp->HEADER.PPR = 0x07 & val.b;
+						ppr = val.b;
+                        Devices[index].PPR = ppr;
+                        AMIGOp->HEADER.PPR = ppr;
                         break;
                     case TOK_FILE:
                         AMIGOp->HEADER.NAME = stralloc(token);
@@ -760,8 +765,8 @@ int Read_Config(char *name)
         ++errors;
     }
 
-// Post process device values
-    Post_Config();
+// Post process and fixup any devices
+    verify_devices();
 
     return(errors);
 }
@@ -785,14 +790,14 @@ void display_Addresses( int verbose )
             if(Devices[i].TYPE == SS80_TYPE)
             {
                 SS80p= (SS80DiskType *)Devices[i].dev;
-                printf("SS80 %s\n", Devices[i].model);
+                printf("SS80 %s\n", SS80p->HEADER.model);
                 print_tok_str(TOK_FILE, 4, SS80p->HEADER.NAME);
             }
 #ifdef AMIGO
             if(Devices[i].TYPE == AMIGO_TYPE )
             {
                 AMIGOp= (AMIGODiskType *)Devices[i].dev;
-                printf("AMIGO %s\n", Devices[i].model);
+                printf("AMIGO %s\n", AMIGOp->HEADER.model);
                 print_tok_str(TOK_FILE, 4, AMIGOp->HEADER.NAME);
             }
 #endif
@@ -844,8 +849,10 @@ void display_Addresses( int verbose )
 void display_Config( int verbose)
 {
     int i;
+
 ///@brief Active Printer Device
     PRINTERDeviceType *PRINTERp = NULL;
+
 ///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
 
@@ -864,7 +871,7 @@ void display_Config( int verbose)
         {
             SS80p= (SS80DiskType *)Devices[i].dev;
 
-            printf("SS80 %s\n", Devices[i].model);
+            printf("SS80 %s\n", SS80p->HEADER.model);
             printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) SS80p->HEADER.ADDRESS);
 
             print_tok(TOK_CONFIG,4);
@@ -930,7 +937,7 @@ void display_Config( int verbose)
         {
             AMIGOp= (AMIGODiskType *)Devices[i].dev;
 
-            printf("AMIGO %s\n", Devices[i].model);
+            printf("AMIGO %s\n", AMIGOp->HEADER.model);
             printf("  # HP85 BASIC ADDRESS :D7%d0\n", (int) AMIGOp->HEADER.ADDRESS);
 
             print_tok(TOK_HEADER,4);
@@ -981,7 +988,7 @@ void display_Config( int verbose)
 ///@brief Seach Devices[] for ANY definitions of a disk type
 ///@param type: disk type like SS80_TYPE
 //@return Devices[] index fopr matching type
-int find_type(int type)
+int8_t find_type(int type)
 {
     int i;
     for(i=0;i<MAX_DEVICES;++i)
@@ -995,7 +1002,7 @@ int find_type(int type)
 
 /// @brief Count number of devices of a sertain type
 ///@param type: disk type like SS80_TYPE
-int count_drive_types(uint8_t type)
+int8_t count_drive_types(uint8_t type)
 {
     int i;
     int count = 0;
@@ -1042,7 +1049,7 @@ char *base_to_str(int base)
 
 ///@brief Find first free Devices[] slot
 ///@return Devices[] index of free slot or -1
-int find_free()
+int8_t find_free()
 {
     return(find_type(NO_TYPE));
 }
@@ -1053,7 +1060,7 @@ int find_free()
 ///@param address: GPIB device address 0 based
 ///@param base: BASE_MLA,BASE_MTA or BASE_MSA address range
 ///@return index of Devices[] or -1 if not found
-int find_device(int type, int address, int base)
+int8_t find_device(int type, int address, int base)
 {
     int i;
 
@@ -1083,7 +1090,7 @@ int find_device(int type, int address, int base)
 /// display state changes here. Other code displays the active state.
 ///@param index: Devices[] index
 ///@return 1 on success or 0 on fail
-int set_active_device(int index)
+int8_t set_active_device(int8_t index)
 {
     int type,address;
 
@@ -1167,9 +1174,9 @@ int set_active_device(int index)
 /// Most values in the CONTROLER and UNIT are defaults that should not need to be specified
 /// Note all of the values are zeroed on allocation including strings
 ///@return void
-void SS80_Set_Defaults(int index)
+void SS80_Set_Defaults(int8_t index)
 {
-    int defindex = find_type(SS80_DEFAULT_TYPE);
+    int8_t defindex = find_type(SS80_DEFAULT_TYPE);
     SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
     SS80DiskType *SS80DEFAULTp;
 
@@ -1180,7 +1187,7 @@ void SS80_Set_Defaults(int index)
 
     SS80p->HEADER.ADDRESS               = SS80DEFAULTp->HEADER.ADDRESS;
     SS80p->HEADER.PPR                   = SS80DEFAULTp->HEADER.PPR;
-    SS80p->HEADER.NAME = stralloc(SS80DEFAULTp->HEADER.NAME);
+    SS80p->HEADER.NAME                  = stralloc(SS80DEFAULTp->HEADER.NAME);
 
     SS80p->CONFIG.ID                    = SS80DEFAULTp->CONFIG.ID;
     SS80p->CONTROLLER.UNITS_INSTALLED   = SS80DEFAULTp->CONTROLLER.UNITS_INSTALLED;
@@ -1206,13 +1213,63 @@ void SS80_Set_Defaults(int index)
     SS80p->VOLUME.INTERLEAVE            = SS80DEFAULTp->VOLUME.INTERLEAVE;
 };
 
+
+///@brief Free a Device structure for a disk or printer
+///@param type: disk index
+///@return void
+void free_device(int8_t index)
+{
+	
+	extern void printer_close(void);
+
+	if(index < 0 || index >= MAX_DEVICES)
+		return;
+
+    if(Devices[index].TYPE == SS80_TYPE)
+    {
+        SS80DiskType *SS80p = (SS80DiskType *) Devices[index].dev;
+		// Device Model Name
+		safefree(SS80p->HEADER.NAME);
+		// File
+		safefree(SS80p->HEADER.model);
+	}
+
+#ifdef AMIGO
+    if(Devices[index].TYPE == AMIGO_TYPE)
+    {
+        AMIGODiskType *AMIGOp = (AMIGODiskType *) Devices[index].dev;
+		// Device Model Name
+		safefree(AMIGOp->HEADER.NAME);
+		// File
+		safefree(AMIGOp->HEADER.model);
+	}
+#endif
+
+	// FIXME use printer structure to permit multiple printers
+    if(Devices[index].TYPE == PRINTER_TYPE)
+    {
+		printer_close();
+	}
+
+	safefree(Devices[index].dev);
+	safefree(Devices[index].state);
+
+	Devices[index].TYPE = NO_TYPE;
+	Devices[index].ADDRESS = 0;
+	Devices[index].PPR = 0xff;
+	Devices[index].BLOCKS = 0;
+	Devices[index].dev = NULL;
+	Devices[index].state = NULL;
+
+}
+
 ///@brief Allocate a Device structure for a disk or printer
 ///@param type: disk type
 ///@return Devices[] index on sucess or -1
-int alloc_device(int type)
+int8_t alloc_device(int type)
 {
-    int ind;
-    int index = -1;
+    int8_t ind;
+    int8_t index = -1;
 
 // Find a free slot
     ind = find_free();
@@ -1275,7 +1332,6 @@ void init_Devices()
         Devices[i].ADDRESS = 0;
         Devices[i].PPR = 0xff;
         Devices[i].BLOCKS = 0;
-        memset(Devices[i].model, 0, sizeof(Devices[i].model) );
         Devices[i].dev = NULL;
         Devices[i].state = NULL;
     }
@@ -1371,7 +1427,7 @@ bool assign_value(char *str, uint32_t minval, uint32_t maxval, uint32_t *val)
 void set_Config_Defaults()
 {
 #if defined(SET_DEFAULTS)
-    int index;
+    int8_t index;
 
 ///@brief Add optional hard coded devices for any that are missing
     if(find_type(SS80_TYPE) == -1)
@@ -1433,10 +1489,10 @@ void set_Config_Defaults()
 /// ===============================================
 ///@brief Set Device parameters from hpdir information
 ///
-///@param[in] model: model string
+///@param[in] index: device index
 ///
-///@return 1 on sucess or 0 on fail
-void hpdir_set_device(int index)
+///@return 1 success, 0 on error
+int8_t hpdir_set_device(int8_t index)
 {
     if(Devices[index].TYPE == SS80_TYPE)
     {
@@ -1452,7 +1508,8 @@ void hpdir_set_device(int index)
 
         SS80p->VOLUME.MAX_BLOCK_NUMBER  = hpdir.BLOCKS-1;
         Devices[index].BLOCKS = hpdir.BLOCKS;
-        strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
+        SS80p->HEADER.model = stralloc(hpdir.model);
+		return(1);
     }
 
 #ifdef AMIGO
@@ -1465,14 +1522,12 @@ void hpdir_set_device(int index)
         AMIGOp->GEOMETRY.HEADS = hpdir.HEADS;
         AMIGOp->GEOMETRY.CYLINDERS = hpdir.CYLINDERS;
         Devices[index].BLOCKS = hpdir.BLOCKS;
-        strncpy(Devices[index].model, hpdir.model, sizeof(Devices[index].model) -2);
+        AMIGOp->HEADER.model = stralloc(hpdir.model);
+		return(1);
     }
 #endif
-    else
-    {
-        printf("hpdir_parameters invalid TYPE\n");
-    }
-
+	printf("hpdir invalid type - NOT AMIGO of SS80\n");
+	return(0);
 }
 
 
@@ -1482,21 +1537,29 @@ void hpdir_set_device(int index)
 ///@param[in] index: Devices index
 ///@param[in] model: model string
 ///
-///@return void
-void hpdir_set_parameters(int index, char *model)
+///@return 1 on success, 0 or failure
+int8_t hpdir_set_parameters(int8_t index, char *model)
 {
     if ( hpdir_find_drive( model, 0 ,1) )
-        hpdir_set_device(index);
+        return(hpdir_set_device(index) );
+	printf("WARNING: model NOT found in hpdir.ini!\n");
+	return(0);
 }
 
-
 /// ===============================================
-/// @brief Post Process COnfiguration file after reading
-/// @return  void
-void Post_Config()
+/// @brief Verify a device and delete it is there are any errors
+/// @return  1 = OK 0 = ERROR
+int8_t verify_device(int8_t index)
 {
-    int i;
     long sectors;
+	int8_t type;
+	int address,ppr;
+	int8_t ret = 1;	
+
+	uint8_t  ppr_bits = 0;
+	uint8_t  ppr_mask;
+	uint32_t addr_bits = 0;
+	uint32_t addr_mask;
 
 ///@brief Active SS80 Device
     SS80DiskType *SS80p = NULL;
@@ -1506,40 +1569,96 @@ void Post_Config()
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
-    for(i=0;i<MAX_DEVICES;++i)
-    {
-        if(Devices[i].TYPE == NO_TYPE)
-            continue;
+    if(Devices[index].TYPE == NO_TYPE)
+        return(ret);
 
-        if(Devices[i].TYPE == SS80_TYPE)
+	address = Devices[index].ADDRESS;
+    type = Devices[index].TYPE;
+	ppr = Devices[index].PPR;
+
+	if(address < 0 || address > 31)
+	{
+		printf("Address (%d) out of range\n", (int) address);
+		ret = 0;
+	}
+	
+	addr_mask = (1L << address);
+	if(addr_bits & addr_bits)
+	{
+		printf("Address (%d) duplicated\n", (int) address);
+		ret = 0;
+	}
+	addr_bits |= addr_mask;
+
+	
+	// Printers do not use PPR
+	if(type == PRINTER_TYPE)
+	{
+		Devices[index].PPR = 0xff;
+		return(1);
+	}
+	if(type == SS80_TYPE || AMIGO_TYPE)
+	{
+		if(ppr < 0 || ppr > 7)
+		{
+			ret = 0;
+		}
+		ppr_mask = (1 << ppr);
+		if(ppr_bits & ppr_bits)
+		{
+			printf("PPR (%d) duplicated\n", (int) ppr);
+			ret = 0;
+		}
+		ppr_bits |= ppr_mask;
+	}
+    if(type == SS80_TYPE)
+    {
+        SS80p= (SS80DiskType *)Devices[index].dev;
+        if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
         {
-            SS80p= (SS80DiskType *)Devices[i].dev;
-            if( SS80p->UNIT.BYTES_PER_BLOCK != 256)
-            {
 // SS80p->UNIT.BYTES_PER_BLOCK = 256;
-                printf("Warning: %s BYTES_PER_BLOCK != 256, Adjusting to 256\n", Devices[i].model);
-            }
-            sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER+1;
-            Devices[i].BLOCKS = sectors;
-        }                                         // SS80_TYPE
+            printf("Warning: %s BYTES_PER_BLOCK != 256, Adjusting to 256\n", SS80p->HEADER.model);
+			ret = 0;
+        }
+        sectors = SS80p->VOLUME.MAX_BLOCK_NUMBER+1;
+        Devices[index].BLOCKS = sectors;
+    }                                         // SS80_TYPE
 
 #ifdef AMIGO
-        if(Devices[i].TYPE == AMIGO_TYPE )
+    if(type == AMIGO_TYPE )
+    {
+        AMIGOp = (AMIGODiskType *)Devices[index].dev;
+        if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
         {
-            AMIGOp = (AMIGODiskType *)Devices[i].dev;
-            if( AMIGOp->GEOMETRY.BYTES_PER_SECTOR != 256)
-            {
-                AMIGOp->GEOMETRY.BYTES_PER_SECTOR = 256;
-                printf("Warning: %s BYTES_PER_SECTOR != 256, Adjusting to 256\n", Devices[i].model);
-            }
-            sectors = AMIGOp->GEOMETRY.SECTORS_PER_TRACK
-                * AMIGOp->GEOMETRY.HEADS
-                * AMIGOp->GEOMETRY.CYLINDERS;
-            Devices[i].BLOCKS = sectors;
+            AMIGOp->GEOMETRY.BYTES_PER_SECTOR = 256;
+            printf("Warning: %s BYTES_PER_SECTOR != 256, Adjusting to 256\n", SS80p->HEADER.model);
+			ret = 0;
         }
-#endif                                    // #ifdef AMIGO
+        sectors = AMIGOp->GEOMETRY.SECTORS_PER_TRACK
+            * AMIGOp->GEOMETRY.HEADS
+            * AMIGOp->GEOMETRY.CYLINDERS;
+        Devices[index].BLOCKS = sectors;
     }
+#endif                                    // #ifdef AMIGO
+	if(!ret)
+	{
+		printf("Device errors - removing: ");
+		display_mount(index);	
+		free_device(index);
+	}
+	return(ret);
 }
+
+/// ===============================================
+/// @brief Post process and Verify all devices
+/// @return  1 = OK 0 = ERROR
+void verify_devices()
+{
+	int8_t i;
+	for(i=0;i<MAX_DEVICES;++i)
+		verify_device(i);
+}
+	
 
 
 /// ===============================================
@@ -1631,24 +1750,231 @@ void format_drives()
         sep();
 }
 
+/// ===============================================
+/// @brief mount_usage - testing
+/// @return void
+void mount_usage(void)
+{
+	printf("Usage: \n");
+    printf("Mounting drives\n");
+	printf("    mount AMIGO 9121 2 amigo-22.lif\n");
+	printf("    mount SS80 9134D 3 ss80-3.lif\n");
+	printf("\n");
+	printf("Mounting printer\n");
+	printf("    mount PRINTER 5\n");
+	printf("\n");
+    printf("Displaying mounted drives\n");
+	printf("    mount\n");
+}
+
+
+
+/// @brief return index matching address 
+/// @return index or -1 if not found
+int8_t index_address(int8_t address)
+{
+	int8_t i;
+    for(i=0;i<MAX_DEVICES;++i)
+    {
+        if(Devices[i].TYPE != NO_TYPE && Devices[i].ADDRESS == address)
+            return(i);
+    }
+	return(-1);
+}
+
+/// @brief test if address is in use
+/// @return index 1 if found, 0 if not
+int8_t test_address(int8_t address)
+{
+	if(address < 0 || address > 31)
+	{
+		printf("WARNING Address (%d) out of range\n", (int)address);
+		return(0);
+	}
+
+	if(index_address(address) == -1)
+		return(1);
+	printf("WARNING Address (%d) already in use\n", (int)address);
+	return(0);
+}
+
+
+/// @brief return index matching ppr
+/// @return index or -1 if not found
+int8_t index_ppr(int8_t  ppr)
+{
+	int8_t i;
+    for(i=0;i<MAX_DEVICES;++i)
+    {
+        if(Devices[i].TYPE != NO_TYPE && Devices[i].PPR == ppr)
+            return(i);
+    }
+	return(-1);
+}
+
+/// @brief test if PPR is in use
+/// @return index 1 if found, 0 if not
+int8_t test_ppr(int8_t ppr)
+{
+	if(ppr < 0 || ppr > 7)
+	{
+		printf("WARNING PPR (%d) out of range\n", (int)ppr);
+		return(0);
+	}
+
+	if(index_ppr(ppr) == -1)
+		return(1);
+	printf("WARNING PPR (%d) already in use\n", (int)ppr);
+	return(0);
+}
+
+/// ===============================================
+/// @brief umount disks - testing
+/// @return Devices[] index on success, -1 on error
+int8_t umount(int argc, char *argv[])
+{
+
+	int8_t address;
+	int8_t index;
+
+	if(argc != 2)
+	{
+		printf("Usage:\n");
+		printf("  umount address\n");
+		printf("  - address is the device address\n");
+	}
+	address = atoi(argv[1]);
+	index = index_address(address);
+	if(index == -1)
+	{
+		printf("umount address:[%d] NOT found\n", address);
+		return(-1);
+	}
+	free_device(index);
+	return(index);
+}
 
 /// ===============================================
 /// @brief mount disks - testing
-/// @return  void
-void mount(int argc, char *argv[])
+/// @return Devices[] index on success, -1 on error
+int8_t mount(int argc, char *argv[])
 {
-	int i;
-	for(i = 1;i< argc;++i)
+	int8_t index = -1;
+	
+///@brief Active Printer Device
+    PRINTERDeviceType *PRINTERp = NULL;
+///@brief Active SS80 Device
+    SS80DiskType *SS80p = NULL;
+#ifdef AMIGO
+///@brief Active AMIGO Device
+    AMIGODiskType *AMIGOp = NULL;
+#endif
+#if 0
+	int8_t i;
+	for(i =1;i< argc;++i)
 	{
 		printf("argv[%d] = %s\n", (int) i, argv[i]);
 
 	}
-	display_mounts();
+#endif
+	if(argc == 1)
+	{
+		display_mounts();
+		return(1);
+	}
+	else if(argc == 3)
+	{
+			if(MATCHI(argv[1], "PRINTER"))
+			{
+				// FIXME - do we want to have separtate address and ppr ?
+				int8_t address = atoi(argv[2]) & 0xff;
+				index = alloc_device(PRINTER_TYPE);
+				if(index < 0)
+				{
+					printf("Could not allocate PRINTER structure\n");
+					return(0);
+				}
+				PRINTERp = (PRINTERDeviceType *) Devices[index].dev;
+				PRINTERp->HEADER.ADDRESS  = address;
+				Devices[index].ADDRESS = address;
+				Devices[index].PPR = 0xff;
+				return( verify_device(index) );
+			}
+	}
+	else if(argc == 4)
+	{
+		/*
+		argv[1] = 9121
+		argv[2] = 2
+		argv[3] = amigo2.lif
+		*/
+		if(!hpdir_find_drive(argv[1],0,0) )
+		{
+			printf("WARNING: model NOT found in hpdir.ini!\n");
+			return(-1);
+		}
+		if(MATCHI(hpdir.TYPE, "SS80") || MATCHI(hpdir.TYPE,"CS80") )
+		{
+			// FIXME - do we want to have separtate address and ppr ?
+			int8_t address = atoi(argv[2]) & 0xff;
+			int8_t ppr = address;
+			index = alloc_device(SS80_TYPE);
+			if(index < 0)
+			{
+				printf("Could not allocate SS80 structure for %s\n",argv[2]);
+				return(0);
+			}
+			SS80p = (SS80DiskType *) Devices[index].dev;
+			if( !hpdir_set_parameters(index, argv[1] ) )
+				return(-1);
+			SS80p->HEADER.NAME = stralloc(argv[3]);
+			SS80p->HEADER.ADDRESS  = address;
+			SS80p->HEADER.PPR = ppr;
+			Devices[index].ADDRESS = address;
+			Devices[index].PPR = ppr;
+			return( verify_device(index) );
+		}
+#ifdef AMIGO
+		else if(MATCHI(argv[1], "AMIGO"))
+		{
+			// FIXME - do we want to have separtate address and ppr ?
+			int8_t address = atoi(argv[2]) & 0xff;
+			int8_t ppr = address;
+			index = alloc_device(AMIGO_TYPE);
+			if(index < 0)
+			{
+				printf("Could not allocate AMIGO structure for %s\n",argv[2]);
+				return(0);
+			}
+			AMIGOp = (AMIGODiskType *) Devices[index].dev;
+			if( !hpdir_set_parameters(index, argv[1] ) )
+				return(-1);
+			AMIGOp->HEADER.NAME = stralloc(argv[3]);
+			AMIGOp->HEADER.ADDRESS  = address;
+			AMIGOp->HEADER.PPR = ppr;
+			Devices[index].ADDRESS = address;
+			Devices[index].PPR = ppr;
+			return( verify_device(index) );
+		}
+#endif
+		else
+		{
+			printf("Expected AMIGO or SS80 [%s]\n",argv[1]);
+			mount_usage();
+			return(0);
+		}
+	}
+	else 
+	{
+		mount_usage();
+		return(0);
+	}
+	return(1);
 }
 
-void display_mounts( )
+
+void display_mount(int8_t index )
 {
-    int i;
 
 ///@brief Active Printer Device
     PRINTERDeviceType *PRINTERp = NULL;
@@ -1660,32 +1986,36 @@ void display_mounts( )
     AMIGODiskType *AMIGOp = NULL;
 #endif
 
-    for(i=0;i<MAX_DEVICES;++i)
-    {
-        if(Devices[i].TYPE == NO_TYPE)
-            continue;
+	if(Devices[index].TYPE == NO_TYPE)
+		return;
 
-        if(Devices[i].TYPE == SS80_TYPE)
-        {
-            SS80p= (SS80DiskType *)Devices[i].dev;
+	if(Devices[index].TYPE == SS80_TYPE)
+	{
+		SS80p= (SS80DiskType *)Devices[index].dev;
 
-            printf("%-16s SS80  %2d %s\n", Devices[i].model, (int) SS80p->HEADER.ADDRESS, SS80p->HEADER.NAME);
-		}
+		printf("SS80    %-8s %2d %s\n", SS80p->HEADER.model, (int) SS80p->HEADER.ADDRESS, SS80p->HEADER.NAME);
+	}
 
 #ifdef AMIGO
-        if(Devices[i].TYPE == AMIGO_TYPE )
-        {
-            AMIGOp= (AMIGODiskType *)Devices[i].dev;
-            printf("%-16s AMIGO %2d %s\n", Devices[i].model, (int) AMIGOp->HEADER.ADDRESS, AMIGOp->HEADER.NAME);
-        }
+	if(Devices[index].TYPE == AMIGO_TYPE )
+	{
+		AMIGOp = (AMIGODiskType *)Devices[index].dev;
+		printf("AMIGO   %-8s %2d %s\n", AMIGOp->HEADER.model, (int) AMIGOp->HEADER.ADDRESS, AMIGOp->HEADER.NAME);
+	}
 #endif                                    // #ifdef AMIGO
 
-        if(Devices[i].TYPE == PRINTER_TYPE )
-        {
-            PRINTERp= (PRINTERDeviceType *)Devices[i].dev;
-            printf("%-16s       %2d\n", "PRINTER", (int) PRINTERp->HEADER.ADDRESS);
-		}
-    }
-    printf("\n");
+	if(Devices[index].TYPE == PRINTER_TYPE )
+	{
+            PRINTERp= (PRINTERDeviceType *)Devices[index].dev;
+            printf("PRINTER %-8s %2d\n", " ", (int) PRINTERp->HEADER.ADDRESS);
+	}
 }
 
+void display_mounts()
+{
+	int8_t i;
+	printf("Mounted drives\n");
+	for(i=0;i<MAX_DEVICES;++i)
+		display_mount(i);
+    printf("\n");
+}

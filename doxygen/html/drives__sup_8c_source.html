@@ -199,7 +199,7 @@ $(function() {
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="drives__sup_8c.html#a62325ad76bfc3f8644185f0579f07b1a">hpdir_init</a>();</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span>(verbose)</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Found Model: %s\n&quot;</span>, model);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Model: %s found in hpdir.ini\n&quot;</span>, model);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">// 1 Model</span></div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="stringsup_8c.html#acdb13cf3724e976e98a6178baf0a3ac5">strncpy</a>(<a class="code" href="drives__sup_8c.html#a6edb848661be578eca78845085870674">hpdir</a>.<a class="code" href="structhpdir__t.html#a3855aafd93d84611573376653f9cd2c0">model</a>,<a class="code" href="parsing_8c.html#ae9142769a957bcb8c0fad1934576f576">token</a>,<span class="keyword">sizeof</span>(<a class="code" href="drives__sup_8c.html#a6edb848661be578eca78845085870674">hpdir</a>.<a class="code" href="structhpdir__t.html#a3855aafd93d84611573376653f9cd2c0">model</a>)-2);</div>
@@ -267,8 +267,10 @@ $(function() {
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    }                                             <span class="comment">// while</span></div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="posix_8c.html#ad6fd240fec1d65213f34b6e6465a8033">fclose</a>(cfg);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">return</span>(found);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">if</span>(verbose &amp;&amp; !found)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Model: %s NOT found in hpdir.ini\n&quot;</span>, model);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordflow">return</span>(found);</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aparsing_8c_html_a9cc256e4952848245227600da2552e34"><div class="ttname"><a href="parsing_8c.html#a9cc256e4952848245227600da2552e34">get_value</a></div><div class="ttdeci">MEMSPACE int32_t get_value(char *str)</div><div class="ttdoc">get a number</div><div class="ttdef"><b>Definition:</b> <a href="parsing_8c_source.html#l00432">parsing.c:432</a></div></div>
 <div class="ttc" id="aposix_8c_html_a8e661c338f41695d1a1e70aed6255e2d"><div class="ttname"><a href="posix_8c.html#a8e661c338f41695d1a1e70aed6255e2d">fopen</a></div><div class="ttdeci">MEMSPACE FILE * fopen(const char *path, const char *mode)</div><div class="ttdoc">POSIX Open a file with path name and ascii file mode string.</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00801">posix.c:801</a></div></div>
@@ -309,7 +311,7 @@ $(function() {
 <div class="ttc" id="adrives__sup_8c_html_a264e7130c0a912421d467a5924ff0fef"><div class="ttname"><a href="drives__sup_8c.html#a264e7130c0a912421d467a5924ff0fef">lif_dir_count</a></div><div class="ttdeci">long lif_dir_count(long blocks)</div><div class="ttdoc">LIF Directory blocks ~= sqrt(blocks);.</div><div class="ttdef"><b>Definition:</b> <a href="drives__sup_8c_source.html#l00057">drives_sup.c:57</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 16 2020 14:29:54 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 16 2020 22:13:34 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -157,7 +157,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
         hpdir_init();
 
         if(verbose)
-            printf("Found Model: %s\n", model);
+            printf("Model: %s found in hpdir.ini\n", model);
 
 // 1 Model
         strncpy(hpdir.model,token,sizeof(hpdir.model)-2);
@@ -225,5 +225,7 @@ int hpdir_find_drive(char *model, int list, int verbose)
 
     }                                             // while
     fclose(cfg);
+	if(verbose && !found)
+		printf("Model: %s NOT found in hpdir.ini\n", model);
     return(found);
 }

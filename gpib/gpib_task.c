@@ -786,6 +786,7 @@ int GPIB_LISTEN(uint8_t ch)
         if(talking != UNT)
         {
 ///@brief NULL creates a file named based on date and time
+// FIXME use printer structure to permit multiple printers
             printer_open(NULL);
         }
         return(0);

@@ -66,6 +66,13 @@ void gpib_help(int full)
             "gpib ppr_set XX\n"
     #endif
             "\n"
+			"gpib mount AMIGO|SS80 model address file\n"
+			"     Example: gpib mount 9121  6 /amigo6.lif\n"
+			"     Example: gpib mount 9134D 2 /amigo2.lif\n"
+			"gpib mount PRINTER address\n"
+			"     Example: gpib mount PRINTER 5\n"
+			"gpib umount address"
+			"     Example: gpib umount 6\n"
             );
     }
 }
@@ -108,9 +115,16 @@ int gpib_tests(int argc, char * argv[])
 
     if (MATCHI(ptr,"mount") )
     {
-		mount(argc, argv);
+		if(!mount(argc, argv))
+			return(-1);
 		return(1);
     }
+    if (MATCHI(ptr,"umount") )
+    {
+		if(!umount(argc, argv))
+			return(-1);
+		return(1);
+	}
 
     if (MATCHI(ptr,"addresses") )
     {

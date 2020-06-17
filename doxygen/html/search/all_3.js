@@ -76,7 +76,7 @@ var searchData=
   ['copyright_297',['copyright',['../hardware_2user__config_8h.html#ae4c83013e72a2a5ed2f205b36a40583a',1,'user_config.h']]],
   ['copyright_2emd_298',['COPYRIGHT.md',['../COPYRIGHT_8md.html',1,'']]],
   ['count_299',['count',['../structPRINTERStateType.html#ae115fc351910f3801e37b31f254fb8f4',1,'PRINTERStateType']]],
-  ['count_5fdrive_5ftypes_300',['count_drive_types',['../drives_8c.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c'],['../drives_8h.html#a306684070b386e868ed1e647e5172ee0',1,'count_drive_types(uint8_t type):&#160;drives.c']]],
+  ['count_5fdrive_5ftypes_300',['count_drive_types',['../drives_8c.html#a16cebc504495fa2ce1533329d89ec900',1,'count_drive_types(uint8_t type):&#160;drives.c'],['../drives_8h.html#a16cebc504495fa2ce1533329d89ec900',1,'count_drive_types(uint8_t type):&#160;drives.c']]],
   ['cpu_2eh_301',['cpu.h',['../cpu_8h.html',1,'']]],
   ['crc_302',['CRC',['../structtd__header__t.html#ae51197a200b65947359773f1aeea9c2d',1,'td_header_t::CRC()'],['../structtd__comment__t.html#a4bcc6435d5a4408627be9f50ef124211',1,'td_comment_t::CRC()'],['../structtd__track__t.html#a32523d00c555ab3bc766a585d06ce372',1,'td_track_t::CRC()'],['../structtd__sector__t.html#aaccfa1ee85151410b042457fc5b584e5',1,'td_sector_t::CRC()']]],
   ['create_5fchain_303',['create_chain',['../ff_8c.html#a31672d266a18255892580984a708fd96',1,'ff.c']]],

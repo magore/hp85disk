@@ -317,6 +317,7 @@ void help()
         "delay_tests\n"
 #endif
         "help\n"
+        "dir directories or file list\n"
         "input   - toggle input debugging\n"
         "mem     - display free memory\n"
         "reset   - reset emulator\n"
@@ -432,6 +433,24 @@ void user_task(uint8_t gpib)
     {
         help();
         result = 1;
+    }
+
+    if (MATCHI(ptr,"dir") )
+    {
+        int i;
+        int args = 0;
+        result = 1;
+        for(i=1;i<argc;++i)
+        {
+            if(fatfs_ls(argv[i]) == 0)
+				result = -1;
+            ++args;
+        }
+        if(!args)
+        {
+            if(fatfs_ls("") == 0)
+				result = -1;
+        }
     }
 
 	if( (ret = gpib_tests(argc,argv)) )
