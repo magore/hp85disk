@@ -1361,12 +1361,13 @@ ___
 	mount
 		 displays a list of mounted drives one per line
 	mount AMIGO|SS80 model address file
-		 Example: gpib mount 9121  6 /amigo6.lif
-		 Example: gpib mount 9134D 2 /amigo2.lif
+		 Example: mount 9121  6 /amigo6.lif
+		 Example: mount 9134D 2 /amigo2.lif
 		 Note: drive model must exist in hpdir.ini [driveinfo] section
 	mount PRINTER address
-		 Example: gpib mount PRINTER 5
-	umount address     Example: gpib umount 6
+		 Example: mount PRINTER 5
+	umount address     
+         Example: umount 6
 
 	addresses
 	   Display all device GPIB bus addresses and PPR values
