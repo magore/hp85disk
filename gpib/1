@@ -1,0 +1,57 @@
+/// @brief GPIB user tests
+///  User invoked GPIB functions and tasks
+/// @return  1 matched token, 0 if not
+int drives_tests(int argc, char * argv[])
+{
+    char *ptr;
+    int ind;
+
+    ind = 0;
+    ptr = argv[ind++];
+
+    if(!ptr)
+        return(0);
+
+    if (MATCHI(ptr,"mount") )
+    {
+		if(!mount(argc, argv))
+			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
+
+		return(1);
+    }
+    if (MATCHI(ptr,"umount") )
+    {
+		if(!umount(argc, argv))
+			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
+		return(1);
+	}
+
+    if (MATCHI(ptr,"addresses") )
+    {
+        ptr = argv[ind];
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Addresses(1);
+        else
+            display_Addresses(0);
+        return(1);
+    }
+
+    if (MATCHI(ptr,"config") )
+    {
+        ptr = argv[ind];
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Config(1);
+        else
+            display_Config(0);
+        return(1);
+    }
+}
+

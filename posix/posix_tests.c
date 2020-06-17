@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 MEMSPACE
 void posix_help(int full)
 {
-    printf("posix help\n");
+    printf("posix     help\n");
     if(full)
     {
         printf(

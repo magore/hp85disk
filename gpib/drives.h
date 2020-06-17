@@ -342,6 +342,8 @@ enum
 // =============================================
 
 
+
+
 /* drives.c */
 void print_var_P ( __memx const char *str , uint32_t val );
 void print_str_P ( __memx const char *str , char *arg );
@@ -373,7 +375,9 @@ int8_t hpdir_set_parameters ( int8_t index , char *model );
 int8_t verify_device ( int8_t index );
 void verify_devices ( void );
 void format_drives ( void );
+void drives_help ( int8_t full );
 void mount_usage ( void );
+int drives_tests ( int argc , char *argv []);
 int8_t index_address ( int8_t address );
 int8_t test_address ( int8_t address );
 int8_t index_ppr ( int8_t ppr );
@@ -382,5 +386,6 @@ int8_t umount ( int argc , char *argv []);
 int8_t mount ( int argc , char *argv []);
 void display_mount ( int8_t index );
 void display_mounts ( void );
+
 
 #endif                                            // _DRIVES_H

@@ -1,0 +1,26 @@
+/// @brief
+///  Help Menu for User invoked GPIB functions and tasks
+///  See: int gpib_tests(char *str)
+/// @return  void
+drives_help(int8_t full)
+{
+		printf( \
+		"addresses\n"
+		"   Display all device GPIB bus addresses and PPR values\n"
+		"config [-v]\n"
+		"   Display current drives configuration\n"
+		"   -v Verbose - show full detail\n"
+		"\n"
+		"mount\n"
+		"     displays a list of mounted drives one per line\n"
+		"mount AMIGO|SS80 model address file\n"
+		"     Example: gpib mount 9121  6 /amigo6.lif\n"
+		"     Example: gpib mount 9134D 2 /amigo2.lif\n"
+		"     Note: drive model must exist in hpdir.ini [driveinfo] section\n"
+		"mount PRINTER address\n"
+		"     Example: gpib mount PRINTER 5\n"
+		"umount address"
+		"     Example: gpib umount 6\n"
+            );
+}
+

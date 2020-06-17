@@ -30,10 +30,9 @@
 ///  Help Menu for User invoked GPIB functions and tasks
 ///  See: int gpib_tests(char *str)
 /// @return  void
-
 void gpib_help(int full)
 {
-    printf("gpib  help\n");
+    printf("gpib     help\n");
     if(full)
     {
         printf("Note: gpib prefix is optional\n"
@@ -54,7 +53,7 @@ void gpib_help(int full)
             "   Display activity of GPIB bus and log it\n"
             "   BUS - include handshake states\n"
             "\n"
-    #ifdef GPIB_EXTENDED_TESTS
+#ifdef GPIB_EXTENDED_TESTS
             "gpib port read pins   [A-D]\n"
             "gpib port read latch  [A-D]\n"
             "gpib port read ddr    [A-D]\n"
@@ -64,22 +63,11 @@ void gpib_help(int full)
             "gpib ppr_bit_on N\n"
             "gpib ppr_bit_off N\n"
             "gpib ppr_set XX\n"
-    #endif
             "\n"
-			"gpib mount\n"
-			"     displays a list of mounted drives one per line\n"
-			"gpib mount AMIGO|SS80 model address file\n"
-			"     Example: gpib mount 9121  6 /amigo6.lif\n"
-			"     Example: gpib mount 9134D 2 /amigo2.lif\n"
-			"     Note: drive model must exist in hpdir.ini [driveinfo] section\n"
-			"gpib mount PRINTER address\n"
-			"     Example: gpib mount PRINTER 5\n"
-			"gpib umount address"
-			"     Example: gpib umount 6\n"
+#endif
             );
-    }
+	}
 }
-
 
 /// @brief GPIB user tests
 ///  User invoked GPIB functions and tasks
@@ -113,48 +101,6 @@ int gpib_tests(int argc, char * argv[])
             ++ind;
         debuglevel = get_value(argv[ind]);
         printf("debug=%04XH\n", debuglevel);
-        return(1);
-    }
-
-    if (MATCHI(ptr,"mount") )
-    {
-		if(!mount(argc, argv))
-			return(-1);
-#ifdef LCD_SUPPORT
-    extern void update_drive_counts();
-    update_drive_counts();
-#endif
-
-		return(1);
-    }
-    if (MATCHI(ptr,"umount") )
-    {
-		if(!umount(argc, argv))
-			return(-1);
-#ifdef LCD_SUPPORT
-    extern void update_drive_counts();
-    update_drive_counts();
-#endif
-		return(1);
-	}
-
-    if (MATCHI(ptr,"addresses") )
-    {
-        ptr = argv[ind];
-        if(ptr && *ptr && MATCH(ptr,"-v"))
-            display_Addresses(1);
-        else
-            display_Addresses(0);
-        return(1);
-    }
-
-    if (MATCHI(ptr,"config") )
-    {
-        ptr = argv[ind];
-        if(ptr && *ptr && MATCH(ptr,"-v"))
-            display_Config(1);
-        else
-            display_Config(0);
         return(1);
     }
 

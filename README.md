@@ -1283,27 +1283,28 @@ ___
  * Any word that has **help** after it will give help for that command
  * **help**
 <pre>
-    >help
-    Stand alone version of LIF utilities for linux
-    HP85 Disk and Device Emulator
-     (c) 2014-2020 by Mike Gore
-     GNU version 3
-    -> https://github.com/magore/hp85disk
-       GIT last pushed:   2020-06-17 11:45:19.532242738 -0400
-       Last updated file: 2020-06-17 18:35:44.724985380 -0400
-    
-    fatfs help
-    posix help
-    lif   help
-    gpib  help
-    backlight 0xRRGGBB
-    help
-    dir directories or file list
-    input   - toggle input debugging
-    mem     - display free memory
-    reset   - reset emulator
-    setdate - set date
-    time    - display current time
+	>help
+	HP85 Disk and Device Emulator with built in LIF utilities
+	 (c) 2014-2020 by Mike Gore
+	 GNU version 3
+	-> https://github.com/magore/hp85disk
+	   GIT last pushed:   2020-06-17 18:38:58.616809582 -0400
+	   Last updated file: 2020-06-17 19:33:03.013483346 -0400
+
+	help     - displays this help menu
+	fatfs     help
+	posix     help
+	lif       help
+	drives    help
+	backlight 0xRRGGBB
+	dir       directories list
+	input   - toggle input debugging
+	mem     - display free memory
+	reset   - reset emulator
+	setdate - set date
+	time    - display current time
+
+	OK
 </pre>
 
 ### For lif help type *lif help*
@@ -1353,16 +1354,33 @@ ___
     posix rename old new
 </pre>
 
+### For drives help type *drives help*
+ * **drives help**
+<pre>
+	>drives help
+	mount
+		 displays a list of mounted drives one per line
+	mount AMIGO|SS80 model address file
+		 Example: gpib mount 9121  6 /amigo6.lif
+		 Example: gpib mount 9134D 2 /amigo2.lif
+		 Note: drive model must exist in hpdir.ini [driveinfo] section
+	mount PRINTER address
+		 Example: gpib mount PRINTER 5
+	umount address     Example: gpib umount 6
+
+	addresses
+	   Display all device GPIB bus addresses and PPR values
+	config [-v]
+	   Display current drives configuration
+	   -v Verbose - show full detail
+</pre>
+
+
 ### For gpib help type *gpib help*
  * **gpib help**
 <pre>
     gpib  help
     Note: gpib prefix is optional
-    gpib addresses
-       Display all device GPIB bus addresses and PPR values
-    gpib config [-v]
-       Display current drives configuration
-       -v Verbose - show full detail
     gpib debug N
        debug message reporting see hpdisk.cfg for details
     gpib elapsed
@@ -1374,18 +1392,8 @@ ___
     gpib trace filename.txt [BUS]
        Display activity of GPIB bus and log it
        BUS - include handshake states
-    
-    
-    gpib mount
-         displays a list of mounted drives one per line
-         Note: drive model must exist in hpdir.ini [driveinfo] section
-    gpib mount AMIGO|SS80 model address file
-         Example: gpib mount 9121  6 /amigo6.lif
-         Example: gpib mount 9134D 2 /amigo2.lif
-    gpib mount PRINTER address
-         Example: gpib mount PRINTER 5
-    gpib umount address     Example: gpib umount 6
 </pre>
+
 ### For fatfs help type *fatfs help*
  * **fatfs help**
 <pre>

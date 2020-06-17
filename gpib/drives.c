@@ -1752,23 +1752,109 @@ void format_drives()
         sep();
 }
 
-/// ===============================================
-/// @brief mount_usage - testing
-/// @return void
-void mount_usage(void)
+
+/// @brief
+///  Help Menu for drives and configuration help
+///  See: int drives_tests(char *str)
+/// @return  void
+void drives_help(int8_t full)
 {
-	printf("Usage: \n");
-    printf("Mounting drives\n");
-	printf("    mount 9121 2 amigo-22.lif\n");
-	printf("    mount 9134D 3 ss80-3.lif\n");
-	printf("\n");
-	printf("Mounting printer\n");
-	printf("    mount PRINTER 5\n");
-	printf("\n");
-    printf("Displaying mounted drives\n");
-	printf("    mount\n");
+	if(!full)
+	{
+		printf("drives    help\n");
+		return;
+	}
+
+	printf(\
+		"mount\n"
+		"     displays a list of mounted drives one per line\n"
+		"mount AMIGO|SS80 model address file\n"
+		"     Example: gpib mount 9121  6 /amigo6.lif\n"
+		"     Example: gpib mount 9134D 2 /amigo2.lif\n"
+		"     Note: drive model must exist in hpdir.ini [driveinfo] section\n"
+		"mount PRINTER address\n"
+		"     Example: gpib mount PRINTER 5\n"
+		"umount address"
+		"     Example: gpib umount 6\n"
+		"\n"
+		"addresses\n"
+		"   Display all device GPIB bus addresses and PPR values\n"
+		"config [-v]\n"
+		"   Display current drives configuration\n"
+		"   -v Verbose - show full detail\n"
+		"\n"
+            );
 }
 
+void mount_usage()
+{
+	printf("Usage: \n");
+	drives_help(1);
+}
+
+/// @brief GPIB user tests
+///  User invoked GPIB functions and tasks
+/// @return  1 matched token, 0 if not
+int drives_tests(int argc, char * argv[])
+{
+    char *ptr;
+    int ind;
+
+    ind = 0;
+    ptr = argv[ind++];
+
+    if(!ptr)
+        return(0);
+
+    if (MATCHI(ptr,"drives") && MATCHI(argv[ind], "help"))
+	{
+		drives_help(1);
+		return(1);
+	}
+
+    if (MATCHI(ptr,"mount") )
+    {
+		if(!mount(argc, argv))
+			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
+
+		return(1);
+    }
+    if (MATCHI(ptr,"umount") )
+    {
+		if(!umount(argc, argv))
+			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
+		return(1);
+	}
+
+    if (MATCHI(ptr,"addresses") )
+    {
+        ptr = argv[ind];
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Addresses(1);
+        else
+            display_Addresses(0);
+        return(1);
+    }
+
+    if (MATCHI(ptr,"config") )
+    {
+        ptr = argv[ind];
+        if(ptr && *ptr && MATCH(ptr,"-v"))
+            display_Config(1);
+        else
+            display_Config(0);
+        return(1);
+    }
+	return(0);
+}
 
 
 /// @brief return index matching address 

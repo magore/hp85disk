@@ -110,7 +110,7 @@ extern hpdir_t hpdir;
 MEMSPACE
 void lif_help(int full)
 {
-    printf( "lif   help\n" );
+    printf( "lif       help\n" );
 
     if(full)
     {

@@ -82,7 +82,7 @@ void fatfs_help( int full)
     }
 	else
 	{
-		printf("fatfs help\n");
+		printf("fatfs     help\n");
 	}
 
 }

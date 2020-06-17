@@ -201,8 +201,12 @@ void \mbox{\hyperlink{drives_8h_aec5e08b9b7f954301611d76dd39e2a99}{verify\+\_\+d
 \begin{DoxyCompactList}\small\item\em Post process and Verify all devices. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{drives_8h_ae5e26f65c0c469c7ad467201a7591fad}{format\+\_\+drives}} (void)
 \begin{DoxyCompactList}\small\item\em Format devices that have no image file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{drives_8h_af3d71ffd0be15f40e2e18bda09e3d9a7}{drives\+\_\+help}} (int8\+\_\+t full)
+\begin{DoxyCompactList}\small\item\em Help Menu for drives and configuration help See\+: int drives\+\_\+tests(char $\ast$str) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{drives_8h_a9e152919cb15f1bef77538b2fe88bece}{mount\+\_\+usage}} (void)
-\begin{DoxyCompactList}\small\item\em mount\+\_\+usage -\/ testing \end{DoxyCompactList}\item 
+\item 
+int \mbox{\hyperlink{drives_8h_ae5b11c9707bd09f96c4b034f559f9f75}{drives\+\_\+tests}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em G\+P\+IB user tests User invoked G\+P\+IB functions and tasks. \end{DoxyCompactList}\item 
 int8\+\_\+t \mbox{\hyperlink{drives_8h_aa3767c1f97b5434dd07bd1e9cf09ad53}{index\+\_\+address}} (int8\+\_\+t address)
 \begin{DoxyCompactList}\small\item\em return index matching address \end{DoxyCompactList}\item 
 int8\+\_\+t \mbox{\hyperlink{drives_8h_ac2597ef72ba03446dee0b35a0ab9457f}{test\+\_\+address}} (int8\+\_\+t address)
@@ -706,7 +710,7 @@ Definition at line 778 of file drives.\+c.
 
 
 
-Referenced by gpib\+\_\+tests(), and main().
+Referenced by drives\+\_\+tests(), and main().
 
 \mbox{\Hypertarget{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}\label{drives_8h_a226919985bc5fcb9a6fc250d94e5a393}} 
 \index{drives.h@{drives.h}!display\_Config@{display\_Config}}
@@ -729,7 +733,7 @@ Definition at line 849 of file drives.\+c.
 
 
 
-Referenced by gpib\+\_\+tests().
+Referenced by drives\+\_\+tests().
 
 \mbox{\Hypertarget{drives_8h_a86ecd1f1425e7da9aff557b72305b494}\label{drives_8h_a86ecd1f1425e7da9aff557b72305b494}} 
 \index{drives.h@{drives.h}!display\_mount@{display\_mount}}
@@ -741,7 +745,7 @@ Active Printer Device
 
 Active S\+S80 Device
 
-Definition at line 1978 of file drives.\+c.
+Definition at line 2064 of file drives.\+c.
 
 
 
@@ -755,11 +759,53 @@ Referenced by display\+\_\+mounts(), and verify\+\_\+device().
 
 
 
-Definition at line 2016 of file drives.\+c.
+Definition at line 2102 of file drives.\+c.
 
 
 
 Referenced by mount().
+
+\mbox{\Hypertarget{drives_8h_af3d71ffd0be15f40e2e18bda09e3d9a7}\label{drives_8h_af3d71ffd0be15f40e2e18bda09e3d9a7}} 
+\index{drives.h@{drives.h}!drives\_help@{drives\_help}}
+\index{drives\_help@{drives\_help}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{drives\_help()}{drives\_help()}}
+{\footnotesize\ttfamily void drives\+\_\+help (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{full }\end{DoxyParamCaption})}
+
+
+
+Help Menu for drives and configuration help See\+: int drives\+\_\+tests(char $\ast$str) 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1760 of file drives.\+c.
+
+
+
+Referenced by drives\+\_\+tests(), help(), and mount\+\_\+usage().
+
+\mbox{\Hypertarget{drives_8h_ae5b11c9707bd09f96c4b034f559f9f75}\label{drives_8h_ae5b11c9707bd09f96c4b034f559f9f75}} 
+\index{drives.h@{drives.h}!drives\_tests@{drives\_tests}}
+\index{drives\_tests@{drives\_tests}!drives.h@{drives.h}}
+\doxysubsubsection{\texorpdfstring{drives\_tests()}{drives\_tests()}}
+{\footnotesize\ttfamily int drives\+\_\+tests (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+G\+P\+IB user tests User invoked G\+P\+IB functions and tasks. 
+
+\begin{DoxyReturn}{Returns}
+1 matched token, 0 if not 
+\end{DoxyReturn}
+
+
+Definition at line 1798 of file drives.\+c.
+
+
+
+Referenced by user\+\_\+task().
 
 \mbox{\Hypertarget{drives_8h_ac29ead2d44b6f45ac521ec75ed3c0849}\label{drives_8h_ac29ead2d44b6f45ac521ec75ed3c0849}} 
 \index{drives.h@{drives.h}!find\_device@{find\_device}}
@@ -961,7 +1007,7 @@ index or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1776 of file drives.\+c.
+Definition at line 1862 of file drives.\+c.
 
 
 
@@ -982,7 +1028,7 @@ index or -\/1 if not found
 \end{DoxyReturn}
 
 
-Definition at line 1806 of file drives.\+c.
+Definition at line 1892 of file drives.\+c.
 
 
 
@@ -1023,11 +1069,11 @@ Active Printer Device
 
 Active S\+S80 Device
 
-Definition at line 1862 of file drives.\+c.
+Definition at line 1948 of file drives.\+c.
 
 
 
-Referenced by gpib\+\_\+tests().
+Referenced by drives\+\_\+tests().
 
 \mbox{\Hypertarget{drives_8h_a9e152919cb15f1bef77538b2fe88bece}\label{drives_8h_a9e152919cb15f1bef77538b2fe88bece}} 
 \index{drives.h@{drives.h}!mount\_usage@{mount\_usage}}
@@ -1037,14 +1083,7 @@ Referenced by gpib\+\_\+tests().
 
 
 
-mount\+\_\+usage -\/ testing 
-
-=============================================== \begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-
-
-Definition at line 1758 of file drives.\+c.
+Definition at line 1789 of file drives.\+c.
 
 
 
@@ -1105,7 +1144,7 @@ Definition at line 241 of file drives.\+c.
 
 Display Configuration File variable. 
 
-=============================================== \hypertarget{drives_8h_autotoc_md170}{}\doxysubsection{@brief Display Configuration File variable}\label{drives_8h_autotoc_md170}
+=============================================== \hypertarget{drives_8h_autotoc_md171}{}\doxysubsection{@brief Display Configuration File variable}\label{drives_8h_autotoc_md171}
 
 \begin{DoxyParams}{Parameters}
 {\em str} & title \\
@@ -1345,7 +1384,7 @@ index 1 if found, 0 if not
 \end{DoxyReturn}
 
 
-Definition at line 1789 of file drives.\+c.
+Definition at line 1875 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a3b18f41b7f72f3e6aa8eea393b5ac434}\label{drives_8h_a3b18f41b7f72f3e6aa8eea393b5ac434}} 
 \index{drives.h@{drives.h}!test\_ppr@{test\_ppr}}
@@ -1362,7 +1401,7 @@ index 1 if found, 0 if not
 \end{DoxyReturn}
 
 
-Definition at line 1819 of file drives.\+c.
+Definition at line 1905 of file drives.\+c.
 
 \mbox{\Hypertarget{drives_8h_a0e9716dd73ee22a2b9ea645df8fa10c8}\label{drives_8h_a0e9716dd73ee22a2b9ea645df8fa10c8}} 
 \index{drives.h@{drives.h}!tok\_index@{tok\_index}}
@@ -1457,11 +1496,11 @@ Devices\mbox{[}\mbox{]} index on success, -\/1 on error
 \end{DoxyReturn}
 
 
-Definition at line 1836 of file drives.\+c.
+Definition at line 1922 of file drives.\+c.
 
 
 
-Referenced by gpib\+\_\+tests().
+Referenced by drives\+\_\+tests().
 
 \mbox{\Hypertarget{drives_8h_a5a003a7f569e9977ede275f4ca540932}\label{drives_8h_a5a003a7f569e9977ede275f4ca540932}} 
 \index{drives.h@{drives.h}!verify\_device@{verify\_device}}

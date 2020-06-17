@@ -54,8 +54,7 @@ int8_t debug_input = 0;
 ///@return void
 void copyright()
 {
-    printf("Stand alone version of LIF utilities for linux\n");
-    printf("HP85 Disk and Device Emulator\n");
+    printf("HP85 Disk and Device Emulator with built in LIF utilities\n");
     printf(" (c) 2014-2020 by Mike Gore\n");
     printf(" GNU version 3\n");
     printf("-> https://github.com/magore/hp85disk\n");
@@ -291,6 +290,8 @@ void help()
 
     copyright();
 
+	printf("help     - displays this help menu\n");
+
 #ifdef FATFS_TESTS
     fatfs_help(0);
 #endif
@@ -307,7 +308,7 @@ void help()
     td0_help(0);
 #endif
 
-    gpib_help(0);
+	drives_help(0);
 
     printf(
 #ifdef LCD_SUPPORT
@@ -317,8 +318,7 @@ void help()
 #ifdef DELAY_TESTS
         "delay_tests\n"
 #endif
-        "help\n"
-        "dir directories or file list\n"
+        "dir       directories list\n"
         "input   - toggle input debugging\n"
         "mem     - display free memory\n"
         "reset   - reset emulator\n"
@@ -493,6 +493,14 @@ void user_task(uint8_t gpib)
 			result = 1;
 	}
 #endif
+    if( (ret = drives_tests(argc,argv)) )
+	{
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
+	}
+
     if(result == 1)
         printf("OK\n");
 	else if(result == -1)
