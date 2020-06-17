@@ -469,7 +469,7 @@ sdcard: install
 
 # =======================================
 .PHONY: release
-release: all install
+release: all install sdcard
 	# Save the results under release
 	cp -pf $(PROJECT).*   release/build
 	cp -pf optiboot/optiboot_atmega1284p.hex release/build

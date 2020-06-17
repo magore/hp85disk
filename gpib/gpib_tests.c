@@ -66,6 +66,8 @@ void gpib_help(int full)
             "gpib ppr_set XX\n"
     #endif
             "\n"
+			"gpib mount\n"
+			"     displays a list of mounted drives one per line\n"
 			"gpib mount AMIGO|SS80 model address file\n"
 			"     Example: gpib mount 9121  6 /amigo6.lif\n"
 			"     Example: gpib mount 9134D 2 /amigo2.lif\n"
@@ -117,12 +119,21 @@ int gpib_tests(int argc, char * argv[])
     {
 		if(!mount(argc, argv))
 			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
+
 		return(1);
     }
     if (MATCHI(ptr,"umount") )
     {
 		if(!umount(argc, argv))
 			return(-1);
+#ifdef LCD_SUPPORT
+    extern void update_drive_counts();
+    update_drive_counts();
+#endif
 		return(1);
 	}
 

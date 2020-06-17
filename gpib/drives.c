@@ -1655,8 +1655,10 @@ int8_t verify_device(int8_t index)
 void verify_devices()
 {
 	int8_t i;
+
 	for(i=0;i<MAX_DEVICES;++i)
 		verify_device(i);
+
 }
 	
 
@@ -1757,8 +1759,8 @@ void mount_usage(void)
 {
 	printf("Usage: \n");
     printf("Mounting drives\n");
-	printf("    mount AMIGO 9121 2 amigo-22.lif\n");
-	printf("    mount SS80 9134D 3 ss80-3.lif\n");
+	printf("    mount 9121 2 amigo-22.lif\n");
+	printf("    mount 9134D 3 ss80-3.lif\n");
 	printf("\n");
 	printf("Mounting printer\n");
 	printf("    mount PRINTER 5\n");
@@ -1935,7 +1937,7 @@ int8_t mount(int argc, char *argv[])
 			return( verify_device(index) );
 		}
 #ifdef AMIGO
-		else if(MATCHI(argv[1], "AMIGO"))
+		else if(MATCH(hpdir.TYPE, "AMIGO"))
 		{
 			// FIXME - do we want to have separtate address and ppr ?
 			int8_t address = atoi(argv[2]) & 0xff;
@@ -1959,7 +1961,7 @@ int8_t mount(int argc, char *argv[])
 #endif
 		else
 		{
-			printf("Expected AMIGO or SS80 [%s]\n",argv[1]);
+			printf("Expected AMIGO or SS80 or CS80 for [%s]\n",argv[1]);
 			mount_usage();
 			return(0);
 		}

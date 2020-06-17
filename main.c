@@ -505,6 +505,17 @@ void user_task(uint8_t gpib)
 	}
 }
 
+#ifdef LCD_SUPPORT
+void update_drive_counts()
+{
+	char tmp[32];
+
+    sprintf((char *) tmp, "SS80=%d AMIGO=%d",
+        (int) count_drive_types(SS80_TYPE),
+        (int) count_drive_types(AMIGO_TYPE) );
+	sprintf((char *) _line1, "%-16s", tmp);
+}
+#endif
 
 /// @brief  main() for gpib project
 /// @return  should never return!
@@ -512,7 +523,6 @@ int main(void)
 {
     ts_t ts;
     uint32_t actual,baud;
-	char tmp[32];
 
 	clear_error();		// Clear error state
 
@@ -619,10 +629,7 @@ int main(void)
     format_drives();
 
 #ifdef LCD_SUPPORT
-	sprintf((char *) tmp, "SS80=%d AMIGO=%d",
-		(int) count_drive_types(SS80_TYPE),
-		(int) count_drive_types(AMIGO_TYPE) );
-	sprintf((char *) _line1, "%-16s", tmp);
+	update_drive_counts();
 	sprintf((char *) _line2, "%-16s", "(C)Mike Gore");
 
 	i2c_task_run();
