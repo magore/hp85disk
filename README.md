@@ -1379,6 +1379,7 @@ ___
     
     gpib mount
          displays a list of mounted drives one per line
+         Note: drive model must exist in hpdir.ini [driveinfo] section
     gpib mount AMIGO|SS80 model address file
          Example: gpib mount 9121  6 /amigo6.lif
          Example: gpib mount 9134D 2 /amigo2.lif

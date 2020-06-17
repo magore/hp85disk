@@ -71,6 +71,7 @@ void gpib_help(int full)
 			"gpib mount AMIGO|SS80 model address file\n"
 			"     Example: gpib mount 9121  6 /amigo6.lif\n"
 			"     Example: gpib mount 9134D 2 /amigo2.lif\n"
+			"     Note: drive model must exist in hpdir.ini [driveinfo] section\n"
 			"gpib mount PRINTER address\n"
 			"     Example: gpib mount PRINTER 5\n"
 			"gpib umount address"
