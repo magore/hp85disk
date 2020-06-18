@@ -1288,13 +1288,14 @@ ___
 	 (c) 2014-2020 by Mike Gore
 	 GNU version 3
 	-> https://github.com/magore/hp85disk
-	   GIT last pushed:   2020-06-17 18:38:58.616809582 -0400
-	   Last updated file: 2020-06-17 19:33:03.013483346 -0400
+	   GIT last pushed:   2020-06-17 19:52:32.792206282 -0400
+	   Last updated file: 2020-06-18 12:13:25.589523676 -0400
 
 	help     - displays this help menu
 	fatfs     help
 	posix     help
 	lif       help
+	gpib      help
 	drives    help
 	backlight 0xRRGGBB
 	dir       directories list
@@ -1303,8 +1304,6 @@ ___
 	reset   - reset emulator
 	setdate - set date
 	time    - display current time
-
-	OK
 </pre>
 
 ### For lif help type *lif help*
@@ -1404,7 +1403,7 @@ ___
 	fatfs mmc_test
 	fatfs mmc_init
 	fatfs ls dir
-	fatfs status file
+	fatfs status 
 </pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below

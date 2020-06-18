@@ -292,6 +292,7 @@ void help()
 
 	printf("help     - displays this help menu\n");
 
+
 #ifdef FATFS_TESTS
     fatfs_help(0);
 #endif
@@ -307,6 +308,8 @@ void help()
 #ifdef TELEDISK
     td0_help(0);
 #endif
+
+	gpib_help(0);
 
 	drives_help(0);
 

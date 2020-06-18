@@ -32,7 +32,7 @@
 /// @return  void
 void gpib_help(int full)
 {
-    printf("gpib     help\n");
+    printf("gpib      help\n");
     if(full)
     {
         printf("Note: gpib prefix is optional\n"
