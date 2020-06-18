@@ -1379,19 +1379,22 @@ ___
 ### For gpib help type *gpib help*
  * **gpib help**
 <pre>
-    gpib  help
-    Note: gpib prefix is optional
-    gpib debug N
-       debug message reporting see hpdisk.cfg for details
-    gpib elapsed
-    gpib elapsed_reset
-    gpib ifc
-    gpib plot filename.txt
-    gpib plot_echo
-    gpib task
-    gpib trace filename.txt [BUS]
-       Display activity of GPIB bus and log it
-       BUS - include handshake states
+>gpib help
+	gpib      help
+	Note: gpib prefix is optional
+	gpib debug N
+	   debug message reporting see hpdisk.cfg for details
+	gpib elapsed
+	gpib elapsed_reset
+	gpib ifc
+	gpib plot filename.txt
+	gpib plot_echo
+	gpib task
+	gpib trace filename.txt [BUS]
+	   Display activity of GPIB bus and log it
+	   BUS - include handshake states
+
+	OK
 </pre>
 
 ### For fatfs help type *fatfs help*

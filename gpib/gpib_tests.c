@@ -36,11 +36,6 @@ void gpib_help(int full)
     if(full)
     {
         printf("Note: gpib prefix is optional\n"
-            "gpib addresses\n"
-            "   Display all device GPIB bus addresses and PPR values\n"
-            "gpib config [-v]\n"
-            "   Display current drives configuration\n"
-            "   -v Verbose - show full detail\n"
             "gpib debug N\n"
             "   debug message reporting see hpdisk.cfg for details\n"
             "gpib elapsed\n"

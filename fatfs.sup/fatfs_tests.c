@@ -168,8 +168,8 @@ int fatfs_tests(int argc,char *argv[])
 
     else if (MATCHARGS(ptr,"status", (ind + 1), argc))
     {
-        strcpy(buff,argv[ind]);
-        if(fatfs_status(argv[ind]) == 0)
+        strcpy(buff,"/");
+        if(fatfs_status(buff)== 0)
 		{
 			return(-1);
 		}
