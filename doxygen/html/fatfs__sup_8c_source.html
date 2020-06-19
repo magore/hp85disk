@@ -172,162 +172,167 @@ $(function() {
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a8886578bc67fc71837328a1ee237d10c">  164</a></span>&#160;<a class="code" href="ff_8h.html#a197942eefa7db30960ae396d68339b97">WORD</a>    <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a>, <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a2bfd82a70117cdb8941b6b0a2c069dbd">  192</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="fatfs__sup_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd">fatfs_scan_files</a> (</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="keywordtype">char</span>* path                                        <span class="comment">/* Pointer to the working buffer with start path */</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;)</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;{</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <a class="code" href="structDIR.html">DIR</a> dirs;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> fr;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <a class="code" href="structFILINFO.html">FILINFO</a> info;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    fr = <a class="code" href="ff_8c.html#ab63b213c75f7335fbb63a1f3f70e5fc7">f_opendir</a>(&amp;dirs, path);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">if</span> (fr == <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    {</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordflow">while</span> (((fr = <a class="code" href="ff_8c.html#ab39e82a110695de45f416f3149358012">f_readdir</a>(&amp;dirs, &amp;info)) == <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>) &amp;&amp; info.<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>[0])</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        {</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordflow">if</span> (info.<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a3a9db44e978ed6c13b641e092d4cd7d3">AM_DIR</a>)</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>++;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                i = <a class="code" href="stringsup_8c.html#a895ea3a2f9901e4c962806cc15271339">strlen</a>(path);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                path[i] = <span class="charliteral">&#39;/&#39;</span>; <a class="code" href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a>(path+i+1, info.<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                fr = <a class="code" href="fatfs__sup_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd">fatfs_scan_files</a>(path);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                path[i] = 0;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                <span class="keywordflow">if</span> (fr != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            }</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            {</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">//              xprintf(PSTR(&quot;%s/%s\n&quot;), path, info.fname);</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a>++;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a> += info.<a class="code" href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">fsize</a>;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            }</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#ifdef ESP8266</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            optimistic_yield(1000);</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;            wdt_reset();</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    }</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">return</span> fr;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;}</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#ae9c5ed10edd2df490945033c4ddfbeab">  237</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a>(<span class="keywordtype">int</span> type)</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;{</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordtype">char</span> *ptr;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <span class="keywordflow">switch</span>(type)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    {</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0">FS_FAT12</a>:</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            ptr = <span class="stringliteral">&quot;FAT12&quot;</span>;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9">FS_FAT16</a>:</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            ptr = <span class="stringliteral">&quot;FAT16&quot;</span>;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#ac63e0796095a789cefdbc3c3c676c9ce">FS_FAT32</a>:</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            ptr = <span class="stringliteral">&quot;FAT32&quot;</span>;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a50bfa912e87473bc54333523983f39f6">FS_EXFAT</a>:</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            ptr = <span class="stringliteral">&quot;EXFAT&quot;</span>;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;            ptr = <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">return</span>(ptr);</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a008950e7432465c490d3c74cf0ebacc7">  274</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a>(<span class="keywordtype">char</span> *ptr)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;{</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordtype">long</span> p2;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordtype">int</span> res;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <a class="code" href="structFATFS.html">FATFS</a> *fs;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordtype">char</span> label[24+2];</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> vsn;                                    <span class="comment">// volume serial number</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">while</span>(*ptr == <span class="charliteral">&#39; &#39;</span> || *ptr == <span class="charliteral">&#39;\t&#39;</span>)</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        ++ptr;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160; </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs status:%s\n&quot;</span>,ptr);</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    res = <a class="code" href="ff_8c.html#a0ff39f75a87cbda9cd6ea65d83f16cec">f_getfree</a>(ptr, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>*)&amp;p2, &amp;fs);</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordflow">if</span> (res)</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    {</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status f_getfree failed\n&quot;</span>);</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    }</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;FAT type                = %s\n&quot;</span>,  <a class="code" href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a>(fs-&gt;<a class="code" href="structFATFS.html#add27d97babe807b573eac98a71dc4ae5">fs_type</a>));</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Bytes/Cluster           = %lu\n&quot;</span>, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>)fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> * 512);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Number of FATs          = %u\n&quot;</span>,  fs-&gt;<a class="code" href="structFATFS.html#a56716c7e7ac10cf46e73ffb2a2e9b545">n_fats</a>);</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Root DIR entries        = %u\n&quot;</span>,  fs-&gt;<a class="code" href="structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1">n_rootdir</a>);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Sectors/FAT             = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a53e9560659f14e66f306c2c444198bf3">fsize</a>);</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Number of clusters      = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c">n_fatent</a> - 2);</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;FAT start (lba)         = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a78b1024e7d7d086d132a58ee943b31df">fatbase</a>);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;DIR start (lba,clustor) = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#afc8c3d5d8408b70379f23382c6e28168">dirbase</a>);</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Data start (lba)        = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a4ce7c10569f45fae1c709c9ee41f69cb">database</a>);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="preprocessor">#if FF_USE_LABEL</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    res = <a class="code" href="ff_8c.html#ac4ff40a674bcbfe40d81b1e8e54befc6">f_getlabel</a>(ptr, label, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>*)&amp;vsn);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordflow">if</span> (res)</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    {</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status f_getlabel failed\n&quot;</span>);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Volume name             = %s\n&quot;</span>, label[0] ? label : <span class="stringliteral">&quot;&lt;blank&gt;&quot;</span>);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Volume S/N              = %04X-%04X\n&quot;</span>, (<a class="code" href="ff_8h.html#a197942eefa7db30960ae396d68339b97">WORD</a>)((<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>)vsn &gt;&gt; 16), (<a class="code" href="ff_8h.html#a197942eefa7db30960ae396d68339b97">WORD</a>)(vsn &amp; 0xFFFF));</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a> = <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a> = <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a> = 0;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    res = <a class="code" href="fatfs__sup_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd">fatfs_scan_files</a>(ptr);</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <span class="keywordflow">if</span> (res)</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status fatfs_scan_files failed\n&quot;</span>);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keywordflow">return</span>(0);</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;%u files, %lu bytes.\n%u folders.\n&quot;</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="stringliteral">&quot;%lu KB total disk space.\n%lu KB available.\n&quot;</span>,</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a>, <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a>, <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>,</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        (fs-&gt;<a class="code" href="structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c">n_fatent</a> - 2) * fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> / 2, p2 * fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> / 2</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        );</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordflow">return</span>(1);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;}</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
-<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a11c6644c2b989d1ac2492b30b80e4ead">  342</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fatfs__sup_8c.html#a11c6644c2b989d1ac2492b30b80e4ead">fatfs_filinfo_list</a>(<a class="code" href="structFILINFO.html">FILINFO</a> *info)</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <span class="keywordtype">char</span> attrs[6];</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keywordflow">if</span>(info-&gt;<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>[0] == 0)</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    {</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_filinfo_list: empty\n&quot;</span>);</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    }</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    attrs[0] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a3a9db44e978ed6c13b641e092d4cd7d3">AM_DIR</a>) ? <span class="charliteral">&#39;D&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    attrs[1] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#add6d85d1e7a02b4f6188783ef91a5f1e">AM_RDO</a>) ? <span class="charliteral">&#39;R&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    attrs[2] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#aa90c4c921c1955fd407d8bbf17f1674e">AM_HID</a>) ? <span class="charliteral">&#39;H&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    attrs[3] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a1f25d5c17b5a3a6397b3398add8cdc15">AM_SYS</a>) ? <span class="charliteral">&#39;S&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    attrs[4] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#ae8174d00798e34e7c9e95898cb9e1a09">AM_ARC</a>) ? <span class="charliteral">&#39;A&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    attrs[5] = 0;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;%s %u/%02u/%02u %02u:%02u %9lu %s&quot;</span>,</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        attrs,</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        (info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &gt;&gt; 9) + 1980, (info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &gt;&gt; 5) &amp; 15, info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &amp; 31,</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        (info-&gt;<a class="code" href="structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a">ftime</a> &gt;&gt; 11), (info-&gt;<a class="code" href="structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a">ftime</a> &gt;&gt; 5) &amp; 63,</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        info-&gt;<a class="code" href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">fsize</a>, info-&gt;<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>);</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keyword">static</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="fatfs__sup_8c.html#af4eda85180167dce27453e0d692c5006">  180</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="fatfs__sup_8c.html#af4eda85180167dce27453e0d692c5006">fatfs_scan_files</a> (<span class="keywordtype">char</span> *path) <span class="comment">/* Pointer to the working buffer with start path */</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="structDIR.html">DIR</a> dirs;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44c">FRESULT</a> fr;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="structFILINFO.html">FILINFO</a> info;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    fr = <a class="code" href="ff_8c.html#ab63b213c75f7335fbb63a1f3f70e5fc7">f_opendir</a>(&amp;dirs, path);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">if</span> (fr == <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>)</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">while</span> (((fr = <a class="code" href="ff_8c.html#ab39e82a110695de45f416f3149358012">f_readdir</a>(&amp;dirs, &amp;info)) == <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>) &amp;&amp; info.<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>[0])</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keywordflow">if</span> (info.<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a3a9db44e978ed6c13b641e092d4cd7d3">AM_DIR</a>)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>++;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                i = <a class="code" href="stringsup_8c.html#a895ea3a2f9901e4c962806cc15271339">strlen</a>(path);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                path[i] = <span class="charliteral">&#39;/&#39;</span>; <a class="code" href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a>(path+i+1, info.<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                fr = <a class="code" href="fatfs__sup_8c.html#af4eda85180167dce27453e0d692c5006">fatfs_scan_files</a>(path);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                path[i] = 0;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="keywordflow">if</span> (fr != <a class="code" href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a>) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">//              xprintf(PSTR(&quot;%s/%s\n&quot;), path, info.fname);</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a>++;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a> += info.<a class="code" href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">fsize</a>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#ifdef ESP8266</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            optimistic_yield(1000);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            wdt_reset();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">return</span> fr;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#ae9c5ed10edd2df490945033c4ddfbeab">  222</a></span>&#160;<span class="keywordtype">char</span> *<a class="code" href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a>(<span class="keywordtype">int</span> type)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;{</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordtype">char</span> *ptr;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">switch</span>(type)</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0">FS_FAT12</a>:</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            ptr = <span class="stringliteral">&quot;FAT12&quot;</span>;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9">FS_FAT16</a>:</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            ptr = <span class="stringliteral">&quot;FAT16&quot;</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#ac63e0796095a789cefdbc3c3c676c9ce">FS_FAT32</a>:</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            ptr = <span class="stringliteral">&quot;FAT32&quot;</span>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="ff_8h.html#a50bfa912e87473bc54333523983f39f6">FS_EXFAT</a>:</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            ptr = <span class="stringliteral">&quot;EXFAT&quot;</span>;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            ptr = <span class="stringliteral">&quot;UNKNOWN&quot;</span>;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">return</span>(ptr);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;}</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a9f4bfdc077831bdd9a1f7156142583a7">  259</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="fatfs__sup_8c.html#a9f4bfdc077831bdd9a1f7156142583a7">fatfs_status</a>(<span class="keywordtype">char</span> *name)</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;{</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">long</span> p2;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordtype">int</span> res;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="code" href="structFATFS.html">FATFS</a> *fs;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordtype">char</span> label[24+2];</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a> vsn;                                    <span class="comment">// volume serial number</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordtype">char</span> buff[<a class="code" href="posix_8h.html#afd709f201d7643c3909621f620ea648a">MAX_NAME_LEN</a>+1];</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    memset(buff,0,<span class="keyword">sizeof</span>(buff)-1);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">while</span>(*name == <span class="charliteral">&#39; &#39;</span> || *name == <span class="charliteral">&#39;\t&#39;</span>)</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        ++name;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">if</span>(!name || !*name)</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <a class="code" href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a>(buff,<span class="stringliteral">&quot;.&quot;</span>);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <a class="code" href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a>(buff,name);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs status:%s\n&quot;</span>,buff);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    res = <a class="code" href="ff_8c.html#a0ff39f75a87cbda9cd6ea65d83f16cec">f_getfree</a>(buff, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>*)&amp;p2, &amp;fs);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordflow">if</span> (res)</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status f_getfree failed\n&quot;</span>);</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    }</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;FAT type                = %s\n&quot;</span>,  <a class="code" href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a>(fs-&gt;<a class="code" href="structFATFS.html#add27d97babe807b573eac98a71dc4ae5">fs_type</a>));</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Bytes/Cluster           = %lu\n&quot;</span>, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>)fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> * 512);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Number of FATs          = %u\n&quot;</span>,  fs-&gt;<a class="code" href="structFATFS.html#a56716c7e7ac10cf46e73ffb2a2e9b545">n_fats</a>);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Root DIR entries        = %u\n&quot;</span>,  fs-&gt;<a class="code" href="structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1">n_rootdir</a>);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Sectors/FAT             = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a53e9560659f14e66f306c2c444198bf3">fsize</a>);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Number of clusters      = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c">n_fatent</a> - 2);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;FAT start (lba)         = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a78b1024e7d7d086d132a58ee943b31df">fatbase</a>);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;DIR start (lba,clustor) = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#afc8c3d5d8408b70379f23382c6e28168">dirbase</a>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Data start (lba)        = %lu\n&quot;</span>, fs-&gt;<a class="code" href="structFATFS.html#a4ce7c10569f45fae1c709c9ee41f69cb">database</a>);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#if FF_USE_LABEL</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    res = <a class="code" href="ff_8c.html#ac4ff40a674bcbfe40d81b1e8e54befc6">f_getlabel</a>(buff, label, (<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>*)&amp;vsn);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">if</span> (res)</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status f_getlabel failed\n&quot;</span>);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Volume name             = %s\n&quot;</span>, label[0] ? label : <span class="stringliteral">&quot;&lt;blank&gt;&quot;</span>);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;Volume S/N              = %04X-%04X\n&quot;</span>, (<a class="code" href="ff_8h.html#a197942eefa7db30960ae396d68339b97">WORD</a>)((<a class="code" href="ff_8h.html#ad342ac907eb044443153a22f964bf0af">DWORD</a>)vsn &gt;&gt; 16), (<a class="code" href="ff_8h.html#a197942eefa7db30960ae396d68339b97">WORD</a>)(vsn &amp; 0xFFFF));</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a> = <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a> = <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a> = 0;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    res = <a class="code" href="fatfs__sup_8c.html#af4eda85180167dce27453e0d692c5006">fatfs_scan_files</a>(buff);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">if</span> (res)</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_status fatfs_scan_files failed\n&quot;</span>);</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordflow">return</span>(0);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;%u files, %lu bytes.\n%u folders.\n&quot;</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="stringliteral">&quot;%lu KB total disk space.\n%lu KB available.\n&quot;</span>,</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <a class="code" href="fatfs__sup_8c.html#a8886578bc67fc71837328a1ee237d10c">AccFiles</a>, <a class="code" href="fatfs__sup_8c.html#a1e9c5ddcfdf89c9a42c96ee1d2196876">AccSize</a>, <a class="code" href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a>,</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        (fs-&gt;<a class="code" href="structFATFS.html#a8da50eeba6469bc20d60ca0cf9a1307c">n_fatent</a> - 2) * fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> / 2, p2 * fs-&gt;<a class="code" href="structFATFS.html#ad7fa7a509f8d097a9ab182d6c47be568">csize</a> / 2</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        );</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">return</span>(1);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<a class="code" href="hardware_2user__config_8h.html#ad0fe97585b8891f5e4f2b9a6426330a4">MEMSPACE</a></div>
+<div class="line"><a name="l00337"></a><span class="lineno"><a class="line" href="fatfs__sup_8h.html#a11c6644c2b989d1ac2492b30b80e4ead">  337</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fatfs__sup_8c.html#a11c6644c2b989d1ac2492b30b80e4ead">fatfs_filinfo_list</a>(<a class="code" href="structFILINFO.html">FILINFO</a> *info)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;{</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordtype">char</span> attrs[6];</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="keywordflow">if</span>(info-&gt;<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>[0] == 0)</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;fatfs_filinfo_list: empty\n&quot;</span>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    attrs[0] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a3a9db44e978ed6c13b641e092d4cd7d3">AM_DIR</a>) ? <span class="charliteral">&#39;D&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    attrs[1] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#add6d85d1e7a02b4f6188783ef91a5f1e">AM_RDO</a>) ? <span class="charliteral">&#39;R&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    attrs[2] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#aa90c4c921c1955fd407d8bbf17f1674e">AM_HID</a>) ? <span class="charliteral">&#39;H&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    attrs[3] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#a1f25d5c17b5a3a6397b3398add8cdc15">AM_SYS</a>) ? <span class="charliteral">&#39;S&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    attrs[4] = (info-&gt;<a class="code" href="structFILINFO.html#a838d542585831b085537b363f18205c0">fattrib</a> &amp; <a class="code" href="ff_8h.html#ae8174d00798e34e7c9e95898cb9e1a09">AM_ARC</a>) ? <span class="charliteral">&#39;A&#39;</span> : <span class="charliteral">&#39;-&#39;</span>;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    attrs[5] = 0;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;%s %u/%02u/%02u %02u:%02u %9lu %s&quot;</span>,</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        attrs,</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        (info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &gt;&gt; 9) + 1980, (info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &gt;&gt; 5) &amp; 15, info-&gt;<a class="code" href="structFILINFO.html#a7c01c48a15b1b49da459924437b0bd52">fdate</a> &amp; 31,</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        (info-&gt;<a class="code" href="structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a">ftime</a> &gt;&gt; 11), (info-&gt;<a class="code" href="structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a">ftime</a> &gt;&gt; 5) &amp; 63,</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        info-&gt;<a class="code" href="structFILINFO.html#a9e5b78ed7190f73de3ebcbdfbd6d1844">fsize</a>, info-&gt;<a class="code" href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">fname</a>);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <a class="code" href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a>(<span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="astructFATFS_html"><div class="ttname"><a href="structFATFS.html">FATFS</a></div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00132">ff.h:132</a></div></div>
 <div class="ttc" id="astructFILINFO_html_ae0f751b79621bf7b29669f177bbe6b9a"><div class="ttname"><a href="structFILINFO.html#ae0f751b79621bf7b29669f177bbe6b9a">FILINFO::ftime</a></div><div class="ttdeci">WORD ftime</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00250">ff.h:250</a></div></div>
 <div class="ttc" id="afatfs_8h_html"><div class="ttname"><a href="fatfs_8h.html">fatfs.h</a></div></div>
 <div class="ttc" id="afatfs__sup_8c_html_a4fb5ebb5ee82d1ddf3fdcf88329dd5d3"><div class="ttname"><a href="fatfs__sup_8c.html#a4fb5ebb5ee82d1ddf3fdcf88329dd5d3">AccDirs</a></div><div class="ttdeci">WORD AccDirs</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00164">fatfs_sup.c:164</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_a008950e7432465c490d3c74cf0ebacc7"><div class="ttname"><a href="fatfs__sup_8c.html#a008950e7432465c490d3c74cf0ebacc7">fatfs_status</a></div><div class="ttdeci">MEMSPACE int fatfs_status(char *ptr)</div><div class="ttdoc">Compute space used, number of directories and files contained used by a drive.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00274">fatfs_sup.c:274</a></div></div>
+<div class="ttc" id="aposix_8h_html_afd709f201d7643c3909621f620ea648a"><div class="ttname"><a href="posix_8h.html#afd709f201d7643c3909621f620ea648a">MAX_NAME_LEN</a></div><div class="ttdeci">#define MAX_NAME_LEN</div><div class="ttdef"><b>Definition:</b> <a href="posix_8h_source.html#l00133">posix.h:133</a></div></div>
 <div class="ttc" id="amathio_8h_html_ad6078f8da2d30ecaef99e0c2d250c0c8"><div class="ttname"><a href="mathio_8h.html#ad6078f8da2d30ecaef99e0c2d250c0c8">printf</a></div><div class="ttdeci">MEMSPACE int printf(const char *format,...)</div></div>
 <div class="ttc" id="astructtm_html_af414eb7c86cc3099595211eee4d4211b"><div class="ttname"><a href="structtm.html#af414eb7c86cc3099595211eee4d4211b">tm::tm_min</a></div><div class="ttdeci">int tm_min</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00043">time.h:43</a></div></div>
 <div class="ttc" id="astructFATFS_html_a56716c7e7ac10cf46e73ffb2a2e9b545"><div class="ttname"><a href="structFATFS.html#a56716c7e7ac10cf46e73ffb2a2e9b545">FATFS::n_fats</a></div><div class="ttdeci">BYTE n_fats</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00135">ff.h:135</a></div></div>
@@ -345,9 +350,9 @@ $(function() {
 <div class="ttc" id="aff_8h_html_a7ef90a36d99edfc0138a2155a17a79b9"><div class="ttname"><a href="ff_8h.html#a7ef90a36d99edfc0138a2155a17a79b9">FS_FAT16</a></div><div class="ttdeci">#define FS_FAT16</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00410">ff.h:410</a></div></div>
 <div class="ttc" id="astructtm_html_a3e7ca4e37f1abcaf56b8a916c38eb9fe"><div class="ttname"><a href="structtm.html#a3e7ca4e37f1abcaf56b8a916c38eb9fe">tm::tm_hour</a></div><div class="ttdeci">int tm_hour</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00044">time.h:44</a></div></div>
 <div class="ttc" id="astructFATFS_html_a53e9560659f14e66f306c2c444198bf3"><div class="ttname"><a href="structFATFS.html#a53e9560659f14e66f306c2c444198bf3">FATFS::fsize</a></div><div class="ttdeci">DWORD fsize</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00166">ff.h:166</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_ae9c5ed10edd2df490945033c4ddfbeab"><div class="ttname"><a href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a></div><div class="ttdeci">MEMSPACE char * fatfs_fstype(int type)</div><div class="ttdoc">return a string with the file system type</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00237">fatfs_sup.c:237</a></div></div>
+<div class="ttc" id="afatfs__sup_8c_html_ae9c5ed10edd2df490945033c4ddfbeab"><div class="ttname"><a href="fatfs__sup_8c.html#ae9c5ed10edd2df490945033c4ddfbeab">fatfs_fstype</a></div><div class="ttdeci">MEMSPACE char * fatfs_fstype(int type)</div><div class="ttdoc">return a string with the file system type</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00222">fatfs_sup.c:222</a></div></div>
 <div class="ttc" id="affconf_8h_html_a2343dca8b59f249f6a88574fda8ac31c"><div class="ttname"><a href="ffconf_8h.html#a2343dca8b59f249f6a88574fda8ac31c">FF_VOLUMES</a></div><div class="ttdeci">#define FF_VOLUMES</div><div class="ttdef"><b>Definition:</b> <a href="ffconf_8h_source.html#l00169">ffconf.h:169</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_a11c6644c2b989d1ac2492b30b80e4ead"><div class="ttname"><a href="fatfs__sup_8c.html#a11c6644c2b989d1ac2492b30b80e4ead">fatfs_filinfo_list</a></div><div class="ttdeci">MEMSPACE void fatfs_filinfo_list(FILINFO *info)</div><div class="ttdoc">Display FILINFO structure in a readable format.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00342">fatfs_sup.c:342</a></div></div>
+<div class="ttc" id="afatfs__sup_8c_html_a11c6644c2b989d1ac2492b30b80e4ead"><div class="ttname"><a href="fatfs__sup_8c.html#a11c6644c2b989d1ac2492b30b80e4ead">fatfs_filinfo_list</a></div><div class="ttdeci">MEMSPACE void fatfs_filinfo_list(FILINFO *info)</div><div class="ttdoc">Display FILINFO structure in a readable format.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00337">fatfs_sup.c:337</a></div></div>
 <div class="ttc" id="astructFATFS_html_a189a00aa038044ffad0fc7f7dcf2aae1"><div class="ttname"><a href="structFATFS.html#a189a00aa038044ffad0fc7f7dcf2aae1">FATFS::n_rootdir</a></div><div class="ttdeci">WORD n_rootdir</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00139">ff.h:139</a></div></div>
 <div class="ttc" id="astringsup_8c_html_ad88a87f58b2b4a12f6644aa46ecc1baa"><div class="ttname"><a href="stringsup_8c.html#ad88a87f58b2b4a12f6644aa46ecc1baa">strcpy</a></div><div class="ttdeci">MEMSPACE WEAK_ATR char * strcpy(char *dest, const char *src)</div><div class="ttdoc">copy a string</div><div class="ttdef"><b>Definition:</b> <a href="stringsup_8c_source.html#l00160">stringsup.c:160</a></div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="hardware_2user__config_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00085">user_config.h:85</a></div></div>
@@ -356,6 +361,7 @@ $(function() {
 <div class="ttc" id="aff_8h_html_ac63e0796095a789cefdbc3c3c676c9ce"><div class="ttname"><a href="ff_8h.html#ac63e0796095a789cefdbc3c3c676c9ce">FS_FAT32</a></div><div class="ttdeci">#define FS_FAT32</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00411">ff.h:411</a></div></div>
 <div class="ttc" id="atime_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">Common Linux/POSIX time functions.</div></div>
 <div class="ttc" id="aff_8c_html_ab63b213c75f7335fbb63a1f3f70e5fc7"><div class="ttname"><a href="ff_8c.html#ab63b213c75f7335fbb63a1f3f70e5fc7">f_opendir</a></div><div class="ttdeci">FRESULT f_opendir(DIR *dp, const TCHAR *path)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l04570">ff.c:4570</a></div></div>
+<div class="ttc" id="afatfs__sup_8c_html_a9f4bfdc077831bdd9a1f7156142583a7"><div class="ttname"><a href="fatfs__sup_8c.html#a9f4bfdc077831bdd9a1f7156142583a7">fatfs_status</a></div><div class="ttdeci">MEMSPACE int fatfs_status(char *name)</div><div class="ttdoc">Compute space used, number of directories and files contained used by a drive.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00259">fatfs_sup.c:259</a></div></div>
 <div class="ttc" id="astructFILINFO_html_a838d542585831b085537b363f18205c0"><div class="ttname"><a href="structFILINFO.html#a838d542585831b085537b363f18205c0">FILINFO::fattrib</a></div><div class="ttdeci">BYTE fattrib</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00251">ff.h:251</a></div></div>
 <div class="ttc" id="astructFATFS_html_afc8c3d5d8408b70379f23382c6e28168"><div class="ttname"><a href="structFATFS.html#afc8c3d5d8408b70379f23382c6e28168">FATFS::dirbase</a></div><div class="ttdeci">LBA_t dirbase</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00169">ff.h:169</a></div></div>
 <div class="ttc" id="atime_8c_html_a32b1cbd925752f0cd61d202bbe204a69"><div class="ttname"><a href="time_8c.html#a32b1cbd925752f0cd61d202bbe204a69">time</a></div><div class="ttdeci">MEMSPACE time_t time(time_t *t)</div><div class="ttdoc">Return second from epoch - POSIX function.</div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00843">time.c:843</a></div></div>
@@ -367,7 +373,6 @@ $(function() {
 <div class="ttc" id="aff_8h_html_a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1"><div class="ttname"><a href="ff_8h.html#a49d0171ecbd362cda5680a0d360db44ca62fce5cd9df008f8fc85f99706bda5f1">FR_OK</a></div><div class="ttdeci">@ FR_OK</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00277">ff.h:277</a></div></div>
 <div class="ttc" id="aff_8h_html_aab755aa1b4f81f4aabee4a5d4738cfb0"><div class="ttname"><a href="ff_8h.html#aab755aa1b4f81f4aabee4a5d4738cfb0">FS_FAT12</a></div><div class="ttdeci">#define FS_FAT12</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00409">ff.h:409</a></div></div>
 <div class="ttc" id="atime_8c_html_a08eb1818fa59b3e6e1f1470ca0888572"><div class="ttname"><a href="time_8c.html#a08eb1818fa59b3e6e1f1470ca0888572">localtime</a></div><div class="ttdeci">MEMSPACE tm_t * localtime(time_t *tp)</div><div class="ttdoc">Convert POSIX epoch time_t *tp into POSIX tm_t *result.</div><div class="ttdef"><b>Definition:</b> <a href="time_8c_source.html#l00522">time.c:522</a></div></div>
-<div class="ttc" id="afatfs__sup_8c_html_a2bfd82a70117cdb8941b6b0a2c069dbd"><div class="ttname"><a href="fatfs__sup_8c.html#a2bfd82a70117cdb8941b6b0a2c069dbd">fatfs_scan_files</a></div><div class="ttdeci">MEMSPACE int fatfs_scan_files(char *path)</div><div class="ttdoc">Use were FILINFO structure can be share in many functions See: fatfs_alloc_filinfo(),...</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00192">fatfs_sup.c:192</a></div></div>
 <div class="ttc" id="astructFILINFO_html_aab1ba8d85467346a528f7569e4d15381"><div class="ttname"><a href="structFILINFO.html#aab1ba8d85467346a528f7569e4d15381">FILINFO::fname</a></div><div class="ttdeci">TCHAR fname[FF_LFN_BUF+1]</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00254">ff.h:254</a></div></div>
 <div class="ttc" id="astructtm_html"><div class="ttname"><a href="structtm.html">tm</a></div><div class="ttdoc">POSIX struct tm.</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00040">time.h:40</a></div></div>
 <div class="ttc" id="astructtm_html_a33adf78fd6476b2120ce3b9c4a852053"><div class="ttname"><a href="structtm.html#a33adf78fd6476b2120ce3b9c4a852053">tm::tm_year</a></div><div class="ttdeci">int tm_year</div><div class="ttdef"><b>Definition:</b> <a href="time_8h_source.html#l00047">time.h:47</a></div></div>
@@ -387,9 +392,10 @@ $(function() {
 <div class="ttc" id="aff_8h_html_ae8174d00798e34e7c9e95898cb9e1a09"><div class="ttname"><a href="ff_8h.html#ae8174d00798e34e7c9e95898cb9e1a09">AM_ARC</a></div><div class="ttdeci">#define AM_ARC</div><div class="ttdef"><b>Definition:</b> <a href="ff_8h_source.html#l00419">ff.h:419</a></div></div>
 <div class="ttc" id="aff_8c_html_ab39e82a110695de45f416f3149358012"><div class="ttname"><a href="ff_8c.html#ab39e82a110695de45f416f3149358012">f_readdir</a></div><div class="ttdeci">FRESULT f_readdir(DIR *dp, FILINFO *fno)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l04666">ff.c:4666</a></div></div>
 <div class="ttc" id="aff_8c_html_a0ff39f75a87cbda9cd6ea65d83f16cec"><div class="ttname"><a href="ff_8c.html#a0ff39f75a87cbda9cd6ea65d83f16cec">f_getfree</a></div><div class="ttdeci">FRESULT f_getfree(const TCHAR *path, DWORD *nclst, FATFS **fatfs)</div><div class="ttdef"><b>Definition:</b> <a href="ff_8c_source.html#l04789">ff.c:4789</a></div></div>
+<div class="ttc" id="afatfs__sup_8c_html_af4eda85180167dce27453e0d692c5006"><div class="ttname"><a href="fatfs__sup_8c.html#af4eda85180167dce27453e0d692c5006">fatfs_scan_files</a></div><div class="ttdeci">static MEMSPACE int fatfs_scan_files(char *path)</div><div class="ttdoc">Compute space used, number of directories and files contained under a specified directory.</div><div class="ttdef"><b>Definition:</b> <a href="fatfs__sup_8c_source.html#l00180">fatfs_sup.c:180</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 18 2020 15:25:19 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 18 2020 20:57:37 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

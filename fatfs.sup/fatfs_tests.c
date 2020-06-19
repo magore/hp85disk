@@ -59,9 +59,9 @@ void fatfs_help( int full)
             "fatfs cd dir\n"
             "fatfs copy file1 file2\n"
             "fatfs create file str\n"
-#endif
-            "fatfs mmc_test\n"
             "fatfs mmc_init\n"
+            "fatfs mmc_test\n"
+#endif
             "fatfs ls directory\n"
 
 #ifdef FATFS_UTILS_FULL
@@ -104,8 +104,6 @@ int fatfs_tests(int argc,char *argv[])
 {
     char *ptr;
     int ind;
-
-    char buff[MAX_NAME_LEN+1];
 
     ind = 0;
     ptr = argv[ind];
@@ -153,7 +151,16 @@ int fatfs_tests(int argc,char *argv[])
         }
         return(1);
     }
+    else if (MATCHARGS(ptr,"status", (ind + 1), argc))
+    {
+        if(fatfs_status("/")== 0)
+		{
+			return(-1);
+		}
+        return(1);
+    }
 
+#ifdef FATFS_UTILS_FULL
     else if (MATCHARGS(ptr,"mmc_test",(ind+0),argc ))
     {
         mmc_test();
@@ -166,17 +173,6 @@ int fatfs_tests(int argc,char *argv[])
         return(1);
     }
 
-    else if (MATCHARGS(ptr,"status", (ind + 1), argc))
-    {
-        strcpy(buff,"/");
-        if(fatfs_status(buff)== 0)
-		{
-			return(-1);
-		}
-        return(1);
-    }
-
-#ifdef FATFS_UTILS_FULL
     else if (MATCHARGS(ptr,"attrib",(ind+3),argc))
     {
 		int res;
@@ -317,12 +313,13 @@ int fatfs_tests(int argc,char *argv[])
 		}
         return(1);
     }
-#endif
+#endif // FATFS_UTILS_FULL
 
     return(0);
 }
 
 
+#ifdef FATFS_UTILS_FULL
 /// @brief Perform key FatFs diagnostics tests.
 ///
 /// - Perform all basic file tests
@@ -332,12 +329,9 @@ int fatfs_tests(int argc,char *argv[])
 MEMSPACE
 void mmc_test(void)
 {
-    char buff[MAX_NAME_LEN+1];
-
     sep();
     printf("START MMC TEST\n");
-    strcpy(buff,"/");
-    fatfs_status(buff);
+    fatfs_status("/");
     printf("MMC Directory List\n");
     fatfs_ls("/");
 
@@ -364,6 +358,8 @@ void mmc_test(void)
     printf("END MMC TEST\n");
     sep();
 }
+
+#endif
 
 
 ///
@@ -451,6 +447,7 @@ long fatfs_cat(char *name)
     int ret;
     long size;
     char *ptr;
+	char buff[512];
 
     printf("Reading[%s]\n", name);
     res = f_open(&fp, name, FA_OPEN_EXISTING | FA_READ);
@@ -461,19 +458,11 @@ long fatfs_cat(char *name)
 		return(0);
     }
 
-    ptr = safecalloc(512,1);
-    if(!ptr)
-    {
-        printf("Calloc failed!\n");
-        f_close(&fp);
-		return(0);
-    }
-
     size = 0;
     while(1)
     {
 /// @todo FIXME
-        res = f_read(&fp, ptr, 512, &s1);
+        res = f_read(&fp, buff, 512, &s1);
         if(res)
         {
             printf("cat read error\n");
@@ -490,9 +479,9 @@ long fatfs_cat(char *name)
         {
 //FIXME putchar depends on fdevopen having been called
             if(stdout)
-                putchar(ptr[i]);
+                putchar(buff[i]);
             else
-                uart_putc(0,ptr[i]);
+                uart_putc(0,buff[i]);
         }
 #ifdef ESP8266
         optimistic_yield(1000);
@@ -501,7 +490,6 @@ long fatfs_cat(char *name)
     }
     printf("\n");
     f_close(&fp);
-    safefree(ptr);
     printf("%lu bytes\n", size);
 	return(size);
 }
@@ -687,7 +675,7 @@ MEMSPACE
 int fatfs_pwd(void)
 {
     int res;
-    char str[128];
+    char str[MAX_NAME_LEN+1];
     res = f_getcwd(str, sizeof(str)-2);
     if (res)
 	{

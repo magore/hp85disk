@@ -47,14 +47,12 @@ extern DWORD   AccSize;                           // Total file space used
 extern WORD    AccFiles, AccDirs;                 // Total files and directories
 extern FATFS   Fatfs[FF_VOLUMES];                 // File system object for each logical drive
 
-
 /* fatfs_sup.c */
 MEMSPACE uint32_t tm_to_fat ( tm_t *t );
 MEMSPACE DWORD get_fattime ( void );
 MEMSPACE void put_rc ( int rc );
-MEMSPACE int fatfs_scan_files ( char *path );
 MEMSPACE char *fatfs_fstype ( int type );
-MEMSPACE int fatfs_status ( char *ptr );
+MEMSPACE int fatfs_status ( char *name );
 MEMSPACE void fatfs_filinfo_list ( FILINFO *info );
 
 #endif

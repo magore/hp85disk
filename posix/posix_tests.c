@@ -269,7 +269,7 @@ for(i=0;i<argc;++i)
 
     else if (MATCHARGS(ptr,"pwd", (ind + 0), argc))
     {
-        char path[256];
+        char path[MAX_NAME_LEN+1];
 		char *ptr = getcwd(path, sizeof(path)-2);
 		if(ptr == NULL)
 		{

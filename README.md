@@ -1379,7 +1379,7 @@ ___
 ### For gpib help type *gpib help*
  * **gpib help**
 <pre>
->gpib help
+	>gpib help
 	gpib      help
 	Note: gpib prefix is optional
 	gpib debug N
@@ -1387,26 +1387,23 @@ ___
 	gpib elapsed
 	gpib elapsed_reset
 	gpib ifc
-	gpib plot filename.txt
-	gpib plot_echo
 	gpib task
 	gpib trace filename.txt [BUS]
 	   Display activity of GPIB bus and log it
 	   BUS - include handshake states
-
-	OK
+OK
 </pre>
 
 ### For fatfs help type *fatfs help*
  * **fatfs help**
 <pre>
-	fatfs help
+	>fatfs help
 	Note: fatfs tests MUST start with "fatfs" keyword
 	fatfs help
-	fatfs mmc_test
-	fatfs mmc_init
-	fatfs ls dir
-	fatfs status 
+	fatfs ls directory
+	fatfs status
+
+	OK
 </pre>
     
 ### For setting the time type *setdate* it will prompt for the date as shown below
@@ -1575,7 +1572,7 @@ ___
   * **lif** is the same as the **lif** command in the hp85disk firmware
   * **lif help**
 <pre>
-	lif help
+	lif       help
 	lif add lifimage lifname from_ascii_file
 	lif addbin lifimage lifname from_lif_file
 	lif create lifimage label directory_sectors sectors
@@ -1586,17 +1583,7 @@ ___
 	lif extractbin lifimage lifname to_lif_file
 		extracts a file into a sigle file LIF image
 	lif rename lifimage oldlifname newlifname
-	lif td02lif [options] image.td0 image.lif
 	Use -d  after 'lif' keyword to enable LIF filesystem debugging
-
-	td02lif help
-	Usage: td02lif [options] file.td0 file.lif
-		   td02lif help
-	tdo2lif options:
-	Notes: for any option that is NOT specified it is automatically detected
-		 -s256|512 | -s 256|512 - force sector size
-		 -h1|2 | -h 1|2 - force heads/surfaces
-		 -tNN | -t NN  - force tracks
 </pre>
   * Note: the td02lif commands can be run inside the lif command or standalone
 
@@ -1609,9 +1596,10 @@ ___
 		   td02lif help
 	tdo2lif options:
 	Notes: for any option that is NOT specified it is automatically detected
-		 -s256|512 | -s 256|512 - force sector size
-		 -h1|2 | -h 1|2 - force heads/surfaces
-		 -tNN | -t NN  - force tracks
+			 -s256|512 | -s 256|512 - force sector size
+			 -h1|2 | -h 1|2 - force heads/surfaces
+			 -tNN | -t NN  - force tracks
+
 </pre>
 
 ___ 

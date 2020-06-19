@@ -41,8 +41,6 @@ void gpib_help(int full)
             "gpib elapsed\n"
             "gpib elapsed_reset\n"
             "gpib ifc\n"
-            "gpib plot filename.txt\n"
-            "gpib plot_echo\n"
             "gpib task\n"
             "gpib trace filename.txt [BUS]\n"
             "   Display activity of GPIB bus and log it\n"
@@ -130,12 +128,6 @@ int gpib_tests(int argc, char * argv[])
     if (MATCHARGS(ptr,"ppr_init",(ind+0),argc))
     {
         ppr_init();
-        return(1);
-    }
-
-    if (MATCHARGS(ptr,"plot_echo", (ind+1) ,argc))
-    {
-        plot_echo(atoi(argv[ind]) );
         return(1);
     }
 

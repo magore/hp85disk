@@ -13,11 +13,11 @@
 \begin{DoxyCompactList}\small\item\em Read time and convert to F\+A\+T32 time. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{fatfs__sup_8c_ab3509aecf1844c84f1797e5b567d531c}{put\+\_\+rc}} (int rc)
 \begin{DoxyCompactList}\small\item\em display Fat\+Fs return code as ascii string \end{DoxyCompactList}\item 
-\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\+\_\+scan\+\_\+files}} (char $\ast$path)
-\begin{DoxyCompactList}\small\item\em Use were \mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} structure can be share in many functions See\+: fatfs\+\_\+alloc\+\_\+filinfo(), \mbox{\hyperlink{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\+\_\+scan\+\_\+files()}} and \mbox{\hyperlink{fatfs__tests_8c_a670fc06acea4d3bcfe5bf414a44a563c}{fatfs\+\_\+ls()}} \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{fatfs__sup_8c_af4eda85180167dce27453e0d692c5006}{fatfs\+\_\+scan\+\_\+files}} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Compute space used, number of directories and files contained under a specified directory. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} char $\ast$ \mbox{\hyperlink{fatfs__sup_8c_ae9c5ed10edd2df490945033c4ddfbeab}{fatfs\+\_\+fstype}} (int type)
 \begin{DoxyCompactList}\small\item\em return a string with the file system type \end{DoxyCompactList}\item 
-\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{fatfs__sup_8c_a008950e7432465c490d3c74cf0ebacc7}{fatfs\+\_\+status}} (char $\ast$ptr)
+\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int \mbox{\hyperlink{fatfs__sup_8c_a9f4bfdc077831bdd9a1f7156142583a7}{fatfs\+\_\+status}} (char $\ast$name)
 \begin{DoxyCompactList}\small\item\em Compute space used, number of directories and files contained used by a drive. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{fatfs__sup_8c_a11c6644c2b989d1ac2492b30b80e4ead}{fatfs\+\_\+filinfo\+\_\+list}} (\mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} $\ast$info)
 \begin{DoxyCompactList}\small\item\em Display \mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} structure in a readable format. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -57,7 +57,7 @@ Display \mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} structure in a reada
  
 \end{DoxyItemize}
 
-Definition at line 342 of file fatfs\+\_\+sup.\+c.
+Definition at line 337 of file fatfs\+\_\+sup.\+c.
 
 
 
@@ -83,42 +83,21 @@ string with file system type
 \end{DoxyReturn}
 
 
-Definition at line 237 of file fatfs\+\_\+sup.\+c.
+Definition at line 222 of file fatfs\+\_\+sup.\+c.
 
 
 
 Referenced by fatfs\+\_\+status().
 
-\mbox{\Hypertarget{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}\label{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}} 
+\mbox{\Hypertarget{fatfs__sup_8c_af4eda85180167dce27453e0d692c5006}\label{fatfs__sup_8c_af4eda85180167dce27453e0d692c5006}} 
 \index{fatfs\_sup.c@{fatfs\_sup.c}!fatfs\_scan\_files@{fatfs\_scan\_files}}
 \index{fatfs\_scan\_files@{fatfs\_scan\_files}!fatfs\_sup.c@{fatfs\_sup.c}}
 \doxysubsubsection{\texorpdfstring{fatfs\_scan\_files()}{fatfs\_scan\_files()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int fatfs\+\_\+scan\+\_\+files (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily static \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int fatfs\+\_\+scan\+\_\+files (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
-Use were \mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} structure can be share in many functions See\+: fatfs\+\_\+alloc\+\_\+filinfo(), \mbox{\hyperlink{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\+\_\+scan\+\_\+files()}} and \mbox{\hyperlink{fatfs__tests_8c_a670fc06acea4d3bcfe5bf414a44a563c}{fatfs\+\_\+ls()}} 
-
-Allocate \mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} structure and optional long file name buffer
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em allocate} & If allocate is true use calloc otherwise return static \+\_\+\+\_\+filinfo \\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{See also}
-fatfs\+\_\+free\+\_\+filinfo() 
-
-\mbox{\hyperlink{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\+\_\+scan\+\_\+files()}} 
-
-\mbox{\hyperlink{fatfs__tests_8c_a670fc06acea4d3bcfe5bf414a44a563c}{fatfs\+\_\+ls()}} 
-\end{DoxySeeAlso}
-\begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{structFILINFO}{F\+I\+L\+I\+N\+FO}} $\ast$ on success 
-
-N\+U\+LL on error
-\end{DoxyReturn}
-Compute space used, number of directories and files contained under a specified directory
+Compute space used, number of directories and files contained under a specified directory. 
 
 
 \begin{DoxyItemize}
@@ -139,26 +118,24 @@ Compute space used, number of directories and files contained under a specified 
 
 \mbox{\hyperlink{fatfs__sup_8c_a8886578bc67fc71837328a1ee237d10c}{Acc\+Files}}\+: Total number of Files 
 
-\mbox{\hyperlink{fatfs__sup_8c_a1e9c5ddcfdf89c9a42c96ee1d2196876}{Acc\+Size}}\+: Total size of all files 
+\mbox{\hyperlink{fatfs__sup_8c_a1e9c5ddcfdf89c9a42c96ee1d2196876}{Acc\+Size}}\+: Total size of all files W\+A\+R\+N\+I\+NG path M\+U\+ST be big enought for the lonest path length 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 0 if no error 
-
-Faf\+Fs error code 
 \end{DoxyReturn}
 
 
-Definition at line 192 of file fatfs\+\_\+sup.\+c.
+Definition at line 180 of file fatfs\+\_\+sup.\+c.
 
 
 
-Referenced by fatfs\+\_\+scan\+\_\+files(), and fatfs\+\_\+status().
+Referenced by fatfs\+\_\+status().
 
-\mbox{\Hypertarget{fatfs__sup_8c_a008950e7432465c490d3c74cf0ebacc7}\label{fatfs__sup_8c_a008950e7432465c490d3c74cf0ebacc7}} 
+\mbox{\Hypertarget{fatfs__sup_8c_a9f4bfdc077831bdd9a1f7156142583a7}\label{fatfs__sup_8c_a9f4bfdc077831bdd9a1f7156142583a7}} 
 \index{fatfs\_sup.c@{fatfs\_sup.c}!fatfs\_status@{fatfs\_status}}
 \index{fatfs\_status@{fatfs\_status}!fatfs\_sup.c@{fatfs\_sup.c}}
 \doxysubsubsection{\texorpdfstring{fatfs\_status()}{fatfs\_status()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int fatfs\+\_\+status (\begin{DoxyParamCaption}\item[{char $\ast$}]{ptr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} int fatfs\+\_\+status (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
 
 
 
@@ -177,7 +154,7 @@ Compute space used, number of directories and files contained used by a drive.
 \begin{DoxySeeAlso}{See also}
 \mbox{\hyperlink{ff_8c_a0ff39f75a87cbda9cd6ea65d83f16cec}{f\+\_\+getfree()}} drive \mbox{\hyperlink{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{free}} space 
 
-\mbox{\hyperlink{fatfs__sup_8c_a2bfd82a70117cdb8941b6b0a2c069dbd}{fatfs\+\_\+scan\+\_\+files()}} 
+\mbox{\hyperlink{fatfs__sup_8c_af4eda85180167dce27453e0d692c5006}{fatfs\+\_\+scan\+\_\+files()}} 
 
 \mbox{\hyperlink{fatfs__sup_8c_a4fb5ebb5ee82d1ddf3fdcf88329dd5d3}{Acc\+Dirs}}\+: Total number of directories 
 
@@ -190,11 +167,11 @@ Compute space used, number of directories and files contained used by a drive.
 \end{DoxyReturn}
 
 
-Definition at line 274 of file fatfs\+\_\+sup.\+c.
+Definition at line 259 of file fatfs\+\_\+sup.\+c.
 
 
 
-Referenced by fatfs\+\_\+tests(), mmc\+\_\+init(), and mmc\+\_\+test().
+Referenced by fatfs\+\_\+tests(), and mmc\+\_\+init().
 
 \mbox{\Hypertarget{fatfs__sup_8c_ae0f1746ad69d0d4b90cba250c6774ca8}\label{fatfs__sup_8c_ae0f1746ad69d0d4b90cba250c6774ca8}} 
 \index{fatfs\_sup.c@{fatfs\_sup.c}!get\_fattime@{get\_fattime}}

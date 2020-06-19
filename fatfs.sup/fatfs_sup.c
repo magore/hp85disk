@@ -163,18 +163,6 @@ DWORD   AccSize;
 ///@brief Total number or Files and Directories
 WORD    AccFiles, AccDirs;
 
-/// @brief  Use were FILINFO structure can be share in many functions
-///  See: fatfs_alloc_filinfo(), fatfs_scan_files() and fatfs_ls()
-
-/// @brief  Allocate FILINFO structure and optional long file name buffer
-///
-/// @param[in] allocate: If allocate is true use calloc otherwise return static __filinfo
-/// @see fatfs_free_filinfo()
-/// @see fatfs_scan_files()
-/// @see fatfs_ls()
-/// @return  FILINFO * on success
-/// @return  NULL on error
-
 /// @brief  Compute space used, number of directories and files contained under a specified directory
 ///
 /// - Credit: part of FatFs avr example project (C)ChaN, 2013
@@ -185,19 +173,16 @@ WORD    AccFiles, AccDirs;
 /// @see AccDirs:  Total number of directories
 /// @see AccFiles: Total number of Files
 /// @see AccSize:  Total size of all files
+/// WARNING path MUST be big enought for the lonest path length
 /// @return 0 if no error
-/// @return FafFs error code
-
+static
 MEMSPACE
-int fatfs_scan_files (
-char* path                                        /* Pointer to the working buffer with start path */
-)
+int fatfs_scan_files (char *path) /* Pointer to the working buffer with start path */
 {
     DIR dirs;
     FRESULT fr;
     int i;
     FILINFO info;
-
     fr = f_opendir(&dirs, path);
     if (fr == FR_OK)
     {
@@ -271,19 +256,29 @@ char *fatfs_fstype(int type)
 /// @see AccSize:  Total size of all files
 /// @return  1 on success 0 on error
 MEMSPACE
-int fatfs_status(char *ptr)
+int fatfs_status(char *name)
 {
     long p2;
     int res;
     FATFS *fs;
     char label[24+2];
     DWORD vsn;                                    // volume serial number
+    char buff[MAX_NAME_LEN+1];
 
-    while(*ptr == ' ' || *ptr == '\t')
-        ++ptr;
+	memset(buff,0,sizeof(buff)-1);
+    while(*name == ' ' || *name == '\t')
+        ++name;
 
-    printf("fatfs status:%s\n",ptr);
-    res = f_getfree(ptr, (DWORD*)&p2, &fs);
+    if(!name || !*name)
+    {
+        strcpy(buff,".");
+    }
+    else
+    {
+        strcpy(buff,name);
+	}
+    printf("fatfs status:%s\n",buff);
+    res = f_getfree(buff, (DWORD*)&p2, &fs);
     if (res)
     {
         printf("fatfs_status f_getfree failed\n");
@@ -300,7 +295,7 @@ int fatfs_status(char *ptr)
     printf("Data start (lba)        = %lu\n", fs->database);
 
 #if FF_USE_LABEL
-    res = f_getlabel(ptr, label, (DWORD*)&vsn);
+    res = f_getlabel(buff, label, (DWORD*)&vsn);
     if (res)
     {
         printf("fatfs_status f_getlabel failed\n");
@@ -311,7 +306,7 @@ int fatfs_status(char *ptr)
 #endif
 
     AccSize = AccFiles = AccDirs = 0;
-    res = fatfs_scan_files(ptr);
+    res = fatfs_scan_files(buff);
     if (res)
     {
         printf("fatfs_status fatfs_scan_files failed\n");
