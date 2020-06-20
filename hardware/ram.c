@@ -111,7 +111,7 @@ void *safemalloc(size_t size)
     void *p = calloc(size, 1);
     if(!p)
     {
-        printf("safemalloc(%d) failed!\n", size);
+        printf("safemalloc(%d) failed!\n", (int) size);
     }
     return(p);
 }

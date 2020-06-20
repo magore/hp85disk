@@ -3618,7 +3618,7 @@ void *safemalloc(size_t size)
     4f10:	89 2b       	or	r24, r25
     4f12:	61 f4       	brne	.+24     	; 0x4f2c <safemalloc+0x36>
     {
-        printf("safemalloc(%d) failed!\n", size);
+        printf("safemalloc(%d) failed!\n", (int) size);
     4f14:	ed b7       	in	r30, 0x3d	; 61
     4f16:	fe b7       	in	r31, 0x3e	; 62
     4f18:	15 83       	std	Z+5, r17	; 0x05
@@ -13676,12 +13676,12 @@ atol(const char *str)
     952e:	3a 95       	dec	r19
     9530:	d1 f7       	brne	.-12     	; 0x9526 <dir_clear+0x5c>
     9532:	81 15       	cp	r24, r1
-    9534:	90 48       	sbci	r25, 0x80	; 128
+    9534:	98 40       	sbci	r25, 0x08	; 8
     9536:	a1 05       	cpc	r26, r1
     9538:	b1 05       	cpc	r27, r1
     953a:	50 f0       	brcs	.+20     	; 0x9550 <dir_clear+0x86>
     953c:	00 e0       	ldi	r16, 0x00	; 0
-    953e:	10 e8       	ldi	r17, 0x80	; 128
+    953e:	18 e0       	ldi	r17, 0x08	; 8
     9540:	14 c0       	rjmp	.+40     	; 0x956a <dir_clear+0xa0>
     9542:	ce 01       	movw	r24, r28
     9544:	fd de       	rcall	.-518    	; 0x9340 <sync_window.part.5>
