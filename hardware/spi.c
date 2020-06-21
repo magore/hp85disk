@@ -55,7 +55,11 @@ void SPI0_Speed(uint32_t speed)
         return;
 #endif
 
-    rate = ((uint32_t) F_CPU) / speed;
+    // rate = ((uint32_t) F_CPU) / speed;
+    // Round
+    rate = ((uint32_t) F_CPU + (speed/2)) / speed;
+	printf("spi rate: %ld\n", (unsigned long) rate);
+
 
     if(rate >= 128)
     {

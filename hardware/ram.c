@@ -18,27 +18,45 @@
 /// @brief malloc may be aliased to safecalloc
 #undef malloc
 
+/// @brief Return top of heap
+///
+/// - avr-libc dependent code.
+///
+/// @return top of heap
+/// @see malloc().
+size_t heaptop()
+{
+	volatile size_t heap_end;
+
+	// I looked at the malloc source code to figure these all out
+	// if malloc_heap_end and breakval are 0 then we use the stack bootom plus a margin
+
+	if( (size_t) __malloc_heap_end )
+		heap_end = (size_t) __malloc_heap_end;
+	else if(__brkval)
+        heap_end = (size_t) __brkval;
+    else
+        heap_end = (size_t) SP - (size_t) __malloc_margin;
+
+	return(heap_end);
+
+}
 /// @brief Return AVR Free memory for Malloc.
 ///
 /// - avr-libc dependent code.
 ///
 /// @return free memory in bytes.
 /// @see malloc().
-uint16_t freeRam ()
+size_t freeRam ()
 {
-    int v;
-    extern void * __heap_start;
-    extern void * __brkval;
-    int ret;
-    uint16_t top;
+    size_t total;
+	size_t heap_end;
 
-    if(__brkval)
-        top = (uint16_t) __brkval;
-    else
-        top = (uint16_t) & __heap_start;
+	heap_end = heaptop();
 
-    ret = (uint16_t) &v - top;
-    return ( ret );
+	total = (unsigned long) SP - (unsigned long) heap_end;
+
+    return ( total );
 }
 
 
@@ -50,35 +68,47 @@ uint16_t freeRam ()
 /// @return  void
 void PrintFree()
 {
-    extern void * __brkval;
-    extern void * __heap_start;
-    extern void * __heap_end;
-    extern void * __bss_start;
-    extern void * __bss_end;
-    extern void * __data_start;
-    extern void * __data_end;
-    extern void * __stack;
-    uint16_t ram;
+	// See https://www.nongnu.org/avr-libc/user-manual/malloc.html
+    // static initial values for __malloc_heap_start and end
+
+	size_t ram;
+    size_t heap_end;
+
+	// I looked at the malloc source code to figure these all out
 
     ram = freeRam();
+	heap_end = heaptop();
 
-    printf("Free Ram:%u\n", ram);
-    printf("  Stack Top:   %u\n", (unsigned int) &__stack);
-    printf("  Stack Free:  %u\n", (unsigned int) &ram - 0);
+#ifdef AVR
+    printf("Free Ram:        %5u\n", (unsigned int) ram);
 
-    printf("  BSS   start: %5u, end: %5u\n",
+    printf("  Stack Top:     %5u, End: %5u\n", (unsigned int*) &__stack, (unsigned int) SP);
+    printf("  Stack Used:    %5u\n", (unsigned int*) &__stack - (unsigned int*) SP);
+
+	printf("  Heap  Start:   %5u, End: %5u\n",
+		(unsigned int) __malloc_heap_start, (unsigned int)heap_end);
+
+    printf("  BSS   Start:   %5u, End: %5u\n",
         (unsigned int)&__bss_start, (unsigned int)&__bss_end);
 
-    printf("  Data  start: %5u, end: %5u\n",
+    printf("  Data  Start:   %5u, End: %5u\n",
         (unsigned int)&__data_start, (unsigned int)&__data_end);
+#endif
+#ifdef ESP8266
+    printf("Free Ram:        %8lu\n", (unsigned int) ram);
 
-    printf("  Heap: start: %5u, end: %5u\n",
-        (unsigned int)&__heap_start, (unsigned int)&__heap_end);
+    printf("  Stack Top:     %8lu, End: %8lu\n", (unsigned int*) &__stack, (unsigned int) SP);
+    printf("  Stack Used:    %8lu\n", (unsigned int*) &__stack - (unsigned int*) SP);
 
-    printf("  Malloc start %5u  end: %5u\n",
-        (unsigned int)__malloc_heap_start, (unsigned int) __malloc_heap_end );
+	printf("  Heap  Start:   %8lu, End: %8lu\n",
+		(unsigned int) __malloc_heap_start, (unsigned int)heap_end);
 
-    printf("  __brkval:    %5u\n", (unsigned int) __brkval);
+    printf("  BSS   Start:   %8lu, End: %8lu\n",
+        (unsigned int)&__bss_start, (unsigned int)&__bss_end);
+
+    printf("  Data  Start:   %8lu, End: %8lu\n",
+        (unsigned int)&__data_start, (unsigned int)&__data_end);
+#endif
 
 }
 
@@ -127,25 +157,18 @@ void *safemalloc(size_t size)
 /// @return  void.
 void safefree(void *p)
 {
-    extern void *__brkval;
-    extern void * __heap_start;
-    extern void * __heap_end;
-    uint16_t top;
+    size_t heap_end;
 
     if(p == NULL)
         return;
 
-    if(__brkval)
-        top = (uint16_t) __brkval;
-    else
-        top = (uint16_t) & __heap_start;
+	heap_end = heaptop();
 
-    if( ((uint16_t) p >= (uint16_t) &__heap_start) &&
-        ((uint16_t) p <= top) )
+    if( ((size_t) p >= (size_t) __malloc_heap_start) && ((size_t) p <= heap_end) )
     {
         free(p);
         return;
     }
-    printf("safefree: FREE ERROR (%u), top:(%u)\n", (uint16_t) p, (uint16_t) top);
+    printf("safefree: FREE ERROR start(%lu), end(%lu)\n", (size_t) p, (size_t) heap_end);
     PrintFree();
 }

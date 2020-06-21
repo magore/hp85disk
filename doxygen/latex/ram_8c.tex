@@ -9,8 +9,10 @@ Memory Utilities and safe free for A\+VR.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \mbox{\hyperlink{ram_8c_a92bc86687dff16369e1c89d557e794c7}{free\+Ram}} ()
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{ram_8c_a6f02ccb4b9db47385907e0d189cca8a3}{heaptop}} ()
 \begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{ram_8c_a59e8194978abdeea154998ed4184c636}{free\+Ram}} ()
+\begin{DoxyCompactList}\small\item\em Return A\+VR Free memory for Malloc. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ram_8c_ad8337628eb01b7f72887a582e9417800}{Print\+Free}} ()
 \begin{DoxyCompactList}\small\item\em Display A\+VR free memory of each type$>$ \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ram_8c_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}} (int size, int elements)
@@ -36,21 +38,15 @@ Memory Utilities and safe free for A\+VR.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{ram_8c_a92bc86687dff16369e1c89d557e794c7}\label{ram_8c_a92bc86687dff16369e1c89d557e794c7}} 
+\mbox{\Hypertarget{ram_8c_a59e8194978abdeea154998ed4184c636}\label{ram_8c_a59e8194978abdeea154998ed4184c636}} 
 \index{ram.c@{ram.c}!freeRam@{freeRam}}
 \index{freeRam@{freeRam}!ram.c@{ram.c}}
 \doxysubsubsection{\texorpdfstring{freeRam()}{freeRam()}}
-{\footnotesize\ttfamily uint16\+\_\+t free\+Ram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} free\+Ram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-calloc may be aliased to safecalloc 
-
-free may be aliased to safefree
-
-malloc may be aliased to safecalloc
-
-Return A\+VR Free memory for Malloc.
+Return A\+VR Free memory for Malloc. 
 
 
 \begin{DoxyItemize}
@@ -61,7 +57,42 @@ Return A\+VR Free memory for Malloc.
 free memory in bytes. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc()}}. 
+\mbox{\hyperlink{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 50 of file ram.\+c.
+
+
+
+Referenced by Print\+Free().
+
+\mbox{\Hypertarget{ram_8c_a6f02ccb4b9db47385907e0d189cca8a3}\label{ram_8c_a6f02ccb4b9db47385907e0d189cca8a3}} 
+\index{ram.c@{ram.c}!heaptop@{heaptop}}
+\index{heaptop@{heaptop}!ram.c@{ram.c}}
+\doxysubsubsection{\texorpdfstring{heaptop()}{heaptop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} heaptop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calloc may be aliased to safecalloc 
+
+free may be aliased to safefree
+
+malloc may be aliased to safecalloc
+
+Return top of heap
+
+
+\begin{DoxyItemize}
+\item avr-\/libc dependent code.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+top of heap 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}}. 
 \end{DoxySeeAlso}
 
 
@@ -69,7 +100,7 @@ Definition at line 27 of file ram.\+c.
 
 
 
-Referenced by Print\+Free().
+Referenced by free\+Ram(), Print\+Free(), and safefree().
 
 \mbox{\Hypertarget{ram_8c_ad8337628eb01b7f72887a582e9417800}\label{ram_8c_ad8337628eb01b7f72887a582e9417800}} 
 \index{ram.c@{ram.c}!PrintFree@{PrintFree}}
@@ -92,7 +123,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 51 of file ram.\+c.
+Definition at line 69 of file ram.\+c.
 
 
 
@@ -119,7 +150,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 92 of file ram.\+c.
+Definition at line 122 of file ram.\+c.
 
 
 
@@ -151,7 +182,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 128 of file ram.\+c.
+Definition at line 158 of file ram.\+c.
 
 
 
@@ -181,7 +212,7 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 109 of file ram.\+c.
+Definition at line 139 of file ram.\+c.
 
 
 

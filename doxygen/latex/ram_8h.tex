@@ -8,14 +8,10 @@ Memory Utilities and safe free for A\+VR.
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void $\ast$ \mbox{\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
-\item 
-\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void $\ast$ \mbox{\hyperlink{ram_8h_ae148919146e88c7c40c7e2f781649b31}{calloc}} (\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} nmemb, \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} size)
-\item 
-\mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void \mbox{\hyperlink{ram_8h_a0f8c52d1c359b700088f8417b48e467b}{free}} (void $\ast$p)
-\item 
-uint16\+\_\+t \mbox{\hyperlink{ram_8h_af87fa722b545868277fe412e4786fa96}{free\+Ram}} (void)
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{ram_8h_aa79c5ffa29a706dd8061d0ebb68df5d8}{heaptop}} (void)
 \begin{DoxyCompactList}\small\item\em calloc may be aliased to safecalloc \end{DoxyCompactList}\item 
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{ram_8h_ade737d434849e3c83e8472ee7766a361}{free\+Ram}} (void)
+\begin{DoxyCompactList}\small\item\em Return A\+VR Free memory for Malloc. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}{Print\+Free}} (void)
 \begin{DoxyCompactList}\small\item\em Display A\+VR free memory of each type$>$ \end{DoxyCompactList}\item 
 void $\ast$ \mbox{\hyperlink{ram_8h_a23863723b09c3a4f836a5c10e1ecaa82}{safecalloc}} (int size, int elements)
@@ -24,6 +20,19 @@ void $\ast$ \mbox{\hyperlink{ram_8h_adefba2d5cc5425b0deeaaaee6d9a384e}{safemallo
 \begin{DoxyCompactList}\small\item\em Safe Malloc -\/ Display Error message if Malloc fails. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ram_8h_a9dc7d99df87239df4577b5b45ec6300c}{safefree}} (void $\ast$p)
 \begin{DoxyCompactList}\small\item\em Safe free -\/ Only free a pointer if it is in malloc memory range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{ram_8h_ad193a2cc121e0d4614a1c21eb463fb56}{\+\_\+\+\_\+brkval}}
+\item 
+char $\ast$ \mbox{\hyperlink{ram_8h_a9310042b3956282440c091d20cb98c5f}{\+\_\+\+\_\+malloc\+\_\+heap\+\_\+start}}
+\item 
+char $\ast$ \mbox{\hyperlink{ram_8h_a4d7b1bf0f75d529cc75229a266132115}{\+\_\+\+\_\+malloc\+\_\+heap\+\_\+end}}
+\item 
+\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \mbox{\hyperlink{ram_8h_affadd67736fd340e893fb22c207de597}{\+\_\+\+\_\+malloc\+\_\+margin}}
+\item 
+void $\ast$ \mbox{\hyperlink{ram_8h_a675511f77c3237fe03ce5eeb229315e4}{\+\_\+\+\_\+stack}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -41,41 +50,15 @@ Memory Utilities and safe free for A\+VR.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{ram_8h_ae148919146e88c7c40c7e2f781649b31}\label{ram_8h_ae148919146e88c7c40c7e2f781649b31}} 
-\index{ram.h@{ram.h}!calloc@{calloc}}
-\index{calloc@{calloc}!ram.h@{ram.h}}
-\doxysubsubsection{\texorpdfstring{calloc()}{calloc()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void$\ast$ calloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{nmemb,  }\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
-
-
-
-Referenced by printer\+\_\+open(), safecalloc(), safemalloc(), td0\+\_\+analize\+\_\+format(), td0\+\_\+open(), and td0\+\_\+read\+\_\+disk().
-
-\mbox{\Hypertarget{ram_8h_a0f8c52d1c359b700088f8417b48e467b}\label{ram_8h_a0f8c52d1c359b700088f8417b48e467b}} 
-\index{ram.h@{ram.h}!free@{free}}
-\index{free@{free}!ram.h@{ram.h}}
-\doxysubsubsection{\texorpdfstring{free()}{free()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void free (\begin{DoxyParamCaption}\item[{void $\ast$}]{p }\end{DoxyParamCaption})}
-
-
-
-Referenced by safefree(), and td0\+\_\+analize\+\_\+format().
-
-\mbox{\Hypertarget{ram_8h_af87fa722b545868277fe412e4786fa96}\label{ram_8h_af87fa722b545868277fe412e4786fa96}} 
+\mbox{\Hypertarget{ram_8h_ade737d434849e3c83e8472ee7766a361}\label{ram_8h_ade737d434849e3c83e8472ee7766a361}} 
 \index{ram.h@{ram.h}!freeRam@{freeRam}}
 \index{freeRam@{freeRam}!ram.h@{ram.h}}
 \doxysubsubsection{\texorpdfstring{freeRam()}{freeRam()}}
-{\footnotesize\ttfamily uint16\+\_\+t free\+Ram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} free\+Ram (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-calloc may be aliased to safecalloc 
-
-free may be aliased to safefree
-
-malloc may be aliased to safecalloc
-
-Return A\+VR Free memory for Malloc.
+Return A\+VR Free memory for Malloc. 
 
 
 \begin{DoxyItemize}
@@ -86,7 +69,42 @@ Return A\+VR Free memory for Malloc.
 free memory in bytes. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{ram_8h_a22b308551dea873face80619301d5618}{malloc()}}. 
+\mbox{\hyperlink{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 50 of file ram.\+c.
+
+
+
+Referenced by Print\+Free().
+
+\mbox{\Hypertarget{ram_8h_aa79c5ffa29a706dd8061d0ebb68df5d8}\label{ram_8h_aa79c5ffa29a706dd8061d0ebb68df5d8}} 
+\index{ram.h@{ram.h}!heaptop@{heaptop}}
+\index{heaptop@{heaptop}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{heaptop()}{heaptop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} heaptop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calloc may be aliased to safecalloc 
+
+free may be aliased to safefree
+
+malloc may be aliased to safecalloc
+
+Return top of heap
+
+
+\begin{DoxyItemize}
+\item avr-\/libc dependent code.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+top of heap 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{hardware_2user__config_8h_a6bb12c9cae32ecd32a4584a86c4c6c99}{malloc()}}. 
 \end{DoxySeeAlso}
 
 
@@ -94,13 +112,7 @@ Definition at line 27 of file ram.\+c.
 
 
 
-Referenced by Print\+Free().
-
-\mbox{\Hypertarget{ram_8h_a22b308551dea873face80619301d5618}\label{ram_8h_a22b308551dea873face80619301d5618}} 
-\index{ram.h@{ram.h}!malloc@{malloc}}
-\index{malloc@{malloc}!ram.h@{ram.h}}
-\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{mmc__hal_8h_ad0fe97585b8891f5e4f2b9a6426330a4}{M\+E\+M\+S\+P\+A\+CE}} void$\ast$ malloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}}}]{size }\end{DoxyParamCaption})}
+Referenced by free\+Ram(), Print\+Free(), and safefree().
 
 \mbox{\Hypertarget{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}\label{ram_8h_a90bd9d4d00f98de3df8c280e0da16189}} 
 \index{ram.h@{ram.h}!PrintFree@{PrintFree}}
@@ -123,7 +135,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 51 of file ram.\+c.
+Definition at line 69 of file ram.\+c.
 
 
 
@@ -150,7 +162,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 92 of file ram.\+c.
+Definition at line 122 of file ram.\+c.
 
 
 
@@ -182,7 +194,7 @@ void.
 \end{DoxyReturn}
 
 
-Definition at line 128 of file ram.\+c.
+Definition at line 158 of file ram.\+c.
 
 
 
@@ -212,9 +224,62 @@ void.
 
 \end{DoxyItemize}
 
-Definition at line 109 of file ram.\+c.
+Definition at line 139 of file ram.\+c.
 
 
 
 Referenced by fatfs\+\_\+tests(), ff\+\_\+memalloc(), and mkfs().
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{ram_8h_ad193a2cc121e0d4614a1c21eb463fb56}\label{ram_8h_ad193a2cc121e0d4614a1c21eb463fb56}} 
+\index{ram.h@{ram.h}!\_\_brkval@{\_\_brkval}}
+\index{\_\_brkval@{\_\_brkval}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{\_\_brkval}{\_\_brkval}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+\_\+brkval}
+
+
+
+Referenced by heaptop().
+
+\mbox{\Hypertarget{ram_8h_a4d7b1bf0f75d529cc75229a266132115}\label{ram_8h_a4d7b1bf0f75d529cc75229a266132115}} 
+\index{ram.h@{ram.h}!\_\_malloc\_heap\_end@{\_\_malloc\_heap\_end}}
+\index{\_\_malloc\_heap\_end@{\_\_malloc\_heap\_end}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_heap\_end}{\_\_malloc\_heap\_end}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end}
+
+
+
+Referenced by heaptop().
+
+\mbox{\Hypertarget{ram_8h_a9310042b3956282440c091d20cb98c5f}\label{ram_8h_a9310042b3956282440c091d20cb98c5f}} 
+\index{ram.h@{ram.h}!\_\_malloc\_heap\_start@{\_\_malloc\_heap\_start}}
+\index{\_\_malloc\_heap\_start@{\_\_malloc\_heap\_start}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_heap\_start}{\_\_malloc\_heap\_start}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start}
+
+
+
+Referenced by Print\+Free(), and safefree().
+
+\mbox{\Hypertarget{ram_8h_affadd67736fd340e893fb22c207de597}\label{ram_8h_affadd67736fd340e893fb22c207de597}} 
+\index{ram.h@{ram.h}!\_\_malloc\_margin@{\_\_malloc\_margin}}
+\index{\_\_malloc\_margin@{\_\_malloc\_margin}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{\_\_malloc\_margin}{\_\_malloc\_margin}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hardware_2user__config_8h_aea0c7eab1ce1eebb4e879ef4e23c16ee}{size\+\_\+t}} \+\_\+\+\_\+malloc\+\_\+margin}
+
+
+
+Referenced by heaptop().
+
+\mbox{\Hypertarget{ram_8h_a675511f77c3237fe03ce5eeb229315e4}\label{ram_8h_a675511f77c3237fe03ce5eeb229315e4}} 
+\index{ram.h@{ram.h}!\_\_stack@{\_\_stack}}
+\index{\_\_stack@{\_\_stack}!ram.h@{ram.h}}
+\doxysubsubsection{\texorpdfstring{\_\_stack}{\_\_stack}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+\_\+stack}
+
+
+
+Referenced by Print\+Free().
 

@@ -36,6 +36,10 @@
 #include "lif/lifutils.h"
 #endif
 
+#ifdef PORTIO_TESTS
+#include "hardware/portio.h"
+#endif
+
 #include <math.h>
 
 /* RunBoot define */
@@ -235,49 +239,6 @@ void gpib_user_task()
 
 #endif	// LCD_SUPPORT
 /// ======================================
-/// ======================================
-
-
-#ifdef DELAY_TESTS
-/// @brief  perform tests on delay functions
-///
-/// This included measurement of avr-libc delays
-/// @return  void
-void delay_tests()
-{
-    printf("System delays\n");
-
-    clock_elapsed_begin();
-    clock_elapsed_end("elapsed timer overhead");
-
-    clock_elapsed_begin();
-    _delay_us(100);
-    clock_elapsed_end("_delay_us(100)");
-
-    clock_elapsed_begin();
-    _delay_us(500);
-    clock_elapsed_end("_delay_us(500)");
-
-    printf("My delays\n");
-
-    clock_elapsed_begin();
-    delayus(100U);
-    clock_elapsed_end("delayus(100)");
-
-    clock_elapsed_begin();
-    delayus(500U);
-    clock_elapsed_end("delayus(500)");
-
-    clock_elapsed_begin();
-    delayus(1100);
-    clock_elapsed_end("delayus(1100)");
-
-    clock_elapsed_begin();
-    delayms(1000);
-    clock_elapsed_end("delayms(1100)");
-}
-#endif
-
 
 
 /// ======================================
@@ -292,43 +253,50 @@ void help()
 
 	printf("help     - displays this help menu\n");
 
+#ifdef LCD_SUPPORT
+    printf("backlight 0xRRGGBB - format 0x[00-FF][00-FF][00-FF]\n");
+#endif
+    printf("dir       Directory list MSDOS format\n");
+
+	drives_help(0);
 
 #ifdef FATFS_TESTS
     fatfs_help(0);
+#endif
+	gpib_help(0);
+
+#ifdef LIF_SUPPORT
+    lif_help(0);
 #endif
 
 #ifdef POSIX_TESTS
     posix_help(0);
 #endif
 
-#ifdef LIF_SUPPORT
-    lif_help(0);
-#endif
-
+    printf(
+        "reset   - reset emulator\n"
+        "setdate - set date - prompts for date\n");
 #ifdef TELEDISK
     td0_help(0);
 #endif
 
-	gpib_help(0);
-
-	drives_help(0);
-
     printf(
-#ifdef LCD_SUPPORT
-        "backlight 0xRRGGBB\n"
-#endif
+        "time    - display current date and time\n"
+		"\n");
 
+/* CPU debugging */
+    printf(
 #ifdef DELAY_TESTS
         "delay_tests\n"
 #endif
-        "dir       directories list\n"
-        "input   - toggle input debugging\n"
-        "mem     - display free memory\n"
-        "reset   - reset emulator\n"
-        "setdate - set date\n"
-        "time    - display current time\n"
-        "\n"
+        "input   - Toggle input parsing debugging\n"
+        "mem     - Display free memory\n"
         );
+#ifdef PORTIO_TESTS
+	portio_help(0);
+#endif
+	printf("\n");
+
 }
 
 /// @brief  User command handler - called as main task
@@ -379,20 +347,6 @@ void user_task(uint8_t gpib)
     {
         result = 1;
     }
-    else if (MATCHI(ptr,"input") )
-    {
-        debug_input = !debug_input;
-		printf("Input debugging: %s\n", debug_input ? "ON" : "OFF");
-        result = 1;
-    }
-#ifdef DELAY_TESTS
-    else if (MATCHI(ptr,"delay_tests") )
-    {
-        delay_tests();
-        result = 1;
-
-    }
-#endif
 
 #ifdef LCD_SUPPORT
     else if (MATCHI(ptr,"backlight") )
@@ -406,12 +360,6 @@ void user_task(uint8_t gpib)
     }
 #endif
 
-    else if ( MATCH(ptr,"mem") )
-    {
-        PrintFree();
-        result = 1;
-
-    }
     else if ( MATCHI(ptr,"reset") )
     {
         cli();
@@ -457,38 +405,10 @@ void user_task(uint8_t gpib)
         }
     }
 
-	if( (ret = gpib_tests(argc,argv)) )
-    {
-		if(ret < 0)
-			result = -1;
-		else
-			result = 1;
-// Restore GPIB BUS states
-        gpib_init_devices();
-    }
+
 
 #ifdef POSIX_TESTS
-    else if( (ret = posix_tests(argc,argv)) )
-	{
-		if(ret < 0)
-			result = -1;
-		else
-			result = 1;
-	}
-#endif
-
-#ifdef FATFS_TESTS
-    if( (ret = fatfs_tests(argc,argv) ))
-	{
-		if(ret < 0)
-			result = -1;
-		else
-			result = 1;
-	}
-#endif
-
-#ifdef LIF_SUPPORT
-    if( (ret = lif_tests(argc,argv)) )
+    if( (ret = posix_tests(argc,argv)) )
 	{
 		if(ret < 0)
 			result = -1;
@@ -503,6 +423,59 @@ void user_task(uint8_t gpib)
 		else
 			result = 1;
 	}
+
+#ifdef FATFS_TESTS
+    if( (ret = fatfs_tests(argc,argv) ))
+	{
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
+	}
+#endif
+	if( (ret = gpib_tests(argc,argv)) )
+    {
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
+// Restore GPIB BUS states
+        gpib_init_devices();
+    }
+
+#ifdef LIF_SUPPORT
+    if( (ret = lif_tests(argc,argv)) )
+	{
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
+	}
+#endif
+
+/* CPU related tests */
+    if (MATCHI(ptr,"input") )
+    {
+        debug_input = !debug_input;
+		printf("Input debugging: %s\n", debug_input ? "ON" : "OFF");
+        result = 1;
+    }
+    else if ( MATCH(ptr,"mem") )
+    {
+        PrintFree();
+        result = 1;
+
+    }
+#ifdef PORTIO_TESTS
+	if( (ret = portio_tests(argc,argv)) )
+    {
+		if(ret < 0)
+			result = -1;
+		else
+			result = 1;
+	}
+#endif
+/* CPU related tests */
 
     if(result == 1)
         printf("OK\n");

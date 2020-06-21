@@ -16,14 +16,37 @@
 #undef calloc
 #undef free
 
-/* utils/sys.c */
-MEMSPACE void *malloc ( size_t size );
-MEMSPACE void *calloc ( size_t nmemb , size_t size );
-MEMSPACE void free ( void *p );
-/* hardware/ram.c */
-uint16_t freeRam ( void );
+
+extern char * __brkval;
+extern char * __malloc_heap_start;
+extern char * __malloc_heap_end;
+extern size_t  __malloc_margin;
+extern void *__stack;
+
+#ifdef AVR
+    extern unsigned int __heap_start;
+    extern unsigned int __heap_end;
+    extern unsigned int __bss_start;
+    extern unsigned int __bss_end;
+    extern unsigned int __data_start;
+    extern unsigned int __data_end;
+#endif
+#ifdef ESP8266
+    extern unsigned long int __heap_start;
+    extern unsigned long int __heap_end;
+    extern unsigned long int __bss_start;
+    extern unsigned long int __bss_end;
+    extern unsigned long int __data_start;
+    extern unsigned long int __data_end;
+#endif
+
+
+/* ram.c */
+size_t heaptop ( void );
+size_t freeRam ( void );
 void PrintFree ( void );
 void *safecalloc ( int size , int elements );
 void *safemalloc ( size_t size );
 void safefree ( void *p );
+
 #endif                                            //_RAM_H_

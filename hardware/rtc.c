@@ -54,6 +54,8 @@ uint8_t BCDtoBIN(uint8_t data)
 ///@return 1 = OK, 0 = ERROR
 int8_t i2c_rtc_write(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
 {
+	int8_t retry;
+	int8_t ret = 0;
 	int8_t i;
 	uint8_t reg[DS1307_REG_SIZE+1];
 
@@ -64,12 +66,18 @@ int8_t i2c_rtc_write(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
 	for(i=0;i<len;++i)
 		reg[i+1] = buf[i];
 
-    if ( !i2c_fn(address, TW_WRITE, reg, len+1) )
+	retry = 2;
+	while(retry--)
 	{
+		if ( i2c_fn(address, TW_WRITE, reg, len+1) )
+		{
+			ret = 1;
+			break;
+		}
         printf("i2c_rtc_write data error\n");
-        return(0);
-    }
-	return(1);
+		ret = 0;
+	}
+	return(ret);
 }
 
 ///@brief RTC I2C READ function
@@ -81,15 +89,26 @@ int8_t i2c_rtc_write(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
 ///@return 1 = OK, 0 = ERROR
 int8_t i2c_rtc_read(uint8_t address, uint8_t index, uint8_t *buf, uint8_t len)
 {
+	int8_t retry;
+	int8_t ret = 0;
+
 	if(len < 1 || len > DS1307_REG_SIZE)
 		return(0);
 
-    if ( !i2c_fn(address, TW_WRITE, (uint8_t *) &index, sizeof(index)) )
+	retry = 2;
+    while(retry--)
 	{
+		if ( i2c_fn(address, TW_WRITE, (uint8_t *) &index, sizeof(index)) )
+		{
+			ret = 1;
+			break;
+		}
         printf("i2c_rtc_read address error\n");
-        return(0);
+		ret = 0;
     }
-
+	if(!ret)
+		return(0);
+	
     if ( !i2c_fn(address, TW_READ, buf,len) )
 	{
         printf("i2c_rtc_read data error\n");
@@ -222,11 +241,12 @@ int rtc_run(int run)
 {
 	uint8_t reg;
 
+
 	if( !i2c_rtc_read(DS1307, 0, (uint8_t *) &reg, sizeof(reg)) )
 	{
-        printf("rtc_run read error\n");
-        return -1;
-    }
+		printf("rtc_run read error\n");
+		return(-1);
+	}
 
     if(run == -1)
         return ((reg & 0x80) ? 0 : 1);

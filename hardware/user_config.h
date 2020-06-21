@@ -27,7 +27,7 @@
 #endif
 
 #ifndef MMC_FAST
-#define MMC_FAST (2500000UL)
+#define MMC_FAST (5000000UL)
 #endif
 #endif                                            // AVR
 
@@ -116,6 +116,10 @@ typedef unsigned long int size_t;
 #include "posix/posix.h"
 
 #include "gpib/debug.h"
+
+#ifdef PORTIO_TESTS
+#include "portio.h"
+#endif
 
 // sys.c defines alternative safe functions
 #ifndef free

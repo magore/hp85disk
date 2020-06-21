@@ -115,7 +115,8 @@ endif
 
 # ==============================================
 # Hardware Addon Options 
-# Evaluate interrupt driven I2C code - compiled bit it is not being used yet
+
+# Interrupt driven I2C code 
 I2C_SUPPORT 			?= 1
 
 # Do we have an RTC attachaed - code currently assumes DS1307 or DS3231
@@ -129,7 +130,14 @@ LCD_SUPPORT 			?= 1
 # 0 Disables 
 AMIGO 					?= 1
 
+# ==============================================
+### MMC card interface
+# The maximum SD Card SPI clock frequency is hardware and card specific
+# I have tested hp85disk V2 PCB at 5MHz with SanDisk Extreem cards
+# 2.5MHz is safe
+MMC_FAST                ?= 2500000   
 
+# ==============================================
 ### Source files and search directory
 # 0 Disables 
 FATFS_SUPPORT			?= 1
@@ -139,18 +147,24 @@ FATFS_TESTS				?= 1
 # 0 Disables 
 FATFS_UTILS_FULL		?= 0
 
-#GPIB Extended tests
-# 0 Disables 
-GPIB_EXTENDED_TESTS		?= 0
-
 # Extended user interactive posix tests
 # 0 Disables 
 POSIX_TESTS=1
 POSIX_EXTENDED_TESTS 	?= 0
 
+# ==============================================
 #LIF support for modifying LIF disik images used by the emulator
 # 0 Disables 
 LIF_SUPPORT 			?= 1
+
+# ==============================================
+#GPIB Extended tests
+# 0 Disables 
+GPIB_EXTENDED_TESTS		?= 0
+
+# ==============================================
+# AVR Port READ/WRITE tests
+PORTIO_TESTS            ?= 0
 
 # ==============================================
 # VERBOSE controls how much make displays while compiling
@@ -172,9 +186,13 @@ HARDWARE = \
 	hardware/ram.c \
 	hardware/delay.c \
 	hardware/rs232.c \
-	hardware/spi.c \
-	# hardware/TWI_AVR8.c 
+	hardware/spi.c 
 	
+# AVR Port READ?WRITE diagnotics - only used durring intial development
+ifeq ($(PORTIO_TESTS),1)
+	HARDWARE += hardware/portio.c
+endif
+
 # Evaluate interrupt driven I2C code - compiled bit it is not being used yet
 ifeq ($(I2C_SUPPORT),1)
 	HARDWARE += hardware/i2c.c 
@@ -333,6 +351,10 @@ endif
 
 ifeq ($(POSIX_EXTENDED_TESTS),1)
 	DEFS += POSIX_TESTS
+endif
+
+ifeq ($(PORTIO_TESTS),1)
+	DEFS += PORTIO_TESTS
 endif
 
 # ==============================================

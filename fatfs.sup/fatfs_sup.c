@@ -269,6 +269,9 @@ int fatfs_status(char *name)
     while(*name == ' ' || *name == '\t')
         ++name;
 
+	printf("MMC SLOW clock=%8ld\n", (long)MMC_SLOW);
+	printf("MMC FAST clock=%8ld\n", (long)MMC_FAST);
+
     if(!name || !*name)
     {
         strcpy(buff,".");

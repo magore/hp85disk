@@ -65,7 +65,7 @@ void posix_help(int full)
     #ifdef POSIX_EXTENDED_TESTS
             "posix mkfs\n"
     #endif
-            "posix page NN\n"
+            "posix page NN - used for cat -p\n"
             "posix pwd\n"
     #ifdef POSIX_EXTENDED_TESTS
             "posix stat file\n"

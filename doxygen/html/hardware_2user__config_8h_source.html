@@ -89,7 +89,7 @@ $(function() {
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifndef MMC_FAST</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a1cf90afdd82046f772117bb46a9849e6">   30</a></span>&#160;<span class="preprocessor">#define MMC_FAST (2500000UL)</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a1cf90afdd82046f772117bb46a9849e6">   30</a></span>&#160;<span class="preprocessor">#define MMC_FAST (5000000UL)</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif                                            // AVR</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
@@ -176,17 +176,21 @@ $(function() {
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="debug_8h.html">gpib/debug.h</a>&quot;</span></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// sys.c defines alternative safe functions</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#ifndef free</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a9d4b5df3530d1bc733070a4669ba6ebc">  122</a></span>&#160;<span class="preprocessor">#define free(p) safefree(p)</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#ifndef calloc</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191">  125</a></span>&#160;<span class="preprocessor">#define calloc(n,s) safecalloc(n,s)</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#ifndef malloc</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99">  128</a></span>&#160;<span class="preprocessor">#define malloc(s) safemalloc(s)</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#ifdef PORTIO_TESTS</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="portio_8h.html">portio.h</a>&quot;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">// sys.c defines alternative safe functions</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#ifndef free</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a9d4b5df3530d1bc733070a4669ba6ebc">  126</a></span>&#160;<span class="preprocessor">#define free(p) safefree(p)</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifndef calloc</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#ad3a606b2415cc9127bbb52d8ed5d3191">  129</a></span>&#160;<span class="preprocessor">#define calloc(n,s) safecalloc(n,s)</span></div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifndef malloc</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="hardware_2user__config_8h.html#a6bb12c9cae32ecd32a4584a86c4c6c99">  132</a></span>&#160;<span class="preprocessor">#define malloc(s) safemalloc(s)</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="afatfs_8h_html"><div class="ttname"><a href="fatfs_8h.html">fatfs.h</a></div></div>
 <div class="ttc" id="ahal_8h_html"><div class="ttname"><a href="hal_8h.html">hal.h</a></div></div>
@@ -205,6 +209,7 @@ $(function() {
 <div class="ttc" id="adelay_8h_html"><div class="ttname"><a href="delay_8h.html">delay.h</a></div><div class="ttdoc">Extended delay routines for AVR.</div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_aea0c7eab1ce1eebb4e879ef4e23c16ee"><div class="ttname"><a href="hardware_2user__config_8h.html#aea0c7eab1ce1eebb4e879ef4e23c16ee">size_t</a></div><div class="ttdeci">unsigned long int size_t</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00093">user_config.h:93</a></div></div>
 <div class="ttc" id="ahardware_2user__config_8h_html_af6a258d8f3ee5206d682d799316314b1"><div class="ttname"><a href="hardware_2user__config_8h.html#af6a258d8f3ee5206d682d799316314b1">bool</a></div><div class="ttdeci">bool</div><div class="ttdef"><b>Definition:</b> <a href="hardware_2user__config_8h_source.html#l00088">user_config.h:88</a></div></div>
+<div class="ttc" id="aportio_8h_html"><div class="ttname"><a href="portio_8h.html">portio.h</a></div></div>
 <div class="ttc" id="artc_8h_html"><div class="ttname"><a href="rtc_8h.html">rtc.h</a></div><div class="ttdoc">DS1307 RTC Driver AVR8.</div></div>
 <div class="ttc" id="amathio_8h_html"><div class="ttname"><a href="mathio_8h.html">mathio.h</a></div><div class="ttdoc">Math IO functions, and verious conversion code with floating point support.</div></div>
 <div class="ttc" id="aposix_8h_html"><div class="ttname"><a href="posix_8h.html">posix.h</a></div><div class="ttdoc">POSIX wrapper for FatFS.</div></div>
@@ -212,7 +217,7 @@ $(function() {
 <div class="ttc" id="adebug_8h_html"><div class="ttname"><a href="debug_8h.html">debug.h</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jun 20 2020 14:56:20 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 21 2020 16:27:40 for HP85 GPIB Disk Emulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

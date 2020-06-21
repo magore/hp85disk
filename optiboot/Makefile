@@ -45,6 +45,7 @@ boot_write:
 # Flash boot loader code using isp
 boot_lock: 
 	@echo BOOT LOCK
+	@echo "NOTE **** 0x3d boot_lock might read as 0xfd - this is OK! ****"
 	-avrdude -P $(ISP_PORT) -p $(AVRDUDE_DEVICE) -c $(AVRDUDE_ISP) -F -B $(ISP_SPEED) $(fuses_lock)
 	@echo "NOTE **** 0x3d boot_lock might read as 0xfd - this is OK! ****"
 	@echo
