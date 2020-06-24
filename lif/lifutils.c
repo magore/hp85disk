@@ -448,10 +448,13 @@ int lif_chars(int c, int index)
         return(c-0x20);
     if(c >= 'A' && c <= 'Z')
         return(c);
-    if((index > 0) && (c >= '0' && c <= '9') )
-        return(c);
-    if((index > 0) && (( c == '_') || c == '-'))
-        return(c);
+    if(index > 0)
+	{
+		if(c >= '0' && c <= '9') 
+			return(c);
+		if(c == '$' || c == '_' || c == '-')
+			return(c);
+	}
     return(0);
 }
 
@@ -1021,9 +1024,11 @@ int lif_check_dir(lif_t *LIF)
 //FIXME check file types?!
     if(LIF->DIR.SectorSize != LIF_SECTOR_SIZE)
     {
-        status = 0;
+		// MG do we fail this ?
+        // status = 0;
         if(debuglevel & LIF_DEBUG)
-            printf("LIF Directory:[%s] invalid sector size:%ld\n", LIF->name, (long)LIF->DIR.SectorSize);
+            printf("LIF Directory:[%s] warning sector size :%ld != %d\n", LIF->name, 
+				(long)LIF->DIR.SectorSize, (int) LIF_SECTOR_SIZE);
     }
 
     return(status);
@@ -1220,6 +1225,7 @@ void lif_close_volume(lif_t *LIF)
 /// @brief Convert bytes into used sectors
 /// @param[in] bytes: size in bytes
 /// @return sectors
+/// FIXME assumes 256 byte sectors
 MEMSPACE
 uint32_t lif_bytes2sectors(uint32_t bytes)
 {
@@ -1288,7 +1294,7 @@ int lif_readdirindex(lif_t *LIF, int index)
         return(0);
     }
 
-// Computer offset
+// Compute offset
     offset = ((long)index * LIF_DIR_SIZE) + (LIF->VOL.DirStartSector * (long)LIF_SECTOR_SIZE);
 
 // read raw data
@@ -1849,6 +1855,7 @@ So 29 = 19 and 10 (yuck!)
 /// @param[in] offset: sector offset
 /// @param[in] wbuf: E010 PAD data
 /// @return size of E010 PAD data
+/// FIXME assumes 256 byte secors
 MEMSPACE
 int lif_e010_pad_sector(long offset, uint8_t *wbuf)
 {
@@ -1888,6 +1895,7 @@ int lif_e010_pad_sector(long offset, uint8_t *wbuf)
 /// @param[in] offset: E010 data sector offset, only used in formatting wbuf with headers
 /// @param[in] wbuf: E010 data result
 /// @return size of E010 data
+/// FIXME assumes 256 byte secors
 MEMSPACE
 int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 {
@@ -1982,6 +1990,7 @@ int lif_ascii_string_to_e010(char *str, long offset, uint8_t *wbuf)
 /// @param[in] userfile: User ASCII file source
 /// @param[in] *LIF: Where to write file if set (not NULL)
 /// @return size of formatted result
+/// FIXME assumes 256 byte secors
 MEMSPACE
 long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *username)
 {
@@ -2078,6 +2087,7 @@ long lif_add_ascii_file_as_e010_wrapper(lif_t *LIF, uint32_t offset, char *usern
 /// @param[in] lifname: LIF file name
 /// @param[in] userfile: userfile name
 /// @return size of data written into to LIF image, or -1 on error
+/// FIXME assumes 256 byte secors
 MEMSPACE
 long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfile)
 {
@@ -2181,6 +2191,7 @@ long lif_add_ascii_file_as_e010(char *lifimagename, char *lifname, char *userfil
 /// @param[in] lifname:  name of file in LIF image
 /// @param[in] username: name to call the extracted image
 /// @return 1 on sucess or 0 on error
+/// FIXME assumes 256 byte secors
 MEMSPACE
 int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 {
@@ -2357,6 +2368,7 @@ int lif_extract_e010_as_ascii(char *lifimagename, char *lifname, char *username)
 /// @param[in] lifname:  name of file in LIF image we want to extract
 /// @param[in] username: new LIF file to create
 /// @return 1 on sucess or 0 on error
+/// FIXME assumes 256 byte secors
 MEMSPACE
 int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 {
@@ -2457,6 +2469,7 @@ int lif_extract_lif_as_lif(char *lifimagename, char *lifname, char *username)
 /// @param[in] lifname: LIF file name to copy file to
 /// @param[in] userfile: LIF mage name copy file from
 /// @return size of data written into to LIF image, or -1 on error
+/// FIXME assumes 256 byte secors
 MEMSPACE
 long lif_add_lif_file(char *lifimagename, char *lifname, char *userfile)
 {
