@@ -443,7 +443,9 @@ MEMSPACE
 int lif_chars(int c, int index  __attribute__((unused)))
 {
 // Series 80 names allow most characters even though the LIF spec does not
-	if(c == '.' || c == ':' || c == '"' || c == '\'' || c < ' ' || c > 128)
+ 	if(c < 32 || c > 127)
+		return(0);
+	if(c == '.' || c == ':' || c == '"' || c == '\'' )
 		return(0);
 	return(c);
 #if 0

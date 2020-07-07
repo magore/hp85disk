@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 000062ae  00000000  00000000  000499ab  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000125c6  00000000  00000000  0004fc59  2**0
+  8 .debug_line   000125b8  00000000  00000000  0004fc59  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000051ec  00000000  00000000  00062220  2**2
+  9 .debug_frame  000051ec  00000000  00000000  00062214  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00004af0  00000000  00000000  0006740c  2**0
+ 10 .debug_str    00004af0  00000000  00000000  00067400  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000249f6  00000000  00000000  0006befc  2**0
+ 11 .debug_loc    000249f5  00000000  00000000  0006bef0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00001768  00000000  00000000  000908f2  2**0
+ 12 .debug_ranges 00001768  00000000  00000000  000908e5  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -50157,24 +50157,24 @@ uint32_t B2V_LSB(uint8_t *B, int index, int size)
    185d2:	08 95       	ret
 
 000185d4 <lif_chars>:
-   185d4:	8e 32       	cpi	r24, 0x2E	; 46
-   185d6:	91 05       	cpc	r25, r1
-   185d8:	79 f0       	breq	.+30     	; 0x185f8 <lif_chars+0x24>
-   185da:	8a 33       	cpi	r24, 0x3A	; 58
-   185dc:	91 05       	cpc	r25, r1
-   185de:	61 f0       	breq	.+24     	; 0x185f8 <lif_chars+0x24>
-   185e0:	82 32       	cpi	r24, 0x22	; 34
+   185d4:	9c 01       	movw	r18, r24
+   185d6:	20 52       	subi	r18, 0x20	; 32
+   185d8:	31 09       	sbc	r19, r1
+   185da:	20 36       	cpi	r18, 0x60	; 96
+   185dc:	31 05       	cpc	r19, r1
+   185de:	60 f4       	brcc	.+24     	; 0x185f8 <lif_chars+0x24>
+   185e0:	8e 32       	cpi	r24, 0x2E	; 46
    185e2:	91 05       	cpc	r25, r1
    185e4:	49 f0       	breq	.+18     	; 0x185f8 <lif_chars+0x24>
-   185e6:	87 32       	cpi	r24, 0x27	; 39
+   185e6:	8a 33       	cpi	r24, 0x3A	; 58
    185e8:	91 05       	cpc	r25, r1
    185ea:	31 f0       	breq	.+12     	; 0x185f8 <lif_chars+0x24>
-   185ec:	80 32       	cpi	r24, 0x20	; 32
+   185ec:	82 32       	cpi	r24, 0x22	; 34
    185ee:	91 05       	cpc	r25, r1
-   185f0:	1c f0       	brlt	.+6      	; 0x185f8 <lif_chars+0x24>
-   185f2:	81 38       	cpi	r24, 0x81	; 129
+   185f0:	19 f0       	breq	.+6      	; 0x185f8 <lif_chars+0x24>
+   185f2:	87 32       	cpi	r24, 0x27	; 39
    185f4:	91 05       	cpc	r25, r1
-   185f6:	14 f0       	brlt	.+4      	; 0x185fc <lif_chars+0x28>
+   185f6:	11 f4       	brne	.+4      	; 0x185fc <lif_chars+0x28>
    185f8:	80 e0       	ldi	r24, 0x00	; 0
    185fa:	90 e0       	ldi	r25, 0x00	; 0
    185fc:	08 95       	ret
