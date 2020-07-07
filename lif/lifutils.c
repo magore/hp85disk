@@ -447,6 +447,9 @@ int lif_chars(int c, int index  __attribute__((unused)))
 		return(0);
 	if(c == '.' || c == ':' || c == '"' || c == '\'' )
 		return(0);
+// Linux and Windows Path separators
+	if(c == '/' || c == '\\')
+		return(0);
 	return(c);
 #if 0
     if(c == ' ')
