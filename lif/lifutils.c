@@ -440,8 +440,13 @@ int lif_write(lif_t *LIF, void *buf, long offset, int bytes)
 /// @param[in] index: index of character in volume or file name
 /// @retrun c (optionally upper cased) or 0 if no match
 MEMSPACE
-int lif_chars(int c, int index)
+int lif_chars(int c, int index  __attribute__((unused)))
 {
+// Series 80 names allow most characters even though the LIF spec does not
+	if(c == '.' || c == ':' || c == '"' || c == '\'' || c < ' ' || c > 128)
+		return(0);
+	return(c);
+#if 0
     if(c == ' ')
         return(c);
     if(c >= 'a' && c <= 'z')
@@ -456,6 +461,7 @@ int lif_chars(int c, int index)
 			return(c);
 	}
     return(0);
+#endif
 }
 
 
@@ -483,7 +489,7 @@ int lif_B2S(uint8_t *B, uint8_t *name, int size)
 }
 
 
-/// @brief Check volume if name or directory name is valid
+/// @brief Check volume LIF name or directory name is valid
 /// @param[in] *name: name to test
 /// @retrun 1 if the string is ok or 0 if invalid LIF name characters on input string
 MEMSPACE

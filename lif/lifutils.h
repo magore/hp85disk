@@ -102,8 +102,8 @@ typedef struct
     uint32_t FileSectors;                         // 16
     uint8_t  date[6];                             // 20 File date in BCD (YY MM DD HH MM SS)
     uint16_t VolNumber;                           // 26
-    uint16_t FileBytes;                           // 30
-    uint16_t SectorSize;                          // 28
+    uint16_t FileBytes;                           // 28
+    uint16_t SectorSize;                          // 30
 } lifdir_t;
 
 ///@brief Master LIF data structure
