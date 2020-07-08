@@ -1313,7 +1313,6 @@ ___
 ### For lif help type *lif help*
  * **lif help**
 <pre>
-	lif help
 	lif add lifimage lifname from_ascii_file
 	lif addbin lifimage lifname from_lif_file
 	lif create lifimage label directory_sectors sectors
@@ -1324,6 +1323,7 @@ ___
 	lif extractbin lifimage lifname to_lif_file
 		extracts a file into a sigle file LIF image
 	lif rename lifimage oldlifname newlifname
+	lif renamevol lifimage name
 	Use -d  after 'lif' keyword to enable LIF filesystem debugging
 </pre>
 

@@ -125,7 +125,7 @@ void lif_help(int full)
             "lif extractbin lifimage lifname to_lif_file\n"
             "    extracts a file into a sigle file LIF image\n"
             "lif rename lifimage oldlifname newlifname\n"
-
+            "lif renamevol lifimage name\n"
             "Use -d  after 'lif' keyword to enable LIF filesystem debugging\n"
             "\n"
             );
@@ -248,6 +248,12 @@ int lif_tests(int argc, char *argv[])
     if (MATCHARGS(ptr,"rename", (ind + 3) ,argc))
     {
         lif_rename_file(argv[ind],argv[ind+1],argv[ind+2]);
+        return(1);
+    }
+
+    if (MATCHARGS(ptr,"renamevol", (ind + 2) ,argc))
+    {
+        lif_rename_volume(argv[ind],argv[ind+1]);
         return(1);
     }
 
@@ -2715,6 +2721,71 @@ int lif_rename_file(char *lifimagename, char *oldlifname, char *newlifname)
     return(1);
 }
 
+
+/// @brief Rename LIF VOLUME NAME
+/// @param[in] lifimagename: LIF image name
+/// @param[in] volname: new LIF Volume name
+/// @return 1 if renamed, 0 if not found, -1 error
+MEMSPACE
+int lif_rename_volume(char *lifimagename, char *volname)
+{
+    lif_t *LIF;
+	uint8_t buffer[LIF_SECTOR_SIZE+1];
+
+
+    if(!*lifimagename)
+    {
+        printf("lif_rename_file: lifimagename is empty\n");
+        return(-1);
+    }
+
+    if(!*volname)
+    {
+        printf("lif_rename_file: new Volume name empty\n");
+        return(-1);
+    }
+
+    if(!lif_checkname(volname))
+    {
+        printf("lif_rename_file: new lifname contains bad characters\n");
+        return(-1);
+
+    }
+
+    LIF = lif_open_volume(lifimagename,"rb+");
+    if(LIF == NULL)
+        return(-1);
+
+	// Update volume name
+    lif_fixname(LIF->VOL.Label, volname, 6);
+
+// Validate basic Volume headers
+    if( !lif_check_volume(LIF) )
+    {
+        if(debuglevel & LIF_DEBUG)
+            printf("lif_rename_volume:[%s] error volume validate failed\n", LIF->name);
+        lif_closedir(LIF);
+        return(-1);
+    }
+
+	// clear sector buffer
+    memset(buffer,0,LIF_SECTOR_SIZE);
+	// created update volume header sector from LIF structure
+	lif_vol2str(LIF,buffer);
+
+// Volume header must be it least one sector
+    if( lif_write(LIF, buffer, 0, LIF_SECTOR_SIZE) < LIF_SECTOR_SIZE)
+    {
+        if(debuglevel & LIF_DEBUG)
+            printf("lif_rename_volume:[%s] error write volume header failed\n", LIF->name);
+        lif_closedir(LIF);
+        return(-1);
+    }
+
+    lif_close_volume(LIF);
+
+    return(1);
+}
 
 /// @brief Create/Format a LIF new disk image
 /// This can take a while to run, about 1 min for 10,000,000 bytes

@@ -131,6 +131,7 @@ typedef struct
 
 // =============================================
 
+
 /* lifutils.c */
 MEMSPACE void lif_help ( int full );
 MEMSPACE int lif_tests ( int argc , char *argv []);
@@ -142,7 +143,7 @@ MEMSPACE stat_t *lif_stat ( char *name , stat_t *p );
 MEMSPACE int lif_seek_msg ( FILE *fp , long offset , char *msg );
 MEMSPACE long lif_read ( lif_t *LIF , void *buf , long offset , int bytes );
 MEMSPACE int lif_write ( lif_t *LIF , void *buf , long offset , int bytes );
-MEMSPACE int lif_chars ( int c , int index );
+MEMSPACE int lif_chars ( int c , int index __attribute__ ((unused )));
 MEMSPACE int lif_B2S ( uint8_t *B , uint8_t *name , int size );
 MEMSPACE int lif_checkname ( char *name );
 MEMSPACE void lif_S2B ( uint8_t *B , uint8_t *name , int size );
@@ -187,5 +188,6 @@ MEMSPACE int lif_extract_lif_as_lif ( char *lifimagename , char *lifname , char 
 MEMSPACE long lif_add_lif_file ( char *lifimagename , char *lifname , char *userfile );
 MEMSPACE int lif_del_file ( char *lifimagename , char *lifname );
 MEMSPACE int lif_rename_file ( char *lifimagename , char *oldlifname , char *newlifname );
+MEMSPACE int lif_rename_volume ( char *lifimagename , char *volname );
 MEMSPACE long lif_create_image ( char *lifimagename , char *liflabel , uint32_t dirsectors , uint32_t sectors );
 #endif                                            // #ifndef _LIFUTILS_H
