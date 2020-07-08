@@ -152,6 +152,13 @@ NOTE:
 ___
 
 
+## Resource Links 
+  * 3D printed cases
+    * https://github.com/MartinHepperle/HP-ReproParts
+
+___
+
+
 ## Initial Setup of HP85 disk V2 PCB by Jay Hamlin
 ### Setup checklist
   * **You must an HP85 82937A GPIB card installed** [See document](Documents/82937AHP-IBInterface-InstallationAndTheoryOfOperationManual-82937-90007-56pages-Oct80)
