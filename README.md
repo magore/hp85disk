@@ -38,9 +38,6 @@
    * The emulator **RTC** can be used for time stamping plot files and files added into lif images
 
 
-## HP85 Disk Emulator is available at the Tindie store
-  * https://www.tindie.com/products/hp85disk/hp85disk-disk-emulator-for-hp85-series-computers/
-
 ___ 
 
 
