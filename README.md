@@ -286,7 +286,7 @@ ___
 ___ 
 
 
-###  Choosing and SD Card for the HP85 emulator PLEASE READ
+###  Choosing an SD Card for the HP85 emulator PLEASE READ
   * Summary: When the hp85disk emulator writes to the SD Card the Card internally must modify a much much larger internal flash page - this can take too long
     * The **HP85** is sensitive to long read/write delays that some cards can cause problems with
     * You want SD Cards with fast random writes

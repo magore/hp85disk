@@ -1248,7 +1248,7 @@ int Amigo_Command( int secondary )
     }
     else if (secondary == 0x6A)
     {
-        if(op == 0x08 && len == 2)
+        if(op == 0x03 && len == 2)
         {
 #if SDEBUG
             if(debuglevel & GPIB_DEVICE_STATE_MESSAGES)
