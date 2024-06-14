@@ -1409,6 +1409,7 @@ int stat(char *name, struct stat *buf)
         buf->st_uid= 0;
         buf->st_gid= 0;
     }
+    else
     {
         buf->st_uid=1000;
         buf->st_gid=1000;
